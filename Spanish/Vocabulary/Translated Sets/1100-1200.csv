@@ -1,0 +1,101 @@
+,Unnamed: 0,Spanish,show,lemma,Translation,SpaCy_POS,SpaCy_Tag,POS
+0,1100,encuentra,*encuentra* (encontrar),,finds,VERB,VERB,Verb
+1,1101,veamos,*veamos* (ver),,let's see,VERB,VERB,Verb
+2,1102,quise,*quise* (querer),,I wanted,VERB,VERB,Verb
+3,1103,escúchame,*escúchame* (escuchar),,listen to me,VERB,VERB,Verb
+4,1104,necesitan,*necesitan* (necesitar),,need,VERB,VERB,Verb
+5,1105,ambos,ambos,ambos,both,NUM,NUM,Numeral
+6,1106,ambos,*ambos* (ambo),ambo,both,NUM,NUM,Numeral
+7,1107,decisión,decisión,,decision,NOUN,NOUN,Noun
+8,1108,enemigo,enemigo,,enemy,ADJ,ADJ,Adjective
+9,1109,hicimos,*hicimos* (hacer),,we did,VERB,VERB,Verb
+10,1110,dulce,dulce,,sweet,ADJ,ADJ,Adjective
+11,1111,pruebas,*pruebas* (prueba),prueba,evidence,NOUN,NOUN,Noun
+12,1112,pruebas,*pruebas* (probar),probar,evidence,NOUN,NOUN,Noun
+13,1113,querías,*querías* (querer),,you wanted,NOUN,NOUN,Noun
+14,1114,abuelo,abuelo,,grandfather,NOUN,NOUN,Noun
+15,1115,totalmente,totalmente,,completely,ADV,ADV,Adverb
+16,1116,mirando,*mirando* (mirar),,looking,VERB,VERB,Verb
+17,1117,vayan,*vayan* (ir),,go,AUX,AUX,Auxiliary
+18,1118,carrera,carrera,,career,NOUN,NOUN,Noun
+19,1119,vuelo,vuelo,vuelo,flight,VERB,VERB,Verb
+20,1120,vuelo,*vuelo* (volar),volar,flight,VERB,VERB,Verb
+21,1121,ante,ante,,in view of,ADP,ADP,Preposition
+22,1122,bienvenido,bienvenido,,welcome,ADJ,ADJ,Adjective
+23,1123,harás,*harás* (hacer),,you will do,NOUN,NOUN,Noun
+24,1124,encontramos,*encontramos* (encontrar),,we find,VERB,VERB,Verb
+25,1125,encontrado,*encontrado* (encontrar),,found,ADJ,ADJ,Adjective
+26,1126,contacto,contacto,contacto,contact,NOUN,NOUN,Noun
+27,1127,contacto,*contacto* (contactar),contactar,contact,NOUN,NOUN,Noun
+28,1128,posición,posición,,position,NOUN,NOUN,Noun
+29,1129,saberlo,*saberlo* (saber),,know it,VERB,VERB,Verb
+30,1130,planeta,planeta,,planet,NOUN,NOUN,Noun
+31,1131,humanos,*humanos* (humano),,humans,NOUN,NOUN,Noun
+32,1132,coronel,coronel,,colonel,NOUN,NOUN,Noun
+33,1133,junto,junto,junto,together,ADJ,ADJ,Adjective
+34,1134,junto,*junto* (juntar),juntar,together,ADJ,ADJ,Adjective
+35,1135,diría,*diría* (decir),,would say,VERB,VERB,Verb
+36,1136,ésa,*ésa* (ese),,that,PRON,PRON,Pronoun
+37,1137,base,base,base,base,NOUN,NOUN,Noun
+38,1138,base,*base* (basar),basar,base,NOUN,NOUN,Noun
+39,1139,oír,oír,,hear,VERB,VERB,Verb
+40,1140,suelo,suelo,suelo,floor,NOUN,NOUN,Noun
+41,1141,suelo,*suelo* (soler),soler,floor,NOUN,NOUN,Noun
+42,1142,pelear,pelear,,fight,VERB,VERB,Verb
+43,1143,ayudarte,*ayudarte* (ayudar),,help you,ADJ,ADJ,Adjective
+44,1144,pistola,pistola,,gun,NOUN,NOUN,Noun
+45,1145,frío,frío,frío,cold,ADJ,ADJ,Adjective
+46,1146,frío,*frío* (freír),freír,cold,ADJ,ADJ,Adjective
+47,1147,comandante,comandante,,commander,NOUN,NOUN,Noun
+48,1148,partes,*partes* (parte),parte,parts,NOUN,NOUN,Noun
+49,1149,partes,*partes* (partir),partir,parts,NOUN,NOUN,Noun
+50,1150,llega,*llega* (llegar),,arrives,VERB,VERB,Verb
+51,1151,verás,*verás* (ver),,you will see,ADJ,ADJ,Adjective
+52,1152,sur,sur,,south,NOUN,NOUN,Noun
+53,1153,iremos,*iremos* (ir),,we'll go,VERB,VERB,Verb
+54,1154,rato,rato,,a while,VERB,VERB,Verb
+55,1155,mar,mar,,sea,NOUN,NOUN,Noun
+56,1156,espacio,espacio,,space,NOUN,NOUN,Noun
+57,1157,asesinato,asesinato,,murder,NOUN,NOUN,Noun
+58,1158,ventana,ventana,,window,ADJ,ADJ,Adjective
+59,1159,prisa,prisa,,hurry,VERB,VERB,Verb
+60,1160,tienda,tienda,tienda,store,VERB,VERB,Verb
+61,1161,tienda,*tienda* (tender),tender,store,VERB,VERB,Verb
+62,1162,cámara,cámara,,camera,NOUN,NOUN,Noun
+63,1163,puedas,*puedas* (poder),,you can,ADJ,ADJ,Adjective
+64,1164,según,según,,according to,ADP,ADP,Preposition
+65,1165,broma,broma,,joke,NOUN,NOUN,Noun
+66,1166,reunión,reunión,,meeting,NOUN,NOUN,Noun
+67,1167,despierta,*despierta* (despertar),,wake up,VERB,VERB,Verb
+68,1168,sacar,sacar,,take out,VERB,VERB,Verb
+69,1169,tí,*tí* (ti),,you,DET,DET,Determiner
+70,1170,segunda,*segunda* (segundo),,second,ADJ,ADJ,Adjective
+71,1171,papel,papel,,paper,NOUN,NOUN,Noun
+72,1172,locura,locura,,craziness,NOUN,NOUN,Noun
+73,1173,departamento,departamento,,department,NOUN,NOUN,Noun
+74,1174,horrible,horrible,,awful,ADJ,ADJ,Adjective
+75,1175,enfermo,enfermo,,sick,NOUN,NOUN,Noun
+76,1176,pregunto,*pregunto* (preguntar),,asked,VERB,VERB,Verb
+77,1177,cárcel,cárcel,,jail,NOUN,NOUN,Noun
+78,1178,órdenes,*órdenes* (orden),,orders,NOUN,NOUN,Noun
+79,1179,intento,intento,intento,tried,NOUN,NOUN,Noun
+80,1180,intento,*intento* (intentar),intentar,tried,NOUN,NOUN,Noun
+81,1181,isla,isla,,island,NOUN,NOUN,Noun
+82,1182,salida,salida,salida,exit,ADJ,ADJ,Adjective
+83,1183,salida,*salida* (salir),salir,exit,ADJ,ADJ,Adjective
+84,1184,llamó,*llamó* (llamar),,called,VERB,VERB,Verb
+85,1185,volveré,*volveré* (volver),,I will be back,VERB,VERB,Verb
+86,1186,usa,*usa* (usar),,uses,VERB,VERB,Verb
+87,1187,gato,gato,,cat,ADJ,ADJ,Adjective
+88,1188,hagan,*hagan* (hacer),,do,VERB,VERB,Verb
+89,1189,dejes,*dejes* (dejar),,leave,NOUN,NOUN,Noun
+90,1190,duele,*duele* (doler),,hurts,VERB,VERB,Verb
+91,1191,vengan,*vengan* (venir),,come,VERB,VERB,Verb
+92,1192,crimen,crimen,,crime,VERB,VERB,Verb
+93,1193,esperaba,*esperaba* (esperar),,I expected,VERB,VERB,Verb
+94,1194,causa,causa,causa,cause,NOUN,NOUN,Noun
+95,1195,causa,*causa* (causar),causar,cause,NOUN,NOUN,Noun
+96,1196,bar,bar,,bar,NOUN,NOUN,Noun
+97,1197,seré,*seré* (ser),,I will be,AUX,AUX,Auxiliary
+98,1198,ocho,ocho,,eight,NUM,NUM,Numeral
+99,1199,temprano,temprano,,early,ADV,ADV,Adverb

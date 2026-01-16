@@ -1,0 +1,101 @@
+,Unnamed: 0,Spanish,show,lemma,Translation,SpaCy_POS,SpaCy_Tag,POS
+0,1000,prometo,*prometo* (prometer),,I promise,VERB,VERB,Verb
+1,1001,esposo,esposo,esposo,husband,ADJ,ADJ,Adjective
+2,1002,esposo,*esposo* (esposar),esposar,husband,ADJ,ADJ,Adjective
+3,1003,norte,norte,,north,VERB,VERB,Verb
+4,1004,hubo,*hubo* (haber),,was,AUX,AUX,Auxiliary
+5,1005,juro,*juro* (jurar),,I swear,NOUN,NOUN,Noun
+6,1006,muerta,*muerta* (muerto),muerto,dead,ADJ,ADJ,Adjective
+7,1007,muerta,*muerta* (morir),morir,dead,ADJ,ADJ,Adjective
+8,1008,interesante,interesante,,interesting,ADJ,ADJ,Adjective
+9,1009,pensaba,*pensaba* (pensar),,thought,VERB,VERB,Verb
+10,1010,busca,*busca* (buscar),buscar,seeks,VERB,VERB,Verb
+11,1011,busca,busca,busca,seeks,VERB,VERB,Verb
+12,1012,terminar,terminar,,finish,VERB,VERB,Verb
+13,1013,tendré,*tendré* (tener),,I will have,ADJ,ADJ,Adjective
+14,1014,completamente,completamente,,completely,ADV,ADV,Adverb
+15,1015,cita,cita,cita,appointment,NOUN,NOUN,Noun
+16,1016,cita,*cita* (citar),citar,appointment,NOUN,NOUN,Noun
+17,1017,siete,siete,,seven,NUM,NUM,Numeral
+18,1018,cumpleaños,cumpleaños,,birthday,NOUN,NOUN,Noun
+19,1019,abogado,abogado,,lawyer,ADJ,ADJ,Adjective
+20,1020,alrededor,alrededor,,around,ADV,ADV,Adverb
+21,1021,cerebro,cerebro,,brain,NOUN,NOUN,Noun
+22,1022,porqué,porqué,,because,NOUN,NOUN,Noun
+23,1023,llave,llave,,key,NOUN,NOUN,Noun
+24,1024,santo,santo,,holy,NOUN,NOUN,Noun
+25,1025,hermoso,hermoso,,beautiful,ADJ,ADJ,Adjective
+26,1026,necesario,necesario,,necessary,ADJ,ADJ,Adjective
+27,1027,edificio,edificio,,building,NOUN,NOUN,Noun
+28,1028,irnos,*irnos* (ir),,let's go,NOUN,NOUN,Noun
+29,1029,aun,aun,,still,ADV,ADV,Adverb
+30,1030,tendremos,*tendremos* (tener),,we will have,VERB,VERB,Verb
+31,1031,vayas,*vayas* (ir),,go,NOUN,NOUN,Noun
+32,1032,doy,*doy* (dar),,give,VERB,VERB,Verb
+33,1033,trae,*trae* (traer),,brings,VERB,VERB,Verb
+34,1034,salió,*salió* (salir),,he left,VERB,VERB,Verb
+35,1035,ley,ley,,law,NOUN,NOUN,Noun
+36,1036,ahi,*ahi* (ahí),,there,PROPN,PROPN,Proper noun
+37,1037,verdadero,verdadero,,TRUE,ADJ,ADJ,Adjective
+38,1038,pelea,pelea,pelea,fight,NOUN,NOUN,Noun
+39,1039,pelea,*pelea* (pelear),pelear,fight,NOUN,NOUN,Noun
+40,1040,banco,banco,,bank,NOUN,NOUN,Noun
+41,1041,terrible,terrible,,terrible,ADJ,ADJ,Adjective
+42,1042,calma,calma,calma,calm,NOUN,NOUN,Noun
+43,1043,calma,*calma* (calmar),calmar,calm,NOUN,NOUN,Noun
+44,1044,cena,cena,cena,dinner,NOUN,NOUN,Noun
+45,1045,cena,*cena* (cenar),cenar,dinner,NOUN,NOUN,Noun
+46,1046,daré,*daré* (dar),,I will give,VERB,VERB,Verb
+47,1047,gobierno,gobierno,,government,PROPN,PROPN,Proper noun
+48,1048,comprar,comprar,,buy,VERB,VERB,Verb
+49,1049,creen,*creen* (creer),creer,believe,VERB,VERB,Verb
+50,1050,creen,*creen* (crear),crear,believe,VERB,VERB,Verb
+51,1051,sargento,sargento,,sergeant,NOUN,NOUN,Noun
+52,1052,destino,destino,,destination,NOUN,NOUN,Noun
+53,1053,existe,*existe* (existir),,exists,VERB,VERB,Verb
+54,1054,hacía,*hacía* (hacer),,toward,VERB,VERB,Verb
+55,1055,novio,novio,,boyfriend,NOUN,NOUN,Noun
+56,1056,sala,sala,,hall,NOUN,NOUN,Noun
+57,1057,través,través,,through,DET,DET,Determiner
+58,1058,regalo,regalo,regalo,gift,NOUN,NOUN,Noun
+59,1059,regalo,*regalo* (regalar),regalar,gift,NOUN,NOUN,Noun
+60,1060,iglesia,iglesia,,church,PROPN,PROPN,Proper noun
+61,1061,decía,*decía* (decir),,He said,VERB,VERB,Verb
+62,1062,cualquiera,cualquiera,,any,PRON,PRON,Pronoun
+63,1063,excelente,excelente,,excellent,ADJ,ADJ,Adjective
+64,1064,esperen,*esperen* (esperar),,wait,VERB,VERB,Verb
+65,1065,deseo,deseo,deseo,desire,VERB,VERB,Verb
+66,1066,deseo,*deseo* (desear),desear,desire,VERB,VERB,Verb
+67,1067,alma,alma,,soul,NOUN,NOUN,Noun
+68,1068,diablo,diablo,,Devil,VERB,VERB,Verb
+69,1069,deje,*deje* (dejar),,leave,VERB,VERB,Verb
+70,1070,cuántos,cuántos,,how many,NOUN,NOUN,Noun
+71,1071,espada,espada,,sword,NOUN,NOUN,Noun
+72,1072,estábamos,*estábamos* (estar),,we were,AUX,AUX,Auxiliary
+73,1073,carne,carne,,meat,NOUN,NOUN,Noun
+74,1074,maravilloso,maravilloso,,marvelous,ADJ,ADJ,Adjective
+75,1075,vidas,*vidas* (vida),,lives,NOUN,NOUN,Noun
+76,1076,sucedió,*sucedió* (suceder),,happened,VERB,VERB,Verb
+77,1077,oí,*oí* (oír),,I heard,VERB,VERB,Verb
+78,1078,peligroso,peligroso,,dangerous,ADJ,ADJ,Adjective
+79,1079,dirección,dirección,,address,NOUN,NOUN,Noun
+80,1080,libertad,libertad,,freedom,NOUN,NOUN,Noun
+81,1081,jesús,*jesús* (Jesús),,Jesus,NOUN,NOUN,Noun
+82,1082,ocurrió,*ocurrió* (ocurrir),,occurred,VERB,VERB,Verb
+83,1083,veré,*veré* (ver),,I will see,VERB,VERB,Verb
+84,1084,sueños,*sueños* (sueño),,dreams,NOUN,NOUN,Noun
+85,1085,pudiera,*pudiera* (poder),,could,AUX,AUX,Auxiliary
+86,1086,detective,detective,,detective,VERB,VERB,Verb
+87,1087,sorpresa,sorpresa,,surprise,NOUN,NOUN,Noun
+88,1088,tuya,*tuya* (tuyo),,yours,ADP,ADP,Preposition
+89,1089,pies,*pies* (pie),,feet,NOUN,NOUN,Noun
+90,1090,club,club,,club,NOUN,NOUN,Noun
+91,1091,terminado,*terminado* (terminar),,finished,ADJ,ADJ,Adjective
+92,1092,infierno,infierno,,hell,NOUN,NOUN,Noun
+93,1093,creía,*creía* (creer),,believed,VERB,VERB,Verb
+94,1094,luna,luna,,moon,NOUN,NOUN,Noun
+95,1095,salvar,salvar,,save,VERB,VERB,Verb
+96,1096,carta,carta,,letter,NOUN,NOUN,Noun
+97,1097,estés,*estés* (estar),,you are,NOUN,NOUN,Noun
+98,1098,cielos,*cielos* (cielo),,Heavens,NOUN,NOUN,Noun
+99,1099,teniente,teniente,,lieutenant,ADJ,ADJ,Adjective

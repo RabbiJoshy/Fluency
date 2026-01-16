@@ -1,0 +1,101 @@
+,Unnamed: 0,Spanish,show,lemma,Translation,SpaCy_POS,SpaCy_Tag,POS
+0,1400,capaz,capaz,,able,ADJ,ADJ,Adjective
+1,1401,verme,*verme* (ver),,see me,VERB,VERB,Verb
+2,1402,beber,beber,,to drink,VERB,VERB,Verb
+3,1403,velocidad,velocidad,,speed,NOUN,NOUN,Noun
+4,1404,darte,*darte* (dar),,to give you,VERB,VERB,Verb
+5,1405,llevas,*llevas* (llevar),,you carry,ADJ,ADJ,Adjective
+6,1406,partido,partido,partido,game,NOUN,NOUN,Noun
+7,1407,partido,*partido* (partir),partir,game,NOUN,NOUN,Noun
+8,1408,estuviera,*estuviera* (estar),,was,AUX,AUX,Auxiliary
+9,1409,dia,*dia* (día),,day,VERB,VERB,Verb
+10,1410,opinión,opinión,,opinion,NOUN,NOUN,Noun
+11,1411,irte,*irte* (ir),,go away,NOUN,NOUN,Noun
+12,1412,cocina,cocina,cocina,kitchen,NOUN,NOUN,Noun
+13,1413,cocina,*cocina* (cocinar),cocinar,kitchen,NOUN,NOUN,Noun
+14,1414,abrir,abrir,,open,VERB,VERB,Verb
+15,1415,perros,*perros* (perro),,dogs,NOUN,NOUN,Noun
+16,1416,tambien,*tambien* (también),,also,ADV,ADV,Adverb
+17,1417,sepa,*sepa* (saber),,know,PROPN,PROPN,Proper noun
+18,1418,pareces,*pareces* (parecer),,you seem,ADJ,ADJ,Adjective
+19,1419,escribir,escribir,,write,VERB,VERB,Verb
+20,1420,golpe,golpe,,bang,NOUN,NOUN,Noun
+21,1421,tenia,*tenia* (tener),,had,NOUN,NOUN,Noun
+22,1422,alta,alta,,high,ADJ,ADJ,Adjective
+23,1423,estados,*estados* (estado),estado,state,NOUN,NOUN,Noun
+24,1424,estados,*estados* (estar),estar,state,NOUN,NOUN,Noun
+25,1425,tocar,tocar,,tap,VERB,VERB,Verb
+26,1426,vuelvo,*vuelvo* (volver),,I come back,NOUN,NOUN,Noun
+27,1427,habían,*habían* (haber),,had,AUX,AUX,Auxiliary
+28,1428,ganas,*ganas* (gana),gana,desire,NOUN,NOUN,Noun
+29,1429,ganas,*ganas* (ganar),ganar,desire,NOUN,NOUN,Noun
+30,1430,hacerte,*hacerte* (hacer),,make you,NOUN,NOUN,Noun
+31,1431,dejo,*dejo* (dejar),,let,VERB,VERB,Verb
+32,1432,volvió,*volvió* (volver),,went back,VERB,VERB,Verb
+33,1433,ejemplo,ejemplo,,example,NOUN,NOUN,Noun
+34,1434,contar,contar,,count,VERB,VERB,Verb
+35,1435,tenían,*tenían* (tener),,They had,VERB,VERB,Verb
+36,1436,propósito,propósito,,purpose,NOUN,NOUN,Noun
+37,1437,entiende,*entiende* (entender),,understands,VERB,VERB,Verb
+38,1438,empieza,*empieza* (empezar),,begin,VERB,VERB,Verb
+39,1439,anillo,anillo,,ring,NOUN,NOUN,Noun
+40,1440,londres,*londres* (Londres),,London,ADJ,ADJ,Adjective
+41,1441,tendría,*tendría* (tener),,would have,VERB,VERB,Verb
+42,1442,pedir,pedir,,ask,VERB,VERB,Verb
+43,1443,estilo,estilo,,style,NOUN,NOUN,Noun
+44,1444,ayudarme,*ayudarme* (ayudar),,help me,VERB,VERB,Verb
+45,1445,pista,pista,,clue,NOUN,NOUN,Noun
+46,1446,cambiado,*cambiado* (cambiar),cambiar,changed,ADJ,ADJ,Adjective
+47,1447,cambiado,cambiado,cambiado,changed,ADJ,ADJ,Adjective
+48,1448,escapar,escapar,,escape,VERB,VERB,Verb
+49,1449,eeuu,*eeuu* (EEUU),,USA,PROPN,PROPN,Proper noun
+50,1450,encontró,*encontró* (encontrar),,found,VERB,VERB,Verb
+51,1451,espíritu,espíritu,,spirit,ADJ,ADJ,Adjective
+52,1452,viejos,*viejos* (viejo),,old,ADJ,ADJ,Adjective
+53,1453,molesta,*molesta* (molestar),,bothers,VERB,VERB,Verb
+54,1454,nota,nota,nota,note,NOUN,NOUN,Noun
+55,1455,nota,*nota* (notar),notar,note,NOUN,NOUN,Noun
+56,1456,diferencia,diferencia,,difference,NOUN,NOUN,Noun
+57,1457,tratar,tratar,,treat,VERB,VERB,Verb
+58,1458,precio,precio,,price,VERB,VERB,Verb
+59,1459,caballero,caballero,,gentleman,NOUN,NOUN,Noun
+60,1460,sirve,*sirve* (servir),,it serves,VERB,VERB,Verb
+61,1461,alegra,*alegra* (alegrar),,happy,VERB,VERB,Verb
+62,1462,doble,doble,,double,ADJ,ADJ,Adjective
+63,1463,agradable,agradable,,pleasant,ADJ,ADJ,Adjective
+64,1464,embargo,embargo,,embargo,NOUN,NOUN,Noun
+65,1465,tengan,*tengan* (tener),,have,VERB,VERB,Verb
+66,1466,tuvimos,*tuvimos* (tener),,we had,VERB,VERB,Verb
+67,1467,sube,*sube* (subir),,goes up,VERB,VERB,Verb
+68,1468,estén,*estén* (estar),,are,VERB,VERB,Verb
+69,1469,mami,mami,,Mommy,ADJ,ADJ,Adjective
+70,1470,emergencia,emergencia,,emergency,NOUN,NOUN,Noun
+71,1471,cuello,cuello,,neck,NOUN,NOUN,Noun
+72,1472,boda,boda,,wedding,NOUN,NOUN,Noun
+73,1473,aprender,aprender,,learn,VERB,VERB,Verb
+74,1474,té,té,,tea,AUX,AUX,Auxiliary
+75,1475,informe,informe,informe,report,VERB,VERB,Verb
+76,1476,informe,*informe* (informar),informar,report,VERB,VERB,Verb
+77,1477,blanca,*blanca* (blanco),blanco,white,ADJ,ADJ,Adjective
+78,1478,blanca,*blanca* (Blanca),Blanca,white,ADJ,ADJ,Adjective
+79,1479,experiencia,experiencia,,experience,NOUN,NOUN,Noun
+80,1480,debía,*debía* (deber),,should,AUX,AUX,Auxiliary
+81,1481,podido,*podido* (poder),,I have,ADJ,ADJ,Adjective
+82,1482,mentira,mentira,,lie,NOUN,NOUN,Noun
+83,1483,director,director,,director,NOUN,NOUN,Noun
+84,1484,mata,*mata* (matar),,Bush,VERB,VERB,Verb
+85,1485,exacto,exacto,,exact,NOUN,NOUN,Noun
+86,1486,déjalo,*déjalo* (dejar),,leave it alone,VERB,VERB,Verb
+87,1487,defensa,defensa,,defending,NOUN,NOUN,Noun
+88,1488,tuviste,*tuviste* (tener),,You saw,ADJ,ADJ,Adjective
+89,1489,confiar,confiar,,rely,VERB,VERB,Verb
+90,1490,color,color,,color,NOUN,NOUN,Noun
+91,1491,hacerle,*hacerle* (hacer),,do,VERB,VERB,Verb
+92,1492,aquel,aquel,,that,DET,DET,Determiner
+93,1493,conocí,*conocí* (conocer),,I met,VERB,VERB,Verb
+94,1494,probar,probar,,prove,VERB,VERB,Verb
+95,1495,príncipe,príncipe,,the prince,NOUN,NOUN,Noun
+96,1496,irá,*irá* (ir),,gonna,VERB,VERB,Verb
+97,1497,despacio,despacio,,slowly,NOUN,NOUN,Noun
+98,1498,tiro,tiro,tiro,shot,NOUN,NOUN,Noun
+99,1499,tiro,*tiro* (tirar),tirar,shot,NOUN,NOUN,Noun

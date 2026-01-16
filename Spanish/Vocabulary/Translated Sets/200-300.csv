@@ -1,0 +1,101 @@
+,Unnamed: 0,Spanish,show,lemma,Translation,SpaCy_POS,SpaCy_Tag,POS
+0,200,papá,papá,papá,dad,NOUN,NOUN,Noun
+1,201,tener,tener,tener,have,VERB,VERB,Verb
+2,202,dice,*dice* (decir),decir,says,VERB,VERB,Verb
+3,203,mío,mío,mío,mine,DET,DET,Determiner
+4,204,crees,*crees* (creer),creer,do you believe,ADJ,ADJ,Adjective
+5,205,buena,*buena* (bueno),bueno,good,ADJ,ADJ,Adjective
+6,206,buena,buena,buena,good,ADJ,ADJ,Adjective
+7,207,gusta,*gusta* (gustar),gustar,like,VERB,VERB,Verb
+8,208,nuestro,nuestro,nuestro,our,DET,DET,Determiner
+9,209,nuevo,nuevo,nuevo,new,ADJ,ADJ,Adjective
+10,210,será,*será* (ser),ser,be,AUX,AUX,Auxiliary
+11,211,haciendo,*haciendo* (hacer),hacer,doing,VERB,VERB,Verb
+12,212,días,*días* (día),día,days,NOUN,NOUN,Noun
+13,213,nombre,nombre,nombre,name,NOUN,NOUN,Noun
+14,214,buen,*buen* (bueno),bueno,good,ADJ,ADJ,Adjective
+15,215,había,*había* (haber),haber,there was,AUX,AUX,Auxiliary
+16,216,ven,*ven* (ver),ver,come,VERB,VERB,Verb
+17,217,ven,*ven* (venir),venir,come,VERB,VERB,Verb
+18,218,tres,tres,tres,three,NUM,NUM,Numeral
+19,219,menos,menos,menos,less,ADV,ADV,Adverb
+20,220,debe,*debe* (deber),deber,has to,AUX,AUX,Auxiliary
+21,221,tenía,*tenía* (tener),tener,had,VERB,VERB,Verb
+22,222,mal,mal,mal,evil,ADV,ADV,Adverb
+23,223,conmigo,conmigo,conmigo,with me,PRON,PRON,Pronoun
+24,224,madre,madre,madre,mother,NOUN,NOUN,Noun
+25,225,hoy,hoy,hoy,today,ADV,ADV,Adverb
+26,226,quien,quien,quien,who,PRON,PRON,Pronoun
+27,227,sido,*sido* (ser),ser,been,AUX,AUX,Auxiliary
+28,228,mamá,mamá,mamá,mother,PROPN,PROPN,Proper noun
+29,229,tienen,*tienen* (tener),tener,have,VERB,VERB,Verb
+30,230,luego,luego,luego,then,ADV,ADV,Adverb
+31,231,todas,*todas* (todo),todo,all,PRON,PRON,Pronoun
+32,232,allí,allí,allí,over there,ADV,ADV,Adverb
+33,233,toda,*toda* (todo),todo,all,DET,DET,Determiner
+34,234,hora,hora,hora,hour,NOUN,NOUN,Noun
+35,235,mujer,mujer,mujer,women,NOUN,NOUN,Noun
+36,236,visto,*visto* (ver),ver,seen,ADJ,ADJ,Adjective
+37,237,haces,*haces* (hacer),hacer,you do,ADJ,ADJ,Adjective
+38,238,importa,*importa* (importar),importar,matters,VERB,VERB,Verb
+39,239,contigo,contigo,contigo,with you,PRON,PRON,Pronoun
+40,240,ve,*ve* (ver),ver,go,VERB,VERB,Verb
+41,241,ve,*ve* (ir),ir,go,VERB,VERB,Verb
+42,242,tarde,tarde,tarde,late,ADV,ADV,Adverb
+43,243,tarde,*tarde* (tardar),tardar,late,ADV,ADV,Adverb
+44,244,oye,*oye* (oír),oír,hey,VERB,VERB,Verb
+45,245,parte,*parte* (partir),partir,part,NOUN,NOUN,Noun
+46,246,parte,parte,parte,part,NOUN,NOUN,Noun
+47,247,haber,haber,haber,to have,AUX,AUX,Auxiliary
+48,248,hombres,*hombres* (hombre),hombre,men,NOUN,NOUN,Noun
+49,249,problema,problema,problema,problem,NOUN,NOUN,Noun
+50,250,mas,mas,mas,further,ADV,ADV,Adverb
+51,251,saber,saber,saber,know,VERB,VERB,Verb
+52,252,quería,*quería* (querer),querer,wanted to,VERB,VERB,Verb
+53,253,aún,aún,aún,still,ADV,ADV,Adverb
+54,254,veces,*veces* (vez),vez,times,NOUN,NOUN,Noun
+55,255,nuestra,*nuestra* (nuestro),nuestro,our,DET,DET,Determiner
+56,256,hacerlo,*hacerlo* (hacer),hacer,do it,VERB,VERB,Verb
+57,257,cada,cada,cada,each,DET,DET,Determiner
+58,258,hizo,*hizo* (hacer),hacer,did,VERB,VERB,Verb
+59,259,veo,*veo* (ver),ver,I see,VERB,VERB,Verb
+60,260,tanto,tanto,tanto,so much,ADV,ADV,Adverb
+61,261,razón,razón,razón,reason,NOUN,NOUN,Noun
+62,262,ustedes,*ustedes* (usted),usted,you,PRON,PRON,Pronoun
+63,263,idea,idea,idea,idea,NOUN,NOUN,Noun
+64,264,esos,*esos* (eso),eso,those,DET,DET,Determiner
+65,265,van,*van* (ir),ir,go,AUX,AUX,Auxiliary
+66,266,quizá,quizá,quizá,maybe,ADV,ADV,Adverb
+67,267,debo,*debo* (deber),deber,I must,AUX,AUX,Auxiliary
+68,268,alguna,*alguna* (alguno),alguno,some,DET,DET,Determiner
+69,269,cierto,cierto,cierto,TRUE,DET,DET,Determiner
+70,270,ud,*ud* (usted),usted,You,PROPN,PROPN,Proper noun
+71,271,muerto,muerto,muerto,dead,ADJ,ADJ,Adjective
+72,272,muerto,*muerto* (morir),morir,dead,ADJ,ADJ,Adjective
+73,273,unos,*unos* (un),un,some,DET,DET,Determiner
+74,274,estos,*estos* (este),este,these,PRON,PRON,Pronoun
+75,275,salir,salir,salir,go out,VERB,VERB,Verb
+76,276,policía,policía,policía,police,NOUN,NOUN,Noun
+77,277,realmente,realmente,realmente,really,ADV,ADV,Adverb
+78,278,demasiado,demasiado,demasiado,too much,ADV,ADV,Adverb
+79,279,familia,familia,familia,family,NOUN,NOUN,Noun
+80,280,pueden,*pueden* (poder),poder,they can,AUX,AUX,Auxiliary
+81,281,cabeza,cabeza,cabeza,head,NOUN,NOUN,Noun
+82,282,hemos,*hemos* (haber),haber,we have,AUX,AUX,Auxiliary
+83,283,amigos,*amigos* (amigo),amigo,friends,NOUN,NOUN,Noun
+84,284,chica,*chica* (chico),chico,girl,ADJ,ADJ,Adjective
+85,285,chica,chica,chica,girl,ADJ,ADJ,Adjective
+86,286,cariño,cariño,cariño,dear,NOUN,NOUN,Noun
+87,287,lado,lado,lado,side,NOUN,NOUN,Noun
+88,288,allá,allá,allá,there,ADV,ADV,Adverb
+89,289,entre,entre,entre,between,ADP,ADP,Preposition
+90,290,minutos,*minutos* (minuto),minuto,minutes,NOUN,NOUN,Noun
+91,291,digo,*digo* (decir),decir,say,VERB,VERB,Verb
+92,292,algún,algún,algún,some,DET,DET,Determiner
+93,293,serio,serio,serio,Serious,ADJ,ADJ,Adjective
+94,294,cuidado,*cuidado* (cuidar),cuidar,careful,ADJ,ADJ,Adjective
+95,295,cuidado,cuidado,cuidado,careful,ADJ,ADJ,Adjective
+96,296,pasó,*pasó* (pasar),pasar,passed,VERB,VERB,Verb
+97,297,buenas,*buenas* (bueno),bueno,hello good,ADJ,ADJ,Adjective
+98,298,somos,*somos* (ser),ser,are,AUX,AUX,Auxiliary
+99,299,amor,amor,amor,love,NOUN,NOUN,Noun
