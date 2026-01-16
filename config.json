@@ -1,0 +1,72 @@
+{
+  "languages": {
+    "dutch": {
+      "name": "Dutch",
+      "sets": [
+        { "range": "0-100", "path": "Dutch/Vocabulary/ChatGPT_Sets/0-100.csv" },
+        { "range": "100-200", "path": "Dutch/Vocabulary/ChatGPT_Sets/100-200.csv" },
+        { "range": "200-300", "path": "Dutch/Vocabulary/ChatGPT_Sets/200-300.csv" },
+        { "range": "300-400", "path": "Dutch/Vocabulary/ChatGPT_Sets/300-400.csv" },
+        { "range": "400-500", "path": "Dutch/Vocabulary/ChatGPT_Sets/400-500.csv" },
+        { "range": "500-600", "path": "Dutch/Vocabulary/ChatGPT_Sets/500-600.csv" },
+        { "range": "600-700", "path": "Dutch/Vocabulary/ChatGPT_Sets/600-700.csv" },
+        { "range": "700-800", "path": "Dutch/Vocabulary/ChatGPT_Sets/700-800.csv" },
+        { "range": "800-900", "path": "Dutch/Vocabulary/ChatGPT_Sets/800-900.csv" },
+        { "range": "900-1000", "path": "Dutch/Vocabulary/ChatGPT_Sets/900-1000.csv" },
+        { "range": "1000-1250", "path": "Dutch/Vocabulary/ChatGPT_Sets/1000-1250.csv" },
+        { "range": "1250-1500", "path": "Dutch/Vocabulary/ChatGPT_Sets/1250-1500.csv" },
+        { "range": "1500-1750", "path": "Dutch/Vocabulary/ChatGPT_Sets/1500-1750.csv" },
+        { "range": "1750-2000", "path": "Dutch/Vocabulary/ChatGPT_Sets/1750-2000.csv" }
+      ],
+      "csvFormat": "dutch",
+      "wordColumn": "Dutch",
+      "posColumn": "POS",
+      "sentenceColumn": "ChatGPT_Sentence",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/nlen/{word}",
+        "reverso": "https://context.reverso.net/translation/dutch-english/{word}",
+        "conjugation": "https://www.verbix.com/webverbix/Dutch/{word}"
+      }
+    },
+    "spanish": {
+      "name": "Spanish",
+      "sets": [
+        { "range": "0-100", "path": "Spanish/Vocabulary/ChatGPT_Sets/0-100.csv" },
+        { "range": "100-200", "path": "Spanish/Vocabulary/ChatGPT_Sets/100-200.csv" },
+        { "range": "200-300", "path": "Spanish/Vocabulary/ChatGPT_Sets/200-300.csv" },
+        { "range": "300-400", "path": "Spanish/Vocabulary/ChatGPT_Sets/300-400.csv" },
+        { "range": "400-500", "path": "Spanish/Vocabulary/ChatGPT_Sets/400-500.csv" },
+        { "range": "500-600", "path": "Spanish/Vocabulary/ChatGPT_Sets/500-600.csv" },
+        { "range": "600-700", "path": "Spanish/Vocabulary/ChatGPT_Sets/600-700.csv" },
+        { "range": "700-800", "path": "Spanish/Vocabulary/ChatGPT_Sets/700-800.csv" },
+        { "range": "800-900", "path": "Spanish/Vocabulary/ChatGPT_Sets/800-900.csv" },
+        { "range": "900-1000", "path": "Spanish/Vocabulary/ChatGPT_Sets/900-1000.csv" },
+        { "range": "1000-1100", "path": "Spanish/Vocabulary/ChatGPT_Sets/1000-1100.csv" },
+        { "range": "1100-1200", "path": "Spanish/Vocabulary/ChatGPT_Sets/1100-1200.csv" },
+        { "range": "1200-1300", "path": "Spanish/Vocabulary/ChatGPT_Sets/1200-1300.csv" },
+        { "range": "1300-1400", "path": "Spanish/Vocabulary/ChatGPT_Sets/1300-1400.csv" },
+        { "range": "1400-1500", "path": "Spanish/Vocabulary/ChatGPT_Sets/1400-1500.csv" },
+        { "range": "1500-1600", "path": "Spanish/Vocabulary/ChatGPT_Sets/1500-1600.csv" },
+        { "range": "1600-1700", "path": "Spanish/Vocabulary/ChatGPT_Sets/1600-1700.csv" },
+        { "range": "1700-1800", "path": "Spanish/Vocabulary/ChatGPT_Sets/1700-1800.csv" },
+        { "range": "1800-1900", "path": "Spanish/Vocabulary/ChatGPT_Sets/1800-1900.csv" },
+        { "range": "1900-2000", "path": "Spanish/Vocabulary/ChatGPT_Sets/1900-2000.csv" },
+        { "range": "2000-2250", "path": "Spanish/Vocabulary/ChatGPT_Sets/2000-2250.csv" },
+        { "range": "2250-2500", "path": "Spanish/Vocabulary/ChatGPT_Sets/2250-2500.csv" },
+        { "range": "2500-2750", "path": "Spanish/Vocabulary/ChatGPT_Sets/2500-2750.csv" },
+        { "range": "2750-3000", "path": "Spanish/Vocabulary/ChatGPT_Sets/2750-3000.csv" }
+      ],
+      "csvFormat": "spanish",
+      "wordColumn": "Spanish",
+      "showColumn": "show",
+      "lemmaColumn": "lemma",
+      "sentenceColumn": "ChatGPT_Sentence",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/es/en/translation.asp?spen={word}",
+        "spanishDict": "https://www.spanishdict.com/translate/{word}",
+        "reverso": "https://context.reverso.net/translation/spanish-english/{word}",
+        "conjugation": "https://www.spanishdict.com/conjugate/{word}"
+      }
+    }
+  }
+}

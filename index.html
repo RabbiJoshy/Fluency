@@ -370,6 +370,28 @@
             display: none;
         }
 
+        .range-btn {
+            padding: 8px 16px;
+            background: #f7f9fc;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .range-btn:hover {
+            background: #e8ecf7;
+            border-color: #667eea;
+        }
+
+        .range-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
         .tap-hint {
             text-align: center;
             color: #999;
@@ -400,12 +422,33 @@
             <h1>📚 Language Flashcards</h1>
         </div>
 
-        <div class="file-upload">
-            <h3>Upload Your CSV File</h3>
-            <p style="margin: 10px 0; color: #666;">Select a CSV file with your flashcards</p>
-            <input type="file" id="fileInput" class="file-input" accept=".csv">
-            <label for="fileInput" class="upload-btn">Choose File</label>
-            <div id="fileName" style="margin-top: 10px; color: #667eea;"></div>
+        <div class="file-upload" id="setupPanel">
+            <h3>Select Your Language & Words</h3>
+
+            <div style="margin: 20px 0;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Language:</label>
+                <select id="languageSelect" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0; font-size: 16px;">
+                    <option value="">-- Choose a language --</option>
+                    <option value="dutch">Dutch</option>
+                    <option value="spanish">Spanish</option>
+                </select>
+            </div>
+
+            <div id="rangeSelector" style="margin: 20px 0; display: none;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Word Range:</label>
+                <div id="rangeButtons" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;"></div>
+
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Or select multiple ranges:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="rangeFrom" placeholder="From (e.g., 0)" style="flex: 1; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0;">
+                        <input type="number" id="rangeTo" placeholder="To (e.g., 200)" style="flex: 1; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0;">
+                    </div>
+                </div>
+            </div>
+
+            <button id="startBtn" class="upload-btn" style="margin-top: 20px; width: 100%;" disabled>Start Learning</button>
+            <div id="loadingMessage" style="margin-top: 10px; color: #667eea; display: none;"></div>
         </div>
 
         <div id="appContent" class="hidden">
@@ -503,77 +546,206 @@
             total: 0
         };
         let currentMode = 'flashcards';
+        let config = null;
+        let selectedLanguage = null;
+        let selectedRanges = [];
 
-        // File upload handling
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                document.getElementById('fileName').textContent = `Loading ${file.name}...`;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    parseCSV(e.target.result);
-                    document.getElementById('fileName').textContent = `✓ Loaded ${file.name}`;
-                    document.querySelector('.file-upload').style.display = 'none';
-                    document.getElementById('appContent').classList.remove('hidden');
-                };
-                reader.readAsText(file);
+        // Load configuration
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json');
+                config = await response.json();
+            } catch (error) {
+                console.error('Failed to load config:', error);
+                alert('Failed to load configuration. Please refresh the page.');
+            }
+        }
+
+        // Initialize on page load
+        loadConfig();
+
+        // Language selection handler
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            const language = e.target.value;
+            if (language && config) {
+                selectedLanguage = language;
+                const langConfig = config.languages[language];
+
+                // Show range selector
+                document.getElementById('rangeSelector').style.display = 'block';
+
+                // Populate range buttons
+                const rangeButtons = document.getElementById('rangeButtons');
+                rangeButtons.innerHTML = langConfig.sets.map(set =>
+                    `<button class="range-btn" data-range="${set.range}" data-path="${set.path}">${set.range}</button>`
+                ).join('');
+
+                // Add click handlers to range buttons
+                document.querySelectorAll('.range-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        this.classList.toggle('selected');
+                        updateSelectedRanges();
+                    });
+                });
+
+                document.getElementById('startBtn').disabled = false;
+            } else {
+                document.getElementById('rangeSelector').style.display = 'none';
+                document.getElementById('startBtn').disabled = true;
             }
         });
 
-        function parseCSV(csv) {
+        function updateSelectedRanges() {
+            selectedRanges = Array.from(document.querySelectorAll('.range-btn.selected')).map(btn => ({
+                range: btn.dataset.range,
+                path: btn.dataset.path
+            }));
+        }
+
+        // Start button handler
+        document.getElementById('startBtn').addEventListener('click', async function() {
+            // Get selected ranges or custom range
+            let rangesToLoad = [];
+
+            if (selectedRanges.length > 0) {
+                rangesToLoad = selectedRanges;
+            } else {
+                // Check custom range inputs
+                const rangeFrom = parseInt(document.getElementById('rangeFrom').value);
+                const rangeTo = parseInt(document.getElementById('rangeTo').value);
+
+                if (!isNaN(rangeFrom) && !isNaN(rangeTo)) {
+                    const langConfig = config.languages[selectedLanguage];
+                    rangesToLoad = langConfig.sets.filter(set => {
+                        const [start, end] = set.range.split('-').map(Number);
+                        return start >= rangeFrom && end <= rangeTo;
+                    });
+                }
+            }
+
+            if (rangesToLoad.length === 0) {
+                alert('Please select at least one word range or enter a custom range.');
+                return;
+            }
+
+            // Load and merge CSV files
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('loadingMessage').textContent = `Loading ${rangesToLoad.length} file(s)...`;
+
+            await loadCSVFiles(rangesToLoad);
+        });
+
+        async function loadCSVFiles(ranges) {
+            flashcards = [];
+            const langConfig = config.languages[selectedLanguage];
+
+            for (const range of ranges) {
+                try {
+                    const response = await fetch(range.path);
+                    const csvText = await response.text();
+                    parseCSV(csvText, langConfig);
+                } catch (error) {
+                    console.error(`Failed to load ${range.path}:`, error);
+                }
+            }
+
+            if (flashcards.length === 0) {
+                alert('No flashcards loaded. Please check your selection.');
+                document.getElementById('loadingMessage').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('loadingMessage').textContent = `✓ Loaded ${flashcards.length} cards!`;
+            setTimeout(() => {
+                document.getElementById('setupPanel').style.display = 'none';
+                document.getElementById('appContent').classList.remove('hidden');
+                initializeApp();
+            }, 500);
+        }
+
+        function parseCSV(csv, langConfig) {
             const lines = csv.split('\n');
-            const headers = lines[0].split(',');
-            
+            const headers = lines[0].split(',').map(h => h.trim());
+
+            // Find column indices
+            const wordIndex = headers.indexOf(langConfig.wordColumn);
+            const sentenceIndex = headers.indexOf(langConfig.sentenceColumn);
+
+            // Spanish-specific columns
+            const showIndex = langConfig.showColumn ? headers.indexOf(langConfig.showColumn) : -1;
+            const lemmaIndex = langConfig.lemmaColumn ? headers.indexOf(langConfig.lemmaColumn) : -1;
+
+            // Dutch-specific columns
+            const posIndex = langConfig.posColumn ? headers.indexOf(langConfig.posColumn) : -1;
+
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
                 if (!line) continue;
-                
+
                 // Handle quoted fields with commas
-                const values = [];
-                let current = '';
-                let inQuotes = false;
-                
-                for (let char of line) {
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        values.push(current.trim());
-                        current = '';
-                    } else {
-                        current += char;
+                const values = parseCSVLine(line);
+
+                if (values.length > wordIndex) {
+                    const word = cleanValue(values[wordIndex]);
+                    const sentence = sentenceIndex >= 0 ? cleanValue(values[sentenceIndex]) : '';
+
+                    if (!word) continue;
+
+                    let card = {
+                        word: word,
+                        sentence: sentence
+                    };
+
+                    // Handle Spanish format
+                    if (langConfig.csvFormat === 'spanish') {
+                        card.show = showIndex >= 0 ? cleanValue(values[showIndex]) : word;
+                        card.lemma = lemmaIndex >= 0 ? cleanValue(values[lemmaIndex]) : word;
+                        card.links = generateLinks(word, card.lemma, langConfig.referenceLinks);
                     }
-                }
-                values.push(current.trim());
-                
-                if (values.length >= 5) {
-                    const spanish = values[2]?.replace(/"/g, '') || '';
-                    const show = values[3]?.replace(/"/g, '') || '';
-                    const lemma = values[4]?.replace(/"/g, '') || '';
-                    const sentence = values[5]?.replace(/"/g, '') || '';
-                    
-                    if (spanish) {
-                        flashcards.push({
-                            word: spanish,
-                            show: show,
-                            lemma: lemma,
-                            sentence: sentence,
-                            links: generateLinks(spanish, lemma)
-                        });
+                    // Handle Dutch format
+                    else if (langConfig.csvFormat === 'dutch') {
+                        card.pos = posIndex >= 0 ? cleanValue(values[posIndex]) : '';
+                        card.lemma = word;
+                        card.links = generateLinks(word, word, langConfig.referenceLinks);
                     }
+
+                    flashcards.push(card);
                 }
             }
-            
-            initializeApp();
         }
 
-        function generateLinks(word, lemma) {
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let char of line) {
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current);
+            return values;
+        }
+
+        function cleanValue(value) {
+            return value ? value.replace(/^"|"$/g, '').trim() : '';
+        }
+
+        function generateLinks(word, lemma, linkTemplates) {
             const cleanWord = encodeURIComponent(lemma || word);
-            return {
-                wordReference: `https://www.wordreference.com/es/en/translation.asp?spen=${cleanWord}`,
-                spanishDict: `https://www.spanishdict.com/translate/${cleanWord}`,
-                reverso: `https://context.reverso.net/translation/spanish-english/${cleanWord}`,
-                conjugation: `https://www.spanishdict.com/conjugate/${cleanWord}`
-            };
+            const links = {};
+
+            for (const [key, template] of Object.entries(linkTemplates)) {
+                links[key] = template.replace('{word}', cleanWord);
+            }
+
+            return links;
         }
 
         function initializeApp() {
@@ -606,39 +778,57 @@
 
         function updateCard() {
             const card = flashcards[currentIndex];
+            const langConfig = config.languages[selectedLanguage];
+
             document.getElementById('currentCard').textContent = currentIndex + 1;
             document.getElementById('frontWord').textContent = card.word;
-            
-            // Parse sentence to separate Spanish and English
+
+            // Parse sentence to separate target language and English
             const sentenceParts = card.sentence.split('\n').filter(s => s.trim());
-            const spanishSentence = sentenceParts[0] || '';
+            const targetSentence = sentenceParts[0] || '';
             const englishTranslation = sentenceParts[1] || '';
-            
-            document.getElementById('backContent').innerHTML = `
+
+            // Build back content based on language format
+            let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
                     <div style="font-size: 24px; color: #667eea; font-weight: bold;">${card.word}</div>
-                    <div style="font-size: 16px; color: #666; margin-top: 5px;">${card.show}</div>
-                </div>
-                
-                ${card.lemma !== card.word ? `<div style="margin-bottom: 15px;"><strong>Lemma:</strong> ${card.lemma}</div>` : ''}
-                
+            `;
+
+            if (langConfig.csvFormat === 'spanish') {
+                backHTML += `<div style="font-size: 16px; color: #666; margin-top: 5px;">${card.show}</div>`;
+            } else if (langConfig.csvFormat === 'dutch' && card.pos) {
+                backHTML += `<div style="font-size: 16px; color: #666; margin-top: 5px;">${card.pos}</div>`;
+            }
+
+            backHTML += `</div>`;
+
+            if (card.lemma && card.lemma !== card.word) {
+                backHTML += `<div style="margin-bottom: 15px;"><strong>Lemma:</strong> ${card.lemma}</div>`;
+            }
+
+            backHTML += `
                 <div class="sentence">
-                    <div style="margin-bottom: 8px;">${spanishSentence}</div>
+                    <div style="margin-bottom: 8px;">${targetSentence}</div>
                     <div class="translation">${englishTranslation}</div>
                 </div>
-                
+
                 <div class="links-section">
                     <strong>📖 Reference Links:</strong><br>
-                    <a href="${card.links.wordReference}" target="_blank" class="link-btn">WordReference</a>
-                    <a href="${card.links.spanishDict}" target="_blank" class="link-btn">SpanishDict</a>
-                    <a href="${card.links.reverso}" target="_blank" class="link-btn">Reverso</a>
-                    <a href="${card.links.conjugation}" target="_blank" class="link-btn">Conjugation</a>
-                </div>
             `;
-            
+
+            // Generate link buttons based on available links
+            for (const [key, url] of Object.entries(card.links)) {
+                const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                backHTML += `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
+            }
+
+            backHTML += `</div>`;
+
+            document.getElementById('backContent').innerHTML = backHTML;
+
             stats.studied.add(currentIndex);
             updateStats();
-            
+
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             document.getElementById('nextBtn').disabled = currentIndex === flashcards.length - 1;
         }
@@ -692,34 +882,52 @@
 
         function generateQuizQuestion() {
             const card = flashcards[Math.floor(Math.random() * flashcards.length)];
-            const correctAnswer = card.show;
-            
+            const langConfig = config.languages[selectedLanguage];
+
+            // Determine correct answer based on format
+            let correctAnswer;
+            if (langConfig.csvFormat === 'spanish') {
+                correctAnswer = card.show;
+            } else {
+                // For Dutch, extract English translation from sentence
+                const sentenceParts = card.sentence.split('\n').filter(s => s.trim());
+                correctAnswer = sentenceParts[1] || card.word;
+            }
+
             // Generate wrong answers
             const wrongAnswers = [];
             while (wrongAnswers.length < 3) {
                 const randomCard = flashcards[Math.floor(Math.random() * flashcards.length)];
-                if (randomCard.show !== correctAnswer && !wrongAnswers.includes(randomCard.show)) {
-                    wrongAnswers.push(randomCard.show);
+                let randomAnswer;
+                if (langConfig.csvFormat === 'spanish') {
+                    randomAnswer = randomCard.show;
+                } else {
+                    const parts = randomCard.sentence.split('\n').filter(s => s.trim());
+                    randomAnswer = parts[1] || randomCard.word;
+                }
+
+                if (randomAnswer !== correctAnswer && !wrongAnswers.includes(randomAnswer)) {
+                    wrongAnswers.push(randomAnswer);
                 }
             }
-            
+
             const allOptions = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
-            
+
             document.getElementById('quizQuestion').textContent = `What does "${card.word}" mean?`;
-            
-            const optionsHtml = allOptions.map(option => 
+
+            const optionsHtml = allOptions.map(option =>
                 `<div class="quiz-option" data-answer="${option}" data-correct="${option === correctAnswer}">${option}</div>`
             ).join('');
-            
+
             document.getElementById('quizOptions').innerHTML = optionsHtml;
             document.getElementById('quizFeedback').innerHTML = '';
-            
+
             document.querySelectorAll('.quiz-option').forEach(opt => {
                 opt.addEventListener('click', function() {
                     checkQuizAnswer(this);
                 });
             });
-            
+
             window.currentQuizCard = card;
         }
 
@@ -759,14 +967,24 @@
 
         function generateTypeQuestion() {
             const card = flashcards[Math.floor(Math.random() * flashcards.length)];
+            const langConfig = config.languages[selectedLanguage];
             window.currentTypeCard = card;
-            
+
             const sentenceParts = card.sentence.split('\n').filter(s => s.trim());
+            const englishHint = sentenceParts[1] || '';
+
+            let promptText;
+            if (langConfig.csvFormat === 'spanish') {
+                promptText = `Translate: <strong>${card.show}</strong>`;
+            } else {
+                promptText = `Type the word for: <strong>${englishHint}</strong>`;
+            }
+
             document.getElementById('typePrompt').innerHTML = `
-                Translate: <strong>${card.show}</strong>
-                <div style="font-size: 14px; margin-top: 10px; color: #666;">${sentenceParts[1] || ''}</div>
+                ${promptText}
+                <div style="font-size: 14px; margin-top: 10px; color: #666;">${langConfig.csvFormat === 'spanish' ? englishHint : card.pos || ''}</div>
             `;
-            
+
             document.getElementById('typeInput').value = '';
             document.getElementById('typeFeedback').innerHTML = '';
             document.getElementById('typeInput').focus();
