@@ -9,6 +9,9 @@
     <meta name="apple-mobile-web-app-title" content="Flashcards">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23667eea'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white'%3E📚%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
     <style>
         :root {
@@ -19,10 +22,10 @@
             --bg-card: #1e2732;
             --bg-card-hover: #252f3c;
 
-            /* Text colors */
-            --text-primary: #e6e8eb;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
+            /* Text colors - high contrast */
+            --text-primary: #ffffff;
+            --text-secondary: #e0e4ea;
+            --text-muted: #a0a8b4;
 
             /* Accent colors - industrial/energy */
             --accent-orange: #ff6b35;
@@ -43,6 +46,11 @@
             --glow-orange: rgba(255, 107, 53, 0.3);
             --glow-blue: rgba(74, 158, 255, 0.3);
             --glow-green: rgba(0, 212, 170, 0.3);
+
+            /* Fonts */
+            --font-reading: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-emphasis: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-data: 'JetBrains Mono', monospace;
         }
 
         * {
@@ -52,7 +60,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: var(--font-reading);
             background: var(--bg-primary);
             background-image:
                 radial-gradient(ellipse at top, var(--bg-secondary) 0%, transparent 50%),
@@ -235,14 +243,16 @@
         }
 
         .card-word {
+            font-family: var(--font-emphasis);
             font-size: 56px;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 20px;
             color: var(--accent-orange);
             text-align: center;
         }
 
         .card-details {
+            font-family: var(--font-reading);
             font-size: 18px;
             line-height: 1.8;
             text-align: center;
@@ -266,15 +276,17 @@
         .sentence {
             margin-top: 15px;
             padding: 15px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            background: rgba(74, 158, 255, 0.08);
+            border: 1px solid var(--accent-blue);
+            border-left: 3px solid var(--accent-blue);
             border-radius: 8px;
+            font-family: var(--font-reading);
             font-style: italic;
             font-size: 18px;
             overflow-wrap: break-word;
             word-wrap: break-word;
             text-align: center;
-            color: var(--text-secondary);
+            color: #ffffff;
         }
 
         @media (max-width: 767px) {
@@ -286,8 +298,9 @@
 
         .translation {
             margin-top: 8px;
-            color: var(--text-muted);
+            color: #00ffcc;
             font-size: 16px;
+            font-weight: 500;
         }
 
         .links-section {
@@ -555,10 +568,9 @@
         }
 
         .file-upload {
-            background: var(--bg-card);
-            padding: 20px;
+            background: transparent;
+            padding: 10px;
             border-radius: 12px;
-            border: 1px solid var(--border-color);
             margin-bottom: 20px;
             text-align: center;
         }
@@ -580,6 +592,110 @@
 
         .hidden {
             display: none !important;
+        }
+
+        /* Setup Steps */
+        .setup-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            font-family: var(--font-data);
+            width: 28px;
+            height: 28px;
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .step-title {
+            font-family: var(--font-emphasis);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .level-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .level-btn {
+            font-family: var(--font-emphasis);
+            padding: 12px 20px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+            min-width: 80px;
+        }
+
+        .level-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-orange);
+            color: var(--text-primary);
+        }
+
+        .level-btn.selected {
+            background: var(--accent-orange);
+            color: var(--bg-primary);
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 15px var(--glow-orange);
+        }
+
+        .range-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .range-btn-new {
+            font-family: var(--font-data);
+            padding: 12px 18px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: var(--accent-blue);
+            min-width: 90px;
+        }
+
+        .range-btn-new:hover {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px var(--glow-blue);
+            transform: translateY(-2px);
+        }
+
+        .range-btn-new:active {
+            transform: scale(0.95);
         }
 
         .range-btn {
@@ -656,8 +772,9 @@
         }
 
         .cefr-level {
+            font-family: var(--font-emphasis);
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--accent-orange);
         }
 
@@ -697,13 +814,14 @@
         }
 
         .cefr-range-btn {
+            font-family: var(--font-data);
             padding: 8px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s;
             color: var(--text-secondary);
         }
@@ -744,13 +862,14 @@
         }
 
         .group-size-btn {
+            font-family: var(--font-data);
             padding: 12px 24px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s;
             min-width: 60px;
             color: var(--text-secondary);
@@ -838,6 +957,7 @@
         }
 
         .modal-header h3 {
+            font-family: var(--font-emphasis);
             color: var(--accent-orange);
             margin: 0;
             font-size: 24px;
@@ -1005,21 +1125,48 @@
 <body>
     <div class="container">
         <div class="file-upload" id="setupPanel">
-            <div class="language-tabs">
-                <button class="lang-tab active" data-lang="spanish">Spanish</button>
-                <button class="lang-tab" data-lang="dutch">Dutch</button>
+            <!-- Step 1: Language Selection -->
+            <div id="step1" class="setup-step">
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Choose Language</span>
+                </div>
+                <div class="language-tabs">
+                    <button class="lang-tab active" data-lang="spanish">Spanish</button>
+                    <button class="lang-tab" data-lang="dutch">Dutch</button>
+                </div>
             </div>
 
-            <div id="groupSizeSelector" style="margin-top: 20px;">
-                <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; font-weight: 600; text-align: center;">Cards per group:</div>
-                <div style="display: flex; gap: 10px; justify-content: center;">
+            <!-- Step 2: Level Selection -->
+            <div id="step2" class="setup-step">
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    <span class="step-title">Choose Level</span>
+                </div>
+                <div id="levelSelector" class="level-selector"></div>
+            </div>
+
+            <!-- Step 3: Set Size Selection -->
+            <div id="step3" class="setup-step" style="display: none;">
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Cards per Set</span>
+                </div>
+                <div id="groupSizeSelector" style="display: flex; gap: 10px; justify-content: center;">
                     <button class="group-size-btn" data-size="25">25</button>
                     <button class="group-size-btn selected" data-size="50">50</button>
                     <button class="group-size-btn" data-size="100">100</button>
                 </div>
             </div>
 
-            <div id="cefrLevelsContainer" style="margin-top: 30px;"></div>
+            <!-- Step 4: Range Selection -->
+            <div id="step4" class="setup-step" style="display: none;">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    <span class="step-title">Choose Set</span>
+                </div>
+                <div id="rangeSelector" class="range-selector"></div>
+            </div>
 
             <div id="loadingMessage" style="margin-top: 20px; color: var(--accent-green); display: none; text-align: center; font-weight: 600;"></div>
         </div>
@@ -1054,7 +1201,7 @@
                     <button class="action-btn" id="flipDirectionBtn" title="Flip direction">🔄</button>
                     <button class="action-btn" id="shuffleBtn" title="Shuffle cards">🔀</button>
                     <button class="action-btn" id="statsBtn" title="View stats">📊</button>
-                    <div id="frequencyDisplay" style="font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
+                    <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
                 </div>
             </div>
         </div>
@@ -1155,7 +1302,8 @@
         };
         let currentMode = 'flashcards';
         let config = null;
-        let selectedLanguage = null;
+        let selectedLanguage = 'spanish';
+        let selectedLevel = null;
         let selectedRanges = [];
         let isFlipped = false;
         let groupSize = 50; // Default group size
@@ -1174,22 +1322,10 @@
         // Initialize on page load
         loadConfig().then(() => {
             selectedLanguage = 'spanish';
-            renderCEFRLevels('spanish');
+            renderLevelSelector('spanish');
             setupLanguageTabs();
             setupGroupSizeSelector();
         });
-
-        function setupGroupSizeSelector() {
-            document.querySelectorAll('.group-size-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.group-size-btn').forEach(b => b.classList.remove('selected'));
-                    this.classList.add('selected');
-                    groupSize = parseInt(this.dataset.size);
-                    // Re-render CEFR levels with new group size
-                    renderCEFRLevels(selectedLanguage);
-                });
-            });
-        }
 
         function setupLanguageTabs() {
             document.querySelectorAll('.lang-tab').forEach(tab => {
@@ -1197,106 +1333,95 @@
                     document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     selectedLanguage = this.dataset.lang;
-                    renderCEFRLevels(selectedLanguage);
+                    selectedLevel = null;
+                    renderLevelSelector(selectedLanguage);
+                    // Hide steps 3 and 4
+                    document.getElementById('step3').style.display = 'none';
+                    document.getElementById('step4').style.display = 'none';
                 });
             });
         }
 
-        function renderCEFRLevels(language) {
+        function renderLevelSelector(language) {
             const langConfig = config.languages[language];
-            const container = document.getElementById('cefrLevelsContainer');
+            const container = document.getElementById('levelSelector');
 
-            const cefrHTML = langConfig.cefrLevels.map(level => {
-                // Generate range buttons HTML based on the selected groupSize
-                const rangeButtonsHTML = level.sets.flatMap(set => {
-                    const [start, end] = set.range.split('-').map(Number);
-                    const ranges = [];
+            const levelsHTML = langConfig.cefrLevels.map(level => `
+                <button class="level-btn" data-level="${level.level}" title="${level.description}">
+                    ${level.level}
+                </button>
+            `).join('');
 
-                    // Generate buttons based on groupSize
-                    for (let i = start; i < end; i += groupSize) {
-                        const rangeEnd = Math.min(i + groupSize, end);
-                        ranges.push({
-                            range: `${i}-${rangeEnd}`,
-                            size: groupSize,
-                            path: set.path,
-                            originalRange: set.range
-                        });
-                    }
+            container.innerHTML = levelsHTML;
 
-                    return ranges.map(r => `
-                        <button class="cefr-range-btn" data-range="${r.range}" data-size="${r.size}" data-path="${r.path}" data-original-range="${r.originalRange}">
-                            ${r.range}
-                        </button>
-                    `);
-                }).join('');
-
-                return `
-                    <div class="cefr-card" data-level="${level.level}">
-                        <div class="cefr-header">
-                            <div>
-                                <div class="cefr-level">${level.level}</div>
-                                <div class="cefr-description">${level.description}</div>
-                            </div>
-                        </div>
-                        <div class="cefr-stats">
-                            <div><strong>${level.wordCount}</strong> words</div>
-                            <div>${level.comprehension}</div>
-                        </div>
-                        <div class="cefr-ranges">
-                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; font-weight: 600;">Select ranges (${groupSize} cards each):</div>
-                            <div class="cefr-ranges-grid">
-                                ${rangeButtonsHTML}
-                            </div>
-                            <div class="cefr-actions">
-                                <button class="start-level-btn" data-level="${level.level}">Start Learning</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            container.innerHTML = cefrHTML;
-
-            // Add click handlers to expand CEFR cards
-            document.querySelectorAll('.cefr-card').forEach(card => {
-                const header = card.querySelector('.cefr-header, .cefr-stats');
-                header.addEventListener('click', function(e) {
-                    // Toggle expansion
-                    card.classList.toggle('expanded');
+            // Add click handlers
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedLevel = this.dataset.level;
+                    // Show steps 3 and 4
+                    document.getElementById('step3').style.display = 'block';
+                    renderRangeSelector();
                 });
             });
+        }
 
-            // Add click handlers to range buttons
-            document.querySelectorAll('.cefr-range-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevent card collapse
-                    this.classList.toggle('selected');
+        function setupGroupSizeSelector() {
+            document.querySelectorAll('.group-size-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.group-size-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    groupSize = parseInt(this.dataset.size);
+                    // Re-render range selector if a level is selected
+                    if (selectedLevel) {
+                        renderRangeSelector();
+                    }
                 });
             });
+        }
 
-            // Add click handlers to "Start Learning" buttons
-            document.querySelectorAll('.start-level-btn').forEach(btn => {
-                btn.addEventListener('click', async function(e) {
-                    e.stopPropagation(); // Prevent card collapse
+        function renderRangeSelector() {
+            const langConfig = config.languages[selectedLanguage];
+            const level = langConfig.cefrLevels.find(l => l.level === selectedLevel);
+            const container = document.getElementById('rangeSelector');
 
-                    const card = this.closest('.cefr-card');
-                    const selectedRangeBtns = card.querySelectorAll('.cefr-range-btn.selected');
+            if (!level) return;
 
-                    if (selectedRangeBtns.length === 0) {
-                        alert('Please select at least one word range to study.');
-                        return;
-                    }
+            // Generate range buttons based on groupSize
+            const ranges = [];
+            level.sets.forEach(set => {
+                const [start, end] = set.range.split('-').map(Number);
+                for (let i = start; i < end; i += groupSize) {
+                    const rangeEnd = Math.min(i + groupSize, end);
+                    ranges.push({
+                        range: `${i}-${rangeEnd}`,
+                        path: set.path
+                    });
+                }
+            });
 
-                    // Collect selected ranges
-                    const selectedSets = Array.from(selectedRangeBtns).map(btn => ({
-                        range: btn.dataset.range,
-                        path: btn.dataset.path
-                    }));
+            const rangesHTML = ranges.map(r => `
+                <button class="range-btn-new" data-range="${r.range}" data-path="${r.path}">
+                    ${r.range}
+                </button>
+            `).join('');
+
+            container.innerHTML = rangesHTML;
+            document.getElementById('step4').style.display = 'block';
+
+            // Add click handlers - clicking a range starts immediately
+            document.querySelectorAll('.range-btn-new').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const selectedSet = {
+                        range: this.dataset.range,
+                        path: this.dataset.path
+                    };
 
                     document.getElementById('loadingMessage').style.display = 'block';
-                    document.getElementById('loadingMessage').textContent = `Loading ${selectedSets.length} range${selectedSets.length > 1 ? 's' : ''}...`;
+                    document.getElementById('loadingMessage').textContent = `Loading ${selectedSet.range}...`;
 
-                    await loadCSVFiles(selectedSets);
+                    await loadCSVFiles([selectedSet]);
                 });
             });
         }
@@ -1912,7 +2037,7 @@
 
             // Show base form if different from displayed word
             if (card.inflectedForm && card.baseForm !== card.targetWord) {
-                backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: var(--text-secondary);"><strong style="color: var(--accent-amber);">Base form:</strong> ${card.baseForm}</div>`;
+                backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-amber);">Base form:</strong> ${card.baseForm}</div>`;
             }
 
             // Show example sentences if available
