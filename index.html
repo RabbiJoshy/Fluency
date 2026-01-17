@@ -858,6 +858,7 @@
 
         let flashcards = [];
         let currentIndex = 0;
+        let currentSentenceIndex = 0; // Track which example sentence is being shown
         let stats = {
             studied: new Set(),
             correct: 0,
@@ -870,6 +871,7 @@
         let selectedLanguage = null;
         let selectedRanges = [];
         let isFlipped = false;
+        let groupSize = 50; // Default group size
 
         // Load configuration
         async function loadConfig() {
@@ -905,12 +907,27 @@
             const container = document.getElementById('cefrLevelsContainer');
 
             const cefrHTML = langConfig.cefrLevels.map(level => {
-                // Generate range buttons HTML
-                const rangeButtonsHTML = level.sets.map(set => `
-                    <button class="cefr-range-btn" data-range="${set.range}" data-path="${set.path}">
-                        ${set.range}
-                    </button>
-                `).join('');
+                // Generate range buttons HTML - split into groups of 50
+                const rangeButtonsHTML = level.sets.flatMap(set => {
+                    const [start, end] = set.range.split('-').map(Number);
+                    const ranges50 = [];
+
+                    // Split 100-word ranges into 50-word chunks
+                    for (let i = start; i < end; i += 50) {
+                        const rangeEnd = Math.min(i + 50, end);
+                        ranges50.push({
+                            range: `${i}-${rangeEnd}`,
+                            path: set.path,
+                            originalRange: set.range
+                        });
+                    }
+
+                    return ranges50.map(r => `
+                        <button class="cefr-range-btn" data-range="${r.range}" data-path="${r.path}" data-original-range="${r.originalRange}">
+                            ${r.range}
+                        </button>
+                    `);
+                }).join('');
 
                 return `
                     <div class="cefr-card" data-level="${level.level}">
@@ -992,13 +1009,14 @@
                     const response = await fetch(range.path);
                     const fileText = await response.text();
 
-                    // Extract starting rank from range (e.g., "0-100" -> 0, "100-200" -> 100)
-                    const startRank = parseInt(range.range.split('-')[0]);
+                    // Extract starting and ending rank from range (e.g., "0-50" -> 0, 50)
+                    const [rangeStart, rangeEnd] = range.range.split('-').map(Number);
+                    const startRank = rangeStart;
 
                     if (langConfig.fileFormat === 'quizlet') {
-                        parseQuizlet(fileText, langConfig, startRank);
+                        parseQuizlet(fileText, langConfig, startRank, rangeStart, rangeEnd);
                     } else {
-                        parseCSV(fileText, langConfig, startRank);
+                        parseCSV(fileText, langConfig, startRank, rangeStart, rangeEnd);
                     }
                 } catch (error) {
                     console.error(`Failed to load ${range.path}:`, error);
@@ -1019,10 +1037,11 @@
             }, 500);
         }
 
-        function parseQuizlet(text, langConfig, startRank = 0) {
+        function parseQuizlet(text, langConfig, startRank = 0, rangeStart = 0, rangeEnd = Infinity) {
             const lines = text.split('\n');
             let i = 0;
             let cardCount = 0;
+            let totalCardsParsed = 0; // Track position in file
 
             while (i < lines.length) {
                 const line = lines[i].trim();
@@ -1069,19 +1088,26 @@
 
                 // Create the flashcard
                 if (targetWord && translation) {
-                    const card = {
-                        targetWord: targetWord,
-                        translation: translation,
-                        baseForm: baseForm,
-                        inflectedForm: inflectedForm,
-                        targetSentence: targetSentence,
-                        englishSentence: englishSentence,
-                        rank: startRank + cardCount + 1, // Calculate frequency rank
-                        links: generateLinks(baseForm, baseForm, langConfig.referenceLinks)
-                    };
+                    const currentRank = startRank + totalCardsParsed;
 
-                    flashcards.push(card);
-                    cardCount++;
+                    // Only include cards within the specified range
+                    if (currentRank >= rangeStart && currentRank < rangeEnd) {
+                        const card = {
+                            targetWord: targetWord,
+                            translation: translation,
+                            baseForm: baseForm,
+                            inflectedForm: inflectedForm,
+                            targetSentence: targetSentence,
+                            englishSentence: englishSentence,
+                            sentences: [{ target: targetSentence, english: englishSentence }], // Array for multiple sentences
+                            rank: currentRank + 1, // Calculate frequency rank
+                            links: generateLinks(baseForm, baseForm, langConfig.referenceLinks)
+                        };
+
+                        flashcards.push(card);
+                        cardCount++;
+                    }
+                    totalCardsParsed++;
                 }
 
                 // Move past empty lines between entries
@@ -1231,7 +1257,7 @@
                 const diffX = currentX - touchStartX;
                 const diffY = currentY - touchStartY;
 
-                // Only allow horizontal swipes (prevent vertical scrolling conflicts)
+                // Horizontal swipes (correct/incorrect)
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     const rotation = diffX / 20; // Rotate based on swipe distance
                     card.style.transform = `translateX(${diffX}px) rotate(${rotation}deg)`;
@@ -1255,22 +1281,44 @@
                 isDragging = false;
 
                 const diffX = currentX - touchStartX;
+                const diffY = currentY - touchStartY;
                 const swipeThreshold = 100;
 
                 card.classList.remove('swiping');
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
 
-                if (Math.abs(diffX) > swipeThreshold) {
-                    if (diffX > 0) {
-                        // Swipe right - Correct
-                        handleSwipeAction('correct');
+                // Determine if horizontal or vertical swipe
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    // Horizontal swipe
+                    if (Math.abs(diffX) > swipeThreshold) {
+                        if (diffX > 0) {
+                            // Swipe right - Correct
+                            handleSwipeAction('correct');
+                        } else {
+                            // Swipe left - Incorrect
+                            handleSwipeAction('incorrect');
+                        }
                     } else {
-                        // Swipe left - Incorrect
-                        handleSwipeAction('incorrect');
+                        // Reset card position if swipe wasn't far enough
+                        card.style.transform = '';
                     }
+                } else if (Math.abs(diffY) > swipeThreshold) {
+                    // Vertical swipe - cycle through example sentences
+                    const currentCard = flashcards[currentIndex];
+                    if (currentCard && currentCard.sentences) {
+                        if (diffY < 0) {
+                            // Swipe up - next sentence
+                            currentSentenceIndex = (currentSentenceIndex + 1) % currentCard.sentences.length;
+                        } else {
+                            // Swipe down - previous sentence
+                            currentSentenceIndex = (currentSentenceIndex - 1 + currentCard.sentences.length) % currentCard.sentences.length;
+                        }
+                        updateCard(); // Refresh to show new sentence
+                    }
+                    card.style.transform = '';
                 } else {
-                    // Reset card position if swipe wasn't far enough
+                    // Not far enough, reset
                     card.style.transform = '';
                 }
             }, { passive: true });
@@ -1297,13 +1345,79 @@
                 // Move to next card
                 if (currentIndex < flashcards.length - 1) {
                     currentIndex++;
+                    currentSentenceIndex = 0; // Reset sentence index for new card
                     updateCard();
                     document.getElementById('flashcard').classList.remove('flipped');
                 } else {
-                    // End of deck
-                    alert(`Deck complete!\n\nCorrect: ${stats.correct}\nIncorrect: ${stats.incorrect}\nAccuracy: ${Math.round((stats.correct / (stats.correct + stats.incorrect)) * 100)}%`);
+                    // End of deck - show options
+                    showEndOfDeckOptions();
                 }
             }, 300);
+        }
+
+        function showEndOfDeckOptions() {
+            const incorrectCards = Object.keys(stats.cardStats)
+                .filter(idx => stats.cardStats[idx].incorrect > stats.cardStats[idx].correct)
+                .map(Number);
+
+            const accuracy = Math.round((stats.correct / (stats.correct + stats.incorrect)) * 100);
+            let message = `Deck complete!\n\nCorrect: ${stats.correct}\nIncorrect: ${stats.incorrect}\nAccuracy: ${accuracy}%\n\n`;
+
+            if (incorrectCards.length > 0) {
+                message += `You have ${incorrectCards.length} cards to review.\n\nWhat would you like to do?`;
+
+                // Use confirm for simple choice
+                if (confirm(message + "\n\nOK = Continue with incorrect cards only\nCancel = Restart all cards")) {
+                    // Continue with incorrect cards only
+                    restartWithIncorrectCards(incorrectCards);
+                } else {
+                    // Restart all cards
+                    restartAllCards();
+                }
+            } else {
+                alert(message + "\nPerfect! All cards correct!");
+                // Optionally return to setup or restart
+                if (confirm("Start over with all cards?")) {
+                    restartAllCards();
+                } else {
+                    goBackToSetup();
+                }
+            }
+        }
+
+        function restartWithIncorrectCards(incorrectIndices) {
+            // Create new deck with only incorrect cards
+            const incorrectFlashcards = incorrectIndices.map(idx => flashcards[idx]);
+
+            // Reset stats
+            stats.correct = 0;
+            stats.incorrect = 0;
+            stats.total = 0;
+            stats.studied = new Set();
+            stats.cardStats = {};
+
+            // Set new flashcards array
+            flashcards = incorrectFlashcards;
+            currentIndex = 0;
+            currentSentenceIndex = 0;
+
+            updateCard();
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function restartAllCards() {
+            // Reset stats
+            stats.correct = 0;
+            stats.incorrect = 0;
+            stats.total = 0;
+            stats.studied = new Set();
+            stats.cardStats = {};
+
+            currentIndex = 0;
+            currentSentenceIndex = 0;
+
+            updateCard();
+            document.getElementById('flashcard').classList.remove('flipped');
         }
 
         function recordCardResult(result) {
@@ -1373,20 +1487,25 @@
             // Determine what to show on front and back based on flip direction
             let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
 
+            // Get current sentence from sentences array
+            const currentSentence = card.sentences && card.sentences.length > 0
+                ? card.sentences[currentSentenceIndex % card.sentences.length]
+                : { target: card.targetSentence, english: card.englishSentence };
+
             if (isFlipped) {
                 // English → Target language
                 frontText = card.translation;
                 backWord = card.targetWord;
                 backTranslation = card.translation;
-                exampleSentence = card.englishSentence;
-                exampleTranslation = card.targetSentence;
+                exampleSentence = currentSentence.english;
+                exampleTranslation = currentSentence.target;
             } else {
                 // Target language → English (normal)
                 frontText = card.targetWord;
                 backWord = card.targetWord;
                 backTranslation = card.translation;
-                exampleSentence = card.targetSentence;
-                exampleTranslation = card.englishSentence;
+                exampleSentence = currentSentence.target;
+                exampleTranslation = currentSentence.english;
             }
 
             document.getElementById('frontWord').textContent = frontText;
@@ -1406,7 +1525,11 @@
 
             // Show example sentences if available
             if (exampleSentence || exampleTranslation) {
+                const sentenceCount = card.sentences ? card.sentences.length : 1;
+                const sentenceIndicator = sentenceCount > 1 ? `<div style="text-align: center; color: #999; font-size: 12px; margin-bottom: 5px;">Sentence ${currentSentenceIndex + 1} of ${sentenceCount} (swipe ↕)</div>` : '';
+
                 backHTML += `
+                    ${sentenceIndicator}
                     <div class="sentence">
                         ${exampleSentence ? `<div style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
                         ${exampleTranslation ? `<div class="translation">${exampleTranslation}</div>` : ''}
