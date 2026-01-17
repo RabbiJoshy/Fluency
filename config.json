@@ -59,7 +59,7 @@
           "wordCount": "0-800",
           "sets": [
             { "range": "0-100", "path": "Spanish New/1_100.txt", "format": "multiMeaning" },
-            { "range": "100-200", "path": "Spanish/Vocabulary/Quizlet Sets/100-200.txt" },
+            { "range": "100-200", "path": "Spanish New Frmat/100-200_new_format_1.txt", "format": "multiMeaning" },
             { "range": "200-300", "path": "Spanish/Vocabulary/Quizlet Sets/200-300.txt" },
             { "range": "300-400", "path": "Spanish/Vocabulary/Quizlet Sets/300-400.txt" },
             { "range": "400-500", "path": "Spanish/Vocabulary/Quizlet Sets/400-500.txt" },

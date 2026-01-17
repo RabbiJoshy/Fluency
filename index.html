@@ -1594,20 +1594,22 @@
                 if (!trimmed) continue;
 
                 const parts = trimmed.split('|');
-                if (parts.length < 7) continue;
+                if (parts.length < 8) continue;
 
                 const rank = parseInt(parts[0]);
                 const word = parts[1];
-                const pos = parts[2];
-                const meaning = parts[3];
-                const percentage = parseFloat(parts[4]);
-                const targetSentence = parts[5];
-                const englishSentence = parts[6];
+                const lemma = parts[2];
+                const pos = parts[3];
+                const meaning = parts[4];
+                const percentage = parseFloat(parts[5]);
+                const targetSentence = parts[6];
+                const englishSentence = parts[7];
 
                 if (!wordGroups[rank]) {
                     wordGroups[rank] = {
                         rank: rank,
                         word: word,
+                        lemma: lemma,
                         meanings: []
                     };
                 }
@@ -1633,13 +1635,14 @@
 
                     const card = {
                         targetWord: group.word,
+                        lemma: group.lemma,
                         rank: group.rank,
                         meanings: group.meanings,
                         // For compatibility, set primary translation to most common meaning
                         translation: group.meanings[0].meaning,
                         targetSentence: group.meanings[0].targetSentence,
                         englishSentence: group.meanings[0].englishSentence,
-                        links: generateLinks(group.word, group.word, langConfig.referenceLinks),
+                        links: generateLinks(group.word, group.lemma || group.word, langConfig.referenceLinks),
                         isMultiMeaning: true
                     };
 
@@ -2298,6 +2301,11 @@
 
             // For multi-meaning cards, show all meanings on the back
             if (card.isMultiMeaning) {
+                // Show lemma if different from word
+                if (card.lemma && card.lemma !== card.targetWord) {
+                    backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-amber);">Lemma:</strong> ${card.lemma}</div>`;
+                }
+
                 backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
                 card.meanings.forEach((m, idx) => {
                     const isSelected = idx === currentMeaningIndex;

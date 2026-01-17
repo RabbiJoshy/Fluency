@@ -1,0 +1,211 @@
+101|tiempo||NOUN|time|0.85|Nadie tiene otro tiempo para esperar.|Nobody has any more time to wait.
+101|tiempo||NOUN|weather|0.15|El tiempo está malo hoy.|The weather is bad today.
+
+102|verdad||NOUN|truth|1.00|Podría estar diciendo la verdad.|He could be telling the truth.
+
+103|estaba|estar|VERB|was (temporary state/location)|1.00|Estaba en mi trabajo.|I was at my job.
+
+104|mejor||ADJ|better/best|0.90|Este es el mejor estado.|This is the best state.
+104|mejor||ADV|better|0.10|Lo hice mejor que antes.|I did it better than before.
+
+105|están|estar|VERB|are (temporary state/location)|1.00|Los niños están jugando.|The children are playing.
+
+106|va|ir|VERB|goes/is going|1.00|Mañana tal vez va a llover.|Tomorrow it might rain.
+
+107|hombre||NOUN|man|1.00|El hombre está sin sombrero.|The man is without a hat.
+
+108|usted||PRON|you (formal)|1.00|¿Usted siempre está feliz?|Are you always happy?
+
+109|mucho||ADV|a lot/much|0.70|Me ayuda mucho.|He helps me a lot.
+109|mucho||ADJ|much/a lot of|0.30|Tengo mucho trabajo.|I have a lot of work.
+
+110|hace|hacer|VERB|does/makes|0.60|¿Qué hace él?|What does he do?
+110|hace|hacer|VERB|ago|0.25|Hace dos años.|Two years ago.
+110|hace|hacer|VERB|is (weather)|0.15|Hace calor.|It is hot.
+
+111|entonces||ADV|then/so|1.00|Estaba fuera, entonces decidí regresar.|I was outside, so I decided to return.
+
+112|siento|sentir|VERB|I feel/am sorry|0.70|Siento mucho.|I am very sorry.
+112|siento|sentar|VERB|I sit|0.30|Me siento aquí.|I sit here.
+
+113|tenemos|tener|VERB|we have|1.00|Nosotros tenemos claro el plan.|We have the plan clear.
+
+114|puedes|poder|VERB|you can|1.00|¿Puedes viajar?|Can you travel?
+
+115|ahí||ADV|there|1.00|Ahí es donde veo el parque.|There is where I see the park.
+
+116|ti||PRON|you (object of preposition)|1.00|Esto es para ti.|This is for you.
+
+117|vida||NOUN|life|1.00|La vida es más segura.|Life is safer.
+
+118|ver||VERB|to see|1.00|Me gusta ver las estrellas.|I like to see the stars.
+
+119|alguien||PRON|someone/somebody|1.00|Alguien ha cambiado mi vida.|Someone has changed my life.
+
+120|señor||NOUN|sir/mister/Mr.|1.00|Señor, ¿puedo hablar con usted?|Sir, can I talk to you?
+
+121|hasta||PREP|until/to|0.70|Hasta luego.|See you later.
+121|hasta||ADV|even|0.30|Hasta yo lo sé.|Even I know it.
+
+122|sin||PREP|without|1.00|Hablamos sin descanso.|We talk without rest.
+
+123|mí||PRON|me (after preposition)|1.00|Esto es para mí.|This is for me.
+
+124|solo||ADV|only/just|0.60|Solo quiero otro libro.|I only want another book.
+124|solo||ADJ|alone|0.40|Estoy solo.|I am alone.
+
+125|años|año|NOUN|years|1.00|En pocos años todo cambia.|In a few years everything changes.
+
+126|sobre||PREP|about|0.60|Hablé sobre mis libros.|I talked about my books.
+126|sobre||PREP|on/over|0.40|El libro está sobre la mesa.|The book is on the table.
+
+127|decir||VERB|to say/tell|1.00|Puedes decir lo que piensas.|You can say what you think.
+
+128|uno||NUM|one|0.70|Uno de los amigos.|One of the friends.
+128|uno||PRON|one (pronoun)|0.30|Necesito uno nuevo.|I need a new one.
+
+129|siempre||ADV|always|1.00|Siempre siento que no tengo tiempo.|I always feel that I don't have time.
+
+130|oh||INTJ|oh|1.00|Oh, ¿dónde está el libro?|Oh, where is the book?
+
+131|ir||VERB|to go|1.00|Voy a ir a la tienda.|I am going to go to the store.
+
+132|cosas|cosa|NOUN|things|1.00|Has comprado muchas cosas.|You have bought many things.
+
+133|también||ADV|also/too|1.00|A mí también me gusta.|I also like it.
+
+134|antes||ADV|before|0.80|Necesito encontrar un lugar antes.|I need to find a place before.
+134|antes||PREP|before|0.20|Antes de salir.|Before leaving.
+
+135|has|haber|AUX|you have (auxiliary)|1.00|Ya has terminado.|You have already finished.
+
+136|ni||CONJ|neither/nor|1.00|No quiere ni pizza ni pasta.|She doesn't want either pizza or pasta.
+
+137|mis|mi|POSS|my (plural)|1.00|Mis amigos siempre ayudan.|My friends always help.
+
+138|día||NOUN|day|1.00|Me siento feliz en este día.|I feel happy on this day.
+
+139|estar||VERB|to be (temporary state/location)|1.00|Quiero estar aquí.|I want to be here.
+
+140|estamos|estar|VERB|we are (temporary state/location)|1.00|Estamos felices.|We are happy.
+
+141|noche||NOUN|night/evening|1.00|Anoche estaba oscuro.|Last night it was dark.
+
+142|nadie||PRON|nobody/no one|1.00|Nadie vio a nuestro padre.|Nobody saw our father.
+
+143|otra|otro|ADJ|other/another (feminine)|1.00|Necesito otra opinión.|I need another opinion.
+
+144|quiere|querer|VERB|wants/loves|1.00|Ella quiere una vida feliz.|She wants a happy life.
+
+145|parece|parecer|VERB|seems/appears|1.00|Parece que el gato quiere salir.|It seems that the cat wants to go out.
+
+146|nosotros||PRON|we/us|1.00|Nosotros vamos a la tienda.|We go to the store.
+
+147|poco||ADJ|little/few|0.60|Tengo poco dinero.|I have little money.
+147|poco||ADV|little|0.40|Hablo poco.|I speak little.
+
+148|padre||NOUN|father|1.00|Mi padre quiere saber.|My father wants to know.
+
+149|trabajo|trabajar|NOUN|work/job|0.70|Mi hijo tiene un trabajo.|My son has a job.
+149|trabajo|trabajar|VERB|I work|0.30|Yo trabajo aquí.|I work here.
+
+150|gente||NOUN|people|1.00|La gente se fue a sus casas.|The people went to their homes.
+
+151|mira|mirar|VERB|look|0.85|Mira, siento mucho.|Look, I'm very sorry.
+151|mira||NOUN|sight/viewfinder|0.15|La mira del rifle.|The rifle sight.
+
+152|vas|ir|VERB|you go|1.00|¿Vas al parque?|Are you going to the park?
+
+153|sea|ser|VERB|be (subjunctive)|1.00|Quiero que sea feliz.|I want him/her to be happy.
+
+154|les||PRON|to them/you (plural formal)|1.00|Ella les quiere dar un regalo.|She wants to give them a gift.
+
+155|donde||ADV|where|1.00|¿Dónde están tus libros?|Where are your books?
+
+156|mismo||ADJ|same|0.70|La misma tienda.|The same store.
+156|mismo||PRON|same one|0.30|Es el mismo de ayer.|It's the same one as yesterday.
+
+157|hecho|hacer|NOUN|fact|0.50|Necesito que muestres el hecho.|I need you to show the fact.
+157|hecho|hacer|VERB|done/made (past participle)|0.50|He hecho mi tarea.|I have done my homework.
+
+158|ellos||PRON|they/them|1.00|Ellos pasan por aquí.|They pass by here.
+
+159|dijo|decir|VERB|said/told|1.00|Él dijo que estar aquí.|He said to be here.
+
+160|pasa|pasar|VERB|happens/passes|0.60|No pasa nada.|Nothing is happening.
+160|pasa|pasar|VERB|spends (time)|0.25|Pasa mucho tiempo aquí.|He spends a lot of time here.
+160|pasa|pasar|VERB|come in|0.15|Pasa, por favor.|Come in, please.
+
+161|dinero||NOUN|money|1.00|Tiene dinero.|He has money.
+
+162|hijo||NOUN|son|1.00|El hijo ha hecho amigos.|The son has made friends.
+
+163|tal||ADJ|such|0.60|Si tal fuera el caso.|If such were the case.
+163|tal||ADV|how (in questions)|0.40|¿Qué tal?|How are things?
+
+164|otro||ADJ|other/another|1.00|El hombre llegó a un acuerdo con otro.|The man reached an agreement with another.
+
+165|hablar||VERB|to talk/speak|1.00|Quiero hablar con otra persona.|I want to talk with another person.
+
+166|seguro||ADJ|sure/certain|0.60|Estoy seguro.|I am sure.
+166|seguro||NOUN|insurance|0.25|El seguro médico.|The health insurance.
+166|seguro||ADV|surely|0.15|Seguro que viene.|Surely he's coming.
+
+167|claro||ADJ|clear|0.60|Está claro.|It is clear.
+167|claro||INTJ|of course|0.30|Claro, te daré dinero.|Of course, I will give you money.
+167|claro||ADV|clearly|0.10|Habla claro.|He speaks clearly.
+
+168|estas|este|DEM|these|0.60|Estas cosas son buenas.|These things are good.
+168|estas|estar|VERB|you are|0.40|¿Dónde estás?|Where are you?
+
+169|lugar||NOUN|place|1.00|Este lugar es el mejor.|This place is the best.
+
+170|mundo||NOUN|world|1.00|En este mundo.|In this world.
+
+171|amigo||NOUN|friend|1.00|Mi amigo es un buen tipo.|My friend is a good guy.
+
+172|espera|esperar|VERB|wait/waits|0.70|Espera un momento.|Wait a moment.
+172|espera||NOUN|wait/waiting|0.30|La espera es larga.|The wait is long.
+
+173|mierda||NOUN|shit/crap|1.00|No quiere esa mierda.|He doesn't want that crap.
+
+174|han|haber|AUX|they have (auxiliary)|1.00|Han llegado tarde.|They have arrived late.
+
+175|tus|tu|POSS|your (plural)|1.00|Tus amigos saben.|Your friends know.
+
+176|sabe|saber|VERB|knows|1.00|¿Quién sabe?|Who knows?
+
+177|después||ADV|after/afterwards|0.85|Después de la cena.|After dinner.
+177|después||PREP|after|0.15|Después del trabajo.|After work.
+
+178|momento||NOUN|moment|1.00|En ese momento.|In that moment.
+
+179|desde||PREP|from/since|1.00|Desde el mismo día.|Since the same day.
+
+180|fuera|estar|ADV|outside/out|0.50|Fuera de la casa.|Outside the house.
+180|fuera|ser|VERB|was (subjunctive)|0.30|Si fuera rico.|If I were rich.
+180|fuera|ir|VERB|went (subjunctive)|0.20|Antes de que fuera.|Before he went.
+
+181|cosa||NOUN|thing/stuff|1.00|Esa cosa brilla.|That thing shines.
+
+182|tipo||NOUN|type/kind|0.60|Un tipo de trabajo.|A type of job.
+182|tipo||NOUN|guy/dude|0.40|Hay un tipo ahí.|There is a guy there.
+
+183|mañana||ADV|tomorrow|0.70|Mañana será un día bonito.|Tomorrow will be a beautiful day.
+183|mañana||NOUN|morning|0.30|Por la mañana.|In the morning.
+
+184|podemos|poder|VERB|we can|1.00|Podemos ver muchas cosas.|We can see many things.
+
+185|dije|decir|VERB|I said/told|1.00|Dije que estas flores son bonitas.|I said that these flowers are beautiful.
+
+186|gran|grande|ADJ|great/big|1.00|Una gran aventura.|A great adventure.
+
+187|necesito|necesitar|VERB|I need|1.00|Necesito estar feliz.|I need to be happy.
+
+188|estado|estar|NOUN|state|0.50|El estado de California.|The state of California.
+188|estado|estar|VERB|been (past participle)|0.50|He estado esperando.|I have been waiting.
+
+189|podría|poder|VERB|could/might|1.00|¿Podría tu hijo traer tus libros?|Could your son bring your books?
+
+190|acuerdo||NOUN|agreement|0.70|Un acuerdo sobre la cosa.|An agreement about the thing.
+190|acuerdo|acordar|VERB|I agree|0.30|Estoy de acuerdo.|I agree.
