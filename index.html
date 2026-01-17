@@ -1827,21 +1827,19 @@
             // Event listeners
             // Note: flip is handled by touch events for mobile, click for desktop
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Don't flip if clicking on buttons, links, meaning boxes, flip buttons, or card-details area
+                // Only flip if clicking on flip-circle or card-front background (not on back content)
+                // Don't flip if clicking on buttons, links, or card-details area
                 if (e.target.closest('.nav-btn-inline') ||
                     e.target.closest('.link-btn') ||
-                    e.target.closest('.meaning-box') ||
-                    e.target.closest('.flip-button') ||
                     e.target.closest('.card-details')) {
                     return;
                 }
-                flipCard();
-            });
 
-            // Flip button
-            document.getElementById('flipBtnFront').addEventListener('click', function(e) {
-                e.stopPropagation();
-                flipCard();
+                // Only flip on front side (flip-circle) or if clicking empty space on front
+                if (e.target.closest('.flip-circle') ||
+                    (e.target.closest('.card-front') && !e.target.closest('.card-details'))) {
+                    flipCard();
+                }
             });
 
             // Arrow buttons on the card faces
@@ -1926,11 +1924,15 @@
             let maxMovement = 0; // Track maximum movement during touch
 
             card.addEventListener('touchstart', function(e) {
-                // Don't handle if touch is on a button, link, meaning box, or card-details area
+                // Don't handle if touch is on a button, link, or card-details area
                 if (e.target.closest('.nav-btn-inline') ||
                     e.target.closest('.link-btn') ||
-                    e.target.closest('.meaning-box') ||
                     e.target.closest('.card-details')) {
+                    return;
+                }
+
+                // Only handle touch on the front side (flip-circle or card-front)
+                if (!e.target.closest('.card-front')) {
                     return;
                 }
 
