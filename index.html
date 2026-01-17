@@ -394,6 +394,150 @@
             border-color: #667eea;
         }
 
+        .language-tabs {
+            display: flex;
+            gap: 0;
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .lang-tab {
+            flex: 1;
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .lang-tab.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .cefr-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cefr-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .cefr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .cefr-level {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .cefr-description {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .cefr-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .cefr-stats strong {
+            color: #333;
+        }
+
+        .cefr-ranges {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            display: none;
+        }
+
+        .cefr-card.expanded .cefr-ranges {
+            display: block;
+        }
+
+        .cefr-ranges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .cefr-range-btn {
+            padding: 8px 16px;
+            background: #f7f9fc;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cefr-range-btn:hover {
+            background: #e8ecf7;
+            border-color: #667eea;
+        }
+
+        .cefr-range-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .cefr-actions {
+            display: none;
+            margin-top: 15px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .cefr-card.expanded .cefr-actions {
+            display: flex;
+        }
+
+        .start-level-btn {
+            flex: 1;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .start-level-btn:hover {
+            background: #5568d3;
+        }
+
+        .start-level-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .modal {
             position: fixed;
             top: 0;
@@ -492,32 +636,14 @@
 <body>
     <div class="container">
         <div class="file-upload" id="setupPanel">
-            <h3>Select Your Language & Words</h3>
-
-            <div style="margin: 20px 0;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Language:</label>
-                <select id="languageSelect" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0; font-size: 16px;">
-                    <option value="">-- Choose a language --</option>
-                    <option value="dutch">Dutch</option>
-                    <option value="spanish">Spanish</option>
-                </select>
+            <div class="language-tabs">
+                <button class="lang-tab active" data-lang="spanish">Spanish</button>
+                <button class="lang-tab" data-lang="dutch">Dutch</button>
             </div>
 
-            <div id="rangeSelector" style="margin: 20px 0; display: none;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Word Range:</label>
-                <div id="rangeButtons" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;"></div>
+            <div id="cefrLevelsContainer" style="margin-top: 30px;"></div>
 
-                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Or select multiple ranges:</label>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="number" id="rangeFrom" placeholder="From (e.g., 0)" style="flex: 1; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0;">
-                        <input type="number" id="rangeTo" placeholder="To (e.g., 200)" style="flex: 1; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0;">
-                    </div>
-                </div>
-            </div>
-
-            <button id="startBtn" class="upload-btn" style="margin-top: 20px; width: 100%;" disabled>Start Learning</button>
-            <div id="loadingMessage" style="margin-top: 10px; color: #667eea; display: none;"></div>
+            <div id="loadingMessage" style="margin-top: 20px; color: #667eea; display: none; text-align: center; font-weight: 600;"></div>
         </div>
 
         <div id="appContent" class="hidden">
@@ -543,8 +669,9 @@
                     <button class="nav-btn" id="nextBtn">Next →</button>
                 </div>
 
-                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center;">
+                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
                     <button class="shuffle-btn" id="backBtn">← Change Sets</button>
+                    <button class="shuffle-btn" id="flipDirectionBtn">🔄 Flip Direction</button>
                     <button class="shuffle-btn" id="shuffleBtn">🔀 Shuffle</button>
                     <button class="shuffle-btn" id="statsBtn">📊 Stats</button>
                 </div>
@@ -597,6 +724,7 @@
         let config = null;
         let selectedLanguage = null;
         let selectedRanges = [];
+        let isFlipped = false;
 
         // Load configuration
         async function loadConfig() {
@@ -610,78 +738,105 @@
         }
 
         // Initialize on page load
-        loadConfig();
-
-        // Language selection handler
-        document.getElementById('languageSelect').addEventListener('change', function(e) {
-            const language = e.target.value;
-            if (language && config) {
-                selectedLanguage = language;
-                const langConfig = config.languages[language];
-
-                // Show range selector
-                document.getElementById('rangeSelector').style.display = 'block';
-
-                // Populate range buttons
-                const rangeButtons = document.getElementById('rangeButtons');
-                rangeButtons.innerHTML = langConfig.sets.map(set =>
-                    `<button class="range-btn" data-range="${set.range}" data-path="${set.path}">${set.range}</button>`
-                ).join('');
-
-                // Add click handlers to range buttons
-                document.querySelectorAll('.range-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        this.classList.toggle('selected');
-                        updateSelectedRanges();
-                    });
-                });
-
-                document.getElementById('startBtn').disabled = false;
-            } else {
-                document.getElementById('rangeSelector').style.display = 'none';
-                document.getElementById('startBtn').disabled = true;
-            }
+        loadConfig().then(() => {
+            selectedLanguage = 'spanish';
+            renderCEFRLevels('spanish');
+            setupLanguageTabs();
         });
 
-        function updateSelectedRanges() {
-            selectedRanges = Array.from(document.querySelectorAll('.range-btn.selected')).map(btn => ({
-                range: btn.dataset.range,
-                path: btn.dataset.path
-            }));
+        function setupLanguageTabs() {
+            document.querySelectorAll('.lang-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedLanguage = this.dataset.lang;
+                    renderCEFRLevels(selectedLanguage);
+                });
+            });
         }
 
-        // Start button handler
-        document.getElementById('startBtn').addEventListener('click', async function() {
-            // Get selected ranges or custom range
-            let rangesToLoad = [];
+        function renderCEFRLevels(language) {
+            const langConfig = config.languages[language];
+            const container = document.getElementById('cefrLevelsContainer');
 
-            if (selectedRanges.length > 0) {
-                rangesToLoad = selectedRanges;
-            } else {
-                // Check custom range inputs
-                const rangeFrom = parseInt(document.getElementById('rangeFrom').value);
-                const rangeTo = parseInt(document.getElementById('rangeTo').value);
+            const cefrHTML = langConfig.cefrLevels.map(level => {
+                // Generate range buttons HTML
+                const rangeButtonsHTML = level.sets.map(set => `
+                    <button class="cefr-range-btn" data-range="${set.range}" data-path="${set.path}">
+                        ${set.range}
+                    </button>
+                `).join('');
 
-                if (!isNaN(rangeFrom) && !isNaN(rangeTo)) {
-                    const langConfig = config.languages[selectedLanguage];
-                    rangesToLoad = langConfig.sets.filter(set => {
-                        const [start, end] = set.range.split('-').map(Number);
-                        return start >= rangeFrom && end <= rangeTo;
-                    });
-                }
-            }
+                return `
+                    <div class="cefr-card" data-level="${level.level}">
+                        <div class="cefr-header">
+                            <div>
+                                <div class="cefr-level">${level.level}</div>
+                                <div class="cefr-description">${level.description}</div>
+                            </div>
+                        </div>
+                        <div class="cefr-stats">
+                            <div><strong>${level.wordCount}</strong> words</div>
+                            <div>${level.comprehension}</div>
+                        </div>
+                        <div class="cefr-ranges">
+                            <div style="font-size: 14px; color: #666; margin-bottom: 10px; font-weight: 600;">Select word ranges:</div>
+                            <div class="cefr-ranges-grid">
+                                ${rangeButtonsHTML}
+                            </div>
+                            <div class="cefr-actions">
+                                <button class="start-level-btn" data-level="${level.level}">Start Learning</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
 
-            if (rangesToLoad.length === 0) {
-                alert('Please select at least one word range or enter a custom range.');
-                return;
-            }
+            container.innerHTML = cefrHTML;
 
-            // Load and merge CSV files
-            document.getElementById('loadingMessage').style.display = 'block';
-            document.getElementById('loadingMessage').textContent = `Loading ${rangesToLoad.length} file(s)...`;
+            // Add click handlers to expand CEFR cards
+            document.querySelectorAll('.cefr-card').forEach(card => {
+                const header = card.querySelector('.cefr-header, .cefr-stats');
+                header.addEventListener('click', function(e) {
+                    // Toggle expansion
+                    card.classList.toggle('expanded');
+                });
+            });
 
-            await loadCSVFiles(rangesToLoad);
-        });
+            // Add click handlers to range buttons
+            document.querySelectorAll('.cefr-range-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent card collapse
+                    this.classList.toggle('selected');
+                });
+            });
+
+            // Add click handlers to "Start Learning" buttons
+            document.querySelectorAll('.start-level-btn').forEach(btn => {
+                btn.addEventListener('click', async function(e) {
+                    e.stopPropagation(); // Prevent card collapse
+
+                    const card = this.closest('.cefr-card');
+                    const selectedRangeBtns = card.querySelectorAll('.cefr-range-btn.selected');
+
+                    if (selectedRangeBtns.length === 0) {
+                        alert('Please select at least one word range to study.');
+                        return;
+                    }
+
+                    // Collect selected ranges
+                    const selectedSets = Array.from(selectedRangeBtns).map(btn => ({
+                        range: btn.dataset.range,
+                        path: btn.dataset.path
+                    }));
+
+                    document.getElementById('loadingMessage').style.display = 'block';
+                    document.getElementById('loadingMessage').textContent = `Loading ${selectedSets.length} range${selectedSets.length > 1 ? 's' : ''}...`;
+
+                    await loadCSVFiles(selectedSets);
+                });
+            });
+        }
 
         async function loadCSVFiles(ranges) {
             flashcards = [];
@@ -690,8 +845,13 @@
             for (const range of ranges) {
                 try {
                     const response = await fetch(range.path);
-                    const csvText = await response.text();
-                    parseCSV(csvText, langConfig);
+                    const fileText = await response.text();
+
+                    if (langConfig.fileFormat === 'quizlet') {
+                        parseQuizlet(fileText, langConfig);
+                    } else {
+                        parseCSV(fileText, langConfig);
+                    }
                 } catch (error) {
                     console.error(`Failed to load ${range.path}:`, error);
                 }
@@ -709,6 +869,76 @@
                 document.getElementById('appContent').classList.remove('hidden');
                 initializeApp();
             }, 500);
+        }
+
+        function parseQuizlet(text, langConfig) {
+            const lines = text.split('\n');
+            let i = 0;
+
+            while (i < lines.length) {
+                const line = lines[i].trim();
+
+                // Skip empty lines
+                if (!line) {
+                    i++;
+                    continue;
+                }
+
+                // First line: word and translation
+                // Format: "word\ttranslation" or "*inflected* (base)\ttranslation"
+                const parts = line.split('\t');
+                if (parts.length < 2) {
+                    i++;
+                    continue;
+                }
+
+                let targetWord = parts[0].trim();
+                let translation = parts[1].trim();
+
+                // Extract base form if present (e.g., "*mala* (malo)" -> base: "malo", inflected: "mala")
+                let baseForm = targetWord;
+                let inflectedForm = null;
+
+                // Check for inflected form pattern: *inflected* (base)
+                const inflectedMatch = targetWord.match(/\*(.+?)\*\s*\((.+?)\)/);
+                if (inflectedMatch) {
+                    inflectedForm = inflectedMatch[1];
+                    baseForm = inflectedMatch[2];
+                    targetWord = inflectedForm;
+                }
+
+                // Remove asterisks from translation
+                translation = translation.replace(/\*/g, '');
+
+                // Next line should be the example sentence in target language
+                i++;
+                const targetSentence = (i < lines.length) ? lines[i].trim() : '';
+
+                // Next line should be the English translation of the sentence
+                i++;
+                const englishSentence = (i < lines.length) ? lines[i].trim() : '';
+
+                // Create the flashcard
+                if (targetWord && translation) {
+                    const card = {
+                        targetWord: targetWord,
+                        translation: translation,
+                        baseForm: baseForm,
+                        inflectedForm: inflectedForm,
+                        targetSentence: targetSentence,
+                        englishSentence: englishSentence,
+                        links: generateLinks(baseForm, baseForm, langConfig.referenceLinks)
+                    };
+
+                    flashcards.push(card);
+                }
+
+                // Move past empty lines between entries
+                i++;
+                while (i < lines.length && !lines[i].trim()) {
+                    i++;
+                }
+            }
         }
 
         function parseCSV(csv, langConfig) {
@@ -810,6 +1040,7 @@
             document.getElementById('nextBtn').addEventListener('click', nextCard);
             document.getElementById('shuffleBtn').addEventListener('click', shuffleCards);
             document.getElementById('backBtn').addEventListener('click', goBackToSetup);
+            document.getElementById('flipDirectionBtn').addEventListener('click', flipDirection);
             document.getElementById('statsBtn').addEventListener('click', showStatsModal);
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
 
@@ -893,42 +1124,57 @@
             const langConfig = config.languages[selectedLanguage];
 
             document.getElementById('currentCard').textContent = currentIndex + 1;
-            document.getElementById('frontWord').textContent = card.word;
 
-            // Parse sentence to separate target language and English
-            const sentenceParts = card.sentence.split('\n').filter(s => s.trim());
-            const targetSentence = sentenceParts[0] || '';
-            const englishTranslation = sentenceParts[1] || '';
+            // Determine what to show on front and back based on flip direction
+            let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
 
-            // Build back content based on language format
+            if (isFlipped) {
+                // English → Target language
+                frontText = card.translation;
+                backWord = card.targetWord;
+                backTranslation = card.translation;
+                exampleSentence = card.englishSentence;
+                exampleTranslation = card.targetSentence;
+            } else {
+                // Target language → English (normal)
+                frontText = card.targetWord;
+                backWord = card.targetWord;
+                backTranslation = card.translation;
+                exampleSentence = card.targetSentence;
+                exampleTranslation = card.englishSentence;
+            }
+
+            document.getElementById('frontWord').textContent = frontText;
+
+            // Build back content
             let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 32px; color: #667eea; font-weight: bold;">${card.word}</div>
+                    <div style="font-size: 32px; color: #667eea; font-weight: bold;">${backWord}</div>
+                    <div style="font-size: 22px; color: #333; margin-top: 10px; font-weight: 600;">${backTranslation}</div>
+                </div>
             `;
 
-            if (langConfig.csvFormat === 'spanish') {
-                backHTML += `<div style="font-size: 22px; color: #333; margin-top: 10px; font-weight: 600;">${card.show}</div>`;
-            } else if (langConfig.csvFormat === 'dutch' && card.pos) {
-                backHTML += `<div style="font-size: 18px; color: #666; margin-top: 5px;">${card.pos}</div>`;
+            // Show base form if different from displayed word
+            if (card.inflectedForm && card.baseForm !== card.targetWord) {
+                backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center;"><strong>Base form:</strong> ${card.baseForm}</div>`;
             }
 
-            backHTML += `</div>`;
-
-            if (card.lemma && card.lemma !== card.word) {
-                backHTML += `<div style="margin-bottom: 15px; font-size: 16px;"><strong>Lemma:</strong> ${card.lemma}</div>`;
+            // Show example sentences if available
+            if (exampleSentence || exampleTranslation) {
+                backHTML += `
+                    <div class="sentence">
+                        ${exampleSentence ? `<div style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
+                        ${exampleTranslation ? `<div class="translation">${exampleTranslation}</div>` : ''}
+                    </div>
+                `;
             }
 
+            // Reference links
             backHTML += `
-                <div class="sentence">
-                    <div style="margin-bottom: 8px;">${targetSentence}</div>
-                    <div class="translation">${englishTranslation}</div>
-                </div>
-
                 <div class="links-section">
                     <strong>📖 Reference Links:</strong><br>
             `;
 
-            // Generate link buttons based on available links
             for (const [key, url] of Object.entries(card.links)) {
                 const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
                 backHTML += `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
@@ -972,6 +1218,12 @@
             }
             currentIndex = 0;
             updateCard();
+        }
+
+        function flipDirection() {
+            isFlipped = !isFlipped;
+            updateCard();
+            document.getElementById('flashcard').classList.remove('flipped');
         }
 
         function updateStats() {

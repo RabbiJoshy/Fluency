@@ -2,26 +2,47 @@
   "languages": {
     "dutch": {
       "name": "Dutch",
-      "sets": [
-        { "range": "0-100", "path": "Dutch/Vocabulary/ChatGPT_Sets/0-100.csv" },
-        { "range": "100-200", "path": "Dutch/Vocabulary/ChatGPT_Sets/100-200.csv" },
-        { "range": "200-300", "path": "Dutch/Vocabulary/ChatGPT_Sets/200-300.csv" },
-        { "range": "300-400", "path": "Dutch/Vocabulary/ChatGPT_Sets/300-400.csv" },
-        { "range": "400-500", "path": "Dutch/Vocabulary/ChatGPT_Sets/400-500.csv" },
-        { "range": "500-600", "path": "Dutch/Vocabulary/ChatGPT_Sets/500-600.csv" },
-        { "range": "600-700", "path": "Dutch/Vocabulary/ChatGPT_Sets/600-700.csv" },
-        { "range": "700-800", "path": "Dutch/Vocabulary/ChatGPT_Sets/700-800.csv" },
-        { "range": "800-900", "path": "Dutch/Vocabulary/ChatGPT_Sets/800-900.csv" },
-        { "range": "900-1000", "path": "Dutch/Vocabulary/ChatGPT_Sets/900-1000.csv" },
-        { "range": "1000-1250", "path": "Dutch/Vocabulary/ChatGPT_Sets/1000-1250.csv" },
-        { "range": "1250-1500", "path": "Dutch/Vocabulary/ChatGPT_Sets/1250-1500.csv" },
-        { "range": "1500-1750", "path": "Dutch/Vocabulary/ChatGPT_Sets/1500-1750.csv" },
-        { "range": "1750-2000", "path": "Dutch/Vocabulary/ChatGPT_Sets/1750-2000.csv" }
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~60% of spoken language",
+          "wordCount": "0-800",
+          "sets": [
+            { "range": "0-100", "path": "Dutch/Vocabulary/Quizlet Sets/0-100.txt" },
+            { "range": "100-200", "path": "Dutch/Vocabulary/Quizlet Sets/100-200.txt" },
+            { "range": "200-300", "path": "Dutch/Vocabulary/Quizlet Sets/200-300.txt" },
+            { "range": "300-400", "path": "Dutch/Vocabulary/Quizlet Sets/300-400.txt" },
+            { "range": "400-500", "path": "Dutch/Vocabulary/Quizlet Sets/400-500.txt" },
+            { "range": "500-600", "path": "Dutch/Vocabulary/Quizlet Sets/500-600.txt" },
+            { "range": "600-700", "path": "Dutch/Vocabulary/Quizlet Sets/600-700.txt" },
+            { "range": "700-800", "path": "Dutch/Vocabulary/Quizlet Sets/700-800.txt" }
+          ]
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1000",
+          "sets": [
+            { "range": "800-900", "path": "Dutch/Vocabulary/Quizlet Sets/800-900.txt" },
+            { "range": "900-1000", "path": "Dutch/Vocabulary/Quizlet Sets/900-1000.txt" }
+          ]
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1000-2000",
+          "sets": [
+            { "range": "1000-1250", "path": "Dutch/Vocabulary/Quizlet Sets/1000-1250.txt" },
+            { "range": "1250-1500", "path": "Dutch/Vocabulary/Quizlet Sets/1250-1500.txt" },
+            { "range": "1500-1750", "path": "Dutch/Vocabulary/Quizlet Sets/1500-1750.txt" },
+            { "range": "1750-2000", "path": "Dutch/Vocabulary/Quizlet Sets/1750-2000.txt" }
+          ]
+        }
       ],
-      "csvFormat": "dutch",
-      "wordColumn": "Dutch",
-      "posColumn": "POS",
-      "sentenceColumn": "ChatGPT_Sentence",
+      "fileFormat": "quizlet",
       "referenceLinks": {
         "wordReference": "https://www.wordreference.com/nlen/{word}",
         "reverso": "https://context.reverso.net/translation/dutch-english/{word}",
@@ -30,37 +51,65 @@
     },
     "spanish": {
       "name": "Spanish",
-      "sets": [
-        { "range": "0-100", "path": "Spanish/Vocabulary/ChatGPT_Sets/0-100.csv" },
-        { "range": "100-200", "path": "Spanish/Vocabulary/ChatGPT_Sets/100-200.csv" },
-        { "range": "200-300", "path": "Spanish/Vocabulary/ChatGPT_Sets/200-300.csv" },
-        { "range": "300-400", "path": "Spanish/Vocabulary/ChatGPT_Sets/300-400.csv" },
-        { "range": "400-500", "path": "Spanish/Vocabulary/ChatGPT_Sets/400-500.csv" },
-        { "range": "500-600", "path": "Spanish/Vocabulary/ChatGPT_Sets/500-600.csv" },
-        { "range": "600-700", "path": "Spanish/Vocabulary/ChatGPT_Sets/600-700.csv" },
-        { "range": "700-800", "path": "Spanish/Vocabulary/ChatGPT_Sets/700-800.csv" },
-        { "range": "800-900", "path": "Spanish/Vocabulary/ChatGPT_Sets/800-900.csv" },
-        { "range": "900-1000", "path": "Spanish/Vocabulary/ChatGPT_Sets/900-1000.csv" },
-        { "range": "1000-1100", "path": "Spanish/Vocabulary/ChatGPT_Sets/1000-1100.csv" },
-        { "range": "1100-1200", "path": "Spanish/Vocabulary/ChatGPT_Sets/1100-1200.csv" },
-        { "range": "1200-1300", "path": "Spanish/Vocabulary/ChatGPT_Sets/1200-1300.csv" },
-        { "range": "1300-1400", "path": "Spanish/Vocabulary/ChatGPT_Sets/1300-1400.csv" },
-        { "range": "1400-1500", "path": "Spanish/Vocabulary/ChatGPT_Sets/1400-1500.csv" },
-        { "range": "1500-1600", "path": "Spanish/Vocabulary/ChatGPT_Sets/1500-1600.csv" },
-        { "range": "1600-1700", "path": "Spanish/Vocabulary/ChatGPT_Sets/1600-1700.csv" },
-        { "range": "1700-1800", "path": "Spanish/Vocabulary/ChatGPT_Sets/1700-1800.csv" },
-        { "range": "1800-1900", "path": "Spanish/Vocabulary/ChatGPT_Sets/1800-1900.csv" },
-        { "range": "1900-2000", "path": "Spanish/Vocabulary/ChatGPT_Sets/1900-2000.csv" },
-        { "range": "2000-2250", "path": "Spanish/Vocabulary/ChatGPT_Sets/2000-2250.csv" },
-        { "range": "2250-2500", "path": "Spanish/Vocabulary/ChatGPT_Sets/2250-2500.csv" },
-        { "range": "2500-2750", "path": "Spanish/Vocabulary/ChatGPT_Sets/2500-2750.csv" },
-        { "range": "2750-3000", "path": "Spanish/Vocabulary/ChatGPT_Sets/2750-3000.csv" }
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~65% of spoken language",
+          "wordCount": "0-800",
+          "sets": [
+            { "range": "0-100", "path": "Spanish/Vocabulary/Quizlet Sets/0-100.txt" },
+            { "range": "100-200", "path": "Spanish/Vocabulary/Quizlet Sets/100-200.txt" },
+            { "range": "200-300", "path": "Spanish/Vocabulary/Quizlet Sets/200-300.txt" },
+            { "range": "300-400", "path": "Spanish/Vocabulary/Quizlet Sets/300-400.txt" },
+            { "range": "400-500", "path": "Spanish/Vocabulary/Quizlet Sets/400-500.txt" },
+            { "range": "500-600", "path": "Spanish/Vocabulary/Quizlet Sets/500-600.txt" },
+            { "range": "600-700", "path": "Spanish/Vocabulary/Quizlet Sets/600-700.txt" },
+            { "range": "700-800", "path": "Spanish/Vocabulary/Quizlet Sets/700-800.txt" }
+          ]
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1500",
+          "sets": [
+            { "range": "800-900", "path": "Spanish/Vocabulary/Quizlet Sets/800-900.txt" },
+            { "range": "900-1000", "path": "Spanish/Vocabulary/Quizlet Sets/900-1000.txt" },
+            { "range": "1000-1100", "path": "Spanish/Vocabulary/Quizlet Sets/1000-1100.txt" },
+            { "range": "1100-1200", "path": "Spanish/Vocabulary/Quizlet Sets/1100-1200.txt" },
+            { "range": "1200-1300", "path": "Spanish/Vocabulary/Quizlet Sets/1200-1300.txt" },
+            { "range": "1300-1400", "path": "Spanish/Vocabulary/Quizlet Sets/1300-1400.txt" },
+            { "range": "1400-1500", "path": "Spanish/Vocabulary/Quizlet Sets/1400-1500.txt" }
+          ]
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1500-2500",
+          "sets": [
+            { "range": "1500-1600", "path": "Spanish/Vocabulary/Quizlet Sets/1500-1600.txt" },
+            { "range": "1600-1700", "path": "Spanish/Vocabulary/Quizlet Sets/1600-1700.txt" },
+            { "range": "1700-1800", "path": "Spanish/Vocabulary/Quizlet Sets/1700-1800.txt" },
+            { "range": "1800-1900", "path": "Spanish/Vocabulary/Quizlet Sets/1800-1900.txt" },
+            { "range": "1900-2000", "path": "Spanish/Vocabulary/Quizlet Sets/1900-2000.txt" },
+            { "range": "2000-2250", "path": "Spanish/Vocabulary/Quizlet Sets/2000-2250.txt" },
+            { "range": "2250-2500", "path": "Spanish/Vocabulary/Quizlet Sets/2250-2500.txt" }
+          ]
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000",
+          "sets": [
+            { "range": "2500-2750", "path": "Spanish/Vocabulary/Quizlet Sets/2500-2750.txt" },
+            { "range": "2750-3000", "path": "Spanish/Vocabulary/Quizlet Sets/2750-3000.txt" }
+          ]
+        }
       ],
-      "csvFormat": "spanish",
-      "wordColumn": "Spanish",
-      "showColumn": "show",
-      "lemmaColumn": "lemma",
-      "sentenceColumn": "ChatGPT_Sentence",
+      "fileFormat": "quizlet",
       "referenceLinks": {
         "wordReference": "https://www.wordreference.com/es/en/translation.asp?spen={word}",
         "spanishDict": "https://www.spanishdict.com/translate/{word}",
