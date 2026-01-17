@@ -148,6 +148,7 @@
             padding-top: 15px;
             border-top: 2px solid #f0f0f0;
             width: 100%;
+            text-align: center;
         }
 
         .link-btn {
@@ -195,6 +196,33 @@
 
         .nav-btn:disabled {
             background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .nav-btn-inline {
+            padding: 8px 12px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn-inline:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-btn-inline:disabled {
+            opacity: 0.3;
             cursor: not-allowed;
         }
 
@@ -652,28 +680,29 @@
                 <div class="card-container">
                     <div class="card" id="flashcard">
                         <div class="card-face card-front">
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
+                                <button class="nav-btn-inline" id="prevBtn">←</button>
+                                <button class="nav-btn-inline" id="nextBtn">→</button>
+                            </div>
                             <div class="card-word" id="frontWord"></div>
                             <div class="tap-hint">Tap to flip</div>
                         </div>
                         <div class="card-face card-back">
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
+                                <button class="nav-btn-inline" onclick="previousCard(); event.stopPropagation();">←</button>
+                                <button class="nav-btn-inline" onclick="nextCard(); event.stopPropagation();">→</button>
+                            </div>
                             <div class="card-details" id="backContent"></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="controls">
-                    <button class="nav-btn" id="prevBtn">← Previous</button>
-                    <div class="progress">
-                        <span id="currentCard">1</span> / <span id="totalCards">0</span>
-                    </div>
-                    <button class="nav-btn" id="nextBtn">Next →</button>
-                </div>
-
                 <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
-                    <button class="shuffle-btn" id="backBtn">← Change Sets</button>
-                    <button class="shuffle-btn" id="flipDirectionBtn">🔄 Flip Direction</button>
-                    <button class="shuffle-btn" id="shuffleBtn">🔀 Shuffle</button>
-                    <button class="shuffle-btn" id="statsBtn">📊 Stats</button>
+                    <button class="shuffle-btn" id="backBtn">←</button>
+                    <button class="shuffle-btn" id="flipDirectionBtn">🔄</button>
+                    <button class="shuffle-btn" id="shuffleBtn">🔀</button>
+                    <button class="shuffle-btn" id="statsBtn">📊</button>
+                    <div id="frequencyDisplay" style="font-size: 14px; color: white; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 8px; font-weight: 600;"></div>
                 </div>
             </div>
         </div>
@@ -847,10 +876,13 @@
                     const response = await fetch(range.path);
                     const fileText = await response.text();
 
+                    // Extract starting rank from range (e.g., "0-100" -> 0, "100-200" -> 100)
+                    const startRank = parseInt(range.range.split('-')[0]);
+
                     if (langConfig.fileFormat === 'quizlet') {
-                        parseQuizlet(fileText, langConfig);
+                        parseQuizlet(fileText, langConfig, startRank);
                     } else {
-                        parseCSV(fileText, langConfig);
+                        parseCSV(fileText, langConfig, startRank);
                     }
                 } catch (error) {
                     console.error(`Failed to load ${range.path}:`, error);
@@ -871,9 +903,10 @@
             }, 500);
         }
 
-        function parseQuizlet(text, langConfig) {
+        function parseQuizlet(text, langConfig, startRank = 0) {
             const lines = text.split('\n');
             let i = 0;
+            let cardCount = 0;
 
             while (i < lines.length) {
                 const line = lines[i].trim();
@@ -927,10 +960,12 @@
                         inflectedForm: inflectedForm,
                         targetSentence: targetSentence,
                         englishSentence: englishSentence,
+                        rank: startRank + cardCount + 1, // Calculate frequency rank
                         links: generateLinks(baseForm, baseForm, langConfig.referenceLinks)
                     };
 
                     flashcards.push(card);
+                    cardCount++;
                 }
 
                 // Move past empty lines between entries
@@ -1027,7 +1062,6 @@
         }
 
         function initializeApp() {
-            document.getElementById('totalCards').textContent = flashcards.length;
             updateCard();
             updateStats();
 
@@ -1123,8 +1157,6 @@
             const card = flashcards[currentIndex];
             const langConfig = config.languages[selectedLanguage];
 
-            document.getElementById('currentCard').textContent = currentIndex + 1;
-
             // Determine what to show on front and back based on flip direction
             let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
 
@@ -1169,20 +1201,33 @@
                 `;
             }
 
-            // Reference links
-            backHTML += `
-                <div class="links-section">
-                    <strong>📖 Reference Links:</strong><br>
-            `;
+            // Reference links (exclude wordReference, use shortened labels)
+            const linkLabels = {
+                'spanishDict': 'SpanishDict',
+                'reverso': 'Reverso',
+                'conjugation': 'Conj'
+            };
+
+            backHTML += `<div class="links-section">`;
 
             for (const [key, url] of Object.entries(card.links)) {
-                const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                if (key === 'wordReference') continue; // Skip wordReference
+                const label = linkLabels[key] || key;
                 backHTML += `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
             }
 
             backHTML += `</div>`;
 
             document.getElementById('backContent').innerHTML = backHTML;
+
+            // Update frequency display
+            const frequencyDisplay = document.getElementById('frequencyDisplay');
+            if (card.rank) {
+                frequencyDisplay.textContent = `#${card.rank}`;
+                frequencyDisplay.style.display = 'block';
+            } else {
+                frequencyDisplay.style.display = 'none';
+            }
 
             stats.studied.add(currentIndex);
             updateStats();
