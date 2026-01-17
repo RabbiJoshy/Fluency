@@ -110,7 +110,7 @@
         }
 
         .card-word {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: bold;
             margin-bottom: 20px;
             color: #667eea;
@@ -118,8 +118,8 @@
         }
 
         .card-details {
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 18px;
+            line-height: 1.8;
             text-align: left;
             width: 100%;
         }
@@ -134,11 +134,13 @@
             background: #f7f9fc;
             border-radius: 8px;
             font-style: italic;
+            font-size: 18px;
         }
 
         .translation {
             margin-top: 8px;
             color: #666;
+            font-size: 16px;
         }
 
         .links-section {
@@ -392,6 +394,65 @@
             border-color: #667eea;
         }
 
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-header h3 {
+            color: #667eea;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #667eea;
+        }
+
+        .stats-body {
+            margin-top: 15px;
+        }
+
         .tap-hint {
             text-align: center;
             color: #999;
@@ -402,26 +463,30 @@
 
         @media (max-width: 480px) {
             .card {
-                height: 350px;
+                height: 400px;
             }
-            
+
             .card-word {
-                font-size: 28px;
+                font-size: 36px;
             }
-            
-            .mode-btn {
-                min-width: 100px;
-                font-size: 12px;
+
+            .card-details {
+                font-size: 16px;
+            }
+
+            .sentence {
+                font-size: 16px;
+            }
+
+            .shuffle-btn {
+                padding: 8px 12px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>📚 Language Flashcards</h1>
-        </div>
-
         <div class="file-upload" id="setupPanel">
             <h3>Select Your Language & Words</h3>
 
@@ -452,28 +517,6 @@
         </div>
 
         <div id="appContent" class="hidden">
-            <div class="mode-selector">
-                <button class="mode-btn active" data-mode="flashcards">Flashcards</button>
-                <button class="mode-btn" data-mode="quiz">Quiz</button>
-                <button class="mode-btn" data-mode="type">Type</button>
-            </div>
-
-            <div class="stats">
-                <h3>Progress</h3>
-                <div class="stat-row">
-                    <span>Cards Studied:</span>
-                    <span id="cardsStudied">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Correct Answers:</span>
-                    <span id="correctAnswers">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Accuracy:</span>
-                    <span id="accuracy">0%</span>
-                </div>
-            </div>
-
             <!-- Flashcard Mode -->
             <div id="flashcardMode">
                 <div class="card-container">
@@ -496,33 +539,34 @@
                     <button class="nav-btn" id="nextBtn">Next →</button>
                 </div>
 
-                <div style="text-align: center;">
+                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center;">
+                    <button class="shuffle-btn" id="backBtn">← Change Sets</button>
                     <button class="shuffle-btn" id="shuffleBtn">🔀 Shuffle</button>
+                    <button class="shuffle-btn" id="statsBtn">📊 Stats</button>
                 </div>
             </div>
+        </div>
 
-            <!-- Quiz Mode -->
-            <div id="quizMode" class="hidden">
-                <div class="quiz-container">
-                    <div class="quiz-question" id="quizQuestion"></div>
-                    <div class="quiz-options" id="quizOptions"></div>
-                    <div id="quizFeedback"></div>
+        <!-- Stats Modal -->
+        <div id="statsModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Your Progress</h3>
+                    <button class="modal-close" id="closeStatsModal">✕</button>
                 </div>
-                <div class="controls">
-                    <button class="nav-btn" id="quizNextBtn">Next Question →</button>
-                </div>
-            </div>
-
-            <!-- Type Mode -->
-            <div id="typeMode" class="hidden">
-                <div class="type-container">
-                    <div class="type-prompt" id="typePrompt"></div>
-                    <input type="text" class="type-input" id="typeInput" placeholder="Type your answer...">
-                    <button class="check-btn" id="checkBtn">Check Answer</button>
-                    <div id="typeFeedback"></div>
-                </div>
-                <div class="controls">
-                    <button class="nav-btn" id="typeNextBtn">Next Word →</button>
+                <div class="stats-body">
+                    <div class="stat-row">
+                        <span>Cards Studied:</span>
+                        <span id="cardsStudied">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Total Cards:</span>
+                        <span id="totalCardsStats">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Progress:</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -752,28 +796,89 @@
             document.getElementById('totalCards').textContent = flashcards.length;
             updateCard();
             updateStats();
-            
+
             // Event listeners
             document.getElementById('flashcard').addEventListener('click', flipCard);
             document.getElementById('prevBtn').addEventListener('click', previousCard);
             document.getElementById('nextBtn').addEventListener('click', nextCard);
             document.getElementById('shuffleBtn').addEventListener('click', shuffleCards);
-            
-            document.querySelectorAll('.mode-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    switchMode(this.dataset.mode);
-                });
+            document.getElementById('backBtn').addEventListener('click', goBackToSetup);
+            document.getElementById('statsBtn').addEventListener('click', showStatsModal);
+            document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
+
+            // Click outside modal to close
+            document.getElementById('statsModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideStatsModal();
+                }
             });
-            
-            // Quiz mode
-            document.getElementById('quizNextBtn').addEventListener('click', nextQuizQuestion);
-            
-            // Type mode
-            document.getElementById('checkBtn').addEventListener('click', checkTypedAnswer);
-            document.getElementById('typeInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') checkTypedAnswer();
+
+            // Swipe gestures
+            setupSwipeGestures();
+        }
+
+        function setupSwipeGestures() {
+            const card = document.getElementById('flashcard');
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            card.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            card.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next card
+                        nextCard();
+                    } else {
+                        // Swipe right - previous card
+                        previousCard();
+                    }
+                }
+            }
+        }
+
+        function goBackToSetup() {
+            document.getElementById('appContent').classList.add('hidden');
+            document.getElementById('setupPanel').style.display = 'block';
+
+            // Reset selections
+            document.querySelectorAll('.range-btn').forEach(btn => {
+                btn.classList.remove('selected');
             });
-            document.getElementById('typeNextBtn').addEventListener('click', nextTypeQuestion);
+            selectedRanges = [];
+            flashcards = [];
+            currentIndex = 0;
+            stats = {
+                studied: new Set(),
+                correct: 0,
+                total: 0
+            };
+        }
+
+        function showStatsModal() {
+            document.getElementById('statsModal').classList.remove('hidden');
+            updateStatsModal();
+        }
+
+        function hideStatsModal() {
+            document.getElementById('statsModal').classList.add('hidden');
+        }
+
+        function updateStatsModal() {
+            document.getElementById('cardsStudied').textContent = stats.studied.size;
+            document.getElementById('totalCardsStats').textContent = flashcards.length;
+            const progress = flashcards.length > 0 ? Math.round((stats.studied.size / flashcards.length) * 100) : 0;
+            document.getElementById('progressPercent').textContent = progress + '%';
         }
 
         function updateCard() {
@@ -791,19 +896,19 @@
             // Build back content based on language format
             let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 24px; color: #667eea; font-weight: bold;">${card.word}</div>
+                    <div style="font-size: 32px; color: #667eea; font-weight: bold;">${card.word}</div>
             `;
 
             if (langConfig.csvFormat === 'spanish') {
-                backHTML += `<div style="font-size: 16px; color: #666; margin-top: 5px;">${card.show}</div>`;
+                backHTML += `<div style="font-size: 22px; color: #333; margin-top: 10px; font-weight: 600;">${card.show}</div>`;
             } else if (langConfig.csvFormat === 'dutch' && card.pos) {
-                backHTML += `<div style="font-size: 16px; color: #666; margin-top: 5px;">${card.pos}</div>`;
+                backHTML += `<div style="font-size: 18px; color: #666; margin-top: 5px;">${card.pos}</div>`;
             }
 
             backHTML += `</div>`;
 
             if (card.lemma && card.lemma !== card.word) {
-                backHTML += `<div style="margin-bottom: 15px;"><strong>Lemma:</strong> ${card.lemma}</div>`;
+                backHTML += `<div style="margin-bottom: 15px; font-size: 16px;"><strong>Lemma:</strong> ${card.lemma}</div>`;
             }
 
             backHTML += `
@@ -862,164 +967,8 @@
             updateCard();
         }
 
-        function switchMode(mode) {
-            currentMode = mode;
-            
-            document.querySelectorAll('.mode-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.mode === mode);
-            });
-            
-            document.getElementById('flashcardMode').classList.toggle('hidden', mode !== 'flashcards');
-            document.getElementById('quizMode').classList.toggle('hidden', mode !== 'quiz');
-            document.getElementById('typeMode').classList.toggle('hidden', mode !== 'type');
-            
-            if (mode === 'quiz') {
-                generateQuizQuestion();
-            } else if (mode === 'type') {
-                generateTypeQuestion();
-            }
-        }
-
-        function generateQuizQuestion() {
-            const card = flashcards[Math.floor(Math.random() * flashcards.length)];
-            const langConfig = config.languages[selectedLanguage];
-
-            // Determine correct answer based on format
-            let correctAnswer;
-            if (langConfig.csvFormat === 'spanish') {
-                correctAnswer = card.show;
-            } else {
-                // For Dutch, extract English translation from sentence
-                const sentenceParts = card.sentence.split('\n').filter(s => s.trim());
-                correctAnswer = sentenceParts[1] || card.word;
-            }
-
-            // Generate wrong answers
-            const wrongAnswers = [];
-            while (wrongAnswers.length < 3) {
-                const randomCard = flashcards[Math.floor(Math.random() * flashcards.length)];
-                let randomAnswer;
-                if (langConfig.csvFormat === 'spanish') {
-                    randomAnswer = randomCard.show;
-                } else {
-                    const parts = randomCard.sentence.split('\n').filter(s => s.trim());
-                    randomAnswer = parts[1] || randomCard.word;
-                }
-
-                if (randomAnswer !== correctAnswer && !wrongAnswers.includes(randomAnswer)) {
-                    wrongAnswers.push(randomAnswer);
-                }
-            }
-
-            const allOptions = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
-
-            document.getElementById('quizQuestion').textContent = `What does "${card.word}" mean?`;
-
-            const optionsHtml = allOptions.map(option =>
-                `<div class="quiz-option" data-answer="${option}" data-correct="${option === correctAnswer}">${option}</div>`
-            ).join('');
-
-            document.getElementById('quizOptions').innerHTML = optionsHtml;
-            document.getElementById('quizFeedback').innerHTML = '';
-
-            document.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.addEventListener('click', function() {
-                    checkQuizAnswer(this);
-                });
-            });
-
-            window.currentQuizCard = card;
-        }
-
-        function checkQuizAnswer(element) {
-            const isCorrect = element.dataset.correct === 'true';
-            
-            document.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.style.pointerEvents = 'none';
-                if (opt.dataset.correct === 'true') {
-                    opt.classList.add('correct');
-                }
-            });
-            
-            if (!isCorrect) {
-                element.classList.add('incorrect');
-            }
-            
-            stats.total++;
-            if (isCorrect) {
-                stats.correct++;
-            }
-            updateStats();
-            
-            const sentenceParts = window.currentQuizCard.sentence.split('\n').filter(s => s.trim());
-            const feedback = `
-                <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                    ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
-                    <div style="margin-top: 10px; font-style: italic;">${sentenceParts[0] || ''}</div>
-                </div>
-            `;
-            document.getElementById('quizFeedback').innerHTML = feedback;
-        }
-
-        function nextQuizQuestion() {
-            generateQuizQuestion();
-        }
-
-        function generateTypeQuestion() {
-            const card = flashcards[Math.floor(Math.random() * flashcards.length)];
-            const langConfig = config.languages[selectedLanguage];
-            window.currentTypeCard = card;
-
-            const sentenceParts = card.sentence.split('\n').filter(s => s.trim());
-            const englishHint = sentenceParts[1] || '';
-
-            let promptText;
-            if (langConfig.csvFormat === 'spanish') {
-                promptText = `Translate: <strong>${card.show}</strong>`;
-            } else {
-                promptText = `Type the word for: <strong>${englishHint}</strong>`;
-            }
-
-            document.getElementById('typePrompt').innerHTML = `
-                ${promptText}
-                <div style="font-size: 14px; margin-top: 10px; color: #666;">${langConfig.csvFormat === 'spanish' ? englishHint : card.pos || ''}</div>
-            `;
-
-            document.getElementById('typeInput').value = '';
-            document.getElementById('typeFeedback').innerHTML = '';
-            document.getElementById('typeInput').focus();
-        }
-
-        function checkTypedAnswer() {
-            const userAnswer = document.getElementById('typeInput').value.trim().toLowerCase();
-            const correctAnswer = window.currentTypeCard.word.toLowerCase();
-            const isCorrect = userAnswer === correctAnswer;
-            
-            stats.total++;
-            if (isCorrect) {
-                stats.correct++;
-            }
-            updateStats();
-            
-            const sentenceParts = window.currentTypeCard.sentence.split('\n').filter(s => s.trim());
-            const feedback = `
-                <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}" style="margin-top: 15px;">
-                    ${isCorrect ? '✓ Correct!' : `✗ Incorrect. The answer is: ${window.currentTypeCard.word}`}
-                    <div style="margin-top: 10px; font-style: italic;">${sentenceParts[0] || ''}</div>
-                </div>
-            `;
-            document.getElementById('typeFeedback').innerHTML = feedback;
-        }
-
-        function nextTypeQuestion() {
-            generateTypeQuestion();
-        }
-
         function updateStats() {
-            document.getElementById('cardsStudied').textContent = stats.studied.size;
-            document.getElementById('correctAnswers').textContent = stats.correct;
-            const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
-            document.getElementById('accuracy').textContent = accuracy + '%';
+            // Stats are now displayed in modal only
         }
     </script>
 </body>
