@@ -1278,8 +1278,6 @@
                                 <button class="nav-btn-inline" id="nextBtnFront">→</button>
                             </div>
                             <div class="card-word" id="frontWord"></div>
-                            <div id="meaningBoxes" class="meanings-container"></div>
-                            <div id="frontSentence" class="sentence" style="display: none;"></div>
                             <button class="flip-button" id="flipBtnFront">Flip Card</button>
                         </div>
                         <div class="card-face card-back">
@@ -1288,7 +1286,6 @@
                                 <button class="nav-btn-inline" id="nextBtnBack">→</button>
                             </div>
                             <div class="card-details" id="backContent"></div>
-                            <button class="flip-button" id="flipBtnBack">Flip Back</button>
                         </div>
                     </div>
                 </div>
@@ -1820,12 +1817,8 @@
                 flipCard();
             });
 
-            // Flip buttons
+            // Flip button
             document.getElementById('flipBtnFront').addEventListener('click', function(e) {
-                e.stopPropagation();
-                flipCard();
-            });
-            document.getElementById('flipBtnBack').addEventListener('click', function(e) {
                 e.stopPropagation();
                 flipCard();
             });
@@ -1968,12 +1961,12 @@
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
 
-                // Much more permissive tap detection:
-                // - Max movement less than 50px total (was 30)
-                // - OR duration less than 200ms regardless of movement
-                const isQuickTap = touchDuration < 200;
-                const isSmallMovement = maxMovement < 50;
-                const isTap = isQuickTap || (isSmallMovement && touchDuration < 600);
+                // Very permissive tap detection for easy flipping:
+                // - Max movement less than 80px total
+                // - OR duration less than 300ms regardless of movement
+                const isQuickTap = touchDuration < 300;
+                const isSmallMovement = maxMovement < 80;
+                const isTap = isQuickTap || (isSmallMovement && touchDuration < 800);
 
                 // Check if this was clearly a swipe (intentional directional movement)
                 const isHorizontalSwipe = Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.5;
@@ -2015,7 +2008,7 @@
                 } else {
                     // Ambiguous gesture - default to flip if movement was relatively small
                     card.style.transform = '';
-                    if (maxMovement < 80) {
+                    if (maxMovement < 100) {
                         flipCard();
                     }
                 }
@@ -2232,46 +2225,6 @@
             }
 
             document.getElementById('frontWord').textContent = frontText;
-
-            // Render meaning boxes for multi-meaning cards
-            const meaningBoxesContainer = document.getElementById('meaningBoxes');
-            const frontSentenceEl = document.getElementById('frontSentence');
-
-            if (card.isMultiMeaning && card.meanings.length > 0) {
-                let meaningHTML = '';
-                card.meanings.forEach((m, idx) => {
-                    // Calculate opacity based on percentage (min 0.4, max 1.0)
-                    const opacity = 0.4 + (m.percentage * 0.6);
-                    const isSelected = idx === currentMeaningIndex;
-                    meaningHTML += `
-                        <div class="meaning-box ${isSelected ? 'selected' : ''}"
-                             data-index="${idx}"
-                             style="opacity: ${opacity};"
-                             onclick="selectMeaning(${idx})">
-                            <div class="meaning-text">${m.meaning}</div>
-                            <div class="meaning-pos">${m.pos}</div>
-                            <span class="meaning-percent">${Math.round(m.percentage * 100)}%</span>
-                        </div>
-                    `;
-                });
-                meaningBoxesContainer.innerHTML = meaningHTML;
-                meaningBoxesContainer.style.display = 'flex';
-
-                // Show the example sentence for the selected meaning
-                if (currentMeaning.targetSentence) {
-                    frontSentenceEl.innerHTML = `
-                        <div style="margin-bottom: 8px;">${currentMeaning.targetSentence}</div>
-                        <div class="translation">${currentMeaning.englishSentence}</div>
-                    `;
-                    frontSentenceEl.style.display = 'block';
-                } else {
-                    frontSentenceEl.style.display = 'none';
-                }
-            } else {
-                meaningBoxesContainer.innerHTML = '';
-                meaningBoxesContainer.style.display = 'none';
-                frontSentenceEl.style.display = 'none';
-            }
 
             // Build back content
             let backHTML = `
