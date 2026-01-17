@@ -993,6 +993,100 @@
             font-style: italic;
         }
 
+        .flip-button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 5;
+        }
+
+        .flip-button:hover {
+            box-shadow: 0 0 15px var(--glow-blue);
+        }
+
+        .flip-button:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        /* Meaning boxes styles */
+        .meanings-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .meaning-box {
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            min-width: 80px;
+            position: relative;
+        }
+
+        .meaning-box:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+        }
+
+        .meaning-box.selected {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: scale(1.05);
+        }
+
+        .meaning-box.selected .meaning-text {
+            color: var(--bg-primary);
+        }
+
+        .meaning-box.selected .meaning-pos {
+            color: var(--bg-primary);
+            opacity: 0.8;
+        }
+
+        .meaning-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .meaning-pos {
+            font-size: 11px;
+            color: var(--accent-amber);
+            margin-top: 4px;
+            font-family: var(--font-data);
+            text-transform: uppercase;
+        }
+
+        .meaning-percent {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-amber);
+            color: var(--bg-primary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-family: var(--font-data);
+        }
+
         /* Deck Complete Modal Styles */
         .deck-complete-body {
             padding: 10px 0;
@@ -1184,7 +1278,9 @@
                                 <button class="nav-btn-inline" id="nextBtnFront">→</button>
                             </div>
                             <div class="card-word" id="frontWord"></div>
-                            <div class="tap-hint">Tap to flip</div>
+                            <div id="meaningBoxes" class="meanings-container"></div>
+                            <div id="frontSentence" class="sentence" style="display: none;"></div>
+                            <button class="flip-button" id="flipBtnFront">Flip Card</button>
                         </div>
                         <div class="card-face card-back">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
@@ -1192,6 +1288,7 @@
                                 <button class="nav-btn-inline" id="nextBtnBack">→</button>
                             </div>
                             <div class="card-details" id="backContent"></div>
+                            <button class="flip-button" id="flipBtnBack">Flip Back</button>
                         </div>
                     </div>
                 </div>
@@ -1293,6 +1390,7 @@
         let flashcards = [];
         let currentIndex = 0;
         let currentSentenceIndex = 0; // Track which example sentence is being shown
+        let currentMeaningIndex = 0; // Track which meaning is selected
         let stats = {
             studied: new Set(),
             correct: 0,
@@ -1396,13 +1494,14 @@
                     const rangeEnd = Math.min(i + groupSize, end);
                     ranges.push({
                         range: `${i}-${rangeEnd}`,
-                        path: set.path
+                        path: set.path,
+                        format: set.format || null
                     });
                 }
             });
 
             const rangesHTML = ranges.map(r => `
-                <button class="range-btn-new" data-range="${r.range}" data-path="${r.path}">
+                <button class="range-btn-new" data-range="${r.range}" data-path="${r.path}" data-format="${r.format || ''}">
                     ${r.range}
                 </button>
             `).join('');
@@ -1415,7 +1514,8 @@
                 btn.addEventListener('click', async function() {
                     const selectedSet = {
                         range: this.dataset.range,
-                        path: this.dataset.path
+                        path: this.dataset.path,
+                        format: this.dataset.format || null
                     };
 
                     document.getElementById('loadingMessage').style.display = 'block';
@@ -1439,7 +1539,10 @@
                     const [rangeStart, rangeEnd] = range.range.split('-').map(Number);
                     const startRank = rangeStart;
 
-                    if (langConfig.fileFormat === 'quizlet') {
+                    // Check if this set uses the new multi-meaning format
+                    if (range.format === 'multiMeaning' || fileText.includes('|')) {
+                        parseMultiMeaning(fileText, langConfig, rangeStart, rangeEnd);
+                    } else if (langConfig.fileFormat === 'quizlet') {
                         parseQuizlet(fileText, langConfig, startRank, rangeStart, rangeEnd);
                     } else {
                         parseCSV(fileText, langConfig, startRank, rangeStart, rangeEnd);
@@ -1453,6 +1556,69 @@
                 alert('No flashcards loaded. Please check your selection.');
                 document.getElementById('loadingMessage').style.display = 'none';
                 return;
+            }
+        }
+
+        function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
+            const lines = text.split('\n');
+            const wordGroups = {}; // Group meanings by rank
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (!trimmed) continue;
+
+                const parts = trimmed.split('|');
+                if (parts.length < 7) continue;
+
+                const rank = parseInt(parts[0]);
+                const word = parts[1];
+                const pos = parts[2];
+                const meaning = parts[3];
+                const percentage = parseFloat(parts[4]);
+                const targetSentence = parts[5];
+                const englishSentence = parts[6];
+
+                if (!wordGroups[rank]) {
+                    wordGroups[rank] = {
+                        rank: rank,
+                        word: word,
+                        meanings: []
+                    };
+                }
+
+                wordGroups[rank].meanings.push({
+                    pos: pos,
+                    meaning: meaning,
+                    percentage: percentage,
+                    targetSentence: targetSentence,
+                    englishSentence: englishSentence
+                });
+            }
+
+            // Convert to flashcards array, filtering by range
+            const ranks = Object.keys(wordGroups).map(Number).sort((a, b) => a - b);
+
+            for (const rank of ranks) {
+                if (rank >= rangeStart && rank < rangeEnd) {
+                    const group = wordGroups[rank];
+
+                    // Sort meanings by percentage (highest first)
+                    group.meanings.sort((a, b) => b.percentage - a.percentage);
+
+                    const card = {
+                        targetWord: group.word,
+                        rank: group.rank,
+                        meanings: group.meanings,
+                        // For compatibility, set primary translation to most common meaning
+                        translation: group.meanings[0].meaning,
+                        targetSentence: group.meanings[0].targetSentence,
+                        englishSentence: group.meanings[0].englishSentence,
+                        links: generateLinks(group.word, group.word, langConfig.referenceLinks),
+                        isMultiMeaning: true
+                    };
+
+                    flashcards.push(card);
+                }
             }
 
             document.getElementById('loadingMessage').textContent = `✓ Loaded ${flashcards.length} cards!`;
@@ -1647,10 +1813,20 @@
             // Event listeners
             // Note: flip is handled by touch events for mobile, click for desktop
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Don't flip if clicking on buttons or links
-                if (e.target.closest('.nav-btn-inline') || e.target.closest('.link-btn')) {
+                // Don't flip if clicking on buttons, links, meaning boxes, or flip buttons
+                if (e.target.closest('.nav-btn-inline') || e.target.closest('.link-btn') || e.target.closest('.meaning-box') || e.target.closest('.flip-button')) {
                     return;
                 }
+                flipCard();
+            });
+
+            // Flip buttons
+            document.getElementById('flipBtnFront').addEventListener('click', function(e) {
+                e.stopPropagation();
+                flipCard();
+            });
+            document.getElementById('flipBtnBack').addEventListener('click', function(e) {
+                e.stopPropagation();
                 flipCard();
             });
 
@@ -1728,8 +1904,8 @@
             let maxMovement = 0; // Track maximum movement during touch
 
             card.addEventListener('touchstart', function(e) {
-                // Don't handle if touch is on a button or link
-                if (e.target.closest('.nav-btn-inline') || e.target.closest('.link-btn')) {
+                // Don't handle if touch is on a button, link, or meaning box
+                if (e.target.closest('.nav-btn-inline') || e.target.closest('.link-btn') || e.target.closest('.meaning-box')) {
                     return;
                 }
 
@@ -1792,44 +1968,56 @@
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
 
-                // More permissive tap detection:
-                // - Max movement less than 30px total
-                // - Duration less than 500ms
-                const isTap = maxMovement < 30 && touchDuration < 500;
+                // Much more permissive tap detection:
+                // - Max movement less than 50px total (was 30)
+                // - OR duration less than 200ms regardless of movement
+                const isQuickTap = touchDuration < 200;
+                const isSmallMovement = maxMovement < 50;
+                const isTap = isQuickTap || (isSmallMovement && touchDuration < 600);
 
-                if (isTap) {
-                    // Flip the card on tap
-                    card.style.transform = '';
-                    flipCard();
-                } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
-                    // Horizontal swipe
+                // Check if this was clearly a swipe (intentional directional movement)
+                const isHorizontalSwipe = Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.5;
+                const isVerticalSwipe = Math.abs(diffY) > swipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.5;
+
+                if (isHorizontalSwipe) {
+                    // Horizontal swipe - correct/incorrect
                     if (diffX > 0) {
-                        // Swipe right - Correct
                         handleSwipeAction('correct');
                     } else {
-                        // Swipe left - Incorrect
                         handleSwipeAction('incorrect');
                     }
-                } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > swipeThreshold) {
-                    // Vertical swipe - cycle through example sentences
+                } else if (isVerticalSwipe) {
+                    // Vertical swipe - cycle through meanings for multi-meaning cards
                     const currentCard = flashcards[currentIndex];
-                    if (currentCard && currentCard.sentences) {
+                    if (currentCard && currentCard.isMultiMeaning) {
                         if (diffY < 0) {
-                            // Swipe up - next sentence
+                            // Swipe up - next meaning
+                            currentMeaningIndex = (currentMeaningIndex + 1) % currentCard.meanings.length;
+                        } else {
+                            // Swipe down - previous meaning
+                            currentMeaningIndex = (currentMeaningIndex - 1 + currentCard.meanings.length) % currentCard.meanings.length;
+                        }
+                        updateCard();
+                    } else if (currentCard && currentCard.sentences) {
+                        // Legacy: cycle through sentences
+                        if (diffY < 0) {
                             currentSentenceIndex = (currentSentenceIndex + 1) % currentCard.sentences.length;
                         } else {
-                            // Swipe down - previous sentence
                             currentSentenceIndex = (currentSentenceIndex - 1 + currentCard.sentences.length) % currentCard.sentences.length;
                         }
-                        updateCard(); // Refresh to show new sentence
+                        updateCard();
                     }
                     card.style.transform = '';
+                } else if (isTap) {
+                    // Tap to flip
+                    card.style.transform = '';
+                    flipCard();
                 } else {
-                    // Not far enough - treat as a tap if movement was small
-                    if (maxMovement < 50 && touchDuration < 400) {
+                    // Ambiguous gesture - default to flip if movement was relatively small
+                    card.style.transform = '';
+                    if (maxMovement < 80) {
                         flipCard();
                     }
-                    card.style.transform = '';
                 }
             }, { passive: true });
         }
@@ -1856,6 +2044,7 @@
                 if (currentIndex < flashcards.length - 1) {
                     currentIndex++;
                     currentSentenceIndex = 0; // Reset sentence index for new card
+                    currentMeaningIndex = 0; // Reset meaning index for new card
                     updateCard();
                     document.getElementById('flashcard').classList.remove('flipped');
                 } else {
@@ -2001,65 +2190,152 @@
             const card = flashcards[currentIndex];
             const langConfig = config.languages[selectedLanguage];
 
+            // Reset meaning index if out of bounds
+            if (card.isMultiMeaning && currentMeaningIndex >= card.meanings.length) {
+                currentMeaningIndex = 0;
+            }
+
+            // Get the current meaning for multi-meaning cards
+            const currentMeaning = card.isMultiMeaning ? card.meanings[currentMeaningIndex] : null;
+
             // Determine what to show on front and back based on flip direction
             let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
 
-            // Get current sentence from sentences array
-            const currentSentence = card.sentences && card.sentences.length > 0
-                ? card.sentences[currentSentenceIndex % card.sentences.length]
-                : { target: card.targetSentence, english: card.englishSentence };
-
-            if (isFlipped) {
-                // English → Target language
-                frontText = card.translation;
-                backWord = card.targetWord;
-                backTranslation = card.translation;
-                exampleSentence = currentSentence.english;
-                exampleTranslation = currentSentence.target;
-            } else {
-                // Target language → English (normal)
+            if (card.isMultiMeaning) {
+                // Multi-meaning format
                 frontText = card.targetWord;
                 backWord = card.targetWord;
-                backTranslation = card.translation;
-                exampleSentence = currentSentence.target;
-                exampleTranslation = currentSentence.english;
+                backTranslation = currentMeaning.meaning;
+                exampleSentence = currentMeaning.targetSentence;
+                exampleTranslation = currentMeaning.englishSentence;
+            } else {
+                // Legacy format - get current sentence from sentences array
+                const currentSentence = card.sentences && card.sentences.length > 0
+                    ? card.sentences[currentSentenceIndex % card.sentences.length]
+                    : { target: card.targetSentence, english: card.englishSentence };
+
+                if (isFlipped) {
+                    // English → Target language
+                    frontText = card.translation;
+                    backWord = card.targetWord;
+                    backTranslation = card.translation;
+                    exampleSentence = currentSentence.english;
+                    exampleTranslation = currentSentence.target;
+                } else {
+                    // Target language → English (normal)
+                    frontText = card.targetWord;
+                    backWord = card.targetWord;
+                    backTranslation = card.translation;
+                    exampleSentence = currentSentence.target;
+                    exampleTranslation = currentSentence.english;
+                }
             }
 
             document.getElementById('frontWord').textContent = frontText;
+
+            // Render meaning boxes for multi-meaning cards
+            const meaningBoxesContainer = document.getElementById('meaningBoxes');
+            const frontSentenceEl = document.getElementById('frontSentence');
+
+            if (card.isMultiMeaning && card.meanings.length > 0) {
+                let meaningHTML = '';
+                card.meanings.forEach((m, idx) => {
+                    // Calculate opacity based on percentage (min 0.4, max 1.0)
+                    const opacity = 0.4 + (m.percentage * 0.6);
+                    const isSelected = idx === currentMeaningIndex;
+                    meaningHTML += `
+                        <div class="meaning-box ${isSelected ? 'selected' : ''}"
+                             data-index="${idx}"
+                             style="opacity: ${opacity};"
+                             onclick="selectMeaning(${idx})">
+                            <div class="meaning-text">${m.meaning}</div>
+                            <div class="meaning-pos">${m.pos}</div>
+                            <span class="meaning-percent">${Math.round(m.percentage * 100)}%</span>
+                        </div>
+                    `;
+                });
+                meaningBoxesContainer.innerHTML = meaningHTML;
+                meaningBoxesContainer.style.display = 'flex';
+
+                // Show the example sentence for the selected meaning
+                if (currentMeaning.targetSentence) {
+                    frontSentenceEl.innerHTML = `
+                        <div style="margin-bottom: 8px;">${currentMeaning.targetSentence}</div>
+                        <div class="translation">${currentMeaning.englishSentence}</div>
+                    `;
+                    frontSentenceEl.style.display = 'block';
+                } else {
+                    frontSentenceEl.style.display = 'none';
+                }
+            } else {
+                meaningBoxesContainer.innerHTML = '';
+                meaningBoxesContainer.style.display = 'none';
+                frontSentenceEl.style.display = 'none';
+            }
 
             // Build back content
             let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
                     <div style="font-size: 42px; color: var(--accent-orange); font-weight: bold;">${backWord}</div>
-                    <div style="font-size: 28px; color: var(--text-primary); margin-top: 12px; font-weight: 600;">${backTranslation}</div>
                 </div>
             `;
 
-            // Show base form if different from displayed word
-            if (card.inflectedForm && card.baseForm !== card.targetWord) {
-                backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-amber);">Base form:</strong> ${card.baseForm}</div>`;
-            }
+            // For multi-meaning cards, show all meanings on the back
+            if (card.isMultiMeaning) {
+                backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
+                card.meanings.forEach((m, idx) => {
+                    const isSelected = idx === currentMeaningIndex;
+                    const bgColor = isSelected ? 'var(--accent-blue)' : 'var(--bg-tertiary)';
+                    const textColor = isSelected ? 'var(--bg-primary)' : 'var(--text-primary)';
+                    backHTML += `
+                        <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
+                            <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--accent-amber)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
+                            <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${m.meaning}</span>
+                            <span style="font-family: var(--font-data); font-size: 11px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--text-muted)'}; text-transform: uppercase;">${m.pos}</span>
+                        </div>
+                    `;
+                });
+                backHTML += `</div>`;
 
-            // Show example sentences if available
-            const sentenceCount = card.sentences ? card.sentences.length : 1;
-            if (sentenceCount > 0) {
-                const showEmpty = !exampleSentence && !exampleTranslation;
-                const sentenceIndicator = sentenceCount > 1 ? `
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-                        <span style="color: var(--accent-blue); font-size: 18px;">↑</span>
-                        <span style="color: var(--text-muted); font-size: 12px;">${currentSentenceIndex + 1} / ${sentenceCount}</span>
-                        <span style="color: var(--accent-blue); font-size: 18px;">↓</span>
-                    </div>
-                ` : '';
+                // Show current sentence
+                if (currentMeaning && currentMeaning.targetSentence) {
+                    backHTML += `
+                        <div class="sentence" style="text-align: center;">
+                            <div style="margin-bottom: 8px;">${currentMeaning.targetSentence}</div>
+                            <div class="translation">${currentMeaning.englishSentence}</div>
+                        </div>
+                    `;
+                }
+            } else {
+                // Legacy format
+                backHTML += `<div style="font-size: 28px; color: var(--text-primary); margin-top: 12px; font-weight: 600; text-align: center; margin-bottom: 20px;">${backTranslation}</div>`;
 
-                backHTML += `
-                    ${sentenceIndicator}
-                    <div class="sentence" style="min-height: 80px; text-align: center;">
-                        ${exampleSentence ? `<div style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
-                        ${exampleTranslation ? `<div class="translation">${exampleTranslation}</div>` : ''}
-                        ${showEmpty ? `<div style="color: var(--text-muted); text-align: center; padding: 20px;">(No example sentence)</div>` : ''}
-                    </div>
-                `;
+                // Show base form if different from displayed word
+                if (card.inflectedForm && card.baseForm !== card.targetWord) {
+                    backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-amber);">Base form:</strong> ${card.baseForm}</div>`;
+                }
+
+                // Show example sentences if available
+                const sentenceCount = card.sentences ? card.sentences.length : 1;
+                if (sentenceCount > 0) {
+                    const showEmpty = !exampleSentence && !exampleTranslation;
+                    const sentenceIndicator = sentenceCount > 1 ? `
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+                            <span style="color: var(--accent-blue); font-size: 18px;">↑</span>
+                            <span style="color: var(--text-muted); font-size: 12px;">${currentSentenceIndex + 1} / ${sentenceCount}</span>
+                            <span style="color: var(--accent-blue); font-size: 18px;">↓</span>
+                        </div>
+                    ` : '';
+
+                    backHTML += `
+                        ${sentenceIndicator}
+                        <div class="sentence" style="min-height: 80px; text-align: center;">
+                            ${exampleSentence ? `<div style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
+                            ${exampleTranslation ? `<div class="translation">${exampleTranslation}</div>` : ''}
+                            ${showEmpty ? `<div style="color: var(--text-muted); text-align: center; padding: 20px;">(No example sentence)</div>` : ''}
+                        </div>
+                    `;
+                }
             }
 
             // Reference links (exclude wordReference, use shortened labels)
@@ -2106,9 +2382,15 @@
             document.getElementById('flashcard').classList.toggle('flipped');
         }
 
+        function selectMeaning(index) {
+            currentMeaningIndex = index;
+            updateCard();
+        }
+
         function previousCard() {
             if (currentIndex > 0) {
                 currentIndex--;
+                currentMeaningIndex = 0; // Reset meaning selection
                 updateCard();
                 document.getElementById('flashcard').classList.remove('flipped');
             }
@@ -2117,6 +2399,7 @@
         function nextCard() {
             if (currentIndex < flashcards.length - 1) {
                 currentIndex++;
+                currentMeaningIndex = 0; // Reset meaning selection
                 updateCard();
                 document.getElementById('flashcard').classList.remove('flipped');
             }
