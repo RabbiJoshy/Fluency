@@ -369,7 +369,7 @@
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         .range-btn {
@@ -401,10 +401,14 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+        }
+
+        .modal:not(.hidden) {
+            display: flex;
         }
 
         .modal-content {
@@ -546,27 +550,27 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Stats Modal -->
-        <div id="statsModal" class="modal hidden">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Your Progress</h3>
-                    <button class="modal-close" id="closeStatsModal">✕</button>
+    <!-- Stats Modal -->
+    <div id="statsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Progress</h3>
+                <button class="modal-close" id="closeStatsModal">✕</button>
+            </div>
+            <div class="stats-body">
+                <div class="stat-row">
+                    <span>Cards Studied:</span>
+                    <span id="cardsStudied">0</span>
                 </div>
-                <div class="stats-body">
-                    <div class="stat-row">
-                        <span>Cards Studied:</span>
-                        <span id="cardsStudied">0</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>Total Cards:</span>
-                        <span id="totalCardsStats">0</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>Progress:</span>
-                        <span id="progressPercent">0%</span>
-                    </div>
+                <div class="stat-row">
+                    <span>Total Cards:</span>
+                    <span id="totalCardsStats">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Progress:</span>
+                    <span id="progressPercent">0%</span>
                 </div>
             </div>
         </div>
@@ -796,6 +800,9 @@
             document.getElementById('totalCards').textContent = flashcards.length;
             updateCard();
             updateStats();
+
+            // Ensure modal is hidden on initialization
+            document.getElementById('statsModal').classList.add('hidden');
 
             // Event listeners
             document.getElementById('flashcard').addEventListener('click', flipCard);
