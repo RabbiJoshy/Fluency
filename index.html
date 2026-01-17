@@ -180,6 +180,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow-y: auto;
             overflow-x: hidden;
+            pointer-events: none;
         }
 
         @media (max-width: 767px) {
@@ -315,6 +316,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: auto;
+            z-index: 10;
         }
 
         .nav-btn-inline:hover {
@@ -334,13 +337,26 @@
         }
 
         .shuffle-btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: #764ba2;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 24px;
+            line-height: 1;
+            min-width: 56px;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .shuffle-btn:hover {
+            background: #6a3d94;
+            transform: translateY(-2px);
         }
 
         .quiz-container {
@@ -635,6 +651,28 @@
             border-color: #667eea;
         }
 
+        .preset-size-btn {
+            padding: 10px 16px;
+            background: #f7f9fc;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .preset-size-btn:hover {
+            background: #e8ecf7;
+            border-color: #667eea;
+        }
+
+        .preset-size-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
         .cefr-actions {
             display: none;
             margin-top: 15px;
@@ -907,27 +945,40 @@
             const container = document.getElementById('cefrLevelsContainer');
 
             const cefrHTML = langConfig.cefrLevels.map(level => {
-                // Generate range buttons HTML - split into groups of 50
+                // Generate range buttons HTML - with preset sizes (25, 50, 100)
                 const rangeButtonsHTML = level.sets.flatMap(set => {
                     const [start, end] = set.range.split('-').map(Number);
-                    const ranges50 = [];
+                    const ranges = [];
 
-                    // Split 100-word ranges into 50-word chunks
-                    for (let i = start; i < end; i += 50) {
-                        const rangeEnd = Math.min(i + 50, end);
-                        ranges50.push({
+                    // Generate buttons for 25-word chunks
+                    for (let i = start; i < end; i += 25) {
+                        const rangeEnd = Math.min(i + 25, end);
+                        ranges.push({
                             range: `${i}-${rangeEnd}`,
+                            size: 25,
                             path: set.path,
                             originalRange: set.range
                         });
                     }
 
-                    return ranges50.map(r => `
-                        <button class="cefr-range-btn" data-range="${r.range}" data-path="${r.path}" data-original-range="${r.originalRange}">
+                    return ranges.map(r => `
+                        <button class="cefr-range-btn" data-range="${r.range}" data-size="${r.size}" data-path="${r.path}" data-original-range="${r.originalRange}">
                             ${r.range}
                         </button>
                     `);
                 }).join('');
+
+                // Generate preset size buttons (25, 50, 100)
+                const presetButtonsHTML = `
+                    <div style="margin-bottom: 15px;">
+                        <div style="font-size: 14px; color: #666; margin-bottom: 10px; font-weight: 600;">Quick select:</div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button class="preset-size-btn" data-size="25">25 words</button>
+                            <button class="preset-size-btn" data-size="50">50 words</button>
+                            <button class="preset-size-btn" data-size="100">100 words</button>
+                        </div>
+                    </div>
+                `;
 
                 return `
                     <div class="cefr-card" data-level="${level.level}">
@@ -942,7 +993,8 @@
                             <div>${level.comprehension}</div>
                         </div>
                         <div class="cefr-ranges">
-                            <div style="font-size: 14px; color: #666; margin-bottom: 10px; font-weight: 600;">Select word ranges:</div>
+                            ${presetButtonsHTML}
+                            <div style="font-size: 14px; color: #666; margin-bottom: 10px; font-weight: 600;">Or select specific ranges:</div>
                             <div class="cefr-ranges-grid">
                                 ${rangeButtonsHTML}
                             </div>
@@ -962,6 +1014,27 @@
                 header.addEventListener('click', function(e) {
                     // Toggle expansion
                     card.classList.toggle('expanded');
+                });
+            });
+
+            // Add click handlers to preset size buttons
+            document.querySelectorAll('.preset-size-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent card collapse
+                    const size = parseInt(this.dataset.size);
+                    const card = this.closest('.cefr-card');
+
+                    // Select all range buttons matching this size
+                    const rangeButtons = card.querySelectorAll('.cefr-range-btn');
+                    rangeButtons.forEach(rangeBtn => {
+                        const [start, end] = rangeBtn.dataset.range.split('-').map(Number);
+                        const rangeSize = end - start;
+                        if (rangeSize === size) {
+                            rangeBtn.classList.add('selected');
+                        } else {
+                            rangeBtn.classList.remove('selected');
+                        }
+                    });
                 });
             });
 
@@ -1283,13 +1356,19 @@
                 const diffX = currentX - touchStartX;
                 const diffY = currentY - touchStartY;
                 const swipeThreshold = 100;
+                const tapThreshold = 10; // Consider touches with minimal movement as taps
 
                 card.classList.remove('swiping');
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
 
-                // Determine if horizontal or vertical swipe
-                if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Check if this is a tap (very minimal movement)
+                const isTap = Math.abs(diffX) < tapThreshold && Math.abs(diffY) < tapThreshold;
+
+                if (isTap) {
+                    // Let the click event handle the tap/flip
+                    card.style.transform = '';
+                } else if (Math.abs(diffX) > Math.abs(diffY)) {
                     // Horizontal swipe
                     if (Math.abs(diffX) > swipeThreshold) {
                         if (diffX > 0) {
@@ -1541,7 +1620,7 @@
             const linkLabels = {
                 'spanishDict': 'SpanishDict',
                 'reverso': 'Reverso',
-                'conjugation': 'Conj'
+                'conjugation': 'Conjugate'
             };
 
             backHTML += `<div class="links-section">`;
