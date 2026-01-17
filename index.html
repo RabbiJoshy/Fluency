@@ -366,6 +366,14 @@
             cursor: not-allowed;
         }
 
+        #correctBtn:hover:not(:disabled) {
+            box-shadow: 0 0 20px var(--glow-green);
+        }
+
+        #incorrectBtn:hover:not(:disabled) {
+            box-shadow: 0 0 20px rgba(255, 82, 82, 0.5);
+        }
+
         .nav-btn-inline {
             padding: 8px 12px;
             background: var(--bg-tertiary);
@@ -993,29 +1001,25 @@
             font-style: italic;
         }
 
-        .flip-button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-blue);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 25px;
-            padding: 10px 24px;
-            font-size: 14px;
-            font-weight: 600;
+        .flip-circle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s;
-            z-index: 5;
+            transition: all 0.3s;
         }
 
-        .flip-button:hover {
-            box-shadow: 0 0 15px var(--glow-blue);
+        .flip-circle:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .flip-button:active {
-            transform: translateX(-50%) scale(0.95);
+        .flip-circle:active {
+            transform: scale(0.98);
         }
 
         /* Meaning boxes styles */
@@ -1277,8 +1281,9 @@
                                 <button class="nav-btn-inline" id="prevBtnFront">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront">→</button>
                             </div>
-                            <div class="card-word" id="frontWord"></div>
-                            <button class="flip-button" id="flipBtnFront">Flip Card</button>
+                            <div class="flip-circle" id="flipCircle">
+                                <div class="card-word" id="frontWord"></div>
+                            </div>
                         </div>
                         <div class="card-face card-back">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
@@ -1296,6 +1301,12 @@
                     <button class="action-btn" id="shuffleBtn" title="Shuffle cards">🔀</button>
                     <button class="action-btn" id="statsBtn" title="View stats">📊</button>
                     <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
+                </div>
+
+                <!-- Desktop-only correct/incorrect buttons -->
+                <div id="desktopAnswerBtns" style="display: none; justify-content: center; gap: 20px; margin-top: 15px;">
+                    <button class="nav-btn" id="incorrectBtn" style="background: var(--error); padding: 12px 32px;">✗ Incorrect</button>
+                    <button class="nav-btn" id="correctBtn" style="background: var(--accent-green); padding: 12px 32px;">✓ Correct</button>
                 </div>
             </div>
         </div>
@@ -1807,11 +1818,21 @@
             // Ensure modal is hidden on initialization
             document.getElementById('statsModal').classList.add('hidden');
 
+            // Show desktop answer buttons if not a touch device
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            if (!isTouchDevice) {
+                document.getElementById('desktopAnswerBtns').style.display = 'flex';
+            }
+
             // Event listeners
             // Note: flip is handled by touch events for mobile, click for desktop
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Don't flip if clicking on buttons, links, meaning boxes, or flip buttons
-                if (e.target.closest('.nav-btn-inline') || e.target.closest('.link-btn') || e.target.closest('.meaning-box') || e.target.closest('.flip-button')) {
+                // Don't flip if clicking on buttons, links, meaning boxes, flip buttons, or card-details area
+                if (e.target.closest('.nav-btn-inline') ||
+                    e.target.closest('.link-btn') ||
+                    e.target.closest('.meaning-box') ||
+                    e.target.closest('.flip-button') ||
+                    e.target.closest('.card-details')) {
                     return;
                 }
                 flipCard();
@@ -1845,6 +1866,14 @@
             document.getElementById('flipDirectionBtn').addEventListener('click', flipDirection);
             document.getElementById('statsBtn').addEventListener('click', showStatsModal);
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
+
+            // Desktop answer buttons
+            document.getElementById('correctBtn').addEventListener('click', function() {
+                handleSwipeAction('correct');
+            });
+            document.getElementById('incorrectBtn').addEventListener('click', function() {
+                handleSwipeAction('incorrect');
+            });
 
             // Click outside modal to close
             document.getElementById('statsModal').addEventListener('click', function(e) {
@@ -1897,8 +1926,11 @@
             let maxMovement = 0; // Track maximum movement during touch
 
             card.addEventListener('touchstart', function(e) {
-                // Don't handle if touch is on a button, link, or meaning box
-                if (e.target.closest('.nav-btn-inline') || e.target.closest('.link-btn') || e.target.closest('.meaning-box')) {
+                // Don't handle if touch is on a button, link, meaning box, or card-details area
+                if (e.target.closest('.nav-btn-inline') ||
+                    e.target.closest('.link-btn') ||
+                    e.target.closest('.meaning-box') ||
+                    e.target.closest('.card-details')) {
                     return;
                 }
 
