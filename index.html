@@ -1022,6 +1022,24 @@
             transform: scale(0.98);
         }
 
+        .flip-back-area {
+            display: inline-block;
+            padding: 20px 40px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .flip-back-area:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .flip-back-area:active {
+            transform: scale(0.98);
+        }
+
         /* Meaning boxes styles */
         .meanings-container {
             display: flex;
@@ -1827,17 +1845,21 @@
             // Event listeners
             // Note: flip is handled by touch events for mobile, click for desktop
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Only flip if clicking on flip-circle or card-front background (not on back content)
-                // Don't flip if clicking on buttons, links, or card-details area
+                // Allow flipping on flip-back-area or flip-circle
+                if (e.target.closest('.flip-back-area') || e.target.closest('.flip-circle')) {
+                    flipCard();
+                    return;
+                }
+
+                // Don't flip if clicking on buttons, links, or other card-details content
                 if (e.target.closest('.nav-btn-inline') ||
                     e.target.closest('.link-btn') ||
                     e.target.closest('.card-details')) {
                     return;
                 }
 
-                // Only flip on front side (flip-circle) or if clicking empty space on front
-                if (e.target.closest('.flip-circle') ||
-                    (e.target.closest('.card-front') && !e.target.closest('.card-details'))) {
+                // Flip if clicking empty space on front
+                if (e.target.closest('.card-front')) {
                     flipCard();
                 }
             });
@@ -1924,16 +1946,21 @@
             let maxMovement = 0; // Track maximum movement during touch
 
             card.addEventListener('touchstart', function(e) {
-                // Don't handle if touch is on a button, link, or card-details area
-                if (e.target.closest('.nav-btn-inline') ||
-                    e.target.closest('.link-btn') ||
-                    e.target.closest('.card-details')) {
-                    return;
-                }
+                // Allow touch on flip-back-area
+                if (e.target.closest('.flip-back-area')) {
+                    // Allow this touch to proceed for flipping
+                } else {
+                    // Don't handle if touch is on buttons, links, or other card-details content
+                    if (e.target.closest('.nav-btn-inline') ||
+                        e.target.closest('.link-btn') ||
+                        e.target.closest('.card-details')) {
+                        return;
+                    }
 
-                // Only handle touch on the front side (flip-circle or card-front)
-                if (!e.target.closest('.card-front')) {
-                    return;
+                    // Only handle touch on the front side (flip-circle or card-front)
+                    if (!e.target.closest('.card-front')) {
+                        return;
+                    }
                 }
 
                 touchStartX = e.touches[0].clientX;
@@ -2263,7 +2290,9 @@
             // Build back content
             let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 42px; color: var(--accent-orange); font-weight: bold;">${backWord}</div>
+                    <div class="flip-back-area" id="flipBackArea">
+                        <div style="font-size: 42px; color: var(--accent-orange); font-weight: bold;">${backWord}</div>
+                    </div>
                 </div>
             `;
 
