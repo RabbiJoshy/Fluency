@@ -102,11 +102,63 @@
             cursor: pointer;
         }
 
+        .card.swiping {
+            transition: none;
+        }
+
+        .card.swipe-correct {
+            animation: swipeRight 0.3s ease-out forwards;
+        }
+
+        .card.swipe-incorrect {
+            animation: swipeLeft 0.3s ease-out forwards;
+        }
+
+        @keyframes swipeRight {
+            to {
+                transform: translateX(150%) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes swipeLeft {
+            to {
+                transform: translateX(-150%) rotate(-20deg);
+                opacity: 0;
+            }
+        }
+
         @media (min-width: 768px) {
             .card {
                 height: 500px;
                 max-height: 500px;
             }
+        }
+
+        .swipe-indicator {
+            position: absolute;
+            top: 50%;
+            font-size: 72px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 10;
+            pointer-events: none;
+            transform: translateY(-50%);
+        }
+
+        .swipe-indicator.correct {
+            right: 20px;
+            color: #28a745;
+        }
+
+        .swipe-indicator.incorrect {
+            left: 20px;
+            color: #dc3545;
+        }
+
+        .swipe-indicator.visible {
+            opacity: 1;
         }
 
         .card.flipped {
@@ -726,6 +778,8 @@
             <!-- Flashcard Mode -->
             <div id="flashcardMode">
                 <div class="card-container">
+                    <div class="swipe-indicator incorrect" id="incorrectIndicator">✗</div>
+                    <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard">
                         <div class="card-face card-front">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
@@ -776,6 +830,18 @@
                     <span>Progress:</span>
                     <span id="progressPercent">0%</span>
                 </div>
+                <div class="stat-row">
+                    <span style="color: #28a745;">✓ Correct:</span>
+                    <span id="correctCount" style="color: #28a745;">0</span>
+                </div>
+                <div class="stat-row">
+                    <span style="color: #dc3545;">✗ Incorrect:</span>
+                    <span id="incorrectCount" style="color: #dc3545;">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Accuracy:</span>
+                    <span id="accuracyPercent">-</span>
+                </div>
             </div>
         </div>
     </div>
@@ -795,7 +861,9 @@
         let stats = {
             studied: new Set(),
             correct: 0,
-            total: 0
+            incorrect: 0,
+            total: 0,
+            cardStats: {} // Track individual card performance: cardIndex -> {correct: count, incorrect: count}
         };
         let currentMode = 'flashcards';
         let config = null;
@@ -1139,32 +1207,120 @@
 
         function setupSwipeGestures() {
             const card = document.getElementById('flashcard');
+            const incorrectIndicator = document.getElementById('incorrectIndicator');
+            const correctIndicator = document.getElementById('correctIndicator');
             let touchStartX = 0;
-            let touchEndX = 0;
+            let touchStartY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let isDragging = false;
 
             card.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isDragging = true;
+                card.classList.add('swiping');
+            }, { passive: true });
+
+            card.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+
+                currentX = e.touches[0].clientX;
+                currentY = e.touches[0].clientY;
+
+                const diffX = currentX - touchStartX;
+                const diffY = currentY - touchStartY;
+
+                // Only allow horizontal swipes (prevent vertical scrolling conflicts)
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    const rotation = diffX / 20; // Rotate based on swipe distance
+                    card.style.transform = `translateX(${diffX}px) rotate(${rotation}deg)`;
+
+                    // Show indicators based on swipe direction
+                    if (diffX > 50) {
+                        correctIndicator.classList.add('visible');
+                        incorrectIndicator.classList.remove('visible');
+                    } else if (diffX < -50) {
+                        incorrectIndicator.classList.add('visible');
+                        correctIndicator.classList.remove('visible');
+                    } else {
+                        correctIndicator.classList.remove('visible');
+                        incorrectIndicator.classList.remove('visible');
+                    }
+                }
             }, { passive: true });
 
             card.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
+                if (!isDragging) return;
+                isDragging = false;
 
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = touchStartX - touchEndX;
+                const diffX = currentX - touchStartX;
+                const swipeThreshold = 100;
 
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        // Swipe left - next card
-                        nextCard();
+                card.classList.remove('swiping');
+                correctIndicator.classList.remove('visible');
+                incorrectIndicator.classList.remove('visible');
+
+                if (Math.abs(diffX) > swipeThreshold) {
+                    if (diffX > 0) {
+                        // Swipe right - Correct
+                        handleSwipeAction('correct');
                     } else {
-                        // Swipe right - previous card
-                        previousCard();
+                        // Swipe left - Incorrect
+                        handleSwipeAction('incorrect');
                     }
+                } else {
+                    // Reset card position if swipe wasn't far enough
+                    card.style.transform = '';
                 }
+            }, { passive: true });
+        }
+
+        function handleSwipeAction(result) {
+            const card = document.getElementById('flashcard');
+
+            // Record the result
+            recordCardResult(result);
+
+            // Animate the card off screen
+            if (result === 'correct') {
+                card.classList.add('swipe-correct');
+            } else {
+                card.classList.add('swipe-incorrect');
             }
+
+            // Wait for animation to complete, then move to next card
+            setTimeout(() => {
+                card.classList.remove('swipe-correct', 'swipe-incorrect');
+                card.style.transform = '';
+
+                // Move to next card
+                if (currentIndex < flashcards.length - 1) {
+                    currentIndex++;
+                    updateCard();
+                    document.getElementById('flashcard').classList.remove('flipped');
+                } else {
+                    // End of deck
+                    alert(`Deck complete!\n\nCorrect: ${stats.correct}\nIncorrect: ${stats.incorrect}\nAccuracy: ${Math.round((stats.correct / (stats.correct + stats.incorrect)) * 100)}%`);
+                }
+            }, 300);
+        }
+
+        function recordCardResult(result) {
+            // Initialize card stats if not exists
+            if (!stats.cardStats[currentIndex]) {
+                stats.cardStats[currentIndex] = { correct: 0, incorrect: 0 };
+            }
+
+            // Record the result
+            if (result === 'correct') {
+                stats.correct++;
+                stats.cardStats[currentIndex].correct++;
+            } else {
+                stats.incorrect++;
+                stats.cardStats[currentIndex].incorrect++;
+            }
+            stats.total++;
         }
 
         function goBackToSetup() {
@@ -1181,7 +1337,9 @@
             stats = {
                 studied: new Set(),
                 correct: 0,
-                total: 0
+                incorrect: 0,
+                total: 0,
+                cardStats: {}
             };
         }
 
@@ -1199,6 +1357,13 @@
             document.getElementById('totalCardsStats').textContent = flashcards.length;
             const progress = flashcards.length > 0 ? Math.round((stats.studied.size / flashcards.length) * 100) : 0;
             document.getElementById('progressPercent').textContent = progress + '%';
+
+            document.getElementById('correctCount').textContent = stats.correct;
+            document.getElementById('incorrectCount').textContent = stats.incorrect;
+
+            const totalAttempts = stats.correct + stats.incorrect;
+            const accuracy = totalAttempts > 0 ? Math.round((stats.correct / totalAttempts) * 100) : 0;
+            document.getElementById('accuracyPercent').textContent = totalAttempts > 0 ? accuracy + '%' : '-';
         }
 
         function updateCard() {
