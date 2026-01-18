@@ -1843,6 +1843,9 @@
                 );
 
                 // Convert to flashcards format
+                const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+                const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
                 for (const item of filteredData) {
                     const card = {
                         targetWord: item.word,
@@ -1852,12 +1855,12 @@
                             pos: m.pos,
                             meaning: m.translation,
                             percentage: parseFloat(m.frequency),
-                            targetSentence: m.example_spanish,
-                            englishSentence: m.example_english
+                            targetSentence: m[exampleTargetField],
+                            englishSentence: m[exampleEnglishField]
                         })),
                         translation: item.meanings[0].translation,
-                        targetSentence: item.meanings[0].example_spanish,
-                        englishSentence: item.meanings[0].example_english,
+                        targetSentence: item.meanings[0][exampleTargetField],
+                        englishSentence: item.meanings[0][exampleEnglishField],
                         links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                         isMultiMeaning: true
                     };

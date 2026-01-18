@@ -52,6 +52,8 @@
     "spanish": {
       "name": "Spanish",
       "dataPath": "Data/Spanish/vocabulary.json",
+      "exampleTargetField": "example_spanish",
+      "exampleEnglishField": "example_english",
       "cefrLevels": [
         {
           "level": "A1",
@@ -89,6 +91,8 @@
     "italian": {
       "name": "Italian",
       "dataPath": "Data/Italian/vocabulary.json",
+      "exampleTargetField": "example_italian",
+      "exampleEnglishField": "example_english",
       "cefrLevels": [
         {
           "level": "A1",
