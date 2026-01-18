@@ -273,6 +273,85 @@
             text-align: center;
         }
 
+        .card-lemma {
+            font-family: var(--font-reading);
+            font-size: 18px;
+            color: var(--accent-amber);
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .card-ranking {
+            font-family: var(--font-data);
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .card-control-btn {
+            padding: 8px 14px;
+            background: #1a1a1a;
+            color: var(--text-primary);
+            border: 1.5px solid #333333;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            height: 38px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .card-control-btn:hover {
+            background: #2a2a2a;
+            border-color: #444444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-control-btn:active {
+            transform: scale(0.95);
+            background: #0f0f0f;
+        }
+
+        .card-action-small {
+            padding: 8px 12px;
+            background: #1a1a1a;
+            color: var(--text-primary);
+            border: 1.5px solid #333333;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 38px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .card-action-small:hover {
+            background: #2a2a2a;
+            border-color: #444444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-action-small:active {
+            transform: scale(0.95);
+            background: #0f0f0f;
+        }
+
         .card-details {
             font-family: var(--font-reading);
             font-size: 18px;
@@ -461,6 +540,32 @@
             .action-btn:active {
                 transform: scale(0.7);
             }
+        }
+
+        .control-action-btn {
+            padding: 10px 20px;
+            background: #1a1a1a;
+            color: var(--text-primary);
+            border: 1.5px solid #333333;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .control-action-btn:hover {
+            background: #2a2a2a;
+            border-color: #444444;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .control-action-btn:active {
+            transform: scale(0.95);
+            background: #0f0f0f;
         }
 
         .quiz-container {
@@ -1331,13 +1436,21 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard">
                         <div class="card-face card-front">
-                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5;">
                                 <button class="nav-btn-inline" id="prevBtnFront">←</button>
+                                <button class="card-control-btn" id="flipBtnTop" title="Flip card">FLIP</button>
+                                <button class="card-control-btn" id="shuffleBtnTop" title="Shuffle">SHUFFLE</button>
                                 <button class="nav-btn-inline" id="nextBtnFront">→</button>
                             </div>
-                            <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%;">
+                            <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%;">
                                 <div class="card-word" id="frontWord"></div>
+                                <div class="card-lemma" id="frontLemma"></div>
+                                <div class="card-ranking" id="frontRanking"></div>
                             </button>
+                            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 5;">
+                                <button class="card-action-small" id="backBtnSmall" title="Back to menu">BACK</button>
+                                <button class="card-action-small" id="statsBtnSmall" title="View stats">STATS</button>
+                            </div>
                         </div>
                         <div class="card-face card-back">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
@@ -1349,11 +1462,9 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0;">
-                    <button class="action-btn" id="backBtn" title="Back to menu">⬅️</button>
-                    <button class="action-btn" id="flipDirectionBtn" title="Flip direction">🔄</button>
-                    <button class="action-btn" id="shuffleBtn" title="Shuffle cards">🔀</button>
-                    <button class="action-btn" id="statsBtn" title="View stats">📊</button>
+                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0;">
+                    <button class="control-action-btn" id="flipDirectionBtn" title="Flip direction">FLIP</button>
+                    <button class="control-action-btn" id="shuffleBtn" title="Shuffle cards">SHUFFLE</button>
                     <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
                 </div>
             </div>
@@ -1913,6 +2024,25 @@
             document.getElementById('backBtn').addEventListener('click', goBackToSetup);
             document.getElementById('flipDirectionBtn').addEventListener('click', flipDirection);
             document.getElementById('statsBtn').addEventListener('click', showStatsModal);
+
+            // New buttons on front card
+            document.getElementById('flipBtnTop').addEventListener('click', function(e) {
+                e.stopPropagation();
+                flipCard();
+            });
+            document.getElementById('shuffleBtnTop').addEventListener('click', function(e) {
+                e.stopPropagation();
+                shuffleCards();
+            });
+            document.getElementById('backBtnSmall').addEventListener('click', function(e) {
+                e.stopPropagation();
+                goBackToSetup();
+            });
+            document.getElementById('statsBtnSmall').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showStatsModal();
+            });
+
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
 
             // Click outside modal to close
@@ -2385,6 +2515,24 @@
             }
 
             document.getElementById('frontWord').textContent = frontText;
+
+            // Display lemma on front if different from target word
+            const frontLemmaEl = document.getElementById('frontLemma');
+            if (card.lemma && card.lemma !== card.targetWord) {
+                frontLemmaEl.textContent = card.lemma;
+                frontLemmaEl.style.display = 'block';
+            } else {
+                frontLemmaEl.style.display = 'none';
+            }
+
+            // Display ranking on front
+            const frontRankingEl = document.getElementById('frontRanking');
+            if (card.rank !== undefined) {
+                frontRankingEl.textContent = `Rank: ${card.rank + 1}`;
+                frontRankingEl.style.display = 'block';
+            } else {
+                frontRankingEl.style.display = 'none';
+            }
 
             // Build back content with lemma in brackets if different
             let wordDisplay = backWord;
