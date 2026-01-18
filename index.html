@@ -1466,10 +1466,8 @@
                     <span class="step-number">1</span>
                     <span class="step-title">Choose Language</span>
                 </div>
-                <div class="language-tabs">
-                    <button class="lang-tab active" data-lang="spanish">Spanish</button>
-                    <button class="lang-tab" data-lang="italian">Italian</button>
-                    <button class="lang-tab" data-lang="dutch">Dutch</button>
+                <div class="language-tabs" id="languageTabs">
+                    <!-- Language tabs will be dynamically generated -->
                 </div>
             </div>
 
@@ -1660,11 +1658,30 @@
 
         // Initialize on page load
         loadConfig().then(() => {
-            selectedLanguage = 'spanish';
-            renderLevelSelector('spanish');
-            setupLanguageTabs();
+            renderLanguageTabs();
+            // Set first language as default
+            const firstLang = Object.keys(config.languages)[0];
+            selectedLanguage = firstLang;
+            renderLevelSelector(firstLang);
             setupGroupSizeSelector();
         });
+
+        function renderLanguageTabs() {
+            const tabsContainer = document.getElementById('languageTabs');
+            const languages = Object.keys(config.languages);
+
+            // Generate language tabs dynamically
+            const tabsHTML = languages.map((langKey, index) => {
+                const langConfig = config.languages[langKey];
+                const activeClass = index === 0 ? 'active' : '';
+                return `<button class="lang-tab ${activeClass}" data-lang="${langKey}">${langConfig.name}</button>`;
+            }).join('');
+
+            tabsContainer.innerHTML = tabsHTML;
+
+            // Setup event listeners for tabs
+            setupLanguageTabs();
+        }
 
         function setupLanguageTabs() {
             document.querySelectorAll('.lang-tab').forEach(tab => {

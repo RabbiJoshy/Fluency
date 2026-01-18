@@ -27687,5 +27687,145 @@
         "example_english": "I tried to swim in the pool, but it was closed."
       }
     ]
+  },
+  {
+    "rank": 3000,
+    "word": "regresaré",
+    "lemma": "regresar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will return",
+        "frequency": "24",
+        "example_spanish": "Te prometo que regresaré pronto.",
+        "example_english": "I promise that I will return soon."
+      }
+    ]
+  },
+  {
+    "rank": 3001,
+    "word": "ejercicio",
+    "lemma": "ejercicio",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "exercise",
+        "frequency": "24",
+        "example_spanish": "El ejercicio es bueno para la salud.",
+        "example_english": "Exercise is good for health."
+      }
+    ]
+  },
+  {
+    "rank": 3002,
+    "word": "pasaporte",
+    "lemma": "pasaporte",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "passport",
+        "frequency": "24",
+        "example_spanish": "Necesito mi pasaporte para viajar.",
+        "example_english": "I need my passport to travel."
+      }
+    ]
+  },
+  {
+    "rank": 3003,
+    "word": "extraños",
+    "lemma": "extraño",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "strange, odd",
+        "frequency": "24",
+        "example_spanish": "Esos comportamientos me parecen extraños.",
+        "example_english": "Those behaviors seem strange to me."
+      }
+    ]
+  },
+  {
+    "rank": 3004,
+    "word": "ciento",
+    "lemma": "ciento",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "hundred",
+        "frequency": "24",
+        "example_spanish": "Tengo ciento veinte dólares en la billetera.",
+        "example_english": "I have one hundred twenty dollars in my wallet."
+      }
+    ]
+  },
+  {
+    "rank": 3005,
+    "word": "afortunado",
+    "lemma": "afortunado",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "fortunate, lucky",
+        "frequency": "24",
+        "example_spanish": "Soy afortunado de tener una buena familia.",
+        "example_english": "I am fortunate to have a good family."
+      }
+    ]
+  },
+  {
+    "rank": 3006,
+    "word": "sacó",
+    "lemma": "sacar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "pulled out, took out",
+        "frequency": "24",
+        "example_spanish": "Sacó el libro de la mochila.",
+        "example_english": "He pulled out the book from the backpack."
+      }
+    ]
+  },
+  {
+    "rank": 3007,
+    "word": "irán",
+    "lemma": "ir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they will go",
+        "frequency": "24",
+        "example_spanish": "Mañana irán al cine con sus amigos.",
+        "example_english": "Tomorrow they will go to the cinema with their friends."
+      }
+    ]
+  },
+  {
+    "rank": 3008,
+    "word": "sacerdote",
+    "lemma": "sacerdote",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "priest",
+        "frequency": "24",
+        "example_spanish": "El sacerdote habla en la iglesia cada domingo.",
+        "example_english": "The priest speaks in the church every Sunday."
+      }
+    ]
+  },
+  {
+    "rank": 3009,
+    "word": "pedirle",
+    "lemma": "pedir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to ask him/her",
+        "frequency": "24",
+        "example_spanish": "Voy a pedirle ayuda con el proyecto.",
+        "example_english": "I am going to ask him for help with the project."
+      }
+    ]
   }
 ]

@@ -2,51 +2,78 @@
   "languages": {
     "dutch": {
       "name": "Dutch",
+      "dataPath": "Data/Dutch/vocabulary.json",
+      "exampleTargetField": "example_dutch",
+      "exampleEnglishField": "example_english",
       "cefrLevels": [
         {
           "level": "A1",
           "description": "Beginner",
-          "comprehension": "~60% of spoken language",
-          "wordCount": "0-800",
-          "sets": [
-            { "range": "0-100", "path": "Dutch/Vocabulary/Quizlet Sets/0-100.txt" },
-            { "range": "100-200", "path": "Dutch/Vocabulary/Quizlet Sets/100-200.txt" },
-            { "range": "200-300", "path": "Dutch/Vocabulary/Quizlet Sets/200-300.txt" },
-            { "range": "300-400", "path": "Dutch/Vocabulary/Quizlet Sets/300-400.txt" },
-            { "range": "400-500", "path": "Dutch/Vocabulary/Quizlet Sets/400-500.txt" },
-            { "range": "500-600", "path": "Dutch/Vocabulary/Quizlet Sets/500-600.txt" },
-            { "range": "600-700", "path": "Dutch/Vocabulary/Quizlet Sets/600-700.txt" },
-            { "range": "700-800", "path": "Dutch/Vocabulary/Quizlet Sets/700-800.txt" }
-          ]
+          "comprehension": "~65% of spoken language",
+          "wordCount": "1-800"
         },
         {
           "level": "A2",
           "description": "Elementary",
           "comprehension": "~75% of spoken language",
-          "wordCount": "800-1000",
-          "sets": [
-            { "range": "800-900", "path": "Dutch/Vocabulary/Quizlet Sets/800-900.txt" },
-            { "range": "900-1000", "path": "Dutch/Vocabulary/Quizlet Sets/900-1000.txt" }
-          ]
+          "wordCount": "800-1500"
         },
         {
           "level": "B1",
           "description": "Intermediate",
           "comprehension": "~85% of spoken language",
-          "wordCount": "1000-2000",
-          "sets": [
-            { "range": "1000-1250", "path": "Dutch/Vocabulary/Quizlet Sets/1000-1250.txt" },
-            { "range": "1250-1500", "path": "Dutch/Vocabulary/Quizlet Sets/1250-1500.txt" },
-            { "range": "1500-1750", "path": "Dutch/Vocabulary/Quizlet Sets/1500-1750.txt" },
-            { "range": "1750-2000", "path": "Dutch/Vocabulary/Quizlet Sets/1750-2000.txt" }
-          ]
+          "wordCount": "1500-2500"
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000"
         }
       ],
-      "fileFormat": "quizlet",
+      "fileFormat": "json",
       "referenceLinks": {
         "wordReference": "https://www.wordreference.com/nlen/{word}",
         "reverso": "https://context.reverso.net/translation/dutch-english/{word}",
         "conjugation": "https://www.verbix.com/webverbix/Dutch/{word}"
+      }
+    },
+    "polish": {
+      "name": "Polish",
+      "dataPath": "Data/Pish/vocabulary.json",
+      "exampleTargetField": "example_polish",
+      "exampleEnglishField": "example_english",
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~65% of spoken language",
+          "wordCount": "1-800"
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1500"
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1500-2500"
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000"
+        }
+      ],
+      "fileFormat": "json",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/plen/{word}",
+        "reverso": "https://context.reverso.net/translation/polish-english/{word}",
+        "conjugation": "https://pl.pons.com/odmiana/polski/{word}"
       }
     },
     "spanish": {

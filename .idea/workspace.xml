@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="" />
+    <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/consolidate_to_json.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768600654930</updated>
       <workItem from="1768600657574" duration="27303000" />
-      <workItem from="1768744143483" duration="8626000" />
+      <workItem from="1768744143483" duration="10945000" />
     </task>
     <servers />
   </component>
