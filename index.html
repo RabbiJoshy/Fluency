@@ -1457,14 +1457,13 @@
                         <div class="card-face card-front">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
-                                <button class="card-control-btn" id="flipBtnTop" title="Flip card" style="pointer-events: auto;">FLIP</button>
+                                <button class="card-control-btn" id="reverseLangBtn" title="Reverse language direction" style="pointer-events: auto;">REVERSE</button>
                                 <button class="card-control-btn" id="shuffleBtnTop" title="Shuffle" style="pointer-events: auto;">SHUFFLE</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
                                 <div class="card-word" id="frontWord"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
-                                <div class="card-ranking" id="frontRanking"></div>
                             </button>
                             <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 5; pointer-events: none;">
                                 <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">BACK</button>
@@ -1481,11 +1480,7 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0;">
-                    <button class="control-action-btn" id="flipDirectionBtn" title="Flip direction">FLIP</button>
-                    <button class="control-action-btn" id="shuffleBtn" title="Shuffle cards">SHUFFLE</button>
-                    <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
-                </div>
+                <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600; text-align: center;"></div>
             </div>
         </div>
     </div>
@@ -2038,19 +2033,10 @@
                 e.stopPropagation();
                 nextCard();
             });
-            document.getElementById('shuffleBtn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                shuffleCards();
-            });
-            document.getElementById('flipDirectionBtn').addEventListener('click', function(e) {
+            // Top card buttons
+            document.getElementById('reverseLangBtn').addEventListener('click', function(e) {
                 e.stopPropagation();
                 flipDirection();
-            });
-
-            // Top card buttons
-            document.getElementById('flipBtnTop').addEventListener('click', function(e) {
-                e.stopPropagation();
-                flipCard();
             });
             document.getElementById('shuffleBtnTop').addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -2547,15 +2533,6 @@
                 frontLemmaEl.style.display = 'block';
             } else {
                 frontLemmaEl.style.display = 'none';
-            }
-
-            // Display ranking on front
-            const frontRankingEl = document.getElementById('frontRanking');
-            if (card.rank !== undefined) {
-                frontRankingEl.textContent = `Rank: ${card.rank + 1}`;
-                frontRankingEl.style.display = 'block';
-            } else {
-                frontRankingEl.style.display = 'none';
             }
 
             // Build back content with lemma in brackets if different
