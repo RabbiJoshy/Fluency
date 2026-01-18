@@ -308,6 +308,14 @@
             height: 38px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
+            transform-style: preserve-3d;
+        }
+
+        /* Prevent buttons from rotating with card flip */
+        .card.flipped .card-front .card-control-btn,
+        .card.flipped .card-front .nav-btn-inline,
+        .card.flipped .card-front .card-action-small {
+            transform: rotateY(-180deg);
         }
 
         .card-control-btn:hover {
@@ -339,6 +347,7 @@
             height: 38px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
+            transform-style: preserve-3d;
         }
 
         .card-action-small:hover {
@@ -492,6 +501,7 @@
             justify-content: center;
             pointer-events: auto;
             z-index: 10;
+            transform-style: preserve-3d;
         }
 
         .nav-btn-inline:hover {
@@ -1438,8 +1448,8 @@
                         <div class="card-face card-front">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5;">
                                 <button class="nav-btn-inline" id="prevBtnFront">←</button>
-                                <button class="card-control-btn" id="flipBtnTop" title="Flip card">FLIP</button>
-                                <button class="card-control-btn" id="shuffleBtnTop" title="Shuffle">SHUFFLE</button>
+                                <button class="card-control-btn" id="flipDirectionBtn" title="Flip language direction">FLIP</button>
+                                <button class="card-control-btn" id="shuffleBtn" title="Shuffle">SHUFFLE</button>
                                 <button class="nav-btn-inline" id="nextBtnFront">→</button>
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%;">
@@ -1462,11 +1472,6 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0;">
-                    <button class="control-action-btn" id="flipDirectionBtn" title="Flip direction">FLIP</button>
-                    <button class="control-action-btn" id="shuffleBtn" title="Shuffle cards">SHUFFLE</button>
-                    <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
-                </div>
             </div>
         </div>
     </div>
@@ -2020,20 +2025,16 @@
                 e.stopPropagation();
                 nextCard();
             });
-            document.getElementById('shuffleBtn').addEventListener('click', shuffleCards);
-            document.getElementById('backBtn').addEventListener('click', goBackToSetup);
-            document.getElementById('flipDirectionBtn').addEventListener('click', flipDirection);
-            document.getElementById('statsBtn').addEventListener('click', showStatsModal);
-
-            // New buttons on front card
-            document.getElementById('flipBtnTop').addEventListener('click', function(e) {
-                e.stopPropagation();
-                flipCard();
-            });
-            document.getElementById('shuffleBtnTop').addEventListener('click', function(e) {
+            document.getElementById('shuffleBtn').addEventListener('click', function(e) {
                 e.stopPropagation();
                 shuffleCards();
             });
+            document.getElementById('backBtn').addEventListener('click', goBackToSetup);
+            document.getElementById('flipDirectionBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                flipDirection();
+            });
+            document.getElementById('statsBtn').addEventListener('click', showStatsModal);
             document.getElementById('backBtnSmall').addEventListener('click', function(e) {
                 e.stopPropagation();
                 goBackToSetup();
