@@ -2327,8 +2327,8 @@
             // Helper to determine touch zone (center vs edges)
             function getTouchZone(touchX, cardRect) {
                 const relativeX = (touchX - cardRect.left) / cardRect.width;
-                if (relativeX < 0.15) return 'left-edge';
-                if (relativeX > 0.85) return 'right-edge';
+                if (relativeX < 0.25) return 'left-edge';
+                if (relativeX > 0.75) return 'right-edge';
                 return 'center';
             }
 
@@ -2460,7 +2460,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 56; // 70% of original 80px for easier swiping
+                    const edgeSwipeThreshold = 42; // Reduced to match back side for easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
