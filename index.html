@@ -143,14 +143,18 @@
 
         .card-container {
             perspective: 1000px;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
         .card {
             width: 100%;
-            height: calc(100vh - 100px);
+            height: auto;
             min-height: 400px;
-            max-height: none;
+            max-height: calc(100vh - 100px);
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.6s;
@@ -207,8 +211,7 @@
 
         @media (min-width: 768px) {
             .card {
-                height: calc(100vh - 120px);
-                max-height: none;
+                max-height: calc(100vh - 120px);
             }
         }
 
@@ -367,12 +370,12 @@
         }
 
         .card-action-small {
-            padding: 8px 12px;
+            padding: 16px 24px;
             background: #1a1a1a;
             color: var(--text-primary);
             border: 1.5px solid #333333;
             border-radius: 6px;
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 700;
             font-family: var(--font-emphasis);
             cursor: pointer;
@@ -380,8 +383,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 38px;
+            width: 88px;
+            height: 76px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
             transform-style: preserve-3d;
@@ -1513,20 +1516,29 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard" data-rank="">
                         <div class="card-face card-front">
-                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
-                                <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
-                                <button class="card-control-btn" id="reverseLangBtn" title="Reverse language direction" style="pointer-events: auto;">REVERSE</button>
-                                <button class="card-control-btn" id="shuffleBtnTop" title="Shuffle" style="pointer-events: auto;">SHUFFLE</button>
-                                <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
+                            <!-- Reverse button on left edge -->
+                            <div style="position: absolute; top: 20px; left: 20px; z-index: 5; pointer-events: none;">
+                                <button class="card-action-small" id="reverseLangBtn" title="Reverse language direction" style="pointer-events: auto;">REVERSE</button>
+                            </div>
+                            <!-- Shuffle button on right edge -->
+                            <div style="position: absolute; top: 20px; right: 20px; z-index: 5; pointer-events: none;">
+                                <button class="card-action-small" id="shuffleBtnTop" title="Shuffle" style="pointer-events: auto;">SHUFFLE</button>
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
                                 <div class="card-word" id="frontWord"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
                                 <div class="card-ranking" id="frontRanking"></div>
                             </button>
+                            <!-- Left/right nav buttons beside the word -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
+                                <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
+                                <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
+                            </div>
+                            <!-- Back button on bottom left -->
                             <div style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
                                 <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">BACK</button>
                             </div>
+                            <!-- Stats button on bottom right -->
                             <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
                                 <button class="card-action-small" id="statsBtnSmall" title="View stats" style="pointer-events: auto;">STATS</button>
                             </div>
@@ -2489,7 +2501,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 42; // Reduced to match back side for easier swiping
+                    const edgeSwipeThreshold = 29; // 70% of 42 for easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
@@ -2501,7 +2513,7 @@
                 }
 
                 // ========== BACK SIDE LOGIC (swipe priority) ==========
-                const backSwipeThreshold = 42; // 70% of original 60px for easier swiping on back
+                const backSwipeThreshold = 29; // 70% of 42 for easier swiping on back
                 const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
                 const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 
