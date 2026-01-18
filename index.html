@@ -161,6 +161,14 @@
             animation: swipeLeft 0.3s ease-out forwards;
         }
 
+        .card.flipped.swipe-correct {
+            animation: swipeRightFlipped 0.3s ease-out forwards;
+        }
+
+        .card.flipped.swipe-incorrect {
+            animation: swipeLeftFlipped 0.3s ease-out forwards;
+        }
+
         @keyframes swipeRight {
             to {
                 transform: translateX(150%) rotate(20deg);
@@ -171,6 +179,20 @@
         @keyframes swipeLeft {
             to {
                 transform: translateX(-150%) rotate(-20deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes swipeRightFlipped {
+            to {
+                transform: translateX(150%) rotate(20deg) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes swipeLeftFlipped {
+            to {
+                transform: translateX(-150%) rotate(-20deg) rotateY(180deg);
                 opacity: 0;
             }
         }
@@ -1320,12 +1342,6 @@
                     <button class="action-btn" id="statsBtn" title="View stats">📊</button>
                     <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
                 </div>
-
-                <!-- Desktop-only correct/incorrect buttons -->
-                <div id="desktopAnswerBtns" style="display: none; justify-content: center; gap: 20px; margin-top: 15px;">
-                    <button class="nav-btn" id="incorrectBtn" style="background: var(--error); padding: 12px 32px;">✗ Incorrect</button>
-                    <button class="nav-btn" id="correctBtn" style="background: var(--accent-green); padding: 12px 32px;">✓ Correct</button>
-                </div>
             </div>
         </div>
     </div>
@@ -1839,12 +1855,6 @@
             // Ensure modal is hidden on initialization
             document.getElementById('statsModal').classList.add('hidden');
 
-            // Show desktop answer buttons if not a touch device
-            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-            if (!isTouchDevice) {
-                document.getElementById('desktopAnswerBtns').style.display = 'flex';
-            }
-
             // Event listeners
             // Note: flip is handled by touch events for mobile, click for desktop
             document.getElementById('flashcard').addEventListener('click', function(e) {
@@ -1890,14 +1900,6 @@
             document.getElementById('statsBtn').addEventListener('click', showStatsModal);
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
 
-            // Desktop answer buttons
-            document.getElementById('correctBtn').addEventListener('click', function() {
-                handleSwipeAction('correct');
-            });
-            document.getElementById('incorrectBtn').addEventListener('click', function() {
-                handleSwipeAction('incorrect');
-            });
-
             // Click outside modal to close
             document.getElementById('statsModal').addEventListener('click', function(e) {
                 if (e.target === this) {
@@ -1933,6 +1935,9 @@
 
             // Swipe gestures
             setupSwipeGestures();
+
+            // Keyboard shortcuts
+            setupKeyboardShortcuts();
         }
 
         function setupSwipeGestures() {
@@ -1947,23 +1952,39 @@
             let hasMoved = false;
             let touchStartTime = 0;
             let maxMovement = 0; // Track maximum movement during touch
+            let startedOnCircle = false; // Track if touch started on flip circle
 
             card.addEventListener('touchstart', function(e) {
-                // Allow touch on flip-back-area
+                // Check if touch started on flip circle or flip-back-area
+                startedOnCircle = !!(e.target.closest('.flip-circle') || e.target.closest('.flip-back-area'));
+
+                // Don't handle if touch is on buttons, links, or specific interactive elements
+                if (e.target.closest('.nav-btn-inline') ||
+                    e.target.closest('.link-btn')) {
+                    return;
+                }
+
+                // Allow touch on flip-back-area for flipping
                 if (e.target.closest('.flip-back-area')) {
                     // Allow this touch to proceed for flipping
+                }
+                // Allow touch on flip-circle (front side)
+                else if (e.target.closest('.flip-circle')) {
+                    // Allow this touch to proceed
+                }
+                // Allow touch on card-front for swiping
+                else if (e.target.closest('.card-front')) {
+                    // Allow this touch to proceed
+                }
+                // Allow touch on card-back for swiping (but not on meaning boxes or other interactive elements)
+                else if (e.target.closest('.card-back')) {
+                    // Don't allow swipe if clicking on interactive elements on back
+                    if (e.target.closest('[onclick]') || e.target.closest('.card-details')) {
+                        return;
+                    }
+                    // Allow swipe from empty areas of card-back
                 } else {
-                    // Don't handle if touch is on buttons, links, or other card-details content
-                    if (e.target.closest('.nav-btn-inline') ||
-                        e.target.closest('.link-btn') ||
-                        e.target.closest('.card-details')) {
-                        return;
-                    }
-
-                    // Only handle touch on the front side (flip-circle or card-front)
-                    if (!e.target.closest('.card-front')) {
-                        return;
-                    }
+                    return;
                 }
 
                 touchStartX = e.touches[0].clientX;
@@ -1993,12 +2014,8 @@
                     hasMoved = true;
                 }
 
-                // Horizontal swipes (correct/incorrect)
+                // Show indicators based on swipe direction (but don't move the card)
                 if (Math.abs(diffX) > Math.abs(diffY) && hasMoved) {
-                    const rotation = diffX / 20; // Rotate based on swipe distance
-                    card.style.transform = `translateX(${diffX}px) rotate(${rotation}deg)`;
-
-                    // Show indicators based on swipe direction
                     if (diffX > 50) {
                         correctIndicator.classList.add('visible');
                         incorrectIndicator.classList.remove('visible');
@@ -2024,6 +2041,16 @@
                 card.classList.remove('swiping');
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
+
+                // If touch started on circle, ONLY allow flipping (no swipes)
+                if (startedOnCircle) {
+                    card.style.transform = '';
+                    // Very permissive tap detection on circle
+                    if (touchDuration < 500 && maxMovement < 150) {
+                        flipCard();
+                    }
+                    return;
+                }
 
                 // Very permissive tap detection for easy flipping:
                 // - Max movement less than 80px total
@@ -2079,13 +2106,39 @@
             }, { passive: true });
         }
 
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', function(e) {
+                // Ignore if typing in an input field
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                    return;
+                }
+
+                // Left arrow = incorrect
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    handleSwipeAction('incorrect');
+                }
+                // Right arrow = correct
+                else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    handleSwipeAction('correct');
+                }
+                // Space or Enter = flip card
+                else if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    flipCard();
+                }
+            });
+        }
+
         function handleSwipeAction(result) {
             const card = document.getElementById('flashcard');
+            const isFlipped = card.classList.contains('flipped');
 
             // Record the result
             recordCardResult(result);
 
-            // Animate the card off screen
+            // Animate the card off screen (maintain flip state during animation)
             if (result === 'correct') {
                 card.classList.add('swipe-correct');
             } else {
@@ -2103,6 +2156,7 @@
                     currentSentenceIndex = 0; // Reset sentence index for new card
                     currentMeaningIndex = 0; // Reset meaning index for new card
                     updateCard();
+                    // Always show front side of next card
                     document.getElementById('flashcard').classList.remove('flipped');
                 } else {
                     // End of deck - show options
@@ -2290,21 +2344,22 @@
 
             document.getElementById('frontWord').textContent = frontText;
 
-            // Build back content
+            // Build back content with lemma in brackets if different
+            let wordDisplay = backWord;
+            if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
+                wordDisplay = `${backWord} <span style="color: var(--accent-amber); font-size: 28px;">(${card.lemma})</span>`;
+            }
+
             let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
                     <div class="flip-back-area" id="flipBackArea">
-                        <div style="font-size: 42px; color: var(--accent-orange); font-weight: bold;">${backWord}</div>
+                        <div style="font-size: 42px; color: var(--accent-orange); font-weight: bold;">${wordDisplay}</div>
                     </div>
                 </div>
             `;
 
             // For multi-meaning cards, show all meanings on the back
             if (card.isMultiMeaning) {
-                // Show lemma if different from word
-                if (card.lemma && card.lemma !== card.targetWord) {
-                    backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-amber);">Lemma:</strong> ${card.lemma}</div>`;
-                }
 
                 backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
                 card.meanings.forEach((m, idx) => {
@@ -2369,13 +2424,19 @@
                 'conjugation': 'Conjugate'
             };
 
-            backHTML += `<div class="links-section">`;
+            backHTML += `<div class="links-section" id="linksSection">`;
+
+            // Add incorrect button on desktop (will be shown/hidden by JS)
+            backHTML += `<button class="link-btn desktop-answer-btn" id="incorrectBtnInline" style="background: var(--error); color: white; display: none;">✗ Incorrect</button>`;
 
             for (const [key, url] of Object.entries(card.links)) {
                 if (key === 'wordReference') continue; // Skip wordReference
                 const label = linkLabels[key] || key;
                 backHTML += `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
             }
+
+            // Add correct button on desktop (will be shown/hidden by JS)
+            backHTML += `<button class="link-btn desktop-answer-btn" id="correctBtnInline" style="background: var(--accent-green); color: white; display: none;">✓ Correct</button>`;
 
             backHTML += `</div>`;
 
@@ -2400,6 +2461,25 @@
             document.getElementById('nextBtnFront').disabled = isNextDisabled;
             document.getElementById('prevBtnBack').disabled = isPrevDisabled;
             document.getElementById('nextBtnBack').disabled = isNextDisabled;
+
+            // Setup inline answer buttons (desktop only)
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            if (!isTouchDevice) {
+                const correctBtnInline = document.getElementById('correctBtnInline');
+                const incorrectBtnInline = document.getElementById('incorrectBtnInline');
+
+                if (correctBtnInline && incorrectBtnInline) {
+                    correctBtnInline.style.display = 'inline-block';
+                    incorrectBtnInline.style.display = 'inline-block';
+
+                    correctBtnInline.onclick = function() {
+                        handleSwipeAction('correct');
+                    };
+                    incorrectBtnInline.onclick = function() {
+                        handleSwipeAction('incorrect');
+                    };
+                }
+            }
         }
 
         function flipCard() {
