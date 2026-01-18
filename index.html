@@ -370,7 +370,7 @@
         }
 
         .card-action-small {
-            padding: 16px 24px;
+            padding: 8px 26px;
             background: #1a1a1a;
             color: var(--text-primary);
             border: 1.5px solid #333333;
@@ -383,8 +383,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 88px;
-            height: 76px;
+            width: 97px;
+            height: 38px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
             transform-style: preserve-3d;
@@ -826,36 +826,36 @@
 
         .level-selector {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-wrap: nowrap;
+            gap: 0;
             justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 4px;
         }
 
         .level-btn {
-            font-family: var(--font-emphasis);
-            padding: 12px 20px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            flex: 0.75;
+            padding: 12px 18px;
+            background: transparent;
+            border: none;
             border-radius: 8px;
-            cursor: pointer;
             font-size: 16px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s;
-            color: var(--text-secondary);
-            min-width: 80px;
+            color: var(--text-muted);
         }
 
         .level-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.1);
             color: var(--text-primary);
         }
 
         .level-btn.selected {
-            background: var(--accent-orange);
-            color: var(--bg-primary);
-            border-color: var(--accent-orange);
-            box-shadow: 0 0 15px var(--glow-orange);
+            background: var(--bg-card);
+            color: var(--accent-orange);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .range-selector {
@@ -950,8 +950,8 @@
         }
 
         .lang-tab {
-            flex: 1;
-            padding: 12px 24px;
+            flex: 0.75;
+            padding: 12px 18px;
             background: transparent;
             border: none;
             border-radius: 8px;
@@ -1465,9 +1465,10 @@
         <div class="file-upload" id="setupPanel">
             <!-- Step 1: Language Selection -->
             <div id="step1" class="setup-step">
-                <div class="step-header">
+                <div class="step-header" style="position: relative;">
                     <span class="step-number">1</span>
                     <span class="step-title">Choose Language</span>
+                    <button id="helpBtn" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--accent-blue); font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s;" title="How to use this app">?</button>
                 </div>
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
@@ -1490,8 +1491,8 @@
                     <span class="step-title">Cards per Set</span>
                 </div>
                 <div id="groupSizeSelector" style="display: flex; gap: 10px; justify-content: center;">
-                    <button class="group-size-btn" data-size="25">25</button>
-                    <button class="group-size-btn selected" data-size="50">50</button>
+                    <button class="group-size-btn selected" data-size="25">25</button>
+                    <button class="group-size-btn" data-size="50">50</button>
                     <button class="group-size-btn" data-size="100">100</button>
                 </div>
             </div>
@@ -1629,6 +1630,30 @@
         </div>
     </div>
 
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>How to Use</h3>
+                <button class="modal-close" id="closeHelpModal">✕</button>
+            </div>
+            <div class="stats-body" style="text-align: left;">
+                <h4 style="color: var(--accent-orange); margin-bottom: 10px;">Setup</h4>
+                <p style="margin-bottom: 15px; line-height: 1.6;">1. <strong>Choose Language</strong> - Select the language you want to study</p>
+                <p style="margin-bottom: 15px; line-height: 1.6;">2. <strong>Choose Level</strong> - Pick your CEFR level (A1-C2)</p>
+                <p style="margin-bottom: 15px; line-height: 1.6;">3. <strong>Cards per Set</strong> - Choose how many cards to study (25/50/100)</p>
+                <p style="margin-bottom: 15px; line-height: 1.6;">4. <strong>Select Ranges</strong> - Pick word frequency ranges to study</p>
+
+                <h4 style="color: var(--accent-orange); margin-top: 20px; margin-bottom: 10px;">Studying</h4>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Tap card</strong> to flip and see translation</p>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Swipe right</strong> if you know the word ✓</p>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Swipe left</strong> if you don't know it ✗</p>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Arrow buttons</strong> to navigate cards</p>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Flag button</strong> to reverse direction (Language → English or English → Language)</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Register service worker for PWA functionality
         if ('serviceWorker' in navigator) {
@@ -1656,7 +1681,7 @@
         let selectedLevel = null;
         let selectedRanges = [];
         let isFlipped = false;
-        let groupSize = 50; // Default group size
+        let groupSize = 25; // Default group size
         let isAppInitialized = false; // Track if event listeners have been set up
 
         // Load configuration
@@ -2316,6 +2341,21 @@
                 }
             });
 
+            // Help button and modal handlers
+            document.getElementById('helpBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showHelpModal();
+            });
+
+            document.getElementById('closeHelpModal').addEventListener('click', hideHelpModal);
+
+            // Click outside help modal to close
+            document.getElementById('helpModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideHelpModal();
+                }
+            });
+
             // Deck complete modal buttons
             document.getElementById('restartAllBtn').addEventListener('click', function() {
                 hideDeckCompleteModal();
@@ -2501,7 +2541,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 29; // 70% of 42 for easier swiping
+                    const edgeSwipeThreshold = 26; // 90% of 29 for even easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
@@ -2513,7 +2553,7 @@
                 }
 
                 // ========== BACK SIDE LOGIC (swipe priority) ==========
-                const backSwipeThreshold = 29; // 70% of 42 for easier swiping on back
+                const backSwipeThreshold = 26; // 90% of 29 for even easier swiping on back
                 const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
                 const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 
@@ -2742,6 +2782,14 @@
 
         function hideStatsModal() {
             document.getElementById('statsModal').classList.add('hidden');
+        }
+
+        function showHelpModal() {
+            document.getElementById('helpModal').classList.remove('hidden');
+        }
+
+        function hideHelpModal() {
+            document.getElementById('helpModal').classList.add('hidden');
         }
 
         function updateStatsModal() {
