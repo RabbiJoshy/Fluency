@@ -1725,17 +1725,37 @@
 
             if (!level) return;
 
-            // Generate range buttons based on groupSize
+            // Find the minimum and maximum word values to generate ALL possible ranges
+            let minWord = Infinity;
+            let maxWord = 0;
+            level.sets.forEach(set => {
+                const [start, end] = set.range.split('-').map(Number);
+                minWord = Math.min(minWord, start);
+                maxWord = Math.max(maxWord, end);
+            });
+
+            // Generate ALL possible range buttons based on groupSize across the full span
             const ranges = [];
+            for (let i = minWord; i < maxWord; i += groupSize) {
+                const rangeEnd = Math.min(i + groupSize, maxWord);
+                ranges.push({
+                    range: `${i}-${rangeEnd}`,
+                    configPath: null,  // Will be set if this range exists in config
+                    format: null
+                });
+            }
+
+            // Now match ranges with their config paths where they exist
             level.sets.forEach(set => {
                 const [start, end] = set.range.split('-').map(Number);
                 for (let i = start; i < end; i += groupSize) {
                     const rangeEnd = Math.min(i + groupSize, end);
-                    ranges.push({
-                        range: `${i}-${rangeEnd}`,
-                        path: set.path,
-                        format: set.format || null
-                    });
+                    const rangeKey = `${i}-${rangeEnd}`;
+                    const existingRange = ranges.find(r => r.range === rangeKey);
+                    if (existingRange) {
+                        existingRange.configPath = set.path;
+                        existingRange.format = set.format || null;
+                    }
                 }
             });
 
@@ -1744,12 +1764,15 @@
             for (const range of ranges) {
                 let available = false;
                 try {
-                    const response = await fetch(range.path);
-                    // Check if response is ok AND has content
-                    if (response.ok) {
-                        const text = await response.text();
-                        // Make sure we got actual content, not an error page
-                        available = text && text.trim().length > 0;
+                    // Only try to fetch if this range has a config path
+                    if (range.configPath) {
+                        const response = await fetch(range.configPath);
+                        // Check if response is ok AND has content
+                        if (response.ok) {
+                            const text = await response.text();
+                            // Make sure we got actual content, not an error page
+                            available = text && text.trim().length > 0;
+                        }
                     }
                 } catch (error) {
                     available = false;
@@ -1767,7 +1790,7 @@
                 return `
                     <button class="range-btn-new ${disabledClass}"
                             data-range="${r.range}"
-                            data-path="${r.path}"
+                            data-path="${r.configPath || ''}"
                             data-format="${r.format || ''}"
                             ${disabledAttr}
                             title="${r.available ? 'Load ' + r.range : 'No data available for ' + r.range}">
@@ -2368,7 +2391,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 80; // Lower threshold for edges
+                    const edgeSwipeThreshold = 56; // 70% of original 80px for easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
@@ -2380,7 +2403,7 @@
                 }
 
                 // ========== BACK SIDE LOGIC (swipe priority) ==========
-                const backSwipeThreshold = 60; // Lower threshold for easier swiping on back
+                const backSwipeThreshold = 42; // 70% of original 60px for easier swiping on back
                 const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
                 const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 
