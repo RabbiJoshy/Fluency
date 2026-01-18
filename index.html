@@ -315,7 +315,7 @@
 
         .card-ranking {
             font-family: var(--font-data);
-            font-size: 14px;
+            font-size: 16px;
             color: var(--text-muted);
             text-align: center;
             letter-spacing: 0.5px;
@@ -370,9 +370,9 @@
         }
 
         .card-action-small {
-            padding: 8px 26px;
-            background: #1a1a1a;
-            color: var(--text-primary);
+            padding: 8px 28px;
+            background: var(--bg-card);
+            color: var(--text-muted);
             border: 1.5px solid #333333;
             border-radius: 6px;
             font-size: 14px;
@@ -383,7 +383,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 97px;
+            width: 107px;
             height: 38px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
@@ -835,12 +835,13 @@
         }
 
         .level-btn {
-            flex: 0.75;
-            padding: 12px 18px;
+            flex: 0 0 auto;
+            min-width: 60px;
+            padding: 10px 14px;
             background: transparent;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -867,16 +868,16 @@
 
         .range-btn-new {
             font-family: var(--font-data);
-            padding: 12px 18px;
+            padding: 10px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.3s;
             color: var(--accent-blue);
-            min-width: 90px;
+            min-width: 81px;
         }
 
         .range-btn-new:hover {
@@ -947,15 +948,33 @@
             background: var(--bg-tertiary);
             border-radius: 12px;
             padding: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+        }
+
+        .language-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .language-tabs::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .language-tabs::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
         }
 
         .lang-tab {
-            flex: 0.75;
-            padding: 12px 18px;
+            flex: 0 0 auto;
+            min-width: 60px;
+            padding: 10px 14px;
             background: transparent;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -1083,15 +1102,15 @@
 
         .group-size-btn {
             font-family: var(--font-data);
-            padding: 12px 24px;
+            padding: 10px 20px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
             transition: all 0.3s;
-            min-width: 60px;
+            min-width: 54px;
             color: var(--text-secondary);
         }
 
