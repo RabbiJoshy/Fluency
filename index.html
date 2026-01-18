@@ -2211,12 +2211,13 @@
 
             // Flip on back side
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Don't flip if clicking on buttons or links
+                // Don't flip if clicking on buttons, links, or elements with onclick handlers
                 if (e.target.closest('.nav-btn-inline') ||
                     e.target.closest('.link-btn') ||
                     e.target.closest('.card-action-small') ||
                     e.target.closest('.card-control-btn') ||
-                    e.target.closest('#flipBtn')) {
+                    e.target.closest('#flipBtn') ||
+                    e.target.closest('[onclick]')) {
                     return;
                 }
 
