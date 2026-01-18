@@ -1725,73 +1725,52 @@
 
             if (!level) return;
 
-            // Find the minimum and maximum word values to generate ALL possible ranges
-            let minWord = Infinity;
-            let maxWord = 0;
-            level.sets.forEach(set => {
-                const [start, end] = set.range.split('-').map(Number);
-                minWord = Math.min(minWord, start);
-                maxWord = Math.max(maxWord, end);
-            });
+            // Parse the wordCount range for this level (e.g., "1-800" -> 1, 800)
+            const [minWord, maxWord] = level.wordCount.split('-').map(Number);
+
+            // Load the vocabulary data to check which ranks exist
+            let vocabularyData = [];
+            try {
+                if (langConfig.dataPath) {
+                    const response = await fetch(langConfig.dataPath);
+                    if (response.ok) {
+                        vocabularyData = await response.json();
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load vocabulary data:', error);
+            }
+
+            // Create a Set of all available ranks for fast lookup
+            const availableRanks = new Set(vocabularyData.map(item => item.rank));
 
             // Generate ALL possible range buttons based on groupSize across the full span
             const ranges = [];
             for (let i = minWord; i < maxWord; i += groupSize) {
                 const rangeEnd = Math.min(i + groupSize, maxWord);
+
+                // Check if ANY rank in this range has data
+                let hasData = false;
+                for (let rank = i; rank < rangeEnd; rank++) {
+                    if (availableRanks.has(rank)) {
+                        hasData = true;
+                        break;
+                    }
+                }
+
                 ranges.push({
                     range: `${i}-${rangeEnd}`,
-                    configPath: null,  // Will be set if this range exists in config
-                    format: null
-                });
-            }
-
-            // Now match ranges with their config paths where they exist
-            level.sets.forEach(set => {
-                const [start, end] = set.range.split('-').map(Number);
-                for (let i = start; i < end; i += groupSize) {
-                    const rangeEnd = Math.min(i + groupSize, end);
-                    const rangeKey = `${i}-${rangeEnd}`;
-                    const existingRange = ranges.find(r => r.range === rangeKey);
-                    if (existingRange) {
-                        existingRange.configPath = set.path;
-                        existingRange.format = set.format || null;
-                    }
-                }
-            });
-
-            // Check which ranges have files by trying to fetch them
-            const rangesWithStatus = [];
-            for (const range of ranges) {
-                let available = false;
-                try {
-                    // Only try to fetch if this range has a config path
-                    if (range.configPath) {
-                        const response = await fetch(range.configPath);
-                        // Check if response is ok AND has content
-                        if (response.ok) {
-                            const text = await response.text();
-                            // Make sure we got actual content, not an error page
-                            available = text && text.trim().length > 0;
-                        }
-                    }
-                } catch (error) {
-                    available = false;
-                }
-                rangesWithStatus.push({
-                    ...range,
-                    available: available
+                    available: hasData
                 });
             }
 
             // Generate HTML with disabled state for unavailable ranges
-            const rangesHTML = rangesWithStatus.map(r => {
+            const rangesHTML = ranges.map(r => {
                 const disabledAttr = !r.available ? 'disabled' : '';
                 const disabledClass = !r.available ? 'disabled' : '';
                 return `
                     <button class="range-btn-new ${disabledClass}"
                             data-range="${r.range}"
-                            data-path="${r.configPath || ''}"
-                            data-format="${r.format || ''}"
                             ${disabledAttr}
                             title="${r.available ? 'Load ' + r.range : 'No data available for ' + r.range}">
                         ${r.range}
@@ -1812,18 +1791,86 @@
                         return;
                     }
 
-                    const selectedSet = {
-                        range: this.dataset.range,
-                        path: this.dataset.path,
-                        format: this.dataset.format || null
-                    };
+                    const selectedRange = this.dataset.range;
 
                     document.getElementById('loadingMessage').style.display = 'block';
-                    document.getElementById('loadingMessage').textContent = `Loading ${selectedSet.range}...`;
+                    document.getElementById('loadingMessage').textContent = `Loading ${selectedRange}...`;
 
-                    await loadCSVFiles([selectedSet]);
+                    await loadVocabularyData(selectedRange);
                 });
             });
+        }
+
+        async function loadVocabularyData(rangeString) {
+            // Completely clear all previous data and state
+            flashcards = [];
+            currentIndex = 0;
+            currentSentenceIndex = 0;
+            currentMeaningIndex = 0;
+            isFlipped = false;
+
+            // Reset card flip state
+            const flashcardEl = document.getElementById('flashcard');
+            if (flashcardEl) {
+                flashcardEl.classList.remove('flipped');
+            }
+
+            const langConfig = config.languages[selectedLanguage];
+            const [rangeStart, rangeEnd] = rangeString.split('-').map(Number);
+
+            try {
+                // Load the vocabulary JSON
+                const response = await fetch(langConfig.dataPath);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const vocabularyData = await response.json();
+
+                // Filter vocabulary by rank range
+                const filteredData = vocabularyData.filter(item =>
+                    item.rank >= rangeStart && item.rank < rangeEnd
+                );
+
+                // Convert to flashcards format
+                for (const item of filteredData) {
+                    const card = {
+                        targetWord: item.word,
+                        lemma: item.lemma || '',
+                        rank: item.rank,
+                        meanings: item.meanings.map(m => ({
+                            pos: m.pos,
+                            meaning: m.translation,
+                            percentage: parseFloat(m.frequency),
+                            targetSentence: m.example_spanish,
+                            englishSentence: m.example_english
+                        })),
+                        translation: item.meanings[0].translation,
+                        targetSentence: item.meanings[0].example_spanish,
+                        englishSentence: item.meanings[0].example_english,
+                        links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
+                        isMultiMeaning: true
+                    };
+                    flashcards.push(card);
+                }
+
+                if (flashcards.length === 0) {
+                    alert('No flashcards found in this range. Please try another set.');
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    return;
+                }
+
+                // Successfully loaded data - show cards and hide setup
+                document.getElementById('setupPanel').classList.add('hidden');
+                document.getElementById('appContent').classList.remove('hidden');
+                document.getElementById('loadingMessage').style.display = 'none';
+
+                // Initialize card display
+                updateCard();
+            } catch (error) {
+                console.error(`Failed to load vocabulary data:`, error);
+                document.getElementById('loadingMessage').style.display = 'none';
+                alert(`Error loading ${rangeString}. Please try another set.`);
+            }
         }
 
         async function loadCSVFiles(ranges) {

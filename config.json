@@ -51,59 +51,34 @@
     },
     "spanish": {
       "name": "Spanish",
+      "dataPath": "Data/Spanish/consolidated_vocabulary.json",
       "cefrLevels": [
         {
           "level": "A1",
           "description": "Beginner",
           "comprehension": "~65% of spoken language",
-          "wordCount": "1-200",
-          "sets": [
-            { "range": "1-100", "path": "Spanish New Frmat/1-100_new_format.txt", "format": "multiMeaning" },
-            { "range": "100-200", "path": "Spanish New Frmat/100-200_new_format.txt", "format": "multiMeaning" }
-          ]
+          "wordCount": "1-800"
         },
         {
           "level": "A2",
           "description": "Elementary",
           "comprehension": "~75% of spoken language",
-          "wordCount": "800-1500",
-          "sets": [
-            { "range": "800-900", "path": "Spanish/Vocabulary/Quizlet Sets/800-900.txt" },
-            { "range": "900-1000", "path": "Spanish New Frmat/900-1000_new_format.txt", "format": "multiMeaning" },
-            { "range": "1000-1100", "path": "Spanish/Vocabulary/Quizlet Sets/1000-1100.txt" },
-            { "range": "1100-1200", "path": "Spanish/Vocabulary/Quizlet Sets/1100-1200.txt" },
-            { "range": "1200-1300", "path": "Spanish/Vocabulary/Quizlet Sets/1200-1300.txt" },
-            { "range": "1300-1400", "path": "Spanish/Vocabulary/Quizlet Sets/1300-1400.txt" },
-            { "range": "1400-1500", "path": "Spanish/Vocabulary/Quizlet Sets/1400-1500.txt" }
-          ]
+          "wordCount": "800-1500"
         },
         {
           "level": "B1",
           "description": "Intermediate",
           "comprehension": "~85% of spoken language",
-          "wordCount": "1500-2500",
-          "sets": [
-            { "range": "1500-1600", "path": "Spanish/Vocabulary/Quizlet Sets/1500-1600.txt" },
-            { "range": "1600-1700", "path": "Spanish/Vocabulary/Quizlet Sets/1600-1700.txt" },
-            { "range": "1700-1800", "path": "Spanish/Vocabulary/Quizlet Sets/1700-1800.txt" },
-            { "range": "1800-1900", "path": "Spanish/Vocabulary/Quizlet Sets/1800-1900.txt" },
-            { "range": "1900-2000", "path": "Spanish/Vocabulary/Quizlet Sets/1900-2000.txt" },
-            { "range": "2000-2250", "path": "Spanish/Vocabulary/Quizlet Sets/2000-2250.txt" },
-            { "range": "2250-2500", "path": "Spanish/Vocabulary/Quizlet Sets/2250-2500.txt" }
-          ]
+          "wordCount": "1500-2500"
         },
         {
           "level": "B2",
           "description": "Upper Intermediate",
           "comprehension": "~90% of spoken language",
-          "wordCount": "2500-3000",
-          "sets": [
-            { "range": "2500-2750", "path": "Spanish New Frmat/2500-2750_new_format.txt", "format": "multiMeaning" },
-            { "range": "2750-3000", "path": "Spanish/Vocabulary/Quizlet Sets/2750-3000.txt" }
-          ]
+          "wordCount": "2500-3000"
         }
       ],
-      "fileFormat": "quizlet",
+      "fileFormat": "json",
       "referenceLinks": {
         "wordReference": "https://www.wordreference.com/es/en/translation.asp?spen={word}",
         "spanishDict": "https://www.spanishdict.com/translate/{word}",
