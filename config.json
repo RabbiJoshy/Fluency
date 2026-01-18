@@ -56,16 +56,10 @@
           "level": "A1",
           "description": "Beginner",
           "comprehension": "~65% of spoken language",
-          "wordCount": "0-800",
+          "wordCount": "1-200",
           "sets": [
-            { "range": "0-100", "path": "Spanish New Frmat/1-100_new_format.txt", "format": "multiMeaning" },
-            { "range": "100-200", "path": "Spanish New Frmat/100-200_new_format.txt", "format": "multiMeaning" },
-            { "range": "200-300", "path": "Spanish New Frmat/200-300_new_format.txt", "format": "multiMeaning" },
-            { "range": "300-400", "path": "Spanish New Frmat/300-400_new_format.txt", "format": "multiMeaning" },
-            { "range": "400-500", "path": "Spanish New Frmat/400-500_new_format.txt", "format": "multiMeaning" },
-            { "range": "500-600", "path": "Spanish New Frmat/500-600_new_format.txt", "format": "multiMeaning" },
-            { "range": "600-700", "path": "Spanish New Frmat/600-700_new_format.txt", "format": "multiMeaning" },
-            { "range": "700-800", "path": "Spanish New Frmat/700-800_new_format.txt", "format": "multiMeaning" }
+            { "range": "1-100", "path": "Spanish New Frmat/1-100_new_format.txt", "format": "multiMeaning" },
+            { "range": "100-200", "path": "Spanish New Frmat/100-200_new_format.txt", "format": "multiMeaning" }
           ]
         },
         {

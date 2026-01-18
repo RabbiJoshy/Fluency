@@ -71,6 +71,10 @@
             margin: 0;
             color: var(--text-primary);
             overflow: hidden;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
         }
 
         .container {
@@ -80,7 +84,8 @@
             margin: 0 auto;
             padding: 10px;
             box-sizing: border-box;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -754,6 +759,14 @@
 
         .hidden {
             display: none !important;
+        }
+
+        #appContent {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
         }
 
         /* Setup Steps */
@@ -2488,15 +2501,21 @@
 
         function goBackToSetup() {
             document.getElementById('appContent').classList.add('hidden');
-            document.getElementById('setupPanel').style.display = 'block';
+            document.getElementById('setupPanel').classList.remove('hidden');
 
             // Reset selections
             document.querySelectorAll('.range-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
+            document.querySelectorAll('.range-btn-new').forEach(btn => {
+                btn.classList.remove('selected');
+            });
             selectedRanges = [];
             flashcards = [];
             currentIndex = 0;
+            currentSentenceIndex = 0;
+            currentMeaningIndex = 0;
+            isFlipped = false;
             stats = {
                 studied: new Set(),
                 correct: 0,
