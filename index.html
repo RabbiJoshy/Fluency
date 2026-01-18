@@ -1644,6 +1644,7 @@
         let selectedRanges = [];
         let isFlipped = false;
         let groupSize = 50; // Default group size
+        let isAppInitialized = false; // Track if event listeners have been set up
 
         // Load configuration
         async function loadConfig() {
@@ -1741,8 +1742,12 @@
                 console.error('Failed to load vocabulary data:', error);
             }
 
-            // Create a Set of all available ranks for fast lookup
-            const availableRanks = new Set(vocabularyData.map(item => item.rank));
+            // Create a Set of all available ranks for fast lookup (only non-blank entries)
+            const availableRanks = new Set(
+                vocabularyData
+                    .filter(item => item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0)
+                    .map(item => item.rank)
+            );
 
             // Generate ALL possible range buttons based on groupSize across the full span
             const ranges = [];
@@ -1826,9 +1831,14 @@
                 }
                 const vocabularyData = await response.json();
 
-                // Filter vocabulary by rank range
+                // Filter vocabulary by rank range and exclude blank entries
                 const filteredData = vocabularyData.filter(item =>
-                    item.rank >= rangeStart && item.rank < rangeEnd
+                    item.rank >= rangeStart &&
+                    item.rank < rangeEnd &&
+                    item.word &&
+                    item.word.trim() !== '' &&
+                    item.meanings &&
+                    item.meanings.length > 0
                 );
 
                 // Convert to flashcards format
@@ -1865,7 +1875,7 @@
                 document.getElementById('loadingMessage').style.display = 'none';
 
                 // Initialize card display
-                updateCard();
+                initializeApp();
             } catch (error) {
                 console.error(`Failed to load vocabulary data:`, error);
                 document.getElementById('loadingMessage').style.display = 'none';
@@ -2185,6 +2195,12 @@
 
             // Ensure modal is hidden on initialization
             document.getElementById('statsModal').classList.add('hidden');
+
+            // Only set up event listeners once
+            if (isAppInitialized) {
+                return;
+            }
+            isAppInitialized = true;
 
             // Event listeners
             // Flip button on front
