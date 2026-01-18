@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="" />
+    <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Pish/Pishrawwiki1000.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Pish/Pishrawwiki1000.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Pish/vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768600654930</updated>
       <workItem from="1768600657574" duration="27303000" />
-      <workItem from="1768744143483" duration="12347000" />
+      <workItem from="1768744143483" duration="13683000" />
     </task>
     <servers />
   </component>
