@@ -1644,7 +1644,7 @@
                     selectedLevel = this.dataset.level;
                     // Show steps 3 and 4
                     document.getElementById('step3').style.display = 'block';
-                    renderRangeSelector();
+                    renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                 });
             });
         }
@@ -1657,13 +1657,13 @@
                     groupSize = parseInt(this.dataset.size);
                     // Re-render range selector if a level is selected
                     if (selectedLevel) {
-                        renderRangeSelector();
+                        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                     }
                 });
             });
         }
 
-        function renderRangeSelector() {
+        async function renderRangeSelector() {
             const langConfig = config.languages[selectedLanguage];
             const level = langConfig.cefrLevels.find(l => l.level === selectedLevel);
             const container = document.getElementById('rangeSelector');
@@ -1684,7 +1684,26 @@
                 }
             });
 
-            const rangesHTML = ranges.map(r => `
+            // Filter ranges to only include files that actually exist
+            const validRanges = [];
+            for (const range of ranges) {
+                try {
+                    const response = await fetch(range.path, { method: 'HEAD' });
+                    if (response.ok) {
+                        validRanges.push(range);
+                    }
+                } catch (error) {
+                    // File doesn't exist, skip it
+                }
+            }
+
+            if (validRanges.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px;">No vocabulary sets available for this level.</p>';
+                document.getElementById('step4').style.display = 'block';
+                return;
+            }
+
+            const rangesHTML = validRanges.map(r => `
                 <button class="range-btn-new" data-range="${r.range}" data-path="${r.path}" data-format="${r.format || ''}">
                     ${r.range}
                 </button>
@@ -1711,12 +1730,27 @@
         }
 
         async function loadCSVFiles(ranges) {
+            // Completely clear all previous data and state
             flashcards = [];
+            currentIndex = 0;
+            currentSentenceIndex = 0;
+            currentMeaningIndex = 0;
+            isFlipped = false;
+
+            // Reset card flip state
+            const flashcardEl = document.getElementById('flashcard');
+            if (flashcardEl) {
+                flashcardEl.classList.remove('flipped');
+            }
+
             const langConfig = config.languages[selectedLanguage];
 
             for (const range of ranges) {
                 try {
                     const response = await fetch(range.path);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
                     const fileText = await response.text();
 
                     // Extract starting and ending rank from range (e.g., "0-50" -> 0, 50)
@@ -1733,6 +1767,9 @@
                     }
                 } catch (error) {
                     console.error(`Failed to load ${range.path}:`, error);
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    alert(`Error loading ${range.range}. Please try another set.`);
+                    return;
                 }
             }
 
@@ -1741,6 +1778,14 @@
                 document.getElementById('loadingMessage').style.display = 'none';
                 return;
             }
+
+            // Successfully loaded data - show cards and hide setup
+            document.getElementById('setupPanel').classList.add('hidden');
+            document.getElementById('appContent').classList.remove('hidden');
+            document.getElementById('loadingMessage').style.display = 'none';
+
+            // Initialize card display
+            updateCard();
         }
 
         function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
