@@ -70,7 +70,7 @@
             padding: 0;
             margin: 0;
             color: var(--text-primary);
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         .container {
@@ -80,6 +80,9 @@
             margin: 0 auto;
             padding: 10px;
             box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         @media (min-width: 768px) {
@@ -250,8 +253,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 1px rgba(255, 107, 53, 0.1);
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         @media (max-width: 767px) {
@@ -1391,10 +1393,6 @@
                 font-size: 32px;
             }
 
-            #frequencyDisplay {
-                font-size: 12px;
-                padding: 8px 12px;
-            }
         }
     </style>
 </head>
@@ -1453,7 +1451,7 @@
                 <div class="card-container">
                     <div class="swipe-indicator incorrect" id="incorrectIndicator">✗</div>
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
-                    <div class="card" id="flashcard">
+                    <div class="card" id="flashcard" data-rank="">
                         <div class="card-face card-front">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
@@ -1464,6 +1462,7 @@
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
                                 <div class="card-word" id="frontWord"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
+                                <div class="card-ranking" id="frontRanking"></div>
                             </button>
                             <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 5; pointer-events: none;">
                                 <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">BACK</button>
@@ -1479,8 +1478,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600; text-align: center;"></div>
             </div>
         </div>
     </div>
@@ -2496,11 +2493,21 @@
 
             if (card.isMultiMeaning) {
                 // Multi-meaning format
-                frontText = card.targetWord;
-                backWord = card.targetWord;
-                backTranslation = currentMeaning.meaning;
-                exampleSentence = currentMeaning.targetSentence;
-                exampleTranslation = currentMeaning.englishSentence;
+                if (isFlipped) {
+                    // English → Target language
+                    frontText = currentMeaning.meaning;
+                    backWord = card.targetWord;
+                    backTranslation = currentMeaning.meaning;
+                    exampleSentence = currentMeaning.englishSentence;
+                    exampleTranslation = currentMeaning.targetSentence;
+                } else {
+                    // Target language → English (normal)
+                    frontText = card.targetWord;
+                    backWord = card.targetWord;
+                    backTranslation = currentMeaning.meaning;
+                    exampleSentence = currentMeaning.targetSentence;
+                    exampleTranslation = currentMeaning.englishSentence;
+                }
             } else {
                 // Legacy format - get current sentence from sentences array
                 const currentSentence = card.sentences && card.sentences.length > 0
@@ -2533,6 +2540,23 @@
                 frontLemmaEl.style.display = 'block';
             } else {
                 frontLemmaEl.style.display = 'none';
+            }
+
+            // Store ranking as data attribute on card for console access
+            const flashcardEl = document.getElementById('flashcard');
+            if (card.rank !== undefined) {
+                flashcardEl.setAttribute('data-rank', card.rank + 1);
+            } else {
+                flashcardEl.setAttribute('data-rank', '');
+            }
+
+            // Display ranking on front card
+            const frontRankingEl = document.getElementById('frontRanking');
+            if (card.rank !== undefined) {
+                frontRankingEl.textContent = `Rank: ${card.rank + 1}`;
+                frontRankingEl.style.display = 'block';
+            } else {
+                frontRankingEl.style.display = 'none';
             }
 
             // Build back content with lemma in brackets if different
@@ -2634,14 +2658,6 @@
             document.getElementById('backContent').innerHTML = backHTML;
 
             // Update frequency display
-            const frequencyDisplay = document.getElementById('frequencyDisplay');
-            if (card.rank) {
-                frequencyDisplay.textContent = `#${card.rank}`;
-                frequencyDisplay.style.display = 'block';
-            } else {
-                frequencyDisplay.style.display = 'none';
-            }
-
             stats.studied.add(currentIndex);
             updateStats();
 
