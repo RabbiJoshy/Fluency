@@ -22,6 +22,11 @@ print(f"Working directory: {script_dir}")
 # Define the main vocabulary file
 main_vocab_file = script_dir / "vocabulary.json"
 
+# Check if vocabulary.json exists
+if not main_vocab_file.exists():
+    print(f"ERROR: {main_vocab_file} not found!")
+    exit()
+
 # Load the main vocabulary file
 print(f"Loading main vocabulary file: {main_vocab_file}")
 with open(main_vocab_file, 'r', encoding='utf-8') as f:
@@ -59,10 +64,18 @@ else:
         os.rename(json_file, void_filename)
         print(f"  Renamed {json_file.name} to {void_filename.name}")
 
-    # Save the updated main vocabulary
+    # Rename the original vocabulary.json to void_vocabulary.json
+    void_original = script_dir / "void_vocabulary.json"
+    os.rename(main_vocab_file, void_original)
+    print(f"\nRenamed original vocabulary.json to {void_original.name}")
+
+    # Save the NEW merged vocabulary as vocabulary.json
     with open(main_vocab_file, 'w', encoding='utf-8') as f:
         json.dump(main_vocabulary, f, ensure_ascii=False, indent=2)
 
     print(f"\n✓ Merge complete!")
-    print(f"  Total entries in vocabulary.json: {len(main_vocabulary)}")
-    print(f"  Merged files have been renamed with 'void_' prefix")
+    print(f"  Created NEW vocabulary.json with {len(main_vocabulary)} entries")
+    print(f"  Original files preserved with 'void_' prefix:")
+    print(f"    - void_vocabulary.json (original)")
+    for file in json_files:
+        print(f"    - void_{file.name}")
