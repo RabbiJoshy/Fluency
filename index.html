@@ -1062,6 +1062,20 @@
             transform: scale(0.98);
         }
 
+        #flipBtn {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        #flipBtn:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        #flipBtn:active {
+            opacity: 0.8;
+        }
+
         /* Meaning boxes styles */
         .meanings-container {
             display: flex;
@@ -1321,9 +1335,9 @@
                                 <button class="nav-btn-inline" id="prevBtnFront">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront">→</button>
                             </div>
-                            <div class="flip-circle" id="flipCircle">
+                            <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%;">
                                 <div class="card-word" id="frontWord"></div>
-                            </div>
+                            </button>
                         </div>
                         <div class="card-face card-back">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
@@ -1856,10 +1870,16 @@
             document.getElementById('statsModal').classList.add('hidden');
 
             // Event listeners
-            // Note: flip is handled by touch events for mobile, click for desktop
+            // Flip button on front
+            document.getElementById('flipBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                flipCard();
+            });
+
+            // Flip on back side
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Allow flipping on flip-back-area or flip-circle
-                if (e.target.closest('.flip-back-area') || e.target.closest('.flip-circle')) {
+                // Allow flipping on flip-back-area
+                if (e.target.closest('.flip-back-area')) {
                     flipCard();
                     return;
                 }
@@ -1869,11 +1889,6 @@
                     e.target.closest('.link-btn') ||
                     e.target.closest('.card-details')) {
                     return;
-                }
-
-                // Flip if clicking empty space on front
-                if (e.target.closest('.card-front')) {
-                    flipCard();
                 }
             });
 
@@ -1955,12 +1970,13 @@
             let startedOnCircle = false; // Track if touch started on flip circle
 
             card.addEventListener('touchstart', function(e) {
-                // Check if touch started on flip circle or flip-back-area
-                startedOnCircle = !!(e.target.closest('.flip-circle') || e.target.closest('.flip-back-area'));
+                // Check if touch started on flip button or flip-back-area
+                startedOnCircle = !!(e.target.closest('#flipBtn') || e.target.closest('.flip-back-area'));
 
                 // Don't handle if touch is on buttons, links, or specific interactive elements
                 if (e.target.closest('.nav-btn-inline') ||
-                    e.target.closest('.link-btn')) {
+                    e.target.closest('.link-btn') ||
+                    e.target.closest('.desktop-answer-btn')) {
                     return;
                 }
 
@@ -1968,8 +1984,8 @@
                 if (e.target.closest('.flip-back-area')) {
                     // Allow this touch to proceed for flipping
                 }
-                // Allow touch on flip-circle (front side)
-                else if (e.target.closest('.flip-circle')) {
+                // Allow touch on flip button (front side)
+                else if (e.target.closest('#flipBtn')) {
                     // Allow this touch to proceed
                 }
                 // Allow touch on card-front for swiping
@@ -2014,8 +2030,19 @@
                     hasMoved = true;
                 }
 
-                // Show indicators based on swipe direction (but don't move the card)
+                // Horizontal swipes - move card and show indicators
                 if (Math.abs(diffX) > Math.abs(diffY) && hasMoved) {
+                    const rotation = diffX / 20; // Rotate based on swipe distance
+
+                    // Preserve flip state when moving card
+                    const isFlipped = card.classList.contains('flipped');
+                    if (isFlipped) {
+                        card.style.transform = `translateX(${diffX}px) rotate(${rotation}deg) rotateY(180deg)`;
+                    } else {
+                        card.style.transform = `translateX(${diffX}px) rotate(${rotation}deg)`;
+                    }
+
+                    // Show indicators based on swipe direction
                     if (diffX > 50) {
                         correctIndicator.classList.add('visible');
                         incorrectIndicator.classList.remove('visible');
