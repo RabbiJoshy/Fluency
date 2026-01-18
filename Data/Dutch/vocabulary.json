@@ -1,0 +1,1542 @@
+[
+  {
+    "rank": 1,
+    "word": "ik",
+    "lemma": "ik",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "I",
+        "frequency": "1.0",
+        "example_dutch": "Ik ben hier.",
+        "example_english": "I am here."
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "word": "je",
+    "lemma": "je",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you",
+        "frequency": "0.92",
+        "example_dutch": "Je bent niet hier.",
+        "example_english": "You are not here."
+      },
+      {
+        "pos": "PRON",
+        "translation": "your",
+        "frequency": "0.08",
+        "example_dutch": "Dat is je boek.",
+        "example_english": "That is your book."
+      }
+    ]
+  },
+  {
+    "rank": 3,
+    "word": "het",
+    "lemma": "het",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "the",
+        "frequency": "0.85",
+        "example_dutch": "Het is een boek.",
+        "example_english": "It is a book."
+      },
+      {
+        "pos": "PRON",
+        "translation": "it",
+        "frequency": "0.15",
+        "example_dutch": "Ik heb het niet.",
+        "example_english": "I don't have it."
+      }
+    ]
+  },
+  {
+    "rank": 4,
+    "word": "de",
+    "lemma": "de",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "the",
+        "frequency": "1.0",
+        "example_dutch": "De man is hier.",
+        "example_english": "The man is here."
+      }
+    ]
+  },
+  {
+    "rank": 5,
+    "word": "dat",
+    "lemma": "dat",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "that",
+        "frequency": "0.70",
+        "example_dutch": "Dat is niet goed.",
+        "example_english": "That is not good."
+      },
+      {
+        "pos": "CONJ",
+        "translation": "that",
+        "frequency": "0.30",
+        "example_dutch": "Ik weet dat je hier bent.",
+        "example_english": "I know that you are here."
+      }
+    ]
+  },
+  {
+    "rank": 6,
+    "word": "is",
+    "lemma": "zijn",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "is",
+        "frequency": "1.0",
+        "example_dutch": "Hij is een man.",
+        "example_english": "He is a man."
+      }
+    ]
+  },
+  {
+    "rank": 7,
+    "word": "een",
+    "lemma": "een",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "a/an",
+        "frequency": "0.90",
+        "example_dutch": "Dat is een boek.",
+        "example_english": "That is a book."
+      },
+      {
+        "pos": "NUM",
+        "translation": "one",
+        "frequency": "0.10",
+        "example_dutch": "Ik heb een kind.",
+        "example_english": "I have one child."
+      }
+    ]
+  },
+  {
+    "rank": 8,
+    "word": "niet",
+    "lemma": "niet",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "not",
+        "frequency": "1.0",
+        "example_dutch": "Het is niet waar.",
+        "example_english": "It is not true."
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "word": "en",
+    "lemma": "en",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "and",
+        "frequency": "1.0",
+        "example_dutch": "Jij en ik zijn hier.",
+        "example_english": "You and I are here."
+      }
+    ]
+  },
+  {
+    "rank": 10,
+    "word": "wat",
+    "lemma": "wat",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "what",
+        "frequency": "0.85",
+        "example_dutch": "Wat is dat?",
+        "example_english": "What is that?"
+      },
+      {
+        "pos": "DET",
+        "translation": "some",
+        "frequency": "0.15",
+        "example_dutch": "Ik heb wat tijd.",
+        "example_english": "I have some time."
+      }
+    ]
+  },
+  {
+    "rank": 11,
+    "word": "van",
+    "lemma": "van",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "of/from",
+        "frequency": "1.0",
+        "example_dutch": "Dat is het huis van mijn vader.",
+        "example_english": "That is my father's house."
+      }
+    ]
+  },
+  {
+    "rank": 12,
+    "word": "we",
+    "lemma": "we",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "we",
+        "frequency": "1.0",
+        "example_dutch": "We zijn hier niet.",
+        "example_english": "We are not here."
+      }
+    ]
+  },
+  {
+    "rank": 13,
+    "word": "in",
+    "lemma": "in",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "in",
+        "frequency": "1.0",
+        "example_dutch": "Hij is in het huis.",
+        "example_english": "He is in the house."
+      }
+    ]
+  },
+  {
+    "rank": 14,
+    "word": "ze",
+    "lemma": "ze",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "they/she",
+        "frequency": "0.70",
+        "example_dutch": "Ze zijn in de stad.",
+        "example_english": "They are in the city."
+      },
+      {
+        "pos": "PRON",
+        "translation": "them",
+        "frequency": "0.30",
+        "example_dutch": "Ik zie ze niet.",
+        "example_english": "I don't see them."
+      }
+    ]
+  },
+  {
+    "rank": 15,
+    "word": "hij",
+    "lemma": "hij",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "he",
+        "frequency": "1.0",
+        "example_dutch": "Hij is niet op het werk.",
+        "example_english": "He is not at work."
+      }
+    ]
+  },
+  {
+    "rank": 16,
+    "word": "op",
+    "lemma": "op",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "on/at",
+        "frequency": "0.75",
+        "example_dutch": "Het is op de tafel.",
+        "example_english": "It is on the table."
+      },
+      {
+        "pos": "ADV",
+        "translation": "up/finished",
+        "frequency": "0.25",
+        "example_dutch": "De tijd is op.",
+        "example_english": "The time is up."
+      }
+    ]
+  },
+  {
+    "rank": 17,
+    "word": "te",
+    "lemma": "te",
+    "meanings": [
+      {
+        "pos": "PART",
+        "translation": "to",
+        "frequency": "0.80",
+        "example_dutch": "Ik ga het doen.",
+        "example_english": "I am going to do it."
+      },
+      {
+        "pos": "ADV",
+        "translation": "too",
+        "frequency": "0.20",
+        "example_dutch": "Het is te laat.",
+        "example_english": "It is too late."
+      }
+    ]
+  },
+  {
+    "rank": 18,
+    "word": "zijn",
+    "lemma": "zijn",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to be/are",
+        "frequency": "0.70",
+        "example_dutch": "We zijn hier.",
+        "example_english": "We are here."
+      },
+      {
+        "pos": "PRON",
+        "translation": "his",
+        "frequency": "0.30",
+        "example_dutch": "Dat is zijn huis.",
+        "example_english": "That is his house."
+      }
+    ]
+  },
+  {
+    "rank": 19,
+    "word": "er",
+    "lemma": "er",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "there",
+        "frequency": "1.0",
+        "example_dutch": "Er is een man in het huis.",
+        "example_english": "There is a man in the house."
+      }
+    ]
+  },
+  {
+    "rank": 20,
+    "word": "maar",
+    "lemma": "maar",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "but",
+        "frequency": "1.0",
+        "example_dutch": "Ik wil gaan, maar ik kan niet.",
+        "example_english": "I want to go, but I cannot."
+      }
+    ]
+  },
+  {
+    "rank": 21,
+    "word": "die",
+    "lemma": "die",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "that/those",
+        "frequency": "0.70",
+        "example_dutch": "Die man is hier.",
+        "example_english": "That man is here."
+      },
+      {
+        "pos": "PRON",
+        "translation": "who/that",
+        "frequency": "0.30",
+        "example_dutch": "De man die hier is.",
+        "example_english": "The man who is here."
+      }
+    ]
+  },
+  {
+    "rank": 22,
+    "word": "heb",
+    "lemma": "hebben",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "have",
+        "frequency": "1.0",
+        "example_dutch": "Ik heb een huis.",
+        "example_english": "I have a house."
+      }
+    ]
+  },
+  {
+    "rank": 23,
+    "word": "me",
+    "lemma": "me",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "me",
+        "frequency": "1.0",
+        "example_dutch": "Hij ziet me niet.",
+        "example_english": "He doesn't see me."
+      }
+    ]
+  },
+  {
+    "rank": 24,
+    "word": "met",
+    "lemma": "met",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "with",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga met je mee.",
+        "example_english": "I go with you."
+      }
+    ]
+  },
+  {
+    "rank": 25,
+    "word": "voor",
+    "lemma": "voor",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "for/before",
+        "frequency": "1.0",
+        "example_dutch": "Dit is voor jou.",
+        "example_english": "This is for you."
+      }
+    ]
+  },
+  {
+    "rank": 26,
+    "word": "als",
+    "lemma": "als",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "if/when",
+        "frequency": "0.70",
+        "example_dutch": "Als je komt, ben ik hier.",
+        "example_english": "If you come, I am here."
+      },
+      {
+        "pos": "PREP",
+        "translation": "as/like",
+        "frequency": "0.30",
+        "example_dutch": "Hij werkt als leraar.",
+        "example_english": "He works as a teacher."
+      }
+    ]
+  },
+  {
+    "rank": 27,
+    "word": "ben",
+    "lemma": "zijn",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "am",
+        "frequency": "1.0",
+        "example_dutch": "Ik ben hier met mijn vader.",
+        "example_english": "I am here with my father."
+      }
+    ]
+  },
+  {
+    "rank": 28,
+    "word": "was",
+    "lemma": "zijn",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "was",
+        "frequency": "1.0",
+        "example_dutch": "Hij was hier voor mij.",
+        "example_english": "He was here for me."
+      }
+    ]
+  },
+  {
+    "rank": 29,
+    "word": "dit",
+    "lemma": "dit",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "this",
+        "frequency": "1.0",
+        "example_dutch": "Dit is mijn huis.",
+        "example_english": "This is my house."
+      }
+    ]
+  },
+  {
+    "rank": 30,
+    "word": "mijn",
+    "lemma": "mijn",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "my",
+        "frequency": "1.0",
+        "example_dutch": "Mijn huis is hier.",
+        "example_english": "My house is here."
+      }
+    ]
+  },
+  {
+    "rank": 31,
+    "word": "om",
+    "lemma": "om",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "around/at",
+        "frequency": "0.60",
+        "example_dutch": "Het is om mij.",
+        "example_english": "It is around me."
+      },
+      {
+        "pos": "PART",
+        "translation": "to",
+        "frequency": "0.40",
+        "example_dutch": "Ik ga om te werken.",
+        "example_english": "I go to work."
+      }
+    ]
+  },
+  {
+    "rank": 32,
+    "word": "aan",
+    "lemma": "aan",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "on/at/to",
+        "frequency": "0.80",
+        "example_dutch": "Ik denk aan jou.",
+        "example_english": "I think of you."
+      },
+      {
+        "pos": "ADV",
+        "translation": "on",
+        "frequency": "0.20",
+        "example_dutch": "Het licht is aan.",
+        "example_english": "The light is on."
+      }
+    ]
+  },
+  {
+    "rank": 33,
+    "word": "jij",
+    "lemma": "jij",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you (emphatic)",
+        "frequency": "1.0",
+        "example_dutch": "Jij bent hier, maar ik niet.",
+        "example_english": "You are here, but I am not."
+      }
+    ]
+  },
+  {
+    "rank": 34,
+    "word": "naar",
+    "lemma": "naar",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "to/towards",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga naar het huis.",
+        "example_english": "I go to the house."
+      }
+    ]
+  },
+  {
+    "rank": 35,
+    "word": "dan",
+    "lemma": "dan",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "then",
+        "frequency": "0.70",
+        "example_dutch": "Als je gaat, dan ga ik ook.",
+        "example_english": "If you go, then I go too."
+      },
+      {
+        "pos": "PREP",
+        "translation": "than",
+        "frequency": "0.30",
+        "example_dutch": "Dit is meer dan dat.",
+        "example_english": "This is more than that."
+      }
+    ]
+  },
+  {
+    "rank": 36,
+    "word": "hier",
+    "lemma": "hier",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "here",
+        "frequency": "1.0",
+        "example_dutch": "Kom hier naar mij.",
+        "example_english": "Come here to me."
+      }
+    ]
+  },
+  {
+    "rank": 37,
+    "word": "weet",
+    "lemma": "weten",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "know",
+        "frequency": "1.0",
+        "example_dutch": "Ik weet dat je hier bent.",
+        "example_english": "I know that you are here."
+      }
+    ]
+  },
+  {
+    "rank": 38,
+    "word": "kan",
+    "lemma": "kunnen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "can",
+        "frequency": "1.0",
+        "example_dutch": "Ik kan niet gaan.",
+        "example_english": "I cannot go."
+      }
+    ]
+  },
+  {
+    "rank": 39,
+    "word": "geen",
+    "lemma": "geen",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "no/not a",
+        "frequency": "1.0",
+        "example_dutch": "Ik heb geen tijd.",
+        "example_english": "I have no time."
+      }
+    ]
+  },
+  {
+    "rank": 40,
+    "word": "nog",
+    "lemma": "nog",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "still/yet",
+        "frequency": "1.0",
+        "example_dutch": "Hij is nog hier.",
+        "example_english": "He is still here."
+      }
+    ]
+  },
+  {
+    "rank": 41,
+    "word": "moet",
+    "lemma": "moeten",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "must/have to",
+        "frequency": "1.0",
+        "example_dutch": "Ik moet nu gaan.",
+        "example_english": "I must go now."
+      }
+    ]
+  },
+  {
+    "rank": 42,
+    "word": "wil",
+    "lemma": "willen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "want",
+        "frequency": "1.0",
+        "example_dutch": "Ik wil hier niet zijn.",
+        "example_english": "I don't want to be here."
+      }
+    ]
+  },
+  {
+    "rank": 43,
+    "word": "wel",
+    "lemma": "wel",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "indeed/well",
+        "frequency": "1.0",
+        "example_dutch": "Dat kan wel, maar het moet niet.",
+        "example_english": "That is possible, but it should not."
+      }
+    ]
+  },
+  {
+    "rank": 44,
+    "word": "ja",
+    "lemma": "ja",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "yes",
+        "frequency": "1.0",
+        "example_dutch": "Ja, ik wil dat wel.",
+        "example_english": "Yes, I want that indeed."
+      }
+    ]
+  },
+  {
+    "rank": 45,
+    "word": "zo",
+    "lemma": "zo",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "so/like this",
+        "frequency": "1.0",
+        "example_dutch": "Het is zo goed.",
+        "example_english": "It is so good."
+      }
+    ]
+  },
+  {
+    "rank": 46,
+    "word": "heeft",
+    "lemma": "hebben",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "has",
+        "frequency": "1.0",
+        "example_dutch": "Hij heeft geen tijd.",
+        "example_english": "He has no time."
+      }
+    ]
+  },
+  {
+    "rank": 47,
+    "word": "hebben",
+    "lemma": "hebben",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to have",
+        "frequency": "1.0",
+        "example_dutch": "We hebben nog tijd.",
+        "example_english": "We still have time."
+      }
+    ]
+  },
+  {
+    "rank": 48,
+    "word": "hem",
+    "lemma": "hem",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "him",
+        "frequency": "1.0",
+        "example_dutch": "Ik zie hem daar.",
+        "example_english": "I see him there."
+      }
+    ]
+  },
+  {
+    "rank": 49,
+    "word": "goed",
+    "lemma": "goed",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "good",
+        "frequency": "0.75",
+        "example_dutch": "Dat is zo goed.",
+        "example_english": "That is so good."
+      },
+      {
+        "pos": "ADV",
+        "translation": "well",
+        "frequency": "0.25",
+        "example_dutch": "Het gaat goed met hem.",
+        "example_english": "It goes well with him."
+      }
+    ]
+  },
+  {
+    "rank": 50,
+    "word": "nee",
+    "lemma": "nee",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "no",
+        "frequency": "1.0",
+        "example_dutch": "Nee, ik wil dat niet.",
+        "example_english": "No, I don't want that."
+      }
+    ]
+  },
+  {
+    "rank": 51,
+    "word": "waar",
+    "lemma": "waar",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "where",
+        "frequency": "0.80",
+        "example_dutch": "Waar is hij nu?",
+        "example_english": "Where is he now?"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "true",
+        "frequency": "0.20",
+        "example_dutch": "Dat is waar.",
+        "example_english": "That is true."
+      }
+    ]
+  },
+  {
+    "rank": 52,
+    "word": "nu",
+    "lemma": "nu",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "now",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga nu naar huis.",
+        "example_english": "I go home now."
+      }
+    ]
+  },
+  {
+    "rank": 53,
+    "word": "hoe",
+    "lemma": "hoe",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "how",
+        "frequency": "1.0",
+        "example_dutch": "Hoe gaat het met je?",
+        "example_english": "How are you doing?"
+      }
+    ]
+  },
+  {
+    "rank": 54,
+    "word": "ga",
+    "lemma": "gaan",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "go",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga nu naar hem.",
+        "example_english": "I go to him now."
+      }
+    ]
+  },
+  {
+    "rank": 55,
+    "word": "haar",
+    "lemma": "haar",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "her",
+        "frequency": "1.0",
+        "example_dutch": "Ik zie haar niet.",
+        "example_english": "I don't see her."
+      }
+    ]
+  },
+  {
+    "rank": 56,
+    "word": "uit",
+    "lemma": "uit",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "out/from",
+        "frequency": "0.70",
+        "example_dutch": "Hij komt uit het huis.",
+        "example_english": "He comes out of the house."
+      },
+      {
+        "pos": "ADV",
+        "translation": "out/off",
+        "frequency": "0.30",
+        "example_dutch": "Het licht is uit.",
+        "example_english": "The light is off."
+      }
+    ]
+  },
+  {
+    "rank": 57,
+    "word": "doen",
+    "lemma": "doen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to do",
+        "frequency": "1.0",
+        "example_dutch": "Wat moet ik nu doen?",
+        "example_english": "What must I do now?"
+      }
+    ]
+  },
+  {
+    "rank": 58,
+    "word": "ook",
+    "lemma": "ook",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "also/too",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga ook uit.",
+        "example_english": "I go out too."
+      }
+    ]
+  },
+  {
+    "rank": 59,
+    "word": "over",
+    "lemma": "over",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "about/over",
+        "frequency": "1.0",
+        "example_dutch": "We moeten over dit doen.",
+        "example_english": "We must do about this."
+      }
+    ]
+  },
+  {
+    "rank": 60,
+    "word": "bent",
+    "lemma": "zijn",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "are",
+        "frequency": "1.0",
+        "example_dutch": "Jij bent nu ook hier.",
+        "example_english": "You are also here now."
+      }
+    ]
+  },
+  {
+    "rank": 61,
+    "word": "mij",
+    "lemma": "mij",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "me",
+        "frequency": "1.0",
+        "example_dutch": "Kom je met mij mee?",
+        "example_english": "Are you coming with me?"
+      }
+    ]
+  },
+  {
+    "rank": 62,
+    "word": "gaan",
+    "lemma": "gaan",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to go",
+        "frequency": "1.0",
+        "example_dutch": "We moeten nu gaan.",
+        "example_english": "We must go now."
+      }
+    ]
+  },
+  {
+    "rank": 63,
+    "word": "of",
+    "lemma": "of",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "or/whether",
+        "frequency": "1.0",
+        "example_dutch": "Wil je dit of dat?",
+        "example_english": "Do you want this or that?"
+      }
+    ]
+  },
+  {
+    "rank": 64,
+    "word": "kom",
+    "lemma": "komen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "come",
+        "frequency": "1.0",
+        "example_dutch": "Kom je ook mee?",
+        "example_english": "Are you also coming?"
+      }
+    ]
+  },
+  {
+    "rank": 65,
+    "word": "zou",
+    "lemma": "zullen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would/should",
+        "frequency": "1.0",
+        "example_dutch": "Dat zou goed zijn.",
+        "example_english": "That would be good."
+      }
+    ]
+  },
+  {
+    "rank": 66,
+    "word": "al",
+    "lemma": "al",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "already",
+        "frequency": "1.0",
+        "example_dutch": "Ik ben al klaar.",
+        "example_english": "I am already ready."
+      }
+    ]
+  },
+  {
+    "rank": 67,
+    "word": "bij",
+    "lemma": "bij",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "at/by/with",
+        "frequency": "1.0",
+        "example_dutch": "Ik ben bij hem.",
+        "example_english": "I am with him."
+      }
+    ]
+  },
+  {
+    "rank": 68,
+    "word": "daar",
+    "lemma": "daar",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "there",
+        "frequency": "1.0",
+        "example_dutch": "Kom daar bij mij.",
+        "example_english": "Come there to me."
+      }
+    ]
+  },
+  {
+    "rank": 69,
+    "word": "ons",
+    "lemma": "ons",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "us/our",
+        "frequency": "1.0",
+        "example_dutch": "Kom je bij ons?",
+        "example_english": "Are you coming to us?"
+      }
+    ]
+  },
+  {
+    "rank": 70,
+    "word": "jullie",
+    "lemma": "jullie",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you (plural)",
+        "frequency": "1.0",
+        "example_dutch": "Waar zijn jullie nu?",
+        "example_english": "Where are you now?"
+      }
+    ]
+  },
+  {
+    "rank": 71,
+    "word": "hebt",
+    "lemma": "hebben",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "have",
+        "frequency": "1.0",
+        "example_dutch": "Jullie hebt geen tijd.",
+        "example_english": "You have no time."
+      }
+    ]
+  },
+  {
+    "rank": 72,
+    "word": "gaat",
+    "lemma": "gaan",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "goes/going",
+        "frequency": "1.0",
+        "example_dutch": "Hij gaat daar nu heen.",
+        "example_english": "He is going there now."
+      }
+    ]
+  },
+  {
+    "rank": 73,
+    "word": "iets",
+    "lemma": "iets",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "something",
+        "frequency": "1.0",
+        "example_dutch": "Er is iets aan de hand.",
+        "example_english": "There is something going on."
+      }
+    ]
+  },
+  {
+    "rank": 74,
+    "word": "zal",
+    "lemma": "zullen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "shall/will",
+        "frequency": "1.0",
+        "example_dutch": "Ik zal het doen.",
+        "example_english": "I will do it."
+      }
+    ]
+  },
+  {
+    "rank": 75,
+    "word": "meer",
+    "lemma": "meer",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "more",
+        "frequency": "1.0",
+        "example_dutch": "Ik wil meer tijd.",
+        "example_english": "I want more time."
+      }
+    ]
+  },
+  {
+    "rank": 76,
+    "word": "waarom",
+    "lemma": "waarom",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "why",
+        "frequency": "1.0",
+        "example_dutch": "Waarom gaat hij nu?",
+        "example_english": "Why is he going now?"
+      }
+    ]
+  },
+  {
+    "rank": 77,
+    "word": "had",
+    "lemma": "hebben",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "had",
+        "frequency": "1.0",
+        "example_dutch": "Ik had meer tijd.",
+        "example_english": "I had more time."
+      }
+    ]
+  },
+  {
+    "rank": 78,
+    "word": "deze",
+    "lemma": "deze",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "this/these",
+        "frequency": "1.0",
+        "example_dutch": "Deze man is goed.",
+        "example_english": "This man is good."
+      }
+    ]
+  },
+  {
+    "rank": 79,
+    "word": "laat",
+    "lemma": "laten",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let/leave",
+        "frequency": "0.70",
+        "example_dutch": "Laat me nu gaan.",
+        "example_english": "Let me go now."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "late",
+        "frequency": "0.30",
+        "example_dutch": "Het is al laat.",
+        "example_english": "It is already late."
+      }
+    ]
+  },
+  {
+    "rank": 80,
+    "word": "moeten",
+    "lemma": "moeten",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to have to/must",
+        "frequency": "1.0",
+        "example_dutch": "We moeten nu gaan.",
+        "example_english": "We must go now."
+      }
+    ]
+  },
+  {
+    "rank": 81,
+    "word": "m'n",
+    "lemma": "mijn",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "my (informal)",
+        "frequency": "1.0",
+        "example_dutch": "Dat is m'n huis.",
+        "example_english": "That is my house."
+      }
+    ]
+  },
+  {
+    "rank": 82,
+    "word": "jou",
+    "lemma": "jou",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you",
+        "frequency": "1.0",
+        "example_dutch": "Ik zie jou daar.",
+        "example_english": "I see you there."
+      }
+    ]
+  },
+  {
+    "rank": 83,
+    "word": "doe",
+    "lemma": "doen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "do",
+        "frequency": "1.0",
+        "example_dutch": "Wat doe je nu?",
+        "example_english": "What are you doing now?"
+      }
+    ]
+  },
+  {
+    "rank": 84,
+    "word": "wie",
+    "lemma": "wie",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "who",
+        "frequency": "1.0",
+        "example_dutch": "Wie is die man?",
+        "example_english": "Who is that man?"
+      }
+    ]
+  },
+  {
+    "rank": 85,
+    "word": "kunnen",
+    "lemma": "kunnen",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "can/to be able",
+        "frequency": "1.0",
+        "example_dutch": "We kunnen het doen.",
+        "example_english": "We can do it."
+      }
+    ]
+  },
+  {
+    "rank": 86,
+    "word": "alles",
+    "lemma": "alles",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "everything",
+        "frequency": "1.0",
+        "example_dutch": "Ik weet alles over jou.",
+        "example_english": "I know everything about you."
+      }
+    ]
+  },
+  {
+    "rank": 87,
+    "word": "denk",
+    "lemma": "denken",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "think",
+        "frequency": "1.0",
+        "example_dutch": "Ik denk dat het goed is.",
+        "example_english": "I think that it is good."
+      }
+    ]
+  },
+  {
+    "rank": 88,
+    "word": "door",
+    "lemma": "door",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "through/by",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga door het huis.",
+        "example_english": "I go through the house."
+      }
+    ]
+  },
+  {
+    "rank": 89,
+    "word": "echt",
+    "lemma": "echt",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "really",
+        "frequency": "0.70",
+        "example_dutch": "Het is echt goed.",
+        "example_english": "It is really good."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "real",
+        "frequency": "0.30",
+        "example_dutch": "Dit is een echt probleem.",
+        "example_english": "This is a real problem."
+      }
+    ]
+  },
+  {
+    "rank": 90,
+    "word": "alleen",
+    "lemma": "alleen",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "only/alone",
+        "frequency": "1.0",
+        "example_dutch": "Ik ben hier nu alleen.",
+        "example_english": "I am alone here now."
+      }
+    ]
+  },
+  {
+    "rank": 91,
+    "word": "oké",
+    "lemma": "oké",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "okay",
+        "frequency": "1.0",
+        "example_dutch": "Oké, ik ga nu.",
+        "example_english": "Okay, I go now."
+      }
+    ]
+  },
+  {
+    "rank": 92,
+    "word": "eens",
+    "lemma": "eens",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "once/sometime",
+        "frequency": "1.0",
+        "example_dutch": "Kom eens hier.",
+        "example_english": "Come here sometime."
+      }
+    ]
+  },
+  {
+    "rank": 93,
+    "word": "dus",
+    "lemma": "dus",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "so/therefore",
+        "frequency": "1.0",
+        "example_dutch": "Ik ben ziek, dus ik ga niet.",
+        "example_english": "I am sick, so I don't go."
+      }
+    ]
+  },
+  {
+    "rank": 94,
+    "word": "weg",
+    "lemma": "weg",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "away",
+        "frequency": "0.70",
+        "example_dutch": "Hij is al weg.",
+        "example_english": "He is already away."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "way/road",
+        "frequency": "0.30",
+        "example_dutch": "De weg is hier.",
+        "example_english": "The road is here."
+      }
+    ]
+  },
+  {
+    "rank": 95,
+    "word": "zien",
+    "lemma": "zien",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to see",
+        "frequency": "1.0",
+        "example_dutch": "Ik kan het nu zien.",
+        "example_english": "I can see it now."
+      }
+    ]
+  },
+  {
+    "rank": 96,
+    "word": "toch",
+    "lemma": "toch",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "still/anyway",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga toch niet.",
+        "example_english": "I'm not going anyway."
+      }
+    ]
+  },
+  {
+    "rank": 97,
+    "word": "man",
+    "lemma": "man",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "man",
+        "frequency": "1.0",
+        "example_dutch": "Die man daar is echt goed.",
+        "example_english": "That man there is really good."
+      }
+    ]
+  },
+  {
+    "rank": 98,
+    "word": "nooit",
+    "lemma": "nooit",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "never",
+        "frequency": "1.0",
+        "example_dutch": "Ik ga daar nooit heen.",
+        "example_english": "I never go there."
+      }
+    ]
+  },
+  {
+    "rank": 99,
+    "word": "terug",
+    "lemma": "terug",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "back",
+        "frequency": "1.0",
+        "example_dutch": "Kom je snel terug?",
+        "example_english": "Are you coming back soon?"
+      }
+    ]
+  },
+  {
+    "rank": 100,
+    "word": "laten",
+    "lemma": "laten",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to let/to leave",
+        "frequency": "1.0",
+        "example_dutch": "We moeten hem dat doen laten.",
+        "example_english": "We must let him do that."
+      }
+    ]
+  }
+]

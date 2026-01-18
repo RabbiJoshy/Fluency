@@ -2889,5 +2889,2826 @@
         "example_english": "According to me, it is true."
       }
     ]
+  },
+  {
+    "rank": 201,
+    "word": "prima",
+    "lemma": "primo",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "first",
+        "frequency": "1.0",
+        "example_italian": "È la prima volta.",
+        "example_english": "It is the first time."
+      }
+    ]
+  },
+  {
+    "rank": 202,
+    "word": "vedo",
+    "lemma": "vedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I see",
+        "frequency": "1.0",
+        "example_italian": "Vedo un bel posto.",
+        "example_english": "I see a beautiful place."
+      }
+    ]
+  },
+  {
+    "rank": 203,
+    "word": "cinque",
+    "lemma": "cinque",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "five",
+        "frequency": "1.0",
+        "example_italian": "Ho cinque libri.",
+        "example_english": "I have five books."
+      }
+    ]
+  },
+  {
+    "rank": 204,
+    "word": "mila",
+    "lemma": "mila",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "thousand",
+        "frequency": "1.0",
+        "example_italian": "Sono due mila persone.",
+        "example_english": "There are two thousand people."
+      }
+    ]
+  },
+  {
+    "rank": 205,
+    "word": "giorni",
+    "lemma": "giorno",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "days",
+        "frequency": "1.0",
+        "example_italian": "Ho tre giorni di lavoro.",
+        "example_english": "I have three days of work."
+      }
+    ]
+  },
+  {
+    "rank": 206,
+    "word": "poco",
+    "lemma": "poco",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "little/few",
+        "frequency": "1.0",
+        "example_italian": "C'è poco tempo.",
+        "example_english": "There is little time."
+      }
+    ]
+  },
+  {
+    "rank": 207,
+    "word": "signore",
+    "lemma": "signore",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "gentleman/sir/lord",
+        "frequency": "1.0",
+        "example_italian": "Il signore è qui.",
+        "example_english": "The gentleman is here."
+      }
+    ]
+  },
+  {
+    "rank": 208,
+    "word": "deve",
+    "lemma": "dovere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "must/has to",
+        "frequency": "1.0",
+        "example_italian": "Lui deve andare ora.",
+        "example_english": "He must go now."
+      }
+    ]
+  },
+  {
+    "rank": 209,
+    "word": "pensa",
+    "lemma": "pensare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "thinks",
+        "frequency": "1.0",
+        "example_italian": "Lei pensa che sia vero.",
+        "example_english": "She thinks it is true."
+      }
+    ]
+  },
+  {
+    "rank": 210,
+    "word": "notte",
+    "lemma": "notte",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "night",
+        "frequency": "1.0",
+        "example_italian": "La notte è bella.",
+        "example_english": "The night is beautiful."
+      }
+    ]
+  },
+  {
+    "rank": 211,
+    "word": "dovere",
+    "lemma": "dovere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to have to/must",
+        "frequency": "1.0",
+        "example_italian": "Posso dovere fare questo.",
+        "example_english": "I may have to do this."
+      }
+    ]
+  },
+  {
+    "rank": 212,
+    "word": "essere",
+    "lemma": "essere",
+    "meanings": [
+      {
+        "pos": "AUX",
+        "translation": "to be (auxiliary)",
+        "frequency": "1.0",
+        "example_italian": "Può essere vero.",
+        "example_english": "It can be true."
+      }
+    ]
+  },
+  {
+    "rank": 213,
+    "word": "forte",
+    "lemma": "forte",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "strong",
+        "frequency": "1.0",
+        "example_italian": "È un uomo forte.",
+        "example_english": "He is a strong man."
+      }
+    ]
+  },
+  {
+    "rank": 214,
+    "word": "guerra",
+    "lemma": "guerra",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "war",
+        "frequency": "1.0",
+        "example_italian": "La guerra è male.",
+        "example_english": "War is bad."
+      }
+    ]
+  },
+  {
+    "rank": 215,
+    "word": "sangue",
+    "lemma": "sangue",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "blood",
+        "frequency": "1.0",
+        "example_italian": "Il sangue è rosso.",
+        "example_english": "Blood is red."
+      }
+    ]
+  },
+  {
+    "rank": 216,
+    "word": "meglio",
+    "lemma": "meglio",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "better",
+        "frequency": "1.0",
+        "example_italian": "È meglio andare ora.",
+        "example_english": "It is better to go now."
+      }
+    ]
+  },
+  {
+    "rank": 217,
+    "word": "miei",
+    "lemma": "mio",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "my (pl)",
+        "frequency": "1.0",
+        "example_italian": "I miei amici sono qui.",
+        "example_english": "My friends are here."
+      }
+    ]
+  },
+  {
+    "rank": 218,
+    "word": "pochi",
+    "lemma": "poco",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "few",
+        "frequency": "1.0",
+        "example_italian": "Ci sono pochi giorni.",
+        "example_english": "There are few days."
+      }
+    ]
+  },
+  {
+    "rank": 219,
+    "word": "stanno",
+    "lemma": "stare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they are/stay",
+        "frequency": "1.0",
+        "example_italian": "Stanno bene.",
+        "example_english": "They are well."
+      }
+    ]
+  },
+  {
+    "rank": 220,
+    "word": "piedi",
+    "lemma": "piede",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "feet",
+        "frequency": "1.0",
+        "example_italian": "I miei piedi sono grandi.",
+        "example_english": "My feet are big."
+      }
+    ]
+  },
+  {
+    "rank": 221,
+    "word": "forza",
+    "lemma": "forza",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "strength/force",
+        "frequency": "1.0",
+        "example_italian": "Ha molta forza.",
+        "example_english": "He/she has much strength."
+      }
+    ]
+  },
+  {
+    "rank": 222,
+    "word": "cose",
+    "lemma": "cosa",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "things",
+        "frequency": "1.0",
+        "example_italian": "Vedo molte cose belle.",
+        "example_english": "I see many beautiful things."
+      }
+    ]
+  },
+  {
+    "rank": 223,
+    "word": "volta",
+    "lemma": "volta",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "time/turn",
+        "frequency": "1.0",
+        "example_italian": "È la seconda volta.",
+        "example_english": "It is the second time."
+      }
+    ]
+  },
+  {
+    "rank": 224,
+    "word": "sopra",
+    "lemma": "sopra",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "above/on",
+        "frequency": "1.0",
+        "example_italian": "Il libro è sopra la porta.",
+        "example_english": "The book is above the door."
+      }
+    ]
+  },
+  {
+    "rank": 225,
+    "word": "gente",
+    "lemma": "gente",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "people",
+        "frequency": "1.0",
+        "example_italian": "C'è molta gente qui.",
+        "example_english": "There are many people here."
+      }
+    ]
+  },
+  {
+    "rank": 226,
+    "word": "prendere",
+    "lemma": "prendere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to take",
+        "frequency": "1.0",
+        "example_italian": "Voglio prendere il libro.",
+        "example_english": "I want to take the book."
+      }
+    ]
+  },
+  {
+    "rank": 227,
+    "word": "molte",
+    "lemma": "molto",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "many (f)",
+        "frequency": "1.0",
+        "example_italian": "Ci sono molte persone.",
+        "example_english": "There are many people."
+      }
+    ]
+  },
+  {
+    "rank": 228,
+    "word": "lungo",
+    "lemma": "lungo",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "long",
+        "frequency": "1.0",
+        "example_italian": "È un lungo giorno.",
+        "example_english": "It is a long day."
+      }
+    ]
+  },
+  {
+    "rank": 229,
+    "word": "molta",
+    "lemma": "molto",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "much/many (f)",
+        "frequency": "1.0",
+        "example_italian": "Ho molta forza.",
+        "example_english": "I have much strength."
+      }
+    ]
+  },
+  {
+    "rank": 230,
+    "word": "stare",
+    "lemma": "stare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to stay/be",
+        "frequency": "1.0",
+        "example_italian": "Voglio stare qui.",
+        "example_english": "I want to stay here."
+      }
+    ]
+  },
+  {
+    "rank": 231,
+    "word": "buon",
+    "lemma": "buono",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "good",
+        "frequency": "1.0",
+        "example_italian": "È un buon uomo.",
+        "example_english": "He is a good man."
+      }
+    ]
+  },
+  {
+    "rank": 232,
+    "word": "davanti",
+    "lemma": "davanti",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "in front",
+        "frequency": "1.0",
+        "example_italian": "Sono davanti alla porta.",
+        "example_english": "I am in front of the door."
+      }
+    ]
+  },
+  {
+    "rank": 233,
+    "word": "figli",
+    "lemma": "figlio",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "children/sons",
+        "frequency": "1.0",
+        "example_italian": "I miei figli sono piccoli.",
+        "example_english": "My children are small."
+      }
+    ]
+  },
+  {
+    "rank": 234,
+    "word": "molti",
+    "lemma": "molto",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "many",
+        "frequency": "1.0",
+        "example_italian": "Ci sono molti giorni.",
+        "example_english": "There are many days."
+      }
+    ]
+  },
+  {
+    "rank": 235,
+    "word": "ora",
+    "lemma": "ora",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "now/well",
+        "frequency": "1.0",
+        "example_italian": "Ora, cosa fai?",
+        "example_english": "Now, what do you do?"
+      }
+    ]
+  },
+  {
+    "rank": 236,
+    "word": "amico",
+    "lemma": "amico",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "friend",
+        "frequency": "1.0",
+        "example_italian": "Lui è un buon amico.",
+        "example_english": "He is a good friend."
+      }
+    ]
+  },
+  {
+    "rank": 237,
+    "word": "insieme",
+    "lemma": "insieme",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "together",
+        "frequency": "1.0",
+        "example_italian": "Stiamo insieme.",
+        "example_english": "We are together."
+      }
+    ]
+  },
+  {
+    "rank": 238,
+    "word": "parole",
+    "lemma": "parola",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "words",
+        "frequency": "1.0",
+        "example_italian": "Le tue parole sono vere.",
+        "example_english": "Your words are true."
+      }
+    ]
+  },
+  {
+    "rank": 239,
+    "word": "dieci",
+    "lemma": "dieci",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "ten",
+        "frequency": "1.0",
+        "example_italian": "Ho dieci libri.",
+        "example_english": "I have ten books."
+      }
+    ]
+  },
+  {
+    "rank": 240,
+    "word": "pensare",
+    "lemma": "pensare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to think",
+        "frequency": "1.0",
+        "example_italian": "Voglio pensare a questo.",
+        "example_english": "I want to think about this."
+      }
+    ]
+  },
+  {
+    "rank": 241,
+    "word": "chiamare",
+    "lemma": "chiamare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to call",
+        "frequency": "1.0",
+        "example_italian": "Voglio chiamare mio padre.",
+        "example_english": "I want to call my father."
+      }
+    ]
+  },
+  {
+    "rank": 242,
+    "word": "letto",
+    "lemma": "letto",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "bed",
+        "frequency": "0.60",
+        "example_italian": "Il mio letto è grande.",
+        "example_english": "My bed is big."
+      },
+      {
+        "pos": "VERB",
+        "translation": "read (past)",
+        "frequency": "0.40",
+        "example_italian": "Ho letto il libro.",
+        "example_english": "I read the book."
+      }
+    ]
+  },
+  {
+    "rank": 243,
+    "word": "chiesa",
+    "lemma": "chiesa",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "church",
+        "frequency": "1.0",
+        "example_italian": "La chiesa è grande.",
+        "example_english": "The church is big."
+      }
+    ]
+  },
+  {
+    "rank": 244,
+    "word": "parola",
+    "lemma": "parola",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "word",
+        "frequency": "1.0",
+        "example_italian": "Voglio dire una parola.",
+        "example_english": "I want to say a word."
+      }
+    ]
+  },
+  {
+    "rank": 245,
+    "word": "piena",
+    "lemma": "pieno",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "full (f)",
+        "frequency": "1.0",
+        "example_italian": "La casa è piena di gente.",
+        "example_english": "The house is full of people."
+      }
+    ]
+  },
+  {
+    "rank": 246,
+    "word": "stata",
+    "lemma": "stato",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "been (f)",
+        "frequency": "1.0",
+        "example_italian": "Lei è stata qui.",
+        "example_english": "She has been here."
+      }
+    ]
+  },
+  {
+    "rank": 247,
+    "word": "domani",
+    "lemma": "domani",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "tomorrow",
+        "frequency": "1.0",
+        "example_italian": "Vado a casa domani.",
+        "example_english": "I go home tomorrow."
+      }
+    ]
+  },
+  {
+    "rank": 248,
+    "word": "credere",
+    "lemma": "credere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to believe",
+        "frequency": "1.0",
+        "example_italian": "Voglio credere in questo.",
+        "example_english": "I want to believe in this."
+      }
+    ]
+  },
+  {
+    "rank": 249,
+    "word": "tornare",
+    "lemma": "tornare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to return",
+        "frequency": "1.0",
+        "example_italian": "Voglio tornare a casa.",
+        "example_english": "I want to return home."
+      }
+    ]
+  },
+  {
+    "rank": 250,
+    "word": "perso",
+    "lemma": "perdere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "lost",
+        "frequency": "1.0",
+        "example_italian": "Ho perso il mio libro.",
+        "example_english": "I lost my book."
+      }
+    ]
+  },
+  {
+    "rank": 251,
+    "word": "sera",
+    "lemma": "sera",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "evening",
+        "frequency": "1.0",
+        "example_italian": "Torno a casa la sera.",
+        "example_english": "I return home in the evening."
+      }
+    ]
+  },
+  {
+    "rank": 252,
+    "word": "bambini",
+    "lemma": "bambino",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "children",
+        "frequency": "1.0",
+        "example_italian": "I bambini sono piccoli.",
+        "example_english": "The children are small."
+      }
+    ]
+  },
+  {
+    "rank": 253,
+    "word": "preso",
+    "lemma": "prendere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "taken",
+        "frequency": "1.0",
+        "example_italian": "Ho preso il libro.",
+        "example_english": "I took the book."
+      }
+    ]
+  },
+  {
+    "rank": 254,
+    "word": "poche",
+    "lemma": "poco",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "few (f)",
+        "frequency": "1.0",
+        "example_italian": "Ci sono poche persone.",
+        "example_english": "There are few people."
+      }
+    ]
+  },
+  {
+    "rank": 255,
+    "word": "faccia",
+    "lemma": "faccia",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "face",
+        "frequency": "1.0",
+        "example_italian": "La sua faccia è bella.",
+        "example_english": "His/her face is beautiful."
+      }
+    ]
+  },
+  {
+    "rank": 256,
+    "word": "qualcuno",
+    "lemma": "qualcuno",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "someone",
+        "frequency": "1.0",
+        "example_italian": "C'è qualcuno qui?",
+        "example_english": "Is there someone here?"
+      }
+    ]
+  },
+  {
+    "rank": 257,
+    "word": "cuore",
+    "lemma": "cuore",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "heart",
+        "frequency": "1.0",
+        "example_italian": "Il mio cuore è pieno.",
+        "example_english": "My heart is full."
+      }
+    ]
+  },
+  {
+    "rank": 258,
+    "word": "stessa",
+    "lemma": "stesso",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "same (f)",
+        "frequency": "1.0",
+        "example_italian": "È la stessa cosa.",
+        "example_english": "It is the same thing."
+      }
+    ]
+  },
+  {
+    "rank": 259,
+    "word": "voce",
+    "lemma": "voce",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "voice",
+        "frequency": "1.0",
+        "example_italian": "La sua voce è forte.",
+        "example_english": "His/her voice is strong."
+      }
+    ]
+  },
+  {
+    "rank": 260,
+    "word": "trovare",
+    "lemma": "trovare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to find",
+        "frequency": "1.0",
+        "example_italian": "Voglio trovare il libro.",
+        "example_english": "I want to find the book."
+      }
+    ]
+  },
+  {
+    "rank": 261,
+    "word": "buono",
+    "lemma": "buono",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "good",
+        "frequency": "1.0",
+        "example_italian": "È un libro buono.",
+        "example_english": "It is a good book."
+      }
+    ]
+  },
+  {
+    "rank": 262,
+    "word": "ieri",
+    "lemma": "ieri",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "yesterday",
+        "frequency": "1.0",
+        "example_italian": "Sono tornato ieri.",
+        "example_english": "I returned yesterday."
+      }
+    ]
+  },
+  {
+    "rank": 263,
+    "word": "chiamano",
+    "lemma": "chiamare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they call",
+        "frequency": "1.0",
+        "example_italian": "Mi chiamano domani.",
+        "example_english": "They call me tomorrow."
+      }
+    ]
+  },
+  {
+    "rank": 264,
+    "word": "pensato",
+    "lemma": "pensare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "thought",
+        "frequency": "1.0",
+        "example_italian": "Ho pensato a te.",
+        "example_english": "I thought about you."
+      }
+    ]
+  },
+  {
+    "rank": 265,
+    "word": "chiama",
+    "lemma": "chiamare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "calls",
+        "frequency": "1.0",
+        "example_italian": "Lei mi chiama ogni giorno.",
+        "example_english": "She calls me every day."
+      }
+    ]
+  },
+  {
+    "rank": 266,
+    "word": "vieni",
+    "lemma": "venire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you come",
+        "frequency": "1.0",
+        "example_italian": "Quando vieni qui?",
+        "example_english": "When do you come here?"
+      }
+    ]
+  },
+  {
+    "rank": 267,
+    "word": "bambino",
+    "lemma": "bambino",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "child/baby",
+        "frequency": "1.0",
+        "example_italian": "Il bambino è piccolo.",
+        "example_english": "The child is small."
+      }
+    ]
+  },
+  {
+    "rank": 268,
+    "word": "vede",
+    "lemma": "vedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "sees",
+        "frequency": "1.0",
+        "example_italian": "Lei vede la faccia.",
+        "example_english": "She sees the face."
+      }
+    ]
+  },
+  {
+    "rank": 269,
+    "word": "persone",
+    "lemma": "persona",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "people/persons",
+        "frequency": "1.0",
+        "example_italian": "Vedo molte persone qui.",
+        "example_english": "I see many people here."
+      }
+    ]
+  },
+  {
+    "rank": 270,
+    "word": "credere",
+    "lemma": "credere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to believe",
+        "frequency": "1.0",
+        "example_italian": "Posso credere in te.",
+        "example_english": "I can believe in you."
+      }
+    ]
+  },
+  {
+    "rank": 271,
+    "word": "altra",
+    "lemma": "altro",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "another (f)",
+        "frequency": "1.0",
+        "example_italian": "Voglio un'altra cosa.",
+        "example_english": "I want another thing."
+      }
+    ]
+  },
+  {
+    "rank": 272,
+    "word": "vuole",
+    "lemma": "volere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "wants",
+        "frequency": "1.0",
+        "example_italian": "Lei vuole tornare domani.",
+        "example_english": "She wants to return tomorrow."
+      }
+    ]
+  },
+  {
+    "rank": 273,
+    "word": "credo",
+    "lemma": "credere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I believe",
+        "frequency": "1.0",
+        "example_italian": "Credo che sia vero.",
+        "example_english": "I believe it is true."
+      }
+    ]
+  },
+  {
+    "rank": 274,
+    "word": "spalle",
+    "lemma": "spalla",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "shoulders",
+        "frequency": "1.0",
+        "example_italian": "Le mie spalle sono forti.",
+        "example_english": "My shoulders are strong."
+      }
+    ]
+  },
+  {
+    "rank": 275,
+    "word": "visto",
+    "lemma": "vedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "seen",
+        "frequency": "1.0",
+        "example_italian": "Ho visto qualcuno.",
+        "example_english": "I saw someone."
+      }
+    ]
+  },
+  {
+    "rank": 276,
+    "word": "subito",
+    "lemma": "subito",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "immediately/right away",
+        "frequency": "1.0",
+        "example_italian": "Vado via subito.",
+        "example_english": "I go away immediately."
+      }
+    ]
+  },
+  {
+    "rank": 277,
+    "word": "lasciare",
+    "lemma": "lasciare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to leave/let",
+        "frequency": "1.0",
+        "example_italian": "Voglio lasciare questo posto.",
+        "example_english": "I want to leave this place."
+      }
+    ]
+  },
+  {
+    "rank": 278,
+    "word": "vicino",
+    "lemma": "vicino",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "near/close",
+        "frequency": "1.0",
+        "example_italian": "Sono vicino alla chiesa.",
+        "example_english": "I am near the church."
+      }
+    ]
+  },
+  {
+    "rank": 279,
+    "word": "fatto",
+    "lemma": "fatto",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "fact/deed",
+        "frequency": "1.0",
+        "example_italian": "È un fatto vero.",
+        "example_english": "It is a true fact."
+      }
+    ]
+  },
+  {
+    "rank": 280,
+    "word": "luce",
+    "lemma": "luce",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "light",
+        "frequency": "1.0",
+        "example_italian": "C'è molta luce qui.",
+        "example_english": "There is much light here."
+      }
+    ]
+  },
+  {
+    "rank": 281,
+    "word": "chiesto",
+    "lemma": "chiedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "asked",
+        "frequency": "1.0",
+        "example_italian": "Ho chiesto a qualcuno.",
+        "example_english": "I asked someone."
+      }
+    ]
+  },
+  {
+    "rank": 282,
+    "word": "strano",
+    "lemma": "strano",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "strange",
+        "frequency": "1.0",
+        "example_italian": "È un posto strano.",
+        "example_english": "It is a strange place."
+      }
+    ]
+  },
+  {
+    "rank": 283,
+    "word": "signora",
+    "lemma": "signora",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "lady/madam/Mrs.",
+        "frequency": "1.0",
+        "example_italian": "La signora è qui.",
+        "example_english": "The lady is here."
+      }
+    ]
+  },
+  {
+    "rank": 284,
+    "word": "ragazzo",
+    "lemma": "ragazzo",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "boy",
+        "frequency": "1.0",
+        "example_italian": "Il ragazzo è piccolo.",
+        "example_english": "The boy is small."
+      }
+    ]
+  },
+  {
+    "rank": 285,
+    "word": "cade",
+    "lemma": "cadere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "falls",
+        "frequency": "1.0",
+        "example_italian": "Il bambino cade.",
+        "example_english": "The child falls."
+      }
+    ]
+  },
+  {
+    "rank": 286,
+    "word": "stanza",
+    "lemma": "stanza",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "room",
+        "frequency": "1.0",
+        "example_italian": "La stanza è grande.",
+        "example_english": "The room is big."
+      }
+    ]
+  },
+  {
+    "rank": 287,
+    "word": "presto",
+    "lemma": "presto",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "soon/early",
+        "frequency": "1.0",
+        "example_italian": "Torno presto a casa.",
+        "example_english": "I return home soon."
+      }
+    ]
+  },
+  {
+    "rank": 288,
+    "word": "chiede",
+    "lemma": "chiedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "asks",
+        "frequency": "1.0",
+        "example_italian": "Lei chiede una cosa.",
+        "example_english": "She asks for something."
+      }
+    ]
+  },
+  {
+    "rank": 289,
+    "word": "altra",
+    "lemma": "altro",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "other (f)",
+        "frequency": "1.0",
+        "example_italian": "L'altra donna è qui.",
+        "example_english": "The other woman is here."
+      }
+    ]
+  },
+  {
+    "rank": 290,
+    "word": "devi",
+    "lemma": "dovere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you must",
+        "frequency": "1.0",
+        "example_italian": "Devi tornare presto.",
+        "example_english": "You must return soon."
+      }
+    ]
+  },
+  {
+    "rank": 291,
+    "word": "fa",
+    "lemma": "fare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "does/makes",
+        "frequency": "0.70",
+        "example_italian": "Lei fa il lavoro.",
+        "example_english": "She does the work."
+      },
+      {
+        "pos": "ADV",
+        "translation": "ago",
+        "frequency": "0.30",
+        "example_italian": "Tre giorni fa.",
+        "example_english": "Three days ago."
+      }
+    ]
+  },
+  {
+    "rank": 292,
+    "word": "buona",
+    "lemma": "buono",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "good (f)",
+        "frequency": "1.0",
+        "example_italian": "È una buona donna.",
+        "example_english": "She is a good woman."
+      }
+    ]
+  },
+  {
+    "rank": 293,
+    "word": "chiaro",
+    "lemma": "chiaro",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "clear",
+        "frequency": "1.0",
+        "example_italian": "È molto chiaro.",
+        "example_english": "It is very clear."
+      }
+    ]
+  },
+  {
+    "rank": 294,
+    "word": "metà",
+    "lemma": "metà",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "half",
+        "frequency": "1.0",
+        "example_italian": "È la metà del giorno.",
+        "example_english": "It is half the day."
+      }
+    ]
+  },
+  {
+    "rank": 295,
+    "word": "aria",
+    "lemma": "aria",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "air",
+        "frequency": "1.0",
+        "example_italian": "L'aria è buona.",
+        "example_english": "The air is good."
+      }
+    ]
+  },
+  {
+    "rank": 296,
+    "word": "avanti",
+    "lemma": "avanti",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "forward/ahead",
+        "frequency": "1.0",
+        "example_italian": "Vai avanti!",
+        "example_english": "Go forward!"
+      }
+    ]
+  },
+  {
+    "rank": 297,
+    "word": "alto",
+    "lemma": "alto",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "tall/high",
+        "frequency": "1.0",
+        "example_italian": "È un uomo alto.",
+        "example_english": "He is a tall man."
+      }
+    ]
+  },
+  {
+    "rank": 298,
+    "word": "messo",
+    "lemma": "mettere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "put",
+        "frequency": "1.0",
+        "example_italian": "Ho messo il libro qui.",
+        "example_english": "I put the book here."
+      }
+    ]
+  },
+  {
+    "rank": 299,
+    "word": "finestra",
+    "lemma": "finestra",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "window",
+        "frequency": "1.0",
+        "example_italian": "La finestra è aperta.",
+        "example_english": "The window is open."
+      }
+    ]
+  },
+  {
+    "rank": 300,
+    "word": "quasi",
+    "lemma": "quasi",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "almost",
+        "frequency": "1.0",
+        "example_italian": "È quasi pronto.",
+        "example_english": "It is almost ready."
+      }
+    ]
+  },
+  {
+    "rank": 301,
+    "word": "amore",
+    "lemma": "amore",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "love",
+        "frequency": "1.0",
+        "example_italian": "Il mio amore è forte.",
+        "example_english": "My love is strong."
+      }
+    ]
+  },
+  {
+    "rank": 302,
+    "word": "sei",
+    "lemma": "sei",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "six",
+        "frequency": "1.0",
+        "example_italian": "Ho sei libri.",
+        "example_english": "I have six books."
+      }
+    ]
+  },
+  {
+    "rank": 303,
+    "word": "dare",
+    "lemma": "dare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to give",
+        "frequency": "1.0",
+        "example_italian": "Posso dare questo a te.",
+        "example_english": "I can give this to you."
+      }
+    ]
+  },
+  {
+    "rank": 304,
+    "word": "ragazza",
+    "lemma": "ragazza",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "girl",
+        "frequency": "1.0",
+        "example_italian": "La ragazza è bella.",
+        "example_english": "The girl is beautiful."
+      }
+    ]
+  },
+  {
+    "rank": 305,
+    "word": "trenta",
+    "lemma": "trenta",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "thirty",
+        "frequency": "1.0",
+        "example_italian": "Ho trenta anni.",
+        "example_english": "I am thirty years old."
+      }
+    ]
+  },
+  {
+    "rank": 306,
+    "word": "messi",
+    "lemma": "mettere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "put (pl)",
+        "frequency": "1.0",
+        "example_italian": "Ho messi i libri qui.",
+        "example_english": "I put the books here."
+      }
+    ]
+  },
+  {
+    "rank": 307,
+    "word": "preso",
+    "lemma": "prendere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "taken",
+        "frequency": "1.0",
+        "example_italian": "Ho preso l'aria.",
+        "example_english": "I took the air."
+      }
+    ]
+  },
+  {
+    "rank": 308,
+    "word": "venuto",
+    "lemma": "venire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "come",
+        "frequency": "1.0",
+        "example_italian": "Sono venuto qui ieri.",
+        "example_english": "I came here yesterday."
+      }
+    ]
+  },
+  {
+    "rank": 309,
+    "word": "devi",
+    "lemma": "dovere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you must/have to",
+        "frequency": "1.0",
+        "example_italian": "Devi dare questo a lei.",
+        "example_english": "You must give this to her."
+      }
+    ]
+  },
+  {
+    "rank": 310,
+    "word": "persona",
+    "lemma": "persona",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "person",
+        "frequency": "1.0",
+        "example_italian": "Sei una buona persona.",
+        "example_english": "You are a good person."
+      }
+    ]
+  },
+  {
+    "rank": 311,
+    "word": "prende",
+    "lemma": "prendere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "takes",
+        "frequency": "1.0",
+        "example_italian": "Lei prende il libro.",
+        "example_english": "She takes the book."
+      }
+    ]
+  },
+  {
+    "rank": 312,
+    "word": "andato",
+    "lemma": "andare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "gone",
+        "frequency": "1.0",
+        "example_italian": "Sono andato via.",
+        "example_english": "I went away."
+      }
+    ]
+  },
+  {
+    "rank": 313,
+    "word": "risponde",
+    "lemma": "rispondere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "answers",
+        "frequency": "1.0",
+        "example_italian": "Lei risponde alla domanda.",
+        "example_english": "She answers the question."
+      }
+    ]
+  },
+  {
+    "rank": 314,
+    "word": "salute",
+    "lemma": "salute",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "health",
+        "frequency": "1.0",
+        "example_italian": "La mia salute è buona.",
+        "example_english": "My health is good."
+      }
+    ]
+  },
+  {
+    "rank": 315,
+    "word": "venti",
+    "lemma": "venti",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "twenty",
+        "frequency": "1.0",
+        "example_italian": "Ho venti anni.",
+        "example_english": "I am twenty years old."
+      }
+    ]
+  },
+  {
+    "rank": 316,
+    "word": "lungo",
+    "lemma": "lungo",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "along",
+        "frequency": "1.0",
+        "example_italian": "Vado lungo la via.",
+        "example_english": "I go along the street."
+      }
+    ]
+  },
+  {
+    "rank": 317,
+    "word": "vecchio",
+    "lemma": "vecchio",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "old",
+        "frequency": "1.0",
+        "example_italian": "È un vecchio uomo.",
+        "example_english": "He is an old man."
+      }
+    ]
+  },
+  {
+    "rank": 318,
+    "word": "cento",
+    "lemma": "cento",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "hundred",
+        "frequency": "1.0",
+        "example_italian": "Ci sono cento persone.",
+        "example_english": "There are a hundred people."
+      }
+    ]
+  },
+  {
+    "rank": 319,
+    "word": "nero",
+    "lemma": "nero",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "black",
+        "frequency": "1.0",
+        "example_italian": "È un libro nero.",
+        "example_english": "It is a black book."
+      }
+    ]
+  },
+  {
+    "rank": 320,
+    "word": "perdere",
+    "lemma": "perdere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to lose",
+        "frequency": "1.0",
+        "example_italian": "Non voglio perdere il libro.",
+        "example_english": "I don't want to lose the book."
+      }
+    ]
+  },
+  {
+    "rank": 321,
+    "word": "chiedi",
+    "lemma": "chiedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you ask",
+        "frequency": "1.0",
+        "example_italian": "Cosa chiedi?",
+        "example_english": "What do you ask?"
+      }
+    ]
+  },
+  {
+    "rank": 322,
+    "word": "sente",
+    "lemma": "sentire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "feels/hears",
+        "frequency": "1.0",
+        "example_italian": "Lei sente la voce.",
+        "example_english": "She hears the voice."
+      }
+    ]
+  },
+  {
+    "rank": 323,
+    "word": "certo",
+    "lemma": "certo",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "certainly",
+        "frequency": "1.0",
+        "example_italian": "Certo, voglio andare.",
+        "example_english": "Certainly, I want to go."
+      }
+    ]
+  },
+  {
+    "rank": 324,
+    "word": "otto",
+    "lemma": "otto",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "eight",
+        "frequency": "1.0",
+        "example_italian": "Ho otto libri.",
+        "example_english": "I have eight books."
+      }
+    ]
+  },
+  {
+    "rank": 325,
+    "word": "quel",
+    "lemma": "quello",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "that",
+        "frequency": "1.0",
+        "example_italian": "Quel ragazzo è alto.",
+        "example_english": "That boy is tall."
+      }
+    ]
+  },
+  {
+    "rank": 326,
+    "word": "fine",
+    "lemma": "fine",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "end",
+        "frequency": "1.0",
+        "example_italian": "È la fine del giorno.",
+        "example_english": "It is the end of the day."
+      }
+    ]
+  },
+  {
+    "rank": 327,
+    "word": "parli",
+    "lemma": "parlare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you speak",
+        "frequency": "1.0",
+        "example_italian": "Di cosa parli?",
+        "example_english": "What do you speak about?"
+      }
+    ]
+  },
+  {
+    "rank": 328,
+    "word": "strada",
+    "lemma": "strada",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "street/road",
+        "frequency": "1.0",
+        "example_italian": "La strada è lunga.",
+        "example_english": "The street is long."
+      }
+    ]
+  },
+  {
+    "rank": 329,
+    "word": "andata",
+    "lemma": "andare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "gone (f)",
+        "frequency": "1.0",
+        "example_italian": "Lei è andata via.",
+        "example_english": "She went away."
+      }
+    ]
+  },
+  {
+    "rank": 330,
+    "word": "sette",
+    "lemma": "sette",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "seven",
+        "frequency": "1.0",
+        "example_italian": "Ho sette libri.",
+        "example_english": "I have seven books."
+      }
+    ]
+  },
+  {
+    "rank": 331,
+    "word": "bianco",
+    "lemma": "bianco",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "white",
+        "frequency": "1.0",
+        "example_italian": "È una casa bianca.",
+        "example_english": "It is a white house."
+      }
+    ]
+  },
+  {
+    "rank": 332,
+    "word": "chiamato",
+    "lemma": "chiamare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "called",
+        "frequency": "1.0",
+        "example_italian": "Ho chiamato il ragazzo.",
+        "example_english": "I called the boy."
+      }
+    ]
+  },
+  {
+    "rank": 333,
+    "word": "domanda",
+    "lemma": "domanda",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "question",
+        "frequency": "1.0",
+        "example_italian": "Ho una domanda per te.",
+        "example_english": "I have a question for you."
+      }
+    ]
+  },
+  {
+    "rank": 334,
+    "word": "perde",
+    "lemma": "perdere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "loses",
+        "frequency": "1.0",
+        "example_italian": "Lei perde la strada.",
+        "example_english": "She loses the way."
+      }
+    ]
+  },
+  {
+    "rank": 335,
+    "word": "quanti",
+    "lemma": "quanto",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "how many",
+        "frequency": "1.0",
+        "example_italian": "Quanti libri hai?",
+        "example_english": "How many books do you have?"
+      }
+    ]
+  },
+  {
+    "rank": 336,
+    "word": "donna",
+    "lemma": "donna",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "woman",
+        "frequency": "1.0",
+        "example_italian": "La donna è vecchia.",
+        "example_english": "The woman is old."
+      }
+    ]
+  },
+  {
+    "rank": 337,
+    "word": "basta",
+    "lemma": "bastare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "enough/it's enough",
+        "frequency": "1.0",
+        "example_italian": "Basta così!",
+        "example_english": "That's enough!"
+      }
+    ]
+  },
+  {
+    "rank": 338,
+    "word": "domande",
+    "lemma": "domanda",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "questions",
+        "frequency": "1.0",
+        "example_italian": "Ho molte domande.",
+        "example_english": "I have many questions."
+      }
+    ]
+  },
+  {
+    "rank": 339,
+    "word": "risposto",
+    "lemma": "rispondere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "answered",
+        "frequency": "1.0",
+        "example_italian": "Ho risposto alle domande.",
+        "example_english": "I answered the questions."
+      }
+    ]
+  },
+  {
+    "rank": 340,
+    "word": "vero",
+    "lemma": "vero",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "truth",
+        "frequency": "1.0",
+        "example_italian": "Il vero è chiaro.",
+        "example_english": "The truth is clear."
+      }
+    ]
+  },
+  {
+    "rank": 341,
+    "word": "fa",
+    "lemma": "fare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "makes/does",
+        "frequency": "1.0",
+        "example_italian": "Cosa fa il ragazzo?",
+        "example_english": "What does the boy do?"
+      }
+    ]
+  },
+  {
+    "rank": 342,
+    "word": "piedi",
+    "lemma": "piede",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "feet",
+        "frequency": "1.0",
+        "example_italian": "I suoi piedi sono grandi.",
+        "example_english": "His/her feet are big."
+      }
+    ]
+  },
+  {
+    "rank": 343,
+    "word": "vostra",
+    "lemma": "vostro",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "your (pl, f)",
+        "frequency": "1.0",
+        "example_italian": "È la vostra casa.",
+        "example_english": "It is your house."
+      }
+    ]
+  },
+  {
+    "rank": 344,
+    "word": "dato",
+    "lemma": "dare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "given",
+        "frequency": "1.0",
+        "example_italian": "Ho dato il libro a lei.",
+        "example_english": "I gave the book to her."
+      }
+    ]
+  },
+  {
+    "rank": 345,
+    "word": "nulla",
+    "lemma": "nulla",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "nothing",
+        "frequency": "1.0",
+        "example_italian": "Non vedo nulla.",
+        "example_english": "I see nothing."
+      }
+    ]
+  },
+  {
+    "rank": 346,
+    "word": "visto",
+    "lemma": "vedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "seen",
+        "frequency": "1.0",
+        "example_italian": "Non ho visto nulla.",
+        "example_english": "I have seen nothing."
+      }
+    ]
+  },
+  {
+    "rank": 347,
+    "word": "nove",
+    "lemma": "nove",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "nine",
+        "frequency": "1.0",
+        "example_italian": "Ho nove libri.",
+        "example_english": "I have nine books."
+      }
+    ]
+  },
+  {
+    "rank": 348,
+    "word": "gentile",
+    "lemma": "gentile",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "kind/gentle",
+        "frequency": "1.0",
+        "example_italian": "Sei molto gentile.",
+        "example_english": "You are very kind."
+      }
+    ]
+  },
+  {
+    "rank": 349,
+    "word": "pieno",
+    "lemma": "pieno",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "full",
+        "frequency": "1.0",
+        "example_italian": "Il cuore è pieno d'amore.",
+        "example_english": "The heart is full of love."
+      }
+    ]
+  },
+  {
+    "rank": 350,
+    "word": "intorno",
+    "lemma": "intorno",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "around",
+        "frequency": "1.0",
+        "example_italian": "Guardo intorno alla stanza.",
+        "example_english": "I look around the room."
+      }
+    ]
+  },
+  {
+    "rank": 351,
+    "word": "sentire",
+    "lemma": "sentire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to feel/hear",
+        "frequency": "1.0",
+        "example_italian": "Voglio sentire la voce.",
+        "example_english": "I want to hear the voice."
+      }
+    ]
+  },
+  {
+    "rank": 352,
+    "word": "soldi",
+    "lemma": "soldo",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "money",
+        "frequency": "1.0",
+        "example_italian": "Ho molti soldi.",
+        "example_english": "I have much money."
+      }
+    ]
+  },
+  {
+    "rank": 353,
+    "word": "bianca",
+    "lemma": "bianco",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "white (f)",
+        "frequency": "1.0",
+        "example_italian": "È una strada bianca.",
+        "example_english": "It is a white street."
+      }
+    ]
+  },
+  {
+    "rank": 354,
+    "word": "vostro",
+    "lemma": "vostro",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "your (pl, m)",
+        "frequency": "1.0",
+        "example_italian": "È il vostro libro.",
+        "example_english": "It is your book."
+      }
+    ]
+  },
+  {
+    "rank": 355,
+    "word": "rosso",
+    "lemma": "rosso",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "red",
+        "frequency": "1.0",
+        "example_italian": "È un libro rosso.",
+        "example_english": "It is a red book."
+      }
+    ]
+  },
+  {
+    "rank": 356,
+    "word": "scrive",
+    "lemma": "scrivere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "writes",
+        "frequency": "1.0",
+        "example_italian": "Lei scrive una domanda.",
+        "example_english": "She writes a question."
+      }
+    ]
+  },
+  {
+    "rank": 357,
+    "word": "morto",
+    "lemma": "morto",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "dead",
+        "frequency": "1.0",
+        "example_italian": "Il vecchio uomo è morto.",
+        "example_english": "The old man is dead."
+      }
+    ]
+  },
+  {
+    "rank": 358,
+    "word": "centro",
+    "lemma": "centro",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "center",
+        "frequency": "1.0",
+        "example_italian": "Vado al centro della città.",
+        "example_english": "I go to the city center."
+      }
+    ]
+  },
+  {
+    "rank": 359,
+    "word": "scrivere",
+    "lemma": "scrivere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to write",
+        "frequency": "1.0",
+        "example_italian": "Voglio scrivere una lettera.",
+        "example_english": "I want to write a letter."
+      }
+    ]
+  },
+  {
+    "rank": 360,
+    "word": "giovane",
+    "lemma": "giovane",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "young",
+        "frequency": "1.0",
+        "example_italian": "È un giovane ragazzo.",
+        "example_english": "He is a young boy."
+      }
+    ]
+  },
+  {
+    "rank": 361,
+    "word": "vede",
+    "lemma": "vedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "sees",
+        "frequency": "1.0",
+        "example_italian": "Il ragazzo vede la strada.",
+        "example_english": "The boy sees the street."
+      }
+    ]
+  },
+  {
+    "rank": 362,
+    "word": "scritto",
+    "lemma": "scrivere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "written",
+        "frequency": "1.0",
+        "example_italian": "Ho scritto una lettera.",
+        "example_english": "I wrote a letter."
+      }
+    ]
+  },
+  {
+    "rank": 363,
+    "word": "possibile",
+    "lemma": "possibile",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "possible",
+        "frequency": "1.0",
+        "example_italian": "È possibile andare.",
+        "example_english": "It is possible to go."
+      }
+    ]
+  },
+  {
+    "rank": 364,
+    "word": "senti",
+    "lemma": "sentire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you feel/hear",
+        "frequency": "1.0",
+        "example_italian": "Cosa senti?",
+        "example_english": "What do you hear?"
+      }
+    ]
+  },
+  {
+    "rank": 365,
+    "word": "dentro",
+    "lemma": "dentro",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "inside/within",
+        "frequency": "1.0",
+        "example_italian": "Sono dentro il centro.",
+        "example_english": "I am inside the center."
+      }
+    ]
+  },
+  {
+    "rank": 366,
+    "word": "sentito",
+    "lemma": "sentire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "felt/heard",
+        "frequency": "1.0",
+        "example_italian": "Ho sentito una voce.",
+        "example_english": "I heard a voice."
+      }
+    ]
+  },
+  {
+    "rank": 367,
+    "word": "passato",
+    "lemma": "passare",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "past",
+        "frequency": "0.60",
+        "example_italian": "Il passato è finito.",
+        "example_english": "The past is finished."
+      },
+      {
+        "pos": "VERB",
+        "translation": "passed",
+        "frequency": "0.40",
+        "example_italian": "Sono passato per la strada.",
+        "example_english": "I passed through the street."
+      }
+    ]
+  },
+  {
+    "rank": 368,
+    "word": "mettere",
+    "lemma": "mettere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to put",
+        "frequency": "1.0",
+        "example_italian": "Voglio mettere il libro qui.",
+        "example_english": "I want to put the book here."
+      }
+    ]
+  },
+  {
+    "rank": 369,
+    "word": "dieci",
+    "lemma": "dieci",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "ten",
+        "frequency": "1.0",
+        "example_italian": "Sono le dieci.",
+        "example_english": "It is ten o'clock."
+      }
+    ]
+  },
+  {
+    "rank": 370,
+    "word": "proprio",
+    "lemma": "proprio",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "own",
+        "frequency": "1.0",
+        "example_italian": "È il mio proprio libro.",
+        "example_english": "It is my own book."
+      }
+    ]
+  },
+  {
+    "rank": 371,
+    "word": "facile",
+    "lemma": "facile",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "easy",
+        "frequency": "1.0",
+        "example_italian": "È molto facile.",
+        "example_english": "It is very easy."
+      }
+    ]
+  },
+  {
+    "rank": 372,
+    "word": "portare",
+    "lemma": "portare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to bring/carry",
+        "frequency": "1.0",
+        "example_italian": "Voglio portare i soldi.",
+        "example_english": "I want to bring the money."
+      }
+    ]
+  },
+  {
+    "rank": 373,
+    "word": "giorno",
+    "lemma": "giorno",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "day",
+        "frequency": "1.0",
+        "example_italian": "È un bel giorno.",
+        "example_english": "It is a beautiful day."
+      }
+    ]
+  },
+  {
+    "rank": 374,
+    "word": "ragazzi",
+    "lemma": "ragazzo",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "boys",
+        "frequency": "1.0",
+        "example_italian": "I ragazzi sono giovani.",
+        "example_english": "The boys are young."
+      }
+    ]
+  },
+  {
+    "rank": 375,
+    "word": "bella",
+    "lemma": "bello",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "beautiful (f)",
+        "frequency": "1.0",
+        "example_italian": "È una bella ragazza.",
+        "example_english": "She is a beautiful girl."
+      }
+    ]
+  },
+  {
+    "rank": 376,
+    "word": "oro",
+    "lemma": "oro",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "gold",
+        "frequency": "1.0",
+        "example_italian": "L'oro è rosso.",
+        "example_english": "The gold is red."
+      }
+    ]
+  },
+  {
+    "rank": 377,
+    "word": "porte",
+    "lemma": "porta",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "doors",
+        "frequency": "1.0",
+        "example_italian": "Le porte sono bianche.",
+        "example_english": "The doors are white."
+      }
+    ]
+  },
+  {
+    "rank": 378,
+    "word": "mette",
+    "lemma": "mettere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "puts",
+        "frequency": "1.0",
+        "example_italian": "Lei mette il libro qui.",
+        "example_english": "She puts the book here."
+      }
+    ]
+  },
+  {
+    "rank": 379,
+    "word": "trovato",
+    "lemma": "trovare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "found",
+        "frequency": "1.0",
+        "example_italian": "Ho trovato l'oro.",
+        "example_english": "I found the gold."
+      }
+    ]
+  },
+  {
+    "rank": 380,
+    "word": "sole",
+    "lemma": "sole",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sun",
+        "frequency": "1.0",
+        "example_italian": "Il sole è rosso.",
+        "example_english": "The sun is red."
+      }
+    ]
+  },
+  {
+    "rank": 381,
+    "word": "vicino",
+    "lemma": "vicino",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "neighbor",
+        "frequency": "1.0",
+        "example_italian": "Il mio vicino è gentile.",
+        "example_english": "My neighbor is kind."
+      }
+    ]
+  },
+  {
+    "rank": 382,
+    "word": "passare",
+    "lemma": "passare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to pass",
+        "frequency": "1.0",
+        "example_italian": "Voglio passare per il centro.",
+        "example_english": "I want to pass through the center."
+      }
+    ]
+  },
+  {
+    "rank": 383,
+    "word": "porta",
+    "lemma": "portare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "brings/carries",
+        "frequency": "1.0",
+        "example_italian": "Lei porta i soldi.",
+        "example_english": "She brings the money."
+      }
+    ]
+  },
+  {
+    "rank": 384,
+    "word": "chiedere",
+    "lemma": "chiedere",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to ask",
+        "frequency": "1.0",
+        "example_italian": "Voglio chiedere una cosa.",
+        "example_english": "I want to ask something."
+      }
+    ]
+  },
+  {
+    "rank": 385,
+    "word": "posto",
+    "lemma": "porre",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "placed/put",
+        "frequency": "1.0",
+        "example_italian": "Ho posto il libro qui.",
+        "example_english": "I placed the book here."
+      }
+    ]
+  },
+  {
+    "rank": 386,
+    "word": "lasciato",
+    "lemma": "lasciare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "left",
+        "frequency": "1.0",
+        "example_italian": "Ho lasciato i soldi a casa.",
+        "example_english": "I left the money at home."
+      }
+    ]
+  },
+  {
+    "rank": 387,
+    "word": "tuo",
+    "lemma": "tuo",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "your",
+        "frequency": "1.0",
+        "example_italian": "È il tuo libro.",
+        "example_english": "It is your book."
+      }
+    ]
+  },
+  {
+    "rank": 388,
+    "word": "torna",
+    "lemma": "tornare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "returns",
+        "frequency": "1.0",
+        "example_italian": "Lei torna a casa.",
+        "example_english": "She returns home."
+      }
+    ]
+  },
+  {
+    "rank": 389,
+    "word": "male",
+    "lemma": "male",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "evil/harm",
+        "frequency": "1.0",
+        "example_italian": "Il male è nero.",
+        "example_english": "Evil is black."
+      }
+    ]
+  },
+  {
+    "rank": 390,
+    "word": "difficile",
+    "lemma": "difficile",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "difficult",
+        "frequency": "1.0",
+        "example_italian": "È molto difficile.",
+        "example_english": "It is very difficult."
+      }
+    ]
+  },
+  {
+    "rank": 391,
+    "word": "tardi",
+    "lemma": "tardi",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "late",
+        "frequency": "1.0",
+        "example_italian": "Torna tardi a casa.",
+        "example_english": "He/she returns home late."
+      }
+    ]
+  },
+  {
+    "rank": 392,
+    "word": "lontano",
+    "lemma": "lontano",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "far",
+        "frequency": "1.0",
+        "example_italian": "È lontano da qui.",
+        "example_english": "It is far from here."
+      }
+    ]
+  },
+  {
+    "rank": 393,
+    "word": "mano",
+    "lemma": "mano",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hand",
+        "frequency": "1.0",
+        "example_italian": "Prendo la tua mano.",
+        "example_english": "I take your hand."
+      }
+    ]
+  },
+  {
+    "rank": 394,
+    "word": "braccio",
+    "lemma": "braccio",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "arm",
+        "frequency": "1.0",
+        "example_italian": "Il mio braccio è forte.",
+        "example_english": "My arm is strong."
+      }
+    ]
+  },
+  {
+    "rank": 395,
+    "word": "sembra",
+    "lemma": "sembrare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "seems",
+        "frequency": "1.0",
+        "example_italian": "Sembra difficile.",
+        "example_english": "It seems difficult."
+      }
+    ]
+  },
+  {
+    "rank": 396,
+    "word": "vicina",
+    "lemma": "vicino",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "near (f)",
+        "frequency": "1.0",
+        "example_italian": "La casa è vicina.",
+        "example_english": "The house is near."
+      }
+    ]
+  },
+  {
+    "rank": 397,
+    "word": "comincia",
+    "lemma": "cominciare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "begins",
+        "frequency": "1.0",
+        "example_italian": "Il giorno comincia.",
+        "example_english": "The day begins."
+      }
+    ]
+  },
+  {
+    "rank": 398,
+    "word": "importante",
+    "lemma": "importante",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "important",
+        "frequency": "1.0",
+        "example_italian": "È molto importante.",
+        "example_english": "It is very important."
+      }
+    ]
+  },
+  {
+    "rank": 399,
+    "word": "cambiare",
+    "lemma": "cambiare",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to change",
+        "frequency": "1.0",
+        "example_italian": "Voglio cambiare la strada.",
+        "example_english": "I want to change the road."
+      }
+    ]
+  },
+  {
+    "rank": 400,
+    "word": "capire",
+    "lemma": "capire",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to understand",
+        "frequency": "1.0",
+        "example_italian": "Voglio capire questo.",
+        "example_english": "I want to understand this."
+      }
+    ]
   }
 ]
