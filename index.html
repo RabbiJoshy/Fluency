@@ -239,6 +239,12 @@
             transform: rotateY(180deg);
         }
 
+        /* Hide front card controls when flipped */
+        .card.flipped .card-front > div:first-child,
+        .card.flipped .card-front > div:last-child {
+            display: none !important;
+        }
+
         .card-face {
             position: absolute;
             width: 100%;
@@ -2117,6 +2123,15 @@
             }
 
             card.addEventListener('touchstart', function(e) {
+                // Don't handle if touch is on buttons, links, or specific interactive elements
+                if (e.target.closest('.nav-btn-inline') ||
+                    e.target.closest('.link-btn') ||
+                    e.target.closest('.card-control-btn') ||
+                    e.target.closest('.card-action-small') ||
+                    e.target.closest('.desktop-answer-btn')) {
+                    return;
+                }
+
                 // Check if touch started on flip button or flip-back-area
                 startedOnCircle = !!(e.target.closest('#flipBtn') || e.target.closest('.flip-back-area'));
 
@@ -2126,13 +2141,6 @@
                 // Get touch zone for zone-based gesture handling
                 const cardRect = card.getBoundingClientRect();
                 touchZone = getTouchZone(e.touches[0].clientX, cardRect);
-
-                // Don't handle if touch is on buttons, links, or specific interactive elements
-                if (e.target.closest('.nav-btn-inline') ||
-                    e.target.closest('.link-btn') ||
-                    e.target.closest('.desktop-answer-btn')) {
-                    return;
-                }
 
                 // On back side, allow swiping from card-details area (remove the restriction)
                 // Only block actual interactive elements like onclick handlers
