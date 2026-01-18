@@ -316,6 +316,15 @@
         .card.flipped .card-front .nav-btn-inline,
         .card.flipped .card-front .card-action-small {
             transform: rotateY(-180deg);
+            pointer-events: auto;
+        }
+
+        /* Ensure buttons are clickable */
+        .card-control-btn,
+        .nav-btn-inline,
+        .card-action-small {
+            pointer-events: auto;
+            position: relative;
         }
 
         .card-control-btn:hover {
@@ -1446,26 +1455,26 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard">
                         <div class="card-face card-front">
-                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5;">
-                                <button class="nav-btn-inline" id="prevBtnFront">←</button>
-                                <button class="card-control-btn" id="flipDirectionBtn" title="Flip language direction">FLIP</button>
-                                <button class="card-control-btn" id="shuffleBtn" title="Shuffle">SHUFFLE</button>
-                                <button class="nav-btn-inline" id="nextBtnFront">→</button>
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
+                                <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
+                                <button class="card-control-btn" id="flipDirectionBtn" title="Flip language direction" style="pointer-events: auto;">FLIP</button>
+                                <button class="card-control-btn" id="shuffleBtn" title="Shuffle" style="pointer-events: auto;">SHUFFLE</button>
+                                <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
-                            <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%;">
+                            <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
                                 <div class="card-word" id="frontWord"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
                                 <div class="card-ranking" id="frontRanking"></div>
                             </button>
-                            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 5;">
-                                <button class="card-action-small" id="backBtnSmall" title="Back to menu">BACK</button>
-                                <button class="card-action-small" id="statsBtnSmall" title="View stats">STATS</button>
+                            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 5; pointer-events: none;">
+                                <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">BACK</button>
+                                <button class="card-action-small" id="statsBtnSmall" title="View stats" style="pointer-events: auto;">STATS</button>
                             </div>
                         </div>
                         <div class="card-face card-back">
-                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px;">
-                                <button class="nav-btn-inline" id="prevBtnBack">←</button>
-                                <button class="nav-btn-inline" id="nextBtnBack">→</button>
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
+                                <button class="nav-btn-inline" id="prevBtnBack" style="pointer-events: auto;">←</button>
+                                <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
                             </div>
                             <div class="card-details" id="backContent"></div>
                         </div>
@@ -1994,18 +2003,16 @@
 
             // Flip on back side
             document.getElementById('flashcard').addEventListener('click', function(e) {
-                // Allow flipping on flip-back-area
-                if (e.target.closest('.flip-back-area')) {
-                    flipCard();
+                // Don't flip if clicking on buttons or links
+                if (e.target.closest('.nav-btn-inline') ||
+                    e.target.closest('.link-btn') ||
+                    e.target.closest('.card-action-small') ||
+                    e.target.closest('.card-control-btn')) {
                     return;
                 }
 
-                // Don't flip if clicking on buttons, links, or other card-details content
-                if (e.target.closest('.nav-btn-inline') ||
-                    e.target.closest('.link-btn') ||
-                    e.target.closest('.card-details')) {
-                    return;
-                }
+                // Allow flipping anywhere else on the card (including front/back content)
+                flipCard();
             });
 
             // Arrow buttons on the card faces
