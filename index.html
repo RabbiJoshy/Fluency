@@ -1457,8 +1457,8 @@
                         <div class="card-face card-front">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
-                                <button class="card-control-btn" id="flipDirectionBtn" title="Flip language direction" style="pointer-events: auto;">FLIP</button>
-                                <button class="card-control-btn" id="shuffleBtn" title="Shuffle" style="pointer-events: auto;">SHUFFLE</button>
+                                <button class="card-control-btn" id="flipBtnTop" title="Flip card" style="pointer-events: auto;">FLIP</button>
+                                <button class="card-control-btn" id="shuffleBtnTop" title="Shuffle" style="pointer-events: auto;">SHUFFLE</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
@@ -1481,6 +1481,11 @@
                     </div>
                 </div>
 
+                <div style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0;">
+                    <button class="control-action-btn" id="flipDirectionBtn" title="Flip direction">FLIP</button>
+                    <button class="control-action-btn" id="shuffleBtn" title="Shuffle cards">SHUFFLE</button>
+                    <div id="frequencyDisplay" style="font-family: var(--font-data); font-size: 14px; color: var(--accent-amber); padding: 10px 20px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -2007,7 +2012,8 @@
                 if (e.target.closest('.nav-btn-inline') ||
                     e.target.closest('.link-btn') ||
                     e.target.closest('.card-action-small') ||
-                    e.target.closest('.card-control-btn')) {
+                    e.target.closest('.card-control-btn') ||
+                    e.target.closest('#flipBtn')) {
                     return;
                 }
 
@@ -2036,12 +2042,22 @@
                 e.stopPropagation();
                 shuffleCards();
             });
-            document.getElementById('backBtn').addEventListener('click', goBackToSetup);
             document.getElementById('flipDirectionBtn').addEventListener('click', function(e) {
                 e.stopPropagation();
                 flipDirection();
             });
-            document.getElementById('statsBtn').addEventListener('click', showStatsModal);
+
+            // Top card buttons
+            document.getElementById('flipBtnTop').addEventListener('click', function(e) {
+                e.stopPropagation();
+                flipCard();
+            });
+            document.getElementById('shuffleBtnTop').addEventListener('click', function(e) {
+                e.stopPropagation();
+                shuffleCards();
+            });
+
+            // Bottom right card buttons
             document.getElementById('backBtnSmall').addEventListener('click', function(e) {
                 e.stopPropagation();
                 goBackToSetup();
