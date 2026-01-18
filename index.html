@@ -1968,10 +1968,27 @@
             let touchStartTime = 0;
             let maxMovement = 0; // Track maximum movement during touch
             let startedOnCircle = false; // Track if touch started on flip circle
+            let touchZone = null; // Track which zone touch started in
+            let wasFlippedAtStart = false; // Track flip state at touch start
+
+            // Helper to determine touch zone (center vs edges)
+            function getTouchZone(touchX, cardRect) {
+                const relativeX = (touchX - cardRect.left) / cardRect.width;
+                if (relativeX < 0.15) return 'left-edge';
+                if (relativeX > 0.85) return 'right-edge';
+                return 'center';
+            }
 
             card.addEventListener('touchstart', function(e) {
                 // Check if touch started on flip button or flip-back-area
                 startedOnCircle = !!(e.target.closest('#flipBtn') || e.target.closest('.flip-back-area'));
+
+                // Track flip state at start of touch
+                wasFlippedAtStart = card.classList.contains('flipped');
+
+                // Get touch zone for zone-based gesture handling
+                const cardRect = card.getBoundingClientRect();
+                touchZone = getTouchZone(e.touches[0].clientX, cardRect);
 
                 // Don't handle if touch is on buttons, links, or specific interactive elements
                 if (e.target.closest('.nav-btn-inline') ||
@@ -1980,27 +1997,18 @@
                     return;
                 }
 
-                // Allow touch on flip-back-area for flipping
-                if (e.target.closest('.flip-back-area')) {
-                    // Allow this touch to proceed for flipping
-                }
-                // Allow touch on flip button (front side)
-                else if (e.target.closest('#flipBtn')) {
-                    // Allow this touch to proceed
-                }
-                // Allow touch on card-front for swiping
-                else if (e.target.closest('.card-front')) {
-                    // Allow this touch to proceed
-                }
-                // Allow touch on card-back for swiping (but not on meaning boxes or other interactive elements)
-                else if (e.target.closest('.card-back')) {
-                    // Don't allow swipe if clicking on interactive elements on back
-                    if (e.target.closest('[onclick]') || e.target.closest('.card-details')) {
+                // On back side, allow swiping from card-details area (remove the restriction)
+                // Only block actual interactive elements like onclick handlers
+                if (wasFlippedAtStart) {
+                    // Back side: allow swipe from anywhere except buttons/links
+                    // This enables swiping even from card-details area
+                } else {
+                    // Front side: standard handling
+                    if (e.target.closest('.card-front') || e.target.closest('#flipBtn')) {
+                        // Allow touch to proceed
+                    } else {
                         return;
                     }
-                    // Allow swipe from empty areas of card-back
-                } else {
-                    return;
                 }
 
                 touchStartX = e.touches[0].clientX;
@@ -2062,55 +2070,69 @@
 
                 const diffX = currentX - touchStartX;
                 const diffY = currentY - touchStartY;
-                const swipeThreshold = 100;
                 const touchDuration = Date.now() - touchStartTime;
 
                 card.classList.remove('swiping');
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
 
-                // If touch started on circle, ONLY allow flipping (no swipes)
-                if (startedOnCircle) {
-                    card.style.transform = '';
-                    // Very permissive tap detection on circle
-                    if (touchDuration < 500 && maxMovement < 150) {
-                        flipCard();
+                // Reset card transform
+                card.style.transform = '';
+
+                // Tap detection
+                const isTap = (touchDuration < 300 && maxMovement < 50) || (maxMovement < 30);
+
+                // ========== FRONT SIDE LOGIC (flip priority) ==========
+                if (!wasFlippedAtStart) {
+                    // If touch started on flip circle, only allow flipping
+                    if (startedOnCircle) {
+                        if (touchDuration < 500 && maxMovement < 150) {
+                            flipCard();
+                        }
+                        return;
+                    }
+
+                    // Center zone: flip is priority, ignore swipes
+                    if (touchZone === 'center') {
+                        // In center, any tap or small movement = flip
+                        if (isTap || maxMovement < 100) {
+                            flipCard();
+                        }
+                        // Large movements in center are ignored (prevents accidental swipes)
+                        return;
+                    }
+
+                    // Edge zones: swipe takes priority
+                    const edgeSwipeThreshold = 80; // Lower threshold for edges
+                    const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
+
+                    if (isEdgeSwipe) {
+                        handleSwipeAction(diffX > 0 ? 'correct' : 'incorrect');
+                    } else if (isTap) {
+                        flipCard(); // Tap on edge still flips
                     }
                     return;
                 }
 
-                // Very permissive tap detection for easy flipping:
-                // - Max movement less than 80px total
-                // - OR duration less than 300ms regardless of movement
-                const isQuickTap = touchDuration < 300;
-                const isSmallMovement = maxMovement < 80;
-                const isTap = isQuickTap || (isSmallMovement && touchDuration < 800);
-
-                // Check if this was clearly a swipe (intentional directional movement)
-                const isHorizontalSwipe = Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.5;
-                const isVerticalSwipe = Math.abs(diffY) > swipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.5;
+                // ========== BACK SIDE LOGIC (swipe priority) ==========
+                const backSwipeThreshold = 60; // Lower threshold for easier swiping on back
+                const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
+                const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 
                 if (isHorizontalSwipe) {
                     // Horizontal swipe - correct/incorrect
-                    if (diffX > 0) {
-                        handleSwipeAction('correct');
-                    } else {
-                        handleSwipeAction('incorrect');
-                    }
+                    handleSwipeAction(diffX > 0 ? 'correct' : 'incorrect');
                 } else if (isVerticalSwipe) {
                     // Vertical swipe - cycle through meanings for multi-meaning cards
                     const currentCard = flashcards[currentIndex];
                     if (currentCard && currentCard.isMultiMeaning) {
                         if (diffY < 0) {
-                            // Swipe up - next meaning
                             currentMeaningIndex = (currentMeaningIndex + 1) % currentCard.meanings.length;
                         } else {
-                            // Swipe down - previous meaning
                             currentMeaningIndex = (currentMeaningIndex - 1 + currentCard.meanings.length) % currentCard.meanings.length;
                         }
                         updateCard();
                     } else if (currentCard && currentCard.sentences) {
-                        // Legacy: cycle through sentences
                         if (diffY < 0) {
                             currentSentenceIndex = (currentSentenceIndex + 1) % currentCard.sentences.length;
                         } else {
@@ -2118,18 +2140,11 @@
                         }
                         updateCard();
                     }
-                    card.style.transform = '';
-                } else if (isTap) {
-                    // Tap to flip
-                    card.style.transform = '';
+                } else if (startedOnCircle && maxMovement < 50) {
+                    // Only flip back if specifically tapping the flip area
                     flipCard();
-                } else {
-                    // Ambiguous gesture - default to flip if movement was relatively small
-                    card.style.transform = '';
-                    if (maxMovement < 100) {
-                        flipCard();
-                    }
                 }
+                // Other gestures on back side are ignored (prevents accidental flips)
             }, { passive: true });
         }
 
