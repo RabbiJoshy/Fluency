@@ -58,14 +58,14 @@
           "comprehension": "~65% of spoken language",
           "wordCount": "0-800",
           "sets": [
-            { "range": "0-100", "path": "Spanish New/1_100.txt", "format": "multiMeaning" },
-            { "range": "100-200", "path": "Spanish New Frmat/100-200_new_format_1.txt", "format": "multiMeaning" },
-            { "range": "200-300", "path": "Spanish/Vocabulary/Quizlet Sets/200-300.txt" },
-            { "range": "300-400", "path": "Spanish/Vocabulary/Quizlet Sets/300-400.txt" },
-            { "range": "400-500", "path": "Spanish/Vocabulary/Quizlet Sets/400-500.txt" },
-            { "range": "500-600", "path": "Spanish/Vocabulary/Quizlet Sets/500-600.txt" },
-            { "range": "600-700", "path": "Spanish/Vocabulary/Quizlet Sets/600-700.txt" },
-            { "range": "700-800", "path": "Spanish/Vocabulary/Quizlet Sets/700-800.txt" }
+            { "range": "0-100", "path": "Spanish New Frmat/1-100_new_format.txt", "format": "multiMeaning" },
+            { "range": "100-200", "path": "Spanish New Frmat/100-200_new_format.txt", "format": "multiMeaning" },
+            { "range": "200-300", "path": "Spanish New Frmat/200-300_new_format.txt", "format": "multiMeaning" },
+            { "range": "300-400", "path": "Spanish New Frmat/300-400_new_format.txt", "format": "multiMeaning" },
+            { "range": "400-500", "path": "Spanish New Frmat/400-500_new_format.txt", "format": "multiMeaning" },
+            { "range": "500-600", "path": "Spanish New Frmat/500-600_new_format.txt", "format": "multiMeaning" },
+            { "range": "600-700", "path": "Spanish New Frmat/600-700_new_format.txt", "format": "multiMeaning" },
+            { "range": "700-800", "path": "Spanish New Frmat/700-800_new_format.txt", "format": "multiMeaning" }
           ]
         },
         {
@@ -75,7 +75,7 @@
           "wordCount": "800-1500",
           "sets": [
             { "range": "800-900", "path": "Spanish/Vocabulary/Quizlet Sets/800-900.txt" },
-            { "range": "900-1000", "path": "Spanish/Vocabulary/Quizlet Sets/900-1000.txt" },
+            { "range": "900-1000", "path": "Spanish New Frmat/900-1000_new_format.txt", "format": "multiMeaning" },
             { "range": "1000-1100", "path": "Spanish/Vocabulary/Quizlet Sets/1000-1100.txt" },
             { "range": "1100-1200", "path": "Spanish/Vocabulary/Quizlet Sets/1100-1200.txt" },
             { "range": "1200-1300", "path": "Spanish/Vocabulary/Quizlet Sets/1200-1300.txt" },
@@ -104,7 +104,7 @@
           "comprehension": "~90% of spoken language",
           "wordCount": "2500-3000",
           "sets": [
-            { "range": "2500-2750", "path": "Spanish/Vocabulary/Quizlet Sets/2500-2750.txt" },
+            { "range": "2500-2750", "path": "Spanish New Frmat/2500-2750_new_format.txt", "format": "multiMeaning" },
             { "range": "2750-3000", "path": "Spanish/Vocabulary/Quizlet Sets/2750-3000.txt" }
           ]
         }
