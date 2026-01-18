@@ -51,7 +51,7 @@
     },
     "spanish": {
       "name": "Spanish",
-      "dataPath": "Data/Spanish/consolidated_vocabulary.json",
+      "dataPath": "Data/Spanish/vocabulary.json",
       "cefrLevels": [
         {
           "level": "A1",
@@ -84,6 +84,42 @@
         "spanishDict": "https://www.spanishdict.com/translate/{word}",
         "reverso": "https://context.reverso.net/translation/spanish-english/{word}",
         "conjugation": "https://www.spanishdict.com/conjugate/{word}"
+      }
+    },
+    "italian": {
+      "name": "Italian",
+      "dataPath": "Data/Italian/vocabulary.json",
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~65% of spoken language",
+          "wordCount": "1-800"
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1500"
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1500-2500"
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000"
+        }
+      ],
+      "fileFormat": "json",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/iten/{word}",
+        "reverso": "https://context.reverso.net/translation/italian-english/{word}",
+        "conjugation": "https://www.italian-verbs.com/italian-verbs/conjugation.php?verbo={word}"
       }
     }
   }
