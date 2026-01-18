@@ -388,6 +388,8 @@
             letter-spacing: 0.3px;
             text-transform: uppercase;
             transform-style: preserve-3d;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .card-action-small:hover {
@@ -832,6 +834,23 @@
             background: var(--bg-tertiary);
             border-radius: 12px;
             padding: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+        }
+
+        .level-selector::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .level-selector::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .level-selector::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
         }
 
         .level-btn {
@@ -1100,30 +1119,56 @@
             border-color: var(--accent-orange);
         }
 
+        .group-size-selector {
+            display: flex;
+            gap: 0;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+            justify-content: center;
+        }
+
+        .group-size-selector::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .group-size-selector::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .group-size-selector::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
         .group-size-btn {
             font-family: var(--font-data);
-            padding: 10px 20px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            flex: 0 0 auto;
+            padding: 10px 14px;
+            background: transparent;
+            border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s;
-            min-width: 54px;
-            color: var(--text-secondary);
+            min-width: 60px;
+            color: var(--text-muted);
         }
 
         .group-size-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--text-primary);
         }
 
         .group-size-btn.selected {
-            background: var(--accent-orange);
-            color: var(--bg-primary);
-            border-color: var(--accent-orange);
-            box-shadow: 0 0 15px var(--glow-orange);
+            background: var(--bg-card);
+            color: var(--accent-orange);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .cefr-actions {
@@ -1509,7 +1554,7 @@
                     <span class="step-number">3</span>
                     <span class="step-title">Cards per Set</span>
                 </div>
-                <div id="groupSizeSelector" style="display: flex; gap: 10px; justify-content: center;">
+                <div id="groupSizeSelector" class="group-size-selector">
                     <button class="group-size-btn selected" data-size="25">25</button>
                     <button class="group-size-btn" data-size="50">50</button>
                     <button class="group-size-btn" data-size="100">100</button>
