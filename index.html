@@ -245,9 +245,24 @@
         }
 
         /* Hide front card controls when flipped */
-        .card.flipped .card-front > div:first-child,
-        .card.flipped .card-front > div:last-child {
-            display: none !important;
+        .card.flipped .card-front {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .card.flipped .card-back {
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .card-front {
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .card-back {
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .card-face {
@@ -871,6 +886,33 @@
 
         .range-btn-new:active {
             transform: scale(0.95);
+        }
+
+        .range-btn-new.disabled,
+        .range-btn-new:disabled {
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            border-color: var(--border-color);
+            cursor: not-allowed;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .range-btn-new.disabled:hover,
+        .range-btn-new:disabled:hover {
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            border-color: var(--border-color);
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .range-btn-new.disabled:active,
+        .range-btn-new:disabled:active {
+            transform: none;
+            pointer-events: none;
         }
 
         .range-btn {
@@ -1697,37 +1739,56 @@
                 }
             });
 
-            // Filter ranges to only include files that actually exist
-            const validRanges = [];
+            // Check which ranges have files by trying to fetch them
+            const rangesWithStatus = [];
             for (const range of ranges) {
+                let available = false;
                 try {
-                    const response = await fetch(range.path, { method: 'HEAD' });
+                    const response = await fetch(range.path);
+                    // Check if response is ok AND has content
                     if (response.ok) {
-                        validRanges.push(range);
+                        const text = await response.text();
+                        // Make sure we got actual content, not an error page
+                        available = text && text.trim().length > 0;
                     }
                 } catch (error) {
-                    // File doesn't exist, skip it
+                    available = false;
                 }
+                rangesWithStatus.push({
+                    ...range,
+                    available: available
+                });
             }
 
-            if (validRanges.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px;">No vocabulary sets available for this level.</p>';
-                document.getElementById('step4').style.display = 'block';
-                return;
-            }
-
-            const rangesHTML = validRanges.map(r => `
-                <button class="range-btn-new" data-range="${r.range}" data-path="${r.path}" data-format="${r.format || ''}">
-                    ${r.range}
-                </button>
-            `).join('');
+            // Generate HTML with disabled state for unavailable ranges
+            const rangesHTML = rangesWithStatus.map(r => {
+                const disabledAttr = !r.available ? 'disabled' : '';
+                const disabledClass = !r.available ? 'disabled' : '';
+                return `
+                    <button class="range-btn-new ${disabledClass}"
+                            data-range="${r.range}"
+                            data-path="${r.path}"
+                            data-format="${r.format || ''}"
+                            ${disabledAttr}
+                            title="${r.available ? 'Load ' + r.range : 'No data available for ' + r.range}">
+                        ${r.range}
+                    </button>
+                `;
+            }).join('');
 
             container.innerHTML = rangesHTML;
             document.getElementById('step4').style.display = 'block';
 
-            // Add click handlers - clicking a range starts immediately
+            // Add click handlers to ALL buttons
             document.querySelectorAll('.range-btn-new').forEach(btn => {
-                btn.addEventListener('click', async function() {
+                btn.addEventListener('click', async function(e) {
+                    // Prevent disabled buttons from being clicked
+                    if (this.disabled || this.classList.contains('disabled')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return;
+                    }
+
                     const selectedSet = {
                         range: this.dataset.range,
                         path: this.dataset.path,
@@ -2282,14 +2343,15 @@
                 // Reset card transform
                 card.style.transform = '';
 
-                // Tap detection
-                const isTap = (touchDuration < 300 && maxMovement < 50) || (maxMovement < 30);
+                // Tap detection - very strict threshold
+                const isTap = touchDuration < 200 && maxMovement < 15;
+                const isQuickTap = touchDuration < 300 && maxMovement < 30;
 
                 // ========== FRONT SIDE LOGIC (flip priority) ==========
                 if (!wasFlippedAtStart) {
                     // If touch started on flip circle, only allow flipping
                     if (startedOnCircle) {
-                        if (touchDuration < 500 && maxMovement < 150) {
+                        if (touchDuration < 500 && maxMovement < 100) {
                             flipCard();
                         }
                         return;
@@ -2297,11 +2359,11 @@
 
                     // Center zone: flip is priority, ignore swipes
                     if (touchZone === 'center') {
-                        // In center, any tap or small movement = flip
-                        if (isTap || maxMovement < 100) {
+                        // Only flip on clear taps, not on any small movement
+                        if (isTap || isQuickTap) {
                             flipCard();
                         }
-                        // Large movements in center are ignored (prevents accidental swipes)
+                        // Any other movement is ignored (prevents accidental partial swipes)
                         return;
                     }
 
@@ -2500,8 +2562,16 @@
         }
 
         function goBackToSetup() {
-            document.getElementById('appContent').classList.add('hidden');
-            document.getElementById('setupPanel').classList.remove('hidden');
+            // Hide app content, show setup
+            const appContent = document.getElementById('appContent');
+            const setupPanel = document.getElementById('setupPanel');
+
+            appContent.classList.add('hidden');
+            setupPanel.classList.remove('hidden');
+            setupPanel.style.display = 'block';
+
+            // Scroll to top
+            document.querySelector('.container').scrollTop = 0;
 
             // Reset selections
             document.querySelectorAll('.range-btn').forEach(btn => {
@@ -2516,6 +2586,13 @@
             currentSentenceIndex = 0;
             currentMeaningIndex = 0;
             isFlipped = false;
+
+            // Reset card state
+            const flashcardEl = document.getElementById('flashcard');
+            if (flashcardEl) {
+                flashcardEl.classList.remove('flipped');
+            }
+
             stats = {
                 studied: new Set(),
                 correct: 0,
