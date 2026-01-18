@@ -830,7 +830,7 @@
             display: flex;
             flex-wrap: nowrap;
             gap: 0;
-            justify-content: center;
+            justify-content: flex-start;
             background: var(--bg-tertiary);
             border-radius: 12px;
             padding: 4px;
@@ -1166,6 +1166,47 @@
         }
 
         .group-size-btn.selected {
+            background: var(--bg-card);
+            color: var(--accent-orange);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .step-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .step-half {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .step-half .step-header {
+            margin-bottom: 10px;
+        }
+
+        .lemma-toggle-btn {
+            font-family: var(--font-data);
+            flex: 1;
+            padding: 10px 14px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            min-width: 50px;
+            color: var(--text-muted);
+        }
+
+        .lemma-toggle-btn:hover {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--text-primary);
+        }
+
+        .lemma-toggle-btn.selected {
             background: var(--bg-card);
             color: var(--accent-orange);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -1548,23 +1589,37 @@
                 <div id="levelSelector" class="level-selector"></div>
             </div>
 
-            <!-- Step 3: Set Size Selection -->
+            <!-- Step 3: Cards per Set and 1 Card per Lemma (side by side) -->
             <div id="step3" class="setup-step" style="display: none;">
-                <div class="step-header">
-                    <span class="step-number">3</span>
-                    <span class="step-title">Cards per Set</span>
-                </div>
-                <div id="groupSizeSelector" class="group-size-selector">
-                    <button class="group-size-btn selected" data-size="25">25</button>
-                    <button class="group-size-btn" data-size="50">50</button>
-                    <button class="group-size-btn" data-size="100">100</button>
+                <div class="step-row">
+                    <div class="step-half">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <span class="step-title">Cards per Set</span>
+                        </div>
+                        <div id="groupSizeSelector" class="group-size-selector">
+                            <button class="group-size-btn selected" data-size="25">25</button>
+                            <button class="group-size-btn" data-size="50">50</button>
+                            <button class="group-size-btn" data-size="100">100</button>
+                        </div>
+                    </div>
+                    <div class="step-half" id="lemmaToggleContainer" style="display: none;">
+                        <div class="step-header">
+                            <span class="step-number">4</span>
+                            <span class="step-title">1 Card per Lemma</span>
+                        </div>
+                        <div id="lemmaToggleSelector" class="group-size-selector">
+                            <button class="lemma-toggle-btn selected" data-lemma="off">Off</button>
+                            <button class="lemma-toggle-btn" data-lemma="on">On</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Step 4: Range Selection -->
+            <!-- Step 5: Range Selection -->
             <div id="step4" class="setup-step" style="display: none;">
                 <div class="step-header">
-                    <span class="step-number">4</span>
+                    <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
@@ -1746,17 +1801,32 @@
         let selectedRanges = [];
         let isFlipped = false;
         let groupSize = 25; // Default group size
+        let useLemmaMode = false; // Whether to use 1 card per lemma mode
         let isAppInitialized = false; // Track if event listeners have been set up
+        let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
 
         // Load configuration
         async function loadConfig() {
             try {
-                const response = await fetch('config.json');
-                config = await response.json();
+                const [configResponse, cefrResponse] = await Promise.all([
+                    fetch('config.json'),
+                    fetch('cefr_levels.json')
+                ]);
+                config = await configResponse.json();
+                cefrLevelsConfig = await cefrResponse.json();
             } catch (error) {
                 console.error('Failed to load config:', error);
                 alert('Failed to load configuration. Please refresh the page.');
             }
+        }
+
+        // Get the appropriate CEFR levels based on language and lemma mode
+        function getCefrLevels(language) {
+            if (cefrLevelsConfig && cefrLevelsConfig[language]) {
+                return useLemmaMode ? cefrLevelsConfig[language].lemmaMode : cefrLevelsConfig[language].standard;
+            }
+            // Fallback to config.json levels
+            return config.languages[language].cefrLevels;
         }
 
         // Initialize on page load
@@ -1767,6 +1837,8 @@
             selectedLanguage = firstLang;
             renderLevelSelector(firstLang);
             setupGroupSizeSelector();
+            setupLemmaToggle();
+            updateLemmaToggleVisibility();
         });
 
         function renderLanguageTabs() {
@@ -1804,6 +1876,7 @@
                     selectedLanguage = this.dataset.lang;
                     selectedLevel = null;
                     renderLevelSelector(selectedLanguage);
+                    updateLemmaToggleVisibility();
                     // Hide steps 3 and 4
                     document.getElementById('step3').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
@@ -1812,10 +1885,10 @@
         }
 
         function renderLevelSelector(language) {
-            const langConfig = config.languages[language];
             const container = document.getElementById('levelSelector');
+            const cefrLevels = getCefrLevels(language);
 
-            const levelsHTML = langConfig.cefrLevels.map(level => `
+            const levelsHTML = cefrLevels.map(level => `
                 <button class="level-btn" data-level="${level.level}" title="${level.description}">
                     ${level.level}
                 </button>
@@ -1850,9 +1923,48 @@
             });
         }
 
+        function setupLemmaToggle() {
+            document.querySelectorAll('.lemma-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    useLemmaMode = this.dataset.lemma === 'on';
+                    // Re-render level selector with new word counts, and re-render range selector if a level is selected
+                    renderLevelSelector(selectedLanguage);
+                    // Re-select the current level if one was selected
+                    if (selectedLevel) {
+                        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+                        if (levelBtn) {
+                            levelBtn.classList.add('selected');
+                        }
+                        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+                    }
+                });
+            });
+        }
+
+        function updateLemmaToggleVisibility() {
+            const langConfig = config.languages[selectedLanguage];
+            const lemmaContainer = document.getElementById('lemmaToggleContainer');
+            const rangeStepNumber = document.getElementById('rangeStepNumber');
+
+            if (langConfig && langConfig.lemmaDeduplicatedPath) {
+                lemmaContainer.style.display = 'block';
+                rangeStepNumber.textContent = '5';
+            } else {
+                lemmaContainer.style.display = 'none';
+                rangeStepNumber.textContent = '4';
+                // Reset lemma mode when hiding
+                useLemmaMode = false;
+                document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
+                document.querySelector('.lemma-toggle-btn[data-lemma="off"]').classList.add('selected');
+            }
+        }
+
         async function renderRangeSelector() {
             const langConfig = config.languages[selectedLanguage];
-            const level = langConfig.cefrLevels.find(l => l.level === selectedLevel);
+            const cefrLevels = getCefrLevels(selectedLanguage);
+            const level = cefrLevels.find(l => l.level === selectedLevel);
             const container = document.getElementById('rangeSelector');
 
             if (!level) return;
@@ -1860,11 +1972,16 @@
             // Parse the wordCount range for this level (e.g., "1-800" -> 1, 800)
             const [minWord, maxWord] = level.wordCount.split('-').map(Number);
 
+            // Determine which data path to use based on lemma mode
+            const dataPath = useLemmaMode && langConfig.lemmaDeduplicatedPath
+                ? langConfig.lemmaDeduplicatedPath
+                : langConfig.dataPath;
+
             // Load the vocabulary data to check which ranks exist
             let vocabularyData = [];
             try {
-                if (langConfig.dataPath) {
-                    const response = await fetch(langConfig.dataPath);
+                if (dataPath) {
+                    const response = await fetch(dataPath);
                     if (response.ok) {
                         vocabularyData = await response.json();
                     }
@@ -1954,9 +2071,14 @@
             const langConfig = config.languages[selectedLanguage];
             const [rangeStart, rangeEnd] = rangeString.split('-').map(Number);
 
+            // Determine which data path to use based on lemma mode
+            const dataPath = useLemmaMode && langConfig.lemmaDeduplicatedPath
+                ? langConfig.lemmaDeduplicatedPath
+                : langConfig.dataPath;
+
             try {
                 // Load the vocabulary JSON
-                const response = await fetch(langConfig.dataPath);
+                const response = await fetch(dataPath);
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);
                 }
@@ -2605,7 +2727,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 26; // 90% of 29 for even easier swiping
+                    const edgeSwipeThreshold = 23; // Reduced 10% from 26 for even easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
@@ -2617,7 +2739,7 @@
                 }
 
                 // ========== BACK SIDE LOGIC (swipe priority) ==========
-                const backSwipeThreshold = 26; // 90% of 29 for even easier swiping on back
+                const backSwipeThreshold = 23; // Reduced 10% from 26 for even easier swiping on back
                 const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
                 const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 

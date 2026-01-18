@@ -103,6 +103,7 @@
     "spanish": {
       "name": "Spanish",
       "dataPath": "Data/Spanish/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/Spanish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_spanish",
       "exampleEnglishField": "example_english",
       "cefrLevels": [
