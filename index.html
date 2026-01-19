@@ -1212,6 +1212,69 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
+        .step-help-btn {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .step-help-btn:hover {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            border-color: var(--accent-blue);
+        }
+
+        .step-info-tooltip {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .step-info-tooltip.visible {
+            display: block;
+        }
+
+        .step-info-tooltip p {
+            margin: 0 0 8px 0;
+        }
+
+        .step-info-tooltip p:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-info-tooltip strong {
+            color: var(--accent-orange);
+        }
+
+        .step-header-with-help {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
         .cefr-actions {
             display: none;
             margin-top: 15px;
@@ -1570,10 +1633,19 @@
         <div class="file-upload" id="setupPanel">
             <!-- Step 1: Language Selection -->
             <div id="step1" class="setup-step">
-                <div class="step-header" style="position: relative;">
+                <div class="step-header step-header-with-help">
                     <span class="step-number">1</span>
                     <span class="step-title">Choose Language</span>
-                    <button id="helpBtn" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--accent-blue); font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s;" title="How to use this app">?</button>
+                    <button class="step-help-btn" data-tooltip="step1Tooltip" title="Help">?</button>
+                    <div id="step1Tooltip" class="step-info-tooltip">
+                        <p><strong>Studying Tips:</strong></p>
+                        <p><strong>Tap card</strong> to flip and see translation</p>
+                        <p><strong>Swipe right</strong> if you know the word ✓</p>
+                        <p><strong>Swipe left</strong> if you don't know it ✗</p>
+                        <p><strong>Swipe up/down</strong> on back to cycle meanings</p>
+                        <p><strong>Arrow buttons</strong> to navigate cards</p>
+                        <p><strong>REVERSE</strong> to flip direction (Target → English or English → Target)</p>
+                    </div>
                 </div>
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
@@ -1582,9 +1654,14 @@
 
             <!-- Step 2: Level Selection -->
             <div id="step2" class="setup-step">
-                <div class="step-header">
+                <div class="step-header step-header-with-help">
                     <span class="step-number">2</span>
                     <span class="step-title">Choose Level</span>
+                    <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
+                    <div id="step2Tooltip" class="step-info-tooltip">
+                        <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
+                        <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
+                    </div>
                 </div>
                 <div id="levelSelector" class="level-selector"></div>
             </div>
@@ -1593,9 +1670,14 @@
             <div id="step3" class="setup-step" style="display: none;">
                 <div class="step-row">
                     <div class="step-half">
-                        <div class="step-header">
+                        <div class="step-header step-header-with-help">
                             <span class="step-number">3</span>
                             <span class="step-title">Cards per Set</span>
+                            <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
+                            <div id="step3Tooltip" class="step-info-tooltip">
+                                <p>Choose how many flashcards to study in each session.</p>
+                                <p>Smaller sets (25) are good for quick review. Larger sets (100) for intensive study.</p>
+                            </div>
                         </div>
                         <div id="groupSizeSelector" class="group-size-selector">
                             <button class="group-size-btn selected" data-size="25">25</button>
@@ -1604,9 +1686,15 @@
                         </div>
                     </div>
                     <div class="step-half" id="lemmaToggleContainer" style="display: none;">
-                        <div class="step-header">
+                        <div class="step-header step-header-with-help">
                             <span class="step-number">4</span>
                             <span class="step-title">1 Card per Lemma</span>
+                            <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
+                            <div id="step4Tooltip" class="step-info-tooltip">
+                                <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
+                                <p>When ON, you see only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running").</p>
+                                <p>This reduces redundancy and focuses on learning root vocabulary.</p>
+                            </div>
                         </div>
                         <div id="lemmaToggleSelector" class="group-size-selector">
                             <button class="lemma-toggle-btn selected" data-lemma="off">Off</button>
@@ -1618,9 +1706,14 @@
 
             <!-- Step 5: Range Selection -->
             <div id="step4" class="setup-step" style="display: none;">
-                <div class="step-header">
+                <div class="step-header step-header-with-help">
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
+                    <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
+                    <div id="step5Tooltip" class="step-info-tooltip">
+                        <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
+                        <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
+                    </div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
             </div>
@@ -1745,30 +1838,6 @@
                     <span>Accuracy:</span>
                     <span id="accuracyPercent">-</span>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Help Modal -->
-    <div id="helpModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>How to Use</h3>
-                <button class="modal-close" id="closeHelpModal">✕</button>
-            </div>
-            <div class="stats-body" style="text-align: left;">
-                <h4 style="color: var(--accent-orange); margin-bottom: 10px;">Setup</h4>
-                <p style="margin-bottom: 15px; line-height: 1.6;">1. <strong>Choose Language</strong> - Select the language you want to study</p>
-                <p style="margin-bottom: 15px; line-height: 1.6;">2. <strong>Choose Level</strong> - Pick your CEFR level (A1-C2)</p>
-                <p style="margin-bottom: 15px; line-height: 1.6;">3. <strong>Cards per Set</strong> - Choose how many cards to study (25/50/100)</p>
-                <p style="margin-bottom: 15px; line-height: 1.6;">4. <strong>Select Ranges</strong> - Pick word frequency ranges to study</p>
-
-                <h4 style="color: var(--accent-orange); margin-top: 20px; margin-bottom: 10px;">Studying</h4>
-                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Tap card</strong> to flip and see translation</p>
-                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Swipe right</strong> if you know the word ✓</p>
-                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Swipe left</strong> if you don't know it ✗</p>
-                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Arrow buttons</strong> to navigate cards</p>
-                <p style="margin-bottom: 10px; line-height: 1.6;"><strong>Flag button</strong> to reverse direction (Language → English or English → Language)</p>
             </div>
         </div>
     </div>
@@ -2527,18 +2596,31 @@
                 }
             });
 
-            // Help button and modal handlers
-            document.getElementById('helpBtn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                showHelpModal();
+            // Step help tooltip handlers
+            document.querySelectorAll('.step-help-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const tooltipId = this.dataset.tooltip;
+                    const tooltip = document.getElementById(tooltipId);
+
+                    // Close all other tooltips first
+                    document.querySelectorAll('.step-info-tooltip').forEach(t => {
+                        if (t.id !== tooltipId) {
+                            t.classList.remove('visible');
+                        }
+                    });
+
+                    // Toggle this tooltip
+                    tooltip.classList.toggle('visible');
+                });
             });
 
-            document.getElementById('closeHelpModal').addEventListener('click', hideHelpModal);
-
-            // Click outside help modal to close
-            document.getElementById('helpModal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    hideHelpModal();
+            // Close tooltips when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.step-help-btn') && !e.target.closest('.step-info-tooltip')) {
+                    document.querySelectorAll('.step-info-tooltip').forEach(t => {
+                        t.classList.remove('visible');
+                    });
                 }
             });
 
@@ -2970,13 +3052,6 @@
             document.getElementById('statsModal').classList.add('hidden');
         }
 
-        function showHelpModal() {
-            document.getElementById('helpModal').classList.remove('hidden');
-        }
-
-        function hideHelpModal() {
-            document.getElementById('helpModal').classList.add('hidden');
-        }
 
         function updateStatsModal() {
             document.getElementById('cardsStudied').textContent = stats.studied.size;
