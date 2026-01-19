@@ -1676,13 +1676,12 @@
                             <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
                             <div id="step3Tooltip" class="step-info-tooltip">
                                 <p>Choose how many flashcards to study in each session.</p>
-                                <p>Smaller sets (25) are good for quick review. Larger sets (100) for intensive study.</p>
+                                <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
                             </div>
                         </div>
                         <div id="groupSizeSelector" class="group-size-selector">
                             <button class="group-size-btn selected" data-size="25">25</button>
                             <button class="group-size-btn" data-size="50">50</button>
-                            <button class="group-size-btn" data-size="100">100</button>
                         </div>
                     </div>
                     <div class="step-half" id="lemmaToggleContainer" style="display: none;">
@@ -2041,10 +2040,8 @@
             // Parse the wordCount range for this level (e.g., "1-800" -> 1, 800)
             const [minWord, maxWord] = level.wordCount.split('-').map(Number);
 
-            // Determine which data path to use based on lemma mode
-            const dataPath = useLemmaMode && langConfig.lemmaDeduplicatedPath
-                ? langConfig.lemmaDeduplicatedPath
-                : langConfig.dataPath;
+            // Always use the regular data path
+            const dataPath = langConfig.dataPath;
 
             // Load the vocabulary data to check which ranks exist
             let vocabularyData = [];
@@ -2059,12 +2056,30 @@
                 console.error('Failed to load vocabulary data:', error);
             }
 
-            // Create a Set of all available ranks for fast lookup (only non-blank entries)
-            const availableRanks = new Set(
-                vocabularyData
-                    .filter(item => item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0)
-                    .map(item => item.rank)
+            // Filter to non-blank entries
+            let filteredVocab = vocabularyData.filter(item =>
+                item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0
             );
+
+            // If in lemma mode, keep only first occurrence of each lemma and re-rank
+            if (useLemmaMode) {
+                const seenLemmas = new Set();
+                filteredVocab = filteredVocab.filter(item => {
+                    const lemma = item.lemma || item.word;
+                    if (seenLemmas.has(lemma)) {
+                        return false;
+                    }
+                    seenLemmas.add(lemma);
+                    return true;
+                });
+                // Re-rank the filtered data
+                filteredVocab.forEach((item, index) => {
+                    item.rank = index + 1;
+                });
+            }
+
+            // Create a Set of all available ranks for fast lookup
+            const availableRanks = new Set(filteredVocab.map(item => item.rank));
 
             // Generate ALL possible range buttons based on groupSize across the full span
             const ranges = [];
@@ -2140,10 +2155,8 @@
             const langConfig = config.languages[selectedLanguage];
             const [rangeStart, rangeEnd] = rangeString.split('-').map(Number);
 
-            // Determine which data path to use based on lemma mode
-            const dataPath = useLemmaMode && langConfig.lemmaDeduplicatedPath
-                ? langConfig.lemmaDeduplicatedPath
-                : langConfig.dataPath;
+            // Always use the regular data path
+            const dataPath = langConfig.dataPath;
 
             try {
                 // Load the vocabulary JSON
@@ -2154,7 +2167,7 @@
                 const vocabularyData = await response.json();
 
                 // Filter vocabulary by rank range and exclude blank entries
-                const filteredData = vocabularyData.filter(item =>
+                let filteredData = vocabularyData.filter(item =>
                     item.rank >= rangeStart &&
                     item.rank < rangeEnd &&
                     item.word &&
@@ -2162,6 +2175,23 @@
                     item.meanings &&
                     item.meanings.length > 0
                 );
+
+                // If in lemma mode, keep only first occurrence of each lemma and re-rank
+                if (useLemmaMode) {
+                    const seenLemmas = new Set();
+                    filteredData = filteredData.filter(item => {
+                        const lemma = item.lemma || item.word;
+                        if (seenLemmas.has(lemma)) {
+                            return false;
+                        }
+                        seenLemmas.add(lemma);
+                        return true;
+                    });
+                    // Re-rank the filtered data
+                    filteredData.forEach((item, index) => {
+                        item.rank = rangeStart + index;
+                    });
+                }
 
                 // Convert to flashcards format
                 const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
