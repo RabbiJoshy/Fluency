@@ -50554,845 +50554,2005 @@
     "rank": 4600,
     "word": "perfil",
     "lemma": "perfil",
-    "meanings": [{"pos": "noun", "definition": "profile, silhouette"}],
-    "translations": ["profile", "silhouette"],
-    "example": {"es": "Actualiza tu perfil con una foto nueva.", "en": "Update your profile with a new photo."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "profile, silhouette",
+        "frequency": "1.0",
+        "example_spanish": "Actualiza tu perfil con una foto nueva.",
+        "example_english": "Update your profile with a new photo."
+      }
+    ]
   },
-  {"rank": 4601, "word": "necesitará", "lemma": "necesitar", "duplicate": true},
-  {"rank": 4602, "word": "manejando", "lemma": "manejar", "duplicate": true},
-  {"rank": 4603, "word": "lola", "lemma": "lola", "duplicate": true},
+  {
+    "rank": 4601,
+    "word": "necesitará",
+    "lemma": "necesitar",
+    "duplicate": true
+  },
+  {
+    "rank": 4602,
+    "word": "manejando",
+    "lemma": "manejar",
+    "duplicate": true
+  },
+  {
+    "rank": 4603,
+    "word": "lola",
+    "lemma": "lola",
+    "duplicate": true
+  },
   {
     "rank": 4604,
     "word": "lentes",
     "lemma": "lente",
-    "meanings": [{"pos": "noun", "definition": "lens, glasses"}],
-    "translations": ["lens", "glasses"],
-    "example": {"es": "Necesito lentes nuevos para ver mejor.", "en": "I need new glasses to see better."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "lens, glasses",
+        "frequency": "1.0",
+        "example_spanish": "Necesito lentes nuevos para ver mejor.",
+        "example_english": "I need new glasses to see better."
+      }
+    ]
   },
   {
     "rank": 4605,
     "word": "engañar",
     "lemma": "engañar",
-    "meanings": [{"pos": "verb", "definition": "to deceive, to trick, to cheat"}],
-    "translations": ["to deceive", "to trick", "to cheat"],
-    "example": {"es": "No intentes engañar a nadie.", "en": "Don't try to deceive anyone."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to deceive, to trick, to cheat",
+        "frequency": "1.0",
+        "example_spanish": "No intentes engañar a nadie.",
+        "example_english": "Don't try to deceive anyone."
+      }
+    ]
   },
-  {"rank": 4606, "word": "cállense", "lemma": "callar", "duplicate": true},
+  {
+    "rank": 4606,
+    "word": "cállense",
+    "lemma": "callar",
+    "duplicate": true
+  },
   {
     "rank": 4607,
     "word": "bate",
     "lemma": "bate",
-    "meanings": [{"pos": "noun", "definition": "bat (sports equipment)"}],
-    "translations": ["bat"],
-    "example": {"es": "El jugador tomó el bate con fuerza.", "en": "The player gripped the bat tightly."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "bat (sports equipment)",
+        "frequency": "1.0",
+        "example_spanish": "El jugador tomó el bate con fuerza.",
+        "example_english": "The player gripped the bat tightly."
+      }
+    ]
   },
   {
     "rank": 4608,
     "word": "automático",
     "lemma": "automático",
-    "meanings": [{"pos": "adj", "definition": "automatic"}],
-    "translations": ["automatic"],
-    "example": {"es": "El sistema automático se activa solo.", "en": "The automatic system activates on its own."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "automatic",
+        "frequency": "1.0",
+        "example_spanish": "El sistema automático se activa solo.",
+        "example_english": "The automatic system activates on its own."
+      }
+    ]
   },
-  {"rank": 4609, "word": "tuyas", "lemma": "tuyo", "duplicate": true},
-  {"rank": 4610, "word": "quedarás", "lemma": "quedar", "duplicate": true},
-  {"rank": 4611, "word": "profunda", "lemma": "profundo", "duplicate": true},
-  {"rank": 4612, "word": "piensen", "lemma": "pensar", "duplicate": true},
-  {"rank": 4613, "word": "permiten", "lemma": "permitir", "duplicate": true},
+  {
+    "rank": 4609,
+    "word": "tuyas",
+    "lemma": "tuyo",
+    "duplicate": true
+  },
+  {
+    "rank": 4610,
+    "word": "quedarás",
+    "lemma": "quedar",
+    "duplicate": true
+  },
+  {
+    "rank": 4611,
+    "word": "profunda",
+    "lemma": "profundo",
+    "duplicate": true
+  },
+  {
+    "rank": 4612,
+    "word": "piensen",
+    "lemma": "pensar",
+    "duplicate": true
+  },
+  {
+    "rank": 4613,
+    "word": "permiten",
+    "lemma": "permitir",
+    "duplicate": true
+  },
   {
     "rank": 4614,
     "word": "heredero",
     "lemma": "heredero",
-    "meanings": [{"pos": "noun", "definition": "heir, inheritor"}],
-    "translations": ["heir", "inheritor"],
-    "example": {"es": "El heredero recibió toda la fortuna.", "en": "The heir received the entire fortune."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "heir, inheritor",
+        "frequency": "1.0",
+        "example_spanish": "El heredero recibió toda la fortuna.",
+        "example_english": "The heir received the entire fortune."
+      }
+    ]
   },
-  {"rank": 4615, "word": "entraron", "lemma": "entrar", "duplicate": true},
-  {"rank": 4616, "word": "canadá", "lemma": "canadá", "duplicate": true},
-  {"rank": 4617, "word": "caminos", "lemma": "camino", "duplicate": true},
-  {"rank": 4618, "word": "sintió", "lemma": "sentir", "duplicate": true},
-  {"rank": 4619, "word": "robé", "lemma": "robar", "duplicate": true},
-  {"rank": 4620, "word": "porno", "lemma": "porno", "duplicate": true},
+  {
+    "rank": 4615,
+    "word": "entraron",
+    "lemma": "entrar",
+    "duplicate": true
+  },
+  {
+    "rank": 4616,
+    "word": "canadá",
+    "lemma": "canadá",
+    "duplicate": true
+  },
+  {
+    "rank": 4617,
+    "word": "caminos",
+    "lemma": "camino",
+    "duplicate": true
+  },
+  {
+    "rank": 4618,
+    "word": "sintió",
+    "lemma": "sentir",
+    "duplicate": true
+  },
+  {
+    "rank": 4619,
+    "word": "robé",
+    "lemma": "robar",
+    "duplicate": true
+  },
+  {
+    "rank": 4620,
+    "word": "porno",
+    "lemma": "porno",
+    "duplicate": true
+  },
   {
     "rank": 4621,
     "word": "lejano",
     "lemma": "lejano",
-    "meanings": [{"pos": "adj", "definition": "distant, far away, remote"}],
-    "translations": ["distant", "far away", "remote"],
-    "example": {"es": "Viene de un país lejano.", "en": "He comes from a distant country."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "distant, far away, remote",
+        "frequency": "1.0",
+        "example_spanish": "Viene de un país lejano.",
+        "example_english": "He comes from a distant country."
+      }
+    ]
   },
   {
     "rank": 4622,
     "word": "intercambio",
     "lemma": "intercambio",
-    "meanings": [{"pos": "noun", "definition": "exchange, swap"}],
-    "translations": ["exchange", "swap"],
-    "example": {"es": "El intercambio de ideas fue productivo.", "en": "The exchange of ideas was productive."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "exchange, swap",
+        "frequency": "1.0",
+        "example_spanish": "El intercambio de ideas fue productivo.",
+        "example_english": "The exchange of ideas was productive."
+      }
+    ]
   },
-  {"rank": 4623, "word": "hojas", "lemma": "hoja", "duplicate": true},
-  {"rank": 4624, "word": "dispare", "lemma": "disparar", "duplicate": true},
+  {
+    "rank": 4623,
+    "word": "hojas",
+    "lemma": "hoja",
+    "duplicate": true
+  },
+  {
+    "rank": 4624,
+    "word": "dispare",
+    "lemma": "disparar",
+    "duplicate": true
+  },
   {
     "rank": 4625,
     "word": "cuan",
     "lemma": "cuan",
-    "meanings": [{"pos": "adv", "definition": "how (literary), as"}],
-    "translations": ["how", "as"],
-    "example": {"es": "Cuan grande es el universo.", "en": "How great the universe is."}
+    "meanings": [
+      {
+        "pos": "adv",
+        "translation": "how (literary), as",
+        "frequency": "1.0",
+        "example_spanish": "Cuan grande es el universo.",
+        "example_english": "How great the universe is."
+      }
+    ]
   },
   {
     "rank": 4626,
     "word": "champaña",
     "lemma": "champaña",
-    "meanings": [{"pos": "noun", "definition": "champagne"}],
-    "translations": ["champagne"],
-    "example": {"es": "Abrieron una botella de champaña para celebrar.", "en": "They opened a bottle of champagne to celebrate."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "champagne",
+        "frequency": "1.0",
+        "example_spanish": "Abrieron una botella de champaña para celebrar.",
+        "example_english": "They opened a bottle of champagne to celebrate."
+      }
+    ]
   },
-  {"rank": 4627, "word": "atractiva", "lemma": "atractivo", "duplicate": true},
+  {
+    "rank": 4627,
+    "word": "atractiva",
+    "lemma": "atractivo",
+    "duplicate": true
+  },
   {
     "rank": 4628,
     "word": "terminal",
     "lemma": "terminal",
-    "meanings": [{"pos": "noun", "definition": "terminal, station"}, {"pos": "adj", "definition": "terminal, final"}],
-    "translations": ["terminal", "station"],
-    "example": {"es": "Nos vemos en la terminal del aeropuerto.", "en": "We'll meet at the airport terminal."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "terminal, station",
+        "frequency": "1.0",
+        "example_spanish": "Nos vemos en la terminal del aeropuerto.",
+        "example_english": "We'll meet at the airport terminal."
+      },
+      {
+        "pos": "adj",
+        "translation": "terminal, final",
+        "frequency": "1.0",
+        "example_spanish": "Nos vemos en la terminal del aeropuerto.",
+        "example_english": "We'll meet at the airport terminal."
+      }
+    ]
   },
-  {"rank": 4629, "word": "rita", "lemma": "rita", "duplicate": true},
+  {
+    "rank": 4629,
+    "word": "rita",
+    "lemma": "rita",
+    "duplicate": true
+  },
   {
     "rank": 4630,
     "word": "poesía",
     "lemma": "poesía",
-    "meanings": [{"pos": "noun", "definition": "poetry, poem"}],
-    "translations": ["poetry", "poem"],
-    "example": {"es": "La poesía expresa emociones profundas.", "en": "Poetry expresses deep emotions."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "poetry, poem",
+        "frequency": "1.0",
+        "example_spanish": "La poesía expresa emociones profundas.",
+        "example_english": "Poetry expresses deep emotions."
+      }
+    ]
   },
-  {"rank": 4631, "word": "pierda", "lemma": "perder", "duplicate": true},
-  {"rank": 4632, "word": "expertos", "lemma": "experto", "duplicate": true},
+  {
+    "rank": 4631,
+    "word": "pierda",
+    "lemma": "perder",
+    "duplicate": true
+  },
+  {
+    "rank": 4632,
+    "word": "expertos",
+    "lemma": "experto",
+    "duplicate": true
+  },
   {
     "rank": 4633,
     "word": "ensalada",
     "lemma": "ensalada",
-    "meanings": [{"pos": "noun", "definition": "salad"}],
-    "translations": ["salad"],
-    "example": {"es": "Pedí una ensalada con pollo.", "en": "I ordered a salad with chicken."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "salad",
+        "frequency": "1.0",
+        "example_spanish": "Pedí una ensalada con pollo.",
+        "example_english": "I ordered a salad with chicken."
+      }
+    ]
   },
-  {"rank": 4634, "word": "convertir", "lemma": "convertir", "duplicate": true},
-  {"rank": 4635, "word": "calientes", "lemma": "caliente", "duplicate": true},
+  {
+    "rank": 4634,
+    "word": "convertir",
+    "lemma": "convertir",
+    "duplicate": true
+  },
+  {
+    "rank": 4635,
+    "word": "calientes",
+    "lemma": "caliente",
+    "duplicate": true
+  },
   {
     "rank": 4636,
     "word": "autopsia",
     "lemma": "autopsia",
-    "meanings": [{"pos": "noun", "definition": "autopsy"}],
-    "translations": ["autopsy"],
-    "example": {"es": "La autopsia reveló la causa de muerte.", "en": "The autopsy revealed the cause of death."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "autopsy",
+        "frequency": "1.0",
+        "example_spanish": "La autopsia reveló la causa de muerte.",
+        "example_english": "The autopsy revealed the cause of death."
+      }
+    ]
   },
   {
     "rank": 4637,
     "word": "tristeza",
     "lemma": "tristeza",
-    "meanings": [{"pos": "noun", "definition": "sadness, sorrow"}],
-    "translations": ["sadness", "sorrow"],
-    "example": {"es": "Sentía una profunda tristeza.", "en": "He felt a deep sadness."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "sadness, sorrow",
+        "frequency": "1.0",
+        "example_spanish": "Sentía una profunda tristeza.",
+        "example_english": "He felt a deep sadness."
+      }
+    ]
   },
-  {"rank": 4638, "word": "tiendas", "lemma": "tienda", "duplicate": true},
+  {
+    "rank": 4638,
+    "word": "tiendas",
+    "lemma": "tienda",
+    "duplicate": true
+  },
   {
     "rank": 4639,
     "word": "mafia",
     "lemma": "mafia",
-    "meanings": [{"pos": "noun", "definition": "mafia, organized crime"}],
-    "translations": ["mafia"],
-    "example": {"es": "La mafia controlaba el barrio.", "en": "The mafia controlled the neighborhood."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "mafia, organized crime",
+        "frequency": "1.0",
+        "example_spanish": "La mafia controlaba el barrio.",
+        "example_english": "The mafia controlled the neighborhood."
+      }
+    ]
   },
-  {"rank": 4640, "word": "jodas", "lemma": "joder", "duplicate": true},
-  {"rank": 4641, "word": "escuchó", "lemma": "escuchar", "duplicate": true},
-  {"rank": 4642, "word": "enormes", "lemma": "enorme", "duplicate": true},
-  {"rank": 4643, "word": "denme", "lemma": "dar", "duplicate": true},
-  {"rank": 4644, "word": "atacaron", "lemma": "atacar", "duplicate": true},
+  {
+    "rank": 4640,
+    "word": "jodas",
+    "lemma": "joder",
+    "duplicate": true
+  },
+  {
+    "rank": 4641,
+    "word": "escuchó",
+    "lemma": "escuchar",
+    "duplicate": true
+  },
+  {
+    "rank": 4642,
+    "word": "enormes",
+    "lemma": "enorme",
+    "duplicate": true
+  },
+  {
+    "rank": 4643,
+    "word": "denme",
+    "lemma": "dar",
+    "duplicate": true
+  },
+  {
+    "rank": 4644,
+    "word": "atacaron",
+    "lemma": "atacar",
+    "duplicate": true
+  },
   {
     "rank": 4645,
     "word": "almacén",
     "lemma": "almacén",
-    "meanings": [{"pos": "noun", "definition": "warehouse, store, storage"}],
-    "translations": ["warehouse", "store", "storage"],
-    "example": {"es": "Guardamos las cajas en el almacén.", "en": "We stored the boxes in the warehouse."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "warehouse, store, storage",
+        "frequency": "1.0",
+        "example_spanish": "Guardamos las cajas en el almacén.",
+        "example_english": "We stored the boxes in the warehouse."
+      }
+    ]
   },
-  {"rank": 4646, "word": "sufrió", "lemma": "sufrir", "duplicate": true},
-  {"rank": 4647, "word": "productos", "lemma": "producto", "duplicate": true},
+  {
+    "rank": 4646,
+    "word": "sufrió",
+    "lemma": "sufrir",
+    "duplicate": true
+  },
+  {
+    "rank": 4647,
+    "word": "productos",
+    "lemma": "producto",
+    "duplicate": true
+  },
   {
     "rank": 4648,
     "word": "productor",
     "lemma": "productor",
-    "meanings": [{"pos": "noun", "definition": "producer"}],
-    "translations": ["producer"],
-    "example": {"es": "El productor aprobó el guión.", "en": "The producer approved the script."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "producer",
+        "frequency": "1.0",
+        "example_spanish": "El productor aprobó el guión.",
+        "example_english": "The producer approved the script."
+      }
+    ]
   },
   {
     "rank": 4649,
     "word": "permitido",
     "lemma": "permitido",
-    "meanings": [{"pos": "adj", "definition": "permitted, allowed"}],
-    "translations": ["permitted", "allowed"],
-    "example": {"es": "No está permitido fumar aquí.", "en": "Smoking is not allowed here."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "permitted, allowed",
+        "frequency": "1.0",
+        "example_spanish": "No está permitido fumar aquí.",
+        "example_english": "Smoking is not allowed here."
+      }
+    ]
   },
   {
     "rank": 4650,
     "word": "pegó",
     "lemma": "pegar",
-    "meanings": [{"pos": "verb", "definition": "to hit, to stick, to glue"}],
-    "translations": ["to hit", "to stick", "to glue"],
-    "example": {"es": "Pegó el cartel en la pared.", "en": "He stuck the poster on the wall."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to hit, to stick, to glue",
+        "frequency": "1.0",
+        "example_spanish": "Pegó el cartel en la pared.",
+        "example_english": "He stuck the poster on the wall."
+      }
+    ]
   },
-  {"rank": 4651, "word": "matarla", "lemma": "matar", "duplicate": true},
+  {
+    "rank": 4651,
+    "word": "matarla",
+    "lemma": "matar",
+    "duplicate": true
+  },
   {
     "rank": 4652,
     "word": "interno",
     "lemma": "interno",
-    "meanings": [{"pos": "adj", "definition": "internal, inner"}, {"pos": "noun", "definition": "intern"}],
-    "translations": ["internal", "inner", "intern"],
-    "example": {"es": "Es un asunto interno de la empresa.", "en": "It's an internal matter for the company."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "internal, inner",
+        "frequency": "1.0",
+        "example_spanish": "Es un asunto interno de la empresa.",
+        "example_english": "It's an internal matter for the company."
+      },
+      {
+        "pos": "noun",
+        "translation": "intern",
+        "frequency": "1.0",
+        "example_spanish": "Es un asunto interno de la empresa.",
+        "example_english": "It's an internal matter for the company."
+      }
+    ]
   },
-  {"rank": 4653, "word": "interna", "lemma": "interno", "duplicate": true},
+  {
+    "rank": 4653,
+    "word": "interna",
+    "lemma": "interno",
+    "duplicate": true
+  },
   {
     "rank": 4654,
     "word": "infantil",
     "lemma": "infantil",
-    "meanings": [{"pos": "adj", "definition": "children's, childish, infantile"}],
-    "translations": ["children's", "childish", "infantile"],
-    "example": {"es": "Trabaja en un hospital infantil.", "en": "She works at a children's hospital."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "children's, childish, infantile",
+        "frequency": "1.0",
+        "example_spanish": "Trabaja en un hospital infantil.",
+        "example_english": "She works at a children's hospital."
+      }
+    ]
   },
-  {"rank": 4655, "word": "españa", "lemma": "españa", "duplicate": true},
-  {"rank": 4656, "word": "diarios", "lemma": "diario", "duplicate": true},
+  {
+    "rank": 4655,
+    "word": "españa",
+    "lemma": "españa",
+    "duplicate": true
+  },
+  {
+    "rank": 4656,
+    "word": "diarios",
+    "lemma": "diario",
+    "duplicate": true
+  },
   {
     "rank": 4657,
     "word": "combinación",
     "lemma": "combinación",
-    "meanings": [{"pos": "noun", "definition": "combination"}],
-    "translations": ["combination"],
-    "example": {"es": "La combinación de colores es perfecta.", "en": "The color combination is perfect."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "combination",
+        "frequency": "1.0",
+        "example_spanish": "La combinación de colores es perfecta.",
+        "example_english": "The color combination is perfect."
+      }
+    ]
   },
   {
     "rank": 4658,
     "word": "acompañe",
     "lemma": "acompañar",
-    "meanings": [{"pos": "verb", "definition": "to accompany, to go with"}],
-    "translations": ["to accompany", "to go with"],
-    "example": {"es": "¿Quieres que te acompañe a casa?", "en": "Do you want me to walk you home?"}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to accompany, to go with",
+        "frequency": "1.0",
+        "example_spanish": "¿Quieres que te acompañe a casa?",
+        "example_english": "Do you want me to walk you home?"
+      }
+    ]
   },
-  {"rank": 4659, "word": "ropas", "lemma": "ropa", "duplicate": true},
-  {"rank": 4660, "word": "pondremos", "lemma": "poner", "duplicate": true},
-  {"rank": 4661, "word": "metiste", "lemma": "meter", "duplicate": true},
+  {
+    "rank": 4659,
+    "word": "ropas",
+    "lemma": "ropa",
+    "duplicate": true
+  },
+  {
+    "rank": 4660,
+    "word": "pondremos",
+    "lemma": "poner",
+    "duplicate": true
+  },
+  {
+    "rank": 4661,
+    "word": "metiste",
+    "lemma": "meter",
+    "duplicate": true
+  },
   {
     "rank": 4662,
     "word": "esencia",
     "lemma": "esencia",
-    "meanings": [{"pos": "noun", "definition": "essence, essential nature"}],
-    "translations": ["essence"],
-    "example": {"es": "La esencia del problema es la falta de comunicación.", "en": "The essence of the problem is the lack of communication."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "essence, essential nature",
+        "frequency": "1.0",
+        "example_spanish": "La esencia del problema es la falta de comunicación.",
+        "example_english": "The essence of the problem is the lack of communication."
+      }
+    ]
   },
-  {"rank": 4663, "word": "brillantes", "lemma": "brillante", "duplicate": true},
+  {
+    "rank": 4663,
+    "word": "brillantes",
+    "lemma": "brillante",
+    "duplicate": true
+  },
   {
     "rank": 4664,
     "word": "bingo",
     "lemma": "bingo",
-    "meanings": [{"pos": "noun", "definition": "bingo"}, {"pos": "interj", "definition": "bingo! (exclamation)"}],
-    "translations": ["bingo"],
-    "example": {"es": "¡Bingo! Encontré la solución.", "en": "Bingo! I found the solution."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "bingo",
+        "frequency": "1.0",
+        "example_spanish": "¡Bingo! Encontré la solución.",
+        "example_english": "Bingo! I found the solution."
+      },
+      {
+        "pos": "interj",
+        "translation": "bingo! (exclamation)",
+        "frequency": "1.0",
+        "example_spanish": "¡Bingo! Encontré la solución.",
+        "example_english": "Bingo! I found the solution."
+      }
+    ]
   },
   {
     "rank": 4665,
     "word": "sordo",
     "lemma": "sordo",
-    "meanings": [{"pos": "adj", "definition": "deaf"}, {"pos": "noun", "definition": "deaf person"}],
-    "translations": ["deaf"],
-    "example": {"es": "Mi abuelo está sordo del oído izquierdo.", "en": "My grandfather is deaf in his left ear."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "deaf",
+        "frequency": "1.0",
+        "example_spanish": "Mi abuelo está sordo del oído izquierdo.",
+        "example_english": "My grandfather is deaf in his left ear."
+      },
+      {
+        "pos": "noun",
+        "translation": "deaf person",
+        "frequency": "1.0",
+        "example_spanish": "Mi abuelo está sordo del oído izquierdo.",
+        "example_english": "My grandfather is deaf in his left ear."
+      }
+    ]
   },
-  {"rank": 4666, "word": "sacas", "lemma": "sacar", "duplicate": true},
+  {
+    "rank": 4666,
+    "word": "sacas",
+    "lemma": "sacar",
+    "duplicate": true
+  },
   {
     "rank": 4667,
     "word": "rancho",
     "lemma": "rancho",
-    "meanings": [{"pos": "noun", "definition": "ranch, farm"}],
-    "translations": ["ranch", "farm"],
-    "example": {"es": "Vive en un rancho en el campo.", "en": "He lives on a ranch in the countryside."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "ranch, farm",
+        "frequency": "1.0",
+        "example_spanish": "Vive en un rancho en el campo.",
+        "example_english": "He lives on a ranch in the countryside."
+      }
+    ]
   },
-  {"rank": 4668, "word": "objetivos", "lemma": "objetivo", "duplicate": true},
+  {
+    "rank": 4668,
+    "word": "objetivos",
+    "lemma": "objetivo",
+    "duplicate": true
+  },
   {
     "rank": 4669,
     "word": "muebles",
     "lemma": "mueble",
-    "meanings": [{"pos": "noun", "definition": "furniture, piece of furniture"}],
-    "translations": ["furniture"],
-    "example": {"es": "Compramos muebles nuevos para la sala.", "en": "We bought new furniture for the living room."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "furniture, piece of furniture",
+        "frequency": "1.0",
+        "example_spanish": "Compramos muebles nuevos para la sala.",
+        "example_english": "We bought new furniture for the living room."
+      }
+    ]
   },
-  {"rank": 4670, "word": "mencionó", "lemma": "mencionar", "duplicate": true},
-  {"rank": 4671, "word": "estupido", "lemma": "estúpido", "duplicate": true},
+  {
+    "rank": 4670,
+    "word": "mencionó",
+    "lemma": "mencionar",
+    "duplicate": true
+  },
+  {
+    "rank": 4671,
+    "word": "estupido",
+    "lemma": "estúpido",
+    "duplicate": true
+  },
   {
     "rank": 4672,
     "word": "enterado",
     "lemma": "enterado",
-    "meanings": [{"pos": "adj", "definition": "informed, aware"}],
-    "translations": ["informed", "aware"],
-    "example": {"es": "No estaba enterado de la noticia.", "en": "I wasn't aware of the news."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "informed, aware",
+        "frequency": "1.0",
+        "example_spanish": "No estaba enterado de la noticia.",
+        "example_english": "I wasn't aware of the news."
+      }
+    ]
   },
-  {"rank": 4673, "word": "documento", "lemma": "documento", "duplicate": true},
+  {
+    "rank": 4673,
+    "word": "documento",
+    "lemma": "documento",
+    "duplicate": true
+  },
   {
     "rank": 4674,
     "word": "vencer",
     "lemma": "vencer",
-    "meanings": [{"pos": "verb", "definition": "to defeat, to overcome, to expire"}],
-    "translations": ["to defeat", "to overcome", "to expire"],
-    "example": {"es": "Logró vencer todos los obstáculos.", "en": "He managed to overcome all obstacles."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to defeat, to overcome, to expire",
+        "frequency": "1.0",
+        "example_spanish": "Logró vencer todos los obstáculos.",
+        "example_english": "He managed to overcome all obstacles."
+      }
+    ]
   },
-  {"rank": 4675, "word": "sintiendo", "lemma": "sentir", "duplicate": true},
-  {"rank": 4676, "word": "quieta", "lemma": "quieto", "duplicate": true},
+  {
+    "rank": 4675,
+    "word": "sintiendo",
+    "lemma": "sentir",
+    "duplicate": true
+  },
+  {
+    "rank": 4676,
+    "word": "quieta",
+    "lemma": "quieto",
+    "duplicate": true
+  },
   {
     "rank": 4677,
     "word": "período",
     "lemma": "período",
-    "meanings": [{"pos": "noun", "definition": "period, time span"}],
-    "translations": ["period", "time span"],
-    "example": {"es": "Fue un período difícil para todos.", "en": "It was a difficult period for everyone."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "period, time span",
+        "frequency": "1.0",
+        "example_spanish": "Fue un período difícil para todos.",
+        "example_english": "It was a difficult period for everyone."
+      }
+    ]
   },
-  {"rank": 4678, "word": "oportunidades", "lemma": "oportunidad", "duplicate": true},
-  {"rank": 4679, "word": "monos", "lemma": "mono", "duplicate": true},
+  {
+    "rank": 4678,
+    "word": "oportunidades",
+    "lemma": "oportunidad",
+    "duplicate": true
+  },
+  {
+    "rank": 4679,
+    "word": "monos",
+    "lemma": "mono",
+    "duplicate": true
+  },
   {
     "rank": 4680,
     "word": "mercancía",
     "lemma": "mercancía",
-    "meanings": [{"pos": "noun", "definition": "merchandise, goods"}],
-    "translations": ["merchandise", "goods"],
-    "example": {"es": "La mercancía llegó dañada.", "en": "The merchandise arrived damaged."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "merchandise, goods",
+        "frequency": "1.0",
+        "example_spanish": "La mercancía llegó dañada.",
+        "example_english": "The merchandise arrived damaged."
+      }
+    ]
   },
   {
     "rank": 4681,
     "word": "lastimado",
     "lemma": "lastimado",
-    "meanings": [{"pos": "adj", "definition": "hurt, injured"}],
-    "translations": ["hurt", "injured"],
-    "example": {"es": "Está lastimado pero no es grave.", "en": "He's hurt but it's not serious."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "hurt, injured",
+        "frequency": "1.0",
+        "example_spanish": "Está lastimado pero no es grave.",
+        "example_english": "He's hurt but it's not serious."
+      }
+    ]
   },
-  {"rank": 4682, "word": "internos", "lemma": "interno", "duplicate": true},
+  {
+    "rank": 4682,
+    "word": "internos",
+    "lemma": "interno",
+    "duplicate": true
+  },
   {
     "rank": 4683,
     "word": "hueco",
     "lemma": "hueco",
-    "meanings": [{"pos": "noun", "definition": "hole, gap, hollow"}, {"pos": "adj", "definition": "hollow, empty"}],
-    "translations": ["hole", "gap", "hollow"],
-    "example": {"es": "Hay un hueco en la pared.", "en": "There's a hole in the wall."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "hole, gap, hollow",
+        "frequency": "1.0",
+        "example_spanish": "Hay un hueco en la pared.",
+        "example_english": "There's a hole in the wall."
+      },
+      {
+        "pos": "adj",
+        "translation": "hollow, empty",
+        "frequency": "1.0",
+        "example_spanish": "Hay un hueco en la pared.",
+        "example_english": "There's a hole in the wall."
+      }
+    ]
   },
-  {"rank": 4684, "word": "golpea", "lemma": "golpear", "duplicate": true},
+  {
+    "rank": 4684,
+    "word": "golpea",
+    "lemma": "golpear",
+    "duplicate": true
+  },
   {
     "rank": 4685,
     "word": "evento",
     "lemma": "evento",
-    "meanings": [{"pos": "noun", "definition": "event"}],
-    "translations": ["event"],
-    "example": {"es": "El evento se canceló por la lluvia.", "en": "The event was cancelled due to rain."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "event",
+        "frequency": "1.0",
+        "example_spanish": "El evento se canceló por la lluvia.",
+        "example_english": "The event was cancelled due to rain."
+      }
+    ]
   },
-  {"rank": 4686, "word": "estudiando", "lemma": "estudiar", "duplicate": true},
-  {"rank": 4687, "word": "elige", "lemma": "elegir", "duplicate": true},
+  {
+    "rank": 4686,
+    "word": "estudiando",
+    "lemma": "estudiar",
+    "duplicate": true
+  },
+  {
+    "rank": 4687,
+    "word": "elige",
+    "lemma": "elegir",
+    "duplicate": true
+  },
   {
     "rank": 4688,
     "word": "crecido",
     "lemma": "crecido",
-    "meanings": [{"pos": "adj", "definition": "grown, grown-up"}],
-    "translations": ["grown", "grown-up"],
-    "example": {"es": "Los niños han crecido mucho.", "en": "The children have grown a lot."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "grown, grown-up",
+        "frequency": "1.0",
+        "example_spanish": "Los niños han crecido mucho.",
+        "example_english": "The children have grown a lot."
+      }
+    ]
   },
   {
     "rank": 4689,
     "word": "conspiración",
     "lemma": "conspiración",
-    "meanings": [{"pos": "noun", "definition": "conspiracy, plot"}],
-    "translations": ["conspiracy", "plot"],
-    "example": {"es": "Descubrieron una conspiración contra el gobierno.", "en": "They discovered a conspiracy against the government."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "conspiracy, plot",
+        "frequency": "1.0",
+        "example_spanish": "Descubrieron una conspiración contra el gobierno.",
+        "example_english": "They discovered a conspiracy against the government."
+      }
+    ]
   },
   {
     "rank": 4690,
     "word": "avenida",
     "lemma": "avenida",
-    "meanings": [{"pos": "noun", "definition": "avenue"}],
-    "translations": ["avenue"],
-    "example": {"es": "La tienda está en la avenida principal.", "en": "The store is on the main avenue."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "avenue",
+        "frequency": "1.0",
+        "example_spanish": "La tienda está en la avenida principal.",
+        "example_english": "The store is on the main avenue."
+      }
+    ]
   },
   {
     "rank": 4691,
     "word": "tremendo",
     "lemma": "tremendo",
-    "meanings": [{"pos": "adj", "definition": "tremendous, huge, terrible"}],
-    "translations": ["tremendous", "huge", "terrible"],
-    "example": {"es": "Fue un tremendo error.", "en": "It was a tremendous mistake."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "tremendous, huge, terrible",
+        "frequency": "1.0",
+        "example_spanish": "Fue un tremendo error.",
+        "example_english": "It was a tremendous mistake."
+      }
+    ]
   },
-  {"rank": 4692, "word": "tocas", "lemma": "tocar", "duplicate": true},
-  {"rank": 4693, "word": "sabias", "lemma": "sabio", "duplicate": true},
+  {
+    "rank": 4692,
+    "word": "tocas",
+    "lemma": "tocar",
+    "duplicate": true
+  },
+  {
+    "rank": 4693,
+    "word": "sabias",
+    "lemma": "sabio",
+    "duplicate": true
+  },
   {
     "rank": 4694,
     "word": "raya",
     "lemma": "raya",
-    "meanings": [{"pos": "noun", "definition": "line, stripe, part (in hair)"}],
-    "translations": ["line", "stripe"],
-    "example": {"es": "Dibuja una raya en el papel.", "en": "Draw a line on the paper."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "line, stripe, part (in hair)",
+        "frequency": "1.0",
+        "example_spanish": "Dibuja una raya en el papel.",
+        "example_english": "Draw a line on the paper."
+      }
+    ]
   },
-  {"rank": 4695, "word": "líos", "lemma": "lío", "duplicate": true},
-  {"rank": 4696, "word": "invitar", "lemma": "invitar", "duplicate": true},
-  {"rank": 4697, "word": "homicidios", "lemma": "homicidio", "duplicate": true},
+  {
+    "rank": 4695,
+    "word": "líos",
+    "lemma": "lío",
+    "duplicate": true
+  },
+  {
+    "rank": 4696,
+    "word": "invitar",
+    "lemma": "invitar",
+    "duplicate": true
+  },
+  {
+    "rank": 4697,
+    "word": "homicidios",
+    "lemma": "homicidio",
+    "duplicate": true
+  },
   {
     "rank": 4698,
     "word": "herramientas",
     "lemma": "herramienta",
-    "meanings": [{"pos": "noun", "definition": "tool"}],
-    "translations": ["tool"],
-    "example": {"es": "Necesito las herramientas para arreglar esto.", "en": "I need the tools to fix this."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "tool",
+        "frequency": "1.0",
+        "example_spanish": "Necesito las herramientas para arreglar esto.",
+        "example_english": "I need the tools to fix this."
+      }
+    ]
   },
   {
     "rank": 4699,
     "word": "flecha",
     "lemma": "flecha",
-    "meanings": [{"pos": "noun", "definition": "arrow"}],
-    "translations": ["arrow"],
-    "example": {"es": "La flecha dio en el blanco.", "en": "The arrow hit the target."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "arrow",
+        "frequency": "1.0",
+        "example_spanish": "La flecha dio en el blanco.",
+        "example_english": "The arrow hit the target."
+      }
+    ]
   },
   {
     "rank": 4700,
     "word": "derrota",
     "lemma": "derrota",
-    "meanings": [{"pos": "noun", "definition": "defeat, loss"}],
-    "translations": ["defeat", "loss"],
-    "example": {"es": "Aceptó la derrota con dignidad.", "en": "He accepted the defeat with dignity."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "defeat, loss",
+        "frequency": "1.0",
+        "example_spanish": "Aceptó la derrota con dignidad.",
+        "example_english": "He accepted the defeat with dignity."
+      }
+    ]
   },
-  {"rank": 4701, "word": "cervezas", "lemma": "cerveza", "duplicate": true},
-  {"rank": 4702, "word": "terminará", "lemma": "terminar", "duplicate": true},
+  {
+    "rank": 4701,
+    "word": "cervezas",
+    "lemma": "cerveza",
+    "duplicate": true
+  },
+  {
+    "rank": 4702,
+    "word": "terminará",
+    "lemma": "terminar",
+    "duplicate": true
+  },
   {
     "rank": 4703,
     "word": "llenar",
     "lemma": "llenar",
-    "meanings": [{"pos": "verb", "definition": "to fill, to fill up"}],
-    "translations": ["to fill", "to fill up"],
-    "example": {"es": "Voy a llenar el vaso con agua.", "en": "I'm going to fill the glass with water."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to fill, to fill up",
+        "frequency": "1.0",
+        "example_spanish": "Voy a llenar el vaso con agua.",
+        "example_english": "I'm going to fill the glass with water."
+      }
+    ]
   },
-  {"rank": 4704, "word": "líderes", "lemma": "líder", "duplicate": true},
-  {"rank": 4705, "word": "ganan", "lemma": "ganar", "duplicate": true},
+  {
+    "rank": 4704,
+    "word": "líderes",
+    "lemma": "líder",
+    "duplicate": true
+  },
+  {
+    "rank": 4705,
+    "word": "ganan",
+    "lemma": "ganar",
+    "duplicate": true
+  },
   {
     "rank": 4706,
     "word": "fingir",
     "lemma": "fingir",
-    "meanings": [{"pos": "verb", "definition": "to pretend, to fake"}],
-    "translations": ["to pretend", "to fake"],
-    "example": {"es": "No puedes fingir que no pasó nada.", "en": "You can't pretend nothing happened."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to pretend, to fake",
+        "frequency": "1.0",
+        "example_spanish": "No puedes fingir que no pasó nada.",
+        "example_english": "You can't pretend nothing happened."
+      }
+    ]
   },
   {
     "rank": 4707,
     "word": "estrategia",
     "lemma": "estrategia",
-    "meanings": [{"pos": "noun", "definition": "strategy"}],
-    "translations": ["strategy"],
-    "example": {"es": "Necesitamos una nueva estrategia.", "en": "We need a new strategy."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "strategy",
+        "frequency": "1.0",
+        "example_spanish": "Necesitamos una nueva estrategia.",
+        "example_english": "We need a new strategy."
+      }
+    ]
   },
-  {"rank": 4708, "word": "dirán", "lemma": "decir", "duplicate": true},
-  {"rank": 4709, "word": "confías", "lemma": "confiar", "duplicate": true},
+  {
+    "rank": 4708,
+    "word": "dirán",
+    "lemma": "decir",
+    "duplicate": true
+  },
+  {
+    "rank": 4709,
+    "word": "confías",
+    "lemma": "confiar",
+    "duplicate": true
+  },
   {
     "rank": 4710,
     "word": "cómoda",
     "lemma": "cómodo",
-    "meanings": [{"pos": "adj", "definition": "comfortable"}, {"pos": "noun", "definition": "dresser, chest of drawers"}],
-    "translations": ["comfortable", "dresser"],
-    "example": {"es": "Esta silla es muy cómoda.", "en": "This chair is very comfortable."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "comfortable",
+        "frequency": "1.0",
+        "example_spanish": "Esta silla es muy cómoda.",
+        "example_english": "This chair is very comfortable."
+      },
+      {
+        "pos": "noun",
+        "translation": "dresser, chest of drawers",
+        "frequency": "1.0",
+        "example_spanish": "Esta silla es muy cómoda.",
+        "example_english": "This chair is very comfortable."
+      }
+    ]
   },
-  {"rank": 4711, "word": "comience", "lemma": "comenzar", "duplicate": true},
+  {
+    "rank": 4711,
+    "word": "comience",
+    "lemma": "comenzar",
+    "duplicate": true
+  },
   {
     "rank": 4712,
     "word": "cenizas",
     "lemma": "ceniza",
-    "meanings": [{"pos": "noun", "definition": "ash, ashes"}],
-    "translations": ["ash", "ashes"],
-    "example": {"es": "Las cenizas del fuego estaban frías.", "en": "The ashes from the fire were cold."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "ash, ashes",
+        "frequency": "1.0",
+        "example_spanish": "Las cenizas del fuego estaban frías.",
+        "example_english": "The ashes from the fire were cold."
+      }
+    ]
   },
-  {"rank": 4713, "word": "capaces", "lemma": "capaz", "duplicate": true},
-  {"rank": 4714, "word": "temía", "lemma": "temer", "duplicate": true},
+  {
+    "rank": 4713,
+    "word": "capaces",
+    "lemma": "capaz",
+    "duplicate": true
+  },
+  {
+    "rank": 4714,
+    "word": "temía",
+    "lemma": "temer",
+    "duplicate": true
+  },
   {
     "rank": 4715,
     "word": "sonríe",
     "lemma": "sonreír",
-    "meanings": [{"pos": "verb", "definition": "to smile"}],
-    "translations": ["to smile"],
-    "example": {"es": "Ella siempre sonríe cuando me ve.", "en": "She always smiles when she sees me."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to smile",
+        "frequency": "1.0",
+        "example_spanish": "Ella siempre sonríe cuando me ve.",
+        "example_english": "She always smiles when she sees me."
+      }
+    ]
   },
-  {"rank": 4716, "word": "quite", "lemma": "quitar", "duplicate": true},
-  {"rank": 4717, "word": "necesites", "lemma": "necesitar", "duplicate": true},
-  {"rank": 4718, "word": "mostrarle", "lemma": "mostrar", "duplicate": true},
+  {
+    "rank": 4716,
+    "word": "quite",
+    "lemma": "quitar",
+    "duplicate": true
+  },
+  {
+    "rank": 4717,
+    "word": "necesites",
+    "lemma": "necesitar",
+    "duplicate": true
+  },
+  {
+    "rank": 4718,
+    "word": "mostrarle",
+    "lemma": "mostrar",
+    "duplicate": true
+  },
   {
     "rank": 4719,
     "word": "mordió",
     "lemma": "morder",
-    "meanings": [{"pos": "verb", "definition": "to bite"}],
-    "translations": ["to bite"],
-    "example": {"es": "El perro mordió la pelota.", "en": "The dog bit the ball."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to bite",
+        "frequency": "1.0",
+        "example_spanish": "El perro mordió la pelota.",
+        "example_english": "The dog bit the ball."
+      }
+    ]
   },
   {
     "rank": 4720,
     "word": "jefa",
     "lemma": "jefa",
-    "meanings": [{"pos": "noun", "definition": "boss, chief (female)"}],
-    "translations": ["boss", "chief"],
-    "example": {"es": "La jefa aprobó el proyecto.", "en": "The boss approved the project."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "boss, chief (female)",
+        "frequency": "1.0",
+        "example_spanish": "La jefa aprobó el proyecto.",
+        "example_english": "The boss approved the project."
+      }
+    ]
   },
   {
     "rank": 4721,
     "word": "fallo",
     "lemma": "fallo",
-    "meanings": [{"pos": "noun", "definition": "failure, fault, verdict"}],
-    "translations": ["failure", "fault", "verdict"],
-    "example": {"es": "Hubo un fallo en el sistema.", "en": "There was a failure in the system."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "failure, fault, verdict",
+        "frequency": "1.0",
+        "example_spanish": "Hubo un fallo en el sistema.",
+        "example_english": "There was a failure in the system."
+      }
+    ]
   },
-  {"rank": 4722, "word": "empiezan", "lemma": "empezar", "duplicate": true},
+  {
+    "rank": 4722,
+    "word": "empiezan",
+    "lemma": "empezar",
+    "duplicate": true
+  },
   {
     "rank": 4723,
     "word": "dispositivo",
     "lemma": "dispositivo",
-    "meanings": [{"pos": "noun", "definition": "device, mechanism"}],
-    "translations": ["device", "mechanism"],
-    "example": {"es": "Este dispositivo es muy fácil de usar.", "en": "This device is very easy to use."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "device, mechanism",
+        "frequency": "1.0",
+        "example_spanish": "Este dispositivo es muy fácil de usar.",
+        "example_english": "This device is very easy to use."
+      }
+    ]
   },
   {
     "rank": 4724,
     "word": "detesto",
     "lemma": "detestar",
-    "meanings": [{"pos": "verb", "definition": "to detest, to hate"}],
-    "translations": ["to detest", "to hate"],
-    "example": {"es": "Detesto las mentiras.", "en": "I detest lies."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to detest, to hate",
+        "frequency": "1.0",
+        "example_spanish": "Detesto las mentiras.",
+        "example_english": "I detest lies."
+      }
+    ]
   },
-  {"rank": 4725, "word": "aprendiste", "lemma": "aprender", "duplicate": true},
-  {"rank": 4726, "word": "aman", "lemma": "amar", "duplicate": true},
+  {
+    "rank": 4725,
+    "word": "aprendiste",
+    "lemma": "aprender",
+    "duplicate": true
+  },
+  {
+    "rank": 4726,
+    "word": "aman",
+    "lemma": "amar",
+    "duplicate": true
+  },
   {
     "rank": 4727,
     "word": "agradecido",
     "lemma": "agradecido",
-    "meanings": [{"pos": "adj", "definition": "grateful, thankful"}],
-    "translations": ["grateful", "thankful"],
-    "example": {"es": "Estoy muy agradecido por tu ayuda.", "en": "I'm very grateful for your help."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "grateful, thankful",
+        "frequency": "1.0",
+        "example_spanish": "Estoy muy agradecido por tu ayuda.",
+        "example_english": "I'm very grateful for your help."
+      }
+    ]
   },
   {
     "rank": 4728,
     "word": "agáchate",
     "lemma": "agachar",
-    "meanings": [{"pos": "verb", "definition": "to duck, to crouch, to bend down"}],
-    "translations": ["to duck", "to crouch", "to bend down"],
-    "example": {"es": "Agáchate para pasar por la puerta.", "en": "Duck to get through the door."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to duck, to crouch, to bend down",
+        "frequency": "1.0",
+        "example_spanish": "Agáchate para pasar por la puerta.",
+        "example_english": "Duck to get through the door."
+      }
+    ]
   },
-  {"rank": 4729, "word": "terminaste", "lemma": "terminar", "duplicate": true},
+  {
+    "rank": 4729,
+    "word": "terminaste",
+    "lemma": "terminar",
+    "duplicate": true
+  },
   {
     "rank": 4730,
     "word": "sida",
     "lemma": "sida",
-    "meanings": [{"pos": "noun", "definition": "AIDS"}],
-    "translations": ["AIDS"],
-    "example": {"es": "La investigación sobre el sida ha avanzado mucho.", "en": "Research on AIDS has advanced a lot."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "AIDS",
+        "frequency": "1.0",
+        "example_spanish": "La investigación sobre el sida ha avanzado mucho.",
+        "example_english": "Research on AIDS has advanced a lot."
+      }
+    ]
   },
-  {"rank": 4731, "word": "mueras", "lemma": "morir", "duplicate": true},
-  {"rank": 4732, "word": "mentí", "lemma": "mentir", "duplicate": true},
+  {
+    "rank": 4731,
+    "word": "mueras",
+    "lemma": "morir",
+    "duplicate": true
+  },
+  {
+    "rank": 4732,
+    "word": "mentí",
+    "lemma": "mentir",
+    "duplicate": true
+  },
   {
     "rank": 4733,
     "word": "lujo",
     "lemma": "lujo",
-    "meanings": [{"pos": "noun", "definition": "luxury"}],
-    "translations": ["luxury"],
-    "example": {"es": "Vivir aquí es un lujo.", "en": "Living here is a luxury."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "luxury",
+        "frequency": "1.0",
+        "example_spanish": "Vivir aquí es un lujo.",
+        "example_english": "Living here is a luxury."
+      }
+    ]
   },
   {
     "rank": 4734,
     "word": "láser",
     "lemma": "láser",
-    "meanings": [{"pos": "noun", "definition": "laser"}],
-    "translations": ["laser"],
-    "example": {"es": "El láser cortó el metal con precisión.", "en": "The laser cut the metal with precision."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "laser",
+        "frequency": "1.0",
+        "example_spanish": "El láser cortó el metal con precisión.",
+        "example_english": "The laser cut the metal with precision."
+      }
+    ]
   },
   {
     "rank": 4735,
     "word": "importe",
     "lemma": "importe",
-    "meanings": [{"pos": "noun", "definition": "amount, sum, cost"}],
-    "translations": ["amount", "sum", "cost"],
-    "example": {"es": "El importe total es de cien euros.", "en": "The total amount is one hundred euros."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "amount, sum, cost",
+        "frequency": "1.0",
+        "example_spanish": "El importe total es de cien euros.",
+        "example_english": "The total amount is one hundred euros."
+      }
+    ]
   },
   {
     "rank": 4736,
     "word": "físico",
     "lemma": "físico",
-    "meanings": [{"pos": "adj", "definition": "physical"}, {"pos": "noun", "definition": "physicist, physique"}],
-    "translations": ["physical", "physicist", "physique"],
-    "example": {"es": "El ejercicio físico es importante.", "en": "Physical exercise is important."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "physical",
+        "frequency": "1.0",
+        "example_spanish": "El ejercicio físico es importante.",
+        "example_english": "Physical exercise is important."
+      },
+      {
+        "pos": "noun",
+        "translation": "physicist, physique",
+        "frequency": "1.0",
+        "example_spanish": "El ejercicio físico es importante.",
+        "example_english": "Physical exercise is important."
+      }
+    ]
   },
-  {"rank": 4737, "word": "caes", "lemma": "caer", "duplicate": true},
-  {"rank": 4738, "word": "tiros", "lemma": "tiro", "duplicate": true},
-  {"rank": 4739, "word": "miran", "lemma": "mirar", "duplicate": true},
+  {
+    "rank": 4737,
+    "word": "caes",
+    "lemma": "caer",
+    "duplicate": true
+  },
+  {
+    "rank": 4738,
+    "word": "tiros",
+    "lemma": "tiro",
+    "duplicate": true
+  },
+  {
+    "rank": 4739,
+    "word": "miran",
+    "lemma": "mirar",
+    "duplicate": true
+  },
   {
     "rank": 4740,
     "word": "hadas",
     "lemma": "hada",
-    "meanings": [{"pos": "noun", "definition": "fairy"}],
-    "translations": ["fairy"],
-    "example": {"es": "El cuento tiene hadas y dragones.", "en": "The story has fairies and dragons."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "fairy",
+        "frequency": "1.0",
+        "example_spanish": "El cuento tiene hadas y dragones.",
+        "example_english": "The story has fairies and dragons."
+      }
+    ]
   },
   {
     "rank": 4741,
     "word": "ganancias",
     "lemma": "ganancia",
-    "meanings": [{"pos": "noun", "definition": "profit, earnings, gain"}],
-    "translations": ["profit", "earnings", "gain"],
-    "example": {"es": "Las ganancias de este año fueron buenas.", "en": "This year's profits were good."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "profit, earnings, gain",
+        "frequency": "1.0",
+        "example_spanish": "Las ganancias de este año fueron buenas.",
+        "example_english": "This year's profits were good."
+      }
+    ]
   },
   {
     "rank": 4742,
     "word": "fritas",
     "lemma": "frito",
-    "meanings": [{"pos": "adj", "definition": "fried"}],
-    "translations": ["fried"],
-    "example": {"es": "Me gustan las papas fritas.", "en": "I like fried potatoes."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "fried",
+        "frequency": "1.0",
+        "example_spanish": "Me gustan las papas fritas.",
+        "example_english": "I like fried potatoes."
+      }
+    ]
   },
   {
     "rank": 4743,
     "word": "fantasía",
     "lemma": "fantasía",
-    "meanings": [{"pos": "noun", "definition": "fantasy, imagination"}],
-    "translations": ["fantasy", "imagination"],
-    "example": {"es": "Eso es pura fantasía.", "en": "That's pure fantasy."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "fantasy, imagination",
+        "frequency": "1.0",
+        "example_spanish": "Eso es pura fantasía.",
+        "example_english": "That's pure fantasy."
+      }
+    ]
   },
-  {"rank": 4744, "word": "deténgase", "lemma": "detener", "duplicate": true},
-  {"rank": 4745, "word": "déjenlo", "lemma": "dejar", "duplicate": true},
+  {
+    "rank": 4744,
+    "word": "deténgase",
+    "lemma": "detener",
+    "duplicate": true
+  },
+  {
+    "rank": 4745,
+    "word": "déjenlo",
+    "lemma": "dejar",
+    "duplicate": true
+  },
   {
     "rank": 4746,
     "word": "curar",
     "lemma": "curar",
-    "meanings": [{"pos": "verb", "definition": "to cure, to heal"}],
-    "translations": ["to cure", "to heal"],
-    "example": {"es": "Este medicamento puede curar la infección.", "en": "This medicine can cure the infection."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to cure, to heal",
+        "frequency": "1.0",
+        "example_spanish": "Este medicamento puede curar la infección.",
+        "example_english": "This medicine can cure the infection."
+      }
+    ]
   },
-  {"rank": 4747, "word": "comidas", "lemma": "comida", "duplicate": true},
-  {"rank": 4748, "word": "quisiste", "lemma": "querer", "duplicate": true},
-  {"rank": 4749, "word": "pacífico", "lemma": "pacífico", "duplicate": true},
-  {"rank": 4750, "word": "oler", "lemma": "oler", "duplicate": true},
-  {"rank": 4751, "word": "ofreció", "lemma": "ofrecer", "duplicate": true},
-  {"rank": 4752, "word": "importaba", "lemma": "importar", "duplicate": true},
+  {
+    "rank": 4747,
+    "word": "comidas",
+    "lemma": "comida",
+    "duplicate": true
+  },
+  {
+    "rank": 4748,
+    "word": "quisiste",
+    "lemma": "querer",
+    "duplicate": true
+  },
+  {
+    "rank": 4749,
+    "word": "pacífico",
+    "lemma": "pacífico",
+    "duplicate": true
+  },
+  {
+    "rank": 4750,
+    "word": "oler",
+    "lemma": "oler",
+    "duplicate": true
+  },
+  {
+    "rank": 4751,
+    "word": "ofreció",
+    "lemma": "ofrecer",
+    "duplicate": true
+  },
+  {
+    "rank": 4752,
+    "word": "importaba",
+    "lemma": "importar",
+    "duplicate": true
+  },
   {
     "rank": 4753,
     "word": "certeza",
     "lemma": "certeza",
-    "meanings": [{"pos": "noun", "definition": "certainty, assurance"}],
-    "translations": ["certainty", "assurance"],
-    "example": {"es": "No tengo certeza de lo que pasó.", "en": "I don't have certainty about what happened."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "certainty, assurance",
+        "frequency": "1.0",
+        "example_spanish": "No tengo certeza de lo que pasó.",
+        "example_english": "I don't have certainty about what happened."
+      }
+    ]
   },
-  {"rank": 4754, "word": "actividades", "lemma": "actividad", "duplicate": true},
-  {"rank": 4755, "word": "vestidos", "lemma": "vestido", "duplicate": true},
-  {"rank": 4756, "word": "suele", "lemma": "soler", "duplicate": true},
+  {
+    "rank": 4754,
+    "word": "actividades",
+    "lemma": "actividad",
+    "duplicate": true
+  },
+  {
+    "rank": 4755,
+    "word": "vestidos",
+    "lemma": "vestido",
+    "duplicate": true
+  },
+  {
+    "rank": 4756,
+    "word": "suele",
+    "lemma": "soler",
+    "duplicate": true
+  },
   {
     "rank": 4757,
     "word": "submarino",
     "lemma": "submarino",
-    "meanings": [{"pos": "noun", "definition": "submarine"}, {"pos": "adj", "definition": "underwater"}],
-    "translations": ["submarine", "underwater"],
-    "example": {"es": "El submarino bajó a grandes profundidades.", "en": "The submarine descended to great depths."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "submarine",
+        "frequency": "1.0",
+        "example_spanish": "El submarino bajó a grandes profundidades.",
+        "example_english": "The submarine descended to great depths."
+      },
+      {
+        "pos": "adj",
+        "translation": "underwater",
+        "frequency": "1.0",
+        "example_spanish": "El submarino bajó a grandes profundidades.",
+        "example_english": "The submarine descended to great depths."
+      }
+    ]
   },
-  {"rank": 4758, "word": "podrias", "lemma": "poder", "duplicate": true},
+  {
+    "rank": 4758,
+    "word": "podrias",
+    "lemma": "poder",
+    "duplicate": true
+  },
   {
     "rank": 4759,
     "word": "pesa",
     "lemma": "pesa",
-    "meanings": [{"pos": "noun", "definition": "weight, dumbbell"}],
-    "translations": ["weight", "dumbbell"],
-    "example": {"es": "Levanta pesas en el gimnasio.", "en": "He lifts weights at the gym."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "weight, dumbbell",
+        "frequency": "1.0",
+        "example_spanish": "Levanta pesas en el gimnasio.",
+        "example_english": "He lifts weights at the gym."
+      }
+    ]
   },
-  {"rank": 4760, "word": "judas", "lemma": "judas", "duplicate": true},
+  {
+    "rank": 4760,
+    "word": "judas",
+    "lemma": "judas",
+    "duplicate": true
+  },
   {
     "rank": 4761,
     "word": "idioma",
     "lemma": "idioma",
-    "meanings": [{"pos": "noun", "definition": "language"}],
-    "translations": ["language"],
-    "example": {"es": "¿Cuántos idiomas hablas?", "en": "How many languages do you speak?"}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "language",
+        "frequency": "1.0",
+        "example_spanish": "¿Cuántos idiomas hablas?",
+        "example_english": "How many languages do you speak?"
+      }
+    ]
   },
   {
     "rank": 4762,
     "word": "identificar",
     "lemma": "identificar",
-    "meanings": [{"pos": "verb", "definition": "to identify"}],
-    "translations": ["to identify"],
-    "example": {"es": "Necesito identificar el problema.", "en": "I need to identify the problem."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to identify",
+        "frequency": "1.0",
+        "example_spanish": "Necesito identificar el problema.",
+        "example_english": "I need to identify the problem."
+      }
+    ]
   },
-  {"rank": 4763, "word": "hubiéramos", "lemma": "haber", "duplicate": true},
-  {"rank": 4764, "word": "cañones", "lemma": "cañón", "duplicate": true},
+  {
+    "rank": 4763,
+    "word": "hubiéramos",
+    "lemma": "haber",
+    "duplicate": true
+  },
+  {
+    "rank": 4764,
+    "word": "cañones",
+    "lemma": "cañón",
+    "duplicate": true
+  },
   {
     "rank": 4765,
     "word": "beneficios",
     "lemma": "beneficio",
-    "meanings": [{"pos": "noun", "definition": "benefit, profit"}],
-    "translations": ["benefit", "profit"],
-    "example": {"es": "Los beneficios del ejercicio son muchos.", "en": "The benefits of exercise are many."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "benefit, profit",
+        "frequency": "1.0",
+        "example_spanish": "Los beneficios del ejercicio son muchos.",
+        "example_english": "The benefits of exercise are many."
+      }
+    ]
   },
   {
     "rank": 4766,
     "word": "sospecha",
     "lemma": "sospecha",
-    "meanings": [{"pos": "noun", "definition": "suspicion"}],
-    "translations": ["suspicion"],
-    "example": {"es": "Tengo una sospecha sobre lo que pasó.", "en": "I have a suspicion about what happened."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "suspicion",
+        "frequency": "1.0",
+        "example_spanish": "Tengo una sospecha sobre lo que pasó.",
+        "example_english": "I have a suspicion about what happened."
+      }
+    ]
   },
   {
     "rank": 4767,
     "word": "observación",
     "lemma": "observación",
-    "meanings": [{"pos": "noun", "definition": "observation, remark"}],
-    "translations": ["observation", "remark"],
-    "example": {"es": "Hizo una observación interesante.", "en": "He made an interesting observation."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "observation, remark",
+        "frequency": "1.0",
+        "example_spanish": "Hizo una observación interesante.",
+        "example_english": "He made an interesting observation."
+      }
+    ]
   },
-  {"rank": 4768, "word": "muchachas", "lemma": "muchacha", "duplicate": true},
+  {
+    "rank": 4768,
+    "word": "muchachas",
+    "lemma": "muchacha",
+    "duplicate": true
+  },
   {
     "rank": 4769,
     "word": "manejo",
     "lemma": "manejo",
-    "meanings": [{"pos": "noun", "definition": "handling, management, driving"}],
-    "translations": ["handling", "management", "driving"],
-    "example": {"es": "El manejo de la situación fue difícil.", "en": "The handling of the situation was difficult."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "handling, management, driving",
+        "frequency": "1.0",
+        "example_spanish": "El manejo de la situación fue difícil.",
+        "example_english": "The handling of the situation was difficult."
+      }
+    ]
   },
-  {"rank": 4770, "word": "jodiendo", "lemma": "joder", "duplicate": true},
-  {"rank": 4771, "word": "explicarlo", "lemma": "explicar", "duplicate": true},
+  {
+    "rank": 4770,
+    "word": "jodiendo",
+    "lemma": "joder",
+    "duplicate": true
+  },
+  {
+    "rank": 4771,
+    "word": "explicarlo",
+    "lemma": "explicar",
+    "duplicate": true
+  },
   {
     "rank": 4772,
     "word": "divino",
     "lemma": "divino",
-    "meanings": [{"pos": "adj", "definition": "divine, heavenly"}],
-    "translations": ["divine", "heavenly"],
-    "example": {"es": "La comida estaba divina.", "en": "The food was divine."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "divine, heavenly",
+        "frequency": "1.0",
+        "example_spanish": "La comida estaba divina.",
+        "example_english": "The food was divine."
+      }
+    ]
   },
-  {"rank": 4773, "word": "divertida", "lemma": "divertido", "duplicate": true},
+  {
+    "rank": 4773,
+    "word": "divertida",
+    "lemma": "divertido",
+    "duplicate": true
+  },
   {
     "rank": 4774,
     "word": "despegue",
     "lemma": "despegue",
-    "meanings": [{"pos": "noun", "definition": "takeoff, launch"}],
-    "translations": ["takeoff", "launch"],
-    "example": {"es": "El despegue del avión fue suave.", "en": "The airplane's takeoff was smooth."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "takeoff, launch",
+        "frequency": "1.0",
+        "example_spanish": "El despegue del avión fue suave.",
+        "example_english": "The airplane's takeoff was smooth."
+      }
+    ]
   },
   {
     "rank": 4775,
     "word": "contrató",
     "lemma": "contratar",
-    "meanings": [{"pos": "verb", "definition": "to hire, to contract"}],
-    "translations": ["to hire", "to contract"],
-    "example": {"es": "La empresa contrató a diez empleados nuevos.", "en": "The company hired ten new employees."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to hire, to contract",
+        "frequency": "1.0",
+        "example_spanish": "La empresa contrató a diez empleados nuevos.",
+        "example_english": "The company hired ten new employees."
+      }
+    ]
   },
   {
     "rank": 4776,
     "word": "volumen",
     "lemma": "volumen",
-    "meanings": [{"pos": "noun", "definition": "volume"}],
-    "translations": ["volume"],
-    "example": {"es": "Baja el volumen de la música.", "en": "Turn down the volume of the music."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "volume",
+        "frequency": "1.0",
+        "example_spanish": "Baja el volumen de la música.",
+        "example_english": "Turn down the volume of the music."
+      }
+    ]
   },
-  {"rank": 4777, "word": "trabajó", "lemma": "trabajar", "duplicate": true},
+  {
+    "rank": 4777,
+    "word": "trabajó",
+    "lemma": "trabajar",
+    "duplicate": true
+  },
   {
     "rank": 4778,
     "word": "términos",
     "lemma": "término",
-    "meanings": [{"pos": "noun", "definition": "term, word, end"}],
-    "translations": ["term", "word", "end"],
-    "example": {"es": "No entiendo esos términos técnicos.", "en": "I don't understand those technical terms."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "term, word, end",
+        "frequency": "1.0",
+        "example_spanish": "No entiendo esos términos técnicos.",
+        "example_english": "I don't understand those technical terms."
+      }
+    ]
   },
-  {"rank": 4779, "word": "morirán", "lemma": "morir", "duplicate": true},
-  {"rank": 4780, "word": "hombros", "lemma": "hombro", "duplicate": true},
-  {"rank": 4781, "word": "hada", "lemma": "hada", "duplicate": true},
+  {
+    "rank": 4779,
+    "word": "morirán",
+    "lemma": "morir",
+    "duplicate": true
+  },
+  {
+    "rank": 4780,
+    "word": "hombros",
+    "lemma": "hombro",
+    "duplicate": true
+  },
+  {
+    "rank": 4781,
+    "word": "hada",
+    "lemma": "hada",
+    "duplicate": true
+  },
   {
     "rank": 4782,
     "word": "alegre",
     "lemma": "alegre",
-    "meanings": [{"pos": "adj", "definition": "happy, cheerful, joyful"}],
-    "translations": ["happy", "cheerful", "joyful"],
-    "example": {"es": "Es una persona muy alegre.", "en": "She's a very cheerful person."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "happy, cheerful, joyful",
+        "frequency": "1.0",
+        "example_spanish": "Es una persona muy alegre.",
+        "example_english": "She's a very cheerful person."
+      }
+    ]
   },
-  {"rank": 4783, "word": "terribles", "lemma": "terrible", "duplicate": true},
-  {"rank": 4784, "word": "temes", "lemma": "temer", "duplicate": true},
+  {
+    "rank": 4783,
+    "word": "terribles",
+    "lemma": "terrible",
+    "duplicate": true
+  },
+  {
+    "rank": 4784,
+    "word": "temes",
+    "lemma": "temer",
+    "duplicate": true
+  },
   {
     "rank": 4785,
     "word": "sabiduría",
     "lemma": "sabiduría",
-    "meanings": [{"pos": "noun", "definition": "wisdom"}],
-    "translations": ["wisdom"],
-    "example": {"es": "Con la edad viene la sabiduría.", "en": "With age comes wisdom."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "wisdom",
+        "frequency": "1.0",
+        "example_spanish": "Con la edad viene la sabiduría.",
+        "example_english": "With age comes wisdom."
+      }
+    ]
   },
   {
     "rank": 4786,
     "word": "prioridad",
     "lemma": "prioridad",
-    "meanings": [{"pos": "noun", "definition": "priority"}],
-    "translations": ["priority"],
-    "example": {"es": "Tu salud debe ser la prioridad.", "en": "Your health should be the priority."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "priority",
+        "frequency": "1.0",
+        "example_spanish": "Tu salud debe ser la prioridad.",
+        "example_english": "Your health should be the priority."
+      }
+    ]
   },
   {
     "rank": 4787,
     "word": "pluma",
     "lemma": "pluma",
-    "meanings": [{"pos": "noun", "definition": "feather, pen"}],
-    "translations": ["feather", "pen"],
-    "example": {"es": "El pájaro perdió una pluma.", "en": "The bird lost a feather."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "feather, pen",
+        "frequency": "1.0",
+        "example_spanish": "El pájaro perdió una pluma.",
+        "example_english": "The bird lost a feather."
+      }
+    ]
   },
-  {"rank": 4788, "word": "misil", "lemma": "misil", "duplicate": true},
+  {
+    "rank": 4788,
+    "word": "misil",
+    "lemma": "misil",
+    "duplicate": true
+  },
   {
     "rank": 4789,
     "word": "mansión",
     "lemma": "mansión",
-    "meanings": [{"pos": "noun", "definition": "mansion"}],
-    "translations": ["mansion"],
-    "example": {"es": "Viven en una mansión enorme.", "en": "They live in an enormous mansion."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "mansion",
+        "frequency": "1.0",
+        "example_spanish": "Viven en una mansión enorme.",
+        "example_english": "They live in an enormous mansion."
+      }
+    ]
   },
-  {"rank": 4790, "word": "detenerme", "lemma": "detener", "duplicate": true},
-  {"rank": 4791, "word": "despertó", "lemma": "despertar", "duplicate": true},
-  {"rank": 4792, "word": "decírmelo", "lemma": "decir", "duplicate": true},
-  {"rank": 4793, "word": "cambiará", "lemma": "cambiar", "duplicate": true},
+  {
+    "rank": 4790,
+    "word": "detenerme",
+    "lemma": "detener",
+    "duplicate": true
+  },
+  {
+    "rank": 4791,
+    "word": "despertó",
+    "lemma": "despertar",
+    "duplicate": true
+  },
+  {
+    "rank": 4792,
+    "word": "decírmelo",
+    "lemma": "decir",
+    "duplicate": true
+  },
+  {
+    "rank": 4793,
+    "word": "cambiará",
+    "lemma": "cambiar",
+    "duplicate": true
+  },
   {
     "rank": 4794,
     "word": "arranca",
     "lemma": "arrancar",
-    "meanings": [{"pos": "verb", "definition": "to start, to pull out, to tear off"}],
-    "translations": ["to start", "to pull out", "to tear off"],
-    "example": {"es": "El coche no arranca.", "en": "The car won't start."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to start, to pull out, to tear off",
+        "frequency": "1.0",
+        "example_spanish": "El coche no arranca.",
+        "example_english": "The car won't start."
+      }
+    ]
   },
   {
     "rank": 4795,
     "word": "alejado",
     "lemma": "alejado",
-    "meanings": [{"pos": "adj", "definition": "distant, remote, far away"}],
-    "translations": ["distant", "remote", "far away"],
-    "example": {"es": "El pueblo está alejado de la ciudad.", "en": "The town is far away from the city."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "distant, remote, far away",
+        "frequency": "1.0",
+        "example_spanish": "El pueblo está alejado de la ciudad.",
+        "example_english": "The town is far away from the city."
+      }
+    ]
   },
   {
     "rank": 4796,
     "word": "soltero",
     "lemma": "soltero",
-    "meanings": [{"pos": "adj", "definition": "single, unmarried"}, {"pos": "noun", "definition": "bachelor"}],
-    "translations": ["single", "unmarried", "bachelor"],
-    "example": {"es": "Mi hermano todavía está soltero.", "en": "My brother is still single."}
+    "meanings": [
+      {
+        "pos": "adj",
+        "translation": "single, unmarried",
+        "frequency": "1.0",
+        "example_spanish": "Mi hermano todavía está soltero.",
+        "example_english": "My brother is still single."
+      },
+      {
+        "pos": "noun",
+        "translation": "bachelor",
+        "frequency": "1.0",
+        "example_spanish": "Mi hermano todavía está soltero.",
+        "example_english": "My brother is still single."
+      }
+    ]
   },
-  {"rank": 4797, "word": "pierden", "lemma": "perder", "duplicate": true},
+  {
+    "rank": 4797,
+    "word": "pierden",
+    "lemma": "perder",
+    "duplicate": true
+  },
   {
     "rank": 4798,
     "word": "mascota",
     "lemma": "mascota",
-    "meanings": [{"pos": "noun", "definition": "pet, mascot"}],
-    "translations": ["pet", "mascot"],
-    "example": {"es": "Tengo una mascota en casa.", "en": "I have a pet at home."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "pet, mascot",
+        "frequency": "1.0",
+        "example_spanish": "Tengo una mascota en casa.",
+        "example_english": "I have a pet at home."
+      }
+    ]
   },
   {
     "rank": 4799,
     "word": "empuja",
     "lemma": "empujar",
-    "meanings": [{"pos": "verb", "definition": "to push"}],
-    "translations": ["to push"],
-    "example": {"es": "Empuja la puerta para abrirla.", "en": "Push the door to open it."}
+    "meanings": [
+      {
+        "pos": "verb",
+        "translation": "to push",
+        "frequency": "1.0",
+        "example_spanish": "Empuja la puerta para abrirla.",
+        "example_english": "Push the door to open it."
+      }
+    ]
   },
   {
     "rank": 4800,
     "word": "dentista",
     "lemma": "dentista",
-    "meanings": [{"pos": "noun", "definition": "dentist"}],
-    "translations": ["dentist"],
-    "example": {"es": "Tengo cita con el dentista mañana.", "en": "I have an appointment with the dentist tomorrow."}
+    "meanings": [
+      {
+        "pos": "noun",
+        "translation": "dentist",
+        "frequency": "1.0",
+        "example_spanish": "Tengo cita con el dentista mañana.",
+        "example_english": "I have an appointment with the dentist tomorrow."
+      }
+    ]
   }
 ]

@@ -2056,12 +2056,12 @@
                 console.error('Failed to load vocabulary data:', error);
             }
 
-            // Filter to non-blank entries
+            // Filter to non-blank entries and exclude duplicates
             let filteredVocab = vocabularyData.filter(item =>
-                item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0
+                item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
             );
 
-            // If in lemma mode, keep only first occurrence of each lemma and re-rank
+            // If in lemma mode, keep only first occurrence of each lemma from entire dataset
             if (useLemmaMode) {
                 const seenLemmas = new Set();
                 filteredVocab = filteredVocab.filter(item => {
@@ -2072,11 +2072,17 @@
                     seenLemmas.add(lemma);
                     return true;
                 });
-                // Re-rank the filtered data
-                filteredVocab.forEach((item, index) => {
-                    item.rank = index + 1;
-                });
             }
+
+            // Re-rank ALL filtered data based on position (starting from 1)
+            filteredVocab.forEach((item, index) => {
+                item.rank = index + 1;
+            });
+
+            // Now filter to only items within the level's range
+            filteredVocab = filteredVocab.filter(item =>
+                item.rank >= minWord && item.rank < maxWord
+            );
 
             // Create a Set of all available ranks for fast lookup
             const availableRanks = new Set(filteredVocab.map(item => item.rank));
@@ -2166,17 +2172,16 @@
                 }
                 const vocabularyData = await response.json();
 
-                // Filter vocabulary by rank range and exclude blank entries
+                // Filter to non-blank entries and exclude duplicates
                 let filteredData = vocabularyData.filter(item =>
-                    item.rank >= rangeStart &&
-                    item.rank < rangeEnd &&
                     item.word &&
                     item.word.trim() !== '' &&
+                    !item.duplicate &&
                     item.meanings &&
                     item.meanings.length > 0
                 );
 
-                // If in lemma mode, keep only first occurrence of each lemma and re-rank
+                // If in lemma mode, keep only first occurrence of each lemma from ENTIRE dataset
                 if (useLemmaMode) {
                     const seenLemmas = new Set();
                     filteredData = filteredData.filter(item => {
@@ -2187,11 +2192,17 @@
                         seenLemmas.add(lemma);
                         return true;
                     });
-                    // Re-rank the filtered data
-                    filteredData.forEach((item, index) => {
-                        item.rank = rangeStart + index;
-                    });
                 }
+
+                // Re-rank ALL filtered data based on position
+                filteredData.forEach((item, index) => {
+                    item.rank = index + 1;
+                });
+
+                // NOW filter by the requested range
+                filteredData = filteredData.filter(item =>
+                    item.rank >= rangeStart && item.rank < rangeEnd
+                );
 
                 // Convert to flashcards format
                 const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
