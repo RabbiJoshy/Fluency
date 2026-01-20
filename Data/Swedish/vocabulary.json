@@ -19651,7 +19651,24 @@
   },
   {
     "rank": 1501,
-    "word": "lund"
+    "word": "lund",
+    "lemma": "lund",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "grove",
+        "frequency": 0.15,
+        "example_swedish": "Vi gick genom en liten lund.",
+        "example_english": "We walked through a small grove."
+      },
+      {
+        "pos": "PROPN",
+        "translation": "Lund (city in Sweden)",
+        "frequency": 0.85,
+        "example_swedish": "Universitetet i Lund är välkänt.",
+        "example_english": "The university in Lund is well-known."
+      }
+    ]
   },
   {
     "rank": 1502,
@@ -19673,7 +19690,17 @@
   },
   {
     "rank": 1504,
-    "word": "inflytande"
+    "word": "inflytande",
+    "lemma": "inflytande",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "influence",
+        "frequency": 1.0,
+        "example_swedish": "Hon har stort inflytande på beslutet.",
+        "example_english": "She has great influence on the decision."
+      }
+    ]
   },
   {
     "rank": 1505,
@@ -19681,11 +19708,31 @@
   },
   {
     "rank": 1506,
-    "word": "ty"
+    "word": "ty",
+    "lemma": "ty",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "for, because",
+        "frequency": 1.0,
+        "example_swedish": "Han gick hem tidigt, ty han var trött.",
+        "example_english": "He went home early, for he was tired."
+      }
+    ]
   },
   {
     "rank": 1507,
-    "word": "saab"
+    "word": "saab",
+    "lemma": "saab",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Saab (Swedish company)",
+        "frequency": 1.0,
+        "example_swedish": "Saab tillverkar flygplan och bilar.",
+        "example_english": "Saab manufactures aircraft and cars."
+      }
+    ]
   },
   {
     "rank": 1508,
@@ -19711,7 +19758,24 @@
   },
   {
     "rank": 1511,
-    "word": "stoppa"
+    "word": "stoppa",
+    "lemma": "stoppa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to stop, to put",
+        "frequency": 0.7,
+        "example_swedish": "Polisen stannade för att stoppa bilen.",
+        "example_english": "The police stopped to stop the car."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to stuff, to put into",
+        "frequency": 0.3,
+        "example_swedish": "Hon stoppade pengarna i fickan.",
+        "example_english": "She put the money in her pocket."
+      }
+    ]
   },
   {
     "rank": 1512,
@@ -19729,7 +19793,17 @@
   },
   {
     "rank": 1513,
-    "word": "västra"
+    "word": "västra",
+    "lemma": "västra",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "western",
+        "frequency": 1.0,
+        "example_swedish": "De bor i västra delen av staden.",
+        "example_english": "They live in the western part of the city."
+      }
+    ]
   },
   {
     "rank": 1514,
@@ -19739,7 +19813,15 @@
     "rank": 1515,
     "word": "dotter",
     "lemma": "dotter",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "daughter",
+        "frequency": 1.0,
+        "example_swedish": "Min dotter fyller tio år i morgon.",
+        "example_english": "My daughter turns ten years old tomorrow."
+      }
+    ]
   },
   {
     "rank": 1516,
@@ -19753,11 +19835,52 @@
   },
   {
     "rank": 1518,
-    "word": "va"
+    "word": "va",
+    "lemma": "va",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "huh, what",
+        "frequency": 0.8,
+        "example_swedish": "Va? Vad sa du?",
+        "example_english": "Huh? What did you say?"
+      },
+      {
+        "pos": "VERB",
+        "translation": "was (colloquial for 'var')",
+        "frequency": 0.2,
+        "example_swedish": "Det va konstigt.",
+        "example_english": "That was strange."
+      }
+    ]
   },
   {
     "rank": 1519,
-    "word": "driva"
+    "word": "driva",
+    "lemma": "driva",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to drive, to run, to operate",
+        "frequency": 0.6,
+        "example_swedish": "Han driver ett eget företag.",
+        "example_english": "He runs his own company."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to drift, to float",
+        "frequency": 0.25,
+        "example_swedish": "Båten drev iväg från stranden.",
+        "example_english": "The boat drifted away from the shore."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to push, to propel",
+        "frequency": 0.15,
+        "example_swedish": "Vinden drev molnen mot östra horisonten.",
+        "example_english": "The wind drove the clouds toward the eastern horizon."
+      }
+    ]
   },
   {
     "rank": 1520,
@@ -19765,15 +19888,45 @@
   },
   {
     "rank": 1521,
-    "word": "kelderek"
+    "word": "kelderek",
+    "lemma": "kelderek",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Kelderek (character name)",
+        "frequency": 1.0,
+        "example_swedish": "Kelderek är huvudpersonen i boken.",
+        "example_english": "Kelderek is the main character in the book."
+      }
+    ]
   },
   {
     "rank": 1522,
-    "word": "borgerliga"
+    "word": "borgerliga",
+    "lemma": "borgerlig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "bourgeois, non-socialist, civic",
+        "frequency": 1.0,
+        "example_swedish": "De borgerliga partierna förlorade valet.",
+        "example_english": "The non-socialist parties lost the election."
+      }
+    ]
   },
   {
     "rank": 1523,
-    "word": "startade"
+    "word": "startade",
+    "lemma": "starta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to start, to begin",
+        "frequency": 1.0,
+        "example_swedish": "Hon startade företaget förra året.",
+        "example_english": "She started the company last year."
+      }
+    ]
   },
   {
     "rank": 1524,
@@ -19809,7 +19962,24 @@
   },
   {
     "rank": 1529,
-    "word": "uppåt"
+    "word": "uppåt",
+    "lemma": "uppåt",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "upward, up",
+        "frequency": 0.7,
+        "example_swedish": "Priserna går uppåt.",
+        "example_english": "The prices are going up."
+      },
+      {
+        "pos": "PREP",
+        "translation": "up toward",
+        "frequency": 0.3,
+        "example_swedish": "Vi vandrade uppåt berget.",
+        "example_english": "We hiked up toward the mountain."
+      }
+    ]
   },
   {
     "rank": 1530,
@@ -19857,7 +20027,24 @@
   },
   {
     "rank": 1535,
-    "word": "skatt"
+    "word": "skatt",
+    "lemma": "skatt",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "tax",
+        "frequency": 0.7,
+        "example_swedish": "Skatten på bilar har ökat.",
+        "example_english": "The tax on cars has increased."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "treasure",
+        "frequency": 0.3,
+        "example_swedish": "De hittade en gömd skatt.",
+        "example_english": "They found a hidden treasure."
+      }
+    ]
   },
   {
     "rank": 1536,
@@ -19879,11 +20066,38 @@
   },
   {
     "rank": 1538,
-    "word": "david"
+    "word": "david",
+    "lemma": "david",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "David (name)",
+        "frequency": 1.0,
+        "example_swedish": "David arbetar på kontoret.",
+        "example_english": "David works at the office."
+      }
+    ]
   },
   {
     "rank": 1539,
-    "word": "linje"
+    "word": "linje",
+    "lemma": "linje",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "line",
+        "frequency": 0.6,
+        "example_swedish": "Dra en rak linje från punkt A till B.",
+        "example_english": "Draw a straight line from point A to B."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "policy, course",
+        "frequency": 0.4,
+        "example_swedish": "Partiets linje är tydlig.",
+        "example_english": "The party's policy is clear."
+      }
+    ]
   },
   {
     "rank": 1540,
@@ -19905,7 +20119,17 @@
   },
   {
     "rank": 1542,
-    "word": "mr"
+    "word": "mr",
+    "lemma": "mr",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "Mr.",
+        "frequency": 1.0,
+        "example_swedish": "Mr Smith kommer från England.",
+        "example_english": "Mr Smith comes from England."
+      }
+    ]
   },
   {
     "rank": 1543,
@@ -19913,11 +20137,31 @@
   },
   {
     "rank": 1544,
-    "word": "östra"
+    "word": "östra",
+    "lemma": "östra",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "eastern",
+        "frequency": 1.0,
+        "example_swedish": "De bor i östra delen av landet.",
+        "example_english": "They live in the eastern part of the country."
+      }
+    ]
   },
   {
     "rank": 1545,
-    "word": "id"
+    "word": "id",
+    "lemma": "id",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "ID, identification",
+        "frequency": 1.0,
+        "example_swedish": "Du måste visa id för att komma in.",
+        "example_english": "You must show ID to enter."
+      }
+    ]
   },
   {
     "rank": 1546,
@@ -19943,15 +20187,45 @@
   },
   {
     "rank": 1549,
-    "word": "totala"
+    "word": "totala",
+    "lemma": "total",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "total, complete",
+        "frequency": 1.0,
+        "example_swedish": "Den totala kostnaden blev högre än väntat.",
+        "example_english": "The total cost was higher than expected."
+      }
+    ]
   },
   {
     "rank": 1550,
-    "word": "aktuella"
+    "word": "aktuella",
+    "lemma": "aktuell",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "current, relevant",
+        "frequency": 1.0,
+        "example_swedish": "De aktuella frågorna diskuterades på mötet.",
+        "example_english": "The current issues were discussed at the meeting."
+      }
+    ]
   },
   {
     "rank": 1551,
-    "word": "föreningen"
+    "word": "föreningen",
+    "lemma": "förening",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "association, club, union",
+        "frequency": 1.0,
+        "example_swedish": "Föreningen har över tusen medlemmar.",
+        "example_english": "The association has over a thousand members."
+      }
+    ]
   },
   {
     "rank": 1552,
@@ -19965,11 +20239,31 @@
   },
   {
     "rank": 1554,
-    "word": "patienter"
+    "word": "patienter",
+    "lemma": "patient",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "patient",
+        "frequency": 1.0,
+        "example_swedish": "Sjukhuset tar emot många patienter varje dag.",
+        "example_english": "The hospital receives many patients every day."
+      }
+    ]
   },
   {
     "rank": 1555,
-    "word": "halvt"
+    "word": "halvt",
+    "lemma": "halv",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "half",
+        "frequency": 1.0,
+        "example_swedish": "Glaset var halvt fullt.",
+        "example_english": "The glass was half full."
+      }
+    ]
   },
   {
     "rank": 1556,
@@ -19977,11 +20271,38 @@
   },
   {
     "rank": 1557,
-    "word": "sönder"
+    "word": "sönder",
+    "lemma": "sönder",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "broken, apart, to pieces",
+        "frequency": 1.0,
+        "example_swedish": "Vasen gick sönder när den föll.",
+        "example_english": "The vase broke when it fell."
+      }
+    ]
   },
   {
     "rank": 1558,
-    "word": "fyller"
+    "word": "fyller",
+    "lemma": "fylla",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to fill",
+        "frequency": 0.5,
+        "example_swedish": "Hon fyller glaset med vatten.",
+        "example_english": "She fills the glass with water."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to turn (age)",
+        "frequency": 0.5,
+        "example_swedish": "Min dotter fyller tio år i morgon.",
+        "example_english": "My daughter turns ten tomorrow."
+      }
+    ]
   },
   {
     "rank": 1559,
@@ -19989,11 +20310,38 @@
   },
   {
     "rank": 1560,
-    "word": "ämnen"
+    "word": "ämnen",
+    "lemma": "ämne",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "subject, topic",
+        "frequency": 0.6,
+        "example_swedish": "Vi diskuterade olika ämnen.",
+        "example_english": "We discussed various subjects."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "substance, material",
+        "frequency": 0.4,
+        "example_swedish": "Kemiska ämnen kan vara farliga.",
+        "example_english": "Chemical substances can be dangerous."
+      }
+    ]
   },
   {
     "rank": 1561,
-    "word": "fängelse"
+    "word": "fängelse",
+    "lemma": "fängelse",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "prison, jail",
+        "frequency": 1.0,
+        "example_swedish": "Han dömdes till två år i fängelse.",
+        "example_english": "He was sentenced to two years in prison."
+      }
+    ]
   },
   {
     "rank": 1562,
@@ -20015,11 +20363,31 @@
   },
   {
     "rank": 1564,
-    "word": "internationellt"
+    "word": "internationellt",
+    "lemma": "internationell",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "internationally",
+        "frequency": 1.0,
+        "example_swedish": "Företaget arbetar internationellt.",
+        "example_english": "The company works internationally."
+      }
+    ]
   },
   {
     "rank": 1565,
-    "word": "konstigt"
+    "word": "konstigt",
+    "lemma": "konstig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "strange, weird",
+        "frequency": 1.0,
+        "example_swedish": "Det var konstigt att han inte kom.",
+        "example_english": "It was strange that he didn't come."
+      }
+    ]
   },
   {
     "rank": 1566,
@@ -20037,31 +20405,108 @@
   },
   {
     "rank": 1567,
-    "word": "svenskarna"
+    "word": "svenskarna",
+    "lemma": "svensk",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "the Swedes",
+        "frequency": 1.0,
+        "example_swedish": "Svenskarna firar midsommar i juni.",
+        "example_english": "The Swedes celebrate Midsummer in June."
+      }
+    ]
   },
   {
     "rank": 1568,
-    "word": "lägenheter"
+    "word": "lägenheter",
+    "lemma": "lägenhet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "apartment, flat",
+        "frequency": 1.0,
+        "example_swedish": "De nya lägenheterna är dyra.",
+        "example_english": "The new apartments are expensive."
+      }
+    ]
   },
   {
     "rank": 1569,
-    "word": "sorts"
+    "word": "sorts",
+    "lemma": "sort",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "kind, type, sort",
+        "frequency": 1.0,
+        "example_swedish": "Det finns alla sorts människor.",
+        "example_english": "There are all sorts of people."
+      }
+    ]
   },
   {
     "rank": 1570,
-    "word": "sånt"
+    "word": "sånt",
+    "lemma": "sådan",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "such things, that kind of thing",
+        "frequency": 1.0,
+        "example_swedish": "Jag gillar inte sånt.",
+        "example_english": "I don't like that kind of thing."
+      }
+    ]
   },
   {
     "rank": 1571,
-    "word": "utmärkt"
+    "word": "utmärkt",
+    "lemma": "utmärkt",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "excellent, outstanding",
+        "frequency": 0.8,
+        "example_swedish": "Maten var utmärkt.",
+        "example_english": "The food was excellent."
+      },
+      {
+        "pos": "ADV",
+        "translation": "excellently, very well",
+        "frequency": 0.2,
+        "example_swedish": "Det fungerar utmärkt.",
+        "example_english": "It works excellently."
+      }
+    ]
   },
   {
     "rank": 1572,
-    "word": "skaffa"
+    "word": "skaffa",
+    "lemma": "skaffa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to get, to obtain, to acquire",
+        "frequency": 1.0,
+        "example_swedish": "De vill skaffa en hund.",
+        "example_english": "They want to get a dog."
+      }
+    ]
   },
   {
     "rank": 1573,
-    "word": "vice"
+    "word": "vice",
+    "lemma": "vice",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "vice, deputy",
+        "frequency": 1.0,
+        "example_swedish": "Han är vice ordförande i styrelsen.",
+        "example_english": "He is vice chairman of the board."
+      }
+    ]
   },
   {
     "rank": 1574,
@@ -20071,11 +20516,31 @@
   },
   {
     "rank": 1575,
-    "word": "positivt"
+    "word": "positivt",
+    "lemma": "positiv",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "positively",
+        "frequency": 1.0,
+        "example_swedish": "Hon reagerade positivt på förslaget.",
+        "example_english": "She reacted positively to the proposal."
+      }
+    ]
   },
   {
     "rank": 1576,
-    "word": "bakgrund"
+    "word": "bakgrund",
+    "lemma": "bakgrund",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "background",
+        "frequency": 1.0,
+        "example_swedish": "Han har en intressant bakgrund.",
+        "example_english": "He has an interesting background."
+      }
+    ]
   },
   {
     "rank": 1577,
@@ -20083,11 +20548,31 @@
   },
   {
     "rank": 1578,
-    "word": "sägs"
+    "word": "sägs",
+    "lemma": "säga",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "is said (passive)",
+        "frequency": 1.0,
+        "example_swedish": "Det sägs att han är rik.",
+        "example_english": "It is said that he is rich."
+      }
+    ]
   },
   {
     "rank": 1579,
-    "word": "folkpartiet"
+    "word": "folkpartiet",
+    "lemma": "folkpartiet",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "the Liberal Party (Swedish political party)",
+        "frequency": 1.0,
+        "example_swedish": "Folkpartiet är ett borgerligt parti.",
+        "example_english": "The Liberal Party is a non-socialist party."
+      }
+    ]
   },
   {
     "rank": 1580,
@@ -20109,15 +20594,45 @@
   },
   {
     "rank": 1582,
-    "word": "växte"
+    "word": "växte",
+    "lemma": "växa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "grew",
+        "frequency": 1.0,
+        "example_swedish": "Barnet växte snabbt.",
+        "example_english": "The child grew quickly."
+      }
+    ]
   },
   {
     "rank": 1583,
-    "word": "kerstin"
+    "word": "kerstin",
+    "lemma": "kerstin",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Kerstin (name)",
+        "frequency": 1.0,
+        "example_swedish": "Kerstin arbetar som lärare.",
+        "example_english": "Kerstin works as a teacher."
+      }
+    ]
   },
   {
     "rank": 1584,
-    "word": "kunskaper"
+    "word": "kunskaper",
+    "lemma": "kunskap",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "knowledge, skills",
+        "frequency": 1.0,
+        "example_swedish": "Han har goda kunskaper i matematik.",
+        "example_english": "He has good knowledge of mathematics."
+      }
+    ]
   },
   {
     "rank": 1585,
@@ -20147,7 +20662,17 @@
   },
   {
     "rank": 1589,
-    "word": "staffan"
+    "word": "staffan",
+    "lemma": "staffan",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Staffan (name)",
+        "frequency": 1.0,
+        "example_swedish": "Staffan spelar fotboll.",
+        "example_english": "Staffan plays football."
+      }
+    ]
   },
   {
     "rank": 1590,
@@ -20179,29 +20704,87 @@
   },
   {
     "rank": 1592,
-    "word": "sängen"
+    "word": "sängen",
+    "lemma": "säng",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "bed",
+        "frequency": 1.0,
+        "example_swedish": "Han låg kvar i sängen hela morgonen.",
+        "example_english": "He stayed in bed all morning."
+      }
+    ]
   },
   {
     "rank": 1593,
     "word": "döden",
     "lemma": "död",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "death",
+        "frequency": 1.0,
+        "example_swedish": "Döden kom som en överraskning.",
+        "example_english": "Death came as a surprise."
+      }
+    ]
   },
   {
     "rank": 1594,
-    "word": "storbritannien"
+    "word": "storbritannien",
+    "lemma": "storbritannien",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Great Britain, United Kingdom",
+        "frequency": 1.0,
+        "example_swedish": "Storbritannien lämnade EU.",
+        "example_english": "Great Britain left the EU."
+      }
+    ]
   },
   {
     "rank": 1595,
-    "word": "getrud"
+    "word": "getrud",
+    "lemma": "getrud",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Gertrud (name)",
+        "frequency": 1.0,
+        "example_swedish": "Getrud bor i en liten stad.",
+        "example_english": "Gertrud lives in a small town."
+      }
+    ]
   },
   {
     "rank": 1596,
-    "word": "närheten"
+    "word": "närheten",
+    "lemma": "närhet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "vicinity, proximity, closeness",
+        "frequency": 1.0,
+        "example_swedish": "Det finns en park i närheten.",
+        "example_english": "There is a park in the vicinity."
+      }
+    ]
   },
   {
     "rank": 1597,
-    "word": "partier"
+    "word": "partier",
+    "lemma": "parti",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "parties (political)",
+        "frequency": 1.0,
+        "example_swedish": "De borgerliga partierna samarbetar.",
+        "example_english": "The non-socialist parties cooperate."
+      }
+    ]
   },
   {
     "rank": 1598,
@@ -20229,15 +20812,50 @@
     "rank": 1601,
     "word": "hälsa",
     "lemma": "hälsa",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "health",
+        "frequency": 0.6,
+        "example_swedish": "God hälsa är viktigare än pengar.",
+        "example_english": "Good health is more important than money."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to greet, to say hello",
+        "frequency": 0.4,
+        "example_swedish": "Kom ihåg att hälsa på mormor.",
+        "example_english": "Remember to say hello to grandma."
+      }
+    ]
   },
   {
     "rank": 1602,
-    "word": "ytterst"
+    "word": "ytterst",
+    "lemma": "ytterst",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "extremely, outermost",
+        "frequency": 1.0,
+        "example_swedish": "Situationen är ytterst allvarlig.",
+        "example_english": "The situation is extremely serious."
+      }
+    ]
   },
   {
     "rank": 1603,
-    "word": "drabbas"
+    "word": "drabbas",
+    "lemma": "drabba",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to be affected, to be hit",
+        "frequency": 1.0,
+        "example_swedish": "Många familjer drabbas av arbetslöshet.",
+        "example_english": "Many families are affected by unemployment."
+      }
+    ]
   },
   {
     "rank": 1604,
@@ -20245,19 +20863,59 @@
   },
   {
     "rank": 1605,
-    "word": "lugnt"
+    "word": "lugnt",
+    "lemma": "lugn",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "calmly, quietly",
+        "frequency": 1.0,
+        "example_swedish": "Ta det lugnt.",
+        "example_english": "Take it easy."
+      }
+    ]
   },
   {
     "rank": 1606,
-    "word": "vin"
+    "word": "vin",
+    "lemma": "vin",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "wine",
+        "frequency": 1.0,
+        "example_swedish": "Vi drack ett glas rött vin.",
+        "example_english": "We drank a glass of red wine."
+      }
+    ]
   },
   {
     "rank": 1607,
-    "word": "moskva"
+    "word": "moskva",
+    "lemma": "moskva",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Moscow",
+        "frequency": 1.0,
+        "example_swedish": "Moskva är Rysslands huvudstad.",
+        "example_english": "Moscow is the capital of Russia."
+      }
+    ]
   },
   {
     "rank": 1608,
-    "word": "aktier"
+    "word": "aktier",
+    "lemma": "aktie",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "stocks, shares",
+        "frequency": 1.0,
+        "example_swedish": "Han köpte aktier i bolaget.",
+        "example_english": "He bought stocks in the company."
+      }
+    ]
   },
   {
     "rank": 1609,
@@ -20265,7 +20923,17 @@
   },
   {
     "rank": 1610,
-    "word": "hansson"
+    "word": "hansson",
+    "lemma": "hansson",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Hansson (surname)",
+        "frequency": 1.0,
+        "example_swedish": "Herr Hansson är vår granne.",
+        "example_english": "Mr Hansson is our neighbor."
+      }
+    ]
   },
   {
     "rank": 1611,
@@ -20305,15 +20973,45 @@
   },
   {
     "rank": 1615,
-    "word": "naturen"
+    "word": "naturen",
+    "lemma": "natur",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "nature",
+        "frequency": 1.0,
+        "example_swedish": "Vi älskar att vara ute i naturen.",
+        "example_english": "We love being out in nature."
+      }
+    ]
   },
   {
     "rank": 1616,
-    "word": "personliga"
+    "word": "personliga",
+    "lemma": "personlig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "personal",
+        "frequency": 1.0,
+        "example_swedish": "Det är en personlig fråga.",
+        "example_english": "It's a personal question."
+      }
+    ]
   },
   {
     "rank": 1617,
-    "word": "internet"
+    "word": "internet",
+    "lemma": "internet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "internet",
+        "frequency": 1.0,
+        "example_swedish": "Internet har förändrat våra liv.",
+        "example_english": "The internet has changed our lives."
+      }
+    ]
   },
   {
     "rank": 1618,
@@ -20325,23 +21023,87 @@
   },
   {
     "rank": 1620,
-    "word": "majoritet"
+    "word": "majoritet",
+    "lemma": "majoritet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "majority",
+        "frequency": 1.0,
+        "example_swedish": "Majoriteten röstade för förslaget.",
+        "example_english": "The majority voted for the proposal."
+      }
+    ]
   },
   {
     "rank": 1621,
-    "word": "nyheter"
+    "word": "nyheter",
+    "lemma": "nyhet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "news",
+        "frequency": 1.0,
+        "example_swedish": "Jag tittar på nyheterna varje kväll.",
+        "example_english": "I watch the news every evening."
+      }
+    ]
   },
   {
     "rank": 1622,
-    "word": "sekunder"
+    "word": "sekunder",
+    "lemma": "sekund",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "seconds",
+        "frequency": 1.0,
+        "example_swedish": "Det tar bara några sekunder.",
+        "example_english": "It only takes a few seconds."
+      }
+    ]
   },
   {
     "rank": 1623,
-    "word": "takt"
+    "word": "takt",
+    "lemma": "takt",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "pace, tempo, beat",
+        "frequency": 0.7,
+        "example_swedish": "De gick i snabb takt.",
+        "example_english": "They walked at a fast pace."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "tact, discretion",
+        "frequency": 0.3,
+        "example_swedish": "Han visade stor takt i situationen.",
+        "example_english": "He showed great tact in the situation."
+      }
+    ]
   },
   {
     "rank": 1624,
-    "word": "hopp"
+    "word": "hopp",
+    "lemma": "hopp",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hope",
+        "frequency": 0.7,
+        "example_swedish": "Det finns fortfarande hopp.",
+        "example_english": "There is still hope."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "jump, leap",
+        "frequency": 0.3,
+        "example_swedish": "Hon gjorde ett högt hopp.",
+        "example_english": "She made a high jump."
+      }
+    ]
   },
   {
     "rank": 1625,
@@ -20397,11 +21159,31 @@
   },
   {
     "rank": 1630,
-    "word": "ledande"
+    "word": "ledande",
+    "lemma": "ledande",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "leading, prominent",
+        "frequency": 1.0,
+        "example_swedish": "Han är en ledande expert på området.",
+        "example_english": "He is a leading expert in the field."
+      }
+    ]
   },
   {
     "rank": 1631,
-    "word": "spara"
+    "word": "spara",
+    "lemma": "spara",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to save, to spare",
+        "frequency": 1.0,
+        "example_swedish": "Hon försöker spara pengar varje månad.",
+        "example_english": "She tries to save money every month."
+      }
+    ]
   },
   {
     "rank": 1632,
@@ -20413,11 +21195,31 @@
   },
   {
     "rank": 1634,
-    "word": "segern"
+    "word": "segern",
+    "lemma": "seger",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "the victory",
+        "frequency": 1.0,
+        "example_swedish": "Segern var välförtjänt.",
+        "example_english": "The victory was well-deserved."
+      }
+    ]
   },
   {
     "rank": 1635,
-    "word": "söndagen"
+    "word": "söndagen",
+    "lemma": "söndag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "Sunday",
+        "frequency": 1.0,
+        "example_swedish": "Vi träffas på söndagen.",
+        "example_english": "We'll meet on Sunday."
+      }
+    ]
   },
   {
     "rank": 1636,
@@ -20465,19 +21267,59 @@
   },
   {
     "rank": 1642,
-    "word": "tungt"
+    "word": "tungt",
+    "lemma": "tung",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "heavily",
+        "frequency": 1.0,
+        "example_swedish": "Han andades tungt efter loppet.",
+        "example_english": "He breathed heavily after the race."
+      }
+    ]
   },
   {
     "rank": 1643,
-    "word": "japan"
+    "word": "japan",
+    "lemma": "japan",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Japan",
+        "frequency": 1.0,
+        "example_swedish": "Japan är känt för sin teknologi.",
+        "example_english": "Japan is known for its technology."
+      }
+    ]
   },
   {
     "rank": 1644,
-    "word": "botten"
+    "word": "botten",
+    "lemma": "botten",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "bottom",
+        "frequency": 1.0,
+        "example_swedish": "Båten sjönk till botten.",
+        "example_english": "The boat sank to the bottom."
+      }
+    ]
   },
   {
     "rank": 1645,
-    "word": "enkla"
+    "word": "enkla",
+    "lemma": "enkel",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "simple, easy",
+        "frequency": 1.0,
+        "example_swedish": "Det är enkla regler att följa.",
+        "example_english": "These are simple rules to follow."
+      }
+    ]
   },
   {
     "rank": 1646,
@@ -20489,31 +21331,101 @@
   },
   {
     "rank": 1648,
-    "word": "erfarenheter"
+    "word": "erfarenheter",
+    "lemma": "erfarenhet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "experiences",
+        "frequency": 1.0,
+        "example_swedish": "Hon delade sina erfarenheter med oss.",
+        "example_english": "She shared her experiences with us."
+      }
+    ]
   },
   {
     "rank": 1649,
-    "word": "log"
+    "word": "log",
+    "lemma": "le",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "smiled",
+        "frequency": 1.0,
+        "example_swedish": "Hon log när hon såg barnet.",
+        "example_english": "She smiled when she saw the child."
+      }
+    ]
   },
   {
     "rank": 1650,
-    "word": "former"
+    "word": "former",
+    "lemma": "form",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "forms, shapes",
+        "frequency": 1.0,
+        "example_swedish": "Det finns olika former av demokrati.",
+        "example_english": "There are different forms of democracy."
+      }
+    ]
   },
   {
     "rank": 1651,
-    "word": "snabba"
+    "word": "snabba",
+    "lemma": "snabb",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "fast, quick",
+        "frequency": 1.0,
+        "example_swedish": "De snabba bilarna körde förbi.",
+        "example_english": "The fast cars drove by."
+      }
+    ]
   },
   {
     "rank": 1652,
-    "word": "unge"
+    "word": "unge",
+    "lemma": "unge",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "kid, youngster, cub",
+        "frequency": 1.0,
+        "example_swedish": "Den lilla ungen lekte i parken.",
+        "example_english": "The little kid played in the park."
+      }
+    ]
   },
   {
     "rank": 1653,
-    "word": "skönt"
+    "word": "skönt",
+    "lemma": "skön",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "nice, pleasant, comfortable",
+        "frequency": 1.0,
+        "example_swedish": "Det var skönt att komma hem.",
+        "example_english": "It was nice to come home."
+      }
+    ]
   },
   {
     "rank": 1654,
-    "word": "undantag"
+    "word": "undantag",
+    "lemma": "undantag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "exception",
+        "frequency": 1.0,
+        "example_swedish": "Det finns undantag från regeln.",
+        "example_english": "There are exceptions to the rule."
+      }
+    ]
   },
   {
     "rank": 1655,
@@ -20521,19 +21433,59 @@
   },
   {
     "rank": 1656,
-    "word": "gustafsson"
+    "word": "gustafsson",
+    "lemma": "gustafsson",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Gustafsson (surname)",
+        "frequency": 1.0,
+        "example_swedish": "Fru Gustafsson bor på tredje våningen.",
+        "example_english": "Mrs Gustafsson lives on the third floor."
+      }
+    ]
   },
   {
     "rank": 1657,
-    "word": "skrek"
+    "word": "skrek",
+    "lemma": "skrika",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "screamed, shouted",
+        "frequency": 1.0,
+        "example_swedish": "Hon skrek av glädje.",
+        "example_english": "She screamed with joy."
+      }
+    ]
   },
   {
     "rank": 1658,
-    "word": "taket"
+    "word": "taket",
+    "lemma": "tak",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "roof, ceiling",
+        "frequency": 1.0,
+        "example_swedish": "Regnet trummade mot taket.",
+        "example_english": "The rain drummed against the roof."
+      }
+    ]
   },
   {
     "rank": 1659,
-    "word": "vackert"
+    "word": "vackert",
+    "lemma": "vacker",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "beautifully",
+        "frequency": 1.0,
+        "example_swedish": "Hon sjöng vackert.",
+        "example_english": "She sang beautifully."
+      }
+    ]
   },
   {
     "rank": 1660,
@@ -20565,11 +21517,31 @@
   },
   {
     "rank": 1662,
-    "word": "hellre"
+    "word": "hellre",
+    "lemma": "hellre",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "rather, preferably",
+        "frequency": 1.0,
+        "example_swedish": "Jag stannar hellre hemma.",
+        "example_english": "I'd rather stay home."
+      }
+    ]
   },
   {
     "rank": 1663,
-    "word": "nato"
+    "word": "nato",
+    "lemma": "nato",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "NATO",
+        "frequency": 1.0,
+        "example_swedish": "Sverige gick med i Nato.",
+        "example_english": "Sweden joined NATO."
+      }
+    ]
   },
   {
     "rank": 1664,
@@ -20587,7 +21559,17 @@
   },
   {
     "rank": 1665,
-    "word": "utomlands"
+    "word": "utomlands",
+    "lemma": "utomlands",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "abroad",
+        "frequency": 1.0,
+        "example_swedish": "De bor utomlands.",
+        "example_english": "They live abroad."
+      }
+    ]
   },
   {
     "rank": 1666,
@@ -20605,15 +21587,45 @@
   },
   {
     "rank": 1667,
-    "word": "hann"
+    "word": "hann",
+    "lemma": "hinna",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "managed to, had time to",
+        "frequency": 1.0,
+        "example_swedish": "Jag hann inte äta frukost.",
+        "example_english": "I didn't have time to eat breakfast."
+      }
+    ]
   },
   {
     "rank": 1668,
-    "word": "ljuset"
+    "word": "ljuset",
+    "lemma": "ljus",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "light",
+        "frequency": 1.0,
+        "example_swedish": "Ljuset var starkt.",
+        "example_english": "The light was strong."
+      }
+    ]
   },
   {
     "rank": 1669,
-    "word": "nils"
+    "word": "nils",
+    "lemma": "nils",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Nils (name)",
+        "frequency": 1.0,
+        "example_swedish": "Nils arbetar som ingenjör.",
+        "example_english": "Nils works as an engineer."
+      }
+    ]
   },
   {
     "rank": 1670,
@@ -20633,55 +21645,213 @@
   },
   {
     "rank": 1673,
-    "word": "helgen"
+    "word": "helgen",
+    "lemma": "helg",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "weekend",
+        "frequency": 1.0,
+        "example_swedish": "Vad ska du göra i helgen?",
+        "example_english": "What are you doing this weekend?"
+      }
+    ]
   },
   {
     "rank": 1674,
-    "word": "tjugo"
+    "word": "tjugo",
+    "lemma": "tjugo",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "twenty",
+        "frequency": 1.0,
+        "example_swedish": "Det kostar tjugo kronor.",
+        "example_english": "It costs twenty kronor."
+      }
+    ]
   },
   {
     "rank": 1675,
-    "word": "driver"
+    "word": "driver",
+    "lemma": "driva",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "runs, operates, drives",
+        "frequency": 1.0,
+        "example_swedish": "Hon driver ett eget café.",
+        "example_english": "She runs her own café."
+      }
+    ]
   },
   {
     "rank": 1676,
-    "word": "lön"
+    "word": "lön",
+    "lemma": "lön",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "salary, wage",
+        "frequency": 1.0,
+        "example_swedish": "Han fick högre lön förra året.",
+        "example_english": "He got a higher salary last year."
+      }
+    ]
   },
   {
     "rank": 1677,
-    "word": "leende"
+    "word": "leende",
+    "lemma": "leende",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "smile",
+        "frequency": 0.7,
+        "example_swedish": "Hon hade ett vackert leende.",
+        "example_english": "She had a beautiful smile."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "smiling",
+        "frequency": 0.3,
+        "example_swedish": "Den leende mannen vinkade.",
+        "example_english": "The smiling man waved."
+      }
+    ]
   },
   {
     "rank": 1678,
-    "word": "kunder"
+    "word": "kunder",
+    "lemma": "kund",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "customers, clients",
+        "frequency": 1.0,
+        "example_swedish": "Våra kunder är nöjda.",
+        "example_english": "Our customers are satisfied."
+      }
+    ]
   },
   {
     "rank": 1679,
-    "word": "militära"
+    "word": "militära",
+    "lemma": "militär",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "military",
+        "frequency": 1.0,
+        "example_swedish": "De militära styrkorna drog sig tillbaka.",
+        "example_english": "The military forces withdrew."
+      }
+    ]
   },
   {
     "rank": 1680,
-    "word": "lokaler"
+    "word": "lokaler",
+    "lemma": "lokal",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "premises, facilities, rooms",
+        "frequency": 1.0,
+        "example_swedish": "Företaget flyttade till nya lokaler.",
+        "example_english": "The company moved to new premises."
+      }
+    ]
   },
   {
     "rank": 1681,
-    "word": "pass"
+    "word": "pass",
+    "lemma": "pass",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "passport",
+        "frequency": 0.5,
+        "example_swedish": "Du måste visa ditt pass.",
+        "example_english": "You must show your passport."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "pass (in sports)",
+        "frequency": 0.3,
+        "example_swedish": "Det var ett bra pass.",
+        "example_english": "It was a good pass."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "mountain pass",
+        "frequency": 0.2,
+        "example_swedish": "Vi körde över passet.",
+        "example_english": "We drove over the pass."
+      }
+    ]
   },
   {
     "rank": 1682,
-    "word": "delta"
+    "word": "delta",
+    "lemma": "delta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to participate, to take part",
+        "frequency": 0.9,
+        "example_swedish": "Alla vill delta i tävlingen.",
+        "example_english": "Everyone wants to participate in the competition."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "delta (river)",
+        "frequency": 0.1,
+        "example_swedish": "Nilen har ett stort delta.",
+        "example_english": "The Nile has a large delta."
+      }
+    ]
   },
   {
     "rank": 1683,
-    "word": "princip"
+    "word": "princip",
+    "lemma": "princip",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "principle",
+        "frequency": 1.0,
+        "example_swedish": "Det är en viktig princip.",
+        "example_english": "It's an important principle."
+      }
+    ]
   },
   {
     "rank": 1684,
-    "word": "spanien"
+    "word": "spanien",
+    "lemma": "spanien",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Spain",
+        "frequency": 1.0,
+        "example_swedish": "Vi åker till Spanien i sommar.",
+        "example_english": "We're going to Spain this summer."
+      }
+    ]
   },
   {
     "rank": 1685,
-    "word": "annika"
+    "word": "annika",
+    "lemma": "annika",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Annika (name)",
+        "frequency": 1.0,
+        "example_swedish": "Annika spelar tennis.",
+        "example_english": "Annika plays tennis."
+      }
+    ]
   },
   {
     "rank": 1686,
@@ -20689,7 +21859,17 @@
   },
   {
     "rank": 1687,
-    "word": "snabbare"
+    "word": "snabbare",
+    "lemma": "snabb",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "faster, quicker",
+        "frequency": 1.0,
+        "example_swedish": "Den nya datorn är snabbare.",
+        "example_english": "The new computer is faster."
+      }
+    ]
   },
   {
     "rank": 1688,
@@ -20699,27 +21879,87 @@
   },
   {
     "rank": 1689,
-    "word": "marie"
+    "word": "marie",
+    "lemma": "marie",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Marie (name)",
+        "frequency": 1.0,
+        "example_swedish": "Marie arbetar på sjukhuset.",
+        "example_english": "Marie works at the hospital."
+      }
+    ]
   },
   {
     "rank": 1690,
-    "word": "modell"
+    "word": "modell",
+    "lemma": "modell",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "model",
+        "frequency": 1.0,
+        "example_swedish": "Det är en ny modell.",
+        "example_english": "It's a new model."
+      }
+    ]
   },
   {
     "rank": 1691,
-    "word": "bollen"
+    "word": "bollen",
+    "lemma": "boll",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "ball",
+        "frequency": 1.0,
+        "example_swedish": "Bollen rullade iväg.",
+        "example_english": "The ball rolled away."
+      }
+    ]
   },
   {
     "rank": 1692,
-    "word": "flickor"
+    "word": "flickor",
+    "lemma": "flicka",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "girls",
+        "frequency": 1.0,
+        "example_swedish": "Flickorna lekte i parken.",
+        "example_english": "The girls played in the park."
+      }
+    ]
   },
   {
     "rank": 1693,
-    "word": "möjliga"
+    "word": "möjliga",
+    "lemma": "möjlig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "possible",
+        "frequency": 1.0,
+        "example_swedish": "Vi undersöker alla möjliga alternativ.",
+        "example_english": "We're examining all possible alternatives."
+      }
+    ]
   },
   {
     "rank": 1694,
-    "word": "beredd"
+    "word": "beredd",
+    "lemma": "beredd",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "prepared, ready, willing",
+        "frequency": 1.0,
+        "example_swedish": "Är du beredd att gå?",
+        "example_english": "Are you ready to go?"
+      }
+    ]
   },
   {
     "rank": 1695,
@@ -20727,7 +21967,17 @@
   },
   {
     "rank": 1696,
-    "word": "alltmer"
+    "word": "alltmer",
+    "lemma": "alltmer",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "increasingly, more and more",
+        "frequency": 1.0,
+        "example_swedish": "Problemet blir alltmer allvarligt.",
+        "example_english": "The problem is becoming increasingly serious."
+      }
+    ]
   },
   {
     "rank": 1697,
@@ -20745,7 +21995,17 @@
   },
   {
     "rank": 1698,
-    "word": "föddes"
+    "word": "föddes",
+    "lemma": "föda",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "was born",
+        "frequency": 1.0,
+        "example_swedish": "Hon föddes i Stockholm.",
+        "example_english": "She was born in Stockholm."
+      }
+    ]
   },
   {
     "rank": 1699,
@@ -20767,23 +22027,73 @@
   },
   {
     "rank": 1701,
-    "word": "sjunger"
+    "word": "sjunger",
+    "lemma": "sjunga",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "sings",
+        "frequency": 1.0,
+        "example_swedish": "Fågeln sjunger vackert.",
+        "example_english": "The bird sings beautifully."
+      }
+    ]
   },
   {
     "rank": 1702,
-    "word": "orsaken"
+    "word": "orsaken",
+    "lemma": "orsak",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "cause, reason",
+        "frequency": 1.0,
+        "example_swedish": "Orsaken till olyckan är okänd.",
+        "example_english": "The cause of the accident is unknown."
+      }
+    ]
   },
   {
     "rank": 1703,
-    "word": "artikel"
+    "word": "artikel",
+    "lemma": "artikel",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "article",
+        "frequency": 1.0,
+        "example_swedish": "Jag läste en intressant artikel.",
+        "example_english": "I read an interesting article."
+      }
+    ]
   },
   {
     "rank": 1704,
-    "word": "jonsson"
+    "word": "jonsson",
+    "lemma": "jonsson",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Jonsson (surname)",
+        "frequency": 1.0,
+        "example_swedish": "Herr Jonsson kommer snart.",
+        "example_english": "Mr Jonsson is coming soon."
+      }
+    ]
   },
   {
     "rank": 1705,
-    "word": "styrelsen"
+    "word": "styrelsen",
+    "lemma": "styrelse",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "board (of directors)",
+        "frequency": 1.0,
+        "example_swedish": "Styrelsen godkände förslaget.",
+        "example_english": "The board approved the proposal."
+      }
+    ]
   },
   {
     "rank": 1706,
@@ -20799,27 +22109,85 @@
     "rank": 1708,
     "word": "verkliga",
     "lemma": "verklig",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "real, actual",
+        "frequency": 1.0,
+        "example_swedish": "Det är den verkliga sanningen.",
+        "example_english": "That is the real truth."
+      }
+    ]
   },
   {
     "rank": 1709,
-    "word": "produkter"
+    "word": "produkter",
+    "lemma": "produkt",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "products",
+        "frequency": 1.0,
+        "example_swedish": "Vi säljer svenska produkter.",
+        "example_english": "We sell Swedish products."
+      }
+    ]
   },
   {
     "rank": 1710,
-    "word": "släppa"
+    "word": "släppa",
+    "lemma": "släppa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to release, to let go",
+        "frequency": 1.0,
+        "example_swedish": "Släpp inte taget!",
+        "example_english": "Don't let go!"
+      }
+    ]
   },
   {
     "rank": 1711,
-    "word": "oavsett"
+    "word": "oavsett",
+    "lemma": "oavsett",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "regardless of",
+        "frequency": 1.0,
+        "example_swedish": "Oavsett vad du säger stannar jag.",
+        "example_english": "Regardless of what you say, I'm staying."
+      }
+    ]
   },
   {
     "rank": 1712,
-    "word": "sjönk"
+    "word": "sjönk",
+    "lemma": "sjunka",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "sank, dropped",
+        "frequency": 1.0,
+        "example_swedish": "Temperaturen sjönk snabbt.",
+        "example_english": "The temperature dropped quickly."
+      }
+    ]
   },
   {
     "rank": 1713,
-    "word": "skador"
+    "word": "skador",
+    "lemma": "skada",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "damages, injuries",
+        "frequency": 1.0,
+        "example_swedish": "Stormen orsakade stora skador.",
+        "example_english": "The storm caused major damages."
+      }
+    ]
   },
   {
     "rank": 1714,
@@ -20841,11 +22209,31 @@
   },
   {
     "rank": 1716,
-    "word": "jansson"
+    "word": "jansson",
+    "lemma": "jansson",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Jansson (surname)",
+        "frequency": 1.0,
+        "example_swedish": "Fru Jansson är vår granne.",
+        "example_english": "Mrs Jansson is our neighbor."
+      }
+    ]
   },
   {
     "rank": 1717,
-    "word": "arbetsmarknaden"
+    "word": "arbetsmarknaden",
+    "lemma": "arbetsmarknad",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "labor market",
+        "frequency": 1.0,
+        "example_swedish": "Arbetsmarknaden har förändrats.",
+        "example_english": "The labor market has changed."
+      }
+    ]
   },
   {
     "rank": 1718,
@@ -20867,23 +22255,80 @@
   },
   {
     "rank": 1720,
-    "word": "and"
+    "word": "and",
+    "lemma": "and",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "duck",
+        "frequency": 0.7,
+        "example_swedish": "En and simmar i sjön.",
+        "example_english": "A duck swims in the lake."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "spirit, breath (archaic)",
+        "frequency": 0.3,
+        "example_swedish": "Han gav upp anden.",
+        "example_english": "He gave up the ghost."
+      }
+    ]
   },
   {
     "rank": 1721,
-    "word": "anita"
+    "word": "anita",
+    "lemma": "anita",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Anita (name)",
+        "frequency": 1.0,
+        "example_swedish": "Anita kommer från Göteborg.",
+        "example_english": "Anita is from Gothenburg."
+      }
+    ]
   },
   {
     "rank": 1722,
-    "word": "jörgen"
+    "word": "jörgen",
+    "lemma": "jörgen",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Jörgen (name)",
+        "frequency": 1.0,
+        "example_swedish": "Jörgen spelar i laget.",
+        "example_english": "Jörgen plays on the team."
+      }
+    ]
   },
   {
     "rank": 1723,
-    "word": "sprang"
+    "word": "sprang",
+    "lemma": "springa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "ran",
+        "frequency": 1.0,
+        "example_swedish": "Han sprang snabbt hemåt.",
+        "example_english": "He ran quickly homeward."
+      }
+    ]
   },
   {
     "rank": 1724,
-    "word": "starkare"
+    "word": "starkare",
+    "lemma": "stark",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "stronger",
+        "frequency": 1.0,
+        "example_swedish": "Han är starkare än sin bror.",
+        "example_english": "He is stronger than his brother."
+      }
+    ]
   },
   {
     "rank": 1725,
@@ -20905,15 +22350,52 @@
   },
   {
     "rank": 1727,
-    "word": "klubben"
+    "word": "klubben",
+    "lemma": "klubb",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "club",
+        "frequency": 1.0,
+        "example_swedish": "Klubben har många medlemmar.",
+        "example_english": "The club has many members."
+      }
+    ]
   },
   {
     "rank": 1728,
-    "word": "patrik"
+    "word": "patrik",
+    "lemma": "patrik",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Patrik (name)",
+        "frequency": 1.0,
+        "example_swedish": "Patrik studerar ekonomi.",
+        "example_english": "Patrik studies economics."
+      }
+    ]
   },
   {
     "rank": 1729,
-    "word": "posten"
+    "word": "posten",
+    "lemma": "post",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "mail, post",
+        "frequency": 0.6,
+        "example_swedish": "Posten kom tidigt i dag.",
+        "example_english": "The mail came early today."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "post, position",
+        "frequency": 0.4,
+        "example_swedish": "Han fick posten som chef.",
+        "example_english": "He got the position as manager."
+      }
+    ]
   },
   {
     "rank": 1730,
@@ -20945,7 +22427,17 @@
   },
   {
     "rank": 1732,
-    "word": "lördagen"
+    "word": "lördagen",
+    "lemma": "lördag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "Saturday",
+        "frequency": 1.0,
+        "example_swedish": "Vi ses på lördagen.",
+        "example_english": "We'll see each other on Saturday."
+      }
+    ]
   },
   {
     "rank": 1733,
@@ -20967,27 +22459,94 @@
   },
   {
     "rank": 1735,
-    "word": "kallad"
+    "word": "kallad",
+    "lemma": "kalla",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "called, named",
+        "frequency": 1.0,
+        "example_swedish": "Han blev kallad till mötet.",
+        "example_english": "He was called to the meeting."
+      }
+    ]
   },
   {
     "rank": 1736,
-    "word": "kvalitet"
+    "word": "kvalitet",
+    "lemma": "kvalitet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "quality",
+        "frequency": 1.0,
+        "example_swedish": "Produkten har hög kvalitet.",
+        "example_english": "The product has high quality."
+      }
+    ]
   },
   {
     "rank": 1737,
-    "word": "äter"
+    "word": "äter",
+    "lemma": "äta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "eats",
+        "frequency": 1.0,
+        "example_swedish": "Hon äter frukost varje morgon.",
+        "example_english": "She eats breakfast every morning."
+      }
+    ]
   },
   {
     "rank": 1738,
-    "word": "rätten"
+    "word": "rätten",
+    "lemma": "rätt",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "court, dish",
+        "frequency": 0.5,
+        "example_swedish": "Rätten avkunnade domen.",
+        "example_english": "The court delivered the verdict."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "right",
+        "frequency": 0.5,
+        "example_swedish": "Han har rätten på sin sida.",
+        "example_english": "He has the right on his side."
+      }
+    ]
   },
   {
     "rank": 1739,
-    "word": "nånting"
+    "word": "nånting",
+    "lemma": "någonting",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "something (colloquial)",
+        "frequency": 1.0,
+        "example_swedish": "Jag måste berätta nånting.",
+        "example_english": "I have to tell you something."
+      }
+    ]
   },
   {
     "rank": 1740,
-    "word": "siffror"
+    "word": "siffror",
+    "lemma": "siffra",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "numbers, figures, digits",
+        "frequency": 1.0,
+        "example_swedish": "Siffrorna visar en ökning.",
+        "example_english": "The figures show an increase."
+      }
+    ]
   },
   {
     "rank": 1741,
@@ -21005,7 +22564,17 @@
   },
   {
     "rank": 1742,
-    "word": "igår"
+    "word": "igår",
+    "lemma": "igår",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "yesterday",
+        "frequency": 1.0,
+        "example_swedish": "Jag träffade honom igår.",
+        "example_english": "I met him yesterday."
+      }
+    ]
   },
   {
     "rank": 1743,
@@ -21023,7 +22592,17 @@
   },
   {
     "rank": 1744,
-    "word": "samlade"
+    "word": "samlade",
+    "lemma": "samla",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "gathered, collected",
+        "frequency": 1.0,
+        "example_swedish": "De samlade ihop sina saker.",
+        "example_english": "They gathered their things."
+      }
+    ]
   },
   {
     "rank": 1745,
@@ -21031,23 +22610,73 @@
   },
   {
     "rank": 1746,
-    "word": "förlust"
+    "word": "förlust",
+    "lemma": "förlust",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "loss",
+        "frequency": 1.0,
+        "example_swedish": "Förlusten var svår att acceptera.",
+        "example_english": "The loss was hard to accept."
+      }
+    ]
   },
   {
     "rank": 1747,
-    "word": "starta"
+    "word": "starta",
+    "lemma": "starta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to start",
+        "frequency": 1.0,
+        "example_swedish": "Hon vill starta ett företag.",
+        "example_english": "She wants to start a company."
+      }
+    ]
   },
   {
     "rank": 1748,
-    "word": "bostäder"
+    "word": "bostäder",
+    "lemma": "bostad",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "residences, homes, housing",
+        "frequency": 1.0,
+        "example_swedish": "Det byggs nya bostäder i centrum.",
+        "example_english": "New housing is being built in the center."
+      }
+    ]
   },
   {
     "rank": 1749,
-    "word": "hamnade"
+    "word": "hamnade",
+    "lemma": "hamna",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "ended up",
+        "frequency": 1.0,
+        "example_swedish": "Vi hamnade på fel väg.",
+        "example_english": "We ended up on the wrong road."
+      }
+    ]
   },
   {
     "rank": 1750,
-    "word": "vinner"
+    "word": "vinner",
+    "lemma": "vinna",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "wins",
+        "frequency": 1.0,
+        "example_swedish": "Hon vinner alltid.",
+        "example_english": "She always wins."
+      }
+    ]
   },
   {
     "rank": 1751,
@@ -21071,7 +22700,15 @@
     "rank": 1753,
     "word": "snabb",
     "lemma": "snabb",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "fast, quick",
+        "frequency": 1.0,
+        "example_swedish": "Han är en snabb löpare.",
+        "example_english": "He is a fast runner."
+      }
+    ]
   },
   {
     "rank": 1754,
@@ -21079,11 +22716,31 @@
   },
   {
     "rank": 1755,
-    "word": "förklaring"
+    "word": "förklaring",
+    "lemma": "förklaring",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "explanation",
+        "frequency": 1.0,
+        "example_swedish": "Jag vill ha en förklaring.",
+        "example_english": "I want an explanation."
+      }
+    ]
   },
   {
     "rank": 1756,
-    "word": "må"
+    "word": "må",
+    "lemma": "må",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "may, feel",
+        "frequency": 1.0,
+        "example_swedish": "Hur mår du?",
+        "example_english": "How are you feeling?"
+      }
+    ]
   },
   {
     "rank": 1757,
@@ -21091,7 +22748,24 @@
   },
   {
     "rank": 1758,
-    "word": "röra"
+    "word": "röra",
+    "lemma": "röra",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to touch, to move",
+        "frequency": 0.7,
+        "example_swedish": "Rör inte vid det!",
+        "example_english": "Don't touch it!"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "mess, muddle",
+        "frequency": 0.3,
+        "example_swedish": "Det blev en enda röra.",
+        "example_english": "It became a complete mess."
+      }
+    ]
   },
   {
     "rank": 1759,
@@ -21105,7 +22779,17 @@
   },
   {
     "rank": 1761,
-    "word": "traditionella"
+    "word": "traditionella",
+    "lemma": "traditionell",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "traditional",
+        "frequency": 1.0,
+        "example_swedish": "Vi serverar traditionella svenska rätter.",
+        "example_english": "We serve traditional Swedish dishes."
+      }
+    ]
   },
   {
     "rank": 1762,
@@ -21127,11 +22811,31 @@
   },
   {
     "rank": 1764,
-    "word": "n"
+    "word": "n",
+    "lemma": "n",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "N (letter or abbreviation)",
+        "frequency": 1.0,
+        "example_swedish": "N står för norr.",
+        "example_english": "N stands for north."
+      }
+    ]
   },
   {
     "rank": 1765,
-    "word": "innebära"
+    "word": "innebära",
+    "lemma": "innebära",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to mean, to imply, to involve",
+        "frequency": 1.0,
+        "example_swedish": "Vad innebär det för oss?",
+        "example_english": "What does it mean for us?"
+      }
+    ]
   },
   {
     "rank": 1766,
@@ -21139,15 +22843,45 @@
   },
   {
     "rank": 1767,
-    "word": "arbetslöshet"
+    "word": "arbetslöshet",
+    "lemma": "arbetslöshet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "unemployment",
+        "frequency": 1.0,
+        "example_swedish": "Arbetslösheten har ökat.",
+        "example_english": "Unemployment has increased."
+      }
+    ]
   },
   {
     "rank": 1768,
-    "word": "varav"
+    "word": "varav",
+    "lemma": "varav",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "of which",
+        "frequency": 1.0,
+        "example_swedish": "Det finns hundra anställda, varav tjugo är deltid.",
+        "example_english": "There are a hundred employees, of which twenty are part-time."
+      }
+    ]
   },
   {
     "rank": 1769,
-    "word": "claes"
+    "word": "claes",
+    "lemma": "claes",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Claes (name)",
+        "frequency": 1.0,
+        "example_swedish": "Claes är min kusin.",
+        "example_english": "Claes is my cousin."
+      }
+    ]
   },
   {
     "rank": 1770,
@@ -21155,27 +22889,87 @@
   },
   {
     "rank": 1771,
-    "word": "bära"
+    "word": "bära",
+    "lemma": "bära",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to carry, to bear, to wear",
+        "frequency": 1.0,
+        "example_swedish": "Han hjälpte henne att bära väskorna.",
+        "example_english": "He helped her carry the bags."
+      }
+    ]
   },
   {
     "rank": 1772,
-    "word": "slippa"
+    "word": "slippa",
+    "lemma": "slippa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to avoid, to not have to",
+        "frequency": 1.0,
+        "example_swedish": "Jag vill slippa göra det.",
+        "example_english": "I want to avoid doing that."
+      }
+    ]
   },
   {
     "rank": 1773,
-    "word": "skedde"
+    "word": "skedde",
+    "lemma": "ske",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "happened, occurred",
+        "frequency": 1.0,
+        "example_swedish": "Olyckan skedde i morse.",
+        "example_english": "The accident happened this morning."
+      }
+    ]
   },
   {
     "rank": 1774,
-    "word": "el"
+    "word": "el",
+    "lemma": "el",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "electricity",
+        "frequency": 1.0,
+        "example_swedish": "Vi har ingen el just nu.",
+        "example_english": "We have no electricity right now."
+      }
+    ]
   },
   {
     "rank": 1775,
-    "word": "utrymme"
+    "word": "utrymme",
+    "lemma": "utrymme",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "space, room",
+        "frequency": 1.0,
+        "example_swedish": "Det finns inte tillräckligt med utrymme.",
+        "example_english": "There isn't enough space."
+      }
+    ]
   },
   {
     "rank": 1776,
-    "word": "intresserad"
+    "word": "intresserad",
+    "lemma": "intresserad",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "interested",
+        "frequency": 1.0,
+        "example_swedish": "Är du intresserad av konst?",
+        "example_english": "Are you interested in art?"
+      }
+    ]
   },
   {
     "rank": 1777,
@@ -21183,7 +22977,24 @@
   },
   {
     "rank": 1778,
-    "word": "skada"
+    "word": "skada",
+    "lemma": "skada",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "damage, injury, harm",
+        "frequency": 0.6,
+        "example_swedish": "Det var ingen stor skada.",
+        "example_english": "It wasn't major damage."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to damage, to hurt",
+        "frequency": 0.4,
+        "example_swedish": "Det kan skada hälsan.",
+        "example_english": "It can damage your health."
+      }
+    ]
   },
   {
     "rank": 1779,
@@ -21201,7 +23012,17 @@
   },
   {
     "rank": 1780,
-    "word": "vitt"
+    "word": "vitt",
+    "lemma": "vit",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "white (neuter)",
+        "frequency": 1.0,
+        "example_swedish": "Huset är vitt.",
+        "example_english": "The house is white."
+      }
+    ]
   },
   {
     "rank": 1781,
@@ -21219,27 +23040,73 @@
   },
   {
     "rank": 1782,
-    "word": "perfekt"
+    "word": "perfekt",
+    "lemma": "perfekt",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "perfect",
+        "frequency": 1.0,
+        "example_swedish": "Det var en perfekt dag.",
+        "example_english": "It was a perfect day."
+      }
+    ]
   },
   {
     "rank": 1783,
     "word": "speciella",
     "lemma": "speciell",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "special",
+        "frequency": 1.0,
+        "example_swedish": "Det kräver speciella kunskaper.",
+        "example_english": "It requires special skills."
+      }
+    ]
   },
   {
     "rank": 1784,
-    "word": "utnyttja"
+    "word": "utnyttja",
+    "lemma": "utnyttja",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to use, to exploit, to take advantage of",
+        "frequency": 1.0,
+        "example_swedish": "Vi måste utnyttja möjligheten.",
+        "example_english": "We must take advantage of the opportunity."
+      }
+    ]
   },
   {
     "rank": 1785,
-    "word": "därifrån"
+    "word": "därifrån",
+    "lemma": "därifrån",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "from there",
+        "frequency": 1.0,
+        "example_swedish": "Vi åkte därifrån tidigt.",
+        "example_english": "We left from there early."
+      }
+    ]
   },
   {
     "rank": 1786,
     "word": "längst",
     "lemma": "lång",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "longest, furthest",
+        "frequency": 1.0,
+        "example_swedish": "Hon sprang längst.",
+        "example_english": "She ran the furthest."
+      }
+    ]
   },
   {
     "rank": 1787,
@@ -21257,19 +23124,59 @@
   },
   {
     "rank": 1788,
-    "word": "årsskiftet"
+    "word": "årsskiftet",
+    "lemma": "årsskifte",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "turn of the year, New Year",
+        "frequency": 1.0,
+        "example_swedish": "Vi firade vid årsskiftet.",
+        "example_english": "We celebrated at the turn of the year."
+      }
+    ]
   },
   {
     "rank": 1789,
-    "word": "definitivt"
+    "word": "definitivt",
+    "lemma": "definitiv",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "definitely",
+        "frequency": 1.0,
+        "example_swedish": "Jag kommer definitivt.",
+        "example_english": "I'm definitely coming."
+      }
+    ]
   },
   {
     "rank": 1790,
-    "word": "gränser"
+    "word": "gränser",
+    "lemma": "gräns",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "borders, limits, boundaries",
+        "frequency": 1.0,
+        "example_swedish": "Gränserna öppnades igen.",
+        "example_english": "The borders opened again."
+      }
+    ]
   },
   {
     "rank": 1791,
-    "word": "affärer"
+    "word": "affärer",
+    "lemma": "affär",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "shops, business affairs",
+        "frequency": 1.0,
+        "example_swedish": "Affärerna stänger klockan åtta.",
+        "example_english": "The shops close at eight."
+      }
+    ]
   },
   {
     "rank": 1792,
@@ -21305,15 +23212,52 @@
   },
   {
     "rank": 1795,
-    "word": "levde"
+    "word": "levde",
+    "lemma": "leva",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "lived",
+        "frequency": 1.0,
+        "example_swedish": "De levde ett lyckligt liv.",
+        "example_english": "They lived a happy life."
+      }
+    ]
   },
   {
     "rank": 1796,
-    "word": "statsminister"
+    "word": "statsminister",
+    "lemma": "statsminister",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "prime minister",
+        "frequency": 1.0,
+        "example_swedish": "Statsministern höll ett tal.",
+        "example_english": "The prime minister gave a speech."
+      }
+    ]
   },
   {
     "rank": 1797,
-    "word": "synd"
+    "word": "synd",
+    "lemma": "synd",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "pity, sin",
+        "frequency": 0.6,
+        "example_swedish": "Det var synd att du inte kunde komma.",
+        "example_english": "It was a pity that you couldn't come."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "sin (religious)",
+        "frequency": 0.4,
+        "example_swedish": "Avund är en synd.",
+        "example_english": "Envy is a sin."
+      }
+    ]
   },
   {
     "rank": 1798,
@@ -21349,11 +23293,31 @@
   },
   {
     "rank": 1801,
-    "word": "gunilla"
+    "word": "gunilla",
+    "lemma": "gunilla",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Gunilla (name)",
+        "frequency": 1.0,
+        "example_swedish": "Gunilla arbetar som sjuksköterska.",
+        "example_english": "Gunilla works as a nurse."
+      }
+    ]
   },
   {
     "rank": 1802,
-    "word": "inslag"
+    "word": "inslag",
+    "lemma": "inslag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "segment, feature, element",
+        "frequency": 1.0,
+        "example_swedish": "Det var ett intressant inslag i programmet.",
+        "example_english": "It was an interesting segment in the program."
+      }
+    ]
   },
   {
     "rank": 1803,
@@ -21371,7 +23335,24 @@
   },
   {
     "rank": 1804,
-    "word": "sköt"
+    "word": "sköt",
+    "lemma": "skjuta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "shot",
+        "frequency": 0.7,
+        "example_swedish": "Han sköt ett mål.",
+        "example_english": "He shot a goal."
+      },
+      {
+        "pos": "VERB",
+        "translation": "managed, took care of",
+        "frequency": 0.3,
+        "example_swedish": "Hon sköt om barnen.",
+        "example_english": "She took care of the children."
+      }
+    ]
   },
   {
     "rank": 1805,
@@ -21379,11 +23360,31 @@
   },
   {
     "rank": 1806,
-    "word": "bryssel"
+    "word": "bryssel",
+    "lemma": "bryssel",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Brussels",
+        "frequency": 1.0,
+        "example_swedish": "EU har sitt säte i Bryssel.",
+        "example_english": "The EU is based in Brussels."
+      }
+    ]
   },
   {
     "rank": 1807,
-    "word": "skiljer"
+    "word": "skiljer",
+    "lemma": "skilja",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "separates, distinguishes",
+        "frequency": 1.0,
+        "example_swedish": "Vad skiljer dem åt?",
+        "example_english": "What distinguishes them?"
+      }
+    ]
   },
   {
     "rank": 1808,
@@ -21401,7 +23402,17 @@
   },
   {
     "rank": 1809,
-    "word": "lust"
+    "word": "lust",
+    "lemma": "lust",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "desire, inclination, mood",
+        "frequency": 1.0,
+        "example_swedish": "Jag har ingen lust att gå ut.",
+        "example_english": "I don't feel like going out."
+      }
+    ]
   },
   {
     "rank": 1810,
@@ -21431,7 +23442,17 @@
   },
   {
     "rank": 1814,
-    "word": "förresten"
+    "word": "förresten",
+    "lemma": "förresten",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "by the way",
+        "frequency": 1.0,
+        "example_swedish": "Förresten, har du sett min bok?",
+        "example_english": "By the way, have you seen my book?"
+      }
+    ]
   },
   {
     "rank": 1815,
@@ -21453,7 +23474,17 @@
   },
   {
     "rank": 1817,
-    "word": "dela"
+    "word": "dela",
+    "lemma": "dela",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to share, to divide",
+        "frequency": 1.0,
+        "example_swedish": "Vi kan dela på maten.",
+        "example_english": "We can share the food."
+      }
+    ]
   },
   {
     "rank": 1818,
@@ -21461,15 +23492,52 @@
   },
   {
     "rank": 1819,
-    "word": "når"
+    "word": "når",
+    "lemma": "nå",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "reaches",
+        "frequency": 1.0,
+        "example_swedish": "Hon når inte upp till hyllan.",
+        "example_english": "She can't reach the shelf."
+      }
+    ]
   },
   {
     "rank": 1820,
-    "word": "femte"
+    "word": "femte",
+    "lemma": "femte",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "fifth",
+        "frequency": 1.0,
+        "example_swedish": "Det är den femte gången.",
+        "example_english": "It's the fifth time."
+      }
+    ]
   },
   {
     "rank": 1821,
-    "word": "lokal"
+    "word": "lokal",
+    "lemma": "lokal",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "local",
+        "frequency": 0.6,
+        "example_swedish": "Vi stödjer lokal produktion.",
+        "example_english": "We support local production."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "premises, room",
+        "frequency": 0.4,
+        "example_swedish": "Vi hyr en lokal i centrum.",
+        "example_english": "We rent premises downtown."
+      }
+    ]
   },
   {
     "rank": 1822,
@@ -21479,7 +23547,17 @@
   },
   {
     "rank": 1823,
-    "word": "kilo"
+    "word": "kilo",
+    "lemma": "kilo",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "kilogram",
+        "frequency": 1.0,
+        "example_swedish": "Jag köpte två kilo äpplen.",
+        "example_english": "I bought two kilos of apples."
+      }
+    ]
   },
   {
     "rank": 1824,
@@ -21487,7 +23565,17 @@
   },
   {
     "rank": 1825,
-    "word": "positiv"
+    "word": "positiv",
+    "lemma": "positiv",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "positive",
+        "frequency": 1.0,
+        "example_swedish": "Hon är alltid positiv.",
+        "example_english": "She is always positive."
+      }
+    ]
   },
   {
     "rank": 1826,
@@ -21499,11 +23587,31 @@
   },
   {
     "rank": 1828,
-    "word": "tidning"
+    "word": "tidning",
+    "lemma": "tidning",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "newspaper",
+        "frequency": 1.0,
+        "example_swedish": "Jag läser tidningen varje morgon.",
+        "example_english": "I read the newspaper every morning."
+      }
+    ]
   },
   {
     "rank": 1829,
-    "word": "naturligt"
+    "word": "naturligt",
+    "lemma": "naturlig",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "naturally",
+        "frequency": 1.0,
+        "example_swedish": "Det kom naturligt för honom.",
+        "example_english": "It came naturally to him."
+      }
+    ]
   },
   {
     "rank": 1830,
@@ -21521,19 +23629,66 @@
   },
   {
     "rank": 1831,
-    "word": "ersättning"
+    "word": "ersättning",
+    "lemma": "ersättning",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "compensation, replacement",
+        "frequency": 1.0,
+        "example_swedish": "Hon fick ersättning för skadan.",
+        "example_english": "She received compensation for the damage."
+      }
+    ]
   },
   {
     "rank": 1832,
-    "word": "försiktigt"
+    "word": "försiktigt",
+    "lemma": "försiktig",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "carefully, cautiously",
+        "frequency": 1.0,
+        "example_swedish": "Hon öppnade dörren försiktigt.",
+        "example_english": "She opened the door carefully."
+      }
+    ]
   },
   {
     "rank": 1833,
-    "word": "raka"
+    "word": "raka",
+    "lemma": "rak",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "straight",
+        "frequency": 0.6,
+        "example_swedish": "Gå raka vägen hem.",
+        "example_english": "Go straight home."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to shave",
+        "frequency": 0.4,
+        "example_swedish": "Han brukar raka sig varje morgon.",
+        "example_english": "He usually shaves every morning."
+      }
+    ]
   },
   {
     "rank": 1834,
-    "word": "reser"
+    "word": "reser",
+    "lemma": "resa",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "travels",
+        "frequency": 1.0,
+        "example_swedish": "Han reser mycket i jobbet.",
+        "example_english": "He travels a lot for work."
+      }
+    ]
   },
   {
     "rank": 1835,
@@ -21549,13 +23704,31 @@
   },
   {
     "rank": 1838,
-    "word": "skrattar"
+    "word": "skrattar",
+    "lemma": "skratta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "laughs",
+        "frequency": 1.0,
+        "example_swedish": "Hon skrattar alltid åt hans skämt.",
+        "example_english": "She always laughs at his jokes."
+      }
+    ]
   },
   {
     "rank": 1839,
     "word": "slutligen",
     "lemma": "slutligen",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "finally, eventually",
+        "frequency": 1.0,
+        "example_swedish": "Slutligen nådde vi målet.",
+        "example_english": "Finally, we reached our goal."
+      }
+    ]
   },
   {
     "rank": 1840,
@@ -21573,15 +23746,45 @@
   },
   {
     "rank": 1841,
-    "word": "ulla"
+    "word": "ulla",
+    "lemma": "ulla",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Ulla (name)",
+        "frequency": 1.0,
+        "example_swedish": "Ulla bor i närheten.",
+        "example_english": "Ulla lives nearby."
+      }
+    ]
   },
   {
     "rank": 1842,
-    "word": "höstas"
+    "word": "höstas",
+    "lemma": "höstas",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "last autumn",
+        "frequency": 1.0,
+        "example_swedish": "Vi träffades i höstas.",
+        "example_english": "We met last autumn."
+      }
+    ]
   },
   {
     "rank": 1843,
-    "word": "riktiga"
+    "word": "riktiga",
+    "lemma": "riktig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "real, proper, correct",
+        "frequency": 1.0,
+        "example_swedish": "Är det den riktiga vägen?",
+        "example_english": "Is that the right way?"
+      }
+    ]
   },
   {
     "rank": 1844,
@@ -21589,19 +23792,59 @@
   },
   {
     "rank": 1845,
-    "word": "roger"
+    "word": "roger",
+    "lemma": "roger",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Roger (name)",
+        "frequency": 1.0,
+        "example_swedish": "Roger spelar i bandet.",
+        "example_english": "Roger plays in the band."
+      }
+    ]
   },
   {
     "rank": 1846,
-    "word": "håret"
+    "word": "håret",
+    "lemma": "hår",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hair",
+        "frequency": 1.0,
+        "example_swedish": "Håret blåste i vinden.",
+        "example_english": "Her hair blew in the wind."
+      }
+    ]
   },
   {
     "rank": 1847,
-    "word": "tjänst"
+    "word": "tjänst",
+    "lemma": "tjänst",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "service, favor, position",
+        "frequency": 1.0,
+        "example_swedish": "Kan du göra mig en tjänst?",
+        "example_english": "Can you do me a favor?"
+      }
+    ]
   },
   {
     "rank": 1848,
-    "word": "velat"
+    "word": "velat",
+    "lemma": "vilja",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "wanted",
+        "frequency": 1.0,
+        "example_swedish": "Jag har alltid velat resa dit.",
+        "example_english": "I have always wanted to travel there."
+      }
+    ]
   },
   {
     "rank": 1849,
@@ -21613,15 +23856,45 @@
   },
   {
     "rank": 1851,
-    "word": "utvändigt"
+    "word": "utvändigt",
+    "lemma": "utvändig",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "externally, on the outside",
+        "frequency": 1.0,
+        "example_swedish": "Huset är fint utvändigt.",
+        "example_english": "The house is nice on the outside."
+      }
+    ]
   },
   {
     "rank": 1852,
-    "word": "allmänheten"
+    "word": "allmänheten",
+    "lemma": "allmänhet",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "public, general public",
+        "frequency": 1.0,
+        "example_swedish": "Museet är öppet för allmänheten.",
+        "example_english": "The museum is open to the public."
+      }
+    ]
   },
   {
     "rank": 1853,
-    "word": "intryck"
+    "word": "intryck",
+    "lemma": "intryck",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "impression",
+        "frequency": 1.0,
+        "example_swedish": "Hon gjorde ett gott intryck.",
+        "example_english": "She made a good impression."
+      }
+    ]
   },
   {
     "rank": 1854,
@@ -21639,11 +23912,31 @@
   },
   {
     "rank": 1855,
-    "word": "detsamma"
+    "word": "detsamma",
+    "lemma": "detsamma",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "the same, likewise",
+        "frequency": 1.0,
+        "example_swedish": "Tack detsamma!",
+        "example_english": "Thanks, you too!"
+      }
+    ]
   },
   {
     "rank": 1856,
-    "word": "frölunda"
+    "word": "frölunda",
+    "lemma": "frölunda",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Frölunda (place/hockey team)",
+        "frequency": 1.0,
+        "example_swedish": "Frölunda vann matchen.",
+        "example_english": "Frölunda won the match."
+      }
+    ]
   },
   {
     "rank": 1857,
@@ -21655,15 +23948,45 @@
   },
   {
     "rank": 1859,
-    "word": "skrattade"
+    "word": "skrattade",
+    "lemma": "skratta",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "laughed",
+        "frequency": 1.0,
+        "example_swedish": "Vi skrattade hela kvällen.",
+        "example_english": "We laughed all evening."
+      }
+    ]
   },
   {
     "rank": 1860,
-    "word": "syster"
+    "word": "syster",
+    "lemma": "syster",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sister",
+        "frequency": 1.0,
+        "example_swedish": "Min syster bor i Malmö.",
+        "example_english": "My sister lives in Malmö."
+      }
+    ]
   },
   {
     "rank": 1861,
-    "word": "europas"
+    "word": "europas",
+    "lemma": "europa",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Europe's",
+        "frequency": 1.0,
+        "example_swedish": "Det är ett av Europas största museer.",
+        "example_english": "It is one of Europe's largest museums."
+      }
+    ]
   },
   {
     "rank": 1862,
@@ -21679,23 +24002,73 @@
   },
   {
     "rank": 1865,
-    "word": "ägare"
+    "word": "ägare",
+    "lemma": "ägare",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "owner",
+        "frequency": 1.0,
+        "example_swedish": "Vem är ägare till huset?",
+        "example_english": "Who is the owner of the house?"
+      }
+    ]
   },
   {
     "rank": 1866,
-    "word": "sovjet"
+    "word": "sovjet",
+    "lemma": "sovjet",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Soviet (Union)",
+        "frequency": 1.0,
+        "example_swedish": "Sovjet upplöstes 1991.",
+        "example_english": "The Soviet Union dissolved in 1991."
+      }
+    ]
   },
   {
     "rank": 1867,
-    "word": "grader"
+    "word": "grader",
+    "lemma": "grad",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "degrees",
+        "frequency": 1.0,
+        "example_swedish": "Det är tjugo grader ute.",
+        "example_english": "It's twenty degrees outside."
+      }
+    ]
   },
   {
     "rank": 1868,
-    "word": "växande"
+    "word": "växande",
+    "lemma": "växande",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "growing, increasing",
+        "frequency": 1.0,
+        "example_swedish": "Det är ett växande problem.",
+        "example_english": "It's a growing problem."
+      }
+    ]
   },
   {
     "rank": 1869,
-    "word": "höja"
+    "word": "höja",
+    "lemma": "höja",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to raise, to increase",
+        "frequency": 1.0,
+        "example_swedish": "De vill höja lönerna.",
+        "example_english": "They want to raise the salaries."
+      }
+    ]
   },
   {
     "rank": 1870,
@@ -21703,7 +24076,17 @@
   },
   {
     "rank": 1871,
-    "word": "kung"
+    "word": "kung",
+    "lemma": "kung",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "king",
+        "frequency": 1.0,
+        "example_swedish": "Kungen talade till folket.",
+        "example_english": "The king spoke to the people."
+      }
+    ]
   },
   {
     "rank": 1872,
@@ -21717,11 +24100,38 @@
   },
   {
     "rank": 1874,
-    "word": "skott"
+    "word": "skott",
+    "lemma": "skott",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "shot",
+        "frequency": 0.8,
+        "example_swedish": "Han hörde ett skott.",
+        "example_english": "He heard a shot."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Scot (person from Scotland)",
+        "frequency": 0.2,
+        "example_swedish": "Han är skott till ursprunget.",
+        "example_english": "He is a Scot by origin."
+      }
+    ]
   },
   {
     "rank": 1875,
-    "word": "stil"
+    "word": "stil",
+    "lemma": "stil",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "style",
+        "frequency": 1.0,
+        "example_swedish": "Hon har en unik stil.",
+        "example_english": "She has a unique style."
+      }
+    ]
   },
   {
     "rank": 1876,
@@ -21729,7 +24139,17 @@
   },
   {
     "rank": 1877,
-    "word": "mängd"
+    "word": "mängd",
+    "lemma": "mängd",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "amount, quantity",
+        "frequency": 1.0,
+        "example_swedish": "Det finns en stor mängd data.",
+        "example_english": "There is a large amount of data."
+      }
+    ]
   },
   {
     "rank": 1878,
@@ -21741,17 +24161,59 @@
   },
   {
     "rank": 1880,
-    "word": "intresserade"
+    "word": "intresserade",
+    "lemma": "intressera",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "interested",
+        "frequency": 1.0,
+        "example_swedish": "De intresserade sig för konst.",
+        "example_english": "They were interested in art."
+      }
+    ]
   },
   {
     "rank": 1881,
-    "word": "finska"
+    "word": "finska",
+    "lemma": "finsk",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "Finnish",
+        "frequency": 0.6,
+        "example_swedish": "Den finska naturen är vacker.",
+        "example_english": "Finnish nature is beautiful."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Finnish (language)",
+        "frequency": 0.4,
+        "example_swedish": "Hon talar finska.",
+        "example_english": "She speaks Finnish."
+      }
+    ]
   },
   {
     "rank": 1882,
     "word": "säkra",
-    "lemma": "säker",
-    "duplicate": true
+    "lemma": "säkra",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to secure, to ensure",
+        "frequency": 0.5,
+        "example_swedish": "Vi måste säkra framtiden.",
+        "example_english": "We must secure the future."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "safe, secure (plural)",
+        "frequency": 0.5,
+        "example_swedish": "De säkra vägarna är bättre.",
+        "example_english": "The safe roads are better."
+      }
+    ]
   },
   {
     "rank": 1883,
@@ -21759,7 +24221,17 @@
   },
   {
     "rank": 1884,
-    "word": "borås"
+    "word": "borås",
+    "lemma": "borås",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Borås (city in Sweden)",
+        "frequency": 1.0,
+        "example_swedish": "Borås är känt för sin textilindustri.",
+        "example_english": "Borås is known for its textile industry."
+      }
+    ]
   },
   {
     "rank": 1885,
@@ -21784,7 +24256,17 @@
   },
   {
     "rank": 1886,
-    "word": "lett"
+    "word": "lett",
+    "lemma": "le",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "smiled (supine)",
+        "frequency": 1.0,
+        "example_swedish": "Hon har lett hela dagen.",
+        "example_english": "She has smiled all day."
+      }
+    ]
   },
   {
     "rank": 1887,
@@ -21802,11 +24284,31 @@
   },
   {
     "rank": 1888,
-    "word": "hår"
+    "word": "hår",
+    "lemma": "hår",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hair",
+        "frequency": 1.0,
+        "example_swedish": "Hon har långt hår.",
+        "example_english": "She has long hair."
+      }
+    ]
   },
   {
     "rank": 1889,
-    "word": "kontrakt"
+    "word": "kontrakt",
+    "lemma": "kontrakt",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "contract",
+        "frequency": 1.0,
+        "example_swedish": "De skrev under kontraktet.",
+        "example_english": "They signed the contract."
+      }
+    ]
   },
   {
     "rank": 1890,
@@ -21838,15 +24340,45 @@
   },
   {
     "rank": 1892,
-    "word": "tyder"
+    "word": "tyder",
+    "lemma": "tyda",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "indicates, suggests",
+        "frequency": 1.0,
+        "example_swedish": "Allt tyder på att hon har rätt.",
+        "example_english": "Everything indicates that she is right."
+      }
+    ]
   },
   {
     "rank": 1893,
-    "word": "således"
+    "word": "således",
+    "lemma": "således",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "thus, therefore",
+        "frequency": 1.0,
+        "example_swedish": "Han är således ansvarig.",
+        "example_english": "He is thus responsible."
+      }
+    ]
   },
   {
     "rank": 1894,
-    "word": "uppenbarligen"
+    "word": "uppenbarligen",
+    "lemma": "uppenbarligen",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "apparently, evidently",
+        "frequency": 1.0,
+        "example_swedish": "Uppenbarligen hade han fel.",
+        "example_english": "Apparently, he was wrong."
+      }
+    ]
   },
   {
     "rank": 1895,
@@ -21856,15 +24388,45 @@
   },
   {
     "rank": 1896,
-    "word": "irak"
+    "word": "irak",
+    "lemma": "irak",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Iraq",
+        "frequency": 1.0,
+        "example_swedish": "Kriget i Irak varade länge.",
+        "example_english": "The war in Iraq lasted a long time."
+      }
+    ]
   },
   {
     "rank": 1897,
-    "word": "munnen"
+    "word": "munnen",
+    "lemma": "mun",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "mouth",
+        "frequency": 1.0,
+        "example_swedish": "Hon öppnade munnen för att säga något.",
+        "example_english": "She opened her mouth to say something."
+      }
+    ]
   },
   {
     "rank": 1898,
-    "word": "fn"
+    "word": "fn",
+    "lemma": "fn",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "UN (United Nations)",
+        "frequency": 1.0,
+        "example_swedish": "FN arbetar för fred.",
+        "example_english": "The UN works for peace."
+      }
+    ]
   },
   {
     "rank": 1899,
@@ -21872,7 +24434,17 @@
   },
   {
     "rank": 1900,
-    "word": "serie"
+    "word": "serie",
+    "lemma": "serie",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "series, league",
+        "frequency": 1.0,
+        "example_swedish": "Laget spelar i högsta serien.",
+        "example_english": "The team plays in the top league."
+      }
+    ]
   },
   {
     "rank": 1901,
@@ -21886,7 +24458,24 @@
   },
   {
     "rank": 1903,
-    "word": "lo"
+    "word": "lo",
+    "lemma": "lo",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "LO (Swedish Trade Union Confederation)",
+        "frequency": 0.7,
+        "example_swedish": "LO representerar många arbetare.",
+        "example_english": "LO represents many workers."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "lynx",
+        "frequency": 0.3,
+        "example_swedish": "En lo lever i skogen.",
+        "example_english": "A lynx lives in the forest."
+      }
+    ]
   },
   {
     "rank": 1904,
@@ -21894,7 +24483,17 @@
   },
   {
     "rank": 1905,
-    "word": "nytta"
+    "word": "nytta",
+    "lemma": "nytta",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "benefit, use",
+        "frequency": 1.0,
+        "example_swedish": "Det är till stor nytta.",
+        "example_english": "It's of great benefit."
+      }
+    ]
   },
   {
     "rank": 1906,
@@ -21926,7 +24525,17 @@
   },
   {
     "rank": 1908,
-    "word": "satsning"
+    "word": "satsning",
+    "lemma": "satsning",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "investment, effort, initiative",
+        "frequency": 1.0,
+        "example_swedish": "Det var en stor satsning.",
+        "example_english": "It was a major investment."
+      }
+    ]
   },
   {
     "rank": 1909,
@@ -21934,7 +24543,24 @@
   },
   {
     "rank": 1910,
-    "word": "drag"
+    "word": "drag",
+    "lemma": "drag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "feature, trait, draft",
+        "frequency": 0.7,
+        "example_swedish": "Han har fina drag i ansiktet.",
+        "example_english": "He has fine features in his face."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "pull, move",
+        "frequency": 0.3,
+        "example_swedish": "Det är ditt drag.",
+        "example_english": "It's your move."
+      }
+    ]
   },
   {
     "rank": 1911,
@@ -21960,11 +24586,31 @@
   },
   {
     "rank": 1914,
-    "word": "bord"
+    "word": "bord",
+    "lemma": "bord",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "table",
+        "frequency": 1.0,
+        "example_swedish": "Lägg boken på bordet.",
+        "example_english": "Put the book on the table."
+      }
+    ]
   },
   {
     "rank": 1915,
-    "word": "karriär"
+    "word": "karriär",
+    "lemma": "karriär",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "career",
+        "frequency": 1.0,
+        "example_swedish": "Hon har haft en framgångsrik karriär.",
+        "example_english": "She has had a successful career."
+      }
+    ]
   },
   {
     "rank": 1916,
@@ -21976,11 +24622,31 @@
   },
   {
     "rank": 1918,
-    "word": "klassiska"
+    "word": "klassiska",
+    "lemma": "klassisk",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "classical, classic",
+        "frequency": 1.0,
+        "example_swedish": "Hon spelar klassisk musik.",
+        "example_english": "She plays classical music."
+      }
+    ]
   },
   {
     "rank": 1919,
-    "word": "sam"
+    "word": "sam",
+    "lemma": "sam",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Sam (name)",
+        "frequency": 1.0,
+        "example_swedish": "Sam kommer från USA.",
+        "example_english": "Sam is from the USA."
+      }
+    ]
   },
   {
     "rank": 1920,
@@ -21988,11 +24654,38 @@
   },
   {
     "rank": 1921,
-    "word": "bildt"
+    "word": "bildt",
+    "lemma": "bildt",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Bildt (surname)",
+        "frequency": 1.0,
+        "example_swedish": "Carl Bildt var statsminister.",
+        "example_english": "Carl Bildt was prime minister."
+      }
+    ]
   },
   {
     "rank": 1922,
-    "word": "gift"
+    "word": "gift",
+    "lemma": "gift",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "married",
+        "frequency": 0.7,
+        "example_swedish": "De har varit gifta i tio år.",
+        "example_english": "They have been married for ten years."
+      },
+      {
+        "pos": "NOUN",
+        "translation": "poison",
+        "frequency": 0.3,
+        "example_swedish": "Gift är farligt.",
+        "example_english": "Poison is dangerous."
+      }
+    ]
   },
   {
     "rank": 1923,
@@ -22010,7 +24703,17 @@
   },
   {
     "rank": 1924,
-    "word": "öl"
+    "word": "öl",
+    "lemma": "öl",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "beer",
+        "frequency": 1.0,
+        "example_swedish": "Han drack en öl.",
+        "example_english": "He drank a beer."
+      }
+    ]
   },
   {
     "rank": 1925,
@@ -22028,7 +24731,17 @@
   },
   {
     "rank": 1926,
-    "word": "diskussion"
+    "word": "diskussion",
+    "lemma": "diskussion",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "discussion",
+        "frequency": 1.0,
+        "example_swedish": "Vi hade en lång diskussion.",
+        "example_english": "We had a long discussion."
+      }
+    ]
   },
   {
     "rank": 1927,
@@ -22044,27 +24757,87 @@
   },
   {
     "rank": 1930,
-    "word": "viktigare"
+    "word": "viktigare",
+    "lemma": "viktig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "more important",
+        "frequency": 1.0,
+        "example_swedish": "Det finns viktigare saker.",
+        "example_english": "There are more important things."
+      }
+    ]
   },
   {
     "rank": 1931,
-    "word": "aning"
+    "word": "aning",
+    "lemma": "aning",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "idea, clue, inkling",
+        "frequency": 1.0,
+        "example_swedish": "Jag har ingen aning.",
+        "example_english": "I have no idea."
+      }
+    ]
   },
   {
     "rank": 1932,
-    "word": "grepp"
+    "word": "grepp",
+    "lemma": "grepp",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "grip, grasp, approach",
+        "frequency": 1.0,
+        "example_swedish": "Han hade ett fast grepp om situationen.",
+        "example_english": "He had a firm grip on the situation."
+      }
+    ]
   },
   {
     "rank": 1933,
-    "word": "lågt"
+    "word": "lågt",
+    "lemma": "låg",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "low (adverb)",
+        "frequency": 1.0,
+        "example_swedish": "Flygplanet flög lågt.",
+        "example_english": "The airplane flew low."
+      }
+    ]
   },
   {
     "rank": 1934,
-    "word": "division"
+    "word": "division",
+    "lemma": "division",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "division",
+        "frequency": 1.0,
+        "example_swedish": "Laget spelar i första divisionen.",
+        "example_english": "The team plays in the first division."
+      }
+    ]
   },
   {
     "rank": 1935,
-    "word": "kallt"
+    "word": "kallt",
+    "lemma": "kall",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "cold (adverb/neuter)",
+        "frequency": 1.0,
+        "example_swedish": "Det är kallt ute.",
+        "example_english": "It's cold outside."
+      }
+    ]
   },
   {
     "rank": 1936,
@@ -22088,7 +24861,22 @@
     "rank": 1938,
     "word": "fasta",
     "lemma": "fast",
-    "duplicate": true
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "fixed, firm",
+        "frequency": 0.7,
+        "example_swedish": "De har fasta rutiner.",
+        "example_english": "They have fixed routines."
+      },
+      {
+        "pos": "VERB",
+        "translation": "to fast",
+        "frequency": 0.3,
+        "example_swedish": "Många brukar fasta under ramadan.",
+        "example_english": "Many usually fast during Ramadan."
+      }
+    ]
   },
   {
     "rank": 1939,
@@ -22096,7 +24884,17 @@
   },
   {
     "rank": 1940,
-    "word": "stycken"
+    "word": "stycken",
+    "lemma": "stycke",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "pieces, items",
+        "frequency": 1.0,
+        "example_swedish": "Vi köpte fem stycken.",
+        "example_english": "We bought five pieces."
+      }
+    ]
   },
   {
     "rank": 1941,
@@ -22104,11 +24902,31 @@
   },
   {
     "rank": 1942,
-    "word": "torsdag"
+    "word": "torsdag",
+    "lemma": "torsdag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "Thursday",
+        "frequency": 1.0,
+        "example_swedish": "Vi ses på torsdag.",
+        "example_english": "We'll meet on Thursday."
+      }
+    ]
   },
   {
     "rank": 1943,
-    "word": "bror"
+    "word": "bror",
+    "lemma": "bror",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "brother",
+        "frequency": 1.0,
+        "example_swedish": "Min bror är äldre än jag.",
+        "example_english": "My brother is older than me."
+      }
+    ]
   },
   {
     "rank": 1944,
@@ -22130,7 +24948,17 @@
   },
   {
     "rank": 1946,
-    "word": "utsträckning"
+    "word": "utsträckning",
+    "lemma": "utsträckning",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "extent, degree",
+        "frequency": 1.0,
+        "example_swedish": "I stor utsträckning har det lyckats.",
+        "example_english": "To a large extent, it has succeeded."
+      }
+    ]
   },
   {
     "rank": 1947,
@@ -22148,7 +24976,17 @@
   },
   {
     "rank": 1948,
-    "word": "behandling"
+    "word": "behandling",
+    "lemma": "behandling",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "treatment",
+        "frequency": 1.0,
+        "example_swedish": "Han fick behandling på sjukhuset.",
+        "example_english": "He received treatment at the hospital."
+      }
+    ]
   },
   {
     "rank": 1949,
@@ -22156,7 +24994,17 @@
   },
   {
     "rank": 1950,
-    "word": "umeå"
+    "word": "umeå",
+    "lemma": "umeå",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Umeå (city in Sweden)",
+        "frequency": 1.0,
+        "example_swedish": "Umeå ligger i norra Sverige.",
+        "example_english": "Umeå is located in northern Sweden."
+      }
+    ]
   },
   {
     "rank": 1951,
@@ -22164,15 +25012,45 @@
   },
   {
     "rank": 1952,
-    "word": "dans"
+    "word": "dans",
+    "lemma": "dans",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "dance",
+        "frequency": 1.0,
+        "example_swedish": "De njöt av dansen.",
+        "example_english": "They enjoyed the dance."
+      }
+    ]
   },
   {
     "rank": 1953,
-    "word": "hängde"
+    "word": "hängde",
+    "lemma": "hänga",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "hung",
+        "frequency": 1.0,
+        "example_swedish": "Tavlan hängde på väggen.",
+        "example_english": "The painting hung on the wall."
+      }
+    ]
   },
   {
     "rank": 1954,
-    "word": "paul"
+    "word": "paul",
+    "lemma": "paul",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Paul (name)",
+        "frequency": 1.0,
+        "example_swedish": "Paul arbetar som läkare.",
+        "example_english": "Paul works as a doctor."
+      }
+    ]
   },
   {
     "rank": 1955,
@@ -22194,19 +25072,59 @@
   },
   {
     "rank": 1957,
-    "word": "allmänt"
+    "word": "allmänt",
+    "lemma": "allmän",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "generally",
+        "frequency": 1.0,
+        "example_swedish": "Allmänt sett är det bra.",
+        "example_english": "Generally speaking, it's good."
+      }
+    ]
   },
   {
     "rank": 1958,
-    "word": "varmt"
+    "word": "varmt",
+    "lemma": "varm",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "warmly, warm",
+        "frequency": 1.0,
+        "example_swedish": "Det är varmt i dag.",
+        "example_english": "It's warm today."
+      }
+    ]
   },
   {
     "rank": 1959,
-    "word": "övertygad"
+    "word": "övertygad",
+    "lemma": "övertygad",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "convinced",
+        "frequency": 1.0,
+        "example_swedish": "Jag är övertygad om att det är rätt.",
+        "example_english": "I am convinced that it's right."
+      }
+    ]
   },
   {
     "rank": 1960,
-    "word": "betalt"
+    "word": "betalt",
+    "lemma": "betala",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "paid (supine)",
+        "frequency": 1.0,
+        "example_swedish": "Jag har redan betalt.",
+        "example_english": "I have already paid."
+      }
+    ]
   },
   {
     "rank": 1961,
@@ -22224,23 +25142,80 @@
   },
   {
     "rank": 1962,
-    "word": "lagar"
+    "word": "lagar",
+    "lemma": "lag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "laws",
+        "frequency": 0.7,
+        "example_swedish": "Nya lagar träder i kraft i januari.",
+        "example_english": "New laws come into effect in January."
+      },
+      {
+        "pos": "VERB",
+        "translation": "cooks, prepares (from 'laga')",
+        "frequency": 0.3,
+        "example_swedish": "Hon lagar mat.",
+        "example_english": "She cooks food."
+      }
+    ]
   },
   {
     "rank": 1963,
-    "word": "washington"
+    "word": "washington",
+    "lemma": "washington",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Washington",
+        "frequency": 1.0,
+        "example_swedish": "Presidenten bor i Washington.",
+        "example_english": "The president lives in Washington."
+      }
+    ]
   },
   {
     "rank": 1964,
-    "word": "därtill"
+    "word": "därtill",
+    "lemma": "därtill",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "in addition, furthermore",
+        "frequency": 1.0,
+        "example_swedish": "Han är smart och därtill vänlig.",
+        "example_english": "He is smart and furthermore friendly."
+      }
+    ]
   },
   {
     "rank": 1965,
-    "word": "likt"
+    "word": "likt",
+    "lemma": "lik",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "like, similar to",
+        "frequency": 1.0,
+        "example_swedish": "Likt sin far blev han läkare.",
+        "example_english": "Like his father, he became a doctor."
+      }
+    ]
   },
   {
     "rank": 1966,
-    "word": "ljud"
+    "word": "ljud",
+    "lemma": "ljud",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sound",
+        "frequency": 1.0,
+        "example_swedish": "Jag hörde ett konstigt ljud.",
+        "example_english": "I heard a strange sound."
+      }
+    ]
   },
   {
     "rank": 1967,
@@ -22258,7 +25233,17 @@
   },
   {
     "rank": 1968,
-    "word": "richard"
+    "word": "richard",
+    "lemma": "richard",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Richard (name)",
+        "frequency": 1.0,
+        "example_swedish": "Richard är min kollega.",
+        "example_english": "Richard is my colleague."
+      }
+    ]
   },
   {
     "rank": 1969,
@@ -22276,11 +25261,31 @@
   },
   {
     "rank": 1970,
-    "word": "tisdag"
+    "word": "tisdag",
+    "lemma": "tisdag",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "Tuesday",
+        "frequency": 1.0,
+        "example_swedish": "Mötet är på tisdag.",
+        "example_english": "The meeting is on Tuesday."
+      }
+    ]
   },
   {
     "rank": 1971,
-    "word": "rygg"
+    "word": "rygg",
+    "lemma": "rygg",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "back",
+        "frequency": 1.0,
+        "example_swedish": "Min rygg gör ont.",
+        "example_english": "My back hurts."
+      }
+    ]
   },
   {
     "rank": 1972,
@@ -22308,11 +25313,31 @@
   },
   {
     "rank": 1978,
-    "word": "bred"
+    "word": "bred",
+    "lemma": "bred",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "wide, broad",
+        "frequency": 1.0,
+        "example_swedish": "Floden är mycket bred.",
+        "example_english": "The river is very wide."
+      }
+    ]
   },
   {
     "rank": 1979,
-    "word": "city"
+    "word": "city",
+    "lemma": "city",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "city center, downtown",
+        "frequency": 1.0,
+        "example_swedish": "Vi gick runt i city.",
+        "example_english": "We walked around the city center."
+      }
+    ]
   },
   {
     "rank": 1980,
@@ -22320,23 +25345,73 @@
   },
   {
     "rank": 1981,
-    "word": "insats"
+    "word": "insats",
+    "lemma": "insats",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "effort, contribution, stake",
+        "frequency": 1.0,
+        "example_swedish": "Hon gjorde en stor insats.",
+        "example_english": "She made a great contribution."
+      }
+    ]
   },
   {
     "rank": 1982,
-    "word": "billigare"
+    "word": "billigare",
+    "lemma": "billig",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "cheaper",
+        "frequency": 1.0,
+        "example_swedish": "Det finns billigare alternativ.",
+        "example_english": "There are cheaper alternatives."
+      }
+    ]
   },
   {
     "rank": 1983,
-    "word": "clinton"
+    "word": "clinton",
+    "lemma": "clinton",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "Clinton (name)",
+        "frequency": 1.0,
+        "example_swedish": "Clinton var president i USA.",
+        "example_english": "Clinton was president of the USA."
+      }
+    ]
   },
   {
     "rank": 1984,
-    "word": "funnit"
+    "word": "funnit",
+    "lemma": "finna",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "found (supine)",
+        "frequency": 1.0,
+        "example_swedish": "Vi har funnit en lösning.",
+        "example_english": "We have found a solution."
+      }
+    ]
   },
   {
     "rank": 1985,
-    "word": "telefon"
+    "word": "telefon",
+    "lemma": "telefon",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "telephone, phone",
+        "frequency": 1.0,
+        "example_swedish": "Telefonen ringde.",
+        "example_english": "The phone rang."
+      }
+    ]
   },
   {
     "rank": 1986,
@@ -22344,31 +25419,115 @@
   },
   {
     "rank": 1987,
-    "word": "frisk"
+    "word": "frisk",
+    "lemma": "frisk",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "healthy, fresh",
+        "frequency": 1.0,
+        "example_swedish": "Hon är frisk igen.",
+        "example_english": "She is healthy again."
+      }
+    ]
   },
   {
     "rank": 1988,
-    "word": "skicka"
+    "word": "skicka",
+    "lemma": "skicka",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to send",
+        "frequency": 1.0,
+        "example_swedish": "Kan du skicka ett mejl?",
+        "example_english": "Can you send an email?"
+      }
+    ]
   },
   {
     "rank": 1989,
-    "word": "skådespelare"
+    "word": "skådespelare",
+    "lemma": "skådespelare",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "actor",
+        "frequency": 1.0,
+        "example_swedish": "Han är en känd skådespelare.",
+        "example_english": "He is a famous actor."
+      }
+    ]
   },
   {
     "rank": 1990,
-    "word": "våras"
+    "word": "våras",
+    "lemma": "våras",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "last spring",
+        "frequency": 1.0,
+        "example_swedish": "Vi träffades i våras.",
+        "example_english": "We met last spring."
+      }
+    ]
   },
   {
     "rank": 1991,
-    "word": "älskade"
+    "word": "älskade",
+    "lemma": "älska",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "loved",
+        "frequency": 0.8,
+        "example_swedish": "Han älskade sin familj.",
+        "example_english": "He loved his family."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "beloved",
+        "frequency": 0.2,
+        "example_swedish": "Min älskade vän.",
+        "example_english": "My beloved friend."
+      }
+    ]
   },
   {
     "rank": 1992,
-    "word": "demokrati"
+    "word": "demokrati",
+    "lemma": "demokrati",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "democracy",
+        "frequency": 1.0,
+        "example_swedish": "Sverige är en demokrati.",
+        "example_english": "Sweden is a democracy."
+      }
+    ]
   },
   {
     "rank": 1993,
-    "word": "farligt"
+    "word": "farligt",
+    "lemma": "farlig",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "dangerously",
+        "frequency": 0.5,
+        "example_swedish": "Han körde farligt fort.",
+        "example_english": "He drove dangerously fast."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "dangerous (neuter)",
+        "frequency": 0.5,
+        "example_swedish": "Det är farligt att simma där.",
+        "example_english": "It's dangerous to swim there."
+      }
+    ]
   },
   {
     "rank": 1994,
@@ -22404,7 +25563,17 @@
   },
   {
     "rank": 1997,
-    "word": "minskade"
+    "word": "minskade",
+    "lemma": "minska",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "decreased, reduced",
+        "frequency": 1.0,
+        "example_swedish": "Kostnaderna minskade förra året.",
+        "example_english": "The costs decreased last year."
+      }
+    ]
   },
   {
     "rank": 1998,
@@ -22412,11 +25581,38 @@
   },
   {
     "rank": 1999,
-    "word": "överraskande"
+    "word": "överraskande",
+    "lemma": "överraskande",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "surprising",
+        "frequency": 0.7,
+        "example_swedish": "Det var ett överraskande resultat.",
+        "example_english": "It was a surprising result."
+      },
+      {
+        "pos": "ADV",
+        "translation": "surprisingly",
+        "frequency": 0.3,
+        "example_swedish": "Överraskande nog vann han.",
+        "example_english": "Surprisingly, he won."
+      }
+    ]
   },
   {
     "rank": 2000,
-    "word": "is"
+    "word": "is",
+    "lemma": "is",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "ice, ice cream",
+        "frequency": 1.0,
+        "example_swedish": "Sjön är täckt av is.",
+        "example_english": "The lake is covered with ice."
+      }
+    ]
   },
   {
     "rank": 2001,
