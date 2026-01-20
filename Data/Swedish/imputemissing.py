@@ -13,7 +13,7 @@ def main():
     base_dir = Path("Data/Swedish")
 
     correct_ranks_path = base_dir / "vocabulary.json"
-    generated_entries_path = base_dir / "swedish_vocab_new_entries.json"
+    generated_entries_path = base_dir / "swedish_vocabulary_1000_1500_complete.json"
     output_path = base_dir / "vocabulary_updated.json"
 
     print("Loading vocabulary_correct_ranks.json...")
