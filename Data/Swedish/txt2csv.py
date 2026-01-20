@@ -1,34 +1,39 @@
 import csv
 import re
+from striprtf.striprtf import rtf_to_text
 
 input_file = "Data/Swedish/Swedish Frequency.rtf"
 output_file = "Data/Swedish/swedish_frequency.csv"
 
-words = []
+# Read and convert RTF to plain text
+with open(input_file, "r", encoding="utf-8") as f:
+    rtf_content = f.read()
 
-# Read RTF file
-with open(input_file, "r", encoding="utf-8", errors="ignore") as f:
-    text = f.read()
+text = rtf_to_text(rtf_content)
 
-# Remove basic RTF control words and braces
-text = re.sub(r"{\\.*?}|\\[a-zA-Z]+\d*", " ", text)
-text = re.sub(r"[{}]", " ", text)
+# Remove numeric range headers like "1-200"
+text = re.sub(r"\b\d+\s*-\s*\d+\b", " ", text)
 
-# Split into tokens
-tokens = re.split(r"\s+", text)
+# Remove bracketed duplicates like "(Dag)", "(Inga)", etc.
+text = re.sub(r"\([^)]*\)", " ", text)
 
-# Keep only real words (letters, incl Swedish chars)
-for token in tokens:
-    token = token.strip()
-    if re.match(r"^[A-Za-zÅÄÖåäö]+$", token):
-        words.append(token)
+# Normalize whitespace
+text = re.sub(r"\s+", " ", text).strip()
 
-# Write CSV
-with open(output_file, "w", newline="", encoding="utf-8") as csvfile:
+# Extract words (keeps Swedish characters)
+words = re.findall(r"[A-Za-zÅÄÖåäö]+", text)
+
+# ---- DEBUG PRINTS ----
+print("Debug checkpoints:")
+for i in range(200, len(words) + 1, 200):
+    print(f"{i}: {words[i - 1]}")
+
+# Write CSV with rank and word
+with open(output_file, "w", encoding="utf-8", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["rank", "word"])
 
-    for i, word in enumerate(words, start=1):
-        writer.writerow([i, word])
+    for rank, word in enumerate(words, start=1):
+        writer.writerow([rank, word.lower()])
 
-print(f"Saved {len(words)} words to {output_file}")
+print(f"\nCSV written to {output_file} with {len(words)} entries.")
