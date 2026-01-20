@@ -1,105 +1,5 @@
 {
   "languages": {
-    "dutch": {
-      "name": "Dutch",
-      "dataPath": "Data/Dutch/vocabulary.json",
-      "exampleTargetField": "example_dutch",
-      "exampleEnglishField": "example_english",
-      "cefrLevels": [
-        {
-          "level": "A1",
-          "description": "Beginner",
-          "comprehension": "~65% of spoken language",
-          "wordCount": "1-800"
-        },
-        {
-          "level": "A2",
-          "description": "Elementary",
-          "comprehension": "~75% of spoken language",
-          "wordCount": "800-1500"
-        },
-        {
-          "level": "B1",
-          "description": "Intermediate",
-          "comprehension": "~85% of spoken language",
-          "wordCount": "1500-2500"
-        },
-        {
-          "level": "B2",
-          "description": "Upper Intermediate",
-          "comprehension": "~90% of spoken language",
-          "wordCount": "2500-3000"
-        },
-        {
-          "level": "C1",
-          "description": "Advanced",
-          "comprehension": "~95% of spoken language",
-          "wordCount": "3000-4500"
-        },
-        {
-          "level": "C2",
-          "description": "Proficient",
-          "comprehension": "~98% of spoken language",
-          "wordCount": "4500-6000"
-        }
-      ],
-      "fileFormat": "json",
-      "referenceLinks": {
-        "wordReference": "https://www.wordreference.com/nlen/{word}",
-        "reverso": "https://context.reverso.net/translation/dutch-english/{word}",
-        "conjugation": "https://www.verbix.com/webverbix/Dutch/{word}"
-      }
-    },
-    "polish": {
-      "name": "Polish",
-      "dataPath": "Data/Polish/vocabulary.json",
-      "exampleTargetField": "example_polish",
-      "exampleEnglishField": "example_english",
-      "cefrLevels": [
-        {
-          "level": "A1",
-          "description": "Beginner",
-          "comprehension": "~65% of spoken language",
-          "wordCount": "1-800"
-        },
-        {
-          "level": "A2",
-          "description": "Elementary",
-          "comprehension": "~75% of spoken language",
-          "wordCount": "800-1500"
-        },
-        {
-          "level": "B1",
-          "description": "Intermediate",
-          "comprehension": "~85% of spoken language",
-          "wordCount": "1500-2500"
-        },
-        {
-          "level": "B2",
-          "description": "Upper Intermediate",
-          "comprehension": "~90% of spoken language",
-          "wordCount": "2500-3000"
-        },
-        {
-          "level": "C1",
-          "description": "Advanced",
-          "comprehension": "~95% of spoken language",
-          "wordCount": "3000-4500"
-        },
-        {
-          "level": "C2",
-          "description": "Proficient",
-          "comprehension": "~98% of spoken language",
-          "wordCount": "4500-6000"
-        }
-      ],
-      "fileFormat": "json",
-      "referenceLinks": {
-        "wordReference": "https://www.wordreference.com/plen/{word}",
-        "reverso": "https://context.reverso.net/translation/polish-english/{word}",
-        "conjugation": "https://pl.pons.com/odmiana/polski/{word}"
-      }
-    },
     "spanish": {
       "name": "Spanish",
       "dataPath": "Data/Spanish/vocabulary.json",
@@ -152,6 +52,56 @@
         "conjugation": "https://www.spanishdict.com/conjugate/{word}"
       }
     },
+    "swedish": {
+      "name": "Swedish",
+      "dataPath": "Data/Swedish/vocabulary.json",
+      "exampleTargetField": "example_swedish",
+      "exampleEnglishField": "example_english",
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~65% of spoken language",
+          "wordCount": "1-800"
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1500"
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1500-2500"
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000"
+        },
+        {
+          "level": "C1",
+          "description": "Advanced",
+          "comprehension": "~95% of spoken language",
+          "wordCount": "3000-4500"
+        },
+        {
+          "level": "C2",
+          "description": "Proficient",
+          "comprehension": "~98% of spoken language",
+          "wordCount": "4500-6000"
+        }
+      ],
+      "fileFormat": "json",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/sven/{word}",
+        "reverso": "https://context.reverso.net/translation/swedish-english/{word}",
+        "conjugation": "https://cooljugator.com/sv/{word}"
+      }
+    },
     "italian": {
       "name": "Italian",
       "dataPath": "Data/Italian/vocabulary.json",
@@ -200,6 +150,56 @@
         "wordReference": "https://www.wordreference.com/iten/{word}",
         "reverso": "https://context.reverso.net/translation/italian-english/{word}",
         "conjugation": "https://www.italian-verbs.com/italian-verbs/conjugation.php?verbo={word}"
+      }
+    },
+    "dutch": {
+      "name": "Dutch",
+      "dataPath": "Data/Dutch/vocabulary.json",
+      "exampleTargetField": "example_dutch",
+      "exampleEnglishField": "example_english",
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~65% of spoken language",
+          "wordCount": "1-800"
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1500"
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1500-2500"
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000"
+        },
+        {
+          "level": "C1",
+          "description": "Advanced",
+          "comprehension": "~95% of spoken language",
+          "wordCount": "3000-4500"
+        },
+        {
+          "level": "C2",
+          "description": "Proficient",
+          "comprehension": "~98% of spoken language",
+          "wordCount": "4500-6000"
+        }
+      ],
+      "fileFormat": "json",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/nlen/{word}",
+        "reverso": "https://context.reverso.net/translation/dutch-english/{word}",
+        "conjugation": "https://www.verbix.com/webverbix/Dutch/{word}"
       }
     },
     "french": {
@@ -300,6 +300,56 @@
         "wordReference": "https://www.wordreference.com/ruen/{word}",
         "reverso": "https://context.reverso.net/translation/russian-english/{word}",
         "conjugation": "https://cooljugator.com/ru/{word}"
+      }
+    },
+    "polish": {
+      "name": "Polish",
+      "dataPath": "Data/Polish/vocabulary.json",
+      "exampleTargetField": "example_polish",
+      "exampleEnglishField": "example_english",
+      "cefrLevels": [
+        {
+          "level": "A1",
+          "description": "Beginner",
+          "comprehension": "~65% of spoken language",
+          "wordCount": "1-800"
+        },
+        {
+          "level": "A2",
+          "description": "Elementary",
+          "comprehension": "~75% of spoken language",
+          "wordCount": "800-1500"
+        },
+        {
+          "level": "B1",
+          "description": "Intermediate",
+          "comprehension": "~85% of spoken language",
+          "wordCount": "1500-2500"
+        },
+        {
+          "level": "B2",
+          "description": "Upper Intermediate",
+          "comprehension": "~90% of spoken language",
+          "wordCount": "2500-3000"
+        },
+        {
+          "level": "C1",
+          "description": "Advanced",
+          "comprehension": "~95% of spoken language",
+          "wordCount": "3000-4500"
+        },
+        {
+          "level": "C2",
+          "description": "Proficient",
+          "comprehension": "~98% of spoken language",
+          "wordCount": "4500-6000"
+        }
+      ],
+      "fileFormat": "json",
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/plen/{word}",
+        "reverso": "https://context.reverso.net/translation/polish-english/{word}",
+        "conjugation": "https://pl.pons.com/odmiana/polski/{word}"
       }
     }
   }

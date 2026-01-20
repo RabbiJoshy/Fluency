@@ -1182,6 +1182,14 @@
             min-width: 0;
         }
 
+        .step-half:first-child {
+            flex: 0.9;
+        }
+
+        .step-half:last-child {
+            flex: 1.1;
+        }
+
         .step-half .step-header {
             margin-bottom: 10px;
         }
@@ -1920,7 +1928,8 @@
                 'spanish': 'ES',
                 'italian': 'IT',
                 'french': 'FR',
-                'russian': 'RU'
+                'russian': 'RU',
+                'swedish': 'SE'
             };
 
             // Generate language tabs dynamically
@@ -2115,7 +2124,7 @@
                     <button class="range-btn-new ${disabledClass}"
                             data-range="${r.range}"
                             ${disabledAttr}
-                            title="${r.available ? 'Load ' + r.range : 'No data available for ' + r.range}">
+                            title="${r.available ? 'Load ' + r.range : 'Greyed out because no vocabulary data exists for this range yet'}">
                         ${r.range}
                     </button>
                 `;

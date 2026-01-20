@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/Swedish Frequency.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +100,7 @@
       <updated>1768600654930</updated>
       <workItem from="1768600657574" duration="27303000" />
       <workItem from="1768744143483" duration="20217000" />
-      <workItem from="1768811370545" duration="8570000" />
+      <workItem from="1768811370545" duration="13500000" />
     </task>
     <servers />
   </component>
