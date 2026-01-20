@@ -2,19 +2,19 @@ import json
 import os
 from pathlib import Path
 
-# Target directory is Data/Spanish relative to current directory
-# If already in Data/Spanish, use current directory
-# Otherwise look for Data/Spanish subdirectory
+# Target directory is Data/Swedish relative to current directory
+# If already in Data/Swedish, use current directory
+# Otherwise look for Data/Swedish subdirectory
 current_dir = Path.cwd()
 
-if current_dir.name == 'Spanish' and current_dir.parent.name == 'Data':
+if current_dir.name == 'Swedish' and current_dir.parent.name == 'Data':
     # Already in the right place
     script_dir = current_dir
-elif (current_dir / 'Data' / 'Spanish').exists():
+elif (current_dir / 'Data' / 'Swedish').exists():
     # Running from parent directory (e.g., Fluency)
-    script_dir = current_dir / 'Data' / 'Spanish'
+    script_dir = current_dir / 'Data' / 'Swedish'
 else:
-    # Try to find Data/Spanish
+    # Try to find Data/Swedish
     script_dir = current_dir
 
 print(f"Working directory: {script_dir}")
