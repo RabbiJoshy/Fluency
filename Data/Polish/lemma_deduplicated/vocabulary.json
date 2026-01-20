@@ -1,0 +1,3124 @@
+[
+  {
+    "rank": 1,
+    "word": "nie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NEG",
+        "translation": "no/not",
+        "frequency": "0.95",
+        "example_polish": "Nie, to nie jest dla mnie.",
+        "example_english": "No, that's not for me."
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "word": "to",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "this/that/it",
+        "frequency": "0.60",
+        "example_polish": "To jest na mnie.",
+        "example_english": "This is on me."
+      },
+      {
+        "pos": "CONJ",
+        "translation": "then/so",
+        "frequency": "0.40",
+        "example_polish": "Jak nie to, to co?",
+        "example_english": "If not that, then what?"
+      }
+    ]
+  },
+  {
+    "rank": 3,
+    "word": "się",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "oneself (reflexive)",
+        "frequency": "0.95",
+        "example_polish": "Jak się masz?",
+        "example_english": "How are you?"
+      }
+    ]
+  },
+  {
+    "rank": 4,
+    "word": "na",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "on/at/for",
+        "frequency": "0.70",
+        "example_polish": "To jest na stole.",
+        "example_english": "It is on the table."
+      },
+      {
+        "pos": "PREP",
+        "translation": "to (direction)",
+        "frequency": "0.30",
+        "example_polish": "Jak to się ma na to, co jest?",
+        "example_english": "How does this relate to what is?"
+      }
+    ]
+  },
+  {
+    "rank": 5,
+    "word": "co",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "what",
+        "frequency": "0.85",
+        "example_polish": "Co to jest?",
+        "example_english": "What is this?"
+      },
+      {
+        "pos": "CONJ",
+        "translation": "which/that",
+        "frequency": "0.15",
+        "example_polish": "To, co mam, nie jest dla mnie.",
+        "example_english": "What I have is not for me."
+      }
+    ]
+  },
+  {
+    "rank": 6,
+    "word": "że",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "that",
+        "frequency": "0.95",
+        "example_polish": "Nie, to nie tak, że jest za dużo.",
+        "example_english": "No, it's not that there is too much."
+      }
+    ]
+  },
+  {
+    "rank": 7,
+    "word": "jest",
+    "lemma": "być",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "is",
+        "frequency": "0.95",
+        "example_polish": "To jest tak, jak to jest.",
+        "example_english": "It is as it is."
+      }
+    ]
+  },
+  {
+    "rank": 8,
+    "word": "do",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "to/into",
+        "frequency": "0.60",
+        "example_polish": "To jest dla mnie, nie do tego.",
+        "example_english": "This is for me, not to that."
+      },
+      {
+        "pos": "PREP",
+        "translation": "until",
+        "frequency": "0.25",
+        "example_polish": "Do jak jest to tak?",
+        "example_english": "Until when is it like that?"
+      },
+      {
+        "pos": "PREP",
+        "translation": "for (purpose)",
+        "frequency": "0.15",
+        "example_polish": "Co to jest do tego?",
+        "example_english": "What is this for?"
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "word": "tak",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "yes/so/like this",
+        "frequency": "0.70",
+        "example_polish": "Tak, to jest na to.",
+        "example_english": "Yes, this is for that."
+      },
+      {
+        "pos": "CONJ",
+        "translation": "as/so",
+        "frequency": "0.30",
+        "example_polish": "Nie jest tak, jak to się ma.",
+        "example_english": "It's not as it seems."
+      }
+    ]
+  },
+  {
+    "rank": 10,
+    "word": "jak",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "how",
+        "frequency": "0.60",
+        "example_polish": "Jak to jest?",
+        "example_english": "How is it?"
+      },
+      {
+        "pos": "CONJ",
+        "translation": "as/like",
+        "frequency": "0.40",
+        "example_polish": "To nie jest tak, jak co jest na to.",
+        "example_english": "This is not as what is for that."
+      }
+    ]
+  },
+  {
+    "rank": 11,
+    "word": "mnie",
+    "lemma": "ja",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "me",
+        "frequency": "0.95",
+        "example_polish": "To nie jest dla mnie, ale dla ciebie.",
+        "example_english": "This is not for me, but for you."
+      }
+    ]
+  },
+  {
+    "rank": 12,
+    "word": "ale",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "but",
+        "frequency": "0.95",
+        "example_polish": "Nie to, ale jak jest mi dobrze.",
+        "example_english": "Not that, but how I feel good."
+      }
+    ]
+  },
+  {
+    "rank": 14,
+    "word": "za",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "for/behind/too",
+        "frequency": "0.50",
+        "example_polish": "To jest za dużo dla mnie.",
+        "example_english": "This is too much for me."
+      },
+      {
+        "pos": "PREP",
+        "translation": "in (time)",
+        "frequency": "0.30",
+        "example_polish": "Jak się to ma za tym?",
+        "example_english": "How is this behind that?"
+      },
+      {
+        "pos": "PREP",
+        "translation": "behind",
+        "frequency": "0.20",
+        "example_polish": "Co jest za mną?",
+        "example_english": "What is behind me?"
+      }
+    ]
+  },
+  {
+    "rank": 15,
+    "word": "ja",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "I",
+        "frequency": "0.95",
+        "example_polish": "Ja to tak jak ty.",
+        "example_english": "I am like you."
+      }
+    ]
+  },
+  {
+    "rank": 16,
+    "word": "ci",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "to you",
+        "frequency": "0.80",
+        "example_polish": "To jest dla tego, co ci się ma.",
+        "example_english": "This is for what you have."
+      },
+      {
+        "pos": "DET",
+        "translation": "these/those",
+        "frequency": "0.20",
+        "example_polish": "Ci ludzie są tu.",
+        "example_english": "These people are here."
+      }
+    ]
+  },
+  {
+    "rank": 17,
+    "word": "tu",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "here",
+        "frequency": "0.95",
+        "example_polish": "Jak to jest tu?",
+        "example_english": "How is it here?"
+      }
+    ]
+  },
+  {
+    "rank": 18,
+    "word": "go",
+    "lemma": "on",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "him/it",
+        "frequency": "0.95",
+        "example_polish": "Nie ma go tu.",
+        "example_english": "He's not here."
+      }
+    ]
+  },
+  {
+    "rank": 19,
+    "word": "tego",
+    "lemma": "ten",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "this/that (genitive)",
+        "frequency": "0.95",
+        "example_polish": "Nie ma tego, co jest dla mnie.",
+        "example_english": "There isn't what is for me."
+      }
+    ]
+  },
+  {
+    "rank": 21,
+    "word": "ty",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you",
+        "frequency": "0.95",
+        "example_polish": "Ty jesteś tu, ale ja nie.",
+        "example_english": "You are here, but I am not."
+      }
+    ]
+  },
+  {
+    "rank": 22,
+    "word": "czy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "whether/if",
+        "frequency": "0.60",
+        "example_polish": "Czy ty to masz?",
+        "example_english": "Do you have this?"
+      },
+      {
+        "pos": "CONJ",
+        "translation": "or",
+        "frequency": "0.40",
+        "example_polish": "To czy to?",
+        "example_english": "This or that?"
+      }
+    ]
+  },
+  {
+    "rank": 23,
+    "word": "tylko",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "only/just",
+        "frequency": "0.95",
+        "example_polish": "To jest tylko dla mnie.",
+        "example_english": "This is only for me."
+      }
+    ]
+  },
+  {
+    "rank": 24,
+    "word": "po",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "after/for",
+        "frequency": "0.70",
+        "example_polish": "To jest po tym, co było.",
+        "example_english": "This is after what was."
+      },
+      {
+        "pos": "PREP",
+        "translation": "on (surface)",
+        "frequency": "0.30",
+        "example_polish": "Czy ty jesz po tym?",
+        "example_english": "Are you eating on this?"
+      }
+    ]
+  },
+  {
+    "rank": 26,
+    "word": "cię",
+    "lemma": "ty",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you (accusative)",
+        "frequency": "0.95",
+        "example_polish": "Ja cię mam tu.",
+        "example_english": "I have you here."
+      }
+    ]
+  },
+  {
+    "rank": 27,
+    "word": "ma",
+    "lemma": "mieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "has",
+        "frequency": "0.95",
+        "example_polish": "On ma to, co ty masz.",
+        "example_english": "He has what you have."
+      }
+    ]
+  },
+  {
+    "rank": 28,
+    "word": "może",
+    "lemma": "móc",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "can/may",
+        "frequency": "0.80",
+        "example_polish": "On może jest tu już.",
+        "example_english": "He may be here already."
+      },
+      {
+        "pos": "ADV",
+        "translation": "maybe/perhaps",
+        "frequency": "0.20",
+        "example_polish": "Może to jest dla mnie?",
+        "example_english": "Maybe this is for me?"
+      }
+    ]
+  },
+  {
+    "rank": 29,
+    "word": "już",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "already/now",
+        "frequency": "0.95",
+        "example_polish": "Już jestem tu.",
+        "example_english": "I'm already here."
+      }
+    ]
+  },
+  {
+    "rank": 32,
+    "word": "pan",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sir/Mr./you (formal masculine)",
+        "frequency": "0.95",
+        "example_polish": "Czy pan ma to dla mnie?",
+        "example_english": "Do you have this for me, sir?"
+      }
+    ]
+  },
+  {
+    "rank": 33,
+    "word": "coś",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "something",
+        "frequency": "0.95",
+        "example_polish": "Mam coś dla ciebie.",
+        "example_english": "I have something for you."
+      }
+    ]
+  },
+  {
+    "rank": 34,
+    "word": "dla",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "for",
+        "frequency": "0.95",
+        "example_polish": "To jest dla mnie, nie dla ciebie.",
+        "example_english": "This is for me, not for you."
+      }
+    ]
+  },
+  {
+    "rank": 35,
+    "word": "wiem",
+    "lemma": "wiedzieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I know",
+        "frequency": "0.95",
+        "example_polish": "Ja wiem, że ty jesteś dobrze.",
+        "example_english": "I know that you are well."
+      }
+    ]
+  },
+  {
+    "rank": 36,
+    "word": "dobrze",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "well/good",
+        "frequency": "0.95",
+        "example_polish": "To jest dobrze dla mnie.",
+        "example_english": "This is good for me."
+      }
+    ]
+  },
+  {
+    "rank": 37,
+    "word": "jeśli",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "if",
+        "frequency": "0.95",
+        "example_polish": "Jeśli ty masz to, to ja wiem.",
+        "example_english": "If you have this, then I know."
+      }
+    ]
+  },
+  {
+    "rank": 38,
+    "word": "od",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "from/since",
+        "frequency": "0.95",
+        "example_polish": "To jest od tego, co mam dla ciebie.",
+        "example_english": "This is from what I have for you."
+      }
+    ]
+  },
+  {
+    "rank": 39,
+    "word": "teraz",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "now",
+        "frequency": "0.95",
+        "example_polish": "Teraz jestem tu, ale już nie.",
+        "example_english": "Now I'm here, but not anymore."
+      }
+    ]
+  },
+  {
+    "rank": 40,
+    "word": "proszę",
+    "lemma": "prosić",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "please/I ask",
+        "frequency": "0.95",
+        "example_polish": "Proszę, to jest dla ciebie.",
+        "example_english": "Please, this is for you."
+      }
+    ]
+  },
+  {
+    "rank": 41,
+    "word": "tam",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "there",
+        "frequency": "0.95",
+        "example_polish": "Czy ty jesteś tam, gdzie ja jestem tu?",
+        "example_english": "Are you there, where I am here?"
+      }
+    ]
+  },
+  {
+    "rank": 42,
+    "word": "wszystko",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "everything",
+        "frequency": "0.95",
+        "example_polish": "Mam wszystko, co jest dla mnie.",
+        "example_english": "I have everything that is for me."
+      }
+    ]
+  },
+  {
+    "rank": 44,
+    "word": "więc",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "so/therefore",
+        "frequency": "0.95",
+        "example_polish": "Nie mam tego, więc proszę o to.",
+        "example_english": "I don't have it, so I ask for it."
+      }
+    ]
+  },
+  {
+    "rank": 45,
+    "word": "nic",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "nothing",
+        "frequency": "0.95",
+        "example_polish": "Nie mam nic dla ciebie teraz.",
+        "example_english": "I have nothing for you now."
+      }
+    ]
+  },
+  {
+    "rank": 46,
+    "word": "być",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to be",
+        "frequency": "0.95",
+        "example_polish": "To może być dobrze dla mnie.",
+        "example_english": "This can be good for me."
+      }
+    ]
+  },
+  {
+    "rank": 48,
+    "word": "gdzie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "where",
+        "frequency": "0.95",
+        "example_polish": "Gdzie ty jesteś teraz?",
+        "example_english": "Where are you now?"
+      }
+    ]
+  },
+  {
+    "rank": 50,
+    "word": "on",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "he",
+        "frequency": "0.95",
+        "example_polish": "On jest tam, gdzie ty jesteś.",
+        "example_english": "He is where you are."
+      }
+    ]
+  },
+  {
+    "rank": 52,
+    "word": "ten",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "this/that",
+        "frequency": "0.95",
+        "example_polish": "Ten coś jest dla ciebie.",
+        "example_english": "This something is for you."
+      }
+    ]
+  },
+  {
+    "rank": 54,
+    "word": "sobie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "oneself/to oneself",
+        "frequency": "0.95",
+        "example_polish": "Mogę to mieć dla sobie.",
+        "example_english": "I can have this for myself."
+      }
+    ]
+  },
+  {
+    "rank": 56,
+    "word": "ze",
+    "lemma": "z",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "with/from (before specific sounds)",
+        "frequency": "0.95",
+        "example_polish": "Mogę być ze mną czy z tobą?",
+        "example_english": "Can I be with myself or with you?"
+      }
+    ]
+  },
+  {
+    "rank": 57,
+    "word": "bardzo",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "very/very much",
+        "frequency": "0.95",
+        "example_polish": "Wiem to bardzo dobrze.",
+        "example_english": "I know this very well."
+      }
+    ]
+  },
+  {
+    "rank": 58,
+    "word": "jej",
+    "lemma": "ona",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "her/hers",
+        "frequency": "0.95",
+        "example_polish": "To jest dla jej, nie dla ciebie.",
+        "example_english": "This is for her, not for you."
+      }
+    ]
+  },
+  {
+    "rank": 59,
+    "word": "kiedy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "when",
+        "frequency": "0.95",
+        "example_polish": "Kiedy ty jesteś tam?",
+        "example_english": "When are you there?"
+      }
+    ]
+  },
+  {
+    "rank": 61,
+    "word": "jeszcze",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "still/yet/more",
+        "frequency": "0.95",
+        "example_polish": "On jeszcze jest tam, gdzie był.",
+        "example_english": "He is still there where he was."
+      }
+    ]
+  },
+  {
+    "rank": 62,
+    "word": "nas",
+    "lemma": "my",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "us",
+        "frequency": "0.95",
+        "example_polish": "To jest dla nas, nie dla jej.",
+        "example_english": "This is for us, not for her."
+      }
+    ]
+  },
+  {
+    "rank": 63,
+    "word": "chcę",
+    "lemma": "chcieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I want",
+        "frequency": "0.95",
+        "example_polish": "Chcę być tam, gdzie ty jesteś.",
+        "example_english": "I want to be where you are."
+      }
+    ]
+  },
+  {
+    "rank": 64,
+    "word": "mój",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "my/mine (masculine)",
+        "frequency": "0.95",
+        "example_polish": "To jest mój, nie jej.",
+        "example_english": "This is mine, not hers."
+      }
+    ]
+  },
+  {
+    "rank": 66,
+    "word": "no",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PART",
+        "translation": "well/so",
+        "frequency": "0.95",
+        "example_polish": "No, to było jeszcze dobrze.",
+        "example_english": "Well, it was still good."
+      }
+    ]
+  },
+  {
+    "rank": 67,
+    "word": "przez",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "through/by/for (duration)",
+        "frequency": "0.95",
+        "example_polish": "Chcę być przez to, co było.",
+        "example_english": "I want to be through what was."
+      }
+    ]
+  },
+  {
+    "rank": 68,
+    "word": "by",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "in order to/to (conditional)",
+        "frequency": "0.95",
+        "example_polish": "By być tam, gdzie ty jesteś.",
+        "example_english": "In order to be where you are."
+      }
+    ]
+  },
+  {
+    "rank": 69,
+    "word": "pani",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "ma'am/Mrs./you (formal feminine)",
+        "frequency": "0.95",
+        "example_polish": "Czy pani ma to dla mnie?",
+        "example_english": "Do you have this for me, ma'am?"
+      }
+    ]
+  },
+  {
+    "rank": 72,
+    "word": "ich",
+    "lemma": "oni",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "their/them (genitive)",
+        "frequency": "0.95",
+        "example_polish": "To jest dla ich, nie dla nas.",
+        "example_english": "This is for them, not for us."
+      }
+    ]
+  },
+  {
+    "rank": 73,
+    "word": "dlaczego",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "why",
+        "frequency": "0.95",
+        "example_polish": "Dlaczego ty chcesz to mieć?",
+        "example_english": "Why do you want to have this?"
+      }
+    ]
+  },
+  {
+    "rank": 75,
+    "word": "żeby",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "so that/in order to",
+        "frequency": "0.95",
+        "example_polish": "Chcę to, żeby być z tobą.",
+        "example_english": "I want this, so that I can be with you."
+      }
+    ]
+  },
+  {
+    "rank": 76,
+    "word": "tutaj",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "here",
+        "frequency": "0.95",
+        "example_polish": "Chcę być tutaj, nie tam.",
+        "example_english": "I want to be here, not there."
+      }
+    ]
+  },
+  {
+    "rank": 78,
+    "word": "też",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "also/too",
+        "frequency": "0.95",
+        "example_polish": "Mamy to też dla ich.",
+        "example_english": "We have this also for them."
+      }
+    ]
+  },
+  {
+    "rank": 79,
+    "word": "bo",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "because",
+        "frequency": "0.95",
+        "example_polish": "Jestem tutaj, bo chcę być.",
+        "example_english": "I'm here because I want to be."
+      }
+    ]
+  },
+  {
+    "rank": 80,
+    "word": "dobra",
+    "lemma": "dobry",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "good (feminine)/okay",
+        "frequency": "0.80",
+        "example_polish": "Dobra, to będzie dobrze.",
+        "example_english": "Okay, it will be good."
+      },
+      {
+        "pos": "PART",
+        "translation": "okay/alright",
+        "frequency": "0.20",
+        "example_polish": "Dobra, chcę to mieć też.",
+        "example_english": "Alright, I want to have this too."
+      }
+    ]
+  },
+  {
+    "rank": 81,
+    "word": "kto",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "who",
+        "frequency": "0.95",
+        "example_polish": "Kto był tam, kiedy ty jesteś tutaj?",
+        "example_english": "Who was there when you are here?"
+      }
+    ]
+  },
+  {
+    "rank": 82,
+    "word": "nigdy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "never",
+        "frequency": "0.95",
+        "example_polish": "Nigdy nie był tam, bo nie chce.",
+        "example_english": "He was never there because he doesn't want to."
+      }
+    ]
+  },
+  {
+    "rank": 83,
+    "word": "przepraszam",
+    "lemma": "przepraszać",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I'm sorry/excuse me",
+        "frequency": "0.95",
+        "example_polish": "Przepraszam, ale nie mogę być tam.",
+        "example_english": "I'm sorry, but I can't be there."
+      }
+    ]
+  },
+  {
+    "rank": 85,
+    "word": "naprawdę",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "really/truly",
+        "frequency": "0.95",
+        "example_polish": "On naprawdę nie chce być tutaj.",
+        "example_english": "He really doesn't want to be here."
+      }
+    ]
+  },
+  {
+    "rank": 87,
+    "word": "chyba",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PART",
+        "translation": "probably/I think",
+        "frequency": "0.95",
+        "example_polish": "Chyba możesz być tutaj też.",
+        "example_english": "I think you can be here too."
+      }
+    ]
+  },
+  {
+    "rank": 88,
+    "word": "porządku",
+    "lemma": "porządek",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "order/okay (in 'w porządku')",
+        "frequency": "0.95",
+        "example_polish": "To jest w porządku dla mnie.",
+        "example_english": "This is okay for me."
+      }
+    ]
+  },
+  {
+    "rank": 89,
+    "word": "dziękuję",
+    "lemma": "dziękować",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "thank you",
+        "frequency": "0.95",
+        "example_polish": "Dziękuję, to naprawdę dobrze.",
+        "example_english": "Thank you, this is really good."
+      }
+    ]
+  },
+  {
+    "rank": 90,
+    "word": "muszę",
+    "lemma": "musieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I must/have to",
+        "frequency": "0.95",
+        "example_polish": "Muszę być tam, bo on chce.",
+        "example_english": "I have to be there because he wants it."
+      }
+    ]
+  },
+  {
+    "rank": 91,
+    "word": "panie",
+    "lemma": "pan",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sir (vocative)/gentlemen",
+        "frequency": "0.95",
+        "example_polish": "Panie, czy może pan być tutaj?",
+        "example_english": "Sir, can you be here?"
+      }
+    ]
+  },
+  {
+    "rank": 92,
+    "word": "właśnie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "exactly/just",
+        "frequency": "0.95",
+        "example_polish": "Właśnie to chcę mieć teraz.",
+        "example_english": "That's exactly what I want to have now."
+      }
+    ]
+  },
+  {
+    "rank": 93,
+    "word": "ona",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "she",
+        "frequency": "0.95",
+        "example_polish": "Ona musi być tam, gdzie on jest.",
+        "example_english": "She must be where he is."
+      }
+    ]
+  },
+  {
+    "rank": 94,
+    "word": "domu",
+    "lemma": "dom",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "home/house (genitive)",
+        "frequency": "0.95",
+        "example_polish": "Muszę być w domu teraz.",
+        "example_english": "I must be at home now."
+      }
+    ]
+  },
+  {
+    "rank": 95,
+    "word": "zrobić",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to do/make",
+        "frequency": "0.95",
+        "example_polish": "Mogę to zrobić dla ciebie.",
+        "example_english": "I can do this for you."
+      }
+    ]
+  },
+  {
+    "rank": 96,
+    "word": "nawet",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "even",
+        "frequency": "0.95",
+        "example_polish": "Ona nawet nie chce być w domu.",
+        "example_english": "She doesn't even want to be at home."
+      }
+    ]
+  },
+  {
+    "rank": 97,
+    "word": "gdy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "when",
+        "frequency": "0.95",
+        "example_polish": "Gdy ona jest tam, mogę to zrobić.",
+        "example_english": "When she is there, I can do it."
+      }
+    ]
+  },
+  {
+    "rank": 98,
+    "word": "prawda",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "truth/right",
+        "frequency": "0.95",
+        "example_polish": "To prawda, ona nawet nie wie.",
+        "example_english": "It's true, she doesn't even know."
+      }
+    ]
+  },
+  {
+    "rank": 102,
+    "word": "zawsze",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "always",
+        "frequency": "0.95",
+        "example_polish": "Będę zawsze z tobą.",
+        "example_english": "I will always be with you."
+      }
+    ]
+  },
+  {
+    "rank": 103,
+    "word": "bez",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "without",
+        "frequency": "0.95",
+        "example_polish": "Nie mogę być bez ciebie.",
+        "example_english": "I can't be without you."
+      }
+    ]
+  },
+  {
+    "rank": 105,
+    "word": "je",
+    "lemma": "oni/one",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "them/it (accusative)",
+        "frequency": "0.95",
+        "example_polish": "Mam je dla ciebie.",
+        "example_english": "I have them for you."
+      }
+    ]
+  },
+  {
+    "rank": 108,
+    "word": "dzięki",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "thanks to",
+        "frequency": "0.95",
+        "example_polish": "Dzięki nim, jesteśmy tutaj.",
+        "example_english": "Thanks to them, we are here."
+      }
+    ]
+  },
+  {
+    "rank": 110,
+    "word": "moja",
+    "lemma": "mój",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "my/mine (feminine)",
+        "frequency": "0.95",
+        "example_polish": "To jest moja, nie twoja.",
+        "example_english": "This is mine, not yours."
+      }
+    ]
+  },
+  {
+    "rank": 111,
+    "word": "trochę",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "a little/a bit",
+        "frequency": "0.95",
+        "example_polish": "Mam trochę tej rzeczy.",
+        "example_english": "I have a bit of this thing."
+      }
+    ]
+  },
+  {
+    "rank": 112,
+    "word": "ktoś",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "someone/somebody",
+        "frequency": "0.95",
+        "example_polish": "Ktoś był tam z nim.",
+        "example_english": "Someone was there with him."
+      }
+    ]
+  },
+  {
+    "rank": 114,
+    "word": "cześć",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "hi/hello/bye",
+        "frequency": "0.95",
+        "example_polish": "Cześć, jak się masz?",
+        "example_english": "Hi, how are you?"
+      }
+    ]
+  },
+  {
+    "rank": 115,
+    "word": "hej",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "hey/hi",
+        "frequency": "0.95",
+        "example_polish": "Hej, musisz to zobaczyć!",
+        "example_english": "Hey, you must see this!"
+      }
+    ]
+  },
+  {
+    "rank": 116,
+    "word": "lat",
+    "lemma": "rok",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "years (genitive plural)",
+        "frequency": "0.95",
+        "example_polish": "Mam trochę lat teraz.",
+        "example_english": "I have some years now."
+      }
+    ]
+  },
+  {
+    "rank": 120,
+    "word": "dalej",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "further/go ahead",
+        "frequency": "0.95",
+        "example_polish": "Musimy iść dalej teraz.",
+        "example_english": "We must go further now."
+      }
+    ]
+  },
+  {
+    "rank": 121,
+    "word": "twój",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "your/yours (masculine)",
+        "frequency": "0.95",
+        "example_polish": "To jest twój, nie mój.",
+        "example_english": "This is yours, not mine."
+      }
+    ]
+  },
+  {
+    "rank": 122,
+    "word": "wszyscy",
+    "lemma": "wszystek",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "everyone/all",
+        "frequency": "0.95",
+        "example_polish": "Wszyscy musimy iść dalej.",
+        "example_english": "We all must go further."
+      }
+    ]
+  },
+  {
+    "rank": 123,
+    "word": "czas",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "time",
+        "frequency": "0.95",
+        "example_polish": "Nie mamy czasu teraz.",
+        "example_english": "We don't have time now."
+      }
+    ]
+  },
+  {
+    "rank": 125,
+    "word": "który",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "which/who/that",
+        "frequency": "0.95",
+        "example_polish": "Który chce być tutaj?",
+        "example_english": "Who wants to be here?"
+      }
+    ]
+  },
+  {
+    "rank": 126,
+    "word": "więcej",
+    "lemma": "wiele",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "more",
+        "frequency": "0.95",
+        "example_polish": "Chcę mieć więcej czasu.",
+        "example_english": "I want to have more time."
+      }
+    ]
+  },
+  {
+    "rank": 128,
+    "word": "boże",
+    "lemma": "bóg",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "God/my God",
+        "frequency": "0.95",
+        "example_polish": "Boże, która jest godzina?",
+        "example_english": "My God, what time is it?"
+      }
+    ]
+  },
+  {
+    "rank": 129,
+    "word": "powiedzieć",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to say/tell",
+        "frequency": "0.95",
+        "example_polish": "Mogę ci powiedzieć więcej.",
+        "example_english": "I can tell you more."
+      }
+    ]
+  },
+  {
+    "rank": 130,
+    "word": "sam",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "alone/myself",
+        "frequency": "0.95",
+        "example_polish": "Chcę to zrobić sam.",
+        "example_english": "I want to do this myself."
+      }
+    ]
+  },
+  {
+    "rank": 131,
+    "word": "chodzi",
+    "lemma": "chodzić",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "walks/goes/it's about",
+        "frequency": "0.95",
+        "example_polish": "O co chodzi z tym?",
+        "example_english": "What's this about?"
+      }
+    ]
+  },
+  {
+    "rank": 132,
+    "word": "czego",
+    "lemma": "co",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "what (genitive)",
+        "frequency": "0.95",
+        "example_polish": "Czego ty chcesz sam?",
+        "example_english": "What do you want yourself?"
+      }
+    ]
+  },
+  {
+    "rank": 135,
+    "word": "albo",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "or",
+        "frequency": "0.95",
+        "example_polish": "Możemy to albo to zrobić.",
+        "example_english": "We can do this or that."
+      }
+    ]
+  },
+  {
+    "rank": 137,
+    "word": "razem",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "together",
+        "frequency": "0.95",
+        "example_polish": "Możemy być razem zawsze.",
+        "example_english": "We can be together always."
+      }
+    ]
+  },
+  {
+    "rank": 138,
+    "word": "niech",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PART",
+        "translation": "let/may",
+        "frequency": "0.95",
+        "example_polish": "Niech ta rzecz będzie moja.",
+        "example_english": "Let this thing be mine."
+      }
+    ]
+  },
+  {
+    "rank": 139,
+    "word": "dobry",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "good",
+        "frequency": "0.95",
+        "example_polish": "To jest dobry czas razem.",
+        "example_english": "This is a good time together."
+      }
+    ]
+  },
+  {
+    "rank": 140,
+    "word": "raz",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "time/once",
+        "frequency": "0.95",
+        "example_polish": "Jeszcze jeden raz, proszę.",
+        "example_english": "One more time, please."
+      }
+    ]
+  },
+  {
+    "rank": 141,
+    "word": "stało",
+    "lemma": "stać",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "happened/stood",
+        "frequency": "0.95",
+        "example_polish": "Co się stało z tobą?",
+        "example_english": "What happened to you?"
+      }
+    ]
+  },
+  {
+    "rank": 142,
+    "word": "was",
+    "lemma": "wy",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "you (plural genitive/accusative)",
+        "frequency": "0.95",
+        "example_polish": "Nie ma was tutaj razem.",
+        "example_english": "You're not here together."
+      }
+    ]
+  },
+  {
+    "rank": 144,
+    "word": "prostu",
+    "lemma": "prosty",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "simple (in 'po prostu')",
+        "frequency": "0.95",
+        "example_polish": "To jest po prostu dobry czas.",
+        "example_english": "It's simply a good time."
+      }
+    ]
+  },
+  {
+    "rank": 148,
+    "word": "przed",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "before/in front of",
+        "frequency": "0.95",
+        "example_polish": "To było przed tym razem.",
+        "example_english": "It was before this time."
+      }
+    ]
+  },
+  {
+    "rank": 149,
+    "word": "ludzi",
+    "lemma": "ludzie",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "people (genitive)",
+        "frequency": "0.95",
+        "example_polish": "Jest dużo ludzi przed domem.",
+        "example_english": "There are many people in front of the house."
+      }
+    ]
+  },
+  {
+    "rank": 150,
+    "word": "daj",
+    "lemma": "dać",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "give",
+        "frequency": "0.95",
+        "example_polish": "Daj mi więcej czasu, proszę.",
+        "example_english": "Give me more time, please."
+      }
+    ]
+  },
+  {
+    "rank": 151,
+    "word": "ludzie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "people",
+        "frequency": "0.95",
+        "example_polish": "Ludzie są razem w domu.",
+        "example_english": "People are together at home."
+      }
+    ]
+  },
+  {
+    "rank": 152,
+    "word": "dzień",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "day",
+        "frequency": "0.95",
+        "example_polish": "To jest dobry dzień dla ludzi.",
+        "example_english": "It's a good day for people."
+      }
+    ]
+  },
+  {
+    "rank": 153,
+    "word": "przy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "at/by/near",
+        "frequency": "0.95",
+        "example_polish": "Jestem przy tobie cały dzień.",
+        "example_english": "I'm with you all day."
+      }
+    ]
+  },
+  {
+    "rank": 154,
+    "word": "życie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "life",
+        "frequency": "0.95",
+        "example_polish": "Życie jest lepiej przy tobie.",
+        "example_english": "Life is better with you."
+      }
+    ]
+  },
+  {
+    "rank": 155,
+    "word": "niż",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "than",
+        "frequency": "0.95",
+        "example_polish": "To jest lepiej niż ten dzień.",
+        "example_english": "This is better than that day."
+      }
+    ]
+  },
+  {
+    "rank": 156,
+    "word": "robisz",
+    "lemma": "robić",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you do",
+        "frequency": "0.95",
+        "example_polish": "Co robisz przez cały dzień?",
+        "example_english": "What do you do all day?"
+      }
+    ]
+  },
+  {
+    "rank": 157,
+    "word": "myślę",
+    "lemma": "myśleć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I think",
+        "frequency": "0.95",
+        "example_polish": "Myślę, że życie jest lepiej teraz.",
+        "example_english": "I think that life is better now."
+      }
+    ]
+  },
+  {
+    "rank": 159,
+    "word": "kim",
+    "lemma": "kto",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "who (instrumental)",
+        "frequency": "0.95",
+        "example_polish": "Kim ty jesteś dla ludzi?",
+        "example_english": "Who are you to people?"
+      }
+    ]
+  },
+  {
+    "rank": 162,
+    "word": "my",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "we",
+        "frequency": "0.95",
+        "example_polish": "My myślimy, że to jest dobry dzień.",
+        "example_english": "We think it's a good day."
+      }
+    ]
+  },
+  {
+    "rank": 163,
+    "word": "nikt",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "nobody/no one",
+        "frequency": "0.95",
+        "example_polish": "Nikt nie miał więcej czasu.",
+        "example_english": "Nobody had more time."
+      }
+    ]
+  },
+  {
+    "rank": 164,
+    "word": "czasu",
+    "lemma": "czas",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "time (genitive)",
+        "frequency": "0.95",
+        "example_polish": "Nie ma czasu dla tego teraz.",
+        "example_english": "There's no time for this now."
+      }
+    ]
+  },
+  {
+    "rank": 165,
+    "word": "powiedz",
+    "lemma": "powiedzieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "tell/say",
+        "frequency": "0.95",
+        "example_polish": "Powiedz mi, kim ty jesteś.",
+        "example_english": "Tell me who you are."
+      }
+    ]
+  },
+  {
+    "rank": 166,
+    "word": "rzeczy",
+    "lemma": "rzecz",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "things",
+        "frequency": "0.95",
+        "example_polish": "Mamy te rzeczy dla ludzi.",
+        "example_english": "We have these things for people."
+      }
+    ]
+  },
+  {
+    "rank": 167,
+    "word": "twoja",
+    "lemma": "twój",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "your/yours (feminine)",
+        "frequency": "0.95",
+        "example_polish": "To jest twoja rzecz, nie moja.",
+        "example_english": "This is your thing, not mine."
+      }
+    ]
+  },
+  {
+    "rank": 169,
+    "word": "stąd",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "from here/hence",
+        "frequency": "0.95",
+        "example_polish": "Muszę być stąd teraz.",
+        "example_english": "I must be from here now."
+      }
+    ]
+  },
+  {
+    "rank": 171,
+    "word": "mówi",
+    "lemma": "mówić",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "says/speaks",
+        "frequency": "0.95",
+        "example_polish": "On mówi, że ma te rzeczy.",
+        "example_english": "He says that he has these things."
+      }
+    ]
+  },
+  {
+    "rank": 174,
+    "word": "jeden",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "one",
+        "frequency": "0.95",
+        "example_polish": "Mam tylko jeden dzień na to.",
+        "example_english": "I have only one day for this."
+      }
+    ]
+  },
+  {
+    "rank": 175,
+    "word": "pod",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "under/below",
+        "frequency": "0.95",
+        "example_polish": "To jest pod tym stąd.",
+        "example_english": "It's under this from here."
+      }
+    ]
+  },
+  {
+    "rank": 177,
+    "word": "siebie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "oneself",
+        "frequency": "0.95",
+        "example_polish": "Mówi o siebie cały czas.",
+        "example_english": "He talks about himself all the time."
+      }
+    ]
+  },
+  {
+    "rank": 180,
+    "word": "oczywiście",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "of course/obviously",
+        "frequency": "0.95",
+        "example_polish": "Oczywiście, on powiedział to im.",
+        "example_english": "Of course, he told them this."
+      }
+    ]
+  },
+  {
+    "rank": 181,
+    "word": "ok",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "okay",
+        "frequency": "0.95",
+        "example_polish": "Ok, powiedz mi jeden raz.",
+        "example_english": "Okay, tell me one time."
+      }
+    ]
+  },
+  {
+    "rank": 183,
+    "word": "oni",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "they (masculine personal)",
+        "frequency": "0.95",
+        "example_polish": "Oni powiedział, że to jest ok.",
+        "example_english": "They said that it's okay."
+      }
+    ]
+  },
+  {
+    "rank": 184,
+    "word": "dwa",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "two",
+        "frequency": "0.95",
+        "example_polish": "Mam dwa dni na życie tutaj.",
+        "example_english": "I have two days to live here."
+      }
+    ]
+  },
+  {
+    "rank": 185,
+    "word": "które",
+    "lemma": "który",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "which (plural/neuter)",
+        "frequency": "0.95",
+        "example_polish": "Które rzeczy są twoje?",
+        "example_english": "Which things are yours?"
+      }
+    ]
+  },
+  {
+    "rank": 186,
+    "word": "pewnie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "probably/surely",
+        "frequency": "0.95",
+        "example_polish": "Oni pewnie mają dwa dni.",
+        "example_english": "They probably have two days."
+      }
+    ]
+  },
+  {
+    "rank": 187,
+    "word": "dziś",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "today",
+        "frequency": "0.95",
+        "example_polish": "Muszę to zrobić dziś.",
+        "example_english": "I must do this today."
+      }
+    ]
+  },
+  {
+    "rank": 188,
+    "word": "kurwa",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "fuck (vulgar)",
+        "frequency": "0.95",
+        "example_polish": "Kurwa, które to jest?",
+        "example_english": "Fuck, which one is it?"
+      }
+    ]
+  },
+  {
+    "rank": 190,
+    "word": "taki",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "such/this kind of",
+        "frequency": "0.95",
+        "example_polish": "To jest taki dobry dzień dziś.",
+        "example_english": "It's such a good day today."
+      }
+    ]
+  },
+  {
+    "rank": 191,
+    "word": "aby",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "in order to/so that",
+        "frequency": "0.95",
+        "example_polish": "Muszę to zrobić, aby wiedzieć.",
+        "example_english": "I must do this in order to know."
+      }
+    ]
+  },
+  {
+    "rank": 192,
+    "word": "skąd",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "from where",
+        "frequency": "0.95",
+        "example_polish": "Skąd ty wiesz taki rzeczy?",
+        "example_english": "How do you know such things?"
+      }
+    ]
+  },
+  {
+    "rank": 193,
+    "word": "cholera",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "damn/hell",
+        "frequency": "0.95",
+        "example_polish": "Cholera, skąd to jest?",
+        "example_english": "Damn, where is this from?"
+      }
+    ]
+  },
+  {
+    "rank": 194,
+    "word": "dzieje",
+    "lemma": "dziać się",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "happens/is happening",
+        "frequency": "0.95",
+        "example_polish": "Co się dzieje z tobą dziś?",
+        "example_english": "What's happening with you today?"
+      }
+    ]
+  },
+  {
+    "rank": 195,
+    "word": "wygląda",
+    "lemma": "wyglądać",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "looks",
+        "frequency": "0.95",
+        "example_polish": "To wygląda taki dobry dziś.",
+        "example_english": "This looks so good today."
+      }
+    ]
+  },
+  {
+    "rank": 196,
+    "word": "wtedy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "then/at that time",
+        "frequency": "0.95",
+        "example_polish": "Wtedy oni wie, co się dzieje.",
+        "example_english": "Then they know what's happening."
+      }
+    ]
+  },
+  {
+    "rank": 198,
+    "word": "takie",
+    "lemma": "taki",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "such (neuter/plural)",
+        "frequency": "0.95",
+        "example_polish": "Mam takie dobre życie wtedy.",
+        "example_english": "I have such a good life then."
+      }
+    ]
+  },
+  {
+    "rank": 199,
+    "word": "ile",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "how much/how many",
+        "frequency": "0.95",
+        "example_polish": "Ile takie rzeczy są?",
+        "example_english": "How much are such things?"
+      }
+    ]
+  },
+  {
+    "rank": 201,
+    "word": "mieć",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to have",
+        "frequency": "0.95",
+        "example_polish": "Chcę mieć wszystkie te rzeczy.",
+        "example_english": "I want to have all these things."
+      }
+    ]
+  },
+  {
+    "rank": 202,
+    "word": "dlatego",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "that's why/therefore",
+        "frequency": "0.95",
+        "example_polish": "Dlatego chcę mieć to teraz.",
+        "example_english": "That's why I want to have this now."
+      }
+    ]
+  },
+  {
+    "rank": 203,
+    "word": "znaczy",
+    "lemma": "znaczyć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "means",
+        "frequency": "0.95",
+        "example_polish": "Co to znaczy dla wszystkich?",
+        "example_english": "What does this mean for everyone?"
+      }
+    ]
+  },
+  {
+    "rank": 205,
+    "word": "potem",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "later/then/afterwards",
+        "frequency": "0.95",
+        "example_polish": "Potem będziemy to mieć.",
+        "example_english": "Later we will have this."
+      }
+    ]
+  },
+  {
+    "rank": 206,
+    "word": "jasne",
+    "lemma": "jasny",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "clear/sure",
+        "frequency": "0.95",
+        "example_polish": "Jasne, że to znaczy dużo.",
+        "example_english": "Sure, it means a lot."
+      }
+    ]
+  },
+  {
+    "rank": 207,
+    "word": "iść",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to go",
+        "frequency": "0.95",
+        "example_polish": "Muszę iść do domu potem.",
+        "example_english": "I must go home later."
+      }
+    ]
+  },
+  {
+    "rank": 208,
+    "word": "dużo",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "a lot/much",
+        "frequency": "0.95",
+        "example_polish": "Mam dużo czasu, aby iść.",
+        "example_english": "I have a lot of time to go."
+      }
+    ]
+  },
+  {
+    "rank": 209,
+    "word": "cóż",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "INTERJ",
+        "translation": "well/what can you do",
+        "frequency": "0.95",
+        "example_polish": "Cóż, jasne, że będziemy iść.",
+        "example_english": "Well, sure, we will go."
+      }
+    ]
+  },
+  {
+    "rank": 212,
+    "word": "rozumiem",
+    "lemma": "rozumieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I understand",
+        "frequency": "0.95",
+        "example_polish": "Rozumiem, że byłem w tym miejscu.",
+        "example_english": "I understand that I was in this place."
+      }
+    ]
+  },
+  {
+    "rank": 214,
+    "word": "miejsce",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "place",
+        "frequency": "0.95",
+        "example_polish": "To jest jasne miejsce dla nas.",
+        "example_english": "This is a clear place for us."
+      }
+    ]
+  },
+  {
+    "rank": 215,
+    "word": "cały",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "whole/all",
+        "frequency": "0.95",
+        "example_polish": "Byłem tam cały dzień.",
+        "example_english": "I was there all day."
+      }
+    ]
+  },
+  {
+    "rank": 216,
+    "word": "trzeba",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "need/must (impersonal)",
+        "frequency": "0.95",
+        "example_polish": "Trzeba iść do tego miejsca.",
+        "example_english": "One must go to this place."
+      }
+    ]
+  },
+  {
+    "rank": 218,
+    "word": "można",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "one can/it's possible",
+        "frequency": "0.95",
+        "example_polish": "Można zobaczyć cały dom stąd.",
+        "example_english": "You can see the whole house from here."
+      }
+    ]
+  },
+  {
+    "rank": 219,
+    "word": "pomóc",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to help",
+        "frequency": "0.95",
+        "example_polish": "Mogę pomóc wam cały dzień.",
+        "example_english": "I can help you all day."
+      }
+    ]
+  },
+  {
+    "rank": 220,
+    "word": "jako",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "as",
+        "frequency": "0.95",
+        "example_polish": "Można to zrobić jako pomoc.",
+        "example_english": "You can do this as help."
+      }
+    ]
+  },
+  {
+    "rank": 222,
+    "word": "szybko",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "quickly/fast",
+        "frequency": "0.95",
+        "example_polish": "Trzeba iść szybko jako pomoc.",
+        "example_english": "We must go quickly as help."
+      }
+    ]
+  },
+  {
+    "rank": 223,
+    "word": "jakiś",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "some/any/a certain",
+        "frequency": "0.95",
+        "example_polish": "Mam jakiś czas, aby pomóc szybko.",
+        "example_english": "I have some time to help quickly."
+      }
+    ]
+  },
+  {
+    "rank": 228,
+    "word": "jakieś",
+    "lemma": "jakiś",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "some (neuter/plural)",
+        "frequency": "0.95",
+        "example_polish": "Mają jakieś rzeczy z nią.",
+        "example_english": "They have some things with her."
+      }
+    ]
+  },
+  {
+    "rank": 229,
+    "word": "wiedzieć",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to know",
+        "frequency": "0.95",
+        "example_polish": "Trzeba wiedzieć o wszystkich tych rzeczach.",
+        "example_english": "One must know about all these things."
+      }
+    ]
+  },
+  {
+    "rank": 230,
+    "word": "swoje",
+    "lemma": "swój",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "one's own (neuter/plural)",
+        "frequency": "0.95",
+        "example_polish": "Oni mają swoje rzeczy tutaj.",
+        "example_english": "They have their own things here."
+      }
+    ]
+  },
+  {
+    "rank": 231,
+    "word": "przykro",
+    "lemma": "przykry",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "sorry/unpleasant",
+        "frequency": "0.95",
+        "example_polish": "Przykro mi, ale nie mogę wiedzieć.",
+        "example_english": "I'm sorry, but I can't know."
+      }
+    ]
+  },
+  {
+    "rank": 232,
+    "word": "stary",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "old",
+        "frequency": "0.95",
+        "example_polish": "To jest stary dom dla wszystkich.",
+        "example_english": "This is an old house for everyone."
+      }
+    ]
+  },
+  {
+    "rank": 233,
+    "word": "zaraz",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "right away/soon",
+        "frequency": "0.95",
+        "example_polish": "Będę tam zaraz z tobą.",
+        "example_english": "I'll be there right away with you."
+      }
+    ]
+  },
+  {
+    "rank": 235,
+    "word": "dzieci",
+    "lemma": "dziecko",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "children",
+        "frequency": "0.95",
+        "example_polish": "Te dzieci mają swoje rzeczy.",
+        "example_english": "These children have their own things."
+      }
+    ]
+  },
+  {
+    "rank": 236,
+    "word": "nad",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "PREP",
+        "translation": "above/over",
+        "frequency": "0.95",
+        "example_polish": "Dzieci są nad tym starym domem.",
+        "example_english": "The children are above this old house."
+      }
+    ]
+  },
+  {
+    "rank": 237,
+    "word": "wiele",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "many/a lot",
+        "frequency": "0.95",
+        "example_polish": "Mam wiele rzeczy nad tym.",
+        "example_english": "I have many things above this."
+      }
+    ]
+  },
+  {
+    "rank": 238,
+    "word": "kochanie",
+    "lemma": "kochać",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sweetheart/darling",
+        "frequency": "0.95",
+        "example_polish": "Kochanie, myślę o tobie wiele.",
+        "example_english": "Darling, I think about you a lot."
+      }
+    ]
+  },
+  {
+    "rank": 239,
+    "word": "kilka",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "a few/several",
+        "frequency": "0.95",
+        "example_polish": "Mam kilka dzieci w domu.",
+        "example_english": "I have a few children at home."
+      }
+    ]
+  },
+  {
+    "rank": 242,
+    "word": "zanim",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "before",
+        "frequency": "0.95",
+        "example_polish": "Mówię to zanim oni będą tutaj.",
+        "example_english": "I say this before they will be here."
+      }
+    ]
+  },
+  {
+    "rank": 245,
+    "word": "świetnie",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "great/excellent",
+        "frequency": "0.95",
+        "example_polish": "To jest świetnie, kocham to!",
+        "example_english": "This is great, I love it!"
+      }
+    ]
+  },
+  {
+    "rank": 248,
+    "word": "tyle",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "so much/so many",
+        "frequency": "0.95",
+        "example_polish": "Mam tyle rzeczy dla tobie.",
+        "example_english": "I have so many things for you."
+      }
+    ]
+  },
+  {
+    "rank": 249,
+    "word": "robić",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to do/make",
+        "frequency": "0.95",
+        "example_polish": "Co mogę robić z tyle czasu?",
+        "example_english": "What can I do with so much time?"
+      }
+    ]
+  },
+  {
+    "rank": 250,
+    "word": "trzy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NUM",
+        "translation": "three",
+        "frequency": "0.95",
+        "example_polish": "Mam trzy dni, aby to robić.",
+        "example_english": "I have three days to do this."
+      }
+    ]
+  },
+  {
+    "rank": 251,
+    "word": "idź",
+    "lemma": "iść",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "go (imperative)",
+        "frequency": "0.95",
+        "example_polish": "Idź do domu zaraz!",
+        "example_english": "Go home right away!"
+      }
+    ]
+  },
+  {
+    "rank": 252,
+    "word": "kogoś",
+    "lemma": "ktoś",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "someone (genitive/accusative)",
+        "frequency": "0.95",
+        "example_polish": "Widzę kogoś, kto może pomóc.",
+        "example_english": "I see someone who can help."
+      }
+    ]
+  },
+  {
+    "rank": 253,
+    "word": "ani",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "nor/neither",
+        "frequency": "0.95",
+        "example_polish": "Nie mam ani trzy, ani dwa dni.",
+        "example_english": "I have neither three nor two days."
+      }
+    ]
+  },
+  {
+    "rank": 254,
+    "word": "pewno",
+    "lemma": "pewny",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "surely/probably (in 'na pewno')",
+        "frequency": "0.95",
+        "example_polish": "Na pewno idź do kogoś.",
+        "example_english": "Surely go to someone."
+      }
+    ]
+  },
+  {
+    "rank": 256,
+    "word": "widzisz",
+    "lemma": "widzieć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you see",
+        "frequency": "0.95",
+        "example_polish": "Widzisz, myślałem na pewno o tym.",
+        "example_english": "You see, I surely thought about this."
+      }
+    ]
+  },
+  {
+    "rank": 257,
+    "word": "kiedyś",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "sometime/once",
+        "frequency": "0.95",
+        "example_polish": "Kiedyś byłem tutaj z kimś.",
+        "example_english": "I was here with someone sometime."
+      }
+    ]
+  },
+  {
+    "rank": 260,
+    "word": "jaki",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "what/what kind of",
+        "frequency": "0.95",
+        "example_polish": "Jaki problem widzisz tutaj?",
+        "example_english": "What problem do you see here?"
+      }
+    ]
+  },
+  {
+    "rank": 262,
+    "word": "ojciec",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "father",
+        "frequency": "0.95",
+        "example_polish": "Mój ojciec robi jaki problem.",
+        "example_english": "My father makes what kind of problem."
+      }
+    ]
+  },
+  {
+    "rank": 263,
+    "word": "zbyt",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "too/excessively",
+        "frequency": "0.95",
+        "example_polish": "To jest zbyt dużo dla ojciec.",
+        "example_english": "This is too much for father."
+      }
+    ]
+  },
+  {
+    "rank": 265,
+    "word": "zobaczyć",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to see",
+        "frequency": "0.95",
+        "example_polish": "Chcę zobaczyć mojego ojciec dziś.",
+        "example_english": "I want to see my father today."
+      }
+    ]
+  },
+  {
+    "rank": 266,
+    "word": "przestań",
+    "lemma": "przestać",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "stop",
+        "frequency": "0.95",
+        "example_polish": "Przestań to robić, to zbyt dużo!",
+        "example_english": "Stop doing this, it's too much!"
+      }
+    ]
+  },
+  {
+    "rank": 267,
+    "word": "sposób",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "way/method",
+        "frequency": "0.95",
+        "example_polish": "Jaki sposób to jest zobaczyć?",
+        "example_english": "What way is this to see?"
+      }
+    ]
+  },
+  {
+    "rank": 268,
+    "word": "pracy",
+    "lemma": "praca",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "work (genitive)",
+        "frequency": "0.95",
+        "example_polish": "Przestań, nie ma czasu na pracy.",
+        "example_english": "Stop, there's no time for work."
+      }
+    ]
+  },
+  {
+    "rank": 269,
+    "word": "dzisiaj",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "today",
+        "frequency": "0.95",
+        "example_polish": "Dzisiaj nie ma pracy dla mnie.",
+        "example_english": "Today there's no work for me."
+      }
+    ]
+  },
+  {
+    "rank": 270,
+    "word": "sie",
+    "lemma": "się",
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "oneself (misspelling of się)",
+        "frequency": "0.95",
+        "example_polish": "Co sie dzieje dzisiaj?",
+        "example_english": "What's happening today?"
+      }
+    ]
+  },
+  {
+    "rank": 271,
+    "word": "później",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "later",
+        "frequency": "0.95",
+        "example_polish": "Zobaczymy sie później dzisiaj.",
+        "example_english": "We'll see each other later today."
+      }
+    ]
+  },
+  {
+    "rank": 272,
+    "word": "bardziej",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "more",
+        "frequency": "0.95",
+        "example_polish": "To jest bardziej dla pracy później.",
+        "example_english": "This is more for work later."
+      }
+    ]
+  },
+  {
+    "rank": 274,
+    "word": "aż",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "until/as much as",
+        "frequency": "0.95",
+        "example_polish": "Będę czekać aż oni będą tutaj.",
+        "example_english": "I will wait until they are here."
+      }
+    ]
+  },
+  {
+    "rank": 275,
+    "word": "życia",
+    "lemma": "życie",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "life (genitive)",
+        "frequency": "0.95",
+        "example_polish": "To jest dzień mojego życia.",
+        "example_english": "This is the day of my life."
+      }
+    ]
+  },
+  {
+    "rank": 276,
+    "word": "jutro",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "tomorrow",
+        "frequency": "0.95",
+        "example_polish": "Będę tam jutro aż do końca.",
+        "example_english": "I'll be there tomorrow until the end."
+      }
+    ]
+  },
+  {
+    "rank": 278,
+    "word": "rację",
+    "lemma": "racja",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "right (in 'mieć rację')",
+        "frequency": "0.95",
+        "example_polish": "Masz rację, będę jutro z tą.",
+        "example_english": "You're right, I'll be tomorrow with this."
+      }
+    ]
+  },
+  {
+    "rank": 279,
+    "word": "żebyś",
+    "lemma": "żeby",
+    "meanings": [
+      {
+        "pos": "CONJ",
+        "translation": "so that you",
+        "frequency": "0.95",
+        "example_polish": "Mówię to, żebyś miał rację.",
+        "example_english": "I say this so that you're right."
+      }
+    ]
+  },
+  {
+    "rank": 280,
+    "word": "długo",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "long/for a long time",
+        "frequency": "0.95",
+        "example_polish": "Będę tam długo, żebyś wiedział.",
+        "example_english": "I'll be there long, so you know."
+      }
+    ]
+  },
+  {
+    "rank": 281,
+    "word": "tato",
+    "lemma": "tata",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "dad/daddy",
+        "frequency": "0.95",
+        "example_polish": "Tato, będę z tobą długo.",
+        "example_english": "Dad, I'll be with you long."
+      }
+    ]
+  },
+  {
+    "rank": 282,
+    "word": "każdy",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "every/each",
+        "frequency": "0.95",
+        "example_polish": "Każdy dzień jest długo z tato.",
+        "example_english": "Every day is long with dad."
+      }
+    ]
+  },
+  {
+    "rank": 285,
+    "word": "dni",
+    "lemma": "dzień",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "days (genitive plural)",
+        "frequency": "0.95",
+        "example_polish": "Mam kilka dni na to.",
+        "example_english": "I have a few days for this."
+      }
+    ]
+  },
+  {
+    "rank": 287,
+    "word": "nadzieję",
+    "lemma": "nadzieja",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hope (in 'mieć nadzieję')",
+        "frequency": "0.95",
+        "example_polish": "Mam nadzieję, że będzie dobrze.",
+        "example_english": "I hope it will be good."
+      }
+    ]
+  },
+  {
+    "rank": 289,
+    "word": "koniec",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "end",
+        "frequency": "0.95",
+        "example_polish": "To jest koniec tych dni.",
+        "example_english": "This is the end of these days."
+      }
+    ]
+  },
+  {
+    "rank": 290,
+    "word": "znam",
+    "lemma": "znać",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I know (someone/something)",
+        "frequency": "0.95",
+        "example_polish": "Znam kogoś, kto wie o koniec.",
+        "example_english": "I know someone who knows about the end."
+      }
+    ]
+  },
+  {
+    "rank": 291,
+    "word": "mamo",
+    "lemma": "mama",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "mom/mommy (vocative)",
+        "frequency": "0.95",
+        "example_polish": "Mamo, znam już koniec tej historii.",
+        "example_english": "Mom, I already know the end of this story."
+      }
+    ]
+  },
+  {
+    "rank": 293,
+    "word": "problem",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "problem",
+        "frequency": "0.95",
+        "example_polish": "Jaki problem masz ze swoją mamo?",
+        "example_english": "What problem do you have with your mom?"
+      }
+    ]
+  },
+  {
+    "rank": 294,
+    "word": "żyje",
+    "lemma": "żyć",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "lives/is alive",
+        "frequency": "0.95",
+        "example_polish": "On żyje bez jaki problem.",
+        "example_english": "He lives without any problem."
+      }
+    ]
+  },
+  {
+    "rank": 295,
+    "word": "potrzebuję",
+    "lemma": "potrzebować",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I need",
+        "frequency": "0.95",
+        "example_polish": "Potrzebuję spokój, aby żyje dobrze.",
+        "example_english": "I need peace to live well."
+      }
+    ]
+  },
+  {
+    "rank": 297,
+    "word": "spokój",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "peace/calm",
+        "frequency": "0.95",
+        "example_polish": "Potrzebuję spokój, żeby żyje.",
+        "example_english": "I need peace to live."
+      }
+    ]
+  },
+  {
+    "rank": 299,
+    "word": "minut",
+    "lemma": "minuta",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "minutes (genitive plural)",
+        "frequency": "0.95",
+        "example_polish": "Mam tylko kilka minut spokój.",
+        "example_english": "I have only a few minutes of peace."
+      }
+    ]
+  },
+  {
+    "rank": 300,
+    "word": "broń",
+    "lemma": "",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "weapon/gun",
+        "frequency": "0.95",
+        "example_polish": "Widziałem broń tam za kilka minut.",
+        "example_english": "I saw a weapon there a few minutes ago."
+      }
+    ]
+  }
+]

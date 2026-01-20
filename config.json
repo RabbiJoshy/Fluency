@@ -6,6 +6,10 @@
       "lemmaDeduplicatedPath": "Data/Spanish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_spanish",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#C8102E",
+        "secondary": "#FFCC00"
+      },
       "cefrLevels": [
         {
           "level": "A1",
@@ -55,8 +59,13 @@
     "swedish": {
       "name": "Swedish",
       "dataPath": "Data/Swedish/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/Swedish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_swedish",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#0066CC",
+        "secondary": "#FFCC00"
+      },
       "cefrLevels": [
         {
           "level": "A1",
@@ -105,8 +114,13 @@
     "italian": {
       "name": "Italian",
       "dataPath": "Data/Italian/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/Italian/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_italian",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#009246",
+        "secondary": "#CE2B37"
+      },
       "cefrLevels": [
         {
           "level": "A1",
@@ -155,8 +169,13 @@
     "dutch": {
       "name": "Dutch",
       "dataPath": "Data/Dutch/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/Dutch/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_dutch",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#FF6B35",
+        "secondary": "#004B87"
+      },
       "cefrLevels": [
         {
           "level": "A1",
@@ -205,8 +224,13 @@
     "french": {
       "name": "French",
       "dataPath": "Data/French/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/French/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_french",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#002395",
+        "secondary": "#ED2939"
+      },
       "cefrLevels": [
         {
           "level": "A1",
@@ -255,8 +279,13 @@
     "russian": {
       "name": "Russian",
       "dataPath": "Data/Russian/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/Russian/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_russian",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#DA291C",
+        "secondary": "#003F87"
+      },
       "cefrLevels": [
         {
           "level": "A1",
@@ -305,8 +334,13 @@
     "polish": {
       "name": "Polish",
       "dataPath": "Data/Polish/vocabulary.json",
+      "lemmaDeduplicatedPath": "Data/Polish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_polish",
       "exampleEnglishField": "example_english",
+      "colorTheme": {
+        "primary": "#DC143C",
+        "secondary": "#FFFFFF"
+      },
       "cefrLevels": [
         {
           "level": "A1",

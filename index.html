@@ -33,6 +33,10 @@
             --accent-blue: #4a9eff;
             --accent-green: #00d4aa;
 
+            /* Language-specific theme colors (dynamically updated) */
+            --accent-primary: #C8102E;
+            --accent-secondary: #FFCC00;
+
             /* Semantic colors */
             --success: #00d4aa;
             --error: #ff5252;
@@ -132,13 +136,13 @@
         .mode-btn:hover {
             transform: translateY(-2px);
             background: var(--bg-card-hover);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         .mode-btn.active {
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             color: var(--bg-primary);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         .card-container {
@@ -300,14 +304,14 @@
             font-size: 56px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             text-align: center;
         }
 
         .card-lemma {
             font-family: var(--font-reading);
             font-size: 18px;
-            color: var(--accent-amber);
+            color: var(--accent-secondary);
             text-align: center;
             margin-bottom: 15px;
             font-weight: 500;
@@ -422,7 +426,7 @@
         }
 
         .card-details strong {
-            color: var(--accent-amber);
+            color: var(--accent-secondary);
         }
 
         .sentence {
@@ -498,7 +502,7 @@
 
         .nav-btn {
             padding: 12px 24px;
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             color: var(--bg-primary);
             border: none;
             border-radius: 8px;
@@ -560,7 +564,7 @@
         .progress {
             text-align: center;
             font-weight: 600;
-            color: var(--accent-amber);
+            color: var(--accent-secondary);
         }
 
         .action-btn {
@@ -632,7 +636,7 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 25px;
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             text-align: center;
         }
 
@@ -697,7 +701,7 @@
         .type-prompt {
             font-size: 20px;
             margin-bottom: 20px;
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             text-align: center;
         }
 
@@ -720,7 +724,7 @@
         .check-btn {
             width: 100%;
             padding: 15px;
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             color: var(--bg-primary);
             border: none;
             border-radius: 8px;
@@ -738,7 +742,7 @@
         }
 
         .stats h3 {
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             margin-bottom: 15px;
         }
 
@@ -768,7 +772,7 @@
 
         .upload-btn {
             padding: 12px 24px;
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             color: var(--bg-primary);
             border: none;
             border-radius: 8px;
@@ -874,7 +878,7 @@
 
         .level-btn.selected {
             background: var(--bg-card);
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
@@ -952,13 +956,13 @@
 
         .range-btn:hover {
             background: var(--bg-card-hover);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         .range-btn.selected {
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             color: var(--bg-primary);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         .language-tabs {
@@ -1002,7 +1006,7 @@
 
         .lang-tab.active {
             background: var(--bg-card);
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
@@ -1018,7 +1022,7 @@
 
         .cefr-card:hover {
             transform: translateY(-2px);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
             box-shadow: 0 4px 20px rgba(255, 107, 53, 0.15);
         }
 
@@ -1033,7 +1037,7 @@
             font-family: var(--font-emphasis);
             font-size: 24px;
             font-weight: 700;
-            color: var(--accent-orange);
+            color: var(--accent-primary);
         }
 
         .cefr-description {
@@ -1050,7 +1054,7 @@
         }
 
         .cefr-stats strong {
-            color: var(--accent-amber);
+            color: var(--accent-secondary);
         }
 
         .cefr-ranges {
@@ -1110,13 +1114,13 @@
 
         .preset-size-btn:hover {
             background: var(--bg-card-hover);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         .preset-size-btn.selected {
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             color: var(--bg-primary);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         .group-size-selector {
@@ -1167,7 +1171,7 @@
 
         .group-size-btn.selected {
             background: var(--bg-card);
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
@@ -1216,7 +1220,7 @@
 
         .lemma-toggle-btn.selected {
             background: var(--bg-card);
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
@@ -1274,7 +1278,7 @@
         }
 
         .step-info-tooltip strong {
-            color: var(--accent-orange);
+            color: var(--accent-primary);
         }
 
         .step-header-with-help {
@@ -1354,7 +1358,7 @@
 
         .modal-header h3 {
             font-family: var(--font-emphasis);
-            color: var(--accent-orange);
+            color: var(--accent-primary);
             margin: 0;
             font-size: 24px;
         }
@@ -1374,7 +1378,7 @@
         }
 
         .modal-close:hover {
-            color: var(--accent-orange);
+            color: var(--accent-primary);
         }
 
         .stats-body {
@@ -1492,7 +1496,7 @@
 
         .meaning-pos {
             font-size: 11px;
-            color: var(--accent-amber);
+            color: var(--accent-secondary);
             margin-top: 4px;
             font-family: var(--font-data);
             text-transform: uppercase;
@@ -1502,7 +1506,7 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background: var(--accent-amber);
+            background: var(--accent-secondary);
             color: var(--bg-primary);
             font-size: 10px;
             font-weight: 700;
@@ -1588,7 +1592,7 @@
 
         .deck-complete-btn.restart-btn:hover {
             background: var(--bg-card-hover);
-            border-color: var(--accent-amber);
+            border-color: var(--accent-secondary);
         }
 
         .deck-complete-btn.continue-btn {
@@ -1705,8 +1709,8 @@
                             </div>
                         </div>
                         <div id="lemmaToggleSelector" class="group-size-selector">
-                            <button class="lemma-toggle-btn selected" data-lemma="off">Off</button>
-                            <button class="lemma-toggle-btn" data-lemma="on">On</button>
+                            <button class="lemma-toggle-btn" data-lemma="off">Off</button>
+                            <button class="lemma-toggle-btn selected" data-lemma="on">On</button>
                         </div>
                     </div>
                 </div>
@@ -1886,7 +1890,7 @@
         let selectedRanges = [];
         let isFlipped = false;
         let groupSize = 25; // Default group size
-        let useLemmaMode = false; // Whether to use 1 card per lemma mode
+        let useLemmaMode = true; // Whether to use 1 card per lemma mode
         let isAppInitialized = false; // Track if event listeners have been set up
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
 
@@ -1951,6 +1955,7 @@
             // Set first language as default
             const firstLang = Object.keys(config.languages)[0];
             selectedLanguage = firstLang;
+            applyLanguageColorTheme();
             renderLevelSelector(firstLang);
             setupGroupSizeSelector();
             setupLemmaToggle();
@@ -1993,6 +1998,7 @@
                     this.classList.add('active');
                     selectedLanguage = this.dataset.lang;
                     selectedLevel = null;
+                    applyLanguageColorTheme();
                     renderLevelSelector(selectedLanguage);
                     updateLemmaToggleVisibility();
                     // Hide steps 3 and 4
@@ -2076,6 +2082,15 @@
                 useLemmaMode = false;
                 document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
                 document.querySelector('.lemma-toggle-btn[data-lemma="off"]').classList.add('selected');
+            }
+        }
+
+        function applyLanguageColorTheme() {
+            const langConfig = config.languages[selectedLanguage];
+            if (langConfig && langConfig.colorTheme) {
+                const root = document.documentElement;
+                root.style.setProperty('--accent-primary', langConfig.colorTheme.primary);
+                root.style.setProperty('--accent-secondary', langConfig.colorTheme.secondary);
             }
         }
 
@@ -2884,7 +2899,7 @@
                 maxMovement = Math.max(maxMovement, totalMovement);
 
                 // Only mark as moved if significant movement (raised threshold)
-                if (Math.abs(diffX) > 20 || Math.abs(diffY) > 20) {
+                if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
                     hasMoved = true;
                 }
 
@@ -2930,8 +2945,8 @@
                 card.style.transform = '';
 
                 // Tap detection - very strict threshold
-                const isTap = touchDuration < 200 && maxMovement < 15;
-                const isQuickTap = touchDuration < 300 && maxMovement < 30;
+                const isTap = touchDuration < 200 && maxMovement < 7.5;
+                const isQuickTap = touchDuration < 300 && maxMovement < 15;
 
                 // ========== FRONT SIDE LOGIC (flip priority) ==========
                 if (!wasFlippedAtStart) {
@@ -2954,7 +2969,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 20; // Reduced 15% from 23 for even easier swiping
+                    const edgeSwipeThreshold = 10; // Reduced 50% from 20 for even easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
@@ -2966,7 +2981,7 @@
                 }
 
                 // ========== BACK SIDE LOGIC (swipe priority) ==========
-                const backSwipeThreshold = 20; // Reduced 15% from 23 for even easier swiping on back
+                const backSwipeThreshold = 10; // Reduced 50% from 20 for even easier swiping on back
                 const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
                 const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 
@@ -3284,7 +3299,7 @@
             // Store ranking as data attribute on card for console access
             const flashcardEl = document.getElementById('flashcard');
             if (card.rank !== undefined) {
-                flashcardEl.setAttribute('data-rank', card.rank + 1);
+                flashcardEl.setAttribute('data-rank', card.rank);
             } else {
                 flashcardEl.setAttribute('data-rank', '');
             }
@@ -3292,7 +3307,7 @@
             // Display ranking on front card
             const frontRankingEl = document.getElementById('frontRanking');
             if (card.rank !== undefined) {
-                frontRankingEl.textContent = `Rank: ${card.rank + 1}`;
+                frontRankingEl.textContent = `Rank: ${card.rank}`;
                 frontRankingEl.style.display = 'block';
             } else {
                 frontRankingEl.style.display = 'none';
@@ -3301,13 +3316,13 @@
             // Build back content with lemma in brackets if different
             let wordDisplay = backWord;
             if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
-                wordDisplay = `${backWord} <span style="color: var(--accent-amber); font-size: 28px;">(${card.lemma})</span>`;
+                wordDisplay = `${backWord} <span style="color: var(--accent-secondary); font-size: 28px;">(${card.lemma})</span>`;
             }
 
             let backHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
                     <div class="flip-back-area" id="flipBackArea">
-                        <div style="font-size: 42px; color: var(--accent-orange); font-weight: bold;">${wordDisplay}</div>
+                        <div style="font-size: 42px; color: var(--accent-primary); font-weight: bold;">${wordDisplay}</div>
                     </div>
                 </div>
             `;
@@ -3322,7 +3337,7 @@
                     const textColor = isSelected ? 'var(--bg-primary)' : 'var(--text-primary)';
                     backHTML += `
                         <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                            <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--accent-amber)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
+                            <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
                             <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${m.meaning}</span>
                             <span style="font-family: var(--font-data); font-size: 11px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--text-muted)'}; text-transform: uppercase;">${m.pos}</span>
                         </div>
@@ -3345,7 +3360,7 @@
 
                 // Show base form if different from displayed word
                 if (card.inflectedForm && card.baseForm !== card.targetWord) {
-                    backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-amber);">Base form:</strong> ${card.baseForm}</div>`;
+                    backHTML += `<div style="margin-bottom: 15px; font-size: 16px; text-align: center; color: #ffffff;"><strong style="color: var(--accent-secondary);">Base form:</strong> ${card.baseForm}</div>`;
                 }
 
                 // Show example sentences if available
