@@ -254,12 +254,19 @@
         /* Hide front card controls when flipped */
         .card.flipped .card-front {
             visibility: hidden;
+            opacity: 0;
             pointer-events: none;
         }
 
         .card.flipped .card-back {
             visibility: visible;
+            opacity: 1;
             pointer-events: auto;
+        }
+
+        /* Ensure back is hidden when not flipped */
+        .card-back {
+            opacity: 0;
         }
 
         .card-front {
@@ -285,6 +292,7 @@
             align-items: center;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-primary);
             box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 1px rgba(255, 107, 53, 0.1);
             overflow: hidden;
         }
@@ -374,12 +382,12 @@
         }
 
         .card-action-small {
-            padding: 8px 28px;
+            padding: 10px 34px;
             background: var(--bg-card);
             color: var(--text-muted);
             border: 1.5px solid #333333;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 17px;
             font-weight: 700;
             font-family: var(--font-emphasis);
             cursor: pointer;
@@ -387,8 +395,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 107px;
-            height: 38px;
+            width: 128px;
+            height: 46px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
             transform-style: preserve-3d;
@@ -531,17 +539,17 @@
         }
 
         .nav-btn-inline {
-            padding: 8px 12px;
+            padding: 10px 14px;
             background: var(--bg-tertiary);
             color: var(--accent-blue);
             border: 1px solid var(--border-color);
             border-radius: 50%;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -572,7 +580,7 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            font-size: 36px;
+            font-size: 43px;
             line-height: 1;
             display: flex;
             align-items: center;
@@ -1010,6 +1018,17 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
+        .lang-tab.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .lang-tab.disabled:hover {
+            background: transparent;
+            color: var(--text-muted);
+        }
+
         .cefr-card {
             background: var(--bg-card);
             border-radius: 12px;
@@ -1152,7 +1171,7 @@
         .group-size-btn {
             font-family: var(--font-data);
             flex: 0 0 auto;
-            padding: 10px 14px;
+            padding: 10px 12px;
             background: transparent;
             border: none;
             border-radius: 8px;
@@ -1160,7 +1179,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s;
-            min-width: 51px;
+            min-width: 46px;
             color: var(--text-muted);
         }
 
@@ -1184,6 +1203,7 @@
         .step-half {
             flex: 1;
             min-width: 0;
+            max-width: 90%;
         }
 
         .step-half:first-child {
@@ -1201,7 +1221,7 @@
         .lemma-toggle-btn {
             font-family: var(--font-data);
             flex: 1;
-            padding: 10px 14px;
+            padding: 10px 10px;
             background: transparent;
             border: none;
             border-radius: 8px;
@@ -1209,7 +1229,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s;
-            min-width: 42px;
+            min-width: 38px;
             color: var(--text-muted);
         }
 
@@ -1654,10 +1674,14 @@
                         <p><strong>Tap card</strong> to flip and see translation</p>
                         <p><strong>Swipe right</strong> if you know the word ✓</p>
                         <p><strong>Swipe left</strong> if you don't know it ✗</p>
-                        <p><strong>Click on meaning</strong> to cycle through example sentences</p>
+                        <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions and their example sentences</p>
                         <p><strong>Arrow buttons</strong> to navigate cards manually</p>
                         <p><strong>Language button</strong> (top-left) switches direction between Target → English and English → Target</p>
                         <p><strong>At the end of each set</strong>, you'll see your accuracy and can review incorrect cards or continue to the next set</p>
+                        <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--border-color);">
+                        <p><strong>Why Frequency Matters:</strong></p>
+                        <p>Language follows a power law distribution: a small number of words account for the vast majority of everyday speech. Studies show that just 1,000 of the most common words make up approximately 80% of spoken language, while the top 3,000 words cover around 95% of typical conversations.</p>
+                        <p>This app uses word frequency data derived from movie and TV subtitles, which represent natural, authentic language as it's actually spoken. By learning words ranked by how often they appear in real dialogue, you build practical fluency more efficiently than memorizing random vocabulary lists.</p>
                     </div>
                 </div>
                 <div class="language-tabs" id="languageTabs">
@@ -1700,17 +1724,17 @@
                     <div class="step-half" id="lemmaToggleContainer" style="display: none;">
                         <div class="step-header step-header-with-help">
                             <span class="step-number">4</span>
-                            <span class="step-title">1 Card per Lemma</span>
+                            <span class="step-title">Cards per Lemma</span>
                             <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
                             <div id="step4Tooltip" class="step-info-tooltip">
                                 <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
-                                <p>When ON, you see only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running").</p>
-                                <p>This reduces redundancy and focuses on learning root vocabulary.</p>
+                                <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
+                                <p><strong>1+</strong> = See all forms including conjugations and declensions, which helps with recognition of different word forms in context.</p>
                             </div>
                         </div>
                         <div id="lemmaToggleSelector" class="group-size-selector">
-                            <button class="lemma-toggle-btn" data-lemma="off">Off</button>
-                            <button class="lemma-toggle-btn selected" data-lemma="on">On</button>
+                            <button class="lemma-toggle-btn" data-lemma="off">1+</button>
+                            <button class="lemma-toggle-btn selected" data-lemma="on">1</button>
                         </div>
                     </div>
                 </div>
@@ -1769,7 +1793,7 @@
                             </div>
                             <!-- Back button on bottom left -->
                             <div style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
-                                <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">BACK</button>
+                                <button class="nav-btn-inline" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">←</button>
                             </div>
                             <!-- Stats button on bottom right -->
                             <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
@@ -1778,8 +1802,14 @@
                         </div>
                         <div class="card-face card-back">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
-                                <button class="nav-btn-inline" id="prevBtnBack" style="pointer-events: auto;">←</button>
-                                <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
+                                <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
+                                    <button class="nav-btn-inline" id="prevBtnBack">←</button>
+                                    <button class="nav-btn-inline desktop-answer-btn" id="incorrectBtnTop" title="Mark as incorrect" style="display: none; background: var(--error); color: white; border-color: var(--error);">✗</button>
+                                </div>
+                                <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
+                                    <button class="nav-btn-inline desktop-answer-btn" id="correctBtnTop" title="Mark as correct" style="display: none; background: var(--success); color: white; border-color: var(--success);">✓</button>
+                                    <button class="nav-btn-inline" id="nextBtnBack">→</button>
+                                </div>
                             </div>
                             <div class="card-details" id="backContent"></div>
                         </div>
@@ -1952,8 +1982,8 @@
         // Initialize on page load
         loadConfig().then(() => {
             renderLanguageTabs();
-            // Set first language as default
-            const firstLang = Object.keys(config.languages)[0];
+            // Set first language with data as default
+            const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
             selectedLanguage = firstLang;
             applyLanguageColorTheme();
             renderLevelSelector(firstLang);
@@ -1965,7 +1995,10 @@
 
         function renderLanguageTabs() {
             const tabsContainer = document.getElementById('languageTabs');
-            const languages = Object.keys(config.languages);
+
+            // Define custom language order (Polish before grayed-out French and Russian)
+            const languageOrder = ['spanish', 'swedish', 'italian', 'dutch', 'polish', 'french', 'russian'];
+            const languages = languageOrder.filter(lang => config.languages[lang]);
 
             // Map language keys to 2-letter codes
             const langCodeMap = {
@@ -1981,8 +2014,13 @@
             // Generate language tabs dynamically
             const tabsHTML = languages.map((langKey, index) => {
                 const langCode = langCodeMap[langKey] || langKey.substring(0, 2).toUpperCase();
-                const activeClass = index === 0 ? 'active' : '';
-                return `<button class="lang-tab ${activeClass}" data-lang="${langKey}">${langCode}</button>`;
+                const langConfig = config.languages[langKey];
+                const hasData = langConfig.hasData !== false;
+                const activeClass = index === 0 && hasData ? 'active' : '';
+                const disabledClass = !hasData ? 'disabled' : '';
+                const disabledAttr = !hasData ? 'disabled' : '';
+                const title = !hasData ? `${langConfig.name} - Data coming soon` : '';
+                return `<button class="lang-tab ${activeClass} ${disabledClass}" data-lang="${langKey}" ${disabledAttr} title="${title}">${langCode}</button>`;
             }).join('');
 
             tabsContainer.innerHTML = tabsHTML;
@@ -1994,6 +2032,10 @@
         function setupLanguageTabs() {
             document.querySelectorAll('.lang-tab').forEach(tab => {
                 tab.addEventListener('click', function() {
+                    // Prevent clicking on disabled tabs
+                    if (this.disabled || this.classList.contains('disabled')) {
+                        return;
+                    }
                     document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     selectedLanguage = this.dataset.lang;
@@ -2079,9 +2121,9 @@
                 lemmaContainer.style.display = 'none';
                 rangeStepNumber.textContent = '4';
                 // Reset lemma mode when hiding
-                useLemmaMode = false;
+                useLemmaMode = true;
                 document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
-                document.querySelector('.lemma-toggle-btn[data-lemma="off"]').classList.add('selected');
+                document.querySelector('.lemma-toggle-btn[data-lemma="on"]').classList.add('selected');
             }
         }
 
@@ -2899,7 +2941,7 @@
                 maxMovement = Math.max(maxMovement, totalMovement);
 
                 // Only mark as moved if significant movement (raised threshold)
-                if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
+                if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
                     hasMoved = true;
                 }
 
@@ -2969,7 +3011,7 @@
                     }
 
                     // Edge zones: swipe takes priority
-                    const edgeSwipeThreshold = 10; // Reduced 50% from 20 for even easier swiping
+                    const edgeSwipeThreshold = 5; // Reduced 75% from 20 for even easier swiping
                     const isEdgeSwipe = Math.abs(diffX) > edgeSwipeThreshold && Math.abs(diffX) > Math.abs(diffY);
 
                     if (isEdgeSwipe) {
@@ -2981,7 +3023,7 @@
                 }
 
                 // ========== BACK SIDE LOGIC (swipe priority) ==========
-                const backSwipeThreshold = 10; // Reduced 50% from 20 for even easier swiping on back
+                const backSwipeThreshold = 5; // Reduced 75% from 20 for even easier swiping on back
                 const isHorizontalSwipe = Math.abs(diffX) > backSwipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 1.2;
                 const isVerticalSwipe = Math.abs(diffY) > backSwipeThreshold && Math.abs(diffY) > Math.abs(diffX) * 1.2;
 
@@ -3333,7 +3375,7 @@
                 backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
                 card.meanings.forEach((m, idx) => {
                     const isSelected = idx === currentMeaningIndex;
-                    const bgColor = isSelected ? 'var(--accent-blue)' : 'var(--bg-tertiary)';
+                    const bgColor = isSelected ? 'var(--accent-primary)' : 'var(--bg-tertiary)';
                     const textColor = isSelected ? 'var(--bg-primary)' : 'var(--text-primary)';
                     backHTML += `
                         <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
@@ -3369,9 +3411,9 @@
                     const showEmpty = !exampleSentence && !exampleTranslation;
                     const sentenceIndicator = sentenceCount > 1 ? `
                         <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-                            <span style="color: var(--accent-blue); font-size: 18px;">↑</span>
+                            <span style="color: var(--accent-primary); font-size: 18px;">↑</span>
                             <span style="color: var(--text-muted); font-size: 12px;">${currentSentenceIndex + 1} / ${sentenceCount}</span>
-                            <span style="color: var(--accent-blue); font-size: 18px;">↓</span>
+                            <span style="color: var(--accent-primary); font-size: 18px;">↓</span>
                         </div>
                     ` : '';
 
@@ -3403,9 +3445,6 @@
 
             backHTML += `<div class="links-section" id="linksSection">`;
 
-            // Add incorrect button on desktop (will be shown/hidden by JS)
-            backHTML += `<button class="link-btn desktop-answer-btn" id="incorrectBtnInline" style="background: var(--error); color: white; display: none;">✗ Incorrect</button>`;
-
             for (const [key, url] of Object.entries(card.links)) {
                 if (key === 'wordReference') continue; // Skip wordReference
                 // Skip conjugation link for non-verbs
@@ -3413,9 +3452,6 @@
                 const label = linkLabels[key] || key;
                 backHTML += `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
             }
-
-            // Add correct button on desktop (will be shown/hidden by JS)
-            backHTML += `<button class="link-btn desktop-answer-btn" id="correctBtnInline" style="background: var(--accent-green); color: white; display: none;">✓ Correct</button>`;
 
             backHTML += `</div>`;
 
@@ -3433,20 +3469,22 @@
             document.getElementById('prevBtnBack').disabled = isPrevDisabled;
             document.getElementById('nextBtnBack').disabled = isNextDisabled;
 
-            // Setup inline answer buttons (desktop only)
+            // Setup top answer buttons (desktop only)
             const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
             if (!isTouchDevice) {
-                const correctBtnInline = document.getElementById('correctBtnInline');
-                const incorrectBtnInline = document.getElementById('incorrectBtnInline');
+                const correctBtnTop = document.getElementById('correctBtnTop');
+                const incorrectBtnTop = document.getElementById('incorrectBtnTop');
 
-                if (correctBtnInline && incorrectBtnInline) {
-                    correctBtnInline.style.display = 'inline-block';
-                    incorrectBtnInline.style.display = 'inline-block';
+                if (correctBtnTop && incorrectBtnTop) {
+                    correctBtnTop.style.display = 'flex';
+                    incorrectBtnTop.style.display = 'flex';
 
-                    correctBtnInline.onclick = function() {
+                    correctBtnTop.onclick = function(e) {
+                        e.stopPropagation();
                         handleSwipeAction('correct');
                     };
-                    incorrectBtnInline.onclick = function() {
+                    incorrectBtnTop.onclick = function(e) {
+                        e.stopPropagation();
                         handleSwipeAction('incorrect');
                     };
                 }

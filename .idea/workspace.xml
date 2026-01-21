@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Data/Swedish/Swedish Frequency.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Swedish/Swedish Frequency.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Swedish/swedish_frequency.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Swedish/swedish_frequency.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Swedish/txt2csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Swedish/txt2csv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +100,7 @@
       <workItem from="1768744143483" duration="20217000" />
       <workItem from="1768811370545" duration="14380000" />
       <workItem from="1768924014357" duration="328000" />
-      <workItem from="1768940447224" duration="3370000" />
+      <workItem from="1768940447224" duration="10395000" />
     </task>
     <servers />
   </component>

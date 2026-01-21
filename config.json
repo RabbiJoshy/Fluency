@@ -174,7 +174,7 @@
       "exampleEnglishField": "example_english",
       "colorTheme": {
         "primary": "#FF6B35",
-        "secondary": "#004B87"
+        "secondary": "#4A9EFF"
       },
       "cefrLevels": [
         {
@@ -227,8 +227,9 @@
       "lemmaDeduplicatedPath": "Data/French/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_french",
       "exampleEnglishField": "example_english",
+      "hasData": false,
       "colorTheme": {
-        "primary": "#002395",
+        "primary": "#4A7FFF",
         "secondary": "#ED2939"
       },
       "cefrLevels": [
@@ -282,6 +283,7 @@
       "lemmaDeduplicatedPath": "Data/Russian/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_russian",
       "exampleEnglishField": "example_english",
+      "hasData": false,
       "colorTheme": {
         "primary": "#DA291C",
         "secondary": "#003F87"
