@@ -588,7 +588,7 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            font-size: 43px;
+            font-size: 52px;
             line-height: 1;
             display: flex;
             align-items: center;
@@ -1662,7 +1662,7 @@
             }
 
             .action-btn {
-                font-size: 32px;
+                font-size: 38px;
             }
 
         }
@@ -1801,7 +1801,12 @@
                             </div>
                             <!-- Back button on bottom left -->
                             <div style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
-                                <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">↩</button>
+                                <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 14 4 9 9 4"></polyline>
+                                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                    </svg>
+                                </button>
                             </div>
                             <!-- Stats button on bottom right -->
                             <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
@@ -2996,12 +3001,22 @@
                 const diffY = currentY - touchStartY;
                 const touchDuration = Date.now() - touchStartTime;
 
+                // Check if indicator is visible BEFORE removing it
+                const indicatorWasVisible = correctIndicator.classList.contains('visible') || incorrectIndicator.classList.contains('visible');
+                const swipeDirection = correctIndicator.classList.contains('visible') ? 'correct' : 'incorrect';
+
                 card.classList.remove('swiping');
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
 
                 // Reset card transform
                 card.style.transform = '';
+
+                // If indicator was visible, auto-complete the swipe
+                if (indicatorWasVisible) {
+                    handleSwipeAction(swipeDirection);
+                    return;
+                }
 
                 // Tap detection - very strict threshold
                 const isTap = touchDuration < 200 && maxMovement < 7.5;
