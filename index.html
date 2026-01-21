@@ -152,6 +152,10 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px 0;
+            overflow: hidden;
+            touch-action: pan-x pan-y;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .card {
@@ -163,6 +167,8 @@
             transform-style: preserve-3d;
             transition: transform 0.6s;
             cursor: pointer;
+            touch-action: none;
+            -webkit-user-drag: none;
         }
 
         .card.swiping {
@@ -292,7 +298,9 @@
             align-items: center;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-top: 3px solid var(--accent-primary);
+            border-top: 3px solid transparent;
+            border-image: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)) 1;
+            border-image-slice: 1 0 0 0;
             box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 1px rgba(255, 107, 53, 0.1);
             overflow: hidden;
         }
@@ -309,7 +317,7 @@
 
         .card-word {
             font-family: var(--font-emphasis);
-            font-size: 56px;
+            font-size: 64px;
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--accent-primary);
@@ -318,7 +326,7 @@
 
         .card-lemma {
             font-family: var(--font-reading);
-            font-size: 18px;
+            font-size: 22px;
             color: var(--accent-secondary);
             text-align: center;
             margin-bottom: 15px;
@@ -440,13 +448,13 @@
         .sentence {
             margin-top: 15px;
             padding: 15px;
-            background: rgba(74, 158, 255, 0.08);
-            border: 1px solid var(--accent-blue);
-            border-left: 3px solid var(--accent-blue);
+            background: rgba(var(--accent-primary-rgb), 0.08);
+            border: 1px solid var(--accent-primary);
+            border-left: 3px solid var(--accent-primary);
             border-radius: 8px;
             font-family: var(--font-reading);
             font-style: italic;
-            font-size: 18px;
+            font-size: 22px;
             overflow-wrap: break-word;
             word-wrap: break-word;
             text-align: center;
@@ -455,7 +463,7 @@
 
         @media (max-width: 767px) {
             .sentence {
-                font-size: 16px;
+                font-size: 20px;
                 padding: 12px;
             }
         }
@@ -1509,7 +1517,7 @@
         }
 
         .meaning-text {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-primary);
         }
@@ -1650,7 +1658,7 @@
             }
 
             .card-word {
-                font-size: 42px;
+                font-size: 48px;
             }
 
             .action-btn {
@@ -1793,7 +1801,7 @@
                             </div>
                             <!-- Back button on bottom left -->
                             <div style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
-                                <button class="nav-btn-inline" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">←</button>
+                                <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">↩</button>
                             </div>
                             <!-- Stats button on bottom right -->
                             <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
@@ -2133,6 +2141,15 @@
                 const root = document.documentElement;
                 root.style.setProperty('--accent-primary', langConfig.colorTheme.primary);
                 root.style.setProperty('--accent-secondary', langConfig.colorTheme.secondary);
+
+                // Convert hex to RGB for opacity usage
+                const hexToRgb = (hex) => {
+                    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                    return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 0, 0';
+                };
+
+                root.style.setProperty('--accent-primary-rgb', hexToRgb(langConfig.colorTheme.primary));
+                root.style.setProperty('--accent-secondary-rgb', hexToRgb(langConfig.colorTheme.secondary));
             }
         }
 
@@ -3375,13 +3392,14 @@
                 backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
                 card.meanings.forEach((m, idx) => {
                     const isSelected = idx === currentMeaningIndex;
-                    const bgColor = isSelected ? 'var(--accent-primary)' : 'var(--bg-tertiary)';
-                    const textColor = isSelected ? 'var(--bg-primary)' : 'var(--text-primary)';
+                    const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'var(--bg-tertiary)';
+                    const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
+                    const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
                     backHTML += `
-                        <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                            <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
+                        <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
+                            <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
                             <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${m.meaning}</span>
-                            <span style="font-family: var(--font-data); font-size: 11px; color: ${isSelected ? 'var(--bg-primary)' : 'var(--text-muted)'}; text-transform: uppercase;">${m.pos}</span>
+                            <span style="font-family: var(--font-data); font-size: 11px; color: ${isSelected ? 'var(--text-secondary)' : 'var(--text-muted)'}; text-transform: uppercase;">${m.pos}</span>
                         </div>
                     `;
                 });
