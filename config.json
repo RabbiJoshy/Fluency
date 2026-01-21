@@ -106,9 +106,9 @@
       ],
       "fileFormat": "json",
       "referenceLinks": {
-        "wordReference": "https://www.wordreference.com/sven/{word}",
         "reverso": "https://context.reverso.net/translation/swedish-english/{word}",
-        "conjugation": "https://cooljugator.com/sv/{word}"
+        "conjugation": "https://cooljugator.com/sv/{word}",
+        "babla": "https://en.bab.la/dictionary/swedish-english/{word}"
       }
     },
     "italian": {
