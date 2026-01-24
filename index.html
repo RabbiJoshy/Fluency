@@ -1236,26 +1236,18 @@
             margin-bottom: 10px;
         }
 
-        .step-inline-box {
+        .step-header-inline {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 15px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px 16px;
         }
 
-        .step-inline-left {
-            flex: 1;
-        }
-
-        .step-inline-left .step-header {
+        .step-header-inline .step-header {
             margin-bottom: 0;
         }
 
-        .step-inline-box .group-size-selector {
+        .step-header-inline .group-size-selector {
             margin-top: 0;
             flex-shrink: 0;
         }
@@ -1985,16 +1977,14 @@
 
             <!-- Step 3: Cards per Set -->
             <div id="step3" class="setup-step" style="display: none;">
-                <div class="step-inline-box">
-                    <div class="step-inline-left">
-                        <div class="step-header step-header-with-help">
-                            <span class="step-number">3</span>
-                            <span class="step-title">Cards per Set</span>
-                            <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
-                            <div id="step3Tooltip" class="step-info-tooltip">
-                                <p>Choose how many flashcards to study in each session.</p>
-                                <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
-                            </div>
+                <div class="step-header-inline">
+                    <div class="step-header step-header-with-help">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Cards per Set</span>
+                        <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
+                        <div id="step3Tooltip" class="step-info-tooltip">
+                            <p>Choose how many flashcards to study in each session.</p>
+                            <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
                         </div>
                     </div>
                     <div id="groupSizeSelector" class="group-size-selector">
@@ -2002,17 +1992,19 @@
                         <button class="group-size-btn" data-size="50">50</button>
                     </div>
                 </div>
-                <div class="step-inline-box" id="lemmaToggleContainer" style="display: none; margin-top: 12px;">
-                    <div class="step-inline-left">
-                        <div class="step-header step-header-with-help">
-                            <span class="step-number">4</span>
-                            <span class="step-title">Cards per Lemma</span>
-                            <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
-                            <div id="step4Tooltip" class="step-info-tooltip">
-                                <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
-                                <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
-                                <p><strong>1+</strong> = See all forms including conjugations and declensions, which helps with recognition of different word forms in context.</p>
-                            </div>
+            </div>
+
+            <!-- Step 4: Cards per Lemma -->
+            <div id="lemmaToggleContainer" class="setup-step" style="display: none;">
+                <div class="step-header-inline">
+                    <div class="step-header step-header-with-help">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Cards per Lemma</span>
+                        <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
+                        <div id="step4Tooltip" class="step-info-tooltip">
+                            <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
+                            <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
+                            <p><strong>1+</strong> = See all forms including conjugations and declensions, which helps with recognition of different word forms in context.</p>
                         </div>
                     </div>
                     <div id="lemmaToggleSelector" class="group-size-selector">
