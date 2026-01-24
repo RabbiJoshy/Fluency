@@ -2147,9 +2147,22 @@
     <script>
         // Register service worker for PWA functionality
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(registration => console.log('SW registered'))
+            window.addEventListener('load', async () => {
+                // Unregister old service workers and clear caches to force fresh load
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (const registration of registrations) {
+                    await registration.unregister();
+                }
+                // Clear all caches
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+
+                // Re-register with cache busting
+                navigator.serviceWorker.register('service-worker.js?v=2')
+                    .then(registration => {
+                        console.log('SW registered');
+                        registration.update(); // Force check for updates
+                    })
                     .catch(err => console.log('SW registration failed'));
             });
         }
