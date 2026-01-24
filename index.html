@@ -297,12 +297,22 @@
             justify-content: center;
             align-items: center;
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-top: 3px solid transparent;
-            border-image: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)) 1;
-            border-image-slice: 1 0 0 0;
             box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 1px rgba(255, 107, 53, 0.1);
             overflow: hidden;
+        }
+
+        .card-face::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
         @media (max-width: 767px) {
@@ -4081,8 +4091,9 @@
             document.getElementById('frontWord').textContent = frontText;
 
             // Display lemma on front if different from target word
+            // But hide it when reversed (English → Target) as it gives away the answer
             const frontLemmaEl = document.getElementById('frontLemma');
-            if (card.lemma && card.lemma !== card.targetWord) {
+            if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
                 frontLemmaEl.textContent = card.lemma;
                 frontLemmaEl.style.display = 'block';
             } else {
