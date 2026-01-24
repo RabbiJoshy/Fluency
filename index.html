@@ -1236,6 +1236,30 @@
             margin-bottom: 10px;
         }
 
+        .step-inline-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 16px;
+        }
+
+        .step-inline-left {
+            flex: 1;
+        }
+
+        .step-inline-left .step-header {
+            margin-bottom: 0;
+        }
+
+        .step-inline-box .group-size-selector {
+            margin-top: 0;
+            flex-shrink: 0;
+        }
+
         .lemma-toggle-btn {
             font-family: var(--font-data);
             flex: 1;
@@ -1959,10 +1983,10 @@
                 <div id="levelSelector" class="level-selector"></div>
             </div>
 
-            <!-- Step 3: Cards per Set and 1 Card per Lemma (side by side) -->
+            <!-- Step 3: Cards per Set -->
             <div id="step3" class="setup-step" style="display: none;">
-                <div class="step-row">
-                    <div class="step-half">
+                <div class="step-inline-box">
+                    <div class="step-inline-left">
                         <div class="step-header step-header-with-help">
                             <span class="step-number">3</span>
                             <span class="step-title">Cards per Set</span>
@@ -1972,12 +1996,14 @@
                                 <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
                             </div>
                         </div>
-                        <div id="groupSizeSelector" class="group-size-selector">
-                            <button class="group-size-btn selected" data-size="25">25</button>
-                            <button class="group-size-btn" data-size="50">50</button>
-                        </div>
                     </div>
-                    <div class="step-half" id="lemmaToggleContainer" style="display: none;">
+                    <div id="groupSizeSelector" class="group-size-selector">
+                        <button class="group-size-btn selected" data-size="25">25</button>
+                        <button class="group-size-btn" data-size="50">50</button>
+                    </div>
+                </div>
+                <div class="step-inline-box" id="lemmaToggleContainer" style="display: none; margin-top: 12px;">
+                    <div class="step-inline-left">
                         <div class="step-header step-header-with-help">
                             <span class="step-number">4</span>
                             <span class="step-title">Cards per Lemma</span>
@@ -1988,10 +2014,10 @@
                                 <p><strong>1+</strong> = See all forms including conjugations and declensions, which helps with recognition of different word forms in context.</p>
                             </div>
                         </div>
-                        <div id="lemmaToggleSelector" class="group-size-selector">
-                            <button class="lemma-toggle-btn" data-lemma="off">1+</button>
-                            <button class="lemma-toggle-btn selected" data-lemma="on">1</button>
-                        </div>
+                    </div>
+                    <div id="lemmaToggleSelector" class="group-size-selector">
+                        <button class="lemma-toggle-btn" data-lemma="off">1+</button>
+                        <button class="lemma-toggle-btn selected" data-lemma="on">1</button>
                     </div>
                 </div>
             </div>
@@ -2061,11 +2087,11 @@
                             <!-- Mobile: Bottom row with arrows and back button -->
                             <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
                                 <button class="nav-btn-inline" id="prevBtnFrontMobile" style="pointer-events: auto;">←</button>
-                                <button class="card-action-small" id="backBtnSmallMobile" title="Back to menu" style="pointer-events: auto;">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <button class="card-btn-pill" id="backBtnSmallMobile" title="Back to menu" style="pointer-events: auto;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;">
                                         <polyline points="9 14 4 9 9 4"></polyline>
                                         <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                                    </svg>
+                                    </svg>Back
                                 </button>
                                 <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
                             </div>
