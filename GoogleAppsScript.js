@@ -1,5 +1,6 @@
 /**
  * Language Flashcard App - Google Apps Script Backend
+ * Updated with enhanced tracking: word, language, lastCorrect, lastWrong
  *
  * This script provides a REST API for the flashcard app to save and load user progress.
  * Deploy as a web app with "Execute as: Me" and "Who has access: Anyone"
@@ -43,10 +44,10 @@ function doGet(e) {
 
 /**
  * Save user progress to the sheet
- * Params: { action: 'save', user, wordRank, correct, wrong, lastSeen }
+ * Params: { action: 'save', user, word, language, wordRank, correct, wrong, lastCorrect, lastWrong, lastSeen }
  */
 function saveProgress(params) {
-  const { user, wordRank, correct, wrong, lastSeen } = params;
+  const { user, word, language, wordRank, correct, wrong, lastCorrect, lastWrong, lastSeen } = params;
 
   if (!user || wordRank === undefined) {
     return createResponse(false, 'Missing required fields: user, wordRank');
@@ -58,7 +59,7 @@ function saveProgress(params) {
   // Find existing row for this user + wordRank
   let rowIndex = -1;
   for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === user && data[i][1] === wordRank) {
+    if (data[i][0] === user && data[i][2] === wordRank) {
       rowIndex = i + 1; // +1 because sheet rows are 1-indexed
       break;
     }
@@ -70,12 +71,28 @@ function saveProgress(params) {
 
   if (rowIndex > 0) {
     // Update existing row
-    sheet.getRange(rowIndex, 3).setValue(correctCount);
-    sheet.getRange(rowIndex, 4).setValue(wrongCount);
-    sheet.getRange(rowIndex, 5).setValue(timestamp);
+    sheet.getRange(rowIndex, 1, 1, 8).setValues([[
+      user,
+      word || data[rowIndex - 1][1],
+      wordRank,
+      language || data[rowIndex - 1][3],
+      correctCount,
+      wrongCount,
+      lastCorrect || data[rowIndex - 1][6],
+      lastWrong || data[rowIndex - 1][7]
+    ]]);
   } else {
     // Add new row
-    sheet.appendRow([user, wordRank, correctCount, wrongCount, timestamp]);
+    sheet.appendRow([
+      user,
+      word || '',
+      wordRank,
+      language || '',
+      correctCount,
+      wrongCount,
+      lastCorrect || '',
+      lastWrong || ''
+    ]);
   }
 
   return createResponse(true, 'Progress saved successfully');
@@ -100,10 +117,13 @@ function loadProgress(params) {
   for (let i = 1; i < data.length; i++) {
     if (data[i][0] === user) {
       userProgress.push({
-        wordRank: data[i][1],
-        correct: data[i][2],
-        wrong: data[i][3],
-        lastSeen: data[i][4]
+        word: data[i][1],
+        wordRank: data[i][2],
+        language: data[i][3],
+        correct: data[i][4],
+        wrong: data[i][5],
+        lastCorrect: data[i][6],
+        lastWrong: data[i][7]
       });
     }
   }
@@ -128,7 +148,7 @@ function deleteProgress(params) {
   // Delete rows in reverse order to avoid index shifts
   for (let i = data.length - 1; i >= 1; i--) {
     if (data[i][0] === user) {
-      if (wordRank === undefined || data[i][1] === wordRank) {
+      if (wordRank === undefined || data[i][2] === wordRank) {
         sheet.deleteRow(i + 1);
       }
     }
@@ -146,10 +166,13 @@ function getOrCreateSheet() {
 
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
-    // Add headers
-    sheet.appendRow(['User', 'WordRank', 'Correct', 'Wrong', 'LastSeen']);
-    sheet.getRange(1, 1, 1, 5).setFontWeight('bold');
+    // Add headers with new columns
+    sheet.appendRow(['User', 'Word', 'WordRank', 'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong']);
+    sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
     sheet.setFrozenRows(1);
+
+    // Auto-resize columns for better readability
+    sheet.autoResizeColumns(1, 8);
   }
 
   return sheet;

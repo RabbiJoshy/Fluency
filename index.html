@@ -2311,8 +2311,12 @@
                     progressData = {};
                     result.data.progress.forEach(item => {
                         progressData[item.wordRank] = {
+                            word: item.word,
+                            language: item.language,
                             correct: item.correct,
                             wrong: item.wrong,
+                            lastCorrect: item.lastCorrect,
+                            lastWrong: item.lastWrong,
                             lastSeen: item.lastSeen
                         };
                     });
@@ -2325,7 +2329,12 @@
         }
 
         // Save progress for a single word to Google Sheets
-        async function saveWordProgress(wordRank, isCorrect) {
+        async function saveWordProgress(card, isCorrect) {
+            const wordRank = card.rank;
+            const word = card.targetWord;
+            const language = selectedLanguage;
+            const timestamp = new Date().toISOString();
+
             if (!currentUser || currentUser.isGuest) {
                 // For guest mode, save to LocalStorage
                 saveToLocalStorage(wordRank, isCorrect);
@@ -2334,15 +2343,27 @@
 
             // Update local progress data
             if (!progressData[wordRank]) {
-                progressData[wordRank] = { correct: 0, wrong: 0, lastSeen: null };
+                progressData[wordRank] = {
+                    word: word,
+                    language: language,
+                    correct: 0,
+                    wrong: 0,
+                    lastCorrect: null,
+                    lastWrong: null,
+                    lastSeen: null
+                };
             }
 
             if (isCorrect) {
                 progressData[wordRank].correct++;
+                progressData[wordRank].lastCorrect = timestamp;
             } else {
                 progressData[wordRank].wrong++;
+                progressData[wordRank].lastWrong = timestamp;
             }
-            progressData[wordRank].lastSeen = new Date().toISOString();
+            progressData[wordRank].lastSeen = timestamp;
+            progressData[wordRank].word = word;
+            progressData[wordRank].language = language;
 
             // Save to Google Sheets
             try {
@@ -2351,9 +2372,13 @@
                     body: JSON.stringify({
                         action: 'save',
                         user: currentUser.initials,
+                        word: word,
+                        language: language,
                         wordRank: wordRank,
                         correct: progressData[wordRank].correct,
                         wrong: progressData[wordRank].wrong,
+                        lastCorrect: progressData[wordRank].lastCorrect,
+                        lastWrong: progressData[wordRank].lastWrong,
                         lastSeen: progressData[wordRank].lastSeen
                     })
                 });
@@ -3726,7 +3751,7 @@
             // Save progress to Google Sheets or LocalStorage
             const currentCard = flashcards[currentIndex];
             if (currentCard && currentCard.rank) {
-                saveWordProgress(currentCard.rank, isCorrect);
+                saveWordProgress(currentCard, isCorrect);
             }
         }
 
