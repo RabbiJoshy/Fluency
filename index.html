@@ -1999,8 +1999,16 @@
                                     </svg>
                                 </button>
                             </div>
-                            <!-- Stats button on bottom right -->
-                            <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
+                            <!-- Speech and Stats buttons on bottom right -->
+                            <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; gap: 10px;">
+                                <button class="card-action-small" id="speakBtn" title="Speak word" style="pointer-events: auto;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                    </svg>
+                                </button>
+                                <button class="card-action-small" id="speechToggleBtn" title="Toggle auto-speak" style="pointer-events: auto;">AUTO</button>
                                 <button class="card-action-small" id="statsBtnSmall" title="View stats" style="pointer-events: auto;">STATS</button>
                             </div>
                         </div>
@@ -2175,6 +2183,32 @@
         let useLemmaMode = true; // Whether to use 1 card per lemma mode
         let isAppInitialized = false; // Track if event listeners have been set up
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
+        let speechEnabled = true; // Text-to-speech toggle
+
+        // Language codes for Web Speech API
+        const speechLangCodes = {
+            spanish: 'es-ES',
+            swedish: 'sv-SE',
+            italian: 'it-IT',
+            dutch: 'nl-NL',
+            polish: 'pl-PL',
+            french: 'fr-FR',
+            russian: 'ru-RU'
+        };
+
+        // Speak a word in the target language
+        function speakWord(text) {
+            if (!speechEnabled || !text || !window.speechSynthesis) return;
+
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = speechLangCodes[selectedLanguage] || 'es-ES';
+            utterance.rate = 0.9; // Slightly slower for learning
+
+            window.speechSynthesis.speak(utterance);
+        }
 
         // ========== AUTHENTICATION & GOOGLE SHEETS ==========
 
@@ -3351,6 +3385,21 @@
                 showStatsModal();
             });
 
+            // Speak button - manually speak current word
+            document.getElementById('speakBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = flashcards[currentIndex];
+                if (card) speakWord(card.targetWord);
+            });
+
+            // Speech toggle button - enable/disable auto-speak
+            document.getElementById('speechToggleBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                speechEnabled = !speechEnabled;
+                this.style.opacity = speechEnabled ? '1' : '0.5';
+                this.title = speechEnabled ? 'Auto-speak ON' : 'Auto-speak OFF';
+            });
+
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
 
             // Click outside modal to close
@@ -4040,6 +4089,11 @@
                         handleSwipeAction('incorrect');
                     };
                 }
+            }
+
+            // Speak the word if showing target language on front
+            if (!isFlipped) {
+                speakWord(card.targetWord);
             }
         }
 
