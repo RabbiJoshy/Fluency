@@ -1650,6 +1650,191 @@
             box-shadow: 0 0 20px var(--glow-green);
         }
 
+        /* Authentication Modal Styles */
+        .auth-body {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .auth-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-reading);
+            font-size: 16px;
+            color: var(--text-primary);
+            text-align: left;
+            width: 100%;
+        }
+
+        .auth-btn:hover {
+            border-color: var(--accent-primary);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .auth-btn .btn-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .auth-btn-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .auth-btn-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .auth-btn-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .login-form {
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .login-form.hidden {
+            display: none;
+        }
+
+        .initials-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
+            font-size: 18px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .initials-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+        }
+
+        .login-form-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-submit-btn, .auth-cancel-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-emphasis);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .auth-submit-btn {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .auth-submit-btn:hover {
+            box-shadow: 0 0 20px rgba(200, 16, 46, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .auth-submit-btn:disabled {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            border-color: var(--border-color);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-cancel-btn {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .auth-cancel-btn:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-secondary);
+        }
+
+        /* User Display */
+        .user-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-data);
+            font-size: 14px;
+            z-index: 100;
+        }
+
+        .user-badge {
+            color: var(--accent-primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-reading);
+        }
+
+        .logout-btn:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+        }
+
+        @media (max-width: 767px) {
+            .user-info {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .logout-btn {
+                padding: 3px 8px;
+                font-size: 11px;
+            }
+        }
+
         @media (max-width: 767px) {
             .card {
                 height: calc(100vh - 180px);
@@ -1669,6 +1854,12 @@
     </style>
 </head>
 <body>
+    <!-- User Info Display -->
+    <div id="userInfo" class="user-info hidden">
+        <span class="user-badge" id="userBadge">GUEST</span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
     <div class="container">
         <div class="file-upload" id="setupPanel">
             <!-- Step 1: Language Selection -->
@@ -1832,6 +2023,54 @@
         </div>
     </div>
 
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header" style="border-bottom: none; padding-bottom: 10px;">
+                <h3 style="width: 100%; text-align: center;">Welcome to Flashcards</h3>
+            </div>
+            <div class="auth-body">
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 25px;">
+                    Choose how you'd like to use the app
+                </p>
+
+                <button class="auth-btn guest-btn" id="guestModeBtn">
+                    <span class="btn-icon">👤</span>
+                    <div class="auth-btn-content">
+                        <span class="auth-btn-title">Guest Mode</span>
+                        <span class="auth-btn-desc">Practice locally, no data saved</span>
+                    </div>
+                </button>
+
+                <button class="auth-btn login-btn" id="loginModeBtn">
+                    <span class="btn-icon">📊</span>
+                    <div class="auth-btn-content">
+                        <span class="auth-btn-title">Login</span>
+                        <span class="auth-btn-desc">Track progress across devices</span>
+                    </div>
+                </button>
+
+                <div id="loginForm" class="login-form hidden">
+                    <label for="userInitials" style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 14px;">
+                        Enter your initials (2-4 letters)
+                    </label>
+                    <input
+                        type="text"
+                        id="userInitials"
+                        class="initials-input"
+                        placeholder="e.g., JD"
+                        maxlength="4"
+                        autocomplete="off"
+                    />
+                    <div class="login-form-actions">
+                        <button class="auth-submit-btn" id="submitInitialsBtn">Continue</button>
+                        <button class="auth-cancel-btn" id="cancelLoginBtn">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Deck Complete Modal -->
     <div id="deckCompleteModal" class="modal hidden">
         <div class="modal-content" style="max-width: 350px;">
@@ -1937,6 +2176,253 @@
         let isAppInitialized = false; // Track if event listeners have been set up
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
 
+        // ========== AUTHENTICATION & GOOGLE SHEETS ==========
+
+        // Configuration - Replace this with your deployed Google Apps Script URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+        let currentUser = null; // { initials: string, isGuest: boolean }
+        let progressData = {}; // wordRank -> { correct, wrong, lastSeen }
+
+        // Check authentication on page load
+        function checkAuthentication() {
+            const savedUser = localStorage.getItem('flashcardUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showUserInfo();
+                if (!currentUser.isGuest) {
+                    loadUserProgressFromSheet();
+                }
+                hideAuthModal();
+            } else {
+                showAuthModal();
+            }
+        }
+
+        // Show authentication modal
+        function showAuthModal() {
+            const authModal = document.getElementById('authModal');
+            authModal.classList.remove('hidden');
+            document.getElementById('setupPanel').style.display = 'none';
+        }
+
+        // Hide authentication modal
+        function hideAuthModal() {
+            const authModal = document.getElementById('authModal');
+            authModal.classList.add('hidden');
+            document.getElementById('setupPanel').style.display = 'block';
+        }
+
+        // Show user info badge
+        function showUserInfo() {
+            const userInfo = document.getElementById('userInfo');
+            const userBadge = document.getElementById('userBadge');
+            userBadge.textContent = currentUser.isGuest ? 'GUEST' : currentUser.initials;
+            userInfo.classList.remove('hidden');
+        }
+
+        // Guest mode handler
+        function enterGuestMode() {
+            currentUser = { isGuest: true };
+            localStorage.setItem('flashcardUser', JSON.stringify(currentUser));
+            showUserInfo();
+            hideAuthModal();
+        }
+
+        // Show login form
+        function showLoginForm() {
+            document.getElementById('guestModeBtn').style.display = 'none';
+            document.getElementById('loginModeBtn').style.display = 'none';
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('userInitials').focus();
+        }
+
+        // Hide login form
+        function hideLoginForm() {
+            document.getElementById('guestModeBtn').style.display = 'flex';
+            document.getElementById('loginModeBtn').style.display = 'flex';
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('userInitials').value = '';
+        }
+
+        // Submit initials and login
+        async function submitLogin() {
+            const initials = document.getElementById('userInitials').value.trim().toUpperCase();
+
+            if (initials.length < 2 || initials.length > 4 || !/^[A-Z]+$/.test(initials)) {
+                alert('Please enter 2-4 letters (A-Z only)');
+                return;
+            }
+
+            currentUser = { initials: initials, isGuest: false };
+            localStorage.setItem('flashcardUser', JSON.stringify(currentUser));
+            showUserInfo();
+            hideAuthModal();
+
+            // Load user progress from Google Sheets
+            await loadUserProgressFromSheet();
+        }
+
+        // Logout handler
+        function logout() {
+            if (confirm('Are you sure you want to logout? Unsaved progress will be lost.')) {
+                localStorage.removeItem('flashcardUser');
+                currentUser = null;
+                progressData = {};
+                document.getElementById('userInfo').classList.add('hidden');
+
+                // Reset app state
+                flashcards = [];
+                currentIndex = 0;
+                stats = {
+                    studied: new Set(),
+                    correct: 0,
+                    incorrect: 0,
+                    total: 0,
+                    cardStats: {}
+                };
+
+                // Hide app content and show auth modal
+                document.getElementById('appContent').classList.add('hidden');
+                showAuthModal();
+            }
+        }
+
+        // ========== GOOGLE SHEETS INTEGRATION ==========
+
+        // Load user progress from Google Sheets
+        async function loadUserProgressFromSheet() {
+            if (!currentUser || currentUser.isGuest) return;
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'load',
+                        user: currentUser.initials
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success && result.data && result.data.progress) {
+                    // Convert array to object for easier lookup
+                    progressData = {};
+                    result.data.progress.forEach(item => {
+                        progressData[item.wordRank] = {
+                            correct: item.correct,
+                            wrong: item.wrong,
+                            lastSeen: item.lastSeen
+                        };
+                    });
+                    console.log(`Loaded progress for ${result.data.progress.length} words`);
+                }
+            } catch (error) {
+                console.error('Failed to load progress from Google Sheets:', error);
+                // Continue anyway - user can still practice
+            }
+        }
+
+        // Save progress for a single word to Google Sheets
+        async function saveWordProgress(wordRank, isCorrect) {
+            if (!currentUser || currentUser.isGuest) {
+                // For guest mode, save to LocalStorage
+                saveToLocalStorage(wordRank, isCorrect);
+                return;
+            }
+
+            // Update local progress data
+            if (!progressData[wordRank]) {
+                progressData[wordRank] = { correct: 0, wrong: 0, lastSeen: null };
+            }
+
+            if (isCorrect) {
+                progressData[wordRank].correct++;
+            } else {
+                progressData[wordRank].wrong++;
+            }
+            progressData[wordRank].lastSeen = new Date().toISOString();
+
+            // Save to Google Sheets
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'save',
+                        user: currentUser.initials,
+                        wordRank: wordRank,
+                        correct: progressData[wordRank].correct,
+                        wrong: progressData[wordRank].wrong,
+                        lastSeen: progressData[wordRank].lastSeen
+                    })
+                });
+
+                const result = await response.json();
+                if (!result.success) {
+                    console.error('Failed to save progress:', result.message);
+                }
+            } catch (error) {
+                console.error('Failed to save progress to Google Sheets:', error);
+                // Fallback to LocalStorage
+                saveToLocalStorage(wordRank, isCorrect);
+            }
+        }
+
+        // LocalStorage fallback for guest mode
+        function saveToLocalStorage(wordRank, isCorrect) {
+            const key = 'flashcard_progress_guest';
+            let guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
+
+            if (!guestProgress[wordRank]) {
+                guestProgress[wordRank] = { correct: 0, wrong: 0 };
+            }
+
+            if (isCorrect) {
+                guestProgress[wordRank].correct++;
+            } else {
+                guestProgress[wordRank].wrong++;
+            }
+
+            localStorage.setItem(key, JSON.stringify(guestProgress));
+        }
+
+        // Setup authentication modal event listeners
+        function setupAuthEventListeners() {
+            // Guest mode button
+            document.getElementById('guestModeBtn').addEventListener('click', enterGuestMode);
+
+            // Login mode button
+            document.getElementById('loginModeBtn').addEventListener('click', showLoginForm);
+
+            // Cancel login button
+            document.getElementById('cancelLoginBtn').addEventListener('click', hideLoginForm);
+
+            // Submit initials button
+            document.getElementById('submitInitialsBtn').addEventListener('click', submitLogin);
+
+            // Enter key in initials input
+            document.getElementById('userInitials').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitLogin();
+                }
+            });
+
+            // Enable/disable submit button based on input
+            document.getElementById('userInitials').addEventListener('input', (e) => {
+                const initials = e.target.value.trim();
+                const submitBtn = document.getElementById('submitInitialsBtn');
+                const isValid = initials.length >= 2 && initials.length <= 4 && /^[A-Za-z]+$/.test(initials);
+                submitBtn.disabled = !isValid;
+            });
+
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+        }
+
+        // ========== END AUTHENTICATION & GOOGLE SHEETS ==========
+
         // Load configuration
         async function loadConfig() {
             try {
@@ -2004,6 +2490,8 @@
             setupLemmaToggle();
             updateLemmaToggleVisibility();
             setupTooltipHandlers(); // Initialize tooltips early
+            setupAuthEventListeners(); // Setup auth modal event listeners
+            checkAuthentication(); // Check if user is logged in
         });
 
         function renderLanguageTabs() {
@@ -3226,7 +3714,8 @@
             }
 
             // Record the result
-            if (result === 'correct') {
+            const isCorrect = result === 'correct';
+            if (isCorrect) {
                 stats.correct++;
                 stats.cardStats[currentIndex].correct++;
             } else {
@@ -3234,6 +3723,12 @@
                 stats.cardStats[currentIndex].incorrect++;
             }
             stats.total++;
+
+            // Save progress to Google Sheets or LocalStorage
+            const currentCard = flashcards[currentIndex];
+            if (currentCard && currentCard.rank) {
+                saveWordProgress(currentCard.rank, isCorrect);
+            }
         }
 
         function goBackToSetup() {
