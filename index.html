@@ -1850,6 +1850,53 @@
                 font-size: 38px;
             }
 
+            /* Mobile card front layout adjustments */
+            .mobile-nav-row {
+                display: flex !important;
+            }
+            .desktop-nav-row {
+                display: none !important;
+            }
+            .mobile-top-buttons {
+                display: flex !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav-row {
+                display: none !important;
+            }
+            .desktop-nav-row {
+                display: flex !important;
+            }
+            .mobile-top-buttons {
+                display: none !important;
+            }
+        }
+
+        /* Small pill button style (like logout) */
+        .card-btn-pill {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-reading);
+        }
+
+        .card-btn-pill:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .card-btn-pill svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -1964,34 +2011,56 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard" data-rank="">
                         <div class="card-face card-front">
-                            <!-- Reverse button on left edge -->
-                            <div style="position: absolute; top: 20px; left: 20px; z-index: 5; pointer-events: none;">
-                                <button class="card-action-small" id="reverseLangBtn" title="Reverse language direction" style="pointer-events: auto;">REVERSE</button>
-                            </div>
-                            <!-- Shuffle button on right edge -->
-                            <div style="position: absolute; top: 20px; right: 20px; z-index: 5; pointer-events: none;">
-                                <button class="card-action-small" id="shuffleBtnTop" title="Shuffle" style="pointer-events: auto;">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="16 3 21 3 21 8"></polyline>
-                                        <line x1="4" y1="20" x2="21" y2="3"></line>
-                                        <polyline points="21 16 21 21 16 21"></polyline>
-                                        <line x1="15" y1="15" x2="21" y2="21"></line>
-                                        <line x1="4" y1="4" x2="9" y2="9"></line>
-                                    </svg>
-                                </button>
+                            <!-- Top row: REVERSE, STATS, SETTINGS, SHUFFLE -->
+                            <div style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; gap: 8px; pointer-events: auto;">
+                                    <button class="card-action-small" id="reverseLangBtn" title="Reverse language direction">REVERSE</button>
+                                </div>
+                                <div style="display: flex; gap: 8px; pointer-events: auto;">
+                                    <!-- Mobile: Stats and Settings as pill buttons -->
+                                    <div class="mobile-top-buttons" style="display: none; gap: 8px;">
+                                        <button class="card-btn-pill" id="statsBtnSmallMobile" title="View stats">Stats</button>
+                                        <button class="card-btn-pill" id="settingsBtn" title="Settings">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <button class="card-action-small" id="shuffleBtnTop" title="Shuffle">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="16 3 21 3 21 8"></polyline>
+                                            <line x1="4" y1="20" x2="21" y2="3"></line>
+                                            <polyline points="21 16 21 21 16 21"></polyline>
+                                            <line x1="15" y1="15" x2="21" y2="21"></line>
+                                            <line x1="4" y1="4" x2="9" y2="9"></line>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
                                 <div class="card-word" id="frontWord"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
                                 <div class="card-ranking" id="frontRanking"></div>
                             </button>
-                            <!-- Left/right nav buttons beside the word -->
-                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
+                            <!-- Desktop: Left/right nav buttons beside the word -->
+                            <div class="desktop-nav-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
-                            <!-- Back button on bottom left -->
-                            <div style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
+                            <!-- Mobile: Bottom row with arrows and back button -->
+                            <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
+                                <button class="nav-btn-inline" id="prevBtnFrontMobile" style="pointer-events: auto;">←</button>
+                                <button class="card-action-small" id="backBtnSmallMobile" title="Back to menu" style="pointer-events: auto;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 14 4 9 9 4"></polyline>
+                                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                    </svg>
+                                </button>
+                                <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
+                            </div>
+                            <!-- Desktop: Back button on bottom left -->
+                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
                                 <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="9 14 4 9 9 4"></polyline>
@@ -1999,8 +2068,8 @@
                                     </svg>
                                 </button>
                             </div>
-                            <!-- Speech and Stats buttons on bottom right -->
-                            <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; gap: 10px;">
+                            <!-- Desktop: Speech and Stats buttons on bottom right -->
+                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; gap: 10px;">
                                 <button class="card-action-small" id="speakBtn" title="Speak word" style="pointer-events: auto;">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -2147,6 +2216,31 @@
                 <div class="stat-row">
                     <span>Accuracy:</span>
                     <span id="accuracyPercent">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="modal-close" id="closeSettingsModal">✕</button>
+            </div>
+            <div class="stats-body">
+                <div class="stat-row" style="cursor: pointer;" id="autoSpeakToggle">
+                    <span>Auto-speak words</span>
+                    <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
+                </div>
+                <div class="stat-row" style="cursor: pointer;" id="speakNowBtn">
+                    <span>Speak current word</span>
+                    <span style="color: var(--text-muted);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    </span>
                 </div>
             </div>
         </div>
@@ -3338,6 +3432,7 @@
                 if (e.target.closest('.nav-btn-inline') ||
                     e.target.closest('.link-btn') ||
                     e.target.closest('.card-action-small') ||
+                    e.target.closest('.card-btn-pill') ||
                     e.target.closest('.card-control-btn') ||
                     e.target.closest('#flipBtn') ||
                     e.target.closest('[onclick]')) {
@@ -3375,7 +3470,7 @@
                 shuffleCards();
             });
 
-            // Bottom right card buttons
+            // Bottom right card buttons (desktop)
             document.getElementById('backBtnSmall').addEventListener('click', function(e) {
                 e.stopPropagation();
                 goBackToSetup();
@@ -3383,6 +3478,28 @@
             document.getElementById('statsBtnSmall').addEventListener('click', function(e) {
                 e.stopPropagation();
                 showStatsModal();
+            });
+
+            // Mobile button listeners
+            document.getElementById('prevBtnFrontMobile').addEventListener('click', function(e) {
+                e.stopPropagation();
+                previousCard();
+            });
+            document.getElementById('nextBtnFrontMobile').addEventListener('click', function(e) {
+                e.stopPropagation();
+                nextCard();
+            });
+            document.getElementById('backBtnSmallMobile').addEventListener('click', function(e) {
+                e.stopPropagation();
+                goBackToSetup();
+            });
+            document.getElementById('statsBtnSmallMobile').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showStatsModal();
+            });
+            document.getElementById('settingsBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showSettingsModal();
             });
 
             // Speak button - manually speak current word
@@ -3401,11 +3518,35 @@
             });
 
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
+            document.getElementById('closeSettingsModal').addEventListener('click', hideSettingsModal);
+
+            // Settings modal interactions
+            document.getElementById('autoSpeakToggle').addEventListener('click', function() {
+                speechEnabled = !speechEnabled;
+                document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
+                document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
+                // Also update the desktop AUTO button
+                const speechToggleBtn = document.getElementById('speechToggleBtn');
+                if (speechToggleBtn) {
+                    speechToggleBtn.style.opacity = speechEnabled ? '1' : '0.5';
+                }
+            });
+
+            document.getElementById('speakNowBtn').addEventListener('click', function() {
+                const card = flashcards[currentIndex];
+                if (card) speakWord(card.targetWord);
+            });
 
             // Click outside modal to close
             document.getElementById('statsModal').addEventListener('click', function(e) {
                 if (e.target === this) {
                     hideStatsModal();
+                }
+            });
+
+            document.getElementById('settingsModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSettingsModal();
                 }
             });
 
@@ -3854,6 +3995,16 @@
             document.getElementById('statsModal').classList.add('hidden');
         }
 
+        function showSettingsModal() {
+            document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
+            document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
+            document.getElementById('settingsModal').classList.remove('hidden');
+        }
+
+        function hideSettingsModal() {
+            document.getElementById('settingsModal').classList.add('hidden');
+        }
+
 
         function updateStatsModal() {
             document.getElementById('cardsStudied').textContent = stats.studied.size;
@@ -4069,6 +4220,8 @@
             document.getElementById('nextBtnFront').disabled = isNextDisabled;
             document.getElementById('prevBtnBack').disabled = isPrevDisabled;
             document.getElementById('nextBtnBack').disabled = isNextDisabled;
+            document.getElementById('prevBtnFrontMobile').disabled = isPrevDisabled;
+            document.getElementById('nextBtnFrontMobile').disabled = isNextDisabled;
 
             // Setup top answer buttons (desktop only)
             const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
