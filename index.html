@@ -1439,24 +1439,31 @@
             margin-top: 15px;
         }
 
-        .settings-tabs {
+        .settings-tabs-header {
             display: flex;
-            gap: 0;
+            align-items: center;
+            justify-content: space-between;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 15px;
         }
 
-        .settings-tab {
+        .settings-tabs {
+            display: flex;
+            gap: 0;
             flex: 1;
+        }
+
+        .settings-tab {
             background: transparent;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: var(--text-muted);
             font-family: var(--font-reading);
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
             border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
         }
 
         .settings-tab:hover {
@@ -1466,6 +1473,13 @@
         .settings-tab.active {
             color: var(--accent-primary);
             border-bottom-color: var(--accent-primary);
+        }
+
+        .settings-tabs-header .modal-close {
+            position: relative;
+            top: auto;
+            right: auto;
+            margin-right: 10px;
         }
 
         .settings-tab-content {
@@ -2143,22 +2157,19 @@
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
-                            <!-- Mobile: Bottom row with arrows only -->
+                            <!-- Mobile: Bottom row with arrows and speaker -->
                             <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
                                 <button class="nav-btn-inline" id="prevBtnFrontMobile" style="pointer-events: auto;">←</button>
-                                <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
-                            </div>
-                            <!-- Desktop: Back button on bottom left -->
-                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; left: 20px; z-index: 5; pointer-events: none;">
-                                <button class="card-action-small" id="backBtnSmall" title="Back to menu" style="pointer-events: auto;">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 14 4 9 9 4"></polyline>
-                                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                <button class="nav-btn-inline" id="speakBtnMobile" title="Speak word" style="pointer-events: auto;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                     </svg>
                                 </button>
+                                <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
                             </div>
-                            <!-- Desktop: Speech and Stats buttons on bottom right -->
-                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; gap: 10px;">
+                            <!-- Desktop: Speaker button on bottom right -->
+                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
                                 <button class="card-action-small" id="speakBtn" title="Speak word" style="pointer-events: auto;">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -2166,8 +2177,6 @@
                                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
                                     </svg>
                                 </button>
-                                <button class="card-action-small" id="speechToggleBtn" title="Toggle auto-speak" style="pointer-events: auto;">AUTO</button>
-                                <button class="card-action-small" id="statsBtnSmall" title="View stats" style="pointer-events: auto;">STATS</button>
                             </div>
                         </div>
                         <div class="card-face card-back">
@@ -2313,29 +2322,19 @@
     <!-- Settings Modal with Tabs -->
     <div id="settingsModal" class="modal hidden">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="settingsModalTitle">Settings</h3>
+            <!-- Tab buttons as header -->
+            <div class="settings-tabs-header">
+                <div class="settings-tabs">
+                    <button class="settings-tab active" data-tab="settings">Settings</button>
+                    <button class="settings-tab" data-tab="account">Account</button>
+                </div>
                 <button class="modal-close" id="closeSettingsModal">✕</button>
-            </div>
-            <!-- Tab buttons -->
-            <div class="settings-tabs">
-                <button class="settings-tab active" data-tab="settings">Settings</button>
-                <button class="settings-tab" data-tab="account">Account</button>
             </div>
             <!-- Settings tab content -->
             <div class="settings-tab-content active" id="settingsTabContent">
                 <div class="stat-row" style="cursor: pointer;" id="autoSpeakToggle">
                     <span>Auto-speak words</span>
                     <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
-                </div>
-                <div class="stat-row" style="cursor: pointer;" id="speakNowBtn">
-                    <span>Speak current word</span>
-                    <span style="color: var(--text-muted);">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                        </svg>
-                    </span>
                 </div>
             </div>
             <!-- Account tab content -->
@@ -2704,10 +2703,6 @@
                     // Update active tab content
                     document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
                     document.getElementById(tabName + 'TabContent').classList.add('active');
-
-                    // Update modal title
-                    document.getElementById('settingsModalTitle').textContent =
-                        tabName === 'settings' ? 'Settings' : 'Account';
                 });
             });
         }
@@ -3612,16 +3607,6 @@
                 shuffleCards();
             });
 
-            // Bottom right card buttons (desktop)
-            document.getElementById('backBtnSmall').addEventListener('click', function(e) {
-                e.stopPropagation();
-                goBackToSetup();
-            });
-            document.getElementById('statsBtnSmall').addEventListener('click', function(e) {
-                e.stopPropagation();
-                showStatsModal();
-            });
-
             // Mobile button listeners
             document.getElementById('prevBtnFrontMobile').addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -3631,6 +3616,12 @@
                 e.stopPropagation();
                 nextCard();
             });
+            document.getElementById('speakBtnMobile').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = flashcards[currentIndex];
+                if (card) speakWord(card.targetWord);
+            });
+
             // Floating buttons (outside the card, for both mobile and desktop)
             document.getElementById('backBtnFloating').addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -3641,19 +3632,11 @@
                 showStatsModal();
             });
 
-            // Speak button - manually speak current word
+            // Desktop speak button
             document.getElementById('speakBtn').addEventListener('click', function(e) {
                 e.stopPropagation();
                 const card = flashcards[currentIndex];
                 if (card) speakWord(card.targetWord);
-            });
-
-            // Speech toggle button - enable/disable auto-speak
-            document.getElementById('speechToggleBtn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                speechEnabled = !speechEnabled;
-                this.style.opacity = speechEnabled ? '1' : '0.5';
-                this.title = speechEnabled ? 'Auto-speak ON' : 'Auto-speak OFF';
             });
 
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
@@ -3664,16 +3647,6 @@
                 speechEnabled = !speechEnabled;
                 document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
                 document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
-                // Also update the desktop AUTO button
-                const speechToggleBtn = document.getElementById('speechToggleBtn');
-                if (speechToggleBtn) {
-                    speechToggleBtn.style.opacity = speechEnabled ? '1' : '0.5';
-                }
-            });
-
-            document.getElementById('speakNowBtn').addEventListener('click', function() {
-                const card = flashcards[currentIndex];
-                if (card) speakWord(card.targetWord);
             });
 
             // Click outside modal to close
@@ -4162,7 +4135,6 @@
             document.querySelector('.settings-tab[data-tab="settings"]').classList.add('active');
             document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById('settingsTabContent').classList.add('active');
-            document.getElementById('settingsModalTitle').textContent = 'Settings';
 
             document.getElementById('settingsModal').classList.remove('hidden');
         }
