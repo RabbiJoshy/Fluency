@@ -1,0 +1,373 @@
+rank word lemma meanings
+5845 queja quejar NOUN|complaint|0.80;NOUN|grievance|0.20
+5844 queja queja NOUN|complaint|0.85;NOUN|grievance|0.15
+5843 respiro respirar VERB|I breathe|0.55;NOUN|breath|0.35;NOUN|respite|0.10
+5841 sorpresas sorpresa NOUN|surprises|1.00
+5838 tenerla tener VERB|to have it/her|1.00
+5836 cuya cuyo DET|whose|1.00
+5835 equivoca equivocar VERB|is wrong|0.55;VERB|makes a mistake|0.45
+5834 muchísimas mucho DET|so many|0.65;ADJ|very many|0.35
+5833 muchísimas muchísimo DET|so many|0.60;ADJ|very many|0.40
+5830 unica único ADJ|only|0.60;ADJ|unique|0.40
+5827 vé ver VERB|see!|1.00
+5826 verlas ver VERB|see them|1.00
+5824 compraste comprar VERB|you bought|1.00
+5823 detiene detener VERB|stops|0.70;VERB|detains|0.30
+5822 deudas deuda NOUN|debts|1.00
+5821 horribles horrible ADJ|horrible|1.00
+5819 llamaremos llamar VERB|we will call|0.70;VERB|we will name|0.30
+5818 mantenerlo mantener VERB|to keep it|1.00
+5817 muertas morir ADJ|dead|1.00
+5816 muertas muerto ADJ|dead|0.75;NOUN|dead women|0.25
+5815 pesca pescar VERB|he/she fishes|0.55;NOUN|fishing|0.45
+5811 tumbas tumbar VERB|you knock down|1.00
+5810 tumbas tumba NOUN|tombs|1.00
+5809 buscarme buscar VERB|to look for me|1.00
+5808 busqué buscar VERB|I looked for|0.70;VERB|I searched|0.30
+5803 milagros milagro NOUN|miracles|1.00
+5801 pisos piso NOUN|floors|0.70;NOUN|apartments|0.30
+5800 rehén NOUN|hostage|1.00
+5799 copas copa NOUN|glasses|0.80;NOUN|cups|0.20
+5798 cuartos cuarto NOUN|rooms|0.85;NOUN|quarters|0.15
+5797 debimos deber VERB|we should have|1.00
+5796 embarazo embarazar NOUN|pregnancy|1.00
+5794 huye huir VERB|flees|0.60;VERB|runs away|0.40
+5793 inténtalo intentar VERB|try it|1.00
+5792 lleves llevar VERB|you carry|0.55;VERB|you take|0.45
+5791 meterse meter VERB|to get in|0.60;VERB|to get involved|0.40
+5789 protegiendo proteger VERB|protecting|1.00
+5788 regresemos regresar VERB|let's go back|1.00
+5785 bebes beber VERB|you drink|1.00
+5781 deportes deporte NOUN|sports|1.00
+5780 detectives detective NOUN|detectives|1.00
+5777 ésas ese PRON|those (fem)|1.00
+5774 mentirosa mentiroso ADJ|liar (fem)|1.00
+5773 olviden olvidar VERB|forget (you all)|1.00
+5772 pegado pegar ADJ|stuck|0.55;ADJ|glued|0.45
+5769 probando probar VERB|trying|0.60;VERB|testing|0.40
+5768 quitado quitar ADJ|removed|0.55;ADJ|taken off|0.45
+5766 confirmar VERB|to confirm|1.00
+5765 escapa escapar VERB|escapes|0.70;VERB|gets away|0.30
+5763 harían hacer VERB|they would do|1.00
+5762 huelo oler VERB|I smell|0.60;VERB|I sniff|0.40
+5761 invitó invitar VERB|invited|1.00
+5760 sacamos sacar VERB|we take out|0.55;VERB|we get|0.45
+5759 sufriendo sufrir VERB|suffering|1.00
+5758 superiores superior ADJ|higher|0.70;ADJ|superior|0.30
+5757 venden vender VERB|they sell|1.00
+5756 altas alto ADJ|high (fem)|0.70;ADJ|tall (fem)|0.30
+5755 altas alta ADJ|high (fem)|1.00
+5754 cargado cargar ADJ|loaded|0.60;ADJ|charged|0.40
+5751 comí comer VERB|I ate|1.00
+5747 entran entrar VERB|they enter|0.60;VERB|they come in|0.40
+5745 incluye incluir VERB|includes|1.00
+5744 jodan joder VERB|fuck (you all)|1.00
+5738 aburrida aburrir ADJ|bored (fem)|0.65;ADJ|boring (fem)|0.35
+5737 aburrida aburrido ADJ|bored (fem)|0.70;ADJ|boring (fem)|0.30
+5735 comentarios comentario NOUN|comments|1.00
+5734 despertado despertar ADJ|awake|0.60;ADJ|woken up|0.40
+5732 enfermeras enfermera NOUN|nurses|1.00
+5731 jodidos joder ADJ|fucked up|0.60;ADJ|screwed|0.40
+5730 jodidos jodido ADJ|fucked up|0.60;ADJ|screwed|0.40
+5728 quedara quedar VERB|would stay|1.00
+5727 querrías querer VERB|you would want|1.00
+5723 aguanto aguantar VERB|I can take it|0.60;VERB|I endure|0.40
+5721 denle dar VERB|give him/her|1.00
+5720 hogares hogar NOUN|homes|0.70;NOUN|households|0.30
+5717 pagué pagar VERB|I paid|1.00
+5715 resistir VERB|to resist|0.60;VERB|to endure|0.40
+5714 riendo reír VERB|laughing|1.00
+5711 conduciendo conducir VERB|driving|1.00
+5710 destruyó destruir VERB|destroyed|1.00
+5708 fallado fallar ADJ|failed|0.60;ADJ|missed|0.40
+5706 llevaría llevar VERB|would carry|0.55;VERB|would take|0.45
+5705 logré lograr VERB|I managed|0.60;VERB|I achieved|0.40
+5701 olas ola NOUN|waves|1.00
+5700 oscura oscuro ADJ|dark (fem)|1.00
+5697 sufre sufrir VERB|suffers|1.00
+5695 despegar VERB|to take off|0.70;VERB|to peel off|0.30
+5691 mona mono NOUN|cute girl|0.55;NOUN|monkey|0.45
+5689 nacer VERB|to be born|1.00
+5688 observa observar VERB|observes|0.70;VERB|watches|0.30
+5687 pasaremos pasar VERB|we will pass|0.55;VERB|we will spend|0.45
+5686 presentarles presentar VERB|to introduce you|1.00
+5683 narices nariz NOUN|noses|1.00
+5680 tomemos tomar VERB|let's take|0.60;VERB|let's drink|0.40
+5679 trampas trampa NOUN|traps|1.00
+5678 atrapada atrapar ADJ|caught (fem)|0.70;ADJ|trapped|0.30
+5677 atrapada atrapado ADJ|caught (fem)|0.70;ADJ|trapped|0.30
+5676 comenzando comenzar VERB|starting|0.60;VERB|beginning|0.40
+5675 cruzando cruzar VERB|crossing|1.00
+5674 investigaciones investigación NOUN|investigations|1.00
+5672 pides pedir VERB|you ask for|0.60;VERB|you order|0.40
+5670 protegerte proteger VERB|to protect you|1.00
+5669 lindos lindo ADJ|cute|0.60;ADJ|nice|0.40
+5668 llevarse llevar VERB|to take away|0.60;VERB|to leave|0.40
+5665 peligrosos peligroso ADJ|dangerous|1.00
+5662 sabio ADJ|wise|0.70;NOUN|sage|0.30
+5661 salvarte salvar VERB|to save you|1.00
+5658 acerque acercar VERB|bring closer|1.00
+5657 artes arte NOUN|arts|1.00
+5653 indio NOUN|Indian|0.55;NOUN|native|0.45
+5650 permíteme permitir VERB|allow me|1.00
+5649 preguntan preguntar VERB|they ask|1.00
+5648 quedaba quedar VERB|was staying|0.55;VERB|remained|0.45
+5647 quitarme quitar VERB|to take off|0.55;VERB|to remove|0.45
+5645 sentirás sentir VERB|you will feel|1.00
+5644 sirvo servir VERB|I serve|0.60;VERB|I'm useful|0.40
+5642 traerme traer VERB|to bring me|1.00
+5637 case casar VERB|marry (you)|1.00
+5635 estupenda estupendo ADJ|wonderful (fem)|1.00
+5634 hazte hacer VERB|make yourself|0.55;VERB|get yourself|0.45
+5632 ocuparé ocupar VERB|I will occupy|0.60;VERB|I'll take over|0.40
+5631 caí caer VERB|I fell|1.00
+5630 comunicaciones comunicación NOUN|communications|1.00
+5628 emergencias emergencia NOUN|emergencies|1.00
+5627 graciosa gracioso ADJ|funny (fem)|0.70;ADJ|cute (fem)|0.30
+5626 llevara llevar VERB|would take|0.60;VERB|would carry|0.40
+5625 naciones nación NOUN|nations|1.00
+5624 olvidas olvidar VERB|you forget|1.00
+5623 pescar VERB|to fish|1.00
+5622 recibiendo recibir VERB|receiving|0.70;VERB|getting|0.30
+5620 seca seco ADJ|dry (fem)|1.00
+5619 vería ver VERB|I would see|1.00
+5618 carajos carajo NOUN|damn|1.00
+5617 cerrados cerrado ADJ|closed|1.00
+5615 débiles débil ADJ|weak|1.00
+5614 engañado engañar ADJ|deceived|0.60;ADJ|cheated|0.40
+5612 espadas espada NOUN|swords|1.00
+5610 jefes jefe NOUN|bosses|0.70;NOUN|chiefs|0.30
+5609 mintió mentir VERB|lied|1.00
+5608 pagas paga NOUN|payments|1.00
+5607 pagas pagar VERB|you pay|1.00
+5605 posibles posible ADJ|possible|1.00
+5604 sácame sacar VERB|take me out|0.55;VERB|get me out|0.45
+5602 traerlo traer VERB|to bring it|1.00
+5601 atacado atacar ADJ|attacked|1.00
+5598 detenerlos detener VERB|to stop them|0.60;VERB|to detain them|0.40
+5597 detras detrás PREP|behind|1.00
+5596 extrañé extrañar VERB|I missed you|1.00
+5595 pasaré pasar VERB|I will pass|0.55;VERB|I will spend|0.45
+5593 toquen tocar VERB|touch (you all)|0.60;VERB|play (you all)|0.40
+5592 bonitas bonito ADJ|pretty (fem)|1.00
+5591 buscarla buscar VERB|to look for her|1.00
+5589 contarte contar VERB|to tell you|0.55;VERB|to talk to you|0.45
+5588 eche echar VERB|throw (you)|0.60;VERB|put (you)|0.40
+5587 esconder VERB|to hide|1.00
+5585 modelos modelo NOUN|models|0.80;NOUN|patterns|0.20
+5582 rusa ruso ADJ|Russian (fem)|0.70;NOUN|Russian woman|0.30
+5581 suéltalo soltar VERB|let it go|1.00
+5580 beneficio NOUN|benefit|0.60;NOUN|profit|0.40
+5579 caiga caer VERB|may fall|1.00
+5577 escuelas escuela NOUN|schools|1.00
+5574 merecía merecer VERB|deserved|1.00
+5573 ocupo ocupar VERB|I occupy|0.60;VERB|I take|0.40
+5572 ofrecer VERB|to offer|1.00
+5571 párate parar VERB|stand up|0.60;VERB|stop|0.40
+5569 saliera salir VERB|would leave|1.00
+5564 baila bailar VERB|dances|1.00
+5562 compre comprar VERB|buy (you)|1.00
+5560 cubre cubrir VERB|covers|1.00
+5559 divirtiendo divertir VERB|having fun|1.00
+5558 enfermedades enfermedad NOUN|diseases|1.00
+5557 enseño enseñar VERB|I teach|0.60;VERB|I show|0.40
+5555 levanten levantar VERB|lift (you all)|0.60;VERB|raise (you all)|0.40
+5554 quedaron quedar VERB|they stayed|0.55;VERB|they ended up|0.45
+5550 toco tocar VERB|I touch|0.60;VERB|I play|0.40
+5547 decidimos decidir VERB|we decided|1.00
+5545 dirigir dirigir VERB|to direct|0.70;VERB|to lead|0.30
+5542 llegaré llegar VERB|I will arrive|1.00
+5541 odian odiar VERB|they hate|1.00
+5540 opina opinar VERB|thinks|0.60;VERB|has an opinion|0.40
+5538 rojas rojo ADJ|red (fem)|1.00
+5535 asesinar VERB|to murder|0.60;VERB|to assassinate|0.40
+5532 detén detener VERB|stop!|1.00
+5531 dueños dueño NOUN|owners|1.00
+5530 fines fin NOUN|ends|0.55;NOUN|goals|0.45
+5529 mundos mundo NOUN|worlds|1.00
+5528 oculta ocultar ADJ|hidden (fem)|0.70;ADJ|concealed|0.30
+5526 plantas plantar VERB|you plant|0.55;VERB|you place|0.45
+5525 plantas planta NOUN|plants|0.75;NOUN|factories|0.25
+5524 políticos político NOUN|politicians|0.70;ADJ|political|0.30
+5523 prométeme prometer VERB|promise me|1.00
+5522 asesinó asesinar VERB|murdered|0.60;VERB|assassinated|0.40
+5521 caen caer VERB|they fall|1.00
+5520 cargando cargar VERB|carrying|0.60;VERB|loading|0.40
+5519 contarle contar VERB|to tell him/her|0.60;VERB|to recount|0.40
+5518 desaparecieron desaparecer VERB|disappeared|1.00
+5517 dispararle disparar VERB|to shoot him/her|1.00
+5516 duros duro ADJ|hard|0.55;ADJ|tough|0.45
+5514 escúcheme escuchar VERB|listen to me|1.00
+5513 esperé esperar VERB|I waited|1.00
+5512 fracasado fracasar ADJ|failed|0.60;ADJ|unsuccessful|0.40
+5509 molestando molestar VERB|bothering|0.60;VERB|annoying|0.40
+5507 parto partir VERB|I split|0.60;VERB|I share|0.40
+5506 pega pegar VERB|hits|0.55;VERB|sticks|0.45
+5504 pudiéramos poder VERB|we could|1.00
+5500 cállese callar VERB|be quiet|1.00
+5499 ordena ordenar VERB|orders|0.70;VERB|arranges|0.30
+5498 revistas revista NOUN|magazines|1.00
+5497 rompí romper VERB|I broke|1.00
+5496 vendió vender VERB|sold|1.00
+5491 cuerdas cuerdo ADJ|sane|0.60;ADJ|reasonable|0.40
+5490 cuerdas cuerda NOUN|ropes|0.80;NOUN|strings|0.20
+5489 despedir VERB|to fire|0.60;VERB|to say goodbye|0.40
+5488 detuvo detener VERB|stopped|0.70;VERB|detained|0.30
+5487 empiezas empezar VERB|you start|1.00
+5486 explosión NOUN|explosion|1.00
+5485 fijarse fijar VERB|to notice|1.00
+5484 jugando jugar VERB|playing|1.00
+5483 llamarle llamar VERB|to call him/her|1.00
+5482 llorando llorar VERB|crying|1.00
+5480 pelear VERB|to fight|1.00
+5479 perdiendo perder VERB|losing|1.00
+5478 ruido NOUN|noise|1.00
+5477 sacando sacar VERB|taking out|0.70;VERB|pulling out|0.30
+5476 suceder VERB|to happen|1.00
+5475 vino venir VERB|came|0.60;NOUN|wine|0.40
+5474 zapatos zapato NOUN|shoes|1.00
+5473 actuando actuar VERB|acting|1.00
+5472 caminar VERB|to walk|1.00
+5471 contiene contener VERB|contains|1.00
+5470 convencer VERB|to convince|1.00
+5469 crecer VERB|to grow|1.00
+5468 dejaremos dejar VERB|we will leave|0.60;VERB|we will let|0.40
+5467 dijeron decir VERB|they said|1.00
+5466 escribir VERB|to write|1.00
+5465 estómago NOUN|stomach|1.00
+5464 exacto exacto ADJ|exact|1.00
+5463 golpes golpe NOUN|hits|0.60;NOUN|blows|0.40
+5462 gritando gritar VERB|shouting|1.00
+5461 juntar juntar VERB|to join|1.00
+5460 mandó mandar VERB|ordered|0.60;VERB|sent|0.40
+5459 mantiene mantener VERB|maintains|0.60;VERB|keeps|0.40
+5458 muñeca NOUN|doll|0.70;NOUN|wrist|0.30
+5457 nadar VERB|to swim|1.00
+5456 obtener VERB|to obtain|1.00
+5455 paredes pared NOUN|walls|1.00
+5454 permanecer VERB|to remain|1.00
+5453 pesado pesar ADJ|heavy|0.70;ADJ|annoying|0.30
+5452 piensas pensar VERB|you think|1.00
+5451 poderes poder NOUN|powers|1.00
+5450 probarlo probar VERB|to try it|1.00
+5449 reaccionar VERB|to react|1.00
+5448 recoger VERB|to pick up|0.70;VERB|to collect|0.30
+5447 romper VERB|to break|1.00
+5446 sentimos sentir VERB|we feel|1.00
+5445 sujeto ADJ|subject|0.40;NOUN|subject/person|0.60
+5444 tocar VERB|to touch|0.60;VERB|to play|0.40
+5443 tratar VERB|to try|0.60;VERB|to deal with|0.40
+5442 vestido vestir NOUN|dress|0.60;ADJ|dressed|0.40
+5441 volando volar VERB|flying|1.00
+5440 acercarse acercar VERB|to approach|1.00
+5439 alguien PRON|someone|1.00
+5438 aprender VERB|to learn|1.00
+5437 cerrar VERB|to close|1.00
+5436 conducir VERB|to drive|1.00
+5435 crees creer VERB|you believe|1.00
+5434 dejando dejar VERB|leaving|0.60;VERB|letting|0.40
+5433 describir VERB|to describe|1.00
+5432 discutir VERB|to argue|1.00
+5431 dolores dolor NOUN|pains|1.00
+5430 entender VERB|to understand|1.00
+5429 entrando entrar VERB|entering|1.00
+5428 esconderse esconder VERB|to hide|1.00
+5427 exigir VERB|to demand|1.00
+5426 fijado fijar ADJ|fixed|0.60;ADJ|set|0.40
+5425 funciona funcionar VERB|works|1.00
+5424 gastar VERB|to spend|1.00
+5423 girar VERB|to turn|1.00
+5422 gritar VERB|to shout|1.00
+5421 juzgar VERB|to judge|1.00
+5420 levantar VERB|to lift|0.60;VERB|to raise|0.40
+5419 mataron matar VERB|killed|1.00
+5418 medidas medida NOUN|measures|1.00
+5417 mirar VERB|to look|1.00
+5416 mover VERB|to move|1.00
+5415 nervios nervio NOUN|nerves|1.00
+5414 ocurrir VERB|to occur|1.00
+5413 pagar VERB|to pay|1.00
+5412 pedir VERB|to ask for|1.00
+5411 pertenece pertenecer VERB|belongs|1.00
+5410 pesar VERB|to weigh|0.60;VERB|to regret|0.40
+5409 preocuparse preocupar VERB|to worry|1.00
+5408 proteger VERB|to protect|1.00
+5407 recibir VERB|to receive|1.00
+5406 reducir VERB|to reduce|1.00
+5405 relacionar VERB|to relate|1.00
+5404 responder VERB|to respond|1.00
+5403 revisar VERB|to review|1.00
+5402 saltar VERB|to jump|1.00
+5401 señalar VERB|to point out|1.00
+5400 suficiente suficiente ADJ|enough|1.00
+5399 tirar VERB|to throw|1.00
+5398 terminar VERB|to finish|1.00
+5397 tomar VERB|to take|0.60;VERB|to drink|0.40
+5396 trabajar VERB|to work|1.00
+5395 usar VERB|to use|1.00
+5394 viajar VERB|to travel|1.00
+5393 volver VERB|to return|1.00
+5392 aceptar VERB|to accept|1.00
+5391 acompañar VERB|to accompany|1.00
+5390 advertir VERB|to warn|1.00
+5389 alcanzar VERB|to reach|1.00
+5388 aparecer VERB|to appear|1.00
+5387 apoyar VERB|to support|1.00
+5386 atacar VERB|to attack|1.00
+5385 aumentar VERB|to increase|1.00
+5384 bajar VERB|to lower|0.60;VERB|to go down|0.40
+5383 cambiar VERB|to change|1.00
+5382 causar VERB|to cause|1.00
+5381 comparar VERB|to compare|1.00
+5380 considerar VERB|to consider|1.00
+5379 controlar VERB|to control|1.00
+5378 crear VERB|to create|1.00
+5377 cubrir VERB|to cover|1.00
+5376 defender VERB|to defend|1.00
+5375 depender VERB|to depend|1.00
+5374 desarrollar VERB|to develop|1.00
+5373 descubrir VERB|to discover|1.00
+5372 determinar VERB|to determine|1.00
+5371 elevar VERB|to raise|1.00
+5370 encontrar VERB|to find|1.00
+5369 enviar VERB|to send|1.00
+5368 establecer VERB|to establish|1.00
+5367 evitar VERB|to avoid|1.00
+5366 existir VERB|to exist|1.00
+5365 explicar VERB|to explain|1.00
+5364 formar VERB|to form|1.00
+5363 funcionar VERB|to function|1.00
+5362 garantizar VERB|to guarantee|1.00
+5361 generar VERB|to generate|1.00
+5360 identificar VERB|to identify|1.00
+5359 incluir VERB|to include|1.00
+5358 indicar VERB|to indicate|1.00
+5357 iniciar VERB|to start|1.00
+5356 insistir VERB|to insist|1.00
+5355 invitar VERB|to invite|1.00
+5354 lanzar VERB|to throw|0.60;VERB|to launch|0.40
+5353 lograr VERB|to achieve|1.00
+5352 mejorar VERB|to improve|1.00
+5351 mencionar VERB|to mention|1.00
+5350 necesitar VERB|to need|1.00
+5349 organizar VERB|to organize|1.00
+5348 participar VERB|to participate|1.00
+5347 perder VERB|to lose|1.00
+5346 preparar VERB|to prepare|1.00
+5345 producir VERB|to produce|1.00
+5344 reconocer VERB|to recognize|1.00
+5343 referir VERB|to refer|1.00
+5342 repetir VERB|to repeat|1.00
+5341 resolver VERB|to solve|1.00
+5340 resultar VERB|to result|1.00
+5339 sentir VERB|to feel|1.00
+5338 solicitar VERB|to request|1.00
+5337 suponer VERB|to suppose|1.00
+5336 utilizar VERB|to use|1.00
+5335 valorar VERB|to value|1.00
+5334 vender VERB|to sell|1.00
+4164 sentada sentar ADJ|seated|1.00
+4163 sentada sentado ADJ|seated|1.00
+4156 listas listo ADJ|ready|0.60;ADJ|smart|0.40
+4155 listas lista NOUN|lists|1.00
+4139 perrito perro NOUN|puppy|1.00
