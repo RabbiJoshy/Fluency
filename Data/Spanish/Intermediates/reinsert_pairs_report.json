@@ -1,0 +1,13 @@
+{
+  "input_json": "Data/Spanish/vocabulary.dedup_collapsed.json",
+  "csv": "Data/Spanish/SpanishRawWiki.csv",
+  "csv_pairs_total": 6759,
+  "json_entries_input": 5999,
+  "json_entries_output": 9181,
+  "rank_missing_before_fix_count_est": 0,
+  "rank_fields_set_or_changed_count": 62,
+  "stubs_added_missing_pairs_count": 3182,
+  "completed_lemmas_count": 1879,
+  "output_json": "Data/Spanish/vocabulary.reinserted_pairs_and_ranked.json",
+  "intermediates_dir": "Data/Spanish/Intermediates"
+}

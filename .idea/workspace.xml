@@ -5,6 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/rank_changes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/rank_stub_report.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/sparemeanings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/stubs_added.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/vocabulary.removed_not_in_csv.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/vocabularynohallucination.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/JSNCeaner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/RawTXT2CSV.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/SpanishRawWiki.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.dedup_collapsed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.ranked_and_stubbed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +112,7 @@
       <workItem from="1768811370545" duration="14380000" />
       <workItem from="1768924014357" duration="328000" />
       <workItem from="1768940447224" duration="13927000" />
-      <workItem from="1769116055201" duration="15738000" />
+      <workItem from="1769116055201" duration="23664000" />
     </task>
     <servers />
   </component>

@@ -937,6 +937,20 @@
             transform: translateY(-2px);
         }
 
+        .range-btn-new.mastered {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .range-btn-new.mastered:hover {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+            box-shadow: 0 0 15px var(--glow-green);
+            transform: translateY(-2px);
+        }
+
         .range-btn-new:active {
             transform: scale(0.95);
         }
@@ -1304,24 +1318,21 @@
 
         .incorrect-set-btn {
             font-family: var(--font-data);
-            padding: 10px 16px;
+            padding: 6px 12px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             transition: all 0.3s;
             color: var(--accent-secondary);
-            min-width: 81px;
             display: none;
-            margin-top: 15px;
+            margin-left: auto;
         }
 
         .incorrect-set-btn.visible {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            display: inline-block;
         }
 
         .incorrect-set-btn:hover {
@@ -2062,13 +2073,19 @@
     <div id="userInfo" class="user-info hidden">
         <!-- Floating buttons (shown only during flashcard view) -->
         <div id="floatingBtns" class="floating-btns">
-            <button class="logout-btn" id="backBtnFloating" title="Back to menu">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px;">
+            <button class="gear-btn" id="backBtnFloating" title="Back to menu">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="9 14 4 9 9 4"></polyline>
                     <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                </svg>Back
+                </svg>
             </button>
-            <button class="logout-btn" id="statsBtnFloating" title="View stats">Stats</button>
+            <button class="gear-btn" id="statsBtnFloating" title="View stats">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 20V10"></path>
+                    <path d="M12 20V4"></path>
+                    <path d="M6 20v-6"></path>
+                </svg>
+            </button>
         </div>
         <span class="user-badge" id="userBadge">GUEST</span>
         <button class="gear-btn" id="gearBtn" title="Settings">
@@ -2166,6 +2183,7 @@
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
+                    <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">Incorrect</button>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
@@ -2173,7 +2191,6 @@
                     </div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
-                <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">Incorrect</button>
             </div>
 
             <div id="loadingMessage" style="margin-top: 20px; color: var(--accent-green); display: none; text-align: center; font-weight: 600;"></div>
@@ -2459,17 +2476,40 @@
         };
 
         // Speak a word in the target language
-        function speakWord(text) {
+        function speakWord(text, useEnglish = false) {
             if (!speechEnabled || !text || !window.speechSynthesis) return;
 
             // Cancel any ongoing speech
             window.speechSynthesis.cancel();
 
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = speechLangCodes[selectedLanguage] || 'es-ES';
+            const langCode = useEnglish ? 'en-GB' : (speechLangCodes[selectedLanguage] || 'es-ES');
+            utterance.lang = langCode;
             utterance.rate = 0.9; // Slightly slower for learning
 
+            // Try to find a better quality voice
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+                // Prefer Google or premium voices, then any matching voice
+                const preferredVoice = voices.find(v =>
+                    v.lang.startsWith(langCode.split('-')[0]) &&
+                    (v.name.includes('Google') || v.name.includes('Premium') || v.name.includes('Enhanced') || v.name.includes('Samantha') || v.name.includes('Daniel'))
+                ) || voices.find(v => v.lang.startsWith(langCode.split('-')[0]));
+
+                if (preferredVoice) {
+                    utterance.voice = preferredVoice;
+                }
+            }
+
             window.speechSynthesis.speak(utterance);
+        }
+
+        // Preload voices (they may not be available immediately)
+        if (window.speechSynthesis) {
+            window.speechSynthesis.getVoices();
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
         }
 
         // ========== AUTHENTICATION & GOOGLE SHEETS ==========
@@ -3080,6 +3120,15 @@
             // Create a Set of all available ranks for fast lookup
             const availableRanks = new Set(filteredVocab.map(item => item.rank));
 
+            // Create a map of original ranks to check mastery
+            // We need to track the original vocab index for each filtered item
+            const originalRankMap = new Map();
+            vocabularyData.forEach((item, index) => {
+                if (item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0) {
+                    originalRankMap.set(index + 1, item);
+                }
+            });
+
             // Generate ALL possible range buttons based on groupSize across the full span
             const ranges = [];
             for (let i = minWord; i < maxWord; i += groupSize) {
@@ -3087,28 +3136,48 @@
 
                 // Check if ANY rank in this range has data
                 let hasData = false;
+                let ranksInRange = [];
                 for (let rank = i; rank < rangeEnd; rank++) {
                     if (availableRanks.has(rank)) {
                         hasData = true;
-                        break;
+                        ranksInRange.push(rank);
+                    }
+                }
+
+                // Check if ALL words in this range have been marked correct at least once
+                let isMastered = false;
+                if (hasData && currentUser && !currentUser.isGuest && progressData && ranksInRange.length > 0) {
+                    // For each rank in the range, find the corresponding original vocabulary rank
+                    // and check if it has correct > 0 in progressData
+                    const filteredInRange = filteredVocab.filter(item => item.rank >= i && item.rank < rangeEnd);
+                    if (filteredInRange.length > 0) {
+                        isMastered = filteredInRange.every(item => {
+                            // Find original rank by matching the word in the original vocabulary
+                            const originalIndex = vocabularyData.findIndex(v => v.word === item.word);
+                            const originalRank = originalIndex + 1;
+                            const progress = progressData[originalRank];
+                            return progress && progress.correct > 0 && progress.language === selectedLanguage;
+                        });
                     }
                 }
 
                 ranges.push({
                     range: `${i}-${rangeEnd}`,
-                    available: hasData
+                    available: hasData,
+                    mastered: isMastered
                 });
             }
 
-            // Generate HTML with disabled state for unavailable ranges
+            // Generate HTML with disabled state for unavailable ranges and mastered state for completed ranges
             const rangesHTML = ranges.map(r => {
                 const disabledAttr = !r.available ? 'disabled' : '';
                 const disabledClass = !r.available ? 'disabled' : '';
+                const masteredClass = r.mastered ? 'mastered' : '';
                 return `
-                    <button class="range-btn-new ${disabledClass}"
+                    <button class="range-btn-new ${disabledClass} ${masteredClass}"
                             data-range="${r.range}"
                             ${disabledAttr}
-                            title="${r.available ? 'Load ' + r.range : 'Greyed out because no vocabulary data exists for this range yet'}">
+                            title="${!r.available ? 'Greyed out because no vocabulary data exists for this range yet' : r.mastered ? 'All words in this set answered correctly at least once' : 'Load ' + r.range}">
                         ${r.range}
                     </button>
                 `;
@@ -4112,6 +4181,17 @@
                             currentMeaningIndex = (currentMeaningIndex - 1 + currentCard.meanings.length) % currentCard.meanings.length;
                         }
                         updateCard();
+                        // Auto-speak the new meaning
+                        const meaning = currentCard.meanings[currentMeaningIndex];
+                        if (meaning && meaning.meaning) {
+                            if (isFlipped) {
+                                // English → Target mode: back shows target, speak target
+                                speakWord(currentCard.targetWord, false);
+                            } else {
+                                // Target → English mode: back shows English, speak English
+                                speakWord(meaning.meaning, true);
+                            }
+                        }
                     } else if (currentCard && currentCard.sentences) {
                         if (diffY < 0) {
                             currentSentenceIndex = (currentSentenceIndex + 1) % currentCard.sentences.length;
@@ -4616,12 +4696,57 @@
         }
 
         function flipCard() {
-            document.getElementById('flashcard').classList.toggle('flipped');
+            const flashcardEl = document.getElementById('flashcard');
+            const wasFlipped = flashcardEl.classList.contains('flipped');
+            flashcardEl.classList.toggle('flipped');
+            const isNowFlipped = flashcardEl.classList.contains('flipped');
+
+            const card = flashcards[currentIndex];
+            if (!card) return;
+
+            // Auto-speak based on flip state and language direction
+            if (isNowFlipped) {
+                // Just flipped to BACK of card
+                if (isFlipped) {
+                    // English → Target mode: back shows target word, speak target
+                    speakWord(card.targetWord, false);
+                } else {
+                    // Target → English mode: back shows English, speak English meaning
+                    const meaning = card.meanings[currentMeaningIndex];
+                    if (meaning && meaning.meaning) {
+                        speakWord(meaning.meaning, true);
+                    }
+                }
+            } else {
+                // Just flipped to FRONT of card
+                if (isFlipped) {
+                    // English → Target mode: front shows English, speak English
+                    const meaning = card.meanings[currentMeaningIndex];
+                    if (meaning && meaning.meaning) {
+                        speakWord(meaning.meaning, true);
+                    }
+                } else {
+                    // Target → English mode: front shows target word, speak target
+                    speakWord(card.targetWord, false);
+                }
+            }
         }
 
         function selectMeaning(index) {
             currentMeaningIndex = index;
             updateCard();
+            // Auto-speak the selected meaning
+            const card = flashcards[currentIndex];
+            if (card && card.meanings[index]) {
+                const meaning = card.meanings[index];
+                if (isFlipped) {
+                    // English → Target mode: back shows target, speak target
+                    speakWord(card.targetWord, false);
+                } else {
+                    // Target → English mode: back shows English, speak English
+                    speakWord(meaning.meaning, true);
+                }
+            }
         }
 
         function previousCard() {

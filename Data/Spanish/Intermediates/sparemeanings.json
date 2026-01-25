@@ -1,0 +1,796 @@
+[
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "aquí",
+    "rank": 32,
+    "lemma": "",
+    "entry": {
+      "rank": 32,
+      "word": "aquí",
+      "lemma": "",
+      "meanings": [
+        {
+          "pos": "ADV",
+          "translation": "here",
+          "frequency": "1.00",
+          "example_spanish": "Aquí hay muchas estrellas en las noches.",
+          "example_english": "Here, there are many stars at night."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "tiempo",
+    "rank": 101,
+    "lemma": "",
+    "entry": {
+      "rank": 101,
+      "word": "tiempo",
+      "lemma": "",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "time",
+          "frequency": "0.85",
+          "example_spanish": "Nadie tiene otro tiempo para esperar.",
+          "example_english": "Nobody has any more time to wait."
+        },
+        {
+          "pos": "NOUN",
+          "translation": "weather",
+          "frequency": "0.15",
+          "example_spanish": "El tiempo está malo hoy.",
+          "example_english": "The weather is bad today."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "verdad",
+    "rank": 102,
+    "lemma": "",
+    "entry": {
+      "rank": 102,
+      "word": "verdad",
+      "lemma": "",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "truth",
+          "frequency": "1.00",
+          "example_spanish": "Podría estar diciendo la verdad.",
+          "example_english": "He could be telling the truth."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "dólares",
+    "rank": 546,
+    "lemma": "dólar",
+    "entry": {
+      "rank": 546,
+      "word": "dólares",
+      "lemma": "dólar",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "dollars",
+          "frequency": "",
+          "example_spanish": "Necesito cambiar estos dólares a euros.",
+          "example_english": "I need to exchange these dollars for euros."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "hicieron",
+    "rank": 939,
+    "lemma": "hacer",
+    "entry": {
+      "rank": 939,
+      "word": "hicieron",
+      "lemma": "hacer",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "escuchar",
+    "rank": 1259,
+    "lemma": "escuchar",
+    "entry": {
+      "rank": 1259,
+      "word": "escuchar",
+      "lemma": "escuchar",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "pone",
+    "rank": 1281,
+    "lemma": "poner",
+    "entry": {
+      "rank": 1281,
+      "word": "pone",
+      "lemma": "poner",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "abrir",
+    "rank": 1415,
+    "lemma": "abrir",
+    "entry": {
+      "rank": 1415,
+      "word": "abrir",
+      "lemma": "abrir",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "propósito",
+    "rank": 1437,
+    "lemma": "propósito",
+    "entry": {
+      "rank": 1437,
+      "word": "propósito",
+      "lemma": "propósito",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "pedir",
+    "rank": 1443,
+    "lemma": "pedir",
+    "entry": {
+      "rank": 1443,
+      "word": "pedir",
+      "lemma": "pedir"
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "pedir",
+    "rank": 1443,
+    "lemma": "pedir",
+    "entry": {
+      "rank": 1443,
+      "word": "pedir",
+      "lemma": "pedir",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "respecto",
+    "rank": 1516,
+    "lemma": "respecto",
+    "entry": {
+      "rank": 1516,
+      "word": "respecto",
+      "lemma": "respecto",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "respect, regard",
+          "frequency": "",
+          "example_spanish": "Con respecto a tu pregunta.",
+          "example_english": "With regard to your question."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "fuerzas",
+    "rank": 1582,
+    "lemma": "fuerza",
+    "entry": {
+      "rank": 1582,
+      "word": "fuerzas",
+      "lemma": "fuerza",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "juicio",
+    "rank": 1615,
+    "lemma": "juicio",
+    "entry": {
+      "rank": 1615,
+      "word": "juicio",
+      "lemma": "juicio",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "deberían",
+    "rank": 1761,
+    "lemma": "deber",
+    "entry": {
+      "rank": 1761,
+      "word": "deberían",
+      "lemma": "deber",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "lástima",
+    "rank": 1765,
+    "lemma": "lástima",
+    "entry": {
+      "rank": 1765,
+      "word": "lástima",
+      "lemma": "lástima",
+      "meanings": [
+        {
+          "pos": "noun",
+          "definition": "pity, shame, regret"
+        }
+      ],
+      "translations": [
+        "pity"
+      ],
+      "example": {
+        "es": "lástima es importante.",
+        "en": "lástima is important."
+      }
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "pedido",
+    "rank": 1787,
+    "lemma": "pedir",
+    "entry": {
+      "rank": 1787,
+      "word": "pedido",
+      "lemma": "pedir",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "lucha",
+    "rank": 1815,
+    "lemma": "lucha",
+    "entry": {
+      "rank": 1815,
+      "word": "lucha",
+      "lemma": "lucha",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "acceso",
+    "rank": 1827,
+    "lemma": "acceso",
+    "entry": {
+      "rank": 1827,
+      "word": "acceso",
+      "lemma": "acceso",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "clientes",
+    "rank": 1846,
+    "lemma": "cliente",
+    "entry": {
+      "rank": 1846,
+      "word": "clientes",
+      "lemma": "cliente",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "escrito",
+    "rank": 1864,
+    "lemma": "escribir",
+    "entry": {
+      "rank": 1864,
+      "word": "escrito",
+      "lemma": "escribir",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "silla",
+    "rank": 1911,
+    "lemma": "silla",
+    "entry": {
+      "rank": 1911,
+      "word": "silla",
+      "lemma": "silla",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "chair",
+          "frequency": "",
+          "example_spanish": "La silla es muy cómoda.",
+          "example_english": "The chair is very comfortable."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "oficiales",
+    "rank": 2044,
+    "lemma": "oficial",
+    "entry": {
+      "rank": 2044,
+      "word": "oficiales",
+      "lemma": "oficial",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "miembros",
+    "rank": 2131,
+    "lemma": "miembro",
+    "entry": {
+      "rank": 2131,
+      "word": "miembros",
+      "lemma": "miembro",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "aceptar",
+    "rank": 2168,
+    "lemma": "aceptar",
+    "entry": {
+      "rank": 2168,
+      "word": "aceptar",
+      "lemma": "aceptar",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "responsabilidad",
+    "rank": 2187,
+    "lemma": "responsabilidad",
+    "entry": {
+      "rank": 2187,
+      "word": "responsabilidad",
+      "lemma": "responsabilidad",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "pertenece",
+    "rank": 2190,
+    "lemma": "pertenecer",
+    "entry": {
+      "rank": 2190,
+      "word": "pertenece",
+      "lemma": "pertenecer",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "olor",
+    "rank": 2243,
+    "lemma": "olor",
+    "entry": {
+      "rank": 2243,
+      "word": "olor",
+      "lemma": "olor",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "acciones",
+    "rank": 2328,
+    "lemma": "acción",
+    "entry": {
+      "rank": 2328,
+      "word": "acciones",
+      "lemma": "acción",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "intención",
+    "rank": 2352,
+    "lemma": "intención",
+    "entry": {
+      "rank": 2352,
+      "word": "intención",
+      "lemma": "intención",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "intention",
+          "frequency": "",
+          "example_spanish": "Mi intención no era ofenderte.",
+          "example_english": "My intention was not to offend you."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "compañeros",
+    "rank": 2367,
+    "lemma": "compañero",
+    "entry": {
+      "rank": 2367,
+      "word": "compañeros",
+      "lemma": "compañero",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "cansada",
+    "rank": 2511,
+    "lemma": "cansado",
+    "entry": {
+      "rank": 2511,
+      "word": "cansada",
+      "lemma": "cansado",
+      "meanings": [
+        {
+          "pos": "ADJ",
+          "translation": "tired",
+          "frequency": "1.00",
+          "example_spanish": "Compré una silla útil porque estoy cansada.",
+          "example_english": "I bought a useful chair because I am tired."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "llevado",
+    "rank": 2535,
+    "lemma": "llevar",
+    "entry": {
+      "rank": 2535,
+      "word": "llevado",
+      "lemma": "llevar",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "agencia",
+    "rank": 2574,
+    "lemma": "agencia",
+    "entry": {
+      "rank": 2574,
+      "word": "agencia",
+      "lemma": "agencia",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "agency",
+          "frequency": "",
+          "example_spanish": "Trabaja en una agencia de publicidad.",
+          "example_english": "She works at an advertising agency."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "promesa",
+    "rank": 2615,
+    "lemma": "promesa",
+    "entry": {
+      "rank": 2615,
+      "word": "promesa",
+      "lemma": "promesa",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "promise",
+          "frequency": "",
+          "example_spanish": "Siempre cumple sus promesas.",
+          "example_english": "He always keeps his promises."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "mintiendo",
+    "rank": 2741,
+    "lemma": "mentir",
+    "entry": {
+      "rank": 2741,
+      "word": "mintiendo",
+      "lemma": "mentir",
+      "meanings": [
+        {
+          "pos": "VERB",
+          "translation": "lying",
+          "frequency": "1.00",
+          "example_spanish": "Los ricos estaban mintiendo el martes.",
+          "example_english": "The rich were lying on Tuesday."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "seres",
+    "rank": 2755,
+    "lemma": "ser",
+    "entry": {
+      "rank": 2755,
+      "word": "seres",
+      "lemma": "ser",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "compra",
+    "rank": 2787,
+    "lemma": "compra",
+    "entry": {
+      "rank": 2787,
+      "word": "compra",
+      "lemma": "compra",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "purchase",
+          "frequency": "",
+          "example_spanish": "Hice una buena compra en la tienda.",
+          "example_english": "I made a good purchase at the store."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "permitir",
+    "rank": 2799,
+    "lemma": "permitir",
+    "entry": {
+      "rank": 2799,
+      "word": "permitir",
+      "lemma": "permitir",
+      "duplicate": true
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "refiere",
+    "rank": 2933,
+    "lemma": "referir",
+    "entry": {
+      "rank": 2933,
+      "word": "refiere",
+      "lemma": "referir",
+      "meanings": [
+        {
+          "pos": "VERB",
+          "translation": "refers",
+          "frequency": "",
+          "example_spanish": "El artículo se refiere a ese tema.",
+          "example_english": "The article refers to that topic."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "comercial",
+    "rank": 3483,
+    "lemma": "comercial",
+    "entry": {
+      "rank": 3483,
+      "word": "comercial",
+      "lemma": "comercial",
+      "meanings": [
+        {
+          "pos": "ADJ",
+          "translation": "commercial",
+          "frequency": "",
+          "example_spanish": "Es un centro comercial muy grande.",
+          "example_english": "It is a very large shopping center."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "efectos",
+    "rank": 4058,
+    "lemma": "efecto",
+    "entry": {
+      "rank": 4058,
+      "word": "efectos",
+      "lemma": "efecto",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "effects",
+          "frequency": "",
+          "example_spanish": "Los efectos fueron inmediatos.",
+          "example_english": "The effects were immediate."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "apostar",
+    "rank": 4080,
+    "lemma": "apostar",
+    "entry": {
+      "rank": 4080,
+      "word": "apostar",
+      "lemma": "apostar",
+      "meanings": [
+        {
+          "pos": "VERB",
+          "translation": "to bet",
+          "frequency": "",
+          "example_spanish": "No me gusta apostar dinero.",
+          "example_english": "I don't like to bet money."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "colección",
+    "rank": 4100,
+    "lemma": "colección",
+    "entry": {
+      "rank": 4100,
+      "word": "colección",
+      "lemma": "colección",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "collection",
+          "frequency": "",
+          "example_spanish": "Tiene una colección de monedas antiguas.",
+          "example_english": "He has a collection of old coins."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "mínimo",
+    "rank": 4133,
+    "lemma": "mínimo",
+    "entry": {
+      "rank": 4133,
+      "word": "mínimo",
+      "lemma": "mínimo",
+      "meanings": [
+        {
+          "pos": "ADJ",
+          "translation": "minimum",
+          "frequency": "",
+          "example_spanish": "El precio mínimo es cien euros.",
+          "example_english": "The minimum price is one hundred euros."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "deporte",
+    "rank": 4328,
+    "lemma": "deporte",
+    "entry": {
+      "rank": 4328,
+      "word": "deporte",
+      "lemma": "deporte",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "sport",
+          "frequency": "",
+          "example_spanish": "El fútbol es mi deporte favorito.",
+          "example_english": "Soccer is my favorite sport."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "pública",
+    "rank": 4463,
+    "lemma": "público",
+    "entry": {
+      "rank": 4463,
+      "word": "pública",
+      "lemma": "público",
+      "meanings": [
+        {
+          "pos": "ADJ",
+          "translation": "public",
+          "frequency": "",
+          "example_spanish": "Es una escuela pública.",
+          "example_english": "It is a public school."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "ciudadano",
+    "rank": 4580,
+    "lemma": "ciudadano",
+    "entry": {
+      "rank": 4580,
+      "word": "ciudadano",
+      "lemma": "ciudadano",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "citizen",
+          "frequency": "",
+          "example_spanish": "Es un ciudadano responsable.",
+          "example_english": "He is a responsible citizen."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "generación",
+    "rank": 4873,
+    "lemma": "generación",
+    "entry": {
+      "rank": 4873,
+      "word": "generación",
+      "lemma": "generación",
+      "meanings": [
+        {
+          "pos": "NOUN",
+          "translation": "generation",
+          "frequency": "",
+          "example_spanish": "La nueva generación es muy tecnológica.",
+          "example_english": "The new generation is very technological."
+        }
+      ]
+    }
+  },
+  {
+    "reason": "exact_duplicate_entry",
+    "word": "oportunidades",
+    "rank": 5249,
+    "lemma": "oportunidad",
+    "entry": {
+      "rank": 5249,
+      "word": "oportunidades",
+      "lemma": "oportunidad",
+      "duplicate": true
+    }
+  }
+]
