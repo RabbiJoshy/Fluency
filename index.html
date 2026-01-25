@@ -1302,6 +1302,35 @@
             border-color: var(--accent-secondary);
         }
 
+        .incorrect-set-btn {
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: transparent;
+            border: 1px solid var(--error);
+            color: var(--error);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-left: 8px;
+            flex-shrink: 0;
+            display: none;
+        }
+
+        .incorrect-set-btn.visible {
+            display: inline-block;
+        }
+
+        .incorrect-set-btn:hover {
+            background: var(--error);
+            color: white;
+        }
+
+        .incorrect-set-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .step-info-tooltip {
             display: none;
             position: absolute;
@@ -2112,6 +2141,7 @@
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
+                    <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">Incorrect</button>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
@@ -2468,6 +2498,7 @@
             localStorage.setItem('flashcardUser', JSON.stringify(currentUser));
             showUserInfo();
             hideAuthModal();
+            updateIncorrectButtonVisibility();
         }
 
         // Show login form
@@ -2561,6 +2592,7 @@
                         };
                     });
                     console.log(`Loaded progress for ${result.data.progress.length} words`);
+                    updateIncorrectButtonVisibility();
                 }
             } catch (error) {
                 console.error('Failed to load progress from Google Sheets:', error);
@@ -2763,6 +2795,28 @@
                     });
                 }
             });
+
+            // Incorrect words set button handler
+            document.getElementById('incorrectSetBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                loadIncorrectWordsSet();
+            });
+        }
+
+        // Update incorrect button visibility based on login status and available incorrect words
+        function updateIncorrectButtonVisibility() {
+            const btn = document.getElementById('incorrectSetBtn');
+            if (!btn) return;
+
+            // Only show for logged-in users who have incorrect words for the current language
+            if (currentUser && !currentUser.isGuest && progressData) {
+                const hasIncorrectWords = Object.values(progressData).some(
+                    data => data.wrong > 0 && data.language === selectedLanguage
+                );
+                btn.classList.toggle('visible', hasIncorrectWords);
+            } else {
+                btn.classList.remove('visible');
+            }
         }
 
         // Initialize on page load
@@ -2831,6 +2885,7 @@
                     applyLanguageColorTheme();
                     renderLevelSelector(selectedLanguage);
                     updateLemmaToggleVisibility();
+                    updateIncorrectButtonVisibility();
                     // Hide steps 3 and 4
                     document.getElementById('step3').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
@@ -3220,6 +3275,142 @@
                 console.error(`Failed to load vocabulary data:`, error);
                 document.getElementById('loadingMessage').style.display = 'none';
                 alert(`Error loading ${rangeString}. Please try another set.`);
+            }
+        }
+
+        // Load study set of all-time incorrect words for the selected language
+        async function loadIncorrectWordsSet() {
+            if (!currentUser || currentUser.isGuest) {
+                alert('Please log in to access your incorrect words history.');
+                return;
+            }
+
+            // Get incorrect words for the currently selected language
+            const incorrectWords = Object.entries(progressData)
+                .filter(([wordRank, data]) =>
+                    data.wrong > 0 &&
+                    data.language === selectedLanguage
+                )
+                .map(([wordRank, data]) => ({
+                    wordRank: parseInt(wordRank),
+                    ...data
+                }))
+                // Sort by least recently correct (null lastCorrect = never correct, comes first)
+                // Then by least recently wrong as secondary sort
+                .sort((a, b) => {
+                    // Never correct comes first
+                    if (!a.lastCorrect && b.lastCorrect) return -1;
+                    if (a.lastCorrect && !b.lastCorrect) return 1;
+                    if (!a.lastCorrect && !b.lastCorrect) {
+                        // Both never correct - sort by oldest wrong first
+                        const aWrong = a.lastWrong ? new Date(a.lastWrong).getTime() : 0;
+                        const bWrong = b.lastWrong ? new Date(b.lastWrong).getTime() : 0;
+                        return aWrong - bWrong;
+                    }
+                    // Both have been correct - sort by oldest correct first
+                    return new Date(a.lastCorrect).getTime() - new Date(b.lastCorrect).getTime();
+                });
+
+            if (incorrectWords.length === 0) {
+                alert(`No incorrect words found for ${selectedLanguage}. Start practicing to build your incorrect words list!`);
+                return;
+            }
+
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('loadingMessage').textContent = `Loading ${incorrectWords.length} incorrect words...`;
+
+            // Clear previous state
+            flashcards = [];
+            currentIndex = 0;
+            currentSentenceIndex = 0;
+            currentMeaningIndex = 0;
+            isFlipped = false;
+
+            const flashcardEl = document.getElementById('flashcard');
+            if (flashcardEl) {
+                flashcardEl.classList.remove('flipped');
+            }
+
+            const langConfig = config.languages[selectedLanguage];
+            const dataPath = langConfig.dataPath;
+
+            try {
+                // Load the full vocabulary JSON to get card details
+                const response = await fetch(dataPath);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const vocabularyData = await response.json();
+
+                // Create a lookup map by original rank (before any filtering)
+                // We need to match by word since progressData stores the original rank
+                const wordToVocab = {};
+                vocabularyData.forEach((item, index) => {
+                    if (item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0) {
+                        // Store by original rank (index + 1)
+                        wordToVocab[index + 1] = item;
+                    }
+                });
+
+                const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+                const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
+                // Build flashcards from incorrect words
+                for (const incorrectWord of incorrectWords) {
+                    const item = wordToVocab[incorrectWord.wordRank];
+                    if (!item) continue; // Skip if word not found in vocabulary
+
+                    const meanings = item.meanings.map(m => ({
+                        pos: m.pos,
+                        meaning: m.translation,
+                        percentage: parseFloat(m.frequency),
+                        targetSentence: m[exampleTargetField],
+                        englishSentence: m[exampleEnglishField]
+                    }));
+
+                    // Normalize percentages
+                    const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
+                    if (totalPercentage === 0 || isNaN(totalPercentage)) {
+                        const equalPercentage = 1.0 / meanings.length;
+                        meanings.forEach(m => { m.percentage = equalPercentage; });
+                    } else if (totalPercentage !== 1.0) {
+                        meanings.forEach(m => { m.percentage = (m.percentage || 0) / totalPercentage; });
+                    }
+
+                    const card = {
+                        targetWord: item.word,
+                        lemma: item.lemma || '',
+                        rank: incorrectWord.wordRank,
+                        meanings: meanings,
+                        translation: item.meanings[0].translation,
+                        targetSentence: item.meanings[0][exampleTargetField],
+                        englishSentence: item.meanings[0][exampleEnglishField],
+                        links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
+                        isMultiMeaning: true
+                    };
+                    flashcards.push(card);
+                }
+
+                if (flashcards.length === 0) {
+                    alert('Could not load incorrect words. Please try again.');
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    return;
+                }
+
+                // Successfully loaded - show cards and hide setup
+                document.getElementById('setupPanel').classList.add('hidden');
+                document.getElementById('appContent').classList.remove('hidden');
+                document.getElementById('loadingMessage').style.display = 'none';
+
+                // Show mobile floating buttons
+                showFloatingBtns(true);
+
+                // Initialize card display
+                initializeApp();
+            } catch (error) {
+                console.error('Failed to load incorrect words set:', error);
+                document.getElementById('loadingMessage').style.display = 'none';
+                alert('Error loading incorrect words. Please try again.');
             }
         }
 
