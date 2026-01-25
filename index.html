@@ -1902,10 +1902,11 @@
             display: none;
             gap: 6px;
             margin-right: 8px;
+            align-items: center;
         }
 
         .floating-btns.visible {
-            display: flex;
+            display: flex !important;
         }
 
         .gear-btn {
@@ -2006,7 +2007,7 @@
     <!-- User Info Display -->
     <div id="userInfo" class="user-info hidden">
         <!-- Floating buttons (shown only during flashcard view) -->
-        <div id="floatingBtns" class="floating-btns" style="display: none;">
+        <div id="floatingBtns" class="floating-btns">
             <button class="logout-btn" id="backBtnFloating" title="Back to menu">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px;">
                     <polyline points="9 14 4 9 9 4"></polyline>
