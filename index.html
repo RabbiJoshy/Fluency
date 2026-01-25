@@ -925,15 +925,15 @@
             font-size: 13px;
             font-weight: 500;
             transition: all 0.3s;
-            color: var(--accent-blue);
+            color: var(--accent-secondary);
             min-width: 81px;
         }
 
         .range-btn-new:hover {
-            background: var(--accent-blue);
+            background: var(--accent-secondary);
             color: var(--bg-primary);
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 15px var(--glow-blue);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
             transform: translateY(-2px);
         }
 
@@ -1303,32 +1303,42 @@
         }
 
         .incorrect-set-btn {
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: transparent;
-            border: 1px solid var(--error);
-            color: var(--error);
-            font-size: 12px;
-            font-weight: 600;
+            font-family: var(--font-data);
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
             transition: all 0.3s;
-            margin-left: 8px;
-            flex-shrink: 0;
+            color: var(--accent-secondary);
+            min-width: 81px;
             display: none;
+            margin-top: 15px;
         }
 
         .incorrect-set-btn.visible {
-            display: inline-block;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .incorrect-set-btn:hover {
-            background: var(--error);
-            color: white;
+            background: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
+            transform: translateY(-2px);
         }
 
         .incorrect-set-btn:disabled {
-            opacity: 0.5;
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            border-color: var(--border-color);
             cursor: not-allowed;
+            opacity: 0.35;
+            pointer-events: none;
         }
 
         .step-info-tooltip {
@@ -1893,13 +1903,13 @@
             right: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             background: var(--bg-card);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 12px 32px;
+            border-radius: 28px;
             border: 1px solid var(--border-color);
             font-family: var(--font-data);
-            font-size: 14px;
+            font-size: 16px;
             z-index: 100;
         }
 
@@ -1907,15 +1917,16 @@
             color: var(--accent-primary);
             font-weight: 600;
             letter-spacing: 1px;
+            font-size: 16px;
         }
 
         .logout-btn {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 8px 20px;
+            border-radius: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
             font-family: var(--font-reading);
@@ -1929,8 +1940,8 @@
 
         .floating-btns {
             display: none;
-            gap: 6px;
-            margin-right: 8px;
+            gap: 10px;
+            margin-right: 12px;
             align-items: center;
         }
 
@@ -1942,7 +1953,7 @@
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 4px;
+            padding: 8px;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
@@ -1954,22 +1965,36 @@
             color: var(--accent-primary);
         }
 
+        .gear-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
         @media (max-width: 767px) {
             .user-info {
                 top: 10px;
                 right: 10px;
-                padding: 6px 12px;
-                font-size: 12px;
+                padding: 10px 24px;
+                font-size: 14px;
+                gap: 12px;
+            }
+
+            .user-badge {
+                font-size: 14px;
             }
 
             .logout-btn {
-                padding: 3px 8px;
-                font-size: 11px;
+                padding: 6px 16px;
+                font-size: 13px;
+            }
+
+            .gear-btn {
+                padding: 6px;
             }
 
             .gear-btn svg {
-                width: 14px;
-                height: 14px;
+                width: 22px;
+                height: 22px;
             }
         }
 
@@ -2096,33 +2121,14 @@
                 <div id="levelSelector" class="level-selector"></div>
             </div>
 
-            <!-- Step 3: Cards per Set -->
-            <div id="step3" class="setup-step" style="display: none;">
-                <div class="step-header-inline">
-                    <div class="step-header step-header-with-help">
-                        <span class="step-number">3</span>
-                        <span class="step-title">Cards per Set</span>
-                        <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
-                        <div id="step3Tooltip" class="step-info-tooltip">
-                            <p>Choose how many flashcards to study in each session.</p>
-                            <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
-                        </div>
-                    </div>
-                    <div id="groupSizeSelector" class="group-size-selector">
-                        <button class="group-size-btn selected" data-size="25">25</button>
-                        <button class="group-size-btn" data-size="50">50</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 4: Cards per Lemma -->
+            <!-- Step 3: Cards per Lemma -->
             <div id="lemmaToggleContainer" class="setup-step" style="display: none;">
                 <div class="step-header-inline">
                     <div class="step-header step-header-with-help">
-                        <span class="step-number">4</span>
+                        <span class="step-number">3</span>
                         <span class="step-title">Cards per Lemma</span>
-                        <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
-                        <div id="step4Tooltip" class="step-info-tooltip">
+                        <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
+                        <div id="step3Tooltip" class="step-info-tooltip">
                             <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
                             <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
                             <p><strong>1+</strong> = See all forms including conjugations and declensions, which helps with recognition of different word forms in context.</p>
@@ -2135,19 +2141,39 @@
                 </div>
             </div>
 
+            <!-- Step 4: Cards per Set -->
+            <div id="step3" class="setup-step" style="display: none;">
+                <div class="step-header-inline">
+                    <div class="step-header step-header-with-help">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Cards per Set</span>
+                        <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
+                        <div id="step4Tooltip" class="step-info-tooltip">
+                            <p>Choose how many flashcards to study in each session.</p>
+                            <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
+                        </div>
+                    </div>
+                    <div id="groupSizeSelector" class="group-size-selector">
+                        <button class="group-size-btn selected" data-size="25">25</button>
+                        <button class="group-size-btn" data-size="50">50</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Step 5: Range Selection -->
             <div id="step4" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
-                    <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">Incorrect</button>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
+                        <p><strong>Incorrect</strong> button (when visible) lets you study all words you've previously marked wrong, ordered by least recently answered correctly.</p>
                     </div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
+                <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">Incorrect</button>
             </div>
 
             <div id="loadingMessage" style="margin-top: 20px; color: var(--accent-green); display: none; text-align: center; font-weight: 600;"></div>
@@ -2810,10 +2836,16 @@
 
             // Only show for logged-in users who have incorrect words for the current language
             if (currentUser && !currentUser.isGuest && progressData) {
-                const hasIncorrectWords = Object.values(progressData).some(
+                const incorrectCount = Object.values(progressData).filter(
                     data => data.wrong > 0 && data.language === selectedLanguage
-                );
-                btn.classList.toggle('visible', hasIncorrectWords);
+                ).length;
+
+                if (incorrectCount > 0) {
+                    btn.classList.add('visible');
+                    btn.textContent = `Incorrect (${incorrectCount})`;
+                } else {
+                    btn.classList.remove('visible');
+                }
             } else {
                 btn.classList.remove('visible');
             }
@@ -2886,7 +2918,8 @@
                     renderLevelSelector(selectedLanguage);
                     updateLemmaToggleVisibility();
                     updateIncorrectButtonVisibility();
-                    // Hide steps 3 and 4
+                    // Hide steps 3, 4, and 5
+                    document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('step3').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
                 });
@@ -2911,7 +2944,8 @@
                     document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
                     this.classList.add('selected');
                     selectedLevel = this.dataset.level;
-                    // Show steps 3 and 4
+                    // Show steps 3 (lemma), 4 (cards per set), and 5 (range)
+                    document.getElementById('lemmaToggleContainer').style.display = 'block';
                     document.getElementById('step3').style.display = 'block';
                     renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                 });
