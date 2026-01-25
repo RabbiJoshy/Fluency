@@ -3,7 +3,6 @@
     "spanish": {
       "name": "Spanish",
       "dataPath": "Data/Spanish/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/Spanish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_spanish",
       "exampleEnglishField": "example_english",
       "colorTheme": {
@@ -59,7 +58,6 @@
     "swedish": {
       "name": "Swedish",
       "dataPath": "Data/Swedish/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/Swedish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_swedish",
       "exampleEnglishField": "example_english",
       "colorTheme": {
@@ -114,7 +112,6 @@
     "italian": {
       "name": "Italian",
       "dataPath": "Data/Italian/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/Italian/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_italian",
       "exampleEnglishField": "example_english",
       "colorTheme": {
@@ -169,7 +166,6 @@
     "dutch": {
       "name": "Dutch",
       "dataPath": "Data/Dutch/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/Dutch/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_dutch",
       "exampleEnglishField": "example_english",
       "colorTheme": {
@@ -224,7 +220,6 @@
     "french": {
       "name": "French",
       "dataPath": "Data/French/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/French/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_french",
       "exampleEnglishField": "example_english",
       "hasData": false,
@@ -280,7 +275,6 @@
     "russian": {
       "name": "Russian",
       "dataPath": "Data/Russian/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/Russian/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_russian",
       "exampleEnglishField": "example_english",
       "hasData": false,
@@ -336,7 +330,6 @@
     "polish": {
       "name": "Polish",
       "dataPath": "Data/Polish/vocabulary.json",
-      "lemmaDeduplicatedPath": "Data/Polish/lemma_deduplicated/vocabulary.json",
       "exampleTargetField": "example_polish",
       "exampleEnglishField": "example_english",
       "colorTheme": {

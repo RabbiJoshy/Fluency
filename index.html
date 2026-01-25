@@ -1292,6 +1292,18 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
+        .lemma-toggle-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .lemma-toggle-unavailable .lemma-toggle-btn[data-lemma="on"] {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .step-help-btn {
             width: 22px;
             height: 22px;
@@ -2460,6 +2472,7 @@
         let isFlipped = false;
         let groupSize = 25; // Default group size
         let useLemmaMode = true; // Whether to use 1 card per lemma mode
+        let lemmaFieldAvailable = false; // Whether vocabulary has most_frequent_lemma_instance field
         let isAppInitialized = false; // Track if event listeners have been set up
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
         let speechEnabled = true; // Text-to-speech toggle
@@ -3009,6 +3022,10 @@
         function setupLemmaToggle() {
             document.querySelectorAll('.lemma-toggle-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
+                    // Don't allow selecting "1" mode if lemma field not available
+                    if (this.dataset.lemma === 'on' && !lemmaFieldAvailable) {
+                        return;
+                    }
                     document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
                     this.classList.add('selected');
                     useLemmaMode = this.dataset.lemma === 'on';
@@ -3026,21 +3043,42 @@
             });
         }
 
-        function updateLemmaToggleVisibility() {
+        async function updateLemmaToggleVisibility() {
             const langConfig = config.languages[selectedLanguage];
             const lemmaContainer = document.getElementById('lemmaToggleContainer');
+            const lemmaSelector = document.getElementById('lemmaToggleSelector');
             const rangeStepNumber = document.getElementById('rangeStepNumber');
 
-            if (langConfig && langConfig.lemmaDeduplicatedPath) {
-                lemmaContainer.style.display = 'block';
-                rangeStepNumber.textContent = '5';
+            // Check if vocabulary has most_frequent_lemma_instance field
+            lemmaFieldAvailable = false;
+            if (langConfig && langConfig.dataPath) {
+                try {
+                    const response = await fetch(langConfig.dataPath);
+                    if (response.ok) {
+                        const vocabData = await response.json();
+                        // Check if at least one entry has the most_frequent_lemma_instance field
+                        lemmaFieldAvailable = vocabData.some(item =>
+                            item.hasOwnProperty('most_frequent_lemma_instance')
+                        );
+                    }
+                } catch (error) {
+                    console.error('Error checking lemma field availability:', error);
+                }
+            }
+
+            // Always show the container (step 3), but disable the "1" option if field not available
+            lemmaContainer.style.display = 'block';
+            rangeStepNumber.textContent = '5';
+
+            if (lemmaFieldAvailable) {
+                // Enable both options
+                lemmaSelector.classList.remove('lemma-toggle-unavailable');
             } else {
-                lemmaContainer.style.display = 'none';
-                rangeStepNumber.textContent = '4';
-                // Reset lemma mode when hiding
-                useLemmaMode = true;
+                // Disable the "1" option, force "1+" mode
+                lemmaSelector.classList.add('lemma-toggle-unavailable');
+                useLemmaMode = false;
                 document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
-                document.querySelector('.lemma-toggle-btn[data-lemma="on"]').classList.add('selected');
+                document.querySelector('.lemma-toggle-btn[data-lemma="off"]').classList.add('selected');
             }
         }
 
@@ -3094,17 +3132,9 @@
                 item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
             );
 
-            // If in lemma mode, keep only first occurrence of each lemma from entire dataset
-            if (useLemmaMode) {
-                const seenLemmas = new Set();
-                filteredVocab = filteredVocab.filter(item => {
-                    const lemma = item.lemma || item.word;
-                    if (seenLemmas.has(lemma)) {
-                        return false;
-                    }
-                    seenLemmas.add(lemma);
-                    return true;
-                });
+            // If in lemma mode, filter to only entries where most_frequent_lemma_instance is true
+            if (useLemmaMode && lemmaFieldAvailable) {
+                filteredVocab = filteredVocab.filter(item => item.most_frequent_lemma_instance === true);
             }
 
             // Re-rank ALL filtered data based on position (starting from 1)
@@ -3293,17 +3323,9 @@
                     item.meanings.length > 0
                 );
 
-                // If in lemma mode, keep only first occurrence of each lemma from ENTIRE dataset
-                if (useLemmaMode) {
-                    const seenLemmas = new Set();
-                    filteredData = filteredData.filter(item => {
-                        const lemma = item.lemma || item.word;
-                        if (seenLemmas.has(lemma)) {
-                            return false;
-                        }
-                        seenLemmas.add(lemma);
-                        return true;
-                    });
+                // If in lemma mode, filter to only entries where most_frequent_lemma_instance is true
+                if (useLemmaMode && lemmaFieldAvailable) {
+                    filteredData = filteredData.filter(item => item.most_frequent_lemma_instance === true);
                 }
 
                 // Re-rank ALL filtered data based on position

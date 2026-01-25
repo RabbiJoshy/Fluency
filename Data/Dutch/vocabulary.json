@@ -11,7 +11,8 @@
         "example_dutch": "Ik ben hier.",
         "example_english": "I am here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 2,
@@ -32,7 +33,8 @@
         "example_dutch": "Dat is je boek.",
         "example_english": "That is your book."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 3,
@@ -53,7 +55,8 @@
         "example_dutch": "Ik heb het niet.",
         "example_english": "I don't have it."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 4,
@@ -67,7 +70,8 @@
         "example_dutch": "De man is hier.",
         "example_english": "The man is here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 5,
@@ -88,7 +92,8 @@
         "example_dutch": "Ik weet dat je hier bent.",
         "example_english": "I know that you are here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 6,
@@ -102,7 +107,8 @@
         "example_dutch": "Hij is een man.",
         "example_english": "He is a man."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 7,
@@ -123,7 +129,8 @@
         "example_dutch": "Ik heb een kind.",
         "example_english": "I have one child."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 8,
@@ -137,7 +144,8 @@
         "example_dutch": "Het is niet waar.",
         "example_english": "It is not true."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 9,
@@ -151,7 +159,8 @@
         "example_dutch": "Jij en ik zijn hier.",
         "example_english": "You and I are here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 10,
@@ -172,7 +181,8 @@
         "example_dutch": "Ik heb wat tijd.",
         "example_english": "I have some time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 11,
@@ -186,7 +196,8 @@
         "example_dutch": "Dat is het huis van mijn vader.",
         "example_english": "That is my father's house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 12,
@@ -200,7 +211,8 @@
         "example_dutch": "We zijn hier niet.",
         "example_english": "We are not here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 13,
@@ -214,7 +226,8 @@
         "example_dutch": "Hij is in het huis.",
         "example_english": "He is in the house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 14,
@@ -235,7 +248,8 @@
         "example_dutch": "Ik zie ze niet.",
         "example_english": "I don't see them."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 15,
@@ -249,7 +263,8 @@
         "example_dutch": "Hij is niet op het werk.",
         "example_english": "He is not at work."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 16,
@@ -270,7 +285,8 @@
         "example_dutch": "De tijd is op.",
         "example_english": "The time is up."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 17,
@@ -291,7 +307,8 @@
         "example_dutch": "Het is te laat.",
         "example_english": "It is too late."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 18,
@@ -312,7 +329,8 @@
         "example_dutch": "Dat is zijn huis.",
         "example_english": "That is his house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 19,
@@ -326,7 +344,8 @@
         "example_dutch": "Er is een man in het huis.",
         "example_english": "There is a man in the house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 20,
@@ -340,7 +359,8 @@
         "example_dutch": "Ik wil gaan, maar ik kan niet.",
         "example_english": "I want to go, but I cannot."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 21,
@@ -361,7 +381,8 @@
         "example_dutch": "De man die hier is.",
         "example_english": "The man who is here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 22,
@@ -375,7 +396,8 @@
         "example_dutch": "Ik heb een huis.",
         "example_english": "I have a house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 23,
@@ -389,7 +411,8 @@
         "example_dutch": "Hij ziet me niet.",
         "example_english": "He doesn't see me."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 24,
@@ -403,7 +426,8 @@
         "example_dutch": "Ik ga met je mee.",
         "example_english": "I go with you."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 25,
@@ -417,7 +441,8 @@
         "example_dutch": "Dit is voor jou.",
         "example_english": "This is for you."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 26,
@@ -438,7 +463,8 @@
         "example_dutch": "Hij werkt als leraar.",
         "example_english": "He works as a teacher."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 27,
@@ -452,7 +478,8 @@
         "example_dutch": "Ik ben hier met mijn vader.",
         "example_english": "I am here with my father."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 28,
@@ -466,7 +493,8 @@
         "example_dutch": "Hij was hier voor mij.",
         "example_english": "He was here for me."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 29,
@@ -480,7 +508,8 @@
         "example_dutch": "Dit is mijn huis.",
         "example_english": "This is my house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 30,
@@ -494,7 +523,8 @@
         "example_dutch": "Mijn huis is hier.",
         "example_english": "My house is here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 31,
@@ -515,7 +545,8 @@
         "example_dutch": "Ik ga om te werken.",
         "example_english": "I go to work."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 32,
@@ -536,7 +567,8 @@
         "example_dutch": "Het licht is aan.",
         "example_english": "The light is on."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 33,
@@ -550,7 +582,8 @@
         "example_dutch": "Jij bent hier, maar ik niet.",
         "example_english": "You are here, but I am not."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 34,
@@ -564,7 +597,8 @@
         "example_dutch": "Ik ga naar het huis.",
         "example_english": "I go to the house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 35,
@@ -585,7 +619,8 @@
         "example_dutch": "Dit is meer dan dat.",
         "example_english": "This is more than that."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 36,
@@ -599,7 +634,8 @@
         "example_dutch": "Kom hier naar mij.",
         "example_english": "Come here to me."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 37,
@@ -613,7 +649,8 @@
         "example_dutch": "Ik weet dat je hier bent.",
         "example_english": "I know that you are here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 38,
@@ -627,7 +664,8 @@
         "example_dutch": "Ik kan niet gaan.",
         "example_english": "I cannot go."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 39,
@@ -641,7 +679,8 @@
         "example_dutch": "Ik heb geen tijd.",
         "example_english": "I have no time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 40,
@@ -655,7 +694,8 @@
         "example_dutch": "Hij is nog hier.",
         "example_english": "He is still here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 41,
@@ -669,7 +709,8 @@
         "example_dutch": "Ik moet nu gaan.",
         "example_english": "I must go now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 42,
@@ -683,7 +724,8 @@
         "example_dutch": "Ik wil hier niet zijn.",
         "example_english": "I don't want to be here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 43,
@@ -697,7 +739,8 @@
         "example_dutch": "Dat kan wel, maar het moet niet.",
         "example_english": "That is possible, but it should not."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 44,
@@ -711,7 +754,8 @@
         "example_dutch": "Ja, ik wil dat wel.",
         "example_english": "Yes, I want that indeed."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 45,
@@ -725,7 +769,8 @@
         "example_dutch": "Het is zo goed.",
         "example_english": "It is so good."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 46,
@@ -739,7 +784,8 @@
         "example_dutch": "Hij heeft geen tijd.",
         "example_english": "He has no time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 47,
@@ -753,7 +799,8 @@
         "example_dutch": "We hebben nog tijd.",
         "example_english": "We still have time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 48,
@@ -767,7 +814,8 @@
         "example_dutch": "Ik zie hem daar.",
         "example_english": "I see him there."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 49,
@@ -788,7 +836,8 @@
         "example_dutch": "Het gaat goed met hem.",
         "example_english": "It goes well with him."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 50,
@@ -802,7 +851,8 @@
         "example_dutch": "Nee, ik wil dat niet.",
         "example_english": "No, I don't want that."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 51,
@@ -823,7 +873,8 @@
         "example_dutch": "Dat is waar.",
         "example_english": "That is true."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 52,
@@ -837,7 +888,8 @@
         "example_dutch": "Ik ga nu naar huis.",
         "example_english": "I go home now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 53,
@@ -851,7 +903,8 @@
         "example_dutch": "Hoe gaat het met je?",
         "example_english": "How are you doing?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 54,
@@ -865,7 +918,8 @@
         "example_dutch": "Ik ga nu naar hem.",
         "example_english": "I go to him now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 55,
@@ -879,7 +933,8 @@
         "example_dutch": "Ik zie haar niet.",
         "example_english": "I don't see her."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 56,
@@ -900,7 +955,8 @@
         "example_dutch": "Het licht is uit.",
         "example_english": "The light is off."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 57,
@@ -914,7 +970,8 @@
         "example_dutch": "Wat moet ik nu doen?",
         "example_english": "What must I do now?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 58,
@@ -928,7 +985,8 @@
         "example_dutch": "Ik ga ook uit.",
         "example_english": "I go out too."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 59,
@@ -942,7 +1000,8 @@
         "example_dutch": "We moeten over dit doen.",
         "example_english": "We must do about this."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 60,
@@ -956,7 +1015,8 @@
         "example_dutch": "Jij bent nu ook hier.",
         "example_english": "You are also here now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 61,
@@ -970,7 +1030,8 @@
         "example_dutch": "Kom je met mij mee?",
         "example_english": "Are you coming with me?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 62,
@@ -984,7 +1045,8 @@
         "example_dutch": "We moeten nu gaan.",
         "example_english": "We must go now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 63,
@@ -998,7 +1060,8 @@
         "example_dutch": "Wil je dit of dat?",
         "example_english": "Do you want this or that?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 64,
@@ -1012,7 +1075,8 @@
         "example_dutch": "Kom je ook mee?",
         "example_english": "Are you also coming?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 65,
@@ -1026,7 +1090,8 @@
         "example_dutch": "Dat zou goed zijn.",
         "example_english": "That would be good."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 66,
@@ -1040,7 +1105,8 @@
         "example_dutch": "Ik ben al klaar.",
         "example_english": "I am already ready."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 67,
@@ -1054,7 +1120,8 @@
         "example_dutch": "Ik ben bij hem.",
         "example_english": "I am with him."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 68,
@@ -1068,7 +1135,8 @@
         "example_dutch": "Kom daar bij mij.",
         "example_english": "Come there to me."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 69,
@@ -1082,7 +1150,8 @@
         "example_dutch": "Kom je bij ons?",
         "example_english": "Are you coming to us?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 70,
@@ -1096,7 +1165,8 @@
         "example_dutch": "Waar zijn jullie nu?",
         "example_english": "Where are you now?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 71,
@@ -1110,7 +1180,8 @@
         "example_dutch": "Jullie hebt geen tijd.",
         "example_english": "You have no time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 72,
@@ -1124,7 +1195,8 @@
         "example_dutch": "Hij gaat daar nu heen.",
         "example_english": "He is going there now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 73,
@@ -1138,7 +1210,8 @@
         "example_dutch": "Er is iets aan de hand.",
         "example_english": "There is something going on."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 74,
@@ -1152,7 +1225,8 @@
         "example_dutch": "Ik zal het doen.",
         "example_english": "I will do it."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 75,
@@ -1166,7 +1240,8 @@
         "example_dutch": "Ik wil meer tijd.",
         "example_english": "I want more time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 76,
@@ -1180,7 +1255,8 @@
         "example_dutch": "Waarom gaat hij nu?",
         "example_english": "Why is he going now?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 77,
@@ -1194,7 +1270,8 @@
         "example_dutch": "Ik had meer tijd.",
         "example_english": "I had more time."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 78,
@@ -1208,7 +1285,8 @@
         "example_dutch": "Deze man is goed.",
         "example_english": "This man is good."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 79,
@@ -1229,7 +1307,8 @@
         "example_dutch": "Het is al laat.",
         "example_english": "It is already late."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 80,
@@ -1243,7 +1322,8 @@
         "example_dutch": "We moeten nu gaan.",
         "example_english": "We must go now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 81,
@@ -1257,7 +1337,8 @@
         "example_dutch": "Dat is m'n huis.",
         "example_english": "That is my house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 82,
@@ -1271,7 +1352,8 @@
         "example_dutch": "Ik zie jou daar.",
         "example_english": "I see you there."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 83,
@@ -1285,7 +1367,8 @@
         "example_dutch": "Wat doe je nu?",
         "example_english": "What are you doing now?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 84,
@@ -1299,7 +1382,8 @@
         "example_dutch": "Wie is die man?",
         "example_english": "Who is that man?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 85,
@@ -1313,7 +1397,8 @@
         "example_dutch": "We kunnen het doen.",
         "example_english": "We can do it."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   },
   {
     "rank": 86,
@@ -1327,7 +1412,8 @@
         "example_dutch": "Ik weet alles over jou.",
         "example_english": "I know everything about you."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 87,
@@ -1341,7 +1427,8 @@
         "example_dutch": "Ik denk dat het goed is.",
         "example_english": "I think that it is good."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 88,
@@ -1355,7 +1442,8 @@
         "example_dutch": "Ik ga door het huis.",
         "example_english": "I go through the house."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 89,
@@ -1376,7 +1464,8 @@
         "example_dutch": "Dit is een echt probleem.",
         "example_english": "This is a real problem."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 90,
@@ -1390,7 +1479,8 @@
         "example_dutch": "Ik ben hier nu alleen.",
         "example_english": "I am alone here now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 91,
@@ -1404,7 +1494,8 @@
         "example_dutch": "Oké, ik ga nu.",
         "example_english": "Okay, I go now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 92,
@@ -1418,7 +1509,8 @@
         "example_dutch": "Kom eens hier.",
         "example_english": "Come here sometime."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 93,
@@ -1432,7 +1524,8 @@
         "example_dutch": "Ik ben ziek, dus ik ga niet.",
         "example_english": "I am sick, so I don't go."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 94,
@@ -1453,7 +1546,8 @@
         "example_dutch": "De weg is hier.",
         "example_english": "The road is here."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 95,
@@ -1467,7 +1561,8 @@
         "example_dutch": "Ik kan het nu zien.",
         "example_english": "I can see it now."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 96,
@@ -1481,7 +1576,8 @@
         "example_dutch": "Ik ga toch niet.",
         "example_english": "I'm not going anyway."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 97,
@@ -1495,7 +1591,8 @@
         "example_dutch": "Die man daar is echt goed.",
         "example_english": "That man there is really good."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 98,
@@ -1509,7 +1606,8 @@
         "example_dutch": "Ik ga daar nooit heen.",
         "example_english": "I never go there."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 99,
@@ -1523,7 +1621,8 @@
         "example_dutch": "Kom je snel terug?",
         "example_english": "Are you coming back soon?"
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": true
   },
   {
     "rank": 100,
@@ -1537,6 +1636,7 @@
         "example_dutch": "We moeten hem dat doen laten.",
         "example_english": "We must let him do that."
       }
-    ]
+    ],
+    "most_frequent_lemma_instance": false
   }
 ]

@@ -5,18 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/rank_changes.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/rank_stub_report.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/sparemeanings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/stubs_added.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/vocabulary.removed_not_in_csv.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/vocabularynohallucination.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/JSNCeaner.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/RawTXT2CSV.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/SpanishRawWiki.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.dedup_collapsed.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.ranked_and_stubbed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Intermediates/b4vocabulary.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/Scripts/deduplicate_lemmas 18.40.17.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/Scripts/imputemissing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/Scripts/merge_vocabulary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/Scripts/txt2csv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Swedish/Scripts/vocabulary_extra.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/emma.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vocabulary 18.42.21.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Dutch/deduplicate_lemmas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Dutch/lemma_deduplicated/vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Italian/deduplicate_lemmas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Italian/lemma_deduplicated/vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Italian/void_italian_vocabulary_401_600.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Italian/void_vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Polish/deduplicate_lemmas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Polish/lemma_deduplicated/vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Polish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Polish/vocabulary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/lemma_deduplicated/vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.with_most_frequent_lemma_instance.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/deduplicate_lemmas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/imputemissing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/lemma_deduplicated/vocabulary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/merge_vocabulary.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/swedish_vocabulary_1000_1500_complete.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/txt2csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Swedish/vocabulary_extra.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +130,7 @@
       <workItem from="1768811370545" duration="14380000" />
       <workItem from="1768924014357" duration="328000" />
       <workItem from="1768940447224" duration="13927000" />
-      <workItem from="1769116055201" duration="23664000" />
+      <workItem from="1769116055201" duration="28563000" />
     </task>
     <servers />
   </component>
