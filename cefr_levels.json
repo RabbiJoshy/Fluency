@@ -42,15 +42,15 @@
       { "level": "B1", "description": "Intermediate", "comprehension": "~85% of spoken language", "wordCount": "1500-2500" },
       { "level": "B2", "description": "Upper Intermediate", "comprehension": "~90% of spoken language", "wordCount": "2500-3000" },
       { "level": "C1", "description": "Advanced", "comprehension": "~95% of spoken language", "wordCount": "3000-4500" },
-      { "level": "C2", "description": "Proficient", "comprehension": "~98% of spoken language", "wordCount": "4500-6000" }
+      { "level": "C2", "description": "Proficient", "comprehension": "~98% of spoken language", "wordCount": "4500-7000" }
     ],
     "lemmaMode": [
       { "level": "A1", "description": "Beginner", "comprehension": "~65% of spoken language", "wordCount": "1-400" },
-      { "level": "A2", "description": "Elementary", "comprehension": "~75% of spoken language", "wordCount": "400-750" },
-      { "level": "B1", "description": "Intermediate", "comprehension": "~85% of spoken language", "wordCount": "750-1250" },
-      { "level": "B2", "description": "Upper Intermediate", "comprehension": "~90% of spoken language", "wordCount": "1250-1500" },
-      { "level": "C1", "description": "Advanced", "comprehension": "~95% of spoken language", "wordCount": "1500-2250" },
-      { "level": "C2", "description": "Proficient", "comprehension": "~98% of spoken language", "wordCount": "2250-3000" }
+      { "level": "A2", "description": "Elementary", "comprehension": "~75% of spoken language", "wordCount": "400-1000" },
+      { "level": "B1", "description": "Intermediate", "comprehension": "~85% of spoken language", "wordCount": "1000-1500" },
+      { "level": "B2", "description": "Upper Intermediate", "comprehension": "~90% of spoken language", "wordCount": "1500-2000" },
+      { "level": "C1", "description": "Advanced", "comprehension": "~95% of spoken language", "wordCount": "2000-3000" },
+      { "level": "C2", "description": "Proficient", "comprehension": "~98% of spoken language", "wordCount": "3000-5000" }
     ]
   },
   "italian": {
