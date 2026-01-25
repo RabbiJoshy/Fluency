@@ -81717,14 +81717,30 @@
     "rank": 5846,
     "word": "preguntarme",
     "lemma": "preguntar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to ask me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5847,
     "word": "oyendo",
     "lemma": "oír",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "hearing",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -81761,7 +81777,15 @@
     "rank": 5850,
     "word": "mordida",
     "lemma": "morder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "bitten",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -81783,14 +81807,30 @@
     "rank": 5852,
     "word": "miró",
     "lemma": "mirar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "looked",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5853,
     "word": "marchar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to march/leave",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -81842,28 +81882,60 @@
     "rank": 5857,
     "word": "causó",
     "lemma": "causar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "caused",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5858,
     "word": "aléjense",
     "lemma": "alejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "move away/get away",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5859,
     "word": "acercando",
     "lemma": "acercar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "approaching",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5860,
     "word": "vió",
     "lemma": "ver",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "saw",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -81915,42 +81987,90 @@
     "rank": 5864,
     "word": "reuniones",
     "lemma": "reunión",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "meetings",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5865,
     "word": "pida",
     "lemma": "pedir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "ask for",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5866,
     "word": "personajes",
     "lemma": "personaje",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "characters",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5867,
     "word": "lees",
     "lemma": "leer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you read",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5868,
     "word": "dispuesta",
     "lemma": "dispuesto",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "willing/ready",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5869,
     "word": "dispuesta",
     "lemma": "disponer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "willing",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82002,7 +82122,15 @@
     "rank": 5873,
     "word": "ayudaría",
     "lemma": "ayudar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would help",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82024,7 +82152,15 @@
     "rank": 5875,
     "word": "odiaba",
     "lemma": "odiar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "hated",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82076,7 +82212,15 @@
     "rank": 5879,
     "word": "meterme",
     "lemma": "meter",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to get into",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82113,7 +82257,15 @@
     "rank": 5882,
     "word": "ésos",
     "lemma": "ese",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "PRON",
+        "translation": "those",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82135,14 +82287,30 @@
     "rank": 5884,
     "word": "cazadores",
     "lemma": "cazador",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hunters",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5885,
     "word": "usarla",
     "lemma": "usar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to use it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82179,21 +82347,45 @@
     "rank": 5888,
     "word": "responsabilidades",
     "lemma": "responsabilidad",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "responsibilities",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5889,
     "word": "preocupas",
     "lemma": "preocupar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you worry",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5890,
     "word": "pagando",
     "lemma": "pagar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "paying",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82230,21 +82422,45 @@
     "rank": 5893,
     "word": "encender",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to turn on",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5894,
     "word": "distinta",
     "lemma": "distinto",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "different",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5895,
     "word": "compro",
     "lemma": "comprar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I buy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82266,14 +82482,30 @@
     "rank": 5897,
     "word": "atacan",
     "lemma": "atacar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they attack",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5898,
     "word": "usaba",
     "lemma": "usar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "used/wore",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82295,7 +82527,16 @@
     "rank": 5900,
     "word": "menores",
     "lemma": "menor",
-    "most_frequent_lemma_instance": false
+    "most_frequent_lemma_instance": false,
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "younger/lesser",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ]
   },
   {
     "rank": 5901,
@@ -82346,14 +82587,30 @@
     "rank": 5904,
     "word": "contentos",
     "lemma": "contento",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "happy/content",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5905,
     "word": "compraré",
     "lemma": "comprar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will buy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82390,7 +82647,15 @@
     "rank": 5908,
     "word": "vivas",
     "lemma": "vivir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you live",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82427,7 +82692,15 @@
     "rank": 5911,
     "word": "raros",
     "lemma": "raro",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "weird/rare",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82449,21 +82722,45 @@
     "rank": 5913,
     "word": "quemado",
     "lemma": "quemar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "burned",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5914,
     "word": "promesas",
     "lemma": "promesa",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "promises",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5915,
     "word": "parejas",
     "lemma": "pareja",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "couples/pairs",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82485,14 +82782,37 @@
     "rank": 5917,
     "word": "olvidarlo",
     "lemma": "olvidar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to forget it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5918,
     "word": "locales",
     "lemma": "local",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "local",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "premises",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82514,35 +82834,75 @@
     "rank": 5920,
     "word": "estaciones",
     "lemma": "estación",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "stations/seasons",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5921,
     "word": "dispares",
     "lemma": "disparar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you shoot",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5922,
     "word": "despidieron",
     "lemma": "despedir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they fired",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5923,
     "word": "asesinada",
     "lemma": "asesinado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "murdered",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5924,
     "word": "asesinada",
     "lemma": "asesinar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "murdered",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82579,28 +82939,60 @@
     "rank": 5927,
     "word": "advertí",
     "lemma": "advertir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I warned",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5928,
     "word": "sacarme",
     "lemma": "sacar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to get me out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5929,
     "word": "pueblos",
     "lemma": "pueblo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "towns/peoples",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5930,
     "word": "mágico",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "magical",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82622,21 +83014,45 @@
     "rank": 5932,
     "word": "excusas",
     "lemma": "excusa",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "excuses",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5933,
     "word": "excusas",
     "lemma": "excusar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "excuses",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5934,
     "word": "contratar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to hire",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82710,7 +83126,15 @@
     "rank": 5939,
     "word": "salvarlo",
     "lemma": "salvar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to save him/it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82739,35 +83163,75 @@
     "rank": 5941,
     "word": "retrasado",
     "lemma": "retrasar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "delayed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5942,
     "word": "placas",
     "lemma": "placa",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "plates/badges",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5943,
     "word": "hermosos",
     "lemma": "hermoso",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "beautiful",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5944,
     "word": "galleta",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "cookie/cracker",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5945,
     "word": "escucharon",
     "lemma": "escuchar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they listened",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82789,14 +83253,30 @@
     "rank": 5947,
     "word": "anillos",
     "lemma": "anillo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "rings",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5948,
     "word": "subió",
     "lemma": "subir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "went up/raised",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82833,28 +83313,67 @@
     "rank": 5951,
     "word": "pásame",
     "lemma": "pasar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "pass me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5952,
     "word": "juegues",
     "lemma": "jugar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you play",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5953,
     "word": "grito",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "shout/scream",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5954,
     "word": "grito",
     "lemma": "gritar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I shout",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "shout",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82876,14 +83395,30 @@
     "rank": 5956,
     "word": "enseñado",
     "lemma": "enseñar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "taught",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5957,
     "word": "encontrarte",
     "lemma": "encontrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to find you",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82905,7 +83440,15 @@
     "rank": 5959,
     "word": "consigues",
     "lemma": "conseguir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you get",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82942,7 +83485,15 @@
     "rank": 5962,
     "word": "batallas",
     "lemma": "batalla",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "battles",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82964,14 +83515,30 @@
     "rank": 5964,
     "word": "uses",
     "lemma": "usar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you use",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5965,
     "word": "trates",
     "lemma": "tratar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you treat/try",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -82993,14 +83560,30 @@
     "rank": 5967,
     "word": "hechas",
     "lemma": "hecho",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "made/done",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5968,
     "word": "hechas",
     "lemma": "hacer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "made/done",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83042,14 +83625,30 @@
     "rank": 5971,
     "word": "disfrute",
     "lemma": "disfrutar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "enjoy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5972,
     "word": "creerme",
     "lemma": "creer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to believe me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83071,14 +83670,37 @@
     "rank": 5974,
     "word": "costo",
     "lemma": "costar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I cost",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "cost",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5975,
     "word": "consiga",
     "lemma": "conseguir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "get/obtain",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83100,7 +83722,15 @@
     "rank": 5977,
     "word": "bájate",
     "lemma": "bajar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "get down/off",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83137,14 +83767,30 @@
     "rank": 5980,
     "word": "traerá",
     "lemma": "traer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will bring",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5981,
     "word": "quedaremos",
     "lemma": "quedar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we will stay",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83181,7 +83827,15 @@
     "rank": 5984,
     "word": "interesan",
     "lemma": "interesar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they interest",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83203,14 +83857,30 @@
     "rank": 5986,
     "word": "ida",
     "lemma": "ir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "departure/going",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5987,
     "word": "hueles",
     "lemma": "oler",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you smell",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83232,21 +83902,52 @@
     "rank": 5989,
     "word": "giro",
     "lemma": "girar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I turn",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "turn",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5990,
     "word": "desgraciados",
     "lemma": "desgraciado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "wretches/bastards",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5991,
     "word": "desgraciados",
     "lemma": "desgraciar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "wretched",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83268,35 +83969,82 @@
     "rank": 5993,
     "word": "andan",
     "lemma": "andar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they walk/are",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5994,
     "word": "unido",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "united",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5995,
     "word": "unido",
     "lemma": "unir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "united",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5996,
     "word": "traseros",
     "lemma": "trasero",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "buttocks",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "ADJ",
+        "translation": "rear",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 5997,
     "word": "torres",
     "lemma": "torre",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "towers",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83333,28 +84081,60 @@
     "rank": 6000,
     "word": "engañando",
     "lemma": "engañar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "deceiving",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6001,
     "word": "encuentres",
     "lemma": "encontrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you find",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6002,
     "word": "controles",
     "lemma": "controlar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "controls",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6003,
     "word": "controles",
     "lemma": "control",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "controls",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83421,7 +84201,15 @@
     "rank": 6008,
     "word": "sentiría",
     "lemma": "sentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would feel",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83443,14 +84231,30 @@
     "rank": 6010,
     "word": "queden",
     "lemma": "quedar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "remain/stay",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6011,
     "word": "piratas",
     "lemma": "pirata",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "pirates",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83487,42 +84291,90 @@
     "rank": 6014,
     "word": "grita",
     "lemma": "gritar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "shouts/screams",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6015,
     "word": "envíe",
     "lemma": "enviar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "send",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6016,
     "word": "entraste",
     "lemma": "entrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you entered",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6017,
     "word": "debieron",
     "lemma": "deber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they should have",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6018,
     "word": "creías",
     "lemma": "creer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you believed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6019,
     "word": "cobrar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to charge/collect",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83544,14 +84396,30 @@
     "rank": 6021,
     "word": "asesinados",
     "lemma": "asesinado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "murdered",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6022,
     "word": "asesinados",
     "lemma": "asesinar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "murdered",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83618,7 +84486,15 @@
     "rank": 6027,
     "word": "paró",
     "lemma": "parar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "stopped",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83640,7 +84516,15 @@
     "rank": 6029,
     "word": "falló",
     "lemma": "fallar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "failed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83662,14 +84546,30 @@
     "rank": 6031,
     "word": "esclavo",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "slave",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6032,
     "word": "déjate",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let yourself",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83691,35 +84591,75 @@
     "rank": 6034,
     "word": "costará",
     "lemma": "costar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will cost",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6035,
     "word": "chistes",
     "lemma": "chiste",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "jokes",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6036,
     "word": "arreglaré",
     "lemma": "arreglar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will fix",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6037,
     "word": "alcanza",
     "lemma": "alcanzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "reaches/is enough",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6038,
     "word": "valientes",
     "lemma": "valiente",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "brave",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83771,7 +84711,15 @@
     "rank": 6042,
     "word": "jovencito",
     "lemma": "joven",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "young man",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83793,14 +84741,30 @@
     "rank": 6044,
     "word": "estuvieran",
     "lemma": "estar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they were",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6045,
     "word": "estupideces",
     "lemma": "estupidez",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "stupid things",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83822,49 +84786,112 @@
     "rank": 6047,
     "word": "durará",
     "lemma": "durar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will last",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6048,
     "word": "descanse",
     "lemma": "descansar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "rest",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6049,
     "word": "déjanos",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let us",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6050,
     "word": "camas",
     "lemma": "cama",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "beds",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6051,
     "word": "cables",
     "lemma": "cable",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "cables",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6052,
     "word": "bárbara",
     "lemma": "bárbaro",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "barbaric",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "barbarian",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6053,
     "word": "avanzando",
     "lemma": "avanzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "advancing",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83886,7 +84913,15 @@
     "rank": 6055,
     "word": "sagrada",
     "lemma": "sagrado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "sacred",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83908,14 +84943,37 @@
     "rank": 6057,
     "word": "retírense",
     "lemma": "retirar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "withdraw/retire",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6058,
     "word": "retirada",
     "lemma": "retirado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "retreat",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "ADJ",
+        "translation": "withdrawn",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -83924,11 +84982,11 @@
     "lemma": "retirar",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "withdrawal, retreat",
-        "frequency": "",
-        "example_spanish": "La retirada de tropas fue ordenada.",
-        "example_english": "The troop withdrawal was ordered."
+        "pos": "VERB",
+        "translation": "withdrawn",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
       }
     ],
     "most_frequent_lemma_instance": false
@@ -83952,7 +85010,15 @@
     "rank": 6061,
     "word": "preocupo",
     "lemma": "preocupar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I worry",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84004,21 +85070,45 @@
     "rank": 6065,
     "word": "malvada",
     "lemma": "malvado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "evil/wicked",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6066,
     "word": "existir",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to exist",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6067,
     "word": "entendemos",
     "lemma": "entender",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we understand",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84040,14 +85130,30 @@
     "rank": 6069,
     "word": "bendito",
     "lemma": "bendecir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "blessed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6070,
     "word": "arregla",
     "lemma": "arreglar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "fixes/arranges",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84084,42 +85190,90 @@
     "rank": 6073,
     "word": "rescatar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to rescue",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6074,
     "word": "pesada",
     "lemma": "pesado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "heavy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6075,
     "word": "pesada",
     "lemma": "pesar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "heavy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6076,
     "word": "oímos",
     "lemma": "oír",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we heard",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6077,
     "word": "locas",
     "lemma": "loco",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "crazy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6078,
     "word": "llegarán",
     "lemma": "llegar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they will arrive",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84141,14 +85295,30 @@
     "rank": 6080,
     "word": "hermanito",
     "lemma": "hermano",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "little brother",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6081,
     "word": "hamburguesas",
     "lemma": "hamburguesa",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hamburgers",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84170,7 +85340,15 @@
     "rank": 6083,
     "word": "firmado",
     "lemma": "firmar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "signed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84207,35 +85385,75 @@
     "rank": 6086,
     "word": "encendido",
     "lemma": "encender",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "turned on",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6087,
     "word": "disfruten",
     "lemma": "disfrutar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "enjoy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6088,
     "word": "deseaba",
     "lemma": "desear",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "desired/wanted",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6089,
     "word": "conocías",
     "lemma": "conocer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you knew",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6090,
     "word": "cambiaron",
     "lemma": "cambiar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they changed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84317,42 +85535,90 @@
     "rank": 6096,
     "word": "sobrevivió",
     "lemma": "sobrevivir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "survived",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6097,
     "word": "preocupados",
     "lemma": "preocupado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "worried",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6098,
     "word": "preocupados",
     "lemma": "preocupar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "worried",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6099,
     "word": "ocasiones",
     "lemma": "ocasión",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "occasions",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6100,
     "word": "necesitarás",
     "lemma": "necesitar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you will need",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6101,
     "word": "mutante",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "mutant",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84374,21 +85640,45 @@
     "rank": 6103,
     "word": "mantienen",
     "lemma": "mantener",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they maintain/keep",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6104,
     "word": "justa",
     "lemma": "justo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "fair/just",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6105,
     "word": "increíbles",
     "lemma": "increíble",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "incredible",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84410,14 +85700,30 @@
     "rank": 6107,
     "word": "harta",
     "lemma": "harto",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "fed up",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6108,
     "word": "harta",
     "lemma": "hartar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "fed up",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84439,21 +85745,45 @@
     "rank": 6110,
     "word": "esfuerzos",
     "lemma": "esfuerzo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "efforts",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6111,
     "word": "directa",
     "lemma": "directo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "direct",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6112,
     "word": "deberes",
     "lemma": "deber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "duties/homework",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84475,42 +85805,90 @@
     "rank": 6114,
     "word": "contratado",
     "lemma": "contratar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "hired",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6115,
     "word": "usé",
     "lemma": "usar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I used",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6116,
     "word": "sentar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to sit/suit",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6117,
     "word": "presentes",
     "lemma": "presente",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "present",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6118,
     "word": "presentes",
     "lemma": "presentar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "present",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6119,
     "word": "mierdas",
     "lemma": "mierda",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "crap/shit",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84520,10 +85898,10 @@
     "meanings": [
       {
         "pos": "VERB",
-        "translation": "deserve",
-        "frequency": "",
-        "example_spanish": "Ellos merecen una oportunidad.",
-        "example_english": "They deserve an opportunity."
+        "translation": "they deserve",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
       }
     ],
     "most_frequent_lemma_instance": false
@@ -84532,7 +85910,15 @@
     "rank": 6121,
     "word": "llamaban",
     "lemma": "llamar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they called",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84554,21 +85940,45 @@
     "rank": 6123,
     "word": "darás",
     "lemma": "dar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you will give",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6124,
     "word": "créame",
     "lemma": "creer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "believe me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6125,
     "word": "busquemos",
     "lemma": "buscar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let's look for",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84590,7 +86000,15 @@
     "rank": 6127,
     "word": "admito",
     "lemma": "admitir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I admit",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84676,7 +86094,15 @@
     "rank": 6133,
     "word": "quitó",
     "lemma": "quitar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "took away/removed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84698,14 +86124,30 @@
     "rank": 6135,
     "word": "lea",
     "lemma": "leer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "read",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6136,
     "word": "jugado",
     "lemma": "jugar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "played",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84727,14 +86169,30 @@
     "rank": 6138,
     "word": "encantó",
     "lemma": "encantar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "loved/enchanted",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6139,
     "word": "encantará",
     "lemma": "encantar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will love",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84756,7 +86214,15 @@
     "rank": 6141,
     "word": "echaré",
     "lemma": "echar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will throw",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84808,21 +86274,45 @@
     "rank": 6145,
     "word": "camaradas",
     "lemma": "camarada",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "comrades",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6146,
     "word": "bebido",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "drunk",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6147,
     "word": "bebido",
     "lemma": "beber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "drunk",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84844,7 +86334,15 @@
     "rank": 6149,
     "word": "bata",
     "lemma": "batir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "beat/whisk",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84881,70 +86379,150 @@
     "rank": 6152,
     "word": "sentirte",
     "lemma": "sentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to feel",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6153,
     "word": "póngase",
     "lemma": "poner",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "put on",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6154,
     "word": "perderé",
     "lemma": "perder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will lose",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6155,
     "word": "pegar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to hit/stick",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6156,
     "word": "ondas",
     "lemma": "onda",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "waves",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6157,
     "word": "mapas",
     "lemma": "mapa",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "maps",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6158,
     "word": "mantenerte",
     "lemma": "mantener",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to keep yourself",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6159,
     "word": "llenos",
     "lemma": "lleno",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "full",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6160,
     "word": "intentes",
     "lemma": "intentar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you try",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6161,
     "word": "informar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to inform",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -84966,28 +86544,60 @@
     "rank": 6163,
     "word": "fuéramos",
     "lemma": "ir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we went",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6164,
     "word": "fuéramos",
     "lemma": "ser",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we were",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6165,
     "word": "encontrarnos",
     "lemma": "encontrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to meet/find each other",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6166,
     "word": "distintas",
     "lemma": "distinto",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "different",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85009,7 +86619,15 @@
     "rank": 6168,
     "word": "conozcas",
     "lemma": "conocer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you know",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85031,7 +86649,15 @@
     "rank": 6170,
     "word": "cometa",
     "lemma": "cometer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "commit",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85083,7 +86709,15 @@
     "rank": 6174,
     "word": "pensaría",
     "lemma": "pensar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would think",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85105,7 +86739,15 @@
     "rank": 6176,
     "word": "duermo",
     "lemma": "dormir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I sleep",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85127,14 +86769,30 @@
     "rank": 6178,
     "word": "blancas",
     "lemma": "blanco",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "white",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6179,
     "word": "bajó",
     "lemma": "bajar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "went down/lowered",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85171,7 +86829,15 @@
     "rank": 6182,
     "word": "usaste",
     "lemma": "usar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you used",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85223,7 +86889,22 @@
     "rank": 6186,
     "word": "griego",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "Greek",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Greek",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85260,7 +86941,15 @@
     "rank": 6189,
     "word": "bolsillos",
     "lemma": "bolsillo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "pockets",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85282,7 +86971,15 @@
     "rank": 6191,
     "word": "avanzada",
     "lemma": "avanzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "advanced",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85304,7 +87001,15 @@
     "rank": 6193,
     "word": "alturas",
     "lemma": "altura",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "heights",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85344,10 +87049,10 @@
     "meanings": [
       {
         "pos": "VERB",
-        "translation": "to observe, to watch",
-        "frequency": "",
-        "example_spanish": "Me gusta observar las estrellas.",
-        "example_english": "I like to observe the stars."
+        "translation": "to observe",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
       }
     ],
     "most_frequent_lemma_instance": false
@@ -85356,7 +87061,15 @@
     "rank": 6197,
     "word": "mande",
     "lemma": "mandar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "send/order",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85438,28 +87151,60 @@
     "rank": 6203,
     "word": "debías",
     "lemma": "deber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you should",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6204,
     "word": "culpo",
     "lemma": "culpar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I blame",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6205,
     "word": "comencemos",
     "lemma": "comenzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let's begin",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6206,
     "word": "bebo",
     "lemma": "beber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I drink",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85511,7 +87256,15 @@
     "rank": 6210,
     "word": "sácalo",
     "lemma": "sacar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "take it out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85533,21 +87286,45 @@
     "rank": 6212,
     "word": "resuelto",
     "lemma": "resolver",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "resolved/solved",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6213,
     "word": "quedaría",
     "lemma": "quedar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would stay/remain",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6214,
     "word": "pais",
     "lemma": "país",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "country",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85591,21 +87368,45 @@
     "rank": 6217,
     "word": "filas",
     "lemma": "fila",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "rows/lines",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6218,
     "word": "estes",
     "lemma": "estar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you are",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6219,
     "word": "espías",
     "lemma": "espía",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "spies",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85627,35 +87428,75 @@
     "rank": 6221,
     "word": "aves",
     "lemma": "ave",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "birds",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6222,
     "word": "amables",
     "lemma": "amable",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "kind/friendly",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6223,
     "word": "uniformes",
     "lemma": "uniforme",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "uniforms",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6224,
     "word": "sentirlo",
     "lemma": "sentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to feel it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6225,
     "word": "retrocede",
     "lemma": "retroceder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "backs up/retreats",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85665,10 +87506,10 @@
     "meanings": [
       {
         "pos": "VERB",
-        "translation": "to recognize, to acknowledge",
-        "frequency": "",
-        "example_spanish": "No puedo reconocer tu voz.",
-        "example_english": "I cannot recognize your voice."
+        "translation": "to recognize",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
       }
     ],
     "most_frequent_lemma_instance": false
@@ -85677,7 +87518,22 @@
     "rank": 6227,
     "word": "rebelde",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "rebel/rebellious",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "rebel",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85766,21 +87622,45 @@
     "rank": 6233,
     "word": "mentido",
     "lemma": "mentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "lied",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6234,
     "word": "matara",
     "lemma": "matar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "killed/would kill",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6235,
     "word": "llamarla",
     "lemma": "llamar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to call her",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85802,7 +87682,15 @@
     "rank": 6237,
     "word": "entienda",
     "lemma": "entender",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "understand",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85824,21 +87712,52 @@
     "rank": 6239,
     "word": "echó",
     "lemma": "echar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "threw/kicked out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6240,
     "word": "considero",
     "lemma": "considerar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I consider",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6241,
     "word": "cobardes",
     "lemma": "cobarde",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "cowardly",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "cowards",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85875,7 +87794,15 @@
     "rank": 6244,
     "word": "baños",
     "lemma": "baño",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "bathrooms",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85912,7 +87839,15 @@
     "rank": 6247,
     "word": "soñado",
     "lemma": "soñar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "dreamed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85949,14 +87884,30 @@
     "rank": 6250,
     "word": "respirando",
     "lemma": "respirar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "breathing",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6251,
     "word": "negras",
     "lemma": "negro",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "black",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -85993,14 +87944,30 @@
     "rank": 6254,
     "word": "identificado",
     "lemma": "identificar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "identified",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6255,
     "word": "honesta",
     "lemma": "honesto",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "honest",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86022,21 +87989,45 @@
     "rank": 6257,
     "word": "escribo",
     "lemma": "escribir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I write",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6258,
     "word": "despedirme",
     "lemma": "despedir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to say goodbye",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6259,
     "word": "demos",
     "lemma": "dar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we give",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86073,7 +88064,15 @@
     "rank": 6262,
     "word": "ayudes",
     "lemma": "ayudar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you help",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86095,7 +88094,15 @@
     "rank": 6264,
     "word": "amiguito",
     "lemma": "amigo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "little friend/buddy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86117,14 +88124,30 @@
     "rank": 6266,
     "word": "temen",
     "lemma": "temer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they fear",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6267,
     "word": "suéltenme",
     "lemma": "soltar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let me go",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86146,21 +88169,45 @@
     "rank": 6269,
     "word": "sacarle",
     "lemma": "sacar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to get from him/her",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6270,
     "word": "prostitutas",
     "lemma": "prostituta",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "prostitutes",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6271,
     "word": "pondrás",
     "lemma": "poner",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you will put",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86227,7 +88274,15 @@
     "rank": 6276,
     "word": "envíen",
     "lemma": "enviar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "send",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86249,14 +88304,30 @@
     "rank": 6278,
     "word": "entregado",
     "lemma": "entregar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "delivered/given",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6279,
     "word": "corazon",
     "lemma": "corazón",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "heart",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86323,7 +88394,15 @@
     "rank": 6284,
     "word": "usen",
     "lemma": "usar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "use",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86345,14 +88424,30 @@
     "rank": 6286,
     "word": "rompiste",
     "lemma": "romper",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you broke",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6287,
     "word": "quitaron",
     "lemma": "quitar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they took away",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86404,14 +88499,30 @@
     "rank": 6291,
     "word": "interesada",
     "lemma": "interesado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "interested",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6292,
     "word": "interesada",
     "lemma": "interesar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "interested",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86433,14 +88544,30 @@
     "rank": 6294,
     "word": "explicaré",
     "lemma": "explicar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will explain",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6295,
     "word": "estuviese",
     "lemma": "estar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "was/were",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86462,7 +88589,16 @@
     "rank": 6297,
     "word": "cumple",
     "lemma": "cumplir",
-    "most_frequent_lemma_instance": false
+    "most_frequent_lemma_instance": false,
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "fulfills/turns years old",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ]
   },
   {
     "rank": 6298,
@@ -86513,7 +88649,15 @@
     "rank": 6301,
     "word": "islas",
     "lemma": "isla",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "islands",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86595,7 +88739,15 @@
     "rank": 6307,
     "word": "duermes",
     "lemma": "dormir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you sleep",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86617,14 +88769,30 @@
     "rank": 6309,
     "word": "trataron",
     "lemma": "tratar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they tried/treated",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6310,
     "word": "tardará",
     "lemma": "tardar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will take time",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86661,7 +88829,15 @@
     "rank": 6313,
     "word": "podia",
     "lemma": "poder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "could",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86683,7 +88859,15 @@
     "rank": 6315,
     "word": "papás",
     "lemma": "papá",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "dads/parents",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86735,42 +88919,90 @@
     "rank": 6319,
     "word": "fumando",
     "lemma": "fumar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "smoking",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6320,
     "word": "disfrutando",
     "lemma": "disfrutar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "enjoying",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6321,
     "word": "debas",
     "lemma": "deber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you should",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6322,
     "word": "culpar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to blame",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6323,
     "word": "atreve",
     "lemma": "atrever",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "dares",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6324,
     "word": "arriesgar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to risk",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86822,7 +89054,15 @@
     "rank": 6328,
     "word": "túneles",
     "lemma": "túnel",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "tunnels",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86859,14 +89099,30 @@
     "rank": 6331,
     "word": "sucios",
     "lemma": "sucio",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "dirty",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6332,
     "word": "seguida",
     "lemma": "en",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "in a row",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86888,42 +89144,90 @@
     "rank": 6334,
     "word": "seguida",
     "lemma": "seguido",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADV",
+        "translation": "right away",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6335,
     "word": "seguida",
     "lemma": "seguir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "followed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6336,
     "word": "regresamos",
     "lemma": "regresar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we returned",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6337,
     "word": "recibirá",
     "lemma": "recibir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will receive",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6338,
     "word": "oculto",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "hidden",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6339,
     "word": "oculto",
     "lemma": "ocultar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "hidden",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86960,7 +89264,15 @@
     "rank": 6342,
     "word": "generaciones",
     "lemma": "generación",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "generations",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -86982,7 +89294,15 @@
     "rank": 6344,
     "word": "dámela",
     "lemma": "dar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "give it to me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87004,7 +89324,15 @@
     "rank": 6346,
     "word": "controlado",
     "lemma": "controlar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "controlled",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87026,14 +89354,30 @@
     "rank": 6348,
     "word": "cheques",
     "lemma": "cheque",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "checks",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6349,
     "word": "bromeo",
     "lemma": "bromear",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I joke",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87055,7 +89399,15 @@
     "rank": 6351,
     "word": "asegurarnos",
     "lemma": "asegurar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to make sure",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87077,21 +89429,45 @@
     "rank": 6353,
     "word": "vivió",
     "lemma": "vivir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "lived",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6354,
     "word": "vías",
     "lemma": "vía",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "routes/ways",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6355,
     "word": "piden",
     "lemma": "pedir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they ask for",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87113,42 +89489,90 @@
     "rank": 6357,
     "word": "manzanas",
     "lemma": "manzana",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "apples",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6358,
     "word": "interesantes",
     "lemma": "interesante",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "interesting",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6359,
     "word": "herir",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to hurt/wound",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6360,
     "word": "exámenes",
     "lemma": "examen",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "exams",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6361,
     "word": "enfadada",
     "lemma": "enfadado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "angry",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6362,
     "word": "enfadada",
     "lemma": "enfadar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "angry",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87170,7 +89594,15 @@
     "rank": 6364,
     "word": "cometí",
     "lemma": "cometer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I committed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87222,7 +89654,15 @@
     "rank": 6368,
     "word": "término",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "term/end",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87259,14 +89699,30 @@
     "rank": 6371,
     "word": "ofrezco",
     "lemma": "ofrecer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I offer",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6372,
     "word": "mentiste",
     "lemma": "mentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you lied",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87288,7 +89744,15 @@
     "rank": 6374,
     "word": "manejarlo",
     "lemma": "manejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to handle/drive it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87310,7 +89774,15 @@
     "rank": 6376,
     "word": "dejarlos",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to leave/let them",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87332,7 +89804,15 @@
     "rank": 6378,
     "word": "avísame",
     "lemma": "avisar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "let me know",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87354,7 +89834,15 @@
     "rank": 6380,
     "word": "saludar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to greet",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87376,7 +89864,15 @@
     "rank": 6382,
     "word": "papito",
     "lemma": "papá",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "daddy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87398,28 +89894,67 @@
     "rank": 6384,
     "word": "metieron",
     "lemma": "meter",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they put in",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6385,
     "word": "estadounidenses",
     "lemma": "estadounidense",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "American",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Americans",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6386,
     "word": "divertirnos",
     "lemma": "divertir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to have fun",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6387,
     "word": "cuentan",
     "lemma": "contar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they tell/count",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87478,7 +90013,15 @@
     "rank": 6391,
     "word": "saudita",
     "lemma": "Arabia",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "Saudi",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87515,35 +90058,75 @@
     "rank": 6394,
     "word": "sabré",
     "lemma": "saber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will know",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6395,
     "word": "presta",
     "lemma": "prestar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "lends/pays",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6396,
     "word": "ordenar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to order/tidy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6397,
     "word": "naciste",
     "lemma": "nacer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you were born",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6398,
     "word": "mostró",
     "lemma": "mostrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "showed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87655,14 +90238,30 @@
     "rank": 6406,
     "word": "vuestras",
     "lemma": "vuestro",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "DET",
+        "translation": "your",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6407,
     "word": "ventas",
     "lemma": "venta",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "sales",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87699,28 +90298,60 @@
     "rank": 6410,
     "word": "serios",
     "lemma": "serio",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "serious",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6411,
     "word": "pónganse",
     "lemma": "poner",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "put on/get",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6412,
     "word": "perderte",
     "lemma": "perder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to lose you",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6413,
     "word": "juegan",
     "lemma": "jugar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they play",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87742,7 +90373,15 @@
     "rank": 6415,
     "word": "indicado",
     "lemma": "indicar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "indicated",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87764,14 +90403,30 @@
     "rank": 6417,
     "word": "entrenado",
     "lemma": "entrenar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "trained",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6418,
     "word": "enteré",
     "lemma": "enterar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I found out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87823,21 +90478,45 @@
     "rank": 6422,
     "word": "cruce",
     "lemma": "cruzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "cross",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6423,
     "word": "crean",
     "lemma": "crear",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they create",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6424,
     "word": "contarme",
     "lemma": "contar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to tell me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87859,14 +90538,30 @@
     "rank": 6426,
     "word": "callar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to be quiet/shut up",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6427,
     "word": "aceptarlo",
     "lemma": "aceptar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to accept it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87888,7 +90583,15 @@
     "rank": 6429,
     "word": "soñar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to dream",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87925,28 +90628,60 @@
     "rank": 6432,
     "word": "preferido",
     "lemma": "preferir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "preferred",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6433,
     "word": "normas",
     "lemma": "norma",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "rules/norms",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6434,
     "word": "mientas",
     "lemma": "mentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you lie",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6435,
     "word": "mandé",
     "lemma": "mandar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I sent",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -87968,21 +90703,45 @@
     "rank": 6437,
     "word": "mandado",
     "lemma": "mandar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "sent",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6438,
     "word": "llámeme",
     "lemma": "llamar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "call me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6439,
     "word": "huella",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "footprint/trace",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88004,14 +90763,30 @@
     "rank": 6441,
     "word": "fingiendo",
     "lemma": "fingir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "pretending",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6442,
     "word": "eterno",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "eternal",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88033,14 +90808,30 @@
     "rank": 6444,
     "word": "divertirse",
     "lemma": "divertir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to have fun",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6445,
     "word": "distintos",
     "lemma": "distinto",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "different",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88122,7 +90913,15 @@
     "rank": 6451,
     "word": "adora",
     "lemma": "adorar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "adores/loves",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88144,14 +90943,30 @@
     "rank": 6453,
     "word": "ridícula",
     "lemma": "ridículo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "ridiculous",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6454,
     "word": "respetar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to respect",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88188,14 +91003,30 @@
     "rank": 6457,
     "word": "presentó",
     "lemma": "presentar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "presented/introduced",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6458,
     "word": "poderosos",
     "lemma": "poderoso",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "powerful",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88269,42 +91100,90 @@
     "rank": 6463,
     "word": "maestros",
     "lemma": "maestro",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "teachers/masters",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6464,
     "word": "humanas",
     "lemma": "humano",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "human",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6465,
     "word": "estare",
     "lemma": "estar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will be",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6466,
     "word": "escuchame",
     "lemma": "escuchar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "listen to me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6467,
     "word": "entere",
     "lemma": "enterar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "find out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6468,
     "word": "bésame",
     "lemma": "besar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "kiss me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88333,7 +91212,15 @@
     "rank": 6470,
     "word": "suelten",
     "lemma": "soltar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "release/let go",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88355,7 +91242,15 @@
     "rank": 6472,
     "word": "presentarte",
     "lemma": "presentar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to introduce you",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88407,14 +91302,30 @@
     "rank": 6476,
     "word": "explicarte",
     "lemma": "explicar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to explain to you",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6477,
     "word": "escuches",
     "lemma": "escuchar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you listen",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88436,14 +91347,37 @@
     "rank": 6479,
     "word": "envío",
     "lemma": "enviar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I send",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "shipment",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6480,
     "word": "enterrar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to bury",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88480,7 +91414,15 @@
     "rank": 6483,
     "word": "dejarle",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to let/leave him/her",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88502,7 +91444,15 @@
     "rank": 6485,
     "word": "cometió",
     "lemma": "cometer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "committed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88539,7 +91489,15 @@
     "rank": 6488,
     "word": "artículos",
     "lemma": "artículo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "articles",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88550,9 +91508,9 @@
       {
         "pos": "NOUN",
         "translation": "threats",
-        "frequency": "",
-        "example_spanish": "Recibieron amenazas anónimas.",
-        "example_english": "They received anonymous threats."
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
       }
     ],
     "most_frequent_lemma_instance": false
@@ -88561,14 +91519,30 @@
     "rank": 6490,
     "word": "amenazas",
     "lemma": "amenazar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "threats",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6491,
     "word": "victima",
     "lemma": "víctima",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "victim",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88590,28 +91564,60 @@
     "rank": 6493,
     "word": "símbolos",
     "lemma": "símbolo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "symbols",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6494,
     "word": "saltó",
     "lemma": "saltar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "jumped",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6495,
     "word": "repetir",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to repeat",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6496,
     "word": "pelos",
     "lemma": "pelo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "hairs",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88678,42 +91684,90 @@
     "rank": 6501,
     "word": "lindas",
     "lemma": "lindo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "pretty/lovely",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6502,
     "word": "intentan",
     "lemma": "intentar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they try",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6503,
     "word": "estara",
     "lemma": "estar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will be",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6504,
     "word": "enamorados",
     "lemma": "enamorado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "in love",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6505,
     "word": "enamorados",
     "lemma": "enamorar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "in love",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6506,
     "word": "discutiendo",
     "lemma": "discutir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "arguing/discussing",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88780,7 +91834,15 @@
     "rank": 6511,
     "word": "sugiere",
     "lemma": "sugerir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "suggests",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88802,7 +91864,15 @@
     "rank": 6513,
     "word": "retirarse",
     "lemma": "retirar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to withdraw/retire",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88839,21 +91909,45 @@
     "rank": 6516,
     "word": "presos",
     "lemma": "preso",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "prisoners",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6517,
     "word": "pidieron",
     "lemma": "pedir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they asked for/requested",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6518,
     "word": "mide",
     "lemma": "medir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "measures",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88940,14 +92034,30 @@
     "rank": 6527,
     "word": "discúlpenme",
     "lemma": "disculpar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "excuse me/pardon me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6528,
     "word": "dejare",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I will let/leave",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -88999,7 +92109,15 @@
     "rank": 6532,
     "word": "anuncios",
     "lemma": "anuncio",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "announcements/ads",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89036,42 +92154,90 @@
     "rank": 6535,
     "word": "sentidos",
     "lemma": "sentido",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "senses/meanings",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6536,
     "word": "sentidos",
     "lemma": "sentir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "felt",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6537,
     "word": "principales",
     "lemma": "principal",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "main/principal",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6538,
     "word": "mátame",
     "lemma": "matar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "kill me",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6539,
     "word": "hallé",
     "lemma": "hallar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I found",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6540,
     "word": "girar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to turn/rotate",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89130,21 +92296,45 @@
     "rank": 6544,
     "word": "valores",
     "lemma": "valor",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "values",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6545,
     "word": "recibiste",
     "lemma": "recibir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you received",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6546,
     "word": "quítense",
     "lemma": "quitar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "take off/get off",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89166,7 +92356,15 @@
     "rank": 6548,
     "word": "preocuparme",
     "lemma": "preocupar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to worry",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89218,14 +92416,30 @@
     "rank": 6552,
     "word": "inteligentes",
     "lemma": "inteligente",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "intelligent",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6553,
     "word": "imaginaba",
     "lemma": "imaginar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "imagined",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89247,28 +92461,60 @@
     "rank": 6555,
     "word": "dejaba",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "left/let",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6556,
     "word": "canales",
     "lemma": "canal",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "channels",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6557,
     "word": "buscaremos",
     "lemma": "buscar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we will look for",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6558,
     "word": "botellas",
     "lemma": "botella",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "bottles",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89290,14 +92536,30 @@
     "rank": 6560,
     "word": "atraparlo",
     "lemma": "atrapar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to catch it/him",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6561,
     "word": "arrestar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to arrest",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89319,7 +92581,15 @@
     "rank": 6563,
     "word": "accidentes",
     "lemma": "accidente",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "accidents",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89341,7 +92611,15 @@
     "rank": 6565,
     "word": "tomaría",
     "lemma": "tomar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would take",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89378,14 +92656,30 @@
     "rank": 6568,
     "word": "sacando",
     "lemma": "sacar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "taking out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6569,
     "word": "pintar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to paint",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89437,21 +92731,45 @@
     "rank": 6573,
     "word": "organizar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to organize",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6574,
     "word": "llevarán",
     "lemma": "llevar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they will take/carry",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6575,
     "word": "llamaría",
     "lemma": "llamar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "would call",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89473,14 +92791,30 @@
     "rank": 6577,
     "word": "esperes",
     "lemma": "esperar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you wait/expect",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6578,
     "word": "crecí",
     "lemma": "crecer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I grew up",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89502,7 +92836,15 @@
     "rank": 6580,
     "word": "agarró",
     "lemma": "agarrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "grabbed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89531,14 +92873,30 @@
     "rank": 6582,
     "word": "vivirá",
     "lemma": "vivir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will live",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6583,
     "word": "vigilar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to watch/guard",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89560,28 +92918,60 @@
     "rank": 6585,
     "word": "soltar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to release/let go",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6586,
     "word": "siguientes",
     "lemma": "siguiente",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "following/next",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6587,
     "word": "residentes",
     "lemma": "residente",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "residents",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6588,
     "word": "leíste",
     "lemma": "leer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you read",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89618,14 +93008,30 @@
     "rank": 6591,
     "word": "enojar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to anger/annoy",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6592,
     "word": "ejercicios",
     "lemma": "ejercicio",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "exercises",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89797,14 +93203,37 @@
     "rank": 6604,
     "word": "faltaba",
     "lemma": "faltar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "was missing/lacking",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6605,
     "word": "explosivo",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "explosive",
+        "frequency": "0.70",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "ADJ",
+        "translation": "explosive",
+        "frequency": "0.30",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89841,35 +93270,75 @@
     "rank": 6608,
     "word": "bosques",
     "lemma": "bosque",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "forests",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6609,
     "word": "acabé",
     "lemma": "acabar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I finished",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6610,
     "word": "tomate",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "tomato",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6611,
     "word": "tomate",
     "lemma": "tomar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "take",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6612,
     "word": "quitarle",
     "lemma": "quitar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to take away from him/her",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89906,14 +93375,30 @@
     "rank": 6615,
     "word": "lance",
     "lemma": "lanzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "throw/launch",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6616,
     "word": "huyó",
     "lemma": "huir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "fled",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89935,7 +93420,15 @@
     "rank": 6618,
     "word": "hablará",
     "lemma": "hablar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will speak",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -89957,14 +93450,30 @@
     "rank": 6620,
     "word": "eligió",
     "lemma": "elegir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "chose",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6621,
     "word": "doler",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to hurt/ache",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90001,21 +93510,45 @@
     "rank": 6624,
     "word": "artistas",
     "lemma": "artista",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "artists",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6625,
     "word": "aceptas",
     "lemma": "aceptar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you accept",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6626,
     "word": "acabando",
     "lemma": "acabar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "finishing",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90052,7 +93585,15 @@
     "rank": 6629,
     "word": "saldrás",
     "lemma": "salir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you will leave",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90134,28 +93675,60 @@
     "rank": 6635,
     "word": "descubre",
     "lemma": "descubrir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "discovers",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6636,
     "word": "cerró",
     "lemma": "cerrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "closed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6637,
     "word": "cayeron",
     "lemma": "caer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they fell",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6638,
     "word": "casé",
     "lemma": "casar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I married",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90177,14 +93750,30 @@
     "rank": 6640,
     "word": "atiende",
     "lemma": "atender",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "attends/helps",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6641,
     "word": "voló",
     "lemma": "volar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "flew",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90236,14 +93825,30 @@
     "rank": 6645,
     "word": "mañanas",
     "lemma": "mañana",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "mornings",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6646,
     "word": "magnífica",
     "lemma": "magnífico",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "magnificent",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90265,28 +93870,60 @@
     "rank": 6648,
     "word": "enseñarles",
     "lemma": "enseñar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to teach them",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6649,
     "word": "comenzaron",
     "lemma": "comenzar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they began",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6650,
     "word": "cerradas",
     "lemma": "cerrado",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "closed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6651,
     "word": "celosa",
     "lemma": "celoso",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "jealous",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90338,7 +93975,15 @@
     "rank": 6655,
     "word": "rojos",
     "lemma": "rojo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "red",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90390,14 +94035,30 @@
     "rank": 6659,
     "word": "muros",
     "lemma": "muro",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "walls",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6660,
     "word": "limpias",
     "lemma": "limpio",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "clean",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90419,14 +94080,30 @@
     "rank": 6662,
     "word": "empiecen",
     "lemma": "empezar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "begin/start",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6663,
     "word": "cortina",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "curtain",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90448,13 +94125,37 @@
     "rank": 6665,
     "word": "construido",
     "lemma": "construir",
-    "most_frequent_lemma_instance": false
+    "most_frequent_lemma_instance": false,
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "built",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ]
   },
   {
     "rank": 6666,
     "word": "comerciales",
     "lemma": "comercial",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "commercial",
+        "frequency": "0.70",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "commercials",
+        "frequency": "0.30",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90476,14 +94177,30 @@
     "rank": 6668,
     "word": "cadenas",
     "lemma": "cadena",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "chains",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6669,
     "word": "botones",
     "lemma": "botón",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "buttons",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90505,7 +94222,15 @@
     "rank": 6671,
     "word": "vendo",
     "lemma": "vender",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I sell",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90527,21 +94252,45 @@
     "rank": 6673,
     "word": "tuviéramos",
     "lemma": "tener",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we had",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6674,
     "word": "tocaba",
     "lemma": "tocar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "touched/played",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6675,
     "word": "situaciones",
     "lemma": "situación",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "situations",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90563,20 +94312,52 @@
     "rank": 6677,
     "word": "responsables",
     "lemma": "responsable",
-    "most_frequent_lemma_instance": false
+    "most_frequent_lemma_instance": false,
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "responsible",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "NOUN",
+        "translation": "people responsible",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ]
   },
   {
     "rank": 6678,
     "word": "reportes",
     "lemma": "reporte",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "reports",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6679,
     "word": "muestran",
     "lemma": "mostrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they show",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90658,21 +94439,45 @@
     "rank": 6685,
     "word": "diremos",
     "lemma": "decir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we will say",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6686,
     "word": "dejarnos",
     "lemma": "dejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to leave us/let us",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6687,
     "word": "deberiamos",
     "lemma": "deber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "we should",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90694,14 +94499,30 @@
     "rank": 6689,
     "word": "bonitos",
     "lemma": "bonito",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "pretty/nice",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6690,
     "word": "averigua",
     "lemma": "averiguar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "finds out",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90768,21 +94589,45 @@
     "rank": 6695,
     "word": "abuelita",
     "lemma": "abuela",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "granny/grandma",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6696,
     "word": "vitales",
     "lemma": "vital",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "vital",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6697,
     "word": "verse",
     "lemma": "ver",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to see oneself/each other",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90849,21 +94694,45 @@
     "rank": 6702,
     "word": "soñé",
     "lemma": "soñar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "I dreamed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6703,
     "word": "roba",
     "lemma": "robar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "steals/robs",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6704,
     "word": "moderno",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "modern",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90900,14 +94769,30 @@
     "rank": 6707,
     "word": "joda",
     "lemma": "joder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "screw/mess with",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6708,
     "word": "despejen",
     "lemma": "despejar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "clear",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90936,14 +94821,30 @@
     "rank": 6710,
     "word": "aprendiendo",
     "lemma": "aprender",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "learning",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6711,
     "word": "tirando",
     "lemma": "tirar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "throwing/pulling",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -90995,7 +94896,15 @@
     "rank": 6715,
     "word": "pensaron",
     "lemma": "pensar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they thought",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91017,7 +94926,15 @@
     "rank": 6717,
     "word": "muestre",
     "lemma": "mostrar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "show",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91039,14 +94956,30 @@
     "rank": 6719,
     "word": "molestado",
     "lemma": "molestar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "bothered/disturbed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6720,
     "word": "llora",
     "lemma": "llorar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "cries/weeps",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91083,21 +95016,45 @@
     "rank": 6723,
     "word": "duermas",
     "lemma": "dormir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you sleep",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6724,
     "word": "disparan",
     "lemma": "disparar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they shoot",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6725,
     "word": "creerá",
     "lemma": "creer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "will believe",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91119,13 +95076,30 @@
     "rank": 6727,
     "word": "colgado",
     "lemma": "colgar",
-    "most_frequent_lemma_instance": false
+    "most_frequent_lemma_instance": false,
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "hung/hanged",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ]
   },
   {
     "rank": 6728,
     "word": "arrestaron",
     "lemma": "arrestar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "they arrested",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91147,70 +95121,150 @@
     "rank": 6730,
     "word": "viajando",
     "lemma": "viajar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "traveling",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6731,
     "word": "tremenda",
     "lemma": "tremendo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "tremendous/huge",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6732,
     "word": "simples",
     "lemma": "simple",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "simple",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6733,
     "word": "servirle",
     "lemma": "servir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to serve him/her",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6734,
     "word": "planea",
     "lemma": "planear",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "plans",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6735,
     "word": "negar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to deny",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6736,
     "word": "necesitabas",
     "lemma": "necesitar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "you needed",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6737,
     "word": "mordido",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "bitten",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6738,
     "word": "mordido",
     "lemma": "morder",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "bitten",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6739,
     "word": "lecciones",
     "lemma": "lección",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "lessons",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91247,49 +95301,105 @@
     "rank": 6742,
     "word": "imaginado",
     "lemma": "imaginar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "imagined",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6743,
     "word": "habríamos",
     "lemma": "haber",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "AUX",
+        "translation": "we would have",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6744,
     "word": "fallar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to fail/miss",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6745,
     "word": "escudos",
     "lemma": "escudo",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "shields",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6746,
     "word": "diviértete",
     "lemma": "divertir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "have fun/enjoy yourself",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6747,
     "word": "crece",
     "lemma": "crecer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "grows/increases",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6748,
     "word": "combatir",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to fight/combat",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91311,7 +95421,22 @@
     "rank": 6750,
     "word": "canto",
     "lemma": "cantar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "song/singing",
+        "frequency": "0.60",
+        "example_spanish": "",
+        "example_english": ""
+      },
+      {
+        "pos": "VERB",
+        "translation": "I sing",
+        "frequency": "0.40",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91333,7 +95458,15 @@
     "rank": 6752,
     "word": "atacando",
     "lemma": "atacar",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "attacking",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91385,14 +95518,30 @@
     "rank": 6756,
     "word": "retirar",
     "lemma": "",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to withdraw/remove",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
     "rank": 6757,
     "word": "persigue",
     "lemma": "perseguir",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "pursues/chases",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   },
   {
@@ -91414,7 +95563,15 @@
     "rank": 6759,
     "word": "leerlo",
     "lemma": "leer",
-    "meanings": [],
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to read it",
+        "frequency": "1.00",
+        "example_spanish": "",
+        "example_english": ""
+      }
+    ],
     "most_frequent_lemma_instance": false
   }
 ]
