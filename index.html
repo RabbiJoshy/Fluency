@@ -1003,7 +1003,7 @@
             font-size: 13px;
             font-weight: 500;
             transition: all 0.3s;
-            color: var(--accent-secondary);
+            color: var(--text-muted);
             min-width: 81px;
         }
 
@@ -1016,27 +1016,27 @@
         }
 
         .range-btn-new.mastered {
-            background: var(--success);
-            color: white;
-            border-color: var(--success);
+            background: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
         }
 
         .range-btn-new.mastered:hover {
-            background: var(--success);
-            color: white;
-            border-color: var(--success);
-            box-shadow: 0 0 15px var(--glow-green);
+            background: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
             transform: translateY(-2px);
         }
 
         .range-btn-new.attempted {
-            background: rgba(0, 212, 170, 0.15);
-            border-color: rgba(0, 212, 170, 0.4);
+            background: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.15);
+            border-color: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.4);
         }
 
         .range-btn-new.attempted:hover {
-            background: rgba(0, 212, 170, 0.25);
-            border-color: rgba(0, 212, 170, 0.6);
+            background: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.25);
+            border-color: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.6);
             transform: translateY(-2px);
         }
 
@@ -1419,17 +1419,18 @@
 
         .incorrect-set-btn {
             font-family: var(--font-data);
-            padding: 6px 12px;
+            padding: 10px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.3s;
-            color: var(--accent-secondary);
+            color: var(--text-muted);
             display: none;
             margin-left: auto;
+            min-width: 81px;
         }
 
         .incorrect-set-btn.visible {
@@ -2301,7 +2302,7 @@
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
-                    <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">Incorrect</button>
+                    <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">All Incorrect</button>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
@@ -2394,26 +2395,24 @@
     <div id="authModal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="modal-header" style="border-bottom: none; padding-bottom: 10px;">
-                <h3 style="width: 100%; text-align: center;">Welcome to Flashcards</h3>
+                <h3 style="width: 100%; text-align: center; color: white;">Welcome to Flashcards</h3>
             </div>
             <div class="auth-body">
                 <p style="text-align: center; color: var(--text-secondary); margin-bottom: 25px;">
                     Choose how you'd like to use the app
                 </p>
 
-                <button class="auth-btn guest-btn" id="guestModeBtn">
-                    <span class="btn-icon">👤</span>
+                <button class="auth-btn login-btn" id="loginModeBtn">
                     <div class="auth-btn-content">
-                        <span class="auth-btn-title">Guest Mode</span>
-                        <span class="auth-btn-desc">Practice locally, no data saved</span>
+                        <span class="auth-btn-title">Login with Name</span>
+                        <span class="auth-btn-desc">Track progress across devices</span>
                     </div>
                 </button>
 
-                <button class="auth-btn login-btn" id="loginModeBtn">
-                    <span class="btn-icon">📊</span>
+                <button class="auth-btn guest-btn" id="guestModeBtn">
                     <div class="auth-btn-content">
-                        <span class="auth-btn-title">Login</span>
-                        <span class="auth-btn-desc">Track progress across devices</span>
+                        <span class="auth-btn-title">Guest Mode</span>
+                        <span class="auth-btn-desc">Practice locally, no data saved</span>
                     </div>
                 </button>
 
