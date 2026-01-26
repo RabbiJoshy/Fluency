@@ -828,6 +828,84 @@
             margin-bottom: 15px;
         }
 
+        /* Collapsible language selector */
+        .setup-step.collapsible .step-header {
+            cursor: pointer;
+            margin-bottom: 0;
+            transition: margin-bottom 0.3s ease;
+        }
+
+        .setup-step.collapsible:not(.collapsed) .step-header {
+            margin-bottom: 15px;
+        }
+
+        .setup-step.collapsible .language-tabs {
+            max-height: 100px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .setup-step.collapsible.collapsed .language-tabs {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .selected-language-display {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 8px;
+            font-family: var(--font-emphasis);
+            font-weight: 600;
+        }
+
+        .setup-step.collapsible.collapsed .selected-language-display {
+            display: flex;
+        }
+
+        .expand-indicator {
+            margin-left: auto;
+            font-size: 12px;
+            opacity: 0.7;
+            transition: transform 0.3s ease;
+        }
+
+        .setup-step.collapsible:not(.collapsed) .expand-indicator {
+            transform: rotate(180deg);
+        }
+
+        /* Loading state for data refresh */
+        .data-loading-indicator {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .data-loading-indicator.visible {
+            display: flex;
+        }
+
+        .data-loading-indicator .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .step-header {
             display: flex;
             align-items: center;
@@ -948,6 +1026,17 @@
             color: white;
             border-color: var(--success);
             box-shadow: 0 0 15px var(--glow-green);
+            transform: translateY(-2px);
+        }
+
+        .range-btn-new.attempted {
+            background: rgba(0, 212, 170, 0.15);
+            border-color: rgba(0, 212, 170, 0.4);
+        }
+
+        .range-btn-new.attempted:hover {
+            background: rgba(0, 212, 170, 0.25);
+            border-color: rgba(0, 212, 170, 0.6);
             transform: translateY(-2px);
         }
 
@@ -2100,6 +2189,13 @@
             </button>
         </div>
         <span class="user-badge" id="userBadge">GUEST</span>
+        <button class="gear-btn" id="totalStatsBtnLanding" title="Total Stats" style="display: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 20V10"></path>
+                <path d="M12 20V4"></path>
+                <path d="M6 20v-6"></path>
+            </svg>
+        </button>
         <button class="gear-btn" id="gearBtn" title="Settings">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>
@@ -2111,10 +2207,14 @@
     <div class="container">
         <div class="file-upload" id="setupPanel">
             <!-- Step 1: Language Selection -->
-            <div id="step1" class="setup-step">
-                <div class="step-header step-header-with-help">
+            <div id="step1" class="setup-step collapsible">
+                <div class="step-header step-header-with-help" id="step1Header">
                     <span class="step-number">1</span>
                     <span class="step-title">Choose Language</span>
+                    <div class="selected-language-display" id="selectedLanguageDisplay">
+                        <span id="selectedLanguageName">Spanish</span>
+                        <span class="expand-indicator">▼</span>
+                    </div>
                     <button class="step-help-btn" data-tooltip="step1Tooltip" title="Help">?</button>
                     <div id="step1Tooltip" class="step-info-tooltip">
                         <p><strong>How to Study:</strong></p>
@@ -2136,8 +2236,14 @@
                 </div>
             </div>
 
+            <!-- Data Loading Indicator -->
+            <div class="data-loading-indicator" id="dataLoadingIndicator">
+                <div class="spinner"></div>
+                <span>Loading your progress...</span>
+            </div>
+
             <!-- Step 2: Level Selection -->
-            <div id="step2" class="setup-step">
+            <div id="step2" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
                     <span class="step-number">2</span>
                     <span class="step-title">Choose Level</span>
@@ -2405,6 +2511,26 @@
         </div>
     </div>
 
+    <!-- Total Stats Modal (All-time stats for the current language) -->
+    <div id="totalStatsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Total Stats - <span id="totalStatsLanguage">Spanish</span></h3>
+                <button class="modal-close" id="closeTotalStatsModal">✕</button>
+            </div>
+            <div class="stats-body">
+                <div class="stat-row">
+                    <span style="color: var(--accent-green);">Words Correct:</span>
+                    <span id="totalWordsCorrect" style="color: var(--accent-green);">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Words Seen:</span>
+                    <span id="totalWordsSeen">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Settings Modal with Tabs -->
     <div id="settingsModal" class="modal hidden">
         <div class="modal-content">
@@ -2421,6 +2547,14 @@
                 <div class="stat-row" style="cursor: pointer;" id="autoSpeakToggle">
                     <span>Auto-speak words</span>
                     <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
+                </div>
+                <div class="stat-row" style="cursor: pointer; display: none;" id="refreshSetToggle">
+                    <span>Refresh this study set</span>
+                    <span style="color: var(--warning);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+                        </svg>
+                    </span>
                 </div>
             </div>
             <!-- Account tab content -->
@@ -2672,6 +2806,7 @@
                     });
                     console.log(`Loaded progress for ${result.data.progress.length} words`);
                     updateIncorrectButtonVisibility();
+                    updateTotalStatsButtonVisibility();
                 }
             } catch (error) {
                 console.error('Failed to load progress from Google Sheets:', error);
@@ -2681,7 +2816,8 @@
 
         // Save progress for a single word to Google Sheets
         async function saveWordProgress(card, isCorrect) {
-            const wordRank = card.rank;
+            // Use originalRank for progress tracking (matches vocabulary file index)
+            const wordRank = card.rank; // rank is now the unique identifier
             const word = card.targetWord;
             const language = selectedLanguage;
             const timestamp = new Date().toISOString();
@@ -2817,6 +2953,32 @@
                     document.getElementById(tabName + 'TabContent').classList.add('active');
                 });
             });
+
+            // Settings modal close button
+            document.getElementById('closeSettingsModal').addEventListener('click', hideSettingsModal);
+
+            // Click outside settings modal to close
+            document.getElementById('settingsModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSettingsModal();
+                }
+            });
+
+            // Total stats modal close button
+            document.getElementById('closeTotalStatsModal').addEventListener('click', hideTotalStatsModal);
+
+            // Click outside total stats modal to close
+            document.getElementById('totalStatsModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideTotalStatsModal();
+                }
+            });
+
+            // Total stats button on landing page
+            document.getElementById('totalStatsBtnLanding').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showTotalStatsModal();
+            });
         }
 
         // ========== END AUTHENTICATION & GOOGLE SHEETS ==========
@@ -2836,10 +2998,11 @@
             }
         }
 
-        // Get the appropriate CEFR levels based on language and lemma mode
+        // Get the CEFR levels for the language (always use standard, not lemma-specific ranges)
         function getCefrLevels(language) {
             if (cefrLevelsConfig && cefrLevelsConfig[language]) {
-                return useLemmaMode ? cefrLevelsConfig[language].lemmaMode : cefrLevelsConfig[language].standard;
+                // Always use standard levels - lemma mode just filters cards within the same ranges
+                return cefrLevelsConfig[language].standard;
             }
             // Fallback to config.json levels
             return config.languages[language].cefrLevels;
@@ -2907,14 +3070,15 @@
         // Initialize on page load
         loadConfig().then(() => {
             renderLanguageTabs();
-            // Set first language with data as default
+            // Set first language with data as default (but don't auto-select it)
             const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
             selectedLanguage = firstLang;
             applyLanguageColorTheme();
-            renderLevelSelector(firstLang);
+            // Don't render level selector yet - wait for user to select a language
+            // renderLevelSelector(firstLang);
             setupGroupSizeSelector();
             setupLemmaToggle();
-            updateLemmaToggleVisibility();
+            // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
             setupTooltipHandlers(); // Initialize tooltips early
             setupAuthEventListeners(); // Setup auth modal event listeners
             checkAuthentication(); // Check if user is logged in
@@ -2938,12 +3102,13 @@
                 'swedish': 'SE'
             };
 
-            // Generate language tabs dynamically
+            // Generate language tabs dynamically - no active state initially
             const tabsHTML = languages.map((langKey, index) => {
                 const langCode = langCodeMap[langKey] || langKey.substring(0, 2).toUpperCase();
                 const langConfig = config.languages[langKey];
                 const hasData = langConfig.hasData !== false;
-                const activeClass = index === 0 && hasData ? 'active' : '';
+                // Don't pre-select any language - user must click to select
+                const activeClass = '';
                 const disabledClass = !hasData ? 'disabled' : '';
                 const disabledAttr = !hasData ? 'disabled' : '';
                 const title = !hasData ? `${langConfig.name} - Data coming soon` : '';
@@ -2958,7 +3123,7 @@
 
         function setupLanguageTabs() {
             document.querySelectorAll('.lang-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
+                tab.addEventListener('click', async function() {
                     // Prevent clicking on disabled tabs
                     if (this.disabled || this.classList.contains('disabled')) {
                         return;
@@ -2968,14 +3133,54 @@
                     selectedLanguage = this.dataset.lang;
                     selectedLevel = null;
                     applyLanguageColorTheme();
-                    renderLevelSelector(selectedLanguage);
-                    updateLemmaToggleVisibility();
-                    updateIncorrectButtonVisibility();
-                    // Hide steps 3, 4, and 5
+
+                    // Update the selected language display
+                    const langConfig = config.languages[selectedLanguage];
+                    document.getElementById('selectedLanguageName').textContent = langConfig ? langConfig.name : selectedLanguage;
+
+                    // Hide all subsequent steps while loading
+                    document.getElementById('step2').style.display = 'none';
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('step3').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
+
+                    // Show loading indicator and collapse language selector
+                    const step1 = document.getElementById('step1');
+                    const loadingIndicator = document.getElementById('dataLoadingIndicator');
+                    step1.classList.add('collapsed');
+                    loadingIndicator.classList.add('visible');
+
+                    // Refresh progress data from Google Sheets
+                    if (currentUser && !currentUser.isGuest) {
+                        await loadUserProgressFromSheet();
+                    }
+
+                    // Hide loading indicator and show step 2
+                    loadingIndicator.classList.remove('visible');
+                    document.getElementById('step2').style.display = 'block';
+
+                    renderLevelSelector(selectedLanguage);
+                    updateLemmaToggleVisibility();
+                    updateIncorrectButtonVisibility();
+                    updateTotalStatsButtonVisibility();
                 });
+            });
+
+            // Setup click handler for expanding/collapsing the language selector
+            document.getElementById('step1Header').addEventListener('click', function(e) {
+                // Don't toggle if clicking on the help button
+                if (e.target.closest('.step-help-btn') || e.target.closest('.step-info-tooltip')) {
+                    return;
+                }
+                const step1 = document.getElementById('step1');
+                if (step1.classList.contains('collapsed')) {
+                    step1.classList.remove('collapsed');
+                    // Hide subsequent steps when expanding
+                    document.getElementById('step2').style.display = 'none';
+                    document.getElementById('lemmaToggleContainer').style.display = 'none';
+                    document.getElementById('step3').style.display = 'none';
+                    document.getElementById('step4').style.display = 'none';
+                }
             });
         }
 
@@ -3127,44 +3332,36 @@
                 console.error('Failed to load vocabulary data:', error);
             }
 
+            // Assign original ranks (unique identifiers) to vocabulary items
+            vocabularyData.forEach((item, index) => {
+                item.rank = index + 1;
+            });
+
             // Filter to non-blank entries and exclude duplicates
             let filteredVocab = vocabularyData.filter(item =>
                 item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
             );
 
-            // If in lemma mode, filter to only entries where most_frequent_lemma_instance is true
-            if (useLemmaMode && lemmaFieldAvailable) {
-                filteredVocab = filteredVocab.filter(item => item.most_frequent_lemma_instance === true);
-            }
-
-            // Re-rank ALL filtered data based on position (starting from 1)
-            filteredVocab.forEach((item, index) => {
-                item.rank = index + 1;
-            });
-
-            // Now filter to only items within the level's range
+            // Filter to items within the level's range (using original ranks)
             filteredVocab = filteredVocab.filter(item =>
                 item.rank >= minWord && item.rank < maxWord
             );
 
-            // Create a Set of all available ranks for fast lookup
-            const availableRanks = new Set(filteredVocab.map(item => item.rank));
+            // For lemma mode, further filter to only lemma instances
+            let lemmaFilteredVocab = filteredVocab;
+            if (useLemmaMode && lemmaFieldAvailable) {
+                lemmaFilteredVocab = filteredVocab.filter(item => item.most_frequent_lemma_instance === true);
+            }
 
-            // Create a map of original ranks to check mastery
-            // We need to track the original vocab index for each filtered item
-            const originalRankMap = new Map();
-            vocabularyData.forEach((item, index) => {
-                if (item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0) {
-                    originalRankMap.set(index + 1, item);
-                }
-            });
+            // Create a Set of all available ranks for fast lookup
+            const availableRanks = new Set(lemmaFilteredVocab.map(item => item.rank));
 
             // Generate ALL possible range buttons based on groupSize across the full span
             const ranges = [];
             for (let i = minWord; i < maxWord; i += groupSize) {
                 const rangeEnd = Math.min(i + groupSize, maxWord);
 
-                // Check if ANY rank in this range has data
+                // Check if ANY rank in this range has data (after lemma filtering)
                 let hasData = false;
                 let ranksInRange = [];
                 for (let rank = i; rank < rangeEnd; rank++) {
@@ -3174,40 +3371,56 @@
                     }
                 }
 
-                // Check if ALL words in this range have been marked correct at least once
+                // Check mastery and attempted status
                 let isMastered = false;
+                let isAttempted = false;
                 if (hasData && currentUser && !currentUser.isGuest && progressData && ranksInRange.length > 0) {
-                    // For each rank in the range, find the corresponding original vocabulary rank
-                    // and check if it has correct > 0 in progressData
-                    const filteredInRange = filteredVocab.filter(item => item.rank >= i && item.rank < rangeEnd);
-                    if (filteredInRange.length > 0) {
-                        isMastered = filteredInRange.every(item => {
-                            // Find original rank by matching the word in the original vocabulary
-                            const originalIndex = vocabularyData.findIndex(v => v.word === item.word);
-                            const originalRank = originalIndex + 1;
-                            const progress = progressData[originalRank];
+                    const wordsInRange = lemmaFilteredVocab.filter(item => item.rank >= i && item.rank < rangeEnd);
+                    if (wordsInRange.length > 0) {
+                        // Check if ALL words in this range have been marked correct at least once
+                        isMastered = wordsInRange.every(item => {
+                            const progress = progressData[item.rank];
                             return progress && progress.correct > 0 && progress.language === selectedLanguage;
                         });
+
+                        // Check if ANY word in this range has been attempted (correct OR wrong > 0)
+                        if (!isMastered) {
+                            isAttempted = wordsInRange.some(item => {
+                                const progress = progressData[item.rank];
+                                return progress && progress.language === selectedLanguage &&
+                                       ((progress.correct && progress.correct > 0) || (progress.wrong && progress.wrong > 0));
+                            });
+                        }
                     }
                 }
 
                 ranges.push({
                     range: `${i}-${rangeEnd}`,
                     available: hasData,
-                    mastered: isMastered
+                    mastered: isMastered,
+                    attempted: isAttempted
                 });
             }
 
-            // Generate HTML with disabled state for unavailable ranges and mastered state for completed ranges
+            // Generate HTML with disabled state for unavailable ranges, mastered state for completed ranges, and attempted state
             const rangesHTML = ranges.map(r => {
                 const disabledAttr = !r.available ? 'disabled' : '';
                 const disabledClass = !r.available ? 'disabled' : '';
                 const masteredClass = r.mastered ? 'mastered' : '';
+                const attemptedClass = r.attempted ? 'attempted' : '';
+                let title = 'Load ' + r.range;
+                if (!r.available) {
+                    title = 'Greyed out because no vocabulary data exists for this range yet';
+                } else if (r.mastered) {
+                    title = 'All words in this set answered correctly at least once';
+                } else if (r.attempted) {
+                    title = 'Some words in this set have been practiced';
+                }
                 return `
-                    <button class="range-btn-new ${disabledClass} ${masteredClass}"
+                    <button class="range-btn-new ${disabledClass} ${masteredClass} ${attemptedClass}"
                             data-range="${r.range}"
                             ${disabledAttr}
-                            title="${!r.available ? 'Greyed out because no vocabulary data exists for this range yet' : r.mastered ? 'All words in this set answered correctly at least once' : 'Load ' + r.range}">
+                            title="${title}">
                         ${r.range}
                     </button>
                 `;
@@ -3314,6 +3527,11 @@
                 }
                 const vocabularyData = await response.json();
 
+                // Store original index/rank from vocabulary file - this is the unique identifier
+                vocabularyData.forEach((item, index) => {
+                    item.rank = index + 1; // Use original position as the rank (unique identifier)
+                });
+
                 // Filter to non-blank entries and exclude duplicates
                 let filteredData = vocabularyData.filter(item =>
                     item.word &&
@@ -3323,20 +3541,30 @@
                     item.meanings.length > 0
                 );
 
+                // Filter by the requested range (using original ranks)
+                filteredData = filteredData.filter(item =>
+                    item.rank >= rangeStart && item.rank < rangeEnd
+                );
+
                 // If in lemma mode, filter to only entries where most_frequent_lemma_instance is true
+                // This happens AFTER range filtering, so lemma mode just shows fewer cards within the same range
                 if (useLemmaMode && lemmaFieldAvailable) {
                     filteredData = filteredData.filter(item => item.most_frequent_lemma_instance === true);
                 }
 
-                // Re-rank ALL filtered data based on position
-                filteredData.forEach((item, index) => {
-                    item.rank = index + 1;
-                });
-
-                // NOW filter by the requested range
-                filteredData = filteredData.filter(item =>
-                    item.rank >= rangeStart && item.rank < rangeEnd
-                );
+                // Filter out words the user has already got correct (for logged-in users)
+                if (currentUser && !currentUser.isGuest && progressData) {
+                    const beforeCount = filteredData.length;
+                    filteredData = filteredData.filter(item => {
+                        const progress = progressData[item.rank];
+                        // Keep the word if no progress exists, or if correct is 0 or undefined
+                        return !progress || !progress.correct || progress.correct === 0 || progress.language !== selectedLanguage;
+                    });
+                    const removedCount = beforeCount - filteredData.length;
+                    if (removedCount > 0) {
+                        console.log(`Filtered out ${removedCount} previously mastered words`);
+                    }
+                }
 
                 // Convert to flashcards format
                 const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
@@ -3369,7 +3597,7 @@
                     const card = {
                         targetWord: item.word,
                         lemma: item.lemma || '',
-                        rank: item.rank,
+                        rank: item.rank, // This is now the unique identifier (original vocabulary file position)
                         meanings: meanings,
                         translation: item.meanings[0].translation,
                         targetSentence: item.meanings[0][exampleTargetField],
@@ -3380,8 +3608,13 @@
                     flashcards.push(card);
                 }
 
-                if (flashcards.length === 0) {
-                    alert('No flashcards found in this range. Please try another set.');
+                if (filteredData.length === 0) {
+                    // Check if this is because all words are mastered
+                    if (currentUser && !currentUser.isGuest && progressData) {
+                        alert('You\'ve already mastered all words in this set! Choose another set or use the "Refresh Set" option in settings to reset your progress.');
+                    } else {
+                        alert('No flashcards found in this range. Please try another set.');
+                    }
                     document.getElementById('loadingMessage').style.display = 'none';
                     return;
                 }
@@ -3957,7 +4190,6 @@
             });
 
             document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
-            document.getElementById('closeSettingsModal').addEventListener('click', hideSettingsModal);
 
             // Settings modal interactions
             document.getElementById('autoSpeakToggle').addEventListener('click', function() {
@@ -3966,16 +4198,60 @@
                 document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
             });
 
+            // Refresh study set - delete progress for words in current set
+            document.getElementById('refreshSetToggle').addEventListener('click', async function() {
+                if (!currentUser || currentUser.isGuest) {
+                    alert('You must be logged in to refresh your progress.');
+                    return;
+                }
+
+                if (flashcards.length === 0) {
+                    alert('No study set is currently loaded.');
+                    return;
+                }
+
+                // Get the word ranks that are in the current flashcard set
+                const wordsInSet = flashcards.map(card => ({
+                    rank: card.rank,
+                    word: card.targetWord
+                }));
+
+                const confirmMsg = `This will reset your progress for ${wordsInSet.length} words in the current study set. These words will appear again when you study this set. Continue?`;
+                if (!confirm(confirmMsg)) {
+                    return;
+                }
+
+                // Delete progress for each word in the set
+                try {
+                    for (const wordInfo of wordsInSet) {
+                        // Remove from local progressData
+                        if (progressData[wordInfo.rank]) {
+                            delete progressData[wordInfo.rank];
+                        }
+
+                        // Delete from Google Sheets
+                        await fetch(GOOGLE_SCRIPT_URL, {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                action: 'delete',
+                                user: currentUser.initials,
+                                wordRank: wordInfo.rank
+                            })
+                        });
+                    }
+
+                    alert(`Progress reset for ${wordsInSet.length} words. Go back to the menu and re-select this set to study the refreshed words.`);
+                    hideSettingsModal();
+                } catch (error) {
+                    console.error('Failed to reset progress:', error);
+                    alert('Failed to reset progress. Please try again.');
+                }
+            });
+
             // Click outside modal to close
             document.getElementById('statsModal').addEventListener('click', function(e) {
                 if (e.target === this) {
                     hideStatsModal();
-                }
-            });
-
-            document.getElementById('settingsModal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    hideSettingsModal();
                 }
             });
 
@@ -4387,11 +4663,18 @@
 
         function showFloatingBtns(show) {
             const btns = document.getElementById('floatingBtns');
+            const totalStatsBtn = document.getElementById('totalStatsBtnLanding');
             if (btns) {
                 if (show) {
                     btns.classList.add('visible');
+                    // Hide total stats button when in flashcard view
+                    if (totalStatsBtn) {
+                        totalStatsBtn.style.display = 'none';
+                    }
                 } else {
                     btns.classList.remove('visible');
+                    // Show total stats button when back on setup page (if applicable)
+                    updateTotalStatsButtonVisibility();
                 }
             }
         }
@@ -4411,6 +4694,14 @@
             // Scroll to top
             document.querySelector('.container').scrollTop = 0;
 
+            // Reset the language selector to expanded state and hide other steps
+            const step1 = document.getElementById('step1');
+            step1.classList.remove('collapsed');
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('lemmaToggleContainer').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'none';
+
             // Reset selections
             document.querySelectorAll('.range-btn').forEach(btn => {
                 btn.classList.remove('selected');
@@ -4418,6 +4709,10 @@
             document.querySelectorAll('.range-btn-new').forEach(btn => {
                 btn.classList.remove('selected');
             });
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            selectedLevel = null;
             selectedRanges = [];
             flashcards = [];
             currentIndex = 0;
@@ -4454,6 +4749,14 @@
             document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
             document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
 
+            // Show/hide refresh set option based on whether a study set is loaded and user is logged in
+            const refreshSetToggle = document.getElementById('refreshSetToggle');
+            if (currentUser && !currentUser.isGuest && flashcards.length > 0) {
+                refreshSetToggle.style.display = 'flex';
+            } else {
+                refreshSetToggle.style.display = 'none';
+            }
+
             // Update account tab with current user
             const userBadge = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
             document.getElementById('accountUserBadge').textContent = userBadge;
@@ -4471,6 +4774,51 @@
             document.getElementById('settingsModal').classList.add('hidden');
         }
 
+        function showTotalStatsModal() {
+            // Update language name in the header
+            const langConfig = config.languages[selectedLanguage];
+            const langName = langConfig ? langConfig.name : selectedLanguage;
+            document.getElementById('totalStatsLanguage').textContent = langName;
+
+            // Calculate total stats from progressData for the selected language
+            let wordsCorrect = 0;
+            let wordsSeen = 0;
+
+            if (progressData) {
+                Object.values(progressData).forEach(data => {
+                    if (data.language === selectedLanguage) {
+                        wordsSeen++;
+                        if (data.correct > 0) {
+                            wordsCorrect++;
+                        }
+                    }
+                });
+            }
+
+            document.getElementById('totalWordsCorrect').textContent = wordsCorrect;
+            document.getElementById('totalWordsSeen').textContent = wordsSeen;
+
+            document.getElementById('totalStatsModal').classList.remove('hidden');
+        }
+
+        function hideTotalStatsModal() {
+            document.getElementById('totalStatsModal').classList.add('hidden');
+        }
+
+        function updateTotalStatsButtonVisibility() {
+            const btn = document.getElementById('totalStatsBtnLanding');
+            if (btn) {
+                // Show if logged in and progressData has data for the selected language
+                if (currentUser && !currentUser.isGuest && progressData) {
+                    const hasData = Object.values(progressData).some(
+                        data => data.language === selectedLanguage
+                    );
+                    btn.style.display = hasData ? 'flex' : 'none';
+                } else {
+                    btn.style.display = 'none';
+                }
+            }
+        }
 
         function updateStatsModal() {
             document.getElementById('cardsStudied').textContent = stats.studied.size;
