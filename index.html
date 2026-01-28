@@ -828,54 +828,26 @@
             margin-bottom: 15px;
         }
 
-        /* Collapsible language selector */
-        .setup-step.collapsible .step-header {
-            cursor: pointer;
-            margin-bottom: 0;
-            transition: margin-bottom 0.3s ease;
-        }
-
-        .setup-step.collapsible:not(.collapsed) .step-header {
-            margin-bottom: 15px;
-        }
-
-        .setup-step.collapsible .language-tabs {
-            max-height: 100px;
-            overflow: hidden;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-            opacity: 1;
-        }
-
-        .setup-step.collapsible.collapsed .language-tabs {
-            max-height: 0;
-            opacity: 0;
-        }
-
-        .selected-language-display {
+        .selected-language-inline {
             display: none;
             align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
+            margin-top: 12px;
+            padding: 10px 16px;
             background: var(--accent-primary);
             color: white;
             border-radius: 8px;
             font-family: var(--font-emphasis);
             font-weight: 600;
+            font-size: 15px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .setup-step.collapsible.collapsed .selected-language-display {
+        .selected-language-inline.visible {
             display: flex;
-        }
-
-        .expand-indicator {
-            margin-left: auto;
-            font-size: 12px;
-            opacity: 0.7;
-            transition: transform 0.3s ease;
-        }
-
-        .setup-step.collapsible:not(.collapsed) .expand-indicator {
-            transform: rotate(180deg);
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Loading state for data refresh */
@@ -914,7 +886,7 @@
         }
 
         .step-number {
-            font-family: var(--font-data);
+            font-family: var(--font-emphasis);
             width: 28px;
             height: 28px;
             background: var(--accent-secondary);
@@ -994,7 +966,7 @@
         }
 
         .range-btn-new {
-            font-family: var(--font-data);
+            font-family: var(--font-emphasis);
             padding: 10px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
@@ -1216,7 +1188,7 @@
         }
 
         .cefr-range-btn {
-            font-family: var(--font-data);
+            font-family: var(--font-emphasis);
             padding: 8px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
@@ -1290,7 +1262,7 @@
         }
 
         .group-size-btn {
-            font-family: var(--font-data);
+            font-family: var(--font-emphasis);
             flex: 0 0 auto;
             padding: 10px 12px;
             background: transparent;
@@ -1356,7 +1328,7 @@
         }
 
         .lemma-toggle-btn {
-            font-family: var(--font-data);
+            font-family: var(--font-emphasis);
             flex: 1;
             padding: 10px 10px;
             background: transparent;
@@ -1418,7 +1390,7 @@
         }
 
         .incorrect-set-btn {
-            font-family: var(--font-data);
+            font-family: var(--font-emphasis);
             padding: 10px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
@@ -2016,13 +1988,13 @@
             right: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
             background: var(--bg-card);
-            padding: 12px 32px;
-            border-radius: 28px;
+            padding: 14px 36px;
+            border-radius: 30px;
             border: 1px solid var(--border-color);
-            font-family: var(--font-data);
-            font-size: 16px;
+            font-family: var(--font-emphasis);
+            font-size: 17px;
             z-index: 100;
         }
 
@@ -2030,7 +2002,7 @@
             color: var(--accent-primary);
             font-weight: 600;
             letter-spacing: 1px;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .logout-btn {
@@ -2066,7 +2038,7 @@
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 8px;
+            padding: 10px;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
@@ -2079,21 +2051,21 @@
         }
 
         .gear-btn svg {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
         }
 
         @media (max-width: 767px) {
             .user-info {
                 top: 10px;
                 right: 10px;
-                padding: 10px 24px;
-                font-size: 14px;
-                gap: 12px;
+                padding: 12px 28px;
+                font-size: 15px;
+                gap: 14px;
             }
 
             .user-badge {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             .logout-btn {
@@ -2102,12 +2074,12 @@
             }
 
             .gear-btn {
-                padding: 6px;
+                padding: 8px;
             }
 
             .gear-btn svg {
-                width: 22px;
-                height: 22px;
+                width: 24px;
+                height: 24px;
             }
         }
 
@@ -2190,7 +2162,7 @@
             </button>
         </div>
         <span class="user-badge" id="userBadge">GUEST</span>
-        <button class="gear-btn" id="totalStatsBtnLanding" title="Total Stats" style="display: none;">
+        <button class="gear-btn" id="statsBtnPill" title="Stats" style="display: none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 20V10"></path>
                 <path d="M12 20V4"></path>
@@ -2208,14 +2180,10 @@
     <div class="container">
         <div class="file-upload" id="setupPanel">
             <!-- Step 1: Language Selection -->
-            <div id="step1" class="setup-step collapsible">
+            <div id="step1" class="setup-step">
                 <div class="step-header step-header-with-help" id="step1Header">
                     <span class="step-number">1</span>
                     <span class="step-title">Choose Language</span>
-                    <div class="selected-language-display" id="selectedLanguageDisplay">
-                        <span id="selectedLanguageName">Spanish</span>
-                        <span class="expand-indicator">▼</span>
-                    </div>
                     <button class="step-help-btn" data-tooltip="step1Tooltip" title="Help">?</button>
                     <div id="step1Tooltip" class="step-info-tooltip">
                         <p><strong>How to Study:</strong></p>
@@ -2234,6 +2202,9 @@
                 </div>
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
+                </div>
+                <div class="selected-language-inline" id="selectedLanguageInline">
+                    <span id="selectedLanguageName"></span>
                 </div>
             </div>
 
@@ -2537,6 +2508,7 @@
             <div class="settings-tabs-header">
                 <div class="settings-tabs">
                     <button class="settings-tab active" data-tab="settings">Settings</button>
+                    <button class="settings-tab" data-tab="stats">Stats</button>
                     <button class="settings-tab" data-tab="account">Account</button>
                 </div>
                 <button class="modal-close" id="closeSettingsModal">✕</button>
@@ -2554,6 +2526,20 @@
                             <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
                         </svg>
                     </span>
+                </div>
+            </div>
+            <!-- Stats tab content -->
+            <div class="settings-tab-content" id="statsTabContent">
+                <div class="stat-row">
+                    <span id="statsTabLanguage" style="color: var(--accent-primary); font-weight: 600;">Spanish</span>
+                </div>
+                <div class="stat-row">
+                    <span>Words correct</span>
+                    <span id="statsTabWordsCorrect" style="color: var(--accent-green);">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Words seen</span>
+                    <span id="statsTabWordsSeen">0</span>
                 </div>
             </div>
             <!-- Account tab content -->
@@ -2973,10 +2959,10 @@
                 }
             });
 
-            // Total stats button on landing page
-            document.getElementById('totalStatsBtnLanding').addEventListener('click', function(e) {
+            // Stats button in pill - opens settings modal on Stats tab
+            document.getElementById('statsBtnPill').addEventListener('click', function(e) {
                 e.stopPropagation();
-                showTotalStatsModal();
+                showSettingsModalWithTab('stats');
             });
         }
 
@@ -3133,9 +3119,13 @@
                     selectedLevel = null;
                     applyLanguageColorTheme();
 
-                    // Update the selected language display
+                    // Update and show the inline selected language display with animation
                     const langConfig = config.languages[selectedLanguage];
+                    const selectedLangInline = document.getElementById('selectedLanguageInline');
                     document.getElementById('selectedLanguageName').textContent = langConfig ? langConfig.name : selectedLanguage;
+
+                    // Trigger animation by adding visible class
+                    selectedLangInline.classList.add('visible');
 
                     // Hide all subsequent steps while loading
                     document.getElementById('step2').style.display = 'none';
@@ -3143,10 +3133,8 @@
                     document.getElementById('step3').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
 
-                    // Show loading indicator and collapse language selector
-                    const step1 = document.getElementById('step1');
+                    // Show loading indicator
                     const loadingIndicator = document.getElementById('dataLoadingIndicator');
-                    step1.classList.add('collapsed');
                     loadingIndicator.classList.add('visible');
 
                     // Refresh progress data from Google Sheets
@@ -3163,23 +3151,6 @@
                     updateIncorrectButtonVisibility();
                     updateTotalStatsButtonVisibility();
                 });
-            });
-
-            // Setup click handler for expanding/collapsing the language selector
-            document.getElementById('step1Header').addEventListener('click', function(e) {
-                // Don't toggle if clicking on the help button
-                if (e.target.closest('.step-help-btn') || e.target.closest('.step-info-tooltip')) {
-                    return;
-                }
-                const step1 = document.getElementById('step1');
-                if (step1.classList.contains('collapsed')) {
-                    step1.classList.remove('collapsed');
-                    // Hide subsequent steps when expanding
-                    document.getElementById('step2').style.display = 'none';
-                    document.getElementById('lemmaToggleContainer').style.display = 'none';
-                    document.getElementById('step3').style.display = 'none';
-                    document.getElementById('step4').style.display = 'none';
-                }
             });
         }
 
@@ -4662,17 +4633,17 @@
 
         function showFloatingBtns(show) {
             const btns = document.getElementById('floatingBtns');
-            const totalStatsBtn = document.getElementById('totalStatsBtnLanding');
+            const statsBtnPill = document.getElementById('statsBtnPill');
             if (btns) {
                 if (show) {
                     btns.classList.add('visible');
-                    // Hide total stats button when in flashcard view
-                    if (totalStatsBtn) {
-                        totalStatsBtn.style.display = 'none';
+                    // Hide stats button in pill when in flashcard view
+                    if (statsBtnPill) {
+                        statsBtnPill.style.display = 'none';
                     }
                 } else {
                     btns.classList.remove('visible');
-                    // Show total stats button when back on setup page (if applicable)
+                    // Show stats button in pill when back on setup page (if applicable)
                     updateTotalStatsButtonVisibility();
                 }
             }
@@ -4693,31 +4664,28 @@
             // Scroll to top
             document.querySelector('.container').scrollTop = 0;
 
-            // Reset the language selector to expanded state and hide other steps
-            const step1 = document.getElementById('step1');
-            step1.classList.remove('collapsed');
-            document.getElementById('step2').style.display = 'none';
-            document.getElementById('lemmaToggleContainer').style.display = 'none';
-            document.getElementById('step3').style.display = 'none';
+            // Keep the language selected and show subsequent steps
+            // Don't reset the language - user can pick a new set for the same language
+            document.getElementById('step2').style.display = 'block';
             document.getElementById('step4').style.display = 'none';
 
-            // Reset selections
+            // Reset only the range/set selections, not the level
             document.querySelectorAll('.range-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
             document.querySelectorAll('.range-btn-new').forEach(btn => {
                 btn.classList.remove('selected');
             });
-            document.querySelectorAll('.level-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            selectedLevel = null;
             selectedRanges = [];
             flashcards = [];
             currentIndex = 0;
             currentSentenceIndex = 0;
             currentMeaningIndex = 0;
             isFlipped = false;
+
+            // Re-render level selector to show updated progress
+            renderLevelSelector(selectedLanguage);
+            updateLemmaToggleVisibility();
 
             // Reset card state
             const flashcardEl = document.getElementById('flashcard');
@@ -4744,6 +4712,10 @@
         }
 
         function showSettingsModal() {
+            showSettingsModalWithTab('settings');
+        }
+
+        function showSettingsModalWithTab(tabName) {
             // Update settings tab
             document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
             document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
@@ -4760,13 +4732,43 @@
             const userBadge = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
             document.getElementById('accountUserBadge').textContent = userBadge;
 
-            // Reset to settings tab
+            // Update stats tab
+            updateStatsTab();
+
+            // Switch to specified tab
             document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector('.settings-tab[data-tab="settings"]').classList.add('active');
+            document.querySelector(`.settings-tab[data-tab="${tabName}"]`).classList.add('active');
             document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
-            document.getElementById('settingsTabContent').classList.add('active');
+            const tabContentId = tabName === 'settings' ? 'settingsTabContent' :
+                                 tabName === 'stats' ? 'statsTabContent' : 'accountTabContent';
+            document.getElementById(tabContentId).classList.add('active');
 
             document.getElementById('settingsModal').classList.remove('hidden');
+        }
+
+        function updateStatsTab() {
+            // Update language name
+            const langConfig = config.languages[selectedLanguage];
+            const langName = langConfig ? langConfig.name : selectedLanguage;
+            document.getElementById('statsTabLanguage').textContent = langName;
+
+            // Calculate total stats from progressData for the selected language
+            let wordsCorrect = 0;
+            let wordsSeen = 0;
+
+            if (progressData) {
+                Object.values(progressData).forEach(data => {
+                    if (data.language === selectedLanguage) {
+                        wordsSeen++;
+                        if (data.correct > 0) {
+                            wordsCorrect++;
+                        }
+                    }
+                });
+            }
+
+            document.getElementById('statsTabWordsCorrect').textContent = wordsCorrect;
+            document.getElementById('statsTabWordsSeen').textContent = wordsSeen;
         }
 
         function hideSettingsModal() {
@@ -4805,7 +4807,7 @@
         }
 
         function updateTotalStatsButtonVisibility() {
-            const btn = document.getElementById('totalStatsBtnLanding');
+            const btn = document.getElementById('statsBtnPill');
             if (btn) {
                 // Show if logged in and progressData has data for the selected language
                 if (currentUser && !currentUser.isGuest && progressData) {

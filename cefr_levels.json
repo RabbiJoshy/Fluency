@@ -37,12 +37,12 @@
   },
   "spanish": {
     "standard": [
-      { "level": "A1", "description": "Beginner", "comprehension": "~65% of spoken language", "wordCount": "1-800" },
-      { "level": "A2", "description": "Elementary", "comprehension": "~75% of spoken language", "wordCount": "800-1500" },
-      { "level": "B1", "description": "Intermediate", "comprehension": "~85% of spoken language", "wordCount": "1500-2500" },
-      { "level": "B2", "description": "Upper Intermediate", "comprehension": "~90% of spoken language", "wordCount": "2500-3000" },
-      { "level": "C1", "description": "Advanced", "comprehension": "~95% of spoken language", "wordCount": "3000-4500" },
-      { "level": "C2", "description": "Proficient", "comprehension": "~98% of spoken language", "wordCount": "4500-7000" }
+      { "level": "A1", "description": "Beginner", "comprehension": "~65% of spoken language", "wordCount": "1-1000" },
+      { "level": "A2", "description": "Elementary", "comprehension": "~75% of spoken language", "wordCount": "`1000-2000" },
+      { "level": "B1", "description": "Intermediate", "comprehension": "~85% of spoken language", "wordCount": "2000-3500" },
+      { "level": "B2", "description": "Upper Intermediate", "comprehension": "~90% of spoken language", "wordCount": "3500-6000" },
+      { "level": "C1", "description": "Advanced", "comprehension": "~95% of spoken language", "wordCount": "6000-8500" },
+      { "level": "C2", "description": "Proficient", "comprehension": "~98% of spoken language", "wordCount": "8500-12000" }
     ],
     "lemmaMode": [
       { "level": "A1", "description": "Beginner", "comprehension": "~65% of spoken language", "wordCount": "1-400" },

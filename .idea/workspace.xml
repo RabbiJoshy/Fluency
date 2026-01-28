@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Data/Spanish/Scripts/sandbx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/SpanishRaw600110K.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/SpanishRawWiki.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/SpanishRawWiki.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocab_6001_10000.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +105,7 @@
       <workItem from="1768811370545" duration="14380000" />
       <workItem from="1768924014357" duration="328000" />
       <workItem from="1768940447224" duration="13927000" />
-      <workItem from="1769116055201" duration="42829000" />
+      <workItem from="1769116055201" duration="51724000" />
     </task>
     <servers />
   </component>
