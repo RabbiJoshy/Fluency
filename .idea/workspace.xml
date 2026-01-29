@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/BadBunny.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/BadBunny2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_album_vocab.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_lyrics.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BadBunny3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bad_bunny_vocab_artist.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadBunny.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadBunny2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bad_bunny_album_vocab.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bad_bunny_lyrics.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +110,7 @@
       <workItem from="1768811370545" duration="14380000" />
       <workItem from="1768924014357" duration="328000" />
       <workItem from="1768940447224" duration="13927000" />
-      <workItem from="1769116055201" duration="59468000" />
+      <workItem from="1769116055201" duration="66078000" />
     </task>
     <servers />
   </component>

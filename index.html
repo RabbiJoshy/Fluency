@@ -344,14 +344,30 @@
         }
 
         .card-pos {
-            font-family: var(--font-reading);
-            font-size: 18px;
-            color: var(--text-muted);
+            font-family: var(--font-data);
+            font-size: 12px;
+            color: var(--text-primary);
             text-align: center;
             margin-bottom: 12px;
-            text-transform: lowercase;
-            font-style: italic;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            display: inline-block;
         }
+
+        /* Part of Speech Colors */
+        .pos-noun { background: rgba(74, 158, 255, 0.2); border-color: rgba(74, 158, 255, 0.5); color: #4a9eff; }
+        .pos-verb { background: rgba(0, 212, 170, 0.2); border-color: rgba(0, 212, 170, 0.5); color: #00d4aa; }
+        .pos-adj { background: rgba(245, 166, 35, 0.2); border-color: rgba(245, 166, 35, 0.5); color: #f5a623; }
+        .pos-adv { background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.5); color: #a855f7; }
+        .pos-prep { background: rgba(236, 72, 153, 0.2); border-color: rgba(236, 72, 153, 0.5); color: #ec4899; }
+        .pos-conj { background: rgba(20, 184, 166, 0.2); border-color: rgba(20, 184, 166, 0.5); color: #14b8a6; }
+        .pos-pron { background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.5); color: #6366f1; }
+        .pos-det { background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.5); color: #f43f5e; }
+        .pos-int { background: rgba(234, 179, 8, 0.2); border-color: rgba(234, 179, 8, 0.5); color: #eab308; }
+        .pos-num { background: rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.5); color: #06b6d4; }
 
         .card-ranking {
             font-family: var(--font-reading);
@@ -508,12 +524,12 @@
 
         .link-btn {
             display: inline-block;
-            padding: 8px 16px;
+            padding: 9px 18px;
             background: var(--bg-tertiary);
             color: var(--accent-secondary);
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 7px;
+            font-size: 15px;
             border: 1px solid var(--border-color);
             transition: all 0.3s;
         }
@@ -901,6 +917,7 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 15px;
+            margin-top: 4px;
         }
 
         .step-number {
@@ -1405,6 +1422,32 @@
             background: var(--accent-secondary);
             color: var(--bg-primary);
             border-color: var(--accent-secondary);
+        }
+
+        .percent-mode-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-left: auto;
+        }
+
+        .percent-mode-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+        }
+
+        .percent-mode-btn.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
         }
 
         .incorrect-set-btn {
@@ -2006,13 +2049,13 @@
             right: 20px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
             background: var(--bg-card);
-            padding: 14px 36px;
-            border-radius: 30px;
+            padding: 15px 40px;
+            border-radius: 33px;
             border: 1px solid var(--border-color);
             font-family: var(--font-emphasis);
-            font-size: 17px;
+            font-size: 19px;
             z-index: 100;
         }
 
@@ -2020,7 +2063,7 @@
             color: var(--accent-primary);
             font-weight: 600;
             letter-spacing: 1px;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .logout-btn {
@@ -2069,21 +2112,21 @@
         }
 
         .gear-btn svg {
-            width: 26px;
-            height: 26px;
+            width: 29px;
+            height: 29px;
         }
 
         @media (max-width: 767px) {
             .user-info {
                 top: 10px;
                 right: 10px;
-                padding: 12px 28px;
-                font-size: 15px;
-                gap: 14px;
+                padding: 13px 31px;
+                font-size: 17px;
+                gap: 15px;
             }
 
             .user-badge {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             .logout-btn {
@@ -2229,8 +2272,9 @@
             <div id="step2" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
                     <span class="step-number">2</span>
-                    <span class="step-title">Choose Level</span>
+                    <span class="step-title" id="step2Title">Choose CEFR level</span>
                     <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
+                    <button class="percent-mode-btn" id="percentModeBtn" title="Toggle percentage coverage mode">% Mode</button>
                     <div id="step2Tooltip" class="step-info-tooltip">
                         <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
                         <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
@@ -3307,6 +3351,10 @@
                     loadingIndicator.classList.remove('visible');
                     document.getElementById('step2').style.display = 'block';
 
+                    // Update step 2 title and % Mode button based on current mode
+                    document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
+                    updatePercentModeButton();
+
                     renderLevelSelector(selectedLanguage);
                     updateLemmaToggleVisibility();
                     updateIncorrectButtonVisibility();
@@ -3319,6 +3367,15 @@
             document.querySelectorAll('.selection-pill').forEach(pill => {
                 pill.classList.remove('visible');
             });
+        }
+
+        function updatePercentModeButton() {
+            const btn = document.getElementById('percentModeBtn');
+            if (percentageMode) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
         }
 
         function renderLevelSelector(language) {
@@ -3340,7 +3397,7 @@
             } else {
                 const cefrLevels = getCefrLevels(language);
                 const levelsHTML = cefrLevels.map(level => `
-                    <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="Level ${level.level}" title="${level.description}">
+                    <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${level.level}" title="${level.description}">
                         ${level.level}
                     </button>
                 `).join('');
@@ -3360,9 +3417,13 @@
                     this.textContent = this.dataset.full;
                     selectedLevel = this.dataset.level;
 
-                    // Show steps 3 (lemma), 4 (cards per set), and 5 (range)
+                    // Show steps 3 (lemma), 4 (cards per set), and 5 (range) with staggered timing
                     document.getElementById('lemmaToggleContainer').style.display = 'block';
-                    document.getElementById('step3').style.display = 'block';
+
+                    // Show step 4 after a slight delay (after step 3 appears)
+                    setTimeout(() => {
+                        document.getElementById('step3').style.display = 'block';
+                    }, 150);
 
                     renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                 });
@@ -4430,6 +4491,48 @@
 
                 // Update stats tab
                 updateStatsTab();
+
+                // Sync the % Mode button state
+                updatePercentModeButton();
+            });
+
+            // % Mode button in step 2 header
+            document.getElementById('percentModeBtn').addEventListener('click', async function() {
+                const langConfig = config.languages[selectedLanguage];
+                if (!langConfig || !langConfig.ppmDataPath) {
+                    alert('Percentage mode is not available for this language yet.');
+                    return;
+                }
+
+                percentageMode = !percentageMode;
+
+                // Update button appearance
+                updatePercentModeButton();
+
+                // Sync settings modal toggle
+                document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
+                document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
+
+                // Load PPM data if enabling percentage mode
+                if (percentageMode && !ppmData) {
+                    await loadPpmData(selectedLanguage);
+                }
+
+                // Update the title text
+                document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
+
+                // Re-render the level selector
+                selectedLevel = null;
+                document.querySelectorAll('.level-btn').forEach(b => {
+                    b.classList.remove('selected');
+                    b.textContent = b.dataset.short;
+                });
+                renderLevelSelector(selectedLanguage);
+                document.getElementById('lemmaToggleContainer').style.display = 'none';
+                document.getElementById('step3').style.display = 'none';
+                document.getElementById('step4').style.display = 'none';
+
+                updateStatsTab();
             });
 
             // Refresh study set - delete progress for words in current set
@@ -5191,16 +5294,24 @@
 
             document.getElementById('frontWord').textContent = frontText;
 
-            // Display part of speech on front
+            // Display part of speech on front with color coding
             const frontPOSEl = document.getElementById('frontPOS');
+            // Clear any existing POS color classes
+            frontPOSEl.className = 'card-pos';
             if (card.isMultiMeaning && card.meanings && card.meanings.length > 0) {
                 // For multi-meaning cards, show all unique POS
                 const allPOS = [...new Set(card.meanings.map(m => m.pos))].join(', ');
                 frontPOSEl.textContent = allPOS;
-                frontPOSEl.style.display = 'block';
+                // Apply color of first POS
+                const firstPos = card.meanings[0].pos;
+                const posClass = getPosColorClass(firstPos);
+                if (posClass) frontPOSEl.classList.add(posClass);
+                frontPOSEl.style.display = 'inline-block';
             } else if (card.partOfSpeech) {
                 frontPOSEl.textContent = card.partOfSpeech;
-                frontPOSEl.style.display = 'block';
+                const posClass = getPosColorClass(card.partOfSpeech);
+                if (posClass) frontPOSEl.classList.add(posClass);
+                frontPOSEl.style.display = 'inline-block';
             } else {
                 frontPOSEl.style.display = 'none';
             }
@@ -5255,11 +5366,12 @@
                     const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'var(--bg-tertiary)';
                     const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
                     const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
+                    const posColorClass = getPosColorClass(m.pos);
                     backHTML += `
                         <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
                             <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
                             <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${m.meaning}</span>
-                            <span style="font-family: var(--font-data); font-size: 11px; color: ${isSelected ? 'var(--text-secondary)' : 'var(--text-muted)'}; text-transform: uppercase;">${m.pos}</span>
+                            <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
                         </div>
                     `;
                 });
@@ -5461,6 +5573,22 @@
             isFlipped = !isFlipped;
             updateCard();
             document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function getPosColorClass(pos) {
+            if (!pos) return '';
+            const posLower = pos.toLowerCase();
+            if (posLower.includes('noun') || posLower === 'n' || posLower === 'nn') return 'pos-noun';
+            if (posLower.includes('verb') || posLower === 'v' || posLower === 'vb') return 'pos-verb';
+            if (posLower.includes('adj') || posLower === 'a' || posLower === 'jj') return 'pos-adj';
+            if (posLower.includes('adv') || posLower === 'rb') return 'pos-adv';
+            if (posLower.includes('prep') || posLower === 'in') return 'pos-prep';
+            if (posLower.includes('conj') || posLower === 'cc') return 'pos-conj';
+            if (posLower.includes('pron') || posLower === 'prp') return 'pos-pron';
+            if (posLower.includes('det') || posLower === 'dt') return 'pos-det';
+            if (posLower.includes('int') || posLower === 'uh') return 'pos-int';
+            if (posLower.includes('num') || posLower === 'cd') return 'pos-num';
+            return '';
         }
 
         function updateReverseButton() {
