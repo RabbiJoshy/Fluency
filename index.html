@@ -329,36 +329,35 @@
             font-family: var(--font-emphasis);
             font-size: 64px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--accent-primary);
             text-align: center;
         }
 
+        .card-lemma {
+            font-family: var(--font-reading);
+            font-size: 26px;
+            color: var(--accent-secondary);
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
         .card-pos {
             font-family: var(--font-reading);
-            font-size: 14px;
+            font-size: 18px;
             color: var(--text-muted);
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: lowercase;
             font-style: italic;
         }
 
-        .card-lemma {
-            font-family: var(--font-reading);
-            font-size: 22px;
-            color: var(--accent-secondary);
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
         .card-ranking {
-            font-family: var(--font-data);
-            font-size: 16px;
+            font-family: var(--font-reading);
+            font-size: 18px;
             color: var(--text-muted);
             text-align: center;
-            letter-spacing: 0.5px;
         }
 
         .card-control-btn {
@@ -862,6 +861,13 @@
             filter: brightness(1.1);
         }
 
+        /* Full width pill for language selection */
+        .selection-pill.full-width {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 17px;
+        }
+
         /* Loading state for data refresh */
         .data-loading-indicator {
             display: none;
@@ -955,7 +961,7 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             color: var(--text-muted);
         }
 
@@ -965,9 +971,9 @@
         }
 
         .level-btn.selected {
-            background: var(--bg-card);
-            color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: var(--accent-primary);
+            color: white;
+            padding: 10px 16px;
         }
 
         .range-selector {
@@ -1276,14 +1282,14 @@
         .group-size-btn {
             font-family: var(--font-emphasis);
             flex: 0 0 auto;
-            padding: 10px 12px;
+            padding: 10px 14px;
             background: transparent;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             min-width: 46px;
             color: var(--text-muted);
         }
@@ -1294,9 +1300,9 @@
         }
 
         .group-size-btn.selected {
-            background: var(--bg-card);
-            color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: var(--accent-primary);
+            color: white;
+            padding: 10px 16px;
         }
 
         .step-row {
@@ -1341,15 +1347,15 @@
 
         .lemma-toggle-btn {
             font-family: var(--font-emphasis);
-            flex: 1;
-            padding: 10px 10px;
+            flex: 0 0 auto;
+            padding: 10px 14px;
             background: transparent;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             min-width: 38px;
             color: var(--text-muted);
         }
@@ -1360,9 +1366,9 @@
         }
 
         .lemma-toggle-btn.selected {
-            background: var(--bg-card);
-            color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: var(--accent-primary);
+            color: white;
+            padding: 10px 16px;
         }
 
         .lemma-toggle-btn.disabled {
@@ -2208,7 +2214,7 @@
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
                 </div>
-                <div class="selection-pill" id="selectedLanguagePill">
+                <div class="selection-pill full-width" id="selectedLanguagePill">
                     <span id="selectedLanguageName"></span>
                 </div>
             </div>
@@ -2231,9 +2237,6 @@
                     </div>
                 </div>
                 <div id="levelSelector" class="level-selector"></div>
-                <div class="selection-pill" id="selectedLevelPill">
-                    <span id="selectedLevelName"></span>
-                </div>
             </div>
 
             <!-- Step 3: Cards per Lemma -->
@@ -2249,11 +2252,8 @@
                     </div>
                 </div>
                 <div id="lemmaToggleSelector" class="group-size-selector">
-                    <button class="lemma-toggle-btn" data-lemma="off">1+</button>
-                    <button class="lemma-toggle-btn selected" data-lemma="on">1</button>
-                </div>
-                <div class="selection-pill" id="selectedLemmaPill">
-                    <span id="selectedLemmaName"></span>
+                    <button class="lemma-toggle-btn" data-lemma="off" data-short="1+" data-full="All word forms">1+</button>
+                    <button class="lemma-toggle-btn selected" data-lemma="on" data-short="1" data-full="1 card per lemma">1 card per lemma</button>
                 </div>
             </div>
 
@@ -2269,11 +2269,8 @@
                     </div>
                 </div>
                 <div id="groupSizeSelector" class="group-size-selector">
-                    <button class="group-size-btn selected" data-size="25">25</button>
-                    <button class="group-size-btn" data-size="50">50</button>
-                </div>
-                <div class="selection-pill" id="selectedCardsPill">
-                    <span id="selectedCardsName"></span>
+                    <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25 cards per set">25 cards per set</button>
+                    <button class="group-size-btn" data-size="50" data-short="50" data-full="50 cards per set">50</button>
                 </div>
             </div>
 
@@ -2323,8 +2320,8 @@
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
                                 <div class="card-word" id="frontWord"></div>
-                                <div class="card-pos" id="frontPOS"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
+                                <div class="card-pos" id="frontPOS"></div>
                                 <div class="card-ranking" id="frontRanking"></div>
                             </button>
                             <!-- Desktop: Left/right nav buttons beside the word -->
@@ -2530,6 +2527,10 @@
                     <span>Auto-speak words</span>
                     <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
                 </div>
+                <div class="stat-row" style="cursor: pointer;" id="percentageModeToggle">
+                    <span>Percentage coverage mode</span>
+                    <span id="percentageModeStatus" style="color: var(--text-muted);">OFF</span>
+                </div>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="refreshSetToggle">
                     <span>Refresh this study set</span>
                     <span style="color: var(--warning);">
@@ -2551,6 +2552,10 @@
                 <div class="stat-row">
                     <span>Words seen</span>
                     <span id="statsTabWordsSeen">0</span>
+                </div>
+                <div class="stat-row" id="coverageStatRow" style="display: none;">
+                    <span>Language coverage</span>
+                    <span id="statsTabCoverage" style="color: var(--accent-secondary); font-weight: 600;">0%</span>
                 </div>
             </div>
             <!-- Account tab content -->
@@ -2606,6 +2611,23 @@
         let isAppInitialized = false; // Track if event listeners have been set up
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
         let speechEnabled = true; // Text-to-speech toggle
+        let percentageMode = false; // Whether to use percentage coverage mode for levels
+        let ppmData = null; // PPM data for percentage mode calculations
+        let totalPpm = 0; // Total PPM for the language
+
+        // Percentage coverage thresholds for levels
+        const percentageLevels = [
+            { level: '50%', threshold: 0.50, description: '50% language coverage' },
+            { level: '60%', threshold: 0.60, description: '60% language coverage' },
+            { level: '70%', threshold: 0.70, description: '70% language coverage' },
+            { level: '80%', threshold: 0.80, description: '80% language coverage' },
+            { level: '85%', threshold: 0.85, description: '85% language coverage' },
+            { level: '90%', threshold: 0.90, description: '90% language coverage' },
+            { level: '95%', threshold: 0.95, description: '95% language coverage' },
+            { level: '96%', threshold: 0.96, description: '96% language coverage' },
+            { level: '97%', threshold: 0.97, description: '97% language coverage' },
+            { level: '98%', threshold: 0.98, description: '98% language coverage' }
+        ];
 
         // Language codes for Web Speech API
         const speechLangCodes = {
@@ -2998,6 +3020,111 @@
             return config.languages[language].cefrLevels;
         }
 
+        // Load PPM data for percentage mode
+        async function loadPpmData(language) {
+            const langConfig = config.languages[language];
+            if (!langConfig || !langConfig.ppmDataPath) {
+                ppmData = null;
+                totalPpm = 0;
+                return false;
+            }
+
+            try {
+                const response = await fetch(langConfig.ppmDataPath);
+                if (!response.ok) {
+                    ppmData = null;
+                    totalPpm = 0;
+                    return false;
+                }
+
+                const csvText = await response.text();
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                const ppmIndex = headers.indexOf('occurrences_ppm');
+                const rankIndex = headers.indexOf('rank');
+
+                if (ppmIndex === -1) {
+                    ppmData = null;
+                    totalPpm = 0;
+                    return false;
+                }
+
+                ppmData = [];
+                totalPpm = 0;
+
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',');
+                    const ppm = parseFloat(values[ppmIndex]) || 0;
+                    const rank = parseInt(values[rankIndex]) || i;
+                    ppmData.push({ rank, ppm });
+                    totalPpm += ppm;
+                }
+
+                // Calculate cumulative percentages
+                let cumulative = 0;
+                for (let i = 0; i < ppmData.length; i++) {
+                    cumulative += ppmData[i].ppm;
+                    ppmData[i].cumulativePercent = cumulative / totalPpm;
+                }
+
+                return true;
+            } catch (error) {
+                console.error('Failed to load PPM data:', error);
+                ppmData = null;
+                totalPpm = 0;
+                return false;
+            }
+        }
+
+        // Get percentage-based level ranges
+        function getPercentageLevelRanges() {
+            if (!ppmData || ppmData.length === 0) return [];
+
+            const ranges = [];
+            let prevRank = 0;
+
+            for (const level of percentageLevels) {
+                // Find the rank where cumulative percentage reaches this threshold
+                let endRank = ppmData.length;
+                for (let i = 0; i < ppmData.length; i++) {
+                    if (ppmData[i].cumulativePercent >= level.threshold) {
+                        endRank = ppmData[i].rank;
+                        break;
+                    }
+                }
+
+                ranges.push({
+                    level: level.level,
+                    description: level.description,
+                    startRank: prevRank + 1,
+                    endRank: endRank,
+                    threshold: level.threshold
+                });
+
+                prevRank = endRank;
+            }
+
+            return ranges;
+        }
+
+        // Calculate cumulative coverage based on correct words
+        function calculateCoveragePercent() {
+            if (!ppmData || ppmData.length === 0 || !progressData) return 0;
+
+            let coveredPpm = 0;
+            for (const [rank, data] of Object.entries(progressData)) {
+                if (data.language === selectedLanguage && data.correct > 0) {
+                    const rankNum = parseInt(rank);
+                    const ppmEntry = ppmData.find(p => p.rank === rankNum);
+                    if (ppmEntry) {
+                        coveredPpm += ppmEntry.ppm;
+                    }
+                }
+            }
+
+            return totalPpm > 0 ? (coveredPpm / totalPpm) * 100 : 0;
+        }
+
         // Setup tooltip handlers (needs to run early, before any set is picked)
         function setupTooltipHandlers() {
             // Step help tooltip handlers
@@ -3134,8 +3261,18 @@
                     }
                     document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-                    selectedLanguage = this.dataset.lang;
+                    const newLanguage = this.dataset.lang;
+
+                    // Only reset percentage mode when switching to a different language
+                    if (newLanguage !== selectedLanguage) {
+                        percentageMode = false;
+                        ppmData = null;
+                        totalPpm = 0;
+                    }
+
+                    selectedLanguage = newLanguage;
                     selectedLevel = null;
+
                     applyLanguageColorTheme();
 
                     // Update and show the selection pill, hide the tabs
@@ -3161,6 +3298,11 @@
                         await loadUserProgressFromSheet();
                     }
 
+                    // Load PPM data if percentage mode is enabled
+                    if (percentageMode && !ppmData) {
+                        await loadPpmData(selectedLanguage);
+                    }
+
                     // Hide loading indicator and show step 2
                     loadingIndicator.classList.remove('visible');
                     document.getElementById('step2').style.display = 'block';
@@ -3181,66 +3323,64 @@
 
         function renderLevelSelector(language) {
             const container = document.getElementById('levelSelector');
-            const cefrLevels = getCefrLevels(language);
 
-            const levelsHTML = cefrLevels.map(level => `
-                <button class="level-btn" data-level="${level.level}" title="${level.description}">
-                    ${level.level}
-                </button>
-            `).join('');
+            // Debug logging
+            console.log('renderLevelSelector called:', { percentageMode, ppmDataLength: ppmData ? ppmData.length : 0, language });
 
-            container.innerHTML = levelsHTML;
-
-            // Click handler for the level selection pill (to change level)
-            document.getElementById('selectedLevelPill').onclick = function() {
-                this.classList.remove('visible');
-                document.getElementById('levelSelector').style.display = 'flex';
-                // Hide subsequent steps
-                document.getElementById('lemmaToggleContainer').style.display = 'none';
-                document.getElementById('step3').style.display = 'none';
-                document.getElementById('step4').style.display = 'none';
-                // Hide subsequent pills
-                document.getElementById('selectedLemmaPill').classList.remove('visible');
-                document.getElementById('selectedCardsPill').classList.remove('visible');
-            };
+            // Use percentage levels if in percentage mode with PPM data
+            if (percentageMode && ppmData && ppmData.length > 0) {
+                const percentageRanges = getPercentageLevelRanges();
+                console.log('Using percentage levels:', percentageRanges);
+                const levelsHTML = percentageRanges.map(level => `
+                    <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${level.description}" data-start-rank="${level.startRank}" data-end-rank="${level.endRank}" title="${level.description}">
+                        ${level.level}
+                    </button>
+                `).join('');
+                container.innerHTML = levelsHTML;
+            } else {
+                const cefrLevels = getCefrLevels(language);
+                const levelsHTML = cefrLevels.map(level => `
+                    <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="Level ${level.level}" title="${level.description}">
+                        ${level.level}
+                    </button>
+                `).join('');
+                container.innerHTML = levelsHTML;
+            }
 
             // Add click handlers for level buttons
             document.querySelectorAll('.level-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
+                    // Reset all buttons to short text
+                    document.querySelectorAll('.level-btn').forEach(b => {
+                        b.classList.remove('selected');
+                        b.textContent = b.dataset.short;
+                    });
+                    // Set selected button to full text
                     this.classList.add('selected');
+                    this.textContent = this.dataset.full;
                     selectedLevel = this.dataset.level;
-
-                    // Show selection pill and hide selector
-                    document.getElementById('selectedLevelName').textContent = `Level ${selectedLevel}`;
-                    document.getElementById('levelSelector').style.display = 'none';
-                    document.getElementById('selectedLevelPill').classList.add('visible');
 
                     // Show steps 3 (lemma), 4 (cards per set), and 5 (range)
                     document.getElementById('lemmaToggleContainer').style.display = 'block';
                     document.getElementById('step3').style.display = 'block';
+
                     renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                 });
             });
         }
 
         function setupGroupSizeSelector() {
-            // Click handler for the cards per set selection pill
-            document.getElementById('selectedCardsPill').onclick = function() {
-                this.classList.remove('visible');
-                document.getElementById('groupSizeSelector').style.display = 'flex';
-            };
-
             document.querySelectorAll('.group-size-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    document.querySelectorAll('.group-size-btn').forEach(b => b.classList.remove('selected'));
+                    // Reset all buttons to short text
+                    document.querySelectorAll('.group-size-btn').forEach(b => {
+                        b.classList.remove('selected');
+                        b.textContent = b.dataset.short;
+                    });
+                    // Set selected button to full text
                     this.classList.add('selected');
+                    this.textContent = this.dataset.full;
                     groupSize = parseInt(this.dataset.size);
-
-                    // Show selection pill and hide selector
-                    document.getElementById('selectedCardsName').textContent = `${groupSize} cards`;
-                    document.getElementById('groupSizeSelector').style.display = 'none';
-                    document.getElementById('selectedCardsPill').classList.add('visible');
 
                     // Re-render range selector if a level is selected
                     if (selectedLevel) {
@@ -3251,26 +3391,21 @@
         }
 
         function setupLemmaToggle() {
-            // Click handler for the lemma selection pill
-            document.getElementById('selectedLemmaPill').onclick = function() {
-                this.classList.remove('visible');
-                document.getElementById('lemmaToggleSelector').style.display = 'flex';
-            };
-
             document.querySelectorAll('.lemma-toggle-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     // Don't allow selecting "1" mode if lemma field not available
                     if (this.dataset.lemma === 'on' && !lemmaFieldAvailable) {
                         return;
                     }
-                    document.querySelectorAll('.lemma-toggle-btn').forEach(b => b.classList.remove('selected'));
+                    // Reset all buttons to short text
+                    document.querySelectorAll('.lemma-toggle-btn').forEach(b => {
+                        b.classList.remove('selected');
+                        b.textContent = b.dataset.short;
+                    });
+                    // Set selected button to full text
                     this.classList.add('selected');
+                    this.textContent = this.dataset.full;
                     useLemmaMode = this.dataset.lemma === 'on';
-
-                    // Show selection pill and hide selector
-                    document.getElementById('selectedLemmaName').textContent = useLemmaMode ? '1 card per lemma' : 'All forms (1+)';
-                    document.getElementById('lemmaToggleSelector').style.display = 'none';
-                    document.getElementById('selectedLemmaPill').classList.add('visible');
 
                     // Re-render level selector with new word counts, and re-render range selector if a level is selected
                     renderLevelSelector(selectedLanguage);
@@ -3279,10 +3414,8 @@
                         const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
                         if (levelBtn) {
                             levelBtn.classList.add('selected');
+                            levelBtn.textContent = levelBtn.dataset.full;
                         }
-                        // Keep the level pill visible since we already have a level selected
-                        document.getElementById('levelSelector').style.display = 'none';
-                        document.getElementById('selectedLevelPill').classList.add('visible');
                         renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                     }
                 });
@@ -3348,14 +3481,24 @@
 
         async function renderRangeSelector() {
             const langConfig = config.languages[selectedLanguage];
-            const cefrLevels = getCefrLevels(selectedLanguage);
-            const level = cefrLevels.find(l => l.level === selectedLevel);
             const container = document.getElementById('rangeSelector');
 
-            if (!level) return;
+            let minWord, maxWord;
 
-            // Parse the wordCount range for this level (e.g., "1-800" -> 1, 800)
-            const [minWord, maxWord] = level.wordCount.split('-').map(Number);
+            // Get min/max based on mode
+            if (percentageMode && ppmData && ppmData.length > 0) {
+                // In percentage mode, get ranks from selected level button's data attributes
+                const selectedBtn = document.querySelector('.level-btn.selected');
+                if (!selectedBtn) return;
+                minWord = parseInt(selectedBtn.dataset.startRank);
+                maxWord = parseInt(selectedBtn.dataset.endRank);
+            } else {
+                const cefrLevels = getCefrLevels(selectedLanguage);
+                const level = cefrLevels.find(l => l.level === selectedLevel);
+                if (!level) return;
+                // Parse the wordCount range for this level (e.g., "1-800" -> 1, 800)
+                [minWord, maxWord] = level.wordCount.split('-').map(Number);
+            }
 
             // Always use the regular data path
             const dataPath = langConfig.dataPath;
@@ -3468,10 +3611,19 @@
             }).join('');
 
             // Add "Next Level" button at the end
-            const currentLevelIndex = cefrLevels.findIndex(l => l.level === selectedLevel);
-            const nextLevel = currentLevelIndex < cefrLevels.length - 1 ? cefrLevels[currentLevelIndex + 1] : null;
-
             let nextLevelHTML = '';
+            let levels, currentLevelIndex, nextLevel;
+
+            if (percentageMode && ppmData && ppmData.length > 0) {
+                levels = percentageLevels;
+                currentLevelIndex = levels.findIndex(l => l.level === selectedLevel);
+                nextLevel = currentLevelIndex < levels.length - 1 ? levels[currentLevelIndex + 1] : null;
+            } else {
+                levels = getCefrLevels(selectedLanguage);
+                currentLevelIndex = levels.findIndex(l => l.level === selectedLevel);
+                nextLevel = currentLevelIndex < levels.length - 1 ? levels[currentLevelIndex + 1] : null;
+            }
+
             if (nextLevel) {
                 nextLevelHTML = `
                     <button class="range-btn-new next-level-btn"
@@ -3502,11 +3654,15 @@
                         const nextLevelValue = this.dataset.nextLevel;
                         if (nextLevelValue) {
                             selectedLevel = nextLevelValue;
-                            // Update level selector UI
-                            document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
+                            // Update level selector UI - reset all buttons and select the next one
+                            document.querySelectorAll('.level-btn').forEach(b => {
+                                b.classList.remove('selected');
+                                b.textContent = b.dataset.short;
+                            });
                             const nextLevelBtn = document.querySelector(`.level-btn[data-level="${nextLevelValue}"]`);
                             if (nextLevelBtn) {
                                 nextLevelBtn.classList.add('selected');
+                                nextLevelBtn.textContent = nextLevelBtn.dataset.full;
                             }
                             // Re-render range selector for the new level
                             await renderRangeSelector();
@@ -4239,6 +4395,43 @@
                 document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
             });
 
+            // Percentage mode toggle
+            document.getElementById('percentageModeToggle').addEventListener('click', async function() {
+                const langConfig = config.languages[selectedLanguage];
+                if (!langConfig || !langConfig.ppmDataPath) {
+                    alert('Percentage mode is not available for this language yet.');
+                    return;
+                }
+
+                percentageMode = !percentageMode;
+                document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
+                document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
+
+                // Load PPM data if enabling percentage mode
+                if (percentageMode && !ppmData) {
+                    await loadPpmData(selectedLanguage);
+                }
+
+                // Re-render the level selector if we're on the setup screen
+                // Note: step2 is visible when display is 'block' or '' (empty)
+                const step2Display = document.getElementById('step2').style.display;
+                if (selectedLanguage && step2Display !== 'none') {
+                    selectedLevel = null;
+                    // Reset all level buttons
+                    document.querySelectorAll('.level-btn').forEach(b => {
+                        b.classList.remove('selected');
+                        b.textContent = b.dataset.short;
+                    });
+                    renderLevelSelector(selectedLanguage);
+                    document.getElementById('lemmaToggleContainer').style.display = 'none';
+                    document.getElementById('step3').style.display = 'none';
+                    document.getElementById('step4').style.display = 'none';
+                }
+
+                // Update stats tab
+                updateStatsTab();
+            });
+
             // Refresh study set - delete progress for words in current set
             document.getElementById('refreshSetToggle').addEventListener('click', async function() {
                 if (!currentUser || currentUser.isGuest) {
@@ -4713,7 +4906,7 @@
             }
         }
 
-        function goBackToSetup() {
+        async function goBackToSetup() {
             // Hide app content, show setup
             const appContent = document.getElementById('appContent');
             const setupPanel = document.getElementById('setupPanel');
@@ -4751,17 +4944,31 @@
             currentMeaningIndex = 0;
             isFlipped = false;
 
+            // Load PPM data if percentage mode is enabled but data not loaded
+            if (percentageMode && (!ppmData || ppmData.length === 0)) {
+                await loadPpmData(selectedLanguage);
+            }
+
             // Re-render level selector to show updated progress
             renderLevelSelector(selectedLanguage);
 
-            // If a level was selected, keep the pill showing
+            // If a level was selected, re-select the level button with full text
+            // But only if the level still exists in the current mode (CEFR vs percentage)
             if (selectedLevel) {
-                document.getElementById('levelSelector').style.display = 'none';
-                document.getElementById('selectedLevelPill').classList.add('visible');
-                document.getElementById('selectedLevelName').textContent = `Level ${selectedLevel}`;
-                // Also show lemma and cards steps
-                document.getElementById('lemmaToggleContainer').style.display = 'block';
-                document.getElementById('step3').style.display = 'block';
+                const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+                if (levelBtn) {
+                    levelBtn.classList.add('selected');
+                    levelBtn.textContent = levelBtn.dataset.full;
+                    // Also show lemma and cards steps
+                    document.getElementById('lemmaToggleContainer').style.display = 'block';
+                    document.getElementById('step3').style.display = 'block';
+                } else {
+                    // Level no longer exists (e.g., switched from CEFR to percentage mode)
+                    // Reset selectedLevel and hide subsequent steps
+                    selectedLevel = null;
+                    document.getElementById('lemmaToggleContainer').style.display = 'none';
+                    document.getElementById('step3').style.display = 'none';
+                }
             }
 
             updateLemmaToggleVisibility();
@@ -4798,6 +5005,17 @@
             // Update settings tab
             document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
             document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
+
+            // Update percentage mode toggle visibility and state
+            const percentageModeToggle = document.getElementById('percentageModeToggle');
+            const langConfig = config.languages[selectedLanguage];
+            if (langConfig && langConfig.ppmDataPath) {
+                percentageModeToggle.style.display = 'flex';
+                document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
+                document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
+            } else {
+                percentageModeToggle.style.display = 'none';
+            }
 
             // Show/hide refresh set option based on whether a study set is loaded and user is logged in
             const refreshSetToggle = document.getElementById('refreshSetToggle');
@@ -4848,6 +5066,16 @@
 
             document.getElementById('statsTabWordsCorrect').textContent = wordsCorrect;
             document.getElementById('statsTabWordsSeen').textContent = wordsSeen;
+
+            // Update coverage percentage if PPM data is available
+            const coverageRow = document.getElementById('coverageStatRow');
+            if (ppmData && ppmData.length > 0) {
+                const coveragePercent = calculateCoveragePercent();
+                document.getElementById('statsTabCoverage').textContent = coveragePercent.toFixed(1) + '%';
+                coverageRow.style.display = 'flex';
+            } else {
+                coverageRow.style.display = 'none';
+            }
         }
 
         function hideSettingsModal() {
