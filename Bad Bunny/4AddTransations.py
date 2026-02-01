@@ -21,14 +21,14 @@ from pathlib import Path
 IN_PATH = Path("Bad Bunny/vocab_word_lemma_preview.json")
 OUT_PATH = Path("Bad Bunny/BadBunnyvocabulary.json")
 
-MAX_ENTRIES = 1000
-MAX_EXAMPLES_PER_POS = 3
+MAX_ENTRIES = 2050
+MAX_EXAMPLES_PER_POS = 2
 
 # Translation settings
 DO_TRANSLATE_WORDS = True
 DO_TRANSLATE_EXAMPLES = True
 TRANSLATE_SLEEP_SECONDS = 0.04
-PRINT_EVERY_N_TRANSLATIONS = 5
+PRINT_EVERY_N_WORDS = 50
 
 translator = None
 if DO_TRANSLATE_WORDS or DO_TRANSLATE_EXAMPLES:
@@ -171,13 +171,25 @@ def main():
     raw = json.loads(IN_PATH.read_text(encoding="utf-8"))
     subset = raw[:MAX_ENTRIES]
 
-    out = []
-    translated = 0
+    # Load existing output to continue from where we left off
+    existing = []
+    already_translated_words = set()
+    if OUT_PATH.exists():
+        existing = json.loads(OUT_PATH.read_text(encoding="utf-8"))
+        already_translated_words = {e["word"] for e in existing}
+        print(f"📂 Found {len(existing)} already translated entries, continuing from there...")
+
+    out = list(existing)  # Start with existing entries
+    words_processed = 0
     start = time.perf_counter()
 
     for rank, entry in enumerate(subset, start=1):
         word = str(entry.get("word", "")).strip()
         lemma = str(entry.get("lemma", "")).strip()
+
+        # Skip if already translated
+        if word in already_translated_words:
+            continue
 
         lang_flags = entry.get("language_flags") or {}
         is_english = bool(lang_flags.get("is_english", False))
@@ -190,10 +202,6 @@ def main():
         word_translation = ""
         if DO_TRANSLATE_WORDS and not is_english:
             word_translation = safe_translate(word, is_word=True)
-            translated += 1
-            if translated % PRINT_EVERY_N_TRANSLATIONS == 0:
-                elapsed = time.perf_counter() - start
-                print(f"⏱ {translated} translations | {elapsed:.1f}s")
             time.sleep(TRANSLATE_SLEEP_SECONDS)
 
         meanings = []
@@ -227,10 +235,6 @@ def main():
                 # Translate this example (unless english-flagged)
                 if DO_TRANSLATE_EXAMPLES and not is_english:
                     ex_obj["english"] = safe_translate(line, is_word=False)
-                    translated += 1
-                    if translated % PRINT_EVERY_N_TRANSLATIONS == 0:
-                        elapsed = time.perf_counter() - start
-                        print(f"⏱ {translated} translations | {elapsed:.1f}s")
                     time.sleep(TRANSLATE_SLEEP_SECONDS)
 
                 examples.append(ex_obj)
@@ -261,6 +265,11 @@ def main():
             "is_english": is_english,
             "_meta_match_count": match_count
         })
+
+        words_processed += 1
+        if words_processed % PRINT_EVERY_N_WORDS == 0:
+            elapsed = time.perf_counter() - start
+            print(f"⏱ {words_processed} words processed | {elapsed:.1f}s")
 
     compute_most_frequent_flags(out)
 
