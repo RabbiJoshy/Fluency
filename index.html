@@ -3275,10 +3275,24 @@
                 document.getElementById('selectedLanguagePill').classList.add('visible');
                 // Make pill non-clickable in Bad Bunny mode
                 document.getElementById('selectedLanguagePill').style.pointerEvents = 'none';
+                // Update step 1 tooltip for Bad Bunny mode
+                document.getElementById('step1Tooltip').innerHTML = `
+                    <p><strong>How to Study:</strong></p>
+                    <p><strong>Tap card</strong> to flip and see translation</p>
+                    <p><strong>Swipe right</strong> if you know the word ✓</p>
+                    <p><strong>Swipe left</strong> if you don't know it ✗</p>
+                    <p><strong>Tap example lyrics</strong> to cycle through different song examples</p>
+                    <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions</p>
+                    <p><strong>Arrow buttons</strong> to navigate cards manually</p>
+                    <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--border-color);">
+                    <p><strong>About This Mode:</strong></p>
+                    <p>Learn Spanish vocabulary from Bad Bunny's lyrics. Words are ranked by how often they appear across his discography, so you learn the most common words first.</p>
+                    <p>Each word includes real lyric examples from his songs.</p>
+                `;
                 // Load PPM data and show step 2
                 await loadPpmData('spanish');
                 document.getElementById('step2').style.display = 'block';
-                document.getElementById('step2Title').textContent = 'Choose Corpus Coverage';
+                document.getElementById('step2Title').textContent = 'Choose Lyrics Coverage';
                 renderLevelSelector('spanish');
             }
         });
@@ -3419,7 +3433,13 @@
 
         function updateStep2Tooltip() {
             const tooltip = document.getElementById('step2Tooltip');
-            if (percentageMode) {
+            if (isBadBunnyMode) {
+                tooltip.innerHTML = `
+                    <p><strong>Lyrics Coverage</strong> shows what percentage of Bad Bunny's lyrics you'll understand.</p>
+                    <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words across his songs.</p>
+                    <p>Words are ranked by how often they appear in his discography.</p>
+                `;
+            } else if (percentageMode) {
                 tooltip.innerHTML = `
                     <p><strong>Corpus Coverage</strong> shows what percentage of real-world text you'll understand.</p>
                     <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words in typical movies, TV shows, and conversations.</p>
@@ -3443,11 +3463,14 @@
             if (percentageMode && ppmData && ppmData.length > 0) {
                 const percentageRanges = getPercentageLevelRanges();
                 console.log('Using percentage levels:', percentageRanges);
-                const levelsHTML = percentageRanges.map(level => `
-                    <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${level.description}" data-start-rank="${level.startRank}" data-end-rank="${level.endRank}" title="${level.description}">
+                const coverageType = isBadBunnyMode ? 'lyrics coverage' : 'language coverage';
+                const levelsHTML = percentageRanges.map(level => {
+                    const description = `${level.level} ${coverageType}`;
+                    return `
+                    <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${description}" data-start-rank="${level.startRank}" data-end-rank="${level.endRank}" title="${description}">
                         ${level.level}
                     </button>
-                `).join('');
+                `}).join('');
                 container.innerHTML = levelsHTML;
             } else {
                 const cefrLevels = getCefrLevels(language);
@@ -3539,6 +3562,10 @@
         }
 
         function setupPercentModeButton() {
+            // Hide the % Mode button in Bad Bunny mode (always percentage mode)
+            if (isBadBunnyMode) {
+                document.getElementById('percentModeBtn').style.display = 'none';
+            }
             document.getElementById('percentModeBtn').addEventListener('click', async function() {
                 const langConfig = config.languages[selectedLanguage];
                 if (!langConfig || !langConfig.ppmDataPath) {
@@ -4443,6 +4470,14 @@
             }
             values.push(current);
             return values;
+        }
+
+        // Truncate text to a maximum number of words, adding ellipsis if truncated
+        function truncateText(text, maxWords) {
+            if (!text) return '';
+            const words = text.split(/\s+/);
+            if (words.length <= maxWords) return text;
+            return words.slice(0, maxWords).join(' ') + '...';
         }
 
         function cleanValue(value) {
@@ -5492,9 +5527,13 @@
                         songName = currentMeaning.allExamples[0].song_name;
                     }
 
+                    // Truncate sentences longer than 20 words
+                    displayTargetSentence = truncateText(displayTargetSentence, 20);
+                    displayEnglishSentence = truncateText(displayEnglishSentence, 20);
+
+                    // Show example counter only (no "Tap for more" text)
                     const exampleIndicator = hasMultipleExamples ? `
                         <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-                            <span style="color: var(--text-muted); font-size: 12px;">Tap for more examples</span>
                             <span style="color: var(--accent-secondary); font-size: 12px;">${currentExampleIndex + 1} / ${exampleCount}</span>
                         </div>
                     ` : '';
