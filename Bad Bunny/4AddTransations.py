@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Input : Bad Bunny/vocab_word_lemma_preview.json
-Output: Bad Bunny/vocabulary_app_preview.json
+Output: Bad Bunny/BadBunnyvocabulary.json
 
 Rules:
 - POS = meaning (sense) for now.
@@ -19,7 +19,7 @@ from collections import defaultdict
 from pathlib import Path
 
 IN_PATH = Path("Bad Bunny/vocab_word_lemma_preview.json")
-OUT_PATH = Path("Bad Bunny/vocabulary_app_preview.json")
+OUT_PATH = Path("Bad Bunny/BadBunnyvocabulary.json")
 
 MAX_ENTRIES = 1000
 MAX_EXAMPLES_PER_POS = 3
