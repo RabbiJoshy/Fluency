@@ -2659,6 +2659,11 @@
         let ppmData = null; // PPM data for percentage mode calculations
         let totalPpm = 0; // Total PPM for the language
 
+        // Bad Bunny mode detection from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const isBadBunnyMode = urlParams.get('mode') === 'badbunny';
+        let currentExampleIndex = 0; // Track which example is being shown (for Bad Bunny mode with multiple examples)
+
         // Percentage coverage thresholds for levels
         const percentageLevels = [
             { level: '50%', threshold: 0.50, description: '50% language coverage' },
@@ -2846,7 +2851,8 @@
                     method: 'POST',
                     body: JSON.stringify({
                         action: 'load',
-                        user: currentUser.initials
+                        user: currentUser.initials,
+                        sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
                     })
                 });
 
@@ -2928,7 +2934,8 @@
                         wrong: progressData[wordRank].wrong,
                         lastCorrect: progressData[wordRank].lastCorrect,
                         lastWrong: progressData[wordRank].lastWrong,
-                        lastSeen: progressData[wordRank].lastSeen
+                        lastSeen: progressData[wordRank].lastSeen,
+                        sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
                     })
                 });
 
@@ -3048,6 +3055,18 @@
                 ]);
                 config = await configResponse.json();
                 cefrLevelsConfig = await cefrResponse.json();
+
+                // Override config for Bad Bunny mode
+                if (isBadBunnyMode) {
+                    config.languages.spanish = {
+                        ...config.languages.spanish,
+                        name: "Spanish (Bad Bunny)",
+                        dataPath: "Data/Spanish/vocabulary_app_preview.json"
+                    };
+                    // Force percentage mode and set title
+                    percentageMode = true;
+                    document.title = "Bad Bunny Vocabulary";
+                }
             } catch (error) {
                 console.error('Failed to load config:', error);
                 alert('Failed to load configuration. Please refresh the page.');
@@ -3229,7 +3248,7 @@
         }
 
         // Initialize on page load
-        loadConfig().then(() => {
+        loadConfig().then(async () => {
             renderLanguageTabs();
             // Set first language with data as default (but don't auto-select it)
             const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
@@ -3239,10 +3258,29 @@
             // renderLevelSelector(firstLang);
             setupGroupSizeSelector();
             setupLemmaToggle();
+            setupPercentModeButton(); // Setup % Mode button early
             // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
             setupTooltipHandlers(); // Initialize tooltips early
             setupAuthEventListeners(); // Setup auth modal event listeners
             checkAuthentication(); // Check if user is logged in
+
+            // In Bad Bunny mode, auto-select Spanish and skip language selection
+            if (isBadBunnyMode) {
+                selectedLanguage = 'spanish';
+                applyLanguageColorTheme();
+                // Hide step 1 (language selection) and show language pill
+                document.getElementById('languageTabs').style.display = 'none';
+                const langConfig = config.languages[selectedLanguage];
+                document.getElementById('selectedLanguageName').textContent = langConfig.name;
+                document.getElementById('selectedLanguagePill').classList.add('visible');
+                // Make pill non-clickable in Bad Bunny mode
+                document.getElementById('selectedLanguagePill').style.pointerEvents = 'none';
+                // Load PPM data and show step 2
+                await loadPpmData('spanish');
+                document.getElementById('step2').style.display = 'block';
+                document.getElementById('step2Title').textContent = 'Choose Corpus Coverage';
+                renderLevelSelector('spanish');
+            }
         });
 
         function renderLanguageTabs() {
@@ -3351,9 +3389,10 @@
                     loadingIndicator.classList.remove('visible');
                     document.getElementById('step2').style.display = 'block';
 
-                    // Update step 2 title and % Mode button based on current mode
+                    // Update step 2 title, tooltip, and % Mode button based on current mode
                     document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
                     updatePercentModeButton();
+                    updateStep2Tooltip();
 
                     renderLevelSelector(selectedLanguage);
                     updateLemmaToggleVisibility();
@@ -3375,6 +3414,22 @@
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
+            }
+        }
+
+        function updateStep2Tooltip() {
+            const tooltip = document.getElementById('step2Tooltip');
+            if (percentageMode) {
+                tooltip.innerHTML = `
+                    <p><strong>Corpus Coverage</strong> shows what percentage of real-world text you'll understand.</p>
+                    <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words in typical movies, TV shows, and conversations.</p>
+                    <p>This is based on word frequency data from subtitle corpora.</p>
+                `;
+            } else {
+                tooltip.innerHTML = `
+                    <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
+                    <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
+                `;
             }
         }
 
@@ -3480,6 +3535,47 @@
                         renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                     }
                 });
+            });
+        }
+
+        function setupPercentModeButton() {
+            document.getElementById('percentModeBtn').addEventListener('click', async function() {
+                const langConfig = config.languages[selectedLanguage];
+                if (!langConfig || !langConfig.ppmDataPath) {
+                    alert('Percentage mode is not available for this language yet.');
+                    return;
+                }
+
+                percentageMode = !percentageMode;
+
+                // Update button appearance
+                updatePercentModeButton();
+
+                // Sync settings modal toggle
+                document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
+                document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
+
+                // Load PPM data if enabling percentage mode
+                if (percentageMode && !ppmData) {
+                    await loadPpmData(selectedLanguage);
+                }
+
+                // Update the title text and tooltip
+                document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
+                updateStep2Tooltip();
+
+                // Re-render the level selector
+                selectedLevel = null;
+                document.querySelectorAll('.level-btn').forEach(b => {
+                    b.classList.remove('selected');
+                    b.textContent = b.dataset.short;
+                });
+                renderLevelSelector(selectedLanguage);
+                document.getElementById('lemmaToggleContainer').style.display = 'none';
+                document.getElementById('step3').style.display = 'none';
+                document.getElementById('step4').style.display = 'none';
+
+                updateStatsTab();
             });
         }
 
@@ -3763,6 +3859,7 @@
             currentIndex = 0;
             currentSentenceIndex = 0;
             currentMeaningIndex = 0;
+            currentExampleIndex = 0;
             isFlipped = false;
 
             // Reset card flip state
@@ -3829,13 +3926,17 @@
                 const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
                 for (const item of filteredData) {
-                    const meanings = item.meanings.map(m => ({
-                        pos: m.pos,
-                        meaning: m.translation,
-                        percentage: parseFloat(m.frequency),
-                        targetSentence: m[exampleTargetField],
-                        englishSentence: m[exampleEnglishField]
-                    }));
+                    const meanings = item.meanings.map(m => {
+                        const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+                        return {
+                            pos: m.pos,
+                            meaning: m.translation,
+                            percentage: parseFloat(m.frequency),
+                            targetSentence,
+                            englishSentence,
+                            allExamples
+                        };
+                    });
 
                     // Normalize percentages if they're missing or sum to 0
                     const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
@@ -3852,14 +3953,15 @@
                         });
                     }
 
+                    const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
                     const card = {
                         targetWord: item.word,
                         lemma: item.lemma || '',
                         rank: item.rank, // This is now the unique identifier (original vocabulary file position)
                         meanings: meanings,
                         translation: item.meanings[0].translation,
-                        targetSentence: item.meanings[0][exampleTargetField],
-                        englishSentence: item.meanings[0][exampleEnglishField],
+                        targetSentence: firstExample.targetSentence,
+                        englishSentence: firstExample.englishSentence,
                         links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                         isMultiMeaning: true
                     };
@@ -3940,6 +4042,7 @@
             currentIndex = 0;
             currentSentenceIndex = 0;
             currentMeaningIndex = 0;
+            currentExampleIndex = 0;
             isFlipped = false;
 
             const flashcardEl = document.getElementById('flashcard');
@@ -3976,13 +4079,17 @@
                     const item = wordToVocab[incorrectWord.wordRank];
                     if (!item) continue; // Skip if word not found in vocabulary
 
-                    const meanings = item.meanings.map(m => ({
-                        pos: m.pos,
-                        meaning: m.translation,
-                        percentage: parseFloat(m.frequency),
-                        targetSentence: m[exampleTargetField],
-                        englishSentence: m[exampleEnglishField]
-                    }));
+                    const meanings = item.meanings.map(m => {
+                        const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+                        return {
+                            pos: m.pos,
+                            meaning: m.translation,
+                            percentage: parseFloat(m.frequency),
+                            targetSentence,
+                            englishSentence,
+                            allExamples
+                        };
+                    });
 
                     // Normalize percentages
                     const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
@@ -3993,14 +4100,15 @@
                         meanings.forEach(m => { m.percentage = (m.percentage || 0) / totalPercentage; });
                     }
 
+                    const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
                     const card = {
                         targetWord: item.word,
                         lemma: item.lemma || '',
                         rank: incorrectWord.wordRank,
                         meanings: meanings,
                         translation: item.meanings[0].translation,
-                        targetSentence: item.meanings[0][exampleTargetField],
-                        englishSentence: item.meanings[0][exampleEnglishField],
+                        targetSentence: firstExample.targetSentence,
+                        englishSentence: firstExample.englishSentence,
                         links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                         isMultiMeaning: true
                     };
@@ -4036,6 +4144,7 @@
             currentIndex = 0;
             currentSentenceIndex = 0;
             currentMeaningIndex = 0;
+            currentExampleIndex = 0;
             isFlipped = false;
 
             // Reset card flip state
@@ -4351,6 +4460,26 @@
             return links;
         }
 
+        // Helper to extract example sentences from a meaning object
+        // Supports new format (examples array) and legacy format (exampleTargetField/exampleEnglishField)
+        function getExampleFromMeaning(meaning, exampleTargetField, exampleEnglishField) {
+            // Check for new examples array format
+            if (meaning.examples && meaning.examples.length > 0) {
+                const example = meaning.examples[0];
+                // Support both 'target'/'english' and language-specific keys like 'spanish'/'english'
+                const targetSentence = example.target || example.spanish || example.swedish ||
+                                       example.dutch || example.italian || example.polish || '';
+                const englishSentence = example.english || '';
+                return { targetSentence, englishSentence, allExamples: meaning.examples };
+            }
+            // Fall back to legacy format
+            return {
+                targetSentence: meaning[exampleTargetField] || '',
+                englishSentence: meaning[exampleEnglishField] || '',
+                allExamples: []
+            };
+        }
+
         function initializeApp() {
             updateCard();
             updateStats();
@@ -4496,45 +4625,6 @@
                 updatePercentModeButton();
             });
 
-            // % Mode button in step 2 header
-            document.getElementById('percentModeBtn').addEventListener('click', async function() {
-                const langConfig = config.languages[selectedLanguage];
-                if (!langConfig || !langConfig.ppmDataPath) {
-                    alert('Percentage mode is not available for this language yet.');
-                    return;
-                }
-
-                percentageMode = !percentageMode;
-
-                // Update button appearance
-                updatePercentModeButton();
-
-                // Sync settings modal toggle
-                document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
-                document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
-
-                // Load PPM data if enabling percentage mode
-                if (percentageMode && !ppmData) {
-                    await loadPpmData(selectedLanguage);
-                }
-
-                // Update the title text
-                document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
-
-                // Re-render the level selector
-                selectedLevel = null;
-                document.querySelectorAll('.level-btn').forEach(b => {
-                    b.classList.remove('selected');
-                    b.textContent = b.dataset.short;
-                });
-                renderLevelSelector(selectedLanguage);
-                document.getElementById('lemmaToggleContainer').style.display = 'none';
-                document.getElementById('step3').style.display = 'none';
-                document.getElementById('step4').style.display = 'none';
-
-                updateStatsTab();
-            });
-
             // Refresh study set - delete progress for words in current set
             document.getElementById('refreshSetToggle').addEventListener('click', async function() {
                 if (!currentUser || currentUser.isGuest) {
@@ -4572,7 +4662,8 @@
                             body: JSON.stringify({
                                 action: 'delete',
                                 user: currentUser.initials,
-                                wordRank: wordInfo.rank
+                                wordRank: wordInfo.rank,
+                                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
                             })
                         });
                     }
@@ -4892,6 +4983,7 @@
                     currentIndex++;
                     currentSentenceIndex = 0; // Reset sentence index for new card
                     currentMeaningIndex = 0; // Reset meaning index for new card
+                    currentExampleIndex = 0; // Reset example index for new card
                     updateCard();
                     // Always show front side of next card
                     document.getElementById('flashcard').classList.remove('flipped');
@@ -5045,6 +5137,7 @@
             currentIndex = 0;
             currentSentenceIndex = 0;
             currentMeaningIndex = 0;
+            currentExampleIndex = 0;
             isFlipped = false;
 
             // Load PPM data if percentage mode is enabled but data not loaded
@@ -5112,7 +5205,10 @@
             // Update percentage mode toggle visibility and state
             const percentageModeToggle = document.getElementById('percentageModeToggle');
             const langConfig = config.languages[selectedLanguage];
-            if (langConfig && langConfig.ppmDataPath) {
+            // Hide toggle in Bad Bunny mode (always percentage mode)
+            if (isBadBunnyMode) {
+                percentageModeToggle.style.display = 'none';
+            } else if (langConfig && langConfig.ppmDataPath) {
                 percentageModeToggle.style.display = 'flex';
                 document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
                 document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
@@ -5379,10 +5475,43 @@
 
                 // Show current sentence
                 if (currentMeaning && currentMeaning.targetSentence) {
+                    const hasMultipleExamples = currentMeaning.allExamples && currentMeaning.allExamples.length > 1;
+                    const exampleCount = currentMeaning.allExamples ? currentMeaning.allExamples.length : 1;
+
+                    // Get current example (for cycling through multiple examples)
+                    let displayTargetSentence = currentMeaning.targetSentence;
+                    let displayEnglishSentence = currentMeaning.englishSentence;
+                    let songName = null;
+
+                    if (hasMultipleExamples && currentExampleIndex < currentMeaning.allExamples.length) {
+                        const example = currentMeaning.allExamples[currentExampleIndex];
+                        displayTargetSentence = example.target || example.spanish || '';
+                        displayEnglishSentence = example.english || '';
+                        songName = example.song_name;
+                    } else if (currentMeaning.allExamples && currentMeaning.allExamples.length === 1) {
+                        songName = currentMeaning.allExamples[0].song_name;
+                    }
+
+                    const exampleIndicator = hasMultipleExamples ? `
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted); font-size: 12px;">Tap for more examples</span>
+                            <span style="color: var(--accent-secondary); font-size: 12px;">${currentExampleIndex + 1} / ${exampleCount}</span>
+                        </div>
+                    ` : '';
+
+                    const songNameDisplay = songName ? `
+                        <div style="color: var(--accent-secondary); font-size: 11px; margin-top: 8px; font-style: italic;">— ${songName}</div>
+                    ` : '';
+
+                    const clickHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
+                    const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
+
                     backHTML += `
-                        <div class="sentence" style="text-align: center;">
-                            <div style="margin-bottom: 8px;">${currentMeaning.targetSentence}</div>
-                            <div class="translation">${currentMeaning.englishSentence}</div>
+                        ${exampleIndicator}
+                        <div class="sentence" style="text-align: center; ${cursorStyle}" ${clickHandler}>
+                            <div style="margin-bottom: 8px;">${displayTargetSentence}</div>
+                            <div class="translation">${displayEnglishSentence}</div>
+                            ${songNameDisplay}
                         </div>
                     `;
                 }
@@ -5525,8 +5654,23 @@
             }
         }
 
+        function cycleExample(event) {
+            event.stopPropagation(); // Prevent card flip
+            const card = flashcards[currentIndex];
+            if (!card || !card.meanings) return;
+            const currentMeaning = card.meanings[currentMeaningIndex];
+            if (!currentMeaning || !currentMeaning.allExamples) return;
+
+            const exampleCount = currentMeaning.allExamples.length;
+            if (exampleCount <= 1) return;
+
+            currentExampleIndex = (currentExampleIndex + 1) % exampleCount;
+            updateCard();
+        }
+
         function selectMeaning(index) {
             currentMeaningIndex = index;
+            currentExampleIndex = 0; // Reset example index when changing meaning
             updateCard();
             // Auto-speak the selected meaning
             const card = flashcards[currentIndex];
@@ -5546,6 +5690,7 @@
             if (currentIndex > 0) {
                 currentIndex--;
                 currentMeaningIndex = 0; // Reset meaning selection
+                currentExampleIndex = 0; // Reset example selection
                 updateCard();
                 document.getElementById('flashcard').classList.remove('flipped');
             }
@@ -5555,6 +5700,7 @@
             if (currentIndex < flashcards.length - 1) {
                 currentIndex++;
                 currentMeaningIndex = 0; // Reset meaning selection
+                currentExampleIndex = 0; // Reset example selection
                 updateCard();
                 document.getElementById('flashcard').classList.remove('flipped');
             }
