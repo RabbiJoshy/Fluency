@@ -5531,22 +5531,23 @@
                     displayTargetSentence = truncateText(displayTargetSentence, 20);
                     displayEnglishSentence = truncateText(displayEnglishSentence, 20);
 
-                    // Show example counter only (no "Tap for more" text)
-                    const exampleIndicator = hasMultipleExamples ? `
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-                            <span style="color: var(--accent-secondary); font-size: 12px;">${currentExampleIndex + 1} / ${exampleCount}</span>
-                        </div>
-                    ` : '';
-
+                    // Build song name line with example counter on the right
+                    const exampleCounter = hasMultipleExamples ? `<span>${currentExampleIndex + 1}/${exampleCount}</span>` : '';
                     const songNameDisplay = songName ? `
-                        <div style="color: var(--accent-secondary); font-size: 11px; margin-top: 8px; font-style: italic;">— ${songName}</div>
-                    ` : '';
+                        <div style="display: flex; justify-content: space-between; align-items: center; color: var(--accent-secondary); font-size: 11px; margin-top: 8px; font-style: italic;">
+                            <span>— ${songName}</span>
+                            ${exampleCounter}
+                        </div>
+                    ` : (hasMultipleExamples ? `
+                        <div style="display: flex; justify-content: flex-end; color: var(--accent-secondary); font-size: 11px; margin-top: 8px;">
+                            ${exampleCounter}
+                        </div>
+                    ` : '');
 
                     const clickHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
                     const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
 
                     backHTML += `
-                        ${exampleIndicator}
                         <div class="sentence" style="text-align: center; ${cursorStyle}" ${clickHandler}>
                             <div style="margin-bottom: 8px;">${displayTargetSentence}</div>
                             <div class="translation">${displayEnglishSentence}</div>

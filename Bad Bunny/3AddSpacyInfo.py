@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build preview entries for the first 10 vocab_evidence items:
+Build preview entries for the first n vocab_evidence items:
 ONE top-level entry per (word, lemma) pairing, with a sense scaffold
 and an English flag.
 
@@ -16,9 +16,9 @@ import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
-
 import spacy
 
+n = 3000
 
 IN_PATH = Path("Bad Bunny/vocab_evidence.json")
 OUT_PATH = Path("Bad Bunny/vocab_word_lemma_preview.json")
@@ -92,7 +92,7 @@ def clean_line_for_nlp(line: str) -> str:
 def main():
     # Load first 10 entries
     data = json.loads(IN_PATH.read_text(encoding="utf-8"))
-    first10 = data[:1000]
+    first10 = data[:n]
 
     # spaCy Spanish model — disable heavy components
     nlp = spacy.load("es_core_news_sm", disable=["ner", "parser"])
