@@ -18,7 +18,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 import spacy
 
-n = 3000
+n = 6000
 
 IN_PATH = Path("Bad Bunny/vocab_evidence.json")
 OUT_PATH = Path("Bad Bunny/vocab_word_lemma_preview.json")
