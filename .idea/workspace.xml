@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/e.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/e.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/vocab_evidence.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/vocab_evidence.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/vocab_word_lemma_preview.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/vocab_word_lemma_preview.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bad Bunny/4AddTransations.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/4AddTransations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,7 @@
       <workItem from="1768924014357" duration="328000" />
       <workItem from="1768940447224" duration="13927000" />
       <workItem from="1769116055201" duration="66590000" />
-      <workItem from="1769874001549" duration="11165000" />
+      <workItem from="1769874001549" duration="12398000" />
     </task>
     <servers />
   </component>
