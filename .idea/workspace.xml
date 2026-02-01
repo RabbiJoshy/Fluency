@@ -4,60 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/BadBunnyLyricsDownload2jsons.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/Old/BadBunny.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/Old/bad_bunny_album_vocab.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/Old/bad_bunny_lyrics.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_evidence_pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/e.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/trans.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/vocab_evidence.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/vocab_word_lemma_preview.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/vocabulary_app_preview.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary_app_preview.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bad-bunny/cefr_levels.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bad-bunny/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bad-bunny/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/BadBunny.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/BadBunny2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/bad_bunny_album_vocab.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/bad_bunny_lyrics.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadBunny3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Dutch/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Dutch/vocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Italian/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Italian/vocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Polish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Polish/vocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary_stubbed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Swedish/vocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bad_bunny_vocab_artist.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_001_page_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_001_page_1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_002_page_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_002_page_2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_003_page_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_003_page_3.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_004_page_4.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_004_page_4.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_005_page_5.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_005_page_5.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_006_page_6.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_006_page_6.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_007_page_7.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_007_page_7.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_008_page_8.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_008_page_8.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_009_page_9.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_009_page_9.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_010_page_10.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_010_page_10.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_011_page_11.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_011_page_11.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_012_page_12.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_012_page_12.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_013_page_13.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_013_page_13.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_014_page_14.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_014_page_14.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_015_page_15.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_015_page_15.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_016_page_16.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_016_page_16.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_017_page_17.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_017_page_17.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_018_page_18.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_018_page_18.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_019_page_19.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_019_page_19.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_020_page_20.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_020_page_20.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_021_page_21.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_021_page_21.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_022_page_22.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_022_page_22.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/batch_023_page_23.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/batch_023_page_23.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genius_Bad_Bunny/done_song_ids.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/bad_bunny_genius/done_song_ids.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,7 +99,7 @@
       <workItem from="1768924014357" duration="328000" />
       <workItem from="1768940447224" duration="13927000" />
       <workItem from="1769116055201" duration="66590000" />
-      <workItem from="1769874001549" duration="8231000" />
+      <workItem from="1769874001549" duration="8813000" />
     </task>
     <servers />
   </component>
