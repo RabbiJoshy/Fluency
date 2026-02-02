@@ -21,13 +21,13 @@ from pathlib import Path
 IN_PATH = Path("Bad Bunny/vocab_word_lemma_preview.json")
 OUT_PATH = Path("Bad Bunny/BadBunnyvocabulary.json")
 
-MAX_ENTRIES = 6800
-MAX_EXAMPLES_PER_POS = 2
+MAX_ENTRIES = 10000
+MAX_EXAMPLES_PER_POS = 1
 
 # Translation settings
 DO_TRANSLATE_WORDS = True
 DO_TRANSLATE_EXAMPLES = True
-TRANSLATE_SLEEP_SECONDS = 0.01
+TRANSLATE_SLEEP_SECONDS = 0.002
 PRINT_EVERY_N_WORDS = 50
 
 translator = None
