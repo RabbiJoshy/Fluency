@@ -2201,6 +2201,31 @@
             height: 14px;
             vertical-align: middle;
         }
+
+        /* Bad Bunny mode album artwork backgrounds */
+        body.badbunny-mode .card-face {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        body.badbunny-mode .card-face::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 39, 50, 0.85);
+            border-radius: 16px;
+            z-index: 0;
+        }
+
+        body.badbunny-mode .card-face > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        body.badbunny-mode .card-face > div[style*="position: absolute"] {
+            z-index: 5;
+        }
     </style>
 </head>
 <body>
@@ -2662,6 +2687,34 @@
         // Bad Bunny mode detection from URL
         const urlParams = new URLSearchParams(window.location.search);
         const isBadBunnyMode = urlParams.get('mode') === 'badbunny';
+
+        // Bad Bunny album artwork for card backgrounds
+        const badBunnyAlbumArt = [
+            'Bad Bunny/Images/Bad_Bunny_-_Un_Verano_Sin_Ti.png',
+            'Bad Bunny/Images/Bad_Bunny_-_Debí_Tirar_Más_Fotos.png',
+            'Bad Bunny/Images/Bad_Bunny_-_Yhlqmdlg.png'
+        ];
+        let currentAlbumArtIndex = 0;
+
+        // Add Bad Bunny mode class to body
+        if (isBadBunnyMode) {
+            document.body.classList.add('badbunny-mode');
+        }
+
+        // Function to cycle album artwork on card faces
+        function updateBadBunnyBackground() {
+            if (!isBadBunnyMode) return;
+
+            const cardFaces = document.querySelectorAll('.card-face');
+            const imageUrl = badBunnyAlbumArt[currentAlbumArtIndex];
+
+            cardFaces.forEach(face => {
+                face.style.backgroundImage = `url('${imageUrl}')`;
+            });
+
+            // Cycle to next image for next card
+            currentAlbumArtIndex = (currentAlbumArtIndex + 1) % badBunnyAlbumArt.length;
+        }
         let currentExampleIndex = 0; // Track which example is being shown (for Bad Bunny mode with multiple examples)
 
         // Percentage coverage thresholds for levels
@@ -3710,6 +3763,13 @@
                 item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
             );
 
+            // In Bad Bunny mode, skip English words, interjections, and proper nouns
+            if (isBadBunnyMode) {
+                filteredVocab = filteredVocab.filter(item =>
+                    !item.is_english && !item.is_interjection && !item.is_propernoun
+                );
+            }
+
             // Filter to items within the level's range (using original ranks)
             filteredVocab = filteredVocab.filter(item =>
                 item.rank >= minWord && item.rank < maxWord
@@ -3922,6 +3982,13 @@
                     item.meanings &&
                     item.meanings.length > 0
                 );
+
+                // In Bad Bunny mode, skip English words, interjections, and proper nouns
+                if (isBadBunnyMode) {
+                    filteredData = filteredData.filter(item =>
+                        !item.is_english && !item.is_interjection && !item.is_propernoun
+                    );
+                }
 
                 // Filter by the requested range (using original ranks)
                 filteredData = filteredData.filter(item =>
@@ -5368,6 +5435,9 @@
         function updateCard() {
             const card = flashcards[currentIndex];
             const langConfig = config.languages[selectedLanguage];
+
+            // Update Bad Bunny album artwork background
+            updateBadBunnyBackground();
 
             // Update reverse button text
             updateReverseButton();
