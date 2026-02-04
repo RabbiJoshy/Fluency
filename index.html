@@ -528,7 +528,7 @@
             display: inline-block;
             padding: 9px 18px;
             background: var(--bg-tertiary);
-            color: var(--accent-secondary);
+            color: white;
             text-decoration: none;
             border-radius: 7px;
             font-size: 15px;
@@ -586,7 +586,7 @@
         .nav-btn-inline {
             padding: 10px 14px;
             background: var(--bg-tertiary);
-            color: var(--accent-secondary);
+            color: white;
             border: 1px solid var(--border-color);
             border-radius: 50%;
             font-size: 24px;
@@ -1339,37 +1339,42 @@
 
         .group-size-selector.header-toggle {
             display: flex;
-            gap: 6px;
+            gap: 0;
             margin-left: auto;
-        }
-
-        .header-toggle .group-size-btn {
-            padding: 10px 16px;
-            font-size: 13px;
-            min-width: 81px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
+            overflow: hidden;
         }
 
-        .header-toggle .group-size-btn:hover {
-            background: var(--accent-secondary);
-            color: var(--bg-primary);
-            border-color: var(--accent-secondary);
-            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
-            transform: translateY(-2px);
+        .header-toggle .group-size-btn {
+            padding: 10px 18px;
+            font-size: 13px;
+            min-width: 50px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            transition: all 0.2s ease;
+        }
+
+        .header-toggle .group-size-btn:first-child {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .header-toggle .group-size-btn:hover:not(.selected) {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--text-primary);
         }
 
         .header-toggle .group-size-btn.selected {
-            padding: 10px 16px;
+            padding: 10px 18px;
             background: var(--accent-primary);
-            border-color: var(--accent-primary);
+            border-color: transparent;
+            color: white;
         }
 
         .header-toggle .group-size-btn.selected:hover {
             background: var(--accent-primary);
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
         }
 
         .step-row {
@@ -1489,20 +1494,20 @@
         }
 
         .step-help-btn {
-            width: 22px;
-            height: 22px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             color: var(--accent-secondary);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            margin-left: 4px;
+            margin-left: 6px;
             flex-shrink: 0;
         }
 
@@ -1563,15 +1568,15 @@
 
         .btn-info-icon {
             position: absolute;
-            top: -6px;
-            right: -6px;
-            width: 16px;
-            height: 16px;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 10px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
@@ -1625,9 +1630,9 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 12px;
-            font-size: 13px;
-            line-height: 1.5;
+            padding: 14px;
+            font-size: 15px;
+            line-height: 1.6;
             color: var(--text-secondary);
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -2209,7 +2214,7 @@
             top: -10px;
             right: -10px;
             background: var(--accent-secondary);
-            color: var(--bg-primary);
+            color: white;
             font-size: 12px;
             font-weight: 700;
             padding: 4px 10px;
@@ -2697,6 +2702,10 @@
                 <div class="selection-pill full-width" id="selectedLanguagePill">
                     <span id="selectedLanguageName"></span>
                 </div>
+                <!-- Estimate Level button for Bad Bunny mode (hidden by default) -->
+                <div id="step1EstimateContainer" style="display: none; margin-top: 15px;">
+                    <button class="estimate-level-btn" id="step1EstimateLevelBtn" style="width: 100%; padding: 12px 20px; font-size: 14px;">Estimate My Level</button>
+                </div>
             </div>
 
             <!-- Data Loading Indicator -->
@@ -2748,8 +2757,8 @@
                     </div>
                 </div>
                 <div id="lemmaToggleSelector" class="group-size-selector">
-                    <button class="lemma-toggle-btn" data-lemma="off" data-short="1+" data-full="All word forms">1+</button>
                     <button class="lemma-toggle-btn selected" data-lemma="on" data-short="1" data-full="1 card per lemma">1 card per lemma</button>
+                    <button class="lemma-toggle-btn" data-lemma="off" data-short="1+" data-full="All word forms">1+</button>
                 </div>
             </div>
 
@@ -2763,7 +2772,7 @@
                         <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
                         <p><strong>Include</strong> = Show all words, including cognates.</p>
                         <p><strong>Exclude</strong> = Skip transparent cognates to focus on words that require more effort to learn.</p>
-                        <button class="tooltip-detail-btn" id="cognateRulesBtn">See Detection Rules →</button>
+                        <button class="tooltip-detail-btn" id="cognateRulesBtn">More Detail →</button>
                     </div>
                 </div>
                 <div id="cognateToggleSelector" class="group-size-selector">
@@ -2784,8 +2793,8 @@
                     </div>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
-                        <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
                         <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
+                        <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
                     </div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
@@ -4397,6 +4406,10 @@
                 document.getElementById('selectedLanguagePill').classList.add('visible');
                 // Make pill non-clickable in Bad Bunny mode
                 document.getElementById('selectedLanguagePill').style.pointerEvents = 'none';
+                // Update step 1 title for Bad Bunny mode - replace "Choose Language" with "Estimate Level"
+                document.querySelector('#step1Header .step-title').textContent = 'Estimate Level';
+                // Show the Estimate Level button in step 1 for Bad Bunny mode
+                document.getElementById('step1EstimateContainer').style.display = 'block';
                 // Update step 1 tooltip for Bad Bunny mode
                 document.getElementById('step1Tooltip').innerHTML = `
                     <p><strong>How to Study:</strong></p>
@@ -4414,7 +4427,11 @@
                 // Load PPM data and show step 2
                 await loadPpmData('spanish');
                 document.getElementById('step2').style.display = 'block';
-                document.getElementById('step2Title').textContent = 'Choose Lyrics Coverage';
+                // Update step 2 for Bad Bunny mode - simpler title, hide estimate button and % mode button
+                document.getElementById('step2Title').textContent = 'Choose Level';
+                // Hide the Estimate Level button and % Mode button in step 2 for Bad Bunny mode
+                document.querySelector('#step2 .btn-with-info:has(#estimateLevelBtn)').style.display = 'none';
+                document.querySelector('#step2 .btn-with-info:has(#percentModeBtn)').style.display = 'none';
                 updateStep5Tooltip();
                 renderLevelSelector('spanish');
             }
@@ -4788,8 +4805,13 @@
             // Update visibility based on language
             updateEstimateLevelButton();
 
-            // Open modal when clicked
+            // Open modal when clicked (step 2 button)
             document.getElementById('estimateLevelBtn').addEventListener('click', function() {
+                openEstimationModal();
+            });
+
+            // Step 1 Estimate Level button (for Bad Bunny mode)
+            document.getElementById('step1EstimateLevelBtn').addEventListener('click', function() {
                 openEstimationModal();
             });
 
@@ -6777,7 +6799,7 @@
             // Build back content with lemma in brackets if different
             let wordDisplay = backWord;
             if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
-                wordDisplay = `${backWord} <span style="color: var(--accent-secondary); font-size: 28px;">(${card.lemma})</span>`;
+                wordDisplay = `${backWord} <span style="color: white; opacity: 0.8; font-size: 28px;">(${card.lemma})</span>`;
             }
 
             let backHTML = `
@@ -6834,12 +6856,12 @@
                     // Build song name line with example counter on the right
                     const exampleCounter = hasMultipleExamples ? `<span>${currentExampleIndex + 1}/${exampleCount}</span>` : '';
                     const songNameDisplay = songName ? `
-                        <div style="display: flex; justify-content: space-between; align-items: center; color: var(--accent-secondary); font-size: 11px; margin-top: 8px; font-style: italic;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
                             <span>— ${songName}</span>
                             ${exampleCounter}
                         </div>
                     ` : (hasMultipleExamples ? `
-                        <div style="display: flex; justify-content: flex-end; color: var(--accent-secondary); font-size: 11px; margin-top: 8px;">
+                        <div style="display: flex; justify-content: flex-end; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
                             ${exampleCounter}
                         </div>
                     ` : '');
