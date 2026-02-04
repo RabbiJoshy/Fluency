@@ -1337,21 +1337,37 @@
 
         .group-size-selector.header-toggle {
             display: flex;
-            gap: 4px;
-            margin-left: 8px;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 2px;
+            gap: 6px;
+            margin-left: auto;
         }
 
         .header-toggle .group-size-btn {
-            padding: 6px 10px;
-            font-size: 12px;
-            min-width: 32px;
+            padding: 10px 16px;
+            font-size: 13px;
+            min-width: 81px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .header-toggle .group-size-btn:hover {
+            background: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
+            transform: translateY(-2px);
         }
 
         .header-toggle .group-size-btn.selected {
-            padding: 6px 10px;
+            padding: 10px 16px;
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .header-toggle .group-size-btn.selected:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
         }
 
         .step-row {
@@ -1509,11 +1525,11 @@
         }
 
         .percent-mode-btn {
-            margin-left: auto;
+            /* margin handled by .btn-with-info container */
         }
 
         .estimate-level-btn {
-            margin-left: auto;
+            /* margin handled by .btn-with-info container */
         }
 
         .percent-mode-btn:hover,
@@ -1531,6 +1547,71 @@
 
         .estimate-level-btn.hidden {
             display: none;
+        }
+
+        .btn-with-info {
+            position: relative;
+            display: inline-flex;
+            margin-left: auto;
+        }
+
+        .btn-with-info + .btn-with-info {
+            margin-left: 8px;
+        }
+
+        .btn-info-icon {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .btn-info-icon:hover {
+            background: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
+        }
+
+        .btn-info-tooltip {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 220px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            z-index: 200;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn-info-tooltip.visible {
+            display: block;
+        }
+
+        .btn-info-tooltip p {
+            margin: 0 0 6px 0;
+        }
+
+        .btn-info-tooltip p:last-child {
+            margin-bottom: 0;
         }
 
         .step-info-tooltip {
@@ -1664,6 +1745,99 @@
 
         .modal-close:hover {
             color: var(--accent-primary);
+        }
+
+        /* Fullscreen Modal */
+        .fullscreen-modal {
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .tooltip-detail-btn {
+            width: 100%;
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--accent-primary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tooltip-detail-btn:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        /* Cognate Rules Modal */
+        .cognate-rules-body {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .cognate-rules-body .rules-intro {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rule-section {
+            margin-bottom: 20px;
+        }
+
+        .rule-section h4 {
+            color: var(--accent-secondary);
+            font-family: var(--font-emphasis);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .rule-section ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .rule-section li {
+            margin-bottom: 5px;
+        }
+
+        .rule-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .rule-examples .example {
+            background: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: var(--font-data);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .suffix-rule {
+            margin: 15px 0;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+
+        .suffix-rule code {
+            display: inline-block;
+            background: var(--bg-primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: var(--font-data);
+            color: var(--accent-primary);
+            font-size: 14px;
+            margin-bottom: 8px;
         }
 
         /* Estimation Modal Styles */
@@ -2531,8 +2705,22 @@
                     <span class="step-number">2</span>
                     <span class="step-title" id="step2Title">Choose CEFR level</span>
                     <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
-                    <button class="estimate-level-btn" id="estimateLevelBtn" title="Take a quick test to estimate your vocabulary level">Estimate Level</button>
-                    <button class="percent-mode-btn" id="percentModeBtn" title="Toggle percentage coverage mode">% Mode</button>
+                    <div class="btn-with-info">
+                        <button class="estimate-level-btn" id="estimateLevelBtn">Estimate Level</button>
+                        <button class="btn-info-icon" data-info="estimateInfo" title="What is this?">?</button>
+                        <div class="btn-info-tooltip" id="estimateInfo">
+                            <p>Don't know where to start? Take a quick vocabulary test to estimate your level.</p>
+                            <p>You'll be shown words and asked if you know them. The test adapts to find your level quickly.</p>
+                        </div>
+                    </div>
+                    <div class="btn-with-info">
+                        <button class="percent-mode-btn" id="percentModeBtn">% Mode</button>
+                        <button class="btn-info-icon" data-info="percentInfo" title="What is this?">?</button>
+                        <div class="btn-info-tooltip" id="percentInfo">
+                            <p>Switch between CEFR levels (A1-C2) and percentage coverage mode.</p>
+                            <p>Percentage mode shows how much of real-world text you'll understand (e.g., 80% coverage = recognize 80% of words in typical speech).</p>
+                        </div>
+                    </div>
                     <div id="step2Tooltip" class="step-info-tooltip">
                         <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
                         <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
@@ -2569,6 +2757,7 @@
                         <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
                         <p><strong>Include</strong> = Show all words, including cognates.</p>
                         <p><strong>Exclude</strong> = Skip transparent cognates to focus on words that require more effort to learn.</p>
+                        <button class="tooltip-detail-btn" id="cognateRulesBtn">See Detection Rules →</button>
                     </div>
                 </div>
                 <div id="cognateToggleSelector" class="group-size-selector">
@@ -2755,6 +2944,94 @@
                     <span class="btn-icon">✅</span>
                     <span>Mark Complete & Exit</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cognate Rules Modal -->
+    <div id="cognateRulesModal" class="modal hidden">
+        <div class="modal-content fullscreen-modal">
+            <div class="modal-header">
+                <h3>Cognate Detection Rules</h3>
+                <button class="modal-close" id="closeCognateRulesModal">✕</button>
+            </div>
+            <div class="cognate-rules-body">
+                <p class="rules-intro">A word is marked as a <strong>transparent cognate</strong> if it matches any of these patterns when comparing the Spanish word to its English translation:</p>
+
+                <div class="rule-section">
+                    <h4>Basic Requirements</h4>
+                    <ul>
+                        <li>Both words must be at least 4 characters long</li>
+                        <li>Plurals are stripped before comparison (e.g., "animals" → "animal")</li>
+                        <li>Accents are removed (e.g., "información" → "informacion")</li>
+                    </ul>
+                </div>
+
+                <div class="rule-section">
+                    <h4>Exact Match</h4>
+                    <p>Words that are identical (after normalization)</p>
+                    <div class="rule-examples">
+                        <span class="example">animal → animal</span>
+                        <span class="example">hotel → hotel</span>
+                        <span class="example">chocolate → chocolate</span>
+                        <span class="example">normal → normal</span>
+                    </div>
+                </div>
+
+                <div class="rule-section">
+                    <h4>Suffix Transformations</h4>
+                    <p>Spanish suffixes that map to English equivalents:</p>
+
+                    <div class="suffix-rule">
+                        <code>-ción → -tion</code>
+                        <div class="rule-examples">
+                            <span class="example">información → information</span>
+                            <span class="example">nación → nation</span>
+                            <span class="example">educación → education</span>
+                        </div>
+                    </div>
+
+                    <div class="suffix-rule">
+                        <code>-ista → -ist</code>
+                        <div class="rule-examples">
+                            <span class="example">artista → artist</span>
+                            <span class="example">pianista → pianist</span>
+                            <span class="example">terrorista → terrorist</span>
+                        </div>
+                    </div>
+
+                    <div class="suffix-rule">
+                        <code>-dad → -ty</code>
+                        <div class="rule-examples">
+                            <span class="example">universidad → university</span>
+                            <span class="example">realidad → reality</span>
+                            <span class="example">identidad → identity</span>
+                        </div>
+                    </div>
+
+                    <div class="suffix-rule">
+                        <code>-mente → -ly</code>
+                        <div class="rule-examples">
+                            <span class="example">normalmente → normally</span>
+                            <span class="example">exactamente → exactly</span>
+                            <span class="example">finalmente → finally</span>
+                        </div>
+                    </div>
+
+                    <div class="suffix-rule">
+                        <code>-oso/-osa → -ous</code>
+                        <div class="rule-examples">
+                            <span class="example">famoso → famous</span>
+                            <span class="example">nervioso → nervous</span>
+                            <span class="example">deliciosa → delicious</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-section">
+                    <h4>Why Exclude Cognates?</h4>
+                    <p>Transparent cognates are "free" vocabulary - you likely already recognize them from English. Excluding them lets you focus study time on words that actually require memorization.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -3148,9 +3425,21 @@
 
         // ========== AUTHENTICATION & GOOGLE SHEETS ==========
 
-        // Configuration - Replace this with your deployed Google Apps Script URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZI7L1gQGY5YUyfxcKJrT--EEmRNSc1pkBgNnPJMlaUie_ZDPiJcY_XPKbRDEHAYuF/exec';
+        // Configuration - Loaded from secrets.json (not committed to git)
+        let GOOGLE_SCRIPT_URL = '';
 
+        // Load secrets from config file
+        async function loadSecrets() {
+            try {
+                const response = await fetch('secrets.json');
+                if (response.ok) {
+                    const secrets = await response.json();
+                    GOOGLE_SCRIPT_URL = secrets.googleScriptUrl || '';
+                }
+            } catch (error) {
+                console.warn('Could not load secrets.json - Google Sheets sync will be disabled');
+            }
+        }
 
         let currentUser = null; // { initials: string, isGuest: boolean }
         let progressData = {}; // wordRank -> { correct, wrong, lastSeen }
@@ -3861,7 +4150,11 @@
                     config.languages.spanish = {
                         ...config.languages.spanish,
                         name: "Spanish (Bad Bunny)",
-                        dataPath: "Bad Bunny/BadBunnyvocabulary.json"
+                        dataPath: "Bad Bunny/BadBunnyvocabulary.json",
+                        colorTheme: {
+                            primary: "#ED1C24",   // Puerto Rican flag red
+                            secondary: "#0050A0"  // Puerto Rican flag blue
+                        }
                     };
                     // Force percentage mode and set title
                     percentageMode = true;
@@ -4017,6 +4310,45 @@
                     });
                 }
             });
+
+            // Cognate rules modal
+            document.getElementById('cognateRulesBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                document.getElementById('cognateTooltip').classList.remove('visible');
+                document.getElementById('cognateRulesModal').classList.remove('hidden');
+            });
+
+            document.getElementById('closeCognateRulesModal').addEventListener('click', function() {
+                document.getElementById('cognateRulesModal').classList.add('hidden');
+            });
+
+            // Button info icon handlers
+            document.querySelectorAll('.btn-info-icon').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const infoId = this.dataset.info;
+                    const tooltip = document.getElementById(infoId);
+
+                    // Close all other btn-info-tooltips first
+                    document.querySelectorAll('.btn-info-tooltip').forEach(t => {
+                        if (t.id !== infoId) {
+                            t.classList.remove('visible');
+                        }
+                    });
+
+                    // Toggle this tooltip
+                    tooltip.classList.toggle('visible');
+                });
+            });
+
+            // Close btn-info-tooltips when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.btn-info-icon') && !e.target.closest('.btn-info-tooltip')) {
+                    document.querySelectorAll('.btn-info-tooltip').forEach(t => {
+                        t.classList.remove('visible');
+                    });
+                }
+            });
         }
 
         // Update incorrect button visibility - now handled by renderRangeSelector
@@ -4045,6 +4377,7 @@
             // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
             setupTooltipHandlers(); // Initialize tooltips early
             setupAuthEventListeners(); // Setup auth modal event listeners
+            await loadSecrets(); // Load secrets before authentication
             checkAuthentication(); // Check if user is logged in
 
             // In Bad Bunny mode, auto-select Spanish and skip language selection

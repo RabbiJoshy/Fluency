@@ -1,0 +1,27 @@
+# Secrets and credentials
+secrets.json
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+.venv/
+
+# Node (if used)
+node_modules/
+npm-debug.log
+
+# Build outputs
+dist/
+build/
