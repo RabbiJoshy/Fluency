@@ -1078,6 +1078,19 @@
             pointer-events: none;
         }
 
+        .range-btn-new.incorrect-range-btn {
+            background: rgba(255, 107, 53, 0.15);
+            border-color: rgba(255, 107, 53, 0.4);
+            color: var(--accent-primary);
+        }
+
+        .range-btn-new.incorrect-range-btn:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+        }
+
         .range-btn {
             padding: 8px 16px;
             background: var(--bg-tertiary);
@@ -1322,6 +1335,25 @@
             padding: 10px 16px;
         }
 
+        .group-size-selector.header-toggle {
+            display: flex;
+            gap: 4px;
+            margin-left: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        .header-toggle .group-size-btn {
+            padding: 6px 10px;
+            font-size: 12px;
+            min-width: 32px;
+        }
+
+        .header-toggle .group-size-btn.selected {
+            padding: 6px 10px;
+        }
+
         .step-row {
             display: flex;
             gap: 15px;
@@ -1400,6 +1432,44 @@
             pointer-events: none;
         }
 
+        .cognate-toggle-btn {
+            font-family: var(--font-emphasis);
+            flex: 0 0 auto;
+            padding: 10px 14px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 38px;
+            color: var(--text-muted);
+        }
+
+        .cognate-toggle-btn:hover {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--text-primary);
+        }
+
+        .cognate-toggle-btn.selected {
+            background: var(--accent-primary);
+            color: white;
+            padding: 10px 16px;
+        }
+
+        .cognate-toggle-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .cognate-toggle-unavailable .cognate-toggle-btn[data-cognate="exclude"] {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .step-help-btn {
             width: 22px;
             height: 22px;
@@ -1461,43 +1531,6 @@
 
         .estimate-level-btn.hidden {
             display: none;
-        }
-
-        .incorrect-set-btn {
-            font-family: var(--font-emphasis);
-            padding: 10px 16px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s;
-            color: var(--text-muted);
-            display: none;
-            margin-left: auto;
-            min-width: 81px;
-        }
-
-        .incorrect-set-btn.visible {
-            display: inline-block;
-        }
-
-        .incorrect-set-btn:hover {
-            background: var(--accent-secondary);
-            color: var(--bg-primary);
-            border-color: var(--accent-secondary);
-            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
-            transform: translateY(-2px);
-        }
-
-        .incorrect-set-btn:disabled {
-            background: var(--bg-secondary);
-            color: var(--text-muted);
-            border-color: var(--border-color);
-            cursor: not-allowed;
-            opacity: 0.35;
-            pointer-events: none;
         }
 
         .step-info-tooltip {
@@ -2489,20 +2522,21 @@
                 </div>
             </div>
 
-            <!-- Step 4: Cards per Set -->
-            <div id="step3" class="setup-step" style="display: none;">
+            <!-- Step 4: Cognate Toggle -->
+            <div id="cognateToggleContainer" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
                     <span class="step-number">4</span>
-                    <span class="step-title">Cards per Set</span>
-                    <button class="step-help-btn" data-tooltip="step4Tooltip" title="Help">?</button>
-                    <div id="step4Tooltip" class="step-info-tooltip">
-                        <p>Choose how many flashcards to study in each session.</p>
-                        <p>Smaller sets (25) are good for quick review. Larger sets (50) for more intensive study.</p>
+                    <span class="step-title">Exclude Cognates</span>
+                    <button class="step-help-btn" data-tooltip="cognateTooltip" title="Help">?</button>
+                    <div id="cognateTooltip" class="step-info-tooltip">
+                        <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
+                        <p><strong>Include</strong> = Show all words, including cognates.</p>
+                        <p><strong>Exclude</strong> = Skip transparent cognates to focus on words that require more effort to learn.</p>
                     </div>
                 </div>
-                <div id="groupSizeSelector" class="group-size-selector">
-                    <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25 cards per set">25 cards per set</button>
-                    <button class="group-size-btn" data-size="50" data-short="50" data-full="50 cards per set">50</button>
+                <div id="cognateToggleSelector" class="group-size-selector">
+                    <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
+                    <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
                 </div>
             </div>
 
@@ -2512,11 +2546,14 @@
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
-                    <button class="incorrect-set-btn" id="incorrectSetBtn" title="Study words you've previously marked incorrect">All Incorrect</button>
+                    <div id="groupSizeSelector" class="group-size-selector header-toggle">
+                        <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25">25</button>
+                        <button class="group-size-btn" data-size="50" data-short="50" data-full="50">50</button>
+                    </div>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
-                        <p><strong>Incorrect</strong> button (when visible) lets you study all words you've previously marked wrong, ordered by least recently answered correctly.</p>
+                        <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
                     </div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
@@ -2889,6 +2926,8 @@
         let groupSize = 25; // Default group size
         let useLemmaMode = true; // Whether to use 1 card per lemma mode
         let lemmaFieldAvailable = false; // Whether vocabulary has most_frequent_lemma_instance field
+        let excludeCognates = false; // Whether to exclude transparent cognates
+        let cognateFieldAvailable = false; // Whether vocabulary has is_transparent_cognate field
         let isAppInitialized = false; // Track if event listeners have been set up
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
         let speechEnabled = true; // Text-to-speech toggle
@@ -3873,33 +3912,14 @@
                     });
                 }
             });
-
-            // Incorrect words set button handler
-            document.getElementById('incorrectSetBtn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                loadIncorrectWordsSet();
-            });
         }
 
-        // Update incorrect button visibility based on login status and available incorrect words
+        // Update incorrect button visibility - now handled by renderRangeSelector
         function updateIncorrectButtonVisibility() {
-            const btn = document.getElementById('incorrectSetBtn');
-            if (!btn) return;
-
-            // Only show for logged-in users who have incorrect words for the current language
-            if (currentUser && !currentUser.isGuest && progressData) {
-                const incorrectCount = Object.values(progressData).filter(
-                    data => data.wrong > 0 && data.language === selectedLanguage
-                ).length;
-
-                if (incorrectCount > 0) {
-                    btn.classList.add('visible');
-                    btn.textContent = `Incorrect (${incorrectCount})`;
-                } else {
-                    btn.classList.remove('visible');
-                }
-            } else {
-                btn.classList.remove('visible');
+            // This function is now a no-op since incorrect button is rendered dynamically
+            // in renderRangeSelector. Keeping for backwards compatibility.
+            if (selectedLevel) {
+                renderRangeSelector().catch(err => console.error('Error refreshing ranges:', err));
             }
         }
 
@@ -3914,6 +3934,7 @@
             // renderLevelSelector(firstLang);
             setupGroupSizeSelector();
             setupLemmaToggle();
+            setupCognateToggle();
             setupPercentModeButton(); // Setup % Mode button early
             setupEstimateLevelButton(); // Setup Estimate Level button
             // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
@@ -3950,6 +3971,7 @@
                 await loadPpmData('spanish');
                 document.getElementById('step2').style.display = 'block';
                 document.getElementById('step2Title').textContent = 'Choose Lyrics Coverage';
+                updateStep5Tooltip();
                 renderLevelSelector('spanish');
             }
         });
@@ -4000,7 +4022,7 @@
                 // Hide subsequent steps
                 document.getElementById('step2').style.display = 'none';
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
-                document.getElementById('step3').style.display = 'none';
+                document.getElementById('cognateToggleContainer').style.display = 'none';
                 document.getElementById('step4').style.display = 'none';
                 // Reset selections
                 hideAllSelectionPills();
@@ -4037,7 +4059,7 @@
                     // Hide all subsequent steps and their pills while loading
                     document.getElementById('step2').style.display = 'none';
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
-                    document.getElementById('step3').style.display = 'none';
+                    document.getElementById('cognateToggleContainer').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
                     hideAllSelectionPills();
                     document.getElementById('selectedLanguagePill').classList.add('visible'); // Keep language pill visible
@@ -4065,9 +4087,11 @@
                     updatePercentModeButton();
                     updateEstimateLevelButton();
                     updateStep2Tooltip();
+                    updateStep5Tooltip();
 
                     renderLevelSelector(selectedLanguage);
                     updateLemmaToggleVisibility();
+                    updateCognateToggleVisibility();
                     updateIncorrectButtonVisibility();
                     updateTotalStatsButtonVisibility();
                 });
@@ -4107,6 +4131,23 @@
                 tooltip.innerHTML = `
                     <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
                     <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
+                `;
+            }
+        }
+
+        function updateStep5Tooltip() {
+            const tooltip = document.getElementById('step5Tooltip');
+            if (isBadBunnyMode) {
+                tooltip.innerHTML = `
+                    <p>Each set contains words ranked by frequency in Bad Bunny's lyrics (e.g., 1-25 = most common words).</p>
+                    <p><strong>Example sentences</strong> are designed to use words from nearby ranks, so practicing set 1-25 means sentences mostly use words from that same group.</p>
+                    <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
+                `;
+            } else {
+                tooltip.innerHTML = `
+                    <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
+                    <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
+                    <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
                 `;
             }
         }
@@ -4153,15 +4194,49 @@
                     this.textContent = this.dataset.full;
                     selectedLevel = this.dataset.level;
 
-                    // Show steps 3 (lemma), 4 (cards per set), and 5 (range) with staggered timing
+                    // Show steps 3 (lemma), 3b (cognate if available), 4 (cards per set), and 5 (range) with staggered timing
                     document.getElementById('lemmaToggleContainer').style.display = 'block';
 
-                    // Show step 4 after a slight delay (after step 3 appears)
+                    // Show cognate toggle after lemma toggle (if available)
                     setTimeout(() => {
-                        document.getElementById('step3').style.display = 'block';
-                    }, 150);
+                        if (cognateFieldAvailable) {
+                            document.getElementById('cognateToggleContainer').style.display = 'block';
+                        }
+                    }, 75);
 
                     renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+                });
+            });
+        }
+
+        function setupCognateToggle() {
+            document.querySelectorAll('.cognate-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Don't allow selecting "exclude" mode if cognate field not available
+                    if (this.dataset.cognate === 'exclude' && !cognateFieldAvailable) {
+                        return;
+                    }
+                    // Reset all buttons to short text
+                    document.querySelectorAll('.cognate-toggle-btn').forEach(b => {
+                        b.classList.remove('selected');
+                        b.textContent = b.dataset.short;
+                    });
+                    // Set selected button to full text
+                    this.classList.add('selected');
+                    this.textContent = this.dataset.full;
+                    excludeCognates = this.dataset.cognate === 'exclude';
+
+                    // Re-render level selector with new word counts, and re-render range selector if a level is selected
+                    renderLevelSelector(selectedLanguage);
+                    // Re-select the current level if one was selected
+                    if (selectedLevel) {
+                        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+                        if (levelBtn) {
+                            levelBtn.classList.add('selected');
+                            levelBtn.textContent = levelBtn.dataset.full;
+                        }
+                        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+                    }
                 });
             });
         }
@@ -4248,6 +4323,7 @@
                 // Update the title text and tooltip
                 document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
                 updateStep2Tooltip();
+                updateStep5Tooltip();
 
                 // Re-render the level selector
                 selectedLevel = null;
@@ -4257,7 +4333,7 @@
                 });
                 renderLevelSelector(selectedLanguage);
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
-                document.getElementById('step3').style.display = 'none';
+                document.getElementById('cognateToggleContainer').style.display = 'none';
                 document.getElementById('step4').style.display = 'none';
 
                 updateStatsTab();
@@ -4332,6 +4408,39 @@
             }
         }
 
+        async function updateCognateToggleVisibility() {
+            const langConfig = config.languages[selectedLanguage];
+            const cognateContainer = document.getElementById('cognateToggleContainer');
+            const cognateSelector = document.getElementById('cognateToggleSelector');
+
+            // Check if vocabulary has is_transparent_cognate field
+            cognateFieldAvailable = false;
+            if (langConfig && langConfig.dataPath) {
+                try {
+                    const response = await fetch(langConfig.dataPath);
+                    if (response.ok) {
+                        const vocabData = await response.json();
+                        // Check if at least one entry has the is_transparent_cognate field
+                        cognateFieldAvailable = vocabData.some(item =>
+                            item.hasOwnProperty('is_transparent_cognate')
+                        );
+                    }
+                } catch (error) {
+                    console.error('Error checking cognate field availability:', error);
+                }
+            }
+
+            if (cognateFieldAvailable) {
+                // Show the container and enable both options
+                cognateContainer.style.display = 'block';
+                cognateSelector.classList.remove('cognate-toggle-unavailable');
+            } else {
+                // Hide the container entirely if field not available
+                cognateContainer.style.display = 'none';
+                excludeCognates = false;
+            }
+        }
+
         function applyLanguageColorTheme() {
             const langConfig = config.languages[selectedLanguage];
             if (langConfig && langConfig.colorTheme) {
@@ -4402,6 +4511,11 @@
                 filteredVocab = filteredVocab.filter(item =>
                     !item.is_english && !item.is_interjection && !item.is_propernoun
                 );
+            }
+
+            // If excluding cognates, filter out transparent cognates
+            if (excludeCognates && cognateFieldAvailable) {
+                filteredVocab = filteredVocab.filter(item => !item.is_transparent_cognate);
             }
 
             // Filter to items within the level's range (using original ranks)
@@ -4521,12 +4635,35 @@
                 `;
             }
 
-            container.innerHTML = rangesHTML + nextLevelHTML;
+            // Add "Incorrect" button if user has incorrect words
+            let incorrectHTML = '';
+            if (currentUser && !currentUser.isGuest && progressData) {
+                const incorrectCount = Object.values(progressData).filter(
+                    data => data.wrong > 0 && data.language === selectedLanguage
+                ).length;
+                if (incorrectCount > 0) {
+                    incorrectHTML = `
+                        <button class="range-btn-new incorrect-range-btn"
+                                data-incorrect="true"
+                                title="Study words you've previously marked incorrect">
+                            Incorrect (${incorrectCount})
+                        </button>
+                    `;
+                }
+            }
+
+            container.innerHTML = rangesHTML + incorrectHTML + nextLevelHTML;
             document.getElementById('step4').style.display = 'block';
 
             // Add click handlers to ALL buttons
             document.querySelectorAll('.range-btn-new').forEach(btn => {
                 btn.addEventListener('click', async function(e) {
+                    // Handle "Incorrect" button
+                    if (this.classList.contains('incorrect-range-btn')) {
+                        loadIncorrectWordsSet();
+                        return;
+                    }
+
                     // Handle "Next Level" button
                     if (this.classList.contains('next-level-btn')) {
                         const nextLevelValue = this.dataset.nextLevel;
@@ -4622,6 +4759,11 @@
                     filteredData = filteredData.filter(item =>
                         !item.is_english && !item.is_interjection && !item.is_propernoun
                     );
+                }
+
+                // If excluding cognates, filter out transparent cognates
+                if (excludeCognates && cognateFieldAvailable) {
+                    filteredData = filteredData.filter(item => !item.is_transparent_cognate);
                 }
 
                 // Filter by the requested range (using original ranks)
@@ -5350,7 +5492,7 @@
                     });
                     renderLevelSelector(selectedLanguage);
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
-                    document.getElementById('step3').style.display = 'none';
+                    document.getElementById('cognateToggleContainer').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
                 }
 
@@ -5891,19 +6033,22 @@
                 if (levelBtn) {
                     levelBtn.classList.add('selected');
                     levelBtn.textContent = levelBtn.dataset.full;
-                    // Also show lemma and cards steps
+                    // Also show lemma, cognate, and cards steps
                     document.getElementById('lemmaToggleContainer').style.display = 'block';
-                    document.getElementById('step3').style.display = 'block';
+                    if (cognateFieldAvailable) {
+                        document.getElementById('cognateToggleContainer').style.display = 'block';
+                    }
                 } else {
                     // Level no longer exists (e.g., switched from CEFR to percentage mode)
                     // Reset selectedLevel and hide subsequent steps
                     selectedLevel = null;
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
-                    document.getElementById('step3').style.display = 'none';
+                    document.getElementById('cognateToggleContainer').style.display = 'none';
                 }
             }
 
             updateLemmaToggleVisibility();
+            updateCognateToggleVisibility();
 
             // Reset card state
             const flashcardEl = document.getElementById('flashcard');
