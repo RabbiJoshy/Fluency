@@ -1424,7 +1424,8 @@
             border-color: var(--accent-secondary);
         }
 
-        .percent-mode-btn {
+        .percent-mode-btn,
+        .estimate-level-btn {
             padding: 6px 12px;
             border-radius: 6px;
             background: var(--bg-tertiary);
@@ -1435,10 +1436,18 @@
             font-family: var(--font-emphasis);
             cursor: pointer;
             transition: all 0.3s;
+        }
+
+        .percent-mode-btn {
             margin-left: auto;
         }
 
-        .percent-mode-btn:hover {
+        .estimate-level-btn {
+            margin-left: auto;
+        }
+
+        .percent-mode-btn:hover,
+        .estimate-level-btn:hover {
             background: var(--bg-card-hover);
             border-color: var(--accent-primary);
             color: var(--text-primary);
@@ -1448,6 +1457,10 @@
             background: var(--accent-primary);
             border-color: var(--accent-primary);
             color: white;
+        }
+
+        .estimate-level-btn.hidden {
+            display: none;
         }
 
         .incorrect-set-btn {
@@ -1618,6 +1631,155 @@
 
         .modal-close:hover {
             color: var(--accent-primary);
+        }
+
+        /* Estimation Modal Styles */
+        .estimation-body {
+            padding: 10px 0;
+        }
+
+        .estimation-start-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .estimation-start-btn:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.3);
+        }
+
+        .estimation-retry-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .estimation-retry-btn:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        .estimation-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            font-family: var(--font-data);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .estimation-word {
+            text-align: center;
+            font-family: var(--font-emphasis);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+
+        .estimation-pos {
+            text-align: center;
+            font-family: var(--font-data);
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            padding: 6px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #estimationTest {
+            text-align: center;
+        }
+
+        .estimation-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .estimation-btn {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .estimation-btn.know-btn {
+            background: rgba(0, 212, 170, 0.2);
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+        }
+
+        .estimation-btn.know-btn:hover {
+            background: rgba(0, 212, 170, 0.3);
+            transform: scale(1.02);
+        }
+
+        .estimation-btn.dont-know-btn {
+            background: rgba(255, 82, 82, 0.2);
+            color: var(--error);
+            border: 2px solid var(--error);
+        }
+
+        .estimation-btn.dont-know-btn:hover {
+            background: rgba(255, 82, 82, 0.3);
+            transform: scale(1.02);
+        }
+
+        .estimation-score {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-family: var(--font-data);
+            font-size: 16px;
+        }
+
+        .estimation-result-icon {
+            text-align: center;
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        .estimation-result-level {
+            text-align: center;
+            font-family: var(--font-emphasis);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 10px;
         }
 
         .stats-body {
@@ -2299,6 +2461,7 @@
                     <span class="step-number">2</span>
                     <span class="step-title" id="step2Title">Choose CEFR level</span>
                     <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
+                    <button class="estimate-level-btn" id="estimateLevelBtn" title="Take a quick test to estimate your vocabulary level">Estimate Level</button>
                     <button class="percent-mode-btn" id="percentModeBtn" title="Toggle percentage coverage mode">% Mode</button>
                     <div id="step2Tooltip" class="step-info-tooltip">
                         <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
@@ -2522,6 +2685,55 @@
         </div>
     </div>
 
+    <!-- Level Estimation Modal -->
+    <div id="estimationModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h3 id="estimationTitle">Level Estimation</h3>
+                <button class="modal-close" id="closeEstimationModal">✕</button>
+            </div>
+            <div class="estimation-body">
+                <div id="estimationIntro">
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">
+                        Answer whether you know each word to estimate your vocabulary level.
+                    </p>
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 25px; font-size: 14px;">
+                        Be honest - mark "Know" only if you're confident you know the meaning.
+                    </p>
+                    <button class="estimation-start-btn" id="startEstimationBtn">Start Test</button>
+                </div>
+                <div id="estimationTest" style="display: none;">
+                    <div class="estimation-progress">
+                        <span id="estimationCheckpoint">Level 50</span>
+                        <span id="estimationWordCount">1/5</span>
+                    </div>
+                    <div class="estimation-word" id="estimationWord">palabra</div>
+                    <div class="estimation-pos" id="estimationPOS">noun</div>
+                    <div class="estimation-buttons">
+                        <button class="estimation-btn know-btn" id="estimationKnowBtn">✓ Know</button>
+                        <button class="estimation-btn dont-know-btn" id="estimationDontKnowBtn">✗ Don't Know</button>
+                    </div>
+                    <div class="estimation-score">
+                        <span style="color: var(--accent-green);">✓ <span id="estimationCorrect">0</span></span>
+                        <span style="color: var(--error);">✗ <span id="estimationWrong">0</span></span>
+                    </div>
+                </div>
+                <div id="estimationResult" style="display: none;">
+                    <div class="estimation-result-icon">🎯</div>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;">
+                        Your estimated vocabulary level:
+                    </p>
+                    <div class="estimation-result-level" id="estimationResultLevel">~2500 words</div>
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 25px; font-size: 14px;" id="estimationResultDesc">
+                        You likely know vocabulary up to this rank.
+                    </p>
+                    <button class="estimation-start-btn" id="useEstimatedLevelBtn">Use This Level</button>
+                    <button class="estimation-retry-btn" id="retryEstimationBtn">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Stats Modal -->
     <div id="statsModal" class="modal hidden">
         <div class="modal-content">
@@ -2684,36 +2896,98 @@
         let ppmData = null; // PPM data for percentage mode calculations
         let totalPpm = 0; // Total PPM for the language
 
+        // Level estimation state
+        let estimationCheckpoints = null; // Loaded from estimation_checkpoints.json
+        let estimationState = {
+            active: false,
+            checkpointIndex: 0,
+            wordIndex: 0,
+            correct: 0,
+            wrong: 0,
+            currentWords: [], // Words for current checkpoint
+            estimatedLevel: null
+        };
+
         // Bad Bunny mode detection from URL
         const urlParams = new URLSearchParams(window.location.search);
         const isBadBunnyMode = urlParams.get('mode') === 'badbunny';
 
-        // Bad Bunny album artwork for card backgrounds
-        const badBunnyAlbumArt = [
-            'Bad Bunny/Images/Bad_Bunny_-_Un_Verano_Sin_Ti.png',
-            'Bad Bunny/Images/Bad_Bunny_-_Debí_Tirar_Más_Fotos.png',
-            'Bad Bunny/Images/Bad_Bunny_-_Yhlqmdlg.png'
-        ];
-        let currentAlbumArtIndex = 0;
+        // Bad Bunny album artwork mapping
+        let badBunnyAlbumsDictionary = null; // Will be loaded from JSON
+        let songToAlbumMap = {}; // Maps song names to album image paths
+
+        // Album key to image path mapping
+        const albumToImagePath = {
+            'X 100PRE (2018)': 'Bad Bunny/Images/X100PRE.jpg',
+            'OASIS (2019) [with J Balvin]': 'Bad Bunny/Images/OASIS.png',
+            'YHLQMDLG (2020)': 'Bad Bunny/Images/YHLQMDLG.png',
+            'LAS QUE NO IBAN A SALIR (2020)': 'Bad Bunny/Images/LAS_QUE_NO_IBAN_A_SALIR.jpg',
+            'EL ÚLTIMO TOUR DEL MUNDO (2020)': 'Bad Bunny/Images/EL_ULTIMO_TOUR_DEL_MUNDO.png',
+            'UN VERANO SIN TI (2022)': 'Bad Bunny/Images/UN_VERANO_SIN_TI.png',
+            'NADIE SABE LO QUE VA A PASAR MAÑANA (2023)': 'Bad Bunny/Images/NADIE_SABE_LO_QUE_VA_A_PASAR_MANANA.png',
+            'DEBÍ TIRAR MÁS FOTOS (2025)': 'Bad Bunny/Images/DEBI_TIRAR_MAS_FOTOS.png',
+            'Singles & Other Tracks': 'Bad Bunny/Images/SINGLES.jpg'
+        };
+
+        // Default fallback image
+        const defaultAlbumArt = 'Bad Bunny/Images/SINGLES.jpg';
 
         // Add Bad Bunny mode class to body
         if (isBadBunnyMode) {
             document.body.classList.add('badbunny-mode');
+            // Load the albums dictionary
+            loadBadBunnyAlbumsDictionary();
         }
 
-        // Function to cycle album artwork on card faces
+        // Load Bad Bunny albums dictionary and build song-to-album mapping
+        async function loadBadBunnyAlbumsDictionary() {
+            try {
+                const response = await fetch('Bad Bunny/bad_bunny_albums_dictionary.json');
+                badBunnyAlbumsDictionary = await response.json();
+
+                // Build reverse mapping: song name -> album image path
+                for (const [albumKey, songs] of Object.entries(badBunnyAlbumsDictionary)) {
+                    const imagePath = albumToImagePath[albumKey] || defaultAlbumArt;
+                    for (const songName of songs) {
+                        // Store with lowercase for case-insensitive matching
+                        songToAlbumMap[songName.toLowerCase()] = imagePath;
+                    }
+                }
+                console.log('Bad Bunny albums dictionary loaded, mapped', Object.keys(songToAlbumMap).length, 'songs');
+            } catch (error) {
+                console.error('Failed to load Bad Bunny albums dictionary:', error);
+            }
+        }
+
+        // Get album image for a song name
+        function getAlbumImageForSong(songName) {
+            if (!songName) return defaultAlbumArt;
+            // Try exact match first, then lowercase match
+            return songToAlbumMap[songName] || songToAlbumMap[songName.toLowerCase()] || defaultAlbumArt;
+        }
+
+        // Function to update album artwork on card faces based on current example's song
         function updateBadBunnyBackground() {
             if (!isBadBunnyMode) return;
 
             const cardFaces = document.querySelectorAll('.card-face');
-            const imageUrl = badBunnyAlbumArt[currentAlbumArtIndex];
+
+            // Get current song name from the current example
+            let songName = null;
+            const card = flashcards[currentIndex];
+            if (card && card.isMultiMeaning) {
+                const currentMeaning = card.meanings[currentMeaningIndex];
+                if (currentMeaning && currentMeaning.allExamples && currentMeaning.allExamples.length > 0) {
+                    const example = currentMeaning.allExamples[currentExampleIndex] || currentMeaning.allExamples[0];
+                    songName = example.song_name;
+                }
+            }
+
+            const imageUrl = getAlbumImageForSong(songName);
 
             cardFaces.forEach(face => {
                 face.style.backgroundImage = `url('${imageUrl}')`;
             });
-
-            // Cycle to next image for next card
-            currentAlbumArtIndex = (currentAlbumArtIndex + 1) % badBunnyAlbumArt.length;
         }
         let currentExampleIndex = 0; // Track which example is being shown (for Bad Bunny mode with multiple examples)
 
@@ -3099,6 +3373,335 @@
 
         // ========== END AUTHENTICATION & GOOGLE SHEETS ==========
 
+        // ========== LEVEL ESTIMATION ==========
+
+        // Load estimation checkpoints
+        async function loadEstimationCheckpoints() {
+            try {
+                const response = await fetch('estimation_checkpoints.json');
+                estimationCheckpoints = await response.json();
+                console.log('Estimation checkpoints loaded');
+            } catch (error) {
+                console.error('Failed to load estimation checkpoints:', error);
+            }
+        }
+
+        // Show/hide estimate level button based on language
+        function updateEstimateLevelButton() {
+            const btn = document.getElementById('estimateLevelBtn');
+            // Only show for Spanish (regular or Bad Bunny mode)
+            if (selectedLanguage === 'spanish' || isBadBunnyMode) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        }
+
+        // Open estimation modal
+        function openEstimationModal() {
+            const modal = document.getElementById('estimationModal');
+            modal.classList.remove('hidden');
+
+            // Reset state
+            document.getElementById('estimationIntro').style.display = 'block';
+            document.getElementById('estimationTest').style.display = 'none';
+            document.getElementById('estimationResult').style.display = 'none';
+
+            // Reset estimation state
+            estimationState = {
+                active: false,
+                checkpointIndex: 0,
+                wordIndex: 0,
+                correct: 0,
+                wrong: 0,
+                currentWords: [],
+                estimatedLevel: null
+            };
+        }
+
+        // Close estimation modal
+        function closeEstimationModal() {
+            const modal = document.getElementById('estimationModal');
+            modal.classList.add('hidden');
+            estimationState.active = false;
+        }
+
+        // Start the estimation test
+        async function startEstimation() {
+            if (!estimationCheckpoints) {
+                await loadEstimationCheckpoints();
+            }
+
+            // Get checkpoints for current mode
+            const checkpointsKey = isBadBunnyMode ? 'badBunny' : 'spanish';
+            const checkpoints = estimationCheckpoints[checkpointsKey]?.checkpoints;
+
+            if (!checkpoints || checkpoints.length === 0) {
+                alert('Estimation data not available.');
+                return;
+            }
+
+            // Make sure vocabulary is loaded
+            if (!flashcards || flashcards.length === 0) {
+                // Load vocabulary temporarily
+                const langConfig = config.languages[selectedLanguage];
+                try {
+                    const response = await fetch(langConfig.dataPath);
+                    const vocabData = await response.json();
+                    // Store temporarily for lookup
+                    estimationState.vocabularyData = vocabData;
+                } catch (error) {
+                    alert('Failed to load vocabulary for estimation.');
+                    return;
+                }
+            } else {
+                estimationState.vocabularyData = null; // Use flashcards
+            }
+
+            // Initialize state
+            estimationState.active = true;
+            estimationState.checkpointIndex = 0;
+            estimationState.wordIndex = 0;
+            estimationState.correct = 0;
+            estimationState.wrong = 0;
+            estimationState.checkpointCorrect = 0;
+            estimationState.checkpointWrong = 0;
+
+            // Show test UI
+            document.getElementById('estimationIntro').style.display = 'none';
+            document.getElementById('estimationTest').style.display = 'block';
+            document.getElementById('estimationResult').style.display = 'none';
+
+            // Load first checkpoint
+            loadEstimationCheckpoint();
+        }
+
+        // Load words for current checkpoint
+        function loadEstimationCheckpoint() {
+            const checkpointsKey = isBadBunnyMode ? 'badBunny' : 'spanish';
+            const checkpoints = estimationCheckpoints[checkpointsKey].checkpoints;
+            const checkpoint = checkpoints[estimationState.checkpointIndex];
+
+            // Reset checkpoint scores
+            estimationState.checkpointCorrect = 0;
+            estimationState.checkpointWrong = 0;
+            estimationState.wordIndex = 0;
+
+            // Get word data for this checkpoint
+            estimationState.currentWords = [];
+            const vocabSource = estimationState.vocabularyData || flashcards;
+
+            for (const rank of checkpoint.testWords) {
+                const word = vocabSource.find(w => w.rank === rank);
+                if (word) {
+                    estimationState.currentWords.push(word);
+                }
+            }
+
+            // Update UI
+            document.getElementById('estimationCheckpoint').textContent = `Level ${checkpoint.level}`;
+            updateEstimationWord();
+        }
+
+        // Update the displayed word
+        function updateEstimationWord() {
+            const word = estimationState.currentWords[estimationState.wordIndex];
+            if (!word) return;
+
+            document.getElementById('estimationWord').textContent = word.word;
+
+            // Get POS from meanings
+            let pos = '';
+            if (word.meanings && word.meanings.length > 0) {
+                pos = word.meanings[0].pos || '';
+            }
+            document.getElementById('estimationPOS').textContent = pos;
+
+            // Update count
+            document.getElementById('estimationWordCount').textContent =
+                `${estimationState.wordIndex + 1}/${estimationState.currentWords.length}`;
+
+            // Update totals
+            document.getElementById('estimationCorrect').textContent = estimationState.correct;
+            document.getElementById('estimationWrong').textContent = estimationState.wrong;
+        }
+
+        // Handle "Know" button
+        function estimationKnow() {
+            estimationState.correct++;
+            estimationState.checkpointCorrect++;
+            nextEstimationWord();
+        }
+
+        // Handle "Don't Know" button
+        function estimationDontKnow() {
+            estimationState.wrong++;
+            estimationState.checkpointWrong++;
+            nextEstimationWord();
+        }
+
+        // Move to next word or checkpoint
+        function nextEstimationWord() {
+            estimationState.wordIndex++;
+
+            if (estimationState.wordIndex >= estimationState.currentWords.length) {
+                // Checkpoint complete - evaluate performance
+                evaluateCheckpoint();
+            } else {
+                updateEstimationWord();
+            }
+        }
+
+        // Evaluate checkpoint performance and decide next action
+        function evaluateCheckpoint() {
+            const checkpointsKey = isBadBunnyMode ? 'badBunny' : 'spanish';
+            const checkpoints = estimationCheckpoints[checkpointsKey].checkpoints;
+            const currentCheckpoint = checkpoints[estimationState.checkpointIndex];
+
+            const correct = estimationState.checkpointCorrect;
+            const total = estimationState.currentWords.length;
+
+            // Decision logic:
+            // 4-5 correct (80%+): advance to next checkpoint
+            // 3 correct (60%): advance but slower (this is edge territory)
+            // 0-2 correct (<60%): stop, this is the estimated level
+
+            if (correct >= 4) {
+                // Strong performance - continue to next checkpoint
+                estimationState.checkpointIndex++;
+
+                if (estimationState.checkpointIndex >= checkpoints.length) {
+                    // Reached the end - they know everything!
+                    showEstimationResult(checkpoints[checkpoints.length - 1].level);
+                } else {
+                    loadEstimationCheckpoint();
+                }
+            } else if (correct === 3) {
+                // Borderline - advance one more to confirm
+                estimationState.checkpointIndex++;
+
+                if (estimationState.checkpointIndex >= checkpoints.length) {
+                    showEstimationResult(checkpoints[checkpoints.length - 1].level);
+                } else {
+                    loadEstimationCheckpoint();
+                }
+            } else {
+                // Failed this checkpoint - estimate level is previous checkpoint
+                let estimatedLevel;
+                if (estimationState.checkpointIndex === 0) {
+                    // Failed first checkpoint - beginner
+                    estimatedLevel = 0;
+                } else {
+                    estimatedLevel = checkpoints[estimationState.checkpointIndex - 1].level;
+                }
+                showEstimationResult(estimatedLevel);
+            }
+        }
+
+        // Show the estimation result
+        function showEstimationResult(level) {
+            estimationState.active = false;
+            estimationState.estimatedLevel = level;
+
+            document.getElementById('estimationTest').style.display = 'none';
+            document.getElementById('estimationResult').style.display = 'block';
+
+            if (level === 0) {
+                document.getElementById('estimationResultLevel').textContent = 'Beginner';
+                document.getElementById('estimationResultDesc').textContent =
+                    'Start from the beginning to build your vocabulary foundation.';
+            } else {
+                document.getElementById('estimationResultLevel').textContent = `~${level} words`;
+                document.getElementById('estimationResultDesc').textContent =
+                    `You likely know vocabulary up to rank ${level}. Start studying from there!`;
+            }
+        }
+
+        // Apply the estimated level
+        function useEstimatedLevel() {
+            const level = estimationState.estimatedLevel;
+            closeEstimationModal();
+
+            if (level === 0) {
+                // Select first level
+                const firstLevelBtn = document.querySelector('.level-btn');
+                if (firstLevelBtn) {
+                    firstLevelBtn.click();
+                }
+            } else {
+                // Find the appropriate CEFR level or percentage level for this rank
+                // and select it, then select the appropriate range
+                selectLevelForRank(level);
+            }
+        }
+
+        // Select the appropriate level and range for a given rank
+        function selectLevelForRank(rank) {
+            // Find which level contains this rank
+            const levels = getCefrLevels(selectedLanguage);
+
+            let targetLevel = null;
+            for (const level of levels) {
+                if (rank >= level.minRank && rank <= level.maxRank) {
+                    targetLevel = level;
+                    break;
+                }
+                // If rank is below this level's max, use this level
+                if (rank <= level.maxRank) {
+                    targetLevel = level;
+                    break;
+                }
+            }
+
+            if (!targetLevel && levels.length > 0) {
+                // Use the highest level
+                targetLevel = levels[levels.length - 1];
+            }
+
+            if (targetLevel) {
+                // Click the level button
+                const levelBtn = document.querySelector(`.level-btn[data-level="${targetLevel.level}"]`);
+                if (levelBtn) {
+                    levelBtn.click();
+
+                    // After level is selected, try to select the range containing this rank
+                    setTimeout(() => {
+                        selectRangeForRank(rank);
+                    }, 100);
+                }
+            }
+        }
+
+        // Select the range containing a given rank
+        function selectRangeForRank(rank) {
+            const rangeButtons = document.querySelectorAll('.range-btn');
+            for (const btn of rangeButtons) {
+                const start = parseInt(btn.dataset.start);
+                const end = parseInt(btn.dataset.end);
+                if (rank >= start && rank <= end) {
+                    btn.click();
+                    return;
+                }
+                // If rank is less than start, select previous range or first
+                if (rank < start) {
+                    // Select the previous button or this one if it's the first
+                    const prevBtn = btn.previousElementSibling;
+                    if (prevBtn && prevBtn.classList.contains('range-btn')) {
+                        prevBtn.click();
+                    } else {
+                        btn.click();
+                    }
+                    return;
+                }
+            }
+            // If no range found, select the last one
+            if (rangeButtons.length > 0) {
+                rangeButtons[rangeButtons.length - 1].click();
+            }
+        }
+
+        // ========== END LEVEL ESTIMATION ==========
+
         // Load configuration
         async function loadConfig() {
             try {
@@ -3312,6 +3915,7 @@
             setupGroupSizeSelector();
             setupLemmaToggle();
             setupPercentModeButton(); // Setup % Mode button early
+            setupEstimateLevelButton(); // Setup Estimate Level button
             // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
             setupTooltipHandlers(); // Initialize tooltips early
             setupAuthEventListeners(); // Setup auth modal event listeners
@@ -3459,6 +4063,7 @@
                     // Update step 2 title, tooltip, and % Mode button based on current mode
                     document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
                     updatePercentModeButton();
+                    updateEstimateLevelButton();
                     updateStep2Tooltip();
 
                     renderLevelSelector(selectedLanguage);
@@ -3656,6 +4261,35 @@
                 document.getElementById('step4').style.display = 'none';
 
                 updateStatsTab();
+            });
+        }
+
+        function setupEstimateLevelButton() {
+            // Update visibility based on language
+            updateEstimateLevelButton();
+
+            // Open modal when clicked
+            document.getElementById('estimateLevelBtn').addEventListener('click', function() {
+                openEstimationModal();
+            });
+
+            // Close modal
+            document.getElementById('closeEstimationModal').addEventListener('click', closeEstimationModal);
+
+            // Start test
+            document.getElementById('startEstimationBtn').addEventListener('click', startEstimation);
+
+            // Know/Don't Know buttons
+            document.getElementById('estimationKnowBtn').addEventListener('click', estimationKnow);
+            document.getElementById('estimationDontKnowBtn').addEventListener('click', estimationDontKnow);
+
+            // Use estimated level
+            document.getElementById('useEstimatedLevelBtn').addEventListener('click', useEstimatedLevel);
+
+            // Retry
+            document.getElementById('retryEstimationBtn').addEventListener('click', function() {
+                document.getElementById('estimationResult').style.display = 'none';
+                document.getElementById('estimationIntro').style.display = 'block';
             });
         }
 
