@@ -330,23 +330,24 @@
             font-size: 64px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--accent-primary);
+            color: white;
             text-align: center;
         }
 
         .card-lemma {
             font-family: var(--font-reading);
-            font-size: 26px;
-            color: var(--accent-secondary);
+            font-size: 32px;
+            color: white;
             text-align: center;
             margin-bottom: 10px;
             font-weight: 500;
+            opacity: 0.85;
         }
 
         .card-pos {
             font-family: var(--font-data);
             font-size: 12px;
-            color: var(--text-primary);
+            color: white;
             text-align: center;
             margin-bottom: 12px;
             text-transform: uppercase;
@@ -372,8 +373,9 @@
         .card-ranking {
             font-family: var(--font-reading);
             font-size: 18px;
-            color: var(--text-muted);
+            color: white;
             text-align: center;
+            opacity: 0.7;
         }
 
         .card-control-btn {
@@ -505,7 +507,7 @@
 
         .translation {
             margin-top: 8px;
-            color: var(--accent-secondary);
+            color: white;
             font-size: 16px;
             font-weight: 500;
         }
@@ -2146,21 +2148,24 @@
         .meanings-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             justify-content: center;
             margin: 15px 0;
             width: 100%;
+            padding: 0 5px;
         }
 
         .meaning-box {
-            padding: 10px 16px;
+            padding: 14px 20px;
             background: var(--bg-tertiary);
             border: 2px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
-            min-width: 80px;
+            min-width: 100px;
+            flex: 1;
+            max-width: calc(50% - 5px);
             position: relative;
         }
 
@@ -2172,7 +2177,7 @@
         .meaning-box.selected {
             background: var(--accent-blue);
             border-color: var(--accent-blue);
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .meaning-box.selected .meaning-text {
@@ -2185,29 +2190,30 @@
         }
 
         .meaning-text {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: white;
         }
 
         .meaning-pos {
-            font-size: 11px;
-            color: var(--accent-secondary);
-            margin-top: 4px;
+            font-size: 13px;
+            color: white;
+            margin-top: 6px;
             font-family: var(--font-data);
             text-transform: uppercase;
+            opacity: 0.75;
         }
 
         .meaning-percent {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -10px;
+            right: -10px;
             background: var(--accent-secondary);
             color: var(--bg-primary);
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
             font-family: var(--font-data);
         }
 
