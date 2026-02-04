@@ -1671,6 +1671,43 @@
             padding: 10px 0;
         }
 
+        .estimation-mode-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .estimation-mode-btn {
+            flex: 1;
+            padding: 16px 12px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .estimation-mode-btn:hover {
+            border-color: var(--accent-primary);
+            background: rgba(200, 16, 46, 0.1);
+        }
+
+        .estimation-mode-btn .mode-title {
+            font-family: var(--font-emphasis);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .estimation-mode-btn .mode-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         .estimation-start-btn {
             width: 100%;
             padding: 14px 20px;
@@ -2734,10 +2771,19 @@
                     <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">
                         Answer whether you know each word to estimate your vocabulary level.
                     </p>
-                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 25px; font-size: 14px;">
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">
                         Be honest - mark "Know" only if you're confident you know the meaning.
                     </p>
-                    <button class="estimation-start-btn" id="startEstimationBtn">Start Test</button>
+                    <div class="estimation-mode-buttons">
+                        <button class="estimation-mode-btn" id="quickEstimateBtn">
+                            <span class="mode-title">⚡ Quick</span>
+                            <span class="mode-desc">~15-25 words</span>
+                        </button>
+                        <button class="estimation-mode-btn" id="detailedEstimateBtn">
+                            <span class="mode-title">🎯 Detailed</span>
+                            <span class="mode-desc">~30-50 words</span>
+                        </button>
+                    </div>
                 </div>
                 <div id="estimationTest" style="display: none;">
                     <div class="estimation-progress">
@@ -2939,12 +2985,20 @@
         let estimationCheckpoints = null; // Loaded from estimation_checkpoints.json
         let estimationState = {
             active: false,
-            checkpointIndex: 0,
+            mode: 'quick', // 'quick' or 'detailed'
+            currentLevel: 500, // Current level being tested
+            stride: 500, // How much to jump
+            minStride: 100, // Minimum stride before stopping (quick mode)
             wordIndex: 0,
             correct: 0,
             wrong: 0,
+            checkpointCorrect: 0,
+            checkpointWrong: 0,
             currentWords: [], // Words for current checkpoint
-            estimatedLevel: null
+            estimatedLevel: null,
+            vocabularyData: null,
+            history: [], // Track level history for backtracking
+            maxLevel: 8500 // Max level to test (Bad Bunny) - updated per mode
         };
 
         // Bad Bunny mode detection from URL
@@ -3449,12 +3503,20 @@
             // Reset estimation state
             estimationState = {
                 active: false,
-                checkpointIndex: 0,
+                mode: 'quick',
+                currentLevel: 500,
+                stride: 500,
+                minStride: 200,
                 wordIndex: 0,
                 correct: 0,
                 wrong: 0,
+                checkpointCorrect: 0,
+                checkpointWrong: 0,
                 currentWords: [],
-                estimatedLevel: null
+                estimatedLevel: null,
+                vocabularyData: null,
+                history: [],
+                maxLevel: isBadBunnyMode ? 8500 : 11000
             };
         }
 
@@ -3465,80 +3527,96 @@
             estimationState.active = false;
         }
 
-        // Start the estimation test
-        async function startEstimation() {
-            if (!estimationCheckpoints) {
-                await loadEstimationCheckpoints();
-            }
-
-            // Get checkpoints for current mode
-            const checkpointsKey = isBadBunnyMode ? 'badBunny' : 'spanish';
-            const checkpoints = estimationCheckpoints[checkpointsKey]?.checkpoints;
-
-            if (!checkpoints || checkpoints.length === 0) {
-                alert('Estimation data not available.');
+        // Start the estimation test with specified mode
+        async function startEstimation(mode = 'quick') {
+            // Load vocabulary data
+            const langConfig = config.languages[selectedLanguage];
+            try {
+                const response = await fetch(langConfig.dataPath);
+                const vocabData = await response.json();
+                // Assign ranks
+                vocabData.forEach((item, index) => {
+                    item.rank = index + 1;
+                });
+                estimationState.vocabularyData = vocabData;
+            } catch (error) {
+                alert('Failed to load vocabulary for estimation.');
                 return;
             }
 
-            // Make sure vocabulary is loaded
-            if (!flashcards || flashcards.length === 0) {
-                // Load vocabulary temporarily
-                const langConfig = config.languages[selectedLanguage];
-                try {
-                    const response = await fetch(langConfig.dataPath);
-                    const vocabData = await response.json();
-                    // Store temporarily for lookup
-                    estimationState.vocabularyData = vocabData;
-                } catch (error) {
-                    alert('Failed to load vocabulary for estimation.');
-                    return;
-                }
-            } else {
-                estimationState.vocabularyData = null; // Use flashcards
-            }
+            // Determine max level based on mode
+            const maxLevel = isBadBunnyMode ? 8500 : 11000;
 
-            // Initialize state
+            // Initialize state with adaptive parameters
             estimationState.active = true;
-            estimationState.checkpointIndex = 0;
+            estimationState.mode = mode;
+            estimationState.currentLevel = 500; // Start at 500
+            estimationState.stride = mode === 'quick' ? 500 : 300;
+            estimationState.minStride = mode === 'quick' ? 200 : 100;
+            estimationState.maxLevel = maxLevel;
             estimationState.wordIndex = 0;
             estimationState.correct = 0;
             estimationState.wrong = 0;
             estimationState.checkpointCorrect = 0;
             estimationState.checkpointWrong = 0;
+            estimationState.history = [];
+            estimationState.estimatedLevel = null;
 
             // Show test UI
             document.getElementById('estimationIntro').style.display = 'none';
             document.getElementById('estimationTest').style.display = 'block';
             document.getElementById('estimationResult').style.display = 'none';
 
-            // Load first checkpoint
-            loadEstimationCheckpoint();
+            // Load words for current level
+            loadEstimationLevel();
         }
 
-        // Load words for current checkpoint
-        function loadEstimationCheckpoint() {
-            const checkpointsKey = isBadBunnyMode ? 'badBunny' : 'spanish';
-            const checkpoints = estimationCheckpoints[checkpointsKey].checkpoints;
-            const checkpoint = checkpoints[estimationState.checkpointIndex];
+        // Get 5 test words for a given level (words around that rank)
+        function getWordsForLevel(level) {
+            const vocabData = estimationState.vocabularyData;
+            if (!vocabData) return [];
 
+            // Filter valid words (not English, not interjections, etc. for Bad Bunny)
+            let validWords = vocabData.filter(item =>
+                item.word && item.word.trim() !== '' &&
+                !item.duplicate &&
+                item.meanings && item.meanings.length > 0
+            );
+
+            if (isBadBunnyMode) {
+                validWords = validWords.filter(item =>
+                    !item.is_english && !item.is_interjection && !item.is_propernoun
+                );
+            }
+
+            // Get words in range [level-25, level+25] and pick 5
+            const rangeStart = Math.max(1, level - 25);
+            const rangeEnd = level + 25;
+            const wordsInRange = validWords.filter(w => w.rank >= rangeStart && w.rank <= rangeEnd);
+
+            // Shuffle and pick 5
+            const shuffled = wordsInRange.sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, 5);
+        }
+
+        // Load words for current level
+        function loadEstimationLevel() {
             // Reset checkpoint scores
             estimationState.checkpointCorrect = 0;
             estimationState.checkpointWrong = 0;
             estimationState.wordIndex = 0;
 
-            // Get word data for this checkpoint
-            estimationState.currentWords = [];
-            const vocabSource = estimationState.vocabularyData || flashcards;
+            // Get words for this level
+            estimationState.currentWords = getWordsForLevel(estimationState.currentLevel);
 
-            for (const rank of checkpoint.testWords) {
-                const word = vocabSource.find(w => w.rank === rank);
-                if (word) {
-                    estimationState.currentWords.push(word);
-                }
+            if (estimationState.currentWords.length === 0) {
+                // No words at this level - finish
+                showEstimationResult(estimationState.currentLevel);
+                return;
             }
 
             // Update UI
-            document.getElementById('estimationCheckpoint').textContent = `Level ${checkpoint.level}`;
+            document.getElementById('estimationCheckpoint').textContent = `Testing ~${estimationState.currentLevel}`;
             updateEstimationWord();
         }
 
@@ -3591,49 +3669,76 @@
             }
         }
 
-        // Evaluate checkpoint performance and decide next action
+        // Evaluate checkpoint performance and decide next action (adaptive algorithm)
         function evaluateCheckpoint() {
-            const checkpointsKey = isBadBunnyMode ? 'badBunny' : 'spanish';
-            const checkpoints = estimationCheckpoints[checkpointsKey].checkpoints;
-            const currentCheckpoint = checkpoints[estimationState.checkpointIndex];
-
             const correct = estimationState.checkpointCorrect;
-            const total = estimationState.currentWords.length;
+            const currentLevel = estimationState.currentLevel;
+            const stride = estimationState.stride;
 
-            // Decision logic:
-            // 4-5 correct (80%+): advance to next checkpoint
-            // 3 correct (60%): advance but slower (this is edge territory)
-            // 0-2 correct (<60%): stop, this is the estimated level
+            // Save to history for potential backtracking
+            estimationState.history.push({
+                level: currentLevel,
+                correct: correct,
+                stride: stride
+            });
 
-            if (correct >= 4) {
-                // Strong performance - continue to next checkpoint
-                estimationState.checkpointIndex++;
+            // Adaptive decision logic:
+            // 5/5 (100%): Double stride, jump forward
+            // 4/5 (80%): Jump forward by 1.5x stride
+            // 3/5 (60%): Edge zone - halve stride, small jump forward
+            // 2/5 (40%): Halve stride, go back
+            // 0-1/5 (<40%): Halve stride, go back further
 
-                if (estimationState.checkpointIndex >= checkpoints.length) {
-                    // Reached the end - they know everything!
-                    showEstimationResult(checkpoints[checkpoints.length - 1].level);
-                } else {
-                    loadEstimationCheckpoint();
-                }
+            let newLevel = currentLevel;
+            let newStride = stride;
+
+            if (correct >= 5) {
+                // Excellent - double stride and jump forward
+                newStride = Math.min(stride * 2, 2000);
+                newLevel = currentLevel + newStride;
+            } else if (correct === 4) {
+                // Good - jump forward by 1.5x stride
+                newLevel = currentLevel + Math.round(stride * 1.5);
             } else if (correct === 3) {
-                // Borderline - advance one more to confirm
-                estimationState.checkpointIndex++;
-
-                if (estimationState.checkpointIndex >= checkpoints.length) {
-                    showEstimationResult(checkpoints[checkpoints.length - 1].level);
-                } else {
-                    loadEstimationCheckpoint();
-                }
+                // Edge zone - halve stride, small jump forward to narrow down
+                newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
+                newLevel = currentLevel + newStride;
+            } else if (correct === 2) {
+                // Struggling - halve stride and go back
+                newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
+                newLevel = currentLevel - newStride;
             } else {
-                // Failed this checkpoint - estimate level is previous checkpoint
-                let estimatedLevel;
-                if (estimationState.checkpointIndex === 0) {
-                    // Failed first checkpoint - beginner
-                    estimatedLevel = 0;
-                } else {
-                    estimatedLevel = checkpoints[estimationState.checkpointIndex - 1].level;
+                // Failed (0-1) - halve stride and go back further
+                newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
+                newLevel = currentLevel - Math.round(newStride * 1.5);
+            }
+
+            // Clamp level to valid range
+            newLevel = Math.max(50, Math.min(newLevel, estimationState.maxLevel));
+
+            // Check stopping conditions:
+            // 1. Stride has dropped to minimum and we're in edge zone (2-3 correct)
+            // 2. We've gone back to a level we already passed with good score
+            // 3. We've reached max level with good score
+
+            const shouldStop =
+                (newStride <= estimationState.minStride && correct >= 2 && correct <= 3) ||
+                (newLevel >= estimationState.maxLevel && correct >= 3) ||
+                (newLevel <= 50 && correct <= 2);
+
+            if (shouldStop) {
+                // Estimate is current level adjusted by performance
+                let estimatedLevel = currentLevel;
+                if (correct <= 2) {
+                    // Go back a bit from current
+                    estimatedLevel = Math.max(0, currentLevel - Math.round(stride / 2));
                 }
                 showEstimationResult(estimatedLevel);
+            } else {
+                // Continue with next level
+                estimationState.currentLevel = newLevel;
+                estimationState.stride = newStride;
+                loadEstimationLevel();
             }
         }
 
@@ -4352,8 +4457,15 @@
             // Close modal
             document.getElementById('closeEstimationModal').addEventListener('click', closeEstimationModal);
 
-            // Start test
-            document.getElementById('startEstimationBtn').addEventListener('click', startEstimation);
+            // Quick estimate button
+            document.getElementById('quickEstimateBtn').addEventListener('click', function() {
+                startEstimation('quick');
+            });
+
+            // Detailed estimate button
+            document.getElementById('detailedEstimateBtn').addEventListener('click', function() {
+                startEstimation('detailed');
+            });
 
             // Know/Don't Know buttons
             document.getElementById('estimationKnowBtn').addEventListener('click', estimationKnow);
