@@ -4166,6 +4166,7 @@
                         ...config.languages.spanish,
                         name: "Spanish (Bad Bunny)",
                         dataPath: "Bad Bunny/BadBunnyvocabulary.json",
+                        ppmDataPath: null, // PPM data is embedded in vocabulary JSON
                         colorTheme: {
                             primary: "#ED1C24",   // Puerto Rican flag red
                             secondary: "#0050A0"  // Puerto Rican flag blue
@@ -4194,57 +4195,83 @@
         // Load PPM data for percentage mode
         async function loadPpmData(language) {
             const langConfig = config.languages[language];
-            if (!langConfig || !langConfig.ppmDataPath) {
-                ppmData = null;
-                totalPpm = 0;
-                return false;
+
+            // First try to load from ppmDataPath (CSV file)
+            if (langConfig && langConfig.ppmDataPath) {
+                try {
+                    const response = await fetch(langConfig.ppmDataPath);
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        const lines = csvText.trim().split('\n');
+                        const headers = lines[0].split(',');
+                        const ppmIndex = headers.indexOf('occurrences_ppm');
+                        const rankIndex = headers.indexOf('rank');
+
+                        if (ppmIndex !== -1) {
+                            ppmData = [];
+                            totalPpm = 0;
+
+                            for (let i = 1; i < lines.length; i++) {
+                                const values = lines[i].split(',');
+                                const ppm = parseFloat(values[ppmIndex]) || 0;
+                                const rank = parseInt(values[rankIndex]) || i;
+                                ppmData.push({ rank, ppm });
+                                totalPpm += ppm;
+                            }
+
+                            // Calculate cumulative percentages
+                            let cumulative = 0;
+                            for (let i = 0; i < ppmData.length; i++) {
+                                cumulative += ppmData[i].ppm;
+                                ppmData[i].cumulativePercent = cumulative / totalPpm;
+                            }
+
+                            return true;
+                        }
+                    }
+                } catch (error) {
+                    console.log('CSV PPM load failed, trying JSON fallback:', error);
+                }
             }
 
-            try {
-                const response = await fetch(langConfig.ppmDataPath);
-                if (!response.ok) {
-                    ppmData = null;
-                    totalPpm = 0;
-                    return false;
+            // Fallback: try to load from vocabulary JSON if it has occurrences_ppm embedded
+            if (langConfig && langConfig.dataPath && langConfig.dataPath.endsWith('.json')) {
+                try {
+                    const response = await fetch(langConfig.dataPath);
+                    if (response.ok) {
+                        const vocabData = await response.json();
+                        // Check if vocab has occurrences_ppm
+                        if (vocabData.length > 0 && vocabData[0].hasOwnProperty('occurrences_ppm')) {
+                            ppmData = [];
+                            totalPpm = 0;
+
+                            // Sort by rank and extract PPM data
+                            const sortedVocab = [...vocabData].sort((a, b) => a.rank - b.rank);
+                            for (const item of sortedVocab) {
+                                const ppm = item.occurrences_ppm || 0;
+                                ppmData.push({ rank: item.rank, ppm });
+                                totalPpm += ppm;
+                            }
+
+                            // Calculate cumulative percentages
+                            let cumulative = 0;
+                            for (let i = 0; i < ppmData.length; i++) {
+                                cumulative += ppmData[i].ppm;
+                                ppmData[i].cumulativePercent = cumulative / totalPpm;
+                            }
+
+                            console.log('Loaded PPM from vocabulary JSON:', ppmData.length, 'entries');
+                            return true;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Failed to load PPM from vocabulary JSON:', error);
                 }
-
-                const csvText = await response.text();
-                const lines = csvText.trim().split('\n');
-                const headers = lines[0].split(',');
-                const ppmIndex = headers.indexOf('occurrences_ppm');
-                const rankIndex = headers.indexOf('rank');
-
-                if (ppmIndex === -1) {
-                    ppmData = null;
-                    totalPpm = 0;
-                    return false;
-                }
-
-                ppmData = [];
-                totalPpm = 0;
-
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(',');
-                    const ppm = parseFloat(values[ppmIndex]) || 0;
-                    const rank = parseInt(values[rankIndex]) || i;
-                    ppmData.push({ rank, ppm });
-                    totalPpm += ppm;
-                }
-
-                // Calculate cumulative percentages
-                let cumulative = 0;
-                for (let i = 0; i < ppmData.length; i++) {
-                    cumulative += ppmData[i].ppm;
-                    ppmData[i].cumulativePercent = cumulative / totalPpm;
-                }
-
-                return true;
-            } catch (error) {
-                console.error('Failed to load PPM data:', error);
-                ppmData = null;
-                totalPpm = 0;
-                return false;
             }
+
+            ppmData = null;
+            totalPpm = 0;
+            return false;
         }
 
         // Get percentage-based level ranges
@@ -4399,13 +4426,9 @@
             if (isBadBunnyMode) {
                 selectedLanguage = 'spanish';
                 applyLanguageColorTheme();
-                // Hide step 1 (language selection) and show language pill
+                // Hide language tabs and the "Spanish (Bad Bunny)" pill completely
                 document.getElementById('languageTabs').style.display = 'none';
-                const langConfig = config.languages[selectedLanguage];
-                document.getElementById('selectedLanguageName').textContent = langConfig.name;
-                document.getElementById('selectedLanguagePill').classList.add('visible');
-                // Make pill non-clickable in Bad Bunny mode
-                document.getElementById('selectedLanguagePill').style.pointerEvents = 'none';
+                document.getElementById('selectedLanguagePill').style.display = 'none';
                 // Update step 1 title for Bad Bunny mode - replace "Choose Language" with "Estimate Level"
                 document.querySelector('#step1Header .step-title').textContent = 'Estimate Level';
                 // Show the Estimate Level button in step 1 for Bad Bunny mode
@@ -4432,7 +4455,11 @@
                 // Hide the Estimate Level button and % Mode button in step 2 for Bad Bunny mode
                 document.querySelector('#step2 .btn-with-info:has(#estimateLevelBtn)').style.display = 'none';
                 document.querySelector('#step2 .btn-with-info:has(#percentModeBtn)').style.display = 'none';
+                updateStep2Tooltip();
                 updateStep5Tooltip();
+                // Initialize lemma and cognate toggle visibility for Bad Bunny mode
+                await updateLemmaToggleVisibility();
+                await updateCognateToggleVisibility();
                 renderLevelSelector('spanish');
             }
         });
@@ -4601,8 +4628,8 @@
             if (isBadBunnyMode) {
                 tooltip.innerHTML = `
                     <p>Each set contains words ranked by frequency in Bad Bunny's lyrics (e.g., 1-25 = most common words).</p>
-                    <p><strong>Example sentences</strong> are designed to use words from nearby ranks, so practicing set 1-25 means sentences mostly use words from that same group.</p>
                     <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
+                    <p><strong>Example sentences</strong> are designed to use words from nearby ranks, so practicing set 1-25 means sentences mostly use words from that same group.</p>
                 `;
             } else {
                 tooltip.innerHTML = `
