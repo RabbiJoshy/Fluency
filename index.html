@@ -2329,6 +2329,37 @@
             box-shadow: 0 0 20px var(--glow-green);
         }
 
+        /* Coverage Progress Bar */
+        .coverage-bar-wrapper {
+            margin: 16px 0 8px 0;
+            opacity: 0;
+            transition: opacity 0.4s ease-in;
+        }
+        .coverage-bar-wrapper.visible {
+            opacity: 1;
+        }
+        .coverage-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .coverage-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            transition: width 1.2s ease-out;
+        }
+        .coverage-bar-label {
+            font-family: var(--font-data);
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            text-align: center;
+        }
+
         /* Authentication Modal Styles */
         .auth-body {
             display: flex;
@@ -2742,6 +2773,12 @@
                     </div>
                 </div>
                 <div id="levelSelector" class="level-selector"></div>
+                <div id="coverageBarWrapper" class="coverage-bar-wrapper" style="display: none;">
+                    <div class="coverage-bar-container">
+                        <div id="coverageBarFill" class="coverage-bar-fill"></div>
+                    </div>
+                    <div id="coverageBarLabel" class="coverage-bar-label"></div>
+                </div>
             </div>
 
             <!-- Step 3: Cards per Lemma -->
@@ -2778,22 +2815,6 @@
                 <div id="cognateToggleSelector" class="group-size-selector">
                     <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
                     <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
-                </div>
-            </div>
-
-            <div id="singleOccurrenceToggleContainer" class="setup-step" style="display: none;">
-                <div class="step-header step-header-with-help">
-                    <span class="step-title">Single-Occurrence Words</span>
-                    <button class="step-help-btn" data-tooltip="singleOccTooltip" title="Help">?</button>
-                    <div id="singleOccTooltip" class="step-info-tooltip">
-                        <p>Words that appear <strong>only once</strong> in the entire corpus are often misspellings, one-off slang, or low-quality entries.</p>
-                        <p><strong>Hide</strong> = Skip single-occurrence words (recommended).</p>
-                        <p><strong>Show all</strong> = Include every word regardless of frequency.</p>
-                    </div>
-                </div>
-                <div id="singleOccurrenceToggleSelector" class="group-size-selector">
-                    <button class="single-occ-toggle-btn selected" data-single-occ="hide" data-short="Hide" data-full="Hide single-occurrence">Hide single-occurrence</button>
-                    <button class="single-occ-toggle-btn" data-single-occ="show" data-short="Show all" data-full="Show all words">Show all</button>
                 </div>
             </div>
 
@@ -3203,6 +3224,10 @@
                     <span>Percentage coverage mode</span>
                     <span id="percentageModeStatus" style="color: var(--text-muted);">OFF</span>
                 </div>
+                <div class="stat-row" style="cursor: pointer; display: none;" id="hideSingleOccToggle">
+                    <span>Hide single-occurrence words</span>
+                    <span id="hideSingleOccStatus" style="color: var(--accent-primary);">ON</span>
+                </div>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="refreshSetToggle">
                     <span>Refresh this study set</span>
                     <span style="color: var(--warning);">
@@ -3404,7 +3429,9 @@
             { level: '95%', threshold: 0.95, description: '95% language coverage' },
             { level: '96%', threshold: 0.96, description: '96% language coverage' },
             { level: '97%', threshold: 0.97, description: '97% language coverage' },
-            { level: '98%', threshold: 0.98, description: '98% language coverage' }
+            { level: '98%', threshold: 0.98, description: '98% language coverage' },
+            { level: '99%', threshold: 0.99, description: '99% language coverage' },
+            { level: '99.5%', threshold: 0.995, description: '99.5% language coverage' }
         ];
 
         // Language codes for Web Speech API
@@ -4238,16 +4265,9 @@
                                 const ppm = parseFloat(values[ppmIndex]) || 0;
                                 const rank = parseInt(values[rankIndex]) || i;
                                 ppmData.push({ rank, ppm });
-                                totalPpm += ppm;
                             }
 
-                            // Calculate cumulative percentages
-                            let cumulative = 0;
-                            for (let i = 0; i < ppmData.length; i++) {
-                                cumulative += ppmData[i].ppm;
-                                ppmData[i].cumulativePercent = cumulative / totalPpm;
-                            }
-
+                            recalculateCumulativePercents();
                             return true;
                         }
                     }
@@ -4274,16 +4294,9 @@
                             for (const item of sortedVocab) {
                                 const freq = hasCorpusCount ? (item.corpus_count || 0) : (item.occurrences_ppm || 0);
                                 ppmData.push({ rank: item.rank, ppm: freq });
-                                totalPpm += freq;
                             }
 
-                            // Calculate cumulative percentages
-                            let cumulative = 0;
-                            for (let i = 0; i < ppmData.length; i++) {
-                                cumulative += ppmData[i].ppm;
-                                ppmData[i].cumulativePercent = cumulative / totalPpm;
-                            }
-
+                            recalculateCumulativePercents();
                             console.log('Loaded frequency data from vocabulary JSON:', ppmData.length, 'entries');
                             return true;
                         }
@@ -4298,30 +4311,71 @@
             return false;
         }
 
+        // Recalculate cumulative percentages on ppmData.
+        // When hideSingleOccurrence is ON, the denominator excludes freq-1 words
+        // so coverage percentages reflect only multi-occurrence vocabulary.
+        function recalculateCumulativePercents() {
+            if (!ppmData || ppmData.length === 0) return;
+
+            totalPpm = 0;
+            for (let i = 0; i < ppmData.length; i++) {
+                if (hideSingleOccurrence && ppmData[i].ppm <= 1) continue;
+                totalPpm += ppmData[i].ppm;
+            }
+
+            let cumulative = 0;
+            for (let i = 0; i < ppmData.length; i++) {
+                if (hideSingleOccurrence && ppmData[i].ppm <= 1) {
+                    ppmData[i].cumulativePercent = 1.0;
+                } else {
+                    cumulative += ppmData[i].ppm;
+                    ppmData[i].cumulativePercent = totalPpm > 0 ? cumulative / totalPpm : 0;
+                }
+            }
+        }
+
         // Get percentage-based level ranges
         function getPercentageLevelRanges() {
             if (!ppmData || ppmData.length === 0) return [];
+
+            // When hiding single-occurrence words, cap at the last multi-occurrence rank
+            let maxRank = ppmData.length;
+            if (hideSingleOccurrence) {
+                for (let i = ppmData.length - 1; i >= 0; i--) {
+                    if (ppmData[i].ppm > 1) {
+                        maxRank = ppmData[i].rank;
+                        break;
+                    }
+                }
+            }
 
             const ranges = [];
             let prevRank = 0;
 
             for (const level of percentageLevels) {
                 // Find the rank where cumulative percentage reaches this threshold
-                let endRank = ppmData.length;
+                let endRank = maxRank;
                 for (let i = 0; i < ppmData.length; i++) {
+                    if (ppmData[i].rank > maxRank) break;
                     if (ppmData[i].cumulativePercent >= level.threshold) {
                         endRank = ppmData[i].rank;
                         break;
                     }
                 }
 
-                ranges.push({
-                    level: level.level,
-                    description: level.description,
-                    startRank: prevRank + 1,
-                    endRank: endRank,
-                    threshold: level.threshold
-                });
+                // Cap endRank at maxRank
+                endRank = Math.min(endRank, maxRank);
+
+                // Only add this level if it has any range
+                if (endRank > prevRank) {
+                    ranges.push({
+                        level: level.level,
+                        description: level.description,
+                        startRank: prevRank + 1,
+                        endRank: endRank,
+                        threshold: level.threshold
+                    });
+                }
 
                 prevRank = endRank;
             }
@@ -4339,12 +4393,51 @@
                     const rankNum = parseInt(rank);
                     const ppmEntry = ppmData.find(p => p.rank === rankNum);
                     if (ppmEntry) {
+                        // Skip freq-1 words when hideSingleOccurrence is on
+                        if (hideSingleOccurrence && ppmEntry.ppm <= 1) continue;
                         coveredPpm += ppmEntry.ppm;
                     }
                 }
             }
 
             return totalPpm > 0 ? (coveredPpm / totalPpm) * 100 : 0;
+        }
+
+        // Show/update animated coverage progress bar on the setup page
+        function updateCoverageProgressBar() {
+            const wrapper = document.getElementById('coverageBarWrapper');
+            const fill = document.getElementById('coverageBarFill');
+            const label = document.getElementById('coverageBarLabel');
+            if (!wrapper || !fill || !label) return;
+
+            // Only show if ppmData is available and user has progress
+            if (!ppmData || ppmData.length === 0 || !progressData) {
+                wrapper.style.display = 'none';
+                return;
+            }
+
+            const coverage = calculateCoveragePercent();
+            if (coverage <= 0) {
+                wrapper.style.display = 'none';
+                return;
+            }
+
+            // Reset animation — start from 0 width
+            wrapper.style.display = 'block';
+            wrapper.classList.remove('visible');
+            fill.style.transition = 'none';
+            fill.style.width = '0%';
+
+            label.textContent = `${coverage.toFixed(1)}% corpus coverage`;
+
+            // Trigger animation after a frame
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    fill.style.transition = 'width 1.2s ease-out';
+                    fill.style.width = Math.min(coverage, 100) + '%';
+                    wrapper.classList.add('visible');
+                });
+            });
         }
 
         // Setup tooltip handlers (needs to run early, before any set is picked)
@@ -4438,7 +4531,6 @@
             setupGroupSizeSelector();
             setupLemmaToggle();
             setupCognateToggle();
-            setupSingleOccurrenceToggle();
             setupPercentModeButton(); // Setup % Mode button early
             setupEstimateLevelButton(); // Setup Estimate Level button
             // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
@@ -4536,7 +4628,7 @@
                 document.getElementById('step2').style.display = 'none';
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
                 document.getElementById('cognateToggleContainer').style.display = 'none';
-                document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
+
                 document.getElementById('step4').style.display = 'none';
                 // Reset selections
                 hideAllSelectionPills();
@@ -4574,7 +4666,7 @@
                     document.getElementById('step2').style.display = 'none';
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
-                    document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
+    
                     document.getElementById('step4').style.display = 'none';
                     hideAllSelectionPills();
                     document.getElementById('selectedLanguagePill').classList.add('visible'); // Keep language pill visible
@@ -4717,10 +4809,6 @@
                         if (cognateFieldAvailable) {
                             document.getElementById('cognateToggleContainer').style.display = 'block';
                         }
-                        // Show single-occurrence toggle in Bad Bunny mode
-                        if (isBadBunnyMode) {
-                            document.getElementById('singleOccurrenceToggleContainer').style.display = 'block';
-                        }
                     }, 75);
 
                     renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
@@ -4744,34 +4832,6 @@
                     this.classList.add('selected');
                     this.textContent = this.dataset.full;
                     excludeCognates = this.dataset.cognate === 'exclude';
-
-                    // Re-render level selector with new word counts, and re-render range selector if a level is selected
-                    renderLevelSelector(selectedLanguage);
-                    // Re-select the current level if one was selected
-                    if (selectedLevel) {
-                        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
-                        if (levelBtn) {
-                            levelBtn.classList.add('selected');
-                            levelBtn.textContent = levelBtn.dataset.full;
-                        }
-                        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
-                    }
-                });
-            });
-        }
-
-        function setupSingleOccurrenceToggle() {
-            document.querySelectorAll('.single-occ-toggle-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Reset all buttons to short text
-                    document.querySelectorAll('.single-occ-toggle-btn').forEach(b => {
-                        b.classList.remove('selected');
-                        b.textContent = b.dataset.short;
-                    });
-                    // Set selected button to full text
-                    this.classList.add('selected');
-                    this.textContent = this.dataset.full;
-                    hideSingleOccurrence = this.dataset.singleOcc === 'hide';
 
                     // Re-render level selector with new word counts, and re-render range selector if a level is selected
                     renderLevelSelector(selectedLanguage);
@@ -4881,7 +4941,7 @@
                 renderLevelSelector(selectedLanguage);
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
                 document.getElementById('cognateToggleContainer').style.display = 'none';
-                document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
+
                 document.getElementById('step4').style.display = 'none';
 
                 updateStatsTab();
@@ -5319,21 +5379,30 @@
                     item.meanings.length > 0
                 );
 
+                // Exclusion tracking
+                let excludedEnglish = 0, excludedCognates = 0, excludedSingleOcc = 0, excludedLemma = 0, excludedMastered = 0;
+
                 // In Bad Bunny mode, skip English words, interjections, and proper nouns
                 if (isBadBunnyMode) {
+                    const beforeBB = filteredData.length;
                     filteredData = filteredData.filter(item =>
                         !item.is_english && !item.is_interjection && !item.is_propernoun
                     );
+                    excludedEnglish = beforeBB - filteredData.length;
                 }
 
                 // If excluding cognates, filter out transparent cognates
                 if (excludeCognates && cognateFieldAvailable) {
+                    const beforeCog = filteredData.length;
                     filteredData = filteredData.filter(item => !item.is_transparent_cognate);
+                    excludedCognates = beforeCog - filteredData.length;
                 }
 
                 // Hide single-occurrence words if enabled
                 if (hideSingleOccurrence && filteredData.length > 0 && filteredData[0].hasOwnProperty('corpus_count')) {
+                    const beforeSingle = filteredData.length;
                     filteredData = filteredData.filter(item => item.corpus_count > 1);
+                    excludedSingleOcc = beforeSingle - filteredData.length;
                 }
 
                 // Filter by the requested range (using original ranks)
@@ -5341,23 +5410,28 @@
                     item.rank >= rangeStart && item.rank < rangeEnd
                 );
 
+                // Count total in range before lemma/mastered filtering
+                const totalInRange = filteredData.length;
+
                 // If in lemma mode, filter to only entries where most_frequent_lemma_instance is true
                 // This happens AFTER range filtering, so lemma mode just shows fewer cards within the same range
                 if (useLemmaMode && lemmaFieldAvailable) {
+                    const beforeLemma = filteredData.length;
                     filteredData = filteredData.filter(item => item.most_frequent_lemma_instance === true);
+                    excludedLemma = beforeLemma - filteredData.length;
                 }
 
                 // Filter out words the user has already got correct (for logged-in users)
                 if (currentUser && !currentUser.isGuest && progressData) {
-                    const beforeCount = filteredData.length;
+                    const beforeMastered = filteredData.length;
                     filteredData = filteredData.filter(item => {
                         const progress = progressData[item.rank];
                         // Keep the word if no progress exists, or if correct is 0 or undefined
                         return !progress || !progress.correct || progress.correct === 0 || progress.language !== selectedLanguage;
                     });
-                    const removedCount = beforeCount - filteredData.length;
-                    if (removedCount > 0) {
-                        console.log(`Filtered out ${removedCount} previously mastered words`);
+                    excludedMastered = beforeMastered - filteredData.length;
+                    if (excludedMastered > 0) {
+                        console.log(`Filtered out ${excludedMastered} previously mastered words`);
                     }
                 }
 
@@ -5398,6 +5472,7 @@
                         targetWord: item.word,
                         lemma: item.lemma || '',
                         rank: item.rank, // This is now the unique identifier (original vocabulary file position)
+                        corpusCount: item.corpus_count || null,
                         meanings: meanings,
                         translation: item.meanings[0].translation,
                         targetSentence: firstExample.targetSentence,
@@ -5419,16 +5494,31 @@
                     return;
                 }
 
-                // Successfully loaded data - show cards and hide setup
-                document.getElementById('setupPanel').classList.add('hidden');
-                document.getElementById('appContent').classList.remove('hidden');
-                document.getElementById('loadingMessage').style.display = 'none';
+                // Build exclusion summary message (only report in-range exclusions)
+                const totalExcluded = excludedLemma + excludedMastered;
+                const loadingMsg = document.getElementById('loadingMessage');
+                if (totalExcluded > 0) {
+                    const parts = [];
+                    if (excludedLemma > 0) parts.push(`${excludedLemma} lemma dup${excludedLemma > 1 ? 's' : ''}`);
+                    if (excludedMastered > 0) parts.push(`${excludedMastered} mastered`);
+                    loadingMsg.textContent = `✓ ${flashcards.length} cards from ${totalInRange} (${parts.join(', ')} excluded)`;
+                } else {
+                    loadingMsg.textContent = `✓ ${flashcards.length} cards`;
+                }
+                loadingMsg.style.display = 'block';
 
-                // Show mobile floating buttons
-                showFloatingBtns(true);
+                // Successfully loaded data - show message briefly, then transition to cards
+                setTimeout(() => {
+                    document.getElementById('setupPanel').classList.add('hidden');
+                    document.getElementById('appContent').classList.remove('hidden');
+                    loadingMsg.style.display = 'none';
 
-                // Initialize card display
-                initializeApp();
+                    // Show mobile floating buttons
+                    showFloatingBtns(true);
+
+                    // Initialize card display
+                    initializeApp();
+                }, 800);
             } catch (error) {
                 console.error(`Failed to load vocabulary data:`, error);
                 document.getElementById('loadingMessage').style.display = 'none';
@@ -6033,6 +6123,30 @@
                 document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
             });
 
+            // Hide single-occurrence words toggle
+            document.getElementById('hideSingleOccToggle').addEventListener('click', function() {
+                hideSingleOccurrence = !hideSingleOccurrence;
+                document.getElementById('hideSingleOccStatus').textContent = hideSingleOccurrence ? 'ON' : 'OFF';
+                document.getElementById('hideSingleOccStatus').style.color = hideSingleOccurrence ? 'var(--accent-primary)' : 'var(--text-muted)';
+
+                // Recalculate cumulative percentages with new freq-1 inclusion/exclusion
+                recalculateCumulativePercents();
+
+                // Re-render level selector and range selector to reflect new filtering
+                const step2Display = document.getElementById('step2').style.display;
+                if (selectedLanguage && step2Display !== 'none') {
+                    renderLevelSelector(selectedLanguage);
+                    if (selectedLevel) {
+                        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+                        if (levelBtn) {
+                            levelBtn.classList.add('selected');
+                            levelBtn.textContent = levelBtn.dataset.full;
+                        }
+                        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+                    }
+                }
+            });
+
             // Percentage mode toggle
             document.getElementById('percentageModeToggle').addEventListener('click', async function() {
                 const langConfig = config.languages[selectedLanguage];
@@ -6063,7 +6177,7 @@
                     renderLevelSelector(selectedLanguage);
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
-                    document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
+    
                     document.getElementById('step4').style.display = 'none';
                 }
 
@@ -6597,6 +6711,9 @@
             // Re-render level selector to show updated progress
             renderLevelSelector(selectedLanguage);
 
+            // Show animated coverage progress bar
+            updateCoverageProgressBar();
+
             // If a level was selected, re-select the level button with full text
             // But only if the level still exists in the current mode (CEFR vs percentage)
             if (selectedLevel) {
@@ -6609,16 +6726,13 @@
                     if (cognateFieldAvailable) {
                         document.getElementById('cognateToggleContainer').style.display = 'block';
                     }
-                    if (isBadBunnyMode) {
-                        document.getElementById('singleOccurrenceToggleContainer').style.display = 'block';
-                    }
                 } else {
                     // Level no longer exists (e.g., switched from CEFR to percentage mode)
                     // Reset selectedLevel and hide subsequent steps
                     selectedLevel = null;
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
-                    document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
+    
                 }
             }
 
@@ -6670,6 +6784,16 @@
                 document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
             } else {
                 percentageModeToggle.style.display = 'none';
+            }
+
+            // Show/hide single-occurrence toggle (only in Bad Bunny mode)
+            const hideSingleOccToggle = document.getElementById('hideSingleOccToggle');
+            if (isBadBunnyMode) {
+                hideSingleOccToggle.style.display = 'flex';
+                document.getElementById('hideSingleOccStatus').textContent = hideSingleOccurrence ? 'ON' : 'OFF';
+                document.getElementById('hideSingleOccStatus').style.color = hideSingleOccurrence ? 'var(--accent-primary)' : 'var(--text-muted)';
+            } else {
+                hideSingleOccToggle.style.display = 'none';
             }
 
             // Show/hide refresh set option based on whether a study set is loaded and user is logged in
@@ -6889,10 +7013,12 @@
                 flashcardEl.setAttribute('data-rank', '');
             }
 
-            // Display ranking on front card
+            // Display ranking and frequency on front card
             const frontRankingEl = document.getElementById('frontRanking');
             if (card.rank !== undefined) {
-                frontRankingEl.textContent = `Rank: ${card.rank}`;
+                frontRankingEl.textContent = card.corpusCount
+                    ? `Rank: ${card.rank} · Frequency: ${card.corpusCount}`
+                    : `Rank: ${card.rank}`;
                 frontRankingEl.style.display = 'block';
             } else {
                 frontRankingEl.style.display = 'none';
