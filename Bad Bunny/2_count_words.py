@@ -7,7 +7,7 @@ Genius batch JSONs -> minimal "evidence" vocab JSON:
 Each entry:
 {
   "word": "que",
-  "occurrences_ppm": 36382.761837,
+  "corpus_count": 6710,
   "examples": [
     {"id": "11292773:8", "line": "La vida es una fiesta que un día termina"},
     ...
@@ -17,7 +17,7 @@ Each entry:
 Design goals:
 - No CSV stage
 - No lemma / rank / meanings / English fields
-- Keep corpus frequency (occurrences_ppm) + evidence examples only
+- Keep corpus frequency (corpus_count) + evidence examples only
 - Examples limited by --max_examples per word
 - Example selection is:
   - max 1 example per song per word (best-scoring line from that song)
@@ -264,14 +264,12 @@ def to_evidence_json(
     selected_examples: Dict[str, List[Dict[str, Any]]]
 ) -> List[Dict[str, Any]]:
     """
-    Build final list of entries: word, occurrences_ppm, examples[{id,line,title}]
+    Build final list of entries: word, corpus_count, examples[{id,line,title}]
     """
-    total = sum(counts.values()) or 1
     items = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
 
     out: List[Dict[str, Any]] = []
     for word, c in items:
-        ppm = (c / total) * 1_000_000.0
         ex_list = []
         for ex in selected_examples.get(word, []):
             ex_list.append({
@@ -281,7 +279,7 @@ def to_evidence_json(
             })
         out.append({
             "word": word,
-            "occurrences_ppm": ppm,
+            "corpus_count": c,
             "examples": ex_list
         })
     return out

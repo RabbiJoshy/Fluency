@@ -5,7 +5,7 @@ Merge s-elision pairs in 2_vocab_evidence.json before spaCy processing.
 Elided words like ere' (= eres) get merged into their full form:
 - word key becomes the full form (eres)
 - display_form preserves the elided spelling (ere')
-- PPM is summed
+- corpus_count is summed
 - examples are pooled (deduplicated by song, capped at --max_examples)
 
 Non-s-elision words (pa'=para, English -in' words, etc.) are left as-is.
@@ -67,11 +67,11 @@ def merge_evidence(data: list, targets: dict) -> list:
     Returns a new list of evidence entries.
     """
     # Group entries by their merge target (or keep as-is if no target)
-    groups = defaultdict(lambda: {"ppm": 0.0, "examples": [], "display_form": None})
+    groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None})
 
     for entry in data:
         word = entry["word"]
-        ppm = entry.get("occurrences_ppm", 0)
+        count = entry.get("corpus_count", 0)
         examples = entry.get("examples", [])
 
         if word in targets:
@@ -84,7 +84,7 @@ def merge_evidence(data: list, targets: dict) -> list:
             if groups[key]["display_form"] is None:
                 groups[key]["display_form"] = word
 
-        groups[key]["ppm"] += ppm
+        groups[key]["count"] += count
         groups[key]["examples"].extend(examples)
 
     # Build output, deduplicating examples by song
@@ -103,7 +103,7 @@ def merge_evidence(data: list, targets: dict) -> list:
 
         entry = {
             "word": word,
-            "occurrences_ppm": g["ppm"],
+            "corpus_count": g["count"],
             "examples": deduped[:MAX_EXAMPLES],
         }
         if g["display_form"] and g["display_form"] != word:
@@ -112,7 +112,7 @@ def merge_evidence(data: list, targets: dict) -> list:
         out.append(entry)
 
     # Sort by PPM descending
-    out.sort(key=lambda e: -e["occurrences_ppm"])
+    out.sort(key=lambda e: -e["corpus_count"])
     return out
 
 
@@ -139,7 +139,7 @@ def main():
     for e in merged[:20]:
         df = e.get("display_form", "")
         display = f" (display: {df})" if df else ""
-        print(f"  {e['word']}{display} — {e['occurrences_ppm']:.0f} ppm, {len(e['examples'])} examples")
+        print(f"  {e['word']}{display} — {e['corpus_count']} occurrences, {len(e['examples'])} examples")
 
 
 if __name__ == "__main__":

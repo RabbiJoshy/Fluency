@@ -2781,6 +2781,22 @@
                 </div>
             </div>
 
+            <div id="singleOccurrenceToggleContainer" class="setup-step" style="display: none;">
+                <div class="step-header step-header-with-help">
+                    <span class="step-title">Single-Occurrence Words</span>
+                    <button class="step-help-btn" data-tooltip="singleOccTooltip" title="Help">?</button>
+                    <div id="singleOccTooltip" class="step-info-tooltip">
+                        <p>Words that appear <strong>only once</strong> in the entire corpus are often misspellings, one-off slang, or low-quality entries.</p>
+                        <p><strong>Hide</strong> = Skip single-occurrence words (recommended).</p>
+                        <p><strong>Show all</strong> = Include every word regardless of frequency.</p>
+                    </div>
+                </div>
+                <div id="singleOccurrenceToggleSelector" class="group-size-selector">
+                    <button class="single-occ-toggle-btn selected" data-single-occ="hide" data-short="Hide" data-full="Hide single-occurrence">Hide single-occurrence</button>
+                    <button class="single-occ-toggle-btn" data-single-occ="show" data-short="Show all" data-full="Show all words">Show all</button>
+                </div>
+            </div>
+
             <!-- Step 5: Range Selection -->
             <div id="step4" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
@@ -3270,8 +3286,9 @@
         let cefrLevelsConfig = null; // CEFR levels configuration for lemma/standard modes
         let speechEnabled = true; // Text-to-speech toggle
         let percentageMode = false; // Whether to use percentage coverage mode for levels
-        let ppmData = null; // PPM data for percentage mode calculations
-        let totalPpm = 0; // Total PPM for the language
+        let ppmData = null; // Frequency data for percentage mode calculations (PPM or corpus_count)
+        let totalPpm = 0; // Total frequency for the language
+        let hideSingleOccurrence = true; // Hide words that appear only once in corpus (Bad Bunny mode)
 
         // Level estimation state
         let estimationCheckpoints = null; // Loaded from estimation_checkpoints.json
@@ -3893,6 +3910,11 @@
                 );
             }
 
+            // Hide single-occurrence words if enabled
+            if (hideSingleOccurrence && validWords.length > 0 && validWords[0].hasOwnProperty('corpus_count')) {
+                validWords = validWords.filter(item => item.corpus_count > 1);
+            }
+
             // Get words in range [level-25, level+25] and pick 5
             const rangeStart = Math.max(1, level - 25);
             const rangeEnd = level + 25;
@@ -4234,23 +4256,25 @@
                 }
             }
 
-            // Fallback: try to load from vocabulary JSON if it has occurrences_ppm embedded
+            // Fallback: try to load from vocabulary JSON if it has corpus_count or occurrences_ppm embedded
             if (langConfig && langConfig.dataPath && langConfig.dataPath.endsWith('.json')) {
                 try {
                     const response = await fetch(langConfig.dataPath);
                     if (response.ok) {
                         const vocabData = await response.json();
-                        // Check if vocab has occurrences_ppm
-                        if (vocabData.length > 0 && vocabData[0].hasOwnProperty('occurrences_ppm')) {
+                        // Check if vocab has corpus_count (preferred) or occurrences_ppm (legacy)
+                        const hasCorpusCount = vocabData.length > 0 && vocabData[0].hasOwnProperty('corpus_count');
+                        const hasOccPpm = vocabData.length > 0 && vocabData[0].hasOwnProperty('occurrences_ppm');
+                        if (hasCorpusCount || hasOccPpm) {
                             ppmData = [];
                             totalPpm = 0;
 
-                            // Sort by rank and extract PPM data
+                            // Sort by rank and extract frequency data
                             const sortedVocab = [...vocabData].sort((a, b) => a.rank - b.rank);
                             for (const item of sortedVocab) {
-                                const ppm = item.occurrences_ppm || 0;
-                                ppmData.push({ rank: item.rank, ppm });
-                                totalPpm += ppm;
+                                const freq = hasCorpusCount ? (item.corpus_count || 0) : (item.occurrences_ppm || 0);
+                                ppmData.push({ rank: item.rank, ppm: freq });
+                                totalPpm += freq;
                             }
 
                             // Calculate cumulative percentages
@@ -4260,12 +4284,12 @@
                                 ppmData[i].cumulativePercent = cumulative / totalPpm;
                             }
 
-                            console.log('Loaded PPM from vocabulary JSON:', ppmData.length, 'entries');
+                            console.log('Loaded frequency data from vocabulary JSON:', ppmData.length, 'entries');
                             return true;
                         }
                     }
                 } catch (error) {
-                    console.error('Failed to load PPM from vocabulary JSON:', error);
+                    console.error('Failed to load frequency data from vocabulary JSON:', error);
                 }
             }
 
@@ -4414,6 +4438,7 @@
             setupGroupSizeSelector();
             setupLemmaToggle();
             setupCognateToggle();
+            setupSingleOccurrenceToggle();
             setupPercentModeButton(); // Setup % Mode button early
             setupEstimateLevelButton(); // Setup Estimate Level button
             // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
@@ -4511,6 +4536,7 @@
                 document.getElementById('step2').style.display = 'none';
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
                 document.getElementById('cognateToggleContainer').style.display = 'none';
+                document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
                 document.getElementById('step4').style.display = 'none';
                 // Reset selections
                 hideAllSelectionPills();
@@ -4548,6 +4574,7 @@
                     document.getElementById('step2').style.display = 'none';
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
+                    document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
                     hideAllSelectionPills();
                     document.getElementById('selectedLanguagePill').classList.add('visible'); // Keep language pill visible
@@ -4690,6 +4717,10 @@
                         if (cognateFieldAvailable) {
                             document.getElementById('cognateToggleContainer').style.display = 'block';
                         }
+                        // Show single-occurrence toggle in Bad Bunny mode
+                        if (isBadBunnyMode) {
+                            document.getElementById('singleOccurrenceToggleContainer').style.display = 'block';
+                        }
                     }, 75);
 
                     renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
@@ -4713,6 +4744,34 @@
                     this.classList.add('selected');
                     this.textContent = this.dataset.full;
                     excludeCognates = this.dataset.cognate === 'exclude';
+
+                    // Re-render level selector with new word counts, and re-render range selector if a level is selected
+                    renderLevelSelector(selectedLanguage);
+                    // Re-select the current level if one was selected
+                    if (selectedLevel) {
+                        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+                        if (levelBtn) {
+                            levelBtn.classList.add('selected');
+                            levelBtn.textContent = levelBtn.dataset.full;
+                        }
+                        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+                    }
+                });
+            });
+        }
+
+        function setupSingleOccurrenceToggle() {
+            document.querySelectorAll('.single-occ-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Reset all buttons to short text
+                    document.querySelectorAll('.single-occ-toggle-btn').forEach(b => {
+                        b.classList.remove('selected');
+                        b.textContent = b.dataset.short;
+                    });
+                    // Set selected button to full text
+                    this.classList.add('selected');
+                    this.textContent = this.dataset.full;
+                    hideSingleOccurrence = this.dataset.singleOcc === 'hide';
 
                     // Re-render level selector with new word counts, and re-render range selector if a level is selected
                     renderLevelSelector(selectedLanguage);
@@ -4822,6 +4881,7 @@
                 renderLevelSelector(selectedLanguage);
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
                 document.getElementById('cognateToggleContainer').style.display = 'none';
+                document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
                 document.getElementById('step4').style.display = 'none';
 
                 updateStatsTab();
@@ -5016,6 +5076,11 @@
             // If excluding cognates, filter out transparent cognates
             if (excludeCognates && cognateFieldAvailable) {
                 filteredVocab = filteredVocab.filter(item => !item.is_transparent_cognate);
+            }
+
+            // Hide single-occurrence words if enabled
+            if (hideSingleOccurrence && filteredVocab.length > 0 && filteredVocab[0].hasOwnProperty('corpus_count')) {
+                filteredVocab = filteredVocab.filter(item => item.corpus_count > 1);
             }
 
             // Filter to items within the level's range (using original ranks)
@@ -5264,6 +5329,11 @@
                 // If excluding cognates, filter out transparent cognates
                 if (excludeCognates && cognateFieldAvailable) {
                     filteredData = filteredData.filter(item => !item.is_transparent_cognate);
+                }
+
+                // Hide single-occurrence words if enabled
+                if (hideSingleOccurrence && filteredData.length > 0 && filteredData[0].hasOwnProperty('corpus_count')) {
+                    filteredData = filteredData.filter(item => item.corpus_count > 1);
                 }
 
                 // Filter by the requested range (using original ranks)
@@ -5993,6 +6063,7 @@
                     renderLevelSelector(selectedLanguage);
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
+                    document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
                     document.getElementById('step4').style.display = 'none';
                 }
 
@@ -6538,12 +6609,16 @@
                     if (cognateFieldAvailable) {
                         document.getElementById('cognateToggleContainer').style.display = 'block';
                     }
+                    if (isBadBunnyMode) {
+                        document.getElementById('singleOccurrenceToggleContainer').style.display = 'block';
+                    }
                 } else {
                     // Level no longer exists (e.g., switched from CEFR to percentage mode)
                     // Reset selectedLevel and hide subsequent steps
                     selectedLevel = null;
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
+                    document.getElementById('singleOccurrenceToggleContainer').style.display = 'none';
                 }
             }
 

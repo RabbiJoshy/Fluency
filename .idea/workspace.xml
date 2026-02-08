@@ -5,31 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/1_download_lyrics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/2_count_words.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/3_merge_elisions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/4_add_spacy_info.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/5_add_translations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/6_fill_translation_gaps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/7_dedup_same_word.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/8_flag_cognates.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/3_elision_mapping.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/3_vocab_evidence_merged.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/4_spacy_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/old_vocabulary_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/expand_examples.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/1BadBunnyLyricsDownload.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/2CountWords.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/3AddSpacyInfo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/4AddTransations.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/4cgnate.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Bad Bunny/BadBunnyvocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/BadBunnyvocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/sndbx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/vocab_evidence.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bad Bunny/vocab_word_lemma_preview.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +105,7 @@
       <workItem from="1768940447224" duration="13927000" />
       <workItem from="1769116055201" duration="66590000" />
       <workItem from="1769874001549" duration="21264000" />
-      <workItem from="1770149117483" duration="20100000" />
+      <workItem from="1770149117483" duration="24179000" />
     </task>
     <servers />
   </component>

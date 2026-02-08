@@ -107,7 +107,7 @@ def main():
         match_forms = {word}
         if display_norm and display_norm != word:
             match_forms.add(display_norm)
-        occ_ppm = entry.get("occurrences_ppm")
+        occ_count = entry.get("corpus_count")
         examples = entry.get("examples", [])
 
         lang = english_flag(word_raw)
@@ -197,7 +197,7 @@ def main():
                 "key": f"{word_raw}|{lemma}",
                 "word": word_raw,
                 "lemma": lemma,
-                "occurrences_ppm": occ_ppm,
+                "corpus_count": occ_count,
                 "source_rank_in_preview": idx,
 
                 "language_flags": lang,

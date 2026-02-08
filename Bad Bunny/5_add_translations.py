@@ -307,7 +307,7 @@ def main():
             })
 
         match_count = (entry.get("pos_summary") or {}).get("match_count", 0)
-        occ_ppm = entry.get("occurrences_ppm", 0)
+        corpus_count = entry.get("corpus_count", 0)
 
         out_entry = {
             "rank": rank,
@@ -319,7 +319,7 @@ def main():
             "is_interjection": is_interjection,
             "is_propernoun": is_propernoun,
             "is_transparent_cognate": is_transparent_cognate,
-            "occurrences_ppm": occ_ppm,
+            "corpus_count": corpus_count,
             "_meta_match_count": match_count,
         }
         if display_form:
