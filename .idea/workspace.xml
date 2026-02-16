@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601f6461-ec00-4801-8a43-3739958dd9f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Bad Bunny/expand_examples.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_mixed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_noevidence.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bad Bunny/2b_split_lang_and_junk_lingua.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/2b_split_lang_and_junk_lingua.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bad Bunny/5_add_translations.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/5_add_translations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bad Bunny/BadBunnyvocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/BadBunnyvocabulary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Spanish/vocabulary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_en.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_es.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_es.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_junk.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bad Bunny/intermediates/2_vocab_evidence_junk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +62,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;GitIgnore&quot;
+    ]
   }
 }</component>
   <component name="RunManager">
@@ -106,6 +117,8 @@
       <workItem from="1769116055201" duration="66590000" />
       <workItem from="1769874001549" duration="21264000" />
       <workItem from="1770149117483" duration="24179000" />
+      <workItem from="1770569516890" duration="8851000" />
+      <workItem from="1770590549165" duration="1683000" />
     </task>
     <servers />
   </component>

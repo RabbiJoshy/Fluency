@@ -1,65 +1,5 @@
 [
   {
-    "word": "la",
-    "occurrences_ppm": 22404.407139913677,
-    "examples": [
-      {
-        "id": "11300220:4",
-        "line": "La espuma de sus orilla' parecieran de champán",
-        "title": "LO QUE LE PASÓ A HAWAii"
-      },
-      {
-        "id": "11304636:7",
-        "line": "En la disco, baby (Yo te cojo, baby)",
-        "title": "EoO"
-      },
-      {
-        "id": "3048221:9",
-        "line": "Se besa con la amiga y no son patas",
-        "title": "Me Mata"
-      },
-      {
-        "id": "3115965:4",
-        "line": "Me tiene al borde de la locura",
-        "title": "Sensualidad"
-      },
-      {
-        "id": "3133285:4",
-        "line": "Yo te la voa' hacer como es (¡Uh-oh!), yeh",
-        "title": "Solita"
-      },
-      {
-        "id": "3424254:4",
-        "line": "Diez en punto de la noche y salgo como de costumbre",
-        "title": "Otra Noche en Miami"
-      },
-      {
-        "id": "3640901:9",
-        "line": "Y mira qué cojone', ahora llego a la disco (Trr, ah)",
-        "title": "Estamos Clear"
-      },
-      {
-        "id": "4179007:22",
-        "line": "Te extraño el 14 y en la Navidad",
-        "title": "Si Estuviésemos Juntos"
-      },
-      {
-        "id": "4179009:10",
-        "line": "Hoy ando rulay, La Romana prendí'a mejor que Dubai, ey",
-        "title": "La Romana"
-      },
-      {
-        "id": "5305010:15",
-        "line": "Y si quiere' te busco en la Lamborghi (-ghi)",
-        "title": "A Tu Merced"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
-  },
-  {
     "word": "ey",
     "occurrences_ppm": 11169.670548940507,
     "examples": [
@@ -114,10 +54,158 @@
         "title": "200 MPH"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Mojave Ghost, y pa' la calle hoy salgo otra ve', ey",
+          "detected": "es",
+          "confidence": 0.6441312682085965,
+          "is_description": false
+        },
+        {
+          "text": "El dinero no te hace, aprendí eso (Eso; ey, ey)",
+          "detected": "es",
+          "confidence": 0.9813930716571437,
+          "is_description": false
+        },
+        {
+          "text": "Je, shh, calla'o, nadie nos 'tá viendo, ey, ey",
+          "detected": "es",
+          "confidence": 0.9649082276106791,
+          "is_description": false
+        },
+        {
+          "text": "Que tú te ve' mejor en ropa interior, yo lo sé, yo lo sé, ey",
+          "detected": "es",
+          "confidence": 0.9628378446346842,
+          "is_description": false
+        },
+        {
+          "text": "Llama a tu mai pa' pedirle la mano, ey",
+          "detected": "es",
+          "confidence": 0.8886151762407914,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "yeh",
+    "occurrences_ppm": 8724.271802546251,
+    "examples": [
+      {
+        "id": "3005716:6",
+        "line": "Ahora no digas que no, no te hagas, yeh-eh",
+        "title": "No Te Hagas"
+      },
+      {
+        "id": "3268371:16",
+        "line": "Mientra' me tortura', yeh (Prr-prr, prr, grr)",
+        "title": "Madura"
+      },
+      {
+        "id": "4147689:23",
+        "line": "Ya mismo te cae, te tengo en la mira (Yeh; prr)",
+        "title": "¿Quién Tú Eres?"
+      },
+      {
+        "id": "5529098:39",
+        "line": "Hasta pa' los que se viraron y me tiraron, yeh (Yeh, yeh)",
+        "title": "BENDICIONES"
+      },
+      {
+        "id": "5614024:39",
+        "line": "Te vo'a dar hasta que Dio' diga (Yeh-yeh-yeh), ey (Brr)",
+        "title": "Hasta Que Dios Diga"
+      },
+      {
+        "id": "7967937:13",
+        "line": "Esto aquí no termina, nos fuimos rulin la noche entera (Yeh), eh, eh",
+        "title": "Enséñame a Bailar"
+      },
+      {
+        "id": "3104973:15",
+        "line": "Dime si vas a volver, que yo te quiero coger como ante' lo hacía, yeh",
+        "title": "Dime Si Vas A Volver"
+      },
+      {
+        "id": "3176704:22",
+        "line": "Que yo sí te hago venir hasta que el totito se te aprieta (Yeh-yeh)",
+        "title": "Explícale"
+      },
+      {
+        "id": "3182161:19",
+        "line": "Y yo con una puta to' los jueves, yeh",
+        "title": "Sexto Sentido"
+      },
+      {
+        "id": "3208907:19",
+        "line": "Me chantajea pa' que le compre to' Versace o Burberry (Yeh)",
+        "title": "Dime"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Ahora no digas que no, no te hagas, yeh-eh",
+          "detected": "es",
+          "confidence": 0.917608624200097,
+          "is_description": false
+        },
+        {
+          "text": "Mientra' me tortura', yeh (Prr-prr, prr, grr)",
+          "detected": "es",
+          "confidence": 0.9089683353112865,
+          "is_description": false
+        },
+        {
+          "text": "Ya mismo te cae, te tengo en la mira (Yeh; prr)",
+          "detected": "es",
+          "confidence": 0.9233490763033023,
+          "is_description": false
+        },
+        {
+          "text": "Hasta pa' los que se viraron y me tiraron, yeh (Yeh, yeh)",
+          "detected": "es",
+          "confidence": 0.9546234115696395,
+          "is_description": false
+        },
+        {
+          "text": "Te vo'a dar hasta que Dio' diga (Yeh-yeh-yeh), ey (Brr)",
+          "detected": "es",
+          "confidence": 0.7909339042888163,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "eh",
@@ -174,70 +262,54 @@
         "title": "Te Boté (Clean Version)"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
-  },
-  {
-    "word": "ya",
-    "occurrences_ppm": 5004.663066345674,
-    "examples": [
-      {
-        "id": "3109163:1",
-        "line": "Ya tú no le hace' caso cuando te peleas",
-        "title": "Te Descuidó"
-      },
-      {
-        "id": "5318195:39",
-        "line": "Yo arraso sin esforzarme, ya ni me engraso",
-        "title": "Estamos Cabrón"
-      },
-      {
-        "id": "5320881:18",
-        "line": "Esas nalga' valen un millon, ya mismo firmo un cheque",
-        "title": "Tentación"
-      },
-      {
-        "id": "5320909:22",
-        "line": "Se me perdió el rosario, por eso ya no rezo",
-        "title": "Explícame"
-      },
-      {
-        "id": "5559397:18",
-        "line": "Ya mismo vamos pa' arriba, así que los míos tranquilo'",
-        "title": "Hot Niggas (Freestyle)"
-      },
-      {
-        "id": "7032476:31",
-        "line": "Vamo' pa' Cayo Musha, ya le texteé al piloto, eh-eh",
-        "title": "Cactus"
-      },
-      {
-        "id": "7330484:2",
-        "line": "Baby, ya yo me enteré, se nota cuando me ve'",
-        "title": "DÁKITI"
-      },
-      {
-        "id": "7355040:31",
-        "line": "Y ya me ha pasa'o que me han ilusiona'o",
-        "title": "La Noche De Anoche"
-      },
-      {
-        "id": "7483314:42",
-        "line": "Ya mudé la' Gucci pa' dentro de casa, yeh (¡Wuh!)",
-        "title": "I Like It (Radio Edit)"
-      },
-      {
-        "id": "9358774:21",
-        "line": "Ya no tengo la Rodеo-deo",
-        "title": "K-POP (Chopped & Screwed)"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Fui pa' la disco y viré, eh (Y viré)",
+          "detected": "es",
+          "confidence": 0.7175943098282827,
+          "is_description": false
+        },
+        {
+          "text": "Pregúntale a tu amiga si se atreve, eh",
+          "detected": "es",
+          "confidence": 0.9507467277433757,
+          "is_description": false
+        },
+        {
+          "text": "Que en cover de Billboard tú has visto mi cara (Eh)",
+          "detected": "es",
+          "confidence": 0.6445642274219948,
+          "is_description": false
+        },
+        {
+          "text": "Pareces del más allá, eh, yeh-yeh",
+          "detected": "es",
+          "confidence": 0.9818264766881218,
+          "is_description": false
+        },
+        {
+          "text": "Y ante' que este Phillie se apague, yo te voy olvidar-dar (Eh)",
+          "detected": "es",
+          "confidence": 0.9113609965498027,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "oh",
@@ -294,10 +366,54 @@
         "title": "Calm Down / Party (Mixed) [November 2023]"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Ahora me baila siempre que me visita (Sirili, woh-oh-oh)",
+          "detected": "es",
+          "confidence": 0.9874919700358025,
+          "is_description": false
+        },
+        {
+          "text": "Y si ya se acabó, oh-oh-oh-oh-oh",
+          "detected": "es",
+          "confidence": 0.9538847941803831,
+          "is_description": false
+        },
+        {
+          "text": "Yo siendo el dueño del infierno, oh",
+          "detected": "es",
+          "confidence": 0.9972847015301851,
+          "is_description": false
+        },
+        {
+          "text": "Que aquí no va a poder llegar lo' satélite' (Oh)",
+          "detected": "es",
+          "confidence": 0.9956204388896025,
+          "is_description": false
+        },
+        {
+          "text": "Pero no puedo, no tengo dinero, oh",
+          "detected": "es",
+          "confidence": 0.9926618631210505,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "yeah",
@@ -354,10 +470,54 @@
         "title": "UN PREVIEW (Mixed)"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Bien loco yo me puse, yeah, yeah, yeah",
+          "detected": "es",
+          "confidence": 0.5474515384375681,
+          "is_description": false
+        },
+        {
+          "text": "Que vamo' a llegar, que vamo a llegar-gar llegar (Yeh, yeah; ¡Jaja-ja!)",
+          "detected": "es",
+          "confidence": 0.8671503302000343,
+          "is_description": false
+        },
+        {
+          "text": "Me llamaste que estás al día (Yeah, yeah)",
+          "detected": "es",
+          "confidence": 0.9972684460481163,
+          "is_description": false
+        },
+        {
+          "text": "Bien loco yo me puse (yeah, yeah, yeah)",
+          "detected": "es",
+          "confidence": 0.5474515384375681,
+          "is_description": false
+        },
+        {
+          "text": "Quiero darte to' lo que te prometi (Yeah)",
+          "detected": "es",
+          "confidence": 0.9255709583357926,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "ah",
@@ -414,10 +574,158 @@
         "title": "Otra Noche en Miami"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Tú sabes que te conviene y te entretiene (Ah; Wuh)",
+          "detected": "es",
+          "confidence": 0.9901176292941477,
+          "is_description": false
+        },
+        {
+          "text": "Tú sabes que te conviene y te entretiene (Ah; Wuh)",
+          "detected": "es",
+          "confidence": 0.9901176292941477,
+          "is_description": false
+        },
+        {
+          "text": "Papi Arca, pídanme la bendición (Ah; ¡auh!), prra",
+          "detected": "es",
+          "confidence": 0.9972264046245158,
+          "is_description": false
+        },
+        {
+          "text": "Se dejó hace poco y tiene vida nueva (Ah)",
+          "detected": "es",
+          "confidence": 0.9964423161887767,
+          "is_description": false
+        },
+        {
+          "text": "Que te hablo malo y que eso te excita (Ah)",
+          "detected": "es",
+          "confidence": 0.8376250789904643,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "wuh",
+    "occurrences_ppm": 2944.238401978008,
+    "examples": [
+      {
+        "id": "11480143:5",
+        "line": "La nena quiere que la muerda como Tyson (Wuh)",
+        "title": "Thinkin (Refe Bad Bunny)"
+      },
+      {
+        "id": "12423043:87",
+        "line": "You are listening to the new star (Wuh)",
+        "title": "el alfa"
+      },
+      {
+        "id": "5305021:17",
+        "line": "La disco se prende cuando ella llegue (¡Wuh!)",
+        "title": "Yo Perreo Sola"
+      },
+      {
+        "id": "5305036:11",
+        "line": "Una zeta de krippy, con eso me calmo (¡Wuh!)",
+        "title": "Hablamos Mañana"
+      },
+      {
+        "id": "6211036:3",
+        "line": "Los pongo a bailar \"La Pelúa\" (Wuh)",
+        "title": "BOOKER T"
+      },
+      {
+        "id": "2877985:29",
+        "line": "Si ellos son Lexus, yo soy un McLaren (Wuh)",
+        "title": "Diles"
+      },
+      {
+        "id": "3410963:39",
+        "line": "Vacila, que la vida va veloz (Wuh)",
+        "title": "EL BAÑO"
+      },
+      {
+        "id": "4140387:16",
+        "line": "Que en paz descanse lo de nosotro' (Wuh)",
+        "title": "Solo de Mí"
+      },
+      {
+        "id": "4178982:14",
+        "line": "Hoy voy a romper la noche, hoy yo voy a janguear (Wuh-huh)",
+        "title": "NI BIEN NI MAL"
+      },
+      {
+        "id": "7967940:11",
+        "line": "Y de Barea, el que fue campeón, jeje (Wuh)",
+        "title": "El Apagón"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 3,
+      "votes_en": 2,
+      "votes_unknown": 0,
+      "es_ratio": 0.6,
+      "en_ratio": 0.4,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "La nena quiere que la muerda como Tyson (Wuh)",
+          "detected": "es",
+          "confidence": 0.9492312863739255,
+          "is_description": false
+        },
+        {
+          "text": "You are listening to the new star (Wuh)",
+          "detected": "en",
+          "confidence": 0.9571767874250349,
+          "is_description": false
+        },
+        {
+          "text": "La disco se prende cuando ella llegue (¡Wuh!)",
+          "detected": "es",
+          "confidence": 0.9797242256494242,
+          "is_description": false
+        },
+        {
+          "text": "Una zeta de krippy, con eso me calmo (¡Wuh!)",
+          "detected": "en",
+          "confidence": 0.5935770305076613,
+          "is_description": false
+        },
+        {
+          "text": "Los pongo a bailar \"La Pelúa\" (Wuh)",
+          "detected": "es",
+          "confidence": 0.8475276323361701,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "uh",
@@ -474,10 +782,158 @@
         "title": "Dime*"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Si no quieres, a tu amiga dale relevo (¡Uh!)",
+          "detected": "es",
+          "confidence": 0.9297575677804103,
+          "is_description": false
+        },
+        {
+          "text": "Creo que tú jodes como la ley (Uh)",
+          "detected": "es",
+          "confidence": 0.904803584959696,
+          "is_description": false
+        },
+        {
+          "text": "Dime si esta noche nos vemo' (Uh-yeah)",
+          "detected": "es",
+          "confidence": 0.7287929616606117,
+          "is_description": false
+        },
+        {
+          "text": "Y yo hago que sudes, eh (Uh, uh)",
+          "detected": "es",
+          "confidence": 0.7821698557086724,
+          "is_description": false
+        },
+        {
+          "text": "Me pide mi corazón (Uh), quiere quedarse con él (Sí, sí)",
+          "detected": "es",
+          "confidence": 0.9960956248168078,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "prr",
+    "occurrences_ppm": 1079.0118637083308,
+    "examples": [
+      {
+        "id": "9805912:33",
+        "line": "Pero las tre' son una' diabla' (Prr)",
+        "title": "Yo Perreo Sola (Mixed)"
+      },
+      {
+        "id": "4179006:29",
+        "line": "Yo siempre quise ser bichote, yeh-eh, yeh (Prr)",
+        "title": "Ser Bichote"
+      },
+      {
+        "id": "5242341:10",
+        "line": "Chavo', prenda', droga', puta' (Prr)",
+        "title": "Chavos y Prendas*"
+      },
+      {
+        "id": "3103548:26",
+        "line": "Son Miami sin Lebron y Wade (¡Prr!)",
+        "title": "Tú No Metes Cabra"
+      },
+      {
+        "id": "3542120:38",
+        "line": "Tú ere' otra bajo efecto del alcohol (Prr)",
+        "title": "Dime Si Te Acuerdas"
+      },
+      {
+        "id": "5305015:6",
+        "line": "Ahora siempre e' Louis Vuitton, pero nunca vo' a cambiar (Prr, prr, prr, prr)",
+        "title": "25/8"
+      },
+      {
+        "id": "5305021:42",
+        "line": "Pero las tre' son una' diabla' (Prr)",
+        "title": "Yo Perreo Sola"
+      },
+      {
+        "id": "3640901:61",
+        "line": "Me ronca' y te acabo temprano tu career (Prr; ah; tu career)",
+        "title": "Estamos Clear"
+      },
+      {
+        "id": "4179009:55",
+        "line": "Que yo tengo pa' comprá' la competencia (Prr)",
+        "title": "La Romana"
+      },
+      {
+        "id": "5305018:34",
+        "line": "Cabrón, nacimo' pobre' pa' morirno' millonario' (Prr, prr, prr)",
+        "title": "Está Cabrón Ser Yo"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 4,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.8,
+      "en_ratio": 0.2,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Pero las tre' son una' diabla' (Prr)",
+          "detected": "es",
+          "confidence": 0.7854988451270303,
+          "is_description": false
+        },
+        {
+          "text": "Yo siempre quise ser bichote, yeh-eh, yeh (Prr)",
+          "detected": "es",
+          "confidence": 0.8970017210511169,
+          "is_description": false
+        },
+        {
+          "text": "Chavo', prenda', droga', puta' (Prr)",
+          "detected": "es",
+          "confidence": 0.8967385673885934,
+          "is_description": false
+        },
+        {
+          "text": "Son Miami sin Lebron y Wade (¡Prr!)",
+          "detected": "en",
+          "confidence": 0.5367523540430816,
+          "is_description": false
+        },
+        {
+          "text": "Tú ere' otra bajo efecto del alcohol (Prr)",
+          "detected": "es",
+          "confidence": 0.9419932919234945,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "na",
@@ -534,10 +990,54 @@
         "title": "Cántalo (Headphone Mix)"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 4,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.8,
+      "en_ratio": 0.2,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Tranquila, no te vo'a decir \"Te amo\", na, na",
+          "detected": "es",
+          "confidence": 0.9146771275381633,
+          "is_description": false
+        },
+        {
+          "text": "Tan, tan, ta-na-na, ta-na-na",
+          "detected": "es",
+          "confidence": 0.595982060645273,
+          "is_description": false
+        },
+        {
+          "text": "Ya yo me quité, tú nunca me va' a amar (Na)",
+          "detected": "es",
+          "confidence": 0.9199196402841755,
+          "is_description": false
+        },
+        {
+          "text": "Me beso con Villana (-na), me beso con Tokischa (Tokischa), ey",
+          "detected": "es",
+          "confidence": 0.6043252270102398,
+          "is_description": false
+        },
+        {
+          "text": "(Oh-lo-lo-lei-la-ni-na-na-na)",
+          "detected": "en",
+          "confidence": 0.5328760514588474,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "yah",
@@ -594,10 +1094,158 @@
         "title": "Calentando (Freestyle)"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Y si nos comemo' otra vez, ¿a quién le importa? (¡Yah!)",
+          "detected": "es",
+          "confidence": 0.968236109887129,
+          "is_description": false
+        },
+        {
+          "text": "Yo no creo en el amor y me tiene enamora'o (Yah-ah)",
+          "detected": "es",
+          "confidence": 0.9451912424414116,
+          "is_description": false
+        },
+        {
+          "text": "Pri-yah-yah-yah, enrola aquí, prende el phillie",
+          "detected": "es",
+          "confidence": 0.8944837272584587,
+          "is_description": false
+        },
+        {
+          "text": "Cada ve' que le paso por el la'o siempre se me esnuca, yah",
+          "detected": "es",
+          "confidence": 0.9731041851623845,
+          "is_description": false
+        },
+        {
+          "text": "Yah; Todo lo que sube tiene que bajar (Cabrón)",
+          "detected": "es",
+          "confidence": 0.98295328769245,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "jaja",
+    "occurrences_ppm": 580.1722081245797,
+    "examples": [
+      {
+        "id": "12485218:19",
+        "line": "La' libra' me llegan a casa y la' cojo directo de Cali (Jaja)",
+        "title": "Krippy Kush (Versión Original)"
+      },
+      {
+        "id": "3092934:32",
+        "line": "Tú y yo solitos nadie va a saber (Jaja)",
+        "title": "Move Your Body"
+      },
+      {
+        "id": "12081264:42",
+        "line": "Cabrón, tú y tus prenda' toa' son feka (Jaja, ah-ah)",
+        "title": "So Drunk (Original Version)"
+      },
+      {
+        "id": "11296557:8",
+        "line": "Y contarte las cosas que no te conté (Te parece' a mi crush, jaja)",
+        "title": "DtMF"
+      },
+      {
+        "id": "5305000:29",
+        "line": "Hoy salí con lo' muchacho' a beber (Jaja)",
+        "title": "Si Veo a Tu Mamá"
+      },
+      {
+        "id": "5305018:67",
+        "line": "Por eso es que está cabrón ser yo (Jaja)",
+        "title": "Está Cabrón Ser Yo"
+      },
+      {
+        "id": "4759404:40",
+        "line": "Más cabrón que yo (Jaja), loco, no ha nacío' (¡No ha nacío'!)",
+        "title": "Kemba Walker"
+      },
+      {
+        "id": "5305039:72",
+        "line": "Y los que matan por mí, yo por ellos mato (Jaja), ah-ah",
+        "title": "P FKN R"
+      },
+      {
+        "id": "8598733:35",
+        "line": "Tú estás loco por vender el alma, pero ni el diablo te la compra (Jaja)",
+        "title": "La Jumpa"
+      },
+      {
+        "id": "9614083:26",
+        "line": "Ojalá sueñe' conmigo cuando te acueste', jaja",
+        "title": "BATICANO"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "La' libra' me llegan a casa y la' cojo directo de Cali (Jaja)",
+          "detected": "es",
+          "confidence": 0.8686708922216373,
+          "is_description": false
+        },
+        {
+          "text": "Tú y yo solitos nadie va a saber (Jaja)",
+          "detected": "es",
+          "confidence": 0.9770482778994792,
+          "is_description": false
+        },
+        {
+          "text": "Cabrón, tú y tus prenda' toa' son feka (Jaja, ah-ah)",
+          "detected": "es",
+          "confidence": 0.9115101325780807,
+          "is_description": false
+        },
+        {
+          "text": "Y contarte las cosas que no te conté (Te parece' a mi crush, jaja)",
+          "detected": "es",
+          "confidence": 0.9595901749514526,
+          "is_description": false
+        },
+        {
+          "text": "Hoy salí con lo' muchacho' a beber (Jaja)",
+          "detected": "es",
+          "confidence": 0.9928419218233809,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "mm",
@@ -644,10 +1292,366 @@
         "title": "Calm Down / Party (Mixed)"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 2,
+      "votes_en": 3,
+      "votes_unknown": 0,
+      "es_ratio": 0.4,
+      "en_ratio": 0.6,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "I love it when she up on me, on me (Mm-mm)",
+          "detected": "en",
+          "confidence": 0.8799397634708246,
+          "is_description": false
+        },
+        {
+          "text": "I love it when she up on me (Mm-mm)",
+          "detected": "en",
+          "confidence": 0.8799397634708245,
+          "is_description": false
+        },
+        {
+          "text": "Porque en to's lao' soy transparente (Mm-jmm)",
+          "detected": "es",
+          "confidence": 0.8768561406755422,
+          "is_description": false
+        },
+        {
+          "text": "Ella lo sabe, pa' Milán de compra', despué' pa' Rimini (Mm-mm)",
+          "detected": "es",
+          "confidence": 0.9942955383486066,
+          "is_description": false
+        },
+        {
+          "text": "I love it when she up on me (Mm-mm)",
+          "detected": "en",
+          "confidence": 0.8799397634708246,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "ja",
+    "occurrences_ppm": 531.3726766000824,
+    "examples": [
+      {
+        "id": "5529108:13",
+        "line": "Celebrando, tengo champaña en la copa (Ja)",
+        "title": "Gucci En Mis Espejuelos*"
+      },
+      {
+        "id": "7967939:20",
+        "line": "Baby, extraño los polvo' al frente 'el parque (Ja)",
+        "title": "Dos Mil 16"
+      },
+      {
+        "id": "9614092:8",
+        "line": "Cartier, Rolex, no Tous (No), Cookies me tiene con tos, ja",
+        "title": "VOU 787"
+      },
+      {
+        "id": "2919428:17",
+        "line": "Y yo voy tras los míos, ja, mientras tenga vida",
+        "title": "La Vida"
+      },
+      {
+        "id": "5629919:17",
+        "line": "Que vamo' a llegar, que vamo a llegar-gar llegar (Yeh, yeah; ¡Jaja-ja!)",
+        "title": "Vamos a Llegar"
+      },
+      {
+        "id": "5136586:24",
+        "line": "Quiero tirarnos fotos y que se hagan viral (Ja)",
+        "title": "MIA"
+      },
+      {
+        "id": "8790812:21",
+        "line": "Otra cosa es que yo mire, nah, nah, nah, ja",
+        "title": "La Jumpa (Mixed)"
+      },
+      {
+        "id": "8995366:44",
+        "line": "Otra cosa es que yo mire, nah, nah, nah, ja",
+        "title": "La Jumpa (Mixed) [April 2023]"
+      },
+      {
+        "id": "9866528:15",
+        "line": "Bien loquito en la disco, me pego bailando y te beso el cuello, ja",
+        "title": "UN PREVIEW (Mixed) [NYE 2024]"
+      },
+      {
+        "id": "10525518:24",
+        "line": "Quiero tirarnos fotos y que se hagan viral (Ja)",
+        "title": "Mia"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Celebrando, tengo champaña en la copa (Ja)",
+          "detected": "es",
+          "confidence": 0.9815224317205129,
+          "is_description": false
+        },
+        {
+          "text": "Baby, extraño los polvo' al frente 'el parque (Ja)",
+          "detected": "es",
+          "confidence": 0.976484155307975,
+          "is_description": false
+        },
+        {
+          "text": "Cartier, Rolex, no Tous (No), Cookies me tiene con tos, ja",
+          "detected": "es",
+          "confidence": 0.6375196590842007,
+          "is_description": false
+        },
+        {
+          "text": "Y yo voy tras los míos, ja, mientras tenga vida",
+          "detected": "es",
+          "confidence": 0.9826490336212981,
+          "is_description": false
+        },
+        {
+          "text": "Que vamo' a llegar, que vamo a llegar-gar llegar (Yeh, yeah; ¡Jaja-ja!)",
+          "detected": "es",
+          "confidence": 0.8671503302000347,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "brr",
+    "occurrences_ppm": 390.39625219597895,
+    "examples": [
+      {
+        "id": "3804898:17",
+        "line": "Y si mañana me muero (Brr-brr)",
+        "title": "Estamos Bien"
+      },
+      {
+        "id": "5305036:25",
+        "line": "Ya yo ni fumo, estoy volao' a lo perrito (Brr, eh), ey",
+        "title": "Hablamos Mañana"
+      },
+      {
+        "id": "9614084:60",
+        "line": "Cuando Curry no existía (¡Uh!), ya Casiano las metía (Brr)",
+        "title": "VUELVE CANDY B"
+      },
+      {
+        "id": "5091581:6",
+        "line": "Pa' los tiempo' 'e Héctor (Brr, brr, brr, brr, brr, brr)",
+        "title": "Así Soy Yo"
+      },
+      {
+        "id": "5614024:11",
+        "line": "Te vo'a dar hasta que Dio' diga, ey (Brr)",
+        "title": "Hasta Que Dios Diga"
+      },
+      {
+        "id": "3359025:2",
+        "line": "Respeto a la mala, to's me tienen miedo (Brr!)",
+        "title": "Como Soy"
+      },
+      {
+        "id": "4763027:54",
+        "line": "Tenemos la calle caliente flow Hitler (Brr)",
+        "title": "Subimos de Rango"
+      },
+      {
+        "id": "3073521:16",
+        "line": "No le bajo la luna, pero cuando quiere le bajo los panties (Brr)",
+        "title": "Pa’ Que Le De"
+      },
+      {
+        "id": "3007462:62",
+        "line": "No explote' velita' cuando yo 'té alante (Brr)",
+        "title": "Me Llueven 2"
+      },
+      {
+        "id": "3266426:106",
+        "line": "No explote' velita' cuando yo 'té alante (Brr)",
+        "title": "Me Llueven (Extended Version)"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Y si mañana me muero (Brr-brr)",
+          "detected": "es",
+          "confidence": 0.9363103775863696,
+          "is_description": false
+        },
+        {
+          "text": "Ya yo ni fumo, estoy volao' a lo perrito (Brr, eh), ey",
+          "detected": "es",
+          "confidence": 0.7144005084677805,
+          "is_description": false
+        },
+        {
+          "text": "Cuando Curry no existía (¡Uh!), ya Casiano las metía (Brr)",
+          "detected": "es",
+          "confidence": 0.9755207622998533,
+          "is_description": false
+        },
+        {
+          "text": "Pa' los tiempo' 'e Héctor (Brr, brr, brr, brr, brr, brr)",
+          "detected": "es",
+          "confidence": 0.9370292530426552,
+          "is_description": false
+        },
+        {
+          "text": "Te vo'a dar hasta que Dio' diga, ey (Brr)",
+          "detected": "es",
+          "confidence": 0.7911504904417667,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "tra",
+    "occurrences_ppm": 384.97408202659034,
+    "examples": [
+      {
+        "id": "5474005:14",
+        "line": "Pero que no se aprovechen de ti (Tra, tra)",
+        "title": "MÁS DE UNA CITA"
+      },
+      {
+        "id": "4082272:48",
+        "line": "Llegó el fin de semana y el cuerpo lo sabe (Tra-tra-tra)",
+        "title": "Dame Algo"
+      },
+      {
+        "id": "3289205:18",
+        "line": "No te haga', yo sé que te atreve', -treve' (Tra)",
+        "title": "Después De Las 9"
+      },
+      {
+        "id": "4606814:21",
+        "line": "Ey, el perreo e' su profesión (Tra-tra-tra-tra)",
+        "title": "Callaita (Versión Limpia)"
+      },
+      {
+        "id": "7025529:17",
+        "line": "No te haga', yo sé que te atreve', -treve' (Tra)",
+        "title": "Después De Las 9 (Version Original)"
+      },
+      {
+        "id": "4589199:22",
+        "line": "Ey, el perreo e' su profesión (Tra-tra-tra-tra)",
+        "title": "Callaita"
+      },
+      {
+        "id": "5305013:13",
+        "line": "Cualquier cosa que te ponga' rompe la carretera (Aight; ¡tra!)",
+        "title": "Safaera"
+      },
+      {
+        "id": "11304636:39",
+        "line": "Tráete a tu bestie (Uh), que a la do' le bajamo' el panty (Tra)",
+        "title": "EoO"
+      },
+      {
+        "id": "5553967:32",
+        "line": "Me dijo: \"Papi, vente tú\", y me fui por detrá', tra",
+        "title": "CANCIÓN CON YANDEL"
+      },
+      {
+        "id": "3092934:15",
+        "line": "En una esquina disfrutándonos los dos (Tra)",
+        "title": "Move Your Body"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Pero que no se aprovechen de ti (Tra, tra)",
+          "detected": "es",
+          "confidence": 0.9414563545636924,
+          "is_description": false
+        },
+        {
+          "text": "Llegó el fin de semana y el cuerpo lo sabe (Tra-tra-tra)",
+          "detected": "es",
+          "confidence": 0.9510635148329499,
+          "is_description": false
+        },
+        {
+          "text": "No te haga', yo sé que te atreve', -treve' (Tra)",
+          "detected": "es",
+          "confidence": 0.8634343711708706,
+          "is_description": false
+        },
+        {
+          "text": "Ey, el perreo e' su profesión (Tra-tra-tra-tra)",
+          "detected": "es",
+          "confidence": 0.9862395890816245,
+          "is_description": false
+        },
+        {
+          "text": "No te haga', yo sé que te atreve', -treve' (Tra)",
+          "detected": "es",
+          "confidence": 0.8634343711708705,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "mmm",
@@ -704,10 +1708,262 @@
         "title": "MONACO (Mixed) [NYE 2024]"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Papi, qué penita tú, qué maldición (Mmm)",
+          "detected": "es",
+          "confidence": 1.0,
+          "is_description": false
+        },
+        {
+          "text": "Que en paz descansen, yo sigo en el yate, ey (Mmm; ¡ey!)",
+          "detected": "es",
+          "confidence": 0.8662759447909301,
+          "is_description": false
+        },
+        {
+          "text": "La puse en 69, no La Mega (Mmm)",
+          "detected": "es",
+          "confidence": 0.5717123282294494,
+          "is_description": false
+        },
+        {
+          "text": "Ya ni te reconozco, bebé (Mmm-mmm-mmm)",
+          "detected": "es",
+          "confidence": 0.9915641033311864,
+          "is_description": false
+        },
+        {
+          "text": "Que te lo pongo aquí mismo, mmm",
+          "detected": "es",
+          "confidence": 0.9857383256938755,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "wouh",
+    "occurrences_ppm": 330.7523803327044,
+    "examples": [
+      {
+        "id": "3103548:24",
+        "line": "Aquí si no te ponchamos, te damos doble play (¡Wouh!)",
+        "title": "Tú No Metes Cabra"
+      },
+      {
+        "id": "6234232:37",
+        "line": "Pa'l car*** te boté (Pa'l car*** te boté; ¡wouh!)",
+        "title": "Te Boté (Clean Version)"
+      },
+      {
+        "id": "3075944:25",
+        "line": "Tus ojos me concentran como Adderall (¡Wouh!)",
+        "title": "MIA"
+      },
+      {
+        "id": "3804898:6",
+        "line": "To' los mío' están bien, 'tamos bien, ey (Wouh)",
+        "title": "Estamos Bien"
+      },
+      {
+        "id": "4179009:88",
+        "line": "Que puta felicidá' (¡Wouh!), hoy a to'as se le da, ey (¡Shh!)",
+        "title": "La Romana"
+      },
+      {
+        "id": "3870990:46",
+        "line": "Vamo' a mudar el party pa' la habitación (Wouh)",
+        "title": "¿Cuál es tu plan?"
+      },
+      {
+        "id": "4179006:15",
+        "line": "Siempre quise to'as las tenis y to'as las gorras (¡Wouh!)",
+        "title": "Ser Bichote"
+      },
+      {
+        "id": "3256611:46",
+        "line": "De la noche a la mañana mi vida dio un flip (wouh)",
+        "title": "El Combo Me Llama 2"
+      },
+      {
+        "id": "4162745:14",
+        "line": "Como este bicho, que no se gasta por más que chingue (Wouh!)",
+        "title": "El Combo Me Llama 2.1"
+      },
+      {
+        "id": "5136586:25",
+        "line": "Tus ojos me concentran como Adderall (¡Wouh!)",
+        "title": "MIA"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 3,
+      "votes_en": 2,
+      "votes_unknown": 0,
+      "es_ratio": 0.6,
+      "en_ratio": 0.4,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Aquí si no te ponchamos, te damos doble play (¡Wouh!)",
+          "detected": "es",
+          "confidence": 0.9058373956209357,
+          "is_description": false
+        },
+        {
+          "text": "Pa'l car*** te boté (Pa'l car*** te boté; ¡wouh!)",
+          "detected": "en",
+          "confidence": 0.6456502235003206,
+          "is_description": false
+        },
+        {
+          "text": "Tus ojos me concentran como Adderall (¡Wouh!)",
+          "detected": "en",
+          "confidence": 0.6997342665565626,
+          "is_description": false
+        },
+        {
+          "text": "To' los mío' están bien, 'tamos bien, ey (Wouh)",
+          "detected": "es",
+          "confidence": 0.961464976370838,
+          "is_description": false
+        },
+        {
+          "text": "Que puta felicidá' (¡Wouh!), hoy a to'as se le da, ey (¡Shh!)",
+          "detected": "es",
+          "confidence": 0.6415710710909798,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "jajaja",
+    "occurrences_ppm": 325.33021016331577,
+    "examples": [
+      {
+        "id": "5305009:24",
+        "line": "Quiere bellaqueo (Jajaja), me dice' que te dejaste, yo no lo creo",
+        "title": "Qué Malo"
+      },
+      {
+        "id": "2829722:18",
+        "line": "¿Qué tal si busco alguito de La Perla? (Jajaja)",
+        "title": "Solo Avísame"
+      },
+      {
+        "id": "4634325:30",
+        "line": "Te agradezco la vida (Eso e' así, jajaja)",
+        "title": "Flor"
+      },
+      {
+        "id": "6207830:6",
+        "line": "Tú va' a hacer que por ese culo yo peque (Jajaja; peque)",
+        "title": "Explote*"
+      },
+      {
+        "id": "6353964:5",
+        "line": "El Cherry hace un disco con-, jajaja",
+        "title": "Dimelo Bad Bunny"
+      },
+      {
+        "id": "6777704:48",
+        "line": "Y no (No), me hicieron ni mella (Jajaja)",
+        "title": "De Museo"
+      },
+      {
+        "id": "9614084:34",
+        "line": "Pa' mí es fácil (¡Eh!), yo estoy burla'o, burla'o, jajaja (Wuh, wuh, wuh)",
+        "title": "VUELVE CANDY B"
+      },
+      {
+        "id": "2959823:71",
+        "line": "Y grita mi nombre bien duro por si aca' (Jajaja)",
+        "title": "Te Lo Meto Yo"
+      },
+      {
+        "id": "3016410:77",
+        "line": "Las puta' me llueven y mientras me llueven, se mojan (Jajaja)",
+        "title": "Me Llueven 3.0"
+      },
+      {
+        "id": "3726733:33",
+        "line": "Y me voy a fuego (Fire), cuando se decide (Jajaja)",
+        "title": "Satisfacción"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Quiere bellaqueo (Jajaja), me dice' que te dejaste, yo no lo creo",
+          "detected": "es",
+          "confidence": 0.9277913725037592,
+          "is_description": false
+        },
+        {
+          "text": "¿Qué tal si busco alguito de La Perla? (Jajaja)",
+          "detected": "es",
+          "confidence": 0.9604659987585266,
+          "is_description": false
+        },
+        {
+          "text": "Te agradezco la vida (Eso e' así, jajaja)",
+          "detected": "es",
+          "confidence": 0.9971753630076668,
+          "is_description": false
+        },
+        {
+          "text": "Tú va' a hacer que por ese culo yo peque (Jajaja; peque)",
+          "detected": "es",
+          "confidence": 0.9814127803014225,
+          "is_description": false
+        },
+        {
+          "text": "El Cherry hace un disco con-, jajaja",
+          "detected": "es",
+          "confidence": 0.6722481073608342,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "woo",
@@ -764,10 +2020,158 @@
         "title": "Chambea"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 4,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.8,
+      "en_ratio": 0.2,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "¿Para qué con rodeos? Woo (Para qué)",
+          "detected": "es",
+          "confidence": 0.8535990715096187,
+          "is_description": false
+        },
+        {
+          "text": "For this double M click, Rick (Woo, Maybach Music)",
+          "detected": "en",
+          "confidence": 0.9531757354894322,
+          "is_description": false
+        },
+        {
+          "text": "Todos están pendiente' a ti (¡Woo!)",
+          "detected": "es",
+          "confidence": 0.9987735134840583,
+          "is_description": false
+        },
+        {
+          "text": "Hoy se fuma como un rasta (Woo, woo, woo)",
+          "detected": "es",
+          "confidence": 0.8265582156704552,
+          "is_description": false
+        },
+        {
+          "text": "Vamo' a perrear, la vida e' corta (Woo)",
+          "detected": "es",
+          "confidence": 0.8531161019245563,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "wow",
+    "occurrences_ppm": 303.6415294857614,
+    "examples": [
+      {
+        "id": "11292695:2",
+        "line": "Wow, qué obra de arte, sé que prometí que iba a alejarme",
+        "title": "KLOuFRENS"
+      },
+      {
+        "id": "7967957:18",
+        "line": "Y wow, mami, dime dónde dejo el résume (Résume)",
+        "title": "Me Porto Bonito"
+      },
+      {
+        "id": "9123229:12",
+        "line": "Me paso mirando el cel (Ah), wow, no puede ser (No, no)",
+        "title": "WHERE SHE GOES"
+      },
+      {
+        "id": "8468004:13",
+        "line": "Y wow, mami, dime dónde dejo el résume (Résume)",
+        "title": "Me Porto Bonito (Mixed)"
+      },
+      {
+        "id": "9307881:10",
+        "line": "Me paso mirando el cel (Ah), wow, no puede ser (No, no)",
+        "title": "WHERE SHE GOES (Mixed)"
+      },
+      {
+        "id": "9961098:11",
+        "line": "Me paso mirando el cel (Ah), wow, no puede ser (No, no)",
+        "title": "WHERE SHE GOES (Mixed) [VISION: DJ C2]"
+      },
+      {
+        "id": "9614092:20",
+        "line": "Cada vez que yo me doy un look bacano que me gusta, yo digo: \"Wow, qué estilazo tengo\"",
+        "title": "VOU 787"
+      },
+      {
+        "id": "9505961:13",
+        "line": "Wow, qué mucho me ha costa'o",
+        "title": "un x100to"
+      },
+      {
+        "id": "9307409:13",
+        "line": "Wow, qué mucho me ha costa'o",
+        "title": "Un X100to"
+      },
+      {
+        "id": "5305004:22",
+        "line": "'Tás calentándote (Wow), yo calentándome (Eh)",
+        "title": "La Santa"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Wow, qué obra de arte, sé que prometí que iba a alejarme",
+          "detected": "es",
+          "confidence": 0.9685429619298458,
+          "is_description": false
+        },
+        {
+          "text": "Y wow, mami, dime dónde dejo el résume (Résume)",
+          "detected": "es",
+          "confidence": 0.8694193475966228,
+          "is_description": false
+        },
+        {
+          "text": "Me paso mirando el cel (Ah), wow, no puede ser (No, no)",
+          "detected": "es",
+          "confidence": 0.8864413463072788,
+          "is_description": false
+        },
+        {
+          "text": "Y wow, mami, dime dónde dejo el résume (Résume)",
+          "detected": "es",
+          "confidence": 0.8694193475966225,
+          "is_description": false
+        },
+        {
+          "text": "Me paso mirando el cel (Ah), wow, no puede ser (No, no)",
+          "detected": "es",
+          "confidence": 0.8864413463072786,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "ay",
@@ -824,70 +2228,54 @@
         "title": "Puerta Abierta"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
-  },
-  {
-    "word": "hey",
-    "occurrences_ppm": 265.6863383000412,
-    "examples": [
-      {
-        "id": "7967934:3",
-        "line": "Me tienes el bicho ansioso, hey, ey",
-        "title": "Aguacero"
-      },
-      {
-        "id": "6211010:43",
-        "line": "Que yo me iría otra vez pa' Japón (Hey)",
-        "title": "LA NOCHE DE ANOCHE"
-      },
-      {
-        "id": "3133285:88",
-        "line": "De tu cuerpo me apodero (¡Hey, hey!)",
-        "title": "Solita"
-      },
-      {
-        "id": "8915218:8",
-        "line": "Ya me acosté a dormir, pero si es pa' chingar, levántame (Hey!)",
-        "title": "Coco Chanel"
-      },
-      {
-        "id": "4035827:47",
-        "line": "Hey, boy; dale, tírala, que tú puedes ser Bad Bunny",
-        "title": "Te Gusté"
-      },
-      {
-        "id": "7355040:43",
-        "line": "Que yo me iría otra vez pa' Japón (Hey)",
-        "title": "La Noche De Anoche"
-      },
-      {
-        "id": "12423043:11",
-        "line": "La Romana lit better than Dubai, hey",
-        "title": "el alfa"
-      },
-      {
-        "id": "3982717:23",
-        "line": "Hey now, well I guess we can play now",
-        "title": "Está Rico"
-      },
-      {
-        "id": "6513460:23",
-        "line": "But hey, you either laugh or you cry like Coco",
-        "title": "Loco"
-      },
-      {
-        "id": "7067014:55",
-        "line": "Hey, you end up with me",
-        "title": "Volví"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Ay, baby, tu sensualidad, woh, oh-oh-oh, oh-ouh",
+          "detected": "es",
+          "confidence": 0.8060175242568699,
+          "is_description": false
+        },
+        {
+          "text": "Ay, yo quiero cantar una, please",
+          "detected": "es",
+          "confidence": 0.8092025408923772,
+          "is_description": false
+        },
+        {
+          "text": "Ay, santo, Dios mío, qué acicale",
+          "detected": "es",
+          "confidence": 0.9573491267467952,
+          "is_description": false
+        },
+        {
+          "text": "Otra noche, otra (Ay, que yo no te boté)",
+          "detected": "es",
+          "confidence": 0.841615579582959,
+          "is_description": false
+        },
+        {
+          "text": "Le metí a toa' mis crush, shh, ya me aburro hasta 'e chichar (Ay, rra)",
+          "detected": "es",
+          "confidence": 0.7583766896386169,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "rrr",
@@ -944,165 +2332,781 @@
         "title": "Un Ratito Más"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Perro que muerde casi nunca ladra (Rrr)",
+          "detected": "es",
+          "confidence": 0.9677443994176024,
+          "is_description": false
+        },
+        {
+          "text": "Y tú dice' que tú ere' brava, pero a vece' te me quita (Rrr)",
+          "detected": "es",
+          "confidence": 0.9418591860327565,
+          "is_description": false
+        },
+        {
+          "text": "Pero to' los diego' en P.R. vienen con mi cara, ¡rrr!",
+          "detected": "es",
+          "confidence": 0.9584772941938828,
+          "is_description": false
+        },
+        {
+          "text": "Si la' mando disparan, rrr, y te chillamo' en la cara (¿Qué?)",
+          "detected": "es",
+          "confidence": 0.9194726961161848,
+          "is_description": false
+        },
+        {
+          "text": "El AK, en el pecho te va a retumbar (¡Rrr!)",
+          "detected": "es",
+          "confidence": 0.8294593892964223,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
-    "word": "pa",
-    "occurrences_ppm": 243.99765762248683,
+    "word": "skrt",
+    "occurrences_ppm": 200.62029626737805,
     "examples": [
       {
-        "id": "3173788:5",
-        "line": "Hoy vamo pa la calle, vamo a implantarle respeto",
-        "title": "Igual Que Yo*"
+        "id": "11480143:4",
+        "line": "Ando con Spiff en un Lamborghini (Skrt)",
+        "title": "Thinkin (Refe Bad Bunny)"
       },
       {
-        "id": "11290147:1",
-        "line": "“VOY A LLeVARTE PA PR” sirve como el primer reggaetón presentado en el álbum, en el que Benito realiza una invitación a una mujer con la que se quiere involucrar a visitar Puerto Rico con él e irse de fiesta,… Read More",
-        "title": "VOY A LLeVARTE PA PR"
+        "id": "12485218:18",
+        "line": "'Tamo burla'o a ciento y pico trepa la honda 'el Ferrari (¡Skrt!)",
+        "title": "Krippy Kush (Versión Original)"
       },
       {
-        "id": "11304636:3",
-        "line": "To' los bandi-bandido' le sueltan las pistola', pa-pa-pa-pa-",
-        "title": "EoO"
+        "id": "3726733:14",
+        "line": "Que por la noche yo te saco a pasear (Skrt)",
+        "title": "Satisfacción"
       },
       {
-        "id": "7967942:47",
-        "line": "Party, party, party, pa- (En el cuarto o en el Bugatti)",
-        "title": "Party"
-      },
-      {
-        "id": "11292888:47",
-        "line": "Pa'-Pa la disco a perrear, -rrear, -rrear",
-        "title": "KETU TeCRÉ"
-      },
-      {
-        "id": "5305033:36",
-        "line": "Si estoy puesto' pa' guerrear (Yo 'toy puesto pa guerrear; motherfuckers)",
-        "title": "Puesto Pa’ Guerrial"
-      },
-      {
-        "id": "4144727:69",
-        "line": "Pa-pa-paparazzi like I'm Lady Gaga (Wuh)",
-        "title": "I Like It"
-      },
-      {
-        "id": "3022353:56",
-        "line": "Pa que yo te diga lo que tiene que hacer",
-        "title": "Tócate Tú Misma"
-      },
-      {
-        "id": "7483314:64",
-        "line": "Pa-Pa-Paparazzi like I'm Lady Gaga (Wuh)",
-        "title": "I Like It (Radio Edit)"
-      },
-      {
-        "id": "4641326:41",
-        "line": "No te asustes que esto es pa que te relajes ma",
-        "title": "No Perdamos Tiempo"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
-  },
-  {
-    "word": "rrra",
-    "occurrences_ppm": 108.44340338777192,
-    "examples": [
-      {
-        "id": "3542120:16",
-        "line": "Si no te quita' el pantalón, te lo voy a romper (Rrra)",
-        "title": "Dime Si Te Acuerdas"
-      },
-      {
-        "id": "7967939:42",
-        "line": "Te vo'a dar con euforia, tú ere' mi Zendaya (¡Rrra!)",
-        "title": "Dos Mil 16"
-      },
-      {
-        "id": "3669753:63",
-        "line": "Tú con él en la cama, pero a mí me mandas mensaje' (Rrra)",
-        "title": "Dime*"
-      },
-      {
-        "id": "6211005:40",
-        "line": "Y a to' eso' cabrone' con su monopolio (Rrra)",
-        "title": "MALDITA POBREZA"
-      },
-      {
-        "id": "3208907:63",
-        "line": "Tú con él en la cama, pero a mí me mandas mensaje' (Rrra)",
-        "title": "Dime"
-      },
-      {
-        "id": "6250617:40",
-        "line": "Y a to' eso' cabrone' con su monopolio (Rrra)",
-        "title": "MALDITA POBREZA"
-      },
-      {
-        "id": "3046295:49",
-        "line": "Aunque tú me ganes, tú misma me pide' revancha (Rrra, rrra, rrra)",
-        "title": "Puerta Abierta"
-      },
-      {
-        "id": "10271696:20",
-        "line": "Santa Claus con la esencia del Grinch metío' (Rrra)",
-        "title": "La Jumpa (Mixed) [Fitness: Run, April 2024]"
-      },
-      {
-        "id": "8995366:23",
-        "line": "Santa Claus con la esencia del Grinch metío' (Rrra)",
-        "title": "La Jumpa (Mixed) [April 2023]"
-      },
-      {
-        "id": "12260778:41",
-        "line": "Hoy te lo vo'a meter dentro de la G-Class (Ah-ah-ah-ah; ¡rrra!)",
-        "title": "Madura (Primera Versión)"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrrah",
-    "occurrences_ppm": 43.37736135510877,
-    "examples": [
-      {
-        "id": "3297866:41",
-        "line": "Chingando y fumando un pasto de La Perla, rrrah (Wuh)",
-        "title": "Chambea"
-      },
-      {
-        "id": "2832039:47",
-        "line": "A mí nadie me apaga el phillie (Rrrah)",
+        "id": "2832039:3",
+        "line": "Me puse la T-shirt de Biggie (Yeh), salimo' a buscarte (Skrt)",
         "title": "La T-Shirt De Biggie"
       },
       {
-        "id": "4140387:38",
-        "line": "Son de recetario que un pana me trajo; yeh, yeh (Rrrah)",
-        "title": "Solo de Mí"
+        "id": "2935271:43",
+        "line": "No bebe otra cosa que no sea Patrón, skrt, skrt (¡Skrt, skrt!)",
+        "title": "Me Llamas"
       },
       {
-        "id": "4144727:55",
-        "line": "Yo llego a la disco y se forma el motín (¡Rrrah!)",
-        "title": "I Like It"
+        "id": "3122516:19",
+        "line": "Ya no pagamo', ese e' el precio 'e la fama (Skrt!)",
+        "title": "Lean"
       },
       {
-        "id": "3627151:55",
-        "line": "Yo llego a la disco y se forma el motín (¡Rrrah!)",
-        "title": "I Like It"
+        "id": "2927716:22",
+        "line": "Ser bueno y fiel ya de nada vale (Skrt)",
+        "title": "Soy Peor"
+      },
+      {
+        "id": "3640901:63",
+        "line": "Le espeté el palo en la polo Tommy Hilfiger (Skrt, skrt; -figer)",
+        "title": "Estamos Clear"
+      },
+      {
+        "id": "2979218:7",
+        "line": "Y tú perdiendo el tiempo con él (Skrt, skrt)",
+        "title": "Si Tu Novio Te Deja Sola"
+      },
+      {
+        "id": "9614079:42",
+        "line": "En Los Ángele' con par de ángele' montada' en el Sprinter (Skrt-skrt)",
+        "title": "THUNDER Y LIGHTNING"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 4,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.8,
+      "en_ratio": 0.2,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Ando con Spiff en un Lamborghini (Skrt)",
+          "detected": "en",
+          "confidence": 0.5107021445277856,
+          "is_description": false
+        },
+        {
+          "text": "'Tamo burla'o a ciento y pico trepa la honda 'el Ferrari (¡Skrt!)",
+          "detected": "es",
+          "confidence": 0.9153770887137637,
+          "is_description": false
+        },
+        {
+          "text": "Que por la noche yo te saco a pasear (Skrt)",
+          "detected": "es",
+          "confidence": 0.7948659578267686,
+          "is_description": false
+        },
+        {
+          "text": "Me puse la T-shirt de Biggie (Yeh), salimo' a buscarte (Skrt)",
+          "detected": "es",
+          "confidence": 0.6332181272869293,
+          "is_description": false
+        },
+        {
+          "text": "No bebe otra cosa que no sea Patrón, skrt, skrt (¡Skrt, skrt!)",
+          "detected": "es",
+          "confidence": 0.9755640777018885,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "ooh",
+    "occurrences_ppm": 184.35378575921226,
+    "examples": [
+      {
+        "id": "3073521:30",
+        "line": "Pa' que le dé (Ooh), me llama bellaca pa' que le dé",
+        "title": "Pa’ Que Le De"
+      },
+      {
+        "id": "8568145:9",
+        "line": "Girl, you sweet like Fanta, ooh, Fanta, ooh",
+        "title": "Calm Down / Party (Mixed)"
+      },
+      {
+        "id": "9720440:10",
+        "line": "Girl, you sweet like Fanta, ooh, Fanta, ooh",
+        "title": "Calm Down / Party (Mixed) [November 2023]"
+      },
+      {
+        "id": "10743391:55",
+        "line": "Lo que tu cuerpo pida (Ooh, yeah)",
+        "title": "DRUNK (Original)"
+      },
+      {
+        "id": "9175638:61",
+        "line": "Get her wet like tsunami, 'nami, ooh, yeah (Yeah-yeah, yeah, yeah)",
+        "title": "K-POP"
+      },
+      {
+        "id": "7423687:28",
+        "line": "Open up and set it free (Ah-ooh)",
+        "title": "Super Bowl LIV Halftime Show"
+      },
+      {
+        "id": "7032476:61",
+        "line": "Get her wet like tsunami, 'nami, ooh, yeah (Yeah-yeah, yeah, yeah)",
+        "title": "Cactus"
+      },
+      {
+        "id": "9358774:60",
+        "line": "Get her wet like Tsunami, 'nami, ooh, yeah (Yeah-yeah, yeah, yeah)",
+        "title": "K-POP (Chopped & Screwed)"
+      },
+      {
+        "id": "9358783:60",
+        "line": "Get her wet like tsunami, 'nami, ooh, yeah (Yeah-yeah, yeah, yeah)",
+        "title": "K-POP (Sped Up)"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 2,
+      "votes_en": 3,
+      "votes_unknown": 0,
+      "es_ratio": 0.4,
+      "en_ratio": 0.6,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Pa' que le dé (Ooh), me llama bellaca pa' que le dé",
+          "detected": "es",
+          "confidence": 0.8628018270468084,
+          "is_description": false
+        },
+        {
+          "text": "Girl, you sweet like Fanta, ooh, Fanta, ooh",
+          "detected": "en",
+          "confidence": 0.9072182859993613,
+          "is_description": false
+        },
+        {
+          "text": "Girl, you sweet like Fanta, ooh, Fanta, ooh",
+          "detected": "en",
+          "confidence": 0.9072182859993613,
+          "is_description": false
+        },
+        {
+          "text": "Lo que tu cuerpo pida (Ooh, yeah)",
+          "detected": "es",
+          "confidence": 0.8021992000663434,
+          "is_description": false
+        },
+        {
+          "text": "Get her wet like tsunami, 'nami, ooh, yeah (Yeah-yeah, yeah, yeah)",
+          "detected": "en",
+          "confidence": 0.81827886572552,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "hah",
+    "occurrences_ppm": 140.9764244041035,
+    "examples": [
+      {
+        "id": "3073521:41",
+        "line": "Se me trepa encima y me brinca como en el M.E.F (Hah)",
+        "title": "Pa’ Que Le De"
+      },
+      {
+        "id": "4662257:6",
+        "line": "Mira a dónde va la nena (Huh; la nena), hah",
+        "title": "MOJAITA"
+      },
+      {
+        "id": "5305015:33",
+        "line": "La guitarra te la vo'a desafinar (Hah)",
+        "title": "25/8"
+      },
+      {
+        "id": "5305018:58",
+        "line": "Sold out el Madison, cabrón, sold out el Barclay' (Hah)",
+        "title": "Está Cabrón Ser Yo"
+      },
+      {
+        "id": "3268371:19",
+        "line": "El pelo rubio que aguanta cualquier diluvio (Hah, prr)",
+        "title": "Madura"
+      },
+      {
+        "id": "3870990:38",
+        "line": "Si tienes jevo, yo me busco el lío (Hah)",
+        "title": "¿Cuál es tu plan?"
+      },
+      {
+        "id": "5732274:32",
+        "line": "La guitarra te la vo'a desafinar (Hah)",
+        "title": "25/8 (Versión Extendida)"
+      },
+      {
+        "id": "4162745:35",
+        "line": "Las pacas son de veinte mil adentro del strip (Hah!)",
+        "title": "El Combo Me Llama 2.1"
+      },
+      {
+        "id": "12260778:38",
+        "line": "La baby le mete al kush (Wuh), pero hoy quiere wax (¡Hah!)",
+        "title": "Madura (Primera Versión)"
+      },
+      {
+        "id": "2935271:52",
+        "line": "Mientra' yo se lo meto me dice que lo saque ante' que ella se la-, hah, jaja",
+        "title": "Me Llamas"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 4,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.8,
+      "en_ratio": 0.2,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Se me trepa encima y me brinca como en el M.E.F (Hah)",
+          "detected": "es",
+          "confidence": 0.8947511126538873,
+          "is_description": false
+        },
+        {
+          "text": "Mira a dónde va la nena (Huh; la nena), hah",
+          "detected": "es",
+          "confidence": 0.9242642870561549,
+          "is_description": false
+        },
+        {
+          "text": "La guitarra te la vo'a desafinar (Hah)",
+          "detected": "es",
+          "confidence": 0.9527394648235342,
+          "is_description": false
+        },
+        {
+          "text": "Sold out el Madison, cabrón, sold out el Barclay' (Hah)",
+          "detected": "en",
+          "confidence": 0.6780266077732281,
+          "is_description": false
+        },
+        {
+          "text": "El pelo rubio que aguanta cualquier diluvio (Hah, prr)",
+          "detected": "es",
+          "confidence": 0.9864433604607555,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "uah",
+    "occurrences_ppm": 124.70991389593772,
+    "examples": [
+      {
+        "id": "5091581:14",
+        "line": "Pa' ver si e' verdad que tú va' a matarme (Brr, uah; The Big Papa)",
+        "title": "Así Soy Yo"
+      },
+      {
+        "id": "5614024:3",
+        "line": "Anoche te soñé (Soñé), y me quedé con las gana' (Gana'; uah)",
+        "title": "Hasta Que Dios Diga"
+      },
+      {
+        "id": "3041034:6",
+        "line": "(Uah; real hasta la muerte, ¿oíste, bebé?)",
+        "title": "La Última Vez"
+      },
+      {
+        "id": "4662271:13",
+        "line": "Pero esta vez es muy tarde ya (Uah, oh-oh-oh)",
+        "title": "QUÉ PRETENDES"
+      },
+      {
+        "id": "3626034:53",
+        "line": "Joseando como las puta', to' lo tuyo es chapea'o (Uah)",
+        "title": "Original"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Pa' ver si e' verdad que tú va' a matarme (Brr, uah; The Big Papa)",
+          "detected": "es",
+          "confidence": 0.9454417478516309,
+          "is_description": false
+        },
+        {
+          "text": "Anoche te soñé (Soñé), y me quedé con las gana' (Gana'; uah)",
+          "detected": "es",
+          "confidence": 0.9517584562781094,
+          "is_description": false
+        },
+        {
+          "text": "(Uah; real hasta la muerte, ¿oíste, bebé?)",
+          "detected": "es",
+          "confidence": 0.9858617244203418,
+          "is_description": false
+        },
+        {
+          "text": "Pero esta vez es muy tarde ya (Uah, oh-oh-oh)",
+          "detected": "es",
+          "confidence": 0.9275761260851132,
+          "is_description": false
+        },
+        {
+          "text": "Joseando como las puta', to' lo tuyo es chapea'o (Uah)",
+          "detected": "es",
+          "confidence": 0.9486104506493325,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "ouh",
+    "occurrences_ppm": 75.91038237144035,
+    "examples": [
+      {
+        "id": "5305006:69",
+        "line": "El Gato, El Conejo, animale' suelto', ouh",
+        "title": "Bichiyal"
+      },
+      {
+        "id": "3115965:3",
+        "line": "Ay, baby, tu sensualidad, woh, oh-oh-oh, oh-ouh",
+        "title": "Sensualidad"
+      },
+      {
+        "id": "3669753:9",
+        "line": "Ouh, dime, si con él eres una santa y conmigo te mata'",
+        "title": "Dime*"
+      },
+      {
+        "id": "3208907:9",
+        "line": "Ouh, dime, si con él eres una santa y conmigo te mata'",
+        "title": "Dime"
+      },
+      {
+        "id": "11304595:17",
+        "line": "Ouh, ma, yo quiero que tú sea' mi loba",
+        "title": "VeLDÁ"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "El Gato, El Conejo, animale' suelto', ouh",
+          "detected": "es",
+          "confidence": 0.9243865069200168,
+          "is_description": false
+        },
+        {
+          "text": "Ay, baby, tu sensualidad, woh, oh-oh-oh, oh-ouh",
+          "detected": "es",
+          "confidence": 0.8060175242568699,
+          "is_description": false
+        },
+        {
+          "text": "Ouh, dime, si con él eres una santa y conmigo te mata'",
+          "detected": "es",
+          "confidence": 0.9538339837082657,
+          "is_description": false
+        },
+        {
+          "text": "Ouh, dime, si con él eres una santa y conmigo te mata'",
+          "detected": "es",
+          "confidence": 0.9538339837082657,
+          "is_description": false
+        },
+        {
+          "text": "Ouh, ma, yo quiero que tú sea' mi loba",
+          "detected": "es",
+          "confidence": 0.9180103387134813,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "grr",
+    "occurrences_ppm": 70.48821220205176,
+    "examples": [
+      {
+        "id": "5529070:22",
+        "line": "Pero lo' polvo' son de una hora (Grr, grr)",
+        "title": "Tú Me Gustas*"
+      },
+      {
+        "id": "3268371:16",
+        "line": "Mientra' me tortura', yeh (Prr-prr, prr, grr)",
+        "title": "Madura"
+      },
+      {
+        "id": "9614079:19",
+        "line": "Enmascara'o, te dejamo' en parking (¡Grr, paw!), yeah",
+        "title": "THUNDER Y LIGHTNING"
+      },
+      {
+        "id": "6852775:22",
+        "line": "Sentiste la presión cuando el camión te arrolló (Grr)",
+        "title": "100 MILLONES"
+      },
+      {
+        "id": "4179009:82",
+        "line": "Ya yo soy leyenda y todavía un nene (Grr)",
+        "title": "La Romana"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Pero lo' polvo' son de una hora (Grr, grr)",
+          "detected": "es",
+          "confidence": 0.9653850252998663,
+          "is_description": false
+        },
+        {
+          "text": "Mientra' me tortura', yeh (Prr-prr, prr, grr)",
+          "detected": "es",
+          "confidence": 0.9089683353112865,
+          "is_description": false
+        },
+        {
+          "text": "Enmascara'o, te dejamo' en parking (¡Grr, paw!), yeah",
+          "detected": "es",
+          "confidence": 0.5341126068194739,
+          "is_description": false
+        },
+        {
+          "text": "Sentiste la presión cuando el camión te arrolló (Grr)",
+          "detected": "es",
+          "confidence": 0.988666916716604,
+          "is_description": false
+        },
+        {
+          "text": "Ya yo soy leyenda y todavía un nene (Grr)",
+          "detected": "es",
+          "confidence": 0.9959770669868983,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "ra",
+    "occurrences_ppm": 70.48821220205176,
+    "examples": [
+      {
+        "id": "6949210:7",
+        "line": "Y volvemos y lo intentamo' (Ra-ta-ta-tá)",
+        "title": "Hace Tiempo*"
+      },
+      {
+        "id": "11356463:15",
+        "line": "Que yo te doy lo que te falte, bebé (Ra-Rauw)",
+        "title": "Qué Pasaría... (Mixed)"
+      },
+      {
+        "id": "11036575:15",
+        "line": "Que yo tе doy lo que te falte, bebé (Ra-Rauw)",
+        "title": "Qué Pasaría..."
+      },
+      {
+        "id": "3297866:12",
+        "line": "Dijo que de bala' va a haber aguacero (Ra-ta-ta-tá)",
+        "title": "Chambea"
+      },
+      {
+        "id": "5305033:34",
+        "line": "Mamabicho, a mí me tienen que matar, me tienen que matar (¡Ra, ra, ra, ra!)",
+        "title": "Puesto Pa’ Guerrial"
+      },
+      {
+        "id": "2964920:21",
+        "line": "Ra-ta-ta-ta-ta",
+        "title": "El Freestyle"
+      },
+      {
+        "id": "3021794:29",
+        "line": "La saco y ra, no hay vuelta pa'tras",
+        "title": "No Me Wua Dejar"
+      },
+      {
+        "id": "4763027:79",
+        "line": "Gracias a Dios se me dio y subimos de ra-ango (Shootter)",
+        "title": "Subimos de Rango"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 5,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Y volvemos y lo intentamo' (Ra-ta-ta-tá)",
+          "detected": "es",
+          "confidence": 0.9852342298996668,
+          "is_description": false
+        },
+        {
+          "text": "Que yo te doy lo que te falte, bebé (Ra-Rauw)",
+          "detected": "es",
+          "confidence": 0.8351972101135515,
+          "is_description": false
+        },
+        {
+          "text": "Que yo tе doy lo que te falte, bebé (Ra-Rauw)",
+          "detected": "es",
+          "confidence": 0.8270771466206213,
+          "is_description": false
+        },
+        {
+          "text": "Dijo que de bala' va a haber aguacero (Ra-ta-ta-tá)",
+          "detected": "es",
+          "confidence": 0.9903813805196245,
+          "is_description": false
+        },
+        {
+          "text": "Mamabicho, a mí me tienen que matar, me tienen que matar (¡Ra, ra, ra, ra!)",
+          "detected": "es",
+          "confidence": 0.9895373517522014,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "ayy",
+    "occurrences_ppm": 59.643871863274555,
+    "examples": [
+      {
+        "id": "5084239:3",
+        "line": "Puta chíngame, chíngame, pero bien rico, ayy (Pero bien rico)",
+        "title": "International Women*"
+      },
+      {
+        "id": "7967937:41",
+        "line": "Give you somethin' on top, ayy-ayy",
+        "title": "Enséñame a Bailar"
+      },
+      {
+        "id": "10743500:16",
+        "line": "Don't know why I'm so drunk right now (Ayy, I'm so drunk right now)",
+        "title": "DRUNK (Demo)"
+      },
+      {
+        "id": "10743391:40",
+        "line": "The PJ landed in Tijuana, ayy (Right now, right now)",
+        "title": "DRUNK (Original)"
+      },
+      {
+        "id": "9358783:7",
+        "line": "All around the trap, it hit (Hit, hit, ayy)",
+        "title": "K-POP (Sped Up)"
+      },
+      {
+        "id": "9175638:8",
+        "line": "All around the trap, it hit (Hit, hit, ayy)",
+        "title": "K-POP"
+      },
+      {
+        "id": "7032476:8",
+        "line": "All around the trap, it hit (Hit, hit, ayy)",
+        "title": "Cactus"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 5,
+      "votes_es": 1,
+      "votes_en": 4,
+      "votes_unknown": 0,
+      "es_ratio": 0.2,
+      "en_ratio": 0.8,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Puta chíngame, chíngame, pero bien rico, ayy (Pero bien rico)",
+          "detected": "es",
+          "confidence": 0.622467335546619,
+          "is_description": false
+        },
+        {
+          "text": "Give you somethin' on top, ayy-ayy",
+          "detected": "en",
+          "confidence": 0.9679833253479398,
+          "is_description": false
+        },
+        {
+          "text": "Don't know why I'm so drunk right now (Ayy, I'm so drunk right now)",
+          "detected": "en",
+          "confidence": 0.9811558277857704,
+          "is_description": false
+        },
+        {
+          "text": "The PJ landed in Tijuana, ayy (Right now, right now)",
+          "detected": "en",
+          "confidence": 0.9495267570348381,
+          "is_description": false
+        },
+        {
+          "text": "All around the trap, it hit (Hit, hit, ayy)",
+          "detected": "en",
+          "confidence": 0.9134957743417065,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "prrr",
@@ -1124,35 +3128,156 @@
         "title": "El Combo Me Llama 2"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
+    "lid_meta": {
+      "n_considered": 3,
+      "votes_es": 2,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.6666666666666666,
+      "en_ratio": 0.3333333333333333,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Siempre me gustó la bregadera (Prrr)",
+          "detected": "es",
+          "confidence": 0.98871508692407,
+          "is_description": false
+        },
+        {
+          "text": "Pa' no pensar en ti, tengo que fumar (Prr-prr-prrr)",
+          "detected": "es",
+          "confidence": 0.917185889881809,
+          "is_description": false
+        },
+        {
+          "text": "Yo no la tengo en play, yo la tengo en fast forward (prrr)",
+          "detected": "en",
+          "confidence": 0.8414555413462967,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
-    "word": "rrrrrrah",
-    "occurrences_ppm": 21.688680677554384,
+    "word": "aah",
+    "occurrences_ppm": 32.533021016331574,
     "examples": [
       {
-        "id": "10525518:60",
-        "line": "Lo que no saben es que hoy yo te voy a buscar (Yeh-yeh, ¡rrrrrrah!)",
-        "title": "Mia"
+        "id": "9805912:37",
+        "line": "'Tá bien dura como Natti (Aah)",
+        "title": "Yo Perreo Sola (Mixed)"
       },
       {
-        "id": "3075944:60",
-        "line": "Lo que no saben es que hoy yo te voy a buscar (Yeh-yeh, ¡rrrrrrah!)",
-        "title": "MIA"
-      },
-      {
-        "id": "5136586:60",
-        "line": "Lo que no saben es que hoy yo te voy a buscar (Yeh-yeh, ¡rrrrrrah!)",
-        "title": "MIA"
+        "id": "5305021:46",
+        "line": "'Tá bien dura como Natti (Aah)",
+        "title": "Yo Perreo Sola"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
+    "lid_meta": {
+      "n_considered": 2,
+      "votes_es": 2,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "'Tá bien dura como Natti (Aah)",
+          "detected": "es",
+          "confidence": 0.8989187982832381,
+          "is_description": false
+        },
+        {
+          "text": "'Tá bien dura como Natti (Aah)",
+          "detected": "es",
+          "confidence": 0.8989187982832376,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "haha",
+    "occurrences_ppm": 32.533021016331574,
+    "examples": [
+      {
+        "id": "3021794:41",
+        "line": "Soy un fucking coronel, porque me quieren joder (haha)",
+        "title": "No Me Wua Dejar"
+      },
+      {
+        "id": "3256611:33",
+        "line": "Donde manda Gokú, se muere Vegeta (haha)",
+        "title": "El Combo Me Llama 2"
+      }
+    ],
+    "lid_meta": {
+      "n_considered": 2,
+      "votes_es": 2,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Soy un fucking coronel, porque me quieren joder (haha)",
+          "detected": "es",
+          "confidence": 0.9052446169797753,
+          "is_description": false
+        },
+        {
+          "text": "Donde manda Gokú, se muere Vegeta (haha)",
+          "detected": "es",
+          "confidence": 0.8153460216920986,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
+  },
+  {
+    "word": "oah",
+    "occurrences_ppm": 21.688680677554384,
+    "examples": [],
+    "lid_meta": {
+      "n_considered": 0,
+      "votes_es": 0,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 0.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [],
+      "junk_reasons": [
+        "vocable",
+        "no_context_lines"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "brrr",
@@ -1169,64 +3294,82 @@
         "title": "El Combo Me Llama 2"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
+    "lid_meta": {
+      "n_considered": 2,
+      "votes_es": 2,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Es sombra de muerte, donde se caen los mas fuertes (brrr)",
+          "detected": "es",
+          "confidence": 0.9863828807209689,
+          "is_description": false
+        },
+        {
+          "text": "El mejor de to's los tiempos, ronque el que me ronque (brrr)",
+          "detected": "es",
+          "confidence": 0.9825796786424439,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
-    "word": "rrrrr",
+    "word": "skrr",
     "occurrences_ppm": 10.844340338777192,
-    "examples": [],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "auuu",
-    "occurrences_ppm": 5.422170169388596,
     "examples": [
       {
-        "id": "3048221:123",
-        "line": "Auuu, Austin baby, Arcangel pa",
-        "title": "Me Mata"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "brrrr",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
+        "id": "9614084:30",
+        "line": "Paciencia con Orma, en el Skyline andamo' racin' (Skrr)",
+        "title": "VUELVE CANDY B"
+      },
       {
-        "id": "3256611:122",
-        "line": "Porque soy de los que empuja, no pido permiso (brrrr)",
-        "title": "El Combo Me Llama 2"
+        "id": "3351321:39",
+        "line": "Siempre haces lo que no deben (Skrr)",
+        "title": "La Pistola"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "brrrra",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3359025:61",
-        "line": "Mi corta es una puta y yo la prostituyo (Brrrra!)",
-        "title": "Como Soy"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
+    "lid_meta": {
+      "n_considered": 2,
+      "votes_es": 2,
+      "votes_en": 0,
+      "votes_unknown": 0,
+      "es_ratio": 1.0,
+      "en_ratio": 0.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "Paciencia con Orma, en el Skyline andamo' racin' (Skrr)",
+          "detected": "es",
+          "confidence": 0.8500812935456681,
+          "is_description": false
+        },
+        {
+          "text": "Siempre haces lo que no deben (Skrr)",
+          "detected": "es",
+          "confidence": 0.968587768169912,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   },
   {
     "word": "grrr",
@@ -1238,201 +3381,29 @@
         "title": "el alfa"
       }
     ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "juuu",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3359025:58",
-        "line": "Cabrón, no me ronques con lo que no es suyo (Juuu!)",
-        "title": "Como Soy"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "manuellle",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "ohhh",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "ohhhh",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "prrrm",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "2959823:88",
-        "line": "Que ahora te lo meto yo, porque yo soy el que te la saca (Prrrm)",
-        "title": "Te Lo Meto Yo"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrrack",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "2832039:14",
-        "line": "Y de las retro', dame todo el rack (Rrrack), ah",
-        "title": "La T-Shirt De Biggie"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrre",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3268371:65",
-        "line": "Hear This Music (Rrre-che-chen)",
-        "title": "Madura"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrrr",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3359025:54",
-        "line": "Cabrón, pa' mí esto es un quita'o (Blup; rrrr!)",
-        "title": "Como Soy"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrrra",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "2951579:41",
-        "line": "Tirensen todos a la vez, que al que me toque lo crucifican al revés (¡Rrrra!)",
-        "title": "Me Importa Un Carajo"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrrruah",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "2979218:16",
-        "line": "Y ese cabrón no va a recuperarte (Rrrruah)",
-        "title": "Si Tu Novio Te Deja Sola"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrru",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "12260778:30",
-        "line": "Pasan los año' y te pones más dura (Rrru)",
-        "title": "Madura (Primera Versión)"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrruh",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3176687:31",
-        "line": "Cógelo easy, o si no, me revelo (Rrruh)",
-        "title": "Andan Por Ahí"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "rrrá",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3268371:53",
-        "line": "Baby, cómo te cura', uh-uh (Rrrá)",
-        "title": "Madura"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "elongation"
-  },
-  {
-    "word": "whoa",
-    "occurrences_ppm": 5.422170169388596,
-    "examples": [
-      {
-        "id": "3152684:57",
-        "line": "Won't leave your pussy the same, whoa",
-        "title": "Si Tú Lo Dejas"
-      }
-    ],
-    "lid_lang": "heuristic",
-    "lid_prob": 1.0,
-    "lid_bucket": "junk",
-    "junk_reason": "vocable_list"
+    "lid_meta": {
+      "n_considered": 1,
+      "votes_es": 0,
+      "votes_en": 1,
+      "votes_unknown": 0,
+      "es_ratio": 0.0,
+      "en_ratio": 1.0,
+      "threshold": 0.6,
+      "decision": "junk",
+      "lines": [
+        {
+          "text": "She doesn't mention you and even less if she comes (Grrr)",
+          "detected": "en",
+          "confidence": 0.9768752947510119,
+          "is_description": false
+        }
+      ],
+      "junk_reasons": [
+        "vocable",
+        "vocable_override"
+      ],
+      "english_word_override": false,
+      "description_lines_removed": 0
+    }
   }
 ]

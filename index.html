@@ -2360,6 +2360,37 @@
             text-align: center;
         }
 
+        /* Exclusion Progress Bars (Lemma & Cognate steps) */
+        .exclusion-bar-wrapper {
+            margin: 12px 0 4px 0;
+            opacity: 0;
+            transition: opacity 0.4s ease-in;
+        }
+        .exclusion-bar-wrapper.visible {
+            opacity: 1;
+        }
+        .exclusion-bar-container {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .exclusion-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            transition: width 0.8s ease-out;
+        }
+        .exclusion-bar-label {
+            font-family: var(--font-data);
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            text-align: center;
+        }
+
         /* Authentication Modal Styles */
         .auth-body {
             display: flex;
@@ -2797,6 +2828,12 @@
                     <button class="lemma-toggle-btn selected" data-lemma="on" data-short="1" data-full="1 card per lemma">1 card per lemma</button>
                     <button class="lemma-toggle-btn" data-lemma="off" data-short="1+" data-full="All word forms">1+</button>
                 </div>
+                <div id="lemmaExclusionBarWrapper" class="exclusion-bar-wrapper" style="display: none;">
+                    <div class="exclusion-bar-container">
+                        <div id="lemmaExclusionBarFill" class="exclusion-bar-fill"></div>
+                    </div>
+                    <div id="lemmaExclusionBarLabel" class="exclusion-bar-label"></div>
+                </div>
             </div>
 
             <!-- Step 4: Cognate Toggle -->
@@ -2815,6 +2852,12 @@
                 <div id="cognateToggleSelector" class="group-size-selector">
                     <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
                     <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
+                </div>
+                <div id="cognateExclusionBarWrapper" class="exclusion-bar-wrapper" style="display: none;">
+                    <div class="exclusion-bar-container">
+                        <div id="cognateExclusionBarFill" class="exclusion-bar-fill"></div>
+                    </div>
+                    <div id="cognateExclusionBarLabel" class="exclusion-bar-label"></div>
                 </div>
             </div>
 
@@ -4428,7 +4471,8 @@
             fill.style.transition = 'none';
             fill.style.width = '0%';
 
-            label.textContent = `${coverage.toFixed(1)}% corpus coverage`;
+            const coverageLabel = isBadBunnyMode ? 'lyrics coverage' : 'corpus coverage';
+            label.textContent = `${coverage.toFixed(1)}% ${coverageLabel}`;
 
             // Trigger animation after a frame
             requestAnimationFrame(() => {
@@ -4438,6 +4482,109 @@
                     wrapper.classList.add('visible');
                 });
             });
+        }
+
+        // Update exclusion progress bars for lemma and cognate steps
+        async function updateExclusionBars() {
+            const langConfig = config.languages[selectedLanguage];
+            if (!langConfig || !langConfig.dataPath) return;
+
+            let vocabularyData = [];
+            try {
+                const response = await fetch(langConfig.dataPath);
+                if (response.ok) {
+                    vocabularyData = await response.json();
+                }
+            } catch (error) {
+                console.error('Failed to load vocabulary for exclusion bars:', error);
+                return;
+            }
+
+            // Assign ranks
+            vocabularyData.forEach((item, index) => { item.rank = index + 1; });
+
+            // Base filter: non-blank, non-duplicate, has meanings
+            let baseVocab = vocabularyData.filter(item =>
+                item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
+            );
+
+            // Bad Bunny mode exclusions
+            if (isBadBunnyMode) {
+                baseVocab = baseVocab.filter(item =>
+                    !item.is_english && !item.is_interjection && !item.is_propernoun
+                );
+            }
+
+            // Hide single-occurrence words if enabled
+            if (hideSingleOccurrence && baseVocab.length > 0 && baseVocab[0].hasOwnProperty('corpus_count')) {
+                baseVocab = baseVocab.filter(item => item.corpus_count > 1);
+            }
+
+            const totalBeforeLemma = baseVocab.length;
+
+            // Count after lemma filter
+            let afterLemma = baseVocab;
+            if (useLemmaMode && lemmaFieldAvailable) {
+                afterLemma = baseVocab.filter(item => item.most_frequent_lemma_instance === true);
+            }
+            const totalAfterLemma = afterLemma.length;
+
+            // Count after cognate filter (applied on top of lemma)
+            let afterCognate = afterLemma;
+            if (excludeCognates && cognateFieldAvailable) {
+                afterCognate = afterLemma.filter(item => !item.is_transparent_cognate);
+            }
+            const totalAfterCognate = afterCognate.length;
+
+            // Update lemma exclusion bar
+            const lemmaWrapper = document.getElementById('lemmaExclusionBarWrapper');
+            const lemmaFill = document.getElementById('lemmaExclusionBarFill');
+            const lemmaLabel = document.getElementById('lemmaExclusionBarLabel');
+            if (lemmaWrapper && lemmaFill && lemmaLabel) {
+                const lemmaExcluded = totalBeforeLemma - totalAfterLemma;
+                if (useLemmaMode && lemmaFieldAvailable && lemmaExcluded > 0) {
+                    const remainPercent = (totalAfterLemma / totalBeforeLemma) * 100;
+                    lemmaWrapper.style.display = 'block';
+                    lemmaWrapper.classList.remove('visible');
+                    lemmaFill.style.transition = 'none';
+                    lemmaFill.style.width = '0%';
+                    lemmaLabel.textContent = `${totalAfterLemma.toLocaleString()} / ${totalBeforeLemma.toLocaleString()} words (${lemmaExcluded.toLocaleString()} forms excluded)`;
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            lemmaFill.style.transition = 'width 0.8s ease-out';
+                            lemmaFill.style.width = remainPercent + '%';
+                            lemmaWrapper.classList.add('visible');
+                        });
+                    });
+                } else {
+                    lemmaWrapper.style.display = 'none';
+                }
+            }
+
+            // Update cognate exclusion bar
+            const cognateWrapper = document.getElementById('cognateExclusionBarWrapper');
+            const cognateFill = document.getElementById('cognateExclusionBarFill');
+            const cognateLabel = document.getElementById('cognateExclusionBarLabel');
+            if (cognateWrapper && cognateFill && cognateLabel) {
+                const cognateExcluded = totalAfterLemma - totalAfterCognate;
+                if (excludeCognates && cognateFieldAvailable && cognateExcluded > 0) {
+                    const remainPercent = (totalAfterCognate / totalAfterLemma) * 100;
+                    cognateWrapper.style.display = 'block';
+                    cognateWrapper.classList.remove('visible');
+                    cognateFill.style.transition = 'none';
+                    cognateFill.style.width = '0%';
+                    cognateLabel.textContent = `${totalAfterCognate.toLocaleString()} / ${totalAfterLemma.toLocaleString()} words (${cognateExcluded.toLocaleString()} cognates excluded)`;
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            cognateFill.style.transition = 'width 0.8s ease-out';
+                            cognateFill.style.width = remainPercent + '%';
+                            cognateWrapper.classList.add('visible');
+                        });
+                    });
+                } else {
+                    cognateWrapper.style.display = 'none';
+                }
+            }
         }
 
         // Setup tooltip handlers (needs to run early, before any set is picked)
@@ -4539,6 +4686,11 @@
             await loadSecrets(); // Load secrets before authentication
             checkAuthentication(); // Check if user is logged in
 
+            // Ensure progress data is loaded before rendering coverage bars
+            if (currentUser && !currentUser.isGuest) {
+                await loadUserProgressFromSheet();
+            }
+
             // In Bad Bunny mode, auto-select Spanish and skip language selection
             if (isBadBunnyMode) {
                 selectedLanguage = 'spanish';
@@ -4578,6 +4730,8 @@
                 await updateLemmaToggleVisibility();
                 await updateCognateToggleVisibility();
                 renderLevelSelector('spanish');
+                updateCoverageProgressBar();
+                await updateExclusionBars();
             }
         });
 
@@ -4680,8 +4834,9 @@
                         await loadUserProgressFromSheet();
                     }
 
-                    // Load PPM data if percentage mode is enabled
-                    if (percentageMode && !ppmData) {
+                    // Always load PPM data if available (needed for coverage bar even in CEFR mode)
+                    const langPpmPath = config.languages[selectedLanguage] && config.languages[selectedLanguage].ppmDataPath;
+                    if (!ppmData && langPpmPath) {
                         await loadPpmData(selectedLanguage);
                     }
 
@@ -4697,8 +4852,10 @@
                     updateStep5Tooltip();
 
                     renderLevelSelector(selectedLanguage);
+                    updateCoverageProgressBar();
                     updateLemmaToggleVisibility();
                     updateCognateToggleVisibility();
+                    updateExclusionBars();
                     updateIncorrectButtonVisibility();
                     updateTotalStatsButtonVisibility();
                 });
@@ -4844,6 +5001,7 @@
                         }
                         renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                     }
+                    updateExclusionBars();
                 });
             });
         }
@@ -4897,6 +5055,7 @@
                         }
                         renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
                     }
+                    updateExclusionBars();
                 });
             });
         }
@@ -4934,11 +5093,8 @@
 
                 // Re-render the level selector
                 selectedLevel = null;
-                document.querySelectorAll('.level-btn').forEach(b => {
-                    b.classList.remove('selected');
-                    b.textContent = b.dataset.short;
-                });
                 renderLevelSelector(selectedLanguage);
+                updateCoverageProgressBar();
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
                 document.getElementById('cognateToggleContainer').style.display = 'none';
 
@@ -6167,17 +6323,18 @@
                 // Re-render the level selector if we're on the setup screen
                 // Note: step2 is visible when display is 'block' or '' (empty)
                 const step2Display = document.getElementById('step2').style.display;
+                // Update the title text and tooltip
+                document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
+                updateStep2Tooltip();
+                updateStep5Tooltip();
+
                 if (selectedLanguage && step2Display !== 'none') {
                     selectedLevel = null;
-                    // Reset all level buttons
-                    document.querySelectorAll('.level-btn').forEach(b => {
-                        b.classList.remove('selected');
-                        b.textContent = b.dataset.short;
-                    });
                     renderLevelSelector(selectedLanguage);
+                    updateCoverageProgressBar();
                     document.getElementById('lemmaToggleContainer').style.display = 'none';
                     document.getElementById('cognateToggleContainer').style.display = 'none';
-    
+
                     document.getElementById('step4').style.display = 'none';
                 }
 
@@ -6703,8 +6860,8 @@
             currentExampleIndex = 0;
             isFlipped = false;
 
-            // Load PPM data if percentage mode is enabled but data not loaded
-            if (percentageMode && (!ppmData || ppmData.length === 0)) {
+            // Always load PPM data if available (needed for coverage bar even in CEFR mode)
+            if (!ppmData || ppmData.length === 0) {
                 await loadPpmData(selectedLanguage);
             }
 
@@ -6738,6 +6895,7 @@
 
             updateLemmaToggleVisibility();
             updateCognateToggleVisibility();
+            updateExclusionBars();
 
             // Reset card state
             const flashcardEl = document.getElementById('flashcard');

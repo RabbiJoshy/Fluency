@@ -183,9 +183,13 @@ def compute_pos_frequencies(entry: dict) -> dict[str, float]:
 
 
 def compute_most_frequent_flags(app_entries: list[dict]) -> None:
+    # Group by lemma so that different word forms sharing the same lemma
+    # (e.g., "soy", "es", "fue" all with lemma "ser") are grouped together.
+    # Only the highest-frequency word per lemma gets most_frequent_lemma_instance=True.
     grouped = defaultdict(list)
     for i, e in enumerate(app_entries):
-        grouped[e["word"]].append((i, e))
+        lemma = e.get("lemma", e["word"])
+        grouped[lemma].append((i, e))
 
     for _, items in grouped.items():
         best_j = max(
