@@ -2,7 +2,7 @@
   "name": "Language Flashcards",
   "short_name": "Flashcards",
   "description": "Study language flashcards with custom reference links",
-  "start_url": "/flashcard-app.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#667eea",
   "theme_color": "#667eea",

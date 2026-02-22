@@ -1,7 +1,7 @@
 const CACHE_NAME = 'flashcards-v2';
 const urlsToCache = [
-  '/flashcard-app.html',
-  '/'
+  '/',
+  '/index.html'
 ];
 
 // Install event - cache files and skip waiting
