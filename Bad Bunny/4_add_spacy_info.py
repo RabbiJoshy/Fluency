@@ -17,6 +17,7 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 import spacy
+from wordfreq import word_frequency
 
 n = None  # process all entries
 
@@ -24,36 +25,35 @@ IN_PATH = Path("Bad Bunny/intermediates/3_vocab_evidence_merged.json")
 OUT_PATH = Path("Bad Bunny/intermediates/4_spacy_output.json")
 
 
-# ---- English flagging (fast, heuristic, non-destructive) ----------------------
-
-EN_COMMON = {
-    "the", "a", "an", "and", "or", "but", "to", "of", "in", "on", "for", "with",
-    "you", "me", "my", "your", "we", "they", "he", "she", "it",
-    "yeah", "yea", "nah", "nope", "baby", "love", "i", "im", "i'm", "dont", "don't",
-    "know", "like", "want", "got", "get", "up", "down", "all", "one", "two",
-}
+# ---- English flagging (wordfreq-based, non-destructive) ----------------------
 
 SPANISH_DIACRITICS_RE = re.compile(r"[áéíóúüñ]", re.IGNORECASE)
+
+# Threshold: en/(en+es) ratio above this → flag as English.
+# 0.85 is intentionally high to avoid nuking Spanish/English homographs.
+EN_RATIO_THRESHOLD = 0.85
 
 def english_flag(word: str) -> dict:
     w = word.strip().lower()
 
-    # strong Spanish signal
+    # Strong Spanish signal — diacritics always win regardless of frequency data.
     if SPANISH_DIACRITICS_RE.search(w):
         return {"is_english": False, "confidence": 0.01, "reason": "spanish_diacritic"}
 
-    # common English tokens / chat spellings
-    if w in EN_COMMON:
-        return {"is_english": True, "confidence": 0.95, "reason": "common_english_token"}
+    en_freq = word_frequency(w, "en")
+    es_freq = word_frequency(w, "es")
 
-    # typical English orthography hints (keep weak; don’t nuke slang)
-    if w.endswith("ing") and len(w) >= 5:
-        return {"is_english": True, "confidence": 0.75, "reason": "endswith_ing"}
-    if "th" in w and len(w) >= 4:
-        return {"is_english": True, "confidence": 0.70, "reason": "contains_th"}
+    # Word unknown to wordfreq entirely (e.g. novel slang, elisions)
+    if en_freq == 0 and es_freq == 0:
+        return {"is_english": False, "confidence": 0.20, "reason": "wordfreq_unknown"}
 
-    # default: unknown -> assume not English
-    return {"is_english": False, "confidence": 0.20, "reason": "no_strong_english_signal"}
+    total = en_freq + es_freq
+    en_ratio = en_freq / total
+
+    if en_ratio >= EN_RATIO_THRESHOLD:
+        return {"is_english": True, "confidence": round(en_ratio, 3), "reason": "wordfreq_ratio"}
+    else:
+        return {"is_english": False, "confidence": round(1 - en_ratio, 3), "reason": "wordfreq_ratio"}
 
 
 # ---- Matching helpers --------------------------------------------------------

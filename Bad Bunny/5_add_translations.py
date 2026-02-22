@@ -228,8 +228,23 @@ def main():
         # Merge curated flags from old vocab
         old_flags = _old_flags.get(word, {})
         is_english = is_english_spacy or old_flags.get("is_english", False)
-        is_interjection = old_flags.get("is_interjection", False)
-        is_propernoun = old_flags.get("is_propernoun", False)
+
+        # Derive is_propernoun and is_interjection from spaCy pos_counts,
+        # falling back to the old cache if not determinable from POS alone.
+        pos_counts = (entry.get("pos_summary") or {}).get("pos_counts") or {}
+        total_pos = sum(pos_counts.values()) or 1
+        propn_ratio = pos_counts.get("PROPN", 0) / total_pos
+        intj_ratio  = pos_counts.get("INTJ",  0) / total_pos
+
+        is_propernoun = (
+            old_flags.get("is_propernoun", False)
+            or propn_ratio > 0.5
+        )
+        is_interjection = (
+            old_flags.get("is_interjection", False)
+            or intj_ratio > 0.5
+        )
+
         is_transparent_cognate = old_flags.get("is_transparent_cognate", False)
 
         # Skip translation for English words, interjections, and proper nouns

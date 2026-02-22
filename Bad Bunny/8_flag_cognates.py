@@ -1,8 +1,13 @@
+import difflib
 import json
 import unicodedata
 import re
 from pathlib import Path
 from typing import Optional
+
+# Minimum similarity (after normalize + strip_plural) for near-identical fallback.
+# 0.85 is intentionally conservative to avoid false positives on short words.
+_NEAR_IDENTICAL_THRESHOLD = 0.85
 
 # ---------------- helpers ----------------
 
@@ -119,11 +124,23 @@ def is_transparent_cognate(spanish: str, english: str) -> bool:
     if s0 == e0:
         return True
 
-    # Try all suffix rules
+    # Try all suffix rules (exact stem transform).
+    # Check against both e (original) and e0 (de-pluraled) because strip_plural
+    # can incorrectly strip a terminal 's' that's part of the word itself
+    # (e.g. "famous" → "famou"), so we need to also compare against the
+    # pre-strip form to catch cases like famoso → famous.
     for es_suffix, en_suffix in SUFFIX_RULES:
         result = apply_suffix(s0, es_suffix, en_suffix)
-        if result is not None and result == e0:
+        if result is not None and (result == e0 or result == e):
             return True
+
+    # Near-identical fallback: catches cases like espectacular → spectacular,
+    # imposible → impossible, profesión → profession (double-s mismatch), etc.
+    # where no suffix rule produces an exact match but the words are visually
+    # close enough that a learner would immediately recognise them as the same.
+    ratio = difflib.SequenceMatcher(None, s0, e0).ratio()
+    if ratio >= _NEAR_IDENTICAL_THRESHOLD:
+        return True
 
     return False
 
