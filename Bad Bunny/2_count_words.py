@@ -56,12 +56,27 @@ CONNECTORS = {
 }
 
 
+# Genius embeds Cyrillic lookalike characters inside words to break scrapers.
+# Map each known offender to its Latin equivalent.
+_HOMOGLYPHS = {
+    "\u0435": "e",   # Cyrillic е → e  (most common: despеrté, movе’, etc.)
+    "\u0430": "a",   # Cyrillic а → a
+    "\u043E": "o",   # Cyrillic о → o
+    "\u0440": "r",   # Cyrillic р → r
+    "\u0441": "c",   # Cyrillic с → c  (NB: also appears in "Русский" metadata, harmless)
+    "\u0445": "x",   # Cyrillic х → x
+    "\u0456": "i",   # Cyrillic і → i  (Ukrainian)
+}
+_HOMOGLYPH_TABLE = str.maketrans(_HOMOGLYPHS)
+
+
 def normalize_text(s: str) -> str:
     if not s:
         return ""
     s = s.replace("\r\n", "\n").replace("\r", "\n")
-    s = s.replace("’", "'").replace("‘", "'").replace("`", "'")
-    s = s.replace("–", "-").replace("—", "-")
+    s = s.replace("\u2018", "’").replace("\u2019", "’").replace("`", "’")
+    s = s.replace("\u2013", "-").replace("\u2014", "-")
+    s = s.translate(_HOMOGLYPH_TABLE)   # strip Genius homoglyph obfuscation
     return s
 
 
