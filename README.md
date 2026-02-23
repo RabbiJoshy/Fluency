@@ -53,13 +53,6 @@ For the Bad Bunny deck, vocabulary goes through a multi-stage NLP pipeline:
 - Python NLP pipeline: spaCy, wordfreq, Lingua, deep-translator
 - Deployed as a static site (GitHub Pages compatible)
 
-## Running Locally
-
-```bash
-python3 -m http.server 8080
-# then open http://localhost:8080
-```
-
 ## Install as an App
 
 **iOS**: Safari → Share → Add to Home Screen

@@ -107,7 +107,7 @@ def main():
         match_forms = {word}
         if display_norm and display_norm != word:
             match_forms.add(display_norm)
-        occ_count = entry.get("corpus_count")
+        occ_count = entry.get("occurrences_ppm") or entry.get("corpus_count")
         examples = entry.get("examples", [])
 
         lang = english_flag(word_raw)

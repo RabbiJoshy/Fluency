@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ED1C24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bad Bunny">
+  <link rel="manifest" href="bad-bunny-manifest.json">
+  <title>Bad Bunny Vocabulary</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0e14;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .flag-stripe-top {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(to right, #ED1C24 33%, #ffffff 33%, #ffffff 66%, #0050A0 66%);
+    }
+
+    .monogram {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      background: #1a222d;
+      border: 2px solid #ED1C24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: #ED1C24;
+      margin-bottom: 24px;
+      font-family: 'Arial Black', Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #a0a8b4;
+      font-size: 15px;
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+
+    .open-btn {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      padding: 16px;
+      background: #ED1C24;
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+
+    .install-box {
+      background: #121820;
+      border: 1px solid #2a3441;
+      border-radius: 14px;
+      padding: 20px 20px 8px;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .install-box h2 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #a0a8b4;
+      margin-bottom: 16px;
+    }
+
+    .install-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #1a222d;
+      border: 1px solid #3a4553;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a0a8b4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: #e0e4ea;
+      line-height: 1.5;
+    }
+
+    .step-text span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="flag-stripe-top"></div>
+
+  <div class="monogram">BB</div>
+
+  <h1>Bad Bunny</h1>
+  <p class="subtitle">Spanish vocabulary from<br>Bad Bunny's discography</p>
+
+  <a class="open-btn" href="index.html?mode=badbunny">Open App</a>
+
+  <div class="install-box">
+    <h2>Add to Home Screen</h2>
+    <div class="install-step">
+      <div class="step-num">1</div>
+      <div class="step-text">Tap the <span>Share</span> button at the bottom of Safari</div>
+    </div>
+    <div class="install-step">
+      <div class="step-num">2</div>
+      <div class="step-text">Select <span>Add to Home Screen</span></div>
+    </div>
+    <div class="install-step">
+      <div class="step-num">3</div>
+      <div class="step-text">Tap <span>Add</span> — the app opens directly in Bad Bunny mode</div>
+    </div>
+  </div>
+</body>
+</html>
