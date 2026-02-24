@@ -25,6 +25,117 @@ IN_PATH = Path("Bad Bunny/intermediates/3_vocab_evidence_merged.json")
 OUT_PATH = Path("Bad Bunny/intermediates/4_spacy_output.json")
 
 
+# ---- Irregular Spanish verb lemma table --------------------------------------
+# spaCy's es_core_news_lg is trained on news text. It doesn't know the
+# future/conditional stems of irregular verbs (pondr-, podr-, tendr- …),
+# so it invents lemmas like pondrar, podrar, tendrar.  These 12 verbs have
+# suppletive future stems that cannot be derived by suffix rules — they need
+# a hard lookup.  The table maps every surface prefix that uniquely identifies
+# the verb to its infinitive.
+#
+# Pattern: if word starts with one of these stems AND the suffix is a
+# future/conditional inflection (-é,-ás,-á,-emos,-éis,-án,-ía,-ías,…),
+# override spaCy's lemma with the correct infinitive.
+
+_IRREG_FUTURE_STEMS: list[tuple[str, str]] = [
+    # stem (after stripping accent-normalised prefix)  →  infinitive
+    ("pondr",  "poner"),
+    ("podr",   "poder"),
+    ("saldr",  "salir"),
+    ("tendr",  "tener"),
+    ("vendr",  "venir"),
+    ("valdr",  "valer"),
+    ("querr",  "querer"),
+    ("cabr",   "caber"),
+    ("sabr",   "saber"),
+    ("habr",   "haber"),
+    ("har",    "hacer"),   # haré, harás … (har- is unambiguous; "harar" ≠ real)
+    ("dir",    "decir"),   # diré, dirás … (but NOT "dis-" forms)
+]
+
+# Future/conditional personal suffixes (with and without written accent)
+_FUTURE_COND_SUFFIXES = (
+    "é", "ás", "á", "emos", "éis", "án",          # future
+    "ía", "ías", "íamos", "íais", "ían",           # conditional
+    "e", "as", "a", "an",                          # same without accents
+)
+
+import unicodedata as _ud
+
+def _strip_accents(s: str) -> str:
+    return "".join(
+        c for c in _ud.normalize("NFD", s)
+        if _ud.category(c) != "Mn"
+    )
+
+def correct_irregular_future_lemma(word: str, spacy_lemma: str) -> str:
+    """
+    If `word` is a future/conditional form of one of the 12 irregular Spanish
+    verbs, return the correct infinitive.  Otherwise return `spacy_lemma`
+    unchanged.
+    """
+    w = _strip_accents(word.lower())
+    for stem, infinitive in _IRREG_FUTURE_STEMS:
+        if not w.startswith(stem):
+            continue
+        suffix = w[len(stem):]
+        if suffix in _FUTURE_COND_SUFFIXES:
+            return infinitive
+    return spacy_lemma
+
+
+# ---- Clitic-attached verb lemma correction -----------------------------------
+# Spanish infinitives, gerunds and imperatives can have pronoun clitics
+# appended: ponerla (poner+la), darte (dar+te), verte (ver+te),
+# enamorarme (enamorar+me), hacerlos (hacer+los).
+# spaCy misidentifies the clitic as a feminine noun suffix and converts it to
+# masculine form: ponerla → ponerel, darte → darel, etc.
+# Solution: if spaCy produces a self-lemma (or the wordfreq quality gate fires),
+# try stripping a clitic and checking whether the remainder is a real Spanish verb.
+
+# Sorted longest-first so compound clitics (melo, telo) are tried before single.
+_CLITICS: list[str] = sorted(
+    ["melo", "telo", "sela", "selo",
+     "me", "te", "se", "le", "la", "lo", "nos", "os",
+     "les", "las", "los"],
+    key=len, reverse=True,
+)
+
+_VERB_ENDINGS: tuple[str, ...] = ("ar", "er", "ir", "ár", "ér", "ír")
+
+# Nouns/adverbs whose suffix accidentally matches a verb+clitic pattern.
+# e.g. "parte" → base "par" (ends in -ar, wordfreq > 0) → would wrongly return "par".
+_CLITIC_NOUN_EXCEPTIONS: frozenset[str] = frozenset({
+    "muerte", "suerte", "parte", "marte", "arte", "fuerte", "frente",
+    "gente", "mente", "madre", "padre", "libre", "sobre", "nombre",
+    "entre", "siempre", "antes", "lunes", "martes",
+})
+
+
+def strip_clitic_for_lemma(word: str):
+    """
+    If `word` looks like <verb-infinitive/gerund/imperative> + <clitic>,
+    return the base verb string.  Otherwise return None.
+
+    Examples: ponerla → poner, darte → dar, verte → ver,
+              hacerlos → hacer, enamorarme → enamorar.
+    """
+    w = word.strip().lower()
+    if w in _CLITIC_NOUN_EXCEPTIONS:
+        return None
+    for clitic in _CLITICS:
+        if not w.endswith(clitic):
+            continue
+        base = w[: len(w) - len(clitic)]
+        if len(base) < 3:
+            continue
+        if not base.endswith(_VERB_ENDINGS):
+            continue
+        if word_frequency(base, "es") >= 1e-6:
+            return base
+    return None
+
+
 # ---- English flagging (wordfreq-based, non-destructive) ----------------------
 
 SPANISH_DIACRITICS_RE = re.compile(r"[áéíóúüñ]", re.IGNORECASE)
@@ -162,6 +273,30 @@ def main():
 
                     lemma = (tok.lemma_ or tok.text).lower()
                     lemma = normalize_for_match(lemma) or word  # fallback
+
+                    # Pass 1 — irregular future/conditional override (must run
+                    # before the wordfreq gate, which would otherwise accept the
+                    # bad spaCy lemma if it happens to have non-zero frequency).
+                    lemma = correct_irregular_future_lemma(word_raw, lemma)
+
+                    # Pass 2 — quality gate: spaCy sometimes invents non-existent
+                    # lemmas for slang and clitic-attached forms it doesn't recognise
+                    # (e.g. dime→dimir, dale→dalar, perreo→perreir).
+                    # If the lemma has zero frequency in both languages it's invented
+                    # — fall back to the surface form instead.
+                    if (word_frequency(lemma, "es") == 0
+                            and word_frequency(lemma, "en") == 0):
+                        lemma = word
+
+                    # Pass 3 — clitic-attached verb correction.
+                    # If the lemma still equals the surface word (spaCy self-lemmatised
+                    # or Pass 2 fell back), check whether the word is an
+                    # infinitive/gerund/imperative + pronoun clitic and recover the
+                    # base verb.  e.g. ponerla → poner, darte → dar, verte → ver.
+                    if lemma == word:
+                        base = strip_clitic_for_lemma(word_raw)
+                        if base:
+                            lemma = base
 
                     pos = tok.pos_ or "X"
 

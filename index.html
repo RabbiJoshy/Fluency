@@ -2776,6 +2776,14 @@
                 <span>Loading your progress...</span>
             </div>
 
+            <!-- Estimate Level Block (shown between step 1 and step 2 when no estimate is set) -->
+            <div id="estimateLevelBlock" class="setup-step" style="display: none;">
+                <div class="step-header">
+                    <span class="step-title">Not sure where to start?</span>
+                </div>
+                <button class="estimate-level-btn" id="estimateLevelBlockBtn" style="width: 100%;">Estimate My Level</button>
+            </div>
+
             <!-- Step 2: Level Selection -->
             <div id="step2" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
@@ -3304,6 +3312,14 @@
                     <span>Logged in as</span>
                     <span id="accountUserBadge" style="color: var(--accent-primary);">GUEST</span>
                 </div>
+                <div class="stat-row" style="cursor: pointer; display: none;" id="clearLevelEstimateRow">
+                    <span>Level estimate: <span id="levelEstimateDisplay" style="color: var(--accent-primary);"></span></span>
+                    <span style="color: var(--warning);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+                        </svg>
+                    </span>
+                </div>
                 <div class="stat-row" style="cursor: pointer;" id="logoutBtn">
                     <span>Logout</span>
                     <span style="color: var(--error);">
@@ -3544,7 +3560,8 @@
         }
 
         let currentUser = null; // { initials: string, isGuest: boolean }
-        let progressData = {}; // wordRank -> { correct, wrong, lastSeen }
+        let progressData = {}; // wordId -> { correct, wrong, lastSeen }
+        let levelEstimates = {}; // language -> rank (high-water mark from estimation quiz)
 
         // Check authentication on page load
         function checkAuthentication() {
@@ -3673,7 +3690,7 @@
                     // Convert array to object for easier lookup
                     progressData = {};
                     result.data.progress.forEach(item => {
-                        progressData[item.wordRank] = {
+                        progressData[item.wordId] = {
                             word: item.word,
                             language: item.language,
                             correct: item.correct,
@@ -3684,6 +3701,9 @@
                         };
                     });
                     console.log(`Loaded progress for ${result.data.progress.length} words`);
+                    if (result.data.levelEstimates) {
+                        levelEstimates = result.data.levelEstimates;
+                    }
                     updateIncorrectButtonVisibility();
                     updateTotalStatsButtonVisibility();
                 }
@@ -3693,23 +3713,42 @@
             }
         }
 
+        // Save the level estimate sentinel row to Google Sheets
+        async function saveLevelEstimateToSheet(rank) {
+            if (!currentUser || currentUser.isGuest) return;
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'save',
+                        user: currentUser.initials,
+                        word: '_LEVEL_ESTIMATE_',
+                        language: selectedLanguage,
+                        wordId: rank,
+                        sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+                    })
+                });
+            } catch (error) {
+                console.error('Failed to save level estimate:', error);
+            }
+        }
+
         // Save progress for a single word to Google Sheets
         async function saveWordProgress(card, isCorrect) {
-            // Use originalRank for progress tracking (matches vocabulary file index)
-            const wordRank = card.rank; // rank is now the unique identifier
+            const wordId = card.id; // stable hex ID — never changes on rerank
             const word = card.targetWord;
             const language = selectedLanguage;
             const timestamp = new Date().toISOString();
 
             if (!currentUser || currentUser.isGuest) {
                 // For guest mode, save to LocalStorage
-                saveToLocalStorage(wordRank, isCorrect);
+                saveToLocalStorage(wordId, isCorrect);
                 return;
             }
 
             // Update local progress data
-            if (!progressData[wordRank]) {
-                progressData[wordRank] = {
+            if (!progressData[wordId]) {
+                progressData[wordId] = {
                     word: word,
                     language: language,
                     correct: 0,
@@ -3721,15 +3760,15 @@
             }
 
             if (isCorrect) {
-                progressData[wordRank].correct++;
-                progressData[wordRank].lastCorrect = timestamp;
+                progressData[wordId].correct++;
+                progressData[wordId].lastCorrect = timestamp;
             } else {
-                progressData[wordRank].wrong++;
-                progressData[wordRank].lastWrong = timestamp;
+                progressData[wordId].wrong++;
+                progressData[wordId].lastWrong = timestamp;
             }
-            progressData[wordRank].lastSeen = timestamp;
-            progressData[wordRank].word = word;
-            progressData[wordRank].language = language;
+            progressData[wordId].lastSeen = timestamp;
+            progressData[wordId].word = word;
+            progressData[wordId].language = language;
 
             // Save to Google Sheets
             try {
@@ -3740,12 +3779,12 @@
                         user: currentUser.initials,
                         word: word,
                         language: language,
-                        wordRank: wordRank,
-                        correct: progressData[wordRank].correct,
-                        wrong: progressData[wordRank].wrong,
-                        lastCorrect: progressData[wordRank].lastCorrect,
-                        lastWrong: progressData[wordRank].lastWrong,
-                        lastSeen: progressData[wordRank].lastSeen,
+                        wordId: wordId,
+                        correct: progressData[wordId].correct,
+                        wrong: progressData[wordId].wrong,
+                        lastCorrect: progressData[wordId].lastCorrect,
+                        lastWrong: progressData[wordId].lastWrong,
+                        lastSeen: progressData[wordId].lastSeen,
                         sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
                     })
                 });
@@ -3757,23 +3796,23 @@
             } catch (error) {
                 console.error('Failed to save progress to Google Sheets:', error);
                 // Fallback to LocalStorage
-                saveToLocalStorage(wordRank, isCorrect);
+                saveToLocalStorage(wordId, isCorrect);
             }
         }
 
         // LocalStorage fallback for guest mode
-        function saveToLocalStorage(wordRank, isCorrect) {
+        function saveToLocalStorage(wordId, isCorrect) {
             const key = 'flashcard_progress_guest';
             let guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
 
-            if (!guestProgress[wordRank]) {
-                guestProgress[wordRank] = { correct: 0, wrong: 0 };
+            if (!guestProgress[wordId]) {
+                guestProgress[wordId] = { correct: 0, wrong: 0 };
             }
 
             if (isCorrect) {
-                guestProgress[wordRank].correct++;
+                guestProgress[wordId].correct++;
             } else {
-                guestProgress[wordRank].wrong++;
+                guestProgress[wordId].wrong++;
             }
 
             localStorage.setItem(key, JSON.stringify(guestProgress));
@@ -3806,6 +3845,15 @@
                 const submitBtn = document.getElementById('submitInitialsBtn');
                 const isValid = initials.length >= 2 && initials.length <= 4 && /^[A-Za-z]+$/.test(initials);
                 submitBtn.disabled = !isValid;
+            });
+
+            // Clear level estimate button
+            document.getElementById('clearLevelEstimateRow').addEventListener('click', function() {
+                levelEstimates[selectedLanguage] = 0;
+                saveLevelEstimateToSheet(0);
+                document.getElementById('clearLevelEstimateRow').style.display = 'none';
+                updateEstimateLevelBlock(); // re-show the prompt block
+                renderRangeSelector(); // refresh range mastered states
             });
 
             // Logout button (now in settings modal)
@@ -3881,6 +3929,13 @@
             }
         }
 
+        function updateEstimateLevelBlock() {
+            const block = document.getElementById('estimateLevelBlock');
+            const hasEstimate = (levelEstimates[selectedLanguage] || 0) > 0;
+            const show = !isBadBunnyMode && selectedLanguage === 'spanish' && !hasEstimate;
+            block.style.display = show ? 'block' : 'none';
+        }
+
         // Open estimation modal
         function openEstimationModal() {
             const modal = document.getElementById('estimationModal');
@@ -3907,7 +3962,11 @@
                 estimatedLevel: null,
                 vocabularyData: null,
                 history: [],
-                maxLevel: isBadBunnyMode ? 8500 : 11000
+                maxLevel: isBadBunnyMode ? 8500 : 11000,
+                // detailed mode binary search state
+                lowerBound: 0,
+                upperBound: isBadBunnyMode ? 8500 : 11000,
+                confirmationLevel: null
             };
         }
 
@@ -3941,9 +4000,6 @@
             // Initialize state with adaptive parameters
             estimationState.active = true;
             estimationState.mode = mode;
-            estimationState.currentLevel = 500; // Start at 500
-            estimationState.stride = mode === 'quick' ? 500 : 300;
-            estimationState.minStride = mode === 'quick' ? 200 : 100;
             estimationState.maxLevel = maxLevel;
             estimationState.wordIndex = 0;
             estimationState.correct = 0;
@@ -3952,6 +4008,21 @@
             estimationState.checkpointWrong = 0;
             estimationState.history = [];
             estimationState.estimatedLevel = null;
+
+            if (mode === 'detailed') {
+                // Binary search: find highest level where user scores ≥4/5
+                estimationState.lowerBound = 0;
+                estimationState.upperBound = maxLevel;
+                estimationState.confirmationLevel = null;
+                estimationState.minStride = 100;
+                estimationState.stride = null; // not used in detailed mode
+                estimationState.currentLevel = Math.floor(maxLevel / 2);
+            } else {
+                // Quick mode — unchanged heuristic
+                estimationState.currentLevel = 500;
+                estimationState.stride = 500;
+                estimationState.minStride = 200;
+            }
 
             // Show test UI
             document.getElementById('estimationIntro').style.display = 'none';
@@ -3967,18 +4038,17 @@
             const vocabData = estimationState.vocabularyData;
             if (!vocabData) return [];
 
-            // Filter valid words (not English, not interjections, etc. for Bad Bunny)
+            // Always exclude cognates, interjections, proper nouns, and English words from
+            // estimation — these aren't genuine vocabulary tests and would inflate the result
             let validWords = vocabData.filter(item =>
                 item.word && item.word.trim() !== '' &&
                 !item.duplicate &&
-                item.meanings && item.meanings.length > 0
+                item.meanings && item.meanings.length > 0 &&
+                !item.is_transparent_cognate &&
+                !item.is_interjection &&
+                !item.is_propernoun &&
+                !item.is_english
             );
-
-            if (isBadBunnyMode) {
-                validWords = validWords.filter(item =>
-                    !item.is_english && !item.is_interjection && !item.is_propernoun
-                );
-            }
 
             // Hide single-occurrence words if enabled
             if (hideSingleOccurrence && validWords.length > 0 && validWords[0].hasOwnProperty('corpus_count')) {
@@ -4065,57 +4135,99 @@
             }
         }
 
-        // Evaluate checkpoint performance and decide next action (adaptive algorithm)
+        // Evaluate checkpoint performance and decide next action
         function evaluateCheckpoint() {
             const correct = estimationState.checkpointCorrect;
             const currentLevel = estimationState.currentLevel;
+
+            estimationState.history.push({ level: currentLevel, correct });
+
+            if (estimationState.mode === 'detailed') {
+                evaluateCheckpointDetailed(correct, currentLevel);
+            } else {
+                evaluateCheckpointQuick(correct, currentLevel);
+            }
+        }
+
+        // Detailed mode: binary search with confirmation step for 4/5
+        function evaluateCheckpointDetailed(correct, currentLevel) {
+            const { lowerBound, upperBound, minStride, confirmationLevel } = estimationState;
+
+            if (confirmationLevel !== null) {
+                // Resolving a pending 4/5 confirmation
+                estimationState.confirmationLevel = null;
+                if (correct >= 4) {
+                    // Confirmed — accept the level we were confirming
+                    estimationState.lowerBound = confirmationLevel;
+                } else {
+                    // Didn't confirm — that 4/5 was noise
+                    estimationState.upperBound = confirmationLevel;
+                }
+                advanceDetailedSearch();
+                return;
+            }
+
+            if (correct === 5) {
+                // Solid mastery — accept this level and search higher
+                estimationState.lowerBound = currentLevel;
+                advanceDetailedSearch();
+            } else if (correct === 4) {
+                // Probably fine, but retest lower to confirm before accepting
+                const gap = currentLevel - lowerBound;
+                if (gap > minStride * 2) {
+                    // Enough room to confirm — test a third of the way back down
+                    const confirmAt = Math.max(lowerBound + 1, currentLevel - Math.floor(gap / 3));
+                    estimationState.confirmationLevel = currentLevel;
+                    estimationState.currentLevel = confirmAt;
+                    loadEstimationLevel();
+                } else {
+                    // Too close to confirmed territory — accept 4/5 as sufficient
+                    estimationState.lowerBound = currentLevel;
+                    advanceDetailedSearch();
+                }
+            } else {
+                // ≤3/5 — not at this level
+                estimationState.upperBound = currentLevel;
+                advanceDetailedSearch();
+            }
+        }
+
+        // Move to the midpoint of remaining search space, or stop if converged
+        function advanceDetailedSearch() {
+            const { lowerBound, upperBound, minStride } = estimationState;
+            const gap = upperBound - lowerBound;
+            if (gap <= minStride) {
+                // Converged — estimate is the highest confirmed good level
+                showEstimationResult(lowerBound);
+                return;
+            }
+            estimationState.currentLevel = Math.floor((lowerBound + upperBound) / 2);
+            loadEstimationLevel();
+        }
+
+        // Quick mode: original heuristic (unchanged)
+        function evaluateCheckpointQuick(correct, currentLevel) {
             const stride = estimationState.stride;
-
-            // Save to history for potential backtracking
-            estimationState.history.push({
-                level: currentLevel,
-                correct: correct,
-                stride: stride
-            });
-
-            // Adaptive decision logic:
-            // 5/5 (100%): Double stride, jump forward
-            // 4/5 (80%): Jump forward by 1.5x stride
-            // 3/5 (60%): Edge zone - halve stride, small jump forward
-            // 2/5 (40%): Halve stride, go back
-            // 0-1/5 (<40%): Halve stride, go back further
-
             let newLevel = currentLevel;
             let newStride = stride;
 
             if (correct >= 5) {
-                // Excellent - double stride and jump forward
                 newStride = Math.min(stride * 2, 2000);
                 newLevel = currentLevel + newStride;
             } else if (correct === 4) {
-                // Good - jump forward by 1.5x stride
                 newLevel = currentLevel + Math.round(stride * 1.5);
             } else if (correct === 3) {
-                // Edge zone - halve stride, small jump forward to narrow down
                 newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
                 newLevel = currentLevel + newStride;
             } else if (correct === 2) {
-                // Struggling - halve stride and go back
                 newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
                 newLevel = currentLevel - newStride;
             } else {
-                // Failed (0-1) - halve stride and go back further
                 newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
                 newLevel = currentLevel - Math.round(newStride * 1.5);
             }
 
-            // Clamp level to valid range
             newLevel = Math.max(50, Math.min(newLevel, estimationState.maxLevel));
-
-            // Check stopping conditions:
-            // 1. Stride has dropped to minimum and we're in edge zone (2-3 correct)
-            // 2. We've gone back to a level we already passed with good score
-            // 3. We've reached max level with good score
 
             const shouldStop =
                 (newStride <= estimationState.minStride && correct >= 2 && correct <= 3) ||
@@ -4123,15 +4235,12 @@
                 (newLevel <= 50 && correct <= 2);
 
             if (shouldStop) {
-                // Estimate is current level adjusted by performance
                 let estimatedLevel = currentLevel;
                 if (correct <= 2) {
-                    // Go back a bit from current
                     estimatedLevel = Math.max(0, currentLevel - Math.round(stride / 2));
                 }
                 showEstimationResult(estimatedLevel);
             } else {
-                // Continue with next level
                 estimationState.currentLevel = newLevel;
                 estimationState.stride = newStride;
                 loadEstimationLevel();
@@ -4160,6 +4269,9 @@
         // Apply the estimated level
         function useEstimatedLevel() {
             const level = estimationState.estimatedLevel;
+            levelEstimates[selectedLanguage] = level; // update in-memory immediately
+            saveLevelEstimateToSheet(level); // fire-and-forget
+            updateEstimateLevelBlock(); // hide the block now that an estimate is set
             closeEstimationModal();
 
             if (level === 0) {
@@ -4369,7 +4481,9 @@
             let cumulative = 0;
             for (let i = 0; i < ppmData.length; i++) {
                 if (hideSingleOccurrence && ppmData[i].ppm <= 1) {
-                    ppmData[i].cumulativePercent = 1.0;
+                    // Excluded words carry no coverage — leave cumulativePercent at
+                    // whatever the previous real word reached (don't advance it).
+                    ppmData[i].cumulativePercent = totalPpm > 0 ? cumulative / totalPpm : 0;
                 } else {
                     cumulative += ppmData[i].ppm;
                     ppmData[i].cumulativePercent = totalPpm > 0 ? cumulative / totalPpm : 0;
@@ -4400,6 +4514,9 @@
                 let endRank = maxRank;
                 for (let i = 0; i < ppmData.length; i++) {
                     if (ppmData[i].rank > maxRank) break;
+                    // Skip single-occurrence words — they carry cumulativePercent=1.0
+                    // which would otherwise match every threshold prematurely.
+                    if (hideSingleOccurrence && ppmData[i].ppm <= 1) continue;
                     if (ppmData[i].cumulativePercent >= level.threshold) {
                         endRank = ppmData[i].rank;
                         break;
@@ -4779,6 +4896,7 @@
                 this.classList.remove('visible');
                 document.getElementById('languageTabs').style.display = 'flex';
                 // Hide subsequent steps
+                document.getElementById('estimateLevelBlock').style.display = 'none';
                 document.getElementById('step2').style.display = 'none';
                 document.getElementById('lemmaToggleContainer').style.display = 'none';
                 document.getElementById('cognateToggleContainer').style.display = 'none';
@@ -4843,6 +4961,7 @@
                     // Hide loading indicator and show step 2
                     loadingIndicator.classList.remove('visible');
                     document.getElementById('step2').style.display = 'block';
+                    updateEstimateLevelBlock();
 
                     // Update step 2 title, tooltip, and % Mode button based on current mode
                     document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
@@ -5118,6 +5237,11 @@
                 openEstimationModal();
             });
 
+            // Estimate Level block button (shown between step 1 and step 2 when no estimate set)
+            document.getElementById('estimateLevelBlockBtn').addEventListener('click', function() {
+                openEstimationModal();
+            });
+
             // Close modal
             document.getElementById('closeEstimationModal').addEventListener('click', closeEstimationModal);
 
@@ -5334,16 +5458,19 @@
                 if (hasData && currentUser && !currentUser.isGuest && progressData && ranksInRange.length > 0) {
                     const wordsInRange = lemmaFilteredVocab.filter(item => item.rank >= i && item.rank < rangeEnd);
                     if (wordsInRange.length > 0) {
-                        // Check if ALL words in this range have been marked correct at least once
+                        // Check if ALL words in this range have been marked correct at least once,
+                        // or are covered by the level estimate high-water mark
+                        const estimate = levelEstimates[selectedLanguage] || 0;
                         isMastered = wordsInRange.every(item => {
-                            const progress = progressData[item.rank];
+                            if (item.rank <= estimate) return true;
+                            const progress = progressData[item.id];
                             return progress && progress.correct > 0 && progress.language === selectedLanguage;
                         });
 
                         // Check if ANY word in this range has been attempted (correct OR wrong > 0)
                         if (!isMastered) {
                             isAttempted = wordsInRange.some(item => {
-                                const progress = progressData[item.rank];
+                                const progress = progressData[item.id];
                                 return progress && progress.language === selectedLanguage &&
                                        ((progress.correct && progress.correct > 0) || (progress.wrong && progress.wrong > 0));
                             });
@@ -5577,11 +5704,14 @@
                     excludedLemma = beforeLemma - filteredData.length;
                 }
 
-                // Filter out words the user has already got correct (for logged-in users)
+                // Filter out words the user has already got correct (for logged-in users),
+                // including words covered by the level estimate high-water mark
                 if (currentUser && !currentUser.isGuest && progressData) {
                     const beforeMastered = filteredData.length;
+                    const estimate = levelEstimates[selectedLanguage] || 0;
                     filteredData = filteredData.filter(item => {
-                        const progress = progressData[item.rank];
+                        if (item.rank <= estimate) return false;
+                        const progress = progressData[item.id];
                         // Keep the word if no progress exists, or if correct is 0 or undefined
                         return !progress || !progress.correct || progress.correct === 0 || progress.language !== selectedLanguage;
                     });
@@ -5627,7 +5757,8 @@
                     const card = {
                         targetWord: item.word,
                         lemma: item.lemma || '',
-                        rank: item.rank, // This is now the unique identifier (original vocabulary file position)
+                        id: item.id,
+                        rank: item.rank,
                         corpusCount: item.corpus_count || null,
                         meanings: meanings,
                         translation: item.meanings[0].translation,
@@ -5691,12 +5822,12 @@
 
             // Get incorrect words for the currently selected language
             const incorrectWords = Object.entries(progressData)
-                .filter(([wordRank, data]) =>
+                .filter(([wordId, data]) =>
                     data.wrong > 0 &&
                     data.language === selectedLanguage
                 )
-                .map(([wordRank, data]) => ({
-                    wordRank: parseInt(wordRank),
+                .map(([wordId, data]) => ({
+                    wordId,
                     ...data
                 }))
                 // Sort by least recently correct (null lastCorrect = never correct, comes first)
@@ -5747,13 +5878,12 @@
                 }
                 const vocabularyData = await response.json();
 
-                // Create a lookup map by original rank (before any filtering)
-                // We need to match by word since progressData stores the original rank
+                // Create a lookup map by stable hex ID
                 const wordToVocab = {};
                 vocabularyData.forEach((item, index) => {
                     if (item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0) {
-                        // Store by original rank (index + 1)
-                        wordToVocab[index + 1] = item;
+                        item.rank = index + 1; // assign dynamic rank from array position
+                        wordToVocab[item.id] = item;
                     }
                 });
 
@@ -5762,7 +5892,7 @@
 
                 // Build flashcards from incorrect words
                 for (const incorrectWord of incorrectWords) {
-                    const item = wordToVocab[incorrectWord.wordRank];
+                    const item = wordToVocab[incorrectWord.wordId];
                     if (!item) continue; // Skip if word not found in vocabulary
 
                     const meanings = item.meanings.map(m => {
@@ -5790,7 +5920,8 @@
                     const card = {
                         targetWord: item.word,
                         lemma: item.lemma || '',
-                        rank: incorrectWord.wordRank,
+                        rank: item.rank,
+                        id: item.id,
                         meanings: meanings,
                         translation: item.meanings[0].translation,
                         targetSentence: firstExample.targetSentence,
@@ -6357,9 +6488,10 @@
                     return;
                 }
 
-                // Get the word ranks that are in the current flashcard set
+                // Get the word IDs that are in the current flashcard set
                 const wordsInSet = flashcards.map(card => ({
                     rank: card.rank,
+                    id: card.id,
                     word: card.targetWord
                 }));
 
@@ -6372,8 +6504,8 @@
                 try {
                     for (const wordInfo of wordsInSet) {
                         // Remove from local progressData
-                        if (progressData[wordInfo.rank]) {
-                            delete progressData[wordInfo.rank];
+                        if (progressData[wordInfo.id]) {
+                            delete progressData[wordInfo.id];
                         }
 
                         // Delete from Google Sheets
@@ -6382,7 +6514,7 @@
                             body: JSON.stringify({
                                 action: 'delete',
                                 user: currentUser.initials,
-                                wordRank: wordInfo.rank,
+                                wordId: wordInfo.id,
                                 sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
                             })
                         });
@@ -6965,6 +7097,16 @@
             // Update account tab with current user
             const userBadge = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
             document.getElementById('accountUserBadge').textContent = userBadge;
+
+            // Show/hide clear level estimate row
+            const estimate = levelEstimates[selectedLanguage] || 0;
+            const clearRow = document.getElementById('clearLevelEstimateRow');
+            if (currentUser && !currentUser.isGuest && estimate > 0) {
+                document.getElementById('levelEstimateDisplay').textContent = `~${estimate} words`;
+                clearRow.style.display = 'flex';
+            } else {
+                clearRow.style.display = 'none';
+            }
 
             // Update stats tab
             updateStatsTab();

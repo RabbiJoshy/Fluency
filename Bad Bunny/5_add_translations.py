@@ -48,12 +48,16 @@ if not CACHE_ONLY and (DO_TRANSLATE_WORDS or DO_TRANSLATE_EXAMPLES):
 _word_cache: dict[str, str] = {}
 _line_cache: dict[str, str] = {}
 
-# ── Pre-load translation caches and curated flags from old vocabulary ──
+# ── Pre-load translation caches, curated flags, and IDs from old vocabulary ──
 _old_flags: dict[str, dict] = {}
+_id_cache: dict[tuple[str, str], str] = {}  # (word, lemma) -> hex id
+_next_id: int = 1
+
 if OLD_VOCAB_PATH.exists():
     _old_data = json.loads(OLD_VOCAB_PATH.read_text(encoding="utf-8"))
     for _e in _old_data:
         _w = _e["word"]
+        _l = _e.get("lemma", _w)
         # Cache word translations
         for _m in _e.get("meanings", []):
             _t = _m.get("translation", "")
@@ -73,8 +77,16 @@ if OLD_VOCAB_PATH.exists():
                 "is_propernoun": _e.get("is_propernoun", False),
                 "is_transparent_cognate": _e.get("is_transparent_cognate", False),
             }
+        # Cache stable hex IDs
+        _cached_id = _e.get("id")
+        if _cached_id and (_w, _l) not in _id_cache:
+            _id_cache[(_w, _l)] = _cached_id
+            try:
+                _next_id = max(_next_id, int(_cached_id, 16) + 1)
+            except ValueError:
+                pass
     print(f"📦 Pre-loaded {len(_word_cache)} word + {len(_line_cache)} line translations from old vocab")
-    print(f"📦 Pre-loaded {len(_old_flags)} curated flag entries")
+    print(f"📦 Pre-loaded {len(_old_flags)} curated flag entries, {len(_id_cache)} IDs (next: {format(_next_id, '04x')})")
     del _old_data
 
 
@@ -217,7 +229,7 @@ def main():
     skipped_no_translate = 0
     start = time.perf_counter()
 
-    for rank, entry in enumerate(subset, start=1):
+    for entry in subset:
         word = str(entry.get("word", "")).strip()
         lemma = str(entry.get("lemma", "")).strip()
         display_form = entry.get("display_form")
@@ -328,8 +340,16 @@ def main():
         match_count = (entry.get("pos_summary") or {}).get("match_count", 0)
         corpus_count = entry.get("corpus_count", 0)
 
+        # Assign stable hex ID — preserve from cache, else generate new one
+        global _next_id
+        entry_id = _id_cache.get((word, lemma))
+        if entry_id is None:
+            entry_id = format(_next_id, '04x')
+            _id_cache[(word, lemma)] = entry_id
+            _next_id += 1
+
         out_entry = {
-            "rank": rank,
+            "id": entry_id,
             "word": word,
             "lemma": lemma,
             "meanings": meanings,

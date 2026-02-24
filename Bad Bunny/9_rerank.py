@@ -94,7 +94,7 @@ def sort_key(entry, word_to_rank, lemma_to_rank):
       4. Cognate status: False (0) before True (1)
       5. Word length ascending
     """
-    corpus_count = entry.get("corpus_count", 0)
+    corpus_count = entry.get("corpus_count") or 0
     spanish_rank = get_spanish_rank(entry, word_to_rank, lemma_to_rank)
     song_count = count_distinct_songs(entry)
     is_cognate = 1 if entry.get("is_transparent_cognate", False) else 0
@@ -113,43 +113,35 @@ def main():
     word_to_rank, lemma_to_rank = build_spanish_lookup(SPANISH_VOCAB_PATH)
     print(f"  {len(word_to_rank)} word entries, {len(lemma_to_rank)} lemma entries")
 
-    # Store original ranks
-    for entry in bb_data:
-        entry["original_rank"] = entry["rank"]
-
-    # Sort using tiebreakers
+    # Sort using tiebreakers — array position becomes the effective rank
     print("Sorting with tiebreakers...")
     bb_data.sort(key=lambda e: sort_key(e, word_to_rank, lemma_to_rank))
 
-    # Assign new sequential ranks
-    for i, entry in enumerate(bb_data):
-        entry["rank"] = i + 1
+    # Strip any leftover rank/original_rank fields from previous pipeline runs
+    for entry in bb_data:
+        entry.pop("rank", None)
+        entry.pop("original_rank", None)
 
     # Report statistics
-    moved = sum(1 for e in bb_data if e["rank"] != e["original_rank"])
     matched = sum(
         1
         for e in bb_data
         if get_spanish_rank(e, word_to_rank, lemma_to_rank) < SENTINEL_RANK
     )
     print(f"\nResults:")
-    print(f"  {moved} entries changed rank ({moved * 100 / len(bb_data):.1f}%)")
+    print(f"  {len(bb_data)} entries sorted (rank = array position + 1)")
     print(f"  {matched} entries matched in Spanish vocab ({matched * 100 / len(bb_data):.1f}%)")
 
-    # Show some examples of re-ranking within a tie group
-    from collections import Counter
-
-    cc_counts = Counter(e["corpus_count"] for e in bb_data)
-    # Show re-ranking for corpus_count=3 (a large tie group)
+    # Show sample of ordering within a tie group
     cc3 = [e for e in bb_data if e["corpus_count"] == 3]
     print(f"\n  Sample: corpus_count=3 ({len(cc3)} words)")
-    print(f"  First 10 (now highest priority):")
-    for e in cc3[:10]:
+    print(f"  First 10 (highest priority):")
+    for i, e in enumerate(cc3[:10]):
         sp_rank = get_spanish_rank(e, word_to_rank, lemma_to_rank)
         songs = count_distinct_songs(e)
         sp_str = str(sp_rank) if sp_rank < SENTINEL_RANK else "—"
         print(
-            f"    rank {e['rank']:>5} (was {e['original_rank']:>5}): "
+            f"    pos {bb_data.index(e) + 1:>5}: "
             f"{e['word']:<20} sp_rank={sp_str:<6} songs={songs} "
             f"cognate={e.get('is_transparent_cognate', False)}"
         )

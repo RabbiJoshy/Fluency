@@ -39,21 +39,29 @@ function doGet(e) {
  * Save user progress to the sheet
  */
 function saveProgress(params) {
-  const { user, word, language, wordRank, correct, wrong, lastCorrect, lastWrong, lastSeen, sheet } = params;
+  const { user, word, language, wordId, correct, wrong, lastCorrect, lastWrong, lastSeen, sheet } = params;
   const sheetName = sheet || 'UserProgress';
 
-  if (!user || wordRank === undefined) {
-    return createResponse(false, 'Missing required fields: user, wordRank');
+  if (!user || wordId === undefined) {
+    return createResponse(false, 'Missing required fields: user, wordId');
   }
 
   const sheetObj = getOrCreateSheet(sheetName);
   const data = sheetObj.getDataRange().getValues();
 
+  const isSentinel = (word === '_LEVEL_ESTIMATE_');
   let rowIndex = -1;
   for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === user && data[i][2] === wordRank) {
-      rowIndex = i + 1;
-      break;
+    if (isSentinel) {
+      if (data[i][0] === user && data[i][1] === '_LEVEL_ESTIMATE_' && data[i][3] === (language || '')) {
+        rowIndex = i + 1;
+        break;
+      }
+    } else {
+      if (data[i][0] === user && data[i][2] === wordId) {
+        rowIndex = i + 1;
+        break;
+      }
     }
   }
 
@@ -65,7 +73,7 @@ function saveProgress(params) {
     sheetObj.getRange(rowIndex, 1, 1, 8).setValues([[
       user,
       word || data[rowIndex - 1][1],
-      wordRank,
+      wordId,
       language || data[rowIndex - 1][3],
       correctCount,
       wrongCount,
@@ -76,7 +84,7 @@ function saveProgress(params) {
     sheetObj.appendRow([
       user,
       word || '',
-      wordRank,
+      wordId,
       language || '',
       correctCount,
       wrongCount,
@@ -102,29 +110,34 @@ function loadProgress(params) {
   const sheetObj = getOrCreateSheet(sheetName);
   const data = sheetObj.getDataRange().getValues();
   const userProgress = [];
+  const levelEstimates = {};
 
   for (let i = 1; i < data.length; i++) {
     if (data[i][0] === user) {
-      userProgress.push({
-        word: data[i][1],
-        wordRank: data[i][2],
-        language: data[i][3],
-        correct: data[i][4],
-        wrong: data[i][5],
-        lastCorrect: data[i][6],
-        lastWrong: data[i][7]
-      });
+      if (data[i][1] === '_LEVEL_ESTIMATE_') {
+        levelEstimates[data[i][3]] = data[i][2]; // language -> rank
+      } else {
+        userProgress.push({
+          word: data[i][1],
+          wordId: data[i][2],
+          language: data[i][3],
+          correct: data[i][4],
+          wrong: data[i][5],
+          lastCorrect: data[i][6],
+          lastWrong: data[i][7]
+        });
+      }
     }
   }
 
-  return createResponse(true, 'Progress loaded successfully', { progress: userProgress });
+  return createResponse(true, 'Progress loaded successfully', { progress: userProgress, levelEstimates });
 }
 
 /**
  * Delete user progress
  */
 function deleteProgress(params) {
-  const { user, wordRank, sheet } = params;
+  const { user, wordId, sheet } = params;
   const sheetName = sheet || 'UserProgress';
 
   if (!user) {
@@ -136,7 +149,7 @@ function deleteProgress(params) {
 
   for (let i = data.length - 1; i >= 1; i--) {
     if (data[i][0] === user) {
-      if (wordRank === undefined || data[i][2] === wordRank) {
+      if (wordId === undefined || data[i][2] === wordId) {
         sheetObj.deleteRow(i + 1);
       }
     }
@@ -154,7 +167,7 @@ function getOrCreateSheet(sheetName) {
 
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
-    sheet.appendRow(['User', 'Word', 'WordRank', 'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong']);
+    sheet.appendRow(['User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong']);
     sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
     sheet.setFrozenRows(1);
     sheet.autoResizeColumns(1, 8);
