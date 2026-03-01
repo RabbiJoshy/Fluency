@@ -4448,7 +4448,7 @@
                             for (let idx = 0; idx < vocabData.length; idx++) {
                                 const item = vocabData[idx];
                                 const freq = hasCorpusCount ? (item.corpus_count || 0) : (item.occurrences_ppm || 0);
-                                ppmData.push({ rank: idx + 1, ppm: freq });
+                                ppmData.push({ rank: idx + 1, ppm: freq, id: item.id });
                             }
 
                             recalculateCumulativePercents();
@@ -4547,13 +4547,17 @@
         function calculateCoveragePercent() {
             if (!ppmData || ppmData.length === 0 || !progressData) return 0;
 
+            // Build id→ppmEntry lookup once for performance
+            const idToPpm = {};
+            for (const entry of ppmData) {
+                if (entry.id) idToPpm[entry.id] = entry;
+            }
+
             let coveredPpm = 0;
-            for (const [rank, data] of Object.entries(progressData)) {
+            for (const [wordId, data] of Object.entries(progressData)) {
                 if (data.language === selectedLanguage && data.correct > 0) {
-                    const rankNum = parseInt(rank);
-                    const ppmEntry = ppmData.find(p => p.rank === rankNum);
+                    const ppmEntry = idToPpm[wordId];
                     if (ppmEntry) {
-                        // Skip freq-1 words when hideSingleOccurrence is on
                         if (hideSingleOccurrence && ppmEntry.ppm <= 1) continue;
                         coveredPpm += ppmEntry.ppm;
                     }
@@ -5359,6 +5363,54 @@
             }
         }
 
+        // Shared vocabulary filter pipeline used by renderRangeSelector and loadVocabularyData.
+        // Applies all active exclusions in the correct order and assigns corpus-wide display ranks.
+        // Returns { vocab: filteredArray, counts: { english, cognates, singleOcc, lemma } }
+        function buildFilteredVocab(vocabData) {
+            // Assign stable rank from array position (pipeline sort order)
+            vocabData.forEach((item, index) => { item.rank = index + 1; });
+
+            // Basic: non-blank, no duplicates, has meanings
+            let result = vocabData.filter(item =>
+                item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
+            );
+
+            const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
+
+            // Bad Bunny mode: skip English loanwords, interjections, proper nouns
+            if (isBadBunnyMode) {
+                const before = result.length;
+                result = result.filter(item => !item.is_english && !item.is_interjection && !item.is_propernoun);
+                counts.english = before - result.length;
+            }
+
+            // Cognate exclusion
+            if (excludeCognates && cognateFieldAvailable) {
+                const before = result.length;
+                result = result.filter(item => !item.is_transparent_cognate);
+                counts.cognates = before - result.length;
+            }
+
+            // Single-occurrence word hiding
+            if (hideSingleOccurrence && result.length > 0 && result[0].hasOwnProperty('corpus_count')) {
+                const before = result.length;
+                result = result.filter(item => item.corpus_count > 1);
+                counts.singleOcc = before - result.length;
+            }
+
+            // Lemma mode: one card per lemma group
+            if (useLemmaMode && lemmaFieldAvailable) {
+                const before = result.length;
+                result = result.filter(item => item.most_frequent_lemma_instance === true);
+                counts.lemma = before - result.length;
+            }
+
+            // Assign corpus-wide display ranks so set numbering is continuous across levels
+            result.forEach((item, idx) => { item.displayRank = idx + 1; });
+
+            return { vocab: result, counts };
+        }
+
         async function renderRangeSelector() {
             const langConfig = config.languages[selectedLanguage];
             const container = document.getElementById('rangeSelector');
@@ -5396,41 +5448,7 @@
                 console.error('Failed to load vocabulary data:', error);
             }
 
-            // Assign original ranks (unique identifiers) to vocabulary items
-            vocabularyData.forEach((item, index) => {
-                item.rank = index + 1;
-            });
-
-            // Filter to non-blank entries and exclude duplicates
-            let filteredVocab = vocabularyData.filter(item =>
-                item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
-            );
-
-            // In Bad Bunny mode, skip English words, interjections, and proper nouns
-            if (isBadBunnyMode) {
-                filteredVocab = filteredVocab.filter(item =>
-                    !item.is_english && !item.is_interjection && !item.is_propernoun
-                );
-            }
-
-            // If excluding cognates, filter out transparent cognates
-            if (excludeCognates && cognateFieldAvailable) {
-                filteredVocab = filteredVocab.filter(item => !item.is_transparent_cognate);
-            }
-
-            // Hide single-occurrence words if enabled
-            if (hideSingleOccurrence && filteredVocab.length > 0 && filteredVocab[0].hasOwnProperty('corpus_count')) {
-                filteredVocab = filteredVocab.filter(item => item.corpus_count > 1);
-            }
-
-            // Apply lemma filter across the full corpus before assigning display ranks
-            let lemmaFilteredVocab = filteredVocab;
-            if (useLemmaMode && lemmaFieldAvailable) {
-                lemmaFilteredVocab = filteredVocab.filter(item => item.most_frequent_lemma_instance === true);
-            }
-
-            // Assign corpus-wide display ranks so numbering is continuous across all levels
-            lemmaFilteredVocab.forEach((item, idx) => { item.displayRank = idx + 1; });
+            const { vocab: lemmaFilteredVocab } = buildFilteredVocab(vocabularyData);
 
             // Now slice to this level's range
             const wordsInLevel = lemmaFilteredVocab.filter(item =>
@@ -5647,50 +5665,13 @@
                     item.rank = index + 1; // Use original position as the rank (unique identifier)
                 });
 
-                // Filter to non-blank entries and exclude duplicates
-                let filteredData = vocabularyData.filter(item =>
-                    item.word &&
-                    item.word.trim() !== '' &&
-                    !item.duplicate &&
-                    item.meanings &&
-                    item.meanings.length > 0
-                );
-
-                // Exclusion tracking
-                let excludedEnglish = 0, excludedCognates = 0, excludedSingleOcc = 0, excludedLemma = 0, excludedMastered = 0;
-
-                // In Bad Bunny mode, skip English words, interjections, and proper nouns
-                if (isBadBunnyMode) {
-                    const beforeBB = filteredData.length;
-                    filteredData = filteredData.filter(item =>
-                        !item.is_english && !item.is_interjection && !item.is_propernoun
-                    );
-                    excludedEnglish = beforeBB - filteredData.length;
-                }
-
-                // If excluding cognates, filter out transparent cognates
-                if (excludeCognates && cognateFieldAvailable) {
-                    const beforeCog = filteredData.length;
-                    filteredData = filteredData.filter(item => !item.is_transparent_cognate);
-                    excludedCognates = beforeCog - filteredData.length;
-                }
-
-                // Hide single-occurrence words if enabled
-                if (hideSingleOccurrence && filteredData.length > 0 && filteredData[0].hasOwnProperty('corpus_count')) {
-                    const beforeSingle = filteredData.length;
-                    filteredData = filteredData.filter(item => item.corpus_count > 1);
-                    excludedSingleOcc = beforeSingle - filteredData.length;
-                }
-
-                // Apply lemma mode filter across the full corpus before assigning display ranks
-                if (useLemmaMode && lemmaFieldAvailable) {
-                    const beforeLemma = filteredData.length;
-                    filteredData = filteredData.filter(item => item.most_frequent_lemma_instance === true);
-                    excludedLemma = beforeLemma - filteredData.length;
-                }
-
-                // Assign corpus-wide display ranks (matches renderRangeSelector)
-                filteredData.forEach((item, idx) => { item.displayRank = idx + 1; });
+                const { vocab: _baseVocab, counts: exCounts } = buildFilteredVocab(vocabularyData);
+                let filteredData = _baseVocab;
+                const excludedEnglish = exCounts.english;
+                const excludedCognates = exCounts.cognates;
+                const excludedSingleOcc = exCounts.singleOcc;
+                const excludedLemma = exCounts.lemma;
+                let excludedMastered = 0;
 
                 // Filter by the requested range using corpus-wide display ranks
                 filteredData = filteredData.filter(item =>
