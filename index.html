@@ -5423,26 +5423,33 @@
                 filteredVocab = filteredVocab.filter(item => item.corpus_count > 1);
             }
 
-            // Filter to items within the level's range (using original ranks)
-            filteredVocab = filteredVocab.filter(item =>
-                item.rank >= minWord && item.rank < maxWord
-            );
-
-            // For lemma mode, further filter to only lemma instances
+            // Apply lemma filter across the full corpus before assigning display ranks
             let lemmaFilteredVocab = filteredVocab;
             if (useLemmaMode && lemmaFieldAvailable) {
                 lemmaFilteredVocab = filteredVocab.filter(item => item.most_frequent_lemma_instance === true);
             }
 
-            // Assign display ranks so every set is exactly groupSize words
+            // Assign corpus-wide display ranks so numbering is continuous across all levels
             lemmaFilteredVocab.forEach((item, idx) => { item.displayRank = idx + 1; });
-            const totalDisplayWords = lemmaFilteredVocab.length;
 
-            // Generate range buttons using display ranks
+            // Now slice to this level's range
+            const wordsInLevel = lemmaFilteredVocab.filter(item =>
+                item.rank >= minWord && item.rank < maxWord
+            );
+
+            if (wordsInLevel.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            const minDisplayRank = wordsInLevel[0].displayRank;
+            const maxDisplayRank = wordsInLevel[wordsInLevel.length - 1].displayRank;
+
+            // Generate range buttons using corpus-wide display ranks
             const ranges = [];
-            for (let i = 1; i <= totalDisplayWords; i += groupSize) {
-                const rangeEnd = Math.min(i + groupSize, totalDisplayWords + 1);
-                const wordsInRange = lemmaFilteredVocab.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
+            for (let i = minDisplayRank; i <= maxDisplayRank; i += groupSize) {
+                const rangeEnd = Math.min(i + groupSize, maxDisplayRank + 1);
+                const wordsInRange = wordsInLevel.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
                 const hasData = wordsInRange.length > 0;
 
                 // Check mastery and attempted status
@@ -5675,32 +5682,17 @@
                     excludedSingleOcc = beforeSingle - filteredData.length;
                 }
 
-                // Determine level boundaries (same logic as renderRangeSelector)
-                let minWord = 1, maxWord = vocabularyData.length + 1;
-                if (percentageMode && ppmData && ppmData.length > 0) {
-                    const selectedBtn = document.querySelector('.level-btn.selected');
-                    if (selectedBtn) {
-                        minWord = parseInt(selectedBtn.dataset.startRank);
-                        maxWord = parseInt(selectedBtn.dataset.endRank);
-                    }
-                } else if (selectedLevel) {
-                    const cefrLevels = getCefrLevels(selectedLanguage);
-                    const level = cefrLevels.find(l => l.level === selectedLevel);
-                    if (level) [minWord, maxWord] = level.wordCount.split('-').map(Number);
-                }
-                filteredData = filteredData.filter(item => item.rank >= minWord && item.rank < maxWord);
-
-                // Apply lemma mode filter before assigning display ranks
+                // Apply lemma mode filter across the full corpus before assigning display ranks
                 if (useLemmaMode && lemmaFieldAvailable) {
                     const beforeLemma = filteredData.length;
                     filteredData = filteredData.filter(item => item.most_frequent_lemma_instance === true);
                     excludedLemma = beforeLemma - filteredData.length;
                 }
 
-                // Assign display ranks to match renderRangeSelector's ordering
+                // Assign corpus-wide display ranks (matches renderRangeSelector)
                 filteredData.forEach((item, idx) => { item.displayRank = idx + 1; });
 
-                // Filter by the requested range using display ranks
+                // Filter by the requested range using corpus-wide display ranks
                 filteredData = filteredData.filter(item =>
                     item.displayRank >= rangeStart && item.displayRank < rangeEnd
                 );
