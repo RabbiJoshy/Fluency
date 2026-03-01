@@ -4444,11 +4444,11 @@
                             ppmData = [];
                             totalPpm = 0;
 
-                            // Sort by rank and extract frequency data
-                            const sortedVocab = [...vocabData].sort((a, b) => a.rank - b.rank);
-                            for (const item of sortedVocab) {
+                            // Vocab JSON is pre-sorted by the pipeline; use array index as rank
+                            for (let idx = 0; idx < vocabData.length; idx++) {
+                                const item = vocabData[idx];
                                 const freq = hasCorpusCount ? (item.corpus_count || 0) : (item.occurrences_ppm || 0);
-                                ppmData.push({ rank: item.rank, ppm: freq });
+                                ppmData.push({ rank: idx + 1, ppm: freq });
                             }
 
                             recalculateCumulativePercents();
@@ -5434,47 +5434,34 @@
                 lemmaFilteredVocab = filteredVocab.filter(item => item.most_frequent_lemma_instance === true);
             }
 
-            // Create a Set of all available ranks for fast lookup
-            const availableRanks = new Set(lemmaFilteredVocab.map(item => item.rank));
+            // Assign display ranks so every set is exactly groupSize words
+            lemmaFilteredVocab.forEach((item, idx) => { item.displayRank = idx + 1; });
+            const totalDisplayWords = lemmaFilteredVocab.length;
 
-            // Generate ALL possible range buttons based on groupSize across the full span
+            // Generate range buttons using display ranks
             const ranges = [];
-            for (let i = minWord; i < maxWord; i += groupSize) {
-                const rangeEnd = Math.min(i + groupSize, maxWord);
-
-                // Check if ANY rank in this range has data (after lemma filtering)
-                let hasData = false;
-                let ranksInRange = [];
-                for (let rank = i; rank < rangeEnd; rank++) {
-                    if (availableRanks.has(rank)) {
-                        hasData = true;
-                        ranksInRange.push(rank);
-                    }
-                }
+            for (let i = 1; i <= totalDisplayWords; i += groupSize) {
+                const rangeEnd = Math.min(i + groupSize, totalDisplayWords + 1);
+                const wordsInRange = lemmaFilteredVocab.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
+                const hasData = wordsInRange.length > 0;
 
                 // Check mastery and attempted status
                 let isMastered = false;
                 let isAttempted = false;
-                if (hasData && currentUser && !currentUser.isGuest && progressData && ranksInRange.length > 0) {
-                    const wordsInRange = lemmaFilteredVocab.filter(item => item.rank >= i && item.rank < rangeEnd);
-                    if (wordsInRange.length > 0) {
-                        // Check if ALL words in this range have been marked correct at least once,
-                        // or are covered by the level estimate high-water mark
-                        const estimate = levelEstimates[selectedLanguage] || 0;
-                        isMastered = wordsInRange.every(item => {
-                            if (item.rank <= estimate) return true;
-                            const progress = progressData[item.id];
-                            return progress && progress.correct > 0 && progress.language === selectedLanguage;
-                        });
+                if (hasData && currentUser && !currentUser.isGuest && progressData) {
+                    const estimate = levelEstimates[selectedLanguage] || 0;
+                    isMastered = wordsInRange.every(item => {
+                        if (item.rank <= estimate) return true;
+                        const progress = progressData[item.id];
+                        return progress && progress.correct > 0 && progress.language === selectedLanguage;
+                    });
 
-                        // Check if ANY word in this range has been attempted (correct OR wrong > 0)
-                        if (!isMastered) {
-                            isAttempted = wordsInRange.some(item => {
-                                const progress = progressData[item.id];
-                                return progress && progress.language === selectedLanguage &&
-                                       ((progress.correct && progress.correct > 0) || (progress.wrong && progress.wrong > 0));
-                            });
-                        }
+                    if (!isMastered) {
+                        isAttempted = wordsInRange.some(item => {
+                            const progress = progressData[item.id];
+                            return progress && progress.language === selectedLanguage &&
+                                   ((progress.correct && progress.correct > 0) || (progress.wrong && progress.wrong > 0));
+                        });
                     }
                 }
 
@@ -5688,21 +5675,38 @@
                     excludedSingleOcc = beforeSingle - filteredData.length;
                 }
 
-                // Filter by the requested range (using original ranks)
-                filteredData = filteredData.filter(item =>
-                    item.rank >= rangeStart && item.rank < rangeEnd
-                );
+                // Determine level boundaries (same logic as renderRangeSelector)
+                let minWord = 1, maxWord = vocabularyData.length + 1;
+                if (percentageMode && ppmData && ppmData.length > 0) {
+                    const selectedBtn = document.querySelector('.level-btn.selected');
+                    if (selectedBtn) {
+                        minWord = parseInt(selectedBtn.dataset.startRank);
+                        maxWord = parseInt(selectedBtn.dataset.endRank);
+                    }
+                } else if (selectedLevel) {
+                    const cefrLevels = getCefrLevels(selectedLanguage);
+                    const level = cefrLevels.find(l => l.level === selectedLevel);
+                    if (level) [minWord, maxWord] = level.wordCount.split('-').map(Number);
+                }
+                filteredData = filteredData.filter(item => item.rank >= minWord && item.rank < maxWord);
 
-                // Count total in range before lemma/mastered filtering
-                const totalInRange = filteredData.length;
-
-                // If in lemma mode, filter to only entries where most_frequent_lemma_instance is true
-                // This happens AFTER range filtering, so lemma mode just shows fewer cards within the same range
+                // Apply lemma mode filter before assigning display ranks
                 if (useLemmaMode && lemmaFieldAvailable) {
                     const beforeLemma = filteredData.length;
                     filteredData = filteredData.filter(item => item.most_frequent_lemma_instance === true);
                     excludedLemma = beforeLemma - filteredData.length;
                 }
+
+                // Assign display ranks to match renderRangeSelector's ordering
+                filteredData.forEach((item, idx) => { item.displayRank = idx + 1; });
+
+                // Filter by the requested range using display ranks
+                filteredData = filteredData.filter(item =>
+                    item.displayRank >= rangeStart && item.displayRank < rangeEnd
+                );
+
+                // Count total in range before mastered filtering
+                const totalInRange = filteredData.length;
 
                 // Filter out words the user has already got correct (for logged-in users),
                 // including words covered by the level estimate high-water mark
