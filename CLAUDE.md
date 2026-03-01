@@ -16,10 +16,12 @@ The interesting part is the **data pipeline** that generates the vocabulary JSON
 
 ```
 Fluency/
-├── index.html                      # Entire front-end application
+├── index.html                      # Entire front-end application (7640 lines: CSS + HTML + JS)
 ├── config.json                     # Language config and file path mappings
 ├── manifest.json / service-worker.js  # PWA support
 ├── cefr_levels.json                # CEFR level metadata
+├── estimation_checkpoints.json     # Vocabulary checkpoints for level-estimation quiz
+├── secrets.json                    # Google Apps Script URL (not committed)
 ├── Data/
 │   └── Spanish/
 │       └── vocabulary.json         # General Spanish frequency vocabulary (used by 9_rerank.py)
@@ -28,6 +30,8 @@ Fluency/
 ```
 
 All pipeline scripts are run from the **project root** (`Fluency/`), not from inside subdirectories.
+
+**Dev server:** `python3 -m http.server 8765` from the project root (configured in `.claude/launch.json`).
 
 ---
 
@@ -299,3 +303,265 @@ Python 3.9+ required (project uses `.venv/bin/python3`).
 - **Step 8 resets `is_transparent_cognate`**: any cognate flag set upstream is overwritten. Step 8 is always the authoritative pass; do not set `is_transparent_cognate` in earlier steps expecting it to survive.
 - **`strip_plural` over-strips**: the function removes terminal `-s` from any word. English words like `"famous"`, `"serious"`, `"previous"` all lose their `s`. Step 8 accounts for this by checking suffix rule results against both the stripped and unstripped English form.
 - **spaCy POS tags are noisy for slang**: `es_core_news_lg` assigns `X` (unknown) to a lot of slang, brand names, and English loanwords. The `pos_counts` in step 4 output should be treated as a signal, not ground truth.
+
+---
+
+## Front-end Architecture
+
+### Overview
+
+`index.html` is a 7640-line monolith containing all CSS (lines 17–2707), HTML (lines 2709–3336), and JavaScript (lines 3337–7639). There is no build step, no framework, and no bundler. It is served as a static file. The app is a multi-step setup screen that transitions into a flashcard view.
+
+**Two entry points:**
+- `index.html` — standard vocabulary mode (Spanish, Swedish, Italian, Dutch, Polish)
+- `index.html?mode=badbunny` — Bad Bunny mode (Spanish only, separate vocabulary file with song lyrics)
+
+---
+
+### `config.json` Schema
+
+Loaded on startup by `loadConfig()`. Drives language-specific behaviour.
+
+```json
+{
+  "languages": {
+    "spanish": {
+      "name": "Spanish",
+      "dataPath": "Data/Spanish/vocabulary.json",
+      "ppmDataPath": "Data/Spanish/SpanishRawWiki.csv",
+      "exampleTargetField": "example_spanish",
+      "exampleEnglishField": "example_english",
+      "colorTheme": { "primary": "#C8102E", "secondary": "#FFCC00" },
+      "cefrLevels": [
+        { "level": "A1", "description": "Beginner", "wordCount": "1-800" },
+        ...
+      ],
+      "referenceLinks": {
+        "wordReference": "https://www.wordreference.com/es/en/translation.asp?spen={word}",
+        ...
+      }
+    }
+  }
+}
+```
+
+Key fields:
+- `dataPath` — JSON vocabulary file for this language
+- `ppmDataPath` — CSV with `rank,occurrences_ppm` columns (optional; enables % coverage mode)
+- `exampleTargetField` / `exampleEnglishField` — keys inside each meaning's `examples[]` for sentence display
+- `hasData: false` — marks a language as coming soon (grays out the tab)
+
+---
+
+### Hex Word IDs
+
+Every vocabulary entry has a stable `id` field: a 4-digit zero-padded **hex** string (e.g., `"0001"`, `"000a"`, `"003f"`). Generated in pipeline step 5 as `format(_next_id, '04x')`, keyed on `(word, lemma)` pair, persisted across runs via `old_vocabulary_cache.json`.
+
+**Why hex IDs matter for the front-end:**
+- `progressData` is keyed by this hex ID: `progressData["001f"] = { correct: 3, wrong: 0, ... }`
+- They never change on rerank, so progress survives vocabulary reshuffles
+- The ID is read from the vocabulary JSON's `item.id` field and stored on flashcard objects as `card.id`
+- Google Sheets sync saves/loads these IDs as the row key
+
+---
+
+### Key Global Variables
+
+All declared at the top of the `<script>` block (lines 3347–3404):
+
+| Variable | Type | Purpose |
+|---|---|---|
+| `flashcards` | `Array` | Current active deck — objects shaped `{ targetWord, lemma, id, rank, meanings[], ... }` |
+| `currentIndex` | `number` | Index into `flashcards` for the visible card |
+| `currentMeaningIndex` | `number` | Which POS meaning is selected on the back face |
+| `currentExampleIndex` | `number` | Which lyric example is shown (Bad Bunny mode) |
+| `isFlipped` | `boolean` | Flip **direction** toggle (target→English vs English→target); not card-flip state |
+| `stats` | `object` | `{ studied: Set, correct, incorrect, total, cardStats: { [idx]: {correct,incorrect} } }` |
+| `config` | `object\|null` | Loaded `config.json` |
+| `selectedLanguage` | `string` | Key into `config.languages` (e.g. `"spanish"`) |
+| `selectedLevel` | `string\|null` | CEFR level string (e.g. `"A1"`) or null |
+| `groupSize` | `number` | Cards per set (25 or 50) |
+| `useLemmaMode` | `boolean` | One card per lemma if true |
+| `excludeCognates` | `boolean` | Skip transparent cognates if true |
+| `percentageMode` | `boolean` | % coverage mode (vs CEFR level mode) |
+| `ppmData` | `Array\|null` | `[{ rank, ppm, id }]` — frequency data for coverage calculations |
+| `totalPpm` | `number` | Sum of all ppm values for coverage % denominator |
+| `isBadBunnyMode` | `boolean` | Computed from URL: `?mode=badbunny` |
+| `currentUser` | `object\|null` | `{ initials, isGuest }` — null until auth resolves |
+| `progressData` | `object` | `wordId → { correct, wrong, lastCorrect, lastWrong, lastSeen, word, language }` |
+| `levelEstimates` | `object` | `language → rank` — high-water mark from estimation quiz |
+| `estimationState` | `object` | Mutable state for the level-estimation quiz flow |
+| `isAppInitialized` | `boolean` | Guards `initializeApp()` so event listeners are only attached once |
+
+---
+
+### Setup UI Flow (5 steps)
+
+The setup panel (`#setupPanel`) shows steps sequentially:
+
+```
+Step 1: Language tabs (#languageTabs)
+   → user clicks a language tab
+   → loadPpmData() fetches ppm CSV if available
+   → step 2 appears
+
+Step 2: CEFR level / % coverage (#levelSelector, inside #step2)
+   → user clicks a level button (e.g. "A1")
+   → selectedLevel is set
+   → renderRangeSelector() builds the set buttons
+   → step 3 appears (if lemma data available)
+
+Step 3: Cards per Lemma (#lemmaToggleContainer)
+   → toggle 1 card/lemma vs. all forms
+   → sets useLemmaMode
+
+Step 4: Exclude Cognates (#cognateToggleContainer)
+   → toggle include vs. exclude cognates
+   → sets excludeCognates
+   → Only shown if cognateFieldAvailable (vocabulary has is_transparent_cognate)
+
+Step 5: Choose Set (#step4 in DOM, displayed as step 5)
+   → range buttons: "1–25", "26–50", etc.
+   → clicking a range button calls loadVocabularyData(rangeString)
+   → on success: #setupPanel hides, #appContent shows, initializeApp() called
+```
+
+Note: the DOM element `id="step4"` is visually rendered as step number 5. Steps 3 and 4 (lemma/cognate toggles) use container IDs `lemmaToggleContainer` / `cognateToggleContainer`, not `step3`/`step4`.
+
+---
+
+### Main Function Call Flow
+
+```
+loadConfig()                         # fetches config.json → state.config
+  └─ renderLanguageTabs()            # builds language tab buttons
+
+[user clicks language tab]
+  └─ loadPpmData(language)           # optional; fetches ppm CSV
+  └─ renderLevelSelector(language)   # builds A1/A2/B1... or % buttons
+  └─ updateLemmaToggleVisibility()   # fetches vocab to check lemma field
+  └─ updateCognateToggleVisibility() # fetches vocab to check cognate field
+
+[user clicks level button]
+  └─ renderRangeSelector()           # calls buildFilteredVocab() on full vocab
+                                     # slices to level's rank range
+                                     # builds "1-25", "26-50" set buttons
+
+[user clicks a set button]
+  └─ loadVocabularyData(rangeString) # fetches vocab JSON
+       └─ buildFilteredVocab()       # applies all filters (English, cognate, lemma, single-occ)
+       # filters by displayRank range
+       # filters out mastered words (progressData)
+       # converts to flashcard objects
+       # setTimeout 800ms → hides setup panel, shows #appContent
+       └─ initializeApp()            # updateCard() + attaches all event listeners (once)
+
+[flashcard interaction loop]
+  └─ updateCard()                    # renders current card (front + back)
+  └─ flipCard()                      # toggles .flipped class on #flashcard
+  └─ nextCard() / previousCard()     # advances currentIndex, calls updateCard()
+  └─ handleSwipeAction('correct'|'incorrect')
+       └─ recordCardResult()         # updates stats
+       └─ saveWordProgress()         # writes to progressData + Google Sheets + localStorage
+       └─ nextCard() or showEndOfDeckOptions()
+```
+
+---
+
+### `buildFilteredVocab(vocabData)` — Central Filter
+
+Applied to the full vocabulary array before slicing to a rank range. Returns `{ vocab, counts }`.
+
+Filter order:
+1. Remove blank words, duplicates, entries with no meanings
+2. Bad Bunny mode: remove `is_english`, `is_interjection`, `is_propernoun`
+3. `excludeCognates`: remove `is_transparent_cognate`
+4. `hideSingleOccurrence`: remove `corpus_count <= 1` (Bad Bunny mode only, enabled by default)
+5. `useLemmaMode`: keep only `most_frequent_lemma_instance === true`
+
+After filtering, assigns `displayRank` (1-based continuous rank across the filtered set). Range buttons use `displayRank` for set boundaries, **not** the original `rank` from the JSON. This means set 1–25 always contains exactly 25 words regardless of what was filtered out.
+
+---
+
+### `progressData` Schema
+
+```js
+progressData[hexWordId] = {
+  correct: 3,           // times marked correct in any session
+  wrong: 1,             // times marked wrong in any session
+  lastCorrect: "2025-01-15T10:23:00.000Z",  // ISO timestamp or null
+  lastWrong: "2025-01-10T08:00:00.000Z",    // ISO timestamp or null
+  lastSeen: "2025-01-15T10:23:00.000Z",
+  word: "eres",
+  language: "spanish"
+}
+```
+
+A word is considered **mastered** if `progressData[id].correct > 0` and `progressData[id].language === selectedLanguage`. Mastered words are filtered out of sets by `loadVocabularyData()`.
+
+`levelEstimates[language]` is a rank high-water mark — all words with `item.rank <= estimate` are also treated as mastered without needing individual progress records.
+
+Progress is stored in two places:
+- **Google Sheets** (for logged-in users) via a Google Apps Script URL loaded from `secrets.json`
+- **localStorage** (for guest users) under key `flashcard_progress_guest`
+
+---
+
+### Flashcard Object Shape
+
+Created by `loadVocabularyData()`, stored in `flashcards[]`:
+
+```js
+{
+  targetWord: "eres",       // display form (may use elided form from display_form)
+  lemma: "ser",
+  id: "0057",               // stable hex ID from vocabulary JSON
+  rank: 57,                 // original rank from vocabulary JSON (pipeline sort order)
+  corpusCount: 312,         // null for non-Bad-Bunny vocab
+  isMultiMeaning: true,
+  meanings: [
+    {
+      pos: "AUX",
+      meaning: "are",       // English translation
+      percentage: 0.83,     // fraction of corpus occurrences with this POS
+      targetSentence: "Tu ere' una pitcher...",
+      englishSentence: "You are a pitcher...",
+      allExamples: [{ song, song_name, spanish, english }, ...]
+    }
+  ],
+  translation: "are",       // meanings[0].translation (convenience copy)
+  links: { wordReference: "...", ... }
+}
+```
+
+---
+
+### Bad Bunny Mode Differences
+
+Activated by `?mode=badbunny` in the URL. Key differences:
+- Vocabulary file: `Bad Bunny/BadBunnyvocabulary.json` (not `Data/Spanish/vocabulary.json`)
+- Language tabs hidden; jumps straight to level/set selection
+- Filters out `is_english`, `is_interjection`, `is_propernoun` entries
+- `hideSingleOccurrence: true` by default (hides words seen only once in corpus)
+- Album artwork shown as card background (`updateBadBunnyBackground()`)
+- `corpusCount` is shown on cards (how many times word appears across discography)
+- Multiple lyric examples per card (`allExamples[]` can have >1 entry); tap example to cycle
+
+---
+
+### Authentication Flow
+
+1. `loadSecrets()` — fetches `secrets.json` to get `GOOGLE_SCRIPT_URL`
+2. `checkAuthentication()` — checks `localStorage.flashcardUser`; either calls `showUserInfo()` or shows guest/login UI
+3. `submitLogin(initials)` — posts to Google Sheets to look up user; on success sets `currentUser` and calls `loadUserProgressFromSheet()`
+4. `enterGuestMode()` — sets `currentUser = { initials: 'GUEST', isGuest: true }`; reads localStorage progress
+
+---
+
+### Common Front-end Pitfalls
+
+- **`isFlipped` ≠ card flip state**: `isFlipped` controls the *direction* (Spanish→English vs English→Spanish). The actual card flip (show front vs. back) is controlled by the `.flipped` CSS class on `#flashcard`.
+- **`displayRank` vs. `rank`**: Range buttons use `displayRank` (post-filter sequential). The vocabulary JSON's `rank` field reflects pipeline sort order. Always filter with `buildFilteredVocab()` before slicing by range.
+- **Step 5 DOM ID is "step4"**: The range selector div has `id="step4"` but displays as step 5. There is no `id="step3"` element — steps 3 and 4 use `lemmaToggleContainer` and `cognateToggleContainer`.
+- **`initializeApp()` is guarded**: It sets up all flashcard event listeners and is idempotent via `isAppInitialized`. Only runs once per page load; safe to call multiple times.
+- **Inline `onclick` in template literals**: `selectMeaning(idx)` and `cycleExample(event)` are emitted inside dynamically-built HTML strings. These must remain globally accessible if the JS is ever split into modules.

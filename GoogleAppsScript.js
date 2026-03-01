@@ -58,7 +58,7 @@ function saveProgress(params) {
         break;
       }
     } else {
-      if (data[i][0] === user && data[i][2] === wordId) {
+      if (data[i][0] === user && data[i][2] == wordId) { // == handles Sheets auto-converting "0039"→39
         rowIndex = i + 1;
         break;
       }

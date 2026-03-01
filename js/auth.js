@@ -1,0 +1,366 @@
+import './state.js';
+
+async function loadSecrets() {
+    try {
+        const response = await fetch('secrets.json');
+        if (response.ok) {
+            const secrets = await response.json();
+            GOOGLE_SCRIPT_URL = secrets.googleScriptUrl || '';
+        }
+    } catch (error) {
+        console.warn('Could not load secrets.json - Google Sheets sync will be disabled');
+    }
+}
+
+// Check authentication on page load
+function checkAuthentication() {
+    const savedUser = localStorage.getItem('flashcardUser');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        showUserInfo();
+        hideAuthModal();
+    } else {
+        showAuthModal();
+    }
+}
+
+// Show authentication modal
+function showAuthModal() {
+    const authModal = document.getElementById('authModal');
+    authModal.classList.remove('hidden');
+    document.getElementById('setupPanel').style.display = 'none';
+}
+
+// Hide authentication modal
+function hideAuthModal() {
+    const authModal = document.getElementById('authModal');
+    authModal.classList.add('hidden');
+    document.getElementById('setupPanel').style.display = 'block';
+}
+
+// Show user info badge
+function showUserInfo() {
+    const userInfo = document.getElementById('userInfo');
+    const userBadge = document.getElementById('userBadge');
+    userBadge.textContent = currentUser.isGuest ? 'GUEST' : currentUser.initials;
+    userInfo.classList.remove('hidden');
+}
+
+// Guest mode handler
+function enterGuestMode() {
+    currentUser = { isGuest: true };
+    localStorage.setItem('flashcardUser', JSON.stringify(currentUser));
+    showUserInfo();
+    hideAuthModal();
+    updateIncorrectButtonVisibility();
+}
+
+// Show login form
+function showLoginForm() {
+    document.getElementById('guestModeBtn').style.display = 'none';
+    document.getElementById('loginModeBtn').style.display = 'none';
+    document.getElementById('loginForm').classList.remove('hidden');
+    document.getElementById('userInitials').focus();
+}
+
+// Hide login form
+function hideLoginForm() {
+    document.getElementById('guestModeBtn').style.display = 'flex';
+    document.getElementById('loginModeBtn').style.display = 'flex';
+    document.getElementById('loginForm').classList.add('hidden');
+    document.getElementById('userInitials').value = '';
+}
+
+// Submit initials and login
+async function submitLogin() {
+    const initials = document.getElementById('userInitials').value.trim().toUpperCase();
+
+    if (initials.length < 2 || initials.length > 4 || !/^[A-Z]+$/.test(initials)) {
+        alert('Please enter 2-4 letters (A-Z only)');
+        return;
+    }
+
+    currentUser = { initials: initials, isGuest: false };
+    localStorage.setItem('flashcardUser', JSON.stringify(currentUser));
+    showUserInfo();
+    hideAuthModal();
+
+    // Load user progress from Google Sheets
+    await loadUserProgressFromSheet();
+}
+
+// Logout handler
+function logout() {
+    if (confirm('Are you sure you want to logout? Unsaved progress will be lost.')) {
+        localStorage.removeItem('flashcardUser');
+        currentUser = null;
+        progressData = {};
+        document.getElementById('userInfo').classList.add('hidden');
+
+        // Reset app state
+        flashcards = [];
+        currentIndex = 0;
+        stats = {
+            studied: new Set(),
+            correct: 0,
+            incorrect: 0,
+            total: 0,
+            cardStats: {}
+        };
+
+        // Hide app content and show auth modal
+        document.getElementById('appContent').classList.add('hidden');
+        showAuthModal();
+    }
+}
+
+// ========== GOOGLE SHEETS INTEGRATION ==========
+
+// Load user progress from Google Sheets
+async function loadUserProgressFromSheet() {
+    if (!currentUser || currentUser.isGuest) return;
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'load',
+                user: currentUser.initials,
+                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success && result.data && result.data.progress) {
+            // Convert array to object for easier lookup
+            progressData = {};
+            result.data.progress.forEach(item => {
+                progressData[item.wordId] = {
+                    word: item.word,
+                    language: item.language,
+                    correct: item.correct,
+                    wrong: item.wrong,
+                    lastCorrect: item.lastCorrect,
+                    lastWrong: item.lastWrong,
+                    lastSeen: item.lastSeen
+                };
+            });
+            console.log(`Loaded progress for ${result.data.progress.length} words`);
+            if (result.data.levelEstimates) {
+                levelEstimates = result.data.levelEstimates;
+            }
+            updateIncorrectButtonVisibility();
+            updateTotalStatsButtonVisibility();
+        }
+    } catch (error) {
+        console.error('Failed to load progress from Google Sheets:', error);
+        // Continue anyway - user can still practice
+    }
+}
+
+// Save the level estimate sentinel row to Google Sheets
+async function saveLevelEstimateToSheet(rank) {
+    if (!currentUser || currentUser.isGuest) return;
+    try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'save',
+                user: currentUser.initials,
+                word: '_LEVEL_ESTIMATE_',
+                language: selectedLanguage,
+                wordId: rank,
+                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+            })
+        });
+    } catch (error) {
+        console.error('Failed to save level estimate:', error);
+    }
+}
+
+// Save progress for a single word to Google Sheets
+async function saveWordProgress(card, isCorrect) {
+    const wordId = card.fullId; // composite ID: {lang}{mode}{hex} e.g. "es00001", "es10039"
+    const word = card.targetWord;
+    const language = selectedLanguage;
+    const timestamp = new Date().toISOString();
+
+    if (!currentUser || currentUser.isGuest) {
+        // For guest mode, save to LocalStorage
+        saveToLocalStorage(wordId, isCorrect);
+        return;
+    }
+
+    // Update local progress data
+    if (!progressData[wordId]) {
+        progressData[wordId] = {
+            word: word,
+            language: language,
+            correct: 0,
+            wrong: 0,
+            lastCorrect: null,
+            lastWrong: null,
+            lastSeen: null
+        };
+    }
+
+    if (isCorrect) {
+        progressData[wordId].correct++;
+        progressData[wordId].lastCorrect = timestamp;
+    } else {
+        progressData[wordId].wrong++;
+        progressData[wordId].lastWrong = timestamp;
+    }
+    progressData[wordId].lastSeen = timestamp;
+    progressData[wordId].word = word;
+    progressData[wordId].language = language;
+
+    // Save to Google Sheets
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'save',
+                user: currentUser.initials,
+                word: word,
+                language: language,
+                wordId: wordId,
+                correct: progressData[wordId].correct,
+                wrong: progressData[wordId].wrong,
+                lastCorrect: progressData[wordId].lastCorrect,
+                lastWrong: progressData[wordId].lastWrong,
+                lastSeen: progressData[wordId].lastSeen,
+                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+            })
+        });
+
+        const result = await response.json();
+        if (!result.success) {
+            console.error('Failed to save progress:', result.message);
+        }
+    } catch (error) {
+        console.error('Failed to save progress to Google Sheets:', error);
+        // Fallback to LocalStorage
+        saveToLocalStorage(wordId, isCorrect);
+    }
+}
+
+// LocalStorage fallback for guest mode
+function saveToLocalStorage(wordId, isCorrect) {
+    const key = 'flashcard_progress_guest';
+    let guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
+
+    if (!guestProgress[wordId]) {
+        guestProgress[wordId] = { correct: 0, wrong: 0 };
+    }
+
+    if (isCorrect) {
+        guestProgress[wordId].correct++;
+    } else {
+        guestProgress[wordId].wrong++;
+    }
+
+    localStorage.setItem(key, JSON.stringify(guestProgress));
+}
+
+// Setup authentication modal event listeners
+function setupAuthEventListeners() {
+    // Guest mode button
+    document.getElementById('guestModeBtn').addEventListener('click', enterGuestMode);
+
+    // Login mode button
+    document.getElementById('loginModeBtn').addEventListener('click', showLoginForm);
+
+    // Cancel login button
+    document.getElementById('cancelLoginBtn').addEventListener('click', hideLoginForm);
+
+    // Submit initials button
+    document.getElementById('submitInitialsBtn').addEventListener('click', submitLogin);
+
+    // Enter key in initials input
+    document.getElementById('userInitials').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            submitLogin();
+        }
+    });
+
+    // Enable/disable submit button based on input
+    document.getElementById('userInitials').addEventListener('input', (e) => {
+        const initials = e.target.value.trim();
+        const submitBtn = document.getElementById('submitInitialsBtn');
+        const isValid = initials.length >= 2 && initials.length <= 4 && /^[A-Za-z]+$/.test(initials);
+        submitBtn.disabled = !isValid;
+    });
+
+    // Clear level estimate button
+    document.getElementById('clearLevelEstimateRow').addEventListener('click', function() {
+        levelEstimates[selectedLanguage] = 0;
+        saveLevelEstimateToSheet(0);
+        document.getElementById('clearLevelEstimateRow').style.display = 'none';
+        updateEstimateLevelBlock(); // re-show the prompt block
+        renderRangeSelector(); // refresh range mastered states
+    });
+
+    // Logout button (now in settings modal)
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        hideSettingsModal();
+        logout();
+    });
+
+    // Gear button opens settings modal
+    document.getElementById('gearBtn').addEventListener('click', function() {
+        showSettingsModal();
+    });
+
+    // Settings modal tabs
+    document.querySelectorAll('.settings-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabName = this.dataset.tab;
+
+            // Update active tab button
+            document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            // Update active tab content
+            document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabName + 'TabContent').classList.add('active');
+        });
+    });
+
+    // Settings modal close button
+    document.getElementById('closeSettingsModal').addEventListener('click', hideSettingsModal);
+
+    // Click outside settings modal to close
+    document.getElementById('settingsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            hideSettingsModal();
+        }
+    });
+
+    // Total stats modal close button
+    document.getElementById('closeTotalStatsModal').addEventListener('click', hideTotalStatsModal);
+
+    // Click outside total stats modal to close
+    document.getElementById('totalStatsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            hideTotalStatsModal();
+        }
+    });
+}
+
+window.loadSecrets = loadSecrets;
+window.checkAuthentication = checkAuthentication;
+window.showAuthModal = showAuthModal;
+window.hideAuthModal = hideAuthModal;
+window.showUserInfo = showUserInfo;
+window.enterGuestMode = enterGuestMode;
+window.showLoginForm = showLoginForm;
+window.hideLoginForm = hideLoginForm;
+window.submitLogin = submitLogin;
+window.logout = logout;
+window.loadUserProgressFromSheet = loadUserProgressFromSheet;
+window.saveLevelEstimateToSheet = saveLevelEstimateToSheet;
+window.saveWordProgress = saveWordProgress;
+window.saveToLocalStorage = saveToLocalStorage;
+window.setupAuthEventListeners = setupAuthEventListeners;

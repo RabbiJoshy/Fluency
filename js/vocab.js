@@ -1,0 +1,732 @@
+import './state.js';
+
+// ISO 639-1 codes for each language key used in config.json
+const LANG_CODES = {
+    spanish: 'es', swedish: 'sv', italian: 'it',
+    dutch: 'nl', polish: 'pl', french: 'fr', russian: 'ru'
+};
+
+/**
+ * Compute a stable composite word ID: {2-char lang}{0=normal|1=lyrics}{4-digit hex}.
+ * Examples: "es00001" (Spanish normal rank 1), "es10039" (Bad Bunny hex 0039).
+ * Always contains letters → Google Sheets never auto-converts to a number.
+ */
+function getWordId(item) {
+    const lang = LANG_CODES[selectedLanguage] || selectedLanguage.slice(0, 2);
+    const mode = isBadBunnyMode ? '1' : '0';
+    const hex = item.id || Number(item.rank).toString(16).padStart(4, '0');
+    return `${lang}${mode}${hex}`;
+}
+
+function buildFilteredVocab(vocabData) {
+    // Assign stable rank from array position (pipeline sort order)
+    vocabData.forEach((item, index) => { item.rank = index + 1; });
+
+    // Basic: non-blank, no duplicates, has meanings
+    let result = vocabData.filter(item =>
+        item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
+    );
+
+    const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
+
+    // Bad Bunny mode: skip English loanwords, interjections, proper nouns
+    if (isBadBunnyMode) {
+        const before = result.length;
+        result = result.filter(item => !item.is_english && !item.is_interjection && !item.is_propernoun);
+        counts.english = before - result.length;
+    }
+
+    // Cognate exclusion
+    if (excludeCognates && cognateFieldAvailable) {
+        const before = result.length;
+        result = result.filter(item => !item.is_transparent_cognate);
+        counts.cognates = before - result.length;
+    }
+
+    // Single-occurrence word hiding
+    if (hideSingleOccurrence && result.length > 0 && result[0].hasOwnProperty('corpus_count')) {
+        const before = result.length;
+        result = result.filter(item => item.corpus_count > 1);
+        counts.singleOcc = before - result.length;
+    }
+
+    // Lemma mode: one card per lemma group
+    if (useLemmaMode && lemmaFieldAvailable) {
+        const before = result.length;
+        result = result.filter(item => item.most_frequent_lemma_instance === true);
+        counts.lemma = before - result.length;
+    }
+
+    // Assign corpus-wide display ranks so set numbering is continuous across levels
+    result.forEach((item, idx) => { item.displayRank = idx + 1; });
+
+    return { vocab: result, counts };
+}
+
+async function loadVocabularyData(rangeString) {
+    // Completely clear all previous data and state
+    flashcards = [];
+    currentIndex = 0;
+    currentSentenceIndex = 0;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    isFlipped = false;
+
+    // Reset card flip state
+    const flashcardEl = document.getElementById('flashcard');
+    if (flashcardEl) {
+        flashcardEl.classList.remove('flipped');
+    }
+
+    const langConfig = config.languages[selectedLanguage];
+    const [rangeStart, rangeEnd] = rangeString.split('-').map(Number);
+
+    // Always use the regular data path
+    const dataPath = langConfig.dataPath;
+
+    try {
+        // Load the vocabulary JSON
+        const response = await fetch(dataPath);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        const vocabularyData = await response.json();
+
+        // Store original index/rank from vocabulary file - this is the unique identifier
+        vocabularyData.forEach((item, index) => {
+            item.rank = index + 1; // Use original position as the rank (unique identifier)
+        });
+
+        const { vocab: _baseVocab, counts: exCounts } = buildFilteredVocab(vocabularyData);
+        let filteredData = _baseVocab;
+        const excludedEnglish = exCounts.english;
+        const excludedCognates = exCounts.cognates;
+        const excludedSingleOcc = exCounts.singleOcc;
+        const excludedLemma = exCounts.lemma;
+        let excludedMastered = 0;
+
+        // Filter by the requested range using corpus-wide display ranks
+        filteredData = filteredData.filter(item =>
+            item.displayRank >= rangeStart && item.displayRank < rangeEnd
+        );
+
+        // Count total in range before mastered filtering
+        const totalInRange = filteredData.length;
+
+        // Filter out words the user has already got correct (for logged-in users),
+        // including words covered by the level estimate high-water mark
+        if (currentUser && !currentUser.isGuest && progressData) {
+            const beforeMastered = filteredData.length;
+            const estimate = levelEstimates[selectedLanguage] || 0;
+            filteredData = filteredData.filter(item => {
+                if (item.rank <= estimate) return false;
+                const progress = progressData[getWordId(item)];
+                // Keep the word if no progress exists, or if correct is 0 or undefined
+                return !progress || !progress.correct || progress.correct === 0 || progress.language !== selectedLanguage;
+            });
+            excludedMastered = beforeMastered - filteredData.length;
+            if (excludedMastered > 0) {
+                console.log(`Filtered out ${excludedMastered} previously mastered words`);
+            }
+        }
+
+        // Convert to flashcards format
+        const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+        const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
+        for (const item of filteredData) {
+            const meanings = item.meanings.map(m => {
+                const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+                return {
+                    pos: m.pos,
+                    meaning: m.translation,
+                    percentage: parseFloat(m.frequency),
+                    targetSentence,
+                    englishSentence,
+                    allExamples
+                };
+            });
+
+            // Normalize percentages if they're missing or sum to 0
+            const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
+            if (totalPercentage === 0 || isNaN(totalPercentage)) {
+                // Default to equal distribution
+                const equalPercentage = 1.0 / meanings.length;
+                meanings.forEach(m => {
+                    m.percentage = equalPercentage;
+                });
+            } else if (totalPercentage !== 1.0) {
+                // Normalize to sum to 1.0
+                meanings.forEach(m => {
+                    m.percentage = (m.percentage || 0) / totalPercentage;
+                });
+            }
+
+            const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
+            const card = {
+                targetWord: item.word,
+                lemma: item.lemma || '',
+                id: item.id,
+                fullId: getWordId(item),
+                rank: item.rank,
+                corpusCount: item.corpus_count || null,
+                meanings: meanings,
+                translation: item.meanings[0].translation,
+                targetSentence: firstExample.targetSentence,
+                englishSentence: firstExample.englishSentence,
+                links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
+                isMultiMeaning: true
+            };
+            flashcards.push(card);
+        }
+
+        if (filteredData.length === 0) {
+            // Check if this is because all words are mastered
+            if (currentUser && !currentUser.isGuest && progressData) {
+                alert('You\'ve already mastered all words in this set! Choose another set or use the "Refresh Set" option in settings to reset your progress.');
+            } else {
+                alert('No flashcards found in this range. Please try another set.');
+            }
+            document.getElementById('loadingMessage').style.display = 'none';
+            return;
+        }
+
+        // Build exclusion summary message (only report in-range exclusions)
+        const totalExcluded = excludedLemma + excludedMastered;
+        const loadingMsg = document.getElementById('loadingMessage');
+        if (totalExcluded > 0) {
+            const parts = [];
+            if (excludedLemma > 0) parts.push(`${excludedLemma} lemma dup${excludedLemma > 1 ? 's' : ''}`);
+            if (excludedMastered > 0) parts.push(`${excludedMastered} mastered`);
+            loadingMsg.textContent = `✓ ${flashcards.length} cards from ${totalInRange} (${parts.join(', ')} excluded)`;
+        } else {
+            loadingMsg.textContent = `✓ ${flashcards.length} cards`;
+        }
+        loadingMsg.style.display = 'block';
+
+        // Successfully loaded data - show message briefly, then transition to cards
+        setTimeout(() => {
+            document.getElementById('setupPanel').classList.add('hidden');
+            document.getElementById('appContent').classList.remove('hidden');
+            loadingMsg.style.display = 'none';
+
+            // Show mobile floating buttons
+            showFloatingBtns(true);
+
+            // Initialize card display
+            initializeApp();
+        }, 800);
+    } catch (error) {
+        console.error(`Failed to load vocabulary data:`, error);
+        document.getElementById('loadingMessage').style.display = 'none';
+        alert(`Error loading ${rangeString}. Please try another set.`);
+    }
+}
+
+// Load study set of all-time incorrect words for the selected language
+async function loadIncorrectWordsSet() {
+    if (!currentUser || currentUser.isGuest) {
+        alert('Please log in to access your incorrect words history.');
+        return;
+    }
+
+    // Get incorrect words for the currently selected language
+    const incorrectWords = Object.entries(progressData)
+        .filter(([wordId, data]) =>
+            data.wrong > 0 &&
+            data.language === selectedLanguage
+        )
+        .map(([wordId, data]) => ({
+            wordId,
+            ...data
+        }))
+        // Sort by least recently correct (null lastCorrect = never correct, comes first)
+        // Then by least recently wrong as secondary sort
+        .sort((a, b) => {
+            // Never correct comes first
+            if (!a.lastCorrect && b.lastCorrect) return -1;
+            if (a.lastCorrect && !b.lastCorrect) return 1;
+            if (!a.lastCorrect && !b.lastCorrect) {
+                // Both never correct - sort by oldest wrong first
+                const aWrong = a.lastWrong ? new Date(a.lastWrong).getTime() : 0;
+                const bWrong = b.lastWrong ? new Date(b.lastWrong).getTime() : 0;
+                return aWrong - bWrong;
+            }
+            // Both have been correct - sort by oldest correct first
+            return new Date(a.lastCorrect).getTime() - new Date(b.lastCorrect).getTime();
+        });
+
+    if (incorrectWords.length === 0) {
+        alert(`No incorrect words found for ${selectedLanguage}. Start practicing to build your incorrect words list!`);
+        return;
+    }
+
+    document.getElementById('loadingMessage').style.display = 'block';
+    document.getElementById('loadingMessage').textContent = `Loading ${incorrectWords.length} incorrect words...`;
+
+    // Clear previous state
+    flashcards = [];
+    currentIndex = 0;
+    currentSentenceIndex = 0;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    isFlipped = false;
+
+    const flashcardEl = document.getElementById('flashcard');
+    if (flashcardEl) {
+        flashcardEl.classList.remove('flipped');
+    }
+
+    const langConfig = config.languages[selectedLanguage];
+    const dataPath = langConfig.dataPath;
+
+    try {
+        // Load the full vocabulary JSON to get card details
+        const response = await fetch(dataPath);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        const vocabularyData = await response.json();
+
+        // Create a lookup map by stable hex ID
+        const wordToVocab = {};
+        vocabularyData.forEach((item, index) => {
+            if (item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0) {
+                item.rank = index + 1; // assign dynamic rank from array position
+                wordToVocab[item.id] = item;
+            }
+        });
+
+        const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+        const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
+        // Build flashcards from incorrect words
+        for (const incorrectWord of incorrectWords) {
+            const item = wordToVocab[incorrectWord.wordId];
+            if (!item) continue; // Skip if word not found in vocabulary
+
+            const meanings = item.meanings.map(m => {
+                const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+                return {
+                    pos: m.pos,
+                    meaning: m.translation,
+                    percentage: parseFloat(m.frequency),
+                    targetSentence,
+                    englishSentence,
+                    allExamples
+                };
+            });
+
+            // Normalize percentages
+            const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
+            if (totalPercentage === 0 || isNaN(totalPercentage)) {
+                const equalPercentage = 1.0 / meanings.length;
+                meanings.forEach(m => { m.percentage = equalPercentage; });
+            } else if (totalPercentage !== 1.0) {
+                meanings.forEach(m => { m.percentage = (m.percentage || 0) / totalPercentage; });
+            }
+
+            const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
+            const card = {
+                targetWord: item.word,
+                lemma: item.lemma || '',
+                rank: item.rank,
+                id: item.id,
+                fullId: getWordId(item),
+                meanings: meanings,
+                translation: item.meanings[0].translation,
+                targetSentence: firstExample.targetSentence,
+                englishSentence: firstExample.englishSentence,
+                links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
+                isMultiMeaning: true
+            };
+            flashcards.push(card);
+        }
+
+        if (flashcards.length === 0) {
+            alert('Could not load incorrect words. Please try again.');
+            document.getElementById('loadingMessage').style.display = 'none';
+            return;
+        }
+
+        // Successfully loaded - show cards and hide setup
+        document.getElementById('setupPanel').classList.add('hidden');
+        document.getElementById('appContent').classList.remove('hidden');
+        document.getElementById('loadingMessage').style.display = 'none';
+
+        // Show mobile floating buttons
+        showFloatingBtns(true);
+
+        // Initialize card display
+        initializeApp();
+    } catch (error) {
+        console.error('Failed to load incorrect words set:', error);
+        document.getElementById('loadingMessage').style.display = 'none';
+        alert('Error loading incorrect words. Please try again.');
+    }
+}
+
+async function loadCSVFiles(ranges) {
+    // Completely clear all previous data and state
+    flashcards = [];
+    currentIndex = 0;
+    currentSentenceIndex = 0;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    isFlipped = false;
+
+    // Reset card flip state
+    const flashcardEl = document.getElementById('flashcard');
+    if (flashcardEl) {
+        flashcardEl.classList.remove('flipped');
+    }
+
+    const langConfig = config.languages[selectedLanguage];
+
+    for (const range of ranges) {
+        try {
+            const response = await fetch(range.path);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            const fileText = await response.text();
+
+            // Extract starting and ending rank from range (e.g., "0-50" -> 0, 50)
+            const [rangeStart, rangeEnd] = range.range.split('-').map(Number);
+            const startRank = rangeStart;
+
+            // Check if this set uses the new multi-meaning format
+            if (range.format === 'multiMeaning' || fileText.includes('|')) {
+                parseMultiMeaning(fileText, langConfig, rangeStart, rangeEnd);
+            } else if (langConfig.fileFormat === 'quizlet') {
+                parseQuizlet(fileText, langConfig, startRank, rangeStart, rangeEnd);
+            } else {
+                parseCSV(fileText, langConfig, startRank, rangeStart, rangeEnd);
+            }
+        } catch (error) {
+            console.error(`Failed to load ${range.path}:`, error);
+            document.getElementById('loadingMessage').style.display = 'none';
+            alert(`Error loading ${range.range}. Please try another set.`);
+            return;
+        }
+    }
+
+    if (flashcards.length === 0) {
+        alert('No flashcards loaded. Please check your selection.');
+        document.getElementById('loadingMessage').style.display = 'none';
+        return;
+    }
+
+    // Successfully loaded data - show cards and hide setup
+    document.getElementById('setupPanel').classList.add('hidden');
+    document.getElementById('appContent').classList.remove('hidden');
+    document.getElementById('loadingMessage').style.display = 'none';
+
+    // Initialize card display
+    updateCard();
+}
+
+function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
+    const lines = text.split('\n');
+    const wordGroups = {}; // Group meanings by rank
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+
+        const parts = trimmed.split('|');
+        if (parts.length < 8) continue;
+
+        const rank = parseInt(parts[0]);
+        const word = parts[1];
+        const lemma = parts[2];
+        const pos = parts[3];
+        const meaning = parts[4];
+        const percentage = parseFloat(parts[5]);
+        const targetSentence = parts[6];
+        const englishSentence = parts[7];
+
+        if (!wordGroups[rank]) {
+            wordGroups[rank] = {
+                rank: rank,
+                word: word,
+                lemma: lemma,
+                meanings: []
+            };
+        }
+
+        wordGroups[rank].meanings.push({
+            pos: pos,
+            meaning: meaning,
+            percentage: percentage,
+            targetSentence: targetSentence,
+            englishSentence: englishSentence
+        });
+    }
+
+    // Convert to flashcards array, filtering by range
+    const ranks = Object.keys(wordGroups).map(Number).sort((a, b) => a - b);
+
+    for (const rank of ranks) {
+        if (rank >= rangeStart && rank < rangeEnd) {
+            const group = wordGroups[rank];
+
+            // Sort meanings by percentage (highest first)
+            group.meanings.sort((a, b) => b.percentage - a.percentage);
+
+            // Normalize percentages if they're missing or sum to 0
+            const totalPercentage = group.meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
+            if (totalPercentage === 0 || isNaN(totalPercentage)) {
+                // Default to equal distribution
+                const equalPercentage = 1.0 / group.meanings.length;
+                group.meanings.forEach(m => {
+                    m.percentage = equalPercentage;
+                });
+            } else if (totalPercentage !== 1.0) {
+                // Normalize to sum to 1.0
+                group.meanings.forEach(m => {
+                    m.percentage = (m.percentage || 0) / totalPercentage;
+                });
+            }
+
+            const card = {
+                targetWord: group.word,
+                lemma: group.lemma,
+                rank: group.rank,
+                meanings: group.meanings,
+                // For compatibility, set primary translation to most common meaning
+                translation: group.meanings[0].meaning,
+                targetSentence: group.meanings[0].targetSentence,
+                englishSentence: group.meanings[0].englishSentence,
+                links: generateLinks(group.word, group.lemma || group.word, langConfig.referenceLinks),
+                isMultiMeaning: true
+            };
+
+            flashcards.push(card);
+        }
+    }
+
+    document.getElementById('loadingMessage').textContent = `✓ Loaded ${flashcards.length} cards!`;
+    setTimeout(() => {
+        document.getElementById('setupPanel').style.display = 'none';
+        document.getElementById('appContent').classList.remove('hidden');
+        initializeApp();
+    }, 500);
+}
+
+function parseQuizlet(text, langConfig, startRank = 0, rangeStart = 0, rangeEnd = Infinity) {
+    const lines = text.split('\n');
+    let i = 0;
+    let cardCount = 0;
+    let totalCardsParsed = 0; // Track position in file
+
+    while (i < lines.length) {
+        const line = lines[i].trim();
+
+        // Skip empty lines
+        if (!line) {
+            i++;
+            continue;
+        }
+
+        // First line: word and translation
+        // Format: "word\ttranslation" or "*inflected* (base)\ttranslation"
+        const parts = line.split('\t');
+        if (parts.length < 2) {
+            i++;
+            continue;
+        }
+
+        let targetWord = parts[0].trim();
+        let translation = parts[1].trim();
+
+        // Extract base form if present (e.g., "*mala* (malo)" -> base: "malo", inflected: "mala")
+        let baseForm = targetWord;
+        let inflectedForm = null;
+
+        // Check for inflected form pattern: *inflected* (base)
+        const inflectedMatch = targetWord.match(/\*(.+?)\*\s*\((.+?)\)/);
+        if (inflectedMatch) {
+            inflectedForm = inflectedMatch[1];
+            baseForm = inflectedMatch[2];
+            targetWord = inflectedForm;
+        }
+
+        // Remove asterisks from translation
+        translation = translation.replace(/\*/g, '');
+
+        // Next line should be the example sentence in target language
+        i++;
+        const targetSentence = (i < lines.length) ? lines[i].trim() : '';
+
+        // Next line should be the English translation of the sentence
+        i++;
+        const englishSentence = (i < lines.length) ? lines[i].trim() : '';
+
+        // Create the flashcard
+        if (targetWord && translation) {
+            const currentRank = startRank + totalCardsParsed;
+
+            // Only include cards within the specified range
+            if (currentRank >= rangeStart && currentRank < rangeEnd) {
+                // Build sentences array - always include primary sentence and a placeholder for demo
+                const sentences = [];
+                if (targetSentence || englishSentence) {
+                    sentences.push({ target: targetSentence, english: englishSentence });
+                }
+                // Add a placeholder second sentence to demonstrate swipe functionality
+                sentences.push({ target: '', english: '(Swipe up/down for more examples - coming soon!)' });
+
+                const card = {
+                    targetWord: targetWord,
+                    translation: translation,
+                    baseForm: baseForm,
+                    inflectedForm: inflectedForm,
+                    targetSentence: targetSentence,
+                    englishSentence: englishSentence,
+                    sentences: sentences,
+                    rank: currentRank + 1, // Calculate frequency rank
+                    links: generateLinks(baseForm, baseForm, langConfig.referenceLinks)
+                };
+
+                flashcards.push(card);
+                cardCount++;
+            }
+            totalCardsParsed++;
+        }
+
+        // Move past empty lines between entries
+        i++;
+        while (i < lines.length && !lines[i].trim()) {
+            i++;
+        }
+    }
+}
+
+function parseCSV(csv, langConfig) {
+    const lines = csv.split('\n');
+    const headers = lines[0].split(',').map(h => h.trim());
+
+    // Find column indices
+    const wordIndex = headers.indexOf(langConfig.wordColumn);
+    const sentenceIndex = headers.indexOf(langConfig.sentenceColumn);
+
+    // Spanish-specific columns
+    const showIndex = langConfig.showColumn ? headers.indexOf(langConfig.showColumn) : -1;
+    const lemmaIndex = langConfig.lemmaColumn ? headers.indexOf(langConfig.lemmaColumn) : -1;
+
+    // Dutch-specific columns
+    const posIndex = langConfig.posColumn ? headers.indexOf(langConfig.posColumn) : -1;
+
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        // Handle quoted fields with commas
+        const values = parseCSVLine(line);
+
+        if (values.length > wordIndex) {
+            const word = cleanValue(values[wordIndex]);
+            const sentence = sentenceIndex >= 0 ? cleanValue(values[sentenceIndex]) : '';
+
+            if (!word) continue;
+
+            let card = {
+                word: word,
+                sentence: sentence
+            };
+
+            // Handle Spanish format
+            if (langConfig.csvFormat === 'spanish') {
+                card.show = showIndex >= 0 ? cleanValue(values[showIndex]) : word;
+                card.lemma = lemmaIndex >= 0 ? cleanValue(values[lemmaIndex]) : word;
+                card.links = generateLinks(word, card.lemma, langConfig.referenceLinks);
+            }
+            // Handle Dutch format
+            else if (langConfig.csvFormat === 'dutch') {
+                card.pos = posIndex >= 0 ? cleanValue(values[posIndex]) : '';
+                card.lemma = word;
+                card.links = generateLinks(word, word, langConfig.referenceLinks);
+            }
+
+            flashcards.push(card);
+        }
+    }
+}
+
+function parseCSVLine(line) {
+    const values = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let char of line) {
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            values.push(current);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    values.push(current);
+    return values;
+}
+
+// Truncate text to a maximum number of words, adding ellipsis if truncated
+function truncateText(text, maxWords) {
+    if (!text) return '';
+    const words = text.split(/\s+/);
+    if (words.length <= maxWords) return text;
+    return words.slice(0, maxWords).join(' ') + '...';
+}
+
+function cleanValue(value) {
+    return value ? value.replace(/^"|"$/g, '').trim() : '';
+}
+
+function generateLinks(word, lemma, linkTemplates) {
+    const cleanWord = encodeURIComponent(lemma || word);
+    const links = {};
+
+    for (const [key, template] of Object.entries(linkTemplates)) {
+        links[key] = template.replace('{word}', cleanWord);
+    }
+
+    return links;
+}
+
+// Helper to extract example sentences from a meaning object
+// Supports new format (examples array) and legacy format (exampleTargetField/exampleEnglishField)
+function getExampleFromMeaning(meaning, exampleTargetField, exampleEnglishField) {
+    // Check for new examples array format
+    if (meaning.examples && meaning.examples.length > 0) {
+        const example = meaning.examples[0];
+        // Support both 'target'/'english' and language-specific keys like 'spanish'/'english'
+        const targetSentence = example.target || example.spanish || example.swedish ||
+                               example.dutch || example.italian || example.polish || '';
+        const englishSentence = example.english || '';
+        return { targetSentence, englishSentence, allExamples: meaning.examples };
+    }
+    // Fall back to legacy format
+    return {
+        targetSentence: meaning[exampleTargetField] || '',
+        englishSentence: meaning[exampleEnglishField] || '',
+        allExamples: []
+    };
+}
+
+
+window.getWordId = getWordId;
+window.buildFilteredVocab = buildFilteredVocab;
+window.loadVocabularyData = loadVocabularyData;
+window.loadIncorrectWordsSet = loadIncorrectWordsSet;
+window.loadCSVFiles = loadCSVFiles;
+window.parseMultiMeaning = parseMultiMeaning;
+window.parseQuizlet = parseQuizlet;
+window.parseCSV = parseCSV;
+window.parseCSVLine = parseCSVLine;
+window.truncateText = truncateText;
+window.cleanValue = cleanValue;
+window.generateLinks = generateLinks;
+window.getExampleFromMeaning = getExampleFromMeaning;

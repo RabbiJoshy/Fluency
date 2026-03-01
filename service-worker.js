@@ -1,4 +1,4 @@
-const CACHE_NAME = 'flashcards-v2';
+const CACHE_NAME = 'flashcards-v3';
 const urlsToCache = [
   '/',
   '/index.html'
@@ -16,6 +16,9 @@ self.addEventListener('install', event => {
 // Fetch event - network-first strategy for HTML files
 self.addEventListener('fetch', event => {
   const request = event.request;
+
+  // Don't intercept cross-origin requests (e.g. Google Apps Script API calls)
+  if (!request.url.startsWith(self.location.origin)) return;
 
   // For HTML and JS files, use network-first strategy
   if (request.destination === 'document' || request.url.endsWith('.html') || request.url.endsWith('.js')) {
