@@ -144,12 +144,67 @@ SPANISH_DIACRITICS_RE = re.compile(r"[áéíóúüñ]", re.IGNORECASE)
 # 0.85 is intentionally high to avoid nuking Spanish/English homographs.
 EN_RATIO_THRESHOLD = 0.85
 
+# Explicit English-only word list.  Catches words that wordfreq cannot
+# reliably classify — novel slang unknown to the corpus, and English that
+# appears in code-switched lines.
+#
+# Curated to exclude Spanish/English homographs (no, me, a, te, se, son,
+# sin, solo, come, real, pan — all intentionally absent).
+# NOT "he" — it's the Spanish conjugation of "haber" (yo he visto).
+ENGLISH_ONLY_WORDS: frozenset = frozenset({
+    # pronouns / determiners
+    "i", "you", "she", "we", "they", "it", "my", "your", "his", "her",
+    "our", "their", "its", "this", "that", "these", "those",
+    # articles / prepositions / conjunctions
+    "the", "and", "but", "or", "for", "with", "from", "into", "about",
+    "between", "through", "after", "before", "during", "without", "against",
+    "of", "at", "by", "on", "in", "to", "up", "out", "off", "over", "down",
+    # verbs
+    "is", "am", "are", "was", "were", "been", "being",
+    "have", "has", "had", "do", "does", "did", "will", "would", "shall",
+    "should", "can", "could", "may", "might", "must",
+    "got", "get", "getting", "going", "gone", "went",
+    "know", "knew", "known", "said", "say", "says", "tell", "told",
+    "think", "thought", "see", "saw", "seen", "look", "looked",
+    "want", "wanted", "need", "needed", "like", "liked",
+    "give", "gave", "take", "took", "taken", "put", "let",
+    "keep", "kept", "run", "running",
+    # common adjectives
+    "big", "little", "old", "new", "good", "bad", "great",
+    "right", "left", "high", "low", "long", "short",
+    "hard", "soft", "hot", "cold", "fast", "slow",
+    # common nouns / slang — reggaeton/trap context
+    "baby", "bitch", "nigga", "niggas", "gang", "gangsta", "ice", "drip",
+    "swag", "flex", "thug", "dope", "plug", "cash", "money",
+    "shit", "fuck", "damn", "ass", "hoe", "bro",
+    "girl", "boy", "man", "woman", "people", "world",
+    "life", "time", "day", "night", "way", "thing", "place",
+    "game", "play", "player", "club", "vibe", "vibes",
+    "remix", "beat", "hook", "verse",
+    # genre loanwords
+    "flow", "trap", "freestyle", "feat", "featuring",
+    "shawty", "shorty", "homie", "dawg",
+    # other frequent English in BB corpus
+    "party", "body", "still", "just", "even", "much",
+    "only", "very", "really", "never", "always", "here", "there",
+    "now", "then", "when", "where", "what", "who", "how", "why",
+    "not", "don't", "can't", "won't", "ain't", "didn't",
+    "show", "stop", "back", "calm",
+    "believe", "trust", "feel", "feeling",
+    "bunny",  # proper noun but always English context
+})
+
+
 def english_flag(word: str) -> dict:
     w = word.strip().lower()
 
     # Strong Spanish signal — diacritics always win regardless of frequency data.
     if SPANISH_DIACRITICS_RE.search(w):
         return {"is_english": False, "confidence": 0.01, "reason": "spanish_diacritic"}
+
+    # Curated explicit list — catches slang/loanwords that wordfreq can't classify.
+    if w in ENGLISH_ONLY_WORDS:
+        return {"is_english": True, "confidence": 0.99, "reason": "explicit_list"}
 
     en_freq = word_frequency(w, "en")
     es_freq = word_frequency(w, "es")

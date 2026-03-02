@@ -6,7 +6,7 @@ This document describes the full architecture, pipeline logic, data schemas, and
 
 ## Project Overview
 
-Fluency is a browser-based vocabulary flashcard PWA. The front-end (`index.html`, `service-worker.js`, `manifest.json`) is vanilla JS with no framework. All vocabulary data is static JSON — there is no backend.
+Fluency is a browser-based vocabulary flashcard PWA. The front-end is vanilla JS split across native ES modules (`js/`) with no framework, no bundler, and no build step. All vocabulary data is static JSON — there is no backend.
 
 The interesting part is the **data pipeline** that generates the vocabulary JSON, particularly the Bad Bunny pipeline which processes song lyrics using NLP to produce a Spanish vocabulary deck.
 
@@ -16,15 +16,33 @@ The interesting part is the **data pipeline** that generates the vocabulary JSON
 
 ```
 Fluency/
-├── index.html                      # Entire front-end application (7640 lines: CSS + HTML + JS)
+├── index.html                      # App shell: 647 lines of HTML only (CSS + JS extracted)
+├── css/
+│   └── style.css                   # All CSS (extracted from old monolith)
+├── js/
+│   ├── main.js                     # Entry point: imports all modules, registers SW, init
+│   ├── state.js                    # Shared mutable state + globalThis proxy
+│   ├── auth.js                     # Login, Google Sheets sync, saveWordProgress
+│   ├── vocab.js                    # buildFilteredVocab, loadVocabularyData, getWordId
+│   ├── flashcards.js               # Card rendering, flip, swipe, keyboard shortcuts
+│   ├── ui.js                       # Setup UI: language tabs, level selector, range buttons
+│   ├── config.js                   # loadConfig, loadPpmData, CEFR helpers
+│   ├── progress.js                 # Coverage bars, calculateCoveragePercent
+│   ├── estimation.js               # Level-estimation quiz flow
+│   ├── speech.js                   # speakWord, voice preload
+│   └── badbunny.js                 # Album art lookup, updateBadBunnyBackground
 ├── config.json                     # Language config and file path mappings
 ├── manifest.json / service-worker.js  # PWA support
+├── GoogleAppsScript.js             # Source copy of the Apps Script backend (deploy manually)
 ├── cefr_levels.json                # CEFR level metadata
 ├── estimation_checkpoints.json     # Vocabulary checkpoints for level-estimation quiz
-├── secrets.json                    # Google Apps Script URL (not committed)
+├── secrets.json                    # Google Apps Script URL (not committed to git)
 ├── Data/
-│   └── Spanish/
-│       └── vocabulary.json         # General Spanish frequency vocabulary (used by 9_rerank.py)
+│   ├── Spanish/vocabulary.json     # 11 136 entries with rank + id fields
+│   ├── Swedish/vocabulary.json     # 2 001 entries
+│   ├── Italian/vocabulary.json     # 600 entries
+│   ├── Dutch/vocabulary.json       # 100 entries
+│   └── Polish/vocabulary.json      # 300 entries
 ├── Bad Bunny/                      # Bad Bunny pipeline (see below)
 └── .venv/                          # Python venv — activate with .venv/bin/python3
 ```
@@ -310,11 +328,34 @@ Python 3.9+ required (project uses `.venv/bin/python3`).
 
 ### Overview
 
-`index.html` is a 7640-line monolith containing all CSS (lines 17–2707), HTML (lines 2709–3336), and JavaScript (lines 3337–7639). There is no build step, no framework, and no bundler. It is served as a static file. The app is a multi-step setup screen that transitions into a flashcard view.
+The front-end is vanilla JS served as static files — no build step, no framework, no bundler. `index.html` (647 lines) is HTML only; all CSS lives in `css/style.css` and all JS is split across native ES modules in `js/`.
 
 **Two entry points:**
 - `index.html` — standard vocabulary mode (Spanish, Swedish, Italian, Dutch, Polish)
 - `index.html?mode=badbunny` — Bad Bunny mode (Spanish only, separate vocabulary file with song lyrics)
+
+---
+
+### Module System
+
+`js/main.js` is the single `<script type="module">` tag in `index.html`. It imports all other modules in dependency order. All modules import `./state.js` first.
+
+**globalThis proxy pattern** — the key architectural decision for cross-module state:
+
+`js/state.js` declares a `state` object holding all 35+ mutable globals and then installs a `globalThis` proxy for each key:
+```js
+Object.defineProperty(globalThis, key, {
+    get() { return state[key]; },
+    set(v) { state[key] = v; },
+});
+```
+This means **bare variable names** (`flashcards`, `progressData`, `currentUser`, etc.) work in every module without any import — reads and writes go through the proxy to the shared `state` object. Zero changes were needed to function bodies when extracting the modules.
+
+**Window exports** — cross-module function calls:
+
+Each module exposes its functions on `window` (e.g. `window.buildFilteredVocab = buildFilteredVocab`). Since all module-level code runs before any user interaction, by the time any function is called all modules are loaded and their window exports are available. Inline `onclick` handlers in template literals (`onclick="selectMeaning(${idx})"`, `onclick="cycleExample(event)"`) rely on this — `selectMeaning` and `cycleExample` are exposed on `window` from `flashcards.js`.
+
+**Critical**: never add module-level `let`/`const` declarations in any module for variables that also exist in `state.js` — they will shadow the globalThis proxy and create a split-brain bug where that module's reads/writes are invisible to all other modules.
 
 ---
 
@@ -353,21 +394,41 @@ Key fields:
 
 ---
 
-### Hex Word IDs
+### Word IDs and the Composite `fullId`
 
-Every vocabulary entry has a stable `id` field: a 4-digit zero-padded **hex** string (e.g., `"0001"`, `"000a"`, `"003f"`). Generated in pipeline step 5 as `format(_next_id, '04x')`, keyed on `(word, lemma)` pair, persisted across runs via `old_vocabulary_cache.json`.
+Every vocabulary JSON entry has a 4-digit zero-padded **hex** `id` field:
+- **Bad Bunny vocab**: assigned by pipeline step 5 as `format(_next_id, '04x')`, keyed on `(word, lemma)`, stable across pipeline reruns via `old_vocabulary_cache.json`
+- **All other vocab files** (Spanish, Swedish, Italian, Dutch, Polish): assigned as `format(rank, '04x')` — rank 1 → `"0001"`, rank 10 → `"000a"`, rank 256 → `"0100"`
 
-**Why hex IDs matter for the front-end:**
-- `progressData` is keyed by this hex ID: `progressData["001f"] = { correct: 3, wrong: 0, ... }`
-- They never change on rerank, so progress survives vocabulary reshuffles
-- The ID is read from the vocabulary JSON's `item.id` field and stored on flashcard objects as `card.id`
-- Google Sheets sync saves/loads these IDs as the row key
+At flashcard-load time, `vocab.js` builds a **composite `fullId`** for every card:
+
+```
+fullId = {2-char ISO lang code}{0=normal | 1=lyrics}{4-digit hex id}
+```
+
+| Example | Meaning |
+|---|---|
+| `"es00001"` | Spanish normal, rank/id 0001 |
+| `"es10039"` | Spanish Bad Bunny lyrics, hex id 0039 |
+| `"sv00001"` | Swedish normal, rank 1 |
+| `"nl0000a"` | Dutch normal, rank 10 |
+
+Language codes (`LANG_CODES` in `vocab.js`): `spanish→es`, `swedish→sv`, `italian→it`, `dutch→nl`, `polish→pl`, `french→fr`, `russian→ru`.
+
+`getWordId(item)` in `vocab.js` computes the fullId from any raw vocab item (needs `selectedLanguage` and `isBadBunnyMode` from state). It is exposed on `window` so `ui.js` can call it for mastery checks.
+
+**Why `fullId` not bare hex:**
+- Bare hex IDs like `"0039"` get auto-converted by Google Sheets to the integer `39`, breaking row-matching. Composite IDs always contain letters, so Sheets leaves them as strings.
+- Mode digit separates normal vs. lyrics progress for the same language in the same sheet row-namespace.
+- Same word in both modes shares the same hex portion, differentiated by mode digit — allows future cross-mode analytics.
+
+**All `progressData` is keyed by `fullId`**, not bare hex or rank. `card.fullId` is set on every flashcard object. `saveWordProgress` sends `wordId: card.fullId` to Google Sheets. All mastery lookups use `progressData[getWordId(item)]` or `progressData[card.fullId]`.
 
 ---
 
 ### Key Global Variables
 
-All declared at the top of the `<script>` block (lines 3347–3404):
+All declared in `js/state.js` and accessible as bare names everywhere via the globalThis proxy:
 
 | Variable | Type | Purpose |
 |---|---|---|
@@ -486,9 +547,9 @@ After filtering, assigns `displayRank` (1-based continuous rank across the filte
 ### `progressData` Schema
 
 ```js
-progressData[hexWordId] = {
-  correct: 3,           // times marked correct in any session
-  wrong: 1,             // times marked wrong in any session
+progressData[fullId] = {   // fullId e.g. "es00001", "es10039", "sv00001"
+  correct: 3,              // times marked correct in any session
+  wrong: 1,                // times marked wrong in any session
   lastCorrect: "2025-01-15T10:23:00.000Z",  // ISO timestamp or null
   lastWrong: "2025-01-10T08:00:00.000Z",    // ISO timestamp or null
   lastSeen: "2025-01-15T10:23:00.000Z",
@@ -497,13 +558,39 @@ progressData[hexWordId] = {
 }
 ```
 
-A word is considered **mastered** if `progressData[id].correct > 0` and `progressData[id].language === selectedLanguage`. Mastered words are filtered out of sets by `loadVocabularyData()`.
+A word is considered **mastered** if `progressData[fullId].correct > 0` and `progressData[fullId].language === selectedLanguage`. Mastered words are filtered out of sets by `loadVocabularyData()`.
 
 `levelEstimates[language]` is a rank high-water mark — all words with `item.rank <= estimate` are also treated as mastered without needing individual progress records.
 
 Progress is stored in two places:
 - **Google Sheets** (for logged-in users) via a Google Apps Script URL loaded from `secrets.json`
 - **localStorage** (for guest users) under key `flashcard_progress_guest`
+
+---
+
+### Google Sheets Integration
+
+**Backend**: `GoogleAppsScript.js` is the source of the Apps Script web app. It must be copy-pasted into the Apps Script editor and **redeployed as a new version** every time it changes — editing the file in the repo does not update the live endpoint.
+
+**Sheet layout** (columns A–H): `User | Word | WordId | Language | Correct | Wrong | LastCorrect | LastWrong`
+
+Two sheets: `UserProgress` (normal vocab) and `BadBunny` (lyrics mode). Selected via `sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'` in every request.
+
+**Save flow** (`saveWordProgress` in `auth.js`):
+1. Uses `card.fullId` as `wordId` — always a letter-containing string, never auto-converted by Sheets
+2. Updates local `progressData[card.fullId]` first, then POSTs to the Apps Script
+3. Guest mode: falls back to `saveToLocalStorage(wordId, isCorrect)` instead
+
+**Load flow** (`loadUserProgressFromSheet` in `auth.js`):
+- Called once from `main.js` after `await loadSecrets()` and `checkAuthentication()`
+- Resets `progressData = {}` then populates from every row for the logged-in user
+- `progressData[item.wordId] = {...}` — keys are fullIds as returned from Sheets (strings with letters, no mangling)
+
+**Apps Script matching**: uses `==` (loose equality) in `saveProgress` when matching `data[i][2] == wordId` — provides a safety net for any legacy rows with numeric IDs.
+
+**Sentinel row**: `word = '_LEVEL_ESTIMATE_'`, `wordId = rank` — matched on `user + word + language`, not on `wordId`. Used to persist the level-estimation high-water mark.
+
+**`secrets.json`** (not in git): `{ "googleScriptUrl": "https://script.google.com/macros/s/.../exec" }`. If missing, Sheets sync silently disables — `GOOGLE_SCRIPT_URL` stays `""` and all fetches are skipped.
 
 ---
 
@@ -516,6 +603,7 @@ Created by `loadVocabularyData()`, stored in `flashcards[]`:
   targetWord: "eres",       // display form (may use elided form from display_form)
   lemma: "ser",
   id: "0057",               // stable hex ID from vocabulary JSON
+  fullId: "es10057",        // composite ID: {2-char lang}{0=normal|1=lyrics}{4-digit hex}
   rank: 57,                 // original rank from vocabulary JSON (pipeline sort order)
   corpusCount: 312,         // null for non-Bad-Bunny vocab
   isMultiMeaning: true,
