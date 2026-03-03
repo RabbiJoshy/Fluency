@@ -41,6 +41,12 @@ import re
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Tuple
 
+try:
+    from lingua import Language, LanguageDetectorBuilder
+    _LINGUA_AVAILABLE = True
+except ImportError:
+    _LINGUA_AVAILABLE = False
+
 
 # ====== Tokenization & cleaning ======
 LETTER_CLASS = r"A-Za-zÁÉÍÓÚÜÑáéíóúüñ"
@@ -54,6 +60,10 @@ CONNECTORS = {
     "con", "sin", "me", "te", "se", "nos", "ya",
     "pa'", "pal", "pa", "al", "del", "la", "el", "los", "las"
 }
+
+# ====== Lingua English line filter ======
+_MIN_TOKENS_FOR_LID = 4           # lines with fewer tokens skip lingua (unreliable on short text)
+_EN_CONFIDENCE_THRESHOLD = 0.70   # confidence threshold for classifying a line as English
 
 
 # Genius embeds Cyrillic lookalike characters inside words to break scrapers.
@@ -146,6 +156,14 @@ def score_line(tokens: List[str]) -> int:
     return score
 
 
+def _is_english_line(detector, line_text: str) -> bool:
+    """Return True if lingua detects the line as English above the confidence threshold."""
+    confs = detector.compute_language_confidence_values(line_text)
+    if confs and confs[0].language == Language.ENGLISH and confs[0].value >= _EN_CONFIDENCE_THRESHOLD:
+        return True
+    return False
+
+
 # ====== Input loader ======
 def iter_songs_from_batches(batch_glob: str) -> List[Dict[str, Any]]:
     paths = sorted(glob.glob(batch_glob))
@@ -167,15 +185,18 @@ def iter_songs_from_batches(batch_glob: str) -> List[Dict[str, Any]]:
 
 # ====== Core pipeline ======
 def build_counts_and_candidates(
-    songs: List[Dict[str, Any]]
-) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]]]:
+    songs: List[Dict[str, Any]],
+    lid_detector=None,
+) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int]]:
     """
     Returns:
     - counts[word] = total occurrences across corpus
     - candidates[word] = list of candidate context lines across songs
+    - lid_stats = summary of lingua English line filtering
     """
     counts: Counter = Counter()
     candidates: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    lid_stats = {"lines_total": 0, "lines_skipped": 0, "lines_below_min_tokens": 0}
 
     for song in songs:
         raw_lyrics = song.get("lyrics")
@@ -198,6 +219,14 @@ def build_counts_and_candidates(
             toks = tokenize(line_text)
             if not toks:
                 continue
+            lid_stats["lines_total"] += 1
+            if lid_detector is not None:
+                if len(toks) >= _MIN_TOKENS_FOR_LID:
+                    if _is_english_line(lid_detector, line_text):
+                        lid_stats["lines_skipped"] += 1
+                        continue
+                else:
+                    lid_stats["lines_below_min_tokens"] += 1
             lines.append((line_no, line_text, toks))
             counts.update(toks)
 
@@ -222,7 +251,7 @@ def build_counts_and_candidates(
                 "song_title": title,
             })
 
-    return counts, candidates
+    return counts, candidates, lid_stats
 
 
 def select_examples(
@@ -306,18 +335,41 @@ def main():
     ap.add_argument("--out", required=True, help="Output JSON path")
     ap.add_argument("--max_examples", type=int, default=10, help="Maximum examples per word")
     ap.add_argument("--preview", type=int, default=0, help="Print first N entries after writing")
+    ap.add_argument("--no-lid", action="store_true",
+                    help="Disable lingua English line detection")
 
     args = ap.parse_args()
 
     songs = iter_songs_from_batches(args.batch_glob)
-    counts, candidates = build_counts_and_candidates(songs)
+
+    lid_detector = None
+    if not args.no_lid:
+        if _LINGUA_AVAILABLE:
+            print("Building lingua detector (Spanish + English)...")
+            lid_detector = LanguageDetectorBuilder.from_languages(
+                Language.SPANISH, Language.ENGLISH
+            ).build()
+        else:
+            print("WARNING: lingua not installed — skipping English line detection. "
+                  "Install with: pip install lingua-language-detector")
+
+    counts, candidates, lid_stats = build_counts_and_candidates(songs, lid_detector=lid_detector)
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
     out_list = to_evidence_json(counts, selected)
 
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out_list, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ Wrote {len(out_list):,} words -> {args.out}")
+    print(f"Wrote {len(out_list):,} words -> {args.out}")
+    if lid_stats["lines_skipped"] > 0:
+        eligible = lid_stats["lines_total"] - lid_stats["lines_below_min_tokens"]
+        pct = lid_stats["lines_skipped"] / eligible * 100 if eligible else 0
+        print(f"  Lingua: {lid_stats['lines_skipped']:,} / {eligible:,} eligible lines "
+              f"skipped as English ({pct:.1f}%)")
+        print(f"  Lines below {_MIN_TOKENS_FOR_LID}-token minimum: "
+              f"{lid_stats['lines_below_min_tokens']:,}")
+    elif lid_detector is not None:
+        print("  Lingua: no English lines detected")
 
     if args.preview and args.preview > 0:
         print("\n=== PREVIEW ===")

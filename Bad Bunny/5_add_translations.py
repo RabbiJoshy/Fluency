@@ -23,7 +23,7 @@ OUT_PATH = Path("Bad Bunny/BadBunnyvocabulary.json")
 OLD_VOCAB_PATH = Path("Bad Bunny/intermediates/old_vocabulary_cache.json")
 
 MAX_ENTRIES = None  # process all entries
-MAX_EXAMPLES_PER_POS = 1
+MAX_EXAMPLES_PER_POS = 3
 
 # Translation settings
 # Cache-only mode: use pre-loaded translations, no API calls.
