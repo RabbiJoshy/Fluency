@@ -29,7 +29,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 IN_PATH = SCRIPT_DIR / "intermediates" / "3_vocab_evidence_merged.json"
 OUT_PATH = SCRIPT_DIR / "intermediates" / "4_wiktionary_output.json"
 DIFF_PATH = SCRIPT_DIR / "intermediates" / "phase1_diff_report.json"
-SPACY_PATH = SCRIPT_DIR / "intermediates" / "4_spacy_output.json"
+SPACY_PATH = SCRIPT_DIR / "archive" / "4_spacy_output.json"
 WIKT_DUMP = Path("/tmp/kaikki_spanish.jsonl.gz")
 
 # ── POS tag mapping: Wiktionary POS → Universal Dependencies POS ────────────
@@ -381,24 +381,55 @@ def resolve_lemma(word: str, form_lookup: dict, lemma_set: set) -> list[tuple[st
     return [(w, "X")]
 
 
-# ── POS counting from Wiktionary results ─────────────────────────────────────
+# ── Contextual POS from spaCy cache ──────────────────────────────────────────
 
-def count_pos_from_examples(word: str, results: list[tuple[str, str]],
-                            num_examples: int) -> Counter:
+def load_spacy_pos_cache(spacy_path):
     """
-    Build a POS counter. Since we don't run NLP on every example line,
-    we distribute counts proportionally based on how many lemma+POS
-    candidates Wiktionary gives us, weighted by example count.
+    Load per-example POS tags from the old spaCy output.
+    Returns: word → {example_id → spaCy_POS}
     """
-    pos_counts = Counter()
-    if len(results) == 1:
-        pos_counts[results[0][1]] = num_examples
-    else:
-        # Multiple candidates — assign equal weight
-        per = max(1, num_examples // len(results))
-        for _, pos in results:
-            pos_counts[pos] += per
-    return pos_counts
+    if not spacy_path.exists():
+        print("  No spaCy cache found — will use synthetic POS assignment")
+        return {}
+
+    with open(spacy_path) as f:
+        data = json.load(f)
+
+    cache = defaultdict(dict)
+    for entry in data:
+        word = entry["word"]
+        for m in entry.get("matches", []):
+            eid = m.get("example_id", "")
+            pos = m.get("pos", "")
+            if eid and pos:
+                cache[word][eid] = pos
+
+    print(f"  Loaded spaCy POS cache: {len(cache)} words, "
+          f"{sum(len(v) for v in cache.values())} example tags")
+    return dict(cache)
+
+
+def pick_lemma_for_pos(word, contextual_pos, results, form_lookup, lemma_set):
+    """
+    Given a contextual POS tag (from spaCy/Stanza), pick the best
+    Wiktionary (lemma, pos) candidate that matches.
+    Falls back to the top-scored candidate if no POS match.
+    """
+    # Try exact POS match
+    for lemma, pos in results:
+        if pos == contextual_pos:
+            return lemma, pos
+
+    # Map related POS: AUX↔VERB (spaCy often tags ser/estar/haber as AUX)
+    related = {"AUX": "VERB", "VERB": "AUX"}
+    alt_pos = related.get(contextual_pos)
+    if alt_pos:
+        for lemma, pos in results:
+            if pos == alt_pos:
+                return lemma, pos
+
+    # No match — return best overall candidate
+    return results[0]
 
 
 # ── Main pipeline ────────────────────────────────────────────────────────────
@@ -410,6 +441,9 @@ def main():
     print(f"Loaded {len(vocab)} entries from step 3 output")
 
     form_lookup, lemma_set = load_wiktionary_lookup(WIKT_DUMP)
+
+    # Load contextual POS from spaCy cache
+    spacy_pos_cache = load_spacy_pos_cache(SPACY_PATH)
 
     # Load spaCy output for comparison (if available)
     spacy_data = {}
@@ -457,32 +491,43 @@ def main():
         # English detection
         lang_flags = english_flag(word)
 
-        # For each (lemma, pos) candidate, produce one output entry
-        # But: collapse to the BEST single lemma to avoid the duplication
-        # problem that step 7 was created to fix.
-        # Pick the best lemma: prefer verbs, then nouns, then others.
-        # Group all POS candidates under that lemma.
-        best_lemma = results[0][0]
-        all_pos = [pos for _, pos in results if _ == best_lemma]
-        # If multiple lemmas, keep only the first (highest priority)
-        if not all_pos:
-            all_pos = [results[0][1]]
+        # Use contextual POS from spaCy cache to pick the right candidate per example.
+        # This lets us correctly split "recuerdo" into VERB (recordar) vs NOUN (recuerdo).
+        word_pos_cache = spacy_pos_cache.get(word, {})
 
         pos_counts = Counter()
-        for pos in all_pos:
-            pos_counts[pos] += max(1, len(examples))
-
-        # Build matches (synthetic — we haven't run NLP on each line)
         matches = []
+        lemma_votes = Counter()  # Track which lemma wins across examples
+
         for i, ex in enumerate(examples[:10]):
-            pos = all_pos[i % len(all_pos)]
+            eid = ex.get("id", "")
+            contextual_pos = word_pos_cache.get(eid)
+
+            if contextual_pos and len(results) > 1:
+                # We have contextual POS — pick the matching candidate
+                match_lemma, match_pos = pick_lemma_for_pos(
+                    word, contextual_pos, results, form_lookup, lemma_set)
+            else:
+                # No contextual POS — use best overall candidate
+                match_lemma, match_pos = results[0]
+
+            pos_counts[match_pos] += 1
+            lemma_votes[match_lemma] += 1
             matches.append({
-                "example_id": ex.get("id", ""),
+                "example_id": eid,
                 "example_song_name": ex.get("title", ""),
                 "token_text": word,
-                "lemma": best_lemma,
-                "pos": pos,
+                "lemma": match_lemma,
+                "pos": match_pos,
             })
+
+        # If no examples, use the top candidate
+        if not matches:
+            pos_counts[results[0][1]] = 1
+            lemma_votes[results[0][0]] = 1
+
+        # Best lemma = the one that won the most examples
+        best_lemma = lemma_votes.most_common(1)[0][0]
 
         out_entry = {
             "key": f"{word}|{best_lemma}",

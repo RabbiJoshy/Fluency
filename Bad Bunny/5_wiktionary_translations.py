@@ -174,6 +174,12 @@ CURATED_TRANSLATIONS = {
     "dembow": "dembow (music genre)",
     "quedarme": "to stay, to remain",
     "cerquita": "real close, nearby",
+    "paso": "step",
+    "pasar": "to pass, to happen",
+    "llamar": "to call",
+    "puesta": "set, ready",
+    "puesto": "set, ready; position",
+    "poner": "to put, to place",
 }
 
 # ── Proper nouns (should be filtered from the learning deck) ─────────────────
@@ -693,15 +699,24 @@ def _get_lemma_translation(lemma: str, wikt_pos_options: list, glosses: dict) ->
 
 
 def get_all_pos_translations(word: str, lemma: str, pos_counts: dict,
-                             glosses: dict, inflections: dict = None) -> list[dict]:
+                             glosses: dict, inflections: dict = None,
+                             pos_lemma_map: dict = None) -> list[dict]:
     """
     Build a meanings list: one entry per POS with the best translation.
+    Uses pos_lemma_map (POS → lemma) to look up POS-specific lemmas
+    when a word has different lemmas per POS (e.g., llamas: NOUN→llama, VERB→llamar).
     """
     meanings = []
     total_count = sum(pos_counts.values())
 
     for ud_pos, count in sorted(pos_counts.items(), key=lambda x: -x[1]):
-        trans = get_translation(word, lemma, ud_pos, glosses, inflections)
+        # Use POS-specific lemma if available
+        pos_lemma = pos_lemma_map.get(ud_pos, lemma) if pos_lemma_map else lemma
+
+        trans = get_translation(word, pos_lemma, ud_pos, glosses, inflections)
+        if not trans:
+            # Try with the overall lemma
+            trans = get_translation(word, lemma, ud_pos, glosses, inflections)
         if not trans:
             # Try without POS constraint
             trans = get_translation(word, lemma, "X", glosses, inflections)
@@ -780,6 +795,16 @@ def main():
                         ("PROPN" in pos_counts and
                          pos_counts.get("PROPN", 0) / max(sum(pos_counts.values()), 1) > 0.5))
 
+        # Build POS → lemma map from contextual matches
+        # e.g., llamas: NOUN→llama, VERB→llamar
+        matches = entry.get("matches", [])
+        pos_lemma_map = {}
+        for m in matches:
+            m_pos = m.get("pos", "")
+            m_lemma = m.get("lemma", "")
+            if m_pos and m_lemma and m_pos not in pos_lemma_map:
+                pos_lemma_map[m_pos] = m_lemma
+
         # Get translations
         if is_english:
             # English words get themselves as translation
@@ -788,7 +813,8 @@ def main():
             meanings = [{"pos": list(pos_counts.keys())[0] if pos_counts else "X",
                          "translation": "", "frequency": "1.00"}]
         else:
-            meanings = get_all_pos_translations(word, lemma, pos_counts, glosses, inflections)
+            meanings = get_all_pos_translations(word, lemma, pos_counts, glosses,
+                                                inflections, pos_lemma_map)
 
         # Add examples to meanings, matched by POS
         # Build example_id → POS mapping from matches
