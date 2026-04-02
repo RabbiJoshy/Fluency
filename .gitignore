@@ -22,3 +22,8 @@ npm-debug.log
 # Build outputs
 dist/
 build/
+
+# Large pipeline intermediates (regenerated from kaikki_spanish.jsonl.gz)
+Bad Bunny/intermediates/wiktionary_form_lookup.json
+Bad Bunny/intermediates/unimorph_spa.tsv
+Bad Bunny/intermediates/freeling_dicc.src
