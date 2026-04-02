@@ -159,6 +159,21 @@ CURATED_TRANSLATIONS = {
     "combo": "crew, group",
     "combos": "crews, groups",
     "nada": "nothing",
+    "ahí": "there",
+    "prende": "lights up, turns on",
+    "prender": "to light up, to turn on",
+    "haber": "to have (auxiliary)",
+    "había": "there was/were",
+    "santa": "saint, holy",
+    "vos": "you (informal)",
+    "pr": "Puerto Rico",
+    "conocer": "to know, to meet",
+    "cambiar": "to change",
+    "nacer": "to be born",
+    "repetir": "to repeat",
+    "dembow": "dembow (music genre)",
+    "quedarme": "to stay, to remain",
+    "cerquita": "real close, nearby",
 }
 
 # ── Proper nouns (should be filtered from the learning deck) ─────────────────
@@ -208,6 +223,10 @@ INTERJECTIONS = frozenset({
     # Additional sound effects and fragments
     "mm", "trr", "tss", "uff", "eah", "hehe", "waka", "kr", "ki",
     "ching",
+    # Single letters (not useful vocabulary)
+    "b", "c", "d", "f", "g", "j", "k", "p", "q", "r", "s", "t", "v", "w", "x", "z",
+    # Misc fragments
+    "auh",
 })
 
 # ── Additional English words that slipped through ────────────────────────────
@@ -468,22 +487,35 @@ def clean_gloss(gloss: str) -> str:
         "inflection of", "plural of", "feminine of", "masculine of",
         "Alternative spelling", "Alternative form", "Obsolete",
         "Misspelling", "Dated form", "abbreviation of",
+        "alternative letter-case form",
     )):
         return ""
 
+    # Skip alphabet letter definitions
+    if re.match(r"^The \w+ letter of the Spanish alphabet", gloss):
+        return ""
+
+    # Skip "initialism of" glosses that are too verbose
+    if gloss.startswith("initialism of") and len(gloss) > 40:
+        return ""
+
     # Remove parenthetical qualifiers but keep the main meaning
-    # e.g. "to make (someone) happy" → "to make happy"
-    # But keep short ones: "(music) record" → "record"
     result = gloss
 
     # Remove leading context labels in parentheses: "(colloquial) to eat" → "to eat"
     result = re.sub(r"^\([^)]{0,30}\)\s*", "", result)
 
-    # Remove trailing parenthetical notes
-    result = re.sub(r"\s*\([^)]*\)\s*$", "", result)
+    # Remove inline parenthetical notes: "to know (a person or a place)" → "to know"
+    result = re.sub(r"\s*\([^)]*\)", "", result)
+
+    # Remove trailing colon-separated elaboration: "there: used to designate..." → "there"
+    result = re.sub(r":\s+.+$", "", result)
 
     # Clean up "used with..." and similar trailing notes
     result = re.sub(r"\s*[;,]\s*used (?:with|to|in|as).*$", "", result, flags=re.IGNORECASE)
+
+    # Remove "female equivalent of X" patterns → just keep the translation
+    result = re.sub(r";\s*female equivalent of\s+\w+", "", result)
 
     # Strip wiki formatting artifacts
     result = result.strip(" ,;.")
@@ -497,6 +529,9 @@ def clean_gloss(gloss: str) -> str:
         # Try splitting on commas
         parts = result.split(",")
         result = ", ".join(parts[:2]).strip()
+    if len(result) > 40:
+        # Last resort: hard truncate at word boundary
+        result = result[:37].rsplit(" ", 1)[0] + "..."
 
     return result
 
