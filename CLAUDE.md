@@ -300,6 +300,12 @@ Step 3 merges these. The `display_form` field preserves the elided spelling so t
 
 ---
 
+## Working with the Human
+
+**Long-running commands:** Pipeline steps, model loading, embedding passes, and other slow processes (>30 seconds) should NOT be run inline via tool calls. Instead, print the command for Josh to run in his own terminal. This lets him see real-time progress and saves context tokens. Resume analysis after he shares the output.
+
+---
+
 ## Dependencies
 
 ```

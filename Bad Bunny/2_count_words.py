@@ -53,6 +53,13 @@ LETTER_CLASS = r"A-Za-zÁÉÍÓÚÜÑáéíóúüñ"
 WORD_RE = re.compile(rf"[{LETTER_CLASS}]+(?:'[{LETTER_CLASS}]+)*'?")
 SECTION_LINE_RE = re.compile(r"^\[.*\]$")
 FOOTER_MARKERS = ["You might also like", "Embed"]
+BOILERPLATE_LINE_RE = re.compile(
+    r'… Read More'              # Truncated Genius annotation paragraphs
+    r'|^\u2026 Read More'       # Unicode ellipsis variant
+    r'|\.\.\. Read More'        # ASCII ellipsis variant
+    r'|^Letra de "[^"]*"'       # Genius page title format
+    r'|^-\s*Mashup:'            # Mashup tracklists
+)
 
 # Helps pick more "sentence-like" lines
 CONNECTORS = {
@@ -120,6 +127,8 @@ def clean_genius_lyrics(raw: str) -> str:
         if not s:
             continue
         if SECTION_LINE_RE.match(s):
+            continue
+        if BOILERPLATE_LINE_RE.search(s):
             continue
         lines.append(s)
 

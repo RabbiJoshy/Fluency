@@ -27,6 +27,33 @@ OUT_PATH = Path("Bad Bunny/intermediates/3_vocab_evidence_merged.json")
 MAPPING_PATH = Path("Bad Bunny/intermediates/3_elision_mapping.json")
 MAX_EXAMPLES = 10
 
+# ---------------------------------------------------------------------------
+# D-elision patterns: Caribbean Spanish drops -d- from past participles
+#   -ado → -a'o  (olvidado → olvida'o)
+#   -ído → -í'o  (jodido → jodí'o)
+# These are detected by regex and merged into canonical forms.
+# ---------------------------------------------------------------------------
+D_ELISION_RE = re.compile(r"^(.+)a'o$")      # captures stem before a'o
+D_ELISION_I_RE = re.compile(r"^(.+)í'o$")    # captures stem before í'o
+
+# Words ending in -a'o/-í'o that are NOT d-elisions (keep as-is)
+D_ELISION_EXCEPTIONS = frozenset({
+    "la'o",     # lado — already curated, elision of -d- in noun not participle
+})
+
+
+def d_elision_canonical(word):
+    """If word is a d-elision, return (canonical_form, display_form). Else None."""
+    if word in D_ELISION_EXCEPTIONS:
+        return None
+    m = D_ELISION_RE.match(word)
+    if m:
+        return (m.group(1) + "ado", word)
+    m = D_ELISION_I_RE.match(word)
+    if m:
+        return (m.group(1) + "ido", word)
+    return None
+
 
 def load_merge_targets(mapping_path: Path) -> dict:
     """
@@ -79,10 +106,18 @@ def merge_evidence(data: list, targets: dict) -> list:
             key = t["target_word"]
             groups[key]["display_form"] = t["display_form"]
         else:
-            key = word
-            # No merge target — keep display_form = word
-            if groups[key]["display_form"] is None:
-                groups[key]["display_form"] = word
+            # Check for d-elision pattern (e.g. olvida'o → olvidado)
+            d_result = d_elision_canonical(word)
+            if d_result:
+                canonical, display = d_result
+                key = canonical
+                # Only set display_form if the elided form is first seen
+                if groups[key]["display_form"] is None:
+                    groups[key]["display_form"] = display
+            else:
+                key = word
+                if groups[key]["display_form"] is None:
+                    groups[key]["display_form"] = word
 
         groups[key]["count"] += count
         groups[key]["examples"].extend(examples)
@@ -126,6 +161,13 @@ def main():
     targets = load_merge_targets(MAPPING_PATH)
     print(f"  {len(targets)} words have merge targets")
 
+    # Count d-elisions for reporting
+    d_elision_count = 0
+    for entry in data:
+        w = entry["word"]
+        if w not in targets and d_elision_canonical(w) is not None:
+            d_elision_count += 1
+
     merged = merge_evidence(data, targets)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
@@ -133,6 +175,7 @@ def main():
 
     print(f"Wrote {len(merged)} entries -> {OUT_PATH}")
     print(f"  Reduced by {len(data) - len(merged)} entries")
+    print(f"  D-elisions merged: {d_elision_count} (-a'o/-í'o forms)")
 
     # Show top merged entries
     print("\n=== Top 20 merged entries ===")

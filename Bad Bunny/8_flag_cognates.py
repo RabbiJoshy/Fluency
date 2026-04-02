@@ -160,6 +160,11 @@ def add_transparent_flag(path: str):
     count_after = 0
 
     for entry in data:
+        # If already flagged by LLM (step 4), keep it — don't reset
+        if entry.get("is_transparent_cognate"):
+            count_after += 1
+            continue
+
         # Check both word AND lemma against translations
         candidates = set()
         word = entry.get("word", "")
