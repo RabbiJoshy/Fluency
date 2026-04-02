@@ -88,6 +88,7 @@ CURATED_TRANSLATIONS = {
     "sí": "yes",
     # Common words where Wiktionary's first sense is misleading
     "hacer": "to do, to make",
+    "querer": "to want, to love",
     "gustar": "to like, to please",
     "gusta": "to like, to please",
     "cabrón": "bastard, badass",
@@ -153,6 +154,11 @@ CURATED_TRANSLATIONS = {
     "ma'i": "mommy (PR)",
     "yao'": "ready, let's go (PR)",
     "rd": "Dominican Republic",
+    # Words where Wiktionary has wrong/obscure sense
+    "oye": "hey!, listen!",
+    "combo": "crew, group",
+    "combos": "crews, groups",
+    "nada": "nothing",
 }
 
 # ── Proper nouns (should be filtered from the learning deck) ─────────────────
@@ -228,6 +234,226 @@ UD_TO_WIKT["SCONJ"].extend(["conj"])
 UD_TO_WIKT["CCONJ"].extend(["conj"])
 UD_TO_WIKT["ADP"].extend(["prep"])
 
+# ── English verb conjugation for flashcard-friendly translations ───────────────
+# Maps Spanish infinitive translation → conjugated English forms.
+# Only irregular English verbs need entries here; regular verbs are handled
+# mechanically by _conjugate_regular().
+
+IRREGULAR_ENGLISH = {
+    # infinitive: (1sg, 2sg, 3sg, 1pl, 3pl, gerund, past, past_part, imperative)
+    "be":    ("am", "are", "is", "are", "are", "being", "was", "been", "be"),
+    "go":    ("go", "go", "goes", "go", "go", "going", "went", "gone", "go"),
+    "have":  ("have", "have", "has", "have", "have", "having", "had", "had", "have"),
+    "do":    ("do", "do", "does", "do", "do", "doing", "did", "done", "do"),
+    "say":   ("say", "say", "says", "say", "say", "saying", "said", "said", "say"),
+    "see":   ("see", "see", "sees", "see", "see", "seeing", "saw", "seen", "see"),
+    "give":  ("give", "give", "gives", "give", "give", "giving", "gave", "given", "give"),
+    "know":  ("know", "know", "knows", "know", "know", "knowing", "knew", "known", "know"),
+    "come":  ("come", "come", "comes", "come", "come", "coming", "came", "come", "come"),
+    "put":   ("put", "put", "puts", "put", "put", "putting", "put", "put", "put"),
+    "leave": ("leave", "leave", "leaves", "leave", "leave", "leaving", "left", "left", "leave"),
+    "want":  ("want", "want", "wants", "want", "want", "wanting", "wanted", "wanted", "want"),
+    "feel":  ("feel", "feel", "feels", "feel", "feel", "feeling", "felt", "felt", "feel"),
+    "think": ("think", "think", "thinks", "think", "think", "thinking", "thought", "thought", "think"),
+    "take":  ("take", "take", "takes", "take", "take", "taking", "took", "taken", "take"),
+    "tell":  ("tell", "tell", "tells", "tell", "tell", "telling", "told", "told", "tell"),
+    "get":   ("get", "get", "gets", "get", "get", "getting", "got", "gotten", "get"),
+    "can":   ("can", "can", "can", "can", "can", "—", "could", "—", "—"),
+    "let":   ("let", "let", "lets", "let", "let", "letting", "let", "let", "let"),
+    "drink": ("drink", "drink", "drinks", "drink", "drink", "drinking", "drank", "drunk", "drink"),
+    "eat":   ("eat", "eat", "eats", "eat", "eat", "eating", "ate", "eaten", "eat"),
+    "sleep": ("sleep", "sleep", "sleeps", "sleep", "sleep", "sleeping", "slept", "slept", "sleep"),
+    "run":   ("run", "run", "runs", "run", "run", "running", "ran", "run", "run"),
+    "write": ("write", "write", "writes", "write", "write", "writing", "wrote", "written", "write"),
+    "sing":  ("sing", "sing", "sings", "sing", "sing", "singing", "sang", "sung", "sing"),
+    "fall":  ("fall", "fall", "falls", "fall", "fall", "falling", "fell", "fallen", "fall"),
+    "lose":  ("lose", "lose", "loses", "lose", "lose", "losing", "lost", "lost", "lose"),
+    "win":   ("win", "win", "wins", "win", "win", "winning", "won", "won", "win"),
+    "keep":  ("keep", "keep", "keeps", "keep", "keep", "keeping", "kept", "kept", "keep"),
+    "spend": ("spend", "spend", "spends", "spend", "spend", "spending", "spent", "spent", "spend"),
+    "understand": ("understand", "understand", "understands", "understand", "understand", "understanding", "understood", "understood", "understand"),
+    "begin": ("begin", "begin", "begins", "begin", "begin", "beginning", "began", "begun", "begin"),
+    "light": ("light", "light", "lights", "light", "light", "lighting", "lit", "lit", "light"),
+    "shine": ("shine", "shine", "shines", "shine", "shine", "shining", "shone", "shone", "shine"),
+    "ride":  ("ride", "ride", "rides", "ride", "ride", "riding", "rode", "ridden", "ride"),
+    "rise":  ("rise", "rise", "rises", "rise", "rise", "rising", "rose", "risen", "rise"),
+    "sit":   ("sit", "sit", "sits", "sit", "sit", "sitting", "sat", "sat", "sit"),
+    "stand": ("stand", "stand", "stands", "stand", "stand", "standing", "stood", "stood", "stand"),
+    "break": ("break", "break", "breaks", "break", "break", "breaking", "broke", "broken", "break"),
+    "catch": ("catch", "catch", "catches", "catch", "catch", "catching", "caught", "caught", "catch"),
+    "grow":  ("grow", "grow", "grows", "grow", "grow", "growing", "grew", "grown", "grow"),
+    "lead":  ("lead", "lead", "leads", "lead", "lead", "leading", "led", "led", "lead"),
+    "meet":  ("meet", "meet", "meets", "meet", "meet", "meeting", "met", "met", "meet"),
+    "hear":  ("hear", "hear", "hears", "hear", "hear", "hearing", "heard", "heard", "hear"),
+    "find":  ("find", "find", "finds", "find", "find", "finding", "found", "found", "find"),
+    "bring": ("bring", "bring", "brings", "bring", "bring", "bringing", "brought", "brought", "bring"),
+    "sell":  ("sell", "sell", "sells", "sell", "sell", "selling", "sold", "sold", "sell"),
+    "send":  ("send", "send", "sends", "send", "send", "sending", "sent", "sent", "send"),
+    "build": ("build", "build", "builds", "build", "build", "building", "built", "built", "build"),
+    "hold":  ("hold", "hold", "holds", "hold", "hold", "holding", "held", "held", "hold"),
+    "pay":   ("pay", "pay", "pays", "pay", "pay", "paying", "paid", "paid", "pay"),
+    "hit":   ("hit", "hit", "hits", "hit", "hit", "hitting", "hit", "hit", "hit"),
+    "shoot": ("shoot", "shoot", "shoots", "shoot", "shoot", "shooting", "shot", "shot", "shoot"),
+    "hurt":  ("hurt", "hurt", "hurts", "hurt", "hurt", "hurting", "hurt", "hurt", "hurt"),
+    "set":   ("set", "set", "sets", "set", "set", "setting", "set", "set", "set"),
+    "bite":  ("bite", "bite", "bites", "bite", "bite", "biting", "bit", "bitten", "bite"),
+    "choose":("choose", "choose", "chooses", "choose", "choose", "choosing", "chose", "chosen", "choose"),
+    "drive": ("drive", "drive", "drives", "drive", "drive", "driving", "drove", "driven", "drive"),
+    "fly":   ("fly", "fly", "flies", "fly", "fly", "flying", "flew", "flown", "fly"),
+    "forget":("forget", "forget", "forgets", "forget", "forget", "forgetting", "forgot", "forgotten", "forget"),
+    "hide":  ("hide", "hide", "hides", "hide", "hide", "hiding", "hid", "hidden", "hide"),
+    "wake":  ("wake", "wake", "wakes", "wake", "wake", "waking", "woke", "woken", "wake"),
+    "wear":  ("wear", "wear", "wears", "wear", "wear", "wearing", "wore", "worn", "wear"),
+    "lend":  ("lend", "lend", "lends", "lend", "lend", "lending", "lent", "lent", "lend"),
+    "fight": ("fight", "fight", "fights", "fight", "fight", "fighting", "fought", "fought", "fight"),
+    "seek":  ("seek", "seek", "seeks", "seek", "seek", "seeking", "sought", "sought", "seek"),
+    "teach": ("teach", "teach", "teaches", "teach", "teach", "teaching", "taught", "taught", "teach"),
+    "dream": ("dream", "dream", "dreams", "dream", "dream", "dreaming", "dreamed", "dreamed", "dream"),
+    "burn":  ("burn", "burn", "burns", "burn", "burn", "burning", "burned", "burned", "burn"),
+    "prove": ("prove", "prove", "proves", "prove", "prove", "proving", "proved", "proven", "prove"),
+    "swear": ("swear", "swear", "swears", "swear", "swear", "swearing", "swore", "sworn", "swear"),
+}
+# Index: 0=1sg, 1=2sg, 2=3sg, 3=1pl, 4=3pl, 5=gerund, 6=past, 7=past_part, 8=imperative
+_CONJ_1SG, _CONJ_2SG, _CONJ_3SG, _CONJ_1PL, _CONJ_3PL = 0, 1, 2, 3, 4
+_CONJ_GER, _CONJ_PAST, _CONJ_PP, _CONJ_IMP = 5, 6, 7, 8
+
+
+def _conjugate_regular(infinitive: str) -> tuple:
+    """Mechanically conjugate a regular English verb."""
+    v = infinitive
+    # 3rd person singular
+    if v.endswith(("s", "sh", "ch", "x", "z", "o")):
+        s3 = v + "es"
+    elif v.endswith("y") and len(v) > 1 and v[-2] not in "aeiou":
+        s3 = v[:-1] + "ies"
+    else:
+        s3 = v + "s"
+    # gerund
+    if v.endswith("e") and not v.endswith("ee"):
+        ger = v[:-1] + "ing"
+    elif v.endswith("ie"):
+        ger = v[:-2] + "ying"
+    else:
+        ger = v + "ing"
+    # past / past participle
+    if v.endswith("e"):
+        past = v + "d"
+    elif v.endswith("y") and len(v) > 1 and v[-2] not in "aeiou":
+        past = v[:-1] + "ied"
+    else:
+        past = v + "ed"
+    return (v, v, s3, v, v, ger, past, past, v)
+
+
+def _extract_infinitive(translation: str):
+    """Extract the bare English infinitive from a translation like 'to walk' or 'to be able to'."""
+    if not translation.startswith("to "):
+        return None
+    rest = translation[3:].strip()
+    # Handle multi-meaning translations: take first verb phrase before comma or semicolon
+    # "to have; to possess" → "have"
+    # "to be able to, can" → "be able to"
+    for sep in (";", ","):
+        rest = rest.split(sep)[0].strip()
+    # Remove trailing "to" artifacts: "to have; to possess" → after split → "have" (correct)
+    return rest if rest else None
+
+
+def conjugate_english(translation: str, tags: set):
+    """
+    Given a Spanish-to-English infinitive translation and Wiktionary inflection tags,
+    return the conjugated English form, or None if we can't determine it.
+
+    Examples:
+      ("to be", {present, indicative, first-person, singular}) → "I am"
+      ("to go", {present, indicative, third-person, singular}) → "he/she goes"
+      ("to walk", {gerund}) → "walking"
+      ("to say, to tell", {imperative, second-person, singular}) → "say!"
+    """
+    inf = _extract_infinitive(translation)
+    if not inf:
+        return None
+
+    # For multi-word infinitives like "be able to", just use the first word for conjugation
+    # but append the rest
+    parts = inf.split()
+    main_verb = parts[0]
+    suffix = " " + " ".join(parts[1:]) if len(parts) > 1 else ""
+
+    # Look up conjugation table
+    if main_verb in IRREGULAR_ENGLISH:
+        forms = IRREGULAR_ENGLISH[main_verb]
+    else:
+        forms = _conjugate_regular(main_verb)
+
+    # Determine which form to use based on tags
+    is_present = "present" in tags
+    is_past = "past" in tags or "preterite" in tags
+    is_imperfect = "imperfect" in tags
+    is_future = "future" in tags
+    is_conditional = "conditional" in tags
+    is_subjunctive = "subjunctive" in tags
+    is_imperative = "imperative" in tags
+    is_gerund = "gerund" in tags or "progressive" in tags
+    is_participle = "participle" in tags and "past" in tags
+
+    is_1p = "first-person" in tags
+    is_2p = "second-person" in tags
+    is_3p = "third-person" in tags
+    is_sing = "singular" in tags
+    is_plur = "plural" in tags
+
+    # Gerund: walking, going, being
+    if is_gerund:
+        return forms[_CONJ_GER] + suffix
+
+    # Past participle: walked, gone, been
+    if is_participle:
+        return forms[_CONJ_PP] + suffix
+
+    # Imperative: walk!, go!, be!
+    if is_imperative:
+        return forms[_CONJ_IMP] + suffix + "!"
+
+    # Future: will walk, will go
+    if is_future:
+        person = "I" if is_1p and is_sing else "you" if is_2p else "he/she" if is_3p and is_sing else "we" if is_1p and is_plur else "they"
+        return f"{person} will {main_verb}{suffix}"
+
+    # Conditional: would walk, would go
+    if is_conditional:
+        person = "I" if is_1p and is_sing else "you" if is_2p else "he/she" if is_3p and is_sing else "we" if is_1p and is_plur else "they"
+        return f"{person} would {main_verb}{suffix}"
+
+    # Imperfect: was walking, used to walk
+    if is_imperfect:
+        person = "I" if is_1p and is_sing else "you" if is_2p else "he/she" if is_3p and is_sing else "we" if is_1p and is_plur else "they"
+        return f"{person} used to {main_verb}{suffix}"
+
+    # Past (preterite): I walked, he went
+    if is_past:
+        person = "I" if is_1p and is_sing else "you" if is_2p else "he/she" if is_3p and is_sing else "we" if is_1p and is_plur else "they"
+        return f"{person} {forms[_CONJ_PAST]}{suffix}"
+
+    # Present subjunctive: use bare infinitive
+    if is_subjunctive and is_present:
+        return main_verb + suffix
+
+    # Present indicative
+    if is_present:
+        if is_1p and is_sing:
+            return f"I {forms[_CONJ_1SG]}{suffix}"
+        elif is_2p and is_sing:
+            return f"you {forms[_CONJ_2SG]}{suffix}"
+        elif is_3p and is_sing:
+            return f"he/she {forms[_CONJ_3SG]}{suffix}"
+        elif is_1p and is_plur:
+            return f"we {forms[_CONJ_1PL]}{suffix}"
+        elif is_3p and is_plur or is_plur:
+            return f"they {forms[_CONJ_3PL]}{suffix}"
+
+    return None
+
 
 def clean_gloss(gloss: str) -> str:
     """
@@ -275,13 +501,15 @@ def clean_gloss(gloss: str) -> str:
     return result
 
 
-def load_wiktionary_glosses(dump_path: Path) -> dict:
+def load_wiktionary_glosses(dump_path: Path):
     """
-    Parse Wiktionary dump into: word → {wikt_pos: [cleaned glosses]}
-    Only keeps true lemma entries (not form-of entries).
+    Parse Wiktionary dump into:
+      glosses:   word → {wikt_pos: [cleaned glosses]}  (true lemma entries only)
+      inflections: word → [(lemma, wikt_pos, tags_set), ...]  (form-of entries)
     """
-    print("Loading Wiktionary glosses...")
+    print("Loading Wiktionary glosses + inflections...")
     glosses = defaultdict(lambda: defaultdict(list))
+    inflections = defaultdict(list)
 
     with gzip.open(dump_path, "rt", encoding="utf-8") as f:
         for line in f:
@@ -292,96 +520,114 @@ def load_wiktionary_glosses(dump_path: Path) -> dict:
                 continue
 
             for sense in entry.get("senses", []):
-                # Skip form-of senses
                 if "form_of" in sense:
-                    continue
-                raw_glosses = sense.get("glosses", [])
-                for g in raw_glosses:
-                    cleaned = clean_gloss(g)
-                    if cleaned and cleaned not in glosses[word][wikt_pos]:
-                        glosses[word][wikt_pos].append(cleaned)
+                    # Store inflection info: which lemma this is a form of + tags
+                    form_of_list = sense.get("form_of", [])
+                    tags = set(sense.get("tags", []))
+                    for fo in form_of_list:
+                        lemma_word = fo.get("word", "").lower().strip()
+                        if lemma_word:
+                            inflections[word].append((lemma_word, wikt_pos, tags))
+                else:
+                    raw_glosses = sense.get("glosses", [])
+                    for g in raw_glosses:
+                        cleaned = clean_gloss(g)
+                        if cleaned and cleaned not in glosses[word][wikt_pos]:
+                            glosses[word][wikt_pos].append(cleaned)
 
-    print(f"  {len(glosses):,} words with glosses")
-    return dict(glosses)
+    print(f"  {len(glosses):,} words with glosses, {len(inflections):,} inflected forms")
+    return dict(glosses), dict(inflections)
 
 
 def get_translation(word: str, lemma: str, ud_pos: str,
-                    glosses: dict) -> str:
+                    glosses: dict, inflections: dict = None) -> str:
     """
     Get the best translation for a word given its lemma and POS.
 
     Strategy:
       0. Check curated translations table (highest priority)
-      1. Look up lemma + matching POS in Wiktionary glosses
-      2. Fall back to lemma + any POS
-      3. Fall back to word (surface form) + matching POS
-      4. Fall back to word + any POS
-      5. Return empty string (will need claude -p or manual fill)
+      1. Surface form has its own standalone sense (e.g., oye as INTJ)
+      2. Conjugation-aware: get lemma translation, then conjugate for this form
+      3. Fall back to lemma + matching POS (infinitive form)
+      4. Fall back to lemma + any POS
+      5. Fall back to word + any POS
+      6. Pattern-based fallbacks (elisions, diminutives)
     """
     w = word.lower()
 
     # 0. Curated translations (short, flashcard-ready)
+    #    If the word itself has a curated entry, use it directly
     if w in CURATED_TRANSLATIONS:
         return CURATED_TRANSLATIONS[w]
-    if lemma in CURATED_TRANSLATIONS:
-        return CURATED_TRANSLATIONS[lemma]
 
     # Map UD POS to possible Wiktionary POS values
     wikt_pos_options = UD_TO_WIKT.get(ud_pos, [])
 
-    # 1. Lemma + matching POS
-    if lemma in glosses:
-        for wp in wikt_pos_options:
-            if wp in glosses[lemma]:
-                gs = glosses[lemma][wp]
-                if gs:
-                    return gs[0]  # First (most common) sense
-
-    # 2. Lemma + any POS
-    if lemma in glosses:
-        for wp in glosses[lemma]:
-            gs = glosses[lemma][wp]
-            if gs:
-                return gs[0]
-
-    # 3. Word + matching POS
-    w = word.lower()
-    if w != lemma and w in glosses:
+    # 1. Surface form has a standalone sense matching our POS
+    #    e.g., "oye" has intj="hey! listen!" and we want that if POS is INTJ
+    if w in glosses and w != lemma:
         for wp in wikt_pos_options:
             if wp in glosses[w]:
                 gs = glosses[w][wp]
                 if gs:
                     return gs[0]
 
-    # 4. Word + any POS
+    # 2. Conjugation-aware translation for verbs
+    #    Use curated or Wiktionary lemma translation, then conjugate for this form
+    if inflections and ud_pos == "VERB" and w != lemma and w in inflections:
+        # Try curated lemma translation first, then Wiktionary
+        lemma_trans = CURATED_TRANSLATIONS.get(lemma) or _get_lemma_translation(lemma, wikt_pos_options, glosses)
+        if lemma_trans and lemma_trans.startswith("to "):
+            for infl_lemma, infl_pos, tags in inflections[w]:
+                if infl_lemma == lemma and infl_pos == "verb":
+                    conjugated = conjugate_english(lemma_trans, tags)
+                    if conjugated:
+                        return conjugated
+                    break
+
+    # 2b. If lemma has curated entry but we couldn't conjugate, return it as-is
+    if lemma in CURATED_TRANSLATIONS:
+        return CURATED_TRANSLATIONS[lemma]
+
+    # 3. Lemma + matching POS (returns infinitive for verbs)
+    lemma_trans = _get_lemma_translation(lemma, wikt_pos_options, glosses)
+    if lemma_trans:
+        return lemma_trans
+
+    # 4. Lemma + any POS
+    if lemma in glosses:
+        for wp in glosses[lemma]:
+            gs = glosses[lemma][wp]
+            if gs:
+                return gs[0]
+
+    # 5. Word + any POS (surface form, any sense)
     if w != lemma and w in glosses:
         for wp in glosses[w]:
             gs = glosses[w][wp]
             if gs:
                 return gs[0]
 
-    # 5. Pattern-based fallbacks for Caribbean elisions and diminutives
+    # 6. Pattern-based fallbacks for Caribbean elisions and diminutives
 
     # Elided participles: cambia'o → cambiado, prendí'o → prendido
     if re.match(r"(.+?)'[oa]s?$", w):
         m = re.match(r"(.+?)'([oa]s?)$", w)
         if m:
             stem, suffix = m.group(1), m.group(2)
-            # Try -ado/-ido reconstruction
             for recon in [stem + "d" + suffix, stem + "ad" + suffix]:
-                trans = get_translation(recon, recon, "VERB", glosses)
+                trans = get_translation(recon, recon, "VERB", glosses, inflections)
                 if trans:
                     return trans
-                # Try looking up the base verb: cambiado → cambiar
                 if recon.endswith("ado"):
                     verb = recon[:-3] + "ar"
-                    trans = get_translation(verb, verb, "VERB", glosses)
+                    trans = get_translation(verb, verb, "VERB", glosses, inflections)
                     if trans:
                         return trans
                 elif recon.endswith("ido"):
                     for ending in ("er", "ir"):
                         verb = recon[:-3] + ending
-                        trans = get_translation(verb, verb, "VERB", glosses)
+                        trans = get_translation(verb, verb, "VERB", glosses, inflections)
                         if trans:
                             return trans
 
@@ -391,18 +637,28 @@ def get_translation(word: str, lemma: str, ud_pos: str,
         if m:
             stem = m.group(1)
             suffix = m.group(2)
-            # Reconstruct base: stem + matching gender/number
-            gender_suffix = suffix.replace("it", "")  # "ita" → "a", "itos" → "os"
+            gender_suffix = suffix.replace("it", "")
             for base in [stem + gender_suffix, stem + "o", stem + "a", stem]:
-                trans = get_translation(base, base, "X", glosses)
+                trans = get_translation(base, base, "X", glosses, inflections)
                 if trans:
                     return f"little {trans}" if not trans.startswith("little") else trans
 
     return ""
 
 
+def _get_lemma_translation(lemma: str, wikt_pos_options: list, glosses: dict) -> str:
+    """Get translation for a lemma with POS matching, then any POS."""
+    if lemma in glosses:
+        for wp in wikt_pos_options:
+            if wp in glosses[lemma]:
+                gs = glosses[lemma][wp]
+                if gs:
+                    return gs[0]
+    return ""
+
+
 def get_all_pos_translations(word: str, lemma: str, pos_counts: dict,
-                             glosses: dict) -> list[dict]:
+                             glosses: dict, inflections: dict = None) -> list[dict]:
     """
     Build a meanings list: one entry per POS with the best translation.
     """
@@ -410,10 +666,10 @@ def get_all_pos_translations(word: str, lemma: str, pos_counts: dict,
     total_count = sum(pos_counts.values())
 
     for ud_pos, count in sorted(pos_counts.items(), key=lambda x: -x[1]):
-        trans = get_translation(word, lemma, ud_pos, glosses)
+        trans = get_translation(word, lemma, ud_pos, glosses, inflections)
         if not trans:
             # Try without POS constraint
-            trans = get_translation(word, lemma, "X", glosses)
+            trans = get_translation(word, lemma, "X", glosses, inflections)
 
         freq = f"{count / total_count:.2f}" if total_count > 0 else "1.00"
 
@@ -432,7 +688,7 @@ def main():
         wikt_output = json.load(f)
     print(f"Loaded {len(wikt_output)} entries from Phase 1 output")
 
-    glosses = load_wiktionary_glosses(WIKT_DUMP)
+    glosses, inflections = load_wiktionary_glosses(WIKT_DUMP)
 
     # Load old vocabulary for comparison and stable IDs
     old_vocab = {}
@@ -497,20 +753,49 @@ def main():
             meanings = [{"pos": list(pos_counts.keys())[0] if pos_counts else "X",
                          "translation": "", "frequency": "1.00"}]
         else:
-            meanings = get_all_pos_translations(word, lemma, pos_counts, glosses)
+            meanings = get_all_pos_translations(word, lemma, pos_counts, glosses, inflections)
 
-        # Add examples to meanings
-        for i, meaning in enumerate(meanings):
+        # Add examples to meanings, matched by POS
+        # Build example_id → POS mapping from matches
+        matches = entry.get("matches", [])
+        example_pos_map = {}  # example_id → POS
+        for m in matches:
+            eid = m.get("example_id", "")
+            if eid and eid not in example_pos_map:
+                example_pos_map[eid] = m.get("pos", "X")
+
+        # Build example_id → example data mapping
+        example_data = {}
+        for ex in examples[:20]:
+            eid = ex.get("id", "")
+            if eid:
+                example_data[eid] = {
+                    "song": eid.split(":")[0] if ":" in eid else "",
+                    "song_name": ex.get("title", ""),
+                    "spanish": ex.get("line", ""),
+                    "english": "",
+                }
+
+        for meaning in meanings:
+            meaning_pos = meaning["pos"]
             meaning_examples = []
-            # Assign examples round-robin across meanings
-            for j, ex in enumerate(examples[:10]):
-                if j % len(meanings) == i:
-                    meaning_examples.append({
-                        "song": ex.get("id", "").split(":")[0] if ":" in ex.get("id", "") else "",
-                        "song_name": ex.get("title", ""),
-                        "spanish": ex.get("line", ""),
-                        "english": "",  # Example translations need Phase 3b (claude -p)
-                    })
+
+            # First: examples whose POS matches this meaning
+            for eid, pos in example_pos_map.items():
+                if pos == meaning_pos and eid in example_data:
+                    meaning_examples.append(example_data[eid])
+                    if len(meaning_examples) >= 10:
+                        break
+
+            # If no POS-matched examples, fall back to any available examples
+            if not meaning_examples:
+                for ex in examples[:10]:
+                    eid = ex.get("id", "")
+                    if eid in example_data:
+                        meaning_examples.append(example_data[eid])
+                        if len(meaning_examples) >= 10:
+                            break
+
             meaning["examples"] = meaning_examples
 
         # Track stats
