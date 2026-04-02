@@ -112,7 +112,78 @@ CURATED_TRANSLATIONS = {
     "gata": "girl, babe",
     "gato": "cat, dude",
     "pana": "friend, buddy",
+    # Caribbean elisions not in step 3 mapping
+    "cuida'o": "careful, taken care of", "olvida'o": "forgotten",
+    "burla'o": "mocked", "pasa'o": "past, happened",
+    "arrebata'o": "hyped up, wild", "llega'o": "arrived",
+    "calla'o": "quiet", "enamora'o": "in love",
+    "exagera'o": "exaggerated", "pela'o": "broke, bald",
+    "demasia'o": "too much", "esta'o": "state, been",
+    "jodí'o": "screwed", "para'o": "standing, stopped",
+    "la'o": "side", "verda'": "truth", "verdá'": "truth",
+    "de'o": "finger", "lu'": "light", "to'l": "all the",
+    "usté'": "you (formal)", "pa'cá": "over here",
+    "pa'llá": "over there", "pa'rriba": "upward",
+    "pa'trás": "backwards",
+    # More reggaeton slang
+    "bellaqueo": "reggaeton grinding", "bellacoso": "lustful, horny",
+    "demonia": "she-devil", "jevo": "boyfriend, partner",
+    "frontear": "to show off, to flex", "caile": "come hang out",
+    "feka": "fake", "chamaquita": "young girl",
+    "bellaquita": "flirty girl", "manín": "buddy, pal",
+    "totito": "completely, totally",
+    "neverita": "cooler, ice chest",
 }
+
+# ── Proper nouns (should be filtered from the learning deck) ─────────────────
+PROPER_NOUNS = frozenset({
+    # Artists / producers
+    "luian", "balvin", "tainy", "anuel", "romeo", "becky", "nicky", "tego",
+    "shakira", "yandel", "ozuna", "farru", "farruko", "drake", "diddy",
+    "maluma", "rauw", "cardi", "karol", "myke", "rihanna", "natti", "noriel",
+    "rvssian", "lavoe", "eladio", "ricky", "miko", "miky", "benny", "ñejo",
+    "ñengo", "brytiago", "yovngchimi", "amenazzy", "pusho", "jeday", "juhn",
+    "tokischa", "diplo", "alofoke",
+    # People
+    "benito", "bryant", "myers", "rocky", "kobe", "messi", "verstappen",
+    "alex", "booker", "chris", "eddie", "donald", "trump", "matt", "royce",
+    "mayweather", "ray", "dicaprio", "lennon", "luka", "barea", "jimmy",
+    "mark", "mike", "tom", "brad", "pitt", "bernie", "biles", "goldberg",
+    "hector", "james", "john", "justin", "lopez", "marc", "martin", "michael",
+    "jay",
+    # Brands
+    "gucci", "louis", "vuitton", "jordan", "bugatti", "lamborghini", "ferrari",
+    "chanel", "nike", "versace", "prada", "iphone", "rolex", "balenciaga",
+    "dolce", "adidas", "porsche", "maserati", "bulgari", "bentley", "benz",
+    "fendi", "cartier", "dior", "durex", "bottega", "lambo", "lambos",
+    # Places
+    "miami", "york", "santurce", "colombia", "bronx", "coachella", "tokyo",
+    "neverland", "legoland",
+    # Platforms / media
+    "instagram", "netflix", "soundcloud", "snapchat", "tiktok", "twitter",
+    "spotify", "youtube", "billboard", "ebay",
+    # Album references
+    "yhlqmdlg",
+})
+
+# ── Interjections / onomatopoeia (should be filtered) ────────────────────────
+INTERJECTIONS = frozenset({
+    "prr", "mmm", "wouh", "tra", "plo", "rrr", "rra", "shh", "wua", "hmm",
+    "ku", "uah", "woo", "jajajaja", "rrra", "prra", "ouh", "uoh", "ieh",
+    "yih", "ra", "wu", "jajajajaja", "jum", "jejeje", "prru", "rrrah",
+    "yap", "muah", "lelolai", "aah", "prrr", "brrum", "buh", "fiu", "juh",
+    "wah", "skrrs", "rrear", "ayy", "rah", "mua", "lalalalalalala", "oo",
+    "brru", "roro", "wao'",
+    # Syllable fragments from rhythmic repetition
+    "tó", "bé", "gi", "gu", "pu", "mo", "ar", "ju", "ts", "flo", "wo",
+})
+
+# ── Additional English words that slipped through ────────────────────────────
+EXTRA_ENGLISH = frozenset({
+    "bunny", "kush", "phillie", "bang", "glock", "og", "molly", "outro",
+    "babydoll", "twerk", "perco", "percos", "krippy", "lil", "sung", "sup",
+    "vogue",
+})
 
 # POS mapping: Wiktionary → Universal Dependencies
 WIKT_TO_UD = {
@@ -343,14 +414,16 @@ def main():
                 hex_id = format(next_id, "04x")
                 next_id += 1
 
-        # Determine flags
-        is_english = lang_flags.get("is_english", False)
-        is_interjection = "INTJ" in pos_counts and (
-            pos_counts.get("INTJ", 0) / max(sum(pos_counts.values()), 1) > 0.5
-        )
-        is_propernoun = "PROPN" in pos_counts and (
-            pos_counts.get("PROPN", 0) / max(sum(pos_counts.values()), 1) > 0.5
-        )
+        # Determine flags — use curated wordlists + NLP signals
+        w_lower = word.lower()
+        is_english = (lang_flags.get("is_english", False) or
+                      w_lower in EXTRA_ENGLISH)
+        is_interjection = (w_lower in INTERJECTIONS or
+                          ("INTJ" in pos_counts and
+                           pos_counts.get("INTJ", 0) / max(sum(pos_counts.values()), 1) > 0.5))
+        is_propernoun = (w_lower in PROPER_NOUNS or
+                        ("PROPN" in pos_counts and
+                         pos_counts.get("PROPN", 0) / max(sum(pos_counts.values()), 1) > 0.5))
 
         # Get translations
         if is_english:
@@ -421,6 +494,27 @@ def main():
             out_entry["display_form"] = display_form
 
         output.append(out_entry)
+
+    # ── Compute most_frequent_lemma_instance ────────────────────────────────
+    # Group by lemma, mark only the highest-corpus-count form as True
+    lemma_groups = defaultdict(list)
+    for i, entry in enumerate(output):
+        lemma_groups[entry["lemma"]].append((i, entry.get("corpus_count", 0)))
+
+    changed_count = 0
+    for lemma, entries in lemma_groups.items():
+        if len(entries) <= 1:
+            continue
+        # Find the entry with the highest corpus count
+        best_idx = max(entries, key=lambda x: x[1])[0]
+        for idx, _ in entries:
+            should_be = (idx == best_idx)
+            if output[idx]["most_frequent_lemma_instance"] != should_be:
+                output[idx]["most_frequent_lemma_instance"] = should_be
+                changed_count += 1
+
+    print(f"\nmost_frequent_lemma_instance: {changed_count} entries updated")
+    print(f"  Lemmas with multiple forms: {sum(1 for v in lemma_groups.values() if len(v) > 1)}")
 
     # Stats
     diff_report["stats"] = stats
