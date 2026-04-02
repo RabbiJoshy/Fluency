@@ -133,6 +133,26 @@ CURATED_TRANSLATIONS = {
     "bellaquita": "flirty girl", "manín": "buddy, pal",
     "totito": "completely, totally",
     "neverita": "cooler, ice chest",
+    # More Caribbean elisions and slang
+    "tamos": "we are", "vamo": "let's go",
+    "ójala": "hopefully, God willing", "ojalá": "hopefully, God willing",
+    "acho": "wow, damn (PR exclamation)",
+    "rolié": "Rolex (slang)", "tera": "tons of, a lot",
+    "demaga": "too much (PR slang)", "tán": "they are",
+    "juquear": "to hook up", "juquea'o": "hooked up",
+    "callaíta": "quiet (feminine, PR)", "callaítas": "quiet (fem. pl., PR)",
+    "mojaítas": "wet (fem. pl., PR)", "mojaíto": "wet (PR)",
+    "solita": "alone (diminutive)", "solito": "alone (diminutive)",
+    "solitos": "alone (dim. plural)", "loquita": "a little crazy",
+    "ojitos": "little eyes", "ojito": "little eye",
+    "mamita": "baby, babe",
+    "saramambiche": "damn (PR expletive)",
+    "cuida'o": "careful, taken care of",
+    "verda'": "truth", "verdá'": "truth",
+    "la'o": "side", "lao'": "side",
+    "ma'i": "mommy (PR)",
+    "yao'": "ready, let's go (PR)",
+    "rd": "Dominican Republic",
 }
 
 # ── Proper nouns (should be filtered from the learning deck) ─────────────────
@@ -164,6 +184,9 @@ PROPER_NOUNS = frozenset({
     "spotify", "youtube", "billboard", "ebay",
     # Album references
     "yhlqmdlg",
+    # Additional names found in remaining gaps
+    "gaby", "andy", "bobby", "edgar", "jeter", "woodz", "vinci", "amber",
+    "geezy", "maelo", "cotto", "bori", "claus", "wiz",
 })
 
 # ── Interjections / onomatopoeia (should be filtered) ────────────────────────
@@ -176,6 +199,9 @@ INTERJECTIONS = frozenset({
     "brru", "roro", "wao'",
     # Syllable fragments from rhythmic repetition
     "tó", "bé", "gi", "gu", "pu", "mo", "ar", "ju", "ts", "flo", "wo",
+    # Additional sound effects and fragments
+    "mm", "trr", "tss", "uff", "eah", "hehe", "waka", "kr", "ki",
+    "ching",
 })
 
 # ── Additional English words that slipped through ────────────────────────────
@@ -333,6 +359,44 @@ def get_translation(word: str, lemma: str, ud_pos: str,
             gs = glosses[w][wp]
             if gs:
                 return gs[0]
+
+    # 5. Pattern-based fallbacks for Caribbean elisions and diminutives
+
+    # Elided participles: cambia'o → cambiado, prendí'o → prendido
+    if re.match(r"(.+?)'[oa]s?$", w):
+        m = re.match(r"(.+?)'([oa]s?)$", w)
+        if m:
+            stem, suffix = m.group(1), m.group(2)
+            # Try -ado/-ido reconstruction
+            for recon in [stem + "d" + suffix, stem + "ad" + suffix]:
+                trans = get_translation(recon, recon, "VERB", glosses)
+                if trans:
+                    return trans
+                # Try looking up the base verb: cambiado → cambiar
+                if recon.endswith("ado"):
+                    verb = recon[:-3] + "ar"
+                    trans = get_translation(verb, verb, "VERB", glosses)
+                    if trans:
+                        return trans
+                elif recon.endswith("ido"):
+                    for ending in ("er", "ir"):
+                        verb = recon[:-3] + ending
+                        trans = get_translation(verb, verb, "VERB", glosses)
+                        if trans:
+                            return trans
+
+    # Diminutives: solita → sola/solo, loquita → loca/loco, ojitos → ojos
+    if re.match(r"(.+?)(it[oa]s?)$", w):
+        m = re.match(r"(.+?)(it[oa]s?)$", w)
+        if m:
+            stem = m.group(1)
+            suffix = m.group(2)
+            # Reconstruct base: stem + matching gender/number
+            gender_suffix = suffix.replace("it", "")  # "ita" → "a", "itos" → "os"
+            for base in [stem + gender_suffix, stem + "o", stem + "a", stem]:
+                trans = get_translation(base, base, "X", glosses)
+                if trans:
+                    return f"little {trans}" if not trans.startswith("little") else trans
 
     return ""
 
