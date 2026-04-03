@@ -886,7 +886,7 @@ function updateCard() {
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
             const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
-            const displayMeaning = isMWE ? mweMeaning : m.meaning;
+            const displayMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : m.meaning;
             if (isMWE) {
                 // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
                 backHTML += `
@@ -897,13 +897,10 @@ function updateCard() {
                 </div>
                 `;
             } else {
-                // Regular meaning row: two-tone split badge [POS|%] on left, translation on right
+                // Regular meaning row: unified pill [POS | %] on left, translation on right
                 backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span style="display: inline-flex; align-items: center; border-radius: 4px; overflow: hidden; flex-shrink: 0;">
-                        <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 8px; margin: 0; border-radius: 4px 0 0 4px; border-right: none;">${m.pos}</span>
-                        <span style="font-family: var(--font-data); font-size: 10px; color: white; padding: 4px 8px; background: rgba(255,255,255,0.12);">${Math.round(m.percentage * 100)}%</span>
-                    </span>
+                    <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;">${m.pos} <span style="opacity: 0.6;">|</span> ${Math.round(m.percentage * 100)}%</span>
                     <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; margin-left: 10px;">${displayMeaning}</span>
                 </div>
                 `;
