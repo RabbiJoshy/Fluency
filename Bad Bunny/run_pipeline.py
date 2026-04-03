@@ -7,9 +7,9 @@ partial re-runs with --from-step and --to-step.
 
 Usage (from project root):
     .venv/bin/python3 "Bad Bunny/run_pipeline.py"
-    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 4
+    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 6
     .venv/bin/python3 "Bad Bunny/run_pipeline.py" --dry-run
-    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 2 --to-step 3
+    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 3 --to-step 5
 
 API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
 """
@@ -46,19 +46,20 @@ PYTHON = os.path.join(PROJECT_ROOT, ".venv", "bin", "python3")
 # args_fn receives the parsed args and returns a list of extra arguments.
 # input_file/output_file are relative to SCRIPT_DIR for freshness checks.
 
-def _step_2_args(args):
+def _step_3_args(args):
     return [
-        "--batch_glob", os.path.join(SCRIPT_DIR, "bad_bunny_genius", "batch_*.json"),
-        "--out", os.path.join(SCRIPT_DIR, "intermediates", "2_vocab_evidence.json"),
+        "--batch_glob", os.path.join(SCRIPT_DIR, "data", "input", "batch_*.json"),
+        "--out", os.path.join(SCRIPT_DIR, "data", "step_3", "vocab_evidence.json"),
+        "--mwe-out", os.path.join(SCRIPT_DIR, "data", "step_3", "mwe_detected.json"),
     ]
 
-def _step_2c_args(args):
+def _step_4_args(args):
     a = ["--api-key", args.api_key]
     if args.reset:
         a.append("--reset")
     return a
 
-def _step_4_args(args):
+def _step_6_args(args):
     a = ["--api-key", args.api_key]
     if args.reset:
         a.extend(["--reset-sentences", "--reset-words"])
@@ -70,63 +71,54 @@ def _no_args(args):
 
 STEPS = [
     {
-        "num": 2,
-        "label": "Tokenise and count words",
-        "script": "2_count_words.py",
-        "args_fn": _step_2_args,
-        "input": None,
-        "output": "intermediates/2_vocab_evidence.json",
-        "needs_api_key": False,
-    },
-    {
-        "num": "2c",
-        "label": "Detect proper nouns (Gemini)",
-        "script": "2c_detect_proper_nouns.py",
-        "args_fn": _step_2c_args,
-        "input": "intermediates/2_vocab_evidence.json",
-        "output": "intermediates/2c_detected_proper_nouns.json",
-        "needs_api_key": True,
-    },
-    {
-        "num": "2d",
-        "label": "Detect multi-word expressions",
-        "script": "2d_detect_mwes.py",
-        "args_fn": _no_args,
-        "input": "intermediates/2_vocab_evidence.json",
-        "output": "intermediates/2d_mwe_detected.json",
-        "needs_api_key": False,
-    },
-    {
         "num": 3,
-        "label": "Merge elisions",
-        "script": "3_merge_elisions.py",
-        "args_fn": _no_args,
-        "input": "intermediates/2_vocab_evidence.json",
-        "output": "intermediates/3_vocab_evidence_merged.json",
+        "label": "Tokenise, count words, detect MWEs",
+        "script": "scripts/3_count_words.py",
+        "args_fn": _step_3_args,
+        "input": None,
+        "output": "data/step_3/vocab_evidence.json",
         "needs_api_key": False,
     },
     {
         "num": 4,
-        "label": "LLM word analysis (Gemini)",
-        "script": "4_llm_analyze.py",
+        "label": "Detect proper nouns (Gemini)",
+        "script": "scripts/4_detect_proper_nouns.py",
         "args_fn": _step_4_args,
-        "input": "intermediates/3_vocab_evidence_merged.json",
+        "input": "data/step_3/vocab_evidence.json",
+        "output": "data/step_4/detected_proper_nouns.json",
+        "needs_api_key": True,
+    },
+    {
+        "num": 5,
+        "label": "Merge elisions",
+        "script": "scripts/5_merge_elisions.py",
+        "args_fn": _no_args,
+        "input": "data/step_3/vocab_evidence.json",
+        "output": "data/step_5/vocab_evidence_merged.json",
+        "needs_api_key": False,
+    },
+    {
+        "num": 6,
+        "label": "LLM word analysis (Gemini)",
+        "script": "scripts/6_llm_analyze.py",
+        "args_fn": _step_6_args,
+        "input": "data/step_5/vocab_evidence_merged.json",
         "output": "BadBunnyvocabulary.json",
         "needs_api_key": True,
     },
     {
-        "num": 8,
+        "num": 7,
         "label": "Flag cognates",
-        "script": "8_flag_cognates.py",
+        "script": "scripts/7_flag_cognates.py",
         "args_fn": _no_args,
         "input": "BadBunnyvocabulary.json",
         "output": "BadBunnyvocabulary.json",
         "needs_api_key": False,
     },
     {
-        "num": 9,
+        "num": 8,
         "label": "Rerank",
-        "script": "9_rerank.py",
+        "script": "scripts/8_rerank.py",
         "args_fn": _no_args,
         "input": "BadBunnyvocabulary.json",
         "output": "BadBunnyvocabulary.json",
@@ -217,7 +209,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true",
                         help="Show what would run without executing")
     parser.add_argument("--reset", action="store_true",
-                        help="Pass --reset to steps that support it (2c, 4)")
+                        help="Pass --reset to steps that support it (4, 6)")
     args = parser.parse_args()
 
     # Determine step range
