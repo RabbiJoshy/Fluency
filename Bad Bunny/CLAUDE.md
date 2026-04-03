@@ -10,155 +10,159 @@ All scripts are run from the **project root** (`Fluency/`), not from inside `Bad
 
 ```
 Bad Bunny/
-├── Pipeline scripts (run in order)
-│   ├── 1_download_lyrics.py          # Scrape Genius API
-│   ├── 1b_rescrape_nulls.py          # Re-scrape failed songs
-│   ├── 2_count_words.py              # Tokenise, count, extract examples
-│   ├── 2c_detect_proper_nouns.py     # Gemini proper noun detection
-│   ├── 2d_detect_mwes.py             # Multi-word expression detection
-│   ├── 3_merge_elisions.py           # Caribbean s-elision merging
-│   ├── 4_llm_analyze.py              # Gemini: POS, lemma, translations
-│   ├── 8_flag_cognates.py            # Transparent cognate flagging
-│   └── 9_rerank.py                   # Frequency-based reranking
+├── run_pipeline.py                     # Orchestrator (--from-step, --to-step, --skip)
+├── BadBunnyvocabulary.json             # Final output (consumed by app)
+├── bad_bunny_albums_dictionary.json    # Album metadata for UI
+├── duplicate_songs.json                # Duplicate song mappings (curated)
 │
-├── Supporting tools (not in main pipeline)
-│   ├── run_pipeline.py               # Orchestrator with --from-step/--to-step
-│   ├── check_translations.py         # Translation quality audit
-│   ├── dedup_songs.py                # Duplicate song detection
-│   └── 2b_split_lang_and_junk_lingua.py  # Language classification audit
+├── scripts/                            # Pipeline step scripts (numbered 1-8)
+│   ├── 1_download_lyrics.py            # Scrape Genius API
+│   ├── 2_rescrape_nulls.py             # Re-scrape failed songs
+│   ├── 3_count_words.py                # Tokenise, count, extract examples, detect MWEs
+│   ├── 4_detect_proper_nouns.py        # Gemini proper noun detection
+│   ├── 5_merge_elisions.py             # Caribbean s-elision merging
+│   ├── 6_llm_analyze.py               # Gemini: POS, lemma, translations
+│   ├── 7_flag_cognates.py             # Transparent cognate flagging
+│   └── 8_rerank.py                    # Frequency-based reranking + MWE annotation
 │
-├── Data files
-│   ├── BadBunnyvocabulary.json       # Final output (consumed by app)
-│   ├── bad_bunny_albums_dictionary.json  # Album metadata for UI
-│   └── duplicate_songs.json          # Duplicate song mappings (curated)
+├── data/
+│   ├── input/                          # Raw Genius API downloads
+│   │   ├── batch_001_page_1.json ... batch_023_page_23.json
+│   │   └── done_song_ids.json
+│   │
+│   ├── step_3/                         # Step 3 outputs + curated data
+│   │   ├── vocab_evidence.json         # Word counts + examples
+│   │   ├── mwe_detected.json           # MWE detection output
+│   │   ├── curated_mwes.json           # Manually verified expressions + translations
+│   │   ├── skip_mwes.json              # Literal phrases to exclude (la noche, etc.)
+│   │   └── conjugation_families.json   # Maps conjugated forms to canonical family
+│   │
+│   ├── step_4/                         # Step 4 outputs + curated data
+│   │   ├── detected_proper_nouns.json  # Gemini output
+│   │   ├── propn_progress.json         # Gemini progress tracker
+│   │   ├── known_proper_nouns.json     # Always-proper words
+│   │   └── not_proper_nouns.json       # Words protected from false positives
+│   │
+│   ├── step_5/                         # Step 5 outputs
+│   │   ├── elision_mapping.json        # Elision merge log
+│   │   └── vocab_evidence_merged.json  # Step 5 output
+│   │
+│   └── step_6/                         # Step 6 outputs + curated data
+│       ├── llm_progress.json           # Gemini word analysis progress
+│       ├── sentence_translations.json  # Gemini sentence cache
+│       ├── curated_translations.json   # Manual translation overrides
+│       ├── proper_nouns.json           # Artist/brand/place names
+│       ├── interjections.json          # Onomatopoeia (brr, skrt, etc.)
+│       └── extra_english.json          # English words common in reggaeton
 │
-├── bad_bunny_genius/                 # Raw Genius API downloads
-│   ├── batch_001_page_1.json ... batch_023_page_23.json
-│   └── done_song_ids.json           # Progress tracker
+├── tools/                              # Supporting tools (not in pipeline)
+│   ├── check_translations.py           # Translation quality audit
+│   ├── dedup_songs.py                  # Duplicate song detection
+│   └── split_lang_audit.py            # Language classification audit
 │
-├── intermediates/                    # Pipeline intermediate outputs
-│   ├── 2_vocab_evidence.json         # Step 2 output
-│   ├── 2c_detected_proper_nouns.json # Step 2c output
-│   ├── 2c_propn_progress.json        # Step 2c Gemini progress
-│   ├── 2d_mwe_detected.json          # Step 2d output
-│   ├── 3_elision_mapping.json        # Elision merge log
-│   ├── 3_vocab_evidence_merged.json  # Step 3 output
-│   ├── 4_llm_progress.json           # Step 4 Gemini progress
-│   └── 4_sentence_translations.json  # Step 4 sentence cache
-│
-├── Images/                           # Album cover art (11 albums)
-├── archive/                          # Old pipeline versions (spaCy/Wiktionary era)
-├── Makefile                          # OUTDATED — use run_pipeline.py instead
-└── BadBunnyvocabulary_old.json       # Previous pipeline output (can be deleted)
+├── Images/                             # Album cover art (11 albums)
+└── archive/                            # Old spaCy/Wiktionary pipeline (dead code)
 ```
 
 ---
 
-## Pipeline step details
+## Pipeline steps
 
-### Step 1 — `1_download_lyrics.py`
+### Step 1 — `scripts/1_download_lyrics.py`
 
 Scrapes all Bad Bunny songs from Genius API using `lyricsgenius`.
 
 - Uses `genius.lyrics(song_id)` for reliable scraping by known ID
-- `--include-remixes` drops the variant filter
-- `--retry-nulls` re-queues songs that previously got null lyrics
-- Output: `bad_bunny_genius/batch_NNN_page_N.json`
-- Progress tracked in `done_song_ids.json` (skips already-scraped songs)
-- Song record: `{id, title, artist, url, lyrics}`
+- Output: `data/input/batch_NNN_page_N.json`
+- Progress tracked in `data/input/done_song_ids.json`
 
-**`1b_rescrape_nulls.py`** is a targeted version that finds null-lyrics songs in existing batches and re-scrapes them in-place. Supports `--skip-variants`, `--add-ids`, `--dry-run`.
+### Step 2 — `scripts/2_rescrape_nulls.py`
 
-### Step 2 — `2_count_words.py`
+Re-scrapes songs that previously got null lyrics. Supports `--skip-variants`, `--add-ids`, `--dry-run`.
 
-Tokenises all lyrics and counts word frequencies across the entire corpus.
+### Step 3 — `scripts/3_count_words.py`
 
-- **Tokeniser**: `[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:'[…]+)*'?` — letters with optional internal apostrophes
-- **Genius cleaning**: strips editorial descriptions (after "Lyrics" marker), "Read More" blurbs, section headers `[Chorus]`, Cyrillic homoglyph obfuscation, footer markers
+Tokenises all lyrics, counts word frequencies, selects example sentences, and detects multi-word expressions.
+
+- **Tokeniser**: `[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:'[…]+)*'?`
+- **Genius cleaning**: strips editorial descriptions, section headers, footer markers, Spanish placeholder lyrics ("letra completa")
 - **English line filter**: Uses `lingua` language detector (confidence >= 0.70, min 4 tokens)
-- **Example selection**: max 1 example per song per word, scored by line quality (7-16 tokens preferred, connector words bonus), global song diversification
-- **`corpus_count`**: counts every token occurrence from every line of every song (not just example lines)
-- Output: `{word, corpus_count, examples: [{id: "songId:lineNo", line, title}]}`
+- **Example selection**: max 1 example per song per word, scored by line quality, global song diversification
+- **MWE detection**: counts n-grams (2-5) within phrase boundaries in the same pass as word counting. Two sources:
+  - **Curated**: `data/step_3/curated_mwes.json` — manually verified expressions with translations
+  - **PMI-detected**: high pointwise mutual information expressions, filtered by min song spread (≥3 songs), no translations
+- **Outputs**: `data/step_3/vocab_evidence.json` + `data/step_3/mwe_detected.json`
 
-### Step 2c — `2c_detect_proper_nouns.py`
+### Step 4 — `scripts/4_detect_proper_nouns.py`
 
 Uses Gemini to classify words as proper nouns. Batches of 50 words per API call.
 
-- `NOT_PROPER_NOUNS` frozenset (~80 entries): common Spanish words that look like proper nouns (alto, real, mercedes, mami, baby, etc.)
-- `KNOWN_PROPER_NOUNS` frozenset: always-proper words
-- `--refilter` flag: re-applies filters to cached results without API calls
-- Progress saved in `intermediates/2c_propn_progress.json`
-- Output: `intermediates/2c_detected_proper_nouns.json`
+- Curated data in `data/step_4/`: `known_proper_nouns.json`, `not_proper_nouns.json`
+- Progress saved in `data/step_4/propn_progress.json`
+- **Requires**: `--api-key` (or `GEMINI_API_KEY` env var)
 
-### Step 2d — `2d_detect_mwes.py`
+### Step 5 — `scripts/5_merge_elisions.py`
 
-Detects multi-word expressions from bigram/trigram frequency.
+Merges Caribbean Spanish elided forms into canonical words. `display_form` preserves the elided spelling.
 
-- `CURATED_MWES` dict (~100 expressions with translations): manually verified expressions like "pa' que", "de verdad", "lo que sea"
-- `SKIP_MWES` frozenset: literal article+noun phrases excluded (la noche, el mundo, etc.)
-- `CONJUGATION_FAMILIES` dict: maps conjugated forms to canonical family (voy a/va a/vas a -> "ir a"), keeps only highest-frequency member
-- Auto-detected candidates above frequency threshold listed separately for manual review
-- Thresholds: bigrams >= 20, trigrams >= 12
-- Output: `intermediates/2d_mwe_detected.json` with `{mwes: [...], candidates: [...]}`
+- Output: `data/step_5/vocab_evidence_merged.json`
 
-### Step 3 — `3_merge_elisions.py`
+### Step 6 — `scripts/6_llm_analyze.py`
 
-Merges Caribbean Spanish elided forms into canonical words.
+Main Gemini analysis step: POS, lemma, word translation, sentence translation.
 
-- Pattern: final -s dropped and marked with apostrophe (`ere'` -> `eres`)
-- `display_form` preserves the elided spelling for the flashcard UI
-- Corpus counts are summed across elided + canonical forms
-- Protected exceptions for words like `pa'` (-> `para`) that aren't s-elision
-- Output: `intermediates/3_vocab_evidence_merged.json`
+- Curated data in `data/step_6/`: `curated_translations.json`, `proper_nouns.json`, `interjections.json`, `extra_english.json`
+- Progress in `data/step_6/`: `llm_progress.json`, `sentence_translations.json`
+- Loads MWE data from `data/step_3/mwe_detected.json` to annotate `mwe_memberships`
+- **Requires**: `--api-key` (or `GEMINI_API_KEY` env var)
 
-### Step 4 — `4_llm_analyze.py`
+### Step 7 — `scripts/7_flag_cognates.py`
 
-The main analysis step. Uses Gemini to determine POS, lemma, word translation, and sentence translations.
+**Authoritative source for `is_transparent_cognate`**. Resets and recomputes using suffix-swap rules + near-identical matching.
 
-**Key responsibilities:**
-1. **Word analysis**: POS tag, lemma, English translation for each word
-2. **Sentence translation**: translates Spanish example lines to English
-3. **Flag merging**: combines LLM results with curated flags from prior runs
-4. **Interjection auto-detection**: regex patterns catch onomatopoeia (brr, skrt, jaja, etc.) without LLM cost
-5. **MWE annotation**: loads `2d_mwe_detected.json`, builds reverse index word -> [mwe], annotates entries with `mwe_memberships`
-6. **Proper noun integration**: loads `2c_detected_proper_nouns.json` to flag proper nouns
+### Step 8 — `scripts/8_rerank.py`
 
-**Progress tracking:**
-- `intermediates/4_llm_progress.json`: word-level analysis progress
-- `intermediates/4_sentence_translations.json`: sentence translation cache
-- Both are incremental — safe to interrupt and restart
+Sorts by corpus_count (desc) with tiebreakers: Spanish vocab rank, song count, cognate status, word length. Also **re-annotates `mwe_memberships`** from the latest step 3 MWE output, ensuring MWEs stay current even when step 6 is skipped.
 
-**Flags set by this step:**
-- `is_english`: from LLM analysis
-- `is_propernoun`: from step 2c output or LLM
-- `is_interjection`: from regex auto-detection or LLM
-- `mwe_memberships`: from step 2d output (list of `{expression, translation}`)
+---
 
-**Requires**: `--api-key GEMINI_KEY` (or `GEMINI_API_KEY` env var)
+## Orchestrator (`run_pipeline.py`)
 
-### Step 8 — `8_flag_cognates.py`
+```bash
+# Full pipeline (steps 3-8)
+.venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key KEY
 
-**Authoritative source for `is_transparent_cognate`**. Resets the flag to `False` for every entry before recomputing.
+# Partial run
+.venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 6
 
-Detection logic:
-1. Normalise (lowercase + strip diacritics)
-2. Strip common plural suffixes
-3. Exact match after normalisation
-4. Suffix-swap rules: `-ción` -> `-tion`, `-oso` -> `-ous`, `-ible` -> `-ible`, etc.
-5. Near-identical fallback: `difflib.SequenceMatcher >= 0.85`
+# Skip slow Gemini steps
+.venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 3 --skip 4 6
 
-Also runs on `Data/Spanish/vocabulary.json` (general Spanish vocab).
+# Dry run
+.venv/bin/python3 "Bad Bunny/run_pipeline.py" --dry-run
+```
 
-### Step 9 — `9_rerank.py`
+Steps 1-2 (Genius scraping) are manual and not registered in the orchestrator. The orchestrator runs steps 3 → 4 → 5 → 6 → 7 → 8.
 
-Sort key (tuple, left to right):
-1. `corpus_count` descending (primary)
-2. Spanish general vocabulary rank ascending (cross-references `Data/Spanish/vocabulary.json`)
-3. Distinct song count descending
-4. Cognate status: non-cognate before cognate
-5. Word length ascending
+API key is read from `.env` (`GEMINI_API_KEY=...`) or `--api-key` flag.
 
-Strips any leftover `rank`/`original_rank` fields — array position IS the rank.
+---
+
+## Curated data files
+
+Each step's curated data lives alongside its intermediates in `data/step_N/`:
+
+| File | Step | Format | Purpose |
+|------|------|--------|---------|
+| `curated_mwes.json` | 3 | `{"expr": "translation"}` | Verified MWE expressions + translations |
+| `skip_mwes.json` | 3 | `["expr", ...]` | Literal article+noun phrases to exclude |
+| `conjugation_families.json` | 3 | `{"expr": "family"}` | Maps conjugated forms to canonical family |
+| `known_proper_nouns.json` | 4 | `["word", ...]` | Always-proper words |
+| `not_proper_nouns.json` | 4 | `["word", ...]` | Protected from false positive proper noun detection |
+| `curated_translations.json` | 6 | `{"word": "translation"}` | Manual overrides that always win over LLM |
+| `proper_nouns.json` | 6 | `["word", ...]` | Artist/brand/place names |
+| `interjections.json` | 6 | `["word", ...]` | Onomatopoeia |
+| `extra_english.json` | 6 | `["word", ...]` | English words common in reggaeton |
 
 ---
 
@@ -166,6 +170,7 @@ Strips any leftover `rank`/`original_rank` fields — array position IS the rank
 
 ```json
 {
+  "id": "0039",
   "word": "eres",
   "lemma": "ser",
   "display_form": "ere'",
@@ -179,8 +184,8 @@ Strips any leftover `rank`/`original_rank` fields — array position IS the rank
         {
           "song": "5305010",
           "song_name": "A Tu Merced",
-          "spanish": "Tu ere' una pitcher, pero yo estoy puesto pa' la nueva entrada",
-          "english": "You are a pitcher, but I am ready for the new inning"
+          "spanish": "Tu ere' una pitcher...",
+          "english": "You are a pitcher..."
         }
       ]
     }
@@ -191,119 +196,20 @@ Strips any leftover `rank`/`original_rank` fields — array position IS the rank
   "is_propernoun": false,
   "is_transparent_cognate": false,
   "mwe_memberships": [
-    {"expression": "tú ere'", "translation": "you are (elided)"}
+    {"expression": "tú ere'", "translation": "you are (elided)"},
+    {"expression": "real hasta la muerte", "translation": ""}
   ]
 }
 ```
 
-**Word IDs**: Each entry gets a stable 4-digit hex `id` field (e.g. `"0039"`), keyed on `(word, lemma)`, preserved across pipeline reruns via the progress cache. The front-end builds a composite `fullId` as `es1{id}` (e.g. `"es10039"`) for progress tracking.
-
----
-
-## Orchestrator (`run_pipeline.py`)
-
-```bash
-# Full pipeline
-.venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key KEY
-
-# Partial run
-.venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key KEY --from-step 4
-
-# Skip steps
-.venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key KEY --skip 2c 2d
-
-# Dry run (show plan)
-.venv/bin/python3 "Bad Bunny/run_pipeline.py" --dry-run
-
-# Reset progress for LLM steps
-.venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key KEY --from-step 4 --reset
-```
-
-Steps defined: 2 -> 2c -> 2d -> 3 -> 4 -> 8 -> 9. File freshness checking warns if outputs are older than inputs.
-
----
-
-## Supporting tools
-
-### `check_translations.py`
-Audits `BadBunnyvocabulary.json` for translation quality issues:
-1. Empty word translations
-2. Empty sentence translations
-3. Content word mismatches (translation doesn't appear in any example sentence)
-4. Sentence coherence issues (likely hallucinations)
-
-Uses `SKIP_MISMATCH_CHECK` to avoid false positives on function words and polysemous verbs. Supports `--output` for JSON export, `--verbose` for full details.
-
-### `dedup_songs.py`
-Detects duplicate songs by normalising titles (strips remix/live/mixed/version tags). Writes `duplicate_songs.json` with human-readable mappings. Prefers the version with the most lyrics content. Supports `--dry-run`.
-
-### `2b_split_lang_and_junk_lingua.py`
-Standalone audit tool (not part of main pipeline). Classifies words into `_es.json`, `_en.json`, `_mixed.json`, `_junk.json` using lingua line-level language detection. Useful for diagnosing what English/junk words are leaking through.
-
----
-
-## Key design decisions
-
-### Why Gemini instead of spaCy + Wiktionary
-The original pipeline (archived in `archive/`) used spaCy for lemmatisation and Wiktionary dumps for translations. This produced many errors: hallucinated lemmas for slang, wrong sense selection, no contextual disambiguation. Gemini handles all of this in one pass with much better quality, especially for Caribbean Spanish slang and code-switching.
-
-### Why `corpus_count` counts all occurrences, not just examples
-`corpus_count` reflects how often a word actually appears across the entire discography (every token from every line of every song). Example lines are a curated subset. This gives accurate frequency data for ranking even when only 1-3 example lines are kept per word.
-
-### Why cognates sort last
-Transparent cognates (especial/special) are "free" for English speakers — they don't need flashcard study. Placing them later means learners encounter genuinely new vocabulary first.
-
-### Why interjection detection is regex-based
-Regex catches ~50 onomatopoeia (brr, skrt, jaja, prr, etc.) for free, no API cost. The patterns are: single repeated character (aaa), triple letter (brr), and specific Caribbean/reggaeton interjection patterns. An `_INTERJECTION_EXCEPTIONS` set protects real words that match patterns (bro, bo, ye).
-
-### Progress files and restartability
-Steps 2c and 4 save progress after each API batch. Safe to Ctrl+C and restart — they pick up where they left off. The `--reset` flag clears progress to force a full re-run.
+MWE memberships with empty `translation` are PMI-detected (no human translation yet). The front-end shows them with just the expression and a matched lyric example.
 
 ---
 
 ## Common pitfalls
 
-- **Running from wrong directory**: all scripts use relative paths from `Fluency/` root. Running from inside `Bad Bunny/` breaks all path references.
-- **Step 8 resets `is_transparent_cognate`**: any value set by step 4 is overwritten. Step 8 is always authoritative.
-- **Makefile is outdated**: references old spaCy-based steps (4_add_spacy_info, 5_add_translations, etc.) that no longer exist in the main pipeline. Use `run_pipeline.py` instead.
-- **`archive/` is dead code**: contains the old spaCy/Wiktionary pipeline. Safe to delete but kept for reference.
-- **`BadBunnyvocabulary_old.json` is a leftover**: previous pipeline output kept as backup. Can be deleted once you're confident in the current output.
-- **Long-running steps**: Step 4 (Gemini analysis) takes 30-60+ minutes. Print the command for the user to run in their terminal so they see real-time progress.
-
----
-
-## Batch file format (`bad_bunny_genius/batch_*.json`)
-
-Each batch is a JSON array of song records:
-
-```json
-{
-  "id": 3627151,
-  "title": "I Like It",
-  "artist": "Bad Bunny",
-  "url": "https://genius.com/...",
-  "lyrics": "279 ContributorsTranslations...I Like It Lyrics..."
-}
-```
-
-Raw lyrics include Genius boilerplate (contributor counts, editorial descriptions, "Read More" blurbs). Step 2's `clean_genius_lyrics()` strips all of this. The `id` field is the Genius song ID, used throughout the pipeline as the primary song identifier.
-
----
-
-## Intermediate file formats
-
-### `2_vocab_evidence.json`
-```json
-[{"word": "que", "corpus_count": 6710, "examples": [{"id": "11292773:8", "line": "...", "title": "..."}]}]
-```
-
-### `2d_mwe_detected.json`
-```json
-{"mwes": [{"expression": "pa' que", "translation": "so that", "count": 134}], "candidates": [...]}
-```
-
-### `3_vocab_evidence_merged.json`
-Same schema as step 2 output but with elided forms merged. Entries may have `display_form` if the surface form differs from canonical `word`.
-
-### `4_llm_progress.json`
-Incremental cache of Gemini word analysis results. Keyed by word. Do not edit manually.
+- **Running from wrong directory**: all scripts use relative paths from `Fluency/` root
+- **Step 7 resets `is_transparent_cognate`**: any value set by step 6 is overwritten
+- **Step 8 re-annotates MWE memberships**: always uses latest `data/step_3/mwe_detected.json`
+- **Long-running steps**: Steps 4 and 6 (Gemini) take 30-60+ minutes. Print the command for the user to run in their terminal
+- **archive/ is dead code**: old spaCy/Wiktionary pipeline, safe to ignore
