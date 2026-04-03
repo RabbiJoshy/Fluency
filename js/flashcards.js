@@ -886,17 +886,26 @@ function updateCard() {
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
             const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
-            const leftSlot = isMWE
-                ? `<span style="font-family: var(--font-data); font-size: 12px; color: var(--accent-secondary); min-width: 45px; white-space: nowrap;">${mweExpr}${mweCounter}</span>`
-                : `<span style="font-family: var(--font-data); font-size: 12px; color: var(--accent-secondary); min-width: 45px;">${Math.round(m.percentage * 100)}%</span>`;
             const displayMeaning = isMWE ? mweMeaning : m.meaning;
-            backHTML += `
+            if (isMWE) {
+                // MWE row: expression in a pill on the left, translation, counter — no POS badge
+                backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    ${leftSlot}
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; ${isMWE ? 'margin-left: 10px;' : ''}">${displayMeaning}</span>
+                    <span class="card-pos pos-mwe" style="font-size: 12px; padding: 4px 10px; margin: 0; white-space: nowrap;">${mweExpr}</span>
+                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; margin-left: 10px;">${displayMeaning}</span>
+                    ${mweCounter}
+                </div>
+                `;
+            } else {
+                // Regular meaning row: percentage, translation, POS badge
+                backHTML += `
+                <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
+                    <span style="font-family: var(--font-data); font-size: 12px; color: var(--accent-secondary); min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
+                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${displayMeaning}</span>
                     <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
                 </div>
-            `;
+                `;
+            }
         });
         backHTML += `</div>`;
 
