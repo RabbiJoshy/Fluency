@@ -23,7 +23,7 @@ import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BB_VOCAB_PATH = os.path.join(SCRIPT_DIR, "BadBunnyvocabulary.json")
-SPANISH_VOCAB_PATH = os.path.join(SCRIPT_DIR, "..", "data", "Spanish", "vocabulary.json")
+SPANISH_VOCAB_PATH = os.path.join(SCRIPT_DIR, "..", "Data", "Spanish", "vocabulary.json")
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
 

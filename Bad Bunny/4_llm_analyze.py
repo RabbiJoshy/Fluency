@@ -33,6 +33,8 @@ INPUT_PATH = os.path.join(SCRIPT_DIR, "intermediates", "3_vocab_evidence_merged.
 OUTPUT_PATH = os.path.join(SCRIPT_DIR, "BadBunnyvocabulary.json")
 WORD_PROGRESS_PATH = os.path.join(SCRIPT_DIR, "intermediates", "4_llm_progress.json")
 SENTENCE_PROGRESS_PATH = os.path.join(SCRIPT_DIR, "intermediates", "4_sentence_translations.json")
+DETECTED_PROPN_PATH = os.path.join(SCRIPT_DIR, "intermediates", "2c_detected_proper_nouns.json")
+MWE_PATH = os.path.join(SCRIPT_DIR, "intermediates", "2d_mwe_detected.json")
 
 # ---------------------------------------------------------------------------
 # Curated overrides (extracted from old 5_wiktionary_translations.py)
@@ -240,6 +242,64 @@ EXTRA_ENGLISH = frozenset({
     "babydoll", "twerk", "perco", "percos", "krippy", "lil", "sung", "sup",
     "vogue",
 })
+
+# ---------------------------------------------------------------------------
+# Auto-detect interjection-like words from vocabulary
+# ---------------------------------------------------------------------------
+_INTERJECTION_PATTERNS = [
+    re.compile(r'^[wb]r+[aeiou]*$'),     # brr, brra, wrrr
+    re.compile(r'^pr+[aeiou]*$'),         # prr, prra, prru
+    re.compile(r'^sk[r]*t+$'),            # skrt, skrrt
+    re.compile(r'^[jh]a+[jh]?a*$'),      # ja, jaja, jajaja, ha, haha
+    re.compile(r'^[jh]e+[jh]?e*$'),      # je, jeje, he, hehe
+    re.compile(r'^[uoa]h+$'),            # uh, uhh, oh, ohh, ah, ahh
+    re.compile(r'^[eaio]h[aeiou]?h?$'),  # eh, eha, ah
+    re.compile(r'^sh+$'),                 # shh, shhh
+    re.compile(r'^[mh]m+$'),             # mm, mmm, hm, hmm
+    re.compile(r'^ya+h*$'),              # ya, yah, yaah
+    re.compile(r'^ye+[ah]*$'),           # yeh, yeah, yeaah
+    re.compile(r'^na+h*$'),              # na, nah, naah
+    re.compile(r'^w[oua]+h*$'),          # woo, wooh, wuh, wuuh, wouh
+    re.compile(r'^[dt]u+h+$'),           # duh, tuh
+    re.compile(r'^bo+$'),                # boo, booo
+    re.compile(r'^a+y+$'),              # ay, ayy, ayyy
+    re.compile(r'^r+a+h?$'),            # rra, rrra, rah
+]
+
+# Words that match interjection patterns but are real Spanish vocabulary
+_INTERJECTION_EXCEPTIONS = frozenset({
+    "ya", "na", "je", "he", "oh", "ah", "ay", "eh",  # kept in _SHORT_WORD_WHITELIST
+    "bora", "monta",  # real words
+    "bro", "pre", "pri", "pro", "prue",  # English slang / Spanish prefixes
+    "bo", "ye",  # short but potentially real
+})
+
+
+def detect_interjections(vocab_words):
+    # type: (list) -> frozenset
+    """Auto-detect interjection-like words from vocabulary list using regex patterns."""
+    detected = set()
+    for entry in vocab_words:
+        w = entry["word"].lower().replace("'", "")
+        if len(w) < 2 or len(w) > 15:
+            continue
+        if w in _INTERJECTION_EXCEPTIONS:
+            continue
+        # Single repeated character (aaa, eee, sss)
+        if len(w) >= 3 and len(set(w)) == 1:
+            detected.add(entry["word"].lower())
+            continue
+        # Triple+ repeated letter anywhere (jajajaja, lalalalala, rrrah)
+        if re.search(r'(.)\1\1', w):
+            detected.add(entry["word"].lower())
+            continue
+        # Pattern matching
+        for pat in _INTERJECTION_PATTERNS:
+            if pat.match(w):
+                detected.add(entry["word"].lower())
+                break
+    return frozenset(detected)
+
 
 # Short Spanish words that are real vocabulary (don't filter these)
 _SHORT_WORD_WHITELIST = frozenset({
@@ -469,8 +529,10 @@ WORD_PROMPT = (
     'POS: NOUN VERB ADJ ADV PRON ADP CCONJ DET INTJ PROPN X\n'
     'e=English loanword (baby,shit,flow NOT Spanish words like no,me,solo). '
     'p=proper noun. i=interjection/sound. '
-    'c=transparent cognate (English speaker would recognize without studying: '
-    'similar spelling+meaning like música,hotel,animal,profesión. NOT cognate if meaning differs).\n'
+    'c=transparent cognate ONLY if Spanish word looks almost identical to the English word '
+    '(e.g. música=music, hotel=hotel, animal=animal, profesión=profession). '
+    'NOT cognate if spelling differs significantly, even if meanings are related '
+    '(abrazo≠hug, amiga≠friend, dinero≠money are NOT cognates).\n'
     'Only split senses when the English translation genuinely differs (e.g. rico=rich vs rico=delicious). '
     'Do NOT split if same translation, even if POS differs.\n'
     'IMPORTANT: Assign ALL line numbers to a sense in n. Keep output compact.\n\n'
@@ -820,6 +882,8 @@ def main():
                         help="Reset only sentence translation progress")
     parser.add_argument("--reset-words", action="store_true",
                         help="Reset only word analysis progress")
+    parser.add_argument("--fill-gaps", action="store_true",
+                        help="Re-query only words with empty senses in the cache")
     parser.add_argument("--rpm", type=int, default=200,
                         help="Max requests per minute (default: 200, paid tier allows 1000)")
     args = parser.parse_args()
@@ -833,6 +897,47 @@ def main():
     with open(INPUT_PATH, "r", encoding="utf-8") as f:
         all_words = json.load(f)
     print("  %d words loaded" % len(all_words))
+
+    # Load auto-detected proper nouns from step 2c (if available)
+    global PROPER_NOUNS
+    if os.path.exists(DETECTED_PROPN_PATH):
+        with open(DETECTED_PROPN_PATH, "r", encoding="utf-8") as f:
+            detected = json.load(f)
+        auto_propn = set(detected.get("proper_nouns", []))
+        added = auto_propn - PROPER_NOUNS
+        if added:
+            PROPER_NOUNS = PROPER_NOUNS | frozenset(added)
+            print("  Loaded %d auto-detected proper nouns from step 2c" % len(added))
+
+    # Auto-detect interjection-like words from vocabulary
+    global INTERJECTIONS
+    auto_intj = detect_interjections(all_words)
+    new_intj = auto_intj - INTERJECTIONS
+    if new_intj:
+        INTERJECTIONS = INTERJECTIONS | new_intj
+        print("  Auto-detected %d additional interjections (total: %d)" %
+              (len(new_intj), len(INTERJECTIONS)))
+
+    # Load MWE data from step 2d (if available)
+    mwe_index = {}  # type: Dict[str, List[Dict]]
+    if os.path.exists(MWE_PATH):
+        with open(MWE_PATH, "r", encoding="utf-8") as f:
+            mwe_data = json.load(f)
+        for mwe in mwe_data.get("mwes", []):
+            expr = mwe["expression"]
+            translation = mwe["translation"]
+            for token in expr.split():
+                token_lower = token.lower()
+                if token_lower not in mwe_index:
+                    mwe_index[token_lower] = []
+                # Avoid duplicate entries for the same expression
+                if not any(m["expression"] == expr for m in mwe_index[token_lower]):
+                    mwe_index[token_lower].append({
+                        "expression": expr,
+                        "translation": translation,
+                    })
+        print("  Loaded %d MWEs from step 2d, indexing %d words" %
+              (len(mwe_data.get("mwes", [])), len(mwe_index)))
 
     if args.limit > 0:
         all_words = all_words[:args.limit]
@@ -935,6 +1040,7 @@ def main():
     override_count = 0
     zero_example_count = 0
     short_junk_count = 0
+    gap_count = 0
 
     for entry in all_words:
         w = entry["word"]
@@ -948,11 +1054,18 @@ def main():
             short_junk_count += 1
         elif w not in word_progress:
             words_for_llm.append(entry)
+        elif args.fill_gaps and not word_progress[w].get("senses"):
+            # Re-query words that previously got empty senses
+            gap_count += 1
+            del word_progress[w]
+            words_for_llm.append(entry)
 
     print("  %d words handled by overrides" % override_count)
     print("  %d words skipped (zero examples)" % zero_example_count)
     print("  %d words skipped (short junk)" % short_junk_count)
     print("  %d words already in word cache" % len(word_progress))
+    if args.fill_gaps:
+        print("  %d words re-queued (empty senses)" % gap_count)
     print("  %d words need Gemini analysis" % len(words_for_llm))
 
     if words_for_llm:
@@ -1075,6 +1188,16 @@ def main():
             final_entries.append(build_entry_from_llm(entry, word_progress[w], sentence_progress))
         else:
             final_entries.append(build_entry_from_overrides_only(entry, sentence_progress))
+
+    # Annotate MWE memberships
+    if mwe_index:
+        mwe_count = 0
+        for fe in final_entries:
+            w_lower = fe["word"].lower()
+            if w_lower in mwe_index:
+                fe["mwe_memberships"] = mwe_index[w_lower]
+                mwe_count += 1
+        print("  %d entries annotated with MWE memberships" % mwe_count)
 
     mark_most_frequent_lemma(final_entries)
     assign_unique_ids(final_entries)

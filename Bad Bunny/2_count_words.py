@@ -250,6 +250,13 @@ def build_counts_and_candidates(
                 if prev is None or s > prev[0]:
                     best_for_word[w] = (s, line_no, line_text)
 
+        # Fallback: words with no good-quality candidate still get their best line
+        for line_no, line_text, toks in lines:
+            s = score_line(toks)
+            for w in set(toks):
+                if w not in best_for_word:
+                    best_for_word[w] = (s, line_no, line_text)
+
         for w, (s, line_no, line_text) in best_for_word.items():
             candidates[w].append({
                 "score": s,

@@ -147,10 +147,38 @@ def is_transparent_cognate(spanish: str, english: str) -> bool:
 
 # ---------------- main updater ----------------
 
-def add_transparent_flag(path: str):
+def _suffix_rule_says_cognate(entry):
+    """Check if suffix rules / similarity detect a cognate."""
+    candidates = set()
+    word = entry.get("word", "")
+    lemma = entry.get("lemma", "")
+    if word:
+        candidates.add(word)
+    if lemma and lemma != word:
+        candidates.add(lemma)
+
+    if not candidates:
+        return False
+
+    for meaning in entry.get("meanings", []):
+        translation = meaning.get("translation", "")
+        for eng in split_english_glosses(translation):
+            for sp in candidates:
+                if is_transparent_cognate(sp, eng):
+                    return True
+    return False
+
+
+def add_transparent_flag(path: str, intersection_mode: bool = False):
+    """
+    Flag transparent cognates.
+
+    intersection_mode=False (default): suffix rules are authoritative (for non-LLM vocab).
+    intersection_mode=True: only flag if BOTH LLM and suffix rules agree (for LLM-processed vocab).
+    """
     p = Path(path)
     if not p.exists():
-        print(f"⚠ Skipping (not found): {path}")
+        print(f"  Skipping (not found): {path}")
         return
 
     with open(path, "r", encoding="utf-8") as f:
@@ -158,38 +186,23 @@ def add_transparent_flag(path: str):
 
     count_before = sum(1 for e in data if e.get("is_transparent_cognate"))
     count_after = 0
+    llm_only = 0
+    suffix_only = 0
 
     for entry in data:
-        # If already flagged by LLM (step 4), keep it — don't reset
-        if entry.get("is_transparent_cognate"):
-            count_after += 1
-            continue
+        llm_flag = entry.get("is_transparent_cognate", False)
+        suffix_flag = _suffix_rule_says_cognate(entry)
 
-        # Check both word AND lemma against translations
-        candidates = set()
-        word = entry.get("word", "")
-        lemma = entry.get("lemma", "")
-        if word:
-            candidates.add(word)
-        if lemma and lemma != word:
-            candidates.add(lemma)
-
-        entry["is_transparent_cognate"] = False
-
-        if not candidates:
-            continue
-
-        for meaning in entry.get("meanings", []):
-            translation = meaning.get("translation", "")
-            for eng in split_english_glosses(translation):
-                for sp in candidates:
-                    if is_transparent_cognate(sp, eng):
-                        entry["is_transparent_cognate"] = True
-                        break
-                if entry["is_transparent_cognate"]:
-                    break
-            if entry["is_transparent_cognate"]:
-                break
+        if intersection_mode:
+            # Both must agree
+            entry["is_transparent_cognate"] = llm_flag and suffix_flag
+            if llm_flag and not suffix_flag:
+                llm_only += 1
+            if suffix_flag and not llm_flag:
+                suffix_only += 1
+        else:
+            # Suffix rules only (no LLM data)
+            entry["is_transparent_cognate"] = suffix_flag
 
         if entry["is_transparent_cognate"]:
             count_after += 1
@@ -197,10 +210,14 @@ def add_transparent_flag(path: str):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ {path}: {count_after} cognates flagged (was {count_before})")
+    print(f"  {path}: {count_after} cognates flagged (was {count_before})")
+    if intersection_mode:
+        print(f"    LLM-only (dropped): {llm_only}, suffix-only (dropped): {suffix_only}")
 
 
 # ---------------- run on both files ----------------
 
-add_transparent_flag("Data/Spanish/vocabulary.json")
-add_transparent_flag("Bad Bunny/BadBunnyvocabulary.json")
+print("=== Suffix rules only (no LLM data) ===")
+add_transparent_flag("Data/Spanish/vocabulary.json", intersection_mode=False)
+print("\n=== Intersection mode (LLM + suffix rules must agree) ===")
+add_transparent_flag("Bad Bunny/BadBunnyvocabulary.json", intersection_mode=True)
