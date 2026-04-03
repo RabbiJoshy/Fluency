@@ -858,13 +858,13 @@ function updateCard() {
     // Build back content with lemma in brackets if different
     let wordDisplay = backWord;
     if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
-        wordDisplay = `${backWord} <span style="color: white; opacity: 0.8; font-size: 28px;">(${card.lemma})</span>`;
+        wordDisplay = `${backWord} <span style="color: var(--accent-primary); font-size: 28px;">(${card.lemma})</span>`;
     }
 
     let backHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div style="font-size: 42px; color: var(--accent-primary); font-weight: bold;">${wordDisplay}</div>
+                <div style="font-size: 42px; color: white; font-weight: bold;">${wordDisplay}</div>
             </div>
         </div>
     `;
@@ -888,19 +888,19 @@ function updateCard() {
             const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
             const displayMeaning = isMWE ? mweMeaning : m.meaning;
             if (isMWE) {
-                // MWE row: expression in a pill on the left, translation, counter — no POS badge
+                // MWE row: expression in a light pill, white translation, counter — no POS badge
                 backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span class="card-pos pos-mwe" style="font-size: 12px; padding: 4px 10px; margin: 0; white-space: nowrap;">${mweExpr}</span>
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; margin-left: 10px;">${displayMeaning}</span>
+                    <span style="font-size: 12px; color: white; padding: 3px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap;">${mweExpr}</span>
+                    <span style="font-size: 16px; font-weight: 600; color: white; flex: 1; margin-left: 10px;">${displayMeaning}</span>
                     ${mweCounter}
                 </div>
                 `;
             } else {
-                // Regular meaning row: percentage, translation, POS badge
+                // Regular meaning row: percentage in white, translation, POS badge
                 backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span style="font-family: var(--font-data); font-size: 12px; color: var(--accent-secondary); min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
+                    <span style="font-family: var(--font-data); font-size: 12px; color: white; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
                     <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${displayMeaning}</span>
                     <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
                 </div>
