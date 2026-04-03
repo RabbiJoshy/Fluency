@@ -110,7 +110,9 @@ def clean_genius_lyrics(raw: str) -> str:
 
     # Skip Genius placeholder pages (no real lyrics)
     if ("yet to be transcribed" in raw or "yet to be released" in raw
-            or "This song is an instrumental" in raw):
+            or "This song is an instrumental" in raw
+            or "letra completa" in raw.lower()
+            or "disponible pronto" in raw.lower()):
         return ""
 
     text = normalize_text(raw)
