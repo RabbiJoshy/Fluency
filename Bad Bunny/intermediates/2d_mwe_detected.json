@@ -1,19 +1,14 @@
 {
   "mwes": [
     {
-      "expression": "va a",
-      "translation": "is going to",
-      "count": 134
-    },
-    {
       "expression": "pa' que",
       "translation": "so that, in order to",
       "count": 134
     },
     {
-      "expression": "voy a",
-      "translation": "I'm going to",
-      "count": 122
+      "expression": "va a",
+      "translation": "is going to",
+      "count": 134
     },
     {
       "expression": "sé que",
@@ -31,16 +26,6 @@
       "count": 102
     },
     {
-      "expression": "vamo' a",
-      "translation": "let's",
-      "count": 94
-    },
-    {
-      "expression": "bad bunny",
-      "translation": "Bad Bunny",
-      "count": 92
-    },
-    {
       "expression": "por eso",
       "translation": "that's why, for that reason",
       "count": 87
@@ -51,34 +36,9 @@
       "count": 76
     },
     {
-      "expression": "la noche",
-      "translation": "the night, nightlife",
-      "count": 73
-    },
-    {
-      "expression": "la calle",
-      "translation": "the street, street life",
-      "count": 72
-    },
-    {
-      "expression": "yo sé que",
-      "translation": "I know that",
-      "count": 72
-    },
-    {
       "expression": "de mí",
       "translation": "about me, of me",
       "count": 66
-    },
-    {
-      "expression": "va' a",
-      "translation": "let's (elided)",
-      "count": 61
-    },
-    {
-      "expression": "el mundo",
-      "translation": "the world",
-      "count": 61
     },
     {
       "expression": "a mí me",
@@ -113,11 +73,6 @@
     {
       "expression": "desde que",
       "translation": "since, ever since",
-      "count": 40
-    },
-    {
-      "expression": "tú sabe'",
-      "translation": "you know (elided)",
       "count": 40
     },
     {
@@ -161,11 +116,6 @@
       "count": 34
     },
     {
-      "expression": "te gusta",
-      "translation": "you like",
-      "count": 33
-    },
-    {
       "expression": "e' que",
       "translation": "it's that (elided)",
       "count": 33
@@ -174,11 +124,6 @@
       "expression": "no sé si",
       "translation": "I don't know if",
       "count": 33
-    },
-    {
-      "expression": "le gusta",
-      "translation": "he/she likes",
-      "count": 32
     },
     {
       "expression": "to' el mundo",
@@ -216,16 +161,6 @@
       "count": 30
     },
     {
-      "expression": "quiere que",
-      "translation": "wants (someone) to",
-      "count": 30
-    },
-    {
-      "expression": "van a",
-      "translation": "they're going to",
-      "count": 29
-    },
-    {
       "expression": "a vece'",
       "translation": "sometimes (elided)",
       "count": 29
@@ -246,19 +181,9 @@
       "count": 28
     },
     {
-      "expression": "un día",
-      "translation": "one day, someday",
-      "count": 28
-    },
-    {
       "expression": "dime si",
       "translation": "tell me if",
       "count": 27
-    },
-    {
-      "expression": "vo' a",
-      "translation": "I'm going to (elided)",
-      "count": 26
     },
     {
       "expression": "me dice",
@@ -271,11 +196,6 @@
       "count": 26
     },
     {
-      "expression": "a veces",
-      "translation": "sometimes",
-      "count": 25
-    },
-    {
       "expression": "lo mío",
       "translation": "my thing, what's mine",
       "count": 25
@@ -286,18 +206,8 @@
       "count": 25
     },
     {
-      "expression": "vas a",
-      "translation": "you're going to",
-      "count": 24
-    },
-    {
       "expression": "por ahí",
       "translation": "around there, out and about",
-      "count": 24
-    },
-    {
-      "expression": "otra vez",
-      "translation": "again",
       "count": 24
     },
     {
@@ -306,14 +216,9 @@
       "count": 24
     },
     {
-      "expression": "puerto rico",
-      "translation": "Puerto Rico",
+      "expression": "otra vez",
+      "translation": "again",
       "count": 24
-    },
-    {
-      "expression": "iba a",
-      "translation": "was going to",
-      "count": 23
     },
     {
       "expression": "pa'l carajo",
@@ -321,23 +226,8 @@
       "count": 23
     },
     {
-      "expression": "dicen que",
-      "translation": "they say that",
-      "count": 23
-    },
-    {
       "expression": "después de",
       "translation": "after",
-      "count": 22
-    },
-    {
-      "expression": "toa' las",
-      "translation": "all the (fem., elided)",
-      "count": 22
-    },
-    {
-      "expression": "dijo que",
-      "translation": "said that",
       "count": 22
     },
     {
@@ -361,18 +251,8 @@
       "count": 20
     },
     {
-      "expression": "otra ve'",
-      "translation": "again (elided)",
-      "count": 20
-    },
-    {
       "expression": "sin ti",
       "translation": "without you",
-      "count": 20
-    },
-    {
-      "expression": "me gustan",
-      "translation": "I like (plural)",
       "count": 20
     },
     {
@@ -401,18 +281,8 @@
       "count": 20
     },
     {
-      "expression": "te voy a",
-      "translation": "I'm going to (you)",
-      "count": 19
-    },
-    {
       "expression": "encima de",
       "translation": "on top of",
-      "count": 19
-    },
-    {
-      "expression": "to'as las",
-      "translation": "all the (fem., elided)",
       "count": 19
     },
     {
@@ -446,29 +316,9 @@
       "count": 17
     },
     {
-      "expression": "to'a la",
-      "translation": "all the (fem. sg., elided)",
-      "count": 17
-    },
-    {
       "expression": "lo nuestro",
       "translation": "our thing, what we have",
       "count": 16
-    },
-    {
-      "expression": "tú sabe' que",
-      "translation": "you know that (elided)",
-      "count": 16
-    },
-    {
-      "expression": "me voy a",
-      "translation": "I'm going to",
-      "count": 15
-    },
-    {
-      "expression": "se va a",
-      "translation": "is going to",
-      "count": 15
     },
     {
       "expression": "cada vez que",
@@ -511,8 +361,13 @@
       "count": 15
     },
     {
-      "expression": "un beso",
-      "translation": "a kiss",
+      "expression": "me voy a",
+      "translation": "I'm going to",
+      "count": 15
+    },
+    {
+      "expression": "se va a",
+      "translation": "is going to",
       "count": 15
     },
     {
@@ -1317,7 +1172,7 @@
     }
   ],
   "stats": {
-    "confirmed_count": 117,
+    "confirmed_count": 88,
     "candidate_count": 182
   }
 }

@@ -190,6 +190,87 @@ FUNCTION_WORDS = frozenset({
     "es", "no", "ya", "si",
 })
 
+# MWEs to exclude — literal article+noun phrases, proper nouns, not real idioms
+SKIP_MWES = frozenset({
+    # Article + noun (literal, not idiomatic)
+    "la noche", "la calle", "el mundo", "un beso", "un día",
+    "la vida", "la cama", "la luna", "la boca", "la cara",
+    "la mano", "la gente", "la casa", "la playa", "la mañana",
+    "el sol", "el tiempo", "el día", "el amor", "el dinero",
+    "el cielo", "el corazón", "el pelo", "el culo",
+    "la canción", "la primera", "la nueva", "la cartera",
+    # Proper nouns
+    "bad bunny", "puerto rico",
+})
+
+# Conjugation families: map expression to a canonical form.
+# Only the highest-frequency member of each family survives.
+CONJUGATION_FAMILIES = {
+    # ir a (going to)
+    "voy a": "ir a",
+    "va a": "ir a",
+    "vas a": "ir a",
+    "van a": "ir a",
+    "iba a": "ir a",
+    "vamo' a": "ir a",
+    "va' a": "ir a",
+    "vo' a": "ir a",
+    # gustar
+    "me gusta": "gustar",
+    "te gusta": "gustar",
+    "le gusta": "gustar",
+    "me gustan": "gustar",
+    # ir a + pronoun (these are just "ir a" with a pronoun)
+    "te vo'a": "ir a + te",
+    "te voy a": "ir a + te",
+    "me voy a": "ir a + me",
+    "se va a": "ir a + se",
+    # saber que
+    "sé que": "saber que",
+    "yo sé que": "saber que",
+    "tú sabe'": "saber que",
+    "tú sabe' que": "saber que",
+    # decir que
+    "dice que": "decir que",
+    "dicen que": "decir que",
+    "dijo que": "decir que",
+    # querer que
+    "quiero que": "querer que",
+    "quiere que": "querer que",
+    # tener que
+    "tienen que": "tener que",
+    # todo/a elision variants
+    "toa' las": "to' (elision)",
+    "to'as las": "to' (elision)",
+    "to'a la": "to' (elision)",
+    "to' lo que": "to' (elision)",
+    # otra vez variants
+    "otra vez": "otra vez",
+    "otra ve'": "otra vez",
+    # a veces variants
+    "a veces": "a veces",
+    "a vece'": "a veces",
+}
+
+
+def dedup_conjugation_families(confirmed):
+    # type: (List[Dict]) -> List[Dict]
+    """Keep only the highest-frequency member of each conjugation family."""
+    # Group by family
+    family_best = {}  # type: Dict[str, Dict]
+    no_family = []
+
+    for m in confirmed:
+        family = CONJUGATION_FAMILIES.get(m["expression"])
+        if family:
+            if family not in family_best or m["count"] > family_best[family]["count"]:
+                family_best[family] = m
+        else:
+            no_family.append(m)
+
+    return no_family + list(family_best.values())
+
+
 # Minimum frequency for auto-detected candidates
 MIN_BIGRAM_FREQ = 20
 MIN_TRIGRAM_FREQ = 12
@@ -308,6 +389,10 @@ def detect_mwes(vocab_data):
             "expression": tg,
             "count": count,
         })
+
+    # Post-process: remove skipped entries and dedup conjugation families
+    confirmed = [m for m in confirmed if m["expression"] not in SKIP_MWES]
+    confirmed = dedup_conjugation_families(confirmed)
 
     # Sort by count descending
     confirmed.sort(key=lambda x: -x["count"])
