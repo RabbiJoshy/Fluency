@@ -810,7 +810,7 @@ function updateCard() {
     frontPOSEl.className = 'card-pos';
     if (card.isMultiMeaning && card.meanings && card.meanings.length > 0) {
         // For multi-meaning cards, show all unique POS
-        const allPOS = [...new Set(card.meanings.map(m => m.pos))].join(', ');
+        const allPOS = [...new Set(card.meanings.filter(m => m.pos !== 'MWE').map(m => m.pos))].join(', ');
         frontPOSEl.textContent = allPOS;
         // Apply color of first POS
         const firstPos = card.meanings[0].pos;
@@ -879,10 +879,14 @@ function updateCard() {
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
             const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
+            const isMWE = m.pos === 'MWE';
+            const leftSlot = isMWE
+                ? `<span style="font-family: var(--font-data); font-size: 12px; color: ${posColorClass ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px; white-space: nowrap;">${m.expression}</span>`
+                : `<span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>`;
             backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${m.meaning}</span>
+                    ${leftSlot}
+                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; ${isMWE ? 'margin-left: 10px;' : ''}">${m.meaning}</span>
                     <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
                 </div>
             `;
@@ -911,6 +915,14 @@ function updateCard() {
             // Truncate sentences longer than 20 words
             displayTargetSentence = truncateText(displayTargetSentence, 20);
             displayEnglishSentence = truncateText(displayEnglishSentence, 20);
+
+            // Highlight MWE expression in the target sentence
+            if (currentMeaning.expression) {
+                const escaped = currentMeaning.expression.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${escaped})`, 'gi');
+                displayTargetSentence = displayTargetSentence.replace(regex,
+                    '<span style="font-weight: 700; color: var(--accent-secondary);">$1</span>');
+            }
 
             // Build song name line with example counter on the right
             const exampleCounter = hasMultipleExamples ? `<span>${currentExampleIndex + 1}/${exampleCount}</span>` : '';
@@ -1155,6 +1167,7 @@ function getPosColorClass(pos) {
     if (posLower.includes('det') || posLower === 'dt') return 'pos-det';
     if (posLower.includes('int') || posLower === 'uh') return 'pos-int';
     if (posLower.includes('num') || posLower === 'cd') return 'pos-num';
+    if (posLower === 'mwe') return 'pos-mwe';
     return '';
 }
 

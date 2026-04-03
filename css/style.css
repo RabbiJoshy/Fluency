@@ -353,6 +353,7 @@
         .pos-det { background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.5); color: #f43f5e; }
         .pos-int { background: rgba(234, 179, 8, 0.2); border-color: rgba(234, 179, 8, 0.5); color: #eab308; }
         .pos-num { background: rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.5); color: #06b6d4; }
+        .pos-mwe { background: rgba(251, 191, 36, 0.2); border-color: rgba(251, 191, 36, 0.5); color: #fbbf24; }
 
         .card-ranking {
             font-family: var(--font-reading);

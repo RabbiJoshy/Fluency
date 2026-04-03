@@ -162,6 +162,31 @@ async function loadVocabularyData(rangeString) {
                 });
             }
 
+            // Synthesize MWE meanings from mwe_memberships
+            if (item.mwe_memberships) {
+                for (const mwe of item.mwe_memberships) {
+                    const exprLower = mwe.expression.toLowerCase();
+                    let matchedExample = null;
+                    for (const m of item.meanings) {
+                        if (!m.examples) continue;
+                        matchedExample = m.examples.find(ex => {
+                            const text = (ex.spanish || ex.target || '').toLowerCase();
+                            return text.includes(exprLower);
+                        });
+                        if (matchedExample) break;
+                    }
+                    meanings.push({
+                        pos: 'MWE',
+                        meaning: mwe.translation,
+                        expression: mwe.expression,
+                        percentage: 0,
+                        targetSentence: matchedExample ? (matchedExample.spanish || matchedExample.target || '') : '',
+                        englishSentence: matchedExample ? (matchedExample.english || '') : '',
+                        allExamples: matchedExample ? [matchedExample] : []
+                    });
+                }
+            }
+
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
             const card = {
                 targetWord: item.word,
@@ -324,6 +349,31 @@ async function loadIncorrectWordsSet() {
                 meanings.forEach(m => { m.percentage = equalPercentage; });
             } else if (totalPercentage !== 1.0) {
                 meanings.forEach(m => { m.percentage = (m.percentage || 0) / totalPercentage; });
+            }
+
+            // Synthesize MWE meanings from mwe_memberships
+            if (item.mwe_memberships) {
+                for (const mwe of item.mwe_memberships) {
+                    const exprLower = mwe.expression.toLowerCase();
+                    let matchedExample = null;
+                    for (const m of item.meanings) {
+                        if (!m.examples) continue;
+                        matchedExample = m.examples.find(ex => {
+                            const text = (ex.spanish || ex.target || '').toLowerCase();
+                            return text.includes(exprLower);
+                        });
+                        if (matchedExample) break;
+                    }
+                    meanings.push({
+                        pos: 'MWE',
+                        meaning: mwe.translation,
+                        expression: mwe.expression,
+                        percentage: 0,
+                        targetSentence: matchedExample ? (matchedExample.spanish || matchedExample.target || '') : '',
+                        englishSentence: matchedExample ? (matchedExample.english || '') : '',
+                        allExamples: matchedExample ? [matchedExample] : []
+                    });
+                }
             }
 
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
