@@ -303,6 +303,9 @@ function renderLevelSelector(language) {
             this.textContent = this.dataset.full;
             selectedLevel = this.dataset.level;
 
+            // Show coverage info line with word count and frequency threshold
+            updateLevelInfoLine(this);
+
             // Show steps 3 (lemma), 3b (cognate if available), 4 (cards per set), and 5 (range) with staggered timing
             document.getElementById('lemmaToggleContainer').style.display = 'block';
 
@@ -316,6 +319,30 @@ function renderLevelSelector(language) {
             renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
         });
     });
+}
+
+function updateLevelInfoLine(btn) {
+    const infoLine = document.getElementById('levelInfoLine');
+    if (!infoLine) return;
+
+    if (!percentageMode || !ppmData || ppmData.length === 0) {
+        infoLine.style.display = 'none';
+        return;
+    }
+
+    const endRank = parseInt(btn.dataset.endRank, 10);
+    if (!endRank) {
+        infoLine.style.display = 'none';
+        return;
+    }
+
+    // Find the ppm (corpus frequency) at the endRank position
+    const entry = ppmData.find(p => p.rank === endRank);
+    const minFreq = entry ? Math.round(entry.ppm) : '?';
+    const freqLabel = isBadBunnyMode ? 'corpus count' : 'frequency';
+
+    infoLine.textContent = endRank + ' words \u00B7 ' + freqLabel + ' \u2265 ' + minFreq;
+    infoLine.style.display = 'block';
 }
 
 function setupCognateToggle() {
@@ -435,6 +462,10 @@ function setupPercentModeButton() {
         document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
         updateStep2Tooltip();
         updateStep5Tooltip();
+
+        // Hide level info line (re-shown on level click)
+        const infoLine = document.getElementById('levelInfoLine');
+        if (infoLine) infoLine.style.display = 'none';
 
         // Re-render the level selector
         selectedLevel = null;

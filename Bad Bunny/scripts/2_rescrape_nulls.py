@@ -38,8 +38,8 @@ from lyricsgenius import Genius
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_DIR = os.path.dirname(SCRIPT_DIR)  # scripts/ -> Bad Bunny/
-BATCH_GLOB = os.path.join(PIPELINE_DIR, "data", "input", "batch_*.json")
-OUT_DIR = os.path.join(PIPELINE_DIR, "data", "input")
+BATCH_GLOB = os.path.join(PIPELINE_DIR, "data", "input", "batches", "batch_*.json")
+OUT_DIR = os.path.join(PIPELINE_DIR, "data", "input", "batches")
 
 VARIANT_RE = re.compile(
     r"(remix|live|concert|acoustic|versión|version|mixed|headphone|en vivo|primera)",

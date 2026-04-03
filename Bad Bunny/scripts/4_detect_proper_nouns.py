@@ -6,8 +6,8 @@ Sends lyric lines in batches and asks the LLM to identify all proper nouns
 (people, brands, places) in context. Uses content-based progress tracking
 so only new/unseen lines are processed on re-runs.
 
-Reads:  data/step_3/vocab_evidence.json (for unique lines)
-Writes: data/step_4/detected_proper_nouns.json
+Reads:  data/word_counts/vocab_evidence.json (for unique lines)
+Writes: data/proper_nouns/detected_proper_nouns.json
 
 The output is consumed by step 6, which adds detected names to PROPER_NOUNS.
 
@@ -48,15 +48,15 @@ _load_dotenv()
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_DIR = os.path.dirname(SCRIPT_DIR)  # scripts/ -> Bad Bunny/
-INPUT_PATH = os.path.join(PIPELINE_DIR, "data", "step_3", "vocab_evidence.json")
-OUTPUT_PATH = os.path.join(PIPELINE_DIR, "data", "step_4", "detected_proper_nouns.json")
-PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "step_4", "propn_progress.json")
+INPUT_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "vocab_evidence.json")
+OUTPUT_PATH = os.path.join(PIPELINE_DIR, "data", "proper_nouns", "detected_proper_nouns.json")
+PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "proper_nouns", "propn_progress.json")
 
 # ---------------------------------------------------------------------------
 # Known proper nouns / not-proper-nouns (loaded from JSON config)
 # ---------------------------------------------------------------------------
 def _load_json(filename):
-    path = os.path.join(PIPELINE_DIR, "data", "step_4", filename)
+    path = os.path.join(PIPELINE_DIR, "data", "proper_nouns", filename)
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 

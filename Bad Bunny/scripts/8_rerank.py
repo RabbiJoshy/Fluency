@@ -25,7 +25,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_DIR = os.path.dirname(SCRIPT_DIR)  # scripts/ -> Bad Bunny/
 BB_VOCAB_PATH = os.path.join(PIPELINE_DIR, "BadBunnyvocabulary.json")
 SPANISH_VOCAB_PATH = os.path.join(PIPELINE_DIR, "..", "Data", "Spanish", "vocabulary.json")
-MWE_PATH = os.path.join(PIPELINE_DIR, "data", "step_3", "mwe_detected.json")
+MWE_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "mwe_detected.json")
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
 

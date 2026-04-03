@@ -98,6 +98,7 @@
                     <span class="step-number">2</span>
                     <span class="step-title" id="step2Title">Choose CEFR level</span>
                     <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
+                    <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
                     <div class="btn-with-info">
                         <button class="estimate-level-btn" id="estimateLevelBtn">Estimate Level</button>
                         <button class="btn-info-icon" data-info="estimateInfo" title="What is this?">?</button>
@@ -134,6 +135,7 @@
                     <span class="step-number">3</span>
                     <span class="step-title">Cards per Lemma</span>
                     <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
+                    <span id="lemmaInfoLine" class="level-info-line" style="display: none;"></span>
                     <div id="step3Tooltip" class="step-info-tooltip">
                         <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
                         <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
@@ -144,12 +146,6 @@
                     <button class="lemma-toggle-btn selected" data-lemma="on" data-short="1" data-full="1 card per lemma">1 card per lemma</button>
                     <button class="lemma-toggle-btn" data-lemma="off" data-short="1+" data-full="All word forms">1+</button>
                 </div>
-                <div id="lemmaExclusionBarWrapper" class="exclusion-bar-wrapper" style="display: none;">
-                    <div class="exclusion-bar-container">
-                        <div id="lemmaExclusionBarFill" class="exclusion-bar-fill"></div>
-                    </div>
-                    <div id="lemmaExclusionBarLabel" class="exclusion-bar-label"></div>
-                </div>
             </div>
 
             <!-- Step 4: Cognate Toggle -->
@@ -158,6 +154,7 @@
                     <span class="step-number">4</span>
                     <span class="step-title">Exclude Cognates</span>
                     <button class="step-help-btn" data-tooltip="cognateTooltip" title="Help">?</button>
+                    <span id="cognateInfoLine" class="level-info-line" style="display: none;"></span>
                     <div id="cognateTooltip" class="step-info-tooltip">
                         <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
                         <p><strong>Include</strong> = Show all words, including cognates.</p>
@@ -169,11 +166,11 @@
                     <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
                     <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
                 </div>
-                <div id="cognateExclusionBarWrapper" class="exclusion-bar-wrapper" style="display: none;">
-                    <div class="exclusion-bar-container">
-                        <div id="cognateExclusionBarFill" class="exclusion-bar-fill"></div>
+                <div id="personalCoverageWrapper" class="coverage-bar-wrapper" style="display: none;">
+                    <div class="coverage-bar-container">
+                        <div id="personalCoverageFill" class="coverage-bar-fill"></div>
                     </div>
-                    <div id="cognateExclusionBarLabel" class="exclusion-bar-label"></div>
+                    <div id="personalCoverageLabel" class="coverage-bar-label"></div>
                 </div>
             </div>
 
@@ -260,6 +257,7 @@
                         <div class="card-face card-back">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
+                                    <button class="nav-btn-inline nav-back-btn hidden" id="navBackBtn" title="Back to previous card">↩</button>
                                     <button class="nav-btn-inline" id="prevBtnBack">←</button>
                                     <button class="nav-btn-inline desktop-answer-btn" id="incorrectBtnTop" title="Mark as incorrect" style="display: none; background: var(--error); color: white; border-color: var(--error);">✗</button>
                                 </div>
@@ -504,6 +502,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Lyric Breakdown Modal -->
+    <div id="lyricBreakdownModal" class="modal hidden">
+        <div class="modal-content fullscreen-modal">
+            <div class="modal-header">
+                <h3>Lyric Breakdown</h3>
+                <button class="modal-close" id="closeLyricBreakdown">✕</button>
+            </div>
+            <div id="lyricBreakdownBody" class="lyric-breakdown-body"></div>
+        </div>
+    </div>
+
+    <!-- Word Popup (floating, positioned by JS) -->
+    <div id="wordPopup" class="word-popup hidden"></div>
 
     <!-- Stats Modal -->
     <div id="statsModal" class="modal hidden">

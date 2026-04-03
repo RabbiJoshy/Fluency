@@ -10,8 +10,8 @@ Elided words like ere' (= eres) get merged into their full form:
 
 Non-s-elision words (pa'=para, English -in' words, etc.) are left as-is.
 
-Input:  data/step_3/vocab_evidence.json
-Output: data/step_5/vocab_evidence_merged.json
+Input:  data/word_counts/vocab_evidence.json
+Output: data/elision_merge/vocab_evidence_merged.json
 
 Usage:
   python "Bad Bunny/scripts/5_merge_elisions.py"
@@ -26,9 +26,9 @@ from pathlib import Path
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_DIR = os.path.dirname(SCRIPT_DIR)  # scripts/ -> Bad Bunny/
 
-IN_PATH = Path(os.path.join(PIPELINE_DIR, "data", "step_3", "vocab_evidence.json"))
-OUT_PATH = Path(os.path.join(PIPELINE_DIR, "data", "step_5", "vocab_evidence_merged.json"))
-MAPPING_PATH = Path(os.path.join(PIPELINE_DIR, "data", "step_5", "elision_mapping.json"))
+IN_PATH = Path(os.path.join(PIPELINE_DIR, "data", "word_counts", "vocab_evidence.json"))
+OUT_PATH = Path(os.path.join(PIPELINE_DIR, "data", "elision_merge", "vocab_evidence_merged.json"))
+MAPPING_PATH = Path(os.path.join(PIPELINE_DIR, "data", "elision_merge", "elision_mapping.json"))
 MAX_EXAMPLES = 10
 
 # ---------------------------------------------------------------------------

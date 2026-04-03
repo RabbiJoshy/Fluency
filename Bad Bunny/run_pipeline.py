@@ -48,9 +48,9 @@ PYTHON = os.path.join(PROJECT_ROOT, ".venv", "bin", "python3")
 
 def _step_3_args(args):
     return [
-        "--batch_glob", os.path.join(SCRIPT_DIR, "data", "input", "batch_*.json"),
-        "--out", os.path.join(SCRIPT_DIR, "data", "step_3", "vocab_evidence.json"),
-        "--mwe-out", os.path.join(SCRIPT_DIR, "data", "step_3", "mwe_detected.json"),
+        "--batch_glob", os.path.join(SCRIPT_DIR, "data", "input", "batches", "batch_*.json"),
+        "--out", os.path.join(SCRIPT_DIR, "data", "word_counts", "vocab_evidence.json"),
+        "--mwe-out", os.path.join(SCRIPT_DIR, "data", "word_counts", "mwe_detected.json"),
     ]
 
 def _step_4_args(args):
@@ -76,7 +76,7 @@ STEPS = [
         "script": "scripts/3_count_words.py",
         "args_fn": _step_3_args,
         "input": None,
-        "output": "data/step_3/vocab_evidence.json",
+        "output": "data/word_counts/vocab_evidence.json",
         "needs_api_key": False,
     },
     {
@@ -84,8 +84,8 @@ STEPS = [
         "label": "Detect proper nouns (Gemini)",
         "script": "scripts/4_detect_proper_nouns.py",
         "args_fn": _step_4_args,
-        "input": "data/step_3/vocab_evidence.json",
-        "output": "data/step_4/detected_proper_nouns.json",
+        "input": "data/word_counts/vocab_evidence.json",
+        "output": "data/proper_nouns/detected_proper_nouns.json",
         "needs_api_key": True,
     },
     {
@@ -93,8 +93,8 @@ STEPS = [
         "label": "Merge elisions",
         "script": "scripts/5_merge_elisions.py",
         "args_fn": _no_args,
-        "input": "data/step_3/vocab_evidence.json",
-        "output": "data/step_5/vocab_evidence_merged.json",
+        "input": "data/word_counts/vocab_evidence.json",
+        "output": "data/elision_merge/vocab_evidence_merged.json",
         "needs_api_key": False,
     },
     {
@@ -102,7 +102,7 @@ STEPS = [
         "label": "LLM word analysis (Gemini)",
         "script": "scripts/6_llm_analyze.py",
         "args_fn": _step_6_args,
-        "input": "data/step_5/vocab_evidence_merged.json",
+        "input": "data/elision_merge/vocab_evidence_merged.json",
         "output": "BadBunnyvocabulary.json",
         "needs_api_key": True,
     },

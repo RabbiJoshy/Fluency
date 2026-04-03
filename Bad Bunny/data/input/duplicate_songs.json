@@ -1,5 +1,5 @@
 {
-  "description": "Duplicate song mappings and placeholder songs to exclude.",
+  "description": "Duplicate song mappings, placeholder songs, and non-Spanish songs to exclude.",
   "duplicates": {
     "2877985": {
       "keep": "2829388",
@@ -590,6 +590,51 @@
       "keep": "3524844",
       "duplicate_title": "Amorfoda (Remix)",
       "original_title": "Amorfoda"
+    },
+    "3266426": {
+      "keep": "2955378",
+      "duplicate_title": "Me Llueven (Extended Version)",
+      "original_title": "Me Llueven"
+    },
+    "10743391": {
+      "keep": "10742472",
+      "duplicate_title": "DRUNK (Original)",
+      "original_title": "DRUNK (Version 2)"
+    },
+    "10743500": {
+      "keep": "10742472",
+      "duplicate_title": "DRUNK (Demo)",
+      "original_title": "DRUNK (Version 2)"
+    },
+    "3569966": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (David Rojas Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "3569989": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (Felix Rivera Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "5842589": {
+      "keep": "5557738",
+      "duplicate_title": "La Parabí (Versión Original)",
+      "original_title": "La Parabi"
+    },
+    "3883878": {
+      "keep": "3825550",
+      "duplicate_title": "Polaroid Remix (Extended Version)",
+      "original_title": "Polaroid (Remix)"
+    },
+    "2951163": {
+      "keep": "2938956",
+      "duplicate_title": "Liberace (Extended Remix)",
+      "original_title": "Liberace (Remix 2)"
+    },
+    "11457302": {
+      "keep": "3012000",
+      "duplicate_title": "Coronamos (Remix)",
+      "original_title": "Coronamos (Remix 2)"
     }
   },
   "placeholders": [
@@ -610,10 +655,76 @@
     "9757297",
     "9763285"
   ],
+  "non_spanish": {
+    "description": "Songs to exclude because they are not in Spanish. Includes Portuguese covers, German tracks, English-only content, translation pages, and SNL skits.",
+    "songs": {
+      "9666008": {
+        "title": "Um Por Cento (UN X100TO) [Ao Vivo]",
+        "language": "portuguese",
+        "reason": "Portuguese cover of un x100to by Grupo Menos E Mais & Anitta"
+      },
+      "11417734": {
+        "title": "Nossas Fotos",
+        "language": "portuguese",
+        "reason": "Portuguese song by Felipe Amorim & Zé Felipe"
+      },
+      "11260335": {
+        "title": "Mei Neiche",
+        "language": "german",
+        "reason": "Austrian/Bavarian German dialect song by NFE"
+      },
+      "12423142": {
+        "title": "Ｍｅｍｅｗａｖｅ 波 / comedia.mp3",
+        "language": "english",
+        "reason": "Eminem lyrics copy-paste by Syko ESP, not a real BB song"
+      },
+      "12423043": {
+        "title": "el alfa",
+        "language": "english",
+        "reason": "English translation page of La Romana by Syko ESP"
+      },
+      "4482797": {
+        "title": "Earth",
+        "language": "english",
+        "reason": "English song by Lil Dicky, BB has a brief cameo"
+      },
+      "6513460": {
+        "title": "Loco",
+        "language": "english",
+        "reason": "SNL comedy skit, entirely in English"
+      },
+      "11494029": {
+        "title": "Domingo (Vow Renewal)",
+        "language": "english",
+        "reason": "SNL comedy skit, entirely in English spoken word"
+      },
+      "5832468": {
+        "title": "Tóxicos",
+        "language": "english",
+        "reason": "Primarily English lyrics by Jowell & Randy"
+      },
+      "12075710": {
+        "title": "Shake It! 2",
+        "language": "english",
+        "reason": "Mostly English song by Jb1rd & Dozed Rozay"
+      },
+      "5084239": {
+        "title": "International Women*",
+        "language": "english",
+        "reason": "Mostly English by Lil Pump, only 2 Spanish lines"
+      },
+      "8399591": {
+        "title": "I Dance",
+        "language": "english",
+        "reason": "Mostly English by YG & Duki, minimal Spanish"
+      }
+    }
+  },
   "stats": {
     "total_songs": 537,
-    "duplicates": 118,
+    "duplicates": 127,
     "placeholders": 16,
-    "unique_songs": 407
+    "non_spanish": 12,
+    "unique_songs": 386
   }
 }

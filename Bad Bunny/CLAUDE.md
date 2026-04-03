@@ -13,7 +13,6 @@ Bad Bunny/
 ├── run_pipeline.py                     # Orchestrator (--from-step, --to-step, --skip)
 ├── BadBunnyvocabulary.json             # Final output (consumed by app)
 ├── bad_bunny_albums_dictionary.json    # Album metadata for UI
-├── duplicate_songs.json                # Duplicate song mappings (curated)
 │
 ├── scripts/                            # Pipeline step scripts (numbered 1-8)
 │   ├── 1_download_lyrics.py            # Scrape Genius API
@@ -26,28 +25,31 @@ Bad Bunny/
 │   └── 8_rerank.py                    # Frequency-based reranking + MWE annotation
 │
 ├── data/
-│   ├── input/                          # Raw Genius API downloads
-│   │   ├── batch_001_page_1.json ... batch_023_page_23.json
-│   │   └── done_song_ids.json
+│   ├── input/                          # Corpus input data
+│   │   ├── batches/                    # Raw Genius API downloads
+│   │   │   ├── batch_001_page_1.json ... batch_023_page_23.json
+│   │   │   └── done_song_ids.json
+│   │   ├── duplicate_songs.json        # Duplicate/non-Spanish song exclusions (curated)
+│   │   └── DEDUP_INSTRUCTIONS.md       # How to maintain duplicate_songs.json (on request only)
 │   │
-│   ├── step_3/                         # Step 3 outputs + curated data
+│   ├── word_counts/                    # Step 3 outputs + curated data
 │   │   ├── vocab_evidence.json         # Word counts + examples
 │   │   ├── mwe_detected.json           # MWE detection output
 │   │   ├── curated_mwes.json           # Manually verified expressions + translations
 │   │   ├── skip_mwes.json              # Literal phrases to exclude (la noche, etc.)
 │   │   └── conjugation_families.json   # Maps conjugated forms to canonical family
 │   │
-│   ├── step_4/                         # Step 4 outputs + curated data
+│   ├── proper_nouns/                   # Step 4 outputs + curated data
 │   │   ├── detected_proper_nouns.json  # Gemini output
 │   │   ├── propn_progress.json         # Gemini progress tracker
 │   │   ├── known_proper_nouns.json     # Always-proper words
 │   │   └── not_proper_nouns.json       # Words protected from false positives
 │   │
-│   ├── step_5/                         # Step 5 outputs
+│   ├── elision_merge/                  # Step 5 outputs
 │   │   ├── elision_mapping.json        # Elision merge log
 │   │   └── vocab_evidence_merged.json  # Step 5 output
 │   │
-│   └── step_6/                         # Step 6 outputs + curated data
+│   └── llm_analysis/                   # Step 6 outputs + curated data
 │       ├── llm_progress.json           # Gemini word analysis progress
 │       ├── sentence_translations.json  # Gemini sentence cache
 │       ├── curated_translations.json   # Manual translation overrides
@@ -57,7 +59,6 @@ Bad Bunny/
 │
 ├── tools/                              # Supporting tools (not in pipeline)
 │   ├── check_translations.py           # Translation quality audit
-│   ├── dedup_songs.py                  # Duplicate song detection
 │   └── split_lang_audit.py            # Language classification audit
 │
 ├── Images/                             # Album cover art (11 albums)
@@ -73,12 +74,14 @@ Bad Bunny/
 Scrapes all Bad Bunny songs from Genius API using `lyricsgenius`.
 
 - Uses `genius.lyrics(song_id)` for reliable scraping by known ID
-- Output: `data/input/batch_NNN_page_N.json`
-- Progress tracked in `data/input/done_song_ids.json`
+- Output: `data/input/batches/batch_NNN_page_N.json`
+- Progress tracked in `data/input/batches/done_song_ids.json`
 
 ### Step 2 — `scripts/2_rescrape_nulls.py`
 
 Re-scrapes songs that previously got null lyrics. Supports `--skip-variants`, `--add-ids`, `--dry-run`.
+
+**Song deduplication & exclusion**: `data/input/duplicate_songs.json` lists duplicates, placeholders, and non-Spanish songs to exclude. This file is maintained manually — only update it when Josh explicitly requests a dedup pass. See [`data/input/DEDUP_INSTRUCTIONS.md`](data/input/DEDUP_INSTRUCTIONS.md) for the full logic.
 
 ### Step 3 — `scripts/3_count_words.py`
 
@@ -89,31 +92,31 @@ Tokenises all lyrics, counts word frequencies, selects example sentences, and de
 - **English line filter**: Uses `lingua` language detector (confidence >= 0.70, min 4 tokens)
 - **Example selection**: max 1 example per song per word, scored by line quality, global song diversification
 - **MWE detection**: counts n-grams (2-5) within phrase boundaries in the same pass as word counting. Two sources:
-  - **Curated**: `data/step_3/curated_mwes.json` — manually verified expressions with translations
+  - **Curated**: `data/word_counts/curated_mwes.json` — manually verified expressions with translations
   - **PMI-detected**: high pointwise mutual information expressions, filtered by min song spread (≥3 songs), no translations
-- **Outputs**: `data/step_3/vocab_evidence.json` + `data/step_3/mwe_detected.json`
+- **Outputs**: `data/word_counts/vocab_evidence.json` + `data/word_counts/mwe_detected.json`
 
 ### Step 4 — `scripts/4_detect_proper_nouns.py`
 
 Uses Gemini to classify words as proper nouns. Batches of 50 words per API call.
 
-- Curated data in `data/step_4/`: `known_proper_nouns.json`, `not_proper_nouns.json`
-- Progress saved in `data/step_4/propn_progress.json`
+- Curated data in `data/proper_nouns/`: `known_proper_nouns.json`, `not_proper_nouns.json`
+- Progress saved in `data/proper_nouns/propn_progress.json`
 - **Requires**: `--api-key` (or `GEMINI_API_KEY` env var)
 
 ### Step 5 — `scripts/5_merge_elisions.py`
 
 Merges Caribbean Spanish elided forms into canonical words. `display_form` preserves the elided spelling.
 
-- Output: `data/step_5/vocab_evidence_merged.json`
+- Output: `data/elision_merge/vocab_evidence_merged.json`
 
 ### Step 6 — `scripts/6_llm_analyze.py`
 
 Main Gemini analysis step: POS, lemma, word translation, sentence translation.
 
-- Curated data in `data/step_6/`: `curated_translations.json`, `proper_nouns.json`, `interjections.json`, `extra_english.json`
-- Progress in `data/step_6/`: `llm_progress.json`, `sentence_translations.json`
-- Loads MWE data from `data/step_3/mwe_detected.json` to annotate `mwe_memberships`
+- Curated data in `data/llm_analysis/`: `curated_translations.json`, `proper_nouns.json`, `interjections.json`, `extra_english.json`
+- Progress in `data/llm_analysis/`: `llm_progress.json`, `sentence_translations.json`
+- Loads MWE data from `data/word_counts/mwe_detected.json` to annotate `mwe_memberships`
 - **Requires**: `--api-key` (or `GEMINI_API_KEY` env var)
 
 ### Step 7 — `scripts/7_flag_cognates.py`
@@ -150,19 +153,21 @@ API key is read from `.env` (`GEMINI_API_KEY=...`) or `--api-key` flag.
 
 ## Curated data files
 
-Each step's curated data lives alongside its intermediates in `data/step_N/`:
+Each step's curated data lives alongside its intermediates in its named folder:
 
 | File | Step | Format | Purpose |
 |------|------|--------|---------|
-| `curated_mwes.json` | 3 | `{"expr": "translation"}` | Verified MWE expressions + translations |
-| `skip_mwes.json` | 3 | `["expr", ...]` | Literal article+noun phrases to exclude |
-| `conjugation_families.json` | 3 | `{"expr": "family"}` | Maps conjugated forms to canonical family |
-| `known_proper_nouns.json` | 4 | `["word", ...]` | Always-proper words |
-| `not_proper_nouns.json` | 4 | `["word", ...]` | Protected from false positive proper noun detection |
-| `curated_translations.json` | 6 | `{"word": "translation"}` | Manual overrides that always win over LLM |
-| `proper_nouns.json` | 6 | `["word", ...]` | Artist/brand/place names |
-| `interjections.json` | 6 | `["word", ...]` | Onomatopoeia |
-| `extra_english.json` | 6 | `["word", ...]` | English words common in reggaeton |
+| File | Folder | Format | Purpose |
+|------|--------|--------|---------|
+| `curated_mwes.json` | `word_counts/` | `{"expr": "translation"}` | Verified MWE expressions + translations |
+| `skip_mwes.json` | `word_counts/` | `["expr", ...]` | Literal article+noun phrases to exclude |
+| `conjugation_families.json` | `word_counts/` | `{"expr": "family"}` | Maps conjugated forms to canonical family |
+| `known_proper_nouns.json` | `proper_nouns/` | `["word", ...]` | Always-proper words |
+| `not_proper_nouns.json` | `proper_nouns/` | `["word", ...]` | Protected from false positive proper noun detection |
+| `curated_translations.json` | `llm_analysis/` | `{"word": "translation"}` | Manual overrides that always win over LLM |
+| `proper_nouns.json` | `llm_analysis/` | `["word", ...]` | Artist/brand/place names |
+| `interjections.json` | `llm_analysis/` | `["word", ...]` | Onomatopoeia |
+| `extra_english.json` | `llm_analysis/` | `["word", ...]` | English words common in reggaeton |
 
 ---
 
@@ -210,6 +215,6 @@ MWE memberships with empty `translation` are PMI-detected (no human translation 
 
 - **Running from wrong directory**: all scripts use relative paths from `Fluency/` root
 - **Step 7 resets `is_transparent_cognate`**: any value set by step 6 is overwritten
-- **Step 8 re-annotates MWE memberships**: always uses latest `data/step_3/mwe_detected.json`
+- **Step 8 re-annotates MWE memberships**: always uses latest `data/word_counts/mwe_detected.json`
 - **Long-running steps**: Steps 4 and 6 (Gemini) take 30-60+ minutes. Print the command for the user to run in their terminal
 - **archive/ is dead code**: old spaCy/Wiktionary pipeline, safe to ignore

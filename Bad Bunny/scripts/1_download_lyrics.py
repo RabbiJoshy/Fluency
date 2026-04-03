@@ -10,7 +10,7 @@ Supports:
   --retry-nulls        Re-attempt songs that previously got null lyrics
   --start-page N       Resume from a specific page
 
-Output: data/input/batch_NNN_page_N.json
+Output: data/input/batches/batch_NNN_page_N.json
 
 Usage (from project root):
     .venv/bin/python3 "Bad Bunny/scripts/1_download_lyrics.py"
@@ -40,7 +40,7 @@ BATCH_SIZE = 25
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_DIR = os.path.dirname(SCRIPT_DIR)  # scripts/ -> Bad Bunny/
-OUT_DIR = os.path.join(PIPELINE_DIR, "data", "input")
+OUT_DIR = os.path.join(PIPELINE_DIR, "data", "input", "batches")
 
 # Terms that indicate a variant (remix, live, etc.)
 VARIANT_TERMS = [

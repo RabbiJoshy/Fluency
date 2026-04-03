@@ -9,6 +9,7 @@ export const state = {
     currentSentenceIndex: 0,
     currentMeaningIndex: 0,
     currentExampleIndex: 0,
+    currentMWEIndex: 0,
     isFlipped: false,
     isAppInitialized: false,
     stats: {
@@ -52,6 +53,10 @@ export const state = {
     badBunnyAlbumsDictionary: null,
     songToAlbumMap: {},
 
+    // Lyric breakdown
+    cardNavStack: [],
+    cachedVocabularyData: null,
+
     // Level estimation
     estimationCheckpoints: null,
     estimationState: {
@@ -88,18 +93,14 @@ export const albumToImagePath = {
 export const defaultAlbumArt = 'Bad Bunny/Images/SINGLES.jpg';
 
 export const percentageLevels = [
-    { level: '50%',   threshold: 0.50,  description: '50% language coverage' },
-    { level: '60%',   threshold: 0.60,  description: '60% language coverage' },
-    { level: '70%',   threshold: 0.70,  description: '70% language coverage' },
-    { level: '80%',   threshold: 0.80,  description: '80% language coverage' },
-    { level: '85%',   threshold: 0.85,  description: '85% language coverage' },
-    { level: '90%',   threshold: 0.90,  description: '90% language coverage' },
-    { level: '95%',   threshold: 0.95,  description: '95% language coverage' },
-    { level: '96%',   threshold: 0.96,  description: '96% language coverage' },
-    { level: '97%',   threshold: 0.97,  description: '97% language coverage' },
-    { level: '98%',   threshold: 0.98,  description: '98% language coverage' },
-    { level: '99%',   threshold: 0.99,  description: '99% language coverage' },
-    { level: '99.5%', threshold: 0.995, description: '99.5% language coverage' }
+    { level: '70%',   threshold: 0.70,  description: '70% coverage' },
+    { level: '80%',   threshold: 0.80,  description: '80% coverage' },
+    { level: '90%',   threshold: 0.90,  description: '90% coverage' },
+    { level: '95%',   threshold: 0.95,  description: '95% coverage' },
+    { level: '98%',   threshold: 0.98,  description: '98% coverage (freq \u2265 3)' },
+    { level: '99%',   threshold: 0.99,  description: '99% coverage (freq \u2265 2)' },
+    { level: '99.5%', threshold: 0.995, description: '99.5% coverage (freq \u2265 2)' },
+    { level: '100%',  threshold: 1.00,  description: 'All words (freq \u2265 2)' }
 ];
 
 export const speechLangCodes = {

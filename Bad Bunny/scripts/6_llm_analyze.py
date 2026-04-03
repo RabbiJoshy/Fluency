@@ -6,7 +6,7 @@ Two-pass architecture:
   Pass A — Translate unique example sentences (batched, deduplicated)
   Pass B — Word analysis: lemma, POS, sense disambiguation, flags (no sentence translation)
 
-Reads data/step_5/vocab_evidence_merged.json
+Reads data/elision_merge/vocab_evidence_merged.json
 Outputs BadBunnyvocabulary.json in the schema consumed by steps 8, 9, and the app.
 
 Usage (from project root):
@@ -47,12 +47,12 @@ _load_dotenv()
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_DIR = os.path.dirname(SCRIPT_DIR)  # scripts/ -> Bad Bunny/
 PROJECT_ROOT = os.path.dirname(PIPELINE_DIR)
-INPUT_PATH = os.path.join(PIPELINE_DIR, "data", "step_5", "vocab_evidence_merged.json")
+INPUT_PATH = os.path.join(PIPELINE_DIR, "data", "elision_merge", "vocab_evidence_merged.json")
 OUTPUT_PATH = os.path.join(PIPELINE_DIR, "BadBunnyvocabulary.json")
-WORD_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "step_6", "llm_progress.json")
-SENTENCE_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "step_6", "sentence_translations.json")
-DETECTED_PROPN_PATH = os.path.join(PIPELINE_DIR, "data", "step_4", "detected_proper_nouns.json")
-MWE_PATH = os.path.join(PIPELINE_DIR, "data", "step_3", "mwe_detected.json")
+WORD_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "llm_progress.json")
+SENTENCE_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "sentence_translations.json")
+DETECTED_PROPN_PATH = os.path.join(PIPELINE_DIR, "data", "proper_nouns", "detected_proper_nouns.json")
+MWE_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "mwe_detected.json")
 
 # ---------------------------------------------------------------------------
 # Curated overrides — loaded from JSON. Never delete entries.
@@ -62,11 +62,11 @@ def _load_pipeline_json(step, filename):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-CURATED_TRANSLATIONS = _load_pipeline_json("step_6", "curated_translations.json")
+CURATED_TRANSLATIONS = _load_pipeline_json("llm_analysis", "curated_translations.json")
 
-PROPER_NOUNS = frozenset(_load_pipeline_json("step_6", "proper_nouns.json"))
-INTERJECTIONS = frozenset(_load_pipeline_json("step_6", "interjections.json"))
-EXTRA_ENGLISH = frozenset(_load_pipeline_json("step_6", "extra_english.json"))
+PROPER_NOUNS = frozenset(_load_pipeline_json("llm_analysis", "proper_nouns.json"))
+INTERJECTIONS = frozenset(_load_pipeline_json("llm_analysis", "interjections.json"))
+EXTRA_ENGLISH = frozenset(_load_pipeline_json("llm_analysis", "extra_english.json"))
 
 # ---------------------------------------------------------------------------
 # Auto-detect interjection-like words from vocabulary

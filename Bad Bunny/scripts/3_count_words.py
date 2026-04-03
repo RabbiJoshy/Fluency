@@ -27,8 +27,8 @@ Design goals:
 
 Usage:
   ./.venv/bin/python "Bad Bunny/scripts/3_count_words.py" \
-    --batch_glob "Bad Bunny/data/input/batch_*.json" \
-    --out "Bad Bunny/data/step_3/vocab_evidence.json" \
+    --batch_glob "Bad Bunny/data/input/batches/batch_*.json" \
+    --out "Bad Bunny/data/word_counts/vocab_evidence.json" \
     --max_examples 10 \
     --preview 5
 """
@@ -431,7 +431,7 @@ MIN_PMI_SONGS = 3
 
 
 def _load_step_json(filename):
-    path = os.path.join(PIPELINE_DIR, "data", "step_3", filename)
+    path = os.path.join(PIPELINE_DIR, "data", "word_counts", filename)
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -543,7 +543,7 @@ def detect_mwes(ngram_data):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--batch_glob", required=True, help='e.g. "Bad Bunny/data/input/batch_*.json"')
+    ap.add_argument("--batch_glob", required=True, help='e.g. "Bad Bunny/data/input/batches/batch_*.json"')
     ap.add_argument("--out", required=True, help="Output JSON path")
     ap.add_argument("--mwe-out", default=None, help="MWE output JSON path (default: same dir as --out)")
     ap.add_argument("--max_examples", type=int, default=10, help="Maximum examples per word")

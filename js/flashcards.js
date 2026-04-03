@@ -27,6 +27,7 @@ function initializeApp() {
         if (e.target.closest('.nav-btn-inline') ||
             e.target.closest('.link-btn') ||
             e.target.closest('.card-action-small') ||
+            e.target.closest('.breakdown-btn') ||
             e.target.closest('.card-btn-pill') ||
             e.target.closest('.card-control-btn') ||
             e.target.closest('#flipBtn') ||
@@ -63,6 +64,18 @@ function initializeApp() {
     document.getElementById('shuffleBtnTop').addEventListener('click', function(e) {
         e.stopPropagation();
         shuffleCards();
+    });
+
+    // Nav stack back button
+    document.getElementById('navBackBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigateBack();
+    });
+
+    // Lyric breakdown modal
+    document.getElementById('closeLyricBreakdown').addEventListener('click', hideLyricBreakdown);
+    document.getElementById('lyricBreakdownModal').addEventListener('click', function(e) {
+        if (e.target === this) hideLyricBreakdown();
     });
 
     // Mobile button listeners
@@ -527,12 +540,19 @@ function handleSwipeAction(result) {
         card.classList.remove('swipe-correct', 'swipe-incorrect');
         card.style.transform = '';
 
+        // If we're on a linked card (nav stack), go back instead of advancing
+        if (cardNavStack.length > 0) {
+            navigateBack();
+            return;
+        }
+
         // Move to next card
         if (currentIndex < flashcards.length - 1) {
             currentIndex++;
             currentSentenceIndex = 0; // Reset sentence index for new card
             currentMeaningIndex = 0; // Reset meaning index for new card
             currentExampleIndex = 0; // Reset example index for new card
+            currentMWEIndex = 0;
             updateCard();
             // Always show front side of next card
             document.getElementById('flashcard').classList.remove('flipped');
@@ -662,6 +682,10 @@ async function goBackToSetup() {
     // Hide mobile floating buttons
     showFloatingBtns(false);
 
+    // Clear nav stack and vocab lookup
+    cardNavStack = [];
+    fullVocabLookup = null;
+
     // Scroll to top
     document.querySelector('.container').scrollTop = 0;
 
@@ -687,6 +711,7 @@ async function goBackToSetup() {
     currentSentenceIndex = 0;
     currentMeaningIndex = 0;
     currentExampleIndex = 0;
+    currentMWEIndex = 0;
     isFlipped = false;
 
     // Always load PPM data if available (needed for coverage bar even in CEFR mode)
@@ -880,14 +905,14 @@ function updateCard() {
             const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
-            // For MWE pill, show the current expression/translation based on cycling index
-            const mweIdx = (isMWE && isSelected) ? currentExampleIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
+            // For MWE pill, show the current expression/translation based on MWE index
+            const mweIdx = (isMWE && isSelected) ? currentMWEIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
             const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
-            const displayMeaning = isMWE ? (cleanMweMeaning || '') : m.meaning;
+            const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
             if (isMWE) {
                 // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
                 backHTML += `
@@ -911,21 +936,34 @@ function updateCard() {
 
         // Show current sentence
         if (currentMeaning && currentMeaning.targetSentence) {
-            const hasMultipleExamples = currentMeaning.allExamples && currentMeaning.allExamples.length > 1;
-            const exampleCount = currentMeaning.allExamples ? currentMeaning.allExamples.length : 1;
+            // For MWE senses, get examples from the current MWE expression's own array
+            let activeExamples;
+            let activeMweIdx = 0;
+            if (currentMeaning.allMWEs) {
+                activeMweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
+                activeExamples = currentMeaning.allMWEs[activeMweIdx].examples || [];
+            } else {
+                activeExamples = currentMeaning.allExamples || [];
+            }
+
+            const hasMultipleExamples = activeExamples.length > 1;
+            const exampleCount = activeExamples.length;
 
             // Get current example (for cycling through multiple examples)
             let displayTargetSentence = currentMeaning.targetSentence;
             let displayEnglishSentence = currentMeaning.englishSentence;
             let songName = null;
 
-            if (hasMultipleExamples && currentExampleIndex < currentMeaning.allExamples.length) {
-                const example = currentMeaning.allExamples[currentExampleIndex];
-                displayTargetSentence = example.target || example.spanish || '';
-                displayEnglishSentence = example.english || '';
-                songName = example.song_name;
-            } else if (currentMeaning.allExamples && currentMeaning.allExamples.length === 1) {
-                songName = currentMeaning.allExamples[0].song_name;
+            if (activeExamples.length > 0) {
+                const exIdx = currentExampleIndex % activeExamples.length;
+                const example = activeExamples[exIdx];
+                const exTarget = example.target || example.spanish || '';
+                const exEnglish = example.english || '';
+                if (exTarget) {
+                    displayTargetSentence = exTarget;
+                    displayEnglishSentence = exEnglish;
+                }
+                songName = example.song_name || null;
             }
 
             // Truncate sentences longer than 20 words
@@ -936,8 +974,7 @@ function updateCard() {
             const pillStyle = 'background: rgba(255,255,255,0.15); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
             if (currentMeaning.allMWEs) {
                 // MWE sense: highlight the current MWE expression
-                const mweIdx = currentExampleIndex % currentMeaning.allMWEs.length;
-                const expr = currentMeaning.allMWEs[mweIdx].expression;
+                const expr = currentMeaning.allMWEs[activeMweIdx].expression;
                 const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = new RegExp(`(${escaped})`, 'gi');
                 displayTargetSentence = displayTargetSentence.replace(regex,
@@ -951,18 +988,23 @@ function updateCard() {
                     `<span style="${pillStyle}">$1</span>`);
             }
 
-            // Build song name line with example counter on the right
-            const exampleCounter = hasMultipleExamples ? `<span>${currentExampleIndex + 1}/${exampleCount}</span>` : '';
+            // Build example counter: shows count for current MWE's examples, not total MWEs
+            let exampleCounter = '';
+            if (hasMultipleExamples) {
+                const exIdx = currentExampleIndex % exampleCount;
+                exampleCounter = `<span>${exIdx + 1}/${exampleCount}</span>`;
+            }
+            const breakdownBtn = `<button class="breakdown-btn" onclick="showLyricBreakdown(event)" title="Word-by-word breakdown">⊞</button>`;
             const songNameDisplay = songName ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
                     <span>— ${songName}</span>
-                    ${exampleCounter}
+                    <span style="display: flex; align-items: center; gap: 6px;">${exampleCounter}${breakdownBtn}</span>
                 </div>
-            ` : (hasMultipleExamples ? `
-                <div style="display: flex; justify-content: flex-end; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
-                    ${exampleCounter}
+            ` : `
+                <div style="display: flex; justify-content: flex-end; align-items: center; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
+                    <span style="display: flex; align-items: center; gap: 6px;">${exampleCounter}${breakdownBtn}</span>
                 </div>
-            ` : '');
+            `;
 
             const clickHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
             const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
@@ -1035,6 +1077,10 @@ function updateCard() {
     backHTML += `</div>`;
 
     document.getElementById('backContent').innerHTML = backHTML;
+
+    // Toggle back button for nav stack
+    const navBackBtn = document.getElementById('navBackBtn');
+    if (navBackBtn) navBackBtn.classList.toggle('hidden', cardNavStack.length === 0);
 
     // Update frequency display
     stats.studied.add(currentIndex);
@@ -1119,12 +1165,20 @@ function cycleExample(event) {
     const card = flashcards[currentIndex];
     if (!card || !card.meanings) return;
     const currentMeaning = card.meanings[currentMeaningIndex];
-    if (!currentMeaning || !currentMeaning.allExamples) return;
+    if (!currentMeaning) return;
 
-    const exampleCount = currentMeaning.allExamples.length;
-    if (exampleCount <= 1) return;
+    // For MWE senses, cycle within the current MWE's examples
+    let examples;
+    if (currentMeaning.allMWEs) {
+        const mweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
+        examples = currentMeaning.allMWEs[mweIdx].examples || [];
+    } else {
+        examples = currentMeaning.allExamples || [];
+    }
 
-    currentExampleIndex = (currentExampleIndex + 1) % exampleCount;
+    if (examples.length <= 1) return;
+
+    currentExampleIndex = (currentExampleIndex + 1) % examples.length;
     updateCard();
 }
 
@@ -1134,13 +1188,15 @@ function selectMeaning(index) {
         const card = flashcards[currentIndex];
         const m = card && card.meanings[index];
         if (m && m.allMWEs && m.allMWEs.length > 1) {
-            currentExampleIndex = (currentExampleIndex + 1) % m.allMWEs.length;
+            currentMWEIndex = (currentMWEIndex + 1) % m.allMWEs.length;
+            currentExampleIndex = 0; // Reset example cycling when switching MWE
             updateCard();
             return;
         }
     }
     currentMeaningIndex = index;
-    currentExampleIndex = 0; // Reset example index when changing meaning
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
     updateCard();
     // Auto-speak the selected meaning
     const card = flashcards[currentIndex];
@@ -1159,8 +1215,9 @@ function selectMeaning(index) {
 function previousCard() {
     if (currentIndex > 0) {
         currentIndex--;
-        currentMeaningIndex = 0; // Reset meaning selection
-        currentExampleIndex = 0; // Reset example selection
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
         updateCard();
         document.getElementById('flashcard').classList.remove('flipped');
     }
@@ -1169,8 +1226,9 @@ function previousCard() {
 function nextCard() {
     if (currentIndex < flashcards.length - 1) {
         currentIndex++;
-        currentMeaningIndex = 0; // Reset meaning selection
-        currentExampleIndex = 0; // Reset example selection
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
         updateCard();
         document.getElementById('flashcard').classList.remove('flipped');
     }
@@ -1241,6 +1299,382 @@ function updateStats() {
     // Stats are now displayed in modal only
 }
 
+// --- Lyric Breakdown ---
+
+// Module-level cache for full vocab lookup (not in state — doesn't need proxy)
+let fullVocabLookup = null;
+
+// Common Spanish elisions: elided form → possible full forms
+const ELISION_MAP = {
+    "pa": ["para"],
+    "to": ["todo"],
+    "na": ["nada"],
+    "ta": ["esta", "estar"],
+    "toy": ["estoy"],
+    "toy": ["estoy"],
+    "tan": ["están"],
+    "tamo": ["estamos"],
+    "pal": ["para el"],
+    "po": ["por"],
+};
+
+function getFullVocabLookup() {
+    if (fullVocabLookup) return fullVocabLookup;
+    if (!cachedVocabularyData) return new Map();
+    fullVocabLookup = new Map();
+    for (const entry of cachedVocabularyData) {
+        const w = entry.word.toLowerCase().trim();
+        if (!fullVocabLookup.has(w)) fullVocabLookup.set(w, entry);
+        if (entry.lemma) {
+            const l = entry.lemma.toLowerCase().trim();
+            if (!fullVocabLookup.has(l)) fullVocabLookup.set(l, entry);
+        }
+    }
+    return fullVocabLookup;
+}
+
+function tokenizeLyricLine(sentence) {
+    if (!sentence) return [];
+    // Strip any HTML tags (from word highlighting)
+    const clean = sentence.replace(/<[^>]+>/g, '');
+    const rawTokens = clean.split(/\s+/).filter(t => t.length > 0);
+    return rawTokens.map(raw => {
+        const match = raw.match(/^([^\p{L}\p{N}]*)([\p{L}\p{N}][\p{L}\p{N}'''-]*)([^\p{L}\p{N}]*)$/u);
+        if (match) {
+            return { original: raw, clean: match[2], punctBefore: match[1], punctAfter: match[3] };
+        }
+        // Pure punctuation or unmatched
+        return { original: raw, clean: '', punctBefore: '', punctAfter: '' };
+    });
+}
+
+function resolveToken(token) {
+    if (!token.clean) return { token, source: 'unknown', entry: null, deckIndex: null };
+
+    const lower = token.clean.toLowerCase();
+    const lookupMap = window._wordLookupMap || new Map();
+
+    // 1. Check current deck
+    let deckIdx = lookupMap.get(lower);
+    if (deckIdx !== undefined) {
+        return { token, source: 'deck', entry: flashcards[deckIdx], deckIndex: deckIdx };
+    }
+
+    // 2. Try stripping trailing apostrophe (ere' → eres, etc.)
+    if (lower.endsWith("'") || lower.endsWith("\u2019")) {
+        const stripped = lower.replace(/['\u2019]+$/, '');
+        deckIdx = lookupMap.get(stripped + 's');
+        if (deckIdx !== undefined) return { token, source: 'deck', entry: flashcards[deckIdx], deckIndex: deckIdx };
+        deckIdx = lookupMap.get(stripped);
+        if (deckIdx !== undefined) return { token, source: 'deck', entry: flashcards[deckIdx], deckIndex: deckIdx };
+    }
+
+    // 3. Try elision map
+    const elisions = ELISION_MAP[lower];
+    if (elisions) {
+        for (const full of elisions) {
+            deckIdx = lookupMap.get(full);
+            if (deckIdx !== undefined) return { token, source: 'deck', entry: flashcards[deckIdx], deckIndex: deckIdx };
+        }
+    }
+
+    // 4. Check full vocabulary
+    const fullLookup = getFullVocabLookup();
+    let vocabEntry = fullLookup.get(lower);
+    if (vocabEntry) return { token, source: 'vocab', entry: vocabEntry, deckIndex: null };
+
+    // 5. Try elision recovery against full vocab
+    if (lower.endsWith("'") || lower.endsWith("\u2019")) {
+        const stripped = lower.replace(/['\u2019]+$/, '');
+        vocabEntry = fullLookup.get(stripped + 's');
+        if (vocabEntry) return { token, source: 'vocab', entry: vocabEntry, deckIndex: null };
+        vocabEntry = fullLookup.get(stripped);
+        if (vocabEntry) return { token, source: 'vocab', entry: vocabEntry, deckIndex: null };
+    }
+    if (elisions) {
+        for (const full of elisions) {
+            vocabEntry = fullLookup.get(full);
+            if (vocabEntry) return { token, source: 'vocab', entry: vocabEntry, deckIndex: null };
+        }
+    }
+
+    return { token, source: 'unknown', entry: null, deckIndex: null };
+}
+
+// Store current breakdown for popup access
+let currentBreakdownResults = [];
+
+function showLyricBreakdown(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const card = flashcards[currentIndex];
+    if (!card) return;
+
+    const currentMeaning = card.meanings[currentMeaningIndex];
+    if (!currentMeaning) return;
+
+    // Get the raw (un-truncated) sentence — use MWE-specific examples if applicable
+    let targetSentence = '';
+    let englishSentence = '';
+    let activeExamples;
+    if (currentMeaning.allMWEs) {
+        const mweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
+        activeExamples = currentMeaning.allMWEs[mweIdx].examples || [];
+    } else {
+        activeExamples = currentMeaning.allExamples || [];
+    }
+    if (activeExamples.length > 0) {
+        const exIdx = currentExampleIndex % activeExamples.length;
+        const example = activeExamples[exIdx];
+        targetSentence = example.target || example.spanish || '';
+        englishSentence = example.english || '';
+    } else {
+        targetSentence = currentMeaning.targetSentence || '';
+        englishSentence = currentMeaning.englishSentence || '';
+    }
+
+    if (!targetSentence) return;
+
+    // Tokenize and resolve each word
+    const tokens = tokenizeLyricLine(targetSentence);
+    currentBreakdownResults = tokens.map(t => resolveToken(t));
+
+    // Build modal HTML
+    let html = `
+        <div class="breakdown-header">
+            <div class="target-line">${targetSentence}</div>
+            <div class="english-line">${englishSentence}</div>
+        </div>
+    `;
+
+    currentBreakdownResults.forEach((result, idx) => {
+        if (!result.token.clean) return; // skip pure punctuation
+
+        const inDeck = result.source === 'deck';
+        const rowClass = 'breakdown-word-row' + (inDeck ? ' in-deck' : '');
+
+        let translation = '';
+        let pos = '';
+        if (result.entry) {
+            if (result.source === 'deck') {
+                // Flashcard object
+                translation = result.entry.meanings?.[0]?.meaning || result.entry.translation || '';
+                pos = result.entry.meanings?.[0]?.pos || '';
+            } else {
+                // Raw vocab entry
+                translation = result.entry.meanings?.[0]?.translation || '';
+                pos = result.entry.meanings?.[0]?.pos || '';
+            }
+        }
+
+        const posClass = pos ? getPosColorClass(pos) : '';
+        const posHTML = pos ? `<span class="word-pos card-pos ${posClass}">${pos}</span>` : '';
+
+        html += `
+            <div class="${rowClass}" onclick="showWordPopup(event, ${idx})">
+                <span class="word-spanish">${result.token.clean}</span>
+                <span class="word-translation">${translation || '<span style="opacity:0.4;">—</span>'}</span>
+                ${posHTML}
+            </div>
+        `;
+    });
+
+    document.getElementById('lyricBreakdownBody').innerHTML = html;
+    document.getElementById('lyricBreakdownModal').classList.remove('hidden');
+}
+
+function hideLyricBreakdown() {
+    document.getElementById('lyricBreakdownModal').classList.add('hidden');
+    hideWordPopup();
+}
+
+function hideWordPopup() {
+    document.getElementById('wordPopup').classList.add('hidden');
+}
+
+function showWordPopup(event, tokenIndex) {
+    event.stopPropagation();
+
+    const result = currentBreakdownResults[tokenIndex];
+    if (!result || !result.entry) return;
+
+    const popup = document.getElementById('wordPopup');
+    const inDeck = result.source === 'deck';
+
+    let word, translation, pos, corpusCount;
+    if (inDeck) {
+        word = result.entry.targetWord;
+        translation = result.entry.meanings?.[0]?.meaning || result.entry.translation || '';
+        pos = result.entry.meanings?.[0]?.pos || '';
+        corpusCount = result.entry.corpusCount;
+    } else {
+        word = result.entry.word;
+        translation = result.entry.meanings?.[0]?.translation || '';
+        pos = result.entry.meanings?.[0]?.pos || '';
+        corpusCount = result.entry.corpus_count || null;
+    }
+
+    let html = `<div class="popup-word">${word}</div>`;
+    html += `<div class="popup-translation">${translation || '—'}</div>`;
+    if (pos) html += `<div class="popup-detail">POS: ${pos}</div>`;
+    if (corpusCount) html += `<div class="popup-detail">Corpus count: ${corpusCount}</div>`;
+
+    if (inDeck) {
+        html += `<button class="popup-go-btn" onclick="navigateToCard(${result.deckIndex})">Go to card \u2192</button>`;
+    } else if (result.entry) {
+        html += `<button class="popup-go-btn" onclick="navigateToVocabCard(${tokenIndex})">Go to card \u2192</button>`;
+    }
+
+    popup.innerHTML = html;
+    popup.classList.remove('hidden');
+
+    // Position near the clicked row
+    const rect = event.currentTarget.getBoundingClientRect();
+    const popupWidth = 260;
+    let left = rect.right + 8;
+    let top = rect.top;
+
+    // If would overflow right, put it to the left
+    if (left + popupWidth > window.innerWidth) {
+        left = rect.left - popupWidth - 8;
+    }
+    // If would overflow left, center below
+    if (left < 8) {
+        left = Math.max(8, (rect.left + rect.right) / 2 - popupWidth / 2);
+        top = rect.bottom + 8;
+    }
+    // Clamp to viewport
+    top = Math.max(8, Math.min(top, window.innerHeight - 250));
+
+    popup.style.left = left + 'px';
+    popup.style.top = top + 'px';
+
+    // Dismiss on next click anywhere
+    setTimeout(() => {
+        document.addEventListener('click', function dismiss(e) {
+            if (!popup.contains(e.target)) {
+                hideWordPopup();
+            }
+            document.removeEventListener('click', dismiss);
+        });
+    }, 0);
+}
+
+// --- Card Navigation Stack ---
+
+function navigateToCard(targetIndex) {
+    // Cap at 1 level deep
+    if (cardNavStack.length > 0) return;
+
+    // Push current position onto stack
+    cardNavStack.push({
+        index: currentIndex,
+        meaningIndex: currentMeaningIndex,
+        exampleIndex: currentExampleIndex,
+        mweIndex: currentMWEIndex,
+        tempCard: false
+    });
+
+    // Close breakdown modal and popup
+    hideLyricBreakdown();
+
+    // Navigate to target card
+    currentIndex = targetIndex;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    document.getElementById('flashcard').classList.remove('flipped');
+    updateCard();
+}
+
+function navigateToVocabCard(tokenIndex) {
+    // Cap at 1 level deep
+    if (cardNavStack.length > 0) return;
+
+    const result = currentBreakdownResults[tokenIndex];
+    if (!result || !result.entry) return;
+
+    const vocabEntry = result.entry;
+
+    // Build a temporary flashcard object from the vocab entry
+    const langConfig = config.languages[selectedLanguage] || {};
+    const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+    const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
+    const meanings = (vocabEntry.meanings || []).map(m => {
+        const ex = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+        return {
+            pos: m.pos,
+            meaning: m.translation,
+            percentage: parseFloat(m.frequency) || 0,
+            targetSentence: ex.targetSentence,
+            englishSentence: ex.englishSentence,
+            allExamples: ex.allExamples
+        };
+    });
+
+    const firstExample = meanings.length > 0 ? { targetSentence: meanings[0].targetSentence, englishSentence: meanings[0].englishSentence } : { targetSentence: '', englishSentence: '' };
+
+    const tempCard = {
+        targetWord: vocabEntry.word,
+        lemma: vocabEntry.lemma || '',
+        id: vocabEntry.id || '0000',
+        fullId: getWordId(vocabEntry),
+        rank: vocabEntry.rank || 0,
+        corpusCount: vocabEntry.corpus_count || null,
+        meanings: meanings,
+        translation: meanings.length > 0 ? meanings[0].meaning : '',
+        targetSentence: firstExample.targetSentence,
+        englishSentence: firstExample.englishSentence,
+        links: generateLinks(vocabEntry.word, vocabEntry.lemma || vocabEntry.word, langConfig.referenceLinks || {}),
+        isMultiMeaning: true
+    };
+
+    // Append temp card to end of flashcards array
+    const tempIndex = flashcards.length;
+    flashcards.push(tempCard);
+
+    // Push current position onto stack, mark as having a temp card
+    cardNavStack.push({
+        index: currentIndex,
+        meaningIndex: currentMeaningIndex,
+        exampleIndex: currentExampleIndex,
+        mweIndex: currentMWEIndex,
+        tempCard: true,
+        tempIndex: tempIndex
+    });
+
+    // Close breakdown modal and popup
+    hideLyricBreakdown();
+
+    // Navigate to temp card
+    currentIndex = tempIndex;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    document.getElementById('flashcard').classList.remove('flipped');
+    updateCard();
+}
+
+function navigateBack() {
+    if (cardNavStack.length === 0) return;
+
+    const prev = cardNavStack.pop();
+
+    // Remove temp card if one was created
+    if (prev.tempCard && prev.tempIndex !== undefined) {
+        flashcards.splice(prev.tempIndex, 1);
+    }
+
+    currentIndex = prev.index;
+    currentMeaningIndex = prev.meaningIndex;
+    currentExampleIndex = prev.exampleIndex;
+    currentMWEIndex = prev.mweIndex || 0;
+    document.getElementById('flashcard').classList.remove('flipped');
+    updateCard();
+}
+
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;
@@ -1263,3 +1697,10 @@ window.flipDirection = flipDirection;
 window.getPosColorClass = getPosColorClass;
 window.updateReverseButton = updateReverseButton;
 window.updateStats = updateStats;
+window.showLyricBreakdown = showLyricBreakdown;
+window.hideLyricBreakdown = hideLyricBreakdown;
+window.showWordPopup = showWordPopup;
+window.hideWordPopup = hideWordPopup;
+window.navigateToCard = navigateToCard;
+window.navigateToVocabCard = navigateToVocabCard;
+window.navigateBack = navigateBack;

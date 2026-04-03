@@ -70,7 +70,9 @@ async function loadVocabularyData(rangeString) {
     currentSentenceIndex = 0;
     currentMeaningIndex = 0;
     currentExampleIndex = 0;
+    currentMWEIndex = 0;
     isFlipped = false;
+    cardNavStack = [];
 
     // Reset card flip state
     const flashcardEl = document.getElementById('flashcard');
@@ -91,6 +93,7 @@ async function loadVocabularyData(rangeString) {
             throw new Error(`HTTP ${response.status}`);
         }
         const vocabularyData = await response.json();
+        cachedVocabularyData = vocabularyData;
 
         // Store original index/rank from vocabulary file - this is the unique identifier
         vocabularyData.forEach((item, index) => {
@@ -174,27 +177,38 @@ async function loadVocabularyData(rangeString) {
             // Synthesize a single MWE meaning that cycles through all expressions
             if (item.mwe_memberships && item.mwe_memberships.length > 0) {
                 const allMWEs = [];
-                const allMWEExamples = [];
+                // Strip elision markers for fuzzy MWE matching
+                const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
                 for (const mwe of item.mwe_memberships) {
                     const exprLower = mwe.expression.toLowerCase();
-                    // Search corpus-wide examples, not just this word's meanings
-                    const matchedExample = allCorpusExamples.find(ex => {
+                    const exprNorm = stripElisions(exprLower);
+                    // Find ALL matching examples for this MWE
+                    let matched = allCorpusExamples.filter(ex => {
                         const text = (ex.spanish || ex.target || '').toLowerCase();
                         return text.includes(exprLower);
                     });
-                    allMWEs.push({ expression: mwe.expression, translation: mwe.translation });
-                    allMWEExamples.push(matchedExample || { spanish: '', english: '' });
+                    if (matched.length === 0) {
+                        matched = allCorpusExamples.filter(ex => {
+                            const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
+                            return text.includes(exprNorm);
+                        });
+                    }
+                    allMWEs.push({
+                        expression: mwe.expression,
+                        translation: mwe.translation,
+                        examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
+                    });
                 }
-                const first = allMWEExamples[0];
+                const firstEx = allMWEs[0].examples[0];
                 meanings.push({
                     pos: 'MWE',
                     meaning: allMWEs[0].translation,
                     expression: allMWEs[0].expression,
                     allMWEs: allMWEs,
                     percentage: 0,
-                    targetSentence: first.spanish || first.target || '',
-                    englishSentence: first.english || '',
-                    allExamples: allMWEExamples
+                    targetSentence: firstEx.spanish || firstEx.target || '',
+                    englishSentence: firstEx.english || '',
+                    allExamples: allMWEs[0].examples
                 });
             }
 
@@ -251,6 +265,7 @@ async function loadVocabularyData(rangeString) {
 
             // Initialize card display
             initializeApp();
+            buildWordLookupMap();
         }, 800);
     } catch (error) {
         console.error(`Failed to load vocabulary data:`, error);
@@ -258,6 +273,22 @@ async function loadVocabularyData(rangeString) {
         alert(`Error loading ${rangeString}. Please try another set.`);
     }
 }
+
+// Build a lookup map from word/lemma → flashcard index for lyric breakdown
+function buildWordLookupMap() {
+    const map = new Map();
+    for (let i = 0; i < flashcards.length; i++) {
+        const card = flashcards[i];
+        const word = card.targetWord.toLowerCase().trim();
+        if (!map.has(word)) map.set(word, i);
+        if (card.lemma) {
+            const lemma = card.lemma.toLowerCase().trim();
+            if (!map.has(lemma)) map.set(lemma, i);
+        }
+    }
+    window._wordLookupMap = map;
+}
+
 
 // Load study set of all-time incorrect words for the selected language
 async function loadIncorrectWordsSet() {
@@ -306,6 +337,7 @@ async function loadIncorrectWordsSet() {
     currentSentenceIndex = 0;
     currentMeaningIndex = 0;
     currentExampleIndex = 0;
+    currentMWEIndex = 0;
     isFlipped = false;
 
     const flashcardEl = document.getElementById('flashcard');
@@ -374,27 +406,38 @@ async function loadIncorrectWordsSet() {
             // Synthesize a single MWE meaning that cycles through all expressions
             if (item.mwe_memberships && item.mwe_memberships.length > 0) {
                 const allMWEs = [];
-                const allMWEExamples = [];
+                // Strip elision markers for fuzzy MWE matching
+                const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
                 for (const mwe of item.mwe_memberships) {
                     const exprLower = mwe.expression.toLowerCase();
-                    // Search corpus-wide examples, not just this word's meanings
-                    const matchedExample = allCorpusExamples.find(ex => {
+                    const exprNorm = stripElisions(exprLower);
+                    // Find ALL matching examples for this MWE
+                    let matched = allCorpusExamples.filter(ex => {
                         const text = (ex.spanish || ex.target || '').toLowerCase();
                         return text.includes(exprLower);
                     });
-                    allMWEs.push({ expression: mwe.expression, translation: mwe.translation });
-                    allMWEExamples.push(matchedExample || { spanish: '', english: '' });
+                    if (matched.length === 0) {
+                        matched = allCorpusExamples.filter(ex => {
+                            const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
+                            return text.includes(exprNorm);
+                        });
+                    }
+                    allMWEs.push({
+                        expression: mwe.expression,
+                        translation: mwe.translation,
+                        examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
+                    });
                 }
-                const first = allMWEExamples[0];
+                const firstEx = allMWEs[0].examples[0];
                 meanings.push({
                     pos: 'MWE',
                     meaning: allMWEs[0].translation,
                     expression: allMWEs[0].expression,
                     allMWEs: allMWEs,
                     percentage: 0,
-                    targetSentence: first.spanish || first.target || '',
-                    englishSentence: first.english || '',
-                    allExamples: allMWEExamples
+                    targetSentence: firstEx.spanish || firstEx.target || '',
+                    englishSentence: firstEx.english || '',
+                    allExamples: allMWEs[0].examples
                 });
             }
 
@@ -431,6 +474,7 @@ async function loadIncorrectWordsSet() {
 
         // Initialize card display
         initializeApp();
+        buildWordLookupMap();
     } catch (error) {
         console.error('Failed to load incorrect words set:', error);
         document.getElementById('loadingMessage').style.display = 'none';
@@ -445,6 +489,7 @@ async function loadCSVFiles(ranges) {
     currentSentenceIndex = 0;
     currentMeaningIndex = 0;
     currentExampleIndex = 0;
+    currentMWEIndex = 0;
     isFlipped = false;
 
     // Reset card flip state
@@ -802,3 +847,4 @@ window.truncateText = truncateText;
 window.cleanValue = cleanValue;
 window.generateLinks = generateLinks;
 window.getExampleFromMeaning = getExampleFromMeaning;
+window.buildWordLookupMap = buildWordLookupMap;

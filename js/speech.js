@@ -15,11 +15,17 @@ function speakWord(text, useEnglish = false) {
     // Try to find a better quality voice
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
-        // Prefer Google or premium voices, then any matching voice
-        const preferredVoice = voices.find(v =>
-            v.lang.startsWith(langCode.split('-')[0]) &&
-            (v.name.includes('Google') || v.name.includes('Premium') || v.name.includes('Enhanced') || v.name.includes('Samantha') || v.name.includes('Daniel'))
-        ) || voices.find(v => v.lang.startsWith(langCode.split('-')[0]));
+        const langPrefix = langCode.split('-')[0];
+        const matchingVoices = voices.filter(v => v.lang.startsWith(langPrefix));
+
+        // Rank voices by quality: Natural/Premium > specific named voices > Google > any
+        const preferredVoice = matchingVoices.find(v =>
+            v.name.includes('Natural') || v.name.includes('Premium')
+        ) || matchingVoices.find(v =>
+            v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Daniel')
+        ) || matchingVoices.find(v =>
+            v.name.includes('Google') || v.name.includes('Enhanced')
+        ) || matchingVoices[0];
 
         if (preferredVoice) {
             utterance.voice = preferredVoice;

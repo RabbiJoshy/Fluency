@@ -61,107 +61,151 @@ function updateCoverageProgressBar() {
     });
 }
 
-// Update exclusion progress bars for lemma and cognate steps
+// Update inline info text for lemma and cognate exclusion counts
 async function updateExclusionBars() {
     const langConfig = config.languages[selectedLanguage];
     if (!langConfig || !langConfig.dataPath) return;
 
-    let vocabularyData = [];
-    try {
-        const response = await fetch(langConfig.dataPath);
-        if (response.ok) {
-            vocabularyData = await response.json();
+    let vocabularyData = cachedVocabularyData;
+    if (!vocabularyData) {
+        try {
+            const response = await fetch(langConfig.dataPath);
+            if (response.ok) {
+                vocabularyData = await response.json();
+            }
+        } catch (error) {
+            console.error('Failed to load vocabulary for exclusion info:', error);
+            return;
         }
-    } catch (error) {
-        console.error('Failed to load vocabulary for exclusion bars:', error);
-        return;
     }
 
-    // Assign ranks
-    vocabularyData.forEach((item, index) => { item.rank = index + 1; });
+    // Assign ranks if needed
+    vocabularyData.forEach((item, index) => { if (!item.rank) item.rank = index + 1; });
 
     // Base filter: non-blank, non-duplicate, has meanings
     let baseVocab = vocabularyData.filter(item =>
         item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
     );
 
-    // Bad Bunny mode exclusions
     if (isBadBunnyMode) {
         baseVocab = baseVocab.filter(item =>
             !item.is_english && !item.is_interjection && !item.is_propernoun
         );
     }
 
-    // Hide single-occurrence words if enabled
     if (hideSingleOccurrence && baseVocab.length > 0 && baseVocab[0].hasOwnProperty('corpus_count')) {
         baseVocab = baseVocab.filter(item => item.corpus_count > 1);
     }
 
     const totalBeforeLemma = baseVocab.length;
 
-    // Count after lemma filter
     let afterLemma = baseVocab;
     if (useLemmaMode && lemmaFieldAvailable) {
         afterLemma = baseVocab.filter(item => item.most_frequent_lemma_instance === true);
     }
     const totalAfterLemma = afterLemma.length;
 
-    // Count after cognate filter (applied on top of lemma)
     let afterCognate = afterLemma;
     if (excludeCognates && cognateFieldAvailable) {
         afterCognate = afterLemma.filter(item => !item.is_transparent_cognate);
     }
     const totalAfterCognate = afterCognate.length;
 
-    // Update lemma exclusion bar
-    const lemmaWrapper = document.getElementById('lemmaExclusionBarWrapper');
-    const lemmaFill = document.getElementById('lemmaExclusionBarFill');
-    const lemmaLabel = document.getElementById('lemmaExclusionBarLabel');
-    if (lemmaWrapper && lemmaFill && lemmaLabel) {
+    // Update lemma info line
+    const lemmaInfo = document.getElementById('lemmaInfoLine');
+    if (lemmaInfo) {
         const lemmaExcluded = totalBeforeLemma - totalAfterLemma;
         if (useLemmaMode && lemmaFieldAvailable && lemmaExcluded > 0) {
-            const remainPercent = (totalAfterLemma / totalBeforeLemma) * 100;
-            lemmaWrapper.style.display = 'block';
-            lemmaWrapper.classList.remove('visible');
-            lemmaFill.style.transition = 'none';
-            lemmaFill.style.width = '0%';
-            lemmaLabel.textContent = `${totalAfterLemma.toLocaleString()} / ${totalBeforeLemma.toLocaleString()} words (${lemmaExcluded.toLocaleString()} forms excluded)`;
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    lemmaFill.style.transition = 'width 0.8s ease-out';
-                    lemmaFill.style.width = remainPercent + '%';
-                    lemmaWrapper.classList.add('visible');
-                });
-            });
+            lemmaInfo.textContent = `${totalAfterLemma.toLocaleString()} / ${totalBeforeLemma.toLocaleString()} words`;
+            lemmaInfo.style.display = '';
         } else {
-            lemmaWrapper.style.display = 'none';
+            lemmaInfo.style.display = 'none';
         }
     }
 
-    // Update cognate exclusion bar
-    const cognateWrapper = document.getElementById('cognateExclusionBarWrapper');
-    const cognateFill = document.getElementById('cognateExclusionBarFill');
-    const cognateLabel = document.getElementById('cognateExclusionBarLabel');
-    if (cognateWrapper && cognateFill && cognateLabel) {
+    // Update cognate info line
+    const cognateInfo = document.getElementById('cognateInfoLine');
+    if (cognateInfo) {
         const cognateExcluded = totalAfterLemma - totalAfterCognate;
         if (excludeCognates && cognateFieldAvailable && cognateExcluded > 0) {
-            const remainPercent = (totalAfterCognate / totalAfterLemma) * 100;
-            cognateWrapper.style.display = 'block';
-            cognateWrapper.classList.remove('visible');
-            cognateFill.style.transition = 'none';
-            cognateFill.style.width = '0%';
-            cognateLabel.textContent = `${totalAfterCognate.toLocaleString()} / ${totalAfterLemma.toLocaleString()} words (${cognateExcluded.toLocaleString()} cognates excluded)`;
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    cognateFill.style.transition = 'width 0.8s ease-out';
-                    cognateFill.style.width = remainPercent + '%';
-                    cognateWrapper.classList.add('visible');
-                });
-            });
+            cognateInfo.textContent = `${totalAfterCognate.toLocaleString()} words (${cognateExcluded.toLocaleString()} cognates excluded)`;
+            cognateInfo.style.display = '';
         } else {
-            cognateWrapper.style.display = 'none';
+            cognateInfo.style.display = 'none';
         }
     }
+
+    // Update personal coverage bar
+    updatePersonalCoverage(afterCognate);
+}
+
+// Personal coverage bar: what % of words (up to selected level) the user has
+// correctly answered, where "correct" means the last answer was correct.
+function updatePersonalCoverage(filteredVocab) {
+    const wrapper = document.getElementById('personalCoverageWrapper');
+    const fill = document.getElementById('personalCoverageFill');
+    const label = document.getElementById('personalCoverageLabel');
+    if (!wrapper || !fill || !label) return;
+
+    if (!progressData || !selectedLevel || !filteredVocab || filteredVocab.length === 0) {
+        wrapper.style.display = 'none';
+        return;
+    }
+
+    // Get the end rank for the selected level
+    const selectedBtn = document.querySelector('.level-btn.selected');
+    const endRank = selectedBtn ? parseInt(selectedBtn.dataset.endRank, 10) : 0;
+    if (!endRank) {
+        wrapper.style.display = 'none';
+        return;
+    }
+
+    // Filter vocab to words within the selected level range
+    // Use displayRank-style sequential ranking on filtered vocab
+    const wordsInLevel = filteredVocab.slice(0, endRank);
+    if (wordsInLevel.length === 0) {
+        wrapper.style.display = 'none';
+        return;
+    }
+
+    // Count how many of these words were last answered correctly
+    let coveredCount = 0;
+    for (const item of wordsInLevel) {
+        const fullId = getWordId(item);
+        const progress = progressData[fullId];
+        if (progress && progress.language === selectedLanguage) {
+            // "Last answer correct": lastCorrect is more recent than lastWrong
+            const lastCorrect = progress.lastCorrect ? new Date(progress.lastCorrect).getTime() : 0;
+            const lastWrong = progress.lastWrong ? new Date(progress.lastWrong).getTime() : 0;
+            if (lastCorrect > 0 && lastCorrect >= lastWrong) {
+                coveredCount++;
+            }
+        }
+    }
+
+    const coveragePct = (coveredCount / wordsInLevel.length) * 100;
+
+    if (coveredCount === 0) {
+        wrapper.style.display = 'none';
+        return;
+    }
+
+    // Animate the bar
+    wrapper.style.display = 'block';
+    wrapper.classList.remove('visible');
+    fill.style.transition = 'none';
+    fill.style.width = '0%';
+
+    const coverageType = isBadBunnyMode ? 'lyrics' : 'words';
+    label.textContent = `${coveredCount.toLocaleString()} / ${wordsInLevel.length.toLocaleString()} ${coverageType} covered (${coveragePct.toFixed(1)}%)`;
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            fill.style.transition = 'width 1s ease-out';
+            fill.style.width = Math.min(coveragePct, 100) + '%';
+            wrapper.classList.add('visible');
+        });
+    });
 }
 
 // Setup tooltip handlers (needs to run early, before any set is picked)
@@ -169,3 +213,4 @@ async function updateExclusionBars() {
 window.calculateCoveragePercent = calculateCoveragePercent;
 window.updateCoverageProgressBar = updateCoverageProgressBar;
 window.updateExclusionBars = updateExclusionBars;
+window.updatePersonalCoverage = updatePersonalCoverage;
