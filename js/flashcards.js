@@ -888,21 +888,21 @@ function updateCard() {
             const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
             const displayMeaning = isMWE ? mweMeaning : m.meaning;
             if (isMWE) {
-                // MWE row: expression in a light pill, white translation, counter — no POS badge
+                // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
                 backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 12px; color: white; padding: 3px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap;">${mweExpr}</span>
-                    <span style="font-size: 16px; font-weight: 600; color: white; flex: 1; margin-left: 10px;">${displayMeaning}</span>
+                    <span style="font-size: 14px; color: white; padding: 3px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap;">${mweExpr}</span>
+                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; margin-left: 10px;">${displayMeaning}</span>
                     ${mweCounter}
                 </div>
                 `;
             } else {
-                // Regular meaning row: percentage in white, translation, POS badge
+                // Regular meaning row: POS pill + percentage on left, translation on right
                 backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span style="font-family: var(--font-data); font-size: 12px; color: white; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1;">${displayMeaning}</span>
                     <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
+                    <span style="font-family: var(--font-data); font-size: 12px; color: white; min-width: 35px; margin-left: 6px;">${Math.round(m.percentage * 100)}%</span>
+                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; margin-left: 10px;">${displayMeaning}</span>
                 </div>
                 `;
             }
@@ -933,7 +933,7 @@ function updateCard() {
             displayEnglishSentence = truncateText(displayEnglishSentence, 20);
 
             // Highlight words in the target sentence with a colored pill + white text
-            const pillStyle = 'background: var(--accent-primary); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
+            const pillStyle = 'background: rgba(255,255,255,0.15); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
             if (currentMeaning.allMWEs) {
                 // MWE sense: highlight the current MWE expression
                 const mweIdx = currentExampleIndex % currentMeaning.allMWEs.length;
