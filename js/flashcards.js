@@ -1120,6 +1120,16 @@ function cycleExample(event) {
 }
 
 function selectMeaning(index) {
+    if (index === currentMeaningIndex) {
+        // Already selected — cycle if this is an MWE pill with multiple expressions
+        const card = flashcards[currentIndex];
+        const m = card && card.meanings[index];
+        if (m && m.allMWEs && m.allMWEs.length > 1) {
+            currentExampleIndex = (currentExampleIndex + 1) % m.allMWEs.length;
+            updateCard();
+            return;
+        }
+    }
     currentMeaningIndex = index;
     currentExampleIndex = 0; // Reset example index when changing meaning
     updateCard();
