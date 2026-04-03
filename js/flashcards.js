@@ -897,11 +897,13 @@ function updateCard() {
                 </div>
                 `;
             } else {
-                // Regular meaning row: POS pill + percentage on left, translation on right
+                // Regular meaning row: two-tone split badge [POS|%] on left, translation on right
                 backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
-                    <span style="font-family: var(--font-data); font-size: 12px; color: white; min-width: 35px; margin-left: 6px;">${Math.round(m.percentage * 100)}%</span>
+                    <span style="display: inline-flex; align-items: center; border-radius: 4px; overflow: hidden; flex-shrink: 0;">
+                        <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 8px; margin: 0; border-radius: 4px 0 0 4px; border-right: none;">${m.pos}</span>
+                        <span style="font-family: var(--font-data); font-size: 10px; color: white; padding: 4px 8px; background: rgba(255,255,255,0.12);">${Math.round(m.percentage * 100)}%</span>
+                    </span>
                     <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; margin-left: 10px;">${displayMeaning}</span>
                 </div>
                 `;

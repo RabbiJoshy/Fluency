@@ -343,17 +343,17 @@
         }
 
         /* Part of Speech Colors */
-        .pos-noun { background: rgba(74, 158, 255, 0.2); border-color: rgba(74, 158, 255, 0.5); color: #4a9eff; }
-        .pos-verb { background: rgba(0, 212, 170, 0.2); border-color: rgba(0, 212, 170, 0.5); color: #00d4aa; }
-        .pos-adj { background: rgba(245, 166, 35, 0.2); border-color: rgba(245, 166, 35, 0.5); color: #f5a623; }
-        .pos-adv { background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.5); color: #a855f7; }
-        .pos-prep { background: rgba(236, 72, 153, 0.2); border-color: rgba(236, 72, 153, 0.5); color: #ec4899; }
-        .pos-conj { background: rgba(20, 184, 166, 0.2); border-color: rgba(20, 184, 166, 0.5); color: #14b8a6; }
-        .pos-pron { background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.5); color: #6366f1; }
-        .pos-det { background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.5); color: #f43f5e; }
-        .pos-int { background: rgba(234, 179, 8, 0.2); border-color: rgba(234, 179, 8, 0.5); color: #eab308; }
-        .pos-num { background: rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.5); color: #06b6d4; }
-        .pos-mwe { background: rgba(251, 191, 36, 0.2); border-color: rgba(251, 191, 36, 0.5); color: #fbbf24; }
+        .pos-noun { background: rgba(74, 158, 255, 0.35); border-color: rgba(74, 158, 255, 0.5); color: #4a9eff; }
+        .pos-verb { background: rgba(0, 212, 170, 0.35); border-color: rgba(0, 212, 170, 0.5); color: #00d4aa; }
+        .pos-adj { background: rgba(245, 166, 35, 0.35); border-color: rgba(245, 166, 35, 0.5); color: #f5a623; }
+        .pos-adv { background: rgba(168, 85, 247, 0.35); border-color: rgba(168, 85, 247, 0.5); color: #a855f7; }
+        .pos-prep { background: rgba(236, 72, 153, 0.35); border-color: rgba(236, 72, 153, 0.5); color: #ec4899; }
+        .pos-conj { background: rgba(20, 184, 166, 0.35); border-color: rgba(20, 184, 166, 0.5); color: #14b8a6; }
+        .pos-pron { background: rgba(99, 102, 241, 0.35); border-color: rgba(99, 102, 241, 0.5); color: #6366f1; }
+        .pos-det { background: rgba(244, 63, 94, 0.35); border-color: rgba(244, 63, 94, 0.5); color: #f43f5e; }
+        .pos-int { background: rgba(234, 179, 8, 0.35); border-color: rgba(234, 179, 8, 0.5); color: #eab308; }
+        .pos-num { background: rgba(6, 182, 212, 0.35); border-color: rgba(6, 182, 212, 0.5); color: #06b6d4; }
+        .pos-mwe { background: rgba(251, 191, 36, 0.35); border-color: rgba(251, 191, 36, 0.5); color: #fbbf24; }
 
         .card-ranking {
             font-family: var(--font-reading);
