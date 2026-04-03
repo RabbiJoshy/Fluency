@@ -1,10 +1,32 @@
+#!/usr/bin/env python3
+"""
+Download Bad Bunny lyrics from Genius API.
+
+Fetches all songs for an artist in batches, using the Genius API for metadata
+and direct song-ID scraping for lyrics (more reliable than title-based search).
+
+Supports:
+  --include-remixes    Also fetch songs with Remix/Live/etc. in the title
+  --retry-nulls        Re-attempt songs that previously got null lyrics
+  --start-page N       Resume from a specific page
+
+Output: bad_bunny_genius/batch_NNN_page_N.json
+
+Usage (from project root):
+    .venv/bin/python3 "Bad Bunny/1_download_lyrics.py"
+    .venv/bin/python3 "Bad Bunny/1_download_lyrics.py" --include-remixes
+    .venv/bin/python3 "Bad Bunny/1_download_lyrics.py" --retry-nulls
+"""
+
 TOKEN = "wYDvwsp9iGyueotPy1BLIbIMfinPKcoxxJZogRDXQjbn13VDBkBZudwAUA8gJnhq"
 
+import argparse
 import json
 import os
+import re
 import time
 from pathlib import Path
-from typing import Optional, Tuple, List, Dict, Any
+from typing import Optional, Dict, Any, Set, List
 
 from requests.exceptions import Timeout, HTTPError
 from lyricsgenius import Genius
@@ -15,120 +37,150 @@ from lyricsgenius import Genius
 
 ARTIST_QUERY = "Bad Bunny"
 BATCH_SIZE = 25
-START_PAGE = 1
 
-# # Prefer env var; DO NOT hardcode tokens in code.
-# TOKEN = os.getenv("GENIUS_ACCESS_TOKEN", "").strip()
-# if not TOKEN:
-#     raise RuntimeError(
-#         "Missing GENIUS_ACCESS_TOKEN env var. "
-#         "Set it like: export GENIUS_ACCESS_TOKEN='...'"
-#     )
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR = os.path.join(SCRIPT_DIR, "bad_bunny_genius")
 
-genius = Genius(
-    TOKEN,
-    timeout=30,
-    retries=3,
-    sleep_time=1.0,
-)
-
-# Reduce junk upstream
-genius.verbose = True
-genius.remove_section_headers = True        # strips [Chorus], etc. :contentReference[oaicite:1]{index=1}
-genius.skip_non_songs = True                # avoids tracklists / non-songs :contentReference[oaicite:2]{index=2}
-genius.excluded_terms = [
+# Terms that indicate a variant (remix, live, etc.)
+VARIANT_TERMS = [
     "(Remix)", "(Live)", "(Concert)", "(Version)", "(Acoustic)",
-    "Tracklist", "Credits", "Romanized", "Translation"
+    "Tracklist", "Credits", "Romanized", "Translation",
 ]
+
+# Non-song markers to always exclude
+ALWAYS_EXCLUDED = [
+    "Tracklist", "Credits", "Romanized", "Translation",
+]
+
+# ---------------------------------------------------------------------
+# GENIUS CLIENT
+# ---------------------------------------------------------------------
+
+def make_genius(excluded_terms):
+    """Create a Genius client with the specified excluded terms."""
+    g = Genius(
+        TOKEN,
+        timeout=30,
+        retries=3,
+        sleep_time=1.0,
+    )
+    g.verbose = True
+    g.remove_section_headers = True
+    g.skip_non_songs = True
+    g.excluded_terms = excluded_terms
+    return g
+
 
 # ---------------------------------------------------------------------
 # HELPERS
 # ---------------------------------------------------------------------
 
-def load_done_ids(progress_path: Path) -> set[int]:
+def load_done_ids(progress_path):
+    # type: (Path) -> Set[int]
     if progress_path.exists():
         return set(json.loads(progress_path.read_text()))
     return set()
 
-def save_done_ids(progress_path: Path, done_ids: set[int]) -> None:
+
+def save_done_ids(progress_path, done_ids):
+    # type: (Path, Set[int]) -> None
     progress_path.write_text(json.dumps(sorted(done_ids), indent=2))
 
-def fetch_batch_song_metas(artist_id: int, page: int, per_page: int = 25):
-    """
-    Returns (songs, next_page) using Genius API's artist_songs endpoint.
-    """
-    res = genius.artist_songs(artist_id, per_page=per_page, page=page, sort="popularity")
+
+def fetch_batch_song_metas(genius_client, artist_id, page, per_page=25):
+    """Returns (songs, next_page) using Genius API's artist_songs endpoint."""
+    res = genius_client.artist_songs(artist_id, per_page=per_page, page=page, sort="popularity")
     return res.get("songs", []), res.get("next_page")
 
-def safe_search_song(title: str, artist_name: str, max_tries: int = 5):
+
+def scrape_lyrics_by_id(genius_client, song_id, max_tries=5):
     """
-    Returns a lyricsgenius.types.Song (includes .lyrics, .album, .album_url, .year, .url). :contentReference[oaicite:3]{index=3}
+    Scrape lyrics using the song ID directly.
+    More reliable than search_song() which re-searches by title and can
+    return the wrong song.
     """
     delay = 2
     for attempt in range(1, max_tries + 1):
         try:
-            song = genius.search_song(title, artist_name)
-            return song
-        except (Timeout, HTTPError):
+            lyrics = genius_client.lyrics(song_id=song_id)
+            return lyrics
+        except (Timeout, HTTPError) as e:
             if attempt == max_tries:
+                print("    Failed after %d attempts: %s" % (max_tries, e))
                 return None
             time.sleep(delay)
             delay *= 2
+        except Exception as e:
+            print("    Unexpected error scraping %d: %s" % (song_id, e))
+            return None
 
-def song_to_record(song_id: int, title: str, artist_name: str, url_fallback: Optional[str] = None) -> Dict[str, Any]:
-    """
-    Fetch song via search_song (scrapes lyrics) and return a JSON-serializable record
-    including album info.
-    """
-    s = safe_search_song(title, artist_name)
-    if not s:
-        return {
-            "id": song_id,
-            "title": title,
-            "artist": artist_name,
-            "url": url_fallback,
-            "album": None,
-            "album_url": None,
-            "year": None,
-            "lyrics": None,
-        }
 
-    # Song fields per docs: album, album_url, year, url, lyrics :contentReference[oaicite:4]{index=4}
+def song_meta_to_record(meta, lyrics):
+    # type: (Dict, Optional[str]) -> Dict[str, Any]
+    """Build a JSON-serializable record from song metadata + scraped lyrics."""
     return {
-        "id": song_id,
-        "title": getattr(s, "title", title),
-        "artist": getattr(getattr(s, "artist", None), "name", artist_name) if getattr(s, "artist", None) else artist_name,
-        "url": getattr(s, "url", None) or url_fallback,
-        "album": getattr(s, "album", None),
-        "album_url": getattr(s, "album_url", None),
-        "year": getattr(s, "year", None),
-        "lyrics": getattr(s, "lyrics", None),
+        "id": meta["id"],
+        "title": meta.get("title", ""),
+        "artist": meta.get("primary_artist", {}).get("name", ARTIST_QUERY),
+        "url": meta.get("url", ""),
+        "lyrics": lyrics,
     }
+
 
 # ---------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------
 
-def download_artist_lyrics_in_batches(artist_query: str, batch_size: int = 25, start_page: int = 1):
-    # Resolve canonical artist + id (only 1 song needed just to get id/name)
-    artist_stub = genius.search_artist(artist_query, max_songs=1)  # :contentReference[oaicite:5]{index=5}
+def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
+                           include_remixes=False, retry_nulls=False):
+    """Download all lyrics for an artist."""
+
+    # Set up excluded terms based on flags
+    if include_remixes:
+        excluded = ALWAYS_EXCLUDED
+        print("Including remixes/variants (only excluding: %s)" % ", ".join(ALWAYS_EXCLUDED))
+    else:
+        excluded = VARIANT_TERMS
+        print("Excluding variants: %s" % ", ".join(VARIANT_TERMS))
+
+    genius_client = make_genius(excluded)
+
+    # Resolve artist
+    artist_stub = genius_client.search_artist(artist_query, max_songs=1)
     if not artist_stub:
-        raise RuntimeError(f"Could not resolve artist: {artist_query}")
+        raise RuntimeError("Could not resolve artist: %s" % artist_query)
 
     artist_id = artist_stub.id
     artist_name = artist_stub.name
+    print("Artist: %s (ID: %d)" % (artist_name, artist_id))
 
-    out_dir = Path(f"genius_{artist_name.replace(' ', '_')}")
+    out_dir = Path(OUT_DIR)
     out_dir.mkdir(exist_ok=True)
 
     progress_path = out_dir / "done_song_ids.json"
     done_ids = load_done_ids(progress_path)
+    print("Already scraped: %d songs" % len(done_ids))
+
+    # If retry_nulls, load existing batches to find null-lyrics songs
+    null_retry_ids = set()  # type: Set[int]
+    if retry_nulls:
+        null_retry_ids = find_null_lyrics_songs(out_dir)
+        # Remove these from done_ids so they get re-fetched
+        overlap = done_ids & null_retry_ids
+        if overlap:
+            done_ids -= overlap
+            save_done_ids(progress_path, done_ids)
+            print("Re-queued %d songs with null lyrics for retry" % len(overlap))
+        else:
+            print("No null-lyrics songs found to retry")
 
     page = start_page
     batch_num = 1
+    total_new = 0
 
     while page:
-        metas, next_page = fetch_batch_song_metas(artist_id, page=page, per_page=batch_size)
+        metas, next_page = fetch_batch_song_metas(genius_client, artist_id,
+                                                   page=page, per_page=batch_size)
 
         # Filter out already-done songs
         metas = [m for m in metas if m.get("id") not in done_ids]
@@ -140,21 +192,56 @@ def download_artist_lyrics_in_batches(artist_query: str, batch_size: int = 25, s
         batch = []
         for m in metas:
             song_id = m["id"]
-            title = m["title"]
-            url_fallback = m.get("url")
+            title = m.get("title", "")
 
-            rec = song_to_record(song_id, title, artist_name, url_fallback=url_fallback)
+            print("  Scraping: %s (ID: %d)..." % (title, song_id))
+            lyrics = scrape_lyrics_by_id(genius_client, song_id)
+
+            rec = song_meta_to_record(m, lyrics)
             batch.append(rec)
+            total_new += 1
 
             done_ids.add(song_id)
             save_done_ids(progress_path, done_ids)
 
-        batch_file = out_dir / f"batch_{batch_num:03d}_page_{page}.json"
+        batch_file = out_dir / ("batch_%03d_page_%d.json" % (batch_num, page))
         batch_file.write_text(json.dumps(batch, ensure_ascii=False, indent=2))
-        print(f"Saved {len(batch)} songs → {batch_file}")
+        print("Saved %d songs -> %s" % (len(batch), batch_file))
 
         batch_num += 1
         page = next_page
 
+    print("\nDone! Scraped %d new songs." % total_new)
+
+
+def find_null_lyrics_songs(out_dir):
+    # type: (Path) -> Set[int]
+    """Find song IDs with null/empty lyrics in existing batch files."""
+    import glob
+    null_ids = set()
+    for path in sorted(glob.glob(str(out_dir / "batch_*.json"))):
+        with open(path, "r", encoding="utf-8") as f:
+            batch = json.load(f)
+        for song in batch:
+            if not song.get("lyrics"):
+                null_ids.add(song["id"])
+    return null_ids
+
+
 if __name__ == "__main__":
-    download_artist_lyrics_in_batches(ARTIST_QUERY, batch_size=BATCH_SIZE, start_page=START_PAGE)
+    parser = argparse.ArgumentParser(description="Download artist lyrics from Genius")
+    parser.add_argument("--include-remixes", action="store_true",
+                        help="Also fetch remixes, live versions, etc.")
+    parser.add_argument("--retry-nulls", action="store_true",
+                        help="Re-attempt songs that previously got null lyrics")
+    parser.add_argument("--start-page", type=int, default=1,
+                        help="Start from this page (default: 1)")
+    args = parser.parse_args()
+
+    download_artist_lyrics(
+        ARTIST_QUERY,
+        batch_size=BATCH_SIZE,
+        start_page=args.start_page,
+        include_remixes=args.include_remixes,
+        retry_nulls=args.retry_nulls,
+    )

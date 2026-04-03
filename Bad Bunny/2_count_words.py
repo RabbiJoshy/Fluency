@@ -100,7 +100,7 @@ def normalize_text(s: str) -> str:
 def clean_genius_lyrics(raw: str) -> str:
     """
     Removes Genius boilerplate:
-    - strips leading 'Lyrics' section
+    - strips leading 'Lyrics' section + editorial description paragraph
     - removes [Chorus]/[Verse] lines
     - cuts off common footer markers
     """
@@ -112,6 +112,36 @@ def clean_genius_lyrics(raw: str) -> str:
     if idx != -1:
         text = text[idx + len("Lyrics"):]
         text = text.lstrip(" \n\t-–—:")
+
+    # Strip Genius editorial description that appears after the "Lyrics" marker.
+    # Two forms:
+    #   1. Description ending with "Read More\xa0\n" or "… Read More\xa0\n"
+    #   2. Description ending at first blank line (double newline)
+    # The description is always a single prose paragraph about the song.
+    rm_match = re.search(r'(?:…|\.\.\.|\u2026)?\s*Read More[\xa0\s]*\n', text)
+    if rm_match:
+        text = text[rm_match.end():]
+    else:
+        # No "Read More" — check if first chunk looks like a Genius editorial
+        # description (long prose paragraph before actual lyrics after a blank line).
+        # These descriptions reference the song in third person and use specific
+        # meta-language patterns.
+        first_break = text.find("\n\n")
+        if first_break > 0:
+            first_chunk = text[:first_break]
+            chunk_lower = first_chunk.lower()
+            is_editorial = (
+                len(first_chunk) > 80
+                and any(p in chunk_lower for p in (
+                    '"', '\u201c',  # quoted song titles
+                    'es una canción', 'es el primer', 'es el segundo',
+                    'es la canción', 'sirve como', 'álbum de estudio',
+                    'fue lanzad', 'fue publicad', 'fue estrenada',
+                    'canción inédita', 'es un tema', 'tema que abre',
+                ))
+            )
+            if is_editorial:
+                text = text[first_break:]
 
     cut_positions = []
     for marker in FOOTER_MARKERS:
