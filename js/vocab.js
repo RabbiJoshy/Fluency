@@ -134,6 +134,15 @@ async function loadVocabularyData(rangeString) {
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
+        // Build corpus-wide example pool for MWE matching (all words, not just current range)
+        const allCorpusExamples = [];
+        for (const entry of vocabularyData) {
+            if (!entry.meanings) continue;
+            for (const m of entry.meanings) {
+                if (m.examples) allCorpusExamples.push(...m.examples);
+            }
+        }
+
         for (const item of filteredData) {
             const meanings = item.meanings.map(m => {
                 const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
@@ -168,15 +177,11 @@ async function loadVocabularyData(rangeString) {
                 const allMWEExamples = [];
                 for (const mwe of item.mwe_memberships) {
                     const exprLower = mwe.expression.toLowerCase();
-                    let matchedExample = null;
-                    for (const m of item.meanings) {
-                        if (!m.examples) continue;
-                        matchedExample = m.examples.find(ex => {
-                            const text = (ex.spanish || ex.target || '').toLowerCase();
-                            return text.includes(exprLower);
-                        });
-                        if (matchedExample) break;
-                    }
+                    // Search corpus-wide examples, not just this word's meanings
+                    const matchedExample = allCorpusExamples.find(ex => {
+                        const text = (ex.spanish || ex.target || '').toLowerCase();
+                        return text.includes(exprLower);
+                    });
                     allMWEs.push({ expression: mwe.expression, translation: mwe.translation });
                     allMWEExamples.push(matchedExample || { spanish: '', english: '' });
                 }
@@ -331,6 +336,15 @@ async function loadIncorrectWordsSet() {
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
+        // Build corpus-wide example pool for MWE matching
+        const allCorpusExamples = [];
+        for (const entry of vocabularyData) {
+            if (!entry.meanings) continue;
+            for (const m of entry.meanings) {
+                if (m.examples) allCorpusExamples.push(...m.examples);
+            }
+        }
+
         // Build flashcards from incorrect words
         for (const incorrectWord of incorrectWords) {
             const item = wordToVocab[incorrectWord.wordId];
@@ -363,15 +377,11 @@ async function loadIncorrectWordsSet() {
                 const allMWEExamples = [];
                 for (const mwe of item.mwe_memberships) {
                     const exprLower = mwe.expression.toLowerCase();
-                    let matchedExample = null;
-                    for (const m of item.meanings) {
-                        if (!m.examples) continue;
-                        matchedExample = m.examples.find(ex => {
-                            const text = (ex.spanish || ex.target || '').toLowerCase();
-                            return text.includes(exprLower);
-                        });
-                        if (matchedExample) break;
-                    }
+                    // Search corpus-wide examples, not just this word's meanings
+                    const matchedExample = allCorpusExamples.find(ex => {
+                        const text = (ex.spanish || ex.target || '').toLowerCase();
+                        return text.includes(exprLower);
+                    });
                     allMWEs.push({ expression: mwe.expression, translation: mwe.translation });
                     allMWEExamples.push(matchedExample || { spanish: '', english: '' });
                 }
