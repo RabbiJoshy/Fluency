@@ -886,7 +886,8 @@ function updateCard() {
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
             const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
-            const displayMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : m.meaning;
+            const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
+            const displayMeaning = isMWE ? (cleanMweMeaning || '') : m.meaning;
             if (isMWE) {
                 // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
                 backHTML += `

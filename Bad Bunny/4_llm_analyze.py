@@ -942,7 +942,7 @@ def main():
             mwe_data = json.load(f)
         for mwe in mwe_data.get("mwes", []):
             expr = mwe["expression"]
-            translation = mwe["translation"]
+            translation = mwe["translation"] or ""
             for token in expr.split():
                 token_lower = token.lower()
                 if token_lower not in mwe_index:

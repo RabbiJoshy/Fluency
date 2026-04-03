@@ -14,9 +14,10 @@ Usage (from project root):
 """
 
 import json
+import math
 import os
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from typing import Dict, List, Tuple
 
 # ---------------------------------------------------------------------------
@@ -280,6 +281,14 @@ MIN_TRIGRAM_FREQ = 12
 # Detection
 # ---------------------------------------------------------------------------
 
+_PHRASE_SPLIT_RE = re.compile(r'[,;:!?¡¿()"—\-]+')
+
+# PMI thresholds
+MIN_PMI = 8.0           # minimum PMI score to consider an n-gram a real expression
+MIN_PMI_COUNT = 5       # minimum raw count for PMI candidates
+MIN_PMI_SONGS = 3       # must appear in at least this many distinct songs
+
+
 def collect_lines(vocab_data):
     # type: (list) -> List[str]
     """Collect unique lyric lines from vocabulary evidence."""
@@ -294,9 +303,25 @@ def collect_lines(vocab_data):
     return lines
 
 
+def collect_lines_with_songs(vocab_data):
+    # type: (list) -> List[Tuple[str, str]]
+    """Collect unique lyric lines with song IDs for song-spread filtering."""
+    seen = set()
+    lines = []  # type: List[Tuple[str, str]]
+    for entry in vocab_data:
+        for ex in entry.get("examples", []):
+            line = ex.get("line", "")
+            song_id = ex.get("id", "unknown").split(":")[0]
+            key = line + "|" + song_id
+            if line and key not in seen:
+                seen.add(key)
+                lines.append((line, song_id))
+    return lines
+
+
 def count_ngrams(lines):
     # type: (List[str]) -> Tuple[Counter, Counter]
-    """Count bigrams and trigrams across all lines."""
+    """Count bigrams and trigrams across all lines (legacy, for curated matching)."""
     bigrams = Counter()  # type: Counter
     trigrams = Counter()  # type: Counter
 
@@ -308,6 +333,99 @@ def count_ngrams(lines):
             trigrams[tokens[i] + " " + tokens[i + 1] + " " + tokens[i + 2]] += 1
 
     return bigrams, trigrams
+
+
+def count_ngrams_pmi(lines_with_songs, max_n=5):
+    # type: (List[Tuple[str, str]], int) -> Tuple[Counter, Dict[str, Counter], Dict[str, set]]
+    """Count n-grams (2..max_n) within phrase boundaries, tracking song spread.
+
+    Returns: (unigrams, ngram_counts_by_n, ngram_songs_by_ng)
+    """
+    unigrams = Counter()  # type: Counter
+    ngram_counts = {}     # type: Dict[str, Counter]
+    ngram_songs = defaultdict(set)  # type: Dict[str, set]
+
+    for n in range(2, max_n + 1):
+        ngram_counts[n] = Counter()
+
+    for line, song_id in lines_with_songs:
+        # Split on punctuation to get clean phrase chunks
+        chunks = _PHRASE_SPLIT_RE.split(line)
+        for chunk in chunks:
+            tokens = tokenize(chunk)
+            for t in tokens:
+                unigrams[t] += 1
+            for n in range(2, max_n + 1):
+                for i in range(len(tokens) - n + 1):
+                    ng = " ".join(tokens[i:i + n])
+                    ngram_counts[n][ng] += 1
+                    ngram_songs[ng].add(song_id)
+
+    return unigrams, ngram_counts, ngram_songs
+
+
+def compute_pmi_expressions(unigrams, ngram_counts, ngram_songs, curated_keys, skip_keys):
+    # type: (Counter, Dict[str, Counter], Dict[str, set], set, set) -> List[Dict]
+    """Find high-PMI n-grams that aren't already curated.
+
+    Returns list of dicts with expression, count, pmi, num_songs — no translation.
+    """
+    total_tokens = sum(unigrams.values())
+    results = []
+
+    for n, counts in ngram_counts.items():
+        total_ngrams = sum(counts.values())
+        if total_ngrams == 0:
+            continue
+        for ng, count in counts.items():
+            if count < MIN_PMI_COUNT:
+                continue
+            if ng in curated_keys or ng in skip_keys:
+                continue
+            num_songs = len(ngram_songs.get(ng, set()))
+            if num_songs < MIN_PMI_SONGS:
+                continue
+            if is_all_function_words(ng):
+                continue
+            if is_repetition(ng):
+                continue
+
+            # Compute PMI
+            p_ngram = count / total_ngrams
+            p_independent = 1.0
+            for w in ng.split():
+                p_independent *= unigrams[w] / total_tokens
+            if p_independent == 0:
+                continue
+            pmi = math.log2(p_ngram / p_independent)
+            if pmi < MIN_PMI:
+                continue
+
+            results.append({
+                "expression": ng,
+                "count": count,
+                "pmi": round(pmi, 1),
+                "num_songs": num_songs,
+            })
+
+    # Deduplicate overlapping n-grams: if a shorter n-gram is a substring of a
+    # longer one with equal or higher PMI, drop the shorter one.
+    results.sort(key=lambda x: (-len(x["expression"].split()), -x["pmi"]))
+    kept = []
+    kept_exprs = []  # type: List[str]
+    for r in results:
+        # Check if this is a substring of an already-kept longer expression
+        is_sub = False
+        for longer in kept_exprs:
+            if r["expression"] in longer:
+                is_sub = True
+                break
+        if not is_sub:
+            kept.append(r)
+            kept_exprs.append(r["expression"])
+
+    kept.sort(key=lambda x: -x["pmi"])
+    return kept
 
 
 def is_all_function_words(ngram):
@@ -323,13 +441,15 @@ def is_repetition(ngram):
 
 
 def detect_mwes(vocab_data):
-    # type: (list) -> Tuple[List[Dict], List[Dict]]
+    # type: (list) -> Tuple[List[Dict], List[Dict], List[Dict]]
     """
     Detect multi-word expressions.
 
     Returns:
-        (confirmed, candidates) — confirmed have translations from CURATED_MWES,
-        candidates are frequent n-grams not in the curated list.
+        (confirmed, candidates, pmi_detected) —
+        confirmed have translations from CURATED_MWES,
+        candidates are frequent n-grams not in the curated list,
+        pmi_detected are high-PMI expressions (no translations).
     """
     lines = collect_lines(vocab_data)
     print("  %d unique lines" % len(lines))
@@ -359,7 +479,7 @@ def detect_mwes(vocab_data):
             })
             matched_keys.add(expression)
 
-    # Find auto-detected candidates not in curated list
+    # Find auto-detected candidates not in curated list (legacy frequency-based)
     candidates = []
 
     for bg, count in bigrams.most_common(300):
@@ -390,6 +510,17 @@ def detect_mwes(vocab_data):
             "count": count,
         })
 
+    # PMI-based detection: find statistically significant collocations
+    # across 2-5 grams, filtered by song spread
+    lines_with_songs = collect_lines_with_songs(vocab_data)
+    unigrams, ngram_counts, ngram_songs = count_ngrams_pmi(lines_with_songs, max_n=5)
+    pmi_detected = compute_pmi_expressions(
+        unigrams, ngram_counts, ngram_songs,
+        curated_keys=matched_keys, skip_keys=SKIP_MWES,
+    )
+    print("  %d PMI-detected expressions (min PMI=%.1f, min %d songs)"
+          % (len(pmi_detected), MIN_PMI, MIN_PMI_SONGS))
+
     # Post-process: remove skipped entries and dedup conjugation families
     confirmed = [m for m in confirmed if m["expression"] not in SKIP_MWES]
     confirmed = dedup_conjugation_families(confirmed)
@@ -398,7 +529,7 @@ def detect_mwes(vocab_data):
     confirmed.sort(key=lambda x: -x["count"])
     candidates.sort(key=lambda x: -x["count"])
 
-    return confirmed, candidates
+    return confirmed, candidates, pmi_detected
 
 
 # ---------------------------------------------------------------------------
@@ -411,21 +542,33 @@ def main():
         vocab_data = json.load(f)
     print("  %d vocabulary entries" % len(vocab_data))
 
-    confirmed, candidates = detect_mwes(vocab_data)
+    confirmed, candidates, pmi_detected = detect_mwes(vocab_data)
 
     # Build output — strip internal 'tokens' field from confirmed
+    # PMI-detected expressions go into mwes list too, but without translations
+    mwes_output = [
+        {
+            "expression": m["expression"],
+            "translation": m["translation"],
+            "count": m["count"],
+        }
+        for m in confirmed
+    ]
+    for p in pmi_detected:
+        mwes_output.append({
+            "expression": p["expression"],
+            "translation": None,
+            "count": p["count"],
+            "pmi": p["pmi"],
+            "num_songs": p["num_songs"],
+        })
+
     output = {
-        "mwes": [
-            {
-                "expression": m["expression"],
-                "translation": m["translation"],
-                "count": m["count"],
-            }
-            for m in confirmed
-        ],
+        "mwes": mwes_output,
         "candidates": candidates,
         "stats": {
             "confirmed_count": len(confirmed),
+            "pmi_detected_count": len(pmi_detected),
             "candidate_count": len(candidates),
         },
     }
@@ -433,15 +576,20 @@ def main():
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print("\nDone! %d confirmed MWEs, %d candidates for review" %
-          (len(confirmed), len(candidates)))
+    print("\nDone! %d curated MWEs, %d PMI-detected, %d candidates for review" %
+          (len(confirmed), len(pmi_detected), len(candidates)))
     print("  Wrote %s" % OUTPUT_PATH)
 
-    print("\n=== Top 20 confirmed MWEs ===")
+    print("\n=== Top 20 curated MWEs ===")
     for m in confirmed[:20]:
         print("  %4d  %-25s  %s" % (m["count"], m["expression"], m["translation"]))
 
-    print("\n=== Top 20 candidates (not yet curated) ===")
+    print("\n=== Top 20 PMI-detected (no translation yet) ===")
+    for p in pmi_detected[:20]:
+        print("  %4d  PMI=%5.1f  songs=%2d  %s" %
+              (p["count"], p["pmi"], p["num_songs"], p["expression"]))
+
+    print("\n=== Top 20 frequency candidates (not yet curated) ===")
     for c in candidates[:20]:
         print("  %4d  %s" % (c["count"], c["expression"]))
 
