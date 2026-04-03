@@ -880,13 +880,20 @@ function updateCard() {
             const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
+            // For MWE pill, show the current expression/translation based on cycling index
+            const mweIdx = (isMWE && isSelected) ? currentExampleIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
+            const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
+            const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
+            const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
+            const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
             const leftSlot = isMWE
-                ? `<span style="font-family: var(--font-data); font-size: 12px; color: ${posColorClass ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px; white-space: nowrap;">${m.expression}</span>`
-                : `<span style="font-family: var(--font-data); font-size: 12px; color: ${isSelected ? 'var(--accent-secondary)' : 'var(--accent-secondary)'}; min-width: 45px;">${Math.round(m.percentage * 100)}%</span>`;
+                ? `<span style="font-family: var(--font-data); font-size: 12px; color: var(--accent-secondary); min-width: 45px; white-space: nowrap;">${mweExpr}${mweCounter}</span>`
+                : `<span style="font-family: var(--font-data); font-size: 12px; color: var(--accent-secondary); min-width: 45px;">${Math.round(m.percentage * 100)}%</span>`;
+            const displayMeaning = isMWE ? mweMeaning : m.meaning;
             backHTML += `
                 <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
                     ${leftSlot}
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; ${isMWE ? 'margin-left: 10px;' : ''}">${m.meaning}</span>
+                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; ${isMWE ? 'margin-left: 10px;' : ''}">${displayMeaning}</span>
                     <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0;">${m.pos}</span>
                 </div>
             `;
@@ -916,12 +923,23 @@ function updateCard() {
             displayTargetSentence = truncateText(displayTargetSentence, 20);
             displayEnglishSentence = truncateText(displayEnglishSentence, 20);
 
-            // Highlight MWE expression in the target sentence
-            if (currentMeaning.expression) {
-                const escaped = currentMeaning.expression.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            // Highlight words in the target sentence with a colored pill + white text
+            const pillStyle = 'background: var(--accent-primary); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
+            if (currentMeaning.allMWEs) {
+                // MWE sense: highlight the current MWE expression
+                const mweIdx = currentExampleIndex % currentMeaning.allMWEs.length;
+                const expr = currentMeaning.allMWEs[mweIdx].expression;
+                const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = new RegExp(`(${escaped})`, 'gi');
                 displayTargetSentence = displayTargetSentence.replace(regex,
-                    '<span style="font-weight: 700; color: var(--accent-secondary);">$1</span>');
+                    `<span style="${pillStyle}">$1</span>`);
+            } else {
+                // Regular sense: highlight the target word
+                const word = card.targetWord;
+                const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${escaped})`, 'gi');
+                displayTargetSentence = displayTargetSentence.replace(regex,
+                    `<span style="${pillStyle}">$1</span>`);
             }
 
             // Build song name line with example counter on the right

@@ -162,8 +162,10 @@ async function loadVocabularyData(rangeString) {
                 });
             }
 
-            // Synthesize MWE meanings from mwe_memberships
-            if (item.mwe_memberships) {
+            // Synthesize a single MWE meaning that cycles through all expressions
+            if (item.mwe_memberships && item.mwe_memberships.length > 0) {
+                const allMWEs = [];
+                const allMWEExamples = [];
                 for (const mwe of item.mwe_memberships) {
                     const exprLower = mwe.expression.toLowerCase();
                     let matchedExample = null;
@@ -175,16 +177,20 @@ async function loadVocabularyData(rangeString) {
                         });
                         if (matchedExample) break;
                     }
-                    meanings.push({
-                        pos: 'MWE',
-                        meaning: mwe.translation,
-                        expression: mwe.expression,
-                        percentage: 0,
-                        targetSentence: matchedExample ? (matchedExample.spanish || matchedExample.target || '') : '',
-                        englishSentence: matchedExample ? (matchedExample.english || '') : '',
-                        allExamples: matchedExample ? [matchedExample] : []
-                    });
+                    allMWEs.push({ expression: mwe.expression, translation: mwe.translation });
+                    allMWEExamples.push(matchedExample || { spanish: '', english: '' });
                 }
+                const first = allMWEExamples[0];
+                meanings.push({
+                    pos: 'MWE',
+                    meaning: allMWEs[0].translation,
+                    expression: allMWEs[0].expression,
+                    allMWEs: allMWEs,
+                    percentage: 0,
+                    targetSentence: first.spanish || first.target || '',
+                    englishSentence: first.english || '',
+                    allExamples: allMWEExamples
+                });
             }
 
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
@@ -351,8 +357,10 @@ async function loadIncorrectWordsSet() {
                 meanings.forEach(m => { m.percentage = (m.percentage || 0) / totalPercentage; });
             }
 
-            // Synthesize MWE meanings from mwe_memberships
-            if (item.mwe_memberships) {
+            // Synthesize a single MWE meaning that cycles through all expressions
+            if (item.mwe_memberships && item.mwe_memberships.length > 0) {
+                const allMWEs = [];
+                const allMWEExamples = [];
                 for (const mwe of item.mwe_memberships) {
                     const exprLower = mwe.expression.toLowerCase();
                     let matchedExample = null;
@@ -364,16 +372,20 @@ async function loadIncorrectWordsSet() {
                         });
                         if (matchedExample) break;
                     }
-                    meanings.push({
-                        pos: 'MWE',
-                        meaning: mwe.translation,
-                        expression: mwe.expression,
-                        percentage: 0,
-                        targetSentence: matchedExample ? (matchedExample.spanish || matchedExample.target || '') : '',
-                        englishSentence: matchedExample ? (matchedExample.english || '') : '',
-                        allExamples: matchedExample ? [matchedExample] : []
-                    });
+                    allMWEs.push({ expression: mwe.expression, translation: mwe.translation });
+                    allMWEExamples.push(matchedExample || { spanish: '', english: '' });
                 }
+                const first = allMWEExamples[0];
+                meanings.push({
+                    pos: 'MWE',
+                    meaning: allMWEs[0].translation,
+                    expression: allMWEs[0].expression,
+                    allMWEs: allMWEs,
+                    percentage: 0,
+                    targetSentence: first.spanish || first.target || '',
+                    englishSentence: first.english || '',
+                    allExamples: allMWEExamples
+                });
             }
 
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
