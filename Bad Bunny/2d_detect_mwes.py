@@ -285,8 +285,8 @@ _PHRASE_SPLIT_RE = re.compile(r'[,;:!?¡¿()"—\-]+')
 
 # PMI thresholds
 MIN_PMI = 12.0          # minimum PMI score to consider an n-gram a real expression
-MIN_PMI_COUNT = 8       # minimum raw count for PMI candidates
-MIN_PMI_SONGS = 10      # must appear in at least this many distinct songs
+MIN_PMI_COUNT = 5       # minimum raw count for PMI candidates
+MIN_PMI_SONGS = 3       # must appear in at least this many distinct songs
 
 
 def collect_lines(vocab_data):
@@ -304,19 +304,23 @@ def collect_lines(vocab_data):
 
 
 def collect_lines_with_songs(vocab_data):
-    # type: (list) -> List[Tuple[str, str]]
-    """Collect unique lyric lines with song IDs for song-spread filtering."""
-    seen = set()
-    lines = []  # type: List[Tuple[str, str]]
+    # type: (list) -> Tuple[List[str], Dict[str, set]]
+    """Collect unique lyric lines and map each to its set of song IDs.
+
+    Each unique line text appears exactly once in the returned list (for
+    accurate n-gram counting). The song mapping enables spread filtering.
+    """
+    line_to_songs = {}  # type: Dict[str, set]
     for entry in vocab_data:
         for ex in entry.get("examples", []):
             line = ex.get("line", "")
             song_id = ex.get("id", "unknown").split(":")[0]
-            key = line + "|" + song_id
-            if line and key not in seen:
-                seen.add(key)
-                lines.append((line, song_id))
-    return lines
+            if line:
+                if line not in line_to_songs:
+                    line_to_songs[line] = set()
+                line_to_songs[line].add(song_id)
+    unique_lines = list(line_to_songs.keys())
+    return unique_lines, line_to_songs
 
 
 def count_ngrams(lines):
@@ -335,9 +339,12 @@ def count_ngrams(lines):
     return bigrams, trigrams
 
 
-def count_ngrams_pmi(lines_with_songs, max_n=5):
-    # type: (List[Tuple[str, str]], int) -> Tuple[Counter, Dict[str, Counter], Dict[str, set]]
+def count_ngrams_pmi(unique_lines, line_to_songs, max_n=5):
+    # type: (List[str], Dict[str, set], int) -> Tuple[Counter, Dict[str, Counter], Dict[str, set]]
     """Count n-grams (2..max_n) within phrase boundaries, tracking song spread.
+
+    Each unique line contributes to counts exactly once. Song spread for each
+    n-gram is the union of all songs containing any line with that n-gram.
 
     Returns: (unigrams, ngram_counts_by_n, ngram_songs_by_ng)
     """
@@ -348,7 +355,8 @@ def count_ngrams_pmi(lines_with_songs, max_n=5):
     for n in range(2, max_n + 1):
         ngram_counts[n] = Counter()
 
-    for line, song_id in lines_with_songs:
+    for line in unique_lines:
+        songs = line_to_songs.get(line, set())
         # Split on punctuation to get clean phrase chunks
         chunks = _PHRASE_SPLIT_RE.split(line)
         for chunk in chunks:
@@ -359,7 +367,7 @@ def count_ngrams_pmi(lines_with_songs, max_n=5):
                 for i in range(len(tokens) - n + 1):
                     ng = " ".join(tokens[i:i + n])
                     ngram_counts[n][ng] += 1
-                    ngram_songs[ng].add(song_id)
+                    ngram_songs[ng].update(songs)
 
     return unigrams, ngram_counts, ngram_songs
 
@@ -512,8 +520,9 @@ def detect_mwes(vocab_data):
 
     # PMI-based detection: find statistically significant collocations
     # across 2-5 grams, filtered by song spread
-    lines_with_songs = collect_lines_with_songs(vocab_data)
-    unigrams, ngram_counts, ngram_songs = count_ngrams_pmi(lines_with_songs, max_n=5)
+    unique_lines, line_to_songs = collect_lines_with_songs(vocab_data)
+    print("  %d unique lines for PMI analysis" % len(unique_lines))
+    unigrams, ngram_counts, ngram_songs = count_ngrams_pmi(unique_lines, line_to_songs, max_n=5)
     pmi_detected = compute_pmi_expressions(
         unigrams, ngram_counts, ngram_songs,
         curated_keys=matched_keys, skip_keys=SKIP_MWES,
