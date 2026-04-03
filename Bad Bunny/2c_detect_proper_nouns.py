@@ -2,9 +2,9 @@
 """
 Step 2c: Bulk proper noun detection using Gemini.
 
-Sends lyric lines in large batches and asks the LLM to identify all proper nouns
-(people, brands, places) in context. Much more accurate than per-word analysis
-since the LLM sees names in their natural sentence context.
+Sends lyric lines in batches and asks the LLM to identify all proper nouns
+(people, brands, places) in context. Uses content-based progress tracking
+so only new/unseen lines are processed on re-runs.
 
 Reads:  intermediates/2_vocab_evidence.json (for unique lines)
 Writes: intermediates/2c_detected_proper_nouns.json
@@ -12,7 +12,11 @@ Writes: intermediates/2c_detected_proper_nouns.json
 The output is consumed by step 4, which adds detected names to PROPER_NOUNS.
 
 Usage (from project root):
-    .venv/bin/python3 "Bad Bunny/2c_detect_proper_nouns.py" --api-key YOUR_KEY
+    .venv/bin/python3 "Bad Bunny/2c_detect_proper_nouns.py"
+    .venv/bin/python3 "Bad Bunny/2c_detect_proper_nouns.py" --batch-size 30
+    .venv/bin/python3 "Bad Bunny/2c_detect_proper_nouns.py" --refilter
+
+API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
 """
 
 import json
@@ -23,6 +27,21 @@ import argparse
 import re
 import hashlib
 from typing import Optional, Dict, List, Set
+
+
+def _load_dotenv():
+    """Load .env file from project root if it exists."""
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, _, val = line.partition("=")
+                    os.environ.setdefault(key.strip(), val.strip())
+
+
+_load_dotenv()
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -171,21 +190,41 @@ def parse_propn_response(text):
 
 
 # ---------------------------------------------------------------------------
-# Progress
+# Line hashing for content-based progress
+# ---------------------------------------------------------------------------
+
+def hash_line(line):
+    # type: (str) -> str
+    """Short hash of a line for progress tracking."""
+    return hashlib.md5(line.encode("utf-8")).hexdigest()[:12]
+
+
+# ---------------------------------------------------------------------------
+# Progress (content-based)
 # ---------------------------------------------------------------------------
 
 def load_progress():
     # type: () -> Dict
     if os.path.exists(PROGRESS_PATH):
         with open(PROGRESS_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {"batches_done": 0, "detected": []}
+            data = json.load(f)
+
+        # Migrate from old batch-index format to content-based format
+        if "seen_hashes" not in data:
+            print("  Migrating progress to content-based tracking...")
+            data["seen_hashes"] = []
+            # Old format had batches_done — we can't recover which lines were seen,
+            # but we keep the detected proper nouns. Mark as needing full rescan.
+            data.pop("batches_done", None)
+        return data
+
+    return {"seen_hashes": [], "detected": []}
 
 
 def save_progress(progress):
     # type: (Dict) -> None
     with open(PROGRESS_PATH, "w", encoding="utf-8") as f:
-        json.dump(progress, f, ensure_ascii=False, indent=1)
+        json.dump(progress, f, ensure_ascii=False, separators=(",", ":"))
 
 
 # ---------------------------------------------------------------------------
@@ -196,10 +235,10 @@ def main():
     parser = argparse.ArgumentParser(description="Step 2c: Bulk proper noun detection")
     parser.add_argument("--api-key", type=str, default=os.environ.get("GEMINI_API_KEY", ""),
                         help="Gemini API key (or set GEMINI_API_KEY env var)")
-    parser.add_argument("--batch-size", type=int, default=250,
-                        help="Lines per API request (default: 250)")
-    parser.add_argument("--model", type=str, default="gemini-2.5-pro",
-                        help="Gemini model (default: gemini-2.5-pro)")
+    parser.add_argument("--batch-size", type=int, default=50,
+                        help="Lines per API request (default: 50)")
+    parser.add_argument("--model", type=str, default="gemini-2.5-flash-lite",
+                        help="Gemini model (default: gemini-2.5-flash-lite)")
     parser.add_argument("--reset", action="store_true",
                         help="Ignore saved progress and start fresh")
     parser.add_argument("--rpm", type=int, default=200,
@@ -217,26 +256,27 @@ def main():
     with open(INPUT_PATH, "r", encoding="utf-8") as f:
         vocab_data = json.load(f)
 
-    seen = set()  # type: Set[str]
+    seen_lines = set()  # type: Set[str]
     all_lines = []
     for entry in vocab_data:
         for ex in entry.get("examples", []):
             line = ex.get("line", "")
-            if line and line not in seen:
-                seen.add(line)
+            if line and line not in seen_lines:
+                seen_lines.add(line)
                 all_lines.append(line)
     print("  %d unique lines from %d words" % (len(all_lines), len(vocab_data)))
 
     # Load progress
     if args.reset:
-        progress = {"batches_done": 0, "detected": []}
+        progress = {"seen_hashes": [], "detected": []}
         print("  Starting fresh (--reset)")
     else:
         progress = load_progress()
-        print("  Progress: %d batches done, %d proper nouns detected so far" %
-              (progress["batches_done"], len(progress["detected"])))
+        print("  Progress: %d lines already processed, %d proper nouns detected so far" %
+              (len(progress.get("seen_hashes", [])), len(progress["detected"])))
 
     all_detected = set(progress["detected"])  # type: Set[str]
+    seen_hashes = set(progress.get("seen_hashes", []))  # type: Set[str]
 
     if args.refilter:
         # Re-apply updated NOT_PROPER_NOUNS / KNOWN_PROPER_NOUNS to cached results
@@ -245,24 +285,31 @@ def main():
         removed = before - len(all_detected)
         print("  Refilter: removed %d false positives, %d remain" % (removed, len(all_detected)))
     else:
-        # Process in batches
-        batch_size = args.batch_size
-        total_batches = (len(all_lines) + batch_size - 1) // batch_size
-        start_batch = progress["batches_done"]
+        # Find lines that haven't been processed yet
+        new_lines = []
+        for line in all_lines:
+            h = hash_line(line)
+            if h not in seen_hashes:
+                new_lines.append(line)
 
-        min_interval = 60.0 / args.rpm
-        last_request_time = 0.0
-
-        if start_batch >= total_batches:
-            print("  All batches already processed!")
+        if not new_lines:
+            print("  All %d lines already processed — nothing new to do." % len(all_lines))
         else:
-            remaining = total_batches - start_batch
-            print("  %d batches remaining, ~%.0f minutes at %d RPM" %
-                  (remaining, remaining / args.rpm, args.rpm))
+            print("  %d new lines to process (out of %d total)" % (len(new_lines), len(all_lines)))
 
-            for batch_idx in range(start_batch, total_batches):
+            # Process in batches
+            batch_size = args.batch_size
+            total_batches = (len(new_lines) + batch_size - 1) // batch_size
+
+            min_interval = 60.0 / args.rpm
+            last_request_time = 0.0
+
+            print("  %d batches of %d lines, ~%.0f minutes at %d RPM" %
+                  (total_batches, batch_size, total_batches / args.rpm, args.rpm))
+
+            for batch_idx in range(total_batches):
                 batch_start = batch_idx * batch_size
-                batch = all_lines[batch_start:batch_start + batch_size]
+                batch = new_lines[batch_start:batch_start + batch_size]
                 batch_num = batch_idx + 1
 
                 preview = batch[0][:50]
@@ -288,12 +335,16 @@ def main():
                 new_names = [w for w in detected if w not in KNOWN_PROPER_NOUNS and w not in NOT_PROPER_NOUNS]
                 all_detected.update(new_names)
 
+                # Mark these lines as processed
+                for line in batch:
+                    seen_hashes.add(hash_line(line))
+
                 if new_names:
                     print("  Found %d: %s" % (len(new_names), ", ".join(sorted(new_names)[:10])))
                     if len(new_names) > 10:
                         print("    ... +%d more" % (len(new_names) - 10))
 
-                progress["batches_done"] = batch_idx + 1
+                progress["seen_hashes"] = sorted(seen_hashes)
                 progress["detected"] = sorted(all_detected)
                 save_progress(progress)
 

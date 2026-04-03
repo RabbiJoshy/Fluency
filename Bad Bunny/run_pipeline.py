@@ -6,10 +6,12 @@ Runs steps in order, checks intermediate file freshness, and supports
 partial re-runs with --from-step and --to-step.
 
 Usage (from project root):
-    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key YOUR_KEY
-    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key YOUR_KEY --from-step 4
+    .venv/bin/python3 "Bad Bunny/run_pipeline.py"
+    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 4
     .venv/bin/python3 "Bad Bunny/run_pipeline.py" --dry-run
-    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key YOUR_KEY --from-step 2 --to-step 3
+    .venv/bin/python3 "Bad Bunny/run_pipeline.py" --from-step 2 --to-step 3
+
+API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
 """
 
 import argparse
@@ -17,6 +19,21 @@ import os
 import subprocess
 import sys
 import time
+
+
+def _load_dotenv():
+    """Load .env file from project root if it exists."""
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, _, val = line.partition("=")
+                    os.environ.setdefault(key.strip(), val.strip())
+
+
+_load_dotenv()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)

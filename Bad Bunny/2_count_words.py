@@ -100,12 +100,19 @@ def normalize_text(s: str) -> str:
 def clean_genius_lyrics(raw: str) -> str:
     """
     Removes Genius boilerplate:
+    - skips placeholder lyrics ("yet to be transcribed", instrumentals)
     - strips leading 'Lyrics' section + editorial description paragraph
     - removes [Chorus]/[Verse] lines
     - cuts off common footer markers
     """
     if not raw:
         return ""
+
+    # Skip Genius placeholder pages (no real lyrics)
+    if ("yet to be transcribed" in raw or "yet to be released" in raw
+            or "This song is an instrumental" in raw):
+        return ""
+
     text = normalize_text(raw)
 
     idx = text.find("Lyrics")

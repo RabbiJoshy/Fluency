@@ -3,37 +3,37 @@
     {
       "expression": "pa' que",
       "translation": "so that, in order to",
-      "count": 134
+      "count": 158
     },
     {
       "expression": "va a",
       "translation": "is going to",
-      "count": 134
+      "count": 157
     },
     {
       "expression": "sé que",
       "translation": "I know that",
-      "count": 118
+      "count": 132
     },
     {
-      "expression": "no sé",
-      "translation": "I don't know",
+      "expression": "por eso",
+      "translation": "that's why, for that reason",
       "count": 107
     },
     {
       "expression": "tú ere'",
       "translation": "you are (elided)",
-      "count": 102
+      "count": 106
     },
     {
-      "expression": "por eso",
-      "translation": "that's why, for that reason",
-      "count": 87
+      "expression": "no sé",
+      "translation": "I don't know",
+      "count": 106
     },
     {
       "expression": "no hay",
       "translation": "there isn't, there's no",
-      "count": 76
+      "count": 92
     },
     {
       "expression": "de mí",
@@ -43,7 +43,17 @@
     {
       "expression": "a mí me",
       "translation": "to me (emphatic)",
-      "count": 57
+      "count": 61
+    },
+    {
+      "expression": "quiero que",
+      "translation": "I want (someone) to",
+      "count": 60
+    },
+    {
+      "expression": "te vo'a",
+      "translation": "I'm going to (you)",
+      "count": 59
     },
     {
       "expression": "hasta que",
@@ -51,218 +61,228 @@
       "count": 56
     },
     {
-      "expression": "te vo'a",
-      "translation": "I'm going to (you)",
-      "count": 54
+      "expression": "me gusta",
+      "translation": "I like",
+      "count": 55
     },
     {
       "expression": "dice que",
       "translation": "says that",
-      "count": 44
-    },
-    {
-      "expression": "quiero que",
-      "translation": "I want (someone) to",
-      "count": 44
-    },
-    {
-      "expression": "dile que",
-      "translation": "tell him/her that",
-      "count": 42
+      "count": 55
     },
     {
       "expression": "desde que",
       "translation": "since, ever since",
-      "count": 40
+      "count": 52
     },
     {
-      "expression": "de ti",
-      "translation": "about you, of you",
-      "count": 38
-    },
-    {
-      "expression": "me gusta",
-      "translation": "I like",
-      "count": 38
-    },
-    {
-      "expression": "a ver",
-      "translation": "let's see",
-      "count": 37
+      "expression": "dile que",
+      "translation": "tell him/her that",
+      "count": 49
     },
     {
       "expression": "la disco",
       "translation": "the club",
-      "count": 37
+      "count": 48
     },
     {
-      "expression": "de nuevo",
-      "translation": "again",
-      "count": 36
-    },
-    {
-      "expression": "se va",
-      "translation": "leaves, goes away",
-      "count": 36
-    },
-    {
-      "expression": "a ti te",
-      "translation": "to you (emphatic)",
-      "count": 35
+      "expression": "a ver",
+      "translation": "let's see",
+      "count": 44
     },
     {
       "expression": "un par de",
       "translation": "a couple of",
-      "count": 34
+      "count": 44
     },
     {
-      "expression": "e' que",
-      "translation": "it's that (elided)",
-      "count": 33
+      "expression": "de ti",
+      "translation": "about you, of you",
+      "count": 41
     },
     {
-      "expression": "no sé si",
-      "translation": "I don't know if",
-      "count": 33
+      "expression": "de nuevo",
+      "translation": "again",
+      "count": 39
+    },
+    {
+      "expression": "así que",
+      "translation": "so, therefore",
+      "count": 38
+    },
+    {
+      "expression": "se va",
+      "translation": "leaves, goes away",
+      "count": 38
     },
     {
       "expression": "to' el mundo",
       "translation": "everybody",
-      "count": 32
+      "count": 38
     },
     {
       "expression": "por qué",
       "translation": "why",
-      "count": 31
+      "count": 37
+    },
+    {
+      "expression": "a ti te",
+      "translation": "to you (emphatic)",
+      "count": 37
+    },
+    {
+      "expression": "me voy",
+      "translation": "I'm leaving",
+      "count": 37
+    },
+    {
+      "expression": "hay que",
+      "translation": "one must, you have to",
+      "count": 36
+    },
+    {
+      "expression": "e' que",
+      "translation": "it's that (elided)",
+      "count": 36
     },
     {
       "expression": "to' lo que",
       "translation": "everything that (elided)",
+      "count": 36
+    },
+    {
+      "expression": "como si",
+      "translation": "as if",
+      "count": 34
+    },
+    {
+      "expression": "me dice",
+      "translation": "tells me",
+      "count": 34
+    },
+    {
+      "expression": "otra ve'",
+      "translation": "again (elided)",
+      "count": 34
+    },
+    {
+      "expression": "me siento",
+      "translation": "I feel",
+      "count": 33
+    },
+    {
+      "expression": "se ve",
+      "translation": "looks, appears",
+      "count": 33
+    },
+    {
+      "expression": "te quiero",
+      "translation": "I love you / I want you",
+      "count": 32
+    },
+    {
+      "expression": "por ahí",
+      "translation": "around there, out and about",
+      "count": 31
+    },
+    {
+      "expression": "lo mío",
+      "translation": "my thing, what's mine",
+      "count": 31
+    },
+    {
+      "expression": "a vece'",
+      "translation": "sometimes (elided)",
       "count": 31
     },
     {
       "expression": "hace tiempo",
       "translation": "a while ago",
-      "count": 30
-    },
-    {
-      "expression": "así que",
-      "translation": "so, therefore",
-      "count": 30
-    },
-    {
-      "expression": "hay que",
-      "translation": "one must, you have to",
-      "count": 30
-    },
-    {
-      "expression": "me voy",
-      "translation": "I'm leaving",
-      "count": 30
-    },
-    {
-      "expression": "a vece'",
-      "translation": "sometimes (elided)",
       "count": 29
     },
     {
-      "expression": "como si",
-      "translation": "as if",
+      "expression": "no sé si",
+      "translation": "I don't know if",
       "count": 28
-    },
-    {
-      "expression": "me siento",
-      "translation": "I feel",
-      "count": 28
-    },
-    {
-      "expression": "me llueven",
-      "translation": "rain down on me",
-      "count": 28
-    },
-    {
-      "expression": "dime si",
-      "translation": "tell me if",
-      "count": 27
-    },
-    {
-      "expression": "me dice",
-      "translation": "tells me",
-      "count": 26
-    },
-    {
-      "expression": "se ve",
-      "translation": "looks, appears",
-      "count": 26
-    },
-    {
-      "expression": "lo mío",
-      "translation": "my thing, what's mine",
-      "count": 25
-    },
-    {
-      "expression": "te juro",
-      "translation": "I swear to you",
-      "count": 25
-    },
-    {
-      "expression": "por ahí",
-      "translation": "around there, out and about",
-      "count": 24
-    },
-    {
-      "expression": "te quiero",
-      "translation": "I love you / I want you",
-      "count": 24
-    },
-    {
-      "expression": "otra vez",
-      "translation": "again",
-      "count": 24
-    },
-    {
-      "expression": "pa'l carajo",
-      "translation": "to hell",
-      "count": 23
-    },
-    {
-      "expression": "después de",
-      "translation": "after",
-      "count": 22
-    },
-    {
-      "expression": "te juro que",
-      "translation": "I swear that",
-      "count": 21
-    },
-    {
-      "expression": "esta noche",
-      "translation": "tonight",
-      "count": 21
     },
     {
       "expression": "tienen que",
       "translation": "they have to",
-      "count": 21
+      "count": 28
     },
     {
-      "expression": "pa' qué",
-      "translation": "what for",
-      "count": 20
+      "expression": "te juro",
+      "translation": "I swear to you",
+      "count": 27
     },
     {
-      "expression": "sin ti",
-      "translation": "without you",
-      "count": 20
+      "expression": "pa'l carajo",
+      "translation": "to hell",
+      "count": 27
     },
     {
-      "expression": "me llama",
-      "translation": "calls me",
-      "count": 20
+      "expression": "después de",
+      "translation": "after",
+      "count": 26
+    },
+    {
+      "expression": "me llueven",
+      "translation": "rain down on me",
+      "count": 25
+    },
+    {
+      "expression": "dime si",
+      "translation": "tell me if",
+      "count": 25
+    },
+    {
+      "expression": "me puse",
+      "translation": "I put on / I got",
+      "count": 24
+    },
+    {
+      "expression": "a mí no",
+      "translation": "not me (emphatic)",
+      "count": 23
+    },
+    {
+      "expression": "mí no me",
+      "translation": "don't (emphatic negation)",
+      "count": 23
+    },
+    {
+      "expression": "te juro que",
+      "translation": "I swear that",
+      "count": 23
     },
     {
       "expression": "se siente",
       "translation": "feels, it feels",
+      "count": 22
+    },
+    {
+      "expression": "se pone",
+      "translation": "gets (emotional), puts on",
+      "count": 22
+    },
+    {
+      "expression": "el conejo",
+      "translation": "the rabbit (Bad Bunny's nickname)",
+      "count": 22
+    },
+    {
+      "expression": "esta noche",
+      "translation": "tonight",
+      "count": 22
+    },
+    {
+      "expression": "lo nuestro",
+      "translation": "our thing, what we have",
+      "count": 21
+    },
+    {
+      "expression": "la movie",
+      "translation": "the vibe, the scene (PR slang)",
       "count": 20
     },
     {
@@ -271,8 +291,8 @@
       "count": 20
     },
     {
-      "expression": "el conejo",
-      "translation": "the rabbit (Bad Bunny's nickname)",
+      "expression": "creo que",
+      "translation": "I think that, I believe that",
       "count": 20
     },
     {
@@ -281,94 +301,79 @@
       "count": 20
     },
     {
+      "expression": "se va a",
+      "translation": "is going to",
+      "count": 20
+    },
+    {
+      "expression": "lo mismo",
+      "translation": "the same thing",
+      "count": 19
+    },
+    {
       "expression": "encima de",
       "translation": "on top of",
       "count": 19
     },
     {
-      "expression": "la movie",
-      "translation": "the vibe, the scene (PR slang)",
-      "count": 19
-    },
-    {
-      "expression": "me puse",
-      "translation": "I put on / I got",
+      "expression": "me llama",
+      "translation": "calls me",
       "count": 18
     },
     {
-      "expression": "se pone",
-      "translation": "gets (emotional), puts on",
+      "expression": "hijo e puta",
+      "translation": "son of a bitch",
       "count": 18
-    },
-    {
-      "expression": "creo que",
-      "translation": "I think that, I believe that",
-      "count": 18
-    },
-    {
-      "expression": "lo mismo",
-      "translation": "the same thing",
-      "count": 17
-    },
-    {
-      "expression": "a mí no",
-      "translation": "not me (emphatic)",
-      "count": 17
-    },
-    {
-      "expression": "lo nuestro",
-      "translation": "our thing, what we have",
-      "count": 16
-    },
-    {
-      "expression": "cada vez que",
-      "translation": "every time that",
-      "count": 15
-    },
-    {
-      "expression": "antes que",
-      "translation": "before",
-      "count": 15
-    },
-    {
-      "expression": "mí no me",
-      "translation": "don't (emphatic negation)",
-      "count": 15
-    },
-    {
-      "expression": "estoy puesto",
-      "translation": "I'm ready, I'm down",
-      "count": 15
-    },
-    {
-      "expression": "la nota",
-      "translation": "the vibe, the high",
-      "count": 15
-    },
-    {
-      "expression": "la gana",
-      "translation": "the desire, the urge",
-      "count": 15
     },
     {
       "expression": "el perreo",
       "translation": "reggaeton grinding/dancing",
-      "count": 15
+      "count": 18
+    },
+    {
+      "expression": "pa' qué",
+      "translation": "what for",
+      "count": 17
     },
     {
       "expression": "un flow",
       "translation": "a style, a vibe",
-      "count": 15
+      "count": 17
+    },
+    {
+      "expression": "cada vez que",
+      "translation": "every time that",
+      "count": 16
+    },
+    {
+      "expression": "la nota",
+      "translation": "the vibe, the high",
+      "count": 16
     },
     {
       "expression": "me voy a",
       "translation": "I'm going to",
+      "count": 16
+    },
+    {
+      "expression": "sin ti",
+      "translation": "without you",
       "count": 15
     },
     {
-      "expression": "se va a",
-      "translation": "is going to",
-      "count": 15
+      "expression": "ya no hay",
+      "translation": "there's no longer",
+      "count": 14
+    },
+    {
+      "expression": "antes que",
+      "translation": "before",
+      "count": 14
+    },
+    {
+      "expression": "que se joda",
+      "translation": "screw it, let it go to hell",
+      "count": 14
     },
     {
       "expression": "no te haga'",
@@ -376,48 +381,43 @@
       "count": 14
     },
     {
-      "expression": "hijo e puta",
-      "translation": "son of a bitch",
-      "count": 13
-    },
-    {
-      "expression": "estoy puesto pa'",
-      "translation": "I'm ready for",
-      "count": 13
-    },
-    {
-      "expression": "ya no hay",
-      "translation": "there's no longer",
-      "count": 12
-    },
-    {
-      "expression": "que se joda",
-      "translation": "screw it, let it go to hell",
-      "count": 12
-    },
-    {
       "expression": "por eso es",
       "translation": "that's why it is",
-      "count": 12
+      "count": 14
     },
     {
       "expression": "por más que",
       "translation": "no matter how much",
+      "count": 12
+    },
+    {
+      "expression": "estoy puesto",
+      "translation": "I'm ready, I'm down",
+      "count": 12
+    },
+    {
+      "expression": "estoy puesto pa'",
+      "translation": "I'm ready for",
+      "count": 11
+    },
+    {
+      "expression": "la gana",
+      "translation": "the desire, the urge",
+      "count": 11
+    },
+    {
+      "expression": "no sé qué",
+      "translation": "I don't know what",
       "count": 11
     },
     {
       "expression": "a ver si",
       "translation": "let's see if",
-      "count": 11
+      "count": 10
     },
     {
       "expression": "hace tiempo que",
       "translation": "it's been a while since",
-      "count": 10
-    },
-    {
-      "expression": "no sé qué",
-      "translation": "I don't know what",
       "count": 10
     },
     {
@@ -428,7 +428,7 @@
     {
       "expression": "de verdad",
       "translation": "really, truly, for real",
-      "count": 5
+      "count": 4
     },
     {
       "expression": "a lo loco",
@@ -444,246 +444,346 @@
   "candidates": [
     {
       "expression": "yo no",
-      "count": 240
+      "count": 258
     },
     {
       "expression": "que yo",
-      "count": 217
+      "count": 251
     },
     {
       "expression": "y yo",
-      "count": 183
+      "count": 224
     },
     {
       "expression": "que tú",
-      "count": 176
+      "count": 196
     },
     {
       "expression": "yo te",
-      "count": 167
+      "count": 191
     },
     {
       "expression": "yo soy",
-      "count": 147
+      "count": 164
     },
     {
       "expression": "a mí",
-      "count": 125
+      "count": 141
     },
     {
       "expression": "tú me",
-      "count": 104
+      "count": 135
     },
     {
       "expression": "tú no",
-      "count": 98
-    },
-    {
-      "expression": "yo sé",
-      "count": 90
-    },
-    {
-      "expression": "pero no",
-      "count": 81
+      "count": 112
     },
     {
       "expression": "yo me",
-      "count": 75
+      "count": 105
+    },
+    {
+      "expression": "yo sé",
+      "count": 100
+    },
+    {
+      "expression": "pero no",
+      "count": 99
     },
     {
       "expression": "par de",
-      "count": 74
-    },
-    {
-      "expression": "si tú",
-      "count": 73
-    },
-    {
-      "expression": "a ti",
-      "count": 71
+      "count": 90
     },
     {
       "expression": "tú te",
-      "count": 69
+      "count": 81
     },
     {
-      "expression": "to' los",
-      "count": 66
+      "expression": "si tú",
+      "count": 79
     },
     {
-      "expression": "pa' la",
-      "count": 63
-    },
-    {
-      "expression": "soy el",
-      "count": 63
-    },
-    {
-      "expression": "la vida",
-      "count": 62
-    },
-    {
-      "expression": "tú eres",
-      "count": 61
+      "expression": "a ti",
+      "count": 76
     },
     {
       "expression": "to' el",
-      "count": 60
+      "count": 76
     },
     {
-      "expression": "yo quiero",
-      "count": 59
+      "expression": "pa' la",
+      "count": 74
     },
     {
-      "expression": "no quiero",
-      "count": 58
+      "expression": "to' los",
+      "count": 73
     },
     {
-      "expression": "mí me",
-      "count": 58
-    },
-    {
-      "expression": "tú y",
-      "count": 56
-    },
-    {
-      "expression": "soy un",
-      "count": 55
+      "expression": "tú eres",
+      "count": 71
     },
     {
       "expression": "la cama",
-      "count": 51
+      "count": 71
+    },
+    {
+      "expression": "no quiero",
+      "count": 70
+    },
+    {
+      "expression": "soy el",
+      "count": 68
+    },
+    {
+      "expression": "la vida",
+      "count": 66
+    },
+    {
+      "expression": "mí me",
+      "count": 62
+    },
+    {
+      "expression": "yo quiero",
+      "count": 60
+    },
+    {
+      "expression": "soy un",
+      "count": 60
+    },
+    {
+      "expression": "tú y",
+      "count": 59
     },
     {
       "expression": "esto es",
-      "count": 50
-    },
-    {
-      "expression": "no soy",
-      "count": 49
+      "count": 57
     },
     {
       "expression": "ando con",
-      "count": 45
+      "count": 56
     },
     {
-      "expression": "tú y yo",
-      "count": 45
-    },
-    {
-      "expression": "más que",
-      "count": 42
-    },
-    {
-      "expression": "por ti",
-      "count": 42
-    },
-    {
-      "expression": "ya yo",
-      "count": 41
-    },
-    {
-      "expression": "yo estoy",
-      "count": 41
-    },
-    {
-      "expression": "no tengo",
-      "count": 40
-    },
-    {
-      "expression": "con él",
-      "count": 38
-    },
-    {
-      "expression": "to' lo",
-      "count": 38
-    },
-    {
-      "expression": "un par",
-      "count": 37
-    },
-    {
-      "expression": "yo lo",
-      "count": 37
-    },
-    {
-      "expression": "pa' mí",
-      "count": 37
+      "expression": "no soy",
+      "count": 52
     },
     {
       "expression": "en la cama",
-      "count": 37
+      "count": 52
     },
     {
-      "expression": "yo tengo",
-      "count": 36
+      "expression": "más que",
+      "count": 51
     },
     {
-      "expression": "lo que tú",
-      "count": 36
-    },
-    {
-      "expression": "que soy",
-      "count": 35
-    },
-    {
-      "expression": "y tú",
-      "count": 35
-    },
-    {
-      "expression": "el tiempo",
-      "count": 35
-    },
-    {
-      "expression": "el sol",
-      "count": 35
-    },
-    {
-      "expression": "yo le",
-      "count": 35
-    },
-    {
-      "expression": "ti te",
-      "count": 35
-    },
-    {
-      "expression": "ese culo",
-      "count": 35
+      "expression": "yo estoy",
+      "count": 48
     },
     {
       "expression": "cuando te",
-      "count": 34
+      "count": 48
     },
     {
-      "expression": "eso es",
-      "count": 34
+      "expression": "tú y yo",
+      "count": 48
     },
     {
-      "expression": "sé si",
-      "count": 33
+      "expression": "un par",
+      "count": 47
+    },
+    {
+      "expression": "ya yo",
+      "count": 47
+    },
+    {
+      "expression": "el tiempo",
+      "count": 46
+    },
+    {
+      "expression": "y tú",
+      "count": 45
+    },
+    {
+      "expression": "y ahora",
+      "count": 44
+    },
+    {
+      "expression": "ese culo",
+      "count": 44
+    },
+    {
+      "expression": "to' lo",
+      "count": 44
+    },
+    {
+      "expression": "pa' mí",
+      "count": 44
+    },
+    {
+      "expression": "cuando me",
+      "count": 44
+    },
+    {
+      "expression": "no tengo",
+      "count": 44
+    },
+    {
+      "expression": "por ti",
+      "count": 43
+    },
+    {
+      "expression": "yo tengo",
+      "count": 42
+    },
+    {
+      "expression": "yo le",
+      "count": 42
+    },
+    {
+      "expression": "yo lo",
+      "count": 41
     },
     {
       "expression": "como el",
-      "count": 33
+      "count": 41
     },
     {
-      "expression": "pero yo",
-      "count": 33
+      "expression": "como un",
+      "count": 41
+    },
+    {
+      "expression": "que soy",
+      "count": 41
+    },
+    {
+      "expression": "tengo un",
+      "count": 40
+    },
+    {
+      "expression": "pa' los",
+      "count": 39
     },
     {
       "expression": "a hacer",
+      "count": 38
+    },
+    {
+      "expression": "pero yo",
+      "count": 37
+    },
+    {
+      "expression": "ti te",
+      "count": 37
+    },
+    {
+      "expression": "eso es",
+      "count": 37
+    },
+    {
+      "expression": "pa' ti",
+      "count": 37
+    },
+    {
+      "expression": "con él",
+      "count": 36
+    },
+    {
+      "expression": "tu novio",
+      "count": 36
+    },
+    {
+      "expression": "pero tú",
+      "count": 35
+    },
+    {
+      "expression": "yo soy el",
+      "count": 35
+    },
+    {
+      "expression": "como yo",
+      "count": 34
+    },
+    {
+      "expression": "el día",
+      "count": 34
+    },
+    {
+      "expression": "eso no",
+      "count": 34
+    },
+    {
+      "expression": "el amor",
+      "count": 34
+    },
+    {
+      "expression": "lo que tú",
+      "count": 34
+    },
+    {
+      "expression": "que yo te",
+      "count": 34
+    },
+    {
+      "expression": "cuando yo",
       "count": 33
     },
     {
-      "expression": "lo meto",
-      "count": 32
+      "expression": "el corazón",
+      "count": 33
+    },
+    {
+      "expression": "que está",
+      "count": 33
+    },
+    {
+      "expression": "a ser",
+      "count": 33
+    },
+    {
+      "expression": "en cuatro",
+      "count": 33
+    },
+    {
+      "expression": "no son",
+      "count": 33
+    },
+    {
+      "expression": "yo te lo",
+      "count": 33
     },
     {
       "expression": "pero en",
       "count": 32
     },
     {
-      "expression": "cuando me",
+      "expression": "la muerte",
+      "count": 32
+    },
+    {
+      "expression": "yo la",
+      "count": 32
+    },
+    {
+      "expression": "ella no",
+      "count": 31
+    },
+    {
+      "expression": "por mí",
+      "count": 31
+    },
+    {
+      "expression": "el sol",
+      "count": 31
+    },
+    {
+      "expression": "ella es",
+      "count": 31
+    },
+    {
+      "expression": "mi vida",
+      "count": 31
+    },
+    {
+      "expression": "la cara",
       "count": 31
     },
     {
@@ -691,63 +791,107 @@
       "count": 31
     },
     {
-      "expression": "tú quiere'",
+      "expression": "a nadie",
       "count": 30
     },
     {
-      "expression": "pero tú",
+      "expression": "que tengo",
       "count": 30
     },
     {
-      "expression": "que está",
-      "count": 29
+      "expression": "si yo",
+      "count": 30
     },
     {
-      "expression": "el día",
-      "count": 29
-    },
-    {
-      "expression": "yo soy el",
-      "count": 29
-    },
-    {
-      "expression": "por mí",
-      "count": 28
-    },
-    {
-      "expression": "yo siempre",
-      "count": 28
-    },
-    {
-      "expression": "pa' los",
-      "count": 28
-    },
-    {
-      "expression": "ella no",
-      "count": 28
-    },
-    {
-      "expression": "pa' ti",
-      "count": 28
+      "expression": "yo nunca",
+      "count": 30
     },
     {
       "expression": "juro que",
+      "count": 30
+    },
+    {
+      "expression": "yo no me",
+      "count": 30
+    },
+    {
+      "expression": "me da",
+      "count": 29
+    },
+    {
+      "expression": "nunca se",
+      "count": 29
+    },
+    {
+      "expression": "yo siempre",
+      "count": 29
+    },
+    {
+      "expression": "si quiere'",
+      "count": 29
+    },
+    {
+      "expression": "pero si",
+      "count": 29
+    },
+    {
+      "expression": "eso e'",
+      "count": 29
+    },
+    {
+      "expression": "mejor que",
+      "count": 29
+    },
+    {
+      "expression": "tú quiere'",
+      "count": 29
+    },
+    {
+      "expression": "te vas",
       "count": 28
     },
     {
-      "expression": "a ser",
+      "expression": "sabe' que",
       "count": 28
     },
     {
-      "expression": "tu novio",
+      "expression": "sé si",
       "count": 28
     },
     {
-      "expression": "que yo te",
+      "expression": "que sea",
       "count": 28
     },
     {
-      "expression": "yo te lo",
+      "expression": "siempre me",
+      "count": 28
+    },
+    {
+      "expression": "ere' una",
+      "count": 28
+    },
+    {
+      "expression": "en ti",
+      "count": 28
+    },
+    {
+      "expression": "y eso",
+      "count": 28
+    },
+    {
+      "expression": "el culo",
+      "count": 28
+    },
+    {
+      "expression": "mí no",
+      "count": 28
+    },
+    {
+      "expression": "como tú",
+      "count": 28
+    },
+    {
+      "expression": "en la calle",
       "count": 28
     },
     {
@@ -755,27 +899,7 @@
       "count": 27
     },
     {
-      "expression": "y ahora",
-      "count": 27
-    },
-    {
-      "expression": "que sea",
-      "count": 27
-    },
-    {
-      "expression": "no son",
-      "count": 27
-    },
-    {
-      "expression": "mejor que",
-      "count": 27
-    },
-    {
-      "expression": "me da",
-      "count": 27
-    },
-    {
-      "expression": "como yo",
+      "expression": "yo que",
       "count": 27
     },
     {
@@ -783,31 +907,75 @@
       "count": 27
     },
     {
-      "expression": "mi vida",
+      "expression": "ver si",
       "count": 27
     },
     {
-      "expression": "como un",
+      "expression": "soy tu",
       "count": 27
     },
     {
-      "expression": "eso no",
+      "expression": "la boca",
       "count": 27
     },
     {
-      "expression": "tengo un",
+      "expression": "que estoy",
       "count": 27
     },
     {
-      "expression": "sabe' que",
-      "count": 26
+      "expression": "la baby",
+      "count": 27
+    },
+    {
+      "expression": "baby tú",
+      "count": 27
+    },
+    {
+      "expression": "no quiere",
+      "count": 27
     },
     {
       "expression": "te va",
+      "count": 27
+    },
+    {
+      "expression": "cabrón que",
+      "count": 27
+    },
+    {
+      "expression": "tengo el",
+      "count": 27
+    },
+    {
+      "expression": "me tiene",
+      "count": 27
+    },
+    {
+      "expression": "sé que tú",
+      "count": 27
+    },
+    {
+      "expression": "más de",
       "count": 26
     },
     {
-      "expression": "yo no me",
+      "expression": "lo meto",
+      "count": 26
+    },
+    {
+      "expression": "está en",
+      "count": 26
+    },
+    {
+      "expression": "mi nombre",
+      "count": 26
+    },
+    {
+      "expression": "hasta el",
+      "count": 26
+    },
+    {
+      "expression": "lo que yo",
       "count": 26
     },
     {
@@ -815,279 +983,143 @@
       "count": 25
     },
     {
-      "expression": "que tengo",
-      "count": 25
-    },
-    {
-      "expression": "si yo",
-      "count": 25
-    },
-    {
-      "expression": "me tiene",
-      "count": 25
-    },
-    {
-      "expression": "si quiere'",
-      "count": 25
-    },
-    {
-      "expression": "ver si",
-      "count": 25
-    },
-    {
-      "expression": "nunca se",
-      "count": 25
-    },
-    {
-      "expression": "más de",
-      "count": 25
-    },
-    {
-      "expression": "siempre me",
-      "count": 25
-    },
-    {
-      "expression": "ya tú",
-      "count": 25
-    },
-    {
-      "expression": "baby tú",
-      "count": 25
-    },
-    {
-      "expression": "como tú",
-      "count": 25
-    },
-    {
-      "expression": "la baby",
-      "count": 25
-    },
-    {
-      "expression": "pero si",
-      "count": 25
-    },
-    {
-      "expression": "hasta el",
-      "count": 25
-    },
-    {
-      "expression": "vez que",
-      "count": 24
-    },
-    {
-      "expression": "y eso",
-      "count": 24
-    },
-    {
-      "expression": "hoy te",
-      "count": 24
-    },
-    {
-      "expression": "el corazón",
-      "count": 24
-    },
-    {
-      "expression": "en cuatro",
-      "count": 24
-    },
-    {
-      "expression": "la luna",
-      "count": 24
-    },
-    {
-      "expression": "ella es",
-      "count": 24
-    },
-    {
-      "expression": "pero ya",
-      "count": 24
-    },
-    {
-      "expression": "yo nunca",
-      "count": 24
-    },
-    {
-      "expression": "mí no",
-      "count": 24
-    },
-    {
-      "expression": "el amor",
-      "count": 24
-    },
-    {
-      "expression": "te lo meto",
-      "count": 24
-    },
-    {
-      "expression": "yo no sé",
-      "count": 24
-    },
-    {
-      "expression": "pero es",
-      "count": 23
-    },
-    {
-      "expression": "la boca",
-      "count": 23
-    },
-    {
-      "expression": "baby yo",
-      "count": 23
-    },
-    {
-      "expression": "e' un",
-      "count": 23
-    },
-    {
-      "expression": "hoy yo",
-      "count": 23
-    },
-    {
-      "expression": "vo'a dar",
-      "count": 23
-    },
-    {
-      "expression": "son de",
-      "count": 23
-    },
-    {
-      "expression": "soy tu",
-      "count": 23
-    },
-    {
-      "expression": "estoy en",
-      "count": 23
-    },
-    {
       "expression": "y pa'",
-      "count": 23
-    },
-    {
-      "expression": "ere' una",
-      "count": 23
-    },
-    {
-      "expression": "el culo",
-      "count": 23
-    },
-    {
-      "expression": "mi nombre",
-      "count": 22
-    },
-    {
-      "expression": "el dinero",
-      "count": 22
-    },
-    {
-      "expression": "tengo el",
-      "count": 22
-    },
-    {
-      "expression": "con to'",
-      "count": 22
-    },
-    {
-      "expression": "soy la",
-      "count": 22
-    },
-    {
-      "expression": "a nadie",
-      "count": 22
-    },
-    {
-      "expression": "yo la",
-      "count": 22
-    },
-    {
-      "expression": "yo soy un",
-      "count": 22
-    },
-    {
-      "expression": "sé que tú",
-      "count": 22
-    },
-    {
-      "expression": "lo que yo",
-      "count": 21
-    },
-    {
-      "expression": "que yo no",
-      "count": 21
-    },
-    {
-      "expression": "sé que te",
-      "count": 21
+      "count": 25
     },
     {
       "expression": "que tú me",
-      "count": 21
+      "count": 25
     },
     {
       "expression": "yo soy tu",
-      "count": 20
+      "count": 24
     },
     {
-      "expression": "tú ere' una",
-      "count": 20
-    },
-    {
-      "expression": "te va a",
-      "count": 20
-    },
-    {
-      "expression": "en la calle",
-      "count": 19
-    },
-    {
-      "expression": "que yo soy",
-      "count": 19
-    },
-    {
-      "expression": "en la disco",
-      "count": 17
-    },
-    {
-      "expression": "que yo me",
-      "count": 17
-    },
-    {
-      "expression": "pa' la calle",
-      "count": 17
+      "expression": "que yo no",
+      "count": 24
     },
     {
       "expression": "que tú no",
+      "count": 24
+    },
+    {
+      "expression": "tú ere' una",
+      "count": 23
+    },
+    {
+      "expression": "te va a",
+      "count": 23
+    },
+    {
+      "expression": "te lo meto",
+      "count": 22
+    },
+    {
+      "expression": "que yo me",
+      "count": 21
+    },
+    {
+      "expression": "yo no sé",
+      "count": 21
+    },
+    {
+      "expression": "yo soy un",
+      "count": 21
+    },
+    {
+      "expression": "que yo soy",
+      "count": 20
+    },
+    {
+      "expression": "en la disco",
+      "count": 20
+    },
+    {
+      "expression": "cuando yo te",
+      "count": 19
+    },
+    {
+      "expression": "sé que te",
+      "count": 19
+    },
+    {
+      "expression": "en la cara",
+      "count": 18
+    },
+    {
+      "expression": "me dice que",
+      "count": 17
+    },
+    {
+      "expression": "bad bunny baby",
       "count": 17
     },
     {
       "expression": "y yo no",
-      "count": 16
+      "count": 17
+    },
+    {
+      "expression": "no va a",
+      "count": 17
     },
     {
       "expression": "tú no me",
-      "count": 15
+      "count": 16
     },
     {
-      "expression": "bad bunny baby",
-      "count": 15
+      "expression": "hasta la muerte",
+      "count": 16
     },
     {
-      "expression": "de bad bunny",
-      "count": 15
+      "expression": "yo no quiero",
+      "count": 16
     },
     {
-      "expression": "tú no ere'",
-      "count": 15
+      "expression": "por eso no",
+      "count": 16
     },
     {
-      "expression": "soy el que",
-      "count": 15
+      "expression": "en mi cama",
+      "count": 16
     },
     {
       "expression": "te va' a",
+      "count": 16
+    },
+    {
+      "expression": "me va' a",
+      "count": 15
+    },
+    {
+      "expression": "real hasta la",
+      "count": 15
+    },
+    {
+      "expression": "voy a hacer",
+      "count": 15
+    },
+    {
+      "expression": "si tú me",
+      "count": 15
+    },
+    {
+      "expression": "pero es que",
+      "count": 15
+    },
+    {
+      "expression": "yo voy a",
+      "count": 15
+    },
+    {
+      "expression": "tú eres mi",
       "count": 14
     },
     {
-      "expression": "hago lo que",
+      "expression": "es que tú",
+      "count": 14
+    },
+    {
+      "expression": "eso es que",
       "count": 14
     },
     {
@@ -1095,31 +1127,27 @@
       "count": 14
     },
     {
-      "expression": "me dice que",
+      "expression": "yo quiero que",
       "count": 14
     },
     {
-      "expression": "yo no quiero",
+      "expression": "me dijo que",
       "count": 14
     },
     {
-      "expression": "en mi cama",
+      "expression": "to' el que",
       "count": 14
     },
     {
-      "expression": "voy a hacer",
-      "count": 14
+      "expression": "lo voy a",
+      "count": 13
     },
     {
-      "expression": "yo soy la",
-      "count": 14
+      "expression": "hago lo que",
+      "count": 13
     },
     {
-      "expression": "en la cara",
-      "count": 14
-    },
-    {
-      "expression": "pero es que",
+      "expression": "pa' que no",
       "count": 13
     },
     {
@@ -1127,52 +1155,104 @@
       "count": 13
     },
     {
-      "expression": "pa' que se",
-      "count": 13
-    },
-    {
-      "expression": "yo voy a",
-      "count": 13
-    },
-    {
-      "expression": "que le dé",
-      "count": 13
-    },
-    {
-      "expression": "me va' a",
-      "count": 13
-    },
-    {
-      "expression": "tú ere' un",
-      "count": 13
-    },
-    {
       "expression": "que a ti",
-      "count": 12
+      "count": 13
     },
     {
-      "expression": "no va a",
-      "count": 12
+      "expression": "pero no se",
+      "count": 13
     },
     {
-      "expression": "eso es que",
-      "count": 12
-    },
-    {
-      "expression": "yo no tengo",
-      "count": 12
+      "expression": "pa' la calle",
+      "count": 13
     },
     {
       "expression": "pero no me",
+      "count": 13
+    },
+    {
+      "expression": "por ti me",
+      "count": 13
+    },
+    {
+      "expression": "no te vo'a",
+      "count": 13
+    },
+    {
+      "expression": "tú no ere'",
+      "count": 13
+    },
+    {
+      "expression": "soy el que",
+      "count": 13
+    },
+    {
+      "expression": "en la casa",
+      "count": 13
+    },
+    {
+      "expression": "yo soy la",
+      "count": 13
+    },
+    {
+      "expression": "yo no tengo",
+      "count": 13
+    },
+    {
+      "expression": "no quiero que",
       "count": 12
     },
     {
-      "expression": "pa' que le",
+      "expression": "la disco y",
+      "count": 12
+    },
+    {
+      "expression": "a tu amiga",
+      "count": 12
+    },
+    {
+      "expression": "yo hago lo",
+      "count": 12
+    },
+    {
+      "expression": "que tú ere'",
+      "count": 12
+    },
+    {
+      "expression": "tú ere' un",
+      "count": 12
+    },
+    {
+      "expression": "eso e' así",
+      "count": 12
+    },
+    {
+      "expression": "que soy un",
+      "count": 12
+    },
+    {
+      "expression": "pa' ver si",
+      "count": 12
+    },
+    {
+      "expression": "pa' que me",
+      "count": 12
+    },
+    {
+      "expression": "tú misma lo",
+      "count": 12
+    },
+    {
+      "expression": "no hay quien",
+      "count": 12
+    },
+    {
+      "expression": "tú ere' mi",
       "count": 12
     }
   ],
   "stats": {
     "confirmed_count": 88,
-    "candidate_count": 182
+    "candidate_count": 202
   }
 }

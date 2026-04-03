@@ -10,7 +10,9 @@ Reads intermediates/3_vocab_evidence_merged.json
 Outputs BadBunnyvocabulary.json in the schema consumed by steps 8, 9, and the app.
 
 Usage (from project root):
-    .venv/bin/python3 "Bad Bunny/4_llm_analyze.py" --api-key YOUR_KEY [--limit N] [--batch-size N]
+    .venv/bin/python3 "Bad Bunny/4_llm_analyze.py" [--limit N] [--batch-size N]
+
+API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
 
 Saves progress after every batch so it can be interrupted and resumed.
 """
@@ -23,6 +25,21 @@ import argparse
 import re
 import hashlib
 from typing import Optional, Dict, List, Any, Tuple
+
+
+def _load_dotenv():
+    """Load .env file from project root if it exists."""
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, _, val = line.partition("=")
+                    os.environ.setdefault(key.strip(), val.strip())
+
+
+_load_dotenv()
 
 # ---------------------------------------------------------------------------
 # Paths (relative to project root)
