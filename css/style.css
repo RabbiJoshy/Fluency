@@ -2508,6 +2508,30 @@
             text-align: center;
         }
 
+        .personal-coverage-wrapper {
+            margin: 0 0 15px 0;
+        }
+
+        .personal-coverage-fill {
+            background: var(--accent-green);
+        }
+
+        .personal-progress-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .personal-progress-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
         /* Exclusion Progress Bars (Lemma & Cognate steps) */
         .exclusion-bar-wrapper {
             margin: 12px 0 4px 0;

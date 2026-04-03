@@ -139,7 +139,7 @@ async function updateExclusionBars() {
     updatePersonalCoverage(afterCognate);
 }
 
-// Personal coverage bar: what % of words (up to selected level) the user has
+// Personal coverage bar: what % of the full eligible corpus the user has
 // correctly answered, where "correct" means the last answer was correct.
 function updatePersonalCoverage(filteredVocab) {
     const wrapper = document.getElementById('personalCoverageWrapper');
@@ -147,30 +147,14 @@ function updatePersonalCoverage(filteredVocab) {
     const label = document.getElementById('personalCoverageLabel');
     if (!wrapper || !fill || !label) return;
 
-    if (!progressData || !selectedLevel || !filteredVocab || filteredVocab.length === 0) {
+    if (!progressData || !filteredVocab || filteredVocab.length === 0) {
         wrapper.style.display = 'none';
         return;
     }
 
-    // Get the end rank for the selected level
-    const selectedBtn = document.querySelector('.level-btn.selected');
-    const endRank = selectedBtn ? parseInt(selectedBtn.dataset.endRank, 10) : 0;
-    if (!endRank) {
-        wrapper.style.display = 'none';
-        return;
-    }
-
-    // Filter vocab to words within the selected level range
-    // Use displayRank-style sequential ranking on filtered vocab
-    const wordsInLevel = filteredVocab.slice(0, endRank);
-    if (wordsInLevel.length === 0) {
-        wrapper.style.display = 'none';
-        return;
-    }
-
-    // Count how many of these words were last answered correctly
+    // Count how many words in the full filtered corpus were last answered correctly
     let coveredCount = 0;
-    for (const item of wordsInLevel) {
+    for (const item of filteredVocab) {
         const fullId = getWordId(item);
         const progress = progressData[fullId];
         if (progress && progress.language === selectedLanguage) {
@@ -183,12 +167,12 @@ function updatePersonalCoverage(filteredVocab) {
         }
     }
 
-    const coveragePct = (coveredCount / wordsInLevel.length) * 100;
-
     if (coveredCount === 0) {
         wrapper.style.display = 'none';
         return;
     }
+
+    const coveragePct = (coveredCount / filteredVocab.length) * 100;
 
     // Animate the bar
     wrapper.style.display = 'block';
@@ -197,7 +181,7 @@ function updatePersonalCoverage(filteredVocab) {
     fill.style.width = '0%';
 
     const coverageType = isBadBunnyMode ? 'lyrics' : 'words';
-    label.textContent = `${coveredCount.toLocaleString()} / ${wordsInLevel.length.toLocaleString()} ${coverageType} covered (${coveragePct.toFixed(1)}%)`;
+    label.textContent = `${coveredCount.toLocaleString()} / ${filteredVocab.length.toLocaleString()} ${coverageType} practiced`;
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {

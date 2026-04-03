@@ -92,6 +92,22 @@
                 <button class="estimate-level-btn" id="estimateLevelBlockBtn" style="width: 100%;">Estimate My Level</button>
             </div>
 
+            <!-- Personal Progress Bar (standalone, shown after language selection) -->
+            <div id="personalCoverageWrapper" class="coverage-bar-wrapper personal-coverage-wrapper" style="display: none;">
+                <div class="personal-progress-header">
+                    <span class="personal-progress-title">Your progress</span>
+                    <button class="step-help-btn" data-tooltip="personalProgressTooltip" title="Help">?</button>
+                    <div id="personalProgressTooltip" class="step-info-tooltip">
+                        <p>How many words from this vocabulary you've answered correctly at least once.</p>
+                        <p>The count adjusts as you change filters below — using lemma mode or excluding cognates changes which words are eligible, and this bar reflects that filtered total.</p>
+                    </div>
+                </div>
+                <div class="coverage-bar-container">
+                    <div id="personalCoverageFill" class="coverage-bar-fill personal-coverage-fill"></div>
+                </div>
+                <div id="personalCoverageLabel" class="coverage-bar-label"></div>
+            </div>
+
             <!-- Step 2: Level Selection -->
             <div id="step2" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
@@ -165,12 +181,6 @@
                 <div id="cognateToggleSelector" class="group-size-selector">
                     <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
                     <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
-                </div>
-                <div id="personalCoverageWrapper" class="coverage-bar-wrapper" style="display: none;">
-                    <div class="coverage-bar-container">
-                        <div id="personalCoverageFill" class="coverage-bar-fill"></div>
-                    </div>
-                    <div id="personalCoverageLabel" class="coverage-bar-label"></div>
                 </div>
             </div>
 
