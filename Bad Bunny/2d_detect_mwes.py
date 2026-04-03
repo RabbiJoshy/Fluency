@@ -284,9 +284,9 @@ MIN_TRIGRAM_FREQ = 12
 _PHRASE_SPLIT_RE = re.compile(r'[,;:!?¡¿()"—\-]+')
 
 # PMI thresholds
-MIN_PMI = 8.0           # minimum PMI score to consider an n-gram a real expression
-MIN_PMI_COUNT = 5       # minimum raw count for PMI candidates
-MIN_PMI_SONGS = 3       # must appear in at least this many distinct songs
+MIN_PMI = 12.0          # minimum PMI score to consider an n-gram a real expression
+MIN_PMI_COUNT = 8       # minimum raw count for PMI candidates
+MIN_PMI_SONGS = 10      # must appear in at least this many distinct songs
 
 
 def collect_lines(vocab_data):

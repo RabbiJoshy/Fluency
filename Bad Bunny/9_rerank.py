@@ -24,6 +24,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BB_VOCAB_PATH = os.path.join(SCRIPT_DIR, "BadBunnyvocabulary.json")
 SPANISH_VOCAB_PATH = os.path.join(SCRIPT_DIR, "..", "Data", "Spanish", "vocabulary.json")
+MWE_PATH = os.path.join(SCRIPT_DIR, "intermediates", "2d_mwe_detected.json")
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
 
@@ -145,6 +146,34 @@ def main():
             f"{e['word']:<20} sp_rank={sp_str:<6} songs={songs} "
             f"cognate={e.get('is_transparent_cognate', False)}"
         )
+
+    # Re-annotate MWE memberships from latest 2d output
+    # This ensures MWEs are always up-to-date even when step 4 is skipped
+    if os.path.exists(MWE_PATH):
+        with open(MWE_PATH, "r", encoding="utf-8") as f:
+            mwe_data = json.load(f)
+        mwe_index = {}  # word -> list of {expression, translation}
+        for mwe in mwe_data.get("mwes", []):
+            expr = mwe["expression"]
+            translation = mwe["translation"] or ""
+            for token in expr.split():
+                token_lower = token.lower()
+                if token_lower not in mwe_index:
+                    mwe_index[token_lower] = []
+                if not any(m["expression"] == expr for m in mwe_index[token_lower]):
+                    mwe_index[token_lower].append({
+                        "expression": expr,
+                        "translation": translation,
+                    })
+        mwe_count = 0
+        for entry in bb_data:
+            w_lower = entry["word"].lower()
+            if w_lower in mwe_index:
+                entry["mwe_memberships"] = mwe_index[w_lower]
+                mwe_count += 1
+            else:
+                entry.pop("mwe_memberships", None)
+        print(f"\n  MWE annotation: {len(mwe_data.get('mwes', []))} MWEs -> {mwe_count} entries annotated")
 
     # Write back
     print(f"\nWriting to {BB_VOCAB_PATH}...")
