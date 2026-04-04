@@ -41,7 +41,6 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 | `flashcards` | Array | Current deck of flashcard objects |
 | `currentIndex` | number | Visible card index |
 | `activeArtist` | object\|null | null = normal mode, object = artist config |
-| `isBadBunnyMode` | boolean | Getter: `!!activeArtist`. Do not set directly. |
 | `progressData` | object | `fullId -> { correct, wrong, lastCorrect, lastWrong, lastSeen, word, language }` |
 | `selectedLanguage` | string | Key into `config.languages` |
 | `isFlipped` | boolean | Flip **direction** (target->English vs English->target), NOT card flip state |
@@ -49,9 +48,9 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 ## Setup UI Flow
 
 ```
-Step 1: Language tabs → Step 2: CEFR level → Step 3: Lemma toggle → Step 4: Cognate toggle → Step 5: Choose set
+Step 1: Language tabs → Step 2: CEFR level → [inline toggles: lemma, cognate] → Step 3: Choose set
 ```
-Note: DOM `id="step4"` renders as visual step 5. Steps 3/4 use `lemmaToggleContainer`/`cognateToggleContainer`.
+Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the range selector. DOM `id="step4"` is the range/set selector (visual step 3).
 
 ## Main Call Flow
 

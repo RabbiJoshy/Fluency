@@ -31,7 +31,7 @@ from typing import Optional, Dict, Any, Set, List
 from requests.exceptions import Timeout, HTTPError
 from lyricsgenius import Genius
 
-from _artist_config import add_artist_arg, load_artist_config
+from _artist_config import add_artist_arg, load_artist_config, scrape_lyrics_by_id, load_done_ids, save_done_ids
 
 # ---------------------------------------------------------------------
 # CONFIG
@@ -75,44 +75,10 @@ def make_genius(excluded_terms):
 # HELPERS
 # ---------------------------------------------------------------------
 
-def load_done_ids(progress_path):
-    # type: (Path) -> Set[int]
-    if progress_path.exists():
-        return set(json.loads(progress_path.read_text()))
-    return set()
-
-
-def save_done_ids(progress_path, done_ids):
-    # type: (Path, Set[int]) -> None
-    progress_path.write_text(json.dumps(sorted(done_ids), indent=2))
-
-
 def fetch_batch_song_metas(genius_client, artist_id, page, per_page=25):
     """Returns (songs, next_page) using Genius API's artist_songs endpoint."""
     res = genius_client.artist_songs(artist_id, per_page=per_page, page=page, sort="popularity")
     return res.get("songs", []), res.get("next_page")
-
-
-def scrape_lyrics_by_id(genius_client, song_id, max_tries=5):
-    """
-    Scrape lyrics using the song ID directly.
-    More reliable than search_song() which re-searches by title and can
-    return the wrong song.
-    """
-    delay = 2
-    for attempt in range(1, max_tries + 1):
-        try:
-            lyrics = genius_client.lyrics(song_id=song_id)
-            return lyrics
-        except (Timeout, HTTPError) as e:
-            if attempt == max_tries:
-                print("    Failed after %d attempts: %s" % (max_tries, e))
-                return None
-            time.sleep(delay)
-            delay *= 2
-        except Exception as e:
-            print("    Unexpected error scraping %d: %s" % (song_id, e))
-            return None
 
 
 def song_meta_to_record(meta, lyrics):

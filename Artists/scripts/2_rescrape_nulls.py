@@ -36,7 +36,7 @@ from typing import Dict, List, Optional, Set, Tuple
 from requests.exceptions import Timeout, HTTPError
 from lyricsgenius import Genius
 
-from _artist_config import add_artist_arg, load_artist_config
+from _artist_config import add_artist_arg, load_artist_config, scrape_lyrics_by_id
 
 PIPELINE_DIR = None  # Set from --artist-dir in main()
 BATCH_GLOB = None
@@ -59,24 +59,6 @@ def make_genius():
     g.verbose = False
     g.remove_section_headers = True
     return g
-
-
-def scrape_lyrics_by_id(genius_client, song_id, max_tries=5):
-    """Scrape lyrics using song ID directly (more reliable than title search)."""
-    delay = 2
-    for attempt in range(1, max_tries + 1):
-        try:
-            lyrics = genius_client.lyrics(song_id=song_id)
-            return lyrics
-        except (Timeout, HTTPError) as e:
-            if attempt == max_tries:
-                print("    Failed after %d attempts: %s" % (max_tries, e))
-                return None
-            time.sleep(delay)
-            delay *= 2
-        except Exception as e:
-            print("    Unexpected error scraping %d: %s" % (song_id, e))
-            return None
 
 
 def load_all_batches():

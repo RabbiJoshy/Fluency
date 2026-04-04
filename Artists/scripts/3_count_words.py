@@ -409,7 +409,7 @@ def select_examples(
         for d in chosen:
             d.pop("score", None)
             d.pop("batch", None)
-            # d.pop("song_title", None)  # COMMENT OUT OR REMOVE THIS LINE
+            # song_title kept — used by step 6 for source attribution
 
         selected[w] = chosen
 

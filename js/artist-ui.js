@@ -79,10 +79,6 @@ async function loadMultiArtistAlbumsDictionaries(slugs, allConfigs) {
     console.log(`Multi-artist albums loaded, mapped ${Object.keys(songToAlbumMap).length} songs`);
 }
 
-// Backward-compat aliases
-window.loadBadBunnyAlbumsDictionary = loadArtistAlbumsDictionary;
-window.updateBadBunnyBackground = updateArtistBackground;
-
 window.loadArtistAlbumsDictionary = loadArtistAlbumsDictionary;
 window.loadMultiArtistAlbumsDictionaries = loadMultiArtistAlbumsDictionaries;
 window.getAlbumImageForSong = getAlbumImageForSong;

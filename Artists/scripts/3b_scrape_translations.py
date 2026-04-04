@@ -38,7 +38,7 @@ from requests.exceptions import Timeout, HTTPError
 
 # -- artist config helper --------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _artist_config import add_artist_arg, load_artist_config
+from _artist_config import add_artist_arg, load_artist_config, scrape_lyrics_by_id, load_done_ids, save_done_ids
 
 
 # ---------------------------------------------------------------------------
@@ -103,20 +103,6 @@ def load_all_song_ids(artist_dir):
 
 def ensure_dir(path):
     os.makedirs(path, exist_ok=True)
-
-
-def load_done_ids(trans_dir):
-    path = os.path.join(trans_dir, "done_song_ids.json")
-    if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
-            return set(json.load(f))
-    return set()
-
-
-def save_done_ids(done_ids, trans_dir):
-    path = os.path.join(trans_dir, "done_song_ids.json")
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(sorted(done_ids), f, indent=2)
 
 
 def load_translations(trans_dir):
@@ -185,28 +171,6 @@ def find_english_translation(song_id):
     except Exception as e:
         print("  geniURL error for song %s: %s" % (song_id, e))
         return None
-
-
-# ---------------------------------------------------------------------------
-# Genius: scrape translation lyrics by ID
-# ---------------------------------------------------------------------------
-
-def scrape_lyrics_by_id(genius_client, song_id, max_tries=5):
-    """Scrape lyrics from Genius by song ID with exponential backoff."""
-    delay = 2
-    for attempt in range(1, max_tries + 1):
-        try:
-            lyrics = genius_client.lyrics(song_id=song_id)
-            return lyrics
-        except (Timeout, HTTPError) as e:
-            if attempt == max_tries:
-                print("    Scrape failed after %d attempts: %s" % (max_tries, e))
-                return None
-            time.sleep(delay)
-            delay *= 2
-        except Exception as e:
-            print("    Unexpected scrape error for %d: %s" % (song_id, e))
-            return None
 
 
 def make_genius_client():
@@ -309,7 +273,8 @@ def main():
 
     # Load state
     songs = load_all_song_ids(artist_dir)
-    done_ids = load_done_ids(trans_dir)
+    done_ids_path = os.path.join(trans_dir, "done_song_ids.json")
+    done_ids = load_done_ids(done_ids_path)
     translations = load_translations(trans_dir)
 
     # Deduplicate song IDs (same song can appear in multiple batches)
@@ -435,11 +400,11 @@ def main():
 
                 # Save periodically
                 if n % 20 == 0 or n == len(remaining):
-                    save_done_ids(done_ids, trans_dir)
+                    save_done_ids(done_ids_path, done_ids)
                     save_translations(translations, trans_dir)
 
     # Final save
-    save_done_ids(done_ids, trans_dir)
+    save_done_ids(done_ids_path, done_ids)
     save_translations(translations, trans_dir)
 
     elapsed = time.time() - eta.start_time

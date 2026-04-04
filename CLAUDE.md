@@ -22,7 +22,7 @@ Fluency/
 
 | Task | Start at |
 |------|----------|
-| Flashcard display issue | `js/flashcards.js` → `updateCard()` (~line 950) |
+| Flashcard display issue | `js/flashcards.js` → `updateCard()` (~line 890) |
 | Filtering / deck logic | `js/vocab.js` → `buildFilteredVocab()` |
 | Multi-artist merge | `js/vocab.js` → `mergeArtistVocabularies()` |
 | Setup UI flow | `js/ui.js` → `renderLevelSelector()`, `renderRangeSelector()` |

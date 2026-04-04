@@ -254,17 +254,14 @@
             pointer-events: auto;
         }
 
-        /* Ensure back is hidden when not flipped */
-        .card-back {
-            opacity: 0;
-        }
-
         .card-front {
             visibility: visible;
             pointer-events: auto;
         }
 
+        /* Ensure back is hidden when not flipped */
         .card-back {
+            opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
@@ -2880,13 +2877,13 @@
         }
 
         /* Bad Bunny mode album artwork backgrounds */
-        body.badbunny-mode .card-face {
+        body.artist-mode .card-face {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
-        body.badbunny-mode .card-face::after {
+        body.artist-mode .card-face::after {
             content: '';
             position: absolute;
             inset: 0;
@@ -2895,11 +2892,11 @@
             z-index: 0;
         }
 
-        body.badbunny-mode .card-face > * {
+        body.artist-mode .card-face > * {
             position: relative;
             z-index: 1;
         }
 
-        body.badbunny-mode .card-face > div[style*="position: absolute"] {
+        body.artist-mode .card-face > div[style*="position: absolute"] {
             z-index: 5;
         }

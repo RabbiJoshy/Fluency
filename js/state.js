@@ -21,7 +21,6 @@ export const state = {
     },
 
     // Selection / app mode state
-    currentMode: 'flashcards',
     selectedLanguage: 'spanish',
     selectedLevel: null,
     selectedRanges: [],
@@ -109,13 +108,6 @@ for (const key of Object.keys(state)) {
         enumerable: true,
     });
 }
-
-// Backward-compat getter: isBadBunnyMode → true when any artist is active
-Object.defineProperty(globalThis, 'isBadBunnyMode', {
-    get() { return !!state.activeArtist; },
-    configurable: true,
-    enumerable: true,
-});
 
 // Expose constants on globalThis as read-only
 globalThis.percentageLevels = percentageLevels;

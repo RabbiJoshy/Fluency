@@ -43,8 +43,6 @@ function hideAuthModal() {
 // Show user info badge
 function showUserInfo() {
     const userInfo = document.getElementById('userInfo');
-    const userBadge = document.getElementById('userBadge');
-    if (userBadge) userBadge.textContent = currentUser.isGuest ? 'GUEST' : currentUser.initials;
     userInfo.classList.remove('hidden');
 }
 

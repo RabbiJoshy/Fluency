@@ -28,7 +28,7 @@ async function resolveArtist() {
     const params = new URLSearchParams(window.location.search);
     let artistSlug = params.get('artist');
 
-    // Legacy alias: ?mode=badbunny → ?artist=bad-bunny
+    // Legacy alias: ?mode=badbunny → ?artist=bad-bunny (keep for PWA home screen installs)
     if (!artistSlug && params.get('mode') === 'badbunny') {
         artistSlug = 'bad-bunny';
     }
@@ -70,7 +70,7 @@ window._selectedArtistSlugs = selectedArtistSlugs;
 
 // Add artist mode class to body and load albums dictionary
 if (activeArtist) {
-    document.body.classList.add('badbunny-mode'); // keep CSS class for styling
+    document.body.classList.add('artist-mode');
     loadArtistAlbumsDictionary();
 }
 
