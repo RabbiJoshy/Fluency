@@ -54,7 +54,11 @@ def _step_5_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _step_6_args(args, artist_dir):
-    a = _base_args(artist_dir) + ["--api-key", args.api_key]
+    a = _base_args(artist_dir)
+    if args.no_gemini:
+        a.append("--no-gemini")
+    else:
+        a.extend(["--api-key", args.api_key])
     if args.reset:
         a.extend(["--reset-sentences", "--reset-words"])
     return a
@@ -147,6 +151,8 @@ def main():
     parser.add_argument("--skip", type=str, nargs="*", default=[])
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--reset", action="store_true")
+    parser.add_argument("--no-gemini", action="store_true",
+                        help="Skip Gemini API calls in step 6. Uses only Genius translations + overrides.")
     args = parser.parse_args()
 
     artist_dir = os.path.join(ARTISTS_DIR, args.artist)
@@ -164,9 +170,9 @@ def main():
     skip_set = set(args.skip)
     steps_to_run = [s for s in STEPS[start_idx:end_idx + 1] if str(s["num"]) not in skip_set]
 
-    needs_key = any(s["needs_api_key"] for s in steps_to_run)
+    needs_key = any(s["needs_api_key"] for s in steps_to_run) and not args.no_gemini
     if needs_key and not args.api_key and not args.dry_run:
-        print("ERROR: Steps %s require --api-key" %
+        print("ERROR: Steps %s require --api-key (or use --no-gemini)" %
               ", ".join(str(s["num"]) for s in steps_to_run if s["needs_api_key"]))
         sys.exit(1)
 

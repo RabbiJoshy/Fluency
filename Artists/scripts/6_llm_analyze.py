@@ -14,6 +14,9 @@ Usage (from project root):
 
 API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
 
+With --no-gemini, skips all Gemini calls and uses only Genius community translations
++ curated overrides. Produces a valid but lower-quality vocabulary deck.
+
 Saves progress after every batch so it can be interrupted and resumed.
 """
 
@@ -113,6 +116,33 @@ def detect_interjections(vocab_words):
                 detected.add(entry["word"].lower())
                 break
     return frozenset(detected)
+
+
+# ---------------------------------------------------------------------------
+# Genius community translations (from step 1b --align)
+# ---------------------------------------------------------------------------
+
+def load_genius_sentence_index(pipeline_dir):
+    # type: (str) -> Dict[str, str]
+    """Load pre-built {spanish_line: english_line} index from aligned_translations.json.
+
+    This file is produced by: 1b_scrape_translations.py --align
+    Returns an empty dict if the file doesn't exist.
+    """
+    aligned_path = os.path.join(
+        pipeline_dir, "data", "input", "translations", "aligned_translations.json")
+    if not os.path.exists(aligned_path):
+        return {}
+
+    with open(aligned_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    index = data.get("index", {})
+    stats = data.get("stats", {})
+    print("  Genius translations: %d lines from %d+%d songs (loaded from aligned_translations.json)" %
+          (stats.get("lines_indexed", len(index)),
+           stats.get("exact", 0), stats.get("close", 0)))
+    return index
 
 
 # Short Spanish words that are real vocabulary (don't filter these)
@@ -416,8 +446,24 @@ def parse_word_response(text):
 # Build vocabulary entries
 # ---------------------------------------------------------------------------
 
-def build_entry_from_llm(word_input, llm_result, sentence_translations):
-    # type: (Dict, Dict, Dict[str, str]) -> Dict
+def _make_example(ex, line_text, sentence_translations, genius_lines):
+    # type: (Dict, str, Dict[str, str], Optional[frozenset]) -> Dict
+    """Build a single example dict with translation_source provenance."""
+    english = sentence_translations.get(line_text, "")
+    source = ""
+    if english:
+        source = "genius" if genius_lines and line_text in genius_lines else "gemini"
+    return {
+        "song": ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"],
+        "song_name": ex.get("title", ""),
+        "spanish": line_text,
+        "english": english,
+        "translation_source": source,
+    }
+
+
+def build_entry_from_llm(word_input, llm_result, sentence_translations, genius_lines=None):
+    # type: (Dict, Dict, Dict[str, str], Optional[frozenset]) -> Dict
     word = word_input["word"]
     display_form = word_input.get("display_form")
     corpus_count = word_input.get("corpus_count", 0)
@@ -471,12 +517,8 @@ def build_entry_from_llm(word_input, llm_result, sentence_translations):
             if 0 <= idx < len(examples):
                 ex = examples[idx]
                 line_text = ex.get("line", "")
-                meaning_examples.append({
-                    "song": ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"],
-                    "song_name": ex.get("title", ""),
-                    "spanish": line_text,
-                    "english": sentence_translations.get(line_text, ""),
-                })
+                meaning_examples.append(
+                    _make_example(ex, line_text, sentence_translations, genius_lines))
 
         if sense_idx == 0:
             seen_lines = set(me["spanish"] for me in meaning_examples)
@@ -486,22 +528,14 @@ def build_entry_from_llm(word_input, llm_result, sentence_translations):
                     if line_text in seen_lines:
                         continue
                     seen_lines.add(line_text)
-                    meaning_examples.append({
-                        "song": ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"],
-                        "song_name": ex.get("title", ""),
-                        "spanish": line_text,
-                        "english": sentence_translations.get(line_text, ""),
-                    })
+                    meaning_examples.append(
+                        _make_example(ex, line_text, sentence_translations, genius_lines))
 
         if not meaning_examples and examples:
             ex = examples[0]
             line_text = ex.get("line", "")
-            meaning_examples.append({
-                "song": ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"],
-                "song_name": ex.get("title", ""),
-                "spanish": line_text,
-                "english": sentence_translations.get(line_text, ""),
-            })
+            meaning_examples.append(
+                _make_example(ex, line_text, sentence_translations, genius_lines))
 
         meanings.append({
             "pos": s_pos,
@@ -516,12 +550,8 @@ def build_entry_from_llm(word_input, llm_result, sentence_translations):
         if examples:
             ex = examples[0]
             line_text = ex.get("line", "")
-            fallback_examples.append({
-                "song": ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"],
-                "song_name": ex.get("title", ""),
-                "spanish": line_text,
-                "english": sentence_translations.get(line_text, ""),
-            })
+            fallback_examples.append(
+                _make_example(ex, line_text, sentence_translations, genius_lines))
         meanings.append({
             "pos": "X",
             "translation": translation,
@@ -545,8 +575,8 @@ def build_entry_from_llm(word_input, llm_result, sentence_translations):
     return entry
 
 
-def build_entry_from_overrides_only(word_input, sentence_translations):
-    # type: (Dict, Dict[str, str]) -> Dict
+def build_entry_from_overrides_only(word_input, sentence_translations, genius_lines=None):
+    # type: (Dict, Dict[str, str], Optional[frozenset]) -> Dict
     word = word_input["word"]
     w_lower = word.lower()
     display_form = word_input.get("display_form")
@@ -571,12 +601,8 @@ def build_entry_from_overrides_only(word_input, sentence_translations):
     meaning_examples = []
     for ex in examples:
         line_text = ex.get("line", "")
-        meaning_examples.append({
-            "song": ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"],
-            "song_name": ex.get("title", ""),
-            "spanish": line_text,
-            "english": sentence_translations.get(line_text, ""),
-        })
+        meaning_examples.append(
+            _make_example(ex, line_text, sentence_translations, genius_lines))
 
     return {
         "id": "",
@@ -705,6 +731,8 @@ def main():
                         help="Re-query only words with empty senses in the cache")
     parser.add_argument("--rpm", type=int, default=200,
                         help="Max requests per minute (default: 200, paid tier allows 1000)")
+    parser.add_argument("--no-gemini", action="store_true",
+                        help="Skip all Gemini API calls. Use only Genius translations + overrides.")
     args = parser.parse_args()
 
     # Set paths from --artist-dir
@@ -723,7 +751,7 @@ def main():
     INTERJECTIONS = frozenset(load_shared_list("interjections.json"))
     EXTRA_ENGLISH = frozenset(load_shared_list("extra_english.json"))
 
-    if not args.api_key:
+    if not args.api_key and not args.no_gemini:
         print("ERROR: Provide --api-key or set GEMINI_API_KEY environment variable")
         sys.exit(1)
 
@@ -809,10 +837,22 @@ def main():
                 sentence_progress[k] = v
         print("  Loaded sentence cache: %d translations" % len(sentence_progress))
 
+    # Layer 1: Genius community translations (free, rebuilt every run)
+    genius_index = load_genius_sentence_index(PIPELINE_DIR)
+    genius_new = 0
+    for sp_line, en_line in genius_index.items():
+        if sp_line not in sentence_progress:
+            sentence_progress[sp_line] = en_line
+            genius_new += 1
+    if genius_index:
+        print("  Genius translations: %d available, %d new (not in cache)" %
+              (len(genius_index), genius_new))
+
+    # Layer 2: Gemini API translations for remaining lines
     untranslated = [l for l in all_lines if l not in sentence_progress]
     print("  %d lines need translation" % len(untranslated))
 
-    if untranslated:
+    if untranslated and not args.no_gemini:
         s_batch_size = args.sentence_batch_size
         total_s_batches = (len(untranslated) + s_batch_size - 1) // s_batch_size
         est_minutes = total_s_batches / args.rpm
@@ -862,6 +902,9 @@ def main():
 
         elapsed = time.time() - start_time
         print("  Sentence pass done: %.1f minutes" % (elapsed / 60))
+    elif untranslated and args.no_gemini:
+        print("  [--no-gemini] Skipping Gemini sentence translation for %d lines" %
+              len(untranslated))
 
     filled = sum(1 for v in sentence_progress.values() if v)
     print("  Sentence cache: %d filled, %d empty" % (filled, len(sentence_progress) - filled))
@@ -911,7 +954,10 @@ def main():
         print("  %d words re-queued (empty senses)" % gap_count)
     print("  %d words need Gemini analysis" % len(words_for_llm))
 
-    if words_for_llm:
+    if words_for_llm and args.no_gemini:
+        print("  [--no-gemini] Skipping Gemini word analysis for %d words" % len(words_for_llm))
+
+    if words_for_llm and not args.no_gemini:
         w_batch_size = args.batch_size
         total_w_batches = (len(words_for_llm) + w_batch_size - 1) // w_batch_size
         est_minutes = total_w_batches / args.rpm
@@ -1018,6 +1064,9 @@ def main():
     print("\n=== Assembling final vocabulary ===")
     final_entries = []
 
+    # Frozenset for O(1) provenance lookups
+    genius_lines = frozenset(genius_index.keys()) if genius_index else None
+
     for entry in all_words:
         w = entry["word"]
         w_lower = w.lower()
@@ -1026,21 +1075,69 @@ def main():
         if (w_lower in PROPER_NOUNS or w_lower in INTERJECTIONS
                 or w_lower in EXTRA_ENGLISH or w_lower in CURATED_TRANSLATIONS
                 or is_short_junk):
-            final_entries.append(build_entry_from_overrides_only(entry, sentence_progress))
+            final_entries.append(build_entry_from_overrides_only(entry, sentence_progress, genius_lines))
         elif w in word_progress:
-            final_entries.append(build_entry_from_llm(entry, word_progress[w], sentence_progress))
+            final_entries.append(build_entry_from_llm(entry, word_progress[w], sentence_progress, genius_lines))
         else:
-            final_entries.append(build_entry_from_overrides_only(entry, sentence_progress))
+            final_entries.append(build_entry_from_overrides_only(entry, sentence_progress, genius_lines))
 
-    # Annotate MWE memberships
+    # Annotate MWE memberships with example sentences
     if mwe_index:
+        # Build line index: {line_text: {song_id, title}} from all word examples
+        line_info = {}  # type: Dict[str, Dict]
+        for entry in all_words:
+            for ex in entry.get("examples", []):
+                line = ex.get("line", "")
+                if line and line not in line_info:
+                    sid = ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"]
+                    line_info[line] = {"song_id": sid, "title": ex.get("title", "")}
+
+        # Pre-compute: for each MWE expression, find lines with translations
+        mwe_examples_cache = {}  # type: Dict[str, List[Dict]]
+        max_mwe_examples = 3
+        for w_lower, mwe_list in mwe_index.items():
+            for mwe_entry in mwe_list:
+                expr = mwe_entry["expression"]
+                if expr in mwe_examples_cache:
+                    continue
+                expr_lower = expr.lower()
+                examples = []
+                for line, info in line_info.items():
+                    if expr_lower in line.lower():
+                        english = sentence_progress.get(line, "")
+                        if english:
+                            source = "genius" if genius_lines and line in genius_lines else "gemini"
+                            examples.append({
+                                "song": info["song_id"],
+                                "song_name": info["title"],
+                                "spanish": line,
+                                "english": english,
+                                "translation_source": source,
+                            })
+                            if len(examples) >= max_mwe_examples:
+                                break
+                mwe_examples_cache[expr] = examples
+
         mwe_count = 0
+        mwe_with_examples = 0
         for fe in final_entries:
             w_lower = fe["word"].lower()
             if w_lower in mwe_index:
-                fe["mwe_memberships"] = mwe_index[w_lower]
+                memberships = []
+                for mwe_entry in mwe_index[w_lower]:
+                    expr = mwe_entry["expression"]
+                    entry_copy = {
+                        "expression": expr,
+                        "translation": mwe_entry["translation"],
+                        "examples": mwe_examples_cache.get(expr, []),
+                    }
+                    memberships.append(entry_copy)
+                    if entry_copy["examples"]:
+                        mwe_with_examples += 1
+                fe["mwe_memberships"] = memberships
                 mwe_count += 1
-        print("  %d entries annotated with MWE memberships" % mwe_count)
+        print("  %d entries annotated with MWE memberships (%d MWE entries have examples)" %
+              (mwe_count, mwe_with_examples))
 
     mark_most_frequent_lemma(final_entries)
     assign_unique_ids(final_entries)

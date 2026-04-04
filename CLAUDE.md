@@ -73,29 +73,47 @@ All pipeline scripts are run from the **project root** (`Fluency/`), not from in
 
 ## Artist Vocabulary Pipeline
 
-The pipeline turns an artist's discography into a structured vocabulary deck. Steps: scrape lyrics (Genius API) -> tokenise & count -> detect proper nouns (Gemini) -> merge Caribbean elisions -> Gemini LLM analysis (POS, lemma, translation) -> flag cognates -> rerank.
+The pipeline turns an artist's discography into a structured vocabulary deck. Steps: scrape lyrics (Genius API) -> scrape Genius translations (step 1b) -> tokenise & count -> detect proper nouns (Gemini) -> merge Caribbean elisions -> Gemini LLM analysis (POS, lemma, translation) -> flag cognates -> rerank.
 
 **Shared scripts** live in `Artists/scripts/`. Each artist has a data directory under `Artists/` with an `artist.json` config file.
 
 Key files:
 - `Artists/run_pipeline.py` — shared orchestrator
-- `Artists/scripts/6_llm_analyze.py` — main analysis step (Gemini)
+- `Artists/scripts/1b_scrape_translations.py` — scrapes community English translations from Genius
+- `Artists/scripts/6_llm_analyze.py` — main analysis step (Gemini + Genius translations)
 - `Artists/Bad Bunny/artist.json` — artist config (name, genius_query, vocabulary_file)
 - `Artists/Bad Bunny/BadBunnyvocabulary.json` — final output consumed by the app
+- `Artists/Bad Bunny/data/input/translations/translations.json` — Genius community translations
 - `Artists/DEDUP_INSTRUCTIONS.md` — how to maintain duplicate_songs.json for any artist
 
 Quick run:
 ```bash
 .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"
 .venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --from-step 3
+.venv/bin/python3 Artists/run_pipeline.py --artist "Anuel" --no-gemini  # Free: Genius translations only
 ```
+
+### `--no-gemini` mode
+
+Step 6 supports `--no-gemini` to skip all Gemini API calls. Uses only Genius community translations (from step 1b) + curated overrides. No API key needed. Produces a valid but lower-quality vocabulary (no POS/lemma/sense analysis). Useful for cheaply ingesting a new artist's corpus.
+
+### Sentence translation layers
+
+Step 6 uses two translation sources, checked in order:
+1. **Genius index** (Layer 1): Built fresh every run from `translations.json` + batch files. Free. Covers ~40% of lines for Bad Bunny (190/537 songs have Genius translations).
+2. **Gemini cache** (Layer 2): Persistent `sentence_translations.json`. Expensive but high quality. Only called for lines Genius doesn't cover.
+
+Genius never overwrites existing Gemini translations. Each example in the output has a `translation_source` field ("genius" or "gemini") for auditing.
+
+**Important for MWEs**: The Gemini cache only covers ~15,600 unique lines (those used as word examples). The full corpus has ~33,800 lines. Genius translations cover an additional ~2,300 lines that Gemini never translated. This matters when building MWE example sentences — many MWE-containing lines exist only in the Genius index.
 
 ### Adding a new artist
 1. Create `Artists/NewArtist/artist.json` with `name`, `genius_query`, `vocabulary_file`
 2. Run step 1: `.venv/bin/python3 Artists/scripts/1_download_lyrics.py --artist-dir "Artists/NewArtist"`
-3. Curate `duplicate_songs.json` (see `Artists/DEDUP_INSTRUCTIONS.md`)
-4. Copy reusable curated data from an existing artist (conjugation_families, skip_mwes, etc.)
-5. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"`
+3. Run step 1b: `.venv/bin/python3 Artists/scripts/1b_scrape_translations.py --artist-dir "Artists/NewArtist"`
+4. Curate `duplicate_songs.json` (see `Artists/DEDUP_INSTRUCTIONS.md`)
+5. Copy reusable curated data from an existing artist (conjugation_families, skip_mwes, etc.)
+6. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"` (or `--no-gemini` for free)
 
 ---
 
