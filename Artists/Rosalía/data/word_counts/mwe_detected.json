@@ -1,0 +1,531 @@
+{
+  "mwes": [
+    {
+      "expression": "voy a",
+      "translation": "I'm going to",
+      "count": 43
+    },
+    {
+      "expression": "pa' que",
+      "translation": "so that, in order to",
+      "count": 32
+    },
+    {
+      "expression": "sé que",
+      "translation": "I know that",
+      "count": 32
+    },
+    {
+      "expression": "no hay",
+      "translation": "there isn't, there's no",
+      "count": 27
+    },
+    {
+      "expression": "de mí",
+      "translation": "about me, of me",
+      "count": 26
+    },
+    {
+      "expression": "de ti",
+      "translation": "about you, of you",
+      "count": 25
+    },
+    {
+      "expression": "esta noche",
+      "translation": "tonight",
+      "count": 18
+    },
+    {
+      "expression": "te quiero",
+      "translation": "I love you / I want you",
+      "count": 17
+    },
+    {
+      "expression": "tú ere'",
+      "translation": "you are (elided)",
+      "count": 17
+    },
+    {
+      "expression": "no sé",
+      "translation": "I don't know",
+      "count": 17
+    },
+    {
+      "expression": "quiero que",
+      "translation": "I want (someone) to",
+      "count": 15
+    },
+    {
+      "expression": "por qué",
+      "translation": "why",
+      "count": 12
+    },
+    {
+      "expression": "la disco",
+      "translation": "the club",
+      "count": 12
+    },
+    {
+      "expression": "a ver",
+      "translation": "let's see",
+      "count": 11
+    },
+    {
+      "expression": "como si",
+      "translation": "as if",
+      "count": 11
+    },
+    {
+      "expression": "a ti te",
+      "translation": "to you (emphatic)",
+      "count": 11
+    },
+    {
+      "expression": "to' lo que",
+      "translation": "everything that (elided)",
+      "count": 10
+    },
+    {
+      "expression": "encima de",
+      "translation": "on top of",
+      "count": 9
+    },
+    {
+      "expression": "se siente",
+      "translation": "feels, it feels",
+      "count": 9
+    },
+    {
+      "expression": "te voy a",
+      "translation": "I'm going to (you)",
+      "count": 9
+    },
+    {
+      "expression": "me voy",
+      "translation": "I'm leaving",
+      "count": 8
+    },
+    {
+      "expression": "se va",
+      "translation": "leaves, goes away",
+      "count": 8
+    },
+    {
+      "expression": "de verdad",
+      "translation": "really, truly, for real",
+      "count": 7
+    },
+    {
+      "expression": "se ve",
+      "translation": "looks, appears",
+      "count": 7
+    },
+    {
+      "expression": "dime si",
+      "translation": "tell me if",
+      "count": 7
+    },
+    {
+      "expression": "creo que",
+      "translation": "I think that, I believe that",
+      "count": 7
+    },
+    {
+      "expression": "otra vez",
+      "translation": "again",
+      "count": 7
+    },
+    {
+      "expression": "pa' qué",
+      "translation": "what for",
+      "count": 6
+    },
+    {
+      "expression": "hasta que",
+      "translation": "until",
+      "count": 6
+    },
+    {
+      "expression": "a mí me",
+      "translation": "to me (emphatic)",
+      "count": 6
+    },
+    {
+      "expression": "por ahí",
+      "translation": "around there, out and about",
+      "count": 5
+    },
+    {
+      "expression": "lo mismo",
+      "translation": "the same thing",
+      "count": 5
+    },
+    {
+      "expression": "hay que",
+      "translation": "one must, you have to",
+      "count": 5
+    },
+    {
+      "expression": "sin ti",
+      "translation": "without you",
+      "count": 5
+    },
+    {
+      "expression": "e' que",
+      "translation": "it's that (elided)",
+      "count": 5
+    },
+    {
+      "expression": "le gusta",
+      "translation": "he/she likes",
+      "count": 5
+    },
+    {
+      "expression": "dice que",
+      "translation": "says that",
+      "count": 5
+    },
+    {
+      "expression": "de nuevo",
+      "translation": "again",
+      "count": 4
+    },
+    {
+      "expression": "ya no hay",
+      "translation": "there's no longer",
+      "count": 4
+    },
+    {
+      "expression": "me siento",
+      "translation": "I feel",
+      "count": 4
+    },
+    {
+      "expression": "me dice",
+      "translation": "tells me",
+      "count": 4
+    },
+    {
+      "expression": "por eso",
+      "translation": "that's why, for that reason",
+      "count": 3
+    },
+    {
+      "expression": "lo nuestro",
+      "translation": "our thing, what we have",
+      "count": 3
+    },
+    {
+      "expression": "cada vez que",
+      "translation": "every time that",
+      "count": 3
+    },
+    {
+      "expression": "desde que",
+      "translation": "since, ever since",
+      "count": 3
+    },
+    {
+      "expression": "to' el mundo",
+      "translation": "everybody",
+      "count": 3
+    },
+    {
+      "expression": "un flow",
+      "translation": "a style, a vibe",
+      "count": 3
+    },
+    {
+      "expression": "no sé qué",
+      "translation": "I don't know what",
+      "count": 3
+    },
+    {
+      "expression": "todo lo que",
+      "translation": "everything that",
+      "count": 3
+    },
+    {
+      "expression": "se va a",
+      "translation": "is going to",
+      "count": 3
+    },
+    {
+      "expression": "a veces",
+      "translation": "sometimes",
+      "count": 3
+    },
+    {
+      "expression": "a ver si",
+      "translation": "let's see if",
+      "count": 2
+    },
+    {
+      "expression": "un par de",
+      "translation": "a couple of",
+      "count": 2
+    },
+    {
+      "expression": "lo mío",
+      "translation": "my thing, what's mine",
+      "count": 2
+    },
+    {
+      "expression": "hace tiempo",
+      "translation": "a while ago",
+      "count": 2
+    },
+    {
+      "expression": "antes que",
+      "translation": "before",
+      "count": 2
+    },
+    {
+      "expression": "me puse",
+      "translation": "I put on / I got",
+      "count": 2
+    },
+    {
+      "expression": "se pone",
+      "translation": "gets (emotional), puts on",
+      "count": 2
+    },
+    {
+      "expression": "la nota",
+      "translation": "the vibe, the high",
+      "count": 2
+    },
+    {
+      "expression": "no sé si",
+      "translation": "I don't know if",
+      "count": 2
+    },
+    {
+      "expression": "me voy a",
+      "translation": "I'm going to",
+      "count": 2
+    },
+    {
+      "expression": "por más que",
+      "translation": "no matter how much",
+      "count": 1
+    },
+    {
+      "expression": "hace tiempo que",
+      "translation": "it's been a while since",
+      "count": 1
+    },
+    {
+      "expression": "así que",
+      "translation": "so, therefore",
+      "count": 1
+    },
+    {
+      "expression": "después de",
+      "translation": "after",
+      "count": 1
+    },
+    {
+      "expression": "a mí no",
+      "translation": "not me (emphatic)",
+      "count": 1
+    },
+    {
+      "expression": "mí no me",
+      "translation": "don't (emphatic negation)",
+      "count": 1
+    },
+    {
+      "expression": "me llama",
+      "translation": "calls me",
+      "count": 1
+    },
+    {
+      "expression": "te juro",
+      "translation": "I swear to you",
+      "count": 1
+    },
+    {
+      "expression": "te juro que",
+      "translation": "I swear that",
+      "count": 1
+    },
+    {
+      "expression": "dile que",
+      "translation": "tell him/her that",
+      "count": 1
+    },
+    {
+      "expression": "hijo e puta",
+      "translation": "son of a bitch",
+      "count": 1
+    },
+    {
+      "expression": "la gana",
+      "translation": "the desire, the urge",
+      "count": 1
+    },
+    {
+      "expression": "tienen que",
+      "translation": "they have to",
+      "count": 1
+    },
+    {
+      "expression": "yo hago lo que",
+      "translation": "I do what(ever)",
+      "count": 0
+    },
+    {
+      "expression": "quemando rue'a sin carnet",
+      "translation": null,
+      "count": 6,
+      "pmi": 34.1,
+      "num_songs": 3
+    },
+    {
+      "expression": "hoy salgo con mi baby",
+      "translation": null,
+      "count": 6,
+      "pmi": 33.5,
+      "num_songs": 5
+    },
+    {
+      "expression": "baby de la disco coroná'",
+      "translation": null,
+      "count": 6,
+      "pmi": 32.3,
+      "num_songs": 5
+    },
+    {
+      "expression": "esto es pa' que quede",
+      "translation": null,
+      "count": 8,
+      "pmi": 29.6,
+      "num_songs": 3
+    },
+    {
+      "expression": "salgo con mi baby de",
+      "translation": null,
+      "count": 6,
+      "pmi": 29.4,
+      "num_songs": 5
+    },
+    {
+      "expression": "mi baby de la disco",
+      "translation": null,
+      "count": 6,
+      "pmi": 28.0,
+      "num_songs": 5
+    },
+    {
+      "expression": "iré joven pa' la",
+      "translation": null,
+      "count": 6,
+      "pmi": 25.0,
+      "num_songs": 3
+    },
+    {
+      "expression": "con mi baby de la",
+      "translation": null,
+      "count": 7,
+      "pmi": 23.9,
+      "num_songs": 5
+    },
+    {
+      "expression": "y si es mentira",
+      "translation": null,
+      "count": 5,
+      "pmi": 20.7,
+      "num_songs": 3
+    },
+    {
+      "expression": "no es que sea",
+      "translation": null,
+      "count": 5,
+      "pmi": 16.3,
+      "num_songs": 3
+    },
+    {
+      "expression": "que será celosa",
+      "translation": null,
+      "count": 5,
+      "pmi": 16.1,
+      "num_songs": 3
+    },
+    {
+      "expression": "como ella viene",
+      "translation": null,
+      "count": 7,
+      "pmi": 15.7,
+      "num_songs": 3
+    },
+    {
+      "expression": "no tengo cura",
+      "translation": null,
+      "count": 6,
+      "pmi": 14.1,
+      "num_songs": 3
+    },
+    {
+      "expression": "a dónde vas",
+      "translation": null,
+      "count": 5,
+      "pmi": 14.0,
+      "num_songs": 3
+    },
+    {
+      "expression": "encima de mí",
+      "translation": null,
+      "count": 6,
+      "pmi": 13.3,
+      "num_songs": 3
+    },
+    {
+      "expression": "voy a hacer",
+      "translation": null,
+      "count": 6,
+      "pmi": 13.2,
+      "num_songs": 3
+    },
+    {
+      "expression": "a tu lado",
+      "translation": null,
+      "count": 6,
+      "pmi": 13.0,
+      "num_songs": 3
+    },
+    {
+      "expression": "a los ojos",
+      "translation": null,
+      "count": 6,
+      "pmi": 12.8,
+      "num_songs": 4
+    },
+    {
+      "expression": "cerca de ti",
+      "translation": null,
+      "count": 6,
+      "pmi": 12.6,
+      "num_songs": 3
+    },
+    {
+      "expression": "lo va' a",
+      "translation": null,
+      "count": 5,
+      "pmi": 12.4,
+      "num_songs": 3
+    },
+    {
+      "expression": "en mi mente",
+      "translation": null,
+      "count": 7,
+      "pmi": 12.2,
+      "num_songs": 7
+    }
+  ],
+  "candidates": [],
+  "stats": {
+    "confirmed_count": 75,
+    "pmi_detected_count": 21
+  }
+}

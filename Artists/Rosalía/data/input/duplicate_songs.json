@@ -1,0 +1,520 @@
+{
+  "description": "Rosalía corpus deduplication and exclusion list",
+  "duplicates": {
+    "8408288": {
+      "keep": "7515170",
+      "duplicate_title": "HENTAI",
+      "original_title": "HENTAI"
+    },
+    "11594304": {
+      "keep": "7515170",
+      "duplicate_title": "hentai",
+      "original_title": "HENTAI"
+    },
+    "13216158": {
+      "keep": "12548052",
+      "duplicate_title": "Berghain (Remix)",
+      "original_title": "Berghain"
+    },
+    "9463795": {
+      "keep": "7515279",
+      "duplicate_title": "SAOKO (Mixed)",
+      "original_title": "SAOKO"
+    },
+    "5136596": {
+      "keep": "4425584",
+      "duplicate_title": "Con Altura",
+      "original_title": "Con Altura"
+    },
+    "7914269": {
+      "keep": "4425584",
+      "duplicate_title": "Con Altura (En vivo)",
+      "original_title": "Con Altura"
+    },
+    "8365385": {
+      "keep": "7288792",
+      "duplicate_title": "LA FAMA (Live en el Palau Sant Jordi)",
+      "original_title": "LA FAMA"
+    },
+    "8109088": {
+      "keep": "7288792",
+      "duplicate_title": "LA FAMA",
+      "original_title": "LA FAMA"
+    },
+    "10001760": {
+      "keep": "8173139",
+      "duplicate_title": "Despechá",
+      "original_title": "DESPECHÁ"
+    },
+    "8368488": {
+      "keep": "8173139",
+      "duplicate_title": "DESPECHÁ (Mixed)",
+      "original_title": "DESPECHÁ"
+    },
+    "8550664": {
+      "keep": "8173139",
+      "duplicate_title": "DESPECHÁ",
+      "original_title": "DESPECHÁ"
+    },
+    "8790813": {
+      "keep": "8173139",
+      "duplicate_title": "DESPECHÁ (Remix) [Mixed]",
+      "original_title": "DESPECHÁ"
+    },
+    "11145770": {
+      "keep": "8916306",
+      "duplicate_title": "BESO (Mixed)",
+      "original_title": "BESO"
+    },
+    "7515172": {
+      "keep": "8365376",
+      "duplicate_title": "CANDY",
+      "original_title": "CANDY (Remix)"
+    },
+    "8408292": {
+      "keep": "8365376",
+      "duplicate_title": "CANDY",
+      "original_title": "CANDY (Remix)"
+    },
+    "3960028": {
+      "keep": "2814756",
+      "duplicate_title": "Antes de Morirme",
+      "original_title": "Antes de Morirme"
+    },
+    "10718184": {
+      "keep": "5002535",
+      "duplicate_title": "A Palé (Remix) [Mixed]",
+      "original_title": "A Palé"
+    },
+    "9360749": {
+      "keep": "8701915",
+      "duplicate_title": "LLYLM (Mixed)",
+      "original_title": "LLYLM"
+    },
+    "7666265": {
+      "keep": "10135318",
+      "duplicate_title": "MOTOMAMI",
+      "original_title": "Motomami"
+    },
+    "12581293": {
+      "keep": "12660487",
+      "duplicate_title": "Dios Es Un Stalker",
+      "original_title": "Dios Es Un Stalker (Versión Física)"
+    },
+    "13104187": {
+      "keep": "12581295",
+      "duplicate_title": "Sauvignon Blanc (Instrumental)",
+      "original_title": "Sauvignon Blanc"
+    },
+    "7492576": {
+      "keep": "4801759",
+      "duplicate_title": "KLK (Remix)",
+      "original_title": "KLK"
+    },
+    "5697081": {
+      "keep": "4801759",
+      "duplicate_title": "KLK (Instrumental)",
+      "original_title": "KLK"
+    },
+    "6080014": {
+      "keep": "8074555",
+      "duplicate_title": "Rosalia",
+      "original_title": "Rosalia"
+    },
+    "9341039": {
+      "keep": "7142770",
+      "duplicate_title": "Linda (Mickael Espinosa Edit) [Mixed]",
+      "original_title": "Linda"
+    },
+    "6325201": {
+      "keep": "4801759",
+      "duplicate_title": "KLK (Edit)",
+      "original_title": "KLK"
+    },
+    "12825755": {
+      "keep": "4801759",
+      "duplicate_title": "KLK (Demo)",
+      "original_title": "KLK"
+    },
+    "7557862": {
+      "keep": "6181749",
+      "duplicate_title": "MEMENTO MORI Ep. 22 Tracklist",
+      "original_title": "Blinding Lights (Remix)"
+    },
+    "3646826": {
+      "keep": "3646825",
+      "duplicate_title": "En Mí (Interlude)",
+      "original_title": "Brillo"
+    }
+  },
+  "placeholders": [
+    "11141556"
+  ],
+  "non_spanish": {
+    "description": "Non-Spanish songs",
+    "songs": {
+      "12581289": {
+        "title": "Mio Cristo Piange Diamanti",
+        "language": "italian",
+        "reason": "Entirely in Italian"
+      },
+      "7515174": {
+        "title": "G3 N15",
+        "language": "catalan",
+        "reason": "Catalan markers: 6"
+      },
+      "4674074": {
+        "title": "Milionària",
+        "language": "catalan",
+        "reason": "Catalan markers: 13"
+      },
+      "8927907": {
+        "title": "HÉROE",
+        "language": "catalan",
+        "reason": "Catalan markers: 6"
+      },
+      "12581297": {
+        "title": "Memória",
+        "language": "portuguese",
+        "reason": "Entirely in Portuguese"
+      },
+      "6074510": {
+        "title": "trademark usa",
+        "language": "not_rosalia",
+        "reason": "Song by Baby Keem, not by Rosalía"
+      },
+      "9590607": {
+        "title": "Oral",
+        "language": "not_rosalia",
+        "reason": "Song by Björk, not by Rosalía"
+      },
+      "5495550": {
+        "title": "Goteo",
+        "language": "not_rosalia",
+        "reason": "Song by Paloma Mami, not by Rosalía"
+      },
+      "3852390": {
+        "title": "¡Ay, Paquita!",
+        "language": "not_rosalia",
+        "reason": "Song by Paquita Salas, not by Rosalía"
+      },
+      "10997247": {
+        "title": "Normal",
+        "language": "not_rosalia",
+        "reason": "Song by Carolina Durante, not by Rosalía"
+      },
+      "10347013": {
+        "title": "I Had A Heart",
+        "language": "not_rosalia",
+        "reason": "Song by Sia, not by Rosalía"
+      },
+      "10635606": {
+        "title": "I’ll Go Anywhere",
+        "language": "not_rosalia",
+        "reason": "Song by Mustafa, not by Rosalía"
+      },
+      "10635611": {
+        "title": "Nouri",
+        "language": "not_rosalia",
+        "reason": "Song by Mustafa, not by Rosalía"
+      },
+      "6827248": {
+        "title": "Nothing’s Special",
+        "language": "not_rosalia",
+        "reason": "Song by Oneohtrix Point Never, not by Rosalía"
+      },
+      "3856465": {
+        "title": "Un Largo Viaje",
+        "language": "not_rosalia",
+        "reason": "Song by Fernando Vacas, not by Rosalía"
+      },
+      "4108413": {
+        "title": "Cuando te beso (En Directo)",
+        "language": "not_rosalia",
+        "reason": "Song by Niña Pastori, not by Rosalía"
+      },
+      "13011114": {
+        "title": "PERDIENDO LA FE",
+        "language": "not_rosalia",
+        "reason": "Song by Yung Beef, not by Rosalía"
+      },
+      "12494526": {
+        "title": "bb!",
+        "language": "not_rosalia",
+        "reason": "Song by Rojuu, not by Rosalía"
+      },
+      "4315592": {
+        "title": "Llama",
+        "language": "not_rosalia",
+        "reason": "Song by Ana Torroja, not by Rosalía"
+      },
+      "4657107": {
+        "title": "Con la Peña",
+        "language": "not_rosalia",
+        "reason": "Song by Cálido Lehamo, not by Rosalía"
+      },
+      "5146381": {
+        "title": "A Palé (Gesaffelstein Remix)",
+        "language": "not_rosalia",
+        "reason": "Song by Gesaffelstein, not by Rosalía"
+      },
+      "5859788": {
+        "title": "Princess (Remix)",
+        "language": "not_rosalia",
+        "reason": "Song by Grimes, not by Rosalía"
+      },
+      "8444985": {
+        "title": "Seguiriya Madre",
+        "language": "not_rosalia",
+        "reason": "Song by Niño de Elche, not by Rosalía"
+      },
+      "6059107": {
+        "title": "Los Bobo Son Mio (Remix)",
+        "language": "not_rosalia",
+        "reason": "Song by Haraca Kiko, not by Rosalía"
+      },
+      "3793690": {
+        "title": "Retsu",
+        "language": "not_rosalia",
+        "reason": "Song by Dj Swet, not by Rosalía"
+      },
+      "8084931": {
+        "title": "No Lo Mereces*",
+        "language": "not_rosalia",
+        "reason": "Song by Yailin la Mas Viral, not by Rosalía"
+      },
+      "10839775": {
+        "title": "Chana",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "8313134": {
+        "title": "DESPECHÁ (DJ Pasto Remix)",
+        "language": "not_rosalia",
+        "reason": "Song by DJ Pasto, not by Rosalía"
+      },
+      "8074555": {
+        "title": "Rosalia",
+        "language": "not_rosalia",
+        "reason": "Song by Dice Ailes, not by Rosalía"
+      },
+      "9313181": {
+        "title": "Besos",
+        "language": "not_rosalia",
+        "reason": "Song by Mr. Don, not by Rosalía"
+      },
+      "6386839": {
+        "title": "TBA",
+        "language": "not_rosalia",
+        "reason": "Song by Lunay, not by Rosalía"
+      },
+      "7541387": {
+        "title": "Multiplicar",
+        "language": "not_rosalia",
+        "reason": "Song by José Luis Montón, not by Rosalía"
+      },
+      "10261749": {
+        "title": "Oral (Olof Dreijer Remix)",
+        "language": "not_rosalia",
+        "reason": "Song by Björk, not by Rosalía"
+      },
+      "6973732": {
+        "title": "Cuando Tú Me Bailas",
+        "language": "not_rosalia",
+        "reason": "Song by Ana Torroja, not by Rosalía"
+      },
+      "8710237": {
+        "title": "Habla (Remix)",
+        "language": "not_rosalia",
+        "reason": "Song by Junior Person, not by Rosalía"
+      },
+      "5206705": {
+        "title": "Océano",
+        "language": "not_rosalia",
+        "reason": "Song by Mi.amargo, not by Rosalía"
+      },
+      "9677782": {
+        "title": "Mi Jardín (Remastered) [Bonus Track]",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "5391356": {
+        "title": "Dolerme (Cover)",
+        "language": "not_rosalia",
+        "reason": "Song by Migué Chupete, not by Rosalía"
+      },
+      "10135318": {
+        "title": "Motomami",
+        "language": "not_rosalia",
+        "reason": "Song by Author & Punisher, not by Rosalía"
+      },
+      "6973737": {
+        "title": "Mil Razones",
+        "language": "not_rosalia",
+        "reason": "Song by Ana Torroja, not by Rosalía"
+      },
+      "9677768": {
+        "title": "Al Aire",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9667658": {
+        "title": "Al Filo",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "11927164": {
+        "title": "Catalina en Gran Vía",
+        "language": "not_rosalia",
+        "reason": "Song by Raül Refree, not by Rosalía"
+      },
+      "9677772": {
+        "title": "Pañuelicos",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9350787": {
+        "title": "Herois obscurs",
+        "language": "not_rosalia",
+        "reason": "Song by Ivan Santaeularia, not by Rosalía"
+      },
+      "10839812": {
+        "title": "Mi Jardín",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9362223": {
+        "title": "SAOKO PAPI (Dennis AlexD Remake)",
+        "language": "not_rosalia",
+        "reason": "Song by Dennis AlexD, not by Rosalía"
+      },
+      "9677763": {
+        "title": "La Puerta",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9677769": {
+        "title": "Árbol de Vida",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9677770": {
+        "title": "Lo Que el Viento Trae…",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9667637": {
+        "title": "Solidere Solitaire",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "10913883": {
+        "title": "PIENSO EN TU MIRÁ",
+        "language": "not_rosalia",
+        "reason": "Song by Miguel Campello, not by Rosalía"
+      },
+      "9677778": {
+        "title": "Amalgama (Bonus Track)",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "12205486": {
+        "title": "Despecha",
+        "language": "not_rosalia",
+        "reason": "Song by ODC (FRA), not by Rosalía"
+      },
+      "9677773": {
+        "title": "Amalgama / Upakatung (Hidden Track)",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9677766": {
+        "title": "Chatina",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "9677776": {
+        "title": "Upakatung (Remastered) [Bonus Track]",
+        "language": "not_rosalia",
+        "reason": "Song by Kejaleo, not by Rosalía"
+      },
+      "12078075": {
+        "title": "Beso (Cover)",
+        "language": "not_rosalia",
+        "reason": "Song by Lenay, not by Rosalía"
+      },
+      "11551200": {
+        "title": "Despechada (Cover)",
+        "language": "not_rosalia",
+        "reason": "Song by Eugenia Quevedo, not by Rosalía"
+      },
+      "12507893": {
+        "title": "Very Mine",
+        "language": "not_rosalia",
+        "reason": "Song by Nekotina, not by Rosalía"
+      },
+      "13223811": {
+        "title": "Mi Vida",
+        "language": "not_rosalia",
+        "reason": "Song by Selena Gomez, not by Rosalía"
+      },
+      "6893809": {
+        "title": "Aquel Nap ZzZz",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "8220187": {
+        "title": "LOKERA",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "6151585": {
+        "title": "Dile a Él",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "8527342": {
+        "title": "QUÉ RICO CH**GAMOS",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "7729199": {
+        "title": "MUSEO",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "8535476": {
+        "title": "CORAZÓN DESPEINADO",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "6151586": {
+        "title": "Strawberry Kiwi",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "7678370": {
+        "title": "CAPRICHOSO",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "9302170": {
+        "title": "INQUIETO",
+        "language": "not_rosalia",
+        "reason": "Rauw Alejandro song, Rosalía not performing"
+      },
+      "8940020": {
+        "title": "CUPRA X ROSALÍA",
+        "language": "not_rosalia",
+        "reason": "Brand advertisement, not a song"
+      }
+    }
+  },
+  "stats": {
+    "total_songs": 241,
+    "duplicates": 29,
+    "placeholders": 1,
+    "non_spanish": 71,
+    "unique_songs": 140
+  }
+}

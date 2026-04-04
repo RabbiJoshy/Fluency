@@ -118,18 +118,48 @@ def scrape_lyrics_by_id(genius_client, song_id, max_tries=5):
 def song_meta_to_record(meta, lyrics):
     # type: (Dict, Optional[str]) -> Dict[str, Any]
     """Build a JSON-serializable record from song metadata + scraped lyrics."""
-    return {
+    featured = [a.get("name", "") for a in meta.get("featured_artists", [])]
+    rec = {
         "id": meta["id"],
         "title": meta.get("title", ""),
         "artist": meta.get("primary_artist", {}).get("name", ARTIST_QUERY),
         "url": meta.get("url", ""),
         "lyrics": lyrics,
     }
+    if featured:
+        rec["featured_artists"] = featured
+    return rec
 
 
 # ---------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------
+
+def _is_relevant_song(meta, artist_name, lyrics=None):
+    """Check if a song is by or features the target artist.
+
+    Genius artist_songs returns everything with any credit (writer, producer,
+    sample, etc.). We only want songs where the artist actually performs.
+
+    The `artist_names` field is the most reliable single check — it's the
+    display string that includes primary artists ("A & B") and features
+    ("A (Ft. B)"). Catches all three cases in one check.
+    """
+    name_lower = artist_name.lower()
+    name_ascii = name_lower.replace("í", "i").replace("á", "a").replace("é", "e").replace("ó", "o").replace("ú", "u").replace("ñ", "n")
+
+    # artist_names includes primary + featured: "Billie Eilish & ROSALÍA",
+    # "LISA (Ft. ROSALÍA)", "Travis Scott (Ft. Lil Baby & ROSALÍA)"
+    artist_names = meta.get("artist_names", "").lower()
+    if name_lower in artist_names or name_ascii in artist_names:
+        return True
+
+    # Fallback: check lyrics for credit lines like "[Rosalía]"
+    if lyrics and (name_lower in lyrics.lower() or name_ascii in lyrics.lower()):
+        return True
+
+    return False
+
 
 def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
                            include_remixes=False, retry_nulls=False):
@@ -184,12 +214,22 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
 
         # Filter out already-done songs
         metas = [m for m in metas if m.get("id") not in done_ids]
+        # Pre-filter: skip songs that are clearly not by this artist
+        # (check primary artist + URL; lyrics check happens post-scrape)
+        pre_skipped = [m for m in metas if not _is_relevant_song(m, artist_name)]
+        metas = [m for m in metas if _is_relevant_song(m, artist_name)]
+        if pre_skipped:
+            # Don't mark as done yet — we'll check lyrics on retry if needed
+            print("  Pre-skipped %d (not primary/URL): %s" % (
+                len(pre_skipped),
+                ", ".join(m.get("title", "?")[:30] for m in pre_skipped[:3])))
 
         if not metas:
             page = next_page
             continue
 
         batch = []
+        skipped_count = 0
         for m in metas:
             song_id = m["id"]
             title = m.get("title", "")
@@ -204,11 +244,36 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
             done_ids.add(song_id)
             save_done_ids(progress_path, done_ids)
 
-        batch_file = out_dir / ("batch_%03d_page_%d.json" % (batch_num, page))
-        batch_file.write_text(json.dumps(batch, ensure_ascii=False, indent=2))
-        print("Saved %d songs -> %s" % (len(batch), batch_file))
+        # Also check pre-skipped songs — scrape and keep if artist in lyrics
+        for m in pre_skipped:
+            song_id = m["id"]
+            title = m.get("title", "")
 
-        batch_num += 1
+            print("  Checking: %s by %s (ID: %d)..." % (
+                title[:40], m.get("primary_artist", {}).get("name", "?"), song_id))
+            lyrics = scrape_lyrics_by_id(genius_client, song_id)
+
+            if _is_relevant_song(m, artist_name, lyrics=lyrics):
+                rec = song_meta_to_record(m, lyrics)
+                batch.append(rec)
+                total_new += 1
+                print("    Kept (artist found in lyrics)")
+            else:
+                skipped_count += 1
+                print("    Skipped (not by/featuring %s)" % artist_name)
+
+            done_ids.add(song_id)
+            save_done_ids(progress_path, done_ids)
+
+        if batch:
+            batch_file = out_dir / ("batch_%03d_page_%d.json" % (batch_num, page))
+            batch_file.write_text(json.dumps(batch, ensure_ascii=False, indent=2))
+            print("Saved %d songs -> %s" % (len(batch), batch_file))
+            batch_num += 1
+
+        if skipped_count:
+            print("  (%d songs skipped this page)" % skipped_count)
+
         page = next_page
 
     print("\nDone! Scraped %d new songs." % total_new)
