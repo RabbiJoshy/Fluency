@@ -9,23 +9,20 @@ async function loadConfig() {
         config = await configResponse.json();
         cefrLevelsConfig = await cefrResponse.json();
 
-        // Override config for Bad Bunny mode
-        if (isBadBunnyMode) {
-            config.languages.spanish = {
-                ...config.languages.spanish,
-                name: "Spanish (Bad Bunny)",
-                dataPath: "Artists/Bad Bunny/BadBunnyvocabulary.json",
-                indexPath: "Artists/Bad Bunny/BadBunnyvocabulary.index.json",
-                examplesPath: "Artists/Bad Bunny/BadBunnyvocabulary.examples.json",
-                ppmDataPath: null, // PPM data is embedded in vocabulary JSON
-                colorTheme: {
-                    primary: "#ED1C24",   // Puerto Rican flag red
-                    secondary: "#0050A0"  // Puerto Rican flag blue
-                }
+        // Override config for artist/lyrics mode
+        if (activeArtist) {
+            const lang = activeArtist.language || 'spanish';
+            config.languages[lang] = {
+                ...config.languages[lang],
+                name: `${config.languages[lang].name} (${activeArtist.name})`,
+                dataPath: activeArtist.dataPath,
+                indexPath: activeArtist.indexPath || activeArtist.dataPath,
+                examplesPath: activeArtist.examplesPath || null,
+                ppmDataPath: null, // PPM data is embedded in artist vocabulary JSON
+                colorTheme: activeArtist.colorTheme || config.languages[lang].colorTheme
             };
-            // Force percentage mode and set title
             percentageMode = true;
-            document.title = "Bad Bunny Vocabulary";
+            document.title = `${activeArtist.name} Vocabulary`;
         }
     } catch (error) {
         console.error('Failed to load config:', error);

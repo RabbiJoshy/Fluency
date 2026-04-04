@@ -166,6 +166,14 @@ function getOrCreateSheet(sheetName) {
   let sheet = ss.getSheetByName(sheetName);
 
   if (!sheet) {
+    // Migration: rename old 'BadBunny' tab to 'Lyrics' if requested
+    if (sheetName === 'Lyrics') {
+      var oldSheet = ss.getSheetByName('BadBunny');
+      if (oldSheet) {
+        oldSheet.setName('Lyrics');
+        return oldSheet;
+      }
+    }
     sheet = ss.insertSheet(sheetName);
     sheet.appendRow(['User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong']);
     sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
@@ -174,6 +182,36 @@ function getOrCreateSheet(sheetName) {
   }
 
   return sheet;
+}
+
+/**
+ * One-time migration: remap old rank-based wordIds to new md5-based wordIds.
+ * Call from Apps Script editor: migrateWordIds(mapping, 'UserProgress')
+ *
+ * @param {Object} mapping - {oldHexId: newHexId} e.g. {"0001":"ed68","0002":"cb97"}
+ * @param {string} sheetName - 'UserProgress' or 'Lyrics'
+ * @param {string} langPrefix - 2-char lang code + mode digit, e.g. 'es0' for Spanish normal
+ */
+function migrateWordIds(mapping, sheetName, langPrefix) {
+  const sheet = getOrCreateSheet(sheetName);
+  const data = sheet.getDataRange().getValues();
+  let updated = 0;
+
+  for (let i = 1; i < data.length; i++) {
+    const wordId = String(data[i][2]);
+    // Only remap wordIds matching the target prefix (e.g. "es0")
+    if (wordId.startsWith(langPrefix)) {
+      const oldHex = wordId.slice(langPrefix.length);
+      if (mapping[oldHex]) {
+        const newWordId = langPrefix + mapping[oldHex];
+        sheet.getRange(i + 1, 3).setValue(newWordId);
+        updated++;
+      }
+    }
+  }
+
+  Logger.log('Migrated ' + updated + ' rows in ' + sheetName + ' for prefix ' + langPrefix);
+  return updated;
 }
 
 /**

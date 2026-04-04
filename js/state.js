@@ -48,9 +48,9 @@ export const state = {
     progressData: {},
     levelEstimates: {},
 
-    // Bad Bunny
-    isBadBunnyMode: new URLSearchParams(window.location.search).get('mode') === 'badbunny',
-    badBunnyAlbumsDictionary: null,
+    // Artist / lyrics mode
+    activeArtist: null,         // null = normal mode, object = artist config from artists.json
+    artistAlbumsDictionary: null,
     songToAlbumMap: {},
 
     // Lyric breakdown
@@ -75,19 +75,7 @@ export const state = {
     },
 };
 
-// Constants (not mutable state — never reassigned)
-export const albumToImagePath = {
-    'X 100PRE (2018)': 'Artists/Bad Bunny/Images/X100PRE.jpg',
-    'OASIS (2019) [with J Balvin]': 'Artists/Bad Bunny/Images/OASIS.png',
-    'YHLQMDLG (2020)': 'Artists/Bad Bunny/Images/YHLQMDLG.png',
-    'LAS QUE NO IBAN A SALIR (2020)': 'Artists/Bad Bunny/Images/LAS_QUE_NO_IBAN_A_SALIR.jpg',
-    'EL ÚLTIMO TOUR DEL MUNDO (2020)': 'Artists/Bad Bunny/Images/EL_ULTIMO_TOUR_DEL_MUNDO.png',
-    'UN VERANO SIN TI (2022)': 'Artists/Bad Bunny/Images/UN_VERANO_SIN_TI.png',
-    'NADIE SABE LO QUE VA A PASAR MAÑANA (2023)': 'Artists/Bad Bunny/Images/NADIE_SABE_LO_QUE_VA_A_PASAR_MANANA.png',
-    'DEBÍ TIRAR MÁS FOTOS (2025)': 'Artists/Bad Bunny/Images/DEBI_TIRAR_MAS_FOTOS.png',
-    'Singles & Other Tracks': 'Artists/Bad Bunny/Images/SINGLES.jpg'
-};
-export const defaultAlbumArt = 'Artists/Bad Bunny/Images/SINGLES.jpg';
+// No hardcoded album constants — album image maps now live in artists.json
 
 export const percentageLevels = [
     { level: '70%',   threshold: 0.70,  description: '70% coverage' },
@@ -122,8 +110,13 @@ for (const key of Object.keys(state)) {
     });
 }
 
+// Backward-compat getter: isBadBunnyMode → true when any artist is active
+Object.defineProperty(globalThis, 'isBadBunnyMode', {
+    get() { return !!state.activeArtist; },
+    configurable: true,
+    enumerable: true,
+});
+
 // Expose constants on globalThis as read-only
-globalThis.albumToImagePath = albumToImagePath;
-globalThis.defaultAlbumArt  = defaultAlbumArt;
 globalThis.percentageLevels = percentageLevels;
 globalThis.speechLangCodes  = speechLangCodes;

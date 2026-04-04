@@ -48,7 +48,7 @@ function updateCoverageProgressBar() {
     fill.style.transition = 'none';
     fill.style.width = '0%';
 
-    const coverageLabel = isBadBunnyMode ? 'lyrics coverage' : 'corpus coverage';
+    const coverageLabel = activeArtist ? 'lyrics coverage' : 'corpus coverage';
     label.textContent = `${coverage.toFixed(1)}% ${coverageLabel}`;
 
     // Trigger animation after a frame
@@ -88,7 +88,7 @@ async function updateExclusionBars() {
         item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
     );
 
-    if (isBadBunnyMode) {
+    if (activeArtist) {
         baseVocab = baseVocab.filter(item =>
             !item.is_english && !item.is_interjection && !item.is_propernoun
         );
@@ -186,7 +186,7 @@ function updatePersonalCoverage(filteredVocab) {
     fill.style.transition = 'none';
     fill.style.width = '0%';
 
-    const coverageType = isBadBunnyMode ? 'lyrics' : 'words';
+    const coverageType = activeArtist ? 'lyrics' : 'words';
     label.textContent = `${coveragePct.toFixed(1)}% ${coverageType} coverage (${coveredCount.toLocaleString()} / ${filteredVocab.length.toLocaleString()} words)`;
 
     requestAnimationFrame(() => {

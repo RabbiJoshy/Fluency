@@ -1,10 +1,24 @@
 import './state.js';
 
+// Compute max level for estimation, accounting for multi-artist mode
+function getEstimationMaxLevel() {
+    if (!activeArtist) return 11000;
+    const selectedSlugs = window._selectedArtistSlugs || [];
+    const allConfigs = window._allArtistsConfig;
+    if (selectedSlugs.length > 1 && allConfigs) {
+        return Math.max(...selectedSlugs.map(slug => {
+            const cfg = allConfigs[slug];
+            return cfg ? (cfg.maxLevel || 8500) : 0;
+        }));
+    }
+    return activeArtist.maxLevel || 8500;
+}
+
 // Show/hide estimate level button based on language
 function updateEstimateLevelButton() {
     const btn = document.getElementById('estimateLevelBtn');
-    // Only show for Spanish (regular or Bad Bunny mode)
-    if (selectedLanguage === 'spanish' || isBadBunnyMode) {
+    // Only show for Spanish (regular or artist mode)
+    if (selectedLanguage === 'spanish' || activeArtist) {
         btn.classList.remove('hidden');
     } else {
         btn.classList.add('hidden');
@@ -14,7 +28,7 @@ function updateEstimateLevelButton() {
 function updateEstimateLevelBlock() {
     const block = document.getElementById('estimateLevelBlock');
     const hasEstimate = (levelEstimates[selectedLanguage] || 0) > 0;
-    const show = !isBadBunnyMode && selectedLanguage === 'spanish' && !hasEstimate;
+    const show = !activeArtist && selectedLanguage === 'spanish' && !hasEstimate;
     block.style.display = show ? 'block' : 'none';
 }
 
@@ -42,9 +56,9 @@ function openEstimationModal() {
         estimatedLevel: null,
         vocabularyData: null,
         history: [],
-        maxLevel: isBadBunnyMode ? 8500 : 11000,
+        maxLevel: getEstimationMaxLevel(),
         lowerBound: 0,
-        upperBound: isBadBunnyMode ? 8500 : 11000,
+        upperBound: getEstimationMaxLevel(),
         confirmationLevel: null
     };
 }
@@ -74,7 +88,7 @@ async function startEstimation() {
     }
 
     // Determine max level based on mode
-    const maxLevel = isBadBunnyMode ? 8500 : 11000;
+    const maxLevel = getEstimationMaxLevel();
 
     // Initialize state — binary search for highest level where user scores ≥4/5
     estimationState.active = true;

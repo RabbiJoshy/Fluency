@@ -271,7 +271,7 @@ function initializeApp() {
                         action: 'delete',
                         user: currentUser.initials,
                         wordId: wordInfo.fullId,
-                        sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+                        sheet: activeArtist ? 'Lyrics' : 'UserProgress'
                     })
                 });
             }
@@ -816,8 +816,8 @@ function updateCard() {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
 
-    // Update Bad Bunny album artwork background
-    updateBadBunnyBackground();
+    // Update artist album artwork background
+    updateArtistBackground();
 
     // Update reverse button text
     updateReverseButton();
@@ -993,7 +993,7 @@ function updateCard() {
             }
 
             // Dynamic re-sort: boost examples with deck/recently-wrong word overlap
-            if (isBadBunnyMode && activeExamples.length > 1) {
+            if (activeArtist && activeExamples.length > 1) {
                 activeExamples = sortExamplesByRelevance(activeExamples);
             }
 

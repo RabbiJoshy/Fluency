@@ -114,6 +114,64 @@ function logout() {
     }
 }
 
+// ========== ID MIGRATION (one-time) ==========
+
+// Migrate localStorage progress from old rank-based IDs to new md5-based IDs
+async function migrateLocalStorageIds() {
+    if (localStorage.getItem('id_migration_v1') === 'done') return;
+
+    const key = 'flashcard_progress_guest';
+    const guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
+    if (Object.keys(guestProgress).length === 0) {
+        localStorage.setItem('id_migration_v1', 'done');
+        return;
+    }
+
+    // Determine which languages have progress (from the 2-char prefix of fullIds)
+    const langMap = { es: 'Spanish', sv: 'Swedish', it: 'Italian', nl: 'Dutch', pl: 'Polish' };
+    const neededLangs = new Set();
+    for (const fullId of Object.keys(guestProgress)) {
+        const prefix = fullId.slice(0, 2);
+        if (langMap[prefix]) neededLangs.add(prefix);
+    }
+
+    // Load migration mappings for needed languages
+    const mappings = {};
+    for (const prefix of neededLangs) {
+        const lang = langMap[prefix];
+        try {
+            const resp = await fetch(`Data/${lang}/id_migration.json`);
+            if (resp.ok) mappings[prefix] = await resp.json();
+        } catch (e) {
+            console.warn(`Could not load ID migration for ${lang}:`, e);
+        }
+    }
+
+    // Remap keys
+    const migrated = {};
+    let remapped = 0;
+    for (const [fullId, data] of Object.entries(guestProgress)) {
+        const prefix = fullId.slice(0, 2);
+        const mode = fullId[2];
+        const oldHex = fullId.slice(3);
+        const mapping = mappings[prefix];
+
+        if (mapping && mode === '0' && mapping[oldHex]) {
+            const newFullId = prefix + mode + mapping[oldHex];
+            migrated[newFullId] = data;
+            remapped++;
+        } else {
+            migrated[fullId] = data; // keep as-is (artist mode IDs unchanged, or no mapping)
+        }
+    }
+
+    if (remapped > 0) {
+        localStorage.setItem(key, JSON.stringify(migrated));
+        console.log(`Migrated ${remapped} localStorage progress IDs`);
+    }
+    localStorage.setItem('id_migration_v1', 'done');
+}
+
 // ========== GOOGLE SHEETS INTEGRATION ==========
 
 // Load user progress from Google Sheets
@@ -126,7 +184,7 @@ async function loadUserProgressFromSheet() {
             body: JSON.stringify({
                 action: 'load',
                 user: currentUser.initials,
-                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+                sheet: activeArtist ? 'Lyrics' : 'UserProgress'
             })
         });
 
@@ -171,7 +229,7 @@ async function saveLevelEstimateToSheet(rank) {
                 word: '_LEVEL_ESTIMATE_',
                 language: selectedLanguage,
                 wordId: rank,
-                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+                sheet: activeArtist ? 'Lyrics' : 'UserProgress'
             })
         });
     } catch (error) {
@@ -231,7 +289,7 @@ async function saveWordProgress(card, isCorrect) {
                 lastCorrect: progressData[wordId].lastCorrect,
                 lastWrong: progressData[wordId].lastWrong,
                 lastSeen: progressData[wordId].lastSeen,
-                sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'
+                sheet: activeArtist ? 'Lyrics' : 'UserProgress'
             })
         });
 
@@ -349,6 +407,7 @@ function setupAuthEventListeners() {
     });
 }
 
+window.migrateLocalStorageIds = migrateLocalStorageIds;
 window.loadSecrets = loadSecrets;
 window.checkAuthentication = checkAuthentication;
 window.showAuthModal = showAuthModal;

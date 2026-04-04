@@ -1,6 +1,6 @@
 import './state.js';
 import './speech.js';
-import './badbunny.js';
+import './artist-ui.js';
 import './auth.js';
 import './estimation.js';
 import './config.js';
@@ -18,11 +18,60 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Add Bad Bunny mode class to body
-if (isBadBunnyMode) {
-    document.body.classList.add('badbunny-mode');
-    // Load the albums dictionary
-    loadBadBunnyAlbumsDictionary();
+// All available artist configs, keyed by slug. Loaded once from artists.json.
+let allArtistsConfig = null;
+// Slugs of artists currently selected for multi-artist merge
+let selectedArtistSlugs = [];
+
+// Resolve artist from URL params: ?artist=bad-bunny or ?mode=badbunny (legacy alias)
+async function resolveArtist() {
+    const params = new URLSearchParams(window.location.search);
+    let artistSlug = params.get('artist');
+
+    // Legacy alias: ?mode=badbunny → ?artist=bad-bunny
+    if (!artistSlug && params.get('mode') === 'badbunny') {
+        artistSlug = 'bad-bunny';
+    }
+
+    if (!artistSlug) return; // normal mode
+
+    try {
+        const response = await fetch('artists.json');
+        allArtistsConfig = await response.json();
+
+        // Tag each config with its slug
+        for (const [slug, cfg] of Object.entries(allArtistsConfig)) {
+            cfg.slug = slug;
+        }
+
+        const artistConfig = allArtistsConfig[artistSlug];
+        if (artistConfig) {
+            activeArtist = artistConfig;
+
+            // Restore multi-artist selection from localStorage, ensuring URL artist is included
+            const saved = JSON.parse(localStorage.getItem('selected_artists') || '[]');
+            selectedArtistSlugs = saved.length > 0 ? saved : [artistSlug];
+            if (!selectedArtistSlugs.includes(artistSlug)) {
+                selectedArtistSlugs.push(artistSlug);
+            }
+        } else {
+            console.warn(`Unknown artist slug: ${artistSlug}`);
+        }
+    } catch (error) {
+        console.error('Failed to load artists.json:', error);
+    }
+}
+
+await resolveArtist();
+
+// Expose for use by ui.js artist selection
+window._allArtistsConfig = allArtistsConfig;
+window._selectedArtistSlugs = selectedArtistSlugs;
+
+// Add artist mode class to body and load albums dictionary
+if (activeArtist) {
+    document.body.classList.add('badbunny-mode'); // keep CSS class for styling
+    loadArtistAlbumsDictionary();
 }
 
 loadConfig().then(async () => {
@@ -31,27 +80,25 @@ loadConfig().then(async () => {
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
     selectedLanguage = firstLang;
     applyLanguageColorTheme();
-    // Don't render level selector yet - wait for user to select a language
-    // renderLevelSelector(firstLang);
     setupGroupSizeSelector();
     setupLemmaToggle();
     setupCognateToggle();
-    setupPercentModeButton(); // Setup % Mode button early
-    setupEstimateLevelButton(); // Setup Estimate Level button
-    // updateLemmaToggleVisibility(); // Don't call yet - wait for language selection
-    setupTooltipHandlers(); // Initialize tooltips early
-    setupAuthEventListeners(); // Setup auth modal event listeners
-    await loadSecrets(); // Load secrets before authentication
-    checkAuthentication(); // Check if user is logged in
+    setupPercentModeButton();
+    setupEstimateLevelButton();
+    setupTooltipHandlers();
+    setupAuthEventListeners();
+    await migrateLocalStorageIds();
+    await loadSecrets();
+    checkAuthentication();
 
     // Ensure progress data is loaded before rendering coverage bars
     if (currentUser && !currentUser.isGuest) {
         await loadUserProgressFromSheet();
     }
 
-    // In Bad Bunny mode, auto-select Spanish and skip language selection
-    if (isBadBunnyMode) {
-        selectedLanguage = 'spanish';
+    // In artist mode, auto-select the artist's language and skip language selection
+    if (activeArtist) {
+        selectedLanguage = activeArtist.language || 'spanish';
         applyLanguageColorTheme();
         // Hide language tabs, pill, and step 1 entirely (replaced by helpBar)
         document.getElementById('languageTabs').style.display = 'none';
@@ -59,30 +106,25 @@ loadConfig().then(async () => {
         document.getElementById('step1').style.display = 'none';
         // Show Help + Estimate bar at the top
         document.getElementById('helpBar').style.display = 'block';
-        // Wire up Help button → help modal, Estimate Level → estimation modal
         document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
         document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
-        // Setup help modal close + tab switching
         document.getElementById('closeHelpModal').addEventListener('click', () => {
             document.getElementById('helpModal').classList.add('hidden');
         });
         setupTabSwitching(document.getElementById('helpModal'));
-        // Load PPM data and show step 2
-        await loadPpmData('spanish');
+        await loadPpmData(activeArtist.language || 'spanish');
         document.getElementById('step2').style.display = 'block';
-        // Update step 2 for Bad Bunny mode - simpler title, hide estimate button and % mode button
         document.getElementById('step2Title').textContent = 'Choose Level';
-        // Hide the Estimate Level button and % Mode button in step 2 for Bad Bunny mode
         document.querySelector('#step2 .btn-with-info:has(#estimateLevelBtn)').style.display = 'none';
         document.querySelector('#step2 .btn-with-info:has(#percentModeBtn)').style.display = 'none';
         updateStep2Tooltip();
         updateStep5Tooltip();
-        // Initialize lemma and cognate toggle visibility for Bad Bunny mode
         await updateLemmaToggleVisibility();
         await updateCognateToggleVisibility();
-        renderLevelSelector('spanish');
+        renderLevelSelector(activeArtist.language || 'spanish');
         updateCoverageProgressBar();
         await updateExclusionBars();
+        setupArtistSelection();
     }
 });
 

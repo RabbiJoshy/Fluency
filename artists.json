@@ -1,0 +1,39 @@
+{
+  "bad-bunny": {
+    "name": "Bad Bunny",
+    "language": "spanish",
+    "dataPath": "Artists/Bad Bunny/BadBunnyvocabulary.json",
+    "indexPath": "Artists/Bad Bunny/BadBunnyvocabulary.index.json",
+    "examplesPath": "Artists/Bad Bunny/BadBunnyvocabulary.examples.json",
+    "albumsDictionary": "Artists/Bad Bunny/bad_bunny_albums_dictionary.json",
+    "albumImageMap": {
+      "X 100PRE (2018)": "Artists/Bad Bunny/Images/X100PRE.jpg",
+      "OASIS (2019) [with J Balvin]": "Artists/Bad Bunny/Images/OASIS.png",
+      "YHLQMDLG (2020)": "Artists/Bad Bunny/Images/YHLQMDLG.png",
+      "LAS QUE NO IBAN A SALIR (2020)": "Artists/Bad Bunny/Images/LAS_QUE_NO_IBAN_A_SALIR.jpg",
+      "EL \u00daLTIMO TOUR DEL MUNDO (2020)": "Artists/Bad Bunny/Images/EL_ULTIMO_TOUR_DEL_MUNDO.png",
+      "UN VERANO SIN TI (2022)": "Artists/Bad Bunny/Images/UN_VERANO_SIN_TI.png",
+      "NADIE SABE LO QUE VA A PASAR MA\u00d1ANA (2023)": "Artists/Bad Bunny/Images/NADIE_SABE_LO_QUE_VA_A_PASAR_MANANA.png",
+      "DEB\u00cd TIRAR M\u00c1S FOTOS (2025)": "Artists/Bad Bunny/Images/DEBI_TIRAR_MAS_FOTOS.png",
+      "Singles & Other Tracks": "Artists/Bad Bunny/Images/SINGLES.jpg"
+    },
+    "defaultAlbumArt": "Artists/Bad Bunny/Images/SINGLES.jpg",
+    "colorTheme": {
+      "primary": "#ED1C24",
+      "secondary": "#0050A0"
+    },
+    "maxLevel": 8500
+  },
+  "rosalia": {
+    "name": "Rosalía",
+    "language": "spanish",
+    "dataPath": "Artists/Rosalía/Rosaliavocabulary.json",
+    "indexPath": "Artists/Rosalía/Rosaliavocabulary.index.json",
+    "examplesPath": "Artists/Rosalía/Rosaliavocabulary.examples.json",
+    "colorTheme": {
+      "primary": "#C41E3A",
+      "secondary": "#1C1C1C"
+    },
+    "maxLevel": 3600
+  }
+}

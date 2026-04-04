@@ -224,11 +224,12 @@ function updatePercentModeButton() {
 
 function updateStep2Tooltip() {
     const tooltip = document.getElementById('step2Tooltip');
-    if (isBadBunnyMode) {
+    if (activeArtist) {
+        const name = activeArtist.name;
         tooltip.innerHTML = `
-            <p><strong>Lyrics Coverage</strong> shows what percentage of Bad Bunny's lyrics you'll understand.</p>
-            <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words across his songs.</p>
-            <p>Words are ranked by how often they appear in his discography.</p>
+            <p><strong>Lyrics Coverage</strong> shows what percentage of ${name}'s lyrics you'll understand.</p>
+            <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words across the songs.</p>
+            <p>Words are ranked by how often they appear in the discography.</p>
         `;
     } else if (percentageMode) {
         tooltip.innerHTML = `
@@ -246,9 +247,10 @@ function updateStep2Tooltip() {
 
 function updateStep5Tooltip() {
     const tooltip = document.getElementById('step5Tooltip');
-    if (isBadBunnyMode) {
+    if (activeArtist) {
+        const name = activeArtist.name;
         tooltip.innerHTML = `
-            <p>Each set contains words ranked by frequency in Bad Bunny's lyrics (e.g., 1-25 = most common words).</p>
+            <p>Each set contains words ranked by frequency in ${name}'s lyrics (e.g., 1-25 = most common words).</p>
             <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
             <p><strong>Example sentences</strong> are designed to use words from nearby ranks, so practicing set 1-25 means sentences mostly use words from that same group.</p>
         `;
@@ -271,7 +273,7 @@ function renderLevelSelector(language) {
     if (percentageMode && ppmData && ppmData.length > 0) {
         const percentageRanges = getPercentageLevelRanges();
         console.log('Using percentage levels:', percentageRanges);
-        const coverageType = isBadBunnyMode ? 'lyrics coverage' : 'language coverage';
+        const coverageType = activeArtist ? 'lyrics coverage' : 'language coverage';
         const levelsHTML = percentageRanges.map(level => {
             const description = `${level.level} ${coverageType}`;
             return `
@@ -339,7 +341,7 @@ function updateLevelInfoLine(btn) {
     // Find the ppm (corpus frequency) at the endRank position
     const entry = ppmData.find(p => p.rank === endRank);
     const minFreq = entry ? Math.round(entry.ppm) : '?';
-    const freqLabel = isBadBunnyMode ? 'corpus count' : 'frequency';
+    const freqLabel = activeArtist ? 'corpus count' : 'frequency';
 
     infoLine.textContent = endRank + ' words \u00B7 ' + freqLabel + ' \u2265 ' + minFreq;
     infoLine.style.display = 'block';
@@ -433,8 +435,8 @@ function setupLemmaToggle() {
 }
 
 function setupPercentModeButton() {
-    // Hide the % Mode button in Bad Bunny mode (always percentage mode)
-    if (isBadBunnyMode) {
+    // Hide the % Mode button in artist mode (always percentage mode)
+    if (activeArtist) {
         document.getElementById('percentModeBtn').style.display = 'none';
     }
     document.getElementById('percentModeBtn').addEventListener('click', async function() {
@@ -855,8 +857,8 @@ function showSettingsModalWithTab(tabName) {
     // Update percentage mode toggle visibility and state
     const percentageModeToggle = document.getElementById('percentageModeToggle');
     const langConfig = config.languages[selectedLanguage];
-    // Hide toggle in Bad Bunny mode (always percentage mode)
-    if (isBadBunnyMode) {
+    // Hide toggle in artist mode (always percentage mode)
+    if (activeArtist) {
         percentageModeToggle.style.display = 'none';
     } else if (langConfig && langConfig.ppmDataPath) {
         percentageModeToggle.style.display = 'flex';
@@ -866,9 +868,9 @@ function showSettingsModalWithTab(tabName) {
         percentageModeToggle.style.display = 'none';
     }
 
-    // Show/hide single-occurrence toggle (only in Bad Bunny mode)
+    // Show/hide single-occurrence toggle (only in artist mode)
     const hideSingleOccToggle = document.getElementById('hideSingleOccToggle');
-    if (isBadBunnyMode) {
+    if (activeArtist) {
         hideSingleOccToggle.style.display = 'flex';
         document.getElementById('hideSingleOccStatus').textContent = hideSingleOccurrence ? 'ON' : 'OFF';
         document.getElementById('hideSingleOccStatus').style.color = hideSingleOccurrence ? 'var(--accent-primary)' : 'var(--text-muted)';
@@ -1054,3 +1056,89 @@ window.showTotalStatsModal = showTotalStatsModal;
 window.hideTotalStatsModal = hideTotalStatsModal;
 window.updateTotalStatsButtonVisibility = updateTotalStatsButtonVisibility;
 window.updateStatsModal = updateStatsModal;
+window.setupArtistSelection = setupArtistSelection;
+
+// Multi-artist selection UI in the settings modal
+function setupArtistSelection() {
+    const section = document.getElementById('artistSelectionSection');
+    const container = document.getElementById('artistCheckboxes');
+    if (!section || !container || !activeArtist) return;
+
+    // allArtistsConfig is set in main.js during resolveArtist()
+    const artists = window._allArtistsConfig;
+    if (!artists) return;
+
+    section.style.display = 'block';
+    container.innerHTML = '';
+
+    for (const [slug, cfg] of Object.entries(artists)) {
+        const row = document.createElement('div');
+        row.className = 'stat-row';
+        row.style.cursor = 'pointer';
+
+        const label = document.createElement('span');
+        label.textContent = cfg.name;
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = window._selectedArtistSlugs.includes(slug);
+        checkbox.dataset.slug = slug;
+        checkbox.style.accentColor = 'var(--accent-primary)';
+
+        row.appendChild(label);
+        row.appendChild(checkbox);
+        row.addEventListener('click', (e) => {
+            if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
+            onArtistSelectionChange();
+        });
+        container.appendChild(row);
+    }
+}
+
+function onArtistSelectionChange() {
+    const checkboxes = document.querySelectorAll('#artistCheckboxes input[type="checkbox"]');
+    const selected = [];
+    checkboxes.forEach(cb => {
+        if (cb.checked) selected.push(cb.dataset.slug);
+    });
+
+    // Must have at least one artist selected
+    if (selected.length === 0) {
+        // Re-check the URL artist
+        checkboxes.forEach(cb => {
+            if (cb.dataset.slug === activeArtist.slug) cb.checked = true;
+        });
+        selected.push(activeArtist.slug);
+    }
+
+    window._selectedArtistSlugs = selected;
+    localStorage.setItem('selected_artists', JSON.stringify(selected));
+
+    // Invalidate cached merge data
+    window._cachedMergedIndex = null;
+    window._cachedMergedExamples = null;
+    window._cachedExamplesData = null;
+
+    // Update activeArtist to be the first selected (primary)
+    const artists = window._allArtistsConfig;
+    if (artists && artists[selected[0]]) {
+        activeArtist = artists[selected[0]];
+    }
+
+    // Reload albums dictionary for multi-artist mode
+    loadMultiArtistAlbumsDictionaries(selected, artists);
+
+    // If we're currently viewing flashcards, go back to setup so user re-picks a set
+    // with the merged vocabulary
+    const appContent = document.getElementById('appContent');
+    const setupPanel = document.getElementById('setupPanel');
+    if (appContent && !appContent.classList.contains('hidden')) {
+        appContent.classList.add('hidden');
+        setupPanel.classList.remove('hidden');
+        setupPanel.style.display = 'block';
+        showFloatingBtns(false);
+        // Re-render level selector with new merged data
+        renderLevelSelector(selectedLanguage);
+        updateCoverageProgressBar();
+    }
+}

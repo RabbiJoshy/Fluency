@@ -13,7 +13,7 @@ const LANG_CODES = {
  */
 function getWordId(item) {
     const lang = LANG_CODES[selectedLanguage] || selectedLanguage.slice(0, 2);
-    const mode = isBadBunnyMode ? '1' : '0';
+    const mode = activeArtist ? '1' : '0';
     const hex = item.id || Number(item.rank).toString(16).padStart(4, '0');
     return `${lang}${mode}${hex}`;
 }
@@ -29,8 +29,8 @@ function buildFilteredVocab(vocabData) {
 
     const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
 
-    // Bad Bunny mode: skip English loanwords, interjections, proper nouns
-    if (isBadBunnyMode) {
+    // Artist/lyrics mode: skip English loanwords, interjections, proper nouns
+    if (activeArtist) {
         const before = result.length;
         result = result.filter(item => !item.is_english && !item.is_interjection && !item.is_propernoun);
         counts.english = before - result.length;
@@ -87,12 +87,30 @@ async function loadVocabularyData(rangeString) {
     const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
-        // Load the index (metadata only, no examples) for filtering
-        const response = await fetch(indexPath);
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
+        // Multi-artist mode: merge vocabularies from all selected artists
+        let vocabularyData;
+        const selectedSlugs = window._selectedArtistSlugs || [];
+        const allConfigs = window._allArtistsConfig;
+        if (activeArtist && selectedSlugs.length > 1 && allConfigs) {
+            const artistConfigs = selectedSlugs
+                .map(slug => allConfigs[slug])
+                .filter(Boolean);
+            if (!window._cachedMergedIndex) {
+                const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(artistConfigs);
+                window._cachedMergedIndex = mergedIndex;
+                window._cachedMergedExamples = mergedExamples;
+            }
+            vocabularyData = window._cachedMergedIndex;
+            // Point examples cache to merged examples
+            window._cachedExamplesData = window._cachedMergedExamples;
+        } else {
+            // Single artist or normal mode: fetch as usual
+            const response = await fetch(indexPath);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            vocabularyData = await response.json();
         }
-        const vocabularyData = await response.json();
         cachedVocabularyData = vocabularyData;
 
         // Store original index/rank from vocabulary file - this is the unique identifier
@@ -451,7 +469,9 @@ async function loadIncorrectWordsSet() {
 
         // Build flashcards from incorrect words
         for (const incorrectWord of incorrectWords) {
-            const item = wordToVocab[incorrectWord.wordId];
+            // incorrectWord.wordId is a fullId (e.g., "es0ed68"); strip the 3-char prefix to get bare hex
+            const bareId = incorrectWord.wordId.slice(3);
+            const item = wordToVocab[bareId];
             if (!item) continue; // Skip if word not found in vocabulary
 
             const meanings = item.meanings.map(m => {
@@ -906,6 +926,120 @@ function getExampleFromMeaning(meaning, exampleTargetField, exampleEnglishField)
 }
 
 
+// Merge vocabulary arrays from multiple artists by hex ID.
+// Same word+lemma across artists shares the same md5 hex ID.
+// Returns { mergedIndex: [...], mergedExamples: {...} }
+async function mergeArtistVocabularies(artistConfigs) {
+    const byId = new Map(); // id → merged entry
+    const mergedExamples = {}; // id → { m: [...], w: [...] }
+
+    for (const cfg of artistConfigs) {
+        // Load lightweight index for word metadata
+        const indexPath = cfg.indexPath || cfg.dataPath;
+        let indexData;
+        try {
+            const resp = await fetch(indexPath);
+            indexData = await resp.json();
+        } catch (e) {
+            console.warn(`Failed to load index for ${cfg.name}:`, e);
+            continue;
+        }
+
+        // Load separate examples file
+        let examplesData = null;
+        if (cfg.examplesPath) {
+            try {
+                const resp = await fetch(cfg.examplesPath);
+                examplesData = await resp.json();
+            } catch (e) {
+                console.warn(`Failed to load examples for ${cfg.name}:`, e);
+            }
+        }
+
+        for (const entry of indexData) {
+            const id = entry.id;
+            if (!id) continue;
+
+            // Tag examples with artist slug
+            const tagExamples = (examples) => {
+                if (!examples) return [];
+                return examples.map(ex => ({ ...ex, artist: cfg.slug }));
+            };
+
+            if (byId.has(id)) {
+                // Merge into existing entry
+                const existing = byId.get(id);
+                existing.corpus_count = (existing.corpus_count || 0) + (entry.corpus_count || 0);
+
+                // Merge meanings: match by POS, union examples
+                if (entry.meanings) {
+                    for (const newM of entry.meanings) {
+                        const existingM = existing.meanings.find(m => m.pos === newM.pos && m.translation === newM.translation);
+                        if (existingM) {
+                            // Union examples
+                            if (newM.examples) {
+                                existingM.examples = (existingM.examples || []).concat(tagExamples(newM.examples));
+                            }
+                        } else {
+                            // Tag examples and add new meaning
+                            const tagged = { ...newM };
+                            if (tagged.examples) {
+                                tagged.examples = tagExamples(tagged.examples);
+                            }
+                            existing.meanings.push(tagged);
+                        }
+                    }
+                }
+
+                // Merge examples data
+                if (examplesData && examplesData[id]) {
+                    if (!mergedExamples[id]) mergedExamples[id] = { m: [], w: [] };
+                    const ex = examplesData[id];
+                    if (ex.m) {
+                        for (let i = 0; i < ex.m.length; i++) {
+                            if (!mergedExamples[id].m[i]) mergedExamples[id].m[i] = [];
+                            mergedExamples[id].m[i].push(...tagExamples(ex.m[i]));
+                        }
+                    }
+                    if (ex.w) {
+                        for (let i = 0; i < ex.w.length; i++) {
+                            if (!mergedExamples[id].w[i]) mergedExamples[id].w[i] = [];
+                            mergedExamples[id].w[i].push(...tagExamples(ex.w[i]));
+                        }
+                    }
+                }
+            } else {
+                // First time seeing this word — clone and tag
+                const clone = JSON.parse(JSON.stringify(entry));
+                if (clone.meanings) {
+                    for (const m of clone.meanings) {
+                        if (m.examples) m.examples = tagExamples(m.examples);
+                    }
+                }
+                byId.set(id, clone);
+
+                // Clone examples data
+                if (examplesData && examplesData[id]) {
+                    const ex = examplesData[id];
+                    mergedExamples[id] = { m: [], w: [] };
+                    if (ex.m) {
+                        mergedExamples[id].m = ex.m.map(arr => tagExamples(arr));
+                    }
+                    if (ex.w) {
+                        mergedExamples[id].w = ex.w.map(arr => tagExamples(arr));
+                    }
+                }
+            }
+        }
+    }
+
+    // Sort by combined corpus_count descending
+    const mergedIndex = Array.from(byId.values()).sort((a, b) => (b.corpus_count || 0) - (a.corpus_count || 0));
+
+    return { mergedIndex, mergedExamples };
+}
+
+window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.getWordId = getWordId;
 window.buildFilteredVocab = buildFilteredVocab;
 window.loadVocabularyData = loadVocabularyData;
