@@ -1,3 +1,5 @@
+// Setup panel UI: language tabs, CEFR level selector, range/set buttons.
+// Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
 import './state.js';
 
 function setupTooltipHandlers() {

@@ -1,3 +1,6 @@
+// Vocabulary loading, filtering, and ID generation.
+// Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
+// mergeArtistVocabularies() (multi-artist merge by hex ID).
 import './state.js';
 
 // ISO 639-1 codes for each language key used in config.json

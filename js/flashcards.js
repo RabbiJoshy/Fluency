@@ -1,3 +1,6 @@
+// Card rendering, flip, swipe, keyboard shortcuts.
+// Main function: updateCard() (~line 950) renders the current flashcard front + back.
+// Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
 import './state.js';
 import './speech.js';
 
@@ -1015,6 +1018,14 @@ function updateCard() {
                     displayEnglishSentence = exEnglish;
                 }
                 songName = example.song_name || null;
+
+                if (songName && example.artist) {
+                    const allConfigs = window._allArtistsConfig;
+                    const selectedSlugs = window._selectedArtistSlugs || [];
+                    if (selectedSlugs.length > 1 && allConfigs && allConfigs[example.artist]) {
+                        songName = allConfigs[example.artist].name + ' \u2014 ' + songName;
+                    }
+                }
             }
 
             // Truncate sentences longer than 20 words

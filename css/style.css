@@ -1487,13 +1487,15 @@
         }
 
         .step-help-btn {
-            width: 26px;
-            height: 26px;
+            width: 36px;
+            height: 36px;
+            min-width: 44px;
+            min-height: 44px;
             border-radius: 50%;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             color: var(--accent-secondary);
-            font-size: 15px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
@@ -1561,15 +1563,17 @@
 
         .btn-info-icon {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 20px;
-            height: 20px;
+            top: -12px;
+            right: -12px;
+            width: 28px;
+            height: 28px;
+            min-width: 44px;
+            min-height: 44px;
             border-radius: 50%;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
@@ -1881,13 +1885,18 @@
             background: rgba(255,255,255,0.12);
             border: none;
             color: white;
-            font-size: 14px;
-            padding: 2px 8px;
-            border-radius: 4px;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 6px;
             cursor: pointer;
-            opacity: 0.6;
+            opacity: 0.7;
             transition: opacity 0.15s;
             margin-left: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .breakdown-btn:hover {
@@ -1912,12 +1921,13 @@
         .tooltip-detail-btn {
             width: 100%;
             margin-top: 12px;
-            padding: 8px 12px;
+            padding: 12px 16px;
+            min-height: 44px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--accent-primary);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;

@@ -8,27 +8,29 @@ function speakWord(text, useEnglish = false) {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    const langCode = useEnglish ? 'en-GB' : (speechLangCodes[selectedLanguage] || 'es-ES');
+    const langCode = useEnglish ? 'en-US' : (speechLangCodes[selectedLanguage] || 'es-ES');
     utterance.lang = langCode;
-    utterance.rate = 0.9; // Slightly slower for learning
+    utterance.rate = 0.9;
 
-    // Try to find a better quality voice
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
         const langPrefix = langCode.split('-')[0];
         const matchingVoices = voices.filter(v => v.lang.startsWith(langPrefix));
 
-        // Rank voices by quality: Natural/Premium > specific named voices > Google > any
+        // Tier order: Natural/Premium > Google > Enhanced/Microsoft > named macOS voices > any
         const preferredVoice = matchingVoices.find(v =>
             v.name.includes('Natural') || v.name.includes('Premium')
         ) || matchingVoices.find(v =>
-            v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Daniel')
+            v.name.includes('Google')
         ) || matchingVoices.find(v =>
-            v.name.includes('Google') || v.name.includes('Enhanced')
+            v.name.includes('Enhanced') || v.name.includes('Microsoft')
+        ) || matchingVoices.find(v =>
+            /Ava|Samantha|Karen|Daniel|Paulina|Monica/.test(v.name)
         ) || matchingVoices[0];
 
         if (preferredVoice) {
             utterance.voice = preferredVoice;
+            utterance.lang = preferredVoice.lang;
         }
     }
 

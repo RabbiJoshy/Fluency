@@ -1,3 +1,5 @@
+// Authentication, Google Sheets sync, and progress persistence.
+// Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
 import './state.js';
 
 async function loadSecrets() {
