@@ -69,7 +69,8 @@ async function updateExclusionBars() {
     let vocabularyData = cachedVocabularyData;
     if (!vocabularyData) {
         try {
-            const response = await fetch(langConfig.dataPath);
+            const fetchPath = langConfig.indexPath || langConfig.dataPath;
+            const response = await fetch(fetchPath);
             if (response.ok) {
                 vocabularyData = await response.json();
             }
@@ -139,8 +140,9 @@ async function updateExclusionBars() {
     updatePersonalCoverage(afterCognate);
 }
 
-// Personal coverage bar: what % of the full eligible corpus the user has
-// correctly answered, where "correct" means the last answer was correct.
+// Personal coverage bar: what % of the lyrics the user has covered,
+// weighted by word frequency (corpus_count). A common word contributes
+// more to coverage than a rare one, matching the "% lyrics coverage" logic.
 function updatePersonalCoverage(filteredVocab) {
     const wrapper = document.getElementById('personalCoverageWrapper');
     const fill = document.getElementById('personalCoverageFill');
@@ -152,16 +154,20 @@ function updatePersonalCoverage(filteredVocab) {
         return;
     }
 
-    // Count how many words in the full filtered corpus were last answered correctly
+    // Frequency-weighted coverage: sum corpus_count of mastered words / total corpus_count
+    let coveredFreq = 0;
+    let totalFreq = 0;
     let coveredCount = 0;
     for (const item of filteredVocab) {
+        const freq = item.corpus_count || 1;
+        totalFreq += freq;
         const fullId = getWordId(item);
         const progress = progressData[fullId];
         if (progress && progress.language === selectedLanguage) {
-            // "Last answer correct": lastCorrect is more recent than lastWrong
             const lastCorrect = progress.lastCorrect ? new Date(progress.lastCorrect).getTime() : 0;
             const lastWrong = progress.lastWrong ? new Date(progress.lastWrong).getTime() : 0;
             if (lastCorrect > 0 && lastCorrect >= lastWrong) {
+                coveredFreq += freq;
                 coveredCount++;
             }
         }
@@ -172,7 +178,7 @@ function updatePersonalCoverage(filteredVocab) {
         return;
     }
 
-    const coveragePct = (coveredCount / filteredVocab.length) * 100;
+    const coveragePct = (coveredFreq / totalFreq) * 100;
 
     // Animate the bar
     wrapper.style.display = 'block';
@@ -181,7 +187,7 @@ function updatePersonalCoverage(filteredVocab) {
     fill.style.width = '0%';
 
     const coverageType = isBadBunnyMode ? 'lyrics' : 'words';
-    label.textContent = `${coveredCount.toLocaleString()} / ${filteredVocab.length.toLocaleString()} ${coverageType} practiced`;
+    label.textContent = `${coveragePct.toFixed(1)}% ${coverageType} coverage (${coveredCount.toLocaleString()} / ${filteredVocab.length.toLocaleString()} words)`;
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {

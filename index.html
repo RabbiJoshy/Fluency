@@ -34,7 +34,6 @@
                 </svg>
             </button>
         </div>
-        <span class="user-badge" id="userBadge">GUEST</span>
         <button class="gear-btn" id="gearBtn" title="Settings">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>
@@ -45,11 +44,19 @@
 
     <div class="container">
         <div class="file-upload" id="setupPanel">
-            <!-- Step 1: Language Selection -->
+            <!-- Help + Estimate bar (shown in Bad Bunny mode, hidden by default) -->
+            <div id="helpBar" class="setup-step help-bar" style="display: none;">
+                <div class="step-header">
+                    <button class="text-action-btn" id="helpBtn">Help</button>
+                    <button class="text-action-btn" id="estimateLevelTextBtn">Estimate Level</button>
+                </div>
+            </div>
+
+            <!-- Step 1: Language Selection (non-Bad-Bunny mode) -->
             <div id="step1" class="setup-step">
                 <div class="step-header step-header-with-help" id="step1Header">
                     <span class="step-number">1</span>
-                    <span class="step-title">Choose Language</span>
+                    <span class="step-title" id="step1Title">Choose Language</span>
                     <button class="step-help-btn" data-tooltip="step1Tooltip" title="Help">?</button>
                     <div id="step1Tooltip" class="step-info-tooltip">
                         <p><strong>How to Study:</strong></p>
@@ -72,10 +79,6 @@
                 <div class="selection-pill full-width" id="selectedLanguagePill">
                     <span id="selectedLanguageName"></span>
                 </div>
-                <!-- Estimate Level button for Bad Bunny mode (hidden by default) -->
-                <div id="step1EstimateContainer" style="display: none; margin-top: 15px;">
-                    <button class="estimate-level-btn" id="step1EstimateLevelBtn" style="width: 100%; padding: 12px 20px; font-size: 14px;">Estimate My Level</button>
-                </div>
             </div>
 
             <!-- Data Loading Indicator -->
@@ -97,6 +100,7 @@
                 <div class="personal-progress-header">
                     <span class="personal-progress-title">Your progress</span>
                     <button class="step-help-btn" data-tooltip="personalProgressTooltip" title="Help">?</button>
+                    <span id="personalCoverageLabel" class="personal-progress-info"></span>
                     <div id="personalProgressTooltip" class="step-info-tooltip">
                         <p>How many words from this vocabulary you've answered correctly at least once.</p>
                         <p>The count adjusts as you change filters below — using lemma mode or excluding cognates changes which words are eligible, and this bar reflects that filtered total.</p>
@@ -105,7 +109,6 @@
                 <div class="coverage-bar-container">
                     <div id="personalCoverageFill" class="coverage-bar-fill personal-coverage-fill"></div>
                 </div>
-                <div id="personalCoverageLabel" class="coverage-bar-label"></div>
             </div>
 
             <!-- Step 2: Level Selection -->
@@ -470,16 +473,7 @@
                     <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">
                         Be honest - mark "Know" only if you're confident you know the meaning.
                     </p>
-                    <div class="estimation-mode-buttons">
-                        <button class="estimation-mode-btn" id="quickEstimateBtn">
-                            <span class="mode-title">⚡ Quick</span>
-                            <span class="mode-desc">~15-25 words</span>
-                        </button>
-                        <button class="estimation-mode-btn" id="detailedEstimateBtn">
-                            <span class="mode-title">🎯 Detailed</span>
-                            <span class="mode-desc">~30-50 words</span>
-                        </button>
-                    </div>
+                    <button class="estimation-start-btn" id="startEstimationBtn">Start</button>
                 </div>
                 <div id="estimationTest" style="display: none;">
                     <div class="estimation-progress">
@@ -589,14 +583,14 @@
             <!-- Tab buttons as header -->
             <div class="settings-tabs-header">
                 <div class="settings-tabs">
-                    <button class="settings-tab active" data-tab="settings">Settings</button>
+                    <button class="settings-tab active" data-tab="account">Account</button>
+                    <button class="settings-tab" data-tab="settings">Settings</button>
                     <button class="settings-tab" data-tab="stats">Stats</button>
-                    <button class="settings-tab" data-tab="account">Account</button>
                 </div>
                 <button class="modal-close" id="closeSettingsModal">✕</button>
             </div>
             <!-- Settings tab content -->
-            <div class="settings-tab-content active" id="settingsTabContent">
+            <div class="settings-tab-content" id="settingsTabContent">
                 <div class="stat-row" style="cursor: pointer;" id="autoSpeakToggle">
                     <span>Auto-speak words</span>
                     <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
@@ -637,7 +631,7 @@
                 </div>
             </div>
             <!-- Account tab content -->
-            <div class="settings-tab-content" id="accountTabContent">
+            <div class="settings-tab-content active" id="accountTabContent">
                 <div class="stat-row">
                     <span>Logged in as</span>
                     <span id="accountUserBadge" style="color: var(--accent-primary);">GUEST</span>
@@ -659,6 +653,45 @@
                             <line x1="21" y1="12" x2="9" y2="12"></line>
                         </svg>
                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="settings-tabs-header">
+                <div class="settings-tabs">
+                    <button class="settings-tab active" data-tab="helpAbout">About</button>
+                    <button class="settings-tab" data-tab="helpStudy">How to Study</button>
+                </div>
+                <button class="modal-close" id="closeHelpModal">&#10005;</button>
+            </div>
+            <!-- About tab -->
+            <div class="settings-tab-content active" id="helpAboutTabContent">
+                <div class="help-content">
+                    <p><strong>What is this?</strong></p>
+                    <p>This app teaches you Spanish vocabulary from Bad Bunny's lyrics, starting with the most common words and working toward the least common.</p>
+                    <p><strong>Why frequency order?</strong></p>
+                    <p>Language follows a power law: a small number of words make up the vast majority of speech. By learning the most frequent words first, you understand more lyrics faster.</p>
+                    <p><strong>How are percentages calculated?</strong></p>
+                    <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. The remaining 30% are rarer words that appear less often.</p>
+                    <p><strong>How does it work?</strong></p>
+                    <p>Each word is ranked by how many times it appears across the entire discography. The app groups these into sets of 25. You work through sets in order, and each card shows the word with real lyric examples from songs where it appears.</p>
+                    <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
+                </div>
+            </div>
+            <!-- How to Study tab -->
+            <div class="settings-tab-content" id="helpStudyTabContent">
+                <div class="help-content">
+                    <p><strong>Tap card</strong> to flip and see the translation</p>
+                    <p><strong>Swipe right</strong> if you know the word &#10003;</p>
+                    <p><strong>Swipe left</strong> if you don't know it &#10007;</p>
+                    <p><strong>Tap example lyrics</strong> to cycle through different song examples</p>
+                    <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions</p>
+                    <p><strong>Arrow buttons</strong> to navigate cards manually</p>
+                    <p><strong>At the end of each set</strong>, you'll see your accuracy and can review incorrect cards or continue to the next set</p>
                 </div>
             </div>
         </div>

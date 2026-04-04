@@ -53,27 +53,20 @@ loadConfig().then(async () => {
     if (isBadBunnyMode) {
         selectedLanguage = 'spanish';
         applyLanguageColorTheme();
-        // Hide language tabs and the "Spanish (Bad Bunny)" pill completely
+        // Hide language tabs, pill, and step 1 entirely (replaced by helpBar)
         document.getElementById('languageTabs').style.display = 'none';
         document.getElementById('selectedLanguagePill').style.display = 'none';
-        // Update step 1 title for Bad Bunny mode - replace "Choose Language" with "Estimate Level"
-        document.querySelector('#step1Header .step-title').textContent = 'Estimate Level';
-        // Show the Estimate Level button in step 1 for Bad Bunny mode
-        document.getElementById('step1EstimateContainer').style.display = 'block';
-        // Update step 1 tooltip for Bad Bunny mode
-        document.getElementById('step1Tooltip').innerHTML = `
-            <p><strong>How to Study:</strong></p>
-            <p><strong>Tap card</strong> to flip and see translation</p>
-            <p><strong>Swipe right</strong> if you know the word ✓</p>
-            <p><strong>Swipe left</strong> if you don't know it ✗</p>
-            <p><strong>Tap example lyrics</strong> to cycle through different song examples</p>
-            <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions</p>
-            <p><strong>Arrow buttons</strong> to navigate cards manually</p>
-            <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--border-color);">
-            <p><strong>About This Mode:</strong></p>
-            <p>Learn Spanish vocabulary from Bad Bunny's lyrics. Words are ranked by how often they appear across his discography, so you learn the most common words first.</p>
-            <p>Each word includes real lyric examples from his songs.</p>
-        `;
+        document.getElementById('step1').style.display = 'none';
+        // Show Help + Estimate bar at the top
+        document.getElementById('helpBar').style.display = 'block';
+        // Wire up Help button → help modal, Estimate Level → estimation modal
+        document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
+        document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
+        // Setup help modal close + tab switching
+        document.getElementById('closeHelpModal').addEventListener('click', () => {
+            document.getElementById('helpModal').classList.add('hidden');
+        });
+        setupTabSwitching(document.getElementById('helpModal'));
         // Load PPM data and show step 2
         await loadPpmData('spanish');
         document.getElementById('step2').style.display = 'block';

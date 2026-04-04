@@ -42,7 +42,7 @@ function hideAuthModal() {
 function showUserInfo() {
     const userInfo = document.getElementById('userInfo');
     const userBadge = document.getElementById('userBadge');
-    userBadge.textContent = currentUser.isGuest ? 'GUEST' : currentUser.initials;
+    if (userBadge) userBadge.textContent = currentUser.isGuest ? 'GUEST' : currentUser.initials;
     userInfo.classList.remove('hidden');
 }
 

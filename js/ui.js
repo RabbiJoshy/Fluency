@@ -489,11 +489,6 @@ function setupEstimateLevelButton() {
         openEstimationModal();
     });
 
-    // Step 1 Estimate Level button (for Bad Bunny mode)
-    document.getElementById('step1EstimateLevelBtn').addEventListener('click', function() {
-        openEstimationModal();
-    });
-
     // Estimate Level block button (shown between step 1 and step 2 when no estimate set)
     document.getElementById('estimateLevelBlockBtn').addEventListener('click', function() {
         openEstimationModal();
@@ -502,14 +497,9 @@ function setupEstimateLevelButton() {
     // Close modal
     document.getElementById('closeEstimationModal').addEventListener('click', closeEstimationModal);
 
-    // Quick estimate button
-    document.getElementById('quickEstimateBtn').addEventListener('click', function() {
-        startEstimation('quick');
-    });
-
-    // Detailed estimate button
-    document.getElementById('detailedEstimateBtn').addEventListener('click', function() {
-        startEstimation('detailed');
+    // Start estimation button
+    document.getElementById('startEstimationBtn').addEventListener('click', function() {
+        startEstimation();
     });
 
     // Know/Don't Know buttons
@@ -534,9 +524,10 @@ async function updateLemmaToggleVisibility() {
 
     // Check if vocabulary has most_frequent_lemma_instance field
     lemmaFieldAvailable = false;
-    if (langConfig && langConfig.dataPath) {
+    const lemmaCheckPath = langConfig && (langConfig.indexPath || langConfig.dataPath);
+    if (lemmaCheckPath) {
         try {
-            const response = await fetch(langConfig.dataPath);
+            const response = await fetch(lemmaCheckPath);
             if (response.ok) {
                 const vocabData = await response.json();
                 // Check if at least one entry has the most_frequent_lemma_instance field
@@ -572,9 +563,10 @@ async function updateCognateToggleVisibility() {
 
     // Check if vocabulary has is_transparent_cognate field
     cognateFieldAvailable = false;
-    if (langConfig && langConfig.dataPath) {
+    const cognateCheckPath = langConfig && (langConfig.indexPath || langConfig.dataPath);
+    if (cognateCheckPath) {
         try {
-            const response = await fetch(langConfig.dataPath);
+            const response = await fetch(cognateCheckPath);
             if (response.ok) {
                 const vocabData = await response.json();
                 // Check if at least one entry has the is_transparent_cognate field
@@ -642,8 +634,8 @@ async function renderRangeSelector() {
         [minWord, maxWord] = level.wordCount.split('-').map(Number);
     }
 
-    // Always use the regular data path
-    const dataPath = langConfig.dataPath;
+    // Use index file for lightweight metadata loading
+    const dataPath = langConfig.indexPath || langConfig.dataPath;
 
     // Load the vocabulary data to check which ranks exist
     let vocabularyData = [];
@@ -1020,6 +1012,31 @@ window.updateStep5Tooltip = updateStep5Tooltip;
 window.renderLevelSelector = renderLevelSelector;
 window.setupCognateToggle = setupCognateToggle;
 window.setupGroupSizeSelector = setupGroupSizeSelector;
+// Open the help modal
+function openHelpModal() {
+    document.getElementById('helpModal').classList.remove('hidden');
+}
+
+// Generic tab switching for any modal that uses .settings-tab / .settings-tab-content pattern
+function setupTabSwitching(modalEl) {
+    const tabs = modalEl.querySelectorAll('.settings-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Deactivate all tabs and contents within this modal
+            modalEl.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+            modalEl.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+            // Activate clicked tab
+            tab.classList.add('active');
+            const tabName = tab.dataset.tab;
+            const contentId = tabName + 'TabContent';
+            const content = document.getElementById(contentId);
+            if (content) content.classList.add('active');
+        });
+    });
+}
+
+window.openHelpModal = openHelpModal;
+window.setupTabSwitching = setupTabSwitching;
 window.setupLemmaToggle = setupLemmaToggle;
 window.setupPercentModeButton = setupPercentModeButton;
 window.setupEstimateLevelButton = setupEstimateLevelButton;

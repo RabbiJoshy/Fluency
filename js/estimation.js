@@ -1,15 +1,5 @@
 import './state.js';
 
-async function loadEstimationCheckpoints() {
-    try {
-        const response = await fetch('estimation_checkpoints.json');
-        estimationCheckpoints = await response.json();
-        console.log('Estimation checkpoints loaded');
-    } catch (error) {
-        console.error('Failed to load estimation checkpoints:', error);
-    }
-}
-
 // Show/hide estimate level button based on language
 function updateEstimateLevelButton() {
     const btn = document.getElementById('estimateLevelBtn');
@@ -41,10 +31,8 @@ function openEstimationModal() {
     // Reset estimation state
     estimationState = {
         active: false,
-        mode: 'quick',
         currentLevel: 500,
-        stride: 500,
-        minStride: 200,
+        minStride: 100,
         wordIndex: 0,
         correct: 0,
         wrong: 0,
@@ -55,7 +43,6 @@ function openEstimationModal() {
         vocabularyData: null,
         history: [],
         maxLevel: isBadBunnyMode ? 8500 : 11000,
-        // detailed mode binary search state
         lowerBound: 0,
         upperBound: isBadBunnyMode ? 8500 : 11000,
         confirmationLevel: null
@@ -69,12 +56,12 @@ function closeEstimationModal() {
     estimationState.active = false;
 }
 
-// Start the estimation test with specified mode
-async function startEstimation(mode = 'quick') {
+// Start the estimation test
+async function startEstimation() {
     // Load vocabulary data
     const langConfig = config.languages[selectedLanguage];
     try {
-        const response = await fetch(langConfig.dataPath);
+        const response = await fetch(langConfig.indexPath || langConfig.dataPath);
         const vocabData = await response.json();
         // Assign ranks
         vocabData.forEach((item, index) => {
@@ -89,9 +76,8 @@ async function startEstimation(mode = 'quick') {
     // Determine max level based on mode
     const maxLevel = isBadBunnyMode ? 8500 : 11000;
 
-    // Initialize state with adaptive parameters
+    // Initialize state — binary search for highest level where user scores ≥4/5
     estimationState.active = true;
-    estimationState.mode = mode;
     estimationState.maxLevel = maxLevel;
     estimationState.wordIndex = 0;
     estimationState.correct = 0;
@@ -100,21 +86,11 @@ async function startEstimation(mode = 'quick') {
     estimationState.checkpointWrong = 0;
     estimationState.history = [];
     estimationState.estimatedLevel = null;
-
-    if (mode === 'detailed') {
-        // Binary search: find highest level where user scores ≥4/5
-        estimationState.lowerBound = 0;
-        estimationState.upperBound = maxLevel;
-        estimationState.confirmationLevel = null;
-        estimationState.minStride = 100;
-        estimationState.stride = null; // not used in detailed mode
-        estimationState.currentLevel = Math.floor(maxLevel / 2);
-    } else {
-        // Quick mode — unchanged heuristic
-        estimationState.currentLevel = 500;
-        estimationState.stride = 500;
-        estimationState.minStride = 200;
-    }
+    estimationState.lowerBound = 0;
+    estimationState.upperBound = maxLevel;
+    estimationState.confirmationLevel = null;
+    estimationState.minStride = 100;
+    estimationState.currentLevel = Math.floor(maxLevel / 2);
 
     // Show test UI
     document.getElementById('estimationIntro').style.display = 'none';
@@ -234,11 +210,7 @@ function evaluateCheckpoint() {
 
     estimationState.history.push({ level: currentLevel, correct });
 
-    if (estimationState.mode === 'detailed') {
-        evaluateCheckpointDetailed(correct, currentLevel);
-    } else {
-        evaluateCheckpointQuick(correct, currentLevel);
-    }
+    evaluateCheckpointDetailed(correct, currentLevel);
 }
 
 // Detailed mode: binary search with confirmation step for 4/5
@@ -295,48 +267,6 @@ function advanceDetailedSearch() {
     }
     estimationState.currentLevel = Math.floor((lowerBound + upperBound) / 2);
     loadEstimationLevel();
-}
-
-// Quick mode: original heuristic (unchanged)
-function evaluateCheckpointQuick(correct, currentLevel) {
-    const stride = estimationState.stride;
-    let newLevel = currentLevel;
-    let newStride = stride;
-
-    if (correct >= 5) {
-        newStride = Math.min(stride * 2, 2000);
-        newLevel = currentLevel + newStride;
-    } else if (correct === 4) {
-        newLevel = currentLevel + Math.round(stride * 1.5);
-    } else if (correct === 3) {
-        newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
-        newLevel = currentLevel + newStride;
-    } else if (correct === 2) {
-        newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
-        newLevel = currentLevel - newStride;
-    } else {
-        newStride = Math.max(Math.round(stride / 2), estimationState.minStride);
-        newLevel = currentLevel - Math.round(newStride * 1.5);
-    }
-
-    newLevel = Math.max(50, Math.min(newLevel, estimationState.maxLevel));
-
-    const shouldStop =
-        (newStride <= estimationState.minStride && correct >= 2 && correct <= 3) ||
-        (newLevel >= estimationState.maxLevel && correct >= 3) ||
-        (newLevel <= 50 && correct <= 2);
-
-    if (shouldStop) {
-        let estimatedLevel = currentLevel;
-        if (correct <= 2) {
-            estimatedLevel = Math.max(0, currentLevel - Math.round(stride / 2));
-        }
-        showEstimationResult(estimatedLevel);
-    } else {
-        estimationState.currentLevel = newLevel;
-        estimationState.stride = newStride;
-        loadEstimationLevel();
-    }
 }
 
 // Show the estimation result
@@ -448,7 +378,6 @@ function selectRangeForRank(rank) {
 
 // Load configuration
 
-window.loadEstimationCheckpoints = loadEstimationCheckpoints;
 window.updateEstimateLevelButton = updateEstimateLevelButton;
 window.updateEstimateLevelBlock = updateEstimateLevelBlock;
 window.openEstimationModal = openEstimationModal;
@@ -463,7 +392,6 @@ window.nextEstimationWord = nextEstimationWord;
 window.evaluateCheckpoint = evaluateCheckpoint;
 window.evaluateCheckpointDetailed = evaluateCheckpointDetailed;
 window.advanceDetailedSearch = advanceDetailedSearch;
-window.evaluateCheckpointQuick = evaluateCheckpointQuick;
 window.showEstimationResult = showEstimationResult;
 window.useEstimatedLevel = useEstimatedLevel;
 window.selectLevelForRank = selectLevelForRank;

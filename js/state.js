@@ -58,12 +58,9 @@ export const state = {
     cachedVocabularyData: null,
 
     // Level estimation
-    estimationCheckpoints: null,
     estimationState: {
         active: false,
-        mode: 'quick',
         currentLevel: 500,
-        stride: 500,
         minStride: 100,
         wordIndex: 0,
         correct: 0,

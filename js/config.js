@@ -15,6 +15,8 @@ async function loadConfig() {
                 ...config.languages.spanish,
                 name: "Spanish (Bad Bunny)",
                 dataPath: "Artists/Bad Bunny/BadBunnyvocabulary.json",
+                indexPath: "Artists/Bad Bunny/BadBunnyvocabulary.index.json",
+                examplesPath: "Artists/Bad Bunny/BadBunnyvocabulary.examples.json",
                 ppmDataPath: null, // PPM data is embedded in vocabulary JSON
                 colorTheme: {
                     primary: "#ED1C24",   // Puerto Rican flag red
@@ -77,9 +79,10 @@ async function loadPpmData(language) {
     }
 
     // Fallback: try to load from vocabulary JSON if it has corpus_count or occurrences_ppm embedded
-    if (langConfig && langConfig.dataPath && langConfig.dataPath.endsWith('.json')) {
+    const vocabJsonPath = langConfig.indexPath || langConfig.dataPath;
+    if (langConfig && vocabJsonPath && vocabJsonPath.endsWith('.json')) {
         try {
-            const response = await fetch(langConfig.dataPath);
+            const response = await fetch(vocabJsonPath);
             if (response.ok) {
                 const vocabData = await response.json();
                 // Check if vocab has corpus_count (preferred) or occurrences_ppm (legacy)

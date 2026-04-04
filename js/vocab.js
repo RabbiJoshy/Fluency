@@ -83,12 +83,12 @@ async function loadVocabularyData(rangeString) {
     const langConfig = config.languages[selectedLanguage];
     const [rangeStart, rangeEnd] = rangeString.split('-').map(Number);
 
-    // Always use the regular data path
-    const dataPath = langConfig.dataPath;
+    // Use lightweight index for filtering when available
+    const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
-        // Load the vocabulary JSON
-        const response = await fetch(dataPath);
+        // Load the index (metadata only, no examples) for filtering
+        const response = await fetch(indexPath);
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
@@ -137,12 +137,47 @@ async function loadVocabularyData(rangeString) {
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
-        // Build corpus-wide example pool for MWE matching (all words, not just current range)
-        const allCorpusExamples = [];
-        for (const entry of vocabularyData) {
-            if (!entry.meanings) continue;
-            for (const m of entry.meanings) {
-                if (m.examples) allCorpusExamples.push(...m.examples);
+        // Lazy-load examples: fetch only when user commits to a set
+        let allCorpusExamples = [];
+        if (langConfig.examplesPath) {
+            if (!window._cachedExamplesData) {
+                const exResponse = await fetch(langConfig.examplesPath);
+                if (exResponse.ok) {
+                    window._cachedExamplesData = await exResponse.json();
+                }
+            }
+            const examplesData = window._cachedExamplesData;
+            if (examplesData) {
+                // Merge examples back into filtered entries
+                for (const item of filteredData) {
+                    const ex = examplesData[item.id];
+                    if (ex && ex.m) {
+                        item.meanings.forEach((m, i) => {
+                            m.examples = ex.m[i] || [];
+                        });
+                    }
+                    if (ex && ex.w && item.mwe_memberships) {
+                        item.mwe_memberships.forEach((mwe, i) => {
+                            mwe.examples = ex.w[i] || [];
+                        });
+                    }
+                }
+                // Build corpus-wide example pool for MWE matching from all examples
+                for (const ex of Object.values(examplesData)) {
+                    if (ex.m) {
+                        for (const meaningExamples of ex.m) {
+                            allCorpusExamples.push(...meaningExamples);
+                        }
+                    }
+                }
+            }
+        } else {
+            // Fallback: monolith path — examples are inline in vocabularyData
+            for (const entry of vocabularyData) {
+                if (!entry.meanings) continue;
+                for (const m of entry.meanings) {
+                    if (m.examples) allCorpusExamples.push(...m.examples);
+                }
             }
         }
 
@@ -346,11 +381,11 @@ async function loadIncorrectWordsSet() {
     }
 
     const langConfig = config.languages[selectedLanguage];
-    const dataPath = langConfig.dataPath;
+    const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
-        // Load the full vocabulary JSON to get card details
-        const response = await fetch(dataPath);
+        // Load the index (metadata) to get card details
+        const response = await fetch(indexPath);
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
@@ -368,12 +403,49 @@ async function loadIncorrectWordsSet() {
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
-        // Build corpus-wide example pool for MWE matching
-        const allCorpusExamples = [];
-        for (const entry of vocabularyData) {
-            if (!entry.meanings) continue;
-            for (const m of entry.meanings) {
-                if (m.examples) allCorpusExamples.push(...m.examples);
+        // Lazy-load examples for the incorrect words
+        let allCorpusExamples = [];
+        if (langConfig.examplesPath) {
+            if (!window._cachedExamplesData) {
+                const exResponse = await fetch(langConfig.examplesPath);
+                if (exResponse.ok) {
+                    window._cachedExamplesData = await exResponse.json();
+                }
+            }
+            const examplesData = window._cachedExamplesData;
+            if (examplesData) {
+                // Merge examples into the incorrect word entries
+                for (const incorrectWord of incorrectWords) {
+                    const item = wordToVocab[incorrectWord.wordId];
+                    if (!item) continue;
+                    const ex = examplesData[item.id];
+                    if (ex && ex.m) {
+                        item.meanings.forEach((m, i) => {
+                            m.examples = ex.m[i] || [];
+                        });
+                    }
+                    if (ex && ex.w && item.mwe_memberships) {
+                        item.mwe_memberships.forEach((mwe, i) => {
+                            mwe.examples = ex.w[i] || [];
+                        });
+                    }
+                }
+                // Build corpus-wide example pool for MWE matching
+                for (const ex of Object.values(examplesData)) {
+                    if (ex.m) {
+                        for (const meaningExamples of ex.m) {
+                            allCorpusExamples.push(...meaningExamples);
+                        }
+                    }
+                }
+            }
+        } else {
+            // Fallback: monolith path — examples are inline
+            for (const entry of vocabularyData) {
+                if (!entry.meanings) continue;
+                for (const m of entry.meanings) {
+                    if (m.examples) allCorpusExamples.push(...m.examples);
+                }
             }
         }
 
