@@ -462,35 +462,60 @@ import re as _re
 _SECTION_HEADER_RE = _re.compile(r'^\[.+\]$')
 
 
-def clean_lyrics_lines(raw_text):
-    """Clean raw Genius lyrics text into a list of content lines.
+def _clean_lyrics_keep_blanks(raw_text):
+    """Clean raw Genius lyrics, keeping empty lines as section boundaries.
 
-    Drops the metadata first line (Genius contributor/description text),
-    section headers like [Chorus], and empty lines.
+    Drops the metadata first line and section headers like [Chorus].
+    Empty lines are preserved as '' for section splitting.
     """
     lines = raw_text.split("\n")
-    # Line 0 is always Genius metadata ("54 ContributorsTranslations...")
-    lines = lines[1:]
+    lines = lines[1:]  # drop Genius metadata
     result = []
     for line in lines:
         stripped = line.strip()
-        if not stripped:
-            continue
         if _SECTION_HEADER_RE.match(stripped):
             continue
         result.append(stripped)
     return result
 
 
+def clean_lyrics_lines(raw_text):
+    """Clean raw Genius lyrics text into a list of content lines.
+
+    Drops the metadata first line (Genius contributor/description text),
+    section headers like [Chorus], and empty lines.
+    """
+    return [l for l in _clean_lyrics_keep_blanks(raw_text) if l]
+
+
+def _split_sections(lines):
+    """Split lines at empty-line boundaries into sections."""
+    sections = []
+    current = []
+    for line in lines:
+        if not line:
+            if current:
+                sections.append(current)
+                current = []
+        else:
+            current.append(line)
+    if current:
+        sections.append(current)
+    return sections
+
+
 def build_aligned_translations(artist_dir, max_diff_pct=0.10):
     """Align Spanish lyrics with English Genius translations line by line.
+
+    For exact-match songs (same line count): zips all lines 1:1.
+    For close-match songs (within max_diff_pct): splits at empty lines into
+    sections and only uses sections where line counts match exactly. This
+    avoids cascading misalignment from a single split/merged line.
 
     Returns a dict with:
       "songs": {song_id: {title, match_quality, sp_lines, en_lines, lines: [{spanish, english}]}}
       "index": {spanish_line: english_line}  (flat lookup for step 6)
       "stats": {exact, close, skipped, lines_indexed}
-
-    Songs are included if cleaned line counts match exactly or differ by <= max_diff_pct.
     """
     trans_dir = os.path.join(artist_dir, "data", "input", "translations")
     trans_path = os.path.join(trans_dir, "translations.json")
@@ -519,45 +544,61 @@ def build_aligned_translations(artist_dir, max_diff_pct=0.10):
         if not tdata.get("lyrics"):
             continue
 
-        sp_lines = clean_lyrics_lines(all_songs[song_id]["lyrics"])
-        en_lines = clean_lyrics_lines(tdata["lyrics"])
+        sp_raw = _clean_lyrics_keep_blanks(all_songs[song_id]["lyrics"])
+        en_raw = _clean_lyrics_keep_blanks(tdata["lyrics"])
+        sp_content = [l for l in sp_raw if l]
+        en_content = [l for l in en_raw if l]
 
-        if not sp_lines or not en_lines:
+        if not sp_content or not en_content:
             stats["skipped"] += 1
             continue
 
-        diff_pct = abs(len(sp_lines) - len(en_lines)) / max(len(sp_lines), len(en_lines))
+        diff_pct = abs(len(sp_content) - len(en_content)) / max(len(sp_content), len(en_content))
 
         if diff_pct > max_diff_pct:
             stats["skipped"] += 1
             songs_out[song_id] = {
                 "title": tdata.get("song_title", ""),
                 "match_quality": "skipped",
-                "sp_lines": len(sp_lines),
-                "en_lines": len(en_lines),
+                "sp_lines": len(sp_content),
+                "en_lines": len(en_content),
                 "lines": [],
             }
             continue
 
-        if len(sp_lines) == len(en_lines):
+        aligned = []
+
+        if len(sp_content) == len(en_content):
+            # Exact match — zip all lines
             quality = "exact"
             stats["exact"] += 1
+            for sp_line, en_line in zip(sp_content, en_content):
+                aligned.append({"spanish": sp_line, "english": en_line})
+                if sp_line not in index:
+                    index[sp_line] = en_line
+                    stats["lines_indexed"] += 1
         else:
+            # Close match — section-aware alignment
             quality = "close"
             stats["close"] += 1
-
-        aligned = []
-        for sp_line, en_line in zip(sp_lines, en_lines):
-            aligned.append({"spanish": sp_line, "english": en_line})
-            if sp_line not in index:
-                index[sp_line] = en_line
-                stats["lines_indexed"] += 1
+            sp_sections = _split_sections(sp_raw)
+            en_sections = _split_sections(en_raw)
+            for i in range(min(len(sp_sections), len(en_sections))):
+                sp_sec = sp_sections[i]
+                en_sec = en_sections[i]
+                if len(sp_sec) == len(en_sec):
+                    for sp_line, en_line in zip(sp_sec, en_sec):
+                        aligned.append({"spanish": sp_line, "english": en_line})
+                        if sp_line not in index:
+                            index[sp_line] = en_line
+                            stats["lines_indexed"] += 1
+                # Mismatched sections are skipped — no cascading errors
 
         songs_out[song_id] = {
             "title": tdata.get("song_title", ""),
             "match_quality": quality,
-            "sp_lines": len(sp_lines),
-            "en_lines": len(en_lines),
+            "sp_lines": len(sp_content),
+            "en_lines": len(en_content),
             "lines": aligned,
         }
 

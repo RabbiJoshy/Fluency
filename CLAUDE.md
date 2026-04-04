@@ -107,6 +107,8 @@ Genius never overwrites existing Gemini translations. Each example in the output
 
 **Important for MWEs**: The Gemini cache only covers ~15,600 unique lines (those used as word examples). The full corpus has ~33,800 lines. Genius translations cover an additional ~2,300 lines that Gemini never translated. This matters when building MWE example sentences — many MWE-containing lines exist only in the Genius index.
 
+**Alignment approach**: Line alignment uses section-aware matching — splits lyrics at empty lines (section boundaries), only zips sections where Spanish and English line counts match exactly. This avoids cascading misalignment from a translator splitting/merging a line (e.g. "bebé" on its own line). Currently recovers ~7,500 lines. ~4,900 lines in mismatched sections are skipped. **Future improvement**: embedding-based sentence alignment (e.g. `vecalign` or Gemini `text-embedding-004`) could recover those skipped lines by finding best 1:1 matches across languages. Cost would be essentially free (~80K tokens). Low priority since section-aware covers the majority.
+
 ### Adding a new artist
 1. Create `Artists/NewArtist/artist.json` with `name`, `genius_query`, `vocabulary_file`
 2. Run step 1: `.venv/bin/python3 Artists/scripts/1_download_lyrics.py --artist-dir "Artists/NewArtist"`
