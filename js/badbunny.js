@@ -2,7 +2,7 @@ import './state.js';
 
 async function loadBadBunnyAlbumsDictionary() {
     try {
-        const response = await fetch('Bad Bunny/bad_bunny_albums_dictionary.json');
+        const response = await fetch('Artists/Bad Bunny/bad_bunny_albums_dictionary.json');
         badBunnyAlbumsDictionary = await response.json();
 
         // Build reverse mapping: song name -> album image path

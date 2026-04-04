@@ -1,0 +1,730 @@
+{
+  "description": "Duplicate song mappings, placeholder songs, and non-Spanish songs to exclude.",
+  "duplicates": {
+    "2877985": {
+      "keep": "2829388",
+      "duplicate_title": "Diles",
+      "original_title": "Diles"
+    },
+    "3046913": {
+      "keep": "2927716",
+      "duplicate_title": "Soy Peor (Remix)",
+      "original_title": "Soy Peor"
+    },
+    "3073521": {
+      "keep": "2503547",
+      "duplicate_title": "Pa’ Que Le De",
+      "original_title": "Pa’ Que Le De (Remix)"
+    },
+    "3171620": {
+      "keep": "2927716",
+      "duplicate_title": "Soy Peor (Remix)",
+      "original_title": "Soy Peor"
+    },
+    "3185782": {
+      "keep": "3103548",
+      "duplicate_title": "Tú No Metes Cabra (Remix)",
+      "original_title": "Tú No Metes Cabra"
+    },
+    "3214428": {
+      "keep": "2927716",
+      "duplicate_title": "Soy Peor (Mambo Remix)",
+      "original_title": "Soy Peor"
+    },
+    "3262548": {
+      "keep": "3098225",
+      "duplicate_title": "Ahora Me Llama (Remix)",
+      "original_title": "Ahora Me Llama"
+    },
+    "3326101": {
+      "keep": "3015945",
+      "duplicate_title": "Krippy Kush (Remix)",
+      "original_title": "Krippy Kush"
+    },
+    "3468429": {
+      "keep": "3176704",
+      "duplicate_title": "Explícale (Remix)",
+      "original_title": "Explícale"
+    },
+    "3529480": {
+      "keep": "3524844",
+      "duplicate_title": "Amorfoda (Remix)",
+      "original_title": "Amorfoda"
+    },
+    "3557083": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "3569562": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (MVIENIGHT Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "3569961": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (Lemarroy Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "3594338": {
+      "keep": "3587995",
+      "duplicate_title": "Gucci Gang (Spanish Remix)",
+      "original_title": "Gucci Gang (Mega Remix)"
+    },
+    "3620062": {
+      "keep": "3108097",
+      "duplicate_title": "Mayores (KLAP Remix)",
+      "original_title": "Mayores"
+    },
+    "3669753": {
+      "keep": "3208907",
+      "duplicate_title": "Dime*",
+      "original_title": "Dime"
+    },
+    "3891737": {
+      "keep": "3703524",
+      "duplicate_title": "Triste (Remix)",
+      "original_title": "Triste"
+    },
+    "3892711": {
+      "keep": "3888528",
+      "duplicate_title": "Vamos Pa’ La Calle (Remix)",
+      "original_title": "Vamos Pa’ La Calle"
+    },
+    "3943355": {
+      "keep": "3108097",
+      "duplicate_title": "Mayores",
+      "original_title": "Mayores"
+    },
+    "4027444": {
+      "keep": "3100770",
+      "duplicate_title": "Give it Up (Remix)",
+      "original_title": "Give It Up"
+    },
+    "4144727": {
+      "keep": "3627151",
+      "duplicate_title": "I Like It",
+      "original_title": "I Like It"
+    },
+    "4293569": {
+      "keep": "3005716",
+      "duplicate_title": "No Te Hagas (Wuayio Remix)",
+      "original_title": "No Te Hagas"
+    },
+    "4606814": {
+      "keep": "4589199",
+      "duplicate_title": "Callaita (Versión Limpia)",
+      "original_title": "Callaita"
+    },
+    "4825715": {
+      "keep": "4178982",
+      "duplicate_title": "NI BIEN NI MAL (Live)",
+      "original_title": "NI BIEN NI MAL"
+    },
+    "4825725": {
+      "keep": "4178994",
+      "duplicate_title": "200 Mph (Live)",
+      "original_title": "200 MPH"
+    },
+    "4825726": {
+      "keep": "4179001",
+      "duplicate_title": "Caro (Live)",
+      "original_title": "Caro"
+    },
+    "4825727": {
+      "keep": "4140387",
+      "duplicate_title": "Solo de Mí (Live)",
+      "original_title": "Solo de Mí"
+    },
+    "4825728": {
+      "keep": "4179009",
+      "duplicate_title": "La Romana (Live)",
+      "original_title": "La Romana"
+    },
+    "4825729": {
+      "keep": "4179007",
+      "duplicate_title": "Si Estuviésemos Juntos (Live)",
+      "original_title": "Si Estuviésemos Juntos"
+    },
+    "4825730": {
+      "keep": "3804898",
+      "duplicate_title": "Estamos Bien (Live)",
+      "original_title": "Estamos Bien"
+    },
+    "5136586": {
+      "keep": "3075944",
+      "duplicate_title": "MIA",
+      "original_title": "MIA"
+    },
+    "5732274": {
+      "keep": "5305015",
+      "duplicate_title": "25/8 (Versión Extendida)",
+      "original_title": "25/8"
+    },
+    "5818291": {
+      "keep": "5002336",
+      "duplicate_title": "Cántalo (Headphone Mix)",
+      "original_title": "Cántalo"
+    },
+    "6060339": {
+      "keep": "5305021",
+      "duplicate_title": "Yo Perreo Sola (Remix)",
+      "original_title": "Yo Perreo Sola"
+    },
+    "6085841": {
+      "keep": "3968305",
+      "duplicate_title": "La Canción",
+      "original_title": "LA CANCIÓN"
+    },
+    "6234232": {
+      "keep": "3495715",
+      "duplicate_title": "Te Boté (Clean Version)",
+      "original_title": "Te Boté (Remix)"
+    },
+    "6250603": {
+      "keep": "6211047",
+      "duplicate_title": "120",
+      "original_title": "120"
+    },
+    "6250616": {
+      "keep": "6211036",
+      "duplicate_title": "BOOKER T",
+      "original_title": "BOOKER T"
+    },
+    "6250617": {
+      "keep": "6211005",
+      "duplicate_title": "MALDITA POBREZA",
+      "original_title": "MALDITA POBREZA"
+    },
+    "6250619": {
+      "keep": "6211043",
+      "duplicate_title": "SORRY PAPI",
+      "original_title": "SORRY PAPI"
+    },
+    "6250620": {
+      "keep": "6211030",
+      "duplicate_title": "HACIENDO QUE ME AMAS",
+      "original_title": "HACIENDO QUE ME AMAS"
+    },
+    "6250621": {
+      "keep": "6210865",
+      "duplicate_title": "EL MUNDO ES MÍO",
+      "original_title": "EL MUNDO ES MÍO"
+    },
+    "6251579": {
+      "keep": "6211022",
+      "duplicate_title": "TE DESEO LO MEJOR",
+      "original_title": "TE DESEO LO MEJOR"
+    },
+    "6255583": {
+      "keep": "6100181",
+      "duplicate_title": "DÁKITI (Remix)",
+      "original_title": "DÁKITI"
+    },
+    "6490250": {
+      "keep": "5553967",
+      "duplicate_title": "Canción Con Yandel (Live)",
+      "original_title": "CANCIÓN CON YANDEL"
+    },
+    "6732786": {
+      "keep": "5761512",
+      "duplicate_title": "Un Dia (One Day)",
+      "original_title": "UN DÍA (ONE DAY)"
+    },
+    "7025529": {
+      "keep": "3289205",
+      "duplicate_title": "Después De Las 9 (Version Original)",
+      "original_title": "Después De Las 9"
+    },
+    "7032493": {
+      "keep": "5242339",
+      "duplicate_title": "No Prometo Nada",
+      "original_title": "No Prometo Nada"
+    },
+    "7330484": {
+      "keep": "6100181",
+      "duplicate_title": "DÁKITI",
+      "original_title": "DÁKITI"
+    },
+    "7355040": {
+      "keep": "6211010",
+      "duplicate_title": "La Noche De Anoche",
+      "original_title": "LA NOCHE DE ANOCHE"
+    },
+    "7483313": {
+      "keep": "3627151",
+      "duplicate_title": "I Like It (Instrumental)",
+      "original_title": "I Like It"
+    },
+    "7483314": {
+      "keep": "3627151",
+      "duplicate_title": "I Like It (Radio Edit)",
+      "original_title": "I Like It"
+    },
+    "7638312": {
+      "keep": "3968305",
+      "duplicate_title": "La Cancion",
+      "original_title": "LA CANCIÓN"
+    },
+    "8287468": {
+      "keep": "5305012",
+      "duplicate_title": "Una Vez",
+      "original_title": "Una Vez"
+    },
+    "8355994": {
+      "keep": "7967978",
+      "duplicate_title": "Un Coco (Concert Version)",
+      "original_title": "Un Coco"
+    },
+    "8468004": {
+      "keep": "7967957",
+      "duplicate_title": "Me Porto Bonito (Mixed)",
+      "original_title": "Me Porto Bonito"
+    },
+    "8767827": {
+      "keep": "5305000",
+      "duplicate_title": "Si Veo a Tu Mamá",
+      "original_title": "Si Veo a Tu Mamá"
+    },
+    "8769792": {
+      "keep": "3627151",
+      "duplicate_title": "I Like It (Alesso Remix)",
+      "original_title": "I Like It"
+    },
+    "8790812": {
+      "keep": "8598733",
+      "duplicate_title": "La Jumpa (Mixed)",
+      "original_title": "La Jumpa"
+    },
+    "8794456": {
+      "keep": "3108097",
+      "duplicate_title": "Mayores (Radio Version)",
+      "original_title": "Mayores"
+    },
+    "8884707": {
+      "keep": "7967959",
+      "duplicate_title": "Tití Me Preguntó (Mixed)",
+      "original_title": "Tití Me Preguntó"
+    },
+    "8995366": {
+      "keep": "8598733",
+      "duplicate_title": "La Jumpa (Mixed) [April 2023]",
+      "original_title": "La Jumpa"
+    },
+    "9175638": {
+      "keep": "7032476",
+      "duplicate_title": "K-POP",
+      "original_title": "Cactus"
+    },
+    "9191453": {
+      "keep": "7967959",
+      "duplicate_title": "Tití Me Preguntó (XNYWOLF Remix) [Mixed]",
+      "original_title": "Tití Me Preguntó"
+    },
+    "9215079": {
+      "keep": "7967959",
+      "duplicate_title": "Tití Me Preguntó (Remix) [Mixed]",
+      "original_title": "Tití Me Preguntó"
+    },
+    "9307409": {
+      "keep": "9025881",
+      "duplicate_title": "Un X100to",
+      "original_title": "un x100to"
+    },
+    "9307881": {
+      "keep": "9123229",
+      "duplicate_title": "WHERE SHE GOES (Mixed)",
+      "original_title": "WHERE SHE GOES"
+    },
+    "9358776": {
+      "keep": "9175638",
+      "duplicate_title": "K-POP (Instrumental)",
+      "original_title": "K-POP"
+    },
+    "9505961": {
+      "keep": "9025881",
+      "duplicate_title": "un x100to",
+      "original_title": "un x100to"
+    },
+    "9592270": {
+      "keep": "9554528",
+      "duplicate_title": "UN PREVIEW (Mixed)",
+      "original_title": "UN PREVIEW"
+    },
+    "9614105": {
+      "keep": "7032478",
+      "duplicate_title": "FINA",
+      "original_title": "Marea"
+    },
+    "9693778": {
+      "keep": "3133285",
+      "duplicate_title": "Solita (Remix)",
+      "original_title": "Solita"
+    },
+    "9720440": {
+      "keep": "8568145",
+      "duplicate_title": "Calm Down / Party (Mixed) [November 2023]",
+      "original_title": "Calm Down / Party (Mixed)"
+    },
+    "9757283": {
+      "keep": "7967957",
+      "duplicate_title": "Me Porto Bonito (Cornetto Remix) [Mixed]",
+      "original_title": "Me Porto Bonito"
+    },
+    "9757297": {
+      "keep": "5501114",
+      "duplicate_title": "Aquí Llegó Tu Tiburón (FRUTi Remix) [Mixed]",
+      "original_title": "Aquí Llegó Tu Tiburón"
+    },
+    "9805912": {
+      "keep": "5305021",
+      "duplicate_title": "Yo Perreo Sola (Mixed)",
+      "original_title": "Yo Perreo Sola"
+    },
+    "9821490": {
+      "keep": "9614104",
+      "duplicate_title": "MONACO (Mixed)",
+      "original_title": "MONACO"
+    },
+    "9866452": {
+      "keep": "8598733",
+      "duplicate_title": "La Jumpa (Remix) [Mixed]",
+      "original_title": "La Jumpa"
+    },
+    "9866456": {
+      "keep": "9614076",
+      "duplicate_title": "PERRO NEGRO (Mixed)",
+      "original_title": "PERRO NEGRO"
+    },
+    "9866497": {
+      "keep": "9614104",
+      "duplicate_title": "MONACO (Mixed) [NYE 2024]",
+      "original_title": "MONACO"
+    },
+    "9866514": {
+      "keep": "7967944",
+      "duplicate_title": "Neverita (Mixed)",
+      "original_title": "Neverita"
+    },
+    "9866517": {
+      "keep": "7967954",
+      "duplicate_title": "Tarot (Mixed)",
+      "original_title": "Tarot"
+    },
+    "9866528": {
+      "keep": "9554528",
+      "duplicate_title": "UN PREVIEW (Mixed) [NYE 2024]",
+      "original_title": "UN PREVIEW"
+    },
+    "9961098": {
+      "keep": "9123229",
+      "duplicate_title": "WHERE SHE GOES (Mixed) [VISION: DJ C2]",
+      "original_title": "WHERE SHE GOES"
+    },
+    "9961102": {
+      "keep": "9614104",
+      "duplicate_title": "MONACO (Mixed) [VISION: DJ C2]",
+      "original_title": "MONACO"
+    },
+    "10271694": {
+      "keep": "7967944",
+      "duplicate_title": "Neverita (Mixed) [Fitness: Run, April 2024]",
+      "original_title": "Neverita"
+    },
+    "10271696": {
+      "keep": "8598733",
+      "duplicate_title": "La Jumpa (Mixed) [Fitness: Run, April 2024]",
+      "original_title": "La Jumpa"
+    },
+    "10525518": {
+      "keep": "3075944",
+      "duplicate_title": "Mia",
+      "original_title": "MIA"
+    },
+    "10698516": {
+      "keep": "7967938",
+      "duplicate_title": "Ojitos Lindos",
+      "original_title": "Ojitos Lindos"
+    },
+    "10742472": {
+      "keep": "7253324",
+      "duplicate_title": "DRUNK",
+      "original_title": "DRUNK (Version 2)"
+    },
+    "10823499": {
+      "keep": "3098225",
+      "duplicate_title": "Ahora Me Llama (Remix) [Mixed]",
+      "original_title": "Ahora Me Llama"
+    },
+    "10843394": {
+      "keep": "7967959",
+      "duplicate_title": "Tití me preguntó",
+      "original_title": "Tití Me Preguntó"
+    },
+    "11033446": {
+      "keep": "3627151",
+      "duplicate_title": "I Like It (Remix) [Mixed]",
+      "original_title": "I Like It"
+    },
+    "11147828": {
+      "keep": "7967942",
+      "duplicate_title": "Party (Mixed)",
+      "original_title": "Party"
+    },
+    "11196829": {
+      "keep": "9592355",
+      "duplicate_title": "Gently [Mixed]",
+      "original_title": "Gently"
+    },
+    "11280757": {
+      "keep": "10901838",
+      "duplicate_title": "Una Velita",
+      "original_title": "Una Velita"
+    },
+    "11340995": {
+      "keep": "9554528",
+      "duplicate_title": "UN PREVIEW (Remix)",
+      "original_title": "UN PREVIEW"
+    },
+    "11356463": {
+      "keep": "11036575",
+      "duplicate_title": "Qué Pasaría... (Mixed)",
+      "original_title": "Qué Pasaría..."
+    },
+    "11418642": {
+      "keep": "3039781",
+      "duplicate_title": "Un Ratito Más (Versión Original)",
+      "original_title": "Un Ratito Más"
+    },
+    "11434659": {
+      "keep": "2976831",
+      "duplicate_title": "Amigos y Enemigos (Remix) [Versión Original]",
+      "original_title": "Amigos y Enemigos (Remix)"
+    },
+    "11436535": {
+      "keep": "11296557",
+      "duplicate_title": "DtMF (Marshmello Remix)",
+      "original_title": "DtMF"
+    },
+    "11795651": {
+      "keep": "11292700",
+      "duplicate_title": "TURISTA",
+      "original_title": "TURiSTA"
+    },
+    "11859967": {
+      "keep": "2829388",
+      "duplicate_title": "Diles (Remix) [Versión Original]",
+      "original_title": "Diles"
+    },
+    "11873995": {
+      "keep": "3006211",
+      "duplicate_title": "47 (Remix) [Versión Original]",
+      "original_title": "47 (Remix)"
+    },
+    "11966009": {
+      "keep": "2927716",
+      "duplicate_title": "Soy Peor (Remix)",
+      "original_title": "Soy Peor"
+    },
+    "11993293": {
+      "keep": "3208907",
+      "duplicate_title": "Dime (Versión Original)",
+      "original_title": "Dime"
+    },
+    "12023566": {
+      "keep": "11296557",
+      "duplicate_title": "DtMF",
+      "original_title": "DtMF"
+    },
+    "12081264": {
+      "keep": "6717116",
+      "duplicate_title": "So Drunk (Original Version)",
+      "original_title": "So Drunk"
+    },
+    "12243474": {
+      "keep": "3015945",
+      "duplicate_title": "Krippy Kush (Pitbull Remix)",
+      "original_title": "Krippy Kush"
+    },
+    "12260778": {
+      "keep": "3268371",
+      "duplicate_title": "Madura (Primera Versión)",
+      "original_title": "Madura"
+    },
+    "12403198": {
+      "keep": "3804898",
+      "duplicate_title": "Estamos Bien (Dolby Atmos Version)",
+      "original_title": "Estamos Bien"
+    },
+    "12454353": {
+      "keep": "5305000",
+      "duplicate_title": "Si veo a tu mamá",
+      "original_title": "Si Veo a Tu Mamá"
+    },
+    "12485218": {
+      "keep": "3015945",
+      "duplicate_title": "Krippy Kush (Versión Original)",
+      "original_title": "Krippy Kush"
+    },
+    "12488985": {
+      "keep": "12488960",
+      "duplicate_title": "Moda Te Mueve",
+      "original_title": "Moda Te Mueve"
+    },
+    "12519253": {
+      "keep": "11292885",
+      "duplicate_title": "NUEVAYoL",
+      "original_title": "NUEVAYoL"
+    },
+    "12541024": {
+      "keep": "11292773",
+      "duplicate_title": "Baile Inolvidable",
+      "original_title": "BAILE INoLVIDABLE"
+    },
+    "12669620": {
+      "keep": "11296557",
+      "duplicate_title": "DtMF",
+      "original_title": "DtMF"
+    },
+    "12814672": {
+      "keep": "3524844",
+      "duplicate_title": "Amorfoda (Remix)",
+      "original_title": "Amorfoda"
+    },
+    "3266426": {
+      "keep": "2955378",
+      "duplicate_title": "Me Llueven (Extended Version)",
+      "original_title": "Me Llueven"
+    },
+    "10743391": {
+      "keep": "10742472",
+      "duplicate_title": "DRUNK (Original)",
+      "original_title": "DRUNK (Version 2)"
+    },
+    "10743500": {
+      "keep": "10742472",
+      "duplicate_title": "DRUNK (Demo)",
+      "original_title": "DRUNK (Version 2)"
+    },
+    "3569966": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (David Rojas Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "3569989": {
+      "keep": "3410963",
+      "duplicate_title": "EL BAÑO (Felix Rivera Remix)",
+      "original_title": "EL BAÑO"
+    },
+    "5842589": {
+      "keep": "5557738",
+      "duplicate_title": "La Parabí (Versión Original)",
+      "original_title": "La Parabi"
+    },
+    "3883878": {
+      "keep": "3825550",
+      "duplicate_title": "Polaroid Remix (Extended Version)",
+      "original_title": "Polaroid (Remix)"
+    },
+    "2951163": {
+      "keep": "2938956",
+      "duplicate_title": "Liberace (Extended Remix)",
+      "original_title": "Liberace (Remix 2)"
+    },
+    "11457302": {
+      "keep": "3012000",
+      "duplicate_title": "Coronamos (Remix)",
+      "original_title": "Coronamos (Remix 2)"
+    }
+  },
+  "placeholders": [
+    "11033446",
+    "11874835",
+    "11874868",
+    "12115952",
+    "12130040",
+    "12177753",
+    "3535571",
+    "5501114",
+    "7253324",
+    "7483313",
+    "8548687",
+    "9720432",
+    "9757272",
+    "9757283",
+    "9757297",
+    "9763285"
+  ],
+  "non_spanish": {
+    "description": "Songs to exclude because they are not in Spanish. Includes Portuguese covers, German tracks, English-only content, translation pages, and SNL skits.",
+    "songs": {
+      "9666008": {
+        "title": "Um Por Cento (UN X100TO) [Ao Vivo]",
+        "language": "portuguese",
+        "reason": "Portuguese cover of un x100to by Grupo Menos E Mais & Anitta"
+      },
+      "11417734": {
+        "title": "Nossas Fotos",
+        "language": "portuguese",
+        "reason": "Portuguese song by Felipe Amorim & Zé Felipe"
+      },
+      "11260335": {
+        "title": "Mei Neiche",
+        "language": "german",
+        "reason": "Austrian/Bavarian German dialect song by NFE"
+      },
+      "12423142": {
+        "title": "Ｍｅｍｅｗａｖｅ 波 / comedia.mp3",
+        "language": "english",
+        "reason": "Eminem lyrics copy-paste by Syko ESP, not a real BB song"
+      },
+      "12423043": {
+        "title": "el alfa",
+        "language": "english",
+        "reason": "English translation page of La Romana by Syko ESP"
+      },
+      "4482797": {
+        "title": "Earth",
+        "language": "english",
+        "reason": "English song by Lil Dicky, BB has a brief cameo"
+      },
+      "6513460": {
+        "title": "Loco",
+        "language": "english",
+        "reason": "SNL comedy skit, entirely in English"
+      },
+      "11494029": {
+        "title": "Domingo (Vow Renewal)",
+        "language": "english",
+        "reason": "SNL comedy skit, entirely in English spoken word"
+      },
+      "5832468": {
+        "title": "Tóxicos",
+        "language": "english",
+        "reason": "Primarily English lyrics by Jowell & Randy"
+      },
+      "12075710": {
+        "title": "Shake It! 2",
+        "language": "english",
+        "reason": "Mostly English song by Jb1rd & Dozed Rozay"
+      },
+      "5084239": {
+        "title": "International Women*",
+        "language": "english",
+        "reason": "Mostly English by Lil Pump, only 2 Spanish lines"
+      },
+      "8399591": {
+        "title": "I Dance",
+        "language": "english",
+        "reason": "Mostly English by YG & Duki, minimal Spanish"
+      }
+    }
+  },
+  "stats": {
+    "total_songs": 537,
+    "duplicates": 127,
+    "placeholders": 16,
+    "non_spanish": 12,
+    "unique_songs": 386
+  }
+}

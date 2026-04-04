@@ -43,7 +43,25 @@ Fluency/
 │   ├── Italian/vocabulary.json     # 600 entries
 │   ├── Dutch/vocabulary.json       # 100 entries
 │   └── Polish/vocabulary.json      # 300 entries
-├── Bad Bunny/                      # Bad Bunny pipeline (see below)
+├── Artists/                        # Shared pipeline + per-artist data
+│   ├── run_pipeline.py             # Shared orchestrator (--artist "Bad Bunny")
+│   ├── scripts/                    # Single set of pipeline scripts (1-8)
+│   │   ├── _artist_config.py       # Shared helper (add_artist_arg, load_artist_config)
+│   │   ├── 1_download_lyrics.py    # All scripts accept --artist-dir
+│   │   └── ...
+│   ├── shared/                     # Curated data shared across all artists (with source tags)
+│   ├── tools/                      # check_translations.py, split_lang_audit.py
+│   ├── DEDUP_INSTRUCTIONS.md       # How to maintain duplicate_songs.json (shared)
+│   ├── Bad Bunny/                  # Artist data
+│   │   ├── artist.json             # {"name", "genius_query", "vocabulary_file"}
+│   │   ├── BadBunnyvocabulary.json # Final output consumed by the app
+│   │   ├── bad_bunny_albums_dictionary.json
+│   │   ├── data/...                # Pipeline intermediates + curated overrides
+│   │   └── Images/...              # Album cover art
+│   └── Rosalía/                    # Artist data (pipeline not yet run)
+│       ├── artist.json
+│       ├── rosalia_albums_dictionary.json
+│       └── data/...
 └── .venv/                          # Python venv — activate with .venv/bin/python3
 ```
 
@@ -53,18 +71,31 @@ All pipeline scripts are run from the **project root** (`Fluency/`), not from in
 
 ---
 
-## Bad Bunny Pipeline
+## Artist Vocabulary Pipeline
 
-**Detailed pipeline documentation lives in [`Bad Bunny/CLAUDE.md`](Bad%20Bunny/CLAUDE.md).**
+The pipeline turns an artist's discography into a structured vocabulary deck. Steps: scrape lyrics (Genius API) -> tokenise & count -> detect proper nouns (Gemini) -> merge Caribbean elisions -> Gemini LLM analysis (POS, lemma, translation) -> flag cognates -> rerank.
 
-The pipeline turns Bad Bunny's discography into a structured vocabulary deck. Steps: scrape lyrics (Genius API) -> tokenise & count -> merge Caribbean elisions -> Gemini LLM analysis (POS, lemma, translation) -> flag cognates -> rerank.
+**Shared scripts** live in `Artists/scripts/`. Each artist has a data directory under `Artists/` with an `artist.json` config file.
 
 Key files:
-- `Bad Bunny/BadBunnyvocabulary.json` — final output consumed by the app
-- `Bad Bunny/run_pipeline.py` — orchestrator (`--from-step`, `--to-step`, `--skip`, `--dry-run`)
-- `Bad Bunny/4_llm_analyze.py` — main analysis step (Gemini), requires `--api-key`
+- `Artists/run_pipeline.py` — shared orchestrator
+- `Artists/scripts/6_llm_analyze.py` — main analysis step (Gemini)
+- `Artists/Bad Bunny/artist.json` — artist config (name, genius_query, vocabulary_file)
+- `Artists/Bad Bunny/BadBunnyvocabulary.json` — final output consumed by the app
+- `Artists/DEDUP_INSTRUCTIONS.md` — how to maintain duplicate_songs.json for any artist
 
-Quick run: `.venv/bin/python3 "Bad Bunny/run_pipeline.py" --api-key KEY`
+Quick run:
+```bash
+.venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"
+.venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --from-step 3
+```
+
+### Adding a new artist
+1. Create `Artists/NewArtist/artist.json` with `name`, `genius_query`, `vocabulary_file`
+2. Run step 1: `.venv/bin/python3 Artists/scripts/1_download_lyrics.py --artist-dir "Artists/NewArtist"`
+3. Curate `duplicate_songs.json` (see `Artists/DEDUP_INSTRUCTIONS.md`)
+4. Copy reusable curated data from an existing artist (conjugation_families, skip_mwes, etc.)
+5. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"`
 
 ---
 
@@ -88,11 +119,9 @@ Python 3.9+ required (project uses `.venv/bin/python3`).
 
 ## Common Pitfalls
 
-- **Running scripts from the wrong directory**: all scripts use relative paths from `Fluency/` root. Running from inside `Bad Bunny/` will break all path references.
-- **Forgetting to update the cache**: after a full pipeline run, copy `BadBunnyvocabulary.json` to `intermediates/old_vocabulary_cache.json` before the next run to preserve translations and curated flags.
-- **Step 8 resets `is_transparent_cognate`**: any cognate flag set upstream is overwritten. Step 8 is always the authoritative pass; do not set `is_transparent_cognate` in earlier steps expecting it to survive.
-- **`strip_plural` over-strips**: the function removes terminal `-s` from any word. English words like `"famous"`, `"serious"`, `"previous"` all lose their `s`. Step 8 accounts for this by checking suffix rule results against both the stripped and unstripped English form.
-- **spaCy POS tags are noisy for slang**: `es_core_news_lg` assigns `X` (unknown) to a lot of slang, brand names, and English loanwords. The `pos_counts` in step 4 output should be treated as a signal, not ground truth.
+- **Running scripts from the wrong directory**: all scripts should be run from `Fluency/` root. The shared orchestrator handles this: `.venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"`.
+- **Step 7 resets `is_transparent_cognate`**: any cognate flag set upstream is overwritten. Step 7 is always the authoritative pass; do not set `is_transparent_cognate` in earlier steps expecting it to survive.
+- **`strip_plural` over-strips**: the function removes terminal `-s` from any word. English words like `"famous"`, `"serious"`, `"previous"` all lose their `s`. Step 7 accounts for this by checking suffix rule results against both the stripped and unstripped English form.
 
 ---
 
@@ -399,13 +428,20 @@ Created by `loadVocabularyData()`, stored in `flashcards[]`:
 ### Bad Bunny Mode Differences
 
 Activated by `?mode=badbunny` in the URL. Key differences:
-- Vocabulary file: `Bad Bunny/BadBunnyvocabulary.json` (not `Data/Spanish/vocabulary.json`)
+- Vocabulary file: `Artists/Bad Bunny/BadBunnyvocabulary.json` (not `Data/Spanish/vocabulary.json`)
 - Language tabs hidden; jumps straight to level/set selection
 - Filters out `is_english`, `is_interjection`, `is_propernoun` entries
 - `hideSingleOccurrence: true` by default (hides words seen only once in corpus)
 - Album artwork shown as card background (`updateBadBunnyBackground()`)
 - `corpusCount` is shown on cards (how many times word appears across discography)
 - Multiple lyric examples per card (`allExamples[]` can have >1 entry); tap example to cycle
+
+**Front-end paths**: The JS references Bad Bunny data via hardcoded paths in:
+- `js/config.js` — `dataPath` for the vocabulary JSON
+- `js/state.js` — `albumArtMap` image paths
+- `js/badbunny.js` — albums dictionary fetch
+
+These paths must use `Artists/Bad Bunny/...` (not the old root-level `Bad Bunny/...`).
 
 ---
 

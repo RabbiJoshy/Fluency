@@ -14,7 +14,7 @@ async function loadConfig() {
             config.languages.spanish = {
                 ...config.languages.spanish,
                 name: "Spanish (Bad Bunny)",
-                dataPath: "Bad Bunny/BadBunnyvocabulary.json",
+                dataPath: "Artists/Bad Bunny/BadBunnyvocabulary.json",
                 ppmDataPath: null, // PPM data is embedded in vocabulary JSON
                 colorTheme: {
                     primary: "#ED1C24",   // Puerto Rican flag red
