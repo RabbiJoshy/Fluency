@@ -975,6 +975,22 @@ async function mergeArtistVocabularies(artistConfigs) {
                 return examples.map(ex => ({ ...ex, artist: cfg.slug }));
             };
 
+            // Attach examples from split file onto meanings BEFORE merge,
+            // so examples travel with their meaning through POS+translation union
+            if (examplesData && examplesData[id] && entry.meanings) {
+                const ex = examplesData[id];
+                if (ex.m) {
+                    entry.meanings.forEach((m, i) => {
+                        m.examples = ex.m[i] || [];
+                    });
+                }
+                if (ex.w && entry.mwe_memberships) {
+                    entry.mwe_memberships.forEach((mwe, i) => {
+                        mwe.examples = ex.w[i] || [];
+                    });
+                }
+            }
+
             if (byId.has(id)) {
                 // Merge into existing entry
                 const existing = byId.get(id);
@@ -1010,24 +1026,6 @@ async function mergeArtistVocabularies(artistConfigs) {
                         }
                     }
                 }
-
-                // Merge examples data
-                if (examplesData && examplesData[id]) {
-                    if (!mergedExamples[id]) mergedExamples[id] = { m: [], w: [] };
-                    const ex = examplesData[id];
-                    if (ex.m) {
-                        for (let i = 0; i < ex.m.length; i++) {
-                            if (!mergedExamples[id].m[i]) mergedExamples[id].m[i] = [];
-                            mergedExamples[id].m[i].push(...tagExamples(ex.m[i]));
-                        }
-                    }
-                    if (ex.w) {
-                        for (let i = 0; i < ex.w.length; i++) {
-                            if (!mergedExamples[id].w[i]) mergedExamples[id].w[i] = [];
-                            mergedExamples[id].w[i].push(...tagExamples(ex.w[i]));
-                        }
-                    }
-                }
             } else {
                 // First time seeing this word — clone and tag
                 const clone = JSON.parse(JSON.stringify(entry));
@@ -1037,17 +1035,20 @@ async function mergeArtistVocabularies(artistConfigs) {
                     }
                 }
                 byId.set(id, clone);
+            }
 
-                // Clone examples data
-                if (examplesData && examplesData[id]) {
-                    const ex = examplesData[id];
-                    mergedExamples[id] = { m: [], w: [] };
-                    if (ex.m) {
-                        mergedExamples[id].m = ex.m.map(arr => tagExamples(arr));
-                    }
-                    if (ex.w) {
-                        mergedExamples[id].w = ex.w.map(arr => tagExamples(arr));
-                    }
+            // Build mergedExamples from the now-merged meanings (indices are correct)
+            if (byId.has(id)) {
+                const merged = byId.get(id);
+                mergedExamples[id] = { m: [] };
+                merged.meanings.forEach((m, i) => {
+                    mergedExamples[id].m[i] = m.examples || [];
+                });
+                if (merged.mwe_memberships) {
+                    mergedExamples[id].w = [];
+                    merged.mwe_memberships.forEach((mwe, i) => {
+                        mergedExamples[id].w[i] = mwe.examples || [];
+                    });
                 }
             }
         }
