@@ -73,13 +73,13 @@ All pipeline scripts are run from the **project root** (`Fluency/`), not from in
 
 ## Artist Vocabulary Pipeline
 
-The pipeline turns an artist's discography into a structured vocabulary deck. Steps: scrape lyrics (Genius API) -> scrape Genius translations (step 1b) -> tokenise & count -> detect proper nouns (Gemini) -> merge Caribbean elisions -> Gemini LLM analysis (POS, lemma, translation) -> flag cognates -> rerank.
+The pipeline turns an artist's discography into a structured vocabulary deck. Steps: scrape lyrics (Genius API) -> tokenise & count (with dedup filtering) -> scrape Genius translations (step 3b) -> detect proper nouns (Gemini) -> merge Caribbean elisions -> Gemini LLM analysis (POS, lemma, translation) -> flag cognates -> rerank.
 
 **Shared scripts** live in `Artists/scripts/`. Each artist has a data directory under `Artists/` with an `artist.json` config file.
 
 Key files:
 - `Artists/run_pipeline.py` — shared orchestrator
-- `Artists/scripts/1b_scrape_translations.py` — scrapes community English translations from Genius
+- `Artists/scripts/3b_scrape_translations.py` — scrapes community English translations from Genius
 - `Artists/scripts/6_llm_analyze.py` — main analysis step (Gemini + Genius translations)
 - `Artists/Bad Bunny/artist.json` — artist config (name, genius_query, vocabulary_file)
 - `Artists/Bad Bunny/BadBunnyvocabulary.json` — final output consumed by the app
@@ -95,7 +95,7 @@ Quick run:
 
 ### `--no-gemini` mode
 
-Step 6 supports `--no-gemini` to skip all Gemini API calls. Uses only Genius community translations (from step 1b) + curated overrides. No API key needed. Produces a valid but lower-quality vocabulary (no POS/lemma/sense analysis). Useful for cheaply ingesting a new artist's corpus.
+Step 6 supports `--no-gemini` to skip all Gemini API calls. Uses only Genius community translations (from step 3b) + curated overrides. No API key needed. Produces a valid but lower-quality vocabulary (no POS/lemma/sense analysis). Useful for cheaply ingesting a new artist's corpus.
 
 ### Sentence translation layers
 
@@ -112,16 +112,20 @@ Genius never overwrites existing Gemini translations. Each example in the output
 ### Adding a new artist
 1. Create `Artists/NewArtist/artist.json` with `name`, `genius_query`, `vocabulary_file`
 2. Run step 1: `.venv/bin/python3 Artists/scripts/1_download_lyrics.py --artist-dir "Artists/NewArtist"`
-3. Run step 1b: `.venv/bin/python3 Artists/scripts/1b_scrape_translations.py --artist-dir "Artists/NewArtist"`
-4. Curate `duplicate_songs.json` (see `Artists/DEDUP_INSTRUCTIONS.md`)
-5. Copy reusable curated data from an existing artist (conjugation_families, skip_mwes, etc.)
-6. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"` (or `--no-gemini` for free)
+3. Curate `duplicate_songs.json` (see `Artists/DEDUP_INSTRUCTIONS.md`)
+4. Copy reusable curated data from an existing artist (conjugation_families, skip_mwes, etc.)
+5. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"` (or `--no-gemini` for free)
+   - Step 3 filters out excluded songs via `duplicate_songs.json` before counting
+   - Step 3b scrapes Genius translations (only for surviving songs)
+   - Steps 4-8 continue as normal
 
 ---
 
 ## Working with the Human
 
 **Long-running commands:** Pipeline steps, model loading, embedding passes, and other slow processes (>30 seconds) should NOT be run inline via tool calls. Instead, print the command for Josh to run in his own terminal. This lets him see real-time progress and saves context tokens. Resume analysis after he shares the output.
+
+**No browser previews:** Do NOT use preview tools (preview_start, preview_screenshot, etc.) or Claude-in-Chrome to test front-end changes. The service worker caching makes previews unreliable — cached JS/HTML persists across reloads and wastes tokens debugging stale files. Josh will test in his own browser instead.
 
 ---
 

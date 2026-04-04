@@ -24,6 +24,10 @@ from collections import defaultdict
 from pathlib import Path
 
 import argparse
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _artist_config import SHARED_DIR
 
 PIPELINE_DIR = None  # Set from --artist-dir in main()
 IN_PATH = None
@@ -165,7 +169,7 @@ def main():
     PIPELINE_DIR = os.path.abspath(args.artist_dir)
     IN_PATH = Path(os.path.join(PIPELINE_DIR, "data", "word_counts", "vocab_evidence.json"))
     OUT_PATH = Path(os.path.join(PIPELINE_DIR, "data", "elision_merge", "vocab_evidence_merged.json"))
-    MAPPING_PATH = Path(os.path.join(PIPELINE_DIR, "data", "elision_merge", "elision_mapping.json"))
+    MAPPING_PATH = Path(os.path.join(SHARED_DIR, "elision_mapping.json"))
 
     print(f"Loading {IN_PATH} ...")
     with open(IN_PATH, "r", encoding="utf-8") as f:

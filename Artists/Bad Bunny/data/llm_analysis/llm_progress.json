@@ -247811,5 +247811,80 @@
     ]
    }
   ]
+ },
+ "lunay": {
+  "word": "lunay",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Lunay",
+    "pos": "PROPN",
+    "translation": "Lunay",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "yaviah": {
+  "word": "yaviah",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Yaviah",
+    "pos": "PROPN",
+    "translation": "Yaviah",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "ivy": {
+  "word": "ivy",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Ivy",
+    "pos": "PROPN",
+    "translation": "Ivy",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "ozu'": {
+  "word": "ozu'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "rebelde": {
+  "word": "rebelde",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "rebelde",
+    "pos": "ADJ",
+    "translation": "rebellious",
+    "lines": [
+     1
+    ]
+   }
+  ]
  }
 }

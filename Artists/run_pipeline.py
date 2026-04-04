@@ -47,6 +47,9 @@ def _step_3_args(args, artist_dir):
         "--mwe-out", os.path.join(artist_dir, "data", "word_counts", "mwe_detected.json"),
     ]
 
+def _step_3b_args(args, artist_dir):
+    return _base_args(artist_dir) + ["--align"]
+
 def _step_4_args(args, artist_dir):
     return _base_args(artist_dir)
 
@@ -75,6 +78,9 @@ def build_steps(vocab_file):
         {"num": 3, "label": "Tokenise, count words, detect MWEs",
          "script": "3_count_words.py", "args_fn": _step_3_args,
          "input": None, "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
+        {"num": "3b", "label": "Scrape Genius translations",
+         "script": "3b_scrape_translations.py", "args_fn": _step_3b_args,
+         "input": None, "output": "data/input/translations/aligned_translations.json", "needs_api_key": False},
         {"num": 4, "label": "Detect proper nouns, interjections, English (local)",
          "script": "4_detect_proper_nouns.py", "args_fn": _step_4_args,
          "input": "data/word_counts/vocab_evidence.json",

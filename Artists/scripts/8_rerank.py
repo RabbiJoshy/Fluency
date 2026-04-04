@@ -103,6 +103,59 @@ def sort_key(entry, word_to_rank, lemma_to_rank):
     return (-corpus_count, spanish_rank, -song_count, is_cognate, word_len)
 
 
+def write_split_files(bb_data, vocab_path):
+    """Write index and examples split files alongside the monolith.
+
+    Index file: all entries with meanings[].examples and mwe_memberships[].examples stripped.
+    Examples file: { id: { "m": [[examples], ...], "w": [[mwe_examples], ...] } }
+    """
+    base = vocab_path.rsplit('.', 1)[0]
+    index_path = base + '.index.json'
+    examples_path = base + '.examples.json'
+
+    index = []
+    examples = {}
+
+    for entry in bb_data:
+        # Build index entry (strip examples from meanings and mwe_memberships)
+        idx_entry = {}
+        for k, v in entry.items():
+            if k in ('meanings', 'mwe_memberships'):
+                continue
+            idx_entry[k] = v
+
+        idx_entry['meanings'] = [
+            {k: v for k, v in m.items() if k != 'examples'}
+            for m in entry.get('meanings', [])
+        ]
+        if entry.get('mwe_memberships'):
+            idx_entry['mwe_memberships'] = [
+                {k: v for k, v in mwe.items() if k != 'examples'}
+                for mwe in entry['mwe_memberships']
+            ]
+        index.append(idx_entry)
+
+        # Build examples entry
+        m_examples = [m.get('examples', []) for m in entry.get('meanings', [])]
+        ex_entry = {'m': m_examples}
+        if entry.get('mwe_memberships'):
+            w_examples = [mwe.get('examples', []) for mwe in entry['mwe_memberships']]
+            if any(w_examples):
+                ex_entry['w'] = w_examples
+        examples[entry['id']] = ex_entry
+
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False)
+    with open(examples_path, 'w', encoding='utf-8') as f:
+        json.dump(examples, f, ensure_ascii=False)
+
+    idx_size = os.path.getsize(index_path)
+    ex_size = os.path.getsize(examples_path)
+    print(f"\n  Split files written:")
+    print(f"    {index_path}: {idx_size:,} bytes")
+    print(f"    {examples_path}: {ex_size:,} bytes")
+
+
 def main():
     global BB_VOCAB_PATH, SPANISH_VOCAB_PATH, MWE_PATH
     import argparse
@@ -194,6 +247,9 @@ def main():
     print(f"\nWriting to {BB_VOCAB_PATH}...")
     with open(BB_VOCAB_PATH, "w", encoding="utf-8") as f:
         json.dump(bb_data, f, ensure_ascii=False, indent=2)
+
+    # Generate split files for two-tier front-end loading
+    write_split_files(bb_data, BB_VOCAB_PATH)
     print("Done!")
 
 

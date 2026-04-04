@@ -119,14 +119,14 @@ def detect_interjections(vocab_words):
 
 
 # ---------------------------------------------------------------------------
-# Genius community translations (from step 1b --align)
+# Genius community translations (from step 3b --align)
 # ---------------------------------------------------------------------------
 
 def load_genius_sentence_index(pipeline_dir):
     # type: (str) -> Dict[str, str]
     """Load pre-built {spanish_line: english_line} index from aligned_translations.json.
 
-    This file is produced by: 1b_scrape_translations.py --align
+    This file is produced by: 3b_scrape_translations.py --align
     Returns an empty dict if the file doesn't exist.
     """
     aligned_path = os.path.join(

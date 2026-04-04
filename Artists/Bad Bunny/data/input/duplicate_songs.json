@@ -635,6 +635,76 @@
       "keep": "3012000",
       "duplicate_title": "Coronamos (Remix)",
       "original_title": "Coronamos (Remix 2)"
+    },
+    "6512582": {
+      "keep": "3103548",
+      "duplicate_title": "Tú No Metes Cabra Remix (Live)",
+      "original_title": "Tú No Metes Cabra"
+    },
+    "12737591": {
+      "keep": "11289772",
+      "duplicate_title": "BOKeTE (DeBi TiRAR MaS FOToS Tour)",
+      "original_title": "BOKeTE"
+    },
+    "11404745": {
+      "keep": "11296557",
+      "duplicate_title": "DtMF (Don Diablo ReHex)",
+      "original_title": "DtMF"
+    },
+    "3794710": {
+      "keep": "3627151",
+      "duplicate_title": "I Like It (Dillon Francis Remix)",
+      "original_title": "I Like It"
+    },
+    "9358774": {
+      "keep": "9175638",
+      "duplicate_title": "K-POP (Chopped & Screwed)",
+      "original_title": "K-POP"
+    },
+    "9358783": {
+      "keep": "9175638",
+      "duplicate_title": "K-POP (Sped Up)",
+      "original_title": "K-POP"
+    },
+    "8584830": {
+      "keep": "3108097",
+      "duplicate_title": "Mayores (Urban Tropical)",
+      "original_title": "Mayores"
+    },
+    "11196703": {
+      "keep": "7967957",
+      "duplicate_title": "Me Porto Bonito (Loud Luxury Remix) [Mixed]",
+      "original_title": "Me Porto Bonito"
+    },
+    "4092199": {
+      "keep": "3075944",
+      "duplicate_title": "MIA (Dom Da Bomb Remix)",
+      "original_title": "MIA"
+    },
+    "9888546": {
+      "keep": "9614104",
+      "duplicate_title": "MONACO (Sara Landry Remix) [Mixed]",
+      "original_title": "MONACO"
+    },
+    "9936037": {
+      "keep": "9614104",
+      "duplicate_title": "MONACO (Mixed) [Jan. 2024]",
+      "original_title": "MONACO"
+    },
+    "10013544": {
+      "keep": "9614104",
+      "duplicate_title": "MONACO (Mixed) [Feb. 2024]",
+      "original_title": "MONACO"
+    },
+    "7538379": {
+      "keep": "5761512",
+      "duplicate_title": "UN DIA (ONE DAY) (Live from Studio 2054)",
+      "original_title": "UN DIA (ONE DAY)"
+    },
+    "3389712": {
+      "keep": "3015945",
+      "duplicate_title": "Krippy Kush (Travis Scott Remix)",
+      "original_title": "Krippy Kush"
     }
   },
   "placeholders": [
@@ -653,7 +723,10 @@
     "9757272",
     "9757283",
     "9757297",
-    "9763285"
+    "9763285",
+    "11480143",
+    "6269411",
+    "9614071"
   ],
   "non_spanish": {
     "description": "Songs to exclude because they are not in Spanish. Includes Portuguese covers, German tracks, English-only content, translation pages, and SNL skits.",

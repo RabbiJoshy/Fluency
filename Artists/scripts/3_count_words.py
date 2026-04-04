@@ -232,6 +232,28 @@ def iter_songs_from_batches(batch_glob: str) -> List[Dict[str, Any]]:
     return songs
 
 
+def filter_excluded_songs(songs: List[Dict[str, Any]], artist_dir: str) -> List[Dict[str, Any]]:
+    """Remove duplicates, non-Spanish songs, and placeholders using duplicate_songs.json."""
+    dedup_path = os.path.join(artist_dir, "data", "input", "duplicate_songs.json")
+    if not os.path.exists(dedup_path):
+        return songs
+
+    with open(dedup_path, "r", encoding="utf-8") as f:
+        dedup = json.load(f)
+
+    skip_ids = set(dedup.get("duplicates", {}).keys())
+    skip_ids |= set(dedup.get("non_spanish", {}).get("songs", {}).keys())
+    skip_ids |= set(str(x) for x in dedup.get("placeholders", []))
+
+    before = len(songs)
+    songs = [s for s in songs if str(s.get("id")) not in skip_ids]
+    skipped = before - len(songs)
+    if skipped:
+        print(f"Filtered {skipped} excluded songs (duplicates/non-Spanish/placeholders), "
+              f"{len(songs)} remaining")
+    return songs
+
+
 # ====== Core pipeline ======
 def build_counts_and_candidates(
     songs: List[Dict[str, Any]],
@@ -564,6 +586,7 @@ def main():
     PIPELINE_DIR = os.path.abspath(args.artist_dir)
 
     songs = iter_songs_from_batches(args.batch_glob)
+    songs = filter_excluded_songs(songs, args.artist_dir)
 
     lid_detector = None
     if not args.no_lid:
