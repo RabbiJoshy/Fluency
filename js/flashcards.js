@@ -50,6 +50,16 @@ function sortExamplesByRelevance(examples) {
     return scored.map(s => s.ex);
 }
 
+function dedupeExamples(examples) {
+    const seen = new Set();
+    return examples.filter(ex => {
+        const key = (ex.target || ex.spanish || '').trim();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+}
+
 function initializeApp() {
     updateCard();
     updateStats();
@@ -990,9 +1000,9 @@ function updateCard() {
             let activeMweIdx = 0;
             if (currentMeaning.allMWEs) {
                 activeMweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
-                activeExamples = currentMeaning.allMWEs[activeMweIdx].examples || [];
+                activeExamples = dedupeExamples(currentMeaning.allMWEs[activeMweIdx].examples || []);
             } else {
-                activeExamples = currentMeaning.allExamples || [];
+                activeExamples = dedupeExamples(currentMeaning.allExamples || []);
             }
 
             // Dynamic re-sort: boost examples with deck/recently-wrong word overlap
@@ -1233,9 +1243,9 @@ function cycleExample(event) {
     let examples;
     if (currentMeaning.allMWEs) {
         const mweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
-        examples = currentMeaning.allMWEs[mweIdx].examples || [];
+        examples = dedupeExamples(currentMeaning.allMWEs[mweIdx].examples || []);
     } else {
-        examples = currentMeaning.allExamples || [];
+        examples = dedupeExamples(currentMeaning.allExamples || []);
     }
 
     if (examples.length <= 1) return;
@@ -1482,9 +1492,9 @@ function showLyricBreakdown(event) {
     let activeExamples;
     if (currentMeaning.allMWEs) {
         const mweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
-        activeExamples = currentMeaning.allMWEs[mweIdx].examples || [];
+        activeExamples = dedupeExamples(currentMeaning.allMWEs[mweIdx].examples || []);
     } else {
-        activeExamples = currentMeaning.allExamples || [];
+        activeExamples = dedupeExamples(currentMeaning.allExamples || []);
     }
     if (activeExamples.length > 0) {
         const exIdx = currentExampleIndex % activeExamples.length;
