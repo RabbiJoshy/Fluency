@@ -20,12 +20,66 @@ Output: BadBunnyvocabulary.json  (updated with new ranks)
 
 import json
 import os
+import re
+from statistics import median
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
 
 BB_VOCAB_PATH = None
 SPANISH_VOCAB_PATH = None
 MWE_PATH = None
+
+
+def tokenize_spanish(text):
+    """Lowercase, strip punctuation (keep apostrophes for elisions), split on whitespace."""
+    cleaned = re.sub(r"[^\w\s']", " ", text.lower())
+    return [t for t in cleaned.split() if t]
+
+
+def build_elision_map(bb_data):
+    """Build display_form -> (word, lemma) dict from BB vocab for elision resolution."""
+    elision_map = {}
+    for entry in bb_data:
+        display_form = entry.get("display_form", "")
+        if display_form:
+            word = entry.get("word", "").lower().strip()
+            lemma = entry.get("lemma", "").lower().strip()
+            df_lower = display_form.lower().strip()
+            if df_lower and df_lower != word:
+                elision_map[df_lower] = (word, lemma)
+    return elision_map
+
+
+def get_token_rank(token, word_to_rank, lemma_to_rank, elision_map):
+    """Look up Spanish frequency rank for a raw token string."""
+    # Direct match
+    if token in word_to_rank:
+        return word_to_rank[token]
+    if token in lemma_to_rank:
+        return lemma_to_rank[token]
+
+    # Resolve elision and retry
+    if token in elision_map:
+        canonical_word, canonical_lemma = elision_map[token]
+        if canonical_word in word_to_rank:
+            return word_to_rank[canonical_word]
+        if canonical_lemma and canonical_lemma in word_to_rank:
+            return word_to_rank[canonical_lemma]
+        if canonical_lemma and canonical_lemma in lemma_to_rank:
+            return lemma_to_rank[canonical_lemma]
+
+    return SENTINEL_RANK
+
+
+def compute_easiness(spanish_text, word_to_rank, lemma_to_rank, elision_map):
+    """Compute sentence easiness as median Spanish frequency rank of tokens."""
+    if not spanish_text:
+        return SENTINEL_RANK
+    tokens = tokenize_spanish(spanish_text)
+    if not tokens:
+        return SENTINEL_RANK
+    ranks = [get_token_rank(t, word_to_rank, lemma_to_rank, elision_map) for t in tokens]
+    return int(median(ranks))
 
 
 def build_spanish_lookup(spanish_path):
@@ -214,6 +268,32 @@ def main():
             f"{e['word']:<20} sp_rank={sp_str:<6} songs={songs} "
             f"cognate={e.get('is_transparent_cognate', False)}"
         )
+
+    # Score and sort examples by easiness (median Spanish frequency rank)
+    print("\nScoring example easiness...")
+    elision_map = build_elision_map(bb_data)
+    print(f"  {len(elision_map)} elision mappings built")
+
+    total_examples = 0
+    all_easiness = []
+    for entry in bb_data:
+        for meaning in entry.get("meanings", []):
+            examples = meaning.get("examples", [])
+            for ex in examples:
+                score = compute_easiness(
+                    ex.get("spanish", ""), word_to_rank, lemma_to_rank, elision_map
+                )
+                ex["easiness"] = score
+                all_easiness.append(score)
+                total_examples += 1
+            examples.sort(key=lambda e: e.get("easiness", SENTINEL_RANK))
+
+    if all_easiness:
+        all_easiness.sort()
+        recognized = sum(1 for e in all_easiness if e < SENTINEL_RANK)
+        print(f"  {total_examples} examples scored")
+        print(f"  {recognized} with recognized tokens ({recognized * 100 / total_examples:.1f}%)")
+        print(f"  Easiness range: {all_easiness[0]} / {all_easiness[len(all_easiness)//2]} / {all_easiness[-1]} (min/median/max)")
 
     # Re-annotate MWE memberships from latest 2d output
     # This ensures MWEs are always up-to-date even when step 4 is skipped

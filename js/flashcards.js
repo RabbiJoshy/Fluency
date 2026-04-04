@@ -1,6 +1,52 @@
 import './state.js';
 import './speech.js';
 
+// --- Example relevance sorting (Bad Bunny mode) ---
+let _cachedDeckWords = null;
+let _cachedDeckId = null;  // track which deck set we computed for
+
+function getDeckWords() {
+    // Cache per deck load — flashcards array identity changes on each loadVocabularyData
+    const deckId = flashcards.length > 0 ? flashcards[0].fullId : null;
+    if (_cachedDeckId === deckId && _cachedDeckWords) return _cachedDeckWords;
+    _cachedDeckWords = new Set(flashcards.map(c => c.targetWord.toLowerCase()));
+    _cachedDeckId = deckId;
+    return _cachedDeckWords;
+}
+
+function getRecentWrongWords() {
+    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    const words = new Set();
+    for (const [, data] of Object.entries(progressData)) {
+        if (data.wrong > 0 && data.lastWrong && new Date(data.lastWrong).getTime() > sevenDaysAgo) {
+            words.add((data.word || '').toLowerCase());
+        }
+    }
+    return words;
+}
+
+function sortExamplesByRelevance(examples) {
+    const deckWords = getDeckWords();
+    const wrongWords = getRecentWrongWords();
+    // Score each example
+    const scored = examples.map(ex => {
+        const tokens = (ex.spanish || '').toLowerCase().split(/\s+/);
+        let deckHits = 0, wrongHits = 0;
+        for (const t of tokens) {
+            if (wrongWords.has(t)) wrongHits++;
+            if (deckWords.has(t)) deckHits++;
+        }
+        return { ex, wrongHits, deckHits, easiness: ex.easiness || 999999 };
+    });
+    // Sort: wrong hits desc, deck hits desc, easiness asc
+    scored.sort((a, b) =>
+        (b.wrongHits - a.wrongHits) ||
+        (b.deckHits - a.deckHits) ||
+        (a.easiness - b.easiness)
+    );
+    return scored.map(s => s.ex);
+}
+
 function initializeApp() {
     updateCard();
     updateStats();
@@ -944,6 +990,11 @@ function updateCard() {
                 activeExamples = currentMeaning.allMWEs[activeMweIdx].examples || [];
             } else {
                 activeExamples = currentMeaning.allExamples || [];
+            }
+
+            // Dynamic re-sort: boost examples with deck/recently-wrong word overlap
+            if (isBadBunnyMode && activeExamples.length > 1) {
+                activeExamples = sortExamplesByRelevance(activeExamples);
             }
 
             const hasMultipleExamples = activeExamples.length > 1;
