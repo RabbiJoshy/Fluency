@@ -30,7 +30,8 @@ Fluency/
 │   ├── progress.js                 # Coverage bars, calculateCoveragePercent
 │   ├── estimation.js               # Level-estimation quiz flow
 │   ├── speech.js                   # speakWord, voice preload
-│   └── badbunny.js                 # Album art lookup, updateBadBunnyBackground
+│   └── artist-ui.js                # Album art lookup, updateArtistBackground
+├── artists.json                    # Artist configs for lyrics mode (paths, colors, album art)
 ├── config.json                     # Language config and file path mappings
 ├── manifest.json / service-worker.js  # PWA support
 ├── GoogleAppsScript.js             # Source copy of the Apps Script backend (deploy manually)
@@ -58,9 +59,11 @@ Fluency/
 │   │   ├── bad_bunny_albums_dictionary.json
 │   │   ├── data/...                # Pipeline intermediates + curated overrides
 │   │   └── Images/...              # Album cover art
-│   └── Rosalía/                    # Artist data (pipeline not yet run)
+│   └── Rosalía/                    # Artist data (pipeline run, --words-only)
 │       ├── artist.json
-│       ├── rosalia_albums_dictionary.json
+│       ├── Rosaliavocabulary.json   # Monolith output from pipeline
+│       ├── Rosaliavocabulary.index.json   # Split: metadata only
+│       ├── Rosaliavocabulary.examples.json # Split: examples only
 │       └── data/...
 └── .venv/                          # Python venv — activate with .venv/bin/python3
 ```
@@ -89,13 +92,15 @@ Key files:
 Quick run:
 ```bash
 .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"
-.venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --from-step 3
+.venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --from-step 6 --words-only
 .venv/bin/python3 Artists/run_pipeline.py --artist "Anuel" --no-gemini  # Free: Genius translations only
 ```
 
-### `--no-gemini` mode
+### `--no-gemini` and `--words-only` modes
 
-Step 6 supports `--no-gemini` to skip all Gemini API calls. Uses only Genius community translations (from step 3b) + curated overrides. No API key needed. Produces a valid but lower-quality vocabulary (no POS/lemma/sense analysis). Useful for cheaply ingesting a new artist's corpus.
+`--no-gemini` skips all Gemini API calls. Uses only Genius community translations (from step 3b) + curated overrides. No API key needed. Produces a valid but lower-quality vocabulary (no POS/lemma/sense analysis). Useful for cheaply ingesting a new artist's corpus.
+
+`--words-only` runs Gemini word analysis (POS, lemma, translation) but skips sentence translation. Much cheaper than a full run. Useful when Genius already covers example sentences and you just need word-level data. Typical workflow: `--no-gemini` first to get everything free, then `--words-only` to add word translations.
 
 ### Sentence translation layers
 
@@ -114,10 +119,13 @@ Genius never overwrites existing Gemini translations. Each example in the output
 2. Run step 1: `.venv/bin/python3 Artists/scripts/1_download_lyrics.py --artist-dir "Artists/NewArtist"`
 3. Curate `duplicate_songs.json` (see `Artists/DEDUP_INSTRUCTIONS.md`)
 4. Copy reusable curated data from an existing artist (conjugation_families, skip_mwes, etc.)
-5. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"` (or `--no-gemini` for free)
+5. Run pipeline: `.venv/bin/python3 Artists/run_pipeline.py --artist "NewArtist"` (or `--no-gemini` for free, then `--words-only` to add translations cheaply)
    - Step 3 filters out excluded songs via `duplicate_songs.json` before counting
    - Step 3b scrapes Genius translations (only for surviving songs)
    - Steps 4-8 continue as normal
+6. Split the monolith into index + examples files (same format as Bad Bunny's split)
+7. Add the artist to `artists.json` at project root with paths, colorTheme, maxLevel
+8. Shared words with existing artists get translations automatically via client-side merge — no need to run Gemini for overlapping vocabulary
 
 ---
 
@@ -126,6 +134,14 @@ Genius never overwrites existing Gemini translations. Each example in the output
 **Long-running commands:** Pipeline steps, model loading, embedding passes, and other slow processes (>30 seconds) should NOT be run inline via tool calls. Instead, print the command for Josh to run in his own terminal. This lets him see real-time progress and saves context tokens. Resume analysis after he shares the output.
 
 **No browser previews:** Do NOT use preview tools (preview_start, preview_screenshot, etc.) or Claude-in-Chrome to test front-end changes. The service worker caching makes previews unreliable — cached JS/HTML persists across reloads and wastes tokens debugging stale files. Josh will test in his own browser instead.
+
+**Suggest new conversations:** Proactively recommend that Josh start a new conversation when the current one has completed a logical unit of work (e.g., a feature is done, a bug is fixed, a pipeline run is finished and committed). Fresh conversations save tokens and avoid context bloat. When suggesting, **always provide a ready-to-paste prompt** for the next conversation. The prompt should include:
+- What the task is and why (enough rationale so the new session understands the goal)
+- Which part of the codebase is involved (Bad Bunny pipeline, front-end normal mode, front-end Bad Bunny mode, etc.)
+- Specific files or functions to start looking at
+- Any decisions or context from the current conversation that the new session needs
+
+Example: "Start a new chat with this prompt: *I want to prioritise Bad Bunny example lyrics so sentences containing recently-studied or recently-wrong words appear first. This touches step 8 rerank (`Artists/scripts/8_rerank.py`) for static pre-sorting and `js/flashcards.js` `updateCard()` for dynamic re-sorting at display time. The example data lives in each word's `meanings[].allExamples[]` array. A two-layer approach was discussed: static pipeline sort by nearby-rank overlap, then dynamic front-end re-score using `progressData`.*"
 
 ---
 
@@ -155,9 +171,10 @@ Python 3.9+ required (project uses `.venv/bin/python3`).
 
 The front-end is vanilla JS served as static files — no build step, no framework, no bundler. `index.html` (647 lines) is HTML only; all CSS lives in `css/style.css` and all JS is split across native ES modules in `js/`.
 
-**Two entry points:**
+**Entry points:**
 - `index.html` — standard vocabulary mode (Spanish, Swedish, Italian, Dutch, Polish)
-- `index.html?mode=badbunny` — Bad Bunny mode (Spanish only, separate vocabulary file with song lyrics)
+- `index.html?artist=bad-bunny` — artist/lyrics mode (loads config from `artists.json`)
+- `index.html?mode=badbunny` — legacy alias for `?artist=bad-bunny`
 
 ---
 
@@ -221,9 +238,11 @@ Key fields:
 
 ### Word IDs and the Composite `fullId`
 
-Every vocabulary JSON entry has a 4-digit zero-padded **hex** `id` field:
-- **Bad Bunny vocab**: assigned by pipeline step 5 as `format(_next_id, '04x')`, keyed on `(word, lemma)`, stable across pipeline reruns via `old_vocabulary_cache.json`
-- **All other vocab files** (Spanish, Swedish, Italian, Dutch, Polish): assigned as `format(rank, '04x')` — rank 1 → `"0001"`, rank 10 → `"000a"`, rank 256 → `"0100"`
+Every vocabulary JSON entry has a 4-digit **hex** `id` field, computed as `md5(word|lemma)[:4]` — the first 4 hex characters of the MD5 hash of `word|lemma`. This is consistent across all vocabulary files:
+- **Artist vocab**: assigned by pipeline step 6 via `make_stable_id(word, lemma)`
+- **Normal vocab files** (Spanish, Swedish, Italian, Dutch, Polish): migrated from rank-based to md5-based IDs via `scripts/migrate_vocab_ids.py`. Migration mappings in `Data/{lang}/id_migration.json`.
+- **Collision resolution**: if two different word|lemma pairs hash to the same 4 hex chars, a suffix is appended before rehashing: `md5(word|lemma|1)[:4]`, `md5(word|lemma|2)[:4]`, etc.
+- **Same word = same ID across artists**: "que|que" → `ed68` in both Bad Bunny and Rosalía. This enables client-side multi-artist vocabulary merging.
 
 At flashcard-load time, `vocab.js` builds a **composite `fullId`** for every card:
 
@@ -233,14 +252,13 @@ fullId = {2-char ISO lang code}{0=normal | 1=lyrics}{4-digit hex id}
 
 | Example | Meaning |
 |---|---|
-| `"es00001"` | Spanish normal, rank/id 0001 |
-| `"es10039"` | Spanish Bad Bunny lyrics, hex id 0039 |
-| `"sv00001"` | Swedish normal, rank 1 |
-| `"nl0000a"` | Dutch normal, rank 10 |
+| `"es0ed68"` | Spanish normal, word "que" (md5 id ed68) |
+| `"es1ed68"` | Spanish artist/lyrics mode, same word "que" |
+| `"sv06b7f"` | Swedish normal, word "och" |
 
 Language codes (`LANG_CODES` in `vocab.js`): `spanish→es`, `swedish→sv`, `italian→it`, `dutch→nl`, `polish→pl`, `french→fr`, `russian→ru`.
 
-`getWordId(item)` in `vocab.js` computes the fullId from any raw vocab item (needs `selectedLanguage` and `isBadBunnyMode` from state). It is exposed on `window` so `ui.js` can call it for mastery checks.
+`getWordId(item)` in `vocab.js` computes the fullId from any raw vocab item (needs `selectedLanguage` and `activeArtist` from state). It is exposed on `window` so `ui.js` can call it for mastery checks.
 
 **Why `fullId` not bare hex:**
 - Bare hex IDs like `"0039"` get auto-converted by Google Sheets to the integer `39`, breaking row-matching. Composite IDs always contain letters, so Sheets leaves them as strings.
@@ -272,7 +290,8 @@ All declared in `js/state.js` and accessible as bare names everywhere via the gl
 | `percentageMode` | `boolean` | % coverage mode (vs CEFR level mode) |
 | `ppmData` | `Array\|null` | `[{ rank, ppm, id }]` — frequency data for coverage calculations |
 | `totalPpm` | `number` | Sum of all ppm values for coverage % denominator |
-| `isBadBunnyMode` | `boolean` | Computed from URL: `?mode=badbunny` |
+| `activeArtist` | `object\|null` | null = normal mode, object = artist config from `artists.json` |
+| `isBadBunnyMode` | `boolean` | Backward-compat getter: `!!activeArtist`. Do not set directly. |
 | `currentUser` | `object\|null` | `{ initials, isGuest }` — null until auth resolves |
 | `progressData` | `object` | `wordId → { correct, wrong, lastCorrect, lastWrong, lastSeen, word, language }` |
 | `levelEstimates` | `object` | `language → rank` — high-water mark from estimation quiz |
@@ -360,9 +379,9 @@ Applied to the full vocabulary array before slicing to a rank range. Returns `{ 
 
 Filter order:
 1. Remove blank words, duplicates, entries with no meanings
-2. Bad Bunny mode: remove `is_english`, `is_interjection`, `is_propernoun`
+2. Artist mode: remove `is_english`, `is_interjection`, `is_propernoun`
 3. `excludeCognates`: remove `is_transparent_cognate`
-4. `hideSingleOccurrence`: remove `corpus_count <= 1` (Bad Bunny mode only, enabled by default)
+4. `hideSingleOccurrence`: remove `corpus_count <= 1` (artist mode only, enabled by default)
 5. `useLemmaMode`: keep only `most_frequent_lemma_instance === true`
 
 After filtering, assigns `displayRank` (1-based continuous rank across the filtered set). Range buttons use `displayRank` for set boundaries, **not** the original `rank` from the JSON. This means set 1–25 always contains exactly 25 words regardless of what was filtered out.
@@ -399,7 +418,7 @@ Progress is stored in two places:
 
 **Sheet layout** (columns A–H): `User | Word | WordId | Language | Correct | Wrong | LastCorrect | LastWrong`
 
-Two sheets: `UserProgress` (normal vocab) and `BadBunny` (lyrics mode). Selected via `sheet: isBadBunnyMode ? 'BadBunny' : 'UserProgress'` in every request.
+Two sheets: `UserProgress` (normal vocab) and `Lyrics` (artist/lyrics mode). Selected via `sheet: activeArtist ? 'Lyrics' : 'UserProgress'` in every request. The old `BadBunny` sheet is auto-renamed to `Lyrics` on first access.
 
 **Save flow** (`saveWordProgress` in `auth.js`):
 1. Uses `card.fullId` as `wordId` — always a letter-containing string, never auto-converted by Sheets
@@ -449,23 +468,34 @@ Created by `loadVocabularyData()`, stored in `flashcards[]`:
 
 ---
 
-### Bad Bunny Mode Differences
+### Artist / Lyrics Mode
 
-Activated by `?mode=badbunny` in the URL. Key differences:
-- Vocabulary file: `Artists/Bad Bunny/BadBunnyvocabulary.json` (not `Data/Spanish/vocabulary.json`)
-- Language tabs hidden; jumps straight to level/set selection
+Activated by `?artist=bad-bunny` (or legacy `?mode=badbunny`) in the URL. `activeArtist` is set from `artists.json`.
+
+Key differences from normal mode:
+- Vocabulary, paths, and colors loaded from `artists.json` (not hardcoded)
+- Language tabs hidden; auto-selects the artist's language
 - Filters out `is_english`, `is_interjection`, `is_propernoun` entries
 - `hideSingleOccurrence: true` by default (hides words seen only once in corpus)
-- Album artwork shown as card background (`updateBadBunnyBackground()`)
+- Album artwork shown as card background (`updateArtistBackground()` in `js/artist-ui.js`)
 - `corpusCount` is shown on cards (how many times word appears across discography)
 - Multiple lyric examples per card (`allExamples[]` can have >1 entry); tap example to cycle
+- Google Sheets tab: `'Lyrics'` (auto-renamed from old `'BadBunny'` tab)
 
-**Front-end paths**: The JS references Bad Bunny data via hardcoded paths in:
-- `js/config.js` — `dataPath` for the vocabulary JSON
-- `js/state.js` — `albumArtMap` image paths
-- `js/badbunny.js` — albums dictionary fetch
+**`artists.json`** at project root holds all artist configs. Each entry has: `name`, `language`, `dataPath`, `indexPath`, `examplesPath`, `albumsDictionary`, `albumImageMap`, `defaultAlbumArt`, `colorTheme`, `maxLevel`.
 
-These paths must use `Artists/Bad Bunny/...` (not the old root-level `Bad Bunny/...`).
+**Multi-artist mode**: Users select multiple artists via checkboxes in the settings modal. Selected slugs persist in `localStorage.selected_artists`. `mergeArtistVocabularies()` in `vocab.js` merges by hex ID — same word+lemma = same ID across artists. The merge:
+- Sums `corpus_count` across selected artists
+- Unions examples, tagging each with an `artist` slug
+- Discards `--no-gemini` placeholder meanings (`pos=X, translation=''`) when a real Gemini analysis exists from another artist
+- Sorts by combined corpus count descending
+
+**Vocabulary file format**: Each artist must have a split-file format matching Bad Bunny's:
+- `{Artist}vocabulary.json` — monolith (pipeline output)
+- `{Artist}vocabulary.index.json` — lightweight metadata (meanings without examples)
+- `{Artist}vocabulary.examples.json` — examples keyed by ID: `{ "ed68": { "m": [[...], ...] } }`
+
+The monolith is the pipeline's direct output. The index + examples split is generated separately for faster front-end loading (index is ~4x smaller). After any pipeline re-run, the split files must be regenerated.
 
 ---
 

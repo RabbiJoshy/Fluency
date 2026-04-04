@@ -971,22 +971,33 @@ async function mergeArtistVocabularies(artistConfigs) {
                 const existing = byId.get(id);
                 existing.corpus_count = (existing.corpus_count || 0) + (entry.corpus_count || 0);
 
-                // Merge meanings: match by POS, union examples
+                // Check which side has real Gemini analysis (pos !== 'X' and has translation)
+                const existingHasAnalysis = existing.meanings.some(m => m.pos !== 'X' && m.translation);
+                const newHasAnalysis = entry.meanings && entry.meanings.some(m => m.pos !== 'X' && m.translation);
+
                 if (entry.meanings) {
-                    for (const newM of entry.meanings) {
-                        const existingM = existing.meanings.find(m => m.pos === newM.pos && m.translation === newM.translation);
-                        if (existingM) {
-                            // Union examples
-                            if (newM.examples) {
-                                existingM.examples = (existingM.examples || []).concat(tagExamples(newM.examples));
+                    if (!existingHasAnalysis && newHasAnalysis) {
+                        // Existing entry is a --no-gemini placeholder; replace meanings entirely
+                        existing.meanings = entry.meanings.map(m => {
+                            const tagged = { ...m };
+                            if (tagged.examples) tagged.examples = tagExamples(tagged.examples);
+                            return tagged;
+                        });
+                    } else if (existingHasAnalysis && !newHasAnalysis) {
+                        // New entry is a placeholder; skip its meanings, just keep existing
+                    } else {
+                        // Both have real analysis (or both are placeholders) — union by POS+translation
+                        for (const newM of entry.meanings) {
+                            const existingM = existing.meanings.find(m => m.pos === newM.pos && m.translation === newM.translation);
+                            if (existingM) {
+                                if (newM.examples) {
+                                    existingM.examples = (existingM.examples || []).concat(tagExamples(newM.examples));
+                                }
+                            } else {
+                                const tagged = { ...newM };
+                                if (tagged.examples) tagged.examples = tagExamples(tagged.examples);
+                                existing.meanings.push(tagged);
                             }
-                        } else {
-                            // Tag examples and add new meaning
-                            const tagged = { ...newM };
-                            if (tagged.examples) {
-                                tagged.examples = tagExamples(tagged.examples);
-                            }
-                            existing.meanings.push(tagged);
                         }
                     }
                 }

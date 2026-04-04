@@ -62,6 +62,8 @@ def _step_6_args(args, artist_dir):
         a.append("--no-gemini")
     else:
         a.extend(["--api-key", args.api_key])
+    if args.words_only:
+        a.append("--words-only")
     if args.reset:
         a.extend(["--reset-sentences", "--reset-words"])
     return a
@@ -159,6 +161,8 @@ def main():
     parser.add_argument("--reset", action="store_true")
     parser.add_argument("--no-gemini", action="store_true",
                         help="Skip Gemini API calls in step 6. Uses only Genius translations + overrides.")
+    parser.add_argument("--words-only", action="store_true",
+                        help="Step 6: run word analysis but skip sentence translation.")
     args = parser.parse_args()
 
     artist_dir = os.path.join(ARTISTS_DIR, args.artist)

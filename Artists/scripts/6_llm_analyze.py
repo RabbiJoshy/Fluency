@@ -733,6 +733,8 @@ def main():
                         help="Max requests per minute (default: 200, paid tier allows 1000)")
     parser.add_argument("--no-gemini", action="store_true",
                         help="Skip all Gemini API calls. Use only Genius translations + overrides.")
+    parser.add_argument("--words-only", action="store_true",
+                        help="Run Gemini word analysis (Pass B) but skip sentence translation (Pass A).")
     args = parser.parse_args()
 
     # Set paths from --artist-dir
@@ -852,7 +854,11 @@ def main():
     untranslated = [l for l in all_lines if l not in sentence_progress]
     print("  %d lines need translation" % len(untranslated))
 
-    if untranslated and not args.no_gemini:
+    if args.words_only and untranslated:
+        print("  [--words-only] Skipping sentence translation for %d lines" %
+              len(untranslated))
+
+    if untranslated and not args.no_gemini and not args.words_only:
         s_batch_size = args.sentence_batch_size
         total_s_batches = (len(untranslated) + s_batch_size - 1) // s_batch_size
         est_minutes = total_s_batches / args.rpm
