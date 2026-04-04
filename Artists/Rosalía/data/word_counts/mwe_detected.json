@@ -3,12 +3,12 @@
     {
       "expression": "sé que",
       "translation": "I know that",
-      "count": 25
+      "count": 24
     },
     {
       "expression": "voy a",
       "translation": "I'm going to",
-      "count": 23
+      "count": 22
     },
     {
       "expression": "no hay",
@@ -18,12 +18,12 @@
     {
       "expression": "pa' que",
       "translation": "so that, in order to",
-      "count": 17
+      "count": 15
     },
     {
       "expression": "de mí",
       "translation": "about me, of me",
-      "count": 15
+      "count": 14
     },
     {
       "expression": "de ti",
@@ -36,14 +36,14 @@
       "count": 11
     },
     {
-      "expression": "tú ere'",
-      "translation": "you are (elided)",
-      "count": 11
-    },
-    {
       "expression": "esta noche",
       "translation": "tonight",
       "count": 11
+    },
+    {
+      "expression": "tú ere'",
+      "translation": "you are (elided)",
+      "count": 10
     },
     {
       "expression": "a ver",
@@ -76,16 +76,6 @@
       "count": 7
     },
     {
-      "expression": "se siente",
-      "translation": "feels, it feels",
-      "count": 7
-    },
-    {
-      "expression": "to' lo que",
-      "translation": "everything that (elided)",
-      "count": 7
-    },
-    {
       "expression": "de verdad",
       "translation": "really, truly, for real",
       "count": 6
@@ -96,8 +86,8 @@
       "count": 6
     },
     {
-      "expression": "la disco",
-      "translation": "the club",
+      "expression": "to' lo que",
+      "translation": "everything that (elided)",
       "count": 6
     },
     {
@@ -113,6 +103,11 @@
     {
       "expression": "encima de",
       "translation": "on top of",
+      "count": 5
+    },
+    {
+      "expression": "se siente",
+      "translation": "feels, it feels",
       "count": 5
     },
     {
@@ -173,6 +168,11 @@
     {
       "expression": "me siento",
       "translation": "I feel",
+      "count": 3
+    },
+    {
+      "expression": "la disco",
+      "translation": "the club",
       "count": 3
     },
     {
@@ -331,37 +331,16 @@
       "count": 0
     },
     {
-      "expression": "hoy salgo con mi",
-      "translation": null,
-      "count": 6,
-      "pmi": 23.8,
-      "num_songs": 3
-    },
-    {
-      "expression": "de la disco coroná'",
-      "translation": null,
-      "count": 6,
-      "pmi": 22.7,
-      "num_songs": 3
-    },
-    {
-      "expression": "a tu lado",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.3,
-      "num_songs": 3
-    },
-    {
       "expression": "lo va' a",
       "translation": null,
       "count": 5,
-      "pmi": 12.4,
+      "pmi": 12.2,
       "num_songs": 3
     }
   ],
   "candidates": [],
   "stats": {
     "confirmed_count": 66,
-    "pmi_detected_count": 4
+    "pmi_detected_count": 1
   }
 }
