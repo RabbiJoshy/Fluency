@@ -75,6 +75,63 @@ def _step_8_args(args, artist_dir):
     return _base_args(artist_dir)
 
 
+def split_vocabulary(vocab_path):
+    """Split a monolith vocabulary JSON into index (no examples) + examples (keyed by ID)."""
+    import json as _json
+
+    base = vocab_path.rsplit(".", 1)[0]
+    index_path = base + ".index.json"
+    examples_path = base + ".examples.json"
+
+    with open(vocab_path, "r", encoding="utf-8") as f:
+        data = _json.load(f)
+
+    index = []
+    examples = {}
+
+    for entry in data:
+        idx_entry = {}
+        for k, v in entry.items():
+            if k == "meanings":
+                idx_entry["meanings"] = []
+                ex_m = []
+                for m in v:
+                    idx_entry["meanings"].append({
+                        "pos": m.get("pos", ""),
+                        "translation": m.get("translation", ""),
+                        "frequency": m.get("frequency", "1.00"),
+                    })
+                    ex_m.append(m.get("examples", []))
+                if any(ex_m):
+                    examples[entry["id"]] = {"m": ex_m}
+            elif k == "mwe_memberships":
+                mwes = []
+                ex_w = []
+                for mwe in (v or []):
+                    mwes.append({
+                        "expression": mwe.get("expression", ""),
+                        "translation": mwe.get("translation", ""),
+                    })
+                    ex_w.append(mwe.get("examples", []))
+                idx_entry["mwe_memberships"] = mwes
+                if any(ex_w):
+                    if entry["id"] not in examples:
+                        examples[entry["id"]] = {"m": [[] for _ in entry.get("meanings", [])]}
+                    examples[entry["id"]]["w"] = ex_w
+            else:
+                idx_entry[k] = v
+        index.append(idx_entry)
+
+    with open(index_path, "w", encoding="utf-8") as f:
+        _json.dump(index, f, ensure_ascii=False)
+    with open(examples_path, "w", encoding="utf-8") as f:
+        _json.dump(examples, f, ensure_ascii=False)
+
+    print("\n  Split: %d index, %d examples" % (len(index), len(examples)))
+    print("  -> %s" % index_path)
+    print("  -> %s" % examples_path)
+
+
 def build_steps(vocab_file):
     return [
         {"num": 3, "label": "Tokenise, count words, detect MWEs",
@@ -210,6 +267,12 @@ def main():
         if not run_step(step, args, artist_dir, dry_run=args.dry_run):
             print("\nAborting — step %s failed." % step["num"])
             sys.exit(1)
+
+    # Auto-split monolith into index + examples after pipeline completes
+    if not args.dry_run:
+        vocab_path = os.path.join(artist_dir, config["vocabulary_file"])
+        if os.path.exists(vocab_path):
+            split_vocabulary(vocab_path)
 
     print("\n" + "=" * 60)
     if args.dry_run:
