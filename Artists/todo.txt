@@ -1,9 +1,14 @@
 == Guide for Claude ==
 This is Josh's backlog. Items here are NOT instructions to start working — they are ideas and plans.
+- If there is a "Suggested next session" block below, use it as context for the conversation — but verify the current state of things first (files may have changed since it was written). Remove it once it's been acted on.
 - Do NOT start any item without Josh explicitly asking in the current conversation.
 - DO mention relevant items when they come up naturally ("this relates to item X on the todo, want to tackle it?").
 - Priority labels: [high] = next up, [low] = someday, [deferred] = don't even suggest unless Josh brings it up.
 - Done items ([x]) can be cleaned out periodically when Josh says so.
+====================
+
+== Suggested next session ==
+Wave 2+3 is done and pushed (pipeline fixes, personal easiness, Rosalía setup). The Artist mode is now ahead of normal mode — see [high] item below. Bring normal vocabulary mode up to parity. Key gaps to investigate: normal mode doesn't have example sentence cycling, easiness-based sorting, or the improved card layout from artist mode. Start by comparing loadVocabularyData() and updateCard() code paths for activeArtist vs normal mode to identify what's missing.
 ====================
 
 •⁠  ⁠[x] DONE — Blank POS=X senses: root cause was short word whitelist in step 6 (added ah, to, je, ja, mm) + front-end now filters out POS=X/empty-translation meanings in buildFilteredVocab(). Multi-artist merge also fixed. Ongoing word quality monitoring continues.
