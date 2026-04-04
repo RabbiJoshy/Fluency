@@ -153,6 +153,8 @@ _SHORT_WORD_WHITELIST = frozenset({
     "un", "va", "ve", "vi", "ya", "yo",
     # Common Caribbean/slang 2-letter
     "ay", "eh", "ey", "pa", "na", "ta",
+    # Interjections and short words that appear in lyrics corpora
+    "ah", "to", "je", "ja", "mm",
 })
 
 # ---------------------------------------------------------------------------

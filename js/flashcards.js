@@ -4,6 +4,63 @@
 import './state.js';
 import './speech.js';
 
+// --- Spanish rank lookup for personal easiness ---
+let _spanishRanks = null;  // word -> rank (loaded once)
+let _spanishRanksLoading = false;
+
+async function loadSpanishRanks() {
+    if (_spanishRanks || _spanishRanksLoading) return;
+    _spanishRanksLoading = true;
+    try {
+        const resp = await fetch('Data/Spanish/spanish_ranks.json');
+        if (resp.ok) _spanishRanks = await resp.json();
+    } catch (e) {
+        // Non-fatal — falls back to static easiness
+    }
+    _spanishRanksLoading = false;
+}
+
+// Cache of known words built from progressData — rebuilt when progress changes
+let _knownWordsCache = null;
+let _knownWordsCacheSize = -1;
+
+function getKnownWords() {
+    const pdSize = Object.keys(progressData).length;
+    if (_knownWordsCache && _knownWordsCacheSize === pdSize) return _knownWordsCache;
+    _knownWordsCache = new Set();
+    for (const p of Object.values(progressData)) {
+        if (p.correct > 0 && p.word) _knownWordsCache.add(p.word.toLowerCase());
+    }
+    _knownWordsCacheSize = pdSize;
+    return _knownWordsCache;
+}
+
+function computePersonalEasiness(spanishText) {
+    if (!_spanishRanks || !spanishText) return 999999;
+    // Strip ad-libs/brackets
+    const cleaned = spanishText.replace(/\[[^\]]*\]|\([^\)]*\)/g, '').trim();
+    if (!cleaned) return 999999;
+    const tokens = cleaned.toLowerCase().replace(/[^\w\s']/g, ' ').split(/\s+/).filter(Boolean);
+    if (!tokens.length) return 999999;
+
+    // Get level estimate high-water mark
+    const lang = selectedLanguage || 'spanish';
+    const estimate = (levelEstimates && levelEstimates[lang]) || 0;
+    const knownWords = getKnownWords();
+
+    const unknownRanks = [];
+    for (const t of tokens) {
+        const rank = _spanishRanks[t];
+        if (rank === undefined) continue;  // skip unrecognized tokens
+        // Known if: rank <= level estimate, or word has been marked correct
+        if (rank <= estimate || knownWords.has(t)) continue;
+        unknownRanks.push(rank);
+    }
+    if (!unknownRanks.length) return 999999;  // all known — sort last
+    unknownRanks.sort((a, b) => a - b);
+    return unknownRanks[Math.floor(unknownRanks.length / 2)];  // median
+}
+
 // --- Example relevance sorting (Bad Bunny mode) ---
 let _cachedDeckWords = null;
 let _cachedDeckId = null;  // track which deck set we computed for
@@ -31,17 +88,22 @@ function getRecentWrongWords() {
 function sortExamplesByRelevance(examples) {
     const deckWords = getDeckWords();
     const wrongWords = getRecentWrongWords();
-    // Score each example
+    // Score each example — use personal easiness (excludes known words) when available
+    const usePersonal = !!_spanishRanks;
     const scored = examples.map(ex => {
-        const tokens = (ex.spanish || '').toLowerCase().split(/\s+/);
+        const spanishText = ex.spanish || ex.target || '';
+        const tokens = spanishText.toLowerCase().split(/\s+/);
         let deckHits = 0, wrongHits = 0;
         for (const t of tokens) {
             if (wrongWords.has(t)) wrongHits++;
             if (deckWords.has(t)) deckHits++;
         }
-        return { ex, wrongHits, deckHits, easiness: ex.easiness || 999999 };
+        const easiness = usePersonal
+            ? computePersonalEasiness(spanishText)
+            : (ex.easiness || 999999);
+        return { ex, wrongHits, deckHits, easiness };
     });
-    // Sort: wrong hits desc, deck hits desc, easiness asc
+    // Sort: wrong hits desc, deck hits desc, easiness asc (lower = easier/more relevant)
     scored.sort((a, b) =>
         (b.wrongHits - a.wrongHits) ||
         (b.deckHits - a.deckHits) ||
@@ -1747,6 +1809,7 @@ function navigateBack() {
     updateCard();
 }
 
+window.loadSpanishRanks = loadSpanishRanks;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;

@@ -30,6 +30,12 @@ function buildFilteredVocab(vocabData) {
         item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
     );
 
+    // Strip placeholder meanings (POS=X with no translation) from --no-gemini runs
+    for (const item of result) {
+        item.meanings = item.meanings.filter(m => !(m.pos === 'X' && !m.translation));
+    }
+    result = result.filter(item => item.meanings.length > 0);
+
     const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
 
     // Artist/lyrics mode: skip English loanwords, interjections, proper nouns

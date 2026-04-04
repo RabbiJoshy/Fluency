@@ -24,6 +24,7 @@ import re
 from statistics import median
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
+_ADLIB_RE = re.compile(r'\[[^\]]*\]|\([^\)]*\)')
 
 BB_VOCAB_PATH = None
 SPANISH_VOCAB_PATH = None
@@ -71,11 +72,25 @@ def get_token_rank(token, word_to_rank, lemma_to_rank, elision_map):
     return SENTINEL_RANK
 
 
-def compute_easiness(spanish_text, word_to_rank, lemma_to_rank, elision_map):
-    """Compute sentence easiness as median Spanish frequency rank of tokens."""
+def compute_easiness(spanish_text, word_to_rank, lemma_to_rank, elision_map,
+                     ignore_words=None):
+    """Compute sentence easiness as median Spanish frequency rank of tokens.
+
+    Strips bracketed/parenthetical ad-libs before tokenizing.
+    Tokens in ignore_words (interjections, English, proper nouns) are excluded
+    from the median so they don't inflate the score with sentinel ranks.
+    """
     if not spanish_text:
         return SENTINEL_RANK
-    tokens = tokenize_spanish(spanish_text)
+    # Strip ad-libs/brackets before tokenizing
+    cleaned = _ADLIB_RE.sub('', spanish_text).strip()
+    if not cleaned:
+        return SENTINEL_RANK
+    tokens = tokenize_spanish(cleaned)
+    if not tokens:
+        return SENTINEL_RANK
+    if ignore_words:
+        tokens = [t for t in tokens if t not in ignore_words]
     if not tokens:
         return SENTINEL_RANK
     ranks = [get_token_rank(t, word_to_rank, lemma_to_rank, elision_map) for t in tokens]
@@ -274,6 +289,19 @@ def main():
     elision_map = build_elision_map(bb_data)
     print(f"  {len(elision_map)} elision mappings built")
 
+    # Build set of words to ignore in easiness calculation (interjections,
+    # English words, proper nouns) — these would otherwise get sentinel rank
+    # and inflate scores for sentences containing them.
+    ignore_words = set()
+    for entry in bb_data:
+        w = entry.get("word", "").lower().strip()
+        if entry.get("is_interjection") or entry.get("is_english") or entry.get("is_propernoun"):
+            ignore_words.add(w)
+            df = (entry.get("display_form") or "").lower().strip()
+            if df:
+                ignore_words.add(df)
+    print(f"  {len(ignore_words)} words ignored in easiness (interjections/English/proper nouns)")
+
     total_examples = 0
     all_easiness = []
     for entry in bb_data:
@@ -281,7 +309,8 @@ def main():
             examples = meaning.get("examples", [])
             for ex in examples:
                 score = compute_easiness(
-                    ex.get("spanish", ""), word_to_rank, lemma_to_rank, elision_map
+                    ex.get("spanish", ""), word_to_rank, lemma_to_rank, elision_map,
+                    ignore_words=ignore_words
                 )
                 ex["easiness"] = score
                 all_easiness.append(score)

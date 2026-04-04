@@ -53,6 +53,7 @@ except ImportError:
 LETTER_CLASS = r"A-Za-zÁÉÍÓÚÜÑáéíóúüñ"
 WORD_RE = re.compile(rf"[{LETTER_CLASS}]+(?:'[{LETTER_CLASS}]+)*'?")
 SECTION_LINE_RE = re.compile(r"^\[.*\]$")
+_ADLIB_RE = re.compile(r'\[[^\]]*\]|\([^\)]*\)')
 FOOTER_MARKERS = ["You might also like", "Embed"]
 BOILERPLATE_LINE_RE = re.compile(
     r'… Read More'              # Truncated Genius annotation paragraphs
@@ -175,6 +176,12 @@ def clean_genius_lyrics(raw: str) -> str:
     return "\n".join(lines).strip()
 
 
+def strip_adlibs(text):
+    # type: (str) -> str
+    """Remove bracketed/parenthetical content (ad-libs, echoes, section tags) for counting."""
+    return _ADLIB_RE.sub('', text).strip()
+
+
 def tokenize(line: str) -> List[str]:
     """letters only, optional internal apostrophes"""
     return [m.group(0).lower() for m in WORD_RE.finditer(line)]
@@ -243,13 +250,14 @@ def filter_excluded_songs(songs: List[Dict[str, Any]], artist_dir: str) -> List[
 
     skip_ids = set(dedup.get("duplicates", {}).keys())
     skip_ids |= set(dedup.get("non_spanish", {}).get("songs", {}).keys())
+    skip_ids |= set(dedup.get("non_songs", {}).get("songs", {}).keys())
     skip_ids |= set(str(x) for x in dedup.get("placeholders", []))
 
     before = len(songs)
     songs = [s for s in songs if str(s.get("id")) not in skip_ids]
     skipped = before - len(songs)
     if skipped:
-        print(f"Filtered {skipped} excluded songs (duplicates/non-Spanish/placeholders), "
+        print(f"Filtered {skipped} excluded songs (duplicates/non-Spanish/placeholders/non-songs), "
               f"{len(songs)} remaining")
     return songs
 
@@ -294,7 +302,9 @@ def build_counts_and_candidates(
             line_text = line_text.strip()
             if not line_text:
                 continue
-            toks = tokenize(line_text)
+            # Strip ad-libs/brackets for counting; keep original for examples
+            count_text = strip_adlibs(line_text)
+            toks = tokenize(count_text) if count_text else []
             if not toks:
                 continue
             lid_stats["lines_total"] += 1
@@ -308,10 +318,10 @@ def build_counts_and_candidates(
             lines.append((line_no, line_text, toks))
             counts.update(toks)
 
-            # Count n-grams once per unique line text
-            if line_text not in seen_lines:
-                seen_lines.add(line_text)
-                for chunk in _PHRASE_SPLIT_RE.split(line_text):
+            # Count n-grams once per unique line text (use cleaned text)
+            if count_text not in seen_lines:
+                seen_lines.add(count_text)
+                for chunk in _PHRASE_SPLIT_RE.split(count_text):
                     chunk_toks = tokenize(chunk)
                     for t in chunk_toks:
                         ngram_unigrams[t] += 1

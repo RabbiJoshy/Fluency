@@ -75,6 +75,8 @@ if (activeArtist) {
 }
 
 loadConfig().then(async () => {
+    // Fire-and-forget: load Spanish rank lookup for personal easiness scoring
+    if (window.loadSpanishRanks) window.loadSpanishRanks();
     renderLanguageTabs();
     // Set first language with data as default (but don't auto-select it)
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];

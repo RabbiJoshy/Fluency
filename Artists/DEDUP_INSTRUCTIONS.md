@@ -4,11 +4,12 @@ This document describes how to maintain `duplicate_songs.json`. **Only run this 
 
 ## What `duplicate_songs.json` controls
 
-The file has four sections:
+The file has five sections:
 
 - **`duplicates`** — maps a duplicate song ID to the canonical version to keep. The duplicate's lyrics are excluded from word counting; the canonical version's lyrics are kept.
 - **`placeholders`** — song IDs with no real lyrics (stubs, "yet to be transcribed", instrumentals, <50 chars of content).
 - **`non_spanish`** — songs to exclude because they aren't in Spanish. Portuguese covers, German tracks, English-only content, translation pages, SNL skits, etc.
+- **`non_songs`** — songs to exclude because they aren't actual songs. Freestyles, monologues, previews, recaps, skits, interludes.
 - **`stats`** — summary counts (update after every pass).
 
 ## Step-by-step process
@@ -49,7 +50,18 @@ Flag songs where the lyrics are:
 - Fewer than 50 characters total
 - Contain "yet to be transcribed", "instrumental", "letra completa no está disponible" with no other substantial content
 
-### 3. Scan for non-Spanish songs
+### 3. Scan for non-songs
+
+Flag songs that are not actual songs regardless of language:
+- **Freestyles** — titles containing "Freestyle". Improvisational performances, not produced tracks.
+- **Monologues** — titles containing "Monologue" or "Monólogo". Spoken word, comedy, or interview content.
+- **Previews** — titles containing "Preview". Album teasers or snippet compilations.
+- **Recaps** — titles containing "Recap" or "Wrapped". Year-end playlist compilations (e.g. "My Recap 2023").
+- **Skits/Interludes** — titles containing "Skit", "Interlude", or very short spoken-word tracks that aren't musical.
+
+Use category field: `freestyle`, `monologue`, `preview`, `recap`, `skit`.
+
+### 4. Scan for non-Spanish songs
 
 Check every song's lyrics for language. Flag songs that are:
 - **Portuguese** — look for Portuguese markers: "você", "não", "tô", "beijo", "Ao Vivo", "nossas", "saudade", "fazendo"
@@ -63,11 +75,11 @@ Check every song's lyrics for language. Flag songs that are:
 - Spanglish songs where Bad Bunny's parts are in Spanish — the English line filter handles the English portions
 - Songs like DRUNK that mix English and Spanish — keep the canonical version, the line filter handles language separation
 
-### 4. Check for overlaps
+### 5. Check for overlaps
 
 A song ID should only appear in ONE section. If a song is both a duplicate and non-Spanish, put it in duplicates (it'll be excluded either way, but duplicates maps it to a canonical version which is cleaner).
 
-### 5. Update stats
+### 6. Update stats
 
 ```json
 "stats": {
@@ -75,6 +87,7 @@ A song ID should only appear in ONE section. If a song is both a duplicate and n
   "duplicates": <count of entries in duplicates>,
   "placeholders": <count of entries in placeholders>,
   "non_spanish": <count of entries in non_spanish.songs>,
+  "non_songs": <count of entries in non_songs.songs>,
   "unique_songs": <total - unique excluded IDs across all sections>
 }
 ```
@@ -104,6 +117,16 @@ Note: some placeholder IDs also appear in duplicates (overlap). `unique_songs` s
       }
     }
   },
+  "non_songs": {
+    "description": "...",
+    "songs": {
+      "<song_id>": {
+        "title": "<title on Genius>",
+        "category": "freestyle|monologue|preview|recap|skit",
+        "reason": "<brief explanation>"
+      }
+    }
+  },
   "stats": { ... }
 }
 ```
@@ -120,10 +143,12 @@ with open('Bad Bunny/data/input/duplicate_songs.json') as f:
 dup_ids = set(data['duplicates'].keys())
 ph_ids = set(data['placeholders'])
 ns_ids = set(data['non_spanish']['songs'].keys())
-all_excluded = dup_ids | ph_ids | ns_ids
+nsong_ids = set(data.get('non_songs', {}).get('songs', {}).keys())
+all_excluded = dup_ids | ph_ids | ns_ids | nsong_ids
 print(f'Duplicates: {len(dup_ids)}')
 print(f'Placeholders: {len(ph_ids)}')
 print(f'Non-Spanish: {len(ns_ids)}')
+print(f'Non-Songs: {len(nsong_ids)}')
 print(f'Total excluded (unique): {len(all_excluded)}')
 print(f'Unique songs: {data[\"stats\"][\"total_songs\"]} - {len(all_excluded)} = {data[\"stats\"][\"total_songs\"] - len(all_excluded)}')
 assert data['stats']['unique_songs'] == data['stats']['total_songs'] - len(all_excluded), 'Stats mismatch!'

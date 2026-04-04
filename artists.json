@@ -30,6 +30,17 @@
     "dataPath": "Artists/Rosalía/Rosaliavocabulary.json",
     "indexPath": "Artists/Rosalía/Rosaliavocabulary.index.json",
     "examplesPath": "Artists/Rosalía/Rosaliavocabulary.examples.json",
+    "albumsDictionary": "Artists/Rosalía/rosalia_albums_dictionary.json",
+    "albumImageMap": {
+      "Los Ángeles (2017)": "Artists/Rosalía/Images/LOS_ANGELES.jpg",
+      "El Mal Querer (2018)": "Artists/Rosalía/Images/EL_MAL_QUERER.png",
+      "MOTOMAMI (2022)": "Artists/Rosalía/Images/MOTOMAMI.webp",
+      "MOTOMAMI + (2022)": "Artists/Rosalía/Images/MOTOMAMI_PLUS.png",
+      "RR (2023)": "Artists/Rosalía/Images/RR.jpeg",
+      "Lux (2025)": "Artists/Rosalía/Images/LUX.png",
+      "Singles & Features": "Artists/Rosalía/Images/SINGLES.jpg"
+    },
+    "defaultAlbumArt": "Artists/Rosalía/Images/SINGLES.jpg",
     "colorTheme": {
       "primary": "#C41E3A",
       "secondary": "#1C1C1C"

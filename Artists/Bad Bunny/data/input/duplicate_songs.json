@@ -1,5 +1,5 @@
 {
-  "description": "Duplicate song mappings, placeholder songs, and non-Spanish songs to exclude.",
+  "description": "Duplicate song mappings, placeholder songs, non-Spanish songs, and non-songs to exclude.",
   "duplicates": {
     "2877985": {
       "keep": "2829388",
@@ -958,11 +958,82 @@
       }
     }
   },
+  "non_songs": {
+    "description": "Songs to exclude because they are not actual songs (freestyles, monologues, previews, recaps, skits).",
+    "songs": {
+      "2829733": {
+        "title": "Mood (Freestyle)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "2964920": {
+        "title": "El Freestyle",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "3606945": {
+        "title": "El Chapo (Freestyle)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "4591395": {
+        "title": "Freestyle por Grupo (21/05/2019)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "5458869": {
+        "title": "RONCA FREESTYLE",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "5468224": {
+        "title": "Calentando (Freestyle)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "5559397": {
+        "title": "Hot Niggas (Freestyle)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "5559553": {
+        "title": "En Lo Que (Freestyle)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "5629799": {
+        "title": "Another (Freestyle)",
+        "category": "freestyle",
+        "reason": "Freestyle improvisation, not a produced song"
+      },
+      "12809316": {
+        "title": "Bad Bunny Monologue (2025)",
+        "category": "monologue",
+        "reason": "Spoken monologue, not a song"
+      },
+      "9554528": {
+        "title": "UN PREVIEW",
+        "category": "preview",
+        "reason": "Album preview/teaser, not a complete song"
+      },
+      "9290437": {
+        "title": "My Recap 2023",
+        "category": "recap",
+        "reason": "Year-end playlist recap, not a discrete song"
+      },
+      "9292079": {
+        "title": "My Recap 2022",
+        "category": "recap",
+        "reason": "Year-end playlist recap, not a discrete song"
+      }
+    }
+  },
   "stats": {
     "total_songs": 537,
-    "duplicates": 127,
-    "placeholders": 16,
+    "duplicates": 141,
+    "placeholders": 19,
     "non_spanish": 45,
-    "unique_songs": 353
+    "non_songs": 13,
+    "unique_songs": 324
   }
 }
