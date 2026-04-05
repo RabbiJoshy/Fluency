@@ -1919,10 +1919,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px;
-            border-radius: 50%;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            padding: 4px;
+            border-radius: 8px;
+            background: none;
+            border: none;
             opacity: 0.85;
             transition: all 0.2s;
             text-decoration: none;
@@ -1930,7 +1930,8 @@
         .ref-icon-btn:hover {
             opacity: 1;
             transform: scale(1.1);
-            border-color: var(--accent-secondary);
+            background: none;
+            border: none;
         }
 
         /* Back button on card (nav stack) */

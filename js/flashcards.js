@@ -1236,10 +1236,13 @@ function updateCard() {
     }
 
     // Reference links as icon buttons
+    // SpanishDict: blue "SD" circle (their brand blue #1b85e5)
+    // Conjugate: same SD circle with a small verb marker to show it's conjugation
+    // Reverso: their brand "R" with bidirectional arrows — no forced circle
     const linkIcons = {
         'spanishDict': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1b85e5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="13" fill="white">SD</text></svg>`,
-        'reverso': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#29728a"/><path d="M8 8l4-3v2.5c3.5 0 5.5 2.2 5.5 5.5 0 1.2-.4 2.3-1 3.2-.3-1.8-1.5-3.2-4.5-3.2V15L8 12V8z" fill="white"/></svg>`,
-        'conjugation': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#6366f1"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="14" fill="white">C</text></svg>`
+        'reverso': `<svg width="24" height="22" viewBox="0 0 28 24" fill="none"><text x="6" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="18" fill="#0cc0aa">R</text><path d="M18 7l3-3v2c2.5 0 4 1.5 4 4s-1.5 4-4 4v2l-3-3 3-3z" fill="#0cc0aa" opacity="0.7"/><path d="M18 17l3 3v-2c2.5 0 4-1.5 4-4" stroke="#0cc0aa" stroke-width="1.2" fill="none" opacity="0.5"/></svg>`,
+        'conjugation': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1b85e5"/><text x="12" y="13" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="10" fill="white">SD</text><text x="12" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="white" opacity="0.85">verb</text></svg>`
     };
     const linkTitles = {
         'spanishDict': 'SpanishDict',
