@@ -147,6 +147,7 @@ function initializeApp() {
         // Don't flip if clicking on buttons, links, or elements with onclick handlers
         if (e.target.closest('.nav-btn-inline') ||
             e.target.closest('.link-btn') ||
+            e.target.closest('.ref-icon-btn') ||
             e.target.closest('.card-action-small') ||
             e.target.closest('.breakdown-btn') ||
             e.target.closest('.card-btn-pill') ||
@@ -427,6 +428,7 @@ function setupSwipeGestures() {
         // Don't handle if touch is on buttons, links, or specific interactive elements
         if (e.target.closest('.nav-btn-inline') ||
             e.target.closest('.link-btn') ||
+            e.target.closest('.ref-icon-btn') ||
             e.target.closest('.card-control-btn') ||
             e.target.closest('.card-action-small') ||
             e.target.closest('.desktop-answer-btn') ||
@@ -1233,10 +1235,15 @@ function updateCard() {
         }
     }
 
-    // Reference links (exclude wordReference, use shortened labels)
-    const linkLabels = {
+    // Reference links as icon buttons
+    const linkIcons = {
+        'spanishDict': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1b85e5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="13" fill="white">SD</text></svg>`,
+        'reverso': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#29728a"/><path d="M8 8l4-3v2.5c3.5 0 5.5 2.2 5.5 5.5 0 1.2-.4 2.3-1 3.2-.3-1.8-1.5-3.2-4.5-3.2V15L8 12V8z" fill="white"/></svg>`,
+        'conjugation': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#6366f1"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="14" fill="white">C</text></svg>`
+    };
+    const linkTitles = {
         'spanishDict': 'SpanishDict',
-        'reverso': 'Reverso',
+        'reverso': 'Reverso Context',
         'conjugation': 'Conjugate'
     };
 
@@ -1254,8 +1261,13 @@ function updateCard() {
         if (key === 'wordReference') continue; // Skip wordReference
         // Skip conjugation link for non-verbs
         if (key === 'conjugation' && !isVerb) continue;
-        const label = linkLabels[key] || key;
-        backHTML += `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
+        const icon = linkIcons[key];
+        const title = linkTitles[key] || key;
+        if (icon) {
+            backHTML += `<a href="${url}" target="_blank" class="ref-icon-btn" title="${title}">${icon}</a>`;
+        } else {
+            backHTML += `<a href="${url}" target="_blank" class="link-btn">${title}</a>`;
+        }
     }
 
     backHTML += `</div>`;

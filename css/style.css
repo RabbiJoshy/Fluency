@@ -1915,6 +1915,24 @@
             border: none;
         }
 
+        .ref-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            opacity: 0.85;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .ref-icon-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            border-color: var(--accent-secondary);
+        }
+
         /* Back button on card (nav stack) */
         .nav-back-btn {
             background: var(--accent-primary);
