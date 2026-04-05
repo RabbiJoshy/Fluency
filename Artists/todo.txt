@@ -4,25 +4,35 @@ This is Josh's backlog. Items here are NOT instructions to start working — the
 - Do NOT start any item without Josh explicitly asking in the current conversation.
 - DO mention relevant items when they come up naturally ("this relates to item X on the todo, want to tackle it?").
 - Priority labels: [high] = next up, [low] = someday, [deferred] = don't even suggest unless Josh brings it up.
-- Done items ([x]) can be cleaned out periodically when Josh says so.
+- Done items can be cleaned out periodically when Josh says so.
+- See `todo_details.md` for expanded context on each item (for Claude, not for Josh to read).
 ====================
 
 == Suggested next session ==
-Level estimation was rebuilt as adaptive staircase (one word at a time, translation reveal, retest option). Josh wants to test it more. Potential follow-up: use general Spanish vocabulary for estimation even in artist mode (less genre-biased). Also: normal mode parity is the next big feature piece. Song exclusion pass done (10 Rosalía + 7 Bad Bunny excluded, pipeline re-run complete).
+Level estimation was rebuilt as adaptive staircase (one word at a time, translation reveal, retest option). Josh wants to test it more. Potential follow-up: use general Spanish vocabulary for estimation even in artist mode (less genre-biased). Also: normal mode parity is the next big feature piece.
 ====================
 
-•⁠  ⁠[x] DONE — Blank POS=X senses: root cause was short word whitelist in step 6 (added ah, to, je, ja, mm) + front-end now filters out POS=X/empty-translation meanings in buildFilteredVocab(). Multi-artist merge also fixed. Ongoing word quality monitoring continues.
-•⁠  ⁠[x] DONE — Excluded 13 non-songs (9 freestyles, 1 monologue, 1 preview, 2 recaps). Added non_songs category to duplicate_songs.json schema and DEDUP_INSTRUCTIONS.md. Pipeline step 3 now loads non_songs exclusions.
-•⁠  ⁠[x] DONE (Wave 1) — Improved button touch targets in css/style.css.
-•⁠  ⁠[x] DECIDED AGAINST — Per-artist verse filtering (only BB's lines). Existing filters (English line stripping, non-song exclusions, adlib removal) already handle the real problems. Filtering to only BB's verses would gut collaborative tracks and lose vocabulary needed to understand features, which are on most songs. Genius verse labels are also unreliable (community-contributed, inconsistent).
-    - [x] DONE — Level estimation rebuilt as adaptive staircase (one word at a time, translation reveal to confirm, retest option, convergence via streak of 5 + small step size). Replaced batch binary search.
-    - [ ] Use general Spanish vocabulary for estimation even in artist mode (less genre-biased). Needs mapping strategy from general rank to artist deck.
-•⁠  ⁠[ ] Add Spotify links, this is definitely not a priority but I could have the link to the song on Spotify somewhere within the card. Though I think this is probably one of the last things I'll do.
-•⁠  ⁠[x] DONE — Fixed English TTS voice selection (Samantha over Daniel, blocklisted novelty voices). Service worker switched to network-first for all assets.
-•⁠  ⁠[x] DONE — Bracket/adlib stripping added to step 3 counting path (preserves brackets in examples). Step 8 easiness scoring now strips adlibs and ignores interjections/English/proper nouns from the median calculation.
-•⁠  ⁠[x] DONE (Wave 1) — Example lyrics now show artist name alongside song name in js/flashcards.js.
-•  [high] The Artist mode is now much further ahead than the normal mode. It's probably time to start working on the normal mode and making sure that they're growing in sync. It's important to make the changes to the normal mode that bring it up to date with the artist mode. It's a big piece so probably quite a priority.
-•  [x] DONE — Multi-artist image selection now uses per-example artist slug for correct album art fallback (artist-ui.js).
-•  [x] DONE — Multi-artist merge now recalculates meaning frequency from example counts instead of stale Gemini line assignments (vocab.js).
-•  [x] DONE — Song exclusion pass: excluded 10 Rosalía + 7 Bad Bunny clear-cut non-songs (remixes with canonicals, live performances, halftime show, non-artist songs). ~20 BB remix-only tracks kept (they're feature tracks where the remix is the only version). Pipeline re-run from step 3 complete for both artists.
-•  [deferred] Auto-populate albums dictionaries from Genius album pages. Currently albums_dictionary.json is manually curated per artist. Genius has album objects with track listings — a pipeline step could scrape these to auto-assign songs to albums. Would save manual work when adding new artists or when an artist drops a new album.
+
+TO DO
+-----
+
+- [high] Normal mode parity — artist mode is much further ahead. Normal mode is missing example sentence cycling, easiness-based sorting, and the improved card layout. Big piece.
+- Use general Spanish vocabulary for level estimation even in artist mode (less genre-biased). Needs mapping strategy from general rank to artist deck.
+- [low] Add Spotify links to cards. Probably one of the last things to do.
+- [deferred] Auto-populate albums dictionaries from Genius album pages. Currently manually curated per artist.
+
+
+DONE
+----
+
+- Level estimation rebuilt as adaptive staircase (one word at a time, translation reveal, retest, convergence via streak + small step). Replaced batch binary search.
+- Song exclusion pass: excluded 10 Rosalia + 7 Bad Bunny non-songs (remixes, live performances, halftime show, non-artist songs). ~20 BB remix-only tracks kept (feature tracks where the remix is the only version). Pipeline re-run complete.
+- Multi-artist image selection uses per-example artist slug for correct album art fallback.
+- Multi-artist merge recalculates meaning frequency from example counts instead of stale Gemini line assignments.
+- Fixed English TTS voice selection (Samantha over Daniel, blocklisted novelty voices). Service worker switched to network-first.
+- Decided against per-artist verse filtering. Existing filters handle the real problems. Genius verse labels are unreliable.
+- Bracket/adlib stripping in step 3. Easiness scoring strips adlibs and ignores interjections/English/proper nouns.
+- Blank POS=X senses fixed (short word whitelist + front-end filtering).
+- Excluded 13 non-songs (freestyles, monologue, preview, recaps). Added non_songs category to schema.
+- Improved button touch targets.
+- Example lyrics show artist name alongside song name.
