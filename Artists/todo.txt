@@ -22,6 +22,20 @@ TO DO
 - [deferred] Auto-populate albums dictionaries from Genius album pages. Currently manually curated per artist.
 
 
+VOCABULARY ISSUES
+-----------------
+Items here are things Josh noticed while using the app. When fixing, don't just fix the individual word — investigate whether it's a symptom of a bigger pipeline/data problem. Delete items from this list once resolved.
+
+(none currently)
+
+
+SONGS TO EXCLUDE
+----------------
+Songs Josh noticed that shouldn't be in the corpus (remixes, live versions, non-artist songs, etc.). When fixing, add to duplicate_songs.json and check if there are similar songs that should also be excluded. Delete items from this list once resolved.
+
+(none currently)
+
+
 DONE
 ----
 
