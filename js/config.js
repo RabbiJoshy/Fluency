@@ -18,6 +18,7 @@ async function loadConfig() {
                 dataPath: activeArtist.dataPath,
                 indexPath: activeArtist.indexPath || activeArtist.dataPath,
                 examplesPath: activeArtist.examplesPath || null,
+                masterPath: activeArtist.masterPath || null,
                 ppmDataPath: null, // PPM data is embedded in artist vocabulary JSON
                 colorTheme: activeArtist.colorTheme || config.languages[lang].colorTheme
             };

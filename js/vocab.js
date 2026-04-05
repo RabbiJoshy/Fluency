@@ -10,8 +10,9 @@ const LANG_CODES = {
 };
 
 /**
- * Compute a stable composite word ID: {2-char lang}{0=normal|1=lyrics}{4-digit hex}.
- * Examples: "es00001" (Spanish normal rank 1), "es10039" (Bad Bunny hex 0039).
+ * Compute a stable composite word ID: {2-char lang}{0=normal|1=lyrics}{hex}.
+ * Hex is 6 chars for artist mode (master vocab), 4 chars for normal mode.
+ * Examples: "es00001" (Spanish normal rank 1), "es1a1b2c3" (artist hex a1b2c3).
  * Always contains letters → Google Sheets never auto-converts to a number.
  */
 function getWordId(item) {
@@ -19,6 +20,54 @@ function getWordId(item) {
     const mode = activeArtist ? '1' : '0';
     const hex = item.id || Number(item.rank).toString(16).padStart(4, '0');
     return `${lang}${mode}${hex}`;
+}
+
+/**
+ * Join per-artist index entries with the shared master vocabulary.
+ * Reconstructs the full entry shape (word, lemma, meanings, flags, mwe_memberships)
+ * expected by buildFilteredVocab() and the flashcard builder.
+ *
+ * @param {Array} indexData - Artist index entries [{id, corpus_count, most_frequent_lemma_instance, sense_frequencies}]
+ * @param {Object} master - Master vocabulary {id: {word, lemma, senses, flags, mwe_memberships}}
+ * @returns {Array} Denormalized entries matching the old monolith format
+ */
+function joinWithMaster(indexData, master) {
+    const result = [];
+    for (const idx of indexData) {
+        const m = master[idx.id];
+        if (!m) continue;
+
+        // Build meanings array from master senses + artist sense_frequencies
+        const meanings = (m.senses || []).map((sense, i) => ({
+            pos: sense.pos,
+            translation: sense.translation,
+            frequency: String(idx.sense_frequencies?.[i] ?? 0),
+            examples: []  // Attached later from examples file
+        }));
+
+        // Build mwe_memberships from master (examples attached later)
+        const mwe_memberships = (m.mwe_memberships || []).map(mwe => ({
+            expression: mwe.expression,
+            translation: mwe.translation,
+            examples: []
+        }));
+
+        result.push({
+            id: idx.id,
+            word: m.word,
+            lemma: m.lemma,
+            meanings,
+            most_frequent_lemma_instance: idx.most_frequent_lemma_instance,
+            is_english: m.is_english || false,
+            is_interjection: m.is_interjection || false,
+            is_propernoun: m.is_propernoun || false,
+            is_transparent_cognate: m.is_transparent_cognate || false,
+            corpus_count: idx.corpus_count || 0,
+            display_form: m.display_form || null,
+            mwe_memberships: mwe_memberships.length > 0 ? mwe_memberships : undefined,
+        });
+    }
+    return result;
 }
 
 function buildFilteredVocab(vocabData) {
@@ -96,6 +145,22 @@ async function loadVocabularyData(rangeString) {
     const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
+        // Load shared master vocabulary for artist mode (cached)
+        let master = null;
+        if (activeArtist && langConfig.masterPath) {
+            if (!window._cachedMasterVocab) {
+                try {
+                    const masterResp = await fetch(langConfig.masterPath);
+                    if (masterResp.ok) {
+                        window._cachedMasterVocab = await masterResp.json();
+                    }
+                } catch (e) {
+                    console.warn('Failed to load master vocabulary:', e);
+                }
+            }
+            master = window._cachedMasterVocab;
+        }
+
         // Multi-artist mode: merge vocabularies from all selected artists
         let vocabularyData;
         const selectedSlugs = window._selectedArtistSlugs || [];
@@ -105,7 +170,7 @@ async function loadVocabularyData(rangeString) {
                 .map(slug => allConfigs[slug])
                 .filter(Boolean);
             if (!window._cachedMergedIndex) {
-                const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(artistConfigs);
+                const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(artistConfigs, master);
                 window._cachedMergedIndex = mergedIndex;
                 window._cachedMergedExamples = mergedExamples;
             }
@@ -118,7 +183,14 @@ async function loadVocabularyData(rangeString) {
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
             }
-            vocabularyData = await response.json();
+            let rawData = await response.json();
+
+            // If we have a master, join the artist index with it
+            if (master && rawData.length > 0 && rawData[0].sense_frequencies) {
+                vocabularyData = joinWithMaster(rawData, master);
+            } else {
+                vocabularyData = rawData;
+            }
         }
         cachedVocabularyData = vocabularyData;
 
@@ -943,9 +1015,10 @@ function getExampleFromMeaning(meaning, exampleTargetField, exampleEnglishField)
 
 
 // Merge vocabulary arrays from multiple artists by hex ID.
-// Same word+lemma across artists shares the same md5 hex ID.
+// With master vocab: IDs are guaranteed consistent, so merge is straightforward.
+// Without master: falls back to legacy POS+translation union (backwards compat).
 // Returns { mergedIndex: [...], mergedExamples: {...} }
-async function mergeArtistVocabularies(artistConfigs) {
+async function mergeArtistVocabularies(artistConfigs, master) {
     const byId = new Map(); // id → merged entry
     const mergedExamples = {}; // id → { m: [...], w: [...] }
 
@@ -959,6 +1032,12 @@ async function mergeArtistVocabularies(artistConfigs) {
         } catch (e) {
             console.warn(`Failed to load index for ${cfg.name}:`, e);
             continue;
+        }
+
+        // If master available and data is new format, join first
+        const isNewFormat = indexData.length > 0 && indexData[0].sense_frequencies;
+        if (master && isNewFormat) {
+            indexData = joinWithMaster(indexData, master);
         }
 
         // Load separate examples file
@@ -983,7 +1062,7 @@ async function mergeArtistVocabularies(artistConfigs) {
             };
 
             // Attach examples from split file onto meanings BEFORE merge,
-            // so examples travel with their meaning through POS+translation union
+            // so examples travel with their meaning
             if (examplesData && examplesData[id] && entry.meanings) {
                 const ex = examplesData[id];
                 if (ex.m) {
@@ -999,36 +1078,47 @@ async function mergeArtistVocabularies(artistConfigs) {
             }
 
             if (byId.has(id)) {
-                // Merge into existing entry
+                // Merge into existing entry — with master, senses are aligned by position
                 const existing = byId.get(id);
                 existing.corpus_count = (existing.corpus_count || 0) + (entry.corpus_count || 0);
 
-                // Check which side has real Gemini analysis (pos !== 'X' and has translation)
-                const existingHasAnalysis = existing.meanings.some(m => m.pos !== 'X' && m.translation);
-                const newHasAnalysis = entry.meanings && entry.meanings.some(m => m.pos !== 'X' && m.translation);
-
-                if (entry.meanings) {
-                    if (!existingHasAnalysis && newHasAnalysis) {
-                        // Existing entry is a --no-gemini placeholder; replace meanings entirely
-                        existing.meanings = entry.meanings.map(m => {
-                            const tagged = { ...m };
-                            if (tagged.examples) tagged.examples = tagExamples(tagged.examples);
-                            return tagged;
-                        });
-                    } else if (existingHasAnalysis && !newHasAnalysis) {
-                        // New entry is a placeholder; skip its meanings, just keep existing
-                    } else {
-                        // Both have real analysis (or both are placeholders) — union by POS+translation
-                        for (const newM of entry.meanings) {
-                            const existingM = existing.meanings.find(m => m.pos === newM.pos && m.translation === newM.translation);
-                            if (existingM) {
+                if (master && isNewFormat) {
+                    // Master-based merge: senses are positionally aligned, just concat examples
+                    if (entry.meanings) {
+                        entry.meanings.forEach((newM, i) => {
+                            if (i < existing.meanings.length) {
                                 if (newM.examples) {
-                                    existingM.examples = (existingM.examples || []).concat(tagExamples(newM.examples));
+                                    existing.meanings[i].examples = (existing.meanings[i].examples || []).concat(tagExamples(newM.examples));
                                 }
-                            } else {
-                                const tagged = { ...newM };
+                            }
+                        });
+                    }
+                } else {
+                    // Legacy merge: union by POS+translation
+                    const existingHasAnalysis = existing.meanings.some(m => m.pos !== 'X' && m.translation);
+                    const newHasAnalysis = entry.meanings && entry.meanings.some(m => m.pos !== 'X' && m.translation);
+
+                    if (entry.meanings) {
+                        if (!existingHasAnalysis && newHasAnalysis) {
+                            existing.meanings = entry.meanings.map(m => {
+                                const tagged = { ...m };
                                 if (tagged.examples) tagged.examples = tagExamples(tagged.examples);
-                                existing.meanings.push(tagged);
+                                return tagged;
+                            });
+                        } else if (existingHasAnalysis && !newHasAnalysis) {
+                            // skip
+                        } else {
+                            for (const newM of entry.meanings) {
+                                const existingM = existing.meanings.find(m => m.pos === newM.pos && m.translation === newM.translation);
+                                if (existingM) {
+                                    if (newM.examples) {
+                                        existingM.examples = (existingM.examples || []).concat(tagExamples(newM.examples));
+                                    }
+                                } else {
+                                    const tagged = { ...newM };
+                                    if (tagged.examples) tagged.examples = tagExamples(tagged.examples);
+                                    existing.meanings.push(tagged);
+                                }
                             }
                         }
                     }
@@ -1044,7 +1134,7 @@ async function mergeArtistVocabularies(artistConfigs) {
                 byId.set(id, clone);
             }
 
-            // Build mergedExamples from the now-merged meanings (indices are correct)
+            // Build mergedExamples from the now-merged meanings
             if (byId.has(id)) {
                 const merged = byId.get(id);
                 mergedExamples[id] = { m: [] };
@@ -1061,8 +1151,7 @@ async function mergeArtistVocabularies(artistConfigs) {
         }
     }
 
-    // Recalculate frequency from example counts (merge concatenates examples
-    // but doesn't update frequency, making percentages stale)
+    // Recalculate frequency from example counts
     for (const entry of byId.values()) {
         if (entry.meanings && entry.meanings.length > 1) {
             const counts = entry.meanings.map(m => (m.examples || []).length);
@@ -1082,6 +1171,7 @@ async function mergeArtistVocabularies(artistConfigs) {
 }
 
 window.mergeArtistVocabularies = mergeArtistVocabularies;
+window.joinWithMaster = joinWithMaster;
 window.getWordId = getWordId;
 window.buildFilteredVocab = buildFilteredVocab;
 window.loadVocabularyData = loadVocabularyData;

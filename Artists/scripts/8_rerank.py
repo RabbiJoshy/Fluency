@@ -225,6 +225,102 @@ def write_split_files(bb_data, vocab_path):
     print(f"    {examples_path}: {ex_size:,} bytes")
 
 
+def write_master_split_files(entries, master, vocab_path, master_path):
+    """Write per-artist index and examples files referencing the master vocabulary.
+
+    Also updates the master with any new MWE memberships from this artist.
+    """
+    base = vocab_path.rsplit(".", 1)[0]
+    index_path = base + ".index.json"
+    examples_path = base + ".examples.json"
+
+    # First update master with any MWE changes from step 8
+    for entry in entries:
+        fid = entry.get("id")
+        if not fid or fid not in master:
+            continue
+        m = master[fid]
+        for mwe in entry.get("mwe_memberships", []):
+            expr = mwe.get("expression", "")
+            trans = mwe.get("translation", "")
+            exists = any(
+                e["expression"] == expr and e["translation"] == trans
+                for e in m.get("mwe_memberships", [])
+            )
+            if not exists:
+                if "mwe_memberships" not in m:
+                    m["mwe_memberships"] = []
+                m["mwe_memberships"].append({"expression": expr, "translation": trans})
+
+    # Write updated master
+    with open(master_path, "w", encoding="utf-8") as f:
+        json.dump(master, f, ensure_ascii=False)
+    print(f"  Master updated: {len(master)} entries -> {master_path}")
+
+    # Build index and examples parallel to master senses
+    index = []
+    examples = {}
+
+    for entry in entries:
+        fid = entry.get("id")
+        if not fid:
+            continue
+        m = master.get(fid)
+        if not m:
+            # Entry not in master — shouldn't happen, but fall back gracefully
+            continue
+
+        sense_freq = []
+        sense_examples = []
+        total_ex = 0
+
+        for sense in m.get("senses", []):
+            matching = None
+            for meaning in entry.get("meanings", []):
+                if meaning.get("pos") == sense["pos"] and meaning.get("translation") == sense["translation"]:
+                    matching = meaning
+                    break
+            exs = matching.get("examples", []) if matching else []
+            sense_examples.append(exs)
+            total_ex += len(exs)
+
+        for exs in sense_examples:
+            sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
+
+        mwe_examples = []
+        for master_mwe in m.get("mwe_memberships", []):
+            matched = []
+            for entry_mwe in entry.get("mwe_memberships", []):
+                if (entry_mwe.get("expression") == master_mwe["expression"]
+                        and entry_mwe.get("translation") == master_mwe["translation"]):
+                    matched = entry_mwe.get("examples", [])
+                    break
+            mwe_examples.append(matched)
+
+        index.append({
+            "id": fid,
+            "corpus_count": entry.get("corpus_count", 0),
+            "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
+            "sense_frequencies": sense_freq,
+        })
+
+        ex_entry = {"m": sense_examples}
+        if any(mwe_examples):
+            ex_entry["w"] = mwe_examples
+        examples[fid] = ex_entry
+
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump(index, f, ensure_ascii=False)
+    with open(examples_path, "w", encoding="utf-8") as f:
+        json.dump(examples, f, ensure_ascii=False)
+
+    idx_size = os.path.getsize(index_path)
+    ex_size = os.path.getsize(examples_path)
+    print(f"  Split files written:")
+    print(f"    {index_path}: {idx_size:,} bytes")
+    print(f"    {examples_path}: {ex_size:,} bytes")
+
+
 def main():
     global BB_VOCAB_PATH, SPANISH_VOCAB_PATH, MWE_PATH
     import argparse
@@ -232,6 +328,8 @@ def main():
 
     parser = argparse.ArgumentParser(description="Step 8: Rerank vocabulary")
     add_artist_arg(parser)
+    parser.add_argument("--master-path", type=str, default=None,
+                        help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -241,6 +339,7 @@ def main():
     BB_VOCAB_PATH = os.path.join(artist_dir, config["vocabulary_file"])
     SPANISH_VOCAB_PATH = os.path.join(project_root, "Data", "Spanish", "vocabulary.json")
     MWE_PATH = os.path.join(artist_dir, "data", "word_counts", "mwe_detected.json")
+    master_path = args.master_path or os.path.join(project_root, "Artists", "vocabulary_master.json")
 
     print("Loading artist vocabulary...")
     with open(BB_VOCAB_PATH, "r", encoding="utf-8") as f:
@@ -352,13 +451,21 @@ def main():
                 entry.pop("mwe_memberships", None)
         print(f"\n  MWE annotation: {len(mwe_data.get('mwes', []))} MWEs -> {mwe_count} entries annotated")
 
-    # Write back
+    # Write back monolith
     print(f"\nWriting to {BB_VOCAB_PATH}...")
     with open(BB_VOCAB_PATH, "w", encoding="utf-8") as f:
         json.dump(bb_data, f, ensure_ascii=False, indent=2)
 
-    # Generate split files for two-tier front-end loading
-    write_split_files(bb_data, BB_VOCAB_PATH)
+    # Generate split files
+    if os.path.isfile(master_path):
+        print(f"\nLoading master vocabulary from {master_path}...")
+        with open(master_path, "r", encoding="utf-8") as f:
+            master = json.load(f)
+        print(f"  {len(master)} master entries")
+        write_master_split_files(bb_data, master, BB_VOCAB_PATH, master_path)
+    else:
+        print(f"\nNo master vocabulary at {master_path} — using legacy split format")
+        write_split_files(bb_data, BB_VOCAB_PATH)
     print("Done!")
 
 

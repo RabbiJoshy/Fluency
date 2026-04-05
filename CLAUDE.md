@@ -9,13 +9,14 @@ Fluency/
 ├── index.html                   # App shell (HTML only, CSS + JS extracted)
 ├── css/style.css                # All CSS
 ├── js/                          # ES modules — see js/CLAUDE.md
-├── artists.json                 # Artist configs for lyrics mode
+├── artists.json                 # Artist configs for lyrics mode (includes masterPath)
 ├── config.json                  # Language config and file path mappings
 ├── manifest.json / service-worker.js
 ├── GoogleAppsScript.js          # Apps Script backend (deploy manually)
 ├── secrets.json                 # Google Apps Script URL (not in git)
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md
 └── Artists/                     # Pipeline scripts + per-artist data — see Artists/CLAUDE.md
+    └── vocabulary_master.json   # Shared master vocab (all word|lemma entries + senses)
 ```
 
 ## Common Tasks — Start Here
@@ -24,7 +25,8 @@ Fluency/
 |------|----------|
 | Flashcard display issue | `js/flashcards.js` → `updateCard()` (~line 890) |
 | Filtering / deck logic | `js/vocab.js` → `buildFilteredVocab()` |
-| Multi-artist merge | `js/vocab.js` → `mergeArtistVocabularies()` |
+| Multi-artist merge | `js/vocab.js` → `mergeArtistVocabularies()`, `joinWithMaster()` |
+| Master vocab / IDs | `Artists/scripts/merge_to_master.py`, `6_llm_analyze.py` → `assign_ids_from_master()` |
 | Setup UI flow | `js/ui.js` → `renderLevelSelector()`, `renderRangeSelector()` |
 | Level estimation | `js/estimation.js` → adaptive staircase algorithm |
 | TTS / speech | `js/speech.js` → `speakWord()` |
@@ -72,3 +74,4 @@ Python 3.9+ via `.venv/bin/python3`. Dev server: `python3 -m http.server 8765` f
 - **Short word whitelist**: Step 6 skips words <=2 chars unless in `_SHORT_WORD_WHITELIST`. If a short word gets POS=X, it probably needs adding to the whitelist.
 - **Easiness scoring**: Step 8 computes median Spanish frequency rank per example sentence. Strips adlibs and ignores interjections/English/proper nouns from the median. Front-end re-scores with personal easiness (`computePersonalEasiness` in `flashcards.js`) using `Data/Spanish/spanish_ranks.json` — excludes known words so sentences get progressively harder.
 - **POS=X filtering**: `buildFilteredVocab()` in `vocab.js` strips meanings with `pos=X` and empty translation. Words left with no valid meanings are removed from the deck.
+- **Master vocabulary**: `Artists/vocabulary_master.json` holds all word|lemma entries with accumulated senses across all artists. 6-char hex IDs (`md5(word|lemma)[:6]`). Per-artist files hold only examples and corpus stats. Front-end joins master + artist index + artist examples at load time. Run `Artists/scripts/merge_to_master.py` to rebuild the master from existing artist vocabs.

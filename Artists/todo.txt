@@ -18,6 +18,8 @@ TO DO
 
 - [high] Normal mode parity — artist mode is much further ahead. Normal mode is missing example sentence cycling, easiness-based sorting, and the improved card layout. Big piece.
 - Use general Spanish vocabulary for level estimation even in artist mode (less genre-biased). Needs mapping strategy from general rank to artist deck.
+- Cross-artist MWE detection — currently step 3 detects MWEs per-artist only. A shared detection pass across all artist corpora would find expressions that don't cross the frequency threshold in any single artist. Master vocab already unions MWE memberships, but detection itself is per-artist.
+- [low] Sense dedup/mapping — master vocab treats "to do" and "to do, to make" as distinct senses (exact string match). A future pass could merge near-duplicate senses (e.g., "am" vs "I am", minor translation variants).
 - [low] Spotify links: Bad Bunny done (248/302 matched). Rosalía lookup still needed — run `python3 Artists/scripts/spotify_lookup.py` after Spotify rate limit resets. ~54 Bad Bunny songs missed due to Genius/Spotify title mismatches (could manually map later).
 - Research more public sources for translated artist lyrics beyond Genius. Would reduce Gemini costs when adding new artists and improve translation coverage. Worth a thorough look at what's available.
 - [deferred] Auto-populate albums dictionaries from Genius album pages. Currently manually curated per artist.

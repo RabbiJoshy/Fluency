@@ -2,6 +2,7 @@
   "bad-bunny": {
     "name": "Bad Bunny",
     "language": "spanish",
+    "masterPath": "Artists/vocabulary_master.json",
     "dataPath": "Artists/Bad Bunny/BadBunnyvocabulary.json",
     "indexPath": "Artists/Bad Bunny/BadBunnyvocabulary.index.json",
     "examplesPath": "Artists/Bad Bunny/BadBunnyvocabulary.examples.json",
@@ -27,6 +28,7 @@
   "rosalia": {
     "name": "Rosalía",
     "language": "spanish",
+    "masterPath": "Artists/vocabulary_master.json",
     "dataPath": "Artists/Rosalía/Rosaliavocabulary.json",
     "indexPath": "Artists/Rosalía/Rosaliavocabulary.index.json",
     "examplesPath": "Artists/Rosalía/Rosaliavocabulary.examples.json",

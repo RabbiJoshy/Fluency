@@ -212,24 +212,40 @@ def _guess_pos_from_curated(word, translation):
 def make_stable_id(word, lemma):
     # type: (str, str) -> str
     h = hashlib.md5((word + "|" + lemma).encode("utf-8")).hexdigest()
-    return h[:4]
+    return h[:6]
 
 
-def assign_unique_ids(entries):
-    # type: (List[Dict]) -> None
-    used = set()  # type: set
+def assign_ids_from_master(entries, master):
+    # type: (List[Dict], Dict) -> None
+    """Assign 6-char hex IDs from the master vocabulary.
+
+    For each entry, compute md5(word|lemma)[:6]. If that collides with a
+    different word|lemma in the master, use suffix rehashing. The master's
+    ID assignments are authoritative.
+    """
+    # Build reverse lookup: (word, lemma) -> id from master
+    wl_to_id = {}  # type: Dict[Tuple[str, str], str]
+    for mid, mentry in master.items():
+        wl_to_id[(mentry["word"], mentry["lemma"])] = mid
+
+    used = set(master.keys())
     for entry in entries:
-        base_id = make_stable_id(entry["word"], entry["lemma"])
-        final_id = base_id
-        suffix = 0
-        while final_id in used:
-            suffix += 1
-            h = hashlib.md5(
-                (entry["word"] + "|" + entry["lemma"] + "|" + str(suffix)).encode("utf-8")
-            ).hexdigest()
-            final_id = h[:4]
-        used.add(final_id)
-        entry["id"] = final_id
+        wl = (entry["word"], entry["lemma"])
+        if wl in wl_to_id:
+            entry["id"] = wl_to_id[wl]
+        else:
+            # New word not in master — assign an ID
+            base_id = make_stable_id(entry["word"], entry["lemma"])
+            final_id = base_id
+            suffix = 0
+            while final_id in used:
+                suffix += 1
+                h = hashlib.md5(
+                    (entry["word"] + "|" + entry["lemma"] + "|" + str(suffix)).encode("utf-8")
+                ).hexdigest()
+                final_id = h[:6]
+            used.add(final_id)
+            entry["id"] = final_id
 
 
 # ---------------------------------------------------------------------------
@@ -737,6 +753,8 @@ def main():
                         help="Skip all Gemini API calls. Use only Genius translations + overrides.")
     parser.add_argument("--words-only", action="store_true",
                         help="Run Gemini word analysis (Pass B) but skip sentence translation (Pass A).")
+    parser.add_argument("--master-path", type=str, default=None,
+                        help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
     args = parser.parse_args()
 
     # Set paths from --artist-dir
@@ -1148,12 +1166,193 @@ def main():
               (mwe_count, mwe_with_examples))
 
     mark_most_frequent_lemma(final_entries)
-    assign_unique_ids(final_entries)
 
+    # --- Master vocabulary integration ---
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    master_path = args.master_path or os.path.join(project_root, "Artists", "vocabulary_master.json")
+
+    # Load existing master (or start empty)
+    master = {}  # type: Dict[str, Any]
+    if os.path.isfile(master_path):
+        with open(master_path, "r", encoding="utf-8") as f:
+            master = json.load(f)
+        print("\nLoaded master vocabulary: %d entries from %s" % (len(master), master_path))
+    else:
+        print("\nNo master vocabulary found at %s — will create." % master_path)
+
+    # For --no-gemini: pull senses from master for words that got placeholder analysis
+    if args.no_gemini:
+        reused = 0
+        wl_to_id = {}  # type: Dict[Tuple[str, str], str]
+        for mid, mentry in master.items():
+            wl_to_id[(mentry["word"], mentry["lemma"])] = mid
+        for fe in final_entries:
+            wl = (fe["word"], fe["lemma"])
+            if wl in wl_to_id:
+                mid = wl_to_id[wl]
+                mentry = master[mid]
+                # Replace placeholder meanings with master senses if entry has only pos=X
+                has_real = any(m.get("pos") != "X" and m.get("translation") for m in fe.get("meanings", []))
+                if not has_real and mentry.get("senses"):
+                    # Build meanings from master senses, keeping this artist's examples
+                    existing_examples = []
+                    for m in fe.get("meanings", []):
+                        existing_examples.extend(m.get("examples", []))
+                    new_meanings = []
+                    for sense in mentry["senses"]:
+                        new_meanings.append({
+                            "pos": sense["pos"],
+                            "translation": sense["translation"],
+                            "frequency": "0.00",
+                            "examples": [],
+                        })
+                    # Assign all examples to first sense (best we can do without Gemini)
+                    if new_meanings and existing_examples:
+                        new_meanings[0]["examples"] = existing_examples
+                        new_meanings[0]["frequency"] = "1.00"
+                    fe["meanings"] = new_meanings
+                    # Also pull flags
+                    for flag in ("is_english", "is_interjection", "is_propernoun", "is_transparent_cognate"):
+                        if mentry.get(flag):
+                            fe[flag] = True
+                    if mentry.get("display_form") and not fe.get("display_form"):
+                        fe["display_form"] = mentry["display_form"]
+                    reused += 1
+        if reused:
+            print("  Reused master senses for %d --no-gemini placeholder entries" % reused)
+
+    # Assign IDs from master (or compute new ones for new words)
+    assign_ids_from_master(final_entries, master)
+
+    # Update master with new/updated entries from this run
+    new_master_entries = 0
+    new_senses = 0
+    for fe in final_entries:
+        fid = fe["id"]
+        if fid not in master:
+            master[fid] = {
+                "word": fe["word"],
+                "lemma": fe["lemma"],
+                "senses": [],
+                "is_english": fe.get("is_english", False),
+                "is_interjection": fe.get("is_interjection", False),
+                "is_propernoun": fe.get("is_propernoun", False),
+                "is_transparent_cognate": fe.get("is_transparent_cognate", False),
+                "display_form": fe.get("display_form"),
+                "mwe_memberships": [],
+            }
+            new_master_entries += 1
+
+        m = master[fid]
+        # Union flags
+        for flag in ("is_english", "is_interjection", "is_propernoun", "is_transparent_cognate"):
+            if fe.get(flag, False):
+                m[flag] = True
+        if fe.get("display_form") and not m.get("display_form"):
+            m["display_form"] = fe["display_form"]
+
+        # Merge senses
+        for meaning in fe.get("meanings", []):
+            pos = meaning.get("pos", "X")
+            translation = meaning.get("translation", "")
+            exists = any(s["pos"] == pos and s["translation"] == translation for s in m["senses"])
+            if not exists:
+                m["senses"].append({"pos": pos, "translation": translation})
+                new_senses += 1
+
+        # Merge MWE memberships
+        for mwe in fe.get("mwe_memberships", []):
+            expr = mwe.get("expression", "")
+            trans = mwe.get("translation", "")
+            exists = any(
+                e["expression"] == expr and e["translation"] == trans
+                for e in m["mwe_memberships"]
+            )
+            if not exists:
+                m["mwe_memberships"].append({"expression": expr, "translation": trans})
+
+    # Write updated master
+    with open(master_path, "w", encoding="utf-8") as f:
+        json.dump(master, f, ensure_ascii=False)
+    print("  Master: %d entries (+%d new), %d new senses -> %s" % (
+        len(master), new_master_entries, new_senses, master_path))
+
+    # Write monolith (same format as before, for debugging/compatibility)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(final_entries, f, ensure_ascii=False, indent=2)
+    print("  Monolith: %d entries -> %s" % (len(final_entries), OUTPUT_PATH))
+
+    # Write per-artist split files (new format: index + examples)
+    _write_artist_split_files(final_entries, master, OUTPUT_PATH)
 
     print("\nDone! Wrote %d entries to %s" % (len(final_entries), OUTPUT_PATH))
+
+
+def _write_artist_split_files(entries, master, vocab_path):
+    # type: (List[Dict], Dict, str) -> None
+    """Write per-artist index and examples files in the new master-referenced format."""
+    base = vocab_path.rsplit(".", 1)[0]
+    index_path = base + ".index.json"
+    examples_path = base + ".examples.json"
+
+    index = []
+    examples = {}
+
+    for entry in entries:
+        fid = entry["id"]
+        m = master.get(fid)
+        if not m:
+            continue
+
+        # Compute sense_frequencies parallel to master senses
+        sense_freq = []
+        sense_examples = []
+        total_ex = 0
+
+        for sense in m["senses"]:
+            matching = None
+            for meaning in entry.get("meanings", []):
+                if meaning.get("pos") == sense["pos"] and meaning.get("translation") == sense["translation"]:
+                    matching = meaning
+                    break
+            exs = matching.get("examples", []) if matching else []
+            sense_examples.append(exs)
+            total_ex += len(exs)
+
+        for exs in sense_examples:
+            sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
+
+        # MWE examples parallel to master mwe_memberships
+        mwe_examples = []
+        for master_mwe in m["mwe_memberships"]:
+            matched = []
+            for entry_mwe in entry.get("mwe_memberships", []):
+                if (entry_mwe.get("expression") == master_mwe["expression"]
+                        and entry_mwe.get("translation") == master_mwe["translation"]):
+                    matched = entry_mwe.get("examples", [])
+                    break
+            mwe_examples.append(matched)
+
+        index.append({
+            "id": fid,
+            "corpus_count": entry.get("corpus_count", 0),
+            "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
+            "sense_frequencies": sense_freq,
+        })
+
+        ex_entry = {"m": sense_examples}
+        if any(mwe_examples):
+            ex_entry["w"] = mwe_examples
+        examples[fid] = ex_entry
+
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump(index, f, ensure_ascii=False)
+    with open(examples_path, "w", encoding="utf-8") as f:
+        json.dump(examples, f, ensure_ascii=False)
+    print("  Index: %d entries -> %s (%s bytes)" % (
+        len(index), index_path, "{:,}".format(os.path.getsize(index_path))))
+    print("  Examples: %s (%s bytes)" % (
+        examples_path, "{:,}".format(os.path.getsize(examples_path))))
 
 
 if __name__ == "__main__":

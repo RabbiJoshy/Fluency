@@ -28,14 +28,25 @@ Scrape lyrics (Genius) -> tokenise & count (with dedup) -> scrape Genius transla
 
 Shared helper: `scripts/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
 
+## Shared Master Vocabulary
+
+**`Artists/vocabulary_master.json`** — single source of truth for word identity and senses across all artists.
+
+- Keyed by 6-char hex ID (`md5(word|lemma)[:6]`, with suffix rehash for rare collisions)
+- Each entry: `{word, lemma, senses: [{pos, translation}], flags, mwe_memberships}`
+- Senses accumulate across artists — a new artist's Gemini run can discover new senses
+- Per-artist index files reference the master; examples are per-artist
+- `--no-gemini` runs pull existing senses from the master instead of producing placeholders
+- Migration/rebuild: `Artists/scripts/merge_to_master.py`
+
 ## Key Files Per Artist
 
 ```
 Artists/{Name}/
   artist.json                    # {"name", "genius_query", "vocabulary_file"}
-  {Name}vocabulary.json          # Monolith output (pipeline produces this)
-  {Name}vocabulary.index.json    # Auto-split: metadata only (no examples)
-  {Name}vocabulary.examples.json # Auto-split: examples keyed by hex ID
+  {Name}vocabulary.json          # Monolith output (denormalized, for debugging)
+  {Name}vocabulary.index.json    # Per-artist index: {id, corpus_count, sense_frequencies}
+  {Name}vocabulary.examples.json # Per-artist examples: keyed by 6-char hex ID
   data/input/
     lyrics/                      # Raw lyrics per song
     translations/translations.json  # Genius community translations
