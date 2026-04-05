@@ -102,8 +102,9 @@
                     <button class="step-help-btn" data-tooltip="personalProgressTooltip" title="Help">?</button>
                     <span id="personalCoverageLabel" class="personal-progress-info"></span>
                     <div id="personalProgressTooltip" class="step-info-tooltip">
-                        <p>How many words from this vocabulary you've answered correctly at least once.</p>
-                        <p>The count adjusts as you change filters below — using lemma mode or excluding cognates changes which words are eligible, and this bar reflects that filtered total.</p>
+                        <p>Coverage is weighted by word frequency. Common words like "que" and "de" appear thousands of times, so knowing just the top 10% of words can cover 50%+ of actual lyrics.</p>
+                        <p>This means your coverage percentage will be much higher than the fraction of total words you've learned — that's expected and reflects real comprehension.</p>
+                        <p>The count adjusts as you change filters below — using lemma mode or excluding cognates changes which words are eligible.</p>
                     </div>
                 </div>
                 <div class="coverage-bar-container">
@@ -193,13 +194,9 @@
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
-                    <div id="groupSizeSelector" class="group-size-selector header-toggle">
-                        <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25">25</button>
-                        <button class="group-size-btn" data-size="50" data-short="50" data-full="50">50</button>
-                    </div>
                     <div id="step5Tooltip" class="step-info-tooltip">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
-                        <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
+                        <p>Set size (25 or 50 cards) can be changed in Settings.</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
                     </div>
                 </div>
@@ -594,6 +591,13 @@
                     <span>Auto-speak words</span>
                     <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
                 </div>
+                <div class="stat-row" style="cursor: pointer;" id="groupSizeToggle">
+                    <span>Cards per set</span>
+                    <div id="groupSizeSelector" class="group-size-selector settings-toggle">
+                        <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25">25</button>
+                        <button class="group-size-btn" data-size="50" data-short="50" data-full="50">50</button>
+                    </div>
+                </div>
                 <div class="stat-row" style="cursor: pointer;" id="percentageModeToggle">
                     <span>Percentage coverage mode</span>
                     <span id="percentageModeStatus" style="color: var(--text-muted);">OFF</span>
@@ -617,22 +621,27 @@
                     </span>
                 </div>
             </div>
-            <!-- Stats tab content -->
+            <!-- Stats tab content — current set progress -->
             <div class="settings-tab-content" id="statsTabContent">
                 <div class="stat-row">
-                    <span id="statsTabLanguage" style="color: var(--accent-primary); font-weight: 600;">Spanish</span>
+                    <span>Cards studied</span>
+                    <span id="statsTabCardsStudied">0 / 0</span>
                 </div>
                 <div class="stat-row">
-                    <span>Words correct</span>
-                    <span id="statsTabWordsCorrect" style="color: var(--accent-green);">0</span>
+                    <span>Progress</span>
+                    <span id="statsTabProgress" style="color: var(--accent-secondary); font-weight: 600;">0%</span>
                 </div>
                 <div class="stat-row">
-                    <span>Words seen</span>
-                    <span id="statsTabWordsSeen">0</span>
+                    <span style="color: var(--accent-green);">Correct</span>
+                    <span id="statsTabCorrect" style="color: var(--accent-green);">0</span>
                 </div>
-                <div class="stat-row" id="coverageStatRow" style="display: none;">
-                    <span>Language coverage</span>
-                    <span id="statsTabCoverage" style="color: var(--accent-secondary); font-weight: 600;">0%</span>
+                <div class="stat-row">
+                    <span style="color: var(--error);">Incorrect</span>
+                    <span id="statsTabIncorrect" style="color: var(--error);">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Accuracy</span>
+                    <span id="statsTabAccuracy">-</span>
                 </div>
             </div>
             <!-- Account tab content -->

@@ -323,6 +323,12 @@ function renderLevelSelector(language) {
             renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
         });
     });
+
+    // Auto-select first level to render sets immediately
+    const firstBtn = document.querySelector('.level-btn');
+    if (firstBtn && !selectedLevel) {
+        firstBtn.click();
+    }
 }
 
 function updateLevelInfoLine(btn) {
@@ -889,38 +895,20 @@ function showSettingsModalWithTab(tabName) {
 }
 
 function updateStatsTab() {
-    // Update language name
-    const langConfig = config.languages[selectedLanguage];
-    const langName = langConfig ? langConfig.name : selectedLanguage;
-    document.getElementById('statsTabLanguage').textContent = langName;
+    // Show current set progress
+    const total = flashcards ? flashcards.length : 0;
+    const studied = typeof cardsStudied !== 'undefined' ? cardsStudied : 0;
+    const correct = typeof correctCount !== 'undefined' ? correctCount : 0;
+    const incorrect = typeof incorrectCount !== 'undefined' ? incorrectCount : 0;
+    const answered = correct + incorrect;
+    const progress = total > 0 ? Math.round((studied / total) * 100) : 0;
+    const accuracy = answered > 0 ? Math.round((correct / answered) * 100) + '%' : '-';
 
-    // Calculate total stats from progressData for the selected language
-    let wordsCorrect = 0;
-    let wordsSeen = 0;
-
-    if (progressData) {
-        Object.values(progressData).forEach(data => {
-            if (data.language === selectedLanguage) {
-                wordsSeen++;
-                if (data.correct > 0) {
-                    wordsCorrect++;
-                }
-            }
-        });
-    }
-
-    document.getElementById('statsTabWordsCorrect').textContent = wordsCorrect;
-    document.getElementById('statsTabWordsSeen').textContent = wordsSeen;
-
-    // Update coverage percentage if PPM data is available
-    const coverageRow = document.getElementById('coverageStatRow');
-    if (ppmData && ppmData.length > 0) {
-        const coveragePercent = calculateCoveragePercent();
-        document.getElementById('statsTabCoverage').textContent = coveragePercent.toFixed(1) + '%';
-        coverageRow.style.display = 'flex';
-    } else {
-        coverageRow.style.display = 'none';
-    }
+    document.getElementById('statsTabCardsStudied').textContent = `${studied} / ${total}`;
+    document.getElementById('statsTabProgress').textContent = progress + '%';
+    document.getElementById('statsTabCorrect').textContent = correct;
+    document.getElementById('statsTabIncorrect').textContent = incorrect;
+    document.getElementById('statsTabAccuracy').textContent = accuracy;
 }
 
 function hideSettingsModal() {
@@ -988,9 +976,16 @@ window.updateStep5Tooltip = updateStep5Tooltip;
 window.renderLevelSelector = renderLevelSelector;
 window.setupCognateToggle = setupCognateToggle;
 window.setupGroupSizeSelector = setupGroupSizeSelector;
-// Open the help modal
+// Open the help modal — always reset to About tab
 function openHelpModal() {
-    document.getElementById('helpModal').classList.remove('hidden');
+    const modal = document.getElementById('helpModal');
+    modal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+    modal.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+    const aboutTab = modal.querySelector('[data-tab="helpAbout"]');
+    if (aboutTab) aboutTab.classList.add('active');
+    const aboutContent = document.getElementById('helpAboutTabContent');
+    if (aboutContent) aboutContent.classList.add('active');
+    modal.classList.remove('hidden');
 }
 
 // Generic tab switching for any modal that uses .settings-tab / .settings-tab-content pattern

@@ -480,6 +480,10 @@
             color: #ffffff;
         }
 
+        body.artist-mode .sentence {
+            background: rgba(15, 20, 28, 0.55);
+        }
+
         @media (max-width: 767px) {
             .sentence {
                 font-size: 20px;
@@ -1367,6 +1371,38 @@
             background: var(--accent-primary);
         }
 
+        /* Settings modal variant */
+        .group-size-selector.settings-toggle {
+            display: flex;
+            gap: 0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .settings-toggle .group-size-btn {
+            padding: 5px 14px;
+            font-size: 13px;
+            min-width: 40px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-data);
+        }
+
+        .settings-toggle .group-size-btn:first-child {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .settings-toggle .group-size-btn.selected {
+            background: var(--accent-primary);
+            color: white;
+        }
+
         .step-row {
             display: flex;
             gap: 15px;
@@ -1913,6 +1949,17 @@
             opacity: 1;
             background: none;
             border: none;
+        }
+
+        .breakdown-trigger {
+            text-decoration-line: underline;
+            text-decoration-style: dotted;
+            text-decoration-color: rgba(255,255,255,0.3);
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s;
+        }
+        .breakdown-trigger:hover {
+            text-decoration-color: rgba(255,255,255,0.6);
         }
 
         .ref-icon-btn {
@@ -2538,7 +2585,11 @@
         }
 
         .personal-coverage-wrapper {
-            margin: 0 0 8px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
         }
 
         .personal-coverage-fill {
@@ -2563,9 +2614,11 @@
 
         .personal-progress-info {
             font-family: var(--font-data);
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
             margin-left: auto;
+            text-align: right;
+            line-height: 1.5;
         }
 
         /* Help bar */
@@ -2779,7 +2832,8 @@
         .user-info {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             align-items: center;
             gap: 18px;
@@ -2849,13 +2903,30 @@
             height: 29px;
         }
 
+        /* Desktop: vertical sidebar on right edge */
+        @media (min-width: 768px) {
+            .user-info {
+                top: 50%;
+                right: 20px;
+                left: auto;
+                transform: translateY(-50%);
+                flex-direction: column;
+                padding: 20px 15px;
+                border-radius: 16px;
+            }
+
+            .floating-btns {
+                flex-direction: column;
+                margin-right: 0;
+            }
+        }
+
         @media (max-width: 767px) {
             .user-info {
                 top: 10px;
-                right: 10px;
-                padding: 13px 31px;
+                padding: 10px 24px;
                 font-size: 17px;
-                gap: 15px;
+                gap: 12px;
             }
 
             .user-badge {
@@ -2878,10 +2949,16 @@
         }
 
         @media (max-width: 767px) {
+            .card-container {
+                min-height: calc(100vh - 60px);
+                padding: 70px 0 10px 0;
+                align-items: flex-start;
+            }
+
             .card {
-                height: calc(100vh - 180px);
+                height: calc(100vh - 140px);
                 min-height: 460px;
-                max-height: 633px;
+                max-height: none;
             }
 
             .card-word {
@@ -2946,7 +3023,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(30, 39, 50, 0.85);
+            background: rgba(30, 39, 50, 0.72);
             border-radius: 16px;
             z-index: 0;
         }
