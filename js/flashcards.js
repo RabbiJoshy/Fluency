@@ -1235,14 +1235,11 @@ function updateCard() {
         }
     }
 
-    // Reference links as icon buttons
-    // SpanishDict: blue "SD" circle (their brand blue #1b85e5)
-    // Conjugate: same SD circle with a small verb marker to show it's conjugation
-    // Reverso: their brand "R" with bidirectional arrows — no forced circle
+    // Reference links as icon buttons — real favicons via Google's proxy
     const linkIcons = {
-        'spanishDict': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1b85e5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="13" fill="white">SD</text></svg>`,
-        'reverso': `<svg width="24" height="22" viewBox="0 0 28 24" fill="none"><text x="6" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="18" fill="#0cc0aa">R</text><path d="M18 7l3-3v2c2.5 0 4 1.5 4 4s-1.5 4-4 4v2l-3-3 3-3z" fill="#0cc0aa" opacity="0.7"/><path d="M18 17l3 3v-2c2.5 0 4-1.5 4-4" stroke="#0cc0aa" stroke-width="1.2" fill="none" opacity="0.5"/></svg>`,
-        'conjugation': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1b85e5"/><text x="12" y="13" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="10" fill="white">SD</text><text x="12" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="white" opacity="0.85">verb</text></svg>`
+        'spanishDict': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=32" width="22" height="22" alt="SpanishDict" style="border-radius:4px">`,
+        'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=32" width="22" height="22" alt="Reverso" style="border-radius:4px">`,
+        'conjugation': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=32" width="18" height="18" alt="Conjugate" style="border-radius:4px"><span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>`
     };
     const linkTitles = {
         'spanishDict': 'SpanishDict',
