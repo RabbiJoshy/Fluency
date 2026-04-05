@@ -791,6 +791,12 @@ function showFloatingBtns(show) {
             btns.classList.remove('visible');
         }
     }
+    // In artist mode, toggle the floating gear visibility (it's hidden during setup
+    // because the artist top bar box has its own gear)
+    if (activeArtist) {
+        const gearBtn = document.getElementById('gearBtn');
+        if (gearBtn) gearBtn.style.display = show ? '' : 'none';
+    }
 }
 
 async function goBackToSetup() {

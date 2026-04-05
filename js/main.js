@@ -113,6 +113,8 @@ loadConfig().then(async () => {
         document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
         document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
         document.getElementById('artistGearBtn').addEventListener('click', () => showSettingsModal());
+        // Hide the floating gear (replaced by gear in the top bar box)
+        document.getElementById('gearBtn').style.display = 'none';
         // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
         document.querySelector('#step2 .step-number').textContent = '1';
         document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
