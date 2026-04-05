@@ -460,7 +460,7 @@
 
     <!-- Level Estimation Modal -->
     <div id="estimationModal" class="modal hidden">
-        <div class="modal-content" style="max-width: 450px;">
+        <div class="modal-content fullscreen-modal">
             <div class="modal-header">
                 <h3 id="estimationTitle">Level Estimation</h3>
                 <button class="modal-close" id="closeEstimationModal">✕</button>
@@ -468,31 +468,30 @@
             <div class="estimation-body">
                 <div id="estimationIntro">
                     <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">
-                        Answer whether you know each word to estimate your vocabulary level.
+                        We'll show you words one at a time. For each word, say whether you know its meaning.
                     </p>
                     <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">
-                        Be honest - mark "Know" only if you're confident you know the meaning.
+                        Be honest — the translation is revealed after each answer so you can check.
                     </p>
                     <button class="estimation-start-btn" id="startEstimationBtn">Start</button>
                 </div>
                 <div id="estimationTest" style="display: none;">
                     <div class="estimation-progress">
-                        <span id="estimationCheckpoint">Level 50</span>
-                        <span id="estimationWordCount">1/5</span>
+                        <span id="estimationLevel">~500</span>
+                        <span id="estimationCount">0/30</span>
                     </div>
-                    <div class="estimation-word" id="estimationWord">palabra</div>
-                    <div class="estimation-pos" id="estimationPOS">noun</div>
-                    <div class="estimation-buttons">
-                        <button class="estimation-btn know-btn" id="estimationKnowBtn">✓ Know</button>
-                        <button class="estimation-btn dont-know-btn" id="estimationDontKnowBtn">✗ Don't Know</button>
+                    <div class="estimation-word-area">
+                        <div class="estimation-word" id="estimationWord">palabra</div>
+                        <div class="estimation-pos" id="estimationPOS">noun</div>
+                        <div class="estimation-translation" id="estimationTranslation"></div>
+                        <div class="estimation-reveal" id="estimationReveal" onclick="revealTranslation()">Show translation</div>
                     </div>
-                    <div class="estimation-score">
-                        <span style="color: var(--accent-green);">✓ <span id="estimationCorrect">0</span></span>
-                        <span style="color: var(--error);">✗ <span id="estimationWrong">0</span></span>
+                    <div class="estimation-buttons" id="estimationButtons">
+                        <button class="estimation-btn know-btn" onclick="handleAnswer(true)">I knew this</button>
+                        <button class="estimation-btn dont-know-btn" onclick="handleAnswer(false)">I didn't know</button>
                     </div>
                 </div>
                 <div id="estimationResult" style="display: none;">
-                    <div class="estimation-result-icon">🎯</div>
                     <p style="text-align: center; color: var(--text-secondary); margin-bottom: 10px;">
                         Your estimated vocabulary level:
                     </p>
@@ -501,7 +500,7 @@
                         You likely know vocabulary up to this rank.
                     </p>
                     <button class="estimation-start-btn" id="useEstimatedLevelBtn">Use This Level</button>
-                    <button class="estimation-retry-btn" id="retryEstimationBtn">Try Again</button>
+                    <button class="estimation-retry-btn" id="retryEstimationBtn" onclick="retryEstimation()">Try Again</button>
                 </div>
             </div>
         </div>

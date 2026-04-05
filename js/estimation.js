@@ -17,7 +17,6 @@ function getEstimationMaxLevel() {
 // Show/hide estimate level button based on language
 function updateEstimateLevelButton() {
     const btn = document.getElementById('estimateLevelBtn');
-    // Only show for Spanish (regular or artist mode)
     if (selectedLanguage === 'spanish' || activeArtist) {
         btn.classList.remove('hidden');
     } else {
@@ -37,29 +36,26 @@ function openEstimationModal() {
     const modal = document.getElementById('estimationModal');
     modal.classList.remove('hidden');
 
-    // Reset state
     document.getElementById('estimationIntro').style.display = 'block';
     document.getElementById('estimationTest').style.display = 'none';
     document.getElementById('estimationResult').style.display = 'none';
 
-    // Reset estimation state
     estimationState = {
         active: false,
-        currentLevel: 500,
-        minStride: 100,
-        wordIndex: 0,
-        correct: 0,
-        wrong: 0,
-        checkpointCorrect: 0,
-        checkpointWrong: 0,
-        currentWords: [],
-        estimatedLevel: null,
         vocabularyData: null,
-        history: [],
+        validWords: null,
         maxLevel: getEstimationMaxLevel(),
-        lowerBound: 0,
-        upperBound: getEstimationMaxLevel(),
-        confirmationLevel: null
+        // Staircase state
+        currentRank: 0,
+        stepSize: 0,
+        direction: 0,        // 1 = going up, -1 = going down, 0 = initial
+        streak: 0,           // consecutive correct
+        wordsTestedCount: 0,
+        shownWordIds: new Set(),
+        currentWord: null,
+        estimatedLevel: null,
+        previousEstimate: null,  // for retest seeding
+        autoAdvanceTimer: null
     };
 }
 
@@ -68,61 +64,17 @@ function closeEstimationModal() {
     const modal = document.getElementById('estimationModal');
     modal.classList.add('hidden');
     estimationState.active = false;
-}
-
-// Start the estimation test
-async function startEstimation() {
-    // Load vocabulary data
-    const langConfig = config.languages[selectedLanguage];
-    try {
-        const response = await fetch(langConfig.indexPath || langConfig.dataPath);
-        const vocabData = await response.json();
-        // Assign ranks
-        vocabData.forEach((item, index) => {
-            item.rank = index + 1;
-        });
-        estimationState.vocabularyData = vocabData;
-    } catch (error) {
-        alert('Failed to load vocabulary for estimation.');
-        return;
+    if (estimationState.autoAdvanceTimer) {
+        clearTimeout(estimationState.autoAdvanceTimer);
     }
-
-    // Determine max level based on mode
-    const maxLevel = getEstimationMaxLevel();
-
-    // Initialize state — binary search for highest level where user scores ≥4/5
-    estimationState.active = true;
-    estimationState.maxLevel = maxLevel;
-    estimationState.wordIndex = 0;
-    estimationState.correct = 0;
-    estimationState.wrong = 0;
-    estimationState.checkpointCorrect = 0;
-    estimationState.checkpointWrong = 0;
-    estimationState.history = [];
-    estimationState.estimatedLevel = null;
-    estimationState.lowerBound = 0;
-    estimationState.upperBound = maxLevel;
-    estimationState.confirmationLevel = null;
-    estimationState.minStride = 100;
-    estimationState.currentLevel = Math.floor(maxLevel / 2);
-
-    // Show test UI
-    document.getElementById('estimationIntro').style.display = 'none';
-    document.getElementById('estimationTest').style.display = 'block';
-    document.getElementById('estimationResult').style.display = 'none';
-
-    // Load words for current level
-    loadEstimationLevel();
 }
 
-// Get 5 test words for a given level (words around that rank)
-function getWordsForLevel(level) {
+// Build filtered word list (reuses same filters as old getWordsForLevel)
+function buildEstimationWordList() {
     const vocabData = estimationState.vocabularyData;
     if (!vocabData) return [];
 
-    // Always exclude cognates, interjections, proper nouns, and English words from
-    // estimation — these aren't genuine vocabulary tests and would inflate the result
-    let validWords = vocabData.filter(item =>
+    let valid = vocabData.filter(item =>
         item.word && item.word.trim() !== '' &&
         !item.duplicate &&
         item.meanings && item.meanings.length > 0 &&
@@ -132,166 +84,222 @@ function getWordsForLevel(level) {
         !item.is_english
     );
 
-    // Hide single-occurrence words if enabled
-    if (hideSingleOccurrence && validWords.length > 0 && validWords[0].hasOwnProperty('corpus_count')) {
-        validWords = validWords.filter(item => item.corpus_count > 1);
+    if (hideSingleOccurrence && valid.length > 0 && valid[0].hasOwnProperty('corpus_count')) {
+        valid = valid.filter(item => item.corpus_count > 1);
     }
 
-    // Get words in range [level-25, level+25] and pick 5
-    const rangeStart = Math.max(1, level - 25);
-    const rangeEnd = level + 25;
-    const wordsInRange = validWords.filter(w => w.rank >= rangeStart && w.rank <= rangeEnd);
+    // Assign ranks based on filtered position
+    valid.forEach((item, index) => {
+        item.rank = index + 1;
+    });
 
-    // Shuffle and pick 5
-    const shuffled = wordsInRange.sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 5);
+    return valid;
 }
 
-// Load words for current level
-function loadEstimationLevel() {
-    // Reset checkpoint scores
-    estimationState.checkpointCorrect = 0;
-    estimationState.checkpointWrong = 0;
-    estimationState.wordIndex = 0;
+// Pick a random word near a target rank, avoiding repeats
+function pickWordNearRank(targetRank) {
+    const valid = estimationState.validWords;
+    if (!valid || valid.length === 0) return null;
 
-    // Get words for this level
-    estimationState.currentWords = getWordsForLevel(estimationState.currentLevel);
+    const clampedRank = Math.max(1, Math.min(targetRank, valid.length));
+    const rangeStart = Math.max(0, clampedRank - 26);
+    const rangeEnd = Math.min(valid.length, clampedRank + 25);
 
-    if (estimationState.currentWords.length === 0) {
-        // No words at this level - finish
-        showEstimationResult(estimationState.currentLevel);
+    const candidates = [];
+    for (let i = rangeStart; i < rangeEnd; i++) {
+        const word = valid[i];
+        if (!estimationState.shownWordIds.has(word.id || word.word)) {
+            candidates.push(word);
+        }
+    }
+
+    if (candidates.length === 0) {
+        // All nearby words shown — expand range
+        for (let i = 0; i < valid.length; i++) {
+            if (!estimationState.shownWordIds.has(valid[i].id || valid[i].word)) {
+                candidates.push(valid[i]);
+                if (candidates.length >= 10) break;
+            }
+        }
+    }
+
+    if (candidates.length === 0) return null;
+    return candidates[Math.floor(Math.random() * candidates.length)];
+}
+
+// Get translation for a word
+function getWordTranslation(word) {
+    if (!word || !word.meanings || word.meanings.length === 0) return '';
+    return word.meanings.map(m => {
+        const pos = m.pos ? `(${m.pos}) ` : '';
+        return pos + (m.translation || '');
+    }).filter(t => t).join(', ');
+}
+
+// Start the estimation test
+async function startEstimation() {
+    const langConfig = config.languages[selectedLanguage];
+    try {
+        const response = await fetch(langConfig.indexPath || langConfig.dataPath);
+        estimationState.vocabularyData = await response.json();
+    } catch (error) {
+        alert('Failed to load vocabulary for estimation.');
         return;
     }
 
-    // Update UI
-    document.getElementById('estimationCheckpoint').textContent = `Testing ~${estimationState.currentLevel}`;
-    updateEstimationWord();
+    estimationState.validWords = buildEstimationWordList();
+    const maxLevel = estimationState.validWords.length;
+    estimationState.maxLevel = maxLevel;
+
+    // Seed starting position
+    const prevEstimate = estimationState.previousEstimate;
+    if (prevEstimate && prevEstimate > 0) {
+        // Retest: start near previous estimate
+        estimationState.currentRank = prevEstimate;
+    } else {
+        estimationState.currentRank = Math.floor(maxLevel / 2);
+    }
+
+    estimationState.stepSize = Math.max(50, Math.floor(maxLevel / 6));
+    estimationState.active = true;
+    estimationState.direction = 0;
+    estimationState.streak = 0;
+    estimationState.wordsTestedCount = 0;
+    estimationState.shownWordIds = new Set();
+    estimationState.estimatedLevel = null;
+
+    // Show test UI
+    document.getElementById('estimationIntro').style.display = 'none';
+    document.getElementById('estimationTest').style.display = 'flex';
+    document.getElementById('estimationResult').style.display = 'none';
+
+    showNextWord();
 }
 
-// Update the displayed word
-function updateEstimationWord() {
-    const word = estimationState.currentWords[estimationState.wordIndex];
-    if (!word) return;
+// Show the next word
+function showNextWord() {
+    if (!estimationState.active) return;
 
+    // Clear any previous auto-advance timer
+    if (estimationState.autoAdvanceTimer) {
+        clearTimeout(estimationState.autoAdvanceTimer);
+        estimationState.autoAdvanceTimer = null;
+    }
+
+    const word = pickWordNearRank(estimationState.currentRank);
+    if (!word) {
+        showEstimationResult(estimationState.currentRank);
+        return;
+    }
+
+    estimationState.currentWord = word;
+    estimationState.shownWordIds.add(word.id || word.word);
+
+    // Update UI
     document.getElementById('estimationWord').textContent = word.word;
-
-    // Get POS from meanings
     let pos = '';
     if (word.meanings && word.meanings.length > 0) {
         pos = word.meanings[0].pos || '';
     }
     document.getElementById('estimationPOS').textContent = pos;
 
-    // Update count
-    document.getElementById('estimationWordCount').textContent =
-        `${estimationState.wordIndex + 1}/${estimationState.currentWords.length}`;
+    // Hide translation until user taps to reveal
+    const translationEl = document.getElementById('estimationTranslation');
+    translationEl.textContent = getWordTranslation(word);
+    translationEl.classList.remove('visible');
 
-    // Update totals
-    document.getElementById('estimationCorrect').textContent = estimationState.correct;
-    document.getElementById('estimationWrong').textContent = estimationState.wrong;
+    // Show reveal button and answer buttons
+    document.getElementById('estimationReveal').style.display = 'block';
+    document.getElementById('estimationButtons').style.display = 'flex';
+
+    // Update progress
+    updateEstimationProgress();
 }
 
-// Handle "Know" button
-function estimationKnow() {
-    estimationState.correct++;
-    estimationState.checkpointCorrect++;
-    nextEstimationWord();
+// Reveal the translation so user can confirm before answering
+function revealTranslation() {
+    document.getElementById('estimationTranslation').classList.add('visible');
+    document.getElementById('estimationReveal').style.display = 'none';
 }
 
-// Handle "Don't Know" button
-function estimationDontKnow() {
-    estimationState.wrong++;
-    estimationState.checkpointWrong++;
-    nextEstimationWord();
-}
+// Handle answer
+function handleAnswer(known) {
+    if (!estimationState.active) return;
 
-// Move to next word or checkpoint
-function nextEstimationWord() {
-    estimationState.wordIndex++;
+    estimationState.wordsTestedCount++;
 
-    if (estimationState.wordIndex >= estimationState.currentWords.length) {
-        // Checkpoint complete - evaluate performance
-        evaluateCheckpoint();
-    } else {
-        updateEstimationWord();
+    const newDirection = known ? 1 : -1;
+
+    // Check for reversal (direction change)
+    if (estimationState.direction !== 0 && newDirection !== estimationState.direction) {
+        estimationState.stepSize = Math.max(50, Math.floor(estimationState.stepSize / 2));
     }
-}
+    estimationState.direction = newDirection;
 
-// Evaluate checkpoint performance and decide next action
-function evaluateCheckpoint() {
-    const correct = estimationState.checkpointCorrect;
-    const currentLevel = estimationState.currentLevel;
+    // Update streak
+    if (known) {
+        estimationState.streak++;
+    } else {
+        estimationState.streak = 0;
+    }
 
-    estimationState.history.push({ level: currentLevel, correct });
+    // Move rank
+    if (known) {
+        estimationState.currentRank = Math.min(
+            estimationState.maxLevel,
+            estimationState.currentRank + estimationState.stepSize
+        );
+    } else {
+        estimationState.currentRank = Math.max(
+            0,
+            estimationState.currentRank - estimationState.stepSize
+        );
+    }
 
-    evaluateCheckpointDetailed(correct, currentLevel);
-}
-
-// Detailed mode: binary search with confirmation step for 4/5
-function evaluateCheckpointDetailed(correct, currentLevel) {
-    const { lowerBound, upperBound, minStride, confirmationLevel } = estimationState;
-
-    if (confirmationLevel !== null) {
-        // Resolving a pending 4/5 confirmation
-        estimationState.confirmationLevel = null;
-        if (correct >= 4) {
-            // Confirmed — accept the level we were confirming
-            estimationState.lowerBound = confirmationLevel;
-        } else {
-            // Didn't confirm — that 4/5 was noise
-            estimationState.upperBound = confirmationLevel;
-        }
-        advanceDetailedSearch();
+    // Check convergence
+    if (checkConvergence()) {
+        showEstimationResult(estimationState.currentRank);
         return;
     }
 
-    if (correct === 5) {
-        // Solid mastery — accept this level and search higher
-        estimationState.lowerBound = currentLevel;
-        advanceDetailedSearch();
-    } else if (correct === 4) {
-        // Probably fine, but retest lower to confirm before accepting
-        const gap = currentLevel - lowerBound;
-        if (gap > minStride * 2) {
-            // Enough room to confirm — test a third of the way back down
-            const confirmAt = Math.max(lowerBound + 1, currentLevel - Math.floor(gap / 3));
-            estimationState.confirmationLevel = currentLevel;
-            estimationState.currentLevel = confirmAt;
-            loadEstimationLevel();
-        } else {
-            // Too close to confirmed territory — accept 4/5 as sufficient
-            estimationState.lowerBound = currentLevel;
-            advanceDetailedSearch();
-        }
-    } else {
-        // ≤3/5 — not at this level
-        estimationState.upperBound = currentLevel;
-        advanceDetailedSearch();
-    }
+    showNextWord();
 }
 
-// Move to the midpoint of remaining search space, or stop if converged
-function advanceDetailedSearch() {
-    const { lowerBound, upperBound, minStride } = estimationState;
-    const gap = upperBound - lowerBound;
-    if (gap <= minStride) {
-        // Converged — estimate is the highest confirmed good level
-        showEstimationResult(lowerBound);
-        return;
-    }
-    estimationState.currentLevel = Math.floor((lowerBound + upperBound) / 2);
-    loadEstimationLevel();
+// Check convergence
+function checkConvergence() {
+    // Safety cap
+    if (estimationState.wordsTestedCount >= 30) return true;
+
+    // Converged: small step + streak of 5
+    if (estimationState.stepSize <= 50 && estimationState.streak >= 5) return true;
+
+    // Hit the bottom
+    if (estimationState.currentRank <= 0) return true;
+
+    return false;
+}
+
+// Update progress display
+function updateEstimationProgress() {
+    document.getElementById('estimationLevel').textContent = `~${estimationState.currentRank}`;
+    document.getElementById('estimationCount').textContent =
+        `${estimationState.wordsTestedCount}/30`;
 }
 
 // Show the estimation result
 function showEstimationResult(level) {
     estimationState.active = false;
-    estimationState.estimatedLevel = level;
+    estimationState.estimatedLevel = Math.max(0, level);
+
+    if (estimationState.autoAdvanceTimer) {
+        clearTimeout(estimationState.autoAdvanceTimer);
+        estimationState.autoAdvanceTimer = null;
+    }
 
     document.getElementById('estimationTest').style.display = 'none';
     document.getElementById('estimationResult').style.display = 'block';
 
-    if (level === 0) {
+    if (level <= 0) {
         document.getElementById('estimationResultLevel').textContent = 'Beginner';
         document.getElementById('estimationResultDesc').textContent =
             'Start from the beginning to build your vocabulary foundation.';
@@ -305,27 +313,28 @@ function showEstimationResult(level) {
 // Apply the estimated level
 function useEstimatedLevel() {
     const level = estimationState.estimatedLevel;
-    levelEstimates[selectedLanguage] = level; // update in-memory immediately
-    saveLevelEstimateToSheet(level); // fire-and-forget
-    updateEstimateLevelBlock(); // hide the block now that an estimate is set
+    levelEstimates[selectedLanguage] = level;
+    saveLevelEstimateToSheet(level);
+    updateEstimateLevelBlock();
     closeEstimationModal();
 
     if (level === 0) {
-        // Select first level
         const firstLevelBtn = document.querySelector('.level-btn');
-        if (firstLevelBtn) {
-            firstLevelBtn.click();
-        }
+        if (firstLevelBtn) firstLevelBtn.click();
     } else {
-        // Find the appropriate CEFR level or percentage level for this rank
-        // and select it, then select the appropriate range
         selectLevelForRank(level);
     }
 }
 
+// Retry estimation — seed near previous result
+function retryEstimation() {
+    estimationState.previousEstimate = estimationState.estimatedLevel;
+    document.getElementById('estimationResult').style.display = 'none';
+    startEstimation();
+}
+
 // Select the appropriate level and range for a given rank
 function selectLevelForRank(rank) {
-    // Find which level contains this rank
     const levels = getCefrLevels(selectedLanguage);
 
     let targetLevel = null;
@@ -334,7 +343,6 @@ function selectLevelForRank(rank) {
             targetLevel = level;
             break;
         }
-        // If rank is below this level's max, use this level
         if (rank <= level.maxRank) {
             targetLevel = level;
             break;
@@ -342,17 +350,13 @@ function selectLevelForRank(rank) {
     }
 
     if (!targetLevel && levels.length > 0) {
-        // Use the highest level
         targetLevel = levels[levels.length - 1];
     }
 
     if (targetLevel) {
-        // Click the level button
         const levelBtn = document.querySelector(`.level-btn[data-level="${targetLevel.level}"]`);
         if (levelBtn) {
             levelBtn.click();
-
-            // After level is selected, try to select the range containing this rank
             setTimeout(() => {
                 selectRangeForRank(rank);
             }, 100);
@@ -370,9 +374,7 @@ function selectRangeForRank(rank) {
             btn.click();
             return;
         }
-        // If rank is less than start, select previous range or first
         if (rank < start) {
-            // Select the previous button or this one if it's the first
             const prevBtn = btn.previousElementSibling;
             if (prevBtn && prevBtn.classList.contains('range-btn')) {
                 prevBtn.click();
@@ -382,31 +384,21 @@ function selectRangeForRank(rank) {
             return;
         }
     }
-    // If no range found, select the last one
     if (rangeButtons.length > 0) {
         rangeButtons[rangeButtons.length - 1].click();
     }
 }
-
-// ========== END LEVEL ESTIMATION ==========
-
-// Load configuration
 
 window.updateEstimateLevelButton = updateEstimateLevelButton;
 window.updateEstimateLevelBlock = updateEstimateLevelBlock;
 window.openEstimationModal = openEstimationModal;
 window.closeEstimationModal = closeEstimationModal;
 window.startEstimation = startEstimation;
-window.getWordsForLevel = getWordsForLevel;
-window.loadEstimationLevel = loadEstimationLevel;
-window.updateEstimationWord = updateEstimationWord;
-window.estimationKnow = estimationKnow;
-window.estimationDontKnow = estimationDontKnow;
-window.nextEstimationWord = nextEstimationWord;
-window.evaluateCheckpoint = evaluateCheckpoint;
-window.evaluateCheckpointDetailed = evaluateCheckpointDetailed;
-window.advanceDetailedSearch = advanceDetailedSearch;
+window.handleAnswer = handleAnswer;
+window.revealTranslation = revealTranslation;
+window.advanceToNext = advanceToNext;
 window.showEstimationResult = showEstimationResult;
 window.useEstimatedLevel = useEstimatedLevel;
+window.retryEstimation = retryEstimation;
 window.selectLevelForRank = selectLevelForRank;
 window.selectRangeForRank = selectRangeForRank;

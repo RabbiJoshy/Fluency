@@ -2005,16 +2005,19 @@
         /* Estimation Modal Styles */
         .estimation-body {
             padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 50vh;
         }
 
         .estimation-start-btn {
             width: 100%;
-            padding: 14px 20px;
+            padding: 16px 20px;
             background: var(--accent-primary);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 18px;
             font-weight: 600;
             font-family: var(--font-emphasis);
             cursor: pointer;
@@ -2028,12 +2031,12 @@
 
         .estimation-retry-btn {
             width: 100%;
-            padding: 12px 20px;
+            padding: 14px 20px;
             background: transparent;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 16px;
             font-weight: 500;
             font-family: var(--font-emphasis);
             cursor: pointer;
@@ -2050,13 +2053,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             padding: 10px 15px;
             background: var(--bg-tertiary);
             border-radius: 8px;
             font-family: var(--font-data);
             font-size: 13px;
             color: var(--text-muted);
+        }
+
+        .estimation-word-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
         }
 
         .estimation-word {
@@ -2074,29 +2086,56 @@
             font-size: 12px;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 16px;
             padding: 6px 14px;
             background: var(--bg-tertiary);
             border-radius: 6px;
-            display: inline-block;
-            width: auto;
-            margin-left: auto;
-            margin-right: auto;
+        }
+
+        .estimation-translation {
+            text-align: center;
+            font-family: var(--font-emphasis);
+            font-size: 20px;
+            color: var(--text-secondary);
+            min-height: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+
+        .estimation-translation.visible {
+            opacity: 1;
+        }
+
+        .estimation-reveal {
+            text-align: center;
+            color: var(--text-muted);
+            font-family: var(--font-data);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px;
+            transition: color 0.2s;
+        }
+
+        .estimation-reveal:hover {
+            color: var(--text-secondary);
         }
 
         #estimationTest {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .estimation-buttons {
             display: flex;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-top: 20px;
         }
 
         .estimation-btn {
             flex: 1;
-            padding: 16px 20px;
+            padding: 18px 20px;
             border: none;
             border-radius: 10px;
             font-size: 18px;
@@ -2128,24 +2167,10 @@
             transform: scale(1.02);
         }
 
-        .estimation-score {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            font-family: var(--font-data);
-            font-size: 16px;
-        }
-
-        .estimation-result-icon {
-            text-align: center;
-            font-size: 64px;
-            margin-bottom: 15px;
-        }
-
         .estimation-result-level {
             text-align: center;
             font-family: var(--font-emphasis);
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 700;
             color: var(--accent-primary);
             margin-bottom: 10px;

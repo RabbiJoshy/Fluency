@@ -1,3 +1,5 @@
+// No need to bump this version — network-first strategy means fresh content
+// is always fetched when online. The cache is only an offline fallback.
 const CACHE_NAME = 'flashcards-v9';
 const urlsToCache = [
   '/',

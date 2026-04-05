@@ -506,18 +506,8 @@ function setupEstimateLevelButton() {
         startEstimation();
     });
 
-    // Know/Don't Know buttons
-    document.getElementById('estimationKnowBtn').addEventListener('click', estimationKnow);
-    document.getElementById('estimationDontKnowBtn').addEventListener('click', estimationDontKnow);
-
     // Use estimated level
     document.getElementById('useEstimatedLevelBtn').addEventListener('click', useEstimatedLevel);
-
-    // Retry
-    document.getElementById('retryEstimationBtn').addEventListener('click', function() {
-        document.getElementById('estimationResult').style.display = 'none';
-        document.getElementById('estimationIntro').style.display = 'block';
-    });
 }
 
 async function updateLemmaToggleVisibility() {

@@ -26,6 +26,7 @@ Fluency/
 | Filtering / deck logic | `js/vocab.js` → `buildFilteredVocab()` |
 | Multi-artist merge | `js/vocab.js` → `mergeArtistVocabularies()` |
 | Setup UI flow | `js/ui.js` → `renderLevelSelector()`, `renderRangeSelector()` |
+| Level estimation | `js/estimation.js` → adaptive staircase algorithm |
 | TTS / speech | `js/speech.js` → `speakWord()` |
 | Auth / progress saving | `js/auth.js` → `saveWordProgress()`, `loadUserProgressFromSheet()` |
 | CSS changes | `css/style.css` (single file) |
