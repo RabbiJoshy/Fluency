@@ -1,4 +1,4 @@
-const CACHE_NAME = 'flashcards-v8';
+const CACHE_NAME = 'flashcards-v9';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -21,25 +21,16 @@ self.addEventListener('fetch', event => {
   // Don't intercept cross-origin requests (e.g. Google Apps Script API calls)
   if (!request.url.startsWith(self.location.origin)) return;
 
-  // For HTML and JS files, use network-first strategy
-  if (request.destination === 'document' || request.url.endsWith('.html') || request.url.endsWith('.js')) {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          // Cache the fresh response
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
-          return response;
-        })
-        .catch(() => caches.match(request))
-    );
-  } else {
-    // For other assets, use cache-first
-    event.respondWith(
-      caches.match(request)
-        .then(response => response || fetch(request))
-    );
-  }
+  // Network-first for everything: fresh when online, cached when offline
+  event.respondWith(
+    fetch(request)
+      .then(response => {
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
+        return response;
+      })
+      .catch(() => caches.match(request))
+  );
 });
 
 // Activate event - clean up old caches and claim clients

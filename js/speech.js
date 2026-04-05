@@ -15,18 +15,22 @@ function speakWord(text, useEnglish = false) {
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
         const langPrefix = langCode.split('-')[0];
-        const matchingVoices = voices.filter(v => v.lang.startsWith(langPrefix));
+        // Exclude novelty and character voices that sound bad
+        const badVoices = /Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Fred|Good News|Jester|Junior|Organ|Ralph|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Rocko|Reed|Sandy|Shelley/;
+        const matchingVoices = voices.filter(v => v.lang.startsWith(langPrefix) && !badVoices.test(v.name));
 
-        // Tier order: Natural/Premium > Google > Enhanced/Microsoft > named macOS voices > any
-        const preferredVoice = matchingVoices.find(v =>
-            v.name.includes('Natural') || v.name.includes('Premium')
-        ) || matchingVoices.find(v =>
-            v.name.includes('Google')
-        ) || matchingVoices.find(v =>
-            v.name.includes('Enhanced') || v.name.includes('Microsoft')
-        ) || matchingVoices.find(v =>
-            /Ava|Samantha|Karen|Daniel|Paulina|Monica/.test(v.name)
-        ) || matchingVoices[0];
+        // Tier 1: Premium voices (Natural/Siri/Enhanced)
+        // Tier 2: Google voices (Chrome)
+        // Tier 3: Best named voices in preference order
+        const findByName = (name) => matchingVoices.find(v => v.name.includes(name));
+        const preferredVoice = findByName('Natural') || findByName('Premium') || findByName('Siri')
+            || findByName('Enhanced')
+            || findByName('Google')
+            || findByName('Samantha') || findByName('Ava') || findByName('Paulina')
+            || findByName('Mónica') || findByName('Kathy') || findByName('Moira')
+            || findByName('Karen') || findByName('Tessa')
+            || findByName('Daniel') || findByName('Rishi')
+            || matchingVoices[0];
 
         if (preferredVoice) {
             utterance.voice = preferredVoice;
