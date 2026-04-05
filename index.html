@@ -34,6 +34,10 @@
                 </svg>
             </button>
         </div>
+        <!-- Top bar items for artist mode (hidden by default) -->
+        <span id="topBarUserName" class="top-bar-user-name" style="display: none;"></span>
+        <button id="helpBtn" class="top-bar-text-btn" style="display: none;">How to start</button>
+        <button id="estimateLevelTextBtn" class="top-bar-text-btn" style="display: none;">Estimate Level</button>
         <button class="gear-btn" id="gearBtn" title="Settings">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>
@@ -44,14 +48,6 @@
 
     <div class="container">
         <div class="file-upload" id="setupPanel">
-            <!-- Help + Estimate bar (shown in Bad Bunny mode, hidden by default) -->
-            <div id="helpBar" class="setup-step help-bar" style="display: none;">
-                <div class="step-header">
-                    <button class="text-action-btn" id="helpBtn">Help</button>
-                    <button class="text-action-btn" id="estimateLevelTextBtn">Estimate Level</button>
-                </div>
-            </div>
-
             <!-- Step 1: Language Selection (non-Bad-Bunny mode) -->
             <div id="step1" class="setup-step">
                 <div class="step-header step-header-with-help" id="step1Header">

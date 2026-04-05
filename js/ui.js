@@ -351,7 +351,11 @@ function updateLevelInfoLine(btn) {
     const minFreq = entry ? Math.round(entry.ppm) : '?';
     const freqLabel = activeArtist ? 'corpus count' : 'frequency';
 
-    infoLine.textContent = endRank + ' words \u00B7 ' + freqLabel + ' \u2265 ' + minFreq;
+    if (activeArtist) {
+        infoLine.innerHTML = endRank.toLocaleString() + ' words<br>Words appear ' + minFreq + '+ times';
+    } else {
+        infoLine.innerHTML = endRank.toLocaleString() + ' words<br>Frequency \u2265 ' + minFreq;
+    }
     infoLine.style.display = 'block';
 }
 
@@ -537,7 +541,7 @@ async function updateLemmaToggleVisibility() {
 
     // Always show the container (step 3), but disable the "1" option if field not available
     lemmaContainer.style.display = 'block';
-    rangeStepNumber.textContent = '5';
+    rangeStepNumber.textContent = activeArtist ? '4' : '5';
 
     if (lemmaFieldAvailable) {
         // Enable both options

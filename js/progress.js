@@ -133,7 +133,7 @@ async function updateExclusionBars() {
     if (cognateInfo) {
         const cognateExcluded = totalAfterLemma - totalAfterCognate;
         if (excludeCognates && cognateFieldAvailable && cognateExcluded > 0) {
-            cognateInfo.textContent = `${totalAfterCognate.toLocaleString()} words (${cognateExcluded.toLocaleString()} cognates excluded)`;
+            cognateInfo.innerHTML = `${totalAfterCognate.toLocaleString()} words<br>(${cognateExcluded.toLocaleString()} cognates excluded)`;
             cognateInfo.style.display = '';
         } else {
             cognateInfo.style.display = 'none';

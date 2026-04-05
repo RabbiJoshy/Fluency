@@ -2621,30 +2621,28 @@
             line-height: 1.5;
         }
 
-        /* Help bar */
-        .help-bar .step-header {
-            margin-bottom: 0;
-            gap: 8px;
-        }
-
-        /* Text action buttons (Help, Estimate Level) */
-        .text-action-btn {
-            font-family: var(--font-emphasis);
-            padding: 6px 14px;
-            border-radius: 8px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 13px;
+        /* Top bar text items (artist mode: user name, help, estimate) */
+        .top-bar-user-name {
+            color: var(--accent-primary);
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            font-size: 16px;
+            font-family: var(--font-emphasis);
         }
 
-        .text-action-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-primary);
-            color: var(--text-primary);
+        .top-bar-text-btn {
+            font-family: var(--font-emphasis);
+            font-size: 16px;
+            font-weight: 600;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .top-bar-text-btn:hover {
+            color: var(--accent-primary);
         }
 
         /* Help modal content */

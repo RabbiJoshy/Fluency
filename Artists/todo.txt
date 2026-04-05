@@ -6,6 +6,7 @@ This is Josh's backlog. Items here are NOT instructions to start working — the
 - Priority labels: [high] = next up, [low] = someday, [deferred] = don't even suggest unless Josh brings it up.
 - Done items can be cleaned out periodically when Josh says so.
 - See `todo_details.md` for expanded context on each item (for Claude, not for Josh to read).
+- Do NOT use preview mode when working on items from this list. Service worker caching makes previews unreliable — Josh tests in his own browser.
 ====================
 
 == Suggested next session ==

@@ -102,14 +102,25 @@ loadConfig().then(async () => {
     if (activeArtist) {
         selectedLanguage = activeArtist.language || 'spanish';
         applyLanguageColorTheme();
-        // Hide language tabs, pill, and step 1 entirely (replaced by helpBar)
+        // Hide language tabs, pill, and step 1 entirely
         document.getElementById('languageTabs').style.display = 'none';
         document.getElementById('selectedLanguagePill').style.display = 'none';
         document.getElementById('step1').style.display = 'none';
-        // Show Help + Estimate bar at the top
-        document.getElementById('helpBar').style.display = 'block';
+        // Ensure top bar is visible (showUserInfo may not have run yet if auth modal is pending)
+        document.getElementById('userInfo').classList.remove('hidden');
+        // Show top bar items: user name, How to start, Estimate Level
+        const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
+        const topBarName = document.getElementById('topBarUserName');
+        topBarName.textContent = userName;
+        topBarName.style.display = '';
+        document.getElementById('helpBtn').style.display = '';
+        document.getElementById('estimateLevelTextBtn').style.display = '';
         document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
         document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
+        // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
+        document.querySelector('#step2 .step-number').textContent = '1';
+        document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
+        document.querySelector('#cognateToggleContainer .step-number').textContent = '3';
         document.getElementById('closeHelpModal').addEventListener('click', () => {
             document.getElementById('helpModal').classList.add('hidden');
         });
