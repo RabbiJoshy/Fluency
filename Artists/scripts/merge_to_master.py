@@ -32,20 +32,23 @@ MASTER_PATH = os.path.join(ARTISTS_DIR, "vocabulary_master.json")
 
 def make_stable_id(word, lemma, used=None):
     # type: (str, str, set) -> str
-    """6-char hex ID from md5(word|lemma). Falls back to suffix rehash on collision."""
+    """6-char hex ID from md5(word|lemma). On collision, picks next unused ID."""
     h = hashlib.md5((word + "|" + lemma).encode("utf-8")).hexdigest()
     base_id = h[:6]
     if used is None or base_id not in used:
         return base_id
-    # Rare collision — rehash with suffix (same approach as old assign_unique_ids)
-    suffix = 0
-    final_id = base_id
-    while final_id in used:
-        suffix += 1
-        final_id = hashlib.md5(
-            (word + "|" + lemma + "|" + str(suffix)).encode("utf-8")
-        ).hexdigest()[:6]
-    return final_id
+    # Rare collision — just find an unused ID by walking the hash
+    for start in range(0, len(h) - 5):
+        candidate = h[start:start + 6]
+        if candidate not in used:
+            return candidate
+    # Exhausted the hash — increment and try
+    val = int(base_id, 16) + 1
+    while True:
+        candidate = format(val % 0xFFFFFF, '06x')
+        if candidate not in used:
+            return candidate
+        val += 1
 
 
 def discover_artists():

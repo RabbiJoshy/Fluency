@@ -219,9 +219,8 @@ def assign_ids_from_master(entries, master):
     # type: (List[Dict], Dict) -> None
     """Assign 6-char hex IDs from the master vocabulary.
 
-    For each entry, compute md5(word|lemma)[:6]. If that collides with a
-    different word|lemma in the master, use suffix rehashing. The master's
-    ID assignments are authoritative.
+    Words already in the master get their existing ID. New words get
+    md5(word|lemma)[:6], or the next unused ID if that collides.
     """
     # Build reverse lookup: (word, lemma) -> id from master
     wl_to_id = {}  # type: Dict[Tuple[str, str], str]
@@ -234,16 +233,22 @@ def assign_ids_from_master(entries, master):
         if wl in wl_to_id:
             entry["id"] = wl_to_id[wl]
         else:
-            # New word not in master — assign an ID
-            base_id = make_stable_id(entry["word"], entry["lemma"])
-            final_id = base_id
-            suffix = 0
-            while final_id in used:
-                suffix += 1
-                h = hashlib.md5(
-                    (entry["word"] + "|" + entry["lemma"] + "|" + str(suffix)).encode("utf-8")
-                ).hexdigest()
-                final_id = h[:6]
+            # New word not in master — assign an unused ID
+            h = hashlib.md5((entry["word"] + "|" + entry["lemma"]).encode("utf-8")).hexdigest()
+            final_id = h[:6]
+            if final_id in used:
+                # Collision — walk the hash for an unused 6-char window
+                for start in range(0, len(h) - 5):
+                    candidate = h[start:start + 6]
+                    if candidate not in used:
+                        final_id = candidate
+                        break
+                else:
+                    # Exhausted hash — just increment
+                    val = int(final_id, 16) + 1
+                    while format(val % 0xFFFFFF, '06x') in used:
+                        val += 1
+                    final_id = format(val % 0xFFFFFF, '06x')
             used.add(final_id)
             entry["id"] = final_id
 
