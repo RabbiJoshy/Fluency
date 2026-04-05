@@ -61,7 +61,7 @@ function computePersonalEasiness(spanishText) {
     return unknownRanks[Math.floor(unknownRanks.length / 2)];  // median
 }
 
-// --- Example relevance sorting (Bad Bunny mode) ---
+// --- Example relevance sorting ---
 let _cachedDeckWords = null;
 let _cachedDeckId = null;  // track which deck set we computed for
 
@@ -791,12 +791,6 @@ function showFloatingBtns(show) {
             btns.classList.remove('visible');
         }
     }
-    // In artist mode, toggle the floating gear visibility (it's hidden during setup
-    // because the artist top bar box has its own gear)
-    if (activeArtist) {
-        const gearBtn = document.getElementById('gearBtn');
-        if (gearBtn) gearBtn.style.display = show ? '' : 'none';
-    }
 }
 
 async function goBackToSetup() {
@@ -819,9 +813,12 @@ async function goBackToSetup() {
     document.querySelector('.container').scrollTop = 0;
 
     // Keep the language selected and show subsequent steps
-    // Show language pill, hide tabs
+    // Show inline language pill, hide tabs
     document.getElementById('languageTabs').style.display = 'none';
-    document.getElementById('selectedLanguagePill').classList.add('visible');
+    const inlinePill = document.getElementById('selectedLanguageInline');
+    const langConfig = config.languages[selectedLanguage];
+    inlinePill.textContent = langConfig ? langConfig.name : selectedLanguage;
+    inlinePill.style.display = 'inline-flex';
 
     // Show step 2 and keep level selected if one was selected
     document.getElementById('step2').style.display = 'block';
@@ -1103,7 +1100,7 @@ function updateCard() {
             }
 
             // Dynamic re-sort: boost examples with deck/recently-wrong word overlap
-            if (activeArtist && activeExamples.length > 1) {
+            if (activeExamples.length > 1) {
                 activeExamples = sortExamplesByRelevance(activeExamples);
             }
 

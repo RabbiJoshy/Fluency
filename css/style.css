@@ -2621,8 +2621,8 @@
             line-height: 1.5;
         }
 
-        /* Artist mode top bar box */
-        .artist-top-bar-header {
+        /* Top bar (shared: How to start, Estimate Level, gear) */
+        .top-bar-header {
             margin-bottom: 0 !important;
             gap: 16px;
         }
@@ -2650,8 +2650,27 @@
             color: var(--accent-primary);
         }
 
-        .artist-top-bar-gear {
+        .top-bar-gear {
             margin-left: auto;
+        }
+
+        /* Inline language pill (compact, sits in the step header row) */
+        .selection-pill-inline {
+            display: none;
+            align-items: center;
+            padding: 4px 14px;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 6px;
+            font-family: var(--font-emphasis);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+        }
+
+        .selection-pill-inline:hover {
+            filter: brightness(1.15);
         }
 
         /* Help modal content */

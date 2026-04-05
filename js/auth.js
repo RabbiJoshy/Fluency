@@ -356,7 +356,6 @@ function setupAuthEventListeners() {
         levelEstimates[selectedLanguage] = 0;
         saveLevelEstimateToSheet(0);
         document.getElementById('clearLevelEstimateRow').style.display = 'none';
-        updateEstimateLevelBlock(); // re-show the prompt block
         renderRangeSelector(); // refresh range mastered states
     });
 

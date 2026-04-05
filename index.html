@@ -44,13 +44,13 @@
 
     <div class="container">
         <div class="file-upload" id="setupPanel">
-            <!-- Artist mode top bar (hidden by default, shown in artist mode) -->
-            <div id="artistTopBar" class="setup-step" style="display: none;">
-                <div class="step-header artist-top-bar-header">
+            <!-- Top bar: How to start, Estimate Level, gear (shared by both modes) -->
+            <div id="topBar" class="setup-step">
+                <div class="step-header top-bar-header">
                     <span id="topBarUserName" class="top-bar-user-name"></span>
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
                     <button id="estimateLevelTextBtn" class="top-bar-text-btn">Estimate Level</button>
-                    <button class="gear-btn artist-top-bar-gear" id="artistGearBtn" title="Settings">
+                    <button class="gear-btn top-bar-gear" id="topBarGearBtn" title="Settings">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -64,6 +64,7 @@
                 <div class="step-header step-header-with-help" id="step1Header">
                     <span class="step-number">1</span>
                     <span class="step-title" id="step1Title">Choose Language</span>
+                    <span id="selectedLanguageInline" class="selection-pill-inline" style="display: none;"></span>
                     <button class="step-help-btn" data-tooltip="step1Tooltip" title="Help">?</button>
                     <div id="step1Tooltip" class="step-info-tooltip">
                         <p><strong>How to Study:</strong></p>
@@ -83,23 +84,12 @@
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
                 </div>
-                <div class="selection-pill full-width" id="selectedLanguagePill">
-                    <span id="selectedLanguageName"></span>
-                </div>
             </div>
 
             <!-- Data Loading Indicator -->
             <div class="data-loading-indicator" id="dataLoadingIndicator">
                 <div class="spinner"></div>
                 <span>Loading your progress...</span>
-            </div>
-
-            <!-- Estimate Level Block (shown between step 1 and step 2 when no estimate is set) -->
-            <div id="estimateLevelBlock" class="setup-step" style="display: none;">
-                <div class="step-header">
-                    <span class="step-title">Not sure where to start?</span>
-                </div>
-                <button class="estimate-level-btn" id="estimateLevelBlockBtn" style="width: 100%;">Estimate My Level</button>
             </div>
 
             <!-- Personal Progress Bar (standalone, shown after language selection) -->
@@ -126,14 +116,6 @@
                     <span class="step-title" id="step2Title">Choose CEFR level</span>
                     <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
                     <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
-                    <div class="btn-with-info">
-                        <button class="estimate-level-btn" id="estimateLevelBtn">Estimate Level</button>
-                        <button class="btn-info-icon" data-info="estimateInfo" title="What is this?">?</button>
-                        <div class="btn-info-tooltip" id="estimateInfo">
-                            <p>Don't know where to start? Take a quick vocabulary test to estimate your level.</p>
-                            <p>You'll be shown words and asked if you know them. The test adapts to find your level quickly.</p>
-                        </div>
-                    </div>
                     <div class="btn-with-info">
                         <button class="percent-mode-btn" id="percentModeBtn">% Mode</button>
                         <button class="btn-info-icon" data-info="percentInfo" title="What is this?">?</button>

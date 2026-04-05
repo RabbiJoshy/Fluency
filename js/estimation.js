@@ -14,23 +14,6 @@ function getEstimationMaxLevel() {
     return activeArtist.maxLevel || 8500;
 }
 
-// Show/hide estimate level button based on language
-function updateEstimateLevelButton() {
-    const btn = document.getElementById('estimateLevelBtn');
-    if (selectedLanguage === 'spanish' || activeArtist) {
-        btn.classList.remove('hidden');
-    } else {
-        btn.classList.add('hidden');
-    }
-}
-
-function updateEstimateLevelBlock() {
-    const block = document.getElementById('estimateLevelBlock');
-    const hasEstimate = (levelEstimates[selectedLanguage] || 0) > 0;
-    const show = !activeArtist && selectedLanguage === 'spanish' && !hasEstimate;
-    block.style.display = show ? 'block' : 'none';
-}
-
 // Open estimation modal
 function openEstimationModal() {
     const modal = document.getElementById('estimationModal');
@@ -314,7 +297,6 @@ function useEstimatedLevel() {
     const level = estimationState.estimatedLevel;
     levelEstimates[selectedLanguage] = level;
     saveLevelEstimateToSheet(level);
-    updateEstimateLevelBlock();
     closeEstimationModal();
 
     if (level === 0) {
@@ -388,8 +370,6 @@ function selectRangeForRank(rank) {
     }
 }
 
-window.updateEstimateLevelButton = updateEstimateLevelButton;
-window.updateEstimateLevelBlock = updateEstimateLevelBlock;
 window.openEstimationModal = openEstimationModal;
 window.closeEstimationModal = closeEstimationModal;
 window.startEstimation = startEstimation;

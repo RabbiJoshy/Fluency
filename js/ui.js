@@ -118,19 +118,17 @@ function renderLanguageTabs() {
 }
 
 function setupLanguageTabs() {
-    // Click handler for the language selection pill (to change language)
-    document.getElementById('selectedLanguagePill').addEventListener('click', function() {
-        // Hide the pill and show the tabs again
-        this.classList.remove('visible');
+    const inlinePill = document.getElementById('selectedLanguageInline');
+
+    // Click handler for the inline language pill (to re-expand tabs)
+    inlinePill.addEventListener('click', function() {
+        this.style.display = 'none';
         document.getElementById('languageTabs').style.display = 'flex';
         // Hide subsequent steps
-        document.getElementById('estimateLevelBlock').style.display = 'none';
         document.getElementById('step2').style.display = 'none';
         document.getElementById('lemmaToggleContainer').style.display = 'none';
         document.getElementById('cognateToggleContainer').style.display = 'none';
-
         document.getElementById('step4').style.display = 'none';
-        // Reset selections
         hideAllSelectionPills();
     });
 
@@ -156,20 +154,18 @@ function setupLanguageTabs() {
 
             applyLanguageColorTheme();
 
-            // Update and show the selection pill, hide the tabs
+            // Show inline pill in the header, hide the tabs
             const langConfig = config.languages[selectedLanguage];
-            document.getElementById('selectedLanguageName').textContent = langConfig ? langConfig.name : selectedLanguage;
+            inlinePill.textContent = langConfig ? langConfig.name : selectedLanguage;
             document.getElementById('languageTabs').style.display = 'none';
-            document.getElementById('selectedLanguagePill').classList.add('visible');
+            inlinePill.style.display = 'inline-flex';
 
-            // Hide all subsequent steps and their pills while loading
+            // Hide all subsequent steps while loading
             document.getElementById('step2').style.display = 'none';
             document.getElementById('lemmaToggleContainer').style.display = 'none';
             document.getElementById('cognateToggleContainer').style.display = 'none';
-    
             document.getElementById('step4').style.display = 'none';
             hideAllSelectionPills();
-            document.getElementById('selectedLanguagePill').classList.add('visible'); // Keep language pill visible
 
             // Show loading indicator
             const loadingIndicator = document.getElementById('dataLoadingIndicator');
@@ -189,12 +185,9 @@ function setupLanguageTabs() {
             // Hide loading indicator and show step 2
             loadingIndicator.classList.remove('visible');
             document.getElementById('step2').style.display = 'block';
-            updateEstimateLevelBlock();
-
             // Update step 2 title, tooltip, and % Mode button based on current mode
             document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
             updatePercentModeButton();
-            updateEstimateLevelButton();
             updateStep2Tooltip();
             updateStep5Tooltip();
 
@@ -494,20 +487,7 @@ function setupPercentModeButton() {
     });
 }
 
-function setupEstimateLevelButton() {
-    // Update visibility based on language
-    updateEstimateLevelButton();
-
-    // Open modal when clicked (step 2 button)
-    document.getElementById('estimateLevelBtn').addEventListener('click', function() {
-        openEstimationModal();
-    });
-
-    // Estimate Level block button (shown between step 1 and step 2 when no estimate set)
-    document.getElementById('estimateLevelBlockBtn').addEventListener('click', function() {
-        openEstimationModal();
-    });
-
+function setupEstimationModal() {
     // Close modal
     document.getElementById('closeEstimationModal').addEventListener('click', closeEstimationModal);
 
@@ -1014,7 +994,7 @@ window.openHelpModal = openHelpModal;
 window.setupTabSwitching = setupTabSwitching;
 window.setupLemmaToggle = setupLemmaToggle;
 window.setupPercentModeButton = setupPercentModeButton;
-window.setupEstimateLevelButton = setupEstimateLevelButton;
+window.setupEstimationModal = setupEstimationModal;
 window.updateLemmaToggleVisibility = updateLemmaToggleVisibility;
 window.updateCognateToggleVisibility = updateCognateToggleVisibility;
 window.applyLanguageColorTheme = applyLanguageColorTheme;

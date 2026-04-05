@@ -86,9 +86,20 @@ loadConfig().then(async () => {
     setupLemmaToggle();
     setupCognateToggle();
     setupPercentModeButton();
-    setupEstimateLevelButton();
+    setupEstimationModal();
     setupTooltipHandlers();
     setupAuthEventListeners();
+
+    // Wire shared top bar buttons (How to start, Estimate Level, gear)
+    document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
+    document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
+    document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
+    document.getElementById('closeHelpModal').addEventListener('click', () => {
+        document.getElementById('helpModal').classList.add('hidden');
+    });
+    setupTabSwitching(document.getElementById('helpModal'));
+    // Hide floating gear — replaced by gear in the top bar
+    document.getElementById('gearBtn').style.display = 'none';
     await migrateLocalStorageIds();
     await loadSecrets();
     checkAuthentication();
@@ -102,31 +113,18 @@ loadConfig().then(async () => {
     if (activeArtist) {
         selectedLanguage = activeArtist.language || 'spanish';
         applyLanguageColorTheme();
-        // Hide language tabs, pill, and step 1 entirely
-        document.getElementById('languageTabs').style.display = 'none';
-        document.getElementById('selectedLanguagePill').style.display = 'none';
+        // Hide step 1 entirely (language auto-selected)
         document.getElementById('step1').style.display = 'none';
-        // Show artist top bar box with user name, How to start, Estimate Level, gear
+        // Set user name in top bar
         const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
         document.getElementById('topBarUserName').textContent = userName;
-        document.getElementById('artistTopBar').style.display = 'block';
-        document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
-        document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
-        document.getElementById('artistGearBtn').addEventListener('click', () => showSettingsModal());
-        // Hide the floating gear (replaced by gear in the top bar box)
-        document.getElementById('gearBtn').style.display = 'none';
         // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
         document.querySelector('#step2 .step-number').textContent = '1';
         document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
         document.querySelector('#cognateToggleContainer .step-number').textContent = '3';
-        document.getElementById('closeHelpModal').addEventListener('click', () => {
-            document.getElementById('helpModal').classList.add('hidden');
-        });
-        setupTabSwitching(document.getElementById('helpModal'));
         await loadPpmData(activeArtist.language || 'spanish');
         document.getElementById('step2').style.display = 'block';
         document.getElementById('step2Title').textContent = 'Choose Level';
-        document.querySelector('#step2 .btn-with-info:has(#estimateLevelBtn)').style.display = 'none';
         document.querySelector('#step2 .btn-with-info:has(#percentModeBtn)').style.display = 'none';
         updateStep2Tooltip();
         updateStep5Tooltip();
