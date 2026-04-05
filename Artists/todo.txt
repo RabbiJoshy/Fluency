@@ -29,8 +29,8 @@ VOCABULARY ISSUES
 -----------------
 Items here are things Josh noticed while using the app. When fixing, don't just fix the individual word — investigate whether it's a symptom of a bigger pipeline/data problem. Delete items from this list once resolved.
 
-- rinde — translated as "sniper" but the word "rinde" doesn't appear in the example text where it says sniper. Possible Genius translation line misalignment (known issue with section-aware zipping). Investigate why "sniper" was matched to this word.
-- bellacoso — shows frequency 20 but only has one example sentence. How does a word appear 20 times but only generate one example?
+- fixed rinde — translated as "sniper" but the word "rinde" doesn't appear in the example text where it says sniper. Possible Genius translation line misalignment (known issue with section-aware zipping). Investigate why "sniper" was matched to this word.
+- fixed bellacoso — shows frequency 20 but only has one example sentence. How does a word appear 20 times but only generate one example?
 - calle has 2 translatins, and they are both correct, but only one has example lyrics.
 
 SONGS TO EXCLUDE
