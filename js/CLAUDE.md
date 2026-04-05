@@ -6,15 +6,15 @@ Vanilla JS with native ES modules. No framework, no bundler, no build step.
 
 | File | Purpose | Key functions |
 |------|---------|--------------|
-| `main.js` | Entry point, imports all modules, registers SW | `initializeApp()` |
+| `main.js` | Entry point, imports all modules, registers SW | |
 | `state.js` | Shared mutable state + globalThis proxy | (35+ state variables) |
 | `vocab.js` | Vocabulary loading, filtering, ID generation | `buildFilteredVocab()`, `loadVocabularyData()`, `getWordId()`, `mergeArtistVocabularies()` |
-| `flashcards.js` | Card rendering, flip, swipe, keyboard | `updateCard()`, `flipCard()`, `nextCard()`, `handleSwipeAction()`, `selectMeaning()`, `cycleExample()` |
+| `flashcards.js` | Card rendering, flip, swipe, keyboard, init | `initializeApp()`, `updateCard()`, `flipCard()`, `nextCard()`, `handleSwipeAction()`, `selectMeaning()`, `cycleExample()` |
 | `ui.js` | Setup panel: language tabs, level selector, sets | `renderLanguageTabs()`, `renderLevelSelector()`, `renderRangeSelector()` |
 | `config.js` | Config loading, CEFR helpers | `loadConfig()`, `loadPpmData()` |
 | `auth.js` | Login, Google Sheets sync | `submitLogin()`, `saveWordProgress()`, `loadUserProgressFromSheet()` |
 | `progress.js` | Coverage bars | `calculateCoveragePercent()` |
-| `estimation.js` | Level-estimation quiz flow | |
+| `estimation.js` | Level estimation — adaptive staircase | `startEstimation()`, `handleAnswer()`, `showEstimationResult()`, `revealTranslation()` |
 | `speech.js` | Text-to-speech | `speakWord()` |
 | `artist-ui.js` | Album art, artist backgrounds | `updateArtistBackground()` |
 

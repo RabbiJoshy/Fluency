@@ -34,13 +34,14 @@ Fluency/
 | Pipeline reranking | `Artists/scripts/8_rerank.py` |
 | Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json` |
 | Artist config | `artists.json` (root) + `Artists/{Name}/artist.json` |
-| Curated translation fixes | `Artists/{Name}/data/curated/curated_overrides.json` |
+| Curated translation fixes | `Artists/{Name}/data/llm_analysis/curated_translations.json` |
 
 ## Detailed Docs
 
 - **Pipeline work?** Read `Artists/CLAUDE.md`
 - **Front-end JS work?** Read `js/CLAUDE.md`
 - **Data schemas / IDs / progress?** Read `Data/CLAUDE.md`
+- **Backlog context?** Read `Artists/todo.txt` (summary) + `Artists/todo_details.md` (expanded notes)
 
 ## Working with the Human
 

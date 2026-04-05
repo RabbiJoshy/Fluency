@@ -20,10 +20,10 @@ Scrape lyrics (Genius) -> tokenise & count (with dedup) -> scrape Genius transla
 | 1b | (manual) | Curate `duplicate_songs.json` — see `DEDUP_INSTRUCTIONS.md` |
 | 3 | `scripts/3_count_words.py` | Tokenise, count, filter excluded songs |
 | 3b | `scripts/3b_scrape_translations.py` | Scrape Genius community English translations |
-| 4 | `scripts/4_proper_nouns.py` | Detect proper nouns (Gemini) |
+| 4 | `scripts/4_detect_proper_nouns.py` | Detect proper nouns (Gemini) |
 | 5 | `scripts/5_merge_elisions.py` | Merge Caribbean elisions (e.g. pa' -> para) |
 | 6 | `scripts/6_llm_analyze.py` | Main analysis: POS, lemma, translation, examples (Gemini + Genius) |
-| 7 | `scripts/7_cognates.py` | Flag transparent cognates. **Authoritative** — resets any upstream `is_transparent_cognate` |
+| 7 | `scripts/7_flag_cognates.py` | Flag transparent cognates. **Authoritative** — resets any upstream `is_transparent_cognate` |
 | 8 | `scripts/8_rerank.py` | Final reranking by frequency + easiness |
 
 Shared helper: `scripts/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
@@ -40,14 +40,17 @@ Artists/{Name}/
     lyrics/                      # Raw lyrics per song
     translations/translations.json  # Genius community translations
     duplicate_songs.json         # Songs to exclude from corpus
-  data/output/
-    word_frequencies.json        # Step 3 output
-    llm_analysis_output.json     # Step 6 output
-    sentence_translations.json   # Gemini sentence translation cache (Layer 2)
-  data/curated/
-    curated_overrides.json       # Manual translation fixes (NEVER delete these)
+  data/word_counts/
+    vocab_evidence.json          # Step 3 output (word counts + evidence)
+    mwe_detected.json            # Multi-word expressions detected
     conjugation_families.json    # Verb family groupings
+    curated_mwes.json            # Curated MWE additions
     skip_mwes.json               # MWEs to exclude
+  data/llm_analysis/
+    curated_translations.json    # Manual translation fixes (NEVER delete these)
+    sentence_translations.json   # Gemini sentence translation cache (Layer 2)
+  data/elision_merge/            # Step 5 output
+  data/proper_nouns/             # Step 4 output
 ```
 
 ## Modes
