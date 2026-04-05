@@ -55033,5 +55033,141 @@
     ]
    }
   ]
+ },
+ "rom": {
+  "word": "rom",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "rom",
+    "pos": "INTJ",
+    "translation": "rom",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "pom": {
+  "word": "pom",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pom",
+    "pos": "INTJ",
+    "translation": "pom",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "highlighter": {
+  "word": "highlighter",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "highlighter",
+    "pos": "NOUN",
+    "translation": "highlighter",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "vita": {
+  "word": "vita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "vita",
+    "pos": "NOUN",
+    "translation": "life",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "alicia": {
+  "word": "alicia",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "alicia",
+    "pos": "PROPN",
+    "translation": "Alicia",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "gaspar": {
+  "word": "gaspar",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "gaspar",
+    "pos": "PROPN",
+    "translation": "Gaspar",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "kika": {
+  "word": "kika",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "kika",
+    "pos": "PROPN",
+    "translation": "Kika",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "noé": {
+  "word": "noé",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "noé",
+    "pos": "PROPN",
+    "translation": "Noé",
+    "lines": [
+     1
+    ]
+   }
+  ]
  }
 }

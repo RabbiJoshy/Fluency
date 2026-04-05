@@ -247886,5 +247886,40 @@
     ]
    }
   ]
+ },
+ "bahamas": {
+  "word": "bahamas",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bahamas",
+    "pos": "PROPN",
+    "translation": "Bahamas",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "urba": {
+  "word": "urba",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "urba",
+    "pos": "NOUN",
+    "translation": "hood",
+    "lines": [
+     1
+    ]
+   }
+  ]
  }
 }

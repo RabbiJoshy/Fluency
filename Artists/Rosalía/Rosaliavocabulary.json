@@ -1889,7 +1889,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 234,
-    "display_form": "e'"
+    "display_form": "e'",
+    "variants": {
+      "es": 214,
+      "e'": 20
+    }
   },
   {
     "id": "7bf611",
@@ -3343,7 +3347,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 121,
-    "display_form": "la'"
+    "display_form": "la'",
+    "variants": {
+      "las": 111,
+      "la'": 10
+    }
   },
   {
     "id": "b1e33b",
@@ -3927,7 +3935,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 88,
-    "display_form": "lo'"
+    "display_form": "lo'",
+    "variants": {
+      "los": 74,
+      "lo'": 14
+    }
   },
   {
     "id": "b78685",
@@ -4129,7 +4141,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 84,
-    "display_form": "má'"
+    "display_form": "má'",
+    "variants": {
+      "más": 78,
+      "má'": 6
+    }
   },
   {
     "id": "62b93a",
@@ -4421,7 +4437,7 @@
             "spanish": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
             "english": "Shadow, I've got mutations (Gy-gypsy)",
             "translation_source": "genius",
-            "easiness": 2931
+            "easiness": 288
           }
         ]
       }
@@ -4533,7 +4549,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 75,
-    "display_form": "no'"
+    "display_form": "no'",
+    "variants": {
+      "nos": 66,
+      "no'": 9
+    }
   },
   {
     "id": "fd30f9",
@@ -4736,6 +4756,103 @@
     "is_transparent_cognate": false,
     "corpus_count": 71,
     "display_form": null
+  },
+  {
+    "id": "a2e6f8",
+    "word": "lado",
+    "lemma": "lado",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "side",
+        "frequency": "1.00",
+        "examples": [
+          {
+            "song": "6211010",
+            "song_name": "LA NOCHE DE ANOCHE",
+            "spanish": "Y ya me ha pasa'o que no está' a mi la'o",
+            "english": "",
+            "translation_source": "",
+            "easiness": 17
+          },
+          {
+            "song": "12581305",
+            "song_name": "Focu ‘ranni",
+            "spanish": "Por mi la'o",
+            "english": "I will not be your other half",
+            "translation_source": "genius",
+            "easiness": 21
+          },
+          {
+            "song": "8173139",
+            "song_name": "DESPECHÁ",
+            "spanish": "Que Dios me libre de volver a tu la'o",
+            "english": "I came with a new flow, baby, it hacks",
+            "translation_source": "genius",
+            "easiness": 22
+          },
+          {
+            "song": "8916307",
+            "song_name": "PROMESA",
+            "spanish": "La fuerza, las pena' a tu la'o no me quedan",
+            "english": "",
+            "translation_source": "",
+            "easiness": 29
+          },
+          {
+            "song": "4201752",
+            "song_name": "Barefoot in the Park",
+            "spanish": "Cuando te tengo a mi la'o",
+            "english": "When I have you by my side",
+            "translation_source": "genius",
+            "easiness": 35
+          },
+          {
+            "song": "12660487",
+            "song_name": "Dios Es Un Stalker (Versión Física)",
+            "spanish": "Todo el mundo me quiere de su la'o, tengo el buzón explota'o",
+            "english": "Everyone wants me by their side, my inbox is exploding",
+            "translation_source": "genius",
+            "easiness": 45
+          },
+          {
+            "song": "7515185",
+            "song_name": "BIZCOCHITO",
+            "spanish": "Yo elegí mi la'o desde el día en que nací",
+            "english": "Ta-ra-ra-ra-ta-tá (The day I was born)",
+            "translation_source": "genius",
+            "easiness": 83
+          },
+          {
+            "song": "12581303",
+            "song_name": "Jeanne",
+            "spanish": "Tiembla sin nadie a su la'o",
+            "english": "",
+            "translation_source": "",
+            "easiness": 133
+          },
+          {
+            "song": "4470734",
+            "song_name": "Como Alí",
+            "spanish": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
+            "english": "Shadow, I've got mutations (Gy-gypsy)",
+            "translation_source": "genius",
+            "easiness": 288
+          }
+        ]
+      }
+    ],
+    "most_frequent_lemma_instance": true,
+    "is_english": false,
+    "is_interjection": false,
+    "is_propernoun": false,
+    "is_transparent_cognate": false,
+    "corpus_count": 71,
+    "display_form": "la'o",
+    "variants": {
+      "la'o": 62,
+      "lado": 9
+    }
   },
   {
     "id": "440227",
@@ -5355,7 +5472,11 @@
     "is_propernoun": true,
     "is_transparent_cognate": false,
     "corpus_count": 62,
-    "display_form": "dio'"
+    "display_form": "dio'",
+    "variants": {
+      "dios": 59,
+      "dio'": 3
+    }
   },
   {
     "id": "90317d",
@@ -5453,107 +5574,6 @@
     "most_frequent_lemma_instance": true,
     "is_english": false,
     "is_interjection": true,
-    "is_propernoun": false,
-    "is_transparent_cognate": false,
-    "corpus_count": 62,
-    "display_form": null
-  },
-  {
-    "id": "e5d628",
-    "word": "la'o",
-    "lemma": "la'o",
-    "meanings": [
-      {
-        "pos": "X",
-        "translation": "side",
-        "frequency": "1.00",
-        "examples": [
-          {
-            "song": "6211010",
-            "song_name": "LA NOCHE DE ANOCHE",
-            "spanish": "Y ya me ha pasa'o que no está' a mi la'o",
-            "english": "",
-            "translation_source": "",
-            "easiness": 17
-          },
-          {
-            "song": "12581305",
-            "song_name": "Focu ‘ranni",
-            "spanish": "Por mi la'o",
-            "english": "I will not be your other half",
-            "translation_source": "genius",
-            "easiness": 21
-          },
-          {
-            "song": "8173139",
-            "song_name": "DESPECHÁ",
-            "spanish": "Que Dios me libre de volver a tu la'o",
-            "english": "I came with a new flow, baby, it hacks",
-            "translation_source": "genius",
-            "easiness": 22
-          },
-          {
-            "song": "8643641",
-            "song_name": "DESPECHÁ RMX",
-            "spanish": "Que Dios me libre de volver a tu la'o",
-            "english": "I came with a new flow, baby, it hacks",
-            "translation_source": "genius",
-            "easiness": 22
-          },
-          {
-            "song": "8916307",
-            "song_name": "PROMESA",
-            "spanish": "La fuerza, las pena' a tu la'o no me quedan",
-            "english": "",
-            "translation_source": "",
-            "easiness": 29
-          },
-          {
-            "song": "4201752",
-            "song_name": "Barefoot in the Park",
-            "spanish": "Cuando te tengo a mi la'o",
-            "english": "When I have you by my side",
-            "translation_source": "genius",
-            "easiness": 35
-          },
-          {
-            "song": "12660487",
-            "song_name": "Dios Es Un Stalker (Versión Física)",
-            "spanish": "Todo el mundo me quiere de su la'o, tengo el buzón explota'o",
-            "english": "Everyone wants me by their side, my inbox is exploding",
-            "translation_source": "genius",
-            "easiness": 45
-          },
-          {
-            "song": "7515185",
-            "song_name": "BIZCOCHITO",
-            "spanish": "Yo elegí mi la'o desde el día en que nací",
-            "english": "Ta-ra-ra-ra-ta-tá (The day I was born)",
-            "translation_source": "genius",
-            "easiness": 83
-          },
-          {
-            "song": "12581303",
-            "song_name": "Jeanne",
-            "spanish": "Tiembla sin nadie a su la'o",
-            "english": "",
-            "translation_source": "",
-            "easiness": 133
-          },
-          {
-            "song": "4470734",
-            "song_name": "Como Alí",
-            "spanish": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
-            "english": "Shadow, I've got mutations (Gy-gypsy)",
-            "translation_source": "genius",
-            "easiness": 2931
-          }
-        ]
-      }
-    ],
-    "most_frequent_lemma_instance": true,
-    "is_english": false,
-    "is_interjection": false,
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 62,
@@ -5658,7 +5678,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 59,
-    "display_form": "ere'"
+    "display_form": "ere'",
+    "variants": {
+      "ere'": 30,
+      "eres": 29
+    }
   },
   {
     "id": "5a6ece",
@@ -7425,6 +7449,10 @@
     "is_transparent_cognate": false,
     "corpus_count": 43,
     "display_form": "ante'",
+    "variants": {
+      "antes": 39,
+      "ante'": 4
+    },
     "mwe_memberships": [
       {
         "expression": "antes que",
@@ -8012,7 +8040,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 42,
-    "display_form": "va'"
+    "display_form": "va'",
+    "variants": {
+      "vas": 27,
+      "va'": 15
+    }
   },
   {
     "id": "1e534b",
@@ -8481,7 +8513,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 41,
-    "display_form": "mi'"
+    "display_form": "mi'",
+    "variants": {
+      "mis": 39,
+      "mi'": 2
+    }
   },
   {
     "id": "be4a00",
@@ -10713,7 +10749,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 29,
-    "display_form": "ve'"
+    "display_form": "ve'",
+    "variants": {
+      "ves": 20,
+      "ve'": 9
+    }
   },
   {
     "id": "256123",
@@ -11124,7 +11164,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 27,
-    "display_form": "está'"
+    "display_form": "está'",
+    "variants": {
+      "estás": 23,
+      "está'": 4
+    }
   },
   {
     "id": "c2ab54",
@@ -11334,8 +11378,8 @@
     "lemma": "dinero",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "money",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -11395,12 +11439,6 @@
             "easiness": 174
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -12537,7 +12575,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 23,
-    "display_form": "somo'"
+    "display_form": "somo'",
+    "variants": {
+      "somo'": 13,
+      "somos": 10
+    }
   },
   {
     "id": "ff1ee0",
@@ -12731,7 +12773,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 22,
-    "display_form": "tiene'"
+    "display_form": "tiene'",
+    "variants": {
+      "tienes": 18,
+      "tiene'": 4
+    }
   },
   {
     "id": "486efa",
@@ -13754,7 +13800,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 21,
-    "display_form": "ojo'"
+    "display_form": "ojo'",
+    "variants": {
+      "ojos": 15,
+      "ojo'": 6
+    }
   },
   {
     "id": "0fbda0",
@@ -14335,7 +14385,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 20,
-    "display_form": "vece'"
+    "display_form": "vece'",
+    "variants": {
+      "veces": 19,
+      "vece'": 1
+    }
   },
   {
     "id": "49130c",
@@ -15097,7 +15151,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 18,
-    "display_form": "sabe'"
+    "display_form": "sabe'",
+    "variants": {
+      "sabes": 13,
+      "sabe'": 5
+    }
   },
   {
     "id": "ab352b",
@@ -16398,7 +16456,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 17,
-    "display_form": "pasa'o"
+    "display_form": "pasa'o",
+    "variants": {
+      "pasa'o": 12,
+      "pasado": 5
+    }
   },
   {
     "id": "7d78d0",
@@ -17048,7 +17110,7 @@
             "spanish": "La que sale por TV no es la que yo conocí",
             "english": "",
             "translation_source": "",
-            "easiness": 6
+            "easiness": 7
           },
           {
             "song": "3065897",
@@ -18091,7 +18153,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 14,
-    "display_form": "quiere'"
+    "display_form": "quiere'",
+    "variants": {
+      "quiere'": 7,
+      "quieres": 7
+    }
   },
   {
     "id": "225f81",
@@ -18893,7 +18959,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 14,
-    "display_form": "mira'"
+    "display_form": "mira'",
+    "variants": {
+      "mira'": 8,
+      "miras": 6
+    }
   },
   {
     "id": "db4d65",
@@ -19551,7 +19621,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 13,
-    "display_form": "toda'"
+    "display_form": "toda'",
+    "variants": {
+      "toda'": 7,
+      "todas": 6
+    }
   },
   {
     "id": "4b4fd1",
@@ -20868,7 +20942,7 @@
             "spanish": "La que sale por TV no es la que yo conocí",
             "english": "",
             "translation_source": "",
-            "easiness": 6
+            "easiness": 7
           },
           {
             "song": "8365376",
@@ -20980,7 +21054,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 12,
-    "display_form": "flore'"
+    "display_form": "flore'",
+    "variants": {
+      "flores": 11,
+      "flore'": 1
+    }
   },
   {
     "id": "434bff",
@@ -21271,8 +21349,8 @@
     "lemma": "can",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "can",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -21284,18 +21362,6 @@
             "easiness": 501061
           }
         ]
-      },
-      {
-        "pos": "VERB",
-        "translation": "can",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -21696,7 +21762,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 11,
-    "display_form": "cosa'"
+    "display_form": "cosa'",
+    "variants": {
+      "cosas": 6,
+      "cosa'": 5
+    }
   },
   {
     "id": "463f28",
@@ -22149,7 +22219,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 11,
-    "display_form": "mano'"
+    "display_form": "mano'",
+    "variants": {
+      "manos": 8,
+      "mano'": 3
+    }
   },
   {
     "id": "7b8d99",
@@ -22344,7 +22418,7 @@
             "spanish": "Zoom en la cara, Gaspar Noé",
             "english": "Zoom in on the face, Gaspar Noé",
             "translation_source": "genius",
-            "easiness": 229
+            "easiness": 9
           }
         ]
       }
@@ -22735,7 +22809,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 10,
-    "display_form": "puede'"
+    "display_form": "puede'",
+    "variants": {
+      "puedes": 9,
+      "puede'": 1
+    }
   },
   {
     "id": "85b01d",
@@ -23141,7 +23219,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 10,
-    "display_form": "demasia'o"
+    "display_form": "demasia'o",
+    "variants": {
+      "demasia'o": 7,
+      "demasiado": 3
+    }
   },
   {
     "id": "5cfbdc",
@@ -23279,7 +23361,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 10,
-    "display_form": "lejo'"
+    "display_form": "lejo'",
+    "variants": {
+      "lejos": 9,
+      "lejo'": 1
+    }
   },
   {
     "id": "d3bcdf",
@@ -23340,7 +23426,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 10,
-    "display_form": "detrá'"
+    "display_form": "detrá'",
+    "variants": {
+      "detrás": 7,
+      "detrá'": 3
+    }
   },
   {
     "id": "5705f3",
@@ -23618,7 +23708,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 10,
-    "display_form": "sale'"
+    "display_form": "sale'",
+    "variants": {
+      "sale'": 5,
+      "sales": 5
+    }
   },
   {
     "id": "f3b75f",
@@ -24785,67 +24879,6 @@
     "display_form": null
   },
   {
-    "id": "a2e6f8",
-    "word": "lado",
-    "lemma": "lado",
-    "meanings": [
-      {
-        "pos": "NOUN",
-        "translation": "side",
-        "frequency": "1.00",
-        "examples": [
-          {
-            "song": "8682586",
-            "song_name": "Es Por Ti",
-            "spanish": "Y veo que a mi lado estás",
-            "english": "",
-            "translation_source": "",
-            "easiness": 21
-          },
-          {
-            "song": "12581301",
-            "song_name": "Novia Robot",
-            "spanish": "Es la gata que yo tenga al lado\"",
-            "english": "It's the cat I have at my side",
-            "translation_source": "genius",
-            "easiness": 30
-          },
-          {
-            "song": "12581295",
-            "song_name": "Sauvignon Blanc",
-            "spanish": "Yo beberé Sauvignon Blanc a tu lado",
-            "english": "I'll drink Sauvignon Blanc by your side",
-            "translation_source": "genius",
-            "easiness": 31
-          },
-          {
-            "song": "13104176",
-            "song_name": "Sauvignon Blanc (A Cappella)",
-            "spanish": "Yo beberé Sauvignon Blanc a tu lado (Ah, ah)",
-            "english": "",
-            "translation_source": "",
-            "easiness": 31
-          },
-          {
-            "song": "7659063",
-            "song_name": "COMO UN G",
-            "spanish": "No estoy a tu lado, pero te deseo paz y libertad (Mmm, mmm)",
-            "english": "I'm not by your side, but I wish you peace and freedom (Mmm, mmm)",
-            "translation_source": "genius",
-            "easiness": 31
-          }
-        ]
-      }
-    ],
-    "most_frequent_lemma_instance": true,
-    "is_english": false,
-    "is_interjection": false,
-    "is_propernoun": false,
-    "is_transparent_cognate": false,
-    "corpus_count": 9,
-    "display_form": null
-  },
-  {
     "id": "a1dd25",
     "word": "vaya",
     "lemma": "ir",
@@ -25458,7 +25491,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 9,
-    "display_form": "da'"
+    "display_form": "da'",
+    "variants": {
+      "da'": 5,
+      "das": 4
+    }
   },
   {
     "id": "0a0cc1",
@@ -25731,7 +25768,7 @@
     "lemma": "rom",
     "meanings": [
       {
-        "pos": "X",
+        "pos": "INTJ",
         "translation": "rom",
         "frequency": "1.00",
         "examples": [
@@ -25741,14 +25778,14 @@
             "spanish": "Rom-po-po-pom-rom, rom, rom",
             "english": "",
             "translation_source": "",
-            "easiness": 999999
+            "easiness": 7554
           }
         ]
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
-    "is_interjection": false,
+    "is_english": false,
+    "is_interjection": true,
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 9,
@@ -27321,7 +27358,11 @@
     "is_propernoun": true,
     "is_transparent_cognate": false,
     "corpus_count": 8,
-    "display_form": "diamante'"
+    "display_form": "diamante'",
+    "variants": {
+      "diamante'": 6,
+      "diamantes": 2
+    }
   },
   {
     "id": "d00b4c",
@@ -27671,7 +27712,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 8,
-    "display_form": null
+    "display_form": null,
+    "variants": {
+      "dorado": 7,
+      "dora'o": 1
+    }
   },
   {
     "id": "d52115",
@@ -27679,7 +27724,7 @@
     "lemma": "po",
     "meanings": [
       {
-        "pos": "PROPN",
+        "pos": "X",
         "translation": "",
         "frequency": "1.00",
         "examples": [
@@ -27689,21 +27734,15 @@
             "spanish": "Rom-po-po-pom-rom, rom, rom",
             "english": "",
             "translation_source": "",
-            "easiness": 999999
+            "easiness": 7554
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "po",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": false,
-    "is_propernoun": true,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 8,
     "display_form": null
@@ -28301,7 +28340,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "le'"
+    "display_form": "le'",
+    "variants": {
+      "les": 4,
+      "le'": 3
+    }
   },
   {
     "id": "882b4e",
@@ -28566,7 +28609,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "pue'"
+    "display_form": "pue'",
+    "variants": {
+      "pue'": 4,
+      "pues": 3
+    }
   },
   {
     "id": "d477e6",
@@ -29161,7 +29208,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "quiera'"
+    "display_form": "quiera'",
+    "variants": {
+      "quieras": 4,
+      "quiera'": 3
+    }
   },
   {
     "id": "ff6bd6",
@@ -29576,7 +29627,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "viene'"
+    "display_form": "viene'",
+    "variants": {
+      "viene'": 4,
+      "vienes": 3
+    }
   },
   {
     "id": "ef0378",
@@ -29848,7 +29903,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "gana'"
+    "display_form": "gana'",
+    "variants": {
+      "gana'": 5,
+      "ganas": 2
+    }
   },
   {
     "id": "63fbbf",
@@ -30403,8 +30462,8 @@
     "lemma": "prima",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "cousin",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -30424,12 +30483,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -30649,7 +30702,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "cadena'"
+    "display_form": "cadena'",
+    "variants": {
+      "cadena'": 5,
+      "cadenas": 2
+    }
   },
   {
     "id": "967db0",
@@ -30985,7 +31042,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 7,
-    "display_form": "ojito'"
+    "display_form": "ojito'",
+    "variants": {
+      "ojitos": 6,
+      "ojito'": 1
+    }
   },
   {
     "id": "ec77c1",
@@ -31326,7 +31387,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
-    "display_form": "ta'"
+    "display_form": "ta'",
+    "variants": {
+      "ta'": 3,
+      "tas": 3
+    }
   },
   {
     "id": "2fa825",
@@ -31611,7 +31676,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
-    "display_form": "meno'"
+    "display_form": "meno'",
+    "variants": {
+      "menos": 4,
+      "meno'": 2
+    }
   },
   {
     "id": "07dc92",
@@ -32334,7 +32403,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
-    "display_form": "atrá'"
+    "display_form": "atrá'",
+    "variants": {
+      "atrás": 4,
+      "atrá'": 2
+    }
   },
   {
     "id": "c1b8ab",
@@ -33675,7 +33748,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
-    "display_form": "llame'"
+    "display_form": "llame'",
+    "variants": {
+      "llame'": 4,
+      "llames": 2
+    }
   },
   {
     "id": "23ad5c",
@@ -33934,7 +34011,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
-    "display_form": "beso'"
+    "display_form": "beso'",
+    "variants": {
+      "besos": 5,
+      "beso'": 1
+    }
   },
   {
     "id": "b94ac8",
@@ -34090,7 +34171,7 @@
     "lemma": "up",
     "meanings": [
       {
-        "pos": "PROPN",
+        "pos": "X",
         "translation": "up",
         "frequency": "1.00",
         "examples": [
@@ -34127,18 +34208,12 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "up",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
     "is_english": true,
     "is_interjection": false,
-    "is_propernoun": true,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
     "display_form": null
@@ -34215,7 +34290,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 6,
-    "display_form": "prenda'"
+    "display_form": "prenda'",
+    "variants": {
+      "prendas": 5,
+      "prenda'": 1
+    }
   },
   {
     "id": "38e123",
@@ -34786,7 +34865,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "tre'"
+    "display_form": "tre'",
+    "variants": {
+      "tre'": 4,
+      "tres": 1
+    }
   },
   {
     "id": "cb7852",
@@ -35065,7 +35148,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "eso'"
+    "display_form": "eso'",
+    "variants": {
+      "esos": 3,
+      "eso'": 2
+    }
   },
   {
     "id": "6930c5",
@@ -35281,7 +35368,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "esa'"
+    "display_form": "esa'",
+    "variants": {
+      "esas": 4,
+      "esa'": 1
+    }
   },
   {
     "id": "fefc50",
@@ -35588,7 +35679,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "dice'"
+    "display_form": "dice'",
+    "variants": {
+      "dices": 4,
+      "dice'": 1
+    }
   },
   {
     "id": "2a77fd",
@@ -35812,7 +35907,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "diga'"
+    "display_form": "diga'",
+    "variants": {
+      "diga'": 3,
+      "digas": 2
+    }
   },
   {
     "id": "3095f4",
@@ -36322,7 +36421,7 @@
     "lemma": "tv",
     "meanings": [
       {
-        "pos": "PROPN",
+        "pos": "X",
         "translation": "",
         "frequency": "1.00",
         "examples": [
@@ -36332,21 +36431,15 @@
             "spanish": "La que sale por TV no es la que yo conocí",
             "english": "",
             "translation_source": "",
-            "easiness": 6
+            "easiness": 7
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
     "is_english": false,
     "is_interjection": false,
-    "is_propernoun": true,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
     "display_form": null
@@ -36680,7 +36773,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "fuimo'"
+    "display_form": "fuimo'",
+    "variants": {
+      "fuimo'": 4,
+      "fuimos": 1
+    }
   },
   {
     "id": "093074",
@@ -37121,7 +37218,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "piense'"
+    "display_form": "piense'",
+    "variants": {
+      "pienses": 3,
+      "piense'": 2
+    }
   },
   {
     "id": "4131b5",
@@ -37249,7 +37350,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "labio'"
+    "display_form": "labio'",
+    "variants": {
+      "labios": 3,
+      "labio'": 2
+    }
   },
   {
     "id": "701e69",
@@ -37457,7 +37562,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 5,
-    "display_form": "azule'"
+    "display_form": "azule'",
+    "variants": {
+      "azules": 4,
+      "azule'": 1
+    }
   },
   {
     "id": "2318fb",
@@ -37465,8 +37574,8 @@
     "lemma": "remedio",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "remedy",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -37486,12 +37595,6 @@
             "easiness": 620
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -37627,7 +37730,7 @@
     "lemma": "so",
     "meanings": [
       {
-        "pos": "ADV",
+        "pos": "X",
         "translation": "so",
         "frequency": "1.00",
         "examples": [
@@ -37656,12 +37759,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "so",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -37858,7 +37955,7 @@
     "lemma": "like",
     "meanings": [
       {
-        "pos": "VERB",
+        "pos": "X",
         "translation": "like",
         "frequency": "1.00",
         "examples": [
@@ -37879,30 +37976,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "ADP",
-        "translation": "like",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "INTJ",
-        "translation": "like",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "NOUN",
-        "translation": "like",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "X",
-        "translation": "like",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -38031,7 +38104,7 @@
     "meanings": [
       {
         "pos": "INTJ",
-        "translation": "bang",
+        "translation": "pom",
         "frequency": "1.00",
         "examples": [
           {
@@ -38040,19 +38113,13 @@
             "spanish": "Rom-po-po-pom-rom, rom, rom",
             "english": "",
             "translation_source": "",
-            "easiness": 999999
+            "easiness": 7554
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "pom",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": true,
     "is_propernoun": false,
     "is_transparent_cognate": false,
@@ -38065,7 +38132,7 @@
     "lemma": "love",
     "meanings": [
       {
-        "pos": "VERB",
+        "pos": "X",
         "translation": "love",
         "frequency": "1.00",
         "examples": [
@@ -38078,12 +38145,6 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "love",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -38449,7 +38510,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "tenemo'"
+    "display_form": "tenemo'",
+    "variants": {
+      "tenemo'": 3,
+      "tenemos": 1
+    }
   },
   {
     "id": "a1d0cf",
@@ -38494,7 +38559,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "nosotro'"
+    "display_form": "nosotro'",
+    "variants": {
+      "nosotro'": 2,
+      "nosotros": 2
+    }
   },
   {
     "id": "a7ff36",
@@ -38695,7 +38764,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "despué'"
+    "display_form": "despué'",
+    "variants": {
+      "despué'": 3,
+      "después": 1
+    }
   },
   {
     "id": "16b3aa",
@@ -38739,7 +38812,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "cree'"
+    "display_form": "cree'",
+    "variants": {
+      "cree'": 3,
+      "crees": 1
+    }
   },
   {
     "id": "511cd4",
@@ -38792,7 +38869,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "male'"
+    "display_form": "male'",
+    "variants": {
+      "male'": 3,
+      "males": 1
+    }
   },
   {
     "id": "2166e7",
@@ -38903,7 +38984,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "hace'"
+    "display_form": "hace'",
+    "variants": {
+      "haces": 3,
+      "hace'": 1
+    }
   },
   {
     "id": "959a6c",
@@ -39403,7 +39488,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "junto'"
+    "display_form": "junto'",
+    "variants": {
+      "juntos": 3,
+      "junto'": 1
+    }
   },
   {
     "id": "ccb39d",
@@ -40458,7 +40547,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "quería'"
+    "display_form": "quería'",
+    "variants": {
+      "quería'": 2,
+      "querías": 2
+    }
   },
   {
     "id": "c58fe4",
@@ -40749,7 +40842,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "deja'o"
+    "display_form": "deja'o",
+    "variants": {
+      "deja'o": 3,
+      "dejado": 1
+    }
   },
   {
     "id": "6e4d60",
@@ -42633,7 +42730,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "rosa'"
+    "display_form": "rosa'",
+    "variants": {
+      "rosa'": 3,
+      "rosas": 1
+    }
   },
   {
     "id": "c39965",
@@ -42744,7 +42845,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 4,
-    "display_form": "billete'"
+    "display_form": "billete'",
+    "variants": {
+      "billete'": 3,
+      "billetes": 1
+    }
   },
   {
     "id": "e780d9",
@@ -44026,7 +44131,7 @@
     "lemma": "what",
     "meanings": [
       {
-        "pos": "PRON",
+        "pos": "X",
         "translation": "what",
         "frequency": "1.00",
         "examples": [
@@ -44039,12 +44144,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "what",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -44496,7 +44595,7 @@
     "lemma": "highlighter",
     "meanings": [
       {
-        "pos": "X",
+        "pos": "NOUN",
         "translation": "highlighter",
         "frequency": "1.00",
         "examples": [
@@ -44804,7 +44903,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "día'"
+    "display_form": "día'",
+    "variants": {
+      "día'": 2,
+      "días": 1
+    }
   },
   {
     "id": "49f5f8",
@@ -45996,7 +46099,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "vámono'"
+    "display_form": "vámono'",
+    "variants": {
+      "vámonos": 2,
+      "vámono'": 1
+    }
   },
   {
     "id": "5e4103",
@@ -46228,7 +46335,7 @@
             "spanish": "Vestía' de negro como Kika",
             "english": "Wearing black like Kika",
             "translation_source": "genius",
-            "easiness": 744
+            "easiness": 389
           }
         ]
       }
@@ -47198,7 +47305,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "pueda'"
+    "display_form": "pueda'",
+    "variants": {
+      "pueda'": 2,
+      "puedas": 1
+    }
   },
   {
     "id": "ee1e7d",
@@ -47448,7 +47559,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "apena'"
+    "display_form": "apena'",
+    "variants": {
+      "apenas": 2,
+      "apena'": 1
+    }
   },
   {
     "id": "d08f1f",
@@ -47648,7 +47763,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "lleva'"
+    "display_form": "lleva'",
+    "variants": {
+      "llevas": 2,
+      "lleva'": 1
+    }
   },
   {
     "id": "05bba8",
@@ -48296,7 +48415,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "secreto'"
+    "display_form": "secreto'",
+    "variants": {
+      "secreto'": 2,
+      "secretos": 1
+    }
   },
   {
     "id": "a5eede",
@@ -48341,7 +48464,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "estrella'"
+    "display_form": "estrella'",
+    "variants": {
+      "estrellas": 2,
+      "estrella'": 1
+    }
   },
   {
     "id": "07bdc8",
@@ -48711,7 +48838,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "espera'"
+    "display_form": "espera'",
+    "variants": {
+      "espera'": 2,
+      "esperas": 1
+    }
   },
   {
     "id": "612fad",
@@ -48858,7 +48989,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "pone'"
+    "display_form": "pone'",
+    "variants": {
+      "pones": 2,
+      "pone'": 1
+    }
   },
   {
     "id": "f4cf95",
@@ -49416,7 +49551,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "cancione'"
+    "display_form": "cancione'",
+    "variants": {
+      "canciones": 2,
+      "cancione'": 1
+    }
   },
   {
     "id": "6788e1",
@@ -49682,8 +49821,8 @@
     "lemma": "quince",
     "meanings": [
       {
-        "pos": "NUM",
-        "translation": "fifteen",
+        "pos": "X",
+        "translation": "quince",
         "frequency": "1.00",
         "examples": [
           {
@@ -49695,12 +49834,6 @@
             "easiness": 45
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "quince",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -50248,7 +50381,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 3,
-    "display_form": "decía'"
+    "display_form": "decía'",
+    "variants": {
+      "decías": 2,
+      "decía'": 1
+    }
   },
   {
     "id": "53c60f",
@@ -51743,7 +51880,7 @@
     "lemma": "for",
     "meanings": [
       {
-        "pos": "ADP",
+        "pos": "X",
         "translation": "for",
         "frequency": "1.00",
         "examples": [
@@ -51764,18 +51901,6 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "ADV",
-        "translation": "for",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "X",
-        "translation": "for",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -53956,8 +54081,8 @@
     "lemma": "chica",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "girl",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -53969,12 +54094,6 @@
             "easiness": 223
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -55616,7 +55735,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": null
+    "display_form": null,
+    "variants": {
+      "perdido": 1,
+      "perdí'o": 1
+    }
   },
   {
     "id": "ff2326",
@@ -56608,7 +56731,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "llega'o"
+    "display_form": "llega'o",
+    "variants": {
+      "llega'o": 1,
+      "llegado": 1
+    }
   },
   {
     "id": "76fc2d",
@@ -56845,7 +56972,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "pie'"
+    "display_form": "pie'",
+    "variants": {
+      "pie'": 1,
+      "pies": 1
+    }
   },
   {
     "id": "683d3b",
@@ -58825,7 +58956,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "sentimiento'"
+    "display_form": "sentimiento'",
+    "variants": {
+      "sentimiento'": 1,
+      "sentimientos": 1
+    }
   },
   {
     "id": "c7501d",
@@ -60588,7 +60723,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "de'"
+    "display_form": "de'",
+    "variants": {
+      "de'": 1,
+      "des": 1
+    }
   },
   {
     "id": "ebfb97",
@@ -61150,7 +61289,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "señale'"
+    "display_form": "señale'",
+    "variants": {
+      "señale'": 1,
+      "señales": 1
+    }
   },
   {
     "id": "b8293e",
@@ -61344,7 +61487,7 @@
             "spanish": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
             "english": "Shadow, I've got mutations (Gy-gypsy)",
             "translation_source": "genius",
-            "easiness": 2931
+            "easiness": 288
           }
         ]
       }
@@ -63159,7 +63302,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "suelta'"
+    "display_form": "suelta'",
+    "variants": {
+      "suelta'": 1,
+      "sueltas": 1
+    }
   },
   {
     "id": "87812a",
@@ -63320,8 +63467,8 @@
     "lemma": "rango",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "rank",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -63333,12 +63480,6 @@
             "easiness": 2
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -63553,7 +63694,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "guante'"
+    "display_form": "guante'",
+    "variants": {
+      "guante'": 1,
+      "guantes": 1
+    }
   },
   {
     "id": "76a740",
@@ -63911,7 +64056,11 @@
     "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "uña'"
+    "display_form": "uña'",
+    "variants": {
+      "uña'": 1,
+      "uñas": 1
+    }
   },
   {
     "id": "adb018",
@@ -64059,8 +64208,8 @@
     "lemma": "avenida",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "avenue",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -65366,8 +65515,8 @@
     "lemma": "quinta",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "Fifth Avenue",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -65939,7 +66088,7 @@
             "spanish": "Vestía' de negro como Kika",
             "english": "Wearing black like Kika",
             "translation_source": "genius",
-            "easiness": 744
+            "easiness": 389
           }
         ]
       }
@@ -66016,7 +66165,11 @@
     "is_propernoun": true,
     "is_transparent_cognate": false,
     "corpus_count": 2,
-    "display_form": "mercede'"
+    "display_form": "mercede'",
+    "variants": {
+      "mercede'": 1,
+      "mercedes": 1
+    }
   },
   {
     "id": "62dfa3",
@@ -66223,7 +66376,7 @@
     "meanings": [
       {
         "pos": "INTJ",
-        "translation": "aah",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -66235,16 +66388,10 @@
             "easiness": 75
           }
         ]
-      },
-      {
-        "pos": "INTJ",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": true,
     "is_propernoun": false,
     "is_transparent_cognate": false,
@@ -67960,7 +68107,7 @@
     "lemma": "the",
     "meanings": [
       {
-        "pos": "DET",
+        "pos": "X",
         "translation": "the",
         "frequency": "1.00",
         "examples": [
@@ -67981,12 +68128,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "the",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -69514,7 +69655,7 @@
     "lemma": "man",
     "meanings": [
       {
-        "pos": "NOUN",
+        "pos": "X",
         "translation": "man",
         "frequency": "1.00",
         "examples": [
@@ -69527,18 +69668,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "NOUN",
-        "translation": "dude",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "X",
-        "translation": "man",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -69729,7 +69858,7 @@
     "lemma": "gold",
     "meanings": [
       {
-        "pos": "PROPN",
+        "pos": "X",
         "translation": "gold",
         "frequency": "1.00",
         "examples": [
@@ -69742,18 +69871,12 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "gold",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
     "is_english": true,
     "is_interjection": false,
-    "is_propernoun": true,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
     "display_form": null
@@ -69870,6 +69993,35 @@
     "is_english": false,
     "is_interjection": false,
     "is_propernoun": true,
+    "is_transparent_cognate": false,
+    "corpus_count": 2,
+    "display_form": null
+  },
+  {
+    "id": "2d49a4",
+    "word": "lady",
+    "lemma": "lady",
+    "meanings": [
+      {
+        "pos": "X",
+        "translation": "lady",
+        "frequency": "1.00",
+        "examples": [
+          {
+            "song": "7528145",
+            "song_name": "CUUUUuuuuuute",
+            "spanish": "Crashed, Lady Di",
+            "english": "Crashed, Lady Di",
+            "translation_source": "genius",
+            "easiness": 642
+          }
+        ]
+      }
+    ],
+    "most_frequent_lemma_instance": true,
+    "is_english": true,
+    "is_interjection": false,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 2,
     "display_form": null
@@ -70127,8 +70279,8 @@
     "lemma": "vita",
     "meanings": [
       {
-        "pos": "X",
-        "translation": "",
+        "pos": "NOUN",
+        "translation": "life",
         "frequency": "1.00",
         "examples": [
           {
@@ -70388,8 +70540,8 @@
     "lemma": "kitty",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "pussy",
+        "pos": "X",
+        "translation": "kitty",
         "frequency": "1.00",
         "examples": [
           {
@@ -70401,12 +70553,6 @@
             "easiness": 10
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "kitty",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -72129,6 +72275,35 @@
     "display_form": "tinta'o"
   },
   {
+    "id": "fa9a92",
+    "word": "titanic",
+    "lemma": "titanic",
+    "meanings": [
+      {
+        "pos": "PROPN",
+        "translation": "",
+        "frequency": "1.00",
+        "examples": [
+          {
+            "song": "12581294",
+            "song_name": "La Yugular",
+            "spanish": "Y una pelota de golf ocupa el Titanic",
+            "english": "",
+            "translation_source": "",
+            "easiness": 15
+          }
+        ]
+      }
+    ],
+    "most_frequent_lemma_instance": true,
+    "is_english": false,
+    "is_interjection": false,
+    "is_propernoun": true,
+    "is_transparent_cognate": false,
+    "corpus_count": 2,
+    "display_form": null
+  },
+  {
     "id": "6003a7",
     "word": "tíguere",
     "lemma": "tíguere",
@@ -73376,47 +73551,6 @@
     "display_form": null
   },
   {
-    "id": "2d49a4",
-    "word": "lady",
-    "lemma": "lady",
-    "meanings": [
-      {
-        "pos": "NOUN",
-        "translation": "lady",
-        "frequency": "1.00",
-        "examples": [
-          {
-            "song": "7528145",
-            "song_name": "CUUUUuuuuuute",
-            "spanish": "Crashed, Lady Di",
-            "english": "Crashed, Lady Di",
-            "translation_source": "genius",
-            "easiness": 642
-          }
-        ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "Lady",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "X",
-        "translation": "lady",
-        "frequency": "0.00",
-        "examples": []
-      }
-    ],
-    "most_frequent_lemma_instance": true,
-    "is_english": true,
-    "is_interjection": false,
-    "is_propernoun": false,
-    "is_transparent_cognate": true,
-    "corpus_count": 2,
-    "display_form": null
-  },
-  {
     "id": "d5e6e5",
     "word": "flash",
     "lemma": "flash",
@@ -73528,35 +73662,6 @@
     "is_english": false,
     "is_interjection": false,
     "is_propernoun": false,
-    "is_transparent_cognate": true,
-    "corpus_count": 2,
-    "display_form": null
-  },
-  {
-    "id": "fa9a92",
-    "word": "titanic",
-    "lemma": "titanic",
-    "meanings": [
-      {
-        "pos": "PROPN",
-        "translation": "Titanic",
-        "frequency": "1.00",
-        "examples": [
-          {
-            "song": "12581294",
-            "song_name": "La Yugular",
-            "spanish": "Y una pelota de golf ocupa el Titanic",
-            "english": "",
-            "translation_source": "",
-            "easiness": 15
-          }
-        ]
-      }
-    ],
-    "most_frequent_lemma_instance": true,
-    "is_english": false,
-    "is_interjection": false,
-    "is_propernoun": true,
     "is_transparent_cognate": true,
     "corpus_count": 2,
     "display_form": null
@@ -77301,8 +77406,8 @@
     "lemma": "prueba",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "test",
+        "pos": "X",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -77314,12 +77419,6 @@
             "easiness": 204
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -80890,8 +80989,8 @@
     "lemma": "blanca",
     "meanings": [
       {
-        "pos": "ADJ",
-        "translation": "white",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -80903,24 +81002,6 @@
             "easiness": 2088
           }
         ]
-      },
-      {
-        "pos": "NOUN",
-        "translation": "white",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "PROPN",
-        "translation": "Blanca",
-        "frequency": "0.00",
-        "examples": []
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -81213,8 +81294,8 @@
     "lemma": "leo",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "Leo",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -81226,12 +81307,6 @@
             "easiness": 25
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -85454,7 +85529,7 @@
     "lemma": "original",
     "meanings": [
       {
-        "pos": "ADJ",
+        "pos": "X",
         "translation": "original",
         "frequency": "1.00",
         "examples": [
@@ -85467,19 +85542,13 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "original",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
     "is_english": true,
     "is_interjection": false,
     "is_propernoun": false,
-    "is_transparent_cognate": true,
+    "is_transparent_cognate": false,
     "corpus_count": 1,
     "display_form": null
   },
@@ -88665,8 +88734,8 @@
     "lemma": "cristal",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "glass",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -88678,12 +88747,6 @@
             "easiness": 9
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -89686,8 +89749,8 @@
     "lemma": "caro",
     "meanings": [
       {
-        "pos": "ADJ",
-        "translation": "expensive",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -89699,12 +89762,6 @@
             "easiness": 23
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -91287,8 +91344,8 @@
     "lemma": "okay",
     "meanings": [
       {
-        "pos": "PROPN",
-        "translation": "",
+        "pos": "X",
+        "translation": "okay",
         "frequency": "1.00",
         "examples": [
           {
@@ -91300,18 +91357,12 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "okay",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
     "is_english": true,
     "is_interjection": false,
-    "is_propernoun": true,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 1,
     "display_form": null
@@ -103938,7 +103989,7 @@
     "lemma": "jet",
     "meanings": [
       {
-        "pos": "NOUN",
+        "pos": "X",
         "translation": "jet",
         "frequency": "1.00",
         "examples": [
@@ -103951,12 +104002,6 @@
             "easiness": 15
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "jet",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -105207,7 +105252,7 @@
     "meanings": [
       {
         "pos": "X",
-        "translation": "",
+        "translation": "in",
         "frequency": "1.00",
         "examples": [
           {
@@ -105219,12 +105264,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "in",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -105358,7 +105397,7 @@
     "meanings": [
       {
         "pos": "X",
-        "translation": "",
+        "translation": "or",
         "frequency": "1.00",
         "examples": [
           {
@@ -105370,12 +105409,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "or",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -105489,7 +105522,7 @@
             "spanish": "Ro-rom-po-po-pom",
             "english": "",
             "translation_source": "",
-            "easiness": 999999
+            "easiness": 7554
           }
         ]
       }
@@ -105682,7 +105715,7 @@
     "lemma": "and",
     "meanings": [
       {
-        "pos": "CCONJ",
+        "pos": "X",
         "translation": "and",
         "frequency": "1.00",
         "examples": [
@@ -105695,12 +105728,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "and",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -105833,7 +105860,7 @@
     "lemma": "big",
     "meanings": [
       {
-        "pos": "ADJ",
+        "pos": "X",
         "translation": "big",
         "frequency": "1.00",
         "examples": [
@@ -105846,12 +105873,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "big",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -105897,8 +105918,8 @@
     "lemma": "bye",
     "meanings": [
       {
-        "pos": "INTJ",
-        "translation": "bye",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -105910,16 +105931,10 @@
             "easiness": 4551
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": false,
     "is_propernoun": true,
     "is_transparent_cognate": false,
@@ -106338,7 +106353,7 @@
     "lemma": "new",
     "meanings": [
       {
-        "pos": "ADJ",
+        "pos": "X",
         "translation": "new",
         "frequency": "1.00",
         "examples": [
@@ -106351,12 +106366,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "new",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -106403,7 +106412,7 @@
     "meanings": [
       {
         "pos": "PROPN",
-        "translation": "",
+        "translation": "Noé",
         "frequency": "1.00",
         "examples": [
           {
@@ -106412,15 +106421,9 @@
             "spanish": "Zoom en la cara, Gaspar Noé",
             "english": "Zoom in on the face, Gaspar Noé",
             "translation_source": "genius",
-            "easiness": 229
+            "easiness": 9
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -106495,7 +106498,7 @@
     "lemma": "set",
     "meanings": [
       {
-        "pos": "ADJ",
+        "pos": "X",
         "translation": "set",
         "frequency": "1.00",
         "examples": [
@@ -106508,12 +106511,6 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "set",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -107110,7 +107107,7 @@
     "lemma": "deal",
     "meanings": [
       {
-        "pos": "NOUN",
+        "pos": "X",
         "translation": "deal",
         "frequency": "1.00",
         "examples": [
@@ -107123,12 +107120,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "deal",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -107406,7 +107397,7 @@
     "lemma": "flip",
     "meanings": [
       {
-        "pos": "NOUN",
+        "pos": "X",
         "translation": "flip",
         "frequency": "1.00",
         "examples": [
@@ -107419,12 +107410,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "flip",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -107499,7 +107484,7 @@
     "lemma": "free",
     "meanings": [
       {
-        "pos": "ADJ",
+        "pos": "X",
         "translation": "free",
         "frequency": "1.00",
         "examples": [
@@ -107512,12 +107497,6 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "free",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -107563,7 +107542,7 @@
     "lemma": "give",
     "meanings": [
       {
-        "pos": "VERB",
+        "pos": "X",
         "translation": "give",
         "frequency": "1.00",
         "examples": [
@@ -107576,12 +107555,6 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "give",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -107715,7 +107688,7 @@
     "meanings": [
       {
         "pos": "PROPN",
-        "translation": "jose",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -107727,16 +107700,10 @@
             "easiness": 21
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": false,
     "is_propernoun": true,
     "is_transparent_cognate": false,
@@ -107778,8 +107745,8 @@
     "lemma": "kika",
     "meanings": [
       {
-        "pos": "X",
-        "translation": "",
+        "pos": "PROPN",
+        "translation": "Kika",
         "frequency": "1.00",
         "examples": [
           {
@@ -107788,7 +107755,7 @@
             "spanish": "Vestía' de negro como Kika",
             "english": "Wearing black like Kika",
             "translation_source": "genius",
-            "easiness": 744
+            "easiness": 389
           }
         ]
       }
@@ -107796,7 +107763,7 @@
     "most_frequent_lemma_instance": true,
     "is_english": false,
     "is_interjection": false,
-    "is_propernoun": false,
+    "is_propernoun": true,
     "is_transparent_cognate": false,
     "corpus_count": 1,
     "display_form": null
@@ -107808,7 +107775,7 @@
     "meanings": [
       {
         "pos": "PROPN",
-        "translation": "KTMs",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -108271,8 +108238,8 @@
     "lemma": "paca",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "bundle",
+        "pos": "X",
+        "translation": "paca",
         "frequency": "1.00",
         "examples": [
           {
@@ -108284,12 +108251,6 @@
             "easiness": 14
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "paca",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -108335,8 +108296,8 @@
     "lemma": "paul",
     "meanings": [
       {
-        "pos": "PROPN",
-        "translation": "",
+        "pos": "X",
+        "translation": "paul",
         "frequency": "1.00",
         "examples": [
           {
@@ -108348,18 +108309,12 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "paul",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
     "is_english": true,
     "is_interjection": false,
-    "is_propernoun": true,
+    "is_propernoun": false,
     "is_transparent_cognate": false,
     "corpus_count": 1,
     "display_form": null
@@ -109047,7 +109002,7 @@
             "spanish": "Zoom en la cara, Gaspar Noé",
             "english": "Zoom in on the face, Gaspar Noé",
             "translation_source": "genius",
-            "easiness": 229
+            "easiness": 9
           }
         ]
       }
@@ -109820,8 +109775,8 @@
     "lemma": "frank",
     "meanings": [
       {
-        "pos": "X",
-        "translation": "frank",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -109833,16 +109788,10 @@
             "easiness": 35
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": false,
     "is_propernoun": true,
     "is_transparent_cognate": false,
@@ -111712,7 +111661,7 @@
     "meanings": [
       {
         "pos": "PROPN",
-        "translation": "",
+        "translation": "Alicia",
         "frequency": "1.00",
         "examples": [
           {
@@ -111724,12 +111673,6 @@
             "easiness": 35
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -112993,8 +112936,8 @@
     "lemma": "gaspar",
     "meanings": [
       {
-        "pos": "X",
-        "translation": "",
+        "pos": "PROPN",
+        "translation": "Gaspar",
         "frequency": "1.00",
         "examples": [
           {
@@ -113003,7 +112946,7 @@
             "spanish": "Zoom en la cara, Gaspar Noé",
             "english": "Zoom in on the face, Gaspar Noé",
             "translation_source": "genius",
-            "easiness": 229
+            "easiness": 9
           }
         ]
       }
@@ -113011,7 +112954,7 @@
     "most_frequent_lemma_instance": true,
     "is_english": false,
     "is_interjection": false,
-    "is_propernoun": false,
+    "is_propernoun": true,
     "is_transparent_cognate": false,
     "corpus_count": 1,
     "display_form": null
@@ -113834,8 +113777,8 @@
     "lemma": "medusa",
     "meanings": [
       {
-        "pos": "NOUN",
-        "translation": "medusa",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -113847,12 +113790,6 @@
             "easiness": 405
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -113995,7 +113932,7 @@
             "spanish": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
             "english": "Shadow, I've got mutations (Gy-gypsy)",
             "translation_source": "genius",
-            "easiness": 2931
+            "easiness": 288
           }
         ]
       }
@@ -114333,7 +114270,7 @@
     "lemma": "please",
     "meanings": [
       {
-        "pos": "INTJ",
+        "pos": "X",
         "translation": "please",
         "frequency": "1.00",
         "examples": [
@@ -114346,12 +114283,6 @@
             "easiness": 999999
           }
         ]
-      },
-      {
-        "pos": "X",
-        "translation": "please",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -114398,7 +114329,7 @@
     "meanings": [
       {
         "pos": "PROPN",
-        "translation": "prince",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -114410,16 +114341,10 @@
             "easiness": 1367
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
-    "is_english": true,
+    "is_english": false,
     "is_interjection": false,
     "is_propernoun": true,
     "is_transparent_cognate": false,
@@ -115955,8 +115880,8 @@
     "lemma": "c'était",
     "meanings": [
       {
-        "pos": "X",
-        "translation": "it was",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -118515,6 +118440,35 @@
     "is_transparent_cognate": false,
     "corpus_count": 1,
     "display_form": "solito'"
+  },
+  {
+    "id": "56c47b",
+    "word": "stylist",
+    "lemma": "stylist",
+    "meanings": [
+      {
+        "pos": "X",
+        "translation": "stylist",
+        "frequency": "1.00",
+        "examples": [
+          {
+            "song": "7515279",
+            "song_name": "SAOKO",
+            "spanish": "Fuck el stylist",
+            "english": "",
+            "translation_source": "",
+            "easiness": 6
+          }
+        ]
+      }
+    ],
+    "most_frequent_lemma_instance": true,
+    "is_english": true,
+    "is_interjection": false,
+    "is_propernoun": false,
+    "is_transparent_cognate": false,
+    "corpus_count": 1,
+    "display_form": null
   },
   {
     "id": "d173f1",
@@ -124279,8 +124233,8 @@
     "lemma": "millonaria",
     "meanings": [
       {
-        "pos": "ADJ",
-        "translation": "millionaire",
+        "pos": "PROPN",
+        "translation": "",
         "frequency": "1.00",
         "examples": [
           {
@@ -124292,12 +124246,6 @@
             "easiness": 2049
           }
         ]
-      },
-      {
-        "pos": "PROPN",
-        "translation": "",
-        "frequency": "0.00",
-        "examples": []
       }
     ],
     "most_frequent_lemma_instance": true,
@@ -125542,7 +125490,7 @@
             "spanish": "Chiquitichichi rom, rom, rom-po-po-pom",
             "english": "",
             "translation_source": "",
-            "easiness": 999999
+            "easiness": 7554
           }
         ]
       }
@@ -125839,41 +125787,6 @@
     ],
     "most_frequent_lemma_instance": true,
     "is_english": false,
-    "is_interjection": false,
-    "is_propernoun": false,
-    "is_transparent_cognate": true,
-    "corpus_count": 1,
-    "display_form": null
-  },
-  {
-    "id": "56c47b",
-    "word": "stylist",
-    "lemma": "stylist",
-    "meanings": [
-      {
-        "pos": "NOUN",
-        "translation": "stylist",
-        "frequency": "1.00",
-        "examples": [
-          {
-            "song": "7515279",
-            "song_name": "SAOKO",
-            "spanish": "Fuck el stylist",
-            "english": "",
-            "translation_source": "",
-            "easiness": 6
-          }
-        ]
-      },
-      {
-        "pos": "X",
-        "translation": "stylist",
-        "frequency": "0.00",
-        "examples": []
-      }
-    ],
-    "most_frequent_lemma_instance": true,
-    "is_english": true,
     "is_interjection": false,
     "is_propernoun": false,
     "is_transparent_cognate": true,

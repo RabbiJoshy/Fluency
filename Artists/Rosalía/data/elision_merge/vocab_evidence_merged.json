@@ -19,8 +19,8 @@
         "title": "Sexo, Violencia y Llantas"
       },
       {
-        "id": "12581288:8",
-        "line": "Lo que tengo, lo que hago, mi valor",
+        "id": "12581288:24",
+        "line": "Traje algo pa' que tú te relajes",
         "title": "Porcelana"
       },
       {
@@ -80,8 +80,8 @@
         "title": "Lo Vas A Olvidar"
       },
       {
-        "id": "7288792:10",
-        "line": "Es mala amante la fama, no va a quererte de verdad",
+        "id": "7288792:24",
+        "line": "De que esta obsesión se me fuera",
         "title": "LA FAMA"
       },
       {
@@ -105,8 +105,8 @@
         "title": "COMO UN G"
       },
       {
-        "id": "8173139:11",
-        "line": "Hoy salgo con mi baby de la disco coroná'",
+        "id": "8173139:15",
+        "line": "Hoy salgo con mi baby de la disco coroná', coroná', yeah",
         "title": "DESPECHÁ"
       }
     ]
@@ -141,8 +141,8 @@
         "title": "Divinize"
       },
       {
-        "id": "12581298:3",
-        "line": "En la Mercedes la que es alarga'",
+        "id": "12581298:28",
+        "line": "Algún que otro navajazo, me he llevado de la vida",
         "title": "Magnolias"
       },
       {
@@ -207,8 +207,8 @@
         "title": "CHICKEN TERIYAKI"
       },
       {
-        "id": "8701915:7",
-        "line": "Lo diré en inglés y me entenderás, mmh",
+        "id": "8701915:18",
+        "line": "Y si hay un día, hoy es ese día",
         "title": "LLYLM"
       },
       {
@@ -217,8 +217,8 @@
         "title": "Omega"
       },
       {
-        "id": "12581296:4",
-        "line": "Y de pura envidia, alguien te lo robó",
+        "id": "12581296:12",
+        "line": "Y ahí dentro metió el quilo e igual que el quilo",
         "title": "La Rumba Del Perdón"
       }
     ]
@@ -243,8 +243,8 @@
         "title": "Catalina"
       },
       {
-        "id": "3065897:8",
-        "line": "Que me lo vas a apa-pagar",
+        "id": "3065897:23",
+        "line": "Ay, que me lo va' a apagar",
         "title": "Si Tú Supieras Compañero"
       },
       {
@@ -284,8 +284,8 @@
     "corpus_count": 490,
     "examples": [
       {
-        "id": "8916305:4",
-        "line": "Ella no es seguidora, ella es la ola",
+        "id": "8916305:50",
+        "line": "Que el tiempo no hay que perder",
         "title": "VAMPIROS"
       },
       {
@@ -304,8 +304,8 @@
         "title": "PRESO (Cap.6: Clausura)"
       },
       {
-        "id": "4151176:3",
-        "line": "Esto es pa' gozar, no hay sentimiento (Eh)",
+        "id": "4151176:9",
+        "line": "Tú a solas en el battle, ya no hay quién saque",
         "title": "Lo Presiento"
       },
       {
@@ -594,8 +594,8 @@
         "title": "Aute Cuture"
       },
       {
-        "id": "4425584:6",
-        "line": "Esto es pa' que quede, lo que yo hago dura (Con altura)",
+        "id": "4425584:59",
+        "line": "Vamo', vamo' a-a, vamo' a perrearnos, lo que yo hago dura",
         "title": "Con Altura"
       },
       {
@@ -665,8 +665,8 @@
         "title": "DESPECHÁ"
       },
       {
-        "id": "8916306:22",
-        "line": "Si mi cel se va a apagar, solo te aviso a ti",
+        "id": "8916306:41",
+        "line": "Fuma' como si te fueran a echar por fumar",
         "title": "BESO"
       }
     ]
@@ -706,8 +706,8 @@
         "title": "Omega"
       },
       {
-        "id": "12581296:21",
-        "line": "Le prometiste que en na' tú estarías de vuelta",
+        "id": "12581296:28",
+        "line": "Dice la calle que tú eres pa' mí",
         "title": "La Rumba Del Perdón"
       },
       {
@@ -823,13 +823,13 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "8916305:41",
-        "line": "Ey, yo con mi gato voy pa'llá (Ey)",
+        "id": "8916305:43",
+        "line": "Guayando con mi gato ya estoy enviciá'",
         "title": "VAMPIROS"
       },
       {
-        "id": "12660487:7",
-        "line": "Mi aliento es el viento que te roza el pelo",
+        "id": "12660487:15",
+        "line": "Mi silencio golpea, dueña del mundo y de las Ideas",
         "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
@@ -894,7 +894,11 @@
         "title": "El Pañuelo"
       }
     ],
-    "display_form": "e'"
+    "display_form": "e'",
+    "variants": {
+      "es": 214,
+      "e'": 20
+    }
   },
   {
     "word": "na",
@@ -1013,8 +1017,8 @@
         "title": "Tagliatelle Santeria"
       },
       {
-        "id": "4496591:17",
-        "line": "Y un millón de veces yo te cogía",
+        "id": "4496591:25",
+        "line": "Y un millón de veces me enseñarías",
         "title": "Un Millón de Veces"
       },
       {
@@ -1339,8 +1343,8 @@
         "title": "Barefoot in the Park"
       },
       {
-        "id": "7142770:30",
-        "line": "Sabe mejor que lo' tre' golpe', yo me la como to' lo' día'",
+        "id": "7142770:41",
+        "line": "Le muerdo el cachete como si fuera una fruta",
         "title": "Linda"
       },
       {
@@ -1543,8 +1547,8 @@
     "corpus_count": 121,
     "examples": [
       {
-        "id": "12581294:36",
-        "line": "La galaxia entera cabe en una gota de saliva",
+        "id": "12581294:37",
+        "line": "Una gota de saliva ocupa la Quinta Avenida",
         "title": "La Yugular"
       },
       {
@@ -1649,7 +1653,11 @@
         "title": "Linda"
       }
     ],
-    "display_form": "la'"
+    "display_form": "la'",
+    "variants": {
+      "las": 111,
+      "la'": 10
+    }
   },
   {
     "word": "mí",
@@ -1732,8 +1740,8 @@
         "title": "DIABLO"
       },
       {
-        "id": "8916305:13",
-        "line": "Tú sabe' que esta noche nos fuimo' algarete, eh",
+        "id": "8916305:19",
+        "line": "¿Dónde es que la noche 'tá pesá'?",
         "title": "VAMPIROS"
       },
       {
@@ -1951,7 +1959,11 @@
         "title": "TKN"
       }
     ],
-    "display_form": "lo'"
+    "display_form": "lo'",
+    "variants": {
+      "los": 74,
+      "lo'": 14
+    }
   },
   {
     "word": "del",
@@ -2064,7 +2076,11 @@
         "title": "LAX"
       }
     ],
-    "display_form": "má'"
+    "display_form": "má'",
+    "variants": {
+      "más": 78,
+      "má'": 6
+    }
   },
   {
     "word": "soy",
@@ -2289,7 +2305,11 @@
         "title": "VAMPIROS"
       }
     ],
-    "display_form": "no'"
+    "display_form": "no'",
+    "variants": {
+      "nos": 66,
+      "no'": 9
+    }
   },
   {
     "word": "mira",
@@ -2402,6 +2422,67 @@
         "title": "SAOKO"
       }
     ]
+  },
+  {
+    "word": "lado",
+    "corpus_count": 71,
+    "examples": [
+      {
+        "id": "12581303:10",
+        "line": "Tiembla sin nadie a su la'o",
+        "title": "Jeanne"
+      },
+      {
+        "id": "4201752:21",
+        "line": "Cuando te tengo a mi la'o",
+        "title": "Barefoot in the Park"
+      },
+      {
+        "id": "4470734:10",
+        "line": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
+        "title": "Como Alí"
+      },
+      {
+        "id": "12581305:10",
+        "line": "Por mi la'o",
+        "title": "Focu ‘ranni"
+      },
+      {
+        "id": "6211010:31",
+        "line": "Y ya me ha pasa'o que no está' a mi la'o",
+        "title": "LA NOCHE DE ANOCHE"
+      },
+      {
+        "id": "7515185:14",
+        "line": "Yo elegí mi la'o desde el día en que nací",
+        "title": "BIZCOCHITO"
+      },
+      {
+        "id": "8173139:13",
+        "line": "Que Dios me libre de volver a tu la'o",
+        "title": "DESPECHÁ"
+      },
+      {
+        "id": "12660487:16",
+        "line": "Todo el mundo me quiere de su la'o, tengo el buzón explota'o",
+        "title": "Dios Es Un Stalker (Versión Física)"
+      },
+      {
+        "id": "8916307:5",
+        "line": "La fuerza, las pena' a tu la'o no me quedan",
+        "title": "PROMESA"
+      },
+      {
+        "id": "8643641:9",
+        "line": "Que Dios me libre de volver a tu la'o",
+        "title": "DESPECHÁ RMX"
+      }
+    ],
+    "display_form": "la'o",
+    "variants": {
+      "la'o": 62,
+      "lado": 9
+    }
   },
   {
     "word": "aunque",
@@ -2740,62 +2821,6 @@
     ]
   },
   {
-    "word": "la'o",
-    "corpus_count": 62,
-    "examples": [
-      {
-        "id": "12581303:10",
-        "line": "Tiembla sin nadie a su la'o",
-        "title": "Jeanne"
-      },
-      {
-        "id": "4201752:21",
-        "line": "Cuando te tengo a mi la'o",
-        "title": "Barefoot in the Park"
-      },
-      {
-        "id": "4470734:10",
-        "line": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
-        "title": "Como Alí"
-      },
-      {
-        "id": "12581305:10",
-        "line": "Por mi la'o",
-        "title": "Focu ‘ranni"
-      },
-      {
-        "id": "6211010:31",
-        "line": "Y ya me ha pasa'o que no está' a mi la'o",
-        "title": "LA NOCHE DE ANOCHE"
-      },
-      {
-        "id": "7515185:14",
-        "line": "Yo elegí mi la'o desde el día en que nací",
-        "title": "BIZCOCHITO"
-      },
-      {
-        "id": "8173139:13",
-        "line": "Que Dios me libre de volver a tu la'o",
-        "title": "DESPECHÁ"
-      },
-      {
-        "id": "12660487:16",
-        "line": "Todo el mundo me quiere de su la'o, tengo el buzón explota'o",
-        "title": "Dios Es Un Stalker (Versión Física)"
-      },
-      {
-        "id": "8916307:5",
-        "line": "La fuerza, las pena' a tu la'o no me quedan",
-        "title": "PROMESA"
-      },
-      {
-        "id": "8643641:9",
-        "line": "Que Dios me libre de volver a tu la'o",
-        "title": "DESPECHÁ RMX"
-      }
-    ]
-  },
-  {
     "word": "dios",
     "corpus_count": 62,
     "examples": [
@@ -2850,7 +2875,11 @@
         "title": "La Rumba Del Perdón"
       }
     ],
-    "display_form": "dio'"
+    "display_form": "dio'",
+    "variants": {
+      "dios": 59,
+      "dio'": 3
+    }
   },
   {
     "word": "solo",
@@ -2913,11 +2942,6 @@
     "corpus_count": 59,
     "examples": [
       {
-        "id": "7515185:13",
-        "line": "¿Tú ere' el que pimpea o te pimpean a ti?",
-        "title": "BIZCOCHITO"
-      },
-      {
         "id": "8916306:19",
         "line": "Tú ere' la exponente infinita, la equi', la suma",
         "title": "BESO"
@@ -2943,6 +2967,11 @@
         "title": "Linda"
       },
       {
+        "id": "7515185:13",
+        "line": "¿Tú ere' el que pimpea o te pimpean a ti?",
+        "title": "BIZCOCHITO"
+      },
+      {
         "id": "8402908:16",
         "line": "Tú eres mío",
         "title": "Always On My Mind*"
@@ -2953,17 +2982,21 @@
         "title": "Yo x Ti, Tu x Mí"
       },
       {
+        "id": "8701915:4",
+        "line": "Me divierte', maybe tú eres el que me libera",
+        "title": "LLYLM"
+      },
+      {
         "id": "12581296:24",
         "line": "Yo sé que tú eres pa' mí",
         "title": "La Rumba Del Perdón"
-      },
-      {
-        "id": "8324985:12",
-        "line": "No eres él, pero quiero un beso",
-        "title": "El Pañuelo"
       }
     ],
-    "display_form": "ere'"
+    "display_form": "ere'",
+    "variants": {
+      "ere'": 30,
+      "eres": 29
+    }
   },
   {
     "word": "ni",
@@ -3875,11 +3908,6 @@
         "title": "HENTAI"
       },
       {
-        "id": "3964068:14",
-        "line": "Haré ver que estoy ata'a",
-        "title": "DI MI NOMBRE (Cap.8: Éxtasis)"
-      },
-      {
         "id": "12581295:18",
         "line": "Estoy bien si estás tú",
         "title": "Sauvignon Blanc"
@@ -3908,6 +3936,11 @@
         "id": "7659063:2",
         "line": "No estoy a tu lado, pero te deseo paz y libertad (Mmm, mmm)",
         "title": "COMO UN G"
+      },
+      {
+        "id": "8173139:5",
+        "line": "Que yo estoy ocupá' olvidando tus male'",
+        "title": "DESPECHÁ"
       }
     ]
   },
@@ -4022,7 +4055,11 @@
         "title": "Brillo"
       }
     ],
-    "display_form": "ante'"
+    "display_form": "ante'",
+    "variants": {
+      "antes": 39,
+      "ante'": 4
+    }
   },
   {
     "word": "aquí",
@@ -4106,8 +4143,8 @@
     "corpus_count": 42,
     "examples": [
       {
-        "id": "4425584:55",
-        "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa' que quede (Con altura)",
+        "id": "4425584:57",
+        "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa'-pa'-pa' que quede (Con altura)",
         "title": "Con Altura"
       },
       {
@@ -4158,16 +4195,6 @@
         "title": "A Palé"
       },
       {
-        "id": "12581290:15",
-        "line": "Por fin vas a terapia, vas al psicólogo y también psiquiatra",
-        "title": "La Perla"
-      },
-      {
-        "id": "8916306:8",
-        "line": "No me dejes sola, ¿pa' dónde vas, a dónde vas?",
-        "title": "BESO"
-      },
-      {
         "id": "3646825:37",
         "line": "Ten cuida'o que al final te vas a quemar",
         "title": "Brillo"
@@ -4188,17 +4215,31 @@
         "title": "Antes de Morirme"
       },
       {
-        "id": "12660487:2",
-        "line": "Si vas lento o si vas deprisa",
-        "title": "Dios Es Un Stalker (Versión Física)"
+        "id": "12581290:15",
+        "line": "Por fin vas a terapia, vas al psicólogo y también psiquiatra",
+        "title": "La Perla"
+      },
+      {
+        "id": "8916306:8",
+        "line": "No me dejes sola, ¿pa' dónde vas, a dónde vas?",
+        "title": "BESO"
       },
       {
         "id": "2966663:1",
         "line": "No quiero saber con quién vas",
         "title": "Llámame Más Tarde"
+      },
+      {
+        "id": "12660487:2",
+        "line": "Si vas lento o si vas deprisa",
+        "title": "Dios Es Un Stalker (Versión Física)"
       }
     ],
-    "display_form": "va'"
+    "display_form": "va'",
+    "variants": {
+      "vas": 27,
+      "va'": 15
+    }
   },
   {
     "word": "hasta",
@@ -4383,11 +4424,6 @@
         "title": "De Plata"
       },
       {
-        "id": "8173139:7",
-        "line": "Con toa' mis motomami', con toda' mis yale'",
-        "title": "DESPECHÁ"
-      },
-      {
         "id": "7515169:6",
         "line": "Brillas como mis prendas, quiero que tú me entiendas",
         "title": "DIABLO"
@@ -4421,9 +4457,18 @@
         "id": "8682586:14",
         "line": "Que brillan mis ojos hoy",
         "title": "Es Por Ti"
+      },
+      {
+        "id": "13104176:14",
+        "line": "Mis Jimmy Choo yo las tiraré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ],
-    "display_form": "mi'"
+    "display_form": "mi'",
+    "variants": {
+      "mis": 39,
+      "mi'": 2
+    }
   },
   {
     "word": "mirá'",
@@ -4481,11 +4526,6 @@
         "title": "Besos Moja2"
       },
       {
-        "id": "4425584:34",
-        "line": "El dinero nunca pierde tiempo (No, no)",
-        "title": "Con Altura"
-      },
-      {
         "id": "7433029:9",
         "line": "Espero con el tiempo justiciero",
         "title": "DELIRIO DE GRANDEZA"
@@ -4504,6 +4544,11 @@
         "id": "10129261:18",
         "line": "Por mucho tiempo",
         "title": "Se nos rompió el amor"
+      },
+      {
+        "id": "6367361:15",
+        "line": "El tiempo que se pierde no vuelve",
+        "title": "Lo Vas A Olvidar"
       }
     ]
   },
@@ -4629,11 +4674,6 @@
         "title": "Magnolias"
       },
       {
-        "id": "13104176:18",
-        "line": "Si hoy estás tú",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "8173139:11",
         "line": "Hoy salgo con mi baby de la disco coroná'",
         "title": "DESPECHÁ"
@@ -4667,6 +4707,11 @@
         "id": "12581295:19",
         "line": "Si hoy estás tú",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:18",
+        "line": "Si hoy estás tú",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -4700,14 +4745,14 @@
         "title": "DIABLO"
       },
       {
-        "id": "8365376:6",
-        "line": "No has olvida'o la noche que en ti me fijé",
-        "title": "CANDY (Remix)"
-      },
-      {
         "id": "12581296:49",
         "line": "Cuando has mentido por mentir o has mentido por tu verdad",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "8365376:15",
+        "line": "No me has olvida'o, no me has olvida'o",
+        "title": "CANDY (Remix)"
       },
       {
         "id": "10912589:6",
@@ -4783,14 +4828,14 @@
     "corpus_count": 35,
     "examples": [
       {
-        "id": "4425584:6",
-        "line": "Esto es pa' que quede, lo que yo hago dura (Con altura)",
-        "title": "Con Altura"
-      },
-      {
         "id": "4057969:17",
         "line": "Esto está encendío, na, na, na, na",
         "title": "Aute Cuture"
+      },
+      {
+        "id": "4425584:6",
+        "line": "Esto es pa' que quede, lo que yo hago dura (Con altura)",
+        "title": "Con Altura"
       },
       {
         "id": "6211010:1",
@@ -5044,9 +5089,9 @@
         "title": "Si Tú Supieras Compañero"
       },
       {
-        "id": "7515069:15",
-        "line": "Nunca me ha dao' miedo la risa de un loco",
-        "title": "SAKURA"
+        "id": "4151176:11",
+        "line": "Mi corazón aún no se ha rendí'o",
+        "title": "Lo Presiento"
       }
     ]
   },
@@ -5138,14 +5183,14 @@
         "title": "New Woman"
       },
       {
-        "id": "6367361:24",
-        "line": "Un día soy un Dio' y al otro puedo partirme",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "4201752:20",
         "line": "Ya no puedo pedir má'",
         "title": "Barefoot in the Park"
+      },
+      {
+        "id": "6367361:24",
+        "line": "Un día soy un Dio' y al otro puedo partirme",
+        "title": "Lo Vas A Olvidar"
       },
       {
         "id": "2814756:37",
@@ -5156,11 +5201,6 @@
         "id": "2966663:20",
         "line": "Si quieres puedo ser un rato este hijo de puta",
         "title": "Llámame Más Tarde"
-      },
-      {
-        "id": "8365376:49",
-        "line": "Y yo, oh-oh, te escucho, puedo notar que lo estás fingiendo",
-        "title": "CANDY (Remix)"
       },
       {
         "id": "8682586:20",
@@ -5181,6 +5221,11 @@
         "id": "12581305:8",
         "line": "Y puedo decir",
         "title": "Focu ‘ranni"
+      },
+      {
+        "id": "12581288:33",
+        "line": "Ah, te puedo enamorar, yo te puedo inspirar",
+        "title": "Porcelana"
       }
     ]
   },
@@ -5219,11 +5264,6 @@
         "title": "New Woman"
       },
       {
-        "id": "8173139:41",
-        "line": "Te distrae' y yo te adelanto por la derecha, uh",
-        "title": "DESPECHÁ"
-      },
-      {
         "id": "8643641:50",
         "line": "Te distrae' y yo te adelanto por la derecha, uh",
         "title": "DESPECHÁ RMX"
@@ -5237,6 +5277,11 @@
         "id": "10912589:28",
         "line": "Uh-uh-uh",
         "title": "Omega"
+      },
+      {
+        "id": "8324985:21",
+        "line": "Uh, woh-woh",
+        "title": "El Pañuelo"
       }
     ]
   },
@@ -5346,9 +5391,9 @@
         "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
-        "id": "4151176:22",
-        "line": "To' el mundo te tiene por un santo, pero nah",
-        "title": "Lo Presiento"
+        "id": "12581290:13",
+        "line": "Él es el centro del mundo",
+        "title": "La Perla"
       }
     ]
   },
@@ -5372,11 +5417,6 @@
         "title": "Fire, Fire"
       },
       {
-        "id": "6367361:3",
-        "line": "¿Qué harás con to' este veneno? Na' bueno",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "4201752:19",
         "line": "Ya tengo to' lo que quiero",
         "title": "Barefoot in the Park"
@@ -5392,9 +5432,9 @@
         "title": "Aute Cuture"
       },
       {
-        "id": "7515185:2",
-        "line": "Pero tengo to' lo que tiene delito",
-        "title": "BIZCOCHITO"
+        "id": "6367361:3",
+        "line": "¿Qué harás con to' este veneno? Na' bueno",
+        "title": "Lo Vas A Olvidar"
       },
       {
         "id": "7515113:46",
@@ -5405,6 +5445,11 @@
         "id": "7515161:1",
         "line": "To' el mundo quiere fortuna, dinero y libertad",
         "title": "CHIRI"
+      },
+      {
+        "id": "7515279:10",
+        "line": "Cuando es de noche en el cielo y se vuelve de día, ya to' eso cambió",
+        "title": "SAOKO"
       }
     ]
   },
@@ -5494,19 +5539,9 @@
         "title": "Tagliatelle Santeria"
       },
       {
-        "id": "7515279:10",
-        "line": "Cuando es de noche en el cielo y se vuelve de día, ya to' eso cambió",
-        "title": "SAOKO"
-      },
-      {
         "id": "7515176:41",
         "line": "No quiero que pienses que eso me da orgullo",
         "title": "AISLAMIENTO"
-      },
-      {
-        "id": "9176102:15",
-        "line": "Se va calentando mi piel, eso va a tu favor",
-        "title": "TUYA"
       },
       {
         "id": "2966663:4",
@@ -5514,9 +5549,19 @@
         "title": "Llámame Más Tarde"
       },
       {
-        "id": "12581296:55",
-        "line": "Técnicamente eso sería un trío",
-        "title": "La Rumba Del Perdón"
+        "id": "4057969:1",
+        "line": "Loco, mira eso",
+        "title": "Aute Cuture"
+      },
+      {
+        "id": "6211010:5",
+        "line": "Eso era dando y dándole sin parar",
+        "title": "LA NOCHE DE ANOCHE"
+      },
+      {
+        "id": "7515279:10",
+        "line": "Cuando es de noche en el cielo y se vuelve de día, ya to' eso cambió",
+        "title": "SAOKO"
       }
     ]
   },
@@ -5576,14 +5621,14 @@
     "corpus_count": 29,
     "examples": [
       {
-        "id": "4459381:10",
-        "line": "Ay, amor que no lo ves",
-        "title": "Me Traicionaste"
-      },
-      {
         "id": "7515371:17",
         "line": "No es en serio, ¿no lo ves?",
         "title": "LAX"
+      },
+      {
+        "id": "4459381:10",
+        "line": "Ay, amor que no lo ves",
+        "title": "Me Traicionaste"
       },
       {
         "id": "7515176:16",
@@ -5616,7 +5661,11 @@
         "title": "CANDY (Remix)"
       }
     ],
-    "display_form": "ve'"
+    "display_form": "ve'",
+    "variants": {
+      "ves": 20,
+      "ve'": 9
+    }
   },
   {
     "word": "donde",
@@ -5658,19 +5707,19 @@
         "title": "La Yugular"
       },
       {
+        "id": "12660487:14",
+        "line": "Quiero a mi manera, aquí y a donde sea",
+        "title": "Dios Es Un Stalker (Versión Física)"
+      },
+      {
         "id": "8916305:42",
         "line": "¿Donde la noche 'tá pesá'?",
         "title": "VAMPIROS"
       },
       {
-        "id": "7515279:23",
-        "line": "Sé quién soy a donde vaya, nunca se me olvida",
-        "title": "SAOKO"
-      },
-      {
-        "id": "7142770:20",
-        "line": "Llegué tarde, salí pa' donde ti, pero terminé en un teteo",
-        "title": "Linda"
+        "id": "10912589:45",
+        "line": "Donde to' ha vuelto a empezar",
+        "title": "Omega"
       }
     ]
   },
@@ -5719,14 +5768,14 @@
         "title": "BULERÍAS"
       },
       {
-        "id": "4057969:28",
-        "line": "Madre mía, Rosalía, bájale",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "3065090:15",
         "line": "Ponme la mano aquí, Catalina mía",
         "title": "Catalina"
+      },
+      {
+        "id": "6387245:6",
+        "line": "Su boca contra la mía, eh",
+        "title": "Tagliatelle Santeria"
       }
     ]
   },
@@ -5780,9 +5829,9 @@
         "title": "Novia Robot"
       },
       {
-        "id": "8324985:25",
-        "line": "Ese cabrón solo dejó su poloché",
-        "title": "El Pañuelo"
+        "id": "7288792:17",
+        "line": "Puñalaítas da su ambición",
+        "title": "LA FAMA"
       }
     ]
   },
@@ -5796,24 +5845,19 @@
         "title": "Por Castigarme Tan Fuerte"
       },
       {
-        "id": "3814300:16",
-        "line": "Tan bonita que amenaza, cuando calla' me da' miedo",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "8916307:9",
         "line": "Es que tú tan loquita como yo",
         "title": "PROMESA"
       },
       {
-        "id": "4425584:5",
-        "line": "Nunca he visto una joya tan pura",
-        "title": "Con Altura"
-      },
-      {
         "id": "10129261:10",
         "line": "Aquel tan grandioso",
         "title": "Se nos rompió el amor"
+      },
+      {
+        "id": "3814300:16",
+        "line": "Tan bonita que amenaza, cuando calla' me da' miedo",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "3065897:40",
@@ -5839,6 +5883,11 @@
         "id": "3036615:30",
         "line": "No daba su luz tan bella",
         "title": "Te Venero"
+      },
+      {
+        "id": "7515069:5",
+        "line": "Y todas las chicas son tan bonitas, tan plásticas",
+        "title": "SAKURA"
       }
     ]
   },
@@ -5852,16 +5901,6 @@
         "title": "PERDÓNAME"
       },
       {
-        "id": "13104176:17",
-        "line": "Estoy bien si estás tú",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "4470734:43",
-        "line": "Estás clavando (Mmm-mmm)",
-        "title": "Como Alí"
-      },
-      {
         "id": "8682586:2",
         "line": "Y veo que a mi lado estás",
         "title": "Es Por Ti"
@@ -5872,9 +5911,19 @@
         "title": "Sauvignon Blanc"
       },
       {
+        "id": "13104176:17",
+        "line": "Estoy bien si estás tú",
+        "title": "Sauvignon Blanc (A Cappella)"
+      },
+      {
         "id": "8365376:49",
         "line": "Y yo, oh-oh, te escucho, puedo notar que lo estás fingiendo",
         "title": "CANDY (Remix)"
+      },
+      {
+        "id": "4470734:43",
+        "line": "Estás clavando (Mmm-mmm)",
+        "title": "Como Alí"
       },
       {
         "id": "12581294:5",
@@ -5897,7 +5946,11 @@
         "title": "TUYA"
       }
     ],
-    "display_form": "está'"
+    "display_form": "está'",
+    "variants": {
+      "estás": 23,
+      "está'": 4
+    }
   },
   {
     "word": "da",
@@ -5909,14 +5962,14 @@
         "title": "Guajiras"
       },
       {
-        "id": "13104176:7",
-        "line": "¿Y qué más da? Si te tengo a ti, no necesito nada más",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "7659063:11",
         "line": "El querer que no se da, ¿dónde acaba?",
         "title": "COMO UN G"
+      },
+      {
+        "id": "13104176:7",
+        "line": "¿Y qué más da? Si te tengo a ti, no necesito nada más",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "12581298:4",
@@ -5929,14 +5982,14 @@
         "title": "Sauvignon Blanc"
       },
       {
-        "id": "3814300:1",
-        "line": "Me da miedo cuando sale', sonriendo pa' la calle",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "8916307:8",
         "line": "Da igual cómo empiece, es cómo termina",
         "title": "PROMESA"
+      },
+      {
+        "id": "3814300:1",
+        "line": "Me da miedo cuando sale', sonriendo pa' la calle",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "4779329:11",
@@ -5944,14 +5997,14 @@
         "title": "Yo x Ti, Tu x Mí"
       },
       {
-        "id": "7515185:31",
-        "line": "¿Qué más da que me tire La Mala?",
-        "title": "BIZCOCHITO"
-      },
-      {
         "id": "7515069:12",
         "line": "No me da pena, me da ternura",
         "title": "SAKURA"
+      },
+      {
+        "id": "7515169:3",
+        "line": "Si Dios te lo da, te lo quitará",
+        "title": "DIABLO"
       }
     ]
   },
@@ -5970,11 +6023,6 @@
         "title": "CHICKEN TERIYAKI"
       },
       {
-        "id": "4425584:34",
-        "line": "El dinero nunca pierde tiempo (No, no)",
-        "title": "Con Altura"
-      },
-      {
         "id": "7528115:16",
         "line": "Y aunque no tenga dinero, no tenga a nadie",
         "title": "BULERÍAS"
@@ -5983,6 +6031,11 @@
         "id": "7515161:1",
         "line": "To' el mundo quiere fortuna, dinero y libertad",
         "title": "CHIRI"
+      },
+      {
+        "id": "4425584:34",
+        "line": "El dinero nunca pierde tiempo (No, no)",
+        "title": "Con Altura"
       },
       {
         "id": "12581290:4",
@@ -6026,11 +6079,6 @@
         "title": "HENTAI"
       },
       {
-        "id": "6211010:22",
-        "line": "Con esa boquita suena rico to' lo que tú me dice'",
-        "title": "LA NOCHE DE ANOCHE"
-      },
-      {
         "id": "2814756:2",
         "line": "Pa' esa mierda ya no tengo tiempo",
         "title": "Antes de Morirme"
@@ -6041,14 +6089,19 @@
         "title": "Lo Presiento"
       },
       {
-        "id": "6387245:2",
-        "line": "Esa noche él tocaba y si grande era el cartel",
-        "title": "Tagliatelle Santeria"
-      },
-      {
         "id": "8701915:28",
         "line": "Ay, dame esa, esa pulsera de flores",
         "title": "LLYLM"
+      },
+      {
+        "id": "8416396:14",
+        "line": "Esa noche en mi cuarto, oh (Eh), eh-eh",
+        "title": "Besos Moja2"
+      },
+      {
+        "id": "7528115:20",
+        "line": "Ay, esa que tú me hiciste",
+        "title": "BULERÍAS"
       }
     ]
   },
@@ -6118,14 +6171,14 @@
         "title": "New Woman"
       },
       {
-        "id": "4425584:54",
-        "line": "La Rosalía",
-        "title": "Con Altura"
-      },
-      {
         "id": "8173139:50",
         "line": "La ROSALÍA, mmm, jaja, je",
         "title": "DESPECHÁ"
+      },
+      {
+        "id": "4425584:54",
+        "line": "La Rosalía",
+        "title": "Con Altura"
       },
       {
         "id": "3646825:45",
@@ -6189,14 +6242,14 @@
         "title": "Yo x Ti, Tu x Mí"
       },
       {
-        "id": "7528115:21",
-        "line": "Y una sí, pero dos no, y una",
-        "title": "BULERÍAS"
-      },
-      {
         "id": "3065897:32",
         "line": "Dos abanico' negro' que por pestaña'",
         "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "8264237:49",
+        "line": "Dime dos secretos que le digo en el oído, que a donde llego de una ve' se va conmigo",
+        "title": "DESPECHÁ (Demo)"
       }
     ],
     "display_form": "do'"
@@ -6232,11 +6285,6 @@
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
-        "id": "3814300:5",
-        "line": "Y del cielo y de la luna, que tú quieras mirarlos",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "3036615:28",
         "line": "Una noche en que la luna",
         "title": "Te Venero"
@@ -6247,9 +6295,9 @@
         "title": "MALAMENTE (Cap.1: Augurio)"
       },
       {
-        "id": "8916305:23",
-        "line": "To' los fin 'e semana la luna me escolta",
-        "title": "VAMPIROS"
+        "id": "3814300:5",
+        "line": "Y del cielo y de la luna, que tú quieras mirarlos",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "7515161:3",
@@ -6257,19 +6305,24 @@
         "title": "CHIRI"
       },
       {
+        "id": "8916305:23",
+        "line": "To' los fin 'e semana la luna me escolta",
+        "title": "VAMPIROS"
+      },
+      {
+        "id": "6211010:21",
+        "line": "Y que la luna no' supervise",
+        "title": "LA NOCHE DE ANOCHE"
+      },
+      {
         "id": "8916306:20",
         "line": "Te queda pequeña la luna (¡Yah!)",
         "title": "BESO"
       },
       {
-        "id": "8416396:15",
-        "line": "Y la luna fue testigo de (Oh-oh)",
-        "title": "Besos Moja2"
-      },
-      {
-        "id": "7515169:5",
-        "line": "Y como tú ninguna, brillas como la luna",
-        "title": "DIABLO"
+        "id": "6387245:23",
+        "line": "Todito bien hecho, la luna supervisó (Ey, ey)",
+        "title": "Tagliatelle Santeria"
       }
     ]
   },
@@ -6283,16 +6336,6 @@
         "title": "PERDÓNAME"
       },
       {
-        "id": "12581288:24",
-        "line": "Traje algo pa' que tú te relajes",
-        "title": "Porcelana"
-      },
-      {
-        "id": "6367361:14",
-        "line": "Dime si aún queda algo en común",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "7659063:14",
         "line": "Qué pena cuando quieres algo pero Dios tiene otros planes pa' ti",
         "title": "COMO UN G"
@@ -6303,14 +6346,19 @@
         "title": "LAX"
       },
       {
+        "id": "12581288:24",
+        "line": "Traje algo pa' que tú te relajes",
+        "title": "Porcelana"
+      },
+      {
+        "id": "6367361:14",
+        "line": "Dime si aún queda algo en común",
+        "title": "Lo Vas A Olvidar"
+      },
+      {
         "id": "7288792:5",
         "line": "Pero me obsesioné con algo que a él le hacía mal",
         "title": "LA FAMA"
-      },
-      {
-        "id": "7515069:29",
-        "line": "Solo hay riesgo si hay algo que perder",
-        "title": "SAKURA"
       },
       {
         "id": "12581296:2",
@@ -6321,6 +6369,11 @@
         "id": "7515279:33",
         "line": "Ja, a ver si sirven de algo, jajaja",
         "title": "SAOKO"
+      },
+      {
+        "id": "7515069:29",
+        "line": "Solo hay riesgo si hay algo que perder",
+        "title": "SAKURA"
       },
       {
         "id": "4151176:23",
@@ -6365,19 +6418,14 @@
         "title": "Lo Vas A Olvidar"
       },
       {
-        "id": "8264237:43",
-        "line": "Te veo con otro bailando y me llama, 'onde quiera' te encelo",
-        "title": "DESPECHÁ (Demo)"
-      },
-      {
-        "id": "8916306:33",
-        "line": "Yo quiero que me de' otro beso",
-        "title": "BESO"
-      },
-      {
         "id": "2814756:33",
         "line": "El cielo está en algún otro lugar",
         "title": "Antes de Morirme"
+      },
+      {
+        "id": "8264237:43",
+        "line": "Te veo con otro bailando y me llama, 'onde quiera' te encelo",
+        "title": "DESPECHÁ (Demo)"
       },
       {
         "id": "8173139:10",
@@ -6388,6 +6436,11 @@
         "id": "8643641:10",
         "line": "Lo muevo de la'o a la'o y a otro la'o",
         "title": "DESPECHÁ RMX"
+      },
+      {
+        "id": "8916306:33",
+        "line": "Yo quiero que me de' otro beso",
+        "title": "BESO"
       }
     ]
   },
@@ -6441,9 +6494,9 @@
         "title": "TUYA"
       },
       {
-        "id": "8264237:48",
-        "line": "Tú no tiene tanta, tú no va a tene' a ninguna",
-        "title": "DESPECHÁ (Demo)"
+        "id": "8416396:1",
+        "line": "Hey, shorty, ¿cómo te va? (¿Cómo te va?)",
+        "title": "Besos Moja2"
       }
     ]
   },
@@ -6462,11 +6515,6 @@
         "title": "DELIRIO DE GRANDEZA"
       },
       {
-        "id": "7515185:1",
-        "line": "Yo no soy y ni voy a ser tu bizcochito",
-        "title": "BIZCOCHITO"
-      },
-      {
         "id": "7515170:3",
         "line": "Tan rico no puede ser",
         "title": "HENTAI"
@@ -6477,21 +6525,6 @@
         "title": "Novia Robot"
       },
       {
-        "id": "7515069:13",
-        "line": "No pa' siempre puedes ser una estrella y brillar",
-        "title": "SAKURA"
-      },
-      {
-        "id": "10912589:21",
-        "line": "Puedo ser Céline Dion y un tíguere",
-        "title": "Omega"
-      },
-      {
-        "id": "12581290:25",
-        "line": "Ser bala perdida es su especialidad",
-        "title": "La Perla"
-      },
-      {
         "id": "8701915:20",
         "line": "O no ser y disfrazar",
         "title": "LLYLM"
@@ -6500,6 +6533,26 @@
         "id": "3646825:4",
         "line": "Mira que quiero ser buena, ¿no lo ves?",
         "title": "Brillo"
+      },
+      {
+        "id": "7515069:13",
+        "line": "No pa' siempre puedes ser una estrella y brillar",
+        "title": "SAKURA"
+      },
+      {
+        "id": "2966663:20",
+        "line": "Si quieres puedo ser un rato este hijo de puta",
+        "title": "Llámame Más Tarde"
+      },
+      {
+        "id": "7515185:1",
+        "line": "Yo no soy y ni voy a ser tu bizcochito",
+        "title": "BIZCOCHITO"
+      },
+      {
+        "id": "10912589:21",
+        "line": "Puedo ser Céline Dion y un tíguere",
+        "title": "Omega"
       }
     ]
   },
@@ -6507,11 +6560,6 @@
     "word": "será",
     "corpus_count": 23,
     "examples": [
-      {
-        "id": "13104176:24",
-        "line": "Mi futuro sé bien que será dorado",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
       {
         "id": "7659063:12",
         "line": "Si encuentro el tuyo ya será deuda pagada",
@@ -6523,9 +6571,9 @@
         "title": "Sauvignon Blanc"
       },
       {
-        "id": "3814300:19",
-        "line": "Y si no te agarro fuerte, siento que será mi culpa",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
+        "id": "13104176:24",
+        "line": "Mi futuro sé bien que será dorado",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "10615838:34",
@@ -6533,14 +6581,9 @@
         "title": "New Woman"
       },
       {
-        "id": "7288792:12",
-        "line": "Sabe’ que será celosa, yo nunca le confiaré",
-        "title": "LA FAMA"
-      },
-      {
-        "id": "8416396:48",
-        "line": "¿Por qué será que contigo me da?",
-        "title": "Besos Moja2"
+        "id": "3814300:19",
+        "line": "Y si no te agarro fuerte, siento que será mi culpa",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "12581296:6",
@@ -6551,6 +6594,16 @@
         "id": "12581301:44",
         "line": "Pero ¿será verdad",
         "title": "Novia Robot"
+      },
+      {
+        "id": "7288792:12",
+        "line": "Sabe’ que será celosa, yo nunca le confiaré",
+        "title": "LA FAMA"
+      },
+      {
+        "id": "8416396:48",
+        "line": "¿Por qué será que contigo me da?",
+        "title": "Besos Moja2"
       },
       {
         "id": "8701915:32",
@@ -6574,19 +6627,14 @@
         "title": "KLK"
       },
       {
-        "id": "4470734:12",
-        "line": "Toy flotando y pico, como Alí (Gy-gypsy)",
-        "title": "Como Alí"
-      },
-      {
         "id": "7659063:8",
         "line": "'Toy triste si pienso en lo bueno que tengo que no pue' durar",
         "title": "COMO UN G"
       },
       {
-        "id": "6211010:20",
-        "line": "Cuando 'toy contigo dejo que la vibra corra",
-        "title": "LA NOCHE DE ANOCHE"
+        "id": "4470734:12",
+        "line": "Toy flotando y pico, como Alí (Gy-gypsy)",
+        "title": "Como Alí"
       },
       {
         "id": "8324985:3",
@@ -6597,6 +6645,11 @@
         "id": "7142770:8",
         "line": "Hoy estoy a fuego, 'toy chucky",
         "title": "Linda"
+      },
+      {
+        "id": "6211010:20",
+        "line": "Cuando 'toy contigo dejo que la vibra corra",
+        "title": "LA NOCHE DE ANOCHE"
       },
       {
         "id": "8173139:18",
@@ -6645,7 +6698,11 @@
         "title": "Yo x Ti, Tu x Mí"
       }
     ],
-    "display_form": "somo'"
+    "display_form": "somo'",
+    "variants": {
+      "somo'": 13,
+      "somos": 10
+    }
   },
   {
     "word": "bendecía'",
@@ -6684,8 +6741,8 @@
     "corpus_count": 22,
     "examples": [
       {
-        "id": "8365376:6",
-        "line": "No has olvida'o la noche que en ti me fijé",
+        "id": "8365376:15",
+        "line": "No me has olvida'o, no me has olvida'o",
         "title": "CANDY (Remix)"
       }
     ],
@@ -6762,9 +6819,9 @@
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
-        "id": "12660487:19",
-        "line": "A ver cuál de los dos llega antes a ti",
-        "title": "Dios Es Un Stalker (Versión Física)"
+        "id": "7515279:33",
+        "line": "Ja, a ver si sirven de algo, jajaja",
+        "title": "SAOKO"
       }
     ]
   },
@@ -6798,16 +6855,6 @@
         "title": "KLK"
       },
       {
-        "id": "8365376:29",
-        "line": "La vida es bonita pero traicionera",
-        "title": "CANDY (Remix)"
-      },
-      {
-        "id": "8916306:23",
-        "line": "Si antes hubo otra vida, de tus agua' bebí",
-        "title": "BESO"
-      },
-      {
         "id": "2814756:12",
         "line": "Quiero jugar con mi vida hasta haberle perdí'o el valor",
         "title": "Antes de Morirme"
@@ -6816,6 +6863,16 @@
         "id": "7515169:16",
         "line": "De la noche a la mañana, mi vida se me fue",
         "title": "DIABLO"
+      },
+      {
+        "id": "8916306:23",
+        "line": "Si antes hubo otra vida, de tus agua' bebí",
+        "title": "BESO"
+      },
+      {
+        "id": "8365376:29",
+        "line": "La vida es bonita pero traicionera",
+        "title": "CANDY (Remix)"
       },
       {
         "id": "8916305:48",
@@ -6849,24 +6906,24 @@
         "title": "CUUUUuuuuuute"
       },
       {
-        "id": "7515069:17",
-        "line": "Si tienes 60 y te endiablas cuando una mujer frontea",
-        "title": "SAKURA"
-      },
-      {
         "id": "7515371:4",
         "line": "Pero tú tienes todo lo que perdí",
         "title": "LAX"
       },
       {
-        "id": "12581288:25",
-        "line": "Aquí tienes este homenaje",
-        "title": "Porcelana"
+        "id": "7515069:17",
+        "line": "Si tienes 60 y te endiablas cuando una mujer frontea",
+        "title": "SAKURA"
       },
       {
         "id": "12581301:5",
         "line": "Con cualquiera de tus compras tienes una garantía porque nuestra póliza siempre es para quedar bien y hacerte feliz tenga el coste",
         "title": "Novia Robot"
+      },
+      {
+        "id": "12581288:25",
+        "line": "Aquí tienes este homenaje",
+        "title": "Porcelana"
       },
       {
         "id": "12581290:7",
@@ -6879,7 +6936,11 @@
         "title": "Yo x Ti, Tu x Mí"
       }
     ],
-    "display_form": "tiene'"
+    "display_form": "tiene'",
+    "variants": {
+      "tienes": 18,
+      "tiene'": 4
+    }
   },
   {
     "word": "calle",
@@ -6926,14 +6987,14 @@
         "title": "SAOKO"
       },
       {
-        "id": "8916305:9",
-        "line": "Nosotros tenemo' la calle prendía'",
-        "title": "VAMPIROS"
-      },
-      {
         "id": "8264237:51",
         "line": "Tengo la calle controla', un amor en el cuello y la mami apechá'",
         "title": "DESPECHÁ (Demo)"
+      },
+      {
+        "id": "8916305:9",
+        "line": "Nosotros tenemo' la calle prendía'",
+        "title": "VAMPIROS"
       }
     ]
   },
@@ -6967,11 +7028,6 @@
         "title": "Con Altura"
       },
       {
-        "id": "2966663:9",
-        "line": "No hay mensaje dentro de esta botella",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "8324985:4",
         "line": "Destrozá' estoy por dentro",
         "title": "El Pañuelo"
@@ -6985,6 +7041,11 @@
         "id": "3646825:10",
         "line": "Dentro de poco va a ser demasiado tarde",
         "title": "Brillo"
+      },
+      {
+        "id": "2966663:9",
+        "line": "No hay mensaje dentro de esta botella",
+        "title": "Llámame Más Tarde"
       }
     ]
   },
@@ -7064,6 +7125,11 @@
         "title": "TUYA"
       },
       {
+        "id": "12581296:12",
+        "line": "Y ahí dentro metió el quilo e igual que el quilo",
+        "title": "La Rumba Del Perdón"
+      },
+      {
         "id": "8643641:28",
         "line": "Bajé con un flow nuevo 'e caja, baby, hackeá'",
         "title": "DESPECHÁ RMX"
@@ -7074,14 +7140,9 @@
         "title": "DESPECHÁ"
       },
       {
-        "id": "12581296:12",
-        "line": "Y ahí dentro metió el quilo e igual que el quilo",
-        "title": "La Rumba Del Perdón"
-      },
-      {
-        "id": "8916305:23",
-        "line": "To' los fin 'e semana la luna me escolta",
-        "title": "VAMPIROS"
+        "id": "8264237:10",
+        "line": "Bajé con un flow nuevo 'e caja, baby, hackeá'",
+        "title": "DESPECHÁ (Demo)"
       }
     ]
   },
@@ -7105,14 +7166,14 @@
         "title": "DESPECHÁ RMX"
       },
       {
-        "id": "8916306:18",
-        "line": "Ey, ¿cómo decirte?",
-        "title": "BESO"
-      },
-      {
         "id": "8173139:42",
         "line": "Voy a 180 porque soy una racineta, ey, ey",
         "title": "DESPECHÁ"
+      },
+      {
+        "id": "8916306:18",
+        "line": "Ey, ¿cómo decirte?",
+        "title": "BESO"
       },
       {
         "id": "8264237:4",
@@ -7161,14 +7222,14 @@
         "title": "Te Venero"
       },
       {
-        "id": "8416396:9",
-        "line": "Lo tuyo y mío era real (Oh-oh)",
-        "title": "Besos Moja2"
-      },
-      {
         "id": "9176102:6",
         "line": "Solo esta noche ere' mío, mío",
         "title": "TUYA"
+      },
+      {
+        "id": "8416396:9",
+        "line": "Lo tuyo y mío era real (Oh-oh)",
+        "title": "Besos Moja2"
       }
     ]
   },
@@ -7182,14 +7243,9 @@
         "title": "Sexo, Violencia y Llantas"
       },
       {
-        "id": "4779329:68",
-        "line": "Mira, ¿quién lo diría (¿Qué?), que hasta en la esquina esta sazón sonaría?",
+        "id": "4779329:71",
+        "line": "¿Quién lo diría que hasta en la esquina esta sazón sonaría? (Hmm)",
         "title": "Yo x Ti, Tu x Mí"
-      },
-      {
-        "id": "7659063:4",
-        "line": "Yo tengo mi fe, mis armas, mi cora', que aún no sé pa' quién",
-        "title": "COMO UN G"
       },
       {
         "id": "4151176:9",
@@ -7197,14 +7253,19 @@
         "title": "Lo Presiento"
       },
       {
-        "id": "7515279:23",
-        "line": "Sé quién soy a donde vaya, nunca se me olvida",
-        "title": "SAOKO"
+        "id": "7659063:4",
+        "line": "Yo tengo mi fe, mis armas, mi cora', que aún no sé pa' quién",
+        "title": "COMO UN G"
       },
       {
         "id": "7515169:49",
         "line": "No sé ni quién eres, diablo, diablo",
         "title": "DIABLO"
+      },
+      {
+        "id": "7515279:23",
+        "line": "Sé quién soy a donde vaya, nunca se me olvida",
+        "title": "SAOKO"
       },
       {
         "id": "6211010:17",
@@ -7258,11 +7319,6 @@
         "title": "Si Tú Supieras Compañero"
       },
       {
-        "id": "7515185:3",
-        "line": "Que me pongan en el sol, que me derrito",
-        "title": "BIZCOCHITO"
-      },
-      {
         "id": "12660487:34",
         "line": "Soy tus guantes y el sol que te calma",
         "title": "Dios Es Un Stalker (Versión Física)"
@@ -7271,6 +7327,11 @@
         "id": "9176102:14",
         "line": "Ya sé que me viste, no se puede tapar el sol con la mano (Eso e')",
         "title": "TUYA"
+      },
+      {
+        "id": "7515185:3",
+        "line": "Que me pongan en el sol, que me derrito",
+        "title": "BIZCOCHITO"
       }
     ]
   },
@@ -7294,11 +7355,6 @@
         "title": "Thank Yu :)"
       },
       {
-        "id": "4470734:52",
-        "line": "Sí, sí, sí (Gypsy)",
-        "title": "Como Alí"
-      },
-      {
         "id": "7528115:21",
         "line": "Y una sí, pero dos no, y una",
         "title": "BULERÍAS"
@@ -7312,6 +7368,11 @@
         "id": "10615838:33",
         "line": "Nací pura, sí",
         "title": "New Woman"
+      },
+      {
+        "id": "4470734:52",
+        "line": "Sí, sí, sí (Gypsy)",
+        "title": "Como Alí"
       },
       {
         "id": "7142770:3",
@@ -7350,24 +7411,24 @@
         "title": "La Perla"
       },
       {
+        "id": "12581301:43",
+        "line": "No entiende que nosotras nacimos con él",
+        "title": "Novia Robot"
+      },
+      {
         "id": "7288792:5",
         "line": "Pero me obsesioné con algo que a él le hacía mal",
         "title": "LA FAMA"
       },
       {
-        "id": "12581301:42",
-        "line": "Él lo que quiere es el poder",
-        "title": "Novia Robot"
+        "id": "2814756:14",
+        "line": "Le meto a él y a quien venga detrás, no le temo al dolor",
+        "title": "Antes de Morirme"
       },
       {
         "id": "6387245:2",
         "line": "Esa noche él tocaba y si grande era el cartel",
         "title": "Tagliatelle Santeria"
-      },
-      {
-        "id": "2814756:14",
-        "line": "Le meto a él y a quien venga detrás, no le temo al dolor",
-        "title": "Antes de Morirme"
       },
       {
         "id": "8324985:12",
@@ -7411,19 +7472,14 @@
         "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
-        "id": "3964062:10",
-        "line": "Pelo negro, ojos oscuros",
-        "title": "BAGDAD (Cap.7: Liturgia)"
-      },
-      {
         "id": "10912589:4",
         "line": "Tus ojos relucen, son dos pistolas",
         "title": "Omega"
       },
       {
-        "id": "4779329:39",
-        "line": "Lo que tengo lo gastaría porque tus ojos, mai', brillarían",
-        "title": "Yo x Ti, Tu x Mí"
+        "id": "3964062:10",
+        "line": "Pelo negro, ojos oscuros",
+        "title": "BAGDAD (Cap.7: Liturgia)"
       },
       {
         "id": "12581296:20",
@@ -7431,12 +7487,21 @@
         "title": "La Rumba Del Perdón"
       },
       {
+        "id": "4779329:39",
+        "line": "Lo que tengo lo gastaría porque tus ojos, mai', brillarían",
+        "title": "Yo x Ti, Tu x Mí"
+      },
+      {
         "id": "4201752:3",
         "line": "Un rayo cayó en tus ojo'",
         "title": "Barefoot in the Park"
       }
     ],
-    "display_form": "ojo'"
+    "display_form": "ojo'",
+    "variants": {
+      "ojos": 15,
+      "ojo'": 6
+    }
   },
   {
     "word": "duro",
@@ -7509,14 +7574,14 @@
         "title": "Besos Moja2"
       },
       {
-        "id": "8916306:49",
-        "line": "Y si tú me espera', eh",
-        "title": "BESO"
-      },
-      {
         "id": "6211010:11",
         "line": "Eh, eh",
         "title": "LA NOCHE DE ANOCHE"
+      },
+      {
+        "id": "8916306:49",
+        "line": "Y si tú me espera', eh",
+        "title": "BESO"
       }
     ]
   },
@@ -7657,8 +7722,8 @@
         "title": "Dolerme"
       },
       {
-        "id": "4496591:17",
-        "line": "Y un millón de veces yo te cogía",
+        "id": "4496591:25",
+        "line": "Y un millón de veces me enseñarías",
         "title": "Un Millón de Veces"
       },
       {
@@ -7667,7 +7732,11 @@
         "title": "LA FAMA"
       }
     ],
-    "display_form": "vece'"
+    "display_form": "vece'",
+    "variants": {
+      "veces": 19,
+      "vece'": 1
+    }
   },
   {
     "word": "cómo",
@@ -7714,14 +7783,14 @@
         "title": "PROMESA"
       },
       {
-        "id": "8365376:19",
-        "line": "Yo no he borra'o y recuerdo cómo es que desnuda tú te ve'",
-        "title": "CANDY (Remix)"
-      },
-      {
         "id": "3856338:29",
         "line": "¡Cómo brilla!",
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+      },
+      {
+        "id": "3750274:1",
+        "line": "Ese cristalito roto yo sentí cómo crujía (Hm)",
+        "title": "MALAMENTE (Cap.1: Augurio)"
       }
     ]
   },
@@ -7735,14 +7804,14 @@
         "title": "Fire, Fire"
       },
       {
-        "id": "13104176:4",
-        "line": "Cuando no quede na', nada que perder",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:4",
         "line": "Cuando no quede na', nada que perder",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:4",
+        "line": "Cuando no quede na', nada que perder",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "8916307:22",
@@ -7750,14 +7819,14 @@
         "title": "PROMESA"
       },
       {
-        "id": "7659063:10",
-        "line": "Nada te debo y tú no me debes nada",
-        "title": "COMO UN G"
-      },
-      {
         "id": "7528115:5",
         "line": "Nada que me arrepienta ni de que yo lamente ahora",
         "title": "BULERÍAS"
+      },
+      {
+        "id": "7659063:10",
+        "line": "Nada te debo y tú no me debes nada",
+        "title": "COMO UN G"
       },
       {
         "id": "8365376:11",
@@ -7770,14 +7839,14 @@
         "title": "LA FAMA"
       },
       {
-        "id": "7515185:27",
-        "line": "Ya no tengo nada más que decir",
-        "title": "BIZCOCHITO"
-      },
-      {
         "id": "7515279:38",
         "line": "Nada te pue' parar, y ya",
         "title": "SAOKO"
+      },
+      {
+        "id": "8416396:2",
+        "line": "Hace tiempo que no sé nada de ti (Eh-eh)",
+        "title": "Besos Moja2"
       }
     ]
   },
@@ -7837,14 +7906,14 @@
         "title": "AISLAMIENTO"
       },
       {
-        "id": "3646825:7",
-        "line": "Lloran con mis penas (Tra), si salgo a cantar (Tra)",
-        "title": "Brillo"
-      },
-      {
         "id": "8173139:11",
         "line": "Hoy salgo con mi baby de la disco coroná'",
         "title": "DESPECHÁ"
+      },
+      {
+        "id": "3646825:7",
+        "line": "Lloran con mis penas (Tra), si salgo a cantar (Tra)",
+        "title": "Brillo"
       },
       {
         "id": "8643641:11",
@@ -7873,14 +7942,14 @@
         "title": "Reliquia"
       },
       {
-        "id": "3964062:1",
-        "line": "Y se va a quemar, si sigue ahí",
-        "title": "BAGDAD (Cap.7: Liturgia)"
-      },
-      {
         "id": "5197781:22",
         "line": "Pa' poderte sacar de ahí",
         "title": "Juro Que"
+      },
+      {
+        "id": "3964062:1",
+        "line": "Y se va a quemar, si sigue ahí",
+        "title": "BAGDAD (Cap.7: Liturgia)"
       },
       {
         "id": "7659063:33",
@@ -7934,19 +8003,9 @@
         "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
-        "id": "2966663:21",
-        "line": "Contigo no hacía falta pero no me disgusta",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "8365376:11",
         "line": "Y en la nada quedó lo que contigo soñé",
         "title": "CANDY (Remix)"
-      },
-      {
-        "id": "8416396:48",
-        "line": "¿Por qué será que contigo me da?",
-        "title": "Besos Moja2"
       },
       {
         "id": "4779329:12",
@@ -7954,14 +8013,24 @@
         "title": "Yo x Ti, Tu x Mí"
       },
       {
-        "id": "8916306:7",
-        "line": "Yo me voy contigo a matar",
-        "title": "BESO"
-      },
-      {
         "id": "6211010:20",
         "line": "Cuando 'toy contigo dejo que la vibra corra",
         "title": "LA NOCHE DE ANOCHE"
+      },
+      {
+        "id": "2966663:21",
+        "line": "Contigo no hacía falta pero no me disgusta",
+        "title": "Llámame Más Tarde"
+      },
+      {
+        "id": "8416396:48",
+        "line": "¿Por qué será que contigo me da?",
+        "title": "Besos Moja2"
+      },
+      {
+        "id": "8916306:7",
+        "line": "Yo me voy contigo a matar",
+        "title": "BESO"
       }
     ]
   },
@@ -7985,14 +8054,14 @@
         "title": "Si Tú Supieras Compañero"
       },
       {
-        "id": "4496591:9",
-        "line": "Tu cuerpo estremecido no se deja estremecer",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "8324985:18",
         "line": "Mata la angustia aquí en mi cuerpo",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "4496591:9",
+        "line": "Tu cuerpo estremecido no se deja estremecer",
+        "title": "Un Millón de Veces"
       },
       {
         "id": "8365376:27",
@@ -8000,14 +8069,14 @@
         "title": "CANDY (Remix)"
       },
       {
-        "id": "8416396:55",
-        "line": "Y si comerno' es un error, que tu cuerpo se equivoque",
-        "title": "Besos Moja2"
-      },
-      {
         "id": "6211010:12",
         "line": "Tú me dejaste el cuerpo caliente, infierno",
         "title": "LA NOCHE DE ANOCHE"
+      },
+      {
+        "id": "8416396:55",
+        "line": "Y si comerno' es un error, que tu cuerpo se equivoque",
+        "title": "Besos Moja2"
       },
       {
         "id": "8264237:42",
@@ -8082,8 +8151,8 @@
         "title": "Abcdefg"
       },
       {
-        "id": "12579327:3",
-        "line": "I si només la mires, et salvaries",
+        "id": "12579327:17",
+        "line": "I privar-se és la indulgència que practica per amor",
         "title": "Divinize"
       },
       {
@@ -8153,14 +8222,14 @@
         "title": "MALAMENTE (Cap.1: Augurio)"
       },
       {
-        "id": "7142770:6",
-        "line": "Las amiga' que se besan son la mejor compañía",
-        "title": "Linda"
-      },
-      {
         "id": "7659063:13",
         "line": "Si no lo puedes tener, mejor déjalo ir",
         "title": "COMO UN G"
+      },
+      {
+        "id": "7142770:6",
+        "line": "Las amiga' que se besan son la mejor compañía",
+        "title": "Linda"
       },
       {
         "id": "12581296:5",
@@ -8199,6 +8268,11 @@
         "title": "Porcelana"
       },
       {
+        "id": "12581294:49",
+        "line": "Pero Él cabe en mi pecho",
+        "title": "La Yugular"
+      },
+      {
         "id": "4470734:42",
         "line": "En el pecho flechas, como Alí",
         "title": "Como Alí"
@@ -8209,16 +8283,6 @@
         "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
-        "id": "12581294:49",
-        "line": "Pero Él cabe en mi pecho",
-        "title": "La Yugular"
-      },
-      {
-        "id": "7288792:18",
-        "line": "En el pecho afilada, es lo peor",
-        "title": "LA FAMA"
-      },
-      {
         "id": "7515161:10",
         "line": "Lleva mi nombre printea'o en el pecho",
         "title": "CHIRI"
@@ -8227,6 +8291,11 @@
         "id": "8324985:11",
         "line": "Y hoy derramo cada lágrima en tu pecho",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "7288792:18",
+        "line": "En el pecho afilada, es lo peor",
+        "title": "LA FAMA"
       }
     ]
   },
@@ -8250,24 +8319,24 @@
         "title": "De Madrugá"
       },
       {
-        "id": "12581288:12",
-        "line": "Como un cubata cae mi garganta y se vierte en mi pelo hasta el suelo",
-        "title": "Porcelana"
-      },
-      {
         "id": "12579326:16",
         "line": "Pero el pelo vuelve a crecer, la pureza también",
         "title": "Reliquia"
       },
       {
-        "id": "3964062:10",
-        "line": "Pelo negro, ojos oscuros",
-        "title": "BAGDAD (Cap.7: Liturgia)"
-      },
-      {
         "id": "7515113:3",
         "line": "Tu pelo azabache",
         "title": "LA COMBI VERSACE"
+      },
+      {
+        "id": "12581288:12",
+        "line": "Como un cubata cae mi garganta y se vierte en mi pelo hasta el suelo",
+        "title": "Porcelana"
+      },
+      {
+        "id": "3964062:10",
+        "line": "Pelo negro, ojos oscuros",
+        "title": "BAGDAD (Cap.7: Liturgia)"
       },
       {
         "id": "12660487:7",
@@ -8384,7 +8453,11 @@
         "title": "LA NOCHE DE ANOCHE"
       }
     ],
-    "display_form": "sabe'"
+    "display_form": "sabe'",
+    "variants": {
+      "sabes": 13,
+      "sabe'": 5
+    }
   },
   {
     "word": "morir",
@@ -8396,14 +8469,14 @@
         "title": "Que Se Muere Que Se Muere"
       },
       {
-        "id": "3964062:2",
-        "line": "Las llamas van al cielo a morir",
-        "title": "BAGDAD (Cap.7: Liturgia)"
-      },
-      {
         "id": "3065090:9",
         "line": "Mira que me vi'a morir",
         "title": "Catalina"
+      },
+      {
+        "id": "3964062:2",
+        "line": "Las llamas van al cielo a morir",
+        "title": "BAGDAD (Cap.7: Liturgia)"
       },
       {
         "id": "2814756:5",
@@ -8427,14 +8500,14 @@
         "title": "A NINGÚN HOMBRE (Cap.11: Poder)"
       },
       {
-        "id": "12581288:1",
-        "line": "Mi piel es fina, de porcelana",
-        "title": "Porcelana"
-      },
-      {
         "id": "9077775:34",
         "line": "Tan loquillo, alejada en tu piel",
         "title": "Choices"
+      },
+      {
+        "id": "12581288:1",
+        "line": "Mi piel es fina, de porcelana",
+        "title": "Porcelana"
       },
       {
         "id": "3750274:30",
@@ -8442,24 +8515,24 @@
         "title": "MALAMENTE (Cap.1: Augurio)"
       },
       {
-        "id": "4496591:4",
-        "line": "Mis labios no dejaban de rozarse con tu piel",
-        "title": "Un Millón de Veces"
-      },
-      {
-        "id": "6387245:4",
-        "line": "Como una pantera negra, se acerca a morder mi piel",
-        "title": "Tagliatelle Santeria"
-      },
-      {
         "id": "9176102:15",
         "line": "Se va calentando mi piel, eso va a tu favor",
         "title": "TUYA"
       },
       {
+        "id": "4496591:4",
+        "line": "Mis labios no dejaban de rozarse con tu piel",
+        "title": "Un Millón de Veces"
+      },
+      {
         "id": "2814756:38",
         "line": "Antes de morirme, otra piel",
         "title": "Antes de Morirme"
+      },
+      {
+        "id": "6387245:4",
+        "line": "Como una pantera negra, se acerca a morder mi piel",
+        "title": "Tagliatelle Santeria"
       },
       {
         "id": "8365376:23",
@@ -8549,6 +8622,11 @@
         "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
+        "id": "7515161:1",
+        "line": "To' el mundo quiere fortuna, dinero y libertad",
+        "title": "CHIRI"
+      },
+      {
         "id": "7288792:16",
         "line": "La sangre le hierve, siempre quiere más",
         "title": "LA FAMA"
@@ -8557,11 +8635,6 @@
         "id": "6387245:3",
         "line": "Me pide mi corazón (Uh), quiere quedarse con él (Sí, sí)",
         "title": "Tagliatelle Santeria"
-      },
-      {
-        "id": "7515161:1",
-        "line": "To' el mundo quiere fortuna, dinero y libertad",
-        "title": "CHIRI"
       },
       {
         "id": "8264237:45",
@@ -8591,11 +8664,6 @@
     "corpus_count": 17,
     "examples": [
       {
-        "id": "5461781:5",
-        "line": "Hay nivele' para todo en esta vi'a",
-        "title": "TKN"
-      },
-      {
         "id": "5197781:21",
         "line": "Que yo lo empeño todo, que todito lo empeño (Que, que)",
         "title": "Juro Que"
@@ -8604,6 +8672,11 @@
         "id": "8682586:7",
         "line": "Y todo lo que está de más",
         "title": "Es Por Ti"
+      },
+      {
+        "id": "5461781:5",
+        "line": "Hay nivele' para todo en esta vi'a",
+        "title": "TKN"
       },
       {
         "id": "4057969:34",
@@ -8621,14 +8694,14 @@
         "title": "SAKURA"
       },
       {
-        "id": "10912589:16",
-        "line": "Todo lo tuyo me recuerda a ti",
-        "title": "Omega"
-      },
-      {
         "id": "7515186:36",
         "line": "De azúcar la mami, todo sin recibo",
         "title": "CHICKEN TERIYAKI"
+      },
+      {
+        "id": "10912589:16",
+        "line": "Todo lo tuyo me recuerda a ti",
+        "title": "Omega"
       },
       {
         "id": "7515371:4",
@@ -8667,11 +8740,6 @@
         "title": "Es Por Ti"
       },
       {
-        "id": "4425584:39",
-        "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
-        "title": "Con Altura"
-      },
-      {
         "id": "3065897:37",
         "line": "Y a la vez me voy quemando",
         "title": "Si Tú Supieras Compañero"
@@ -8680,6 +8748,11 @@
         "id": "12581294:6",
         "line": "Y a la vez más cerca",
         "title": "La Yugular"
+      },
+      {
+        "id": "4425584:39",
+        "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
+        "title": "Con Altura"
       },
       {
         "id": "7659063:26",
@@ -8718,14 +8791,14 @@
         "title": "LA NOCHE DE ANOCHE"
       },
       {
-        "id": "13104176:10",
-        "line": "Ya no tengo miedo del pasado",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:11",
         "line": "Ya no tengo miedo del pasado",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:10",
+        "line": "Ya no tengo miedo del pasado",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "4496591:33",
@@ -8733,7 +8806,11 @@
         "title": "Un Millón de Veces"
       }
     ],
-    "display_form": "pasa'o"
+    "display_form": "pasa'o",
+    "variants": {
+      "pasa'o": 12,
+      "pasado": 5
+    }
   },
   {
     "word": "cerca",
@@ -8760,14 +8837,14 @@
         "title": "La Yugular"
       },
       {
-        "id": "8916305:11",
-        "line": "Mi nena cerca de mí, mi nene cerca de mí",
-        "title": "VAMPIROS"
-      },
-      {
         "id": "8916306:21",
         "line": "Y aunque esté lejo', tú ere' la persona más cerca de mí",
         "title": "BESO"
+      },
+      {
+        "id": "8916305:11",
+        "line": "Mi nena cerca de mí, mi nene cerca de mí",
+        "title": "VAMPIROS"
       }
     ]
   },
@@ -8847,11 +8924,6 @@
         "title": "Aunque Es De Noche"
       },
       {
-        "id": "4801759:101",
-        "line": "En este momento",
-        "title": "KLK"
-      },
-      {
         "id": "12581288:25",
         "line": "Aquí tienes este homenaje",
         "title": "Porcelana"
@@ -8860,6 +8932,11 @@
         "id": "3065897:1",
         "line": "Toma este puñal dorado",
         "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "4801759:101",
+        "line": "En este momento",
+        "title": "KLK"
       },
       {
         "id": "4496591:7",
@@ -8945,14 +9022,14 @@
         "title": "El Pañuelo"
       },
       {
-        "id": "7142770:40",
-        "line": "Le tiro un besito a la mami que me disfruta",
-        "title": "Linda"
-      },
-      {
         "id": "4779329:5",
         "line": "Mami",
         "title": "Yo x Ti, Tu x Mí"
+      },
+      {
+        "id": "7142770:40",
+        "line": "Le tiro un besito a la mami que me disfruta",
+        "title": "Linda"
       },
       {
         "id": "8416396:25",
@@ -9039,14 +9116,14 @@
     "corpus_count": 16,
     "examples": [
       {
-        "id": "6367361:23",
-        "line": "El amor no puede medirse en paso' firme'",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "7515170:3",
         "line": "Tan rico no puede ser",
         "title": "HENTAI"
+      },
+      {
+        "id": "6367361:23",
+        "line": "El amor no puede medirse en paso' firme'",
+        "title": "Lo Vas A Olvidar"
       },
       {
         "id": "3301215:14",
@@ -9054,14 +9131,14 @@
         "title": "Aunque Es De Noche"
       },
       {
-        "id": "12581288:27",
-        "line": "Traje algo que te puede dar coraje",
-        "title": "Porcelana"
-      },
-      {
         "id": "12581290:19",
         "line": "Siempre se autoinvita, si puede vive en casa ajena",
         "title": "La Perla"
+      },
+      {
+        "id": "12581288:27",
+        "line": "Traje algo que te puede dar coraje",
+        "title": "Porcelana"
       },
       {
         "id": "8324985:16",
@@ -9126,14 +9203,14 @@
         "title": "New Woman"
       },
       {
-        "id": "3964062:36",
-        "line": "Sale un ángel que cayó",
-        "title": "BAGDAD (Cap.7: Liturgia)"
-      },
-      {
         "id": "3065897:26",
         "line": "Que el sol que sale te ofende",
         "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "3964062:36",
+        "line": "Sale un ángel que cayó",
+        "title": "BAGDAD (Cap.7: Liturgia)"
       },
       {
         "id": "8643641:6",
@@ -9419,11 +9496,6 @@
         "title": "BULERÍAS"
       },
       {
-        "id": "4496591:33",
-        "line": "Y ahora que ha pasado cuesta tanto de creer",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "7515161:12",
         "line": "Ahora dime",
         "title": "CHIRI"
@@ -9432,6 +9504,11 @@
         "id": "7515279:9",
         "line": "Cuando los cubito' de hielo, ya no es agua, ahora es hielo, se congela, uh, no",
         "title": "SAOKO"
+      },
+      {
+        "id": "4496591:33",
+        "line": "Y ahora que ha pasado cuesta tanto de creer",
+        "title": "Un Millón de Veces"
       },
       {
         "id": "8916305:35",
@@ -9533,14 +9610,14 @@
         "title": "SAOKO"
       },
       {
-        "id": "3646825:19",
-        "line": "Siempre me dice que no va a esperarme",
-        "title": "Brillo"
-      },
-      {
         "id": "12581296:28",
         "line": "Dice la calle que tú eres pa' mí",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "3646825:19",
+        "line": "Siempre me dice que no va a esperarme",
+        "title": "Brillo"
       },
       {
         "id": "8916305:49",
@@ -9580,14 +9657,14 @@
     "corpus_count": 14,
     "examples": [
       {
-        "id": "3964070:6",
-        "line": "O aunque tenga que matar",
-        "title": "MALDICIÓN (Cap.10: Cordura)"
-      },
-      {
         "id": "7791131:2",
         "line": "Rumba pa' matar, ¿dónde es que pa' romper?",
         "title": "LA KILIÉ"
+      },
+      {
+        "id": "3964070:6",
+        "line": "O aunque tenga que matar",
+        "title": "MALDICIÓN (Cap.10: Cordura)"
       },
       {
         "id": "4057969:26",
@@ -9668,24 +9745,24 @@
         "title": "MALDICIÓN (Cap.10: Cordura)"
       },
       {
-        "id": "7515069:12",
-        "line": "No me da pena, me da ternura",
-        "title": "SAKURA"
-      },
-      {
         "id": "12581290:18",
         "line": "No me das pena, quien queda contigo se drena",
         "title": "La Perla"
       },
       {
-        "id": "12581296:37",
-        "line": "Primero viene el veneno y luego la pena",
-        "title": "La Rumba Del Perdón"
+        "id": "7515069:12",
+        "line": "No me da pena, me da ternura",
+        "title": "SAKURA"
       },
       {
         "id": "7659063:14",
         "line": "Qué pena cuando quieres algo pero Dios tiene otros planes pa' ti",
         "title": "COMO UN G"
+      },
+      {
+        "id": "12581296:37",
+        "line": "Primero viene el veneno y luego la pena",
+        "title": "La Rumba Del Perdón"
       },
       {
         "id": "8173139:17",
@@ -9714,24 +9791,24 @@
         "title": "KLK"
       },
       {
-        "id": "6367361:14",
-        "line": "Dime si aún queda algo en común",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "12581290:18",
         "line": "No me das pena, quien queda contigo se drena",
         "title": "La Perla"
       },
       {
-        "id": "8916306:20",
-        "line": "Te queda pequeña la luna (¡Yah!)",
-        "title": "BESO"
+        "id": "6367361:14",
+        "line": "Dime si aún queda algo en común",
+        "title": "Lo Vas A Olvidar"
       },
       {
         "id": "8365376:39",
         "line": "No queda na', na', na', na', na'",
         "title": "CANDY (Remix)"
+      },
+      {
+        "id": "8916306:20",
+        "line": "Te queda pequeña la luna (¡Yah!)",
+        "title": "BESO"
       },
       {
         "id": "8416396:46",
@@ -9745,14 +9822,14 @@
     "corpus_count": 14,
     "examples": [
       {
-        "id": "13104176:4",
-        "line": "Cuando no quede na', nada que perder",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:4",
         "line": "Cuando no quede na', nada que perder",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:4",
+        "line": "Cuando no quede na', nada que perder",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "4425584:6",
@@ -9771,14 +9848,14 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "4801759:2",
-        "line": "Ay, como yo quería",
-        "title": "KLK"
-      },
-      {
         "id": "7515161:11",
         "line": "Quería dormir y me han roba'o el sueño",
         "title": "CHIRI"
+      },
+      {
+        "id": "4801759:2",
+        "line": "Ay, como yo quería",
+        "title": "KLK"
       },
       {
         "id": "2966663:11",
@@ -9890,14 +9967,14 @@
         "title": "A NINGÚN HOMBRE (Cap.11: Poder)"
       },
       {
-        "id": "10912589:41",
-        "line": "Soy tuya sin preguntar",
-        "title": "Omega"
-      },
-      {
         "id": "9176102:5",
         "line": "Solo esta noche soy tuya, tuya",
         "title": "TUYA"
+      },
+      {
+        "id": "10912589:41",
+        "line": "Soy tuya sin preguntar",
+        "title": "Omega"
       }
     ]
   },
@@ -9922,14 +9999,14 @@
     "corpus_count": 14,
     "examples": [
       {
-        "id": "12581291:6",
-        "line": "Volver de nuevo a habitar",
-        "title": "Mundo Nuevo"
-      },
-      {
         "id": "12579293:6",
         "line": "Y entrar en el cielo y volver a la tierra",
         "title": "Sexo, Violencia y Llantas"
+      },
+      {
+        "id": "12581291:6",
+        "line": "Volver de nuevo a habitar",
+        "title": "Mundo Nuevo"
       },
       {
         "id": "12581298:36",
@@ -10009,7 +10086,11 @@
         "title": "Llámame Más Tarde"
       }
     ],
-    "display_form": "mira'"
+    "display_form": "mira'",
+    "variants": {
+      "mira'": 8,
+      "miras": 6
+    }
   },
   {
     "word": "quieres",
@@ -10056,7 +10137,11 @@
         "title": "Linda"
       }
     ],
-    "display_form": "quiere'"
+    "display_form": "quiere'",
+    "variants": {
+      "quiere'": 7,
+      "quieres": 7
+    }
   },
   {
     "word": "ayer",
@@ -10084,19 +10169,9 @@
     "corpus_count": 13,
     "examples": [
       {
-        "id": "4425584:2",
-        "line": "El dembow lo canto con hondura",
-        "title": "Con Altura"
-      },
-      {
         "id": "10615838:32",
         "line": "Yo vivo pa' cantar, no canto pa' vivir",
         "title": "New Woman"
-      },
-      {
-        "id": "7528115:28",
-        "line": "Que tú sabes que yo te canto al siete por medio",
-        "title": "BULERÍAS"
       },
       {
         "id": "8324985:2",
@@ -10104,9 +10179,19 @@
         "title": "El Pañuelo"
       },
       {
+        "id": "7528115:28",
+        "line": "Que tú sabes que yo te canto al siete por medio",
+        "title": "BULERÍAS"
+      },
+      {
         "id": "7515161:17",
         "line": "Lo mismo yo te lo canto, que te lo canta Jaliyo",
         "title": "CHIRI"
+      },
+      {
+        "id": "4425584:2",
+        "line": "El dembow lo canto con hondura",
+        "title": "Con Altura"
       },
       {
         "id": "4779329:18",
@@ -10167,11 +10252,6 @@
     "corpus_count": 13,
     "examples": [
       {
-        "id": "4425584:8",
-        "line": "Vivo rápido y no tengo cura (Con altura)",
-        "title": "Con Altura"
-      },
-      {
         "id": "8324985:20",
         "line": "Seré la cura, quiero tu cuerpo",
         "title": "El Pañuelo"
@@ -10180,6 +10260,11 @@
         "id": "9176102:11",
         "line": "Sin remedio ni cura, uh-ah",
         "title": "TUYA"
+      },
+      {
+        "id": "4425584:8",
+        "line": "Vivo rápido y no tengo cura (Con altura)",
+        "title": "Con Altura"
       }
     ]
   },
@@ -10235,14 +10320,14 @@
     "corpus_count": 13,
     "examples": [
       {
-        "id": "6367361:5",
-        "line": "¿Lo va' a olvidar? Can you let it go? Can you let it go?",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "10615838:1",
         "line": "Here I go",
         "title": "New Woman"
+      },
+      {
+        "id": "6367361:5",
+        "line": "¿Lo va' a olvidar? Can you let it go? Can you let it go?",
+        "title": "Lo Vas A Olvidar"
       }
     ]
   },
@@ -10251,14 +10336,14 @@
     "corpus_count": 13,
     "examples": [
       {
-        "id": "13104176:10",
-        "line": "Ya no tengo miedo del pasado",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:11",
         "line": "Ya no tengo miedo del pasado",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:10",
+        "line": "Ya no tengo miedo del pasado",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "3814300:1",
@@ -10282,8 +10367,8 @@
     "corpus_count": 13,
     "examples": [
       {
-        "id": "4496591:17",
-        "line": "Y un millón de veces yo te cogía",
+        "id": "4496591:25",
+        "line": "Y un millón de veces me enseñarías",
         "title": "Un Millón de Veces"
       }
     ]
@@ -10313,24 +10398,24 @@
         "title": "Con Altura"
       },
       {
-        "id": "4779329:36",
-        "line": "Tienes lo que otra no tenía (Woh, oh)",
-        "title": "Yo x Ti, Tu x Mí"
-      },
-      {
         "id": "2814756:38",
         "line": "Antes de morirme, otra piel",
         "title": "Antes de Morirme"
       },
       {
-        "id": "8916306:23",
-        "line": "Si antes hubo otra vida, de tus agua' bebí",
-        "title": "BESO"
+        "id": "4779329:36",
+        "line": "Tienes lo que otra no tenía (Woh, oh)",
+        "title": "Yo x Ti, Tu x Mí"
       },
       {
         "id": "7659063:26",
         "line": "Otra vez, otra vez",
         "title": "COMO UN G"
+      },
+      {
+        "id": "8916306:23",
+        "line": "Si antes hubo otra vida, de tus agua' bebí",
+        "title": "BESO"
       },
       {
         "id": "8416396:36",
@@ -10411,11 +10496,6 @@
     "corpus_count": 13,
     "examples": [
       {
-        "id": "4801759:102",
-        "line": "Quiero verle a toda' meneado las cadera'",
-        "title": "KLK"
-      },
-      {
         "id": "5384007:1",
         "line": "Por toda' esas veces que me puse detrá'",
         "title": "Dolerme"
@@ -10429,6 +10509,11 @@
         "id": "7515186:27",
         "line": "Toda' mis domi' saben la que hay, hey",
         "title": "CHICKEN TERIYAKI"
+      },
+      {
+        "id": "4801759:102",
+        "line": "Quiero verle a toda' meneado las cadera'",
+        "title": "KLK"
       },
       {
         "id": "8643641:7",
@@ -10461,21 +10546,25 @@
         "title": "Novia Robot"
       }
     ],
-    "display_form": "toda'"
+    "display_form": "toda'",
+    "variants": {
+      "toda'": 7,
+      "todas": 6
+    }
   },
   {
     "word": "bala",
     "corpus_count": 12,
     "examples": [
       {
-        "id": "3814300:7",
-        "line": "Pienso en tu mirá', tu mirá' clavá' es una bala en el pecho",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "7515169:46",
         "line": "La bala de Dios juega en la ruleta",
         "title": "DIABLO"
+      },
+      {
+        "id": "3814300:7",
+        "line": "Pienso en tu mirá', tu mirá' clavá' es una bala en el pecho",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "12581290:25",
@@ -10494,6 +10583,11 @@
         "title": "HENTAI"
       },
       {
+        "id": "9176102:2",
+        "line": "Bebé, tú ten cuida'o, no sé si tú estás listo",
+        "title": "TUYA"
+      },
+      {
         "id": "7288792:4",
         "line": "Yo tenía a mi bebé, era algo bien especial",
         "title": "LA FAMA"
@@ -10502,11 +10596,6 @@
         "id": "7515279:27",
         "line": "Un tee white con tie-dye, bebé",
         "title": "SAOKO"
-      },
-      {
-        "id": "9176102:2",
-        "line": "Bebé, tú ten cuida'o, no sé si tú estás listo",
-        "title": "TUYA"
       },
       {
         "id": "8416396:58",
@@ -10554,14 +10643,14 @@
     "corpus_count": 12,
     "examples": [
       {
-        "id": "3814300:7",
-        "line": "Pienso en tu mirá', tu mirá' clavá' es una bala en el pecho",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "3856338:40",
         "line": "Clavá' de plata, clavá' de plata (Va)",
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+      },
+      {
+        "id": "3814300:7",
+        "line": "Pienso en tu mirá', tu mirá' clavá' es una bala en el pecho",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       }
     ]
   },
@@ -10596,11 +10685,6 @@
         "title": "A Palé"
       },
       {
-        "id": "3814300:17",
-        "line": "Tan fría como la nieve cuando cae desde el cielo",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "7515186:38",
         "line": "Desde Queens hasta Tribeca",
         "title": "CHICKEN TERIYAKI"
@@ -10614,6 +10698,11 @@
         "id": "4425584:38",
         "line": "Desde acá qué rico se ve (Wow)",
         "title": "Con Altura"
+      },
+      {
+        "id": "3814300:17",
+        "line": "Tan fría como la nieve cuando cae desde el cielo",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "2814756:15",
@@ -10632,9 +10721,9 @@
     "corpus_count": 12,
     "examples": [
       {
-        "id": "4151176:2",
-        "line": "Diablo, tú eres malo, lo presiento (Ay)",
-        "title": "Lo Presiento"
+        "id": "12660487:17",
+        "line": "Vivo en las nubes arriba y el diablo presta apreta'o",
+        "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
         "id": "7515169:25",
@@ -10642,9 +10731,9 @@
         "title": "DIABLO"
       },
       {
-        "id": "12660487:17",
-        "line": "Vivo en las nubes arriba y el diablo presta apreta'o",
-        "title": "Dios Es Un Stalker (Versión Física)"
+        "id": "4151176:2",
+        "line": "Diablo, tú eres malo, lo presiento (Ay)",
+        "title": "Lo Presiento"
       }
     ]
   },
@@ -10898,14 +10987,14 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "4057969:13",
-        "line": "Su nombre en el cora ya no está clava'o (Nah)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "12581298:33",
         "line": "A mí y a mi nombre en mi ausencia",
         "title": "Magnolias"
+      },
+      {
+        "id": "4057969:13",
+        "line": "Su nombre en el cora ya no está clava'o (Nah)",
+        "title": "Aute Cuture"
       },
       {
         "id": "7515161:10",
@@ -10934,19 +11023,14 @@
         "title": "DELIRIO DE GRANDEZA"
       },
       {
-        "id": "4470734:38",
-        "line": "Vengo con la medalla de oro puesta",
-        "title": "Como Alí"
-      },
-      {
         "id": "5002535:28",
         "line": "Chándal, oro, sello (Sello, sello) y mantilla",
         "title": "A Palé"
       },
       {
-        "id": "4057969:38",
-        "line": "Voy cargá' de oro, espérame senta'o (¡Jah!)",
-        "title": "Aute Cuture"
+        "id": "4470734:38",
+        "line": "Vengo con la medalla de oro puesta",
+        "title": "Como Alí"
       },
       {
         "id": "3856338:35",
@@ -10954,14 +11038,19 @@
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
-        "id": "3814300:4",
-        "line": "Y del oro que te viste por amarrarse a tu cuello",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
+        "id": "4057969:38",
+        "line": "Voy cargá' de oro, espérame senta'o (¡Jah!)",
+        "title": "Aute Cuture"
       },
       {
         "id": "12581290:6",
         "line": "Un espejismo, medalla olímpica de oro al más cabrón",
         "title": "La Perla"
+      },
+      {
+        "id": "3814300:4",
+        "line": "Y del oro que te viste por amarrarse a tu cuello",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       }
     ]
   },
@@ -10975,14 +11064,14 @@
         "title": "Afterwards"
       },
       {
-        "id": "7515279:2",
-        "line": "Saoco, papi, saoco",
-        "title": "SAOKO"
-      },
-      {
         "id": "8324985:19",
         "line": "Papi, dame un consuelo",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "7515279:2",
+        "line": "Saoco, papi, saoco",
+        "title": "SAOKO"
       },
       {
         "id": "6211010:42",
@@ -11085,6 +11174,11 @@
         "title": "SAKURA"
       },
       {
+        "id": "4779329:7",
+        "line": "Rodeá' de flores y billete' (De flores y billete')",
+        "title": "Yo x Ti, Tu x Mí"
+      },
+      {
         "id": "2966663:7",
         "line": "Menos flores, menos tierno",
         "title": "Llámame Más Tarde"
@@ -11095,17 +11189,16 @@
         "title": "Con Altura"
       },
       {
-        "id": "4779329:7",
-        "line": "Rodeá' de flores y billete' (De flores y billete')",
-        "title": "Yo x Ti, Tu x Mí"
-      },
-      {
         "id": "7515186:39",
         "line": "Un ramo de flore' azule' no se seca",
         "title": "CHICKEN TERIYAKI"
       }
     ],
-    "display_form": "flore'"
+    "display_form": "flore'",
+    "variants": {
+      "flores": 11,
+      "flore'": 1
+    }
   },
   {
     "word": "aún",
@@ -11132,14 +11225,14 @@
         "title": "LA FAMA"
       },
       {
-        "id": "6367361:1",
-        "line": "Dime si me echas de meno' aún",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "7659063:4",
         "line": "Yo tengo mi fe, mis armas, mi cora', que aún no sé pa' quién",
         "title": "COMO UN G"
+      },
+      {
+        "id": "6367361:1",
+        "line": "Dime si me echas de meno' aún",
+        "title": "Lo Vas A Olvidar"
       },
       {
         "id": "8416396:3",
@@ -11174,8 +11267,8 @@
         "title": "Catalina"
       },
       {
-        "id": "12581294:36",
-        "line": "La galaxia entera cabe en una gota de saliva",
+        "id": "12581294:38",
+        "line": "La Quinta Avenida cabe en un piercing",
         "title": "La Yugular"
       },
       {
@@ -11298,14 +11391,14 @@
         "title": "Catalina"
       },
       {
-        "id": "12581301:3",
-        "line": "¡Un auténtico robo de identidad, libertad y poder a mano armada donde todas somos invitadas!",
-        "title": "Novia Robot"
-      },
-      {
         "id": "9176102:14",
         "line": "Ya sé que me viste, no se puede tapar el sol con la mano (Eso e')",
         "title": "TUYA"
+      },
+      {
+        "id": "12581301:3",
+        "line": "¡Un auténtico robo de identidad, libertad y poder a mano armada donde todas somos invitadas!",
+        "title": "Novia Robot"
       }
     ]
   },
@@ -11329,14 +11422,14 @@
         "title": "La Yugular"
       },
       {
-        "id": "7515169:15",
-        "line": "De la noche a la mañana, no es que yo cambié",
-        "title": "DIABLO"
-      },
-      {
         "id": "8324985:16",
         "line": "Baby, si haces que lo olvide, puede que vuelva mañana",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "7515169:15",
+        "line": "De la noche a la mañana, no es que yo cambié",
+        "title": "DIABLO"
       }
     ]
   },
@@ -11365,24 +11458,24 @@
         "title": "Se nos rompió el amor"
       },
       {
-        "id": "7528115:23",
-        "line": "Yo soy muy mía",
-        "title": "BULERÍAS"
-      },
-      {
         "id": "12581301:23",
         "line": "Muy rococo",
         "title": "Novia Robot"
       },
       {
-        "id": "7515279:13",
-        "line": "Yo soy muy mía, yo me transformo",
-        "title": "SAOKO"
+        "id": "7528115:23",
+        "line": "Yo soy muy mía",
+        "title": "BULERÍAS"
       },
       {
         "id": "4779329:37",
         "line": "Muy diferente a lo que de ti me decían (Woh, oh)",
         "title": "Yo x Ti, Tu x Mí"
+      },
+      {
+        "id": "7515279:13",
+        "line": "Yo soy muy mía, yo me transformo",
+        "title": "SAOKO"
       },
       {
         "id": "8416396:19",
@@ -11442,14 +11535,14 @@
         "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
-        "id": "2966663:13",
-        "line": "No quieres que espere a llegar a tu puerta",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "12581296:22",
         "line": "Y nunca volviste a cruzar el umbral de la puerta por la que te fuiste",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "2966663:13",
+        "line": "No quieres que espere a llegar a tu puerta",
+        "title": "Llámame Más Tarde"
       }
     ]
   },
@@ -11514,14 +11607,14 @@
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
-        "id": "12581294:21",
-        "line": "La sangre y la suerte",
-        "title": "La Yugular"
-      },
-      {
         "id": "9176102:28",
         "line": "Tú ere' un hijo 'e puta con suerte porque me encontraste",
         "title": "TUYA"
+      },
+      {
+        "id": "12581294:21",
+        "line": "La sangre y la suerte",
+        "title": "La Yugular"
       },
       {
         "id": "4779329:38",
@@ -11555,14 +11648,14 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "2966663:24",
-        "line": "Quizás si me llamas un poco más tarde",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "3646825:10",
         "line": "Dentro de poco va a ser demasiado tarde",
         "title": "Brillo"
+      },
+      {
+        "id": "2966663:24",
+        "line": "Quizás si me llamas un poco más tarde",
+        "title": "Llámame Más Tarde"
       },
       {
         "id": "7142770:5",
@@ -11586,11 +11679,6 @@
         "title": "Se nos rompió el amor"
       },
       {
-        "id": "3964062:18",
-        "line": "Senta'ita, las manos las juntaba",
-        "title": "BAGDAD (Cap.7: Liturgia)"
-      },
-      {
         "id": "12579326:1",
         "line": "Yo que perdí mis manos en Jerez y mis ojos en Roma",
         "title": "Reliquia"
@@ -11601,19 +11689,24 @@
         "title": "Focu ‘ranni"
       },
       {
+        "id": "3964062:18",
+        "line": "Senta'ita, las manos las juntaba",
+        "title": "BAGDAD (Cap.7: Liturgia)"
+      },
+      {
         "id": "12581294:2",
         "line": "Las líneas de mis manos?",
         "title": "La Yugular"
       },
       {
-        "id": "4496591:2",
-        "line": "Mis manos te abrazaban",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "12581296:53",
         "line": "Fuego en las manos, ternura en los ojos",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "4496591:2",
+        "line": "Mis manos te abrazaban",
+        "title": "Un Millón de Veces"
       },
       {
         "id": "4470734:11",
@@ -11626,7 +11719,11 @@
         "title": "Aute Cuture"
       }
     ],
-    "display_form": "mano'"
+    "display_form": "mano'",
+    "variants": {
+      "manos": 8,
+      "mano'": 3
+    }
   },
   {
     "word": "cosas",
@@ -11663,7 +11760,11 @@
         "title": "SAOKO"
       }
     ],
-    "display_form": "cosa'"
+    "display_form": "cosa'",
+    "variants": {
+      "cosas": 6,
+      "cosa'": 5
+    }
   },
   {
     "word": "apúnteme",
@@ -11707,14 +11808,14 @@
     "corpus_count": 10,
     "examples": [
       {
-        "id": "13104176:11",
-        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:12",
         "line": "Está en el fondo de mi copa de Sauvignon Blanc",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:11",
+        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -11733,6 +11834,11 @@
         "title": "MALAMENTE (Cap.1: Augurio)"
       },
       {
+        "id": "7515176:21",
+        "line": "Soy joven, bonita, soy triste y brillante",
+        "title": "AISLAMIENTO"
+      },
+      {
         "id": "3964062:11",
         "line": "Bonita pero apena'",
         "title": "BAGDAD (Cap.7: Liturgia)"
@@ -11743,19 +11849,14 @@
         "title": "Te Venero"
       },
       {
-        "id": "7515176:21",
-        "line": "Soy joven, bonita, soy triste y brillante",
-        "title": "AISLAMIENTO"
+        "id": "3856338:33",
+        "line": "¡Qué bonita está mi novia",
+        "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
         "id": "3814300:16",
         "line": "Tan bonita que amenaza, cuando calla' me da' miedo",
         "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
-        "id": "3856338:33",
-        "line": "¡Qué bonita está mi novia",
-        "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
         "id": "8365376:29",
@@ -11825,9 +11926,9 @@
         "title": "Es Por Ti"
       },
       {
-        "id": "4496591:29",
-        "line": "Por ti muero cada día",
-        "title": "Un Millón de Veces"
+        "id": "12581301:32",
+        "line": "Lo lustraría cada día",
+        "title": "Novia Robot"
       },
       {
         "id": "7528115:15",
@@ -11835,9 +11936,9 @@
         "title": "BULERÍAS"
       },
       {
-        "id": "12581301:32",
-        "line": "Lo lustraría cada día",
-        "title": "Novia Robot"
+        "id": "4496591:29",
+        "line": "Por ti muero cada día",
+        "title": "Un Millón de Veces"
       },
       {
         "id": "8324985:11",
@@ -12113,11 +12214,6 @@
         "title": "Abcdefg"
       },
       {
-        "id": "3964070:8",
-        "line": "Que en un momento quisiera",
-        "title": "MALDICIÓN (Cap.10: Cordura)"
-      },
-      {
         "id": "12579326:27",
         "line": "Es solo un momento, es solo un momento",
         "title": "Reliquia"
@@ -12128,14 +12224,19 @@
         "title": "DI MI NOMBRE (Cap.8: Éxtasis)"
       },
       {
-        "id": "4801759:101",
-        "line": "En este momento",
-        "title": "KLK"
+        "id": "3964070:8",
+        "line": "Que en un momento quisiera",
+        "title": "MALDICIÓN (Cap.10: Cordura)"
       },
       {
         "id": "12660487:20",
         "line": "No soy una zorra de un momento",
         "title": "Dios Es Un Stalker (Versión Física)"
+      },
+      {
+        "id": "4801759:101",
+        "line": "En este momento",
+        "title": "KLK"
       },
       {
         "id": "8416396:30",
@@ -12165,11 +12266,6 @@
         "title": "NANA (Cap.9: Concepción)"
       },
       {
-        "id": "3065090:31",
-        "line": "Apúnteme un cuadro rompi'o que ya ni Dios sabe del santo que ha sido",
-        "title": "Catalina"
-      },
-      {
         "id": "9077775:33",
         "line": "Dime si todo el mundo lo sabe",
         "title": "Choices"
@@ -12178,6 +12274,11 @@
         "id": "12581290:12",
         "line": "El rey de la 13-14, no sabe lo que es cotizar",
         "title": "La Perla"
+      },
+      {
+        "id": "3065090:31",
+        "line": "Apúnteme un cuadro rompi'o que ya ni Dios sabe del santo que ha sido",
+        "title": "Catalina"
       },
       {
         "id": "7288792:12",
@@ -12222,14 +12323,14 @@
     "corpus_count": 10,
     "examples": [
       {
-        "id": "13104176:11",
-        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:12",
         "line": "Está en el fondo de mi copa de Sauvignon Blanc",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:11",
+        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -12254,9 +12355,9 @@
         "title": "CUUUUuuuuuute"
       },
       {
-        "id": "4496591:7",
-        "line": "Y que lejos este ayer",
-        "title": "Un Millón de Veces"
+        "id": "12581294:5",
+        "line": "Tú que estás lejos",
+        "title": "La Yugular"
       },
       {
         "id": "8916306:3",
@@ -12264,12 +12365,16 @@
         "title": "BESO"
       },
       {
-        "id": "12581294:5",
-        "line": "Tú que estás lejos",
-        "title": "La Yugular"
+        "id": "4496591:7",
+        "line": "Y que lejos este ayer",
+        "title": "Un Millón de Veces"
       }
     ],
-    "display_form": "lejo'"
+    "display_form": "lejo'",
+    "variants": {
+      "lejos": 9,
+      "lejo'": 1
+    }
   },
   {
     "word": "puedes",
@@ -12286,11 +12391,6 @@
         "title": "Dios Es Un Stalker (Versión Física)"
       },
       {
-        "id": "4496591:52",
-        "line": "Que no lo puedes conseguir",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "7659063:1",
         "line": "Si no lo puedes tener lo tendrás que soltar",
         "title": "COMO UN G"
@@ -12299,6 +12399,11 @@
         "id": "7515069:13",
         "line": "No pa' siempre puedes ser una estrella y brillar",
         "title": "SAKURA"
+      },
+      {
+        "id": "4496591:52",
+        "line": "Que no lo puedes conseguir",
+        "title": "Un Millón de Veces"
       },
       {
         "id": "2966663:3",
@@ -12311,7 +12416,11 @@
         "title": "Lo Presiento"
       }
     ],
-    "display_form": "puede'"
+    "display_form": "puede'",
+    "variants": {
+      "puedes": 9,
+      "puede'": 1
+    }
   },
   {
     "word": "demasiado",
@@ -12348,7 +12457,11 @@
         "title": "Brillo"
       }
     ],
-    "display_form": "demasia'o"
+    "display_form": "demasia'o",
+    "variants": {
+      "demasia'o": 7,
+      "demasiado": 3
+    }
   },
   {
     "word": "detrás",
@@ -12380,7 +12493,11 @@
         "title": "AISLAMIENTO"
       }
     ],
-    "display_form": "detrá'"
+    "display_form": "detrá'",
+    "variants": {
+      "detrás": 7,
+      "detrá'": 3
+    }
   },
   {
     "word": "sales",
@@ -12407,7 +12524,11 @@
         "title": "Juro Que"
       }
     ],
-    "display_form": "sale'"
+    "display_form": "sale'",
+    "variants": {
+      "sale'": 5,
+      "sales": 5
+    }
   },
   {
     "word": "conmigo",
@@ -12444,14 +12565,14 @@
         "title": "Brillo"
       },
       {
-        "id": "8264237:49",
-        "line": "Dime dos secretos que le digo en el oído, que a donde llego de una ve' se va conmigo",
-        "title": "DESPECHÁ (Demo)"
-      },
-      {
         "id": "8416396:56",
         "line": "Conmigo, aquello que hicimo' no lo olvido (No lo olvido)",
         "title": "Besos Moja2"
+      },
+      {
+        "id": "8264237:49",
+        "line": "Dime dos secretos que le digo en el oído, que a donde llego de una ve' se va conmigo",
+        "title": "DESPECHÁ (Demo)"
       }
     ]
   },
@@ -12470,11 +12591,6 @@
         "title": "Si Tú Supieras Compañero"
       },
       {
-        "id": "6367361:16",
-        "line": "Dame un beso y bájame de la cru'",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "2966663:4",
         "line": "Me gusta como miras, de eso dame más",
         "title": "Llámame Más Tarde"
@@ -12483,6 +12599,11 @@
         "id": "8324985:19",
         "line": "Papi, dame un consuelo",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "6367361:16",
+        "line": "Dame un beso y bájame de la cru'",
+        "title": "Lo Vas A Olvidar"
       }
     ]
   },
@@ -12511,14 +12632,14 @@
         "title": "Reliquia"
       },
       {
-        "id": "7515186:9",
-        "line": "Solo quiere cash, yo le doy mi dinero",
-        "title": "CHICKEN TERIYAKI"
-      },
-      {
         "id": "10912589:39",
         "line": "Yo me doy la libertad (Eh)",
         "title": "Omega"
+      },
+      {
+        "id": "7515186:9",
+        "line": "Solo quiere cash, yo le doy mi dinero",
+        "title": "CHICKEN TERIYAKI"
       },
       {
         "id": "9176102:31",
@@ -12553,14 +12674,14 @@
         "title": "HENTAI"
       },
       {
-        "id": "6367361:9",
-        "line": "Isn't good",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "8643641:26",
         "line": "But I'm good though, ¿cómo estás? (Estás; ah)",
         "title": "DESPECHÁ RMX"
+      },
+      {
+        "id": "6367361:9",
+        "line": "Isn't good",
+        "title": "Lo Vas A Olvidar"
       }
     ]
   },
@@ -12663,37 +12784,6 @@
     ]
   },
   {
-    "word": "lado",
-    "corpus_count": 9,
-    "examples": [
-      {
-        "id": "13104176:19",
-        "line": "Yo beberé Sauvignon Blanc a tu lado (Ah, ah)",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "12581295:20",
-        "line": "Yo beberé Sauvignon Blanc a tu lado",
-        "title": "Sauvignon Blanc"
-      },
-      {
-        "id": "8682586:2",
-        "line": "Y veo que a mi lado estás",
-        "title": "Es Por Ti"
-      },
-      {
-        "id": "12581301:39",
-        "line": "Es la gata que yo tenga al lado\"",
-        "title": "Novia Robot"
-      },
-      {
-        "id": "7659063:2",
-        "line": "No estoy a tu lado, pero te deseo paz y libertad (Mmm, mmm)",
-        "title": "COMO UN G"
-      }
-    ]
-  },
-  {
     "word": "llevo",
     "corpus_count": 9,
     "examples": [
@@ -12703,14 +12793,14 @@
         "title": "De Madrugá (2018)"
       },
       {
-        "id": "7515113:46",
-        "line": "Me llevo to' el mall monta'o en un camión",
-        "title": "LA COMBI VERSACE"
-      },
-      {
         "id": "5002535:2",
         "line": "Traigo la estrella que llevo",
         "title": "A Palé"
+      },
+      {
+        "id": "7515113:46",
+        "line": "Me llevo to' el mall monta'o en un camión",
+        "title": "LA COMBI VERSACE"
       },
       {
         "id": "8701915:15",
@@ -12718,14 +12808,14 @@
         "title": "LLYLM"
       },
       {
-        "id": "4425584:16",
-        "line": "Llevo a Camarón en la guantera (De la Isla)",
-        "title": "Con Altura"
-      },
-      {
         "id": "12581301:22",
         "line": "Llevo tutú",
         "title": "Novia Robot"
+      },
+      {
+        "id": "4425584:16",
+        "line": "Llevo a Camarón en la guantera (De la Isla)",
+        "title": "Con Altura"
       },
       {
         "id": "3646825:9",
@@ -12744,14 +12834,14 @@
         "title": "Jeanne"
       },
       {
-        "id": "7288792:26",
-        "line": "Yo aún no he aprendío' la manera",
-        "title": "LA FAMA"
-      },
-      {
         "id": "12660487:14",
         "line": "Quiero a mi manera, aquí y a donde sea",
         "title": "Dios Es Un Stalker (Versión Física)"
+      },
+      {
+        "id": "7288792:26",
+        "line": "Yo aún no he aprendío' la manera",
+        "title": "LA FAMA"
       },
       {
         "id": "7515186:7",
@@ -12759,14 +12849,14 @@
         "title": "CHICKEN TERIYAKI"
       },
       {
-        "id": "4425584:17",
-        "line": "Lo hago pa' mi gente y lo hago a mi manera",
-        "title": "Con Altura"
-      },
-      {
         "id": "7515161:8",
         "line": "A mi manera por el mundo, no es que sea de mala fe",
         "title": "CHIRI"
+      },
+      {
+        "id": "4425584:17",
+        "line": "Lo hago pa' mi gente y lo hago a mi manera",
+        "title": "Con Altura"
       }
     ]
   },
@@ -12900,16 +12990,6 @@
         "title": "Always On My Mind*"
       },
       {
-        "id": "13104176:4",
-        "line": "Cuando no quede na', nada que perder",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "12581295:4",
-        "line": "Cuando no quede na', nada que perder",
-        "title": "Sauvignon Blanc"
-      },
-      {
         "id": "9077775:32",
         "line": "De ese día que acabo de perder",
         "title": "Choices"
@@ -12918,6 +12998,16 @@
         "id": "3750274:33",
         "line": "No voy a perder ni un minuto en volver a pensarte (Hmm)",
         "title": "MALAMENTE (Cap.1: Augurio)"
+      },
+      {
+        "id": "12581295:4",
+        "line": "Cuando no quede na', nada que perder",
+        "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:4",
+        "line": "Cuando no quede na', nada que perder",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "12581294:51",
@@ -13098,14 +13188,14 @@
         "title": "LA COMBI VERSACE"
       },
       {
-        "id": "7515371:12",
-        "line": "Casi nadie ve lo que perdí",
-        "title": "LAX"
-      },
-      {
         "id": "7515176:2",
         "line": "Hoodie y las gafa', y así nadie me ve",
         "title": "AISLAMIENTO"
+      },
+      {
+        "id": "7515371:12",
+        "line": "Casi nadie ve lo que perdí",
+        "title": "LAX"
       },
       {
         "id": "4151176:5",
@@ -13134,14 +13224,14 @@
         "title": "Mundo Nuevo"
       },
       {
-        "id": "8682586:6",
-        "line": "Tú controlas toda mi verdad",
-        "title": "Es Por Ti"
-      },
-      {
         "id": "12581305:22",
         "line": "Un amor que en verdad desconoce",
         "title": "Focu ‘ranni"
+      },
+      {
+        "id": "8682586:6",
+        "line": "Tú controlas toda mi verdad",
+        "title": "Es Por Ti"
       },
       {
         "id": "7288792:10",
@@ -13149,14 +13239,14 @@
         "title": "LA FAMA"
       },
       {
-        "id": "12581296:49",
-        "line": "Cuando has mentido por mentir o has mentido por tu verdad",
-        "title": "La Rumba Del Perdón"
-      },
-      {
         "id": "12581301:44",
         "line": "Pero ¿será verdad",
         "title": "Novia Robot"
+      },
+      {
+        "id": "12581296:49",
+        "line": "Cuando has mentido por mentir o has mentido por tu verdad",
+        "title": "La Rumba Del Perdón"
       },
       {
         "id": "7659063:33",
@@ -13227,7 +13317,11 @@
         "title": "La Perla"
       }
     ],
-    "display_form": "da'"
+    "display_form": "da'",
+    "variants": {
+      "da'": 5,
+      "das": 4
+    }
   },
   {
     "word": "amar",
@@ -13434,14 +13528,9 @@
     "corpus_count": 8,
     "examples": [
       {
-        "id": "13104176:11",
-        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "12581295:12",
-        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
-        "title": "Sauvignon Blanc"
+        "id": "5384007:13",
+        "line": "Pisa a fondo y deja ir el volante",
+        "title": "Dolerme"
       },
       {
         "id": "8916307:16",
@@ -13449,9 +13538,14 @@
         "title": "PROMESA"
       },
       {
-        "id": "5384007:13",
-        "line": "Pisa a fondo y deja ir el volante",
-        "title": "Dolerme"
+        "id": "12581295:12",
+        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
+        "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:11",
+        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -13528,24 +13622,24 @@
         "title": "Omega"
       },
       {
-        "id": "4496591:36",
-        "line": "Hoy me hace agradecer",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "2814756:15",
         "line": "Tengo más guardao', desde hace años, pesao' (Eh)",
         "title": "Antes de Morirme"
       },
       {
-        "id": "2966663:22",
-        "line": "Contigo no hace falta pero sabes que me gusta",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "12581301:6",
         "line": "Que tenga! Orgullosas de ser la empresa con mayor éxito en 2025 que más factura y más daño hace a todas nuestras hermanas",
         "title": "Novia Robot"
+      },
+      {
+        "id": "4496591:36",
+        "line": "Hoy me hace agradecer",
+        "title": "Un Millón de Veces"
+      },
+      {
+        "id": "2966663:22",
+        "line": "Contigo no hace falta pero sabes que me gusta",
+        "title": "Llámame Más Tarde"
       },
       {
         "id": "7142770:29",
@@ -13607,19 +13701,9 @@
         "title": "Jeanne"
       },
       {
-        "id": "13104176:1",
-        "line": "Mi luz la prenderé",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "3301215:23",
         "line": "Y toda luz de ella es venida",
         "title": "Aunque Es De Noche"
-      },
-      {
-        "id": "12581295:1",
-        "line": "Mi luz la prenderé",
-        "title": "Sauvignon Blanc"
       },
       {
         "id": "12581298:31",
@@ -13632,14 +13716,24 @@
         "title": "Te Venero"
       },
       {
+        "id": "3750274:3",
+        "line": "Está parpadeando la luz del descansillo",
+        "title": "MALAMENTE (Cap.1: Augurio)"
+      },
+      {
         "id": "12581288:5",
         "line": "Luz que ilumina, o ruina divina",
         "title": "Porcelana"
       },
       {
-        "id": "3750274:3",
-        "line": "Está parpadeando la luz del descansillo",
-        "title": "MALAMENTE (Cap.1: Augurio)"
+        "id": "12581295:1",
+        "line": "Mi luz la prenderé",
+        "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:1",
+        "line": "Mi luz la prenderé",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -13753,9 +13847,9 @@
         "title": "A Palé"
       },
       {
-        "id": "13104176:16",
-        "line": "Y regalaré mi piano de pared",
-        "title": "Sauvignon Blanc (A Cappella)"
+        "id": "3856338:5",
+        "line": "Prima, sobre la pared",
+        "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       },
       {
         "id": "12581295:17",
@@ -13763,9 +13857,9 @@
         "title": "Sauvignon Blanc"
       },
       {
-        "id": "3856338:5",
-        "line": "Prima, sobre la pared",
-        "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+        "id": "13104176:16",
+        "line": "Y regalaré mi piano de pared",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "4425584:35",
@@ -13789,9 +13883,9 @@
         "title": "LA KILIÉ"
       },
       {
-        "id": "3065090:1",
-        "line": "Parte I: Catalina",
-        "title": "Catalina"
+        "id": "7515176:20",
+        "line": "Parece que se parte el cielo, pero no importa",
+        "title": "AISLAMIENTO"
       },
       {
         "id": "5384007:12",
@@ -13799,9 +13893,9 @@
         "title": "Dolerme"
       },
       {
-        "id": "7515176:20",
-        "line": "Parece que se parte el cielo, pero no importa",
-        "title": "AISLAMIENTO"
+        "id": "3065090:1",
+        "line": "Parte I: Catalina",
+        "title": "Catalina"
       }
     ]
   },
@@ -13809,16 +13903,6 @@
     "word": "paz",
     "corpus_count": 8,
     "examples": [
-      {
-        "id": "13104176:3",
-        "line": "Sé que mi paz yo me ganaré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "12581295:3",
-        "line": "Sé que mi paz yo me ganaré",
-        "title": "Sauvignon Blanc"
-      },
       {
         "id": "12581305:9",
         "line": "Que estoy en paz",
@@ -13828,6 +13912,16 @@
         "id": "12581290:1",
         "line": "Hola, ladrón de paz",
         "title": "La Perla"
+      },
+      {
+        "id": "12581295:3",
+        "line": "Sé que mi paz yo me ganaré",
+        "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:3",
+        "line": "Sé que mi paz yo me ganaré",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "8916306:4",
@@ -13951,14 +14045,14 @@
         "title": "MALDICIÓN (Cap.10: Cordura)"
       },
       {
-        "id": "3065090:27",
-        "line": "Quisiera hacer testamento como eso' payo' con fundamento",
-        "title": "Catalina"
-      },
-      {
         "id": "7528115:2",
         "line": "Na'ita que yo no quisiera",
         "title": "BULERÍAS"
+      },
+      {
+        "id": "3065090:27",
+        "line": "Quisiera hacer testamento como eso' payo' con fundamento",
+        "title": "Catalina"
       }
     ]
   },
@@ -13967,14 +14061,14 @@
     "corpus_count": 8,
     "examples": [
       {
-        "id": "3065090:2",
-        "line": "Quítate de mi presencia, que me está' martirizando",
-        "title": "Catalina"
-      },
-      {
         "id": "7528115:27",
         "line": "Ay, quítate, quítate, quítate tú de en medio",
         "title": "BULERÍAS"
+      },
+      {
+        "id": "3065090:2",
+        "line": "Quítate de mi presencia, que me está' martirizando",
+        "title": "Catalina"
       }
     ]
   },
@@ -14024,14 +14118,14 @@
         "title": "LA KILIÉ"
       },
       {
-        "id": "8916305:49",
-        "line": "Se dice que hay que romper",
-        "title": "VAMPIROS"
-      },
-      {
         "id": "7515069:26",
         "line": "Que si estoy en esto es para romper",
         "title": "SAKURA"
+      },
+      {
+        "id": "8916305:49",
+        "line": "Se dice que hay que romper",
+        "title": "VAMPIROS"
       }
     ]
   },
@@ -14062,14 +14156,14 @@
     "corpus_count": 8,
     "examples": [
       {
-        "id": "3964068:24",
-        "line": "Y hazme rezar sobre tu cuerpo",
-        "title": "DI MI NOMBRE (Cap.8: Éxtasis)"
-      },
-      {
         "id": "12581298:30",
         "line": "Y lanzará azúcar moreno sobre mi ataúd",
         "title": "Magnolias"
+      },
+      {
+        "id": "3964068:24",
+        "line": "Y hazme rezar sobre tu cuerpo",
+        "title": "DI MI NOMBRE (Cap.8: Éxtasis)"
       },
       {
         "id": "7515176:8",
@@ -14177,9 +14271,9 @@
     "corpus_count": 8,
     "examples": [
       {
-        "id": "13104176:24",
-        "line": "Mi futuro sé bien que será dorado",
-        "title": "Sauvignon Blanc (A Cappella)"
+        "id": "3065897:1",
+        "line": "Toma este puñal dorado",
+        "title": "Si Tú Supieras Compañero"
       },
       {
         "id": "12581295:25",
@@ -14187,11 +14281,15 @@
         "title": "Sauvignon Blanc"
       },
       {
-        "id": "3065897:1",
-        "line": "Toma este puñal dorado",
-        "title": "Si Tú Supieras Compañero"
+        "id": "13104176:24",
+        "line": "Mi futuro sé bien que será dorado",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
-    ]
+    ],
+    "variants": {
+      "dorado": 7,
+      "dora'o": 1
+    }
   },
   {
     "word": "diamantes",
@@ -14213,7 +14311,11 @@
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
       }
     ],
-    "display_form": "diamante'"
+    "display_form": "diamante'",
+    "variants": {
+      "diamante'": 6,
+      "diamantes": 2
+    }
   },
   {
     "word": "afterwards",
@@ -14293,11 +14395,6 @@
         "title": "Tagliatelle Santeria"
       },
       {
-        "id": "6367361:16",
-        "line": "Dame un beso y bájame de la cru'",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "8916306:33",
         "line": "Yo quiero que me de' otro beso",
         "title": "BESO"
@@ -14306,6 +14403,11 @@
         "id": "8324985:12",
         "line": "No eres él, pero quiero un beso",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "6367361:16",
+        "line": "Dame un beso y bájame de la cru'",
+        "title": "Lo Vas A Olvidar"
       }
     ]
   },
@@ -14366,14 +14468,14 @@
         "title": "Abcdefg"
       },
       {
-        "id": "12581303:17",
-        "line": "C'est mon cœur qui me nomme, si je vous quitte",
-        "title": "Jeanne"
-      },
-      {
         "id": "12397133:14",
         "line": "Я нe шукaю пoмcти, пoмcтa шукaє мeнe",
         "title": "De Madrugá"
+      },
+      {
+        "id": "12581303:17",
+        "line": "C'est mon cœur qui me nomme, si je vous quitte",
+        "title": "Jeanne"
       },
       {
         "id": "7528145:22",
@@ -14408,11 +14510,6 @@
     "corpus_count": 7,
     "examples": [
       {
-        "id": "4057969:13",
-        "line": "Su nombre en el cora ya no está clava'o (Nah)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "7515176:4",
         "line": "De golpe die' flash y el cora acelera'o",
         "title": "AISLAMIENTO"
@@ -14421,6 +14518,11 @@
         "id": "4779329:17",
         "line": "Se me para el cora solo con mirarte",
         "title": "Yo x Ti, Tu x Mí"
+      },
+      {
+        "id": "4057969:13",
+        "line": "Su nombre en el cora ya no está clava'o (Nah)",
+        "title": "Aute Cuture"
       }
     ]
   },
@@ -14434,14 +14536,14 @@
         "title": "Parrita Remix"
       },
       {
-        "id": "4801759:68",
-        "line": "No te creas na', na'",
-        "title": "KLK"
-      },
-      {
         "id": "7288792:2",
         "line": "No creas que no dolió o que me lo invento",
         "title": "LA FAMA"
+      },
+      {
+        "id": "4801759:68",
+        "line": "No te creas na', na'",
+        "title": "KLK"
       }
     ],
     "display_form": "crea'"
@@ -14456,11 +14558,6 @@
         "title": "X GRANAÍNA"
       },
       {
-        "id": "12581303:14",
-        "line": "Y las llamas destrozarán la cruz",
-        "title": "Jeanne"
-      },
-      {
         "id": "12397133:6",
         "line": "La cruz en el pecho calibra mi cuerpo",
         "title": "De Madrugá"
@@ -14469,6 +14566,11 @@
         "id": "3874078:6",
         "line": "La cruz en el pecho, a mi santa le rezo",
         "title": "De Madrugá (2018)"
+      },
+      {
+        "id": "12581303:14",
+        "line": "Y las llamas destrozarán la cruz",
+        "title": "Jeanne"
       }
     ]
   },
@@ -14620,14 +14722,14 @@
         "title": "MALDICIÓN (Cap.10: Cordura)"
       },
       {
-        "id": "8916306:3",
-        "line": "Estar lejos de ti e' el infierno",
-        "title": "BESO"
-      },
-      {
         "id": "3856338:38",
         "line": "Va a estar conmigo y hasta que se muera",
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+      },
+      {
+        "id": "8916306:3",
+        "line": "Estar lejos de ti e' el infierno",
+        "title": "BESO"
       }
     ]
   },
@@ -14713,24 +14815,24 @@
         "title": "Aunque Es De Noche"
       },
       {
-        "id": "3814300:17",
-        "line": "Tan fría como la nieve cuando cae desde el cielo",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "7515113:31",
         "line": "Más fría que tu baby mama",
         "title": "LA COMBI VERSACE"
       },
       {
-        "id": "3065090:8",
-        "line": "Ponme la mano aquí, que la tiene' fría",
-        "title": "Catalina"
+        "id": "3814300:17",
+        "line": "Tan fría como la nieve cuando cae desde el cielo",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "8365376:48",
         "line": "Y no, oh-oh, no diga' tan fría como si solo fue sexo",
         "title": "CANDY (Remix)"
+      },
+      {
+        "id": "3065090:8",
+        "line": "Ponme la mano aquí, que la tiene' fría",
+        "title": "Catalina"
       }
     ]
   },
@@ -14744,9 +14846,9 @@
         "title": "PROMESA"
       },
       {
-        "id": "2966663:18",
-        "line": "Si prefieres podemos hacerlo así",
-        "title": "Llámame Más Tarde"
+        "id": "12581296:52",
+        "line": "Para hacerlo como se debe, tres cosas necesitarás",
+        "title": "La Rumba Del Perdón"
       },
       {
         "id": "2814756:31",
@@ -14754,9 +14856,9 @@
         "title": "Antes de Morirme"
       },
       {
-        "id": "12581296:52",
-        "line": "Para hacerlo como se debe, tres cosas necesitarás",
-        "title": "La Rumba Del Perdón"
+        "id": "2966663:18",
+        "line": "Si prefieres podemos hacerlo así",
+        "title": "Llámame Más Tarde"
       }
     ]
   },
@@ -14907,8 +15009,8 @@
         "title": "Magnolias"
       },
       {
-        "id": "7528115:28",
-        "line": "Que tú sabes que yo te canto al siete por medio",
+        "id": "7528115:31",
+        "line": "Ay, que tú sabes que yo te canto al siete por medio",
         "title": "BULERÍAS"
       }
     ]
@@ -14966,14 +15068,14 @@
     "corpus_count": 7,
     "examples": [
       {
-        "id": "3345402:25",
-        "line": "Porque mirarte no quiero",
-        "title": "Por Mi Puerta No Lo Pasen"
-      },
-      {
         "id": "3964069:12",
         "line": "Para mirarte",
         "title": "NANA (Cap.9: Concepción)"
+      },
+      {
+        "id": "3345402:25",
+        "line": "Porque mirarte no quiero",
+        "title": "Por Mi Puerta No Lo Pasen"
       },
       {
         "id": "4779329:17",
@@ -15103,14 +15205,14 @@
     "corpus_count": 7,
     "examples": [
       {
-        "id": "8916307:15",
-        "line": "Como una perla",
-        "title": "PROMESA"
-      },
-      {
         "id": "12581290:11",
         "line": "Es una perla, una de mucho cuida'o",
         "title": "La Perla"
+      },
+      {
+        "id": "8916307:15",
+        "line": "Como una perla",
+        "title": "PROMESA"
       },
       {
         "id": "8416396:40",
@@ -15223,14 +15325,14 @@
         "title": "LA NOCHE DE ANOCHE"
       },
       {
-        "id": "8264237:42",
-        "line": "Que rico cuando no' comemo', aunque sé que ese cuerpo e' ajeno",
-        "title": "DESPECHÁ (Demo)"
-      },
-      {
         "id": "8416396:26",
         "line": "Lo rico que sabe darte un besito bien suave (Tú sabe')",
         "title": "Besos Moja2"
+      },
+      {
+        "id": "8264237:42",
+        "line": "Que rico cuando no' comemo', aunque sé que ese cuerpo e' ajeno",
+        "title": "DESPECHÁ (Demo)"
       }
     ]
   },
@@ -15270,14 +15372,14 @@
         "title": "Catalina"
       },
       {
-        "id": "8643641:58",
-        "line": "De Barcelona pa' Santo Domingo",
-        "title": "DESPECHÁ RMX"
-      },
-      {
         "id": "12581296:48",
         "line": "El que tiene alma de santo pero sigue pecando",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "8643641:58",
+        "line": "De Barcelona pa' Santo Domingo",
+        "title": "DESPECHÁ RMX"
       },
       {
         "id": "8173139:49",
@@ -15343,14 +15445,14 @@
     "corpus_count": 7,
     "examples": [
       {
-        "id": "8682586:6",
-        "line": "Tú controlas toda mi verdad",
-        "title": "Es Por Ti"
-      },
-      {
         "id": "3301215:23",
         "line": "Y toda luz de ella es venida",
         "title": "Aunque Es De Noche"
+      },
+      {
+        "id": "8682586:6",
+        "line": "Tú controlas toda mi verdad",
+        "title": "Es Por Ti"
       },
       {
         "id": "3065897:34",
@@ -15400,14 +15502,14 @@
         "title": "AISLAMIENTO"
       },
       {
-        "id": "4496591:23",
-        "line": "Nunca triste fueron tus caidas",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "7659063:8",
         "line": "'Toy triste si pienso en lo bueno que tengo que no pue' durar",
         "title": "COMO UN G"
+      },
+      {
+        "id": "4496591:23",
+        "line": "Nunca triste fueron tus caidas",
+        "title": "Un Millón de Veces"
       }
     ]
   },
@@ -15421,11 +15523,6 @@
         "title": "Fire, Fire"
       },
       {
-        "id": "8916306:2",
-        "line": "Uno de esos que tú me da'",
-        "title": "BESO"
-      },
-      {
         "id": "3646825:27",
         "line": "Quiero ser el número uno de tu emisora",
         "title": "Brillo"
@@ -15434,6 +15531,11 @@
         "id": "8365376:24",
         "line": "Tus gesto' memoricé, te puse en uno más tre'",
         "title": "CANDY (Remix)"
+      },
+      {
+        "id": "8916306:2",
+        "line": "Uno de esos que tú me da'",
+        "title": "BESO"
       }
     ]
   },
@@ -15468,7 +15570,11 @@
         "title": "LA NOCHE DE ANOCHE"
       }
     ],
-    "display_form": "ojito'"
+    "display_form": "ojito'",
+    "variants": {
+      "ojitos": 6,
+      "ojito'": 1
+    }
   },
   {
     "word": "cadenas",
@@ -15500,7 +15606,11 @@
         "title": "De Madrugá"
       }
     ],
-    "display_form": "cadena'"
+    "display_form": "cadena'",
+    "variants": {
+      "cadena'": 5,
+      "cadenas": 2
+    }
   },
   {
     "word": "ganas",
@@ -15532,7 +15642,11 @@
         "title": "Un Millón de Veces"
       }
     ],
-    "display_form": "gana'"
+    "display_form": "gana'",
+    "variants": {
+      "gana'": 5,
+      "ganas": 2
+    }
   },
   {
     "word": "les",
@@ -15559,7 +15673,11 @@
         "title": "Dolerme"
       }
     ],
-    "display_form": "le'"
+    "display_form": "le'",
+    "variants": {
+      "les": 4,
+      "le'": 3
+    }
   },
   {
     "word": "pues",
@@ -15596,7 +15714,11 @@
         "title": "SAKURA"
       }
     ],
-    "display_form": "pue'"
+    "display_form": "pue'",
+    "variants": {
+      "pue'": 4,
+      "pues": 3
+    }
   },
   {
     "word": "quieras",
@@ -15628,7 +15750,11 @@
         "title": "DESPECHÁ (Demo)"
       }
     ],
-    "display_form": "quiera'"
+    "display_form": "quiera'",
+    "variants": {
+      "quieras": 4,
+      "quiera'": 3
+    }
   },
   {
     "word": "vienes",
@@ -15645,17 +15771,21 @@
         "title": "DE AQUÍ NO SALES (Cap.4: Disputa)"
       },
       {
-        "id": "12548052:18",
-        "line": "Cuando tú vienes es cuando me voy",
-        "title": "Berghain"
-      },
-      {
         "id": "3191212:19",
         "line": "\"¿De dónde vienes, Juan Simón?\"",
         "title": "La Hija De Juan Simón"
+      },
+      {
+        "id": "12548052:18",
+        "line": "Cuando tú vienes es cuando me voy",
+        "title": "Berghain"
       }
     ],
-    "display_form": "viene'"
+    "display_form": "viene'",
+    "variants": {
+      "viene'": 4,
+      "vienes": 3
+    }
   },
   {
     "word": "agua",
@@ -15667,11 +15797,6 @@
         "title": "Aunque Es De Noche"
       },
       {
-        "id": "3814300:6",
-        "line": "Hasta del agua que bebes cuando te moja los labios",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "8916307:3",
         "line": "Tus ojo' robaron el agua del mar",
         "title": "PROMESA"
@@ -15680,6 +15805,11 @@
         "id": "3065897:40",
         "line": "Tener el agua tan cerca y no poderla beber",
         "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "3814300:6",
+        "line": "Hasta del agua que bebes cuando te moja los labios",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "7515279:9",
@@ -15797,14 +15927,14 @@
         "title": "DESPECHÁ RMX"
       },
       {
-        "id": "7142770:46",
-        "line": "Calentura vaginal de RD pa' Barcelona",
-        "title": "Linda"
-      },
-      {
         "id": "8173139:49",
         "line": "De Barcelona pa' Santo Domingo",
         "title": "DESPECHÁ"
+      },
+      {
+        "id": "7142770:46",
+        "line": "Calentura vaginal de RD pa' Barcelona",
+        "title": "Linda"
       }
     ]
   },
@@ -15860,9 +15990,9 @@
         "title": "NANA (Cap.9: Concepción)"
       },
       {
-        "id": "3814300:17",
-        "line": "Tan fría como la nieve cuando cae desde el cielo",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
+        "id": "7515176:17",
+        "line": "Se acaba la escena, cae mi melena",
+        "title": "AISLAMIENTO"
       },
       {
         "id": "12581288:12",
@@ -15875,9 +16005,9 @@
         "title": "La Yugular"
       },
       {
-        "id": "7515176:17",
-        "line": "Se acaba la escena, cae mi melena",
-        "title": "AISLAMIENTO"
+        "id": "3814300:17",
+        "line": "Tan fría como la nieve cuando cae desde el cielo",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       }
     ]
   },
@@ -15982,14 +16112,14 @@
         "title": "Novia Robot"
       },
       {
-        "id": "8264237:49",
-        "line": "Dime dos secretos que le digo en el oído, que a donde llego de una ve' se va conmigo",
-        "title": "DESPECHÁ (Demo)"
-      },
-      {
         "id": "8416396:58",
         "line": "Bebé, no miento cuando te digo que yo (Eh)",
         "title": "Besos Moja2"
+      },
+      {
+        "id": "8264237:49",
+        "line": "Dime dos secretos que le digo en el oído, que a donde llego de una ve' se va conmigo",
+        "title": "DESPECHÁ (Demo)"
       }
     ]
   },
@@ -15998,8 +16128,8 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "4779329:68",
-        "line": "Mira, ¿quién lo diría (¿Qué?), que hasta en la esquina esta sazón sonaría?",
+        "id": "4779329:71",
+        "line": "¿Quién lo diría que hasta en la esquina esta sazón sonaría? (Hmm)",
         "title": "Yo x Ti, Tu x Mí"
       }
     ]
@@ -16056,14 +16186,14 @@
         "title": "Fire, Fire"
       },
       {
-        "id": "3065090:4",
-        "line": "Y a la memoria me trae' cosa' que estaba olvi'ando",
-        "title": "Catalina"
-      },
-      {
         "id": "8365376:9",
         "line": "Palabras que decías cuando yo estaba ahí",
         "title": "CANDY (Remix)"
+      },
+      {
+        "id": "3065090:4",
+        "line": "Y a la memoria me trae' cosa' que estaba olvi'ando",
+        "title": "Catalina"
       }
     ]
   },
@@ -16083,14 +16213,14 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "7288792:10",
-        "line": "Es mala amante la fama, no va a quererte de verdad",
-        "title": "LA FAMA"
-      },
-      {
         "id": "7515186:28",
         "line": "Y sí, la fama e' una condena",
         "title": "CHICKEN TERIYAKI"
+      },
+      {
+        "id": "7288792:10",
+        "line": "Es mala amante la fama, no va a quererte de verdad",
+        "title": "LA FAMA"
       },
       {
         "id": "8173139:21",
@@ -16151,14 +16281,14 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "11841928:11",
-        "line": "(Ay) Por ti a la Habana me fui",
-        "title": "Guajiras"
-      },
-      {
         "id": "8176090:3",
         "line": "Yo lo sé, que fallé porque fui infiel la noche de ayer",
         "title": "PERDÓNAME"
+      },
+      {
+        "id": "11841928:11",
+        "line": "(Ay) Por ti a la Habana me fui",
+        "title": "Guajiras"
       },
       {
         "id": "12581305:2",
@@ -16177,14 +16307,14 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "13104176:24",
-        "line": "Mi futuro sé bien que será dorado",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:25",
         "line": "Mi futuro sé bien que será dorado",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:24",
+        "line": "Mi futuro sé bien que será dorado",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -16272,14 +16402,14 @@
         "title": "HENTAI"
       },
       {
-        "id": "6387245:29",
-        "line": "Ven y hazme santería",
-        "title": "Tagliatelle Santeria"
-      },
-      {
         "id": "3964068:24",
         "line": "Y hazme rezar sobre tu cuerpo",
         "title": "DI MI NOMBRE (Cap.8: Éxtasis)"
+      },
+      {
+        "id": "6387245:29",
+        "line": "Ven y hazme santería",
+        "title": "Tagliatelle Santeria"
       },
       {
         "id": "2966663:26",
@@ -16392,11 +16522,6 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "7528115:26",
-        "line": "A mi familia y a la libertad",
-        "title": "BULERÍAS"
-      },
-      {
         "id": "7515161:1",
         "line": "To' el mundo quiere fortuna, dinero y libertad",
         "title": "CHIRI"
@@ -16405,6 +16530,11 @@
         "id": "10912589:39",
         "line": "Yo me doy la libertad (Eh)",
         "title": "Omega"
+      },
+      {
+        "id": "7528115:26",
+        "line": "A mi familia y a la libertad",
+        "title": "BULERÍAS"
       },
       {
         "id": "7659063:2",
@@ -16470,14 +16600,14 @@
         "title": "BIZCOCHITO"
       },
       {
-        "id": "7288792:10",
-        "line": "Es mala amante la fama, no va a quererte de verdad",
-        "title": "LA FAMA"
-      },
-      {
         "id": "7515161:8",
         "line": "A mi manera por el mundo, no es que sea de mala fe",
         "title": "CHIRI"
+      },
+      {
+        "id": "7288792:10",
+        "line": "Es mala amante la fama, no va a quererte de verdad",
+        "title": "LA FAMA"
       }
     ]
   },
@@ -16529,14 +16659,14 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "13104176:7",
-        "line": "¿Y qué más da? Si te tengo a ti, no necesito nada más",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:8",
         "line": "Si te tengo a ti, no necesito nada más",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:7",
+        "line": "¿Y qué más da? Si te tengo a ti, no necesito nada más",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "8916306:1",
@@ -16613,14 +16743,14 @@
         "title": "Se nos rompió el amor"
       },
       {
-        "id": "7515069:16",
-        "line": "Más miedo me da el que miente o el que ríe poco",
-        "title": "SAKURA"
-      },
-      {
         "id": "3646825:10",
         "line": "Dentro de poco va a ser demasiado tarde",
         "title": "Brillo"
+      },
+      {
+        "id": "7515069:16",
+        "line": "Más miedo me da el que miente o el que ríe poco",
+        "title": "SAKURA"
       },
       {
         "id": "2966663:24",
@@ -16821,14 +16951,14 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "7528115:28",
-        "line": "Que tú sabes que yo te canto al siete por medio",
-        "title": "BULERÍAS"
-      },
-      {
         "id": "9176102:32",
         "line": "Soy tu número siete",
         "title": "TUYA"
+      },
+      {
+        "id": "7528115:28",
+        "line": "Que tú sabes que yo te canto al siete por medio",
+        "title": "BULERÍAS"
       },
       {
         "id": "4779329:12",
@@ -16932,14 +17062,14 @@
         "title": "LAX"
       },
       {
-        "id": "7528115:8",
-        "line": "Eso e' lo que tuve que hacer",
-        "title": "BULERÍAS"
-      },
-      {
         "id": "3856338:2",
         "line": "Qué suerte la que yo tuve",
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+      },
+      {
+        "id": "7528115:8",
+        "line": "Eso e' lo que tuve que hacer",
+        "title": "BULERÍAS"
       },
       {
         "id": "4425584:36",
@@ -16989,14 +17119,14 @@
         "title": "Tagliatelle Santeria"
       },
       {
-        "id": "8916306:10",
-        "line": "Ven pa'cá",
-        "title": "BESO"
-      },
-      {
         "id": "8324985:43",
         "line": "Esta noche ven, refúgiate en mis brazos",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "8916306:10",
+        "line": "Ven pa'cá",
+        "title": "BESO"
       }
     ]
   },
@@ -17036,14 +17166,14 @@
     "corpus_count": 6,
     "examples": [
       {
-        "id": "3036615:26",
-        "line": "Porque solamente viene",
-        "title": "Te Venero"
-      },
-      {
         "id": "3301215:12",
         "line": "Mas sé que todo origen de ella viene",
         "title": "Aunque Es De Noche"
+      },
+      {
+        "id": "3036615:26",
+        "line": "Porque solamente viene",
+        "title": "Te Venero"
       },
       {
         "id": "7288792:11",
@@ -17125,7 +17255,11 @@
         "title": "CANDY (Remix)"
       }
     ],
-    "display_form": "beso'"
+    "display_form": "beso'",
+    "variants": {
+      "besos": 5,
+      "beso'": 1
+    }
   },
   {
     "word": "prendas",
@@ -17142,7 +17276,11 @@
         "title": "Como Alí"
       }
     ],
-    "display_form": "prenda'"
+    "display_form": "prenda'",
+    "variants": {
+      "prendas": 5,
+      "prenda'": 1
+    }
   },
   {
     "word": "atrás",
@@ -17174,7 +17312,11 @@
         "title": "AISLAMIENTO"
       }
     ],
-    "display_form": "atrá'"
+    "display_form": "atrá'",
+    "variants": {
+      "atrás": 4,
+      "atrá'": 2
+    }
   },
   {
     "word": "llames",
@@ -17206,7 +17348,11 @@
         "title": "Parrita Remix"
       }
     ],
-    "display_form": "llame'"
+    "display_form": "llame'",
+    "variants": {
+      "llame'": 4,
+      "llames": 2
+    }
   },
   {
     "word": "menos",
@@ -17223,7 +17369,11 @@
         "title": "Lo Vas A Olvidar"
       }
     ],
-    "display_form": "meno'"
+    "display_form": "meno'",
+    "variants": {
+      "menos": 4,
+      "meno'": 2
+    }
   },
   {
     "word": "tas",
@@ -17235,7 +17385,11 @@
         "title": "Fire, Fire"
       }
     ],
-    "display_form": "ta'"
+    "display_form": "ta'",
+    "variants": {
+      "ta'": 3,
+      "tas": 3
+    }
   },
   {
     "word": "alejas",
@@ -17258,11 +17412,6 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "4057969:39",
-        "line": "Que el de arriba nos ha señala'o (Bless)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "4151176:10",
         "line": "Y de arriba a abajo, Issey Miyake (Issey Miyake)",
         "title": "Lo Presiento"
@@ -17271,6 +17420,11 @@
         "id": "12660487:17",
         "line": "Vivo en las nubes arriba y el diablo presta apreta'o",
         "title": "Dios Es Un Stalker (Versión Física)"
+      },
+      {
+        "id": "4057969:39",
+        "line": "Que el de arriba nos ha señala'o (Bless)",
+        "title": "Aute Cuture"
       },
       {
         "id": "7515113:11",
@@ -17284,14 +17438,14 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "3814300:3",
-        "line": "Y del aire cuando pasa, por levantarte el cabello",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
         "id": "3964068:11",
         "line": "Y átame con tu cabello",
         "title": "DI MI NOMBRE (Cap.8: Éxtasis)"
+      },
+      {
+        "id": "3814300:3",
+        "line": "Y del aire cuando pasa, por levantarte el cabello",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
       },
       {
         "id": "8916307:21",
@@ -17305,14 +17459,14 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "4674077:23",
-        "line": "Los reye' y presidente' con la carita cortá'",
-        "title": "Dio$ No$ Libre del Dinero"
-      },
-      {
         "id": "3131427:5",
         "line": "Sangre pura le chorrea por su carita divina, ay",
         "title": "El Redentor"
+      },
+      {
+        "id": "4674077:23",
+        "line": "Los reye' y presidente' con la carita cortá'",
+        "title": "Dio$ No$ Libre del Dinero"
       },
       {
         "id": "3345402:26",
@@ -17368,14 +17522,14 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "4057969:36",
-        "line": "Que te las clavo, niño, ten cuida'o (Cla)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "12581290:11",
         "line": "Es una perla, una de mucho cuida'o",
         "title": "La Perla"
+      },
+      {
+        "id": "4057969:36",
+        "line": "Que te las clavo, niño, ten cuida'o (Cla)",
+        "title": "Aute Cuture"
       },
       {
         "id": "3646825:37",
@@ -17525,14 +17679,14 @@
         "title": "CHIRI"
       },
       {
-        "id": "7288792:22",
-        "line": "Si quiero, duermo con ella, pero nunca me la voy a casar",
-        "title": "LA FAMA"
-      },
-      {
         "id": "7659063:5",
         "line": "No duermo na' y voy como si estuviera blindá'",
         "title": "COMO UN G"
+      },
+      {
+        "id": "7288792:22",
+        "line": "Si quiero, duermo con ella, pero nunca me la voy a casar",
+        "title": "LA FAMA"
       },
       {
         "id": "6211010:14",
@@ -17588,14 +17742,14 @@
         "title": "A Palé"
       },
       {
-        "id": "3036615:31",
-        "line": "Tan solamente una estrella",
-        "title": "Te Venero"
-      },
-      {
         "id": "12581290:5",
         "line": "Él es tan encantador, estrella de la sinrazón",
         "title": "La Perla"
+      },
+      {
+        "id": "3036615:31",
+        "line": "Tan solamente una estrella",
+        "title": "Te Venero"
       },
       {
         "id": "7515069:13",
@@ -17683,14 +17837,14 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "11841928:7",
-        "line": "Ya ninguno hombre maltrata",
-        "title": "Guajiras"
-      },
-      {
         "id": "3814307:1",
         "line": "A ningún hombre consiento",
         "title": "A NINGÚN HOMBRE (Cap.11: Poder)"
+      },
+      {
+        "id": "11841928:7",
+        "line": "Ya ninguno hombre maltrata",
+        "title": "Guajiras"
       },
       {
         "id": "3036615:23",
@@ -17799,14 +17953,14 @@
         "title": "X GRANAÍNA"
       },
       {
-        "id": "3964070:23",
-        "line": "Que me lleva al primer día",
-        "title": "MALDICIÓN (Cap.10: Cordura)"
-      },
-      {
         "id": "5197781:4",
         "line": "Que ya lleva mi niño preso má' de cuatrociento' día' (Dale, Rosalía; dale)",
         "title": "Juro Que"
+      },
+      {
+        "id": "3964070:23",
+        "line": "Que me lleva al primer día",
+        "title": "MALDICIÓN (Cap.10: Cordura)"
       },
       {
         "id": "8916307:6",
@@ -17846,14 +18000,14 @@
         "title": "Mundo Nuevo"
       },
       {
-        "id": "4057969:28",
-        "line": "Madre mía, Rosalía, bájale",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "3065897:31",
         "line": "Madre, tiene la reina de mi' entraña'",
         "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "4057969:28",
+        "line": "Madre mía, Rosalía, bájale",
+        "title": "Aute Cuture"
       },
       {
         "id": "3856338:30",
@@ -17904,14 +18058,14 @@
         "title": "VAMPIROS"
       },
       {
-        "id": "7515161:17",
-        "line": "Lo mismo yo te lo canto, que te lo canta Jaliyo",
-        "title": "CHIRI"
-      },
-      {
         "id": "8324985:41",
         "line": "Es evidente que pasamo' por lo mismo",
         "title": "El Pañuelo"
+      },
+      {
+        "id": "7515161:17",
+        "line": "Lo mismo yo te lo canto, que te lo canta Jaliyo",
+        "title": "CHIRI"
       },
       {
         "id": "12581301:8",
@@ -18137,14 +18291,14 @@
         "title": "New Woman"
       },
       {
-        "id": "4425584:5",
-        "line": "Nunca he visto una joya tan pura",
-        "title": "Con Altura"
-      },
-      {
         "id": "12581296:4",
         "line": "Y de pura envidia, alguien te lo robó",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "4425584:5",
+        "line": "Nunca he visto una joya tan pura",
+        "title": "Con Altura"
       },
       {
         "id": "8264237:47",
@@ -18259,14 +18413,14 @@
         "title": "CUUUUuuuuuute"
       },
       {
-        "id": "7515371:27",
-        "line": "Antes que quemen, me dejen salir",
-        "title": "LAX"
-      },
-      {
         "id": "3750274:16",
         "line": "Me lo dijo esa gitana (¿Qué?), mejor no salir a verla (No)",
         "title": "MALAMENTE (Cap.1: Augurio)"
+      },
+      {
+        "id": "7515371:27",
+        "line": "Antes que quemen, me dejen salir",
+        "title": "LAX"
       },
       {
         "id": "12660487:21",
@@ -18328,9 +18482,9 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "8916306:8",
-        "line": "No me dejes sola, ¿pa' dónde vas, a dónde vas?",
-        "title": "BESO"
+        "id": "3646825:26",
+        "line": "¿Pa, pa, pa qué highlighter, si tú brillas sola?",
+        "title": "Brillo"
       },
       {
         "id": "8916305:2",
@@ -18338,9 +18492,9 @@
         "title": "VAMPIROS"
       },
       {
-        "id": "3646825:26",
-        "line": "¿Pa, pa, pa qué highlighter, si tú brillas sola?",
-        "title": "Brillo"
+        "id": "8916306:8",
+        "line": "No me dejes sola, ¿pa' dónde vas, a dónde vas?",
+        "title": "BESO"
       }
     ]
   },
@@ -18360,14 +18514,14 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "12548052:14",
-        "line": "Ternura pa'l café",
-        "title": "Berghain"
-      },
-      {
         "id": "12581303:11",
         "line": "Ternura de tiempo afila'o",
         "title": "Jeanne"
+      },
+      {
+        "id": "12548052:14",
+        "line": "Ternura pa'l café",
+        "title": "Berghain"
       },
       {
         "id": "7515069:12",
@@ -18433,14 +18587,14 @@
         "title": "A NINGÚN HOMBRE (Cap.11: Poder)"
       },
       {
-        "id": "4057969:33",
-        "line": "Aquí to'a la' niña' tenemos tumba'o (¡Tra!)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "7515186:12",
         "line": "Quiero una cadena que me arruine to'a la cuenta",
         "title": "CHICKEN TERIYAKI"
+      },
+      {
+        "id": "4057969:33",
+        "line": "Aquí to'a la' niña' tenemos tumba'o (¡Tra!)",
+        "title": "Aute Cuture"
       },
       {
         "id": "8916305:32",
@@ -18544,14 +18698,14 @@
         "title": "Día 14 De Abril"
       },
       {
-        "id": "4459381:1",
-        "line": "Lo vi en tu mirá'",
-        "title": "Me Traicionaste"
-      },
-      {
         "id": "3191212:3",
         "line": "Me vi muy solo y perdío",
         "title": "La Hija De Juan Simón"
+      },
+      {
+        "id": "4459381:1",
+        "line": "Lo vi en tu mirá'",
+        "title": "Me Traicionaste"
       },
       {
         "id": "4425584:33",
@@ -18618,11 +18772,6 @@
     "corpus_count": 5,
     "examples": [
       {
-        "id": "6367361:15",
-        "line": "El tiempo que se pierde no vuelve",
-        "title": "Lo Vas A Olvidar"
-      },
-      {
         "id": "12579326:16",
         "line": "Pero el pelo vuelve a crecer, la pureza también",
         "title": "Reliquia"
@@ -18633,14 +18782,19 @@
         "title": "Porcelana"
       },
       {
-        "id": "8916305:48",
-        "line": "La vida no vuelve",
-        "title": "VAMPIROS"
+        "id": "6367361:15",
+        "line": "El tiempo que se pierde no vuelve",
+        "title": "Lo Vas A Olvidar"
       },
       {
         "id": "7515279:10",
         "line": "Cuando es de noche en el cielo y se vuelve de día, ya to' eso cambió",
         "title": "SAOKO"
+      },
+      {
+        "id": "8916305:48",
+        "line": "La vida no vuelve",
+        "title": "VAMPIROS"
       }
     ]
   },
@@ -18675,7 +18829,11 @@
         "title": "CHICKEN TERIYAKI"
       }
     ],
-    "display_form": "azule'"
+    "display_form": "azule'",
+    "variants": {
+      "azules": 4,
+      "azule'": 1
+    }
   },
   {
     "word": "dices",
@@ -18697,7 +18855,11 @@
         "title": "LA NOCHE DE ANOCHE"
       }
     ],
-    "display_form": "dice'"
+    "display_form": "dice'",
+    "variants": {
+      "dices": 4,
+      "dice'": 1
+    }
   },
   {
     "word": "esas",
@@ -18714,7 +18876,11 @@
         "title": "HENTAI"
       }
     ],
-    "display_form": "esa'"
+    "display_form": "esa'",
+    "variants": {
+      "esas": 4,
+      "esa'": 1
+    }
   },
   {
     "word": "fuimos",
@@ -18731,7 +18897,11 @@
         "title": "LA COMBI VERSACE"
       }
     ],
-    "display_form": "fuimo'"
+    "display_form": "fuimo'",
+    "variants": {
+      "fuimo'": 4,
+      "fuimos": 1
+    }
   },
   {
     "word": "tres",
@@ -18758,7 +18928,11 @@
         "title": "La Rumba Del Perdón"
       }
     ],
-    "display_form": "tre'"
+    "display_form": "tre'",
+    "variants": {
+      "tre'": 4,
+      "tres": 1
+    }
   },
   {
     "word": "digas",
@@ -18780,7 +18954,11 @@
         "title": "Un Millón de Veces"
       }
     ],
-    "display_form": "diga'"
+    "display_form": "diga'",
+    "variants": {
+      "diga'": 3,
+      "digas": 2
+    }
   },
   {
     "word": "esos",
@@ -18802,7 +18980,11 @@
         "title": "LA NOCHE DE ANOCHE"
       }
     ],
-    "display_form": "eso'"
+    "display_form": "eso'",
+    "variants": {
+      "esos": 3,
+      "eso'": 2
+    }
   },
   {
     "word": "labios",
@@ -18829,7 +19011,11 @@
         "title": "Besos Moja2"
       }
     ],
-    "display_form": "labio'"
+    "display_form": "labio'",
+    "variants": {
+      "labios": 3,
+      "labio'": 2
+    }
   },
   {
     "word": "pienses",
@@ -18851,7 +19037,11 @@
         "title": "Dolerme"
       }
     ],
-    "display_form": "piense'"
+    "display_form": "piense'",
+    "variants": {
+      "pienses": 3,
+      "piense'": 2
+    }
   },
   {
     "word": "acaba",
@@ -18906,14 +19096,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "4057969:14",
-        "line": "Mano' en el aire si te lo han rasga'o (Uf)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "3065897:5",
         "line": "Que con el aire que tú me llevas",
         "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "4057969:14",
+        "line": "Mano' en el aire si te lo han rasga'o (Uf)",
+        "title": "Aute Cuture"
       },
       {
         "id": "3814300:3",
@@ -19017,14 +19207,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "3345402:5",
-        "line": "¿Qué pájaro sería aquel?",
-        "title": "Por Mi Puerta No Lo Pasen"
-      },
-      {
         "id": "10129261:10",
         "line": "Aquel tan grandioso",
         "title": "Se nos rompió el amor"
+      },
+      {
+        "id": "3345402:5",
+        "line": "¿Qué pájaro sería aquel?",
+        "title": "Por Mi Puerta No Lo Pasen"
       },
       {
         "id": "8916307:1",
@@ -19209,14 +19399,14 @@
         "title": "New Woman"
       },
       {
-        "id": "8916307:42",
-        "line": "Quiero cantar y hacerte un dibujo",
-        "title": "PROMESA"
-      },
-      {
         "id": "3646825:7",
         "line": "Lloran con mis penas (Tra), si salgo a cantar (Tra)",
         "title": "Brillo"
+      },
+      {
+        "id": "8916307:42",
+        "line": "Quiero cantar y hacerte un dibujo",
+        "title": "PROMESA"
       },
       {
         "id": "8324985:1",
@@ -19322,14 +19512,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "13104176:11",
-        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:12",
         "line": "Está en el fondo de mi copa de Sauvignon Blanc",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:11",
+        "line": "Está en el fondo de mi copa de Sauvignon Blanc",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -19487,14 +19677,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "3345402:23",
-        "line": "Ya yo he dicho que tu entierro",
-        "title": "Por Mi Puerta No Lo Pasen"
-      },
-      {
         "id": "3964070:1",
         "line": "M'han dicho que no hay salí'a",
         "title": "MALDICIÓN (Cap.10: Cordura)"
+      },
+      {
+        "id": "3345402:23",
+        "line": "Ya yo he dicho que tu entierro",
+        "title": "Por Mi Puerta No Lo Pasen"
       }
     ]
   },
@@ -19600,14 +19790,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "12581288:33",
-        "line": "Ah, te puedo enamorar, yo te puedo inspirar",
-        "title": "Porcelana"
-      },
-      {
         "id": "12660487:13",
         "line": "Pa' poderle enamorar",
         "title": "Dios Es Un Stalker (Versión Física)"
+      },
+      {
+        "id": "12581288:33",
+        "line": "Ah, te puedo enamorar, yo te puedo inspirar",
+        "title": "Porcelana"
       }
     ]
   },
@@ -19717,14 +19907,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "4470734:6",
-        "line": "Se oye a la gente (Gypsy) gritar (Gy-gypsy)",
-        "title": "Como Alí"
-      },
-      {
         "id": "9077775:38",
         "line": "¿Donde ir y donde está tu gente?",
         "title": "Choices"
+      },
+      {
+        "id": "4470734:6",
+        "line": "Se oye a la gente (Gypsy) gritar (Gy-gypsy)",
+        "title": "Como Alí"
       },
       {
         "id": "3301215:26",
@@ -20225,14 +20415,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "4496591:29",
-        "line": "Por ti muero cada día",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "7515279:22",
         "line": "Si me muero, que me muera por la boca como muere el pe'",
         "title": "SAOKO"
+      },
+      {
+        "id": "4496591:29",
+        "line": "Por ti muero cada día",
+        "title": "Un Millón de Veces"
       }
     ]
   },
@@ -20306,14 +20496,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "4057969:36",
-        "line": "Que te las clavo, niño, ten cuida'o (Cla)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "5197781:4",
         "line": "Que ya lleva mi niño preso má' de cuatrociento' día' (Dale, Rosalía; dale)",
         "title": "Juro Que"
+      },
+      {
+        "id": "4057969:36",
+        "line": "Que te las clavo, niño, ten cuida'o (Cla)",
+        "title": "Aute Cuture"
       },
       {
         "id": "3646825:11",
@@ -20397,14 +20587,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "13104176:5",
-        "line": "Ya no quiero perlas ni caviar",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:5",
         "line": "Ya no quiero perlas ni caviar",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:5",
+        "line": "Ya no quiero perlas ni caviar",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "3856338:35",
@@ -20532,14 +20722,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "13104176:15",
-        "line": "Mi porcelana la dejaré caer",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:16",
         "line": "Mi porcelana la dejaré caer",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:15",
+        "line": "Mi porcelana la dejaré caer",
+        "title": "Sauvignon Blanc (A Cappella)"
       },
       {
         "id": "12581288:1",
@@ -20839,14 +21029,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "6387245:18",
-        "line": "Tus ojo' lo saben, por eso me tientan",
-        "title": "Tagliatelle Santeria"
-      },
-      {
         "id": "5384007:5",
         "line": "Esas bitches que ahora tienes, baby, no saben que",
         "title": "Dolerme"
+      },
+      {
+        "id": "6387245:18",
+        "line": "Tus ojo' lo saben, por eso me tientan",
+        "title": "Tagliatelle Santeria"
       },
       {
         "id": "7515186:27",
@@ -20956,14 +21146,14 @@
         "title": "Por Mi Puerta No Lo Pasen"
       },
       {
-        "id": "6211010:2",
-        "line": "Pero si volviera a pasar, sé que sería tu debilidad",
-        "title": "LA NOCHE DE ANOCHE"
-      },
-      {
         "id": "12581296:55",
         "line": "Técnicamente eso sería un trío",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "6211010:2",
+        "line": "Pero si volviera a pasar, sé que sería tu debilidad",
+        "title": "LA NOCHE DE ANOCHE"
       }
     ]
   },
@@ -20982,14 +21172,14 @@
         "title": "CANDY (Remix)"
       },
       {
-        "id": "12581301:2",
-        "line": "Un mundo de fantasía robótica femenina hecha para el placer del sexo opuesto!",
-        "title": "Novia Robot"
-      },
-      {
         "id": "9176102:21",
         "line": "El sexo conmigo es de altura",
         "title": "TUYA"
+      },
+      {
+        "id": "12581301:2",
+        "line": "Un mundo de fantasía robótica femenina hecha para el placer del sexo opuesto!",
+        "title": "Novia Robot"
       }
     ]
   },
@@ -21126,14 +21316,14 @@
     "corpus_count": 4,
     "examples": [
       {
-        "id": "7288792:11",
-        "line": "Es demasia'o traicionera, y como ella viene, se te va",
-        "title": "LA FAMA"
-      },
-      {
         "id": "8365376:29",
         "line": "La vida es bonita pero traicionera",
         "title": "CANDY (Remix)"
+      },
+      {
+        "id": "7288792:11",
+        "line": "Es demasia'o traicionera, y como ella viene, se te va",
+        "title": "LA FAMA"
       }
     ]
   },
@@ -21237,14 +21427,14 @@
         "title": "MALAMENTE (Cap.1: Augurio)"
       },
       {
-        "id": "7515279:34",
-        "line": "Los caramelo' de la voz, a ver",
-        "title": "SAOKO"
-      },
-      {
         "id": "3856338:16",
         "line": "Que no levante la voz",
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+      },
+      {
+        "id": "7515279:34",
+        "line": "Los caramelo' de la voz, a ver",
+        "title": "SAOKO"
       }
     ]
   },
@@ -21312,7 +21502,11 @@
         "title": "Dio$ No$ Libre del Dinero"
       }
     ],
-    "display_form": "billete'"
+    "display_form": "billete'",
+    "variants": {
+      "billete'": 3,
+      "billetes": 1
+    }
   },
   {
     "word": "crees",
@@ -21329,7 +21523,11 @@
         "title": "Brillo"
       }
     ],
-    "display_form": "cree'"
+    "display_form": "cree'",
+    "variants": {
+      "cree'": 3,
+      "crees": 1
+    }
   },
   {
     "word": "dejado",
@@ -21351,7 +21549,11 @@
         "title": "LA FAMA"
       }
     ],
-    "display_form": "deja'o"
+    "display_form": "deja'o",
+    "variants": {
+      "deja'o": 3,
+      "dejado": 1
+    }
   },
   {
     "word": "después",
@@ -21373,7 +21575,11 @@
         "title": "La Perla"
       }
     ],
-    "display_form": "despué'"
+    "display_form": "despué'",
+    "variants": {
+      "despué'": 3,
+      "después": 1
+    }
   },
   {
     "word": "haces",
@@ -21390,7 +21596,11 @@
         "title": "Linda"
       }
     ],
-    "display_form": "hace'"
+    "display_form": "hace'",
+    "variants": {
+      "haces": 3,
+      "hace'": 1
+    }
   },
   {
     "word": "juntos",
@@ -21412,7 +21622,11 @@
         "title": "LA NOCHE DE ANOCHE"
       }
     ],
-    "display_form": "junto'"
+    "display_form": "junto'",
+    "variants": {
+      "juntos": 3,
+      "junto'": 1
+    }
   },
   {
     "word": "males",
@@ -21439,7 +21653,11 @@
         "title": "BAGDAD (Cap.7: Liturgia)"
       }
     ],
-    "display_form": "male'"
+    "display_form": "male'",
+    "variants": {
+      "male'": 3,
+      "males": 1
+    }
   },
   {
     "word": "rosas",
@@ -21456,7 +21674,11 @@
         "title": "Con Altura"
       }
     ],
-    "display_form": "rosa'"
+    "display_form": "rosa'",
+    "variants": {
+      "rosa'": 3,
+      "rosas": 1
+    }
   },
   {
     "word": "tenemos",
@@ -21478,7 +21700,11 @@
         "title": "Aute Cuture"
       }
     ],
-    "display_form": "tenemo'"
+    "display_form": "tenemo'",
+    "variants": {
+      "tenemo'": 3,
+      "tenemos": 1
+    }
   },
   {
     "word": "nosotros",
@@ -21500,7 +21726,11 @@
         "title": "VAMPIROS"
       }
     ],
-    "display_form": "nosotro'"
+    "display_form": "nosotro'",
+    "variants": {
+      "nosotro'": 2,
+      "nosotros": 2
+    }
   },
   {
     "word": "querías",
@@ -21517,7 +21747,11 @@
         "title": "Dolerme"
       }
     ],
-    "display_form": "quería'"
+    "display_form": "quería'",
+    "variants": {
+      "quería'": 2,
+      "querías": 2
+    }
   },
   {
     "word": "abajo",
@@ -21756,14 +21990,14 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "7528115:24",
-        "line": "Que Dios bendiga a Pastori y Mercè",
-        "title": "BULERÍAS"
-      },
-      {
         "id": "7515113:30",
         "line": "Dios bendiga a Gianni (Flores para Gianni)",
         "title": "LA COMBI VERSACE"
+      },
+      {
+        "id": "7528115:24",
+        "line": "Que Dios bendiga a Pastori y Mercè",
+        "title": "BULERÍAS"
       }
     ]
   },
@@ -21842,14 +22076,14 @@
     "corpus_count": 3,
     "examples": [
       {
-        "id": "10912589:47",
-        "line": "No hay dios que pueda borrar lo que está escrito pa' mí",
-        "title": "Omega"
-      },
-      {
         "id": "2814756:10",
         "line": "Pienso follarte hasta borrar el límite entre los dos",
         "title": "Antes de Morirme"
+      },
+      {
+        "id": "10912589:47",
+        "line": "No hay dios que pueda borrar lo que está escrito pa' mí",
+        "title": "Omega"
       },
       {
         "id": "8365376:44",
@@ -21975,14 +22209,14 @@
         "title": "A Palé"
       },
       {
-        "id": "13104176:5",
-        "line": "Ya no quiero perlas ni caviar",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:5",
         "line": "Ya no quiero perlas ni caviar",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:5",
+        "line": "Ya no quiero perlas ni caviar",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -22077,14 +22311,14 @@
         "title": "Antes de Morirme"
       },
       {
-        "id": "8916307:44",
-        "line": "Partir cien botella' y reírme mucho",
-        "title": "PROMESA"
-      },
-      {
         "id": "9176102:4",
         "line": "Yo de diez soy un cien, lo haré demasia'o bien pa' que no se olvide",
         "title": "TUYA"
+      },
+      {
+        "id": "8916307:44",
+        "line": "Partir cien botella' y reírme mucho",
+        "title": "PROMESA"
       }
     ]
   },
@@ -22531,14 +22765,14 @@
         "title": "Focu ‘ranni"
       },
       {
-        "id": "4496591:31",
-        "line": "Que difícil todo",
-        "title": "Un Millón de Veces"
-      },
-      {
         "id": "3646825:30",
         "line": "Solo me es difícil de controlar",
         "title": "Brillo"
+      },
+      {
+        "id": "4496591:31",
+        "line": "Que difícil todo",
+        "title": "Un Millón de Veces"
       }
     ]
   },
@@ -23056,14 +23290,14 @@
         "title": "TUYA"
       },
       {
-        "id": "2966663:20",
-        "line": "Si quieres puedo ser un rato este hijo de puta",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "12581296:20",
         "line": "Mirando a los ojos a tu hijo menor",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "2966663:20",
+        "line": "Si quieres puedo ser un rato este hijo de puta",
+        "title": "Llámame Más Tarde"
       }
     ]
   },
@@ -23293,14 +23527,14 @@
     "corpus_count": 3,
     "examples": [
       {
-        "id": "12581294:40",
-        "line": "Y una pirámide cabe en un vaso de leche",
-        "title": "La Yugular"
-      },
-      {
         "id": "5461781:21",
         "line": "Leche con azúcar",
         "title": "TKN"
+      },
+      {
+        "id": "12581294:40",
+        "line": "Y una pirámide cabe en un vaso de leche",
+        "title": "La Yugular"
       }
     ]
   },
@@ -23717,14 +23951,14 @@
         "title": "TUYA"
       },
       {
-        "id": "4779329:12",
-        "line": "Contigo apuesto to' al número siete (Siete, siete)",
-        "title": "Yo x Ti, Tu x Mí"
-      },
-      {
         "id": "3646825:27",
         "line": "Quiero ser el número uno de tu emisora",
         "title": "Brillo"
+      },
+      {
+        "id": "4779329:12",
+        "line": "Contigo apuesto to' al número siete (Siete, siete)",
+        "title": "Yo x Ti, Tu x Mí"
       }
     ]
   },
@@ -23829,14 +24063,14 @@
     "corpus_count": 3,
     "examples": [
       {
-        "id": "8916305:32",
-        "line": "Este junte paga to'a la Ferrari",
-        "title": "VAMPIROS"
-      },
-      {
         "id": "7659063:9",
         "line": "Solo el amor con amor se paga",
         "title": "COMO UN G"
+      },
+      {
+        "id": "8916305:32",
+        "line": "Este junte paga to'a la Ferrari",
+        "title": "VAMPIROS"
       }
     ]
   },
@@ -23845,14 +24079,14 @@
     "corpus_count": 3,
     "examples": [
       {
-        "id": "12581294:33",
-        "line": "Y un haiku ocupa un país",
-        "title": "La Yugular"
-      },
-      {
         "id": "7791131:6",
         "line": "Estoy fundía' como Alicia en el país de Chanel",
         "title": "LA KILIÉ"
+      },
+      {
+        "id": "12581294:33",
+        "line": "Y un haiku ocupa un país",
+        "title": "La Yugular"
       }
     ],
     "display_form": "paí'"
@@ -24740,14 +24974,14 @@
     "corpus_count": 3,
     "examples": [
       {
-        "id": "4057969:46",
-        "line": "Sangría y Valentino",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "7515113:49",
         "line": "Las tennis Valentino, y bizcocho de Moschino",
         "title": "LA COMBI VERSACE"
+      },
+      {
+        "id": "4057969:46",
+        "line": "Sangría y Valentino",
+        "title": "Aute Cuture"
       }
     ]
   },
@@ -24926,7 +25160,11 @@
         "title": "BAGDAD (Cap.7: Liturgia)"
       }
     ],
-    "display_form": "apena'"
+    "display_form": "apena'",
+    "variants": {
+      "apenas": 2,
+      "apena'": 1
+    }
   },
   {
     "word": "canciones",
@@ -24948,7 +25186,11 @@
         "title": "LA FAMA"
       }
     ],
-    "display_form": "cancione'"
+    "display_form": "cancione'",
+    "variants": {
+      "canciones": 2,
+      "cancione'": 1
+    }
   },
   {
     "word": "decías",
@@ -24970,7 +25212,11 @@
         "title": "MALDICIÓN (Cap.10: Cordura)"
       }
     ],
-    "display_form": "decía'"
+    "display_form": "decía'",
+    "variants": {
+      "decías": 2,
+      "decía'": 1
+    }
   },
   {
     "word": "días",
@@ -24992,7 +25238,11 @@
         "title": "CANDY (Remix)"
       }
     ],
-    "display_form": "día'"
+    "display_form": "día'",
+    "variants": {
+      "día'": 2,
+      "días": 1
+    }
   },
   {
     "word": "esperas",
@@ -25009,7 +25259,11 @@
         "title": "BESO"
       }
     ],
-    "display_form": "espera'"
+    "display_form": "espera'",
+    "variants": {
+      "espera'": 2,
+      "esperas": 1
+    }
   },
   {
     "word": "estrellas",
@@ -25031,7 +25285,11 @@
         "title": "SAOKO"
       }
     ],
-    "display_form": "estrella'"
+    "display_form": "estrella'",
+    "variants": {
+      "estrellas": 2,
+      "estrella'": 1
+    }
   },
   {
     "word": "llevas",
@@ -25048,7 +25306,11 @@
         "title": "Si Tú Supieras Compañero"
       }
     ],
-    "display_form": "lleva'"
+    "display_form": "lleva'",
+    "variants": {
+      "llevas": 2,
+      "lleva'": 1
+    }
   },
   {
     "word": "pones",
@@ -25065,7 +25327,11 @@
         "title": "SAOKO"
       }
     ],
-    "display_form": "pone'"
+    "display_form": "pone'",
+    "variants": {
+      "pones": 2,
+      "pone'": 1
+    }
   },
   {
     "word": "puedas",
@@ -25082,7 +25348,11 @@
         "title": "Llámame Más Tarde"
       }
     ],
-    "display_form": "pueda'"
+    "display_form": "pueda'",
+    "variants": {
+      "pueda'": 2,
+      "puedas": 1
+    }
   },
   {
     "word": "secretos",
@@ -25099,7 +25369,11 @@
         "title": "DESPECHÁ (Demo)"
       }
     ],
-    "display_form": "secreto'"
+    "display_form": "secreto'",
+    "variants": {
+      "secreto'": 2,
+      "secretos": 1
+    }
   },
   {
     "word": "vámonos",
@@ -25116,7 +25390,11 @@
         "title": "VAMPIROS"
       }
     ],
-    "display_form": "vámono'"
+    "display_form": "vámono'",
+    "variants": {
+      "vámonos": 2,
+      "vámono'": 1
+    }
   },
   {
     "word": "aah",
@@ -25672,14 +25950,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:19",
-        "line": "Yo beberé Sauvignon Blanc a tu lado (Ah, ah)",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:20",
         "line": "Yo beberé Sauvignon Blanc a tu lado",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:19",
+        "line": "Yo beberé Sauvignon Blanc a tu lado (Ah, ah)",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -25704,14 +25982,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "8916306:43",
-        "line": "Y besas como que siempre hubieras sabido besar",
-        "title": "BESO"
-      },
-      {
         "id": "7515279:32",
         "line": "Si te vuelvo a besar, bebé",
         "title": "SAOKO"
+      },
+      {
+        "id": "8916306:43",
+        "line": "Y besas como que siempre hubieras sabido besar",
+        "title": "BESO"
       }
     ]
   },
@@ -25786,14 +26064,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "2966663:9",
-        "line": "No hay mensaje dentro de esta botella",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "12581296:42",
         "line": "El que me dejó a mí antes que dejar su botella",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "2966663:9",
+        "line": "No hay mensaje dentro de esta botella",
+        "title": "Llámame Más Tarde"
       }
     ]
   },
@@ -25965,14 +26243,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:15",
-        "line": "Mi porcelana la dejaré caer",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:16",
         "line": "Mi porcelana la dejaré caer",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:15",
+        "line": "Mi porcelana la dejaré caer",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -26132,14 +26410,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:6",
-        "line": "Tu amor será mi capital",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:6",
         "line": "Tu amor será mi capital",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:6",
+        "line": "Tu amor será mi capital",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -26225,14 +26503,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "12581294:16",
-        "line": "Que siempre está en una carrera",
-        "title": "La Yugular"
-      },
-      {
         "id": "7515185:25",
         "line": "No basé mi carrera en tener hits",
         "title": "BIZCOCHITO"
+      },
+      {
+        "id": "12581294:16",
+        "line": "Que siempre está en una carrera",
+        "title": "La Yugular"
       }
     ]
   },
@@ -26422,14 +26700,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:14",
-        "line": "Mis Jimmy Choo yo las tiraré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:15",
         "line": "Mis Jimmy Choo yo las tiraré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:14",
+        "line": "Mis Jimmy Choo yo las tiraré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -27006,14 +27284,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "2966663:11",
-        "line": "Yo no quería dejar que la magia se pierda",
-        "title": "Llámame Más Tarde"
-      },
-      {
         "id": "12581296:42",
         "line": "El que me dejó a mí antes que dejar su botella",
         "title": "La Rumba Del Perdón"
+      },
+      {
+        "id": "2966663:11",
+        "line": "Yo no quería dejar que la magia se pierda",
+        "title": "Llámame Más Tarde"
       }
     ]
   },
@@ -27022,14 +27300,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:15",
-        "line": "Mi porcelana la dejaré caer",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:16",
         "line": "Mi porcelana la dejaré caer",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:15",
+        "line": "Mi porcelana la dejaré caer",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -27833,14 +28111,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:13",
-        "line": "A mi Dios escucharé",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:14",
         "line": "A mi Dios escucharé",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:13",
+        "line": "A mi Dios escucharé",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -27915,14 +28193,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "4057969:38",
-        "line": "Voy cargá' de oro, espérame senta'o (¡Jah!)",
-        "title": "Aute Cuture"
-      },
-      {
         "id": "2814756:43",
         "line": "Antes de irte, espérame",
         "title": "Antes de Morirme"
+      },
+      {
+        "id": "4057969:38",
+        "line": "Voy cargá' de oro, espérame senta'o (¡Jah!)",
+        "title": "Aute Cuture"
       }
     ]
   },
@@ -27986,14 +28264,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "12579327:3",
-        "line": "I si només la mires, et salvaries",
-        "title": "Divinize"
-      },
-      {
         "id": "12581303:3",
         "line": "Et qui serai-je? C'était décidé",
         "title": "Jeanne"
+      },
+      {
+        "id": "12579327:3",
+        "line": "I si només la mires, et salvaries",
+        "title": "Divinize"
       }
     ]
   },
@@ -28149,14 +28427,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "4470734:42",
-        "line": "En el pecho flechas, como Alí",
-        "title": "Como Alí"
-      },
-      {
         "id": "7528145:9",
         "line": "Como una autopista sin flechas",
         "title": "CUUUUuuuuuute"
+      },
+      {
+        "id": "4470734:42",
+        "line": "En el pecho flechas, como Alí",
+        "title": "Como Alí"
       }
     ]
   },
@@ -28263,14 +28541,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:3",
-        "line": "Sé que mi paz yo me ganaré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:3",
         "line": "Sé que mi paz yo me ganaré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:3",
+        "line": "Sé que mi paz yo me ganaré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -28823,14 +29101,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:22",
-        "line": "En el fondo se hundió",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:23",
         "line": "En el fondo se hundió",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:22",
+        "line": "En el fondo se hundió",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -29008,14 +29286,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:14",
-        "line": "Mis Jimmy Choo yo las tiraré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:15",
         "line": "Mis Jimmy Choo yo las tiraré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:14",
+        "line": "Mis Jimmy Choo yo las tiraré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -29760,14 +30038,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "7515161:7",
-        "line": "Que me perdone el que yo piense que está a mi merced",
-        "title": "CHIRI"
-      },
-      {
         "id": "3856338:44",
         "line": "A la virgencita de la Merced, un rezo",
         "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)"
+      },
+      {
+        "id": "7515161:7",
+        "line": "Que me perdone el que yo piense que está a mi merced",
+        "title": "CHIRI"
       }
     ]
   },
@@ -29933,14 +30211,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:12",
-        "line": "En mi copa de Sauvignon Blanc, mm",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:13",
         "line": "En mi copa de Sauvignon Blanc, mm",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:12",
+        "line": "En mi copa de Sauvignon Blanc, mm",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -30631,14 +30909,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:16",
-        "line": "Y regalaré mi piano de pared",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:17",
         "line": "Y regalaré mi piano de pared",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:16",
+        "line": "Y regalaré mi piano de pared",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -30903,14 +31181,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:1",
-        "line": "Mi luz la prenderé",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:1",
         "line": "Mi luz la prenderé",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:1",
+        "line": "Mi luz la prenderé",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -31144,14 +31422,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:2",
-        "line": "Con el Rolls-Royce que quemaré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:2",
         "line": "Con el Rolls-Royce que quemaré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:2",
+        "line": "Con el Rolls-Royce que quemaré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -31356,14 +31634,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:16",
-        "line": "Y regalaré mi piano de pared",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:17",
         "line": "Y regalaré mi piano de pared",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:16",
+        "line": "Y regalaré mi piano de pared",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -31519,14 +31797,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:2",
-        "line": "Con el Rolls-Royce que quemaré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:2",
         "line": "Con el Rolls-Royce que quemaré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:2",
+        "line": "Con el Rolls-Royce que quemaré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -31589,14 +31867,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:2",
-        "line": "Con el Rolls-Royce que quemaré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:2",
         "line": "Con el Rolls-Royce que quemaré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:2",
+        "line": "Con el Rolls-Royce que quemaré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -31847,14 +32125,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "4425584:39",
-        "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
-        "title": "Con Altura"
-      },
-      {
         "id": "3646825:42",
         "line": "Sky",
         "title": "Brillo"
+      },
+      {
+        "id": "4425584:39",
+        "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
+        "title": "Con Altura"
       }
     ]
   },
@@ -32297,14 +32575,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "13104176:14",
-        "line": "Mis Jimmy Choo yo las tiraré",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
         "id": "12581295:15",
         "line": "Mis Jimmy Choo yo las tiraré",
         "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:14",
+        "line": "Mis Jimmy Choo yo las tiraré",
+        "title": "Sauvignon Blanc (A Cappella)"
       }
     ]
   },
@@ -32858,14 +33136,14 @@
     "corpus_count": 2,
     "examples": [
       {
-        "id": "8365376:45",
-        "line": "Si no dime por qué a tu mente yo vuelvo",
-        "title": "CANDY (Remix)"
-      },
-      {
         "id": "7515279:32",
         "line": "Si te vuelvo a besar, bebé",
         "title": "SAOKO"
+      },
+      {
+        "id": "8365376:45",
+        "line": "Si no dime por qué a tu mente yo vuelvo",
+        "title": "CANDY (Remix)"
       }
     ]
   },
@@ -32987,7 +33265,11 @@
         "title": "PRESO (Cap.6: Clausura)"
       }
     ],
-    "display_form": "de'"
+    "display_form": "de'",
+    "variants": {
+      "de'": 1,
+      "des": 1
+    }
   },
   {
     "word": "guantes",
@@ -33004,7 +33286,11 @@
         "title": "Dios Es Un Stalker (Versión Física)"
       }
     ],
-    "display_form": "guante'"
+    "display_form": "guante'",
+    "variants": {
+      "guante'": 1,
+      "guantes": 1
+    }
   },
   {
     "word": "llegado",
@@ -33021,7 +33307,11 @@
         "title": "PRESO (Cap.6: Clausura)"
       }
     ],
-    "display_form": "llega'o"
+    "display_form": "llega'o",
+    "variants": {
+      "llega'o": 1,
+      "llegado": 1
+    }
   },
   {
     "word": "mercedes",
@@ -33038,7 +33328,11 @@
         "title": "Magnolias"
       }
     ],
-    "display_form": "mercede'"
+    "display_form": "mercede'",
+    "variants": {
+      "mercede'": 1,
+      "mercedes": 1
+    }
   },
   {
     "word": "perdido",
@@ -33054,7 +33348,11 @@
         "line": "Quiero jugar con mi vida hasta haberle perdí'o el valor",
         "title": "Antes de Morirme"
       }
-    ]
+    ],
+    "variants": {
+      "perdido": 1,
+      "perdí'o": 1
+    }
   },
   {
     "word": "pies",
@@ -33071,7 +33369,11 @@
         "title": "Un Millón de Veces"
       }
     ],
-    "display_form": "pie'"
+    "display_form": "pie'",
+    "variants": {
+      "pie'": 1,
+      "pies": 1
+    }
   },
   {
     "word": "sentimientos",
@@ -33088,7 +33390,11 @@
         "title": "El Pañuelo"
       }
     ],
-    "display_form": "sentimiento'"
+    "display_form": "sentimiento'",
+    "variants": {
+      "sentimiento'": 1,
+      "sentimientos": 1
+    }
   },
   {
     "word": "señales",
@@ -33105,7 +33411,11 @@
         "title": "Focu ‘ranni"
       }
     ],
-    "display_form": "señale'"
+    "display_form": "señale'",
+    "variants": {
+      "señale'": 1,
+      "señales": 1
+    }
   },
   {
     "word": "sueltas",
@@ -33117,7 +33427,11 @@
         "title": "CUUUUuuuuuute"
       }
     ],
-    "display_form": "suelta'"
+    "display_form": "suelta'",
+    "variants": {
+      "suelta'": 1,
+      "sueltas": 1
+    }
   },
   {
     "word": "uñas",
@@ -33134,7 +33448,11 @@
         "title": "Linda"
       }
     ],
-    "display_form": "uña'"
+    "display_form": "uña'",
+    "variants": {
+      "uña'": 1,
+      "uñas": 1
+    }
   },
   {
     "word": "abandonnée",
