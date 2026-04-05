@@ -331,33 +331,62 @@ def build_counts_and_candidates(
                             ngram_counts[n][ng] += 1
                             ngram_songs[ng].add(song_id)
 
-        # best line per word per song => enforces max 1 context per song per word
-        best_for_word: Dict[str, Tuple[int, int, str]] = {}
-        for line_no, line_text, toks in lines:
+        # Top 3 distinct lines per word per song (for single-song words)
+        # Two lines are "the same" if their tokenized text matches after
+        # stripping adlibs — catches chorus repetitions with minor variations.
+        MAX_PER_WORD_PER_SONG = 3
+        # top_for_word[word] = list of (score, line_no, line_text, norm)
+        top_for_word = {}  # type: Dict[str, List[Tuple[int, int, str, str]]]
+
+        # Pre-compute normalized forms once per line
+        line_norms = []  # type: List[str]
+        for _ln, lt, _tk in lines:
+            line_norms.append(" ".join(tokenize(strip_adlibs(lt))))
+
+        for idx, (line_no, line_text, toks) in enumerate(lines):
             if not is_good_context_line(toks):
                 continue
             s = score_line(toks)
+            norm = line_norms[idx]
             for w in set(toks):
-                prev = best_for_word.get(w)
-                if prev is None or s > prev[0]:
-                    best_for_word[w] = (s, line_no, line_text)
+                entries = top_for_word.get(w)
+                if entries is None:
+                    top_for_word[w] = [(s, line_no, line_text, norm)]
+                    continue
+                # Skip if this normalized text already present
+                if any(n == norm for _, _, _, n in entries):
+                    # Replace if higher score
+                    for i, (es, eln, elt, en) in enumerate(entries):
+                        if en == norm and s > es:
+                            entries[i] = (s, line_no, line_text, norm)
+                            break
+                    continue
+                if len(entries) < MAX_PER_WORD_PER_SONG:
+                    entries.append((s, line_no, line_text, norm))
+                else:
+                    # Replace worst if this scores higher
+                    worst_i = min(range(len(entries)), key=lambda i: entries[i][0])
+                    if s > entries[worst_i][0]:
+                        entries[worst_i] = (s, line_no, line_text, norm)
 
         # Fallback: words with no good-quality candidate still get their best line
-        for line_no, line_text, toks in lines:
+        for idx, (line_no, line_text, toks) in enumerate(lines):
             s = score_line(toks)
+            norm = line_norms[idx]
             for w in set(toks):
-                if w not in best_for_word:
-                    best_for_word[w] = (s, line_no, line_text)
+                if w not in top_for_word:
+                    top_for_word[w] = [(s, line_no, line_text, norm)]
 
-        for w, (s, line_no, line_text) in best_for_word.items():
-            candidates[w].append({
-                "score": s,
-                "batch": batch_i,
-                "song_id": song_id,
-                "line_no": line_no,
-                "line_text": line_text,
-                "song_title": title,
-            })
+        for w, entries in top_for_word.items():
+            for s, line_no, line_text, _norm in entries:
+                candidates[w].append({
+                    "score": s,
+                    "batch": batch_i,
+                    "song_id": song_id,
+                    "line_no": line_no,
+                    "line_text": line_text,
+                    "song_title": title,
+                })
 
     ngram_data = {
         "unigrams": ngram_unigrams,
@@ -392,7 +421,9 @@ def select_examples(
 
         chosen: List[Dict[str, Any]] = []
         used_songs_for_word = set()
+        chosen_keys = set()  # (song_id, line_no) to track what's picked
 
+        # Pass 1: one per unique song (prefer diversity)
         for d in cands_sorted:
             if len(chosen) >= max_examples_per_word:
                 break
@@ -401,6 +432,25 @@ def select_examples(
                 continue
             used_songs_for_word.add(sid)
             chosen.append(d)
+            chosen_keys.add((sid, d["line_no"]))
+
+        # Pass 2: fill from same-song candidates (up to 3 per song)
+        if len(chosen) < max_examples_per_word:
+            song_counts = Counter()  # type: Counter
+            for d in chosen:
+                song_counts[d["song_id"]] += 1
+            remaining = sorted(
+                [d for d in cands if (d["song_id"], d["line_no"]) not in chosen_keys],
+                key=lambda d: -d["score"]
+            )
+            for d in remaining:
+                if len(chosen) >= max_examples_per_word:
+                    break
+                sid = d["song_id"]
+                if song_counts[sid] >= 3:
+                    continue
+                song_counts[sid] += 1
+                chosen.append(d)
 
         for d in chosen:
             global_song_use[d["song_id"]] += 1
