@@ -236,6 +236,7 @@ function updateStep2Tooltip() {
         tooltip.innerHTML = `
             <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
             <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
+            <p><strong>% Mode</strong> switches to percentage coverage mode, showing how much of real-world text you'll understand (based on word frequency data from subtitle corpora).</p>
         `;
     }
 }

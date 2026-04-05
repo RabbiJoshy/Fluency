@@ -125,7 +125,7 @@ loadConfig().then(async () => {
         await loadPpmData(activeArtist.language || 'spanish');
         document.getElementById('step2').style.display = 'block';
         document.getElementById('step2Title').textContent = 'Choose Level';
-        document.querySelector('#step2 .btn-with-info:has(#percentModeBtn)').style.display = 'none';
+        document.getElementById('percentModeBtn').style.display = 'none';
         updateStep2Tooltip();
         updateStep5Tooltip();
         await updateLemmaToggleVisibility();
