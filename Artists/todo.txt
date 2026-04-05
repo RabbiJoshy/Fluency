@@ -40,13 +40,10 @@ DONE
 ----
 
 - Level estimation rebuilt as adaptive staircase (one word at a time, translation reveal, retest, convergence via streak + small step). Replaced batch binary search.
-- Song exclusion pass: excluded 10 Rosalia + 7 Bad Bunny non-songs (remixes, live performances, halftime show, non-artist songs). ~20 BB remix-only tracks kept (feature tracks where the remix is the only version). Pipeline re-run complete.
 - Multi-artist image selection uses per-example artist slug for correct album art fallback.
 - Multi-artist merge recalculates meaning frequency from example counts instead of stale Gemini line assignments.
 - Fixed English TTS voice selection (Samantha over Daniel, blocklisted novelty voices). Service worker switched to network-first.
 - Decided against per-artist verse filtering. Existing filters handle the real problems. Genius verse labels are unreliable.
 - Bracket/adlib stripping in step 3. Easiness scoring strips adlibs and ignores interjections/English/proper nouns.
-- Blank POS=X senses fixed (short word whitelist + front-end filtering).
-- Excluded 13 non-songs (freestyles, monologue, preview, recaps). Added non_songs category to schema.
 - Improved button touch targets.
 - Example lyrics show artist name alongside song name.
