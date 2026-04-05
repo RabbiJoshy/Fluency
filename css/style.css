@@ -2621,7 +2621,12 @@
             line-height: 1.5;
         }
 
-        /* Top bar text items (artist mode: user name, help, estimate) */
+        /* Artist mode top bar box */
+        .artist-top-bar-header {
+            margin-bottom: 0 !important;
+            gap: 16px;
+        }
+
         .top-bar-user-name {
             color: var(--accent-primary);
             font-weight: 600;
@@ -2643,6 +2648,10 @@
 
         .top-bar-text-btn:hover {
             color: var(--accent-primary);
+        }
+
+        .artist-top-bar-gear {
+            margin-left: auto;
         }
 
         /* Help modal content */

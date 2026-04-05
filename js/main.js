@@ -106,17 +106,13 @@ loadConfig().then(async () => {
         document.getElementById('languageTabs').style.display = 'none';
         document.getElementById('selectedLanguagePill').style.display = 'none';
         document.getElementById('step1').style.display = 'none';
-        // Ensure top bar is visible (showUserInfo may not have run yet if auth modal is pending)
-        document.getElementById('userInfo').classList.remove('hidden');
-        // Show top bar items: user name, How to start, Estimate Level
+        // Show artist top bar box with user name, How to start, Estimate Level, gear
         const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
-        const topBarName = document.getElementById('topBarUserName');
-        topBarName.textContent = userName;
-        topBarName.style.display = '';
-        document.getElementById('helpBtn').style.display = '';
-        document.getElementById('estimateLevelTextBtn').style.display = '';
+        document.getElementById('topBarUserName').textContent = userName;
+        document.getElementById('artistTopBar').style.display = 'block';
         document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
         document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
+        document.getElementById('artistGearBtn').addEventListener('click', () => showSettingsModal());
         // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
         document.querySelector('#step2 .step-number').textContent = '1';
         document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
