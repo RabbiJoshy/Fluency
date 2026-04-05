@@ -89,6 +89,44 @@ Spotify track IDs are looked up via `Artists/scripts/spotify_lookup.py` using th
 
 ---
 
+## Alternative translation sources [low] — researched, none viable
+
+Investigated April 2025 to find alternatives to Genius community translations (~40% coverage) + Gemini (~$5/artist for the rest).
+
+**Sources tested:**
+
+| Source | Result |
+|--------|--------|
+| **Musixmatch unofficial wrapper** (`musicxmatch-api` PyPI) | API returns 503 (CDN cert mismatch). Token endpoint returns captcha. Musixmatch is actively blocking automated access. Line-by-line parallel translations would be ideal if it worked. |
+| **Musixmatch official API** | Free tier (2000 req/day) does NOT include translations. Translation endpoint requires paid/enterprise tier — contact sales@musixmatch.com. |
+| **LyricsTranslate.com** | Human translations, good quality. But only covers top hits: 31 Bad Bunny songs (vs 302 in our corpus), 16 Rosalía songs (vs 111). ~60% English hit rate on what they have. robots.txt explicitly blocks AI crawlers. |
+| **Letras.com** | Excellent Latin music lyrics coverage but translations are mostly Spanish↔Portuguese, not Spanish→English. No API. |
+| **LyricFind** | Fully licensed, professional — but enterprise-only pricing, way too expensive for personal use. |
+| **AZLyrics** | No translations at all. English-focused. Cloudflare-protected. |
+| **Academic corpora** | Largest is MAVL (228 songs across 5 languages). Too small. No ready-made Spanish→English lyrics parallel corpus exists. |
+
+**Conclusion:** Genius + Gemini is the best approach for deep catalog coverage (300+ songs/artist). Community translation sites only cover top hits. The cost (~$5/artist with Gemini) is acceptable. If Musixmatch's unofficial API ever stabilizes, it would be worth retesting — their line-by-line parallel format is perfect for our pipeline.
+
+**LyricsTranslate scraping details** (if revisiting): Translations are in `<div class="ll-{para}-{line}">` elements inside `id="translation-body"`. Multiple translations per song (suffixed `-0`, `-1`, etc.). English ones detectable by checking for common English words in content.
+
+---
+
+## Sense dedup/mapping — implemented April 2025
+
+**Problem:** Gemini runs for different artists produce slightly different translations for the same sense (e.g., "want" vs "to want" vs "you want" for quieres). `merge_to_master.py` used exact `(pos, translation)` matching, creating duplicate meaning pills in the front-end. 352 near-duplicate pairs found.
+
+**Solution:** Two-part approach in `merge_to_master.py`:
+1. **Normalization for matching** — `normalize_translation()` strips case, "to " prefix, subject/object pronouns, and English 3rd-person conjugation. Catches 271 true duplicates while correctly preserving 97 genuinely-different senses.
+2. **spaCy morphology for display** — `choose_canonical_translation()` uses `es_core_news_lg` to analyze the Spanish word's morphological features (person, number, tense) and builds annotated translations like "you want" for quieres (Person=2). Falls back to longest translation when spaCy is unreliable (detected by checking if spaCy's lemma matches our master vocab's lemma).
+
+**Known limitation:** spaCy `es_core_news_sm` gets person wrong on isolated words. Must use `es_core_news_lg`. Even the large model struggles with irregular verbs and subjunctive/imperative in isolation — the lemma check catches these and falls back gracefully.
+
+**Remaining polish:** Generated 3rd-person translations say "he/she go" instead of "he/she goes". Would need English conjugation logic to fix. Low priority — the translations are still correct and informative.
+
+**Key files:** `Artists/scripts/merge_to_master.py` — `normalize_translation()`, `choose_canonical_translation()`, updated match in `build_master()` line ~188 and `write_artist_files()` line ~249.
+
+---
+
 ## Auto-populate albums dictionaries [deferred]
 
 `albums_dictionary.json` is manually curated per artist (maps songs to albums for album art display). Genius has album objects with track listings — a pipeline step could scrape these to auto-assign songs.

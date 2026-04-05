@@ -14,11 +14,14 @@ senses by exact (pos, translation) match, and writes:
 Also validates that no two distinct word|lemma pairs collide on the same 6-char ID.
 """
 
+import argparse
 import hashlib
 import json
 import os
 import sys
 from collections import defaultdict
+
+import spacy
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -28,6 +31,131 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ARTISTS_DIR = os.path.dirname(SCRIPT_DIR)
 PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
 MASTER_PATH = os.path.join(ARTISTS_DIR, "vocabulary_master.json")
+
+
+# ---------------------------------------------------------------------------
+# Sense dedup: normalization + spaCy morphology
+# ---------------------------------------------------------------------------
+
+_NLP = None  # type: ignore  # Lazy-loaded spaCy model
+
+SUBJECT_PRONOUNS = frozenset({
+    "i", "you", "he", "she", "it", "we", "they", "he/she", "he/she/it",
+})
+TRAILING_PRONOUNS = (
+    " myself", " oneself", " himself", " herself",
+    " them", " me", " you", " him", " her", " us", " it",
+)
+PERSON_PRONOUN = {
+    ("1", "Sing"): "I",
+    ("2", "Sing"): "you",
+    ("3", "Sing"): "he/she",
+    ("1", "Plur"): "we",
+    ("2", "Plur"): "you all",
+    ("3", "Plur"): "they",
+}
+
+
+def _strip_english_conjugation(word):
+    # type: (str) -> str
+    """Strip 3rd-person -s/-es/-ies from an English verb."""
+    if len(word) <= 3:
+        return word
+    if word.endswith("ies"):
+        return word[:-3] + "y"
+    if word.endswith(("ches", "shes", "sses", "xes", "zes")):
+        return word[:-2]
+    if word.endswith(("ces", "ges", "ses")):
+        return word[:-1]
+    if word.endswith("oes"):
+        return word[:-2]
+    if word.endswith("s") and not word.endswith("ss"):
+        return word[:-1]
+    return word
+
+
+def normalize_translation(translation):
+    # type: (str) -> str
+    """Normalize an English translation for sense matching.
+
+    Strips case, 'to ' prefix, subject/object pronouns, and English
+    conjugation so that 'you want', 'to want', and 'wants' all match.
+    """
+    t = translation.strip().lower()
+    if t.startswith("to "):
+        t = t[3:]
+    words = t.split()
+    if words and words[0] in SUBJECT_PRONOUNS:
+        t = " ".join(words[1:])
+    for p in TRAILING_PRONOUNS:
+        if t.endswith(p):
+            t = t[:len(t) - len(p)].strip()
+            break
+    words = t.split()
+    if words:
+        words[0] = _strip_english_conjugation(words[0])
+        t = " ".join(words)
+    return t
+
+
+def _get_nlp():
+    # type: () -> object
+    global _NLP
+    if _NLP is None:
+        print("Loading spaCy es_core_news_lg...")
+        _NLP = spacy.load("es_core_news_lg")
+    return _NLP
+
+
+def choose_canonical_translation(word, translations, lemma=None):
+    # type: (str, list, str) -> str
+    """Pick the best translation for a merged sense using spaCy morphology.
+
+    For conjugated verbs, builds '{pronoun} {base_verb}' from the
+    morphological features.  For infinitives, keeps 'to {verb}'.
+    For non-verbs, keeps the longest (most informative) translation.
+
+    Falls back to longest translation when spaCy gives unreliable results
+    (detected by comparing spaCy's lemma against our known lemma).
+    """
+    if not translations:
+        return ""
+    if len(translations) == 1:
+        return translations[0]
+
+    nlp = _get_nlp()
+    doc = nlp(word)
+    token = doc[0]
+    morph = token.morph.to_dict()
+
+    # Validate spaCy's analysis: if the lemma doesn't match what we
+    # already know, the morphological features are unreliable.
+    spacy_reliable = True
+    if lemma and token.lemma_ != lemma:
+        spacy_reliable = False
+
+    if spacy_reliable and token.pos_ in ("VERB", "AUX"):
+        verbform = morph.get("VerbForm", "")
+        person = morph.get("Person")
+        number = morph.get("Number")
+
+        if verbform == "Inf":
+            # Infinitive — prefer 'to X' form
+            for t in translations:
+                if t.lower().startswith("to "):
+                    return t
+            return "to " + normalize_translation(translations[0])
+
+        if verbform == "Fin" and person and number:
+            pronoun = PERSON_PRONOUN.get((person, number))
+            if pronoun:
+                # Build '{pronoun} {base_verb}' from normalized form
+                base = normalize_translation(translations[0])
+                if base:
+                    return "%s %s" % (pronoun, base)
+
+    # Non-verb, unreliable spaCy, or fallback: keep the longest translation
+    return max(translations, key=len)
 
 
 def make_stable_id(word, lemma, used=None):
@@ -132,6 +260,7 @@ def build_master(artists):
         "total_entries": 0,
         "unique_words": 0,
         "new_senses_added": 0,
+        "senses_merged": 0,
         "collision_reassignments": reassignment_count,
         "old_id_changes": 0,
     }
@@ -178,17 +307,27 @@ def build_master(artists):
             if entry.get("display_form") and not m.get("display_form"):
                 m["display_form"] = entry["display_form"]
 
-            # Merge senses by exact (pos, translation) match
+            # Merge senses by normalized (pos, translation) match
             for meaning in entry.get("meanings", []):
                 pos = meaning.get("pos", "X")
                 translation = meaning.get("translation", "")
-                # Check if this exact sense already exists
+                norm = normalize_translation(translation)
+                # Check if a matching sense already exists
                 existing_sense = None
                 for s in m["senses"]:
-                    if s["pos"] == pos and s["translation"] == translation:
+                    if s["pos"] == pos and normalize_translation(s["translation"]) == norm:
                         existing_sense = s
                         break
-                if not existing_sense:
+                if existing_sense:
+                    # Track candidate translations for later canonical selection
+                    existing_sense.setdefault("_candidates", [existing_sense["translation"]])
+                    if translation not in existing_sense["_candidates"]:
+                        existing_sense["_candidates"].append(translation)
+                        stats["senses_merged"] += 1
+                        stats.setdefault("merge_details", []).append(
+                            (word, new_id, pos, existing_sense["translation"], translation)
+                        )
+                else:
                     m["senses"].append({"pos": pos, "translation": translation})
                     stats["new_senses_added"] += 1
 
@@ -217,6 +356,21 @@ def build_master(artists):
             "entries": artist_entries,
         })
 
+    # Resolve canonical translations for merged senses using spaCy
+    merged_count = 0
+    for wid, m in master.items():
+        for sense in m["senses"]:
+            candidates = sense.pop("_candidates", None)
+            if candidates and len(candidates) > 1:
+                old = sense["translation"]
+                sense["translation"] = choose_canonical_translation(
+                    m["word"], candidates, lemma=m.get("lemma")
+                )
+                if sense["translation"] != old:
+                    merged_count += 1
+    if merged_count:
+        print("\nCanonical translations updated for %d senses" % merged_count)
+
     return master, per_artist_data, stats
 
 
@@ -243,10 +397,11 @@ def write_artist_files(master, artist_data):
         total_examples = 0
 
         for sense in m["senses"]:
-            # Find matching meaning in artist's entry
+            # Find matching meaning in artist's entry (normalized match)
+            norm_sense = normalize_translation(sense["translation"])
             matching_meaning = None
             for meaning in entry.get("meanings", []):
-                if meaning.get("pos") == sense["pos"] and meaning.get("translation") == sense["translation"]:
+                if meaning.get("pos") == sense["pos"] and normalize_translation(meaning.get("translation", "")) == norm_sense:
                     matching_meaning = meaning
                     break
             if matching_meaning and matching_meaning.get("examples"):
@@ -362,6 +517,7 @@ def validate(master, per_artist_data, stats):
     print("Total entries across all artists: %d" % stats["total_entries"])
     print("Unique word|lemma pairs in master: %d" % stats["unique_words"])
     print("Total senses in master: %d" % sum(len(m["senses"]) for m in master.values()))
+    print("Senses merged (normalized dedup): %d" % stats.get("senses_merged", 0))
     print("IDs that changed (old 4-char -> new 6-char): %d" % stats["old_id_changes"])
     if stats["collision_reassignments"] > 0:
         print("Collision reassignments (different word|lemma -> same base hash, suffix used): %d" % stats["collision_reassignments"])
@@ -403,6 +559,11 @@ def validate(master, per_artist_data, stats):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Build/rebuild shared master vocabulary")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Report sense merges without writing any files")
+    args = parser.parse_args()
+
     print("Discovering artists...")
     artists = discover_artists()
     if not artists:
@@ -412,6 +573,25 @@ def main():
 
     print("\nBuilding master vocabulary...")
     master, per_artist_data, stats = build_master(artists)
+
+    if args.dry_run:
+        print("\n" + "=" * 60)
+        print("DRY RUN — no files written")
+        print("=" * 60)
+        print("Senses merged: %d" % stats["senses_merged"])
+        for word, wid, pos, existing, incoming in stats.get("merge_details", []):
+            # Find the canonical translation chosen
+            m = master[wid]
+            canonical = ""
+            for s in m["senses"]:
+                if s["pos"] == pos and normalize_translation(s["translation"]) == normalize_translation(existing):
+                    canonical = s["translation"]
+                    break
+            print("  %s [%s] %s: \"%s\" + \"%s\" -> \"%s\"" % (
+                word, wid, pos, existing, incoming, canonical))
+        validate(master, per_artist_data, stats)
+        print("\nDry run complete. Run without --dry-run to write files.")
+        return
 
     # Write master
     print("\nWriting master vocabulary to %s..." % MASTER_PATH)

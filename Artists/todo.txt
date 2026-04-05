@@ -5,7 +5,7 @@ This is Josh's backlog. Items here are NOT instructions to start working — the
 - DO mention relevant items when they come up naturally ("this relates to item X on the todo, want to tackle it?").
 - Priority labels: [high] = next up, [low] = someday, [deferred] = don't even suggest unless Josh brings it up.
 - Done items can be cleaned out periodically when Josh says so.
-- See `todo_details.md` for expanded context on each item (for Claude, not for Josh to read).
+- See `todo_details.md` for expanded context on each item (for Claude, not for Josh to read). UPDATE todo_details.md when working on items — record what was tried, what was learned, and why decisions were made.
 - Do NOT use preview mode when working on items from this list. Service worker caching makes previews unreliable — Josh tests in his own browser.
 ====================
 
@@ -20,9 +20,9 @@ TO DO
 - [high] Normal mode parity — artist mode is much further ahead. Normal mode is missing example sentence cycling, easiness-based sorting, and the improved card layout. Big piece.
 - Use general Spanish vocabulary for level estimation even in artist mode (less genre-biased). Needs mapping strategy from general rank to artist deck.
 - Cross-artist MWE detection — currently step 3 detects MWEs per-artist only. A shared detection pass across all artist corpora would find expressions that don't cross the frequency threshold in any single artist. Master vocab already unions MWE memberships, but detection itself is per-artist.
-- [low] Sense dedup/mapping — master vocab treats "to do" and "to do, to make" as distinct senses (exact string match). A future pass could merge near-duplicate senses (e.g., "am" vs "I am", minor translation variants).
+- [low] Sense dedup/mapping — merged 271 duplicate senses via normalized translation matching + spaCy es_core_news_lg morphology for canonical translations. Remaining polish: English 3rd-person conjugation in generated translations ("he/she go" → "he/she goes"). See todo_details.md.
 - [low] Spotify links: Bad Bunny done (248/302 matched). Rosalía lookup still needed — run `python3 Artists/scripts/spotify_lookup.py` after Spotify rate limit resets. ~54 Bad Bunny songs missed due to Genius/Spotify title mismatches (could manually map later).
-- Research more public sources for translated artist lyrics beyond Genius. Would reduce Gemini costs when adding new artists and improve translation coverage. Worth a thorough look at what's available.
+- [low] Alternative translation sources beyond Genius — researched April 2025, none viable. See todo_details.md for full writeup. Revisit if Musixmatch unofficial API gets fixed or a new source appears.
 - [low] Surface per-word "known lyrics %" somewhere in settings — show what percentage of lyrics the user can understand based on words they've marked as known.
 - [deferred] Auto-populate albums dictionaries from Genius album pages. Currently manually curated per artist.
 
@@ -31,9 +31,10 @@ VOCABULARY ISSUES
 -----------------
 Items here are things Josh noticed while using the app. When fixing, don't just fix the individual word — investigate whether it's a symptom of a bigger pipeline/data problem. Delete items from this list once resolved.
 
+- Example cycling broken when English translation is empty — cycling is triggered by clicking the English text area, but some examples have no translation, leaving nothing to click. Fix: make the whole example area (not just English text) the cycle target. Spanish lyrics tap should still trigger breakdown only.
 - fixed rinde — translated as "sniper" but the word "rinde" doesn't appear in the example text where it says sniper. Possible Genius translation line misalignment (known issue with section-aware zipping). Investigate why "sniper" was matched to this word.
 - fixed bellacoso — shows frequency 20 but only has one example sentence. How does a word appear 20 times but only generate one example?
-- calle has 2 translatins, and they are both correct, but only one has example lyrics.
+- fixed calle — had 2 correct translations but Gemini swapped the line assignments (verb example in noun sense, noun example in verb sense). Manually swapped in examples + monolith files. Root cause: LLM line-number misassignment in step 6 — rare, not worth a pipeline fix.
 
 SONGS TO EXCLUDE
 ----------------
