@@ -19,6 +19,7 @@ TO DO
 - [high] Normal mode parity — artist mode is much further ahead. Normal mode is missing example sentence cycling, easiness-based sorting, and the improved card layout. Big piece.
 - Use general Spanish vocabulary for level estimation even in artist mode (less genre-biased). Needs mapping strategy from general rank to artist deck.
 - [low] Add Spotify links to cards. Probably one of the last things to do.
+- Research more public sources for translated artist lyrics beyond Genius. Would reduce Gemini costs when adding new artists and improve translation coverage. Worth a thorough look at what's available.
 - [deferred] Auto-populate albums dictionaries from Genius album pages. Currently manually curated per artist.
 
 
