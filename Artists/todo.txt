@@ -25,7 +25,7 @@ TO DO
 - [low] Alternative translation sources beyond Genius — researched April 2025, none viable. See todo_details.md for full writeup. Revisit if Musixmatch unofficial API gets fixed or a new source appears.
 - [low] Surface per-word "known lyrics %" somewhere in settings — show what percentage of lyrics the user can understand based on words they've marked as known.
 - [deferred] Auto-populate albums dictionaries from Genius album pages. Currently manually curated per artist.
-
+- quick; when a word has multiple meanings, Override the standard method of prioritising exampe lyrics because it can be confusing if the wrong sense is paired with the wrong example sentence, the process: first of all, any sentence that actually matches that sense according to Gemini if nothing exists then just go with the normal route.
 
 VOCABULARY ISSUES
 -----------------
