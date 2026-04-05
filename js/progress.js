@@ -69,11 +69,7 @@ async function updateExclusionBars() {
     let vocabularyData = cachedVocabularyData;
     if (!vocabularyData) {
         try {
-            const fetchPath = langConfig.indexPath || langConfig.dataPath;
-            const response = await fetch(fetchPath);
-            if (response.ok) {
-                vocabularyData = await response.json();
-            }
+            vocabularyData = await fetchAndJoinIndex(langConfig);
         } catch (error) {
             console.error('Failed to load vocabulary for exclusion info:', error);
             return;

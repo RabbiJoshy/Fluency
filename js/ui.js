@@ -518,17 +518,12 @@ async function updateLemmaToggleVisibility() {
 
     // Check if vocabulary has most_frequent_lemma_instance field
     lemmaFieldAvailable = false;
-    const lemmaCheckPath = langConfig && (langConfig.indexPath || langConfig.dataPath);
-    if (lemmaCheckPath) {
+    if (langConfig) {
         try {
-            const response = await fetch(lemmaCheckPath);
-            if (response.ok) {
-                const vocabData = await response.json();
-                // Check if at least one entry has the most_frequent_lemma_instance field
-                lemmaFieldAvailable = vocabData.some(item =>
-                    item.hasOwnProperty('most_frequent_lemma_instance')
-                );
-            }
+            const vocabData = await fetchAndJoinIndex(langConfig);
+            lemmaFieldAvailable = vocabData.some(item =>
+                item.hasOwnProperty('most_frequent_lemma_instance')
+            );
         } catch (error) {
             console.error('Error checking lemma field availability:', error);
         }
@@ -557,17 +552,12 @@ async function updateCognateToggleVisibility() {
 
     // Check if vocabulary has is_transparent_cognate field
     cognateFieldAvailable = false;
-    const cognateCheckPath = langConfig && (langConfig.indexPath || langConfig.dataPath);
-    if (cognateCheckPath) {
+    if (langConfig) {
         try {
-            const response = await fetch(cognateCheckPath);
-            if (response.ok) {
-                const vocabData = await response.json();
-                // Check if at least one entry has the is_transparent_cognate field
-                cognateFieldAvailable = vocabData.some(item =>
-                    item.hasOwnProperty('is_transparent_cognate')
-                );
-            }
+            const vocabData = await fetchAndJoinIndex(langConfig);
+            cognateFieldAvailable = vocabData.some(item =>
+                item.hasOwnProperty('is_transparent_cognate')
+            );
         } catch (error) {
             console.error('Error checking cognate field availability:', error);
         }
@@ -628,18 +618,10 @@ async function renderRangeSelector() {
         [minWord, maxWord] = level.wordCount.split('-').map(Number);
     }
 
-    // Use index file for lightweight metadata loading
-    const dataPath = langConfig.indexPath || langConfig.dataPath;
-
-    // Load the vocabulary data to check which ranks exist
+    // Load vocabulary data, joined with master if needed
     let vocabularyData = [];
     try {
-        if (dataPath) {
-            const response = await fetch(dataPath);
-            if (response.ok) {
-                vocabularyData = await response.json();
-            }
-        }
+        vocabularyData = await fetchAndJoinIndex(langConfig);
     } catch (error) {
         console.error('Failed to load vocabulary data:', error);
     }

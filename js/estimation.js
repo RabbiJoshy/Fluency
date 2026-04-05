@@ -140,8 +140,7 @@ function getWordTranslation(word) {
 async function startEstimation() {
     const langConfig = config.languages[selectedLanguage];
     try {
-        const response = await fetch(langConfig.indexPath || langConfig.dataPath);
-        estimationState.vocabularyData = await response.json();
+        estimationState.vocabularyData = await fetchAndJoinIndex(langConfig);
     } catch (error) {
         alert('Failed to load vocabulary for estimation.');
         return;

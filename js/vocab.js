@@ -70,6 +70,45 @@ function joinWithMaster(indexData, master) {
     return result;
 }
 
+/**
+ * Fetch the artist/language index and join with master vocabulary if needed.
+ * Caches the master and the joined result. Returns denormalized entries with all fields
+ * (word, lemma, meanings, flags) that buildFilteredVocab() and other consumers expect.
+ */
+async function fetchAndJoinIndex(langConfig) {
+    const indexPath = langConfig.indexPath || langConfig.dataPath;
+
+    // Return cached result if available (cleared when language/artist changes)
+    if (window._cachedJoinedIndex && window._cachedJoinedIndexPath === indexPath) {
+        return window._cachedJoinedIndex;
+    }
+
+    const response = await fetch(indexPath);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    let data = await response.json();
+
+    // Detect new master-based format and join if needed
+    if (activeArtist && langConfig.masterPath && data.length > 0 && data[0].sense_frequencies) {
+        if (!window._cachedMasterVocab) {
+            try {
+                const masterResp = await fetch(langConfig.masterPath);
+                if (masterResp.ok) {
+                    window._cachedMasterVocab = await masterResp.json();
+                }
+            } catch (e) {
+                console.warn('Failed to load master vocabulary:', e);
+            }
+        }
+        if (window._cachedMasterVocab) {
+            data = joinWithMaster(data, window._cachedMasterVocab);
+        }
+    }
+
+    window._cachedJoinedIndex = data;
+    window._cachedJoinedIndexPath = indexPath;
+    return data;
+}
+
 function buildFilteredVocab(vocabData) {
     // Assign stable rank from array position (pipeline sort order)
     vocabData.forEach((item, index) => { item.rank = index + 1; });
@@ -145,22 +184,6 @@ async function loadVocabularyData(rangeString) {
     const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
-        // Load shared master vocabulary for artist mode (cached)
-        let master = null;
-        if (activeArtist && langConfig.masterPath) {
-            if (!window._cachedMasterVocab) {
-                try {
-                    const masterResp = await fetch(langConfig.masterPath);
-                    if (masterResp.ok) {
-                        window._cachedMasterVocab = await masterResp.json();
-                    }
-                } catch (e) {
-                    console.warn('Failed to load master vocabulary:', e);
-                }
-            }
-            master = window._cachedMasterVocab;
-        }
-
         // Multi-artist mode: merge vocabularies from all selected artists
         let vocabularyData;
         const selectedSlugs = window._selectedArtistSlugs || [];
@@ -170,7 +193,7 @@ async function loadVocabularyData(rangeString) {
                 .map(slug => allConfigs[slug])
                 .filter(Boolean);
             if (!window._cachedMergedIndex) {
-                const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(artistConfigs, master);
+                const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(artistConfigs, window._cachedMasterVocab);
                 window._cachedMergedIndex = mergedIndex;
                 window._cachedMergedExamples = mergedExamples;
             }
@@ -178,19 +201,8 @@ async function loadVocabularyData(rangeString) {
             // Point examples cache to merged examples
             window._cachedExamplesData = window._cachedMergedExamples;
         } else {
-            // Single artist or normal mode: fetch as usual
-            const response = await fetch(indexPath);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            let rawData = await response.json();
-
-            // If we have a master, join the artist index with it
-            if (master && rawData.length > 0 && rawData[0].sense_frequencies) {
-                vocabularyData = joinWithMaster(rawData, master);
-            } else {
-                vocabularyData = rawData;
-            }
+            // Single artist or normal mode: fetch and join with master if needed
+            vocabularyData = await fetchAndJoinIndex(langConfig);
         }
         cachedVocabularyData = vocabularyData;
 
@@ -487,15 +499,10 @@ async function loadIncorrectWordsSet() {
     }
 
     const langConfig = config.languages[selectedLanguage];
-    const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
-        // Load the index (metadata) to get card details
-        const response = await fetch(indexPath);
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-        const vocabularyData = await response.json();
+        // Load the index (metadata) to get card details, joined with master if needed
+        const vocabularyData = await fetchAndJoinIndex(langConfig);
 
         // Create a lookup map by stable hex ID
         const wordToVocab = {};
@@ -1172,6 +1179,7 @@ async function mergeArtistVocabularies(artistConfigs, master) {
 
 window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.joinWithMaster = joinWithMaster;
+window.fetchAndJoinIndex = fetchAndJoinIndex;
 window.getWordId = getWordId;
 window.buildFilteredVocab = buildFilteredVocab;
 window.loadVocabularyData = loadVocabularyData;
