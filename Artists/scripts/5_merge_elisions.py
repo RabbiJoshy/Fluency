@@ -45,9 +45,7 @@ D_ELISION_RE = re.compile(r"^(.+)a'o$")      # captures stem before a'o
 D_ELISION_I_RE = re.compile(r"^(.+)í'o$")    # captures stem before í'o
 
 # Words ending in -a'o/-í'o that are NOT d-elisions (keep as-is)
-D_ELISION_EXCEPTIONS = frozenset({
-    "la'o",     # lado — already curated, elision of -d- in noun not participle
-})
+D_ELISION_EXCEPTIONS = frozenset()
 
 
 def d_elision_canonical(word):
@@ -102,7 +100,8 @@ def merge_evidence(data: list, targets: dict) -> list:
     Returns a new list of evidence entries.
     """
     # Group entries by their merge target (or keep as-is if no target)
-    groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None})
+    groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
+                                  "variants": {}})
 
     for entry in data:
         word = entry["word"]
@@ -129,6 +128,8 @@ def merge_evidence(data: list, targets: dict) -> list:
 
         groups[key]["count"] += count
         groups[key]["examples"].extend(examples)
+        # Track per-variant counts for merged forms
+        groups[key]["variants"][word] = groups[key]["variants"].get(word, 0) + count
 
     # Build output, deduplicating examples by song
     out = []
@@ -151,6 +152,8 @@ def merge_evidence(data: list, targets: dict) -> list:
         }
         if g["display_form"] and g["display_form"] != word:
             entry["display_form"] = g["display_form"]
+        if len(g["variants"]) >= 2:
+            entry["variants"] = g["variants"]
 
         out.append(entry)
 

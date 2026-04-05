@@ -595,6 +595,9 @@ def build_entry_from_llm(word_input, llm_result, sentence_translations, genius_l
         "corpus_count": corpus_count,
         "display_form": display_form,
     }
+    variants = word_input.get("variants")
+    if variants:
+        entry["variants"] = variants
     return entry
 
 
@@ -627,7 +630,7 @@ def build_entry_from_overrides_only(word_input, sentence_translations, genius_li
         meaning_examples.append(
             _make_example(ex, line_text, sentence_translations, genius_lines))
 
-    return {
+    entry = {
         "id": "",
         "word": word,
         "lemma": word,
@@ -641,6 +644,10 @@ def build_entry_from_overrides_only(word_input, sentence_translations, genius_li
         "corpus_count": corpus_count,
         "display_form": display_form,
     }
+    variants = word_input.get("variants")
+    if variants:
+        entry["variants"] = variants
+    return entry
 
 
 # ---------------------------------------------------------------------------
@@ -1338,12 +1345,16 @@ def _write_artist_split_files(entries, master, vocab_path):
                     break
             mwe_examples.append(matched)
 
-        index.append({
+        idx_entry = {
             "id": fid,
             "corpus_count": entry.get("corpus_count", 0),
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
-        })
+        }
+        variants = entry.get("variants")
+        if variants:
+            idx_entry["variants"] = variants
+        index.append(idx_entry)
 
         ex_entry = {"m": sense_examples}
         if any(mwe_examples):

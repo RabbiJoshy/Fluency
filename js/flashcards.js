@@ -887,6 +887,19 @@ async function goBackToSetup() {
     };
 }
 
+/**
+ * Build "variant1 | variant2" display string from card.variants,
+ * sorted by count descending (most frequent first).
+ * Returns null if no variants (single-form word).
+ */
+function buildVariantDisplay(card) {
+    if (!card.variants) return null;
+    const entries = Object.entries(card.variants);
+    if (entries.length < 2) return null;
+    entries.sort((a, b) => b[1] - a[1]);
+    return entries.map(e => e[0]).join(' | ');
+}
+
 function updateCard() {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
@@ -948,7 +961,20 @@ function updateCard() {
         }
     }
 
-    document.getElementById('frontWord').textContent = frontText;
+    // Build variant display if available (e.g. "la'o | lado")
+    const variantDisplay = buildVariantDisplay(card);
+    if (variantDisplay && !isFlipped) {
+        frontText = variantDisplay;
+    }
+
+    const frontWordEl = document.getElementById('frontWord');
+    frontWordEl.textContent = frontText;
+    // Scale font down for long variant strings
+    if (variantDisplay && !isFlipped && variantDisplay.length > 16) {
+        frontWordEl.style.fontSize = Math.max(36, 64 - (variantDisplay.length - 12) * 2) + 'px';
+    } else {
+        frontWordEl.style.fontSize = '';
+    }
 
     // Display part of speech on front with color coding
     const frontPOSEl = document.getElementById('frontPOS');
@@ -1001,16 +1027,17 @@ function updateCard() {
         frontRankingEl.style.display = 'none';
     }
 
-    // Build back content with lemma in brackets if different
-    let wordDisplay = backWord;
+    // Build back content with variant display and lemma
+    let backWordText = variantDisplay || backWord;
+    let wordDisplay = backWordText;
     if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
-        wordDisplay = `${backWord} <span style="color: var(--accent-primary); font-size: 28px;">(${card.lemma})</span>`;
+        wordDisplay = `${backWordText} <span style="color: var(--accent-primary); font-size: 28px;">(${card.lemma})</span>`;
     }
 
     let backHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div style="font-size: 42px; color: white; font-weight: bold;">${wordDisplay}</div>
+                <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold;">${wordDisplay}</div>
             </div>
         </div>
     `;

@@ -64,6 +64,7 @@ function joinWithMaster(indexData, master) {
             is_transparent_cognate: m.is_transparent_cognate || false,
             corpus_count: idx.corpus_count || 0,
             display_form: m.display_form || null,
+            variants: idx.variants || null,
             mwe_memberships: mwe_memberships.length > 0 ? mwe_memberships : undefined,
         });
     }
@@ -378,7 +379,8 @@ async function loadVocabularyData(rangeString) {
                 targetSentence: firstExample.targetSentence,
                 englishSentence: firstExample.englishSentence,
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
-                isMultiMeaning: true
+                isMultiMeaning: true,
+                variants: item.variants || null
             };
             flashcards.push(card);
         }
@@ -640,7 +642,8 @@ async function loadIncorrectWordsSet() {
                 targetSentence: firstExample.targetSentence,
                 englishSentence: firstExample.englishSentence,
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
-                isMultiMeaning: true
+                isMultiMeaning: true,
+                variants: item.variants || null
             };
             flashcards.push(card);
         }
@@ -803,7 +806,8 @@ function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
                 targetSentence: group.meanings[0].targetSentence,
                 englishSentence: group.meanings[0].englishSentence,
                 links: generateLinks(group.word, group.lemma || group.word, langConfig.referenceLinks),
-                isMultiMeaning: true
+                isMultiMeaning: true,
+                variants: group.variants || null
             };
 
             flashcards.push(card);
