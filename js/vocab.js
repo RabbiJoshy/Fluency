@@ -164,6 +164,13 @@ async function loadVocabularyData(rangeString) {
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
+        // Load Spotify track mapping (fire-and-forget, non-blocking)
+        if (!window._spotifyTracks) {
+            fetch('Data/spotify_tracks.json').then(r => r.ok ? r.json() : {}).then(d => {
+                window._spotifyTracks = d;
+            }).catch(() => { window._spotifyTracks = {}; });
+        }
+
         // Lazy-load examples: fetch only when user commits to a set
         let allCorpusExamples = [];
         if (langConfig.examplesPath) {

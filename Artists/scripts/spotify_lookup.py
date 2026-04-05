@@ -68,7 +68,9 @@ def search_track(token, song_name, artist_name):
             return items[0]["id"], items[0]["external_urls"]["spotify"]
     except urllib.error.HTTPError as e:
         if e.code == 429:
-            retry = int(e.headers.get("Retry-After", 2))
+            retry = int(e.headers.get("Retry-After", 5))
+            # Cap at 60s — Retry-After can be unreasonably large
+            retry = min(retry, 60)
             print(f"  Rate limited, waiting {retry}s...")
             time.sleep(retry)
             return search_track(token, song_name, artist_name)
@@ -80,8 +82,15 @@ def search_track(token, song_name, artist_name):
 
 def collect_songs(artist_dir, artist_name):
     """Return set of unique song names from examples file."""
-    slug = artist_name.replace(" ", "")
-    examples_path = artist_dir / f"{slug}vocabulary.examples.json"
+    # Use artist.json to find the correct filename stem
+    artist_json = artist_dir / "artist.json"
+    if artist_json.exists():
+        cfg = json.load(open(artist_json))
+        vocab_file = cfg.get("vocabulary_file", "")
+        stem = vocab_file.replace(".json", "") if vocab_file else artist_name.replace(" ", "") + "vocabulary"
+    else:
+        stem = artist_name.replace(" ", "") + "vocabulary"
+    examples_path = artist_dir / f"{stem}.examples.json"
     if not examples_path.exists():
         print(f"  No examples file: {examples_path}")
         return set()
@@ -136,7 +145,7 @@ def main():
                 missed.append(song_name)
                 status = "MISS"
             print(f"  [{i+1}/{len(songs)}] {status}: {song_name}")
-            time.sleep(0.05)  # gentle rate limiting
+            time.sleep(0.1)  # rate limiting
 
         # Write per-artist file
         out_path = artist_dir / "data" / "spotify_tracks.json"

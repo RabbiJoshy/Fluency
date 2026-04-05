@@ -1900,6 +1900,21 @@
             opacity: 1;
         }
 
+        .spotify-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px;
+            border: none;
+            background: none;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .spotify-btn:hover {
+            opacity: 1;
+            background: none;
+            border: none;
+        }
+
         /* Back button on card (nav stack) */
         .nav-back-btn {
             background: var(--accent-primary);
