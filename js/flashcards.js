@@ -1198,13 +1198,13 @@ function updateCard() {
                 </div>
             ` : '');
 
-            const clickHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
+            const cycleHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
             const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
 
             backHTML += `
-                <div class="sentence" style="text-align: center;">
-                    <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event)" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
-                    <div class="translation" ${clickHandler} style="${cursorStyle}">${displayEnglishSentence}</div>
+                <div class="sentence" style="text-align: center; ${cursorStyle}" ${cycleHandler}>
+                    <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
+                    <div class="translation">${displayEnglishSentence}</div>
                     ${songNameDisplay}
                 </div>
             `;
