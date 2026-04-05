@@ -31,7 +31,7 @@ VOCABULARY ISSUES
 -----------------
 Items here are things Josh noticed while using the app. When fixing, don't just fix the individual word — investigate whether it's a symptom of a bigger pipeline/data problem. Delete items from this list once resolved.
 
-- Example cycling broken when English translation is empty — cycling is triggered by clicking the English text area, but some examples have no translation, leaving nothing to click. Fix: make the whole example area (not just English text) the cycle target. Spanish lyrics tap should still trigger breakdown only.
+- fixed Example cycling — moved click target from English text to whole example box. Spanish tap still triggers breakdown only (stopPropagation).
 - fixed rinde — translated as "sniper" but the word "rinde" doesn't appear in the example text where it says sniper. Possible Genius translation line misalignment (known issue with section-aware zipping). Investigate why "sniper" was matched to this word.
 - fixed bellacoso — shows frequency 20 but only has one example sentence. How does a word appear 20 times but only generate one example?
 - fixed calle — had 2 correct translations but Gemini swapped the line assignments (verb example in noun sense, noun example in verb sense). Manually swapped in examples + monolith files. Root cause: LLM line-number misassignment in step 6 — rare, not worth a pipeline fix.
