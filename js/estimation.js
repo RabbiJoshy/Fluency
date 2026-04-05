@@ -396,7 +396,6 @@ window.closeEstimationModal = closeEstimationModal;
 window.startEstimation = startEstimation;
 window.handleAnswer = handleAnswer;
 window.revealTranslation = revealTranslation;
-window.advanceToNext = advanceToNext;
 window.showEstimationResult = showEstimationResult;
 window.useEstimatedLevel = useEstimatedLevel;
 window.retryEstimation = retryEstimation;
