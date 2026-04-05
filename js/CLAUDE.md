@@ -86,7 +86,9 @@ Assigns `displayRank` (1-based, continuous). Range buttons use `displayRank`, NO
 
 ## Multi-Artist Merge
 
-`mergeArtistVocabularies()` in `vocab.js`: merges by hex ID, sums corpus_count, unions examples (tagged with `artist` slug), discards `--no-gemini` placeholders when Gemini analysis exists.
+`mergeArtistVocabularies()` in `vocab.js`: merges by hex ID, sums corpus_count, unions examples (tagged with `artist` slug), discards `--no-gemini` placeholders when Gemini analysis exists. After merge, recalculates meaning `frequency` from example counts (not stale Gemini line assignments).
+
+Album art in multi-artist mode: `artist-ui.js` stores per-artist default art in `artistDefaultArt` map. `updateArtistBackground()` reads the example's `artist` slug to pick the correct fallback image.
 
 ## Pitfalls
 

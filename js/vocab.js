@@ -1054,6 +1054,20 @@ async function mergeArtistVocabularies(artistConfigs) {
         }
     }
 
+    // Recalculate frequency from example counts (merge concatenates examples
+    // but doesn't update frequency, making percentages stale)
+    for (const entry of byId.values()) {
+        if (entry.meanings && entry.meanings.length > 1) {
+            const counts = entry.meanings.map(m => (m.examples || []).length);
+            const total = counts.reduce((a, b) => a + b, 0);
+            if (total > 0) {
+                entry.meanings.forEach((m, i) => {
+                    m.frequency = (counts[i] / total).toFixed(2);
+                });
+            }
+        }
+    }
+
     // Sort by combined corpus_count descending
     const mergedIndex = Array.from(byId.values()).sort((a, b) => (b.corpus_count || 0) - (a.corpus_count || 0));
 

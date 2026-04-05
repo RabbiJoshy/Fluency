@@ -705,6 +705,21 @@
       "keep": "3015945",
       "duplicate_title": "Krippy Kush (Travis Scott Remix)",
       "original_title": "Krippy Kush"
+    },
+    "3570931": {
+      "keep": "2924481",
+      "duplicate_title": "Lo Que Yo Diga (Dema Ga Ge Gi Go Gu Remix)",
+      "original_title": "Dema Ga Ge Gi Go Gu"
+    },
+    "10718222": {
+      "keep": "9614104",
+      "duplicate_title": "My Love Is the Shhh! / Monaco (Mozes & Falcons Remix) [Mixed]",
+      "original_title": "MONACO"
+    },
+    "9569103": {
+      "keep": "4589199",
+      "duplicate_title": "What's the Use? (Nusnce Remix) / Callaita (Mixed)",
+      "original_title": "Callaita"
     }
   },
   "placeholders": [
@@ -955,6 +970,21 @@
         "title": "Un Polvo",
         "language": "not_bad_bunny",
         "reason": "Bad Bunny has <15% of lines (minor feature)"
+      },
+      "3679356": {
+        "title": "Dura (Remix)",
+        "language": "not_bad_bunny",
+        "reason": "Daddy Yankee song, BB is a feature"
+      },
+      "3194912": {
+        "title": "Know No Better (Bad Bunny Remix)",
+        "language": "not_bad_bunny",
+        "reason": "Major Lazer song, BB remix feature"
+      },
+      "9039074": {
+        "title": "Moon - No te cortes REMIX FT. Bad Bunny",
+        "language": "not_bad_bunny",
+        "reason": "Not a BB primary song"
       }
     }
   },
@@ -1025,15 +1055,20 @@
         "title": "My Recap 2022",
         "category": "recap",
         "reason": "Year-end playlist recap, not a discrete song"
+      },
+      "11542805": {
+        "title": "Super Bowl LX Halftime Show",
+        "category": "performance",
+        "reason": "Live halftime show medley, not a discrete song"
       }
     }
   },
   "stats": {
     "total_songs": 537,
-    "duplicates": 141,
+    "duplicates": 144,
     "placeholders": 19,
-    "non_spanish": 45,
-    "non_songs": 13,
-    "unique_songs": 324
+    "non_spanish": 48,
+    "non_songs": 14,
+    "unique_songs": 317
   }
 }

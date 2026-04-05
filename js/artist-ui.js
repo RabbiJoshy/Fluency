@@ -1,5 +1,8 @@
 import './state.js';
 
+// Per-artist default album art, keyed by slug (for multi-artist fallback)
+const artistDefaultArt = {};
+
 async function loadArtistAlbumsDictionary() {
     if (!activeArtist || !activeArtist.albumsDictionary) return;
     try {
@@ -21,9 +24,10 @@ async function loadArtistAlbumsDictionary() {
     }
 }
 
-// Get album image for a song name
-function getAlbumImageForSong(songName) {
-    const fallback = (activeArtist && activeArtist.defaultAlbumArt) || '';
+// Get album image for a song name, using the example's artist slug for fallback
+function getAlbumImageForSong(songName, artistSlug) {
+    const fallback = (artistSlug && artistDefaultArt[artistSlug])
+        || (activeArtist && activeArtist.defaultAlbumArt) || '';
     if (!songName) return fallback;
     return songToAlbumMap[songName] || songToAlbumMap[songName.toLowerCase()] || fallback;
 }
@@ -35,16 +39,18 @@ function updateArtistBackground() {
     const cardFaces = document.querySelectorAll('.card-face');
 
     let songName = null;
+    let artistSlug = null;
     const card = flashcards[currentIndex];
     if (card && card.isMultiMeaning) {
         const currentMeaning = card.meanings[currentMeaningIndex];
         if (currentMeaning && currentMeaning.allExamples && currentMeaning.allExamples.length > 0) {
             const example = currentMeaning.allExamples[currentExampleIndex] || currentMeaning.allExamples[0];
             songName = example.song_name;
+            artistSlug = example.artist;
         }
     }
 
-    const imageUrl = getAlbumImageForSong(songName);
+    const imageUrl = getAlbumImageForSong(songName, artistSlug);
 
     cardFaces.forEach(face => {
         face.style.backgroundImage = imageUrl ? `url('${imageUrl}')` : '';
@@ -59,6 +65,8 @@ async function loadMultiArtistAlbumsDictionaries(slugs, allConfigs) {
     for (const slug of slugs) {
         const cfg = allConfigs[slug];
         if (!cfg || !cfg.albumsDictionary) continue;
+        // Store per-artist default art for fallback
+        artistDefaultArt[slug] = cfg.defaultAlbumArt || '';
         try {
             const response = await fetch(cfg.albumsDictionary);
             const dict = await response.json();

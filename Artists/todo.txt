@@ -8,7 +8,7 @@ This is Josh's backlog. Items here are NOT instructions to start working — the
 ====================
 
 == Suggested next session ==
-Wave 2+3 is done and pushed (pipeline fixes, personal easiness, Rosalía setup). The Artist mode is now ahead of normal mode — see [high] item below. Bring normal vocabulary mode up to parity. Key gaps to investigate: normal mode doesn't have example sentence cycling, easiness-based sorting, or the improved card layout from artist mode. Start by comparing loadVocabularyData() and updateCard() code paths for activeArtist vs normal mode to identify what's missing.
+Song exclusion pass needed for both artists. ~10 Rosalía songs (remixes, live versions, DJ mixes like "Juro Que / MALAMENTE (Live at Grammy Awards)", "HIGHEST IN THE ROOM (REMIX)", "TKN (Arca Remix)") and ~31 Bad Bunny songs (remixes, DJ mixes, "Super Bowl LX Halftime Show", "DAKITI / Summer (Loud Luxury Edit)", etc.) need adding to duplicate_songs.json. Then re-run pipeline from step 3. See DEDUP_INSTRUCTIONS.md for the new "Automated scan" section — have Claude generate and run a one-off scan script.
 ====================
 
 •⁠  ⁠[x] DONE — Blank POS=X senses: root cause was short word whitelist in step 6 (added ah, to, je, ja, mm) + front-end now filters out POS=X/empty-translation meanings in buildFilteredVocab(). Multi-artist merge also fixed. Ongoing word quality monitoring continues.
@@ -17,8 +17,11 @@ Wave 2+3 is done and pushed (pipeline fixes, personal easiness, Rosalía setup).
 •⁠  ⁠[ ]  I think I could probably leverage the Genius lyrics if they're accurately labelled, depending on who's singing each verse . Then I can Make it so that for example the corpus is only made up of Bad Bunny lyrics. This would probably have the benefit of deleting some of the junk text from some songs but on balance I think that most of these are cut out by language droppers. Also all the words used in songs on shared albums in Spanish should actually probably help the learner anyway to understand the songs, if you're doing this to understand Bad Bunny songs. So on balance I think it may be smarter not to but I'm welcoming Claude's opinion on this. This is relatively low priority.
     - [ ] Improve the level estimation . I haven't yet worked out how to do this. I need to actually have a chat with Claude and see what it thinks. There are no ways to do this for now so it should not be a priority.
 •⁠  ⁠[ ] Add Spotify links, this is definitely not a priority but I could have the link to the song on Spotify somewhere within the card. Though I think this is probably one of the last things I'll do.
-•⁠  ⁠[x] DONE (Wave 1) — Fixed English TTS voice in js/speech.js.
+•⁠  ⁠[x] DONE — Fixed English TTS voice selection (Samantha over Daniel, blocklisted novelty voices). Service worker switched to network-first for all assets.
 •⁠  ⁠[x] DONE — Bracket/adlib stripping added to step 3 counting path (preserves brackets in examples). Step 8 easiness scoring now strips adlibs and ignores interjections/English/proper nouns from the median calculation.
 •⁠  ⁠[x] DONE (Wave 1) — Example lyrics now show artist name alongside song name in js/flashcards.js.
 •  [high] The Artist mode is now much further ahead than the normal mode. It's probably time to start working on the normal mode and making sure that they're growing in sync. It's important to make the changes to the normal mode that bring it up to date with the artist mode. It's a big piece so probably quite a priority.
+•  [x] DONE — Multi-artist image selection now uses per-example artist slug for correct album art fallback (artist-ui.js).
+•  [x] DONE — Multi-artist merge now recalculates meaning frequency from example counts instead of stale Gemini line assignments (vocab.js).
+•  [high] Song exclusion pass: ~10 Rosalía + ~31 Bad Bunny remixes/live versions/DJ mixes/halftime show need adding to duplicate_songs.json, then pipeline re-run from step 3. See DEDUP_INSTRUCTIONS.md "Automated scan" section.
 •  [deferred] Auto-populate albums dictionaries from Genius album pages. Currently albums_dictionary.json is manually curated per artist. Genius has album objects with track listings — a pipeline step could scrape these to auto-assign songs to albums. Would save manual work when adding new artists or when an artist drops a new album.

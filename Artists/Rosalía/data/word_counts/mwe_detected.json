@@ -3,36 +3,31 @@
     {
       "expression": "sé que",
       "translation": "I know that",
-      "count": 24
+      "count": 23
     },
     {
       "expression": "voy a",
       "translation": "I'm going to",
-      "count": 22
+      "count": 20
     },
     {
       "expression": "no hay",
       "translation": "there isn't, there's no",
-      "count": 20
-    },
-    {
-      "expression": "pa' que",
-      "translation": "so that, in order to",
-      "count": 15
+      "count": 19
     },
     {
       "expression": "de mí",
       "translation": "about me, of me",
-      "count": 14
+      "count": 13
+    },
+    {
+      "expression": "pa' que",
+      "translation": "so that, in order to",
+      "count": 11
     },
     {
       "expression": "de ti",
       "translation": "about you, of you",
-      "count": 12
-    },
-    {
-      "expression": "te quiero",
-      "translation": "I love you / I want you",
       "count": 11
     },
     {
@@ -41,18 +36,18 @@
       "count": 11
     },
     {
-      "expression": "tú ere'",
-      "translation": "you are (elided)",
-      "count": 10
-    },
-    {
       "expression": "a ver",
       "translation": "let's see",
       "count": 9
     },
     {
-      "expression": "no sé",
-      "translation": "I don't know",
+      "expression": "te quiero",
+      "translation": "I love you / I want you",
+      "count": 9
+    },
+    {
+      "expression": "tú ere'",
+      "translation": "you are (elided)",
       "count": 9
     },
     {
@@ -71,18 +66,18 @@
       "count": 7
     },
     {
-      "expression": "a ti te",
-      "translation": "to you (emphatic)",
+      "expression": "no sé",
+      "translation": "I don't know",
       "count": 7
-    },
-    {
-      "expression": "de verdad",
-      "translation": "really, truly, for real",
-      "count": 6
     },
     {
       "expression": "hasta que",
       "translation": "until",
+      "count": 6
+    },
+    {
+      "expression": "a ti te",
+      "translation": "to you (emphatic)",
       "count": 6
     },
     {
@@ -111,18 +106,8 @@
       "count": 5
     },
     {
-      "expression": "te voy a",
-      "translation": "I'm going to (you)",
-      "count": 5
-    },
-    {
       "expression": "otra vez",
       "translation": "again",
-      "count": 5
-    },
-    {
-      "expression": "dice que",
-      "translation": "says that",
       "count": 5
     },
     {
@@ -151,18 +136,23 @@
       "count": 4
     },
     {
+      "expression": "te voy a",
+      "translation": "I'm going to (you)",
+      "count": 4
+    },
+    {
       "expression": "me gusta",
       "translation": "I like",
       "count": 4
     },
     {
-      "expression": "de nuevo",
-      "translation": "again",
-      "count": 3
+      "expression": "dice que",
+      "translation": "says that",
+      "count": 4
     },
     {
-      "expression": "ya no hay",
-      "translation": "there's no longer",
+      "expression": "de verdad",
+      "translation": "really, truly, for real",
       "count": 3
     },
     {
@@ -174,6 +164,11 @@
       "expression": "la disco",
       "translation": "the club",
       "count": 3
+    },
+    {
+      "expression": "de nuevo",
+      "translation": "again",
+      "count": 2
     },
     {
       "expression": "lo mío",
@@ -188,6 +183,11 @@
     {
       "expression": "hay que",
       "translation": "one must, you have to",
+      "count": 2
+    },
+    {
+      "expression": "ya no hay",
+      "translation": "there's no longer",
       "count": 2
     },
     {
@@ -211,28 +211,13 @@
       "count": 2
     },
     {
-      "expression": "se ve",
-      "translation": "looks, appears",
-      "count": 2
-    },
-    {
       "expression": "to' el mundo",
       "translation": "everybody",
       "count": 2
     },
     {
-      "expression": "e' que",
-      "translation": "it's that (elided)",
-      "count": 2
-    },
-    {
       "expression": "un flow",
       "translation": "a style, a vibe",
-      "count": 2
-    },
-    {
-      "expression": "no sé qué",
-      "translation": "I don't know what",
       "count": 2
     },
     {
@@ -248,11 +233,6 @@
     {
       "expression": "por eso",
       "translation": "that's why, for that reason",
-      "count": 1
-    },
-    {
-      "expression": "por más que",
-      "translation": "no matter how much",
       "count": 1
     },
     {
@@ -296,8 +276,18 @@
       "count": 1
     },
     {
+      "expression": "se ve",
+      "translation": "looks, appears",
+      "count": 1
+    },
+    {
       "expression": "dile que",
       "translation": "tell him/her that",
+      "count": 1
+    },
+    {
+      "expression": "e' que",
+      "translation": "it's that (elided)",
       "count": 1
     },
     {
@@ -340,7 +330,7 @@
   ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 66,
+    "confirmed_count": 64,
     "pmi_detected_count": 1
   }
 }

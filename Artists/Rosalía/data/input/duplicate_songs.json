@@ -145,6 +145,31 @@
       "keep": "3646825",
       "duplicate_title": "En Mí (Interlude)",
       "original_title": "Brillo"
+    },
+    "8484246": {
+      "keep": "7515185",
+      "duplicate_title": "BIZCOCHITO (LEORD Y HARACA KIKO REMIX)",
+      "original_title": "BIZCOCHITO"
+    },
+    "7511383": {
+      "keep": "7288792",
+      "duplicate_title": "La Fama (Isaac Grey Remix)",
+      "original_title": "LA FAMA"
+    },
+    "6325459": {
+      "keep": "5461781",
+      "duplicate_title": "TKN (Arca Remix)",
+      "original_title": "TKN"
+    },
+    "11173076": {
+      "keep": "3964068",
+      "duplicate_title": "Unforgettable / DI MI NOMBRE (Chris IDH & Isidoros Remix) [FromParis Edit) [Mixed]",
+      "original_title": "DI MI NOMBRE (Cap.8: Extasis)"
+    },
+    "5586847": {
+      "keep": "5197781",
+      "duplicate_title": "Juro Que / MALAMENTE (Live at the 62nd Grammy Awards)",
+      "original_title": "Juro Que"
     }
   },
   "placeholders": [
@@ -507,14 +532,45 @@
         "title": "CUPRA X ROSALÍA",
         "language": "not_rosalia",
         "reason": "Brand advertisement, not a song"
+      },
+      "6181749": {
+        "title": "Blinding Lights (Remix)",
+        "language": "not_rosalia",
+        "reason": "The Weeknd song, Rosalía feature"
+      },
+      "4928397": {
+        "title": "HIGHEST IN THE ROOM (REMIX)",
+        "language": "not_rosalia",
+        "reason": "Travis Scott song, Rosalía feature"
+      },
+      "5743232": {
+        "title": "Relacion (Remix)",
+        "language": "not_rosalia",
+        "reason": "Sech/Daddy Yankee song, Rosalía feature"
       }
     }
   },
   "stats": {
     "total_songs": 241,
-    "duplicates": 29,
+    "duplicates": 34,
     "placeholders": 1,
-    "non_spanish": 71,
-    "unique_songs": 140
+    "non_spanish": 74,
+    "non_songs": 2,
+    "unique_songs": 130
+  },
+  "non_songs": {
+    "description": "Non-songs: live performances without studio versions, medleys",
+    "songs": {
+      "5638753": {
+        "title": "La Llorona (Live)",
+        "category": "live_cover",
+        "reason": "Live cover of traditional song, no studio version"
+      },
+      "4282522": {
+        "title": "Me Quedo Contigo (Live at 33 Gala de los Goya 2019)",
+        "category": "live_cover",
+        "reason": "Live performance, no studio version in corpus"
+      }
+    }
   }
 }

@@ -131,6 +131,25 @@ Note: some placeholder IDs also appear in duplicates (overlap). `unique_songs` s
 }
 ```
 
+## Automated scan (generate a one-off script)
+
+The manual dedup pass misses remixes, live versions, and DJ mixes. When doing a dedup pass, have Claude generate a throwaway Python script that:
+
+1. Loads all songs from `data/input/batches/batch_*.json`
+2. Loads the existing `duplicate_songs.json` (all sections)
+3. Flags songs NOT already excluded whose titles match any of these patterns (case-insensitive):
+   - `(Remix)`, `(... Remix)`, `Remix)` at end — any remix variant
+   - `(Live)`, `[Live]`, `(Live at ...)`, `(En Vivo)`
+   - `(Mixed)`, `[Mixed]`, `(... Edit) [Mixed]` — DJ mixes/mashups
+   - `Halftime Show`, `Half Time`, `Super Bowl`
+   - `(Sped Up)`, `(Slowed)`, `(Chopped)`
+   - `(Instrumental)`, `(Acapella)`, `(Acoustic)`
+   - `/ ` (slash in title) — mashups like "DAKITI / Summer"
+4. For each flagged song, prints: song ID, title, and suggested category (`duplicates` if a canonical version exists, `non_songs` for halftime shows/medleys, `duplicates` for remixes with an original)
+5. Outputs a draft JSON patch that can be reviewed and merged into `duplicate_songs.json`
+
+Don't commit this script — it's disposable. Run it, review the output, update `duplicate_songs.json`, then delete it.
+
 ## How to verify
 
 After updating, validate with:
