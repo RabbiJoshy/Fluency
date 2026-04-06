@@ -389,15 +389,21 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
         easiness_data = ranking.get("easiness", {})
 
         if order:
-            # Build ID -> entry lookup
+            # Ranking may be keyed by word (layer mode) or ID (legacy mode)
+            # Try word-keyed first, fall back to ID-keyed
+            word_to_entry = {e["word"]: e for e in entries}
             id_to_entry = {e["id"]: e for e in entries}
+
             sorted_entries = []
-            for fid in order:
-                if fid in id_to_entry:
-                    sorted_entries.append(id_to_entry.pop(fid))
-            # Append any entries not in the ranking (new words since last rank)
+            used = set()
+            for key in order:
+                entry = word_to_entry.get(key) or id_to_entry.get(key)
+                if entry and id(entry) not in used:
+                    sorted_entries.append(entry)
+                    used.add(id(entry))
+            # Append any entries not in the ranking
             for e in entries:
-                if e["id"] in id_to_entry:
+                if id(e) not in used:
                     sorted_entries.append(e)
             entries = sorted_entries
             print("  Ranking applied: %d entries sorted" % len(entries))
@@ -405,8 +411,8 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
         # Apply easiness scores and sort examples within meanings
         SENTINEL = 999999
         for entry in entries:
-            fid = entry["id"]
-            e_data = easiness_data.get(fid, {})
+            # Easiness may be keyed by word or ID
+            e_data = easiness_data.get(entry["word"], {}) or easiness_data.get(entry["id"], {})
             per_meaning = e_data.get("m", [])
             for m_idx, meaning in enumerate(entry.get("meanings", [])):
                 examples = meaning.get("examples", [])

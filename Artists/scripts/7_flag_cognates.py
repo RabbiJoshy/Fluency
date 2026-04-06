@@ -231,6 +231,72 @@ def add_transparent_flag(path: str, intersection_mode: bool = False,
         print(f"  Layer: {len(cognate_layer)} cognates -> {layer_path}")
 
 
+# ---------------- layer-based cognate detection ----------------
+
+def detect_cognates_from_layers(layers_dir):
+    """Detect cognates from senses_gemini.json layer, write cognates.json layer.
+
+    Uses intersection mode: both LLM flag (from master) and suffix rules must agree.
+    """
+    senses_path = os.path.join(layers_dir, "senses_gemini.json")
+    if not os.path.isfile(senses_path):
+        print("  Skipping (senses_gemini.json not found)")
+        return
+
+    with open(senses_path, "r", encoding="utf-8") as f:
+        senses_data = json.load(f)
+
+    # Load master for LLM flags
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    master_path = os.path.join(project_root, "Artists", "vocabulary_master.json")
+    master = {}
+    if os.path.isfile(master_path):
+        with open(master_path, "r", encoding="utf-8") as f:
+            master = json.load(f)
+    # Build word|lemma -> master entry lookup
+    wl_to_master = {}
+    for mid, m in master.items():
+        wl_to_master["%s|%s" % (m["word"], m["lemma"])] = m
+
+    cognate_layer = {}
+    llm_only = 0
+    suffix_only = 0
+
+    for key, sense_list in senses_data.items():
+        word, lemma = key.split("|", 1) if "|" in key else (key, key)
+
+        # Build a fake entry for _suffix_rule_says_cognate
+        entry = {
+            "word": word,
+            "lemma": lemma,
+            "meanings": [{"translation": s.get("translation", "")} for s in sense_list],
+        }
+        suffix_flag = _suffix_rule_says_cognate(entry)
+
+        # LLM flag from master
+        m = wl_to_master.get(key)
+        llm_flag = m.get("is_transparent_cognate", False) if m else False
+
+        # Intersection: both must agree
+        is_cognate = llm_flag and suffix_flag
+        if llm_flag and not suffix_flag:
+            llm_only += 1
+        if suffix_flag and not llm_flag:
+            suffix_only += 1
+
+        if is_cognate:
+            cognate_layer[key] = True
+
+    os.makedirs(layers_dir, exist_ok=True)
+    layer_path = os.path.join(layers_dir, "cognates.json")
+    with open(layer_path, "w", encoding="utf-8") as f:
+        json.dump(cognate_layer, f, ensure_ascii=False)
+
+    print("  %d cognates flagged (intersection mode)" % len(cognate_layer))
+    print("    LLM-only (dropped): %d, suffix-only (dropped): %d" % (llm_only, suffix_only))
+    print("  -> %s" % layer_path)
+
+
 # ---------------- main ----------------
 
 def main():
@@ -247,11 +313,10 @@ def main():
 
     layers_dir = os.path.join(artist_dir, "data", "layers")
 
-    print("=== Suffix rules only (no LLM data) ===")
+    print("=== Suffix rules only (normal-mode vocab) ===")
     add_transparent_flag(os.path.join(project_root, "Data", "Spanish", "vocabulary.json"), intersection_mode=False)
-    print("\n=== Intersection mode (LLM + suffix rules must agree) ===")
-    add_transparent_flag(os.path.join(artist_dir, config["vocabulary_file"]),
-                         intersection_mode=True, layers_dir=layers_dir)
+    print("\n=== Layer-based cognate detection (artist mode) ===")
+    detect_cognates_from_layers(layers_dir)
 
 
 if __name__ == "__main__":

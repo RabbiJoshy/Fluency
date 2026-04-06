@@ -75,7 +75,7 @@ def _step_7_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _step_8_args(args, artist_dir):
-    return _base_args(artist_dir) + ["--skip-split"]
+    return _base_args(artist_dir)
 
 def _build_args(args, artist_dir):
     return _base_args(artist_dir)
@@ -101,19 +101,22 @@ def build_steps(vocab_file):
          "script": "5b_split_evidence.py", "args_fn": _step_5b_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
          "output": "data/layers/word_inventory.json", "needs_api_key": False},
-        {"num": 6, "label": "LLM word analysis (Gemini)",
+        {"num": 6, "label": "LLM word analysis (Gemini) -> layers",
          "script": "6_llm_analyze.py", "args_fn": _step_6_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
-         "output": vocab_file, "needs_api_key": True},
-        {"num": 7, "label": "Flag cognates",
+         "output": "data/layers/senses_gemini.json", "needs_api_key": True},
+        {"num": 7, "label": "Flag cognates -> layer",
          "script": "7_flag_cognates.py", "args_fn": _step_7_args,
-         "input": vocab_file, "output": vocab_file, "needs_api_key": False},
-        {"num": 8, "label": "Rerank",
+         "input": "data/layers/senses_gemini.json",
+         "output": "data/layers/cognates.json", "needs_api_key": False},
+        {"num": 8, "label": "Rerank -> layer",
          "script": "8_rerank.py", "args_fn": _step_8_args,
-         "input": vocab_file, "output": vocab_file, "needs_api_key": False},
-        {"num": "build", "label": "Build split files (index + examples)",
+         "input": "data/layers/word_inventory.json",
+         "output": "data/layers/ranking.json", "needs_api_key": False},
+        {"num": "build", "label": "Build vocabulary (assemble layers)",
          "script": "build_artist_vocabulary.py", "args_fn": _build_args,
-         "input": vocab_file, "output": vocab_file.rsplit(".", 1)[0] + ".index.json",
+         "input": "data/layers/ranking.json",
+         "output": vocab_file.rsplit(".", 1)[0] + ".index.json",
          "needs_api_key": False},
     ]
 

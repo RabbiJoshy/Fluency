@@ -1289,19 +1289,12 @@ def main():
     print("  Master: %d entries (+%d new), %d new senses -> %s" % (
         len(master), new_master_entries, new_senses, master_path))
 
-    # Write monolith (same format as before, for debugging/compatibility)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(final_entries, f, ensure_ascii=False, indent=2)
-    print("  Monolith: %d entries -> %s" % (len(final_entries), OUTPUT_PATH))
-
-    # Write per-artist split files (new format: index + examples)
-    _write_artist_split_files(final_entries, master, OUTPUT_PATH)
-
-    # Write layer files for the builder
+    # Write layer files (builder assembles the final output from these)
     _write_layer_files(PIPELINE_DIR, final_entries, all_words, word_progress,
                        sentence_progress, genius_lines)
 
-    print("\nDone! Wrote %d entries to %s" % (len(final_entries), OUTPUT_PATH))
+    print("\nDone! %d entries processed, layers written to %s/data/layers/" %
+          (len(final_entries), PIPELINE_DIR))
 
 
 def _write_layer_files(pipeline_dir, final_entries, all_words, word_progress,
@@ -1392,77 +1385,6 @@ def _write_layer_files(pipeline_dir, final_entries, all_words, word_progress,
     with open(assign_path, "w", encoding="utf-8") as f:
         json.dump(sense_assignments, f, ensure_ascii=False)
     print("  Layer sense_assignments: %d entries -> %s" % (len(sense_assignments), assign_path))
-
-
-def _write_artist_split_files(entries, master, vocab_path):
-    # type: (List[Dict], Dict, str) -> None
-    """Write per-artist index and examples files in the new master-referenced format."""
-    base = vocab_path.rsplit(".", 1)[0]
-    index_path = base + ".index.json"
-    examples_path = base + ".examples.json"
-
-    index = []
-    examples = {}
-
-    for entry in entries:
-        fid = entry["id"]
-        m = master.get(fid)
-        if not m:
-            continue
-
-        # Compute sense_frequencies parallel to master senses
-        sense_freq = []
-        sense_examples = []
-        total_ex = 0
-
-        for sense in m["senses"]:
-            matching = None
-            for meaning in entry.get("meanings", []):
-                if meaning.get("pos") == sense["pos"] and meaning.get("translation") == sense["translation"]:
-                    matching = meaning
-                    break
-            exs = matching.get("examples", []) if matching else []
-            sense_examples.append(exs)
-            total_ex += len(exs)
-
-        for exs in sense_examples:
-            sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
-
-        # MWE examples parallel to master mwe_memberships
-        mwe_examples = []
-        for master_mwe in m["mwe_memberships"]:
-            matched = []
-            for entry_mwe in entry.get("mwe_memberships", []):
-                if (entry_mwe.get("expression") == master_mwe["expression"]
-                        and entry_mwe.get("translation") == master_mwe["translation"]):
-                    matched = entry_mwe.get("examples", [])
-                    break
-            mwe_examples.append(matched)
-
-        idx_entry = {
-            "id": fid,
-            "corpus_count": entry.get("corpus_count", 0),
-            "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
-            "sense_frequencies": sense_freq,
-        }
-        variants = entry.get("variants")
-        if variants:
-            idx_entry["variants"] = variants
-        index.append(idx_entry)
-
-        ex_entry = {"m": sense_examples}
-        if any(mwe_examples):
-            ex_entry["w"] = mwe_examples
-        examples[fid] = ex_entry
-
-    with open(index_path, "w", encoding="utf-8") as f:
-        json.dump(index, f, ensure_ascii=False)
-    with open(examples_path, "w", encoding="utf-8") as f:
-        json.dump(examples, f, ensure_ascii=False)
-    print("  Index: %d entries -> %s (%s bytes)" % (
-        len(index), index_path, "{:,}".format(os.path.getsize(index_path))))
-    print("  Examples: %s (%s bytes)" % (
-        examples_path, "{:,}".format(os.path.getsize(examples_path))))
 
 
 if __name__ == "__main__":

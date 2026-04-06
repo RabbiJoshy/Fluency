@@ -165,332 +165,177 @@ def sort_key(entry, word_to_rank, lemma_to_rank):
     """
     corpus_count = entry.get("corpus_count") or 0
     spanish_rank = get_spanish_rank(entry, word_to_rank, lemma_to_rank)
-    song_count = count_distinct_songs(entry)
+    # _song_count is set by layer-based main(); fall back to counting from meanings
+    song_count = entry.get("_song_count") or count_distinct_songs(entry)
     is_cognate = 1 if entry.get("is_transparent_cognate", False) else 0
     word_len = len(entry.get("word", ""))
 
     return (-corpus_count, spanish_rank, -song_count, is_cognate, word_len)
 
 
-def write_split_files(bb_data, vocab_path):
-    """Write index and examples split files alongside the monolith.
-
-    Index file: all entries with meanings[].examples and mwe_memberships[].examples stripped.
-    Examples file: { id: { "m": [[examples], ...], "w": [[mwe_examples], ...] } }
-    """
-    base = vocab_path.rsplit('.', 1)[0]
-    index_path = base + '.index.json'
-    examples_path = base + '.examples.json'
-
-    index = []
-    examples = {}
-
-    for entry in bb_data:
-        # Build index entry (strip examples from meanings and mwe_memberships)
-        idx_entry = {}
-        for k, v in entry.items():
-            if k in ('meanings', 'mwe_memberships'):
-                continue
-            idx_entry[k] = v
-
-        idx_entry['meanings'] = [
-            {k: v for k, v in m.items() if k != 'examples'}
-            for m in entry.get('meanings', [])
-        ]
-        if entry.get('mwe_memberships'):
-            idx_entry['mwe_memberships'] = [
-                {k: v for k, v in mwe.items() if k != 'examples'}
-                for mwe in entry['mwe_memberships']
-            ]
-        index.append(idx_entry)
-
-        # Build examples entry
-        m_examples = [m.get('examples', []) for m in entry.get('meanings', [])]
-        ex_entry = {'m': m_examples}
-        if entry.get('mwe_memberships'):
-            w_examples = [mwe.get('examples', []) for mwe in entry['mwe_memberships']]
-            if any(w_examples):
-                ex_entry['w'] = w_examples
-        examples[entry['id']] = ex_entry
-
-    with open(index_path, 'w', encoding='utf-8') as f:
-        json.dump(index, f, ensure_ascii=False)
-    with open(examples_path, 'w', encoding='utf-8') as f:
-        json.dump(examples, f, ensure_ascii=False)
-
-    idx_size = os.path.getsize(index_path)
-    ex_size = os.path.getsize(examples_path)
-    print(f"\n  Split files written:")
-    print(f"    {index_path}: {idx_size:,} bytes")
-    print(f"    {examples_path}: {ex_size:,} bytes")
-
-
-def write_master_split_files(entries, master, vocab_path, master_path):
-    """Write per-artist index and examples files referencing the master vocabulary.
-
-    Also updates the master with any new MWE memberships from this artist.
-    """
-    base = vocab_path.rsplit(".", 1)[0]
-    index_path = base + ".index.json"
-    examples_path = base + ".examples.json"
-
-    # First update master with any MWE changes from step 8
-    for entry in entries:
-        fid = entry.get("id")
-        if not fid or fid not in master:
-            continue
-        m = master[fid]
-        for mwe in entry.get("mwe_memberships", []):
-            expr = mwe.get("expression", "")
-            trans = mwe.get("translation", "")
-            exists = any(
-                e["expression"] == expr and e["translation"] == trans
-                for e in m.get("mwe_memberships", [])
-            )
-            if not exists:
-                if "mwe_memberships" not in m:
-                    m["mwe_memberships"] = []
-                m["mwe_memberships"].append({"expression": expr, "translation": trans})
-
-    # Write updated master
-    with open(master_path, "w", encoding="utf-8") as f:
-        json.dump(master, f, ensure_ascii=False)
-    print(f"  Master updated: {len(master)} entries -> {master_path}")
-
-    # Build index and examples parallel to master senses
-    index = []
-    examples = {}
-
-    for entry in entries:
-        fid = entry.get("id")
-        if not fid:
-            continue
-        m = master.get(fid)
-        if not m:
-            # Entry not in master — shouldn't happen, but fall back gracefully
-            continue
-
-        sense_freq = []
-        sense_examples = []
-        total_ex = 0
-
-        for sense in m.get("senses", []):
-            matching = None
-            for meaning in entry.get("meanings", []):
-                if meaning.get("pos") == sense["pos"] and meaning.get("translation") == sense["translation"]:
-                    matching = meaning
-                    break
-            exs = matching.get("examples", []) if matching else []
-            sense_examples.append(exs)
-            total_ex += len(exs)
-
-        for exs in sense_examples:
-            sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
-
-        mwe_examples = []
-        for master_mwe in m.get("mwe_memberships", []):
-            matched = []
-            for entry_mwe in entry.get("mwe_memberships", []):
-                if (entry_mwe.get("expression") == master_mwe["expression"]
-                        and entry_mwe.get("translation") == master_mwe["translation"]):
-                    matched = entry_mwe.get("examples", [])
-                    break
-            mwe_examples.append(matched)
-
-        index.append({
-            "id": fid,
-            "corpus_count": entry.get("corpus_count", 0),
-            "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
-            "sense_frequencies": sense_freq,
-        })
-
-        ex_entry = {"m": sense_examples}
-        if any(mwe_examples):
-            ex_entry["w"] = mwe_examples
-        examples[fid] = ex_entry
-
-    with open(index_path, "w", encoding="utf-8") as f:
-        json.dump(index, f, ensure_ascii=False)
-    with open(examples_path, "w", encoding="utf-8") as f:
-        json.dump(examples, f, ensure_ascii=False)
-
-    idx_size = os.path.getsize(index_path)
-    ex_size = os.path.getsize(examples_path)
-    print(f"  Split files written:")
-    print(f"    {index_path}: {idx_size:,} bytes")
-    print(f"    {examples_path}: {ex_size:,} bytes")
-
-
 def main():
-    global BB_VOCAB_PATH, SPANISH_VOCAB_PATH, MWE_PATH
     import argparse
     from _artist_config import add_artist_arg, load_artist_config
 
     parser = argparse.ArgumentParser(description="Step 8: Rerank vocabulary")
     add_artist_arg(parser)
-    parser.add_argument("--master-path", type=str, default=None,
-                        help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
     parser.add_argument("--skip-split", action="store_true",
-                        help="Skip writing split files (builder step handles this)")
+                        help="(Deprecated, ignored — builder handles splits)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
     config = load_artist_config(artist_dir)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    BB_VOCAB_PATH = os.path.join(artist_dir, config["vocabulary_file"])
-    SPANISH_VOCAB_PATH = os.path.join(project_root, "Data", "Spanish", "vocabulary.json")
-    MWE_PATH = os.path.join(artist_dir, "data", "word_counts", "mwe_detected.json")
-    master_path = args.master_path or os.path.join(project_root, "Artists", "vocabulary_master.json")
+    layers_dir = os.path.join(artist_dir, "data", "layers")
+    spanish_vocab_path = os.path.join(project_root, "Data", "Spanish", "vocabulary.json")
 
-    print("Loading artist vocabulary...")
-    with open(BB_VOCAB_PATH, "r", encoding="utf-8") as f:
-        bb_data = json.load(f)
-    print(f"  {len(bb_data)} entries")
+    # Load layers
+    print("Loading layers...")
+    with open(os.path.join(layers_dir, "word_inventory.json"), "r", encoding="utf-8") as f:
+        inventory = json.load(f)
+    print(f"  word_inventory: {len(inventory)} entries")
+
+    with open(os.path.join(layers_dir, "senses_gemini.json"), "r", encoding="utf-8") as f:
+        senses_data = json.load(f)
+    print(f"  senses_gemini: {len(senses_data)} entries")
+
+    with open(os.path.join(layers_dir, "examples_raw.json"), "r", encoding="utf-8") as f:
+        examples_raw = json.load(f)
+    print(f"  examples_raw: {len(examples_raw)} entries")
+
+    with open(os.path.join(layers_dir, "sense_assignments.json"), "r", encoding="utf-8") as f:
+        assignments = json.load(f)
+    print(f"  sense_assignments: {len(assignments)} entries")
+
+    cognates = {}
+    cognates_path = os.path.join(layers_dir, "cognates.json")
+    if os.path.isfile(cognates_path):
+        with open(cognates_path, "r", encoding="utf-8") as f:
+            cognates = json.load(f)
+        print(f"  cognates: {len(cognates)} entries")
+
+    # Load master for flags (ignore words in easiness)
+    master_path = os.path.join(project_root, "Artists", "vocabulary_master.json")
+    master = {}
+    if os.path.isfile(master_path):
+        with open(master_path, "r", encoding="utf-8") as f:
+            master = json.load(f)
+    wl_to_master = {}
+    for mid, m in master.items():
+        wl_to_master["%s|%s" % (m["word"], m["lemma"])] = m
+
+    # Build lightweight entries for sorting (word, lemma, corpus_count, cognate, song count)
+    print("\nBuilding sort entries...")
+    entries = []
+    for inv in inventory:
+        word = inv["word"]
+        # Find lemma from senses
+        lemma = word
+        for key in senses_data:
+            if key.startswith(word + "|"):
+                lemma = key.split("|", 1)[1]
+                break
+
+        # Count distinct songs from examples
+        songs = set()
+        for ex in examples_raw.get(word, []):
+            songs.add(ex.get("title", ""))
+
+        cognate_key = "%s|%s" % (word, lemma)
+        is_cognate = cognate_key in cognates
+
+        entries.append({
+            "word": word,
+            "lemma": lemma,
+            "corpus_count": inv.get("corpus_count", 0),
+            "display_form": inv.get("display_form"),
+            "is_transparent_cognate": is_cognate,
+            "_song_count": len(songs),
+        })
 
     print("Loading Spanish vocabulary...")
-    word_to_rank, lemma_to_rank = build_spanish_lookup(SPANISH_VOCAB_PATH)
+    word_to_rank, lemma_to_rank = build_spanish_lookup(spanish_vocab_path)
     print(f"  {len(word_to_rank)} word entries, {len(lemma_to_rank)} lemma entries")
 
-    # Sort using tiebreakers — array position becomes the effective rank
+    # Sort
     print("Sorting with tiebreakers...")
-    bb_data.sort(key=lambda e: sort_key(e, word_to_rank, lemma_to_rank))
+    entries.sort(key=lambda e: sort_key(e, word_to_rank, lemma_to_rank))
 
-    # Strip any leftover rank/original_rank fields from previous pipeline runs
-    for entry in bb_data:
-        entry.pop("rank", None)
-        entry.pop("original_rank", None)
+    matched = sum(1 for e in entries if get_spanish_rank(e, word_to_rank, lemma_to_rank) < SENTINEL_RANK)
+    print(f"  {len(entries)} entries sorted, {matched} matched in Spanish vocab ({matched * 100 / len(entries):.1f}%)")
 
-    # Report statistics
-    matched = sum(
-        1
-        for e in bb_data
-        if get_spanish_rank(e, word_to_rank, lemma_to_rank) < SENTINEL_RANK
-    )
-    print(f"\nResults:")
-    print(f"  {len(bb_data)} entries sorted (rank = array position + 1)")
-    print(f"  {matched} entries matched in Spanish vocab ({matched * 100 / len(bb_data):.1f}%)")
+    # Build elision map for easiness scoring
+    elision_map = {}
+    for e in entries:
+        df = e.get("display_form")
+        if df:
+            df_lower = df.lower().strip()
+            w_lower = e["word"].lower().strip()
+            if df_lower and df_lower != w_lower:
+                elision_map[df_lower] = (w_lower, e["lemma"].lower().strip())
+    print(f"  {len(elision_map)} elision mappings")
 
-    # Show sample of ordering within a tie group
-    cc3 = [e for e in bb_data if e["corpus_count"] == 3]
-    print(f"\n  Sample: corpus_count=3 ({len(cc3)} words)")
-    print(f"  First 10 (highest priority):")
-    for i, e in enumerate(cc3[:10]):
-        sp_rank = get_spanish_rank(e, word_to_rank, lemma_to_rank)
-        songs = count_distinct_songs(e)
-        sp_str = str(sp_rank) if sp_rank < SENTINEL_RANK else "—"
-        print(
-            f"    pos {bb_data.index(e) + 1:>5}: "
-            f"{e['word']:<20} sp_rank={sp_str:<6} songs={songs} "
-            f"cognate={e.get('is_transparent_cognate', False)}"
-        )
-
-    # Score and sort examples by easiness (median Spanish frequency rank)
-    print("\nScoring example easiness...")
-    elision_map = build_elision_map(bb_data)
-    print(f"  {len(elision_map)} elision mappings built")
-
-    # Build set of words to ignore in easiness calculation (interjections,
-    # English words, proper nouns) — these would otherwise get sentinel rank
-    # and inflate scores for sentences containing them.
+    # Build ignore set for easiness (interjections, English, proper nouns from master)
     ignore_words = set()
-    for entry in bb_data:
-        w = entry.get("word", "").lower().strip()
-        if entry.get("is_interjection") or entry.get("is_english") or entry.get("is_propernoun"):
-            ignore_words.add(w)
-            df = (entry.get("display_form") or "").lower().strip()
+    for e in entries:
+        wl_key = "%s|%s" % (e["word"], e["lemma"])
+        m = wl_to_master.get(wl_key, {})
+        if m.get("is_interjection") or m.get("is_english") or m.get("is_propernoun"):
+            ignore_words.add(e["word"].lower())
+            df = (e.get("display_form") or "").lower().strip()
             if df:
                 ignore_words.add(df)
-    print(f"  {len(ignore_words)} words ignored in easiness (interjections/English/proper nouns)")
+    print(f"  {len(ignore_words)} words ignored in easiness")
 
+    # Score easiness per example per meaning
+    print("Scoring example easiness...")
+    # We need: for each word, for each meaning (via assignments), for each example, compute easiness
+    easiness_data = {}
     total_examples = 0
-    all_easiness = []
-    for entry in bb_data:
-        for meaning in entry.get("meanings", []):
-            examples = meaning.get("examples", [])
-            for ex in examples:
-                score = compute_easiness(
-                    ex.get("spanish", ""), word_to_rank, lemma_to_rank, elision_map,
-                    ignore_words=ignore_words
-                )
-                ex["easiness"] = score
-                all_easiness.append(score)
-                total_examples += 1
-            examples.sort(key=lambda e: e.get("easiness", SENTINEL_RANK))
+    all_scores = []
 
-    if all_easiness:
-        all_easiness.sort()
-        recognized = sum(1 for e in all_easiness if e < SENTINEL_RANK)
+    for entry in entries:
+        word = entry["word"]
+        word_assignments = assignments.get(word, [])
+        raw_exs = examples_raw.get(word, [])
+
+        per_meaning = []
+        for assignment in word_assignments:
+            scores = []
+            for ex_idx in assignment.get("examples", []):
+                if ex_idx < len(raw_exs):
+                    spanish = raw_exs[ex_idx].get("spanish", "")
+                    score = compute_easiness(spanish, word_to_rank, lemma_to_rank,
+                                             elision_map, ignore_words=ignore_words)
+                    scores.append(score)
+                    all_scores.append(score)
+                    total_examples += 1
+            # Sort scores ascending (easiest first) to match example sort order
+            scores.sort()
+            per_meaning.append(scores)
+
+        if per_meaning:
+            # We need a stable ID for the ranking layer. Use word|lemma for now,
+            # the builder will resolve to actual IDs.
+            easiness_data[word] = {"m": per_meaning}
+
+    if all_scores:
+        all_scores.sort()
+        recognized = sum(1 for s in all_scores if s < SENTINEL_RANK)
         print(f"  {total_examples} examples scored")
         print(f"  {recognized} with recognized tokens ({recognized * 100 / total_examples:.1f}%)")
-        print(f"  Easiness range: {all_easiness[0]} / {all_easiness[len(all_easiness)//2]} / {all_easiness[-1]} (min/median/max)")
 
-    # Re-annotate MWE memberships from latest 2d output
-    # This ensures MWEs are always up-to-date even when step 4 is skipped
-    if os.path.exists(MWE_PATH):
-        with open(MWE_PATH, "r", encoding="utf-8") as f:
-            mwe_data = json.load(f)
-        mwe_index = {}  # word -> list of {expression, translation}
-        for mwe in mwe_data.get("mwes", []):
-            expr = mwe["expression"]
-            translation = mwe["translation"] or ""
-            for token in expr.split():
-                token_lower = token.lower()
-                if token_lower not in mwe_index:
-                    mwe_index[token_lower] = []
-                if not any(m["expression"] == expr for m in mwe_index[token_lower]):
-                    mwe_index[token_lower].append({
-                        "expression": expr,
-                        "translation": translation,
-                    })
-        mwe_count = 0
-        for entry in bb_data:
-            w_lower = entry["word"].lower()
-            if w_lower in mwe_index:
-                entry["mwe_memberships"] = mwe_index[w_lower]
-                mwe_count += 1
-            else:
-                entry.pop("mwe_memberships", None)
-        print(f"\n  MWE annotation: {len(mwe_data.get('mwes', []))} MWEs -> {mwe_count} entries annotated")
-
-    # Write ranking layer for the builder
-    layers_dir = os.path.join(artist_dir, "data", "layers")
-    os.makedirs(layers_dir, exist_ok=True)
+    # Build ranking layer keyed by word (builder resolves to IDs)
     ranking_layer = {
-        "order": [e["id"] for e in bb_data],
-        "easiness": {},
+        "order": [e["word"] for e in entries],
+        "easiness": easiness_data,
     }
-    for entry in bb_data:
-        per_meaning = []
-        for meaning in entry.get("meanings", []):
-            scores = [ex.get("easiness", SENTINEL_RANK)
-                      for ex in meaning.get("examples", [])]
-            per_meaning.append(scores)
-        if any(per_meaning):
-            ranking_layer["easiness"][entry["id"]] = {"m": per_meaning}
+
     ranking_path = os.path.join(layers_dir, "ranking.json")
     with open(ranking_path, "w", encoding="utf-8") as f:
         json.dump(ranking_layer, f, ensure_ascii=False)
-    print(f"\n  Ranking layer: {len(ranking_layer['order'])} entries, "
-          f"{len(ranking_layer['easiness'])} with easiness -> {ranking_path}")
-
-    # Write back monolith
-    print(f"\nWriting to {BB_VOCAB_PATH}...")
-    with open(BB_VOCAB_PATH, "w", encoding="utf-8") as f:
-        json.dump(bb_data, f, ensure_ascii=False, indent=2)
-
-    # Generate split files (skipped when builder step handles this)
-    if args.skip_split:
-        print("\n  Skipping split files (builder step will handle this)")
-    elif os.path.isfile(master_path):
-        print(f"\nLoading master vocabulary from {master_path}...")
-        with open(master_path, "r", encoding="utf-8") as f:
-            master = json.load(f)
-        print(f"  {len(master)} master entries")
-        write_master_split_files(bb_data, master, BB_VOCAB_PATH, master_path)
-    else:
-        print(f"\nNo master vocabulary at {master_path} — using legacy split format")
-        write_split_files(bb_data, BB_VOCAB_PATH)
+    print(f"\n  Ranking layer: {len(ranking_layer['order'])} entries -> {ranking_path}")
     print("Done!")
 
 
