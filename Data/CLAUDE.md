@@ -18,7 +18,7 @@ Static vocabulary JSON files consumed by the front-end. No backend.
 {
   "word": "hacer",
   "lemma": "hacer",
-  "id": "a1b2",
+  "id": "a1b2c3",
   "rank": 42,
   "meanings": [
     {
@@ -34,19 +34,19 @@ Static vocabulary JSON files consumed by the front-end. No backend.
 
 ## Word IDs
 
-4-digit **hex** string: `md5(word|lemma)[:4]`. Consistent across all files.
+6-char **hex** string: `md5(word|lemma)[:6]`. Consistent across all files.
 
-- Collision resolution: append suffix before rehashing (`md5(word|lemma|1)[:4]`)
+- Collision resolution: append suffix before rehashing (`md5(word|lemma|1)[:6]`)
 - Same word = same ID across artists and normal vocab (enables merge)
 - Migration from rank-based IDs: `{lang}/id_migration.json`
 
 ## Composite fullId (built at runtime by front-end)
 
 ```
-fullId = {2-char lang code}{0=normal|1=lyrics}{4-digit hex id}
+fullId = {2-char lang code}{0=normal|1=lyrics}{6-char hex id}
 ```
 
-Examples: `es0a1b2` (Spanish normal), `es1a1b2` (Spanish lyrics), `sv06b7f` (Swedish normal).
+Examples: `es0a1b2c3` (Spanish normal), `es1a1b2c3` (Spanish lyrics), `sv06b7f8a` (Swedish normal).
 
 Lang codes: spanish->es, swedish->sv, italian->it, dutch->nl, polish->pl, french->fr, russian->ru.
 

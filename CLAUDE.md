@@ -43,7 +43,7 @@ Fluency/
 - **Pipeline work?** Read `Artists/CLAUDE.md`
 - **Front-end JS work?** Read `js/CLAUDE.md`
 - **Data schemas / IDs / progress?** Read `Data/CLAUDE.md`
-- **Backlog context?** Read `Artists/todo.txt` (summary) + `Artists/todo_details.md` (expanded notes)
+- **Backlog context?** Read `TODO.md` (root — unified backlog for both modes)
 
 ## Working with the Human
 
