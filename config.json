@@ -3,6 +3,8 @@
     "spanish": {
       "name": "Spanish",
       "dataPath": "Data/Spanish/vocabulary.json",
+      "indexPath": "Data/Spanish/vocabulary.index.json",
+      "examplesPath": "Data/Spanish/vocabulary.examples.json",
       "ppmDataPath": "Data/Spanish/SpanishRawWiki.csv",
       "exampleTargetField": "example_spanish",
       "exampleEnglishField": "example_english",

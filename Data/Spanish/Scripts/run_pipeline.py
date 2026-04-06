@@ -11,6 +11,7 @@ Steps:
     1. build_examples.py  — Match Tatoeba examples to vocabulary
     2. build_senses.py    — Build sense inventory from Wiktionary
     3. match_senses.py    — Assign examples to senses via keyword overlap
+    4. finalize           — Split into index + examples for front end
 """
 
 import argparse
@@ -23,6 +24,9 @@ SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(SCRIPTS_DIR)))
 PYTHON = sys.executable
 
+FINALIZE_SCRIPT = os.path.join(PROJECT_ROOT, "scripts", "finalize_vocabulary.py")
+VOCAB_PATH = "Data/Spanish/vocabulary.json"
+
 STEPS = [
     {"num": 1, "label": "Match Tatoeba examples to vocabulary",
      "script": "build_examples.py",
@@ -33,12 +37,19 @@ STEPS = [
     {"num": 3, "label": "Assign examples to senses",
      "script": "match_senses.py",
      "output": "Data/Spanish/vocabulary.json"},
+    {"num": 4, "label": "Split into index + examples for front end",
+     "script": None,  # handled specially
+     "output": "Data/Spanish/vocabulary.index.json"},
 ]
 
 
 def run_step(step, dry_run=False):
-    script_path = os.path.join(SCRIPTS_DIR, step["script"])
-    cmd = [PYTHON, script_path]
+    if step["num"] == 4:
+        # Finalize: shared script with --input arg
+        cmd = [PYTHON, FINALIZE_SCRIPT, "--input", VOCAB_PATH]
+    else:
+        script_path = os.path.join(SCRIPTS_DIR, step["script"])
+        cmd = [PYTHON, script_path]
 
     print("\n" + "=" * 60)
     print("Step %d: %s" % (step["num"], step["label"]))
@@ -65,10 +76,10 @@ def run_step(step, dry_run=False):
 def main():
     parser = argparse.ArgumentParser(
         description="Normal-mode Spanish vocabulary pipeline orchestrator")
-    parser.add_argument("--from-step", type=int, default=1, choices=[1, 2, 3],
+    parser.add_argument("--from-step", type=int, default=1, choices=[1, 2, 3, 4],
                         help="Start from this step (default: 1)")
-    parser.add_argument("--to-step", type=int, default=3, choices=[1, 2, 3],
-                        help="Stop after this step (default: 3)")
+    parser.add_argument("--to-step", type=int, default=4, choices=[1, 2, 3, 4],
+                        help="Stop after this step (default: 4)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print commands without running them")
     args = parser.parse_args()
