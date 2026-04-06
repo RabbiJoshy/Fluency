@@ -94,7 +94,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "impersonal neuter pronoun (accusative) in certain colloquial phrases: it, this"
+      "translation": "impersonal neuter pronoun in certain colloquial phrases: it, this"
     },
     {
       "pos": "NOUN",
@@ -484,7 +484,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "impersonal neuter pronoun (accusative) in certain colloquial phrases: it, this"
+      "translation": "impersonal neuter pronoun in certain colloquial phrases: it, this"
     },
     {
       "pos": "PRON",
@@ -542,7 +542,7 @@
   "del|del": [
     {
       "pos": "CONTRACTION",
-      "translation": "of the, from the (+ a masculine noun in singular)."
+      "translation": "of the, from the."
     }
   ],
   "como|como": [
@@ -668,15 +668,19 @@
   "le|le": [
     {
       "pos": "PRON",
-      "translation": "to him, for him; dative of él"
+      "translation": "to him, for him"
     },
     {
       "pos": "PRON",
-      "translation": "to her, for her; dative of ella"
+      "translation": "to her, for her"
     },
     {
       "pos": "PRON",
-      "translation": "you (formal); accusative of usted"
+      "translation": "to it, for it"
+    },
+    {
+      "pos": "PRON",
+      "translation": "you"
     }
   ],
   "más|más": [
@@ -722,7 +726,7 @@
   "ya|ya": [
     {
       "pos": "ADV",
-      "translation": "now (often as opposed to before), anymore, no longer"
+      "translation": "now, anymore, no longer"
     },
     {
       "pos": "ADV",
@@ -742,11 +746,11 @@
     },
     {
       "pos": "CCONJ",
-      "translation": "first (something) then (something else); first (something), now"
+      "translation": "first then; first, now"
     },
     {
       "pos": "CCONJ",
-      "translation": "whether (something) or"
+      "translation": "whether or"
     },
     {
       "pos": "INTJ",
@@ -818,7 +822,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -956,7 +960,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -1316,7 +1320,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -1434,7 +1438,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "turn (a chance to use (something) shared in sequence with others)"
+      "translation": "turn"
     }
   ],
   "tienes|tener": [
@@ -1486,7 +1490,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -1664,7 +1668,7 @@
   "quién|quién": [
     {
       "pos": "PRON",
-      "translation": "who?, whom?; (with “de”) whose?"
+      "translation": "who?, whom?; whose?"
     },
     {
       "pos": "PRON",
@@ -1734,7 +1738,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     },
     {
       "pos": "NOUN",
@@ -2036,7 +2040,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -2436,7 +2440,7 @@
     },
     {
       "pos": "ADV",
-      "translation": "ahead (temporally), ahead of"
+      "translation": "ahead, ahead of"
     },
     {
       "pos": "ADV",
@@ -2448,7 +2452,7 @@
     },
     {
       "pos": "ADP",
-      "translation": "before (earlier than)"
+      "translation": "before"
     }
   ],
   "has|haber": [
@@ -2458,7 +2462,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -2558,7 +2562,7 @@
     },
     {
       "pos": "ADV",
-      "translation": "after dark, (late) at night, nocturnally"
+      "translation": "after dark, at night, nocturnally"
     }
   ],
   "nadie|nadie": [
@@ -2808,7 +2812,7 @@
     },
     {
       "pos": "ADP",
-      "translation": "round (at the house of), chez"
+      "translation": "round, chez"
     },
     {
       "pos": "PRON",
@@ -2852,7 +2856,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -3198,7 +3202,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -3800,7 +3804,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -3872,7 +3876,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -4264,7 +4268,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -4472,7 +4476,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -4654,7 +4658,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "turn (a chance to use (something) shared in sequence with others)"
+      "translation": "turn"
     },
     {
       "pos": "ADP",
@@ -4682,7 +4686,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -4710,7 +4714,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -4914,7 +4918,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "one (thing); a few"
+      "translation": "one; a few"
     }
   ],
   "cierto|cierto": [
@@ -5118,7 +5122,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -6056,7 +6060,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -6206,15 +6210,11 @@
   "primera|primero": [
     {
       "pos": "NOUN",
-      "translation": "former (in contrast to the latter), first, first one"
+      "translation": "first gear"
     },
     {
       "pos": "NOUN",
       "translation": "one of the five bids in the card game of Primero, consisting of a combination of four cards in the hand"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "first gear"
     },
     {
       "pos": "ADJ",
@@ -6290,7 +6290,7 @@
   "primero|primero": [
     {
       "pos": "NOUN",
-      "translation": "former (in contrast to the latter), first, first one"
+      "translation": "former, first, first one"
     },
     {
       "pos": "NOUN",
@@ -6846,7 +6846,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     },
     {
       "pos": "NOUN",
@@ -6878,7 +6878,7 @@
   "cuál|cuál": [
     {
       "pos": "PRON",
-      "translation": "what (in terms of a very specific item); which, which one"
+      "translation": "what; which, which one"
     },
     {
       "pos": "DET",
@@ -6984,7 +6984,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     },
     {
       "pos": "NOUN",
@@ -7024,7 +7024,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -7178,7 +7178,7 @@
     },
     {
       "pos": "ADV",
-      "translation": "after dark, (late) at night, nocturnally"
+      "translation": "after dark, at night, nocturnally"
     }
   ],
   "buenos|bueno": [
@@ -7374,7 +7374,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -7422,7 +7422,7 @@
     },
     {
       "pos": "INTJ",
-      "translation": "hurray for (someone)!"
+      "translation": "hurray for!"
     },
     {
       "pos": "INTJ",
@@ -7758,7 +7758,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -8052,7 +8052,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -8066,7 +8066,7 @@
   "señora|señora": [
     {
       "pos": "NOUN",
-      "translation": "Ms; a title or form of address for a woman; formerly for a married, divorced, or widowed woman and now commonly for any adult woman regardless of marital status"
+      "translation": "Ms; a title or form of address for a woman; formerly for a married, divorced"
     },
     {
       "pos": "NOUN",
@@ -8084,7 +8084,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -8526,7 +8526,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "one (thing); a few"
+      "translation": "one; a few"
     }
   ],
   "conozco|conocer": [
@@ -8622,7 +8622,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -8966,7 +8966,7 @@
     },
     {
       "pos": "INTJ",
-      "translation": "A cheer or expression of support, encouragement, etc.; come on"
+      "translation": "A cheer or expression of support, encouragement; come on"
     },
     {
       "pos": "INTJ",
@@ -9156,7 +9156,7 @@
   "sra|señora": [
     {
       "pos": "NOUN",
-      "translation": "Ms; a title or form of address for a woman; formerly for a married, divorced, or widowed woman and now commonly for any adult woman regardless of marital status"
+      "translation": "Ms; a title or form of address for a woman; formerly for a married, divorced"
     },
     {
       "pos": "NOUN",
@@ -9170,7 +9170,7 @@
   "primer|primero": [
     {
       "pos": "NOUN",
-      "translation": "former (in contrast to the latter), first, first one"
+      "translation": "former, first, first one"
     },
     {
       "pos": "NOUN",
@@ -9236,7 +9236,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -9744,7 +9744,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -9758,7 +9758,7 @@
   "queda|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -9862,7 +9862,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -9938,7 +9938,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "one (thing); a few"
+      "translation": "one; a few"
     }
   ],
   "basta|bastar": [
@@ -10248,7 +10248,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(un carajo) shit (US), jackshit (US), sod all (UK)"
+      "translation": "shit, jackshit, sod all"
     },
     {
       "pos": "NOUN",
@@ -10554,7 +10554,7 @@
   "perro|perro": [
     {
       "pos": "NOUN",
-      "translation": "dog (the species Canis familiaris (sometimes designated Canis lupus familiaris), domesticated for thousands of years and of highly variable appearance because of human breeding)"
+      "translation": "dog"
     },
     {
       "pos": "NOUN",
@@ -10635,6 +10635,10 @@
     {
       "pos": "NOUN",
       "translation": "ground, land"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "house, noble lineage"
     },
     {
       "pos": "NOUN",
@@ -10776,7 +10780,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "cuanto|cuanto": [
@@ -10864,11 +10868,11 @@
     },
     {
       "pos": "PRON",
-      "translation": "suchlike, like (which), such as"
+      "translation": "suchlike, like, such as"
     },
     {
       "pos": "PRON",
-      "translation": "what (in terms of a very specific item); which, which one"
+      "translation": "what; which, which one"
     },
     {
       "pos": "DET",
@@ -11034,7 +11038,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -11780,7 +11784,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "thousand (1000 units of something)"
+      "translation": "thousand"
     }
   ],
   "gusto|gusto": [
@@ -11882,7 +11886,7 @@
   "os|os": [
     {
       "pos": "PRON",
-      "translation": "you, to you, for you; dative and accusative of vosotros"
+      "translation": "you, to you"
     }
   ],
   "ido|ir": [
@@ -12204,7 +12208,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -12304,7 +12308,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "handsome (guy), beautiful"
+      "translation": "handsome, beautiful"
     },
     {
       "pos": "NOUN",
@@ -12498,7 +12502,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -12584,7 +12588,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "odio|odio": [
@@ -13072,7 +13076,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -13110,7 +13114,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -13618,7 +13622,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -13760,7 +13764,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -14036,7 +14040,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "handsome (guy), beautiful"
+      "translation": "handsome, beautiful"
     },
     {
       "pos": "NOUN",
@@ -14094,7 +14098,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "handsome (guy), beautiful"
+      "translation": "handsome, beautiful"
     }
   ],
   "duro|duro": [
@@ -14266,10 +14270,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "pitch, (US) field"
-    },
-    {
-      "pos": "NOUN",
       "translation": "course"
     },
     {
@@ -14289,10 +14289,6 @@
     {
       "pos": "NOUN",
       "translation": "field"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "pitch, (US) field"
     },
     {
       "pos": "NOUN",
@@ -14402,7 +14398,7 @@
   "quédate|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -14440,7 +14436,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "law, jurisprudence (the study of laws)"
+      "translation": "law"
     },
     {
       "pos": "NOUN",
@@ -14630,7 +14626,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -14778,7 +14774,7 @@
     },
     {
       "pos": "CCONJ",
-      "translation": "but (rather)"
+      "translation": "but"
     },
     {
       "pos": "CCONJ",
@@ -14962,10 +14958,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "movie (US, Canada), film"
-    },
-    {
-      "pos": "NOUN",
       "translation": "story"
     }
   ],
@@ -15000,7 +14992,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a bier or small platform, when carried by people (usually 4 or more individuals) to move a corpse or religious image"
+      "translation": "a bier or small platform, when carried by people to move a corpse or religious image"
     },
     {
       "pos": "INTJ",
@@ -15018,7 +15010,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(Freud's concept of) id"
+      "translation": "id"
     }
   ],
   "negocio|negocio": [
@@ -15274,7 +15266,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -15314,7 +15306,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "caucus (non-electoral)"
+      "translation": "caucus"
     }
   ],
   "entendido|entender": [
@@ -15376,7 +15368,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(female) musician"
+      "translation": "musician"
     }
   ],
   "perra|perra": [
@@ -15566,7 +15558,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(no) matter; (there is no) solution"
+      "translation": "matter; solution"
     }
   ],
   "encontré|encontrar": [
@@ -15995,10 +15987,6 @@
     {
       "pos": "NOUN",
       "translation": "policy"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "queue (British), line"
     }
   ],
   "propia|propio": [
@@ -16132,7 +16120,7 @@
   "tras|tras": [
     {
       "pos": "ADP",
-      "translation": "after (+ de, optional)"
+      "translation": "after"
     },
     {
       "pos": "ADP",
@@ -17014,7 +17002,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -18082,7 +18070,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -18202,7 +18190,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     },
     {
       "pos": "NOUN",
@@ -18224,10 +18212,6 @@
     }
   ],
   "terminar|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -18814,7 +18798,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -19052,7 +19036,7 @@
   "espada|espada": [
     {
       "pos": "NOUN",
-      "translation": "sword (a long bladed weapon with a grip and typically a pommel and crossguard (together forming a hilt), which is designed to cut, stab"
+      "translation": "sword"
     },
     {
       "pos": "NOUN",
@@ -19278,7 +19262,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(Thuja) thuja"
+      "translation": "thuja"
     },
     {
       "pos": "NOUN",
@@ -19306,10 +19290,6 @@
     }
   ],
   "terminado|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -19564,7 +19544,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -19828,7 +19808,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -19990,7 +19970,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to gather (together); to collect"
+      "translation": "to gather; to collect"
     },
     {
       "pos": "VERB",
@@ -20870,7 +20850,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -21162,11 +21142,11 @@
     },
     {
       "pos": "INTJ",
-      "translation": "I hope so; let's hope so"
+      "translation": "I hope; let's hope"
     },
     {
       "pos": "INTJ",
-      "translation": "God willing"
+      "translation": "God grant"
     },
     {
       "pos": "INTJ",
@@ -21262,13 +21242,13 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Viennese (native or inhabitant of the city of Vienna, capital of Austria)"
+      "translation": "Viennese"
     }
   ],
   "quedan|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -21476,15 +21456,15 @@
   "cargo|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -22158,7 +22138,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     }
   ],
   "volar|volar": [
@@ -23018,7 +22998,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "Saint (title), feminine singular of San"
+      "translation": "Saint, feminine singular of San"
     },
     {
       "pos": "NOUN",
@@ -23036,7 +23016,7 @@
   "quedar|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -23062,7 +23042,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "thousand (1000 units of something)"
+      "translation": "thousand"
     },
     {
       "pos": "NOUN",
@@ -23090,7 +23070,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "mate, partner"
+      "translation": "mate, colleague; fellow X, classmate"
     },
     {
       "pos": "NOUN",
@@ -23099,6 +23079,10 @@
     {
       "pos": "NOUN",
       "translation": "teammate"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mate, partner"
     }
   ],
   "pensado|pensar": [
@@ -23338,7 +23322,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -23410,7 +23394,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -23464,7 +23448,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -23666,7 +23650,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "long weekend; a day which falls between two work-free days (holidays or weekend days), on which leave is preferred"
+      "translation": "long weekend; a day which falls between two work-free days, on which leave is preferred"
     },
     {
       "pos": "NOUN",
@@ -23804,7 +23788,7 @@
   "camión|camión": [
     {
       "pos": "NOUN",
-      "translation": "lorry (UK); truck"
+      "translation": "lorry; truck"
     },
     {
       "pos": "NOUN",
@@ -24062,7 +24046,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to smear, soil, stain (something or someone); to become smeared"
+      "translation": "to smear, soil; to become smeared"
     },
     {
       "pos": "ADJ",
@@ -24520,7 +24504,7 @@
   "perros|perro": [
     {
       "pos": "NOUN",
-      "translation": "dog (the species Canis familiaris (sometimes designated Canis lupus familiaris), domesticated for thousands of years and of highly variable appearance because of human breeding)"
+      "translation": "dog"
     },
     {
       "pos": "NOUN",
@@ -24752,7 +24736,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -24838,7 +24822,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -25776,7 +25760,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -26406,7 +26390,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -26478,7 +26462,7 @@
   "quedarme|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -27592,7 +27576,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -27726,7 +27710,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -27860,15 +27844,15 @@
   "carga|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -28110,7 +28094,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to smear, soil, stain (something or someone); to become smeared"
+      "translation": "to smear, soil; to become smeared"
     }
   ],
   "llena|llenar": [
@@ -28132,7 +28116,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to smear, soil, stain (something or someone); to become smeared"
+      "translation": "to smear, soil; to become smeared"
     }
   ],
   "caer|caer": [
@@ -28196,7 +28180,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "moneyless; out of money; having no (or very little) money"
+      "translation": "moneyless; out of money; having no money"
     },
     {
       "pos": "NOUN",
@@ -28210,7 +28194,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -28262,7 +28246,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -28338,7 +28322,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -28558,10 +28542,6 @@
     }
   ],
   "terminó|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -28822,7 +28802,7 @@
   "quedarse|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -29382,7 +29362,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     },
     {
       "pos": "ADJ",
@@ -29714,7 +29694,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to help (abstain from doing)"
+      "translation": "to help"
     },
     {
       "pos": "VERB",
@@ -30328,7 +30308,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -30400,7 +30380,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "maté (the drink prepared from yerba maté (Ilex paraguariensis))"
+      "translation": "maté"
     }
   ],
   "central|central": [
@@ -30482,7 +30462,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -30598,7 +30578,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -30832,7 +30812,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "one (thing); a few"
+      "translation": "one; a few"
     }
   ],
   "orgulloso|orgulloso": [
@@ -30982,7 +30962,7 @@
   "cura|curar": [
     {
       "pos": "VERB",
-      "translation": "to cure, heal (body, soul"
+      "translation": "to cure, heal; nurse, treat"
     },
     {
       "pos": "VERB",
@@ -31024,7 +31004,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "language (a body of words, and set of methods of combining them (called a grammar), understood by a community and used as a form of communication)"
+      "translation": "language"
     },
     {
       "pos": "NOUN",
@@ -31178,7 +31158,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "struggle, battle (in the figurative sense), strife"
+      "translation": "struggle, battle, strife"
     },
     {
       "pos": "NOUN",
@@ -31208,7 +31188,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "struggle, battle (in the figurative sense), strife"
+      "translation": "struggle, battle, strife"
     },
     {
       "pos": "NOUN",
@@ -31276,7 +31256,7 @@
   "quedarte|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -31738,7 +31718,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -31844,7 +31824,7 @@
   "quedó|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -32200,10 +32180,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "movie (US, Canada), film"
-    },
-    {
-      "pos": "NOUN",
       "translation": "story"
     }
   ],
@@ -32264,7 +32240,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -32294,7 +32270,7 @@
   "turno|turno": [
     {
       "pos": "NOUN",
-      "translation": "turn (chance to use (something) shared in sequence with others)"
+      "translation": "turn"
     },
     {
       "pos": "NOUN",
@@ -32368,7 +32344,7 @@
   "quede|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -32564,7 +32540,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -32722,7 +32698,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -33138,7 +33114,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "casas|casar": [
@@ -33152,7 +33128,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "apúrate|apurar": [
@@ -33500,10 +33476,6 @@
     }
   ],
   "termine|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -33854,7 +33826,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(no) matter; (there is no) solution"
+      "translation": "matter; solution"
     }
   ],
   "irás|ir": [
@@ -34122,7 +34094,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -34452,7 +34424,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "American (native or inhabitant of the Americas)"
+      "translation": "American"
     }
   ],
   "paseo|paseo": [
@@ -34868,7 +34840,7 @@
   "quedo|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -35157,10 +35129,6 @@
     {
       "pos": "NOUN",
       "translation": "season, time"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "period (of time), time period"
     }
   ],
   "entró|entrar": [
@@ -35394,10 +35362,6 @@
   "termina|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -35438,7 +35402,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "contento|contento": [
@@ -35620,7 +35584,7 @@
   "propiedad|propiedad": [
     {
       "pos": "NOUN",
-      "translation": "propriety (fact of possessing something), proprietary"
+      "translation": "propriety, proprietary"
     },
     {
       "pos": "NOUN",
@@ -35770,7 +35734,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "American (native or inhabitant of the Americas)"
+      "translation": "American"
     }
   ],
   "malos|malo": [
@@ -35842,7 +35806,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -35892,7 +35856,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to depict (history), write down a history"
+      "translation": "to depict, write down a history"
     }
   ],
   "gustaba|gustar": [
@@ -35980,7 +35944,7 @@
   "fuente|fuente": [
     {
       "pos": "NOUN",
-      "translation": "spring (water), fountain"
+      "translation": "spring, fountain"
     },
     {
       "pos": "NOUN",
@@ -36430,7 +36394,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -37036,7 +37000,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -37050,7 +37014,7 @@
   "menudo|menudo": [
     {
       "pos": "ADJ",
-      "translation": "what (a/an)"
+      "translation": "what"
     },
     {
       "pos": "ADJ",
@@ -37134,7 +37098,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -37260,7 +37224,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to have (for) breakfast"
+      "translation": "to have breakfast"
     },
     {
       "pos": "NOUN",
@@ -37306,7 +37270,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "doss subject (UK); gut course"
+      "translation": "doss subject; gut course"
     },
     {
       "pos": "NOUN",
@@ -37328,7 +37292,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "doss subject (UK); gut course"
+      "translation": "doss subject; gut course"
     },
     {
       "pos": "NOUN",
@@ -37436,7 +37400,7 @@
   "quedas|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -37602,7 +37566,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -38154,7 +38118,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "in a (good or bad) state"
+      "translation": "in a state"
     },
     {
       "pos": "NOUN",
@@ -38196,7 +38160,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "in a (good or bad) state"
+      "translation": "in a state"
     },
     {
       "pos": "NOUN",
@@ -38536,7 +38500,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -38906,7 +38870,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -39362,7 +39326,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "line (US), queue"
+      "translation": "line, queue"
     },
     {
       "pos": "NOUN",
@@ -39404,7 +39368,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "line (US), queue"
+      "translation": "line, queue"
     },
     {
       "pos": "NOUN",
@@ -39608,7 +39572,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(in the plural) forces"
+      "translation": "forces"
     }
   ],
   "salgamos|salir": [
@@ -39814,7 +39778,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "mate, partner"
+      "translation": "mate, colleague; fellow X, classmate"
     },
     {
       "pos": "NOUN",
@@ -39823,6 +39787,10 @@
     {
       "pos": "NOUN",
       "translation": "teammate"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mate, partner"
     }
   ],
   "cirugía|cirugía": [
@@ -40116,7 +40084,7 @@
   "apuesta|apuesta": [
     {
       "pos": "NOUN",
-      "translation": "bet, wager (an agreement between two parties that a stake (usually money) will be paid by the loser to the winner)"
+      "translation": "bet, wager"
     },
     {
       "pos": "VERB",
@@ -40134,7 +40102,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "bet, wager (an agreement between two parties that a stake (usually money) will be paid by the loser to the winner)"
+      "translation": "bet, wager"
     }
   ],
   "directamente|directamente": [
@@ -40262,7 +40230,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -40486,7 +40454,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "law, jurisprudence (the study of laws)"
+      "translation": "law"
     },
     {
       "pos": "NOUN",
@@ -40612,7 +40580,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -41164,7 +41132,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -41230,7 +41198,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "legend, an explanatory caption or footer (on a photo or illustration), often indicating color"
+      "translation": "legend, an explanatory caption or footer, often indicating color"
     }
   ],
   "encuentre|encontrar": [
@@ -41380,7 +41348,7 @@
   "quedado|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -41458,7 +41426,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -41536,7 +41504,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "German (native or inhabitant of Germany)"
+      "translation": "German"
     }
   ],
   "sábado|sábado": [
@@ -41618,7 +41586,7 @@
   "cientos|ciento": [
     {
       "pos": "NUM",
-      "translation": "one hundred (100)"
+      "translation": "one hundred"
     },
     {
       "pos": "NOUN",
@@ -41678,7 +41646,7 @@
   "criatura|criatura": [
     {
       "pos": "NOUN",
-      "translation": "creature (living being), critter"
+      "translation": "creature, critter"
     },
     {
       "pos": "NOUN",
@@ -42126,7 +42094,7 @@
   "quedamos|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -42448,7 +42416,7 @@
   "primeros|primero": [
     {
       "pos": "NOUN",
-      "translation": "former (in contrast to the latter), first, first one"
+      "translation": "former, first, first one"
     },
     {
       "pos": "NOUN",
@@ -42564,7 +42532,7 @@
   "quedará|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -42754,7 +42722,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(cold) beer"
+      "translation": "beer"
     }
   ],
   "fría|freír": [
@@ -42764,7 +42732,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(cold) beer"
+      "translation": "beer"
     }
   ],
   "violencia|violencia": [
@@ -42820,7 +42788,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "maté (the drink prepared from yerba maté (Ilex paraguariensis))"
+      "translation": "maté"
     }
   ],
   "mate|mate": [
@@ -42850,7 +42818,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "maté (the drink prepared from yerba maté (Ilex paraguariensis))"
+      "translation": "maté"
     }
   ],
   "lobo|lobo": [
@@ -43174,7 +43142,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "cell phone (US), mobile phone"
+      "translation": "cell phone, mobile phone"
     }
   ],
   "cuantas|cuanto": [
@@ -43284,7 +43252,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "equivocada|equivocado": [
@@ -43536,7 +43504,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -43874,7 +43842,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "manager (UK), coach"
+      "translation": "manager, coach"
     }
   ],
   "cuida|cuidar": [
@@ -44256,7 +44224,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -44476,7 +44444,7 @@
   "señoras|señora": [
     {
       "pos": "NOUN",
-      "translation": "Ms; a title or form of address for a woman; formerly for a married, divorced, or widowed woman and now commonly for any adult woman regardless of marital status"
+      "translation": "Ms; a title or form of address for a woman; formerly for a married, divorced"
     },
     {
       "pos": "NOUN",
@@ -44490,7 +44458,7 @@
   "quedaré|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -44512,15 +44480,11 @@
   "parada|parada": [
     {
       "pos": "NOUN",
-      "translation": "stop (the act of stopping)"
+      "translation": "stop, catch"
     },
     {
       "pos": "NOUN",
       "translation": "station"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "(football) stop, (baseball) catch"
     }
   ],
   "parada|parar": [
@@ -44542,15 +44506,11 @@
     },
     {
       "pos": "NOUN",
-      "translation": "stop (the act of stopping)"
+      "translation": "stop, catch"
     },
     {
       "pos": "NOUN",
       "translation": "station"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "(football) stop, (baseball) catch"
     }
   ],
   "niñas|niña": [
@@ -46210,7 +46170,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "stone, pit (the central part of some fruits, consisting of the seed and a hard endocarp layer (like those of peach"
+      "translation": "stone, pit"
     },
     {
       "pos": "NOUN",
@@ -46370,7 +46330,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -46942,7 +46902,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "aviso|aviso": [
@@ -47469,10 +47429,6 @@
     {
       "pos": "NOUN",
       "translation": "policy"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "queue (British), line"
     }
   ],
   "estarías|estar": [
@@ -48384,7 +48340,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -48680,7 +48636,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Russian (person)"
+      "translation": "Russian"
     }
   ],
   "rodillas|rodilla": [
@@ -48776,7 +48732,7 @@
   "quédese|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -48853,10 +48809,6 @@
     {
       "pos": "NOUN",
       "translation": "friend"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to cause (people) to be friends"
     },
     {
       "pos": "VERB",
@@ -49318,7 +49270,7 @@
   "cuáles|cuál": [
     {
       "pos": "PRON",
-      "translation": "what (in terms of a very specific item); which, which one"
+      "translation": "what; which, which one"
     },
     {
       "pos": "DET",
@@ -49416,7 +49368,7 @@
   "conde|conde": [
     {
       "pos": "NOUN",
-      "translation": "count, earl (nobility); countess in the feminine sense"
+      "translation": "count, earl; countess in the feminine sense"
     }
   ],
   "social|social": [
@@ -49484,7 +49436,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "envelope (i.e. any natural covering), sheath"
+      "translation": "envelope, sheath"
     }
   ],
   "cubierta|cubrir": [
@@ -49499,10 +49451,6 @@
     {
       "pos": "NOUN",
       "translation": "cover, jacket"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "envelope (i.e. any natural covering), sheath"
     },
     {
       "pos": "NOUN",
@@ -49596,11 +49544,11 @@
   "nació|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     }
   ],
   "interesado|interesado": [
@@ -49624,7 +49572,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     },
     {
       "pos": "ADJ",
@@ -49676,13 +49624,13 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "repito|repetir": [
     {
       "pos": "VERB",
-      "translation": "to repeat; to take seconds"
+      "translation": "to repeat"
     },
     {
       "pos": "VERB",
@@ -49798,7 +49746,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to gather (together); to collect"
+      "translation": "to gather; to collect"
     },
     {
       "pos": "VERB",
@@ -49820,7 +49768,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to gather (together); to collect"
+      "translation": "to gather; to collect"
     },
     {
       "pos": "VERB",
@@ -49853,10 +49801,6 @@
     {
       "pos": "VERB",
       "translation": "to steer"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ a) to address, direct to"
     }
   ],
   "declaración|declaración": [
@@ -49880,7 +49824,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "German (native or inhabitant of Germany)"
+      "translation": "German"
     }
   ],
   "tontos|tonto": [
@@ -50218,7 +50162,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "queue (British), line"
+      "translation": "queue, line"
     }
   ],
   "miel|miel": [
@@ -50898,7 +50842,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to gather (together); to collect"
+      "translation": "to gather; to collect"
     },
     {
       "pos": "VERB",
@@ -50932,7 +50876,7 @@
   "criaturas|criatura": [
     {
       "pos": "NOUN",
-      "translation": "creature (living being), critter"
+      "translation": "creature, critter"
     },
     {
       "pos": "NOUN",
@@ -51106,7 +51050,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -51698,7 +51642,7 @@
   "quédense|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -52004,7 +51948,7 @@
   "quedarnos|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -52298,7 +52242,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -52316,7 +52260,7 @@
   "quedé|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -52696,11 +52640,11 @@
     },
     {
       "pos": "PRON",
-      "translation": "suchlike, like (which), such as"
+      "translation": "suchlike, like, such as"
     },
     {
       "pos": "PRON",
-      "translation": "what (in terms of a very specific item); which, which one"
+      "translation": "what; which, which one"
     },
     {
       "pos": "DET",
@@ -52858,7 +52802,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -53074,7 +53018,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -53140,7 +53084,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "public prosecutor (UK), district attorney"
+      "translation": "public prosecutor, district attorney"
     }
   ],
   "decisiones|decisión": [
@@ -53262,7 +53206,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -53864,7 +53808,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -54000,7 +53944,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "lento|lento": [
@@ -54042,7 +53986,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -54294,7 +54238,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "llamen|llamar": [
@@ -54366,7 +54310,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     },
     {
       "pos": "NOUN",
@@ -54808,7 +54752,7 @@
   "ciento|ciento": [
     {
       "pos": "NUM",
-      "translation": "one hundred (100)"
+      "translation": "one hundred"
     },
     {
       "pos": "NOUN",
@@ -55528,7 +55472,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -55918,7 +55862,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Russian (person)"
+      "translation": "Russian"
     }
   ],
   "parezco|parecer": [
@@ -56388,7 +56332,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "salsa|salsa": [
@@ -56416,7 +56360,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Roman (native or inhabitant of the city of Rome, capital of Italy)"
+      "translation": "Roman"
     }
   ],
   "prisioneros|prisionero": [
@@ -56596,11 +56540,11 @@
   "nacido|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     },
     {
       "pos": "ADJ",
@@ -56620,10 +56564,6 @@
     }
   ],
   "fabuloso|fabuloso": [
-    {
-      "pos": "ADJ",
-      "translation": "fable, myth, legend; fabulous"
-    },
     {
       "pos": "ADJ",
       "translation": "fabulous"
@@ -57124,7 +57064,7 @@
   "tetas|teta": [
     {
       "pos": "NOUN",
-      "translation": "boob (colloquial), tit (slightly vulgar), breast"
+      "translation": "boob, tit, breast"
     },
     {
       "pos": "NOUN",
@@ -57222,10 +57162,6 @@
     }
   ],
   "terminé|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -57500,7 +57436,7 @@
   "anterior|anterior": [
     {
       "pos": "ADJ",
-      "translation": "anterior (in time), previous, earlier"
+      "translation": "anterior, previous, earlier"
     }
   ],
   "acero|acero": [
@@ -57518,7 +57454,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "hornless (for vertebrates), antennaless"
+      "translation": "hornless, antennaless"
     }
   ],
   "desnudo|desnudo": [
@@ -57928,7 +57864,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(informal) to chatter"
+      "translation": "to chatter"
     },
     {
       "pos": "VERB",
@@ -58432,7 +58368,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "terapia|terapia": [
@@ -58536,11 +58472,11 @@
   "nací|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     }
   ],
   "embajador|embajador": [
@@ -58746,7 +58682,7 @@
   "quedes|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -58848,11 +58784,11 @@
     },
     {
       "pos": "ADJ",
-      "translation": "Pertaining to PP (Partido Popular), a Spanish political party"
+      "translation": "Pertaining to PP, a Spanish political party"
     },
     {
       "pos": "NOUN",
-      "translation": "a member or supporter of PP (Partido Popular), a Spanish political party"
+      "translation": "a member or supporter of PP, a Spanish political party"
     }
   ],
   "extrañas|extrañar": [
@@ -58920,7 +58856,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "American (native or inhabitant of the Americas)"
+      "translation": "American"
     },
     {
       "pos": "NOUN",
@@ -59852,10 +59788,6 @@
   "termino|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -59924,7 +59856,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "after the start of; into; (late) into"
+      "translation": "after the start of; into; into"
     }
   ],
   "destruido|destruido": [
@@ -60058,7 +59990,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -60152,7 +60084,7 @@
   "apuestas|apuesta": [
     {
       "pos": "NOUN",
-      "translation": "bet, wager (an agreement between two parties that a stake (usually money) will be paid by the loser to the winner)"
+      "translation": "bet, wager"
     },
     {
       "pos": "NOUN",
@@ -60230,7 +60162,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "cellular, cell phone (US), mobile phone"
+      "translation": "cellular, cell phone, mobile phone"
     },
     {
       "pos": "NOUN",
@@ -60284,7 +60216,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     },
     {
       "pos": "ADJ",
@@ -60310,7 +60242,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "barrel (of a gun), pipe, tube"
+      "translation": "barrel, pipe, tube"
     },
     {
       "pos": "NOUN",
@@ -60530,7 +60462,7 @@
   "subtítulos|subtítulo": [
     {
       "pos": "NOUN",
-      "translation": "subtitle, subhead, subheading"
+      "translation": "subtitle"
     },
     {
       "pos": "NOUN",
@@ -60686,7 +60618,7 @@
   "defender|defender": [
     {
       "pos": "VERB",
-      "translation": "to defend, to protect, to hold down (contra (“against”)"
+      "translation": "to defend, to protect, to hold down"
     },
     {
       "pos": "VERB",
@@ -60978,15 +60910,15 @@
   "cargar|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -61042,7 +60974,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -61176,7 +61108,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "apaga|apagar": [
@@ -61198,7 +61130,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     }
   ],
   "objeto|objeto": [
@@ -61322,7 +61254,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "step over, pedalada (a dribbling move, or feint"
+      "translation": "step over, pedalada"
     }
   ],
   "azules|azul": [
@@ -61542,7 +61474,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "pound, car pound (UK); impound lot, impound"
+      "translation": "pound, car pound; impound lot, impound"
     },
     {
       "pos": "NOUN",
@@ -61767,10 +61699,6 @@
     {
       "pos": "NOUN",
       "translation": "showing"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a function; a subroutine, method, or procedure which returns an output value and may accept input values"
     }
   ],
   "conduce|conducir": [
@@ -61820,7 +61748,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "stone, pit (the central part of some fruits, consisting of the seed and a hard endocarp layer (like those of peach"
+      "translation": "stone, pit"
     },
     {
       "pos": "NOUN",
@@ -62220,7 +62148,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "after the start of; into; (late) into"
+      "translation": "after the start of; into; into"
     }
   ],
   "entradas|entrar": [
@@ -62246,7 +62174,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "after the start of; into; (late) into"
+      "translation": "after the start of; into; into"
     }
   ],
   "decirnos|decir": [
@@ -62512,7 +62440,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -62594,7 +62522,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "selva|selva": [
@@ -62857,10 +62785,6 @@
     {
       "pos": "NOUN",
       "translation": "field"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "pitch, (US) field"
     },
     {
       "pos": "NOUN",
@@ -63394,7 +63318,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -63464,7 +63388,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a blond (or blonde) person"
+      "translation": "a blond person"
     },
     {
       "pos": "NOUN",
@@ -63538,10 +63462,6 @@
   "terminamos|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -63560,7 +63480,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Roman (native or inhabitant of the city of Rome, capital of Italy)"
+      "translation": "Roman"
     }
   ],
   "piedad|piedad": [
@@ -63602,7 +63522,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -63778,7 +63698,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "revolución|revolución": [
@@ -63808,7 +63728,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "alianza|alianza": [
@@ -64894,7 +64814,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "tráeme|traer": [
@@ -64962,7 +64882,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -65360,7 +65280,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -65662,7 +65582,7 @@
   "perrito|perro": [
     {
       "pos": "NOUN",
-      "translation": "dog (the species Canis familiaris (sometimes designated Canis lupus familiaris), domesticated for thousands of years and of highly variable appearance because of human breeding)"
+      "translation": "dog"
     },
     {
       "pos": "NOUN",
@@ -65706,7 +65626,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -66130,7 +66050,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -67360,7 +67280,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "sprocket; (bicycle sprockets) cassette"
+      "translation": "sprocket; cassette"
     },
     {
       "pos": "NOUN",
@@ -67560,7 +67480,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     }
   ],
   "profesionales|profesional": [
@@ -68194,7 +68114,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -68280,7 +68200,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to help (abstain from doing)"
+      "translation": "to help"
     },
     {
       "pos": "VERB",
@@ -68748,7 +68668,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -68920,7 +68840,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a trait, activity, or action closely associated with or aptly describing a person; an appellation"
+      "translation": "a trait, activity; an appellation"
     }
   ],
   "alguacil|alguacil": [
@@ -69610,7 +69530,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "mate, partner"
+      "translation": "mate, colleague; fellow X, classmate"
     },
     {
       "pos": "NOUN",
@@ -69619,6 +69539,10 @@
     {
       "pos": "NOUN",
       "translation": "teammate"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mate, partner"
     }
   ],
   "ronda|ronda": [
@@ -69876,7 +69800,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to have (for) breakfast"
+      "translation": "to have breakfast"
     }
   ],
   "dejaría|dejar": [
@@ -69940,7 +69864,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     }
   ],
   "agárrate|agarrar": [
@@ -69976,7 +69900,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -70072,7 +69996,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "(of a hot dog or a sandwich) having avocado, mayonnaise, and tomato"
+      "translation": "having avocado, mayonnaise, and tomato"
     },
     {
       "pos": "NOUN",
@@ -70896,11 +70820,15 @@
     },
     {
       "pos": "NOUN",
-      "translation": "elastic band"
+      "translation": "band; suspender, garter"
     },
     {
       "pos": "NOUN",
       "translation": "alloy, mixture"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "elastic band"
     },
     {
       "pos": "NOUN",
@@ -70934,11 +70862,15 @@
     },
     {
       "pos": "NOUN",
-      "translation": "elastic band"
+      "translation": "band; suspender, garter"
     },
     {
       "pos": "NOUN",
       "translation": "alloy, mixture"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "elastic band"
     },
     {
       "pos": "NOUN",
@@ -71052,7 +70984,7 @@
   "rezar|rezar": [
     {
       "pos": "VERB",
-      "translation": "to pray, especially to repeat or recite (rather than sing) a memorized prayer such as the Lord's Prayer, the Hail Mary"
+      "translation": "to pray, especially to repeat or recite a memorized prayer such as the Lord's Prayer, the Hail Mary"
     },
     {
       "pos": "VERB",
@@ -71500,7 +71432,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -71584,7 +71516,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -71652,15 +71584,11 @@
   "primeras|primero": [
     {
       "pos": "NOUN",
-      "translation": "former (in contrast to the latter), first, first one"
+      "translation": "first gear"
     },
     {
       "pos": "NOUN",
       "translation": "one of the five bids in the card game of Primero, consisting of a combination of four cards in the hand"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "first gear"
     },
     {
       "pos": "ADJ",
@@ -71788,7 +71716,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -71858,7 +71786,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -72307,10 +72235,6 @@
     {
       "pos": "NOUN",
       "translation": "policy"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "queue (British), line"
     }
   ],
   "dude|dudar": [
@@ -72330,7 +72254,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "tabaco|tabaco": [
@@ -72566,7 +72490,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "caucus (non-electoral)"
+      "translation": "caucus"
     }
   ],
   "discos|disco": [
@@ -72730,7 +72654,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -72842,7 +72766,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -73270,7 +73194,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "handsome (guy), beautiful"
+      "translation": "handsome, beautiful"
     },
     {
       "pos": "NOUN",
@@ -73328,7 +73252,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "handsome (guy), beautiful"
+      "translation": "handsome, beautiful"
     }
   ],
   "morirás|morir": [
@@ -74020,7 +73944,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "settlement with a minimum of five thousand inhabitants (bigger than a town but smaller than a city) that has asked for the title officially; previously, this title was granted by the king"
+      "translation": "settlement with a minimum of five thousand inhabitants that has asked for the title officially; previously, this title was granted by the king"
     }
   ],
   "trono|trono": [
@@ -74258,7 +74182,7 @@
   "quedate|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -74502,7 +74426,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -74574,7 +74498,7 @@
   "demanda|demandar": [
     {
       "pos": "VERB",
-      "translation": "to insist, ask (for something), request"
+      "translation": "to insist, ask, request"
     },
     {
       "pos": "VERB",
@@ -74618,7 +74542,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -74704,7 +74628,7 @@
   "camiones|camión": [
     {
       "pos": "NOUN",
-      "translation": "lorry (UK); truck"
+      "translation": "lorry; truck"
     },
     {
       "pos": "NOUN",
@@ -74858,7 +74782,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "maté (the drink prepared from yerba maté (Ilex paraguariensis))"
+      "translation": "maté"
     }
   ],
   "disparando|disparar": [
@@ -74908,7 +74832,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -75347,10 +75271,6 @@
     {
       "pos": "VERB",
       "translation": "to upload"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ con) to hang out with, relax with"
     }
   ],
   "apunta|apuntar": [
@@ -75478,7 +75398,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -75602,7 +75522,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     },
     {
       "pos": "NOUN",
@@ -75922,7 +75842,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "acuerda|acuerdo": [
@@ -77582,7 +77502,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -78184,7 +78104,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -78350,7 +78270,7 @@
   "fuentes|fuente": [
     {
       "pos": "NOUN",
-      "translation": "spring (water), fountain"
+      "translation": "spring, fountain"
     },
     {
       "pos": "NOUN",
@@ -79394,7 +79314,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -79526,7 +79446,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -79944,7 +79864,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -80360,7 +80280,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -80600,7 +80520,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "glasses, (formal) spectacles, (US) eyeglass"
+      "translation": "glasses, spectacles, eyeglass"
     },
     {
       "pos": "NOUN",
@@ -80700,7 +80620,7 @@
   "quedarás|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -81626,7 +81546,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "A person who is irrelevant, inactive, or unimportant in a situation; someone who is just “there” without influence or effect."
+      "translation": "A person who is irrelevant, inactive; someone who is just “there” without influence or effect."
     },
     {
       "pos": "NOUN",
@@ -82106,10 +82026,6 @@
   "terminará|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -82136,7 +82052,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to smear, soil, stain (something or someone); to become smeared"
+      "translation": "to smear, soil; to become smeared"
     }
   ],
   "líderes|líder": [
@@ -82368,7 +82284,7 @@
   "jefa|jefa": [
     {
       "pos": "NOUN",
-      "translation": "(female) boss"
+      "translation": "boss"
     }
   ],
   "fallo|fallo": [
@@ -82516,10 +82432,6 @@
     }
   ],
   "terminaste|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -82732,7 +82644,7 @@
   "curar|curar": [
     {
       "pos": "VERB",
-      "translation": "to cure, heal (body, soul"
+      "translation": "to cure, heal; nurse, treat"
     },
     {
       "pos": "VERB",
@@ -83016,7 +82928,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -83054,7 +82966,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "barrel (of a gun), pipe, tube"
+      "translation": "barrel, pipe, tube"
     },
     {
       "pos": "NOUN",
@@ -83548,7 +83460,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "bachelor (a man who has never married), bachelorette"
+      "translation": "bachelor, bachelorette"
     }
   ],
   "pierden|perder": [
@@ -84768,7 +84680,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -84902,7 +84814,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -85076,6 +84988,10 @@
     },
     {
       "pos": "NOUN",
+      "translation": "a bell-shaped object or component"
+    },
+    {
+      "pos": "NOUN",
       "translation": "hood"
     },
     {
@@ -85148,7 +85064,7 @@
   "avanzar|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     }
   ],
   "técnicamente|técnicamente": [
@@ -85458,15 +85374,15 @@
   "cargando|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -85787,10 +85703,6 @@
     {
       "pos": "VERB",
       "translation": "to steer"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ a) to address, direct to"
     }
   ],
   "diciembre|diciembre": [
@@ -85900,7 +85812,7 @@
   "quedaron|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -85999,6 +85911,10 @@
     {
       "pos": "NOUN",
       "translation": "chest, trunk, footlocker"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "trunk, boot"
     }
   ],
   "baila|bailar": [
@@ -86228,7 +86144,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Russian (person)"
+      "translation": "Russian"
     },
     {
       "pos": "NOUN",
@@ -86354,7 +86270,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     },
     {
       "pos": "NOUN",
@@ -86608,7 +86524,7 @@
   "espadas|espada": [
     {
       "pos": "NOUN",
-      "translation": "sword (a long bladed weapon with a grip and typically a pommel and crossguard (together forming a hilt), which is designed to cut, stab"
+      "translation": "sword"
     },
     {
       "pos": "NOUN",
@@ -86696,7 +86612,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(un carajo) shit (US), jackshit (US), sod all (UK)"
+      "translation": "shit, jackshit, sod all"
     },
     {
       "pos": "NOUN",
@@ -86920,7 +86836,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -86966,7 +86882,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "arriesgado|arriesgado": [
@@ -87104,7 +87020,7 @@
   "quedaba|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -87576,7 +87492,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -87622,11 +87538,11 @@
   "nacer|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     }
   ],
   "mona|mona": [
@@ -88130,7 +88046,7 @@
   "quedara|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -88506,15 +88422,15 @@
   "cargado|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -88676,7 +88592,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -89298,7 +89214,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "buscarme|buscar": [
@@ -89312,7 +89228,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "tumbas|tumba": [
@@ -89356,7 +89272,7 @@
   "plazo|plazo": [
     {
       "pos": "NOUN",
-      "translation": "period, term (time limit), deadline"
+      "translation": "period, term, deadline"
     },
     {
       "pos": "NOUN",
@@ -91166,6 +91082,10 @@
     },
     {
       "pos": "NOUN",
+      "translation": "house, noble lineage"
+    },
+    {
+      "pos": "NOUN",
       "translation": "tenement house"
     },
     {
@@ -91432,7 +91352,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -91630,7 +91550,7 @@
   "quedaremos|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -91672,7 +91592,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     }
   ],
   "ida|ido": [
@@ -92134,7 +92054,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bump (into), to collide"
+      "translation": "to bump, to collide"
     },
     {
       "pos": "VERB",
@@ -92324,7 +92244,7 @@
   "queden|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -92772,7 +92692,7 @@
   "avancen|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     }
   ],
   "paró|parar": [
@@ -93042,7 +92962,7 @@
   "quedarán|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -93308,7 +93228,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a metal or (lined) wooden oven for roasting or smoking food outdoors"
+      "translation": "a metal or wooden oven for roasting or smoking food outdoors"
     }
   ],
   "durará|durar": [
@@ -93476,7 +93396,7 @@
   "avanzando|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     }
   ],
   "sígame|seguir": [
@@ -93486,7 +93406,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -93813,10 +93733,6 @@
       "translation": "showing"
     },
     {
-      "pos": "NOUN",
-      "translation": "a function; a subroutine, method, or procedure which returns an output value and may accept input values"
-    },
-    {
       "pos": "VERB",
       "translation": "to work, to function"
     }
@@ -93962,7 +93878,7 @@
   "cabe|caber": [
     {
       "pos": "VERB",
-      "translation": "to fit, enter (to be able to be contained (by something; regardless of whether space or volume remains))"
+      "translation": "to fit, enter"
     },
     {
       "pos": "VERB",
@@ -93970,7 +93886,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to be held or contained (to be held inside (something) or passed through (regardless of whether space or volume remains))"
+      "translation": "to be held or contained"
     },
     {
       "pos": "VERB",
@@ -94022,7 +93938,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -94692,7 +94608,7 @@
   "boxeo|boxear": [
     {
       "pos": "VERB",
-      "translation": "to box (fight against (a person) in a boxing match)"
+      "translation": "to box"
     },
     {
       "pos": "NOUN",
@@ -95324,7 +95240,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -95356,7 +95272,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "bachelor (a man who has never married), bachelorette"
+      "translation": "bachelor, bachelorette"
     }
   ],
   "mesas|mesa": [
@@ -95392,7 +95308,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -95560,7 +95476,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "fuegos|fuego": [
@@ -96464,10 +96380,6 @@
   "termines|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -97118,7 +97030,7 @@
   "decepcionado|decepcionado": [
     {
       "pos": "ADJ",
-      "translation": "disappointed, gutted (UK), disillusioned"
+      "translation": "disappointed, gutted, disillusioned"
     }
   ],
   "afecto|afectar": [
@@ -97552,7 +97464,7 @@
   "avanzada|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     },
     {
       "pos": "NOUN",
@@ -97588,7 +97500,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     }
   ],
   "alturas|altura": [
@@ -97821,10 +97733,6 @@
       "translation": "to upload"
     },
     {
-      "pos": "VERB",
-      "translation": "(+ con) to hang out with, relax with"
-    },
-    {
       "pos": "NOUN",
       "translation": "hanging"
     }
@@ -97964,7 +97872,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to grit (e.g., one's teeth), to clench"
+      "translation": "to grit, to clench"
     }
   ],
   "bebo|beber": [
@@ -98116,7 +98024,7 @@
   "quedaría|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -98246,7 +98154,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "(female) musician"
+      "translation": "musician"
     }
   ],
   "filas|fila": [
@@ -98256,7 +98164,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "queue (British), line"
+      "translation": "queue, line"
     },
     {
       "pos": "VERB",
@@ -99360,7 +99268,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -99466,7 +99374,7 @@
   "avanzado|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     },
     {
       "pos": "ADJ",
@@ -99500,7 +99408,7 @@
   "avance|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     },
     {
       "pos": "NOUN",
@@ -100030,7 +99938,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -100160,7 +100068,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -100384,7 +100292,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     },
     {
       "pos": "ADJ",
@@ -100722,7 +100630,7 @@
   "repite|repetir": [
     {
       "pos": "VERB",
-      "translation": "to repeat; to take seconds"
+      "translation": "to repeat"
     },
     {
       "pos": "VERB",
@@ -101064,7 +100972,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "long weekend; a day which falls between two work-free days (holidays or weekend days), on which leave is preferred"
+      "translation": "long weekend; a day which falls between two work-free days, on which leave is preferred"
     }
   ],
   "ministerio|ministerio": [
@@ -101150,7 +101058,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "American (native or inhabitant of the United States)"
+      "translation": "American"
     }
   ],
   "fumando|fumar": [
@@ -101612,7 +101520,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -102032,7 +101940,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -102556,7 +102464,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to constrain, limit (prevent or remove movement, leave (someone or something) without freedom of movement or ability to act)"
+      "translation": "to constrain, limit"
     },
     {
       "pos": "ADJ",
@@ -102706,7 +102614,7 @@
   "quedaste|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -102810,7 +102718,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -102871,10 +102779,6 @@
     {
       "pos": "VERB",
       "translation": "to steer"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ a) to address, direct to"
     }
   ],
   "diferencias|diferencia": [
@@ -103042,7 +102946,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     }
   ],
   "estadounidenses|estadounidense": [
@@ -103168,7 +103072,7 @@
   "propiedades|propiedad": [
     {
       "pos": "NOUN",
-      "translation": "propriety (fact of possessing something), proprietary"
+      "translation": "propriety, proprietary"
     },
     {
       "pos": "NOUN",
@@ -103256,7 +103160,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to smear, soil, stain (something or someone); to become smeared"
+      "translation": "to smear, soil; to become smeared"
     }
   ],
   "sabré|saber": [
@@ -103368,11 +103272,11 @@
   "naciste|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     }
   ],
   "hoteles|hotel": [
@@ -103696,10 +103600,6 @@
   "terminemos|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -103732,7 +103632,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -104026,7 +103926,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "crossbreeding (action, effect or product of producing (an organism) by the mating of individuals of different breeds, varieties"
+      "translation": "crossbreeding"
     }
   ],
   "centímetros|centímetro": [
@@ -104062,7 +103962,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "crossbreeding (action, effect or product of producing (an organism) by the mating of individuals of different breeds, varieties"
+      "translation": "crossbreeding"
     }
   ],
   "capturado|capturado": [
@@ -104222,10 +104122,6 @@
     }
   ],
   "terminaron|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -104864,10 +104760,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "movie (US, Canada), film"
-    },
-    {
-      "pos": "NOUN",
       "translation": "story"
     }
   ],
@@ -104998,7 +104890,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -105204,7 +105096,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "to-do; unresolved or unfinished task, thing, matter"
+      "translation": "to-do; unresolved or unfinished task, thing"
     },
     {
       "pos": "NOUN",
@@ -105506,7 +105398,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -105714,7 +105606,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "devastated, shattered, gutted (UK)"
+      "translation": "devastated, shattered, gutted"
     },
     {
       "pos": "ADJ",
@@ -105754,7 +105646,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "devastated, shattered, gutted (UK)"
+      "translation": "devastated, shattered, gutted"
     },
     {
       "pos": "ADJ",
@@ -106060,7 +105952,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -106074,7 +105966,7 @@
   "repetir|repetir": [
     {
       "pos": "VERB",
-      "translation": "to repeat; to take seconds"
+      "translation": "to repeat"
     },
     {
       "pos": "VERB",
@@ -106478,7 +106370,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "ally (a person, group, or state (etc) which is associated with another for a common cause; one united to another by treaty or common purpose; a confederate)"
+      "translation": "ally"
     }
   ],
   "tiré|tirar": [
@@ -106510,7 +106402,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "ally (a person, group, or state (etc) which is associated with another for a common cause; one united to another by treaty or common purpose; a confederate)"
+      "translation": "ally"
     }
   ],
   "tardar|tardar": [
@@ -107534,7 +107426,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "valores|valor": [
@@ -107570,7 +107462,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "whisker, whiskers (used when it's large and thick)"
+      "translation": "whisker, whiskers"
     }
   ],
   "recibiste|recibir": [
@@ -107590,7 +107482,7 @@
   "avanza|avanzar": [
     {
       "pos": "VERB",
-      "translation": "to advance (to make (something) happen at an earlier time or date)"
+      "translation": "to advance"
     }
   ],
   "quítense|quitar": [
@@ -107900,7 +107792,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "confesar|confesar": [
@@ -108026,7 +107918,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a bunch of (something bad), a load of"
+      "translation": "a bunch of, a load of"
     }
   ],
   "atajo|atajo": [
@@ -108036,7 +107928,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a bunch of (something bad), a load of"
+      "translation": "a bunch of, a load of"
     }
   ],
   "acento|acento": [
@@ -108354,7 +108246,7 @@
   "palma|palmar": [
     {
       "pos": "ADJ",
-      "translation": "palm (hand and tree); palmar"
+      "translation": "palm; palmar"
     },
     {
       "pos": "ADJ",
@@ -108700,7 +108592,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -108818,7 +108710,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a kind of wick or fuse (often made with esparto grass and tar), which does not go out easily in the wind"
+      "translation": "a kind of wick or fuse, which does not go out easily in the wind"
     },
     {
       "pos": "NOUN",
@@ -108872,7 +108764,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "ejercicios|ejercicio": [
@@ -109328,7 +109220,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -109752,7 +109644,7 @@
   "crítico|crítico": [
     {
       "pos": "ADJ",
-      "translation": "critical (inclined to criticize), judgmental"
+      "translation": "critical, judgmental"
     },
     {
       "pos": "NOUN",
@@ -110068,7 +109960,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "metida|meter": [
@@ -110490,6 +110382,10 @@
     }
   ],
   "rincón|rincón": [
+    {
+      "pos": "NOUN",
+      "translation": "corner, angle"
+    },
     {
       "pos": "NOUN",
       "translation": "nook, cosy corner"
@@ -111188,7 +111084,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "to-do; unresolved or unfinished task, thing, matter"
+      "translation": "to-do; unresolved or unfinished task, thing"
     },
     {
       "pos": "NOUN",
@@ -111414,7 +111310,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -112743,10 +112639,6 @@
       "translation": "to upload"
     },
     {
-      "pos": "VERB",
-      "translation": "(+ con) to hang out with, relax with"
-    },
-    {
       "pos": "ADJ",
       "translation": "hanging"
     },
@@ -113152,7 +113044,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -113728,7 +113620,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a blond (or blonde) person"
+      "translation": "a blond person"
     },
     {
       "pos": "NOUN",
@@ -113764,7 +113656,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -114094,7 +113986,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "changing room (UK), locker room (US), dressing room"
+      "translation": "changing room, locker room, dressing room"
     },
     {
       "pos": "NOUN",
@@ -114488,7 +114380,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -115130,7 +115022,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     }
   ],
   "alimento|alimento": [
@@ -115176,7 +115068,7 @@
   "reza|rezar": [
     {
       "pos": "VERB",
-      "translation": "to pray, especially to repeat or recite (rather than sing) a memorized prayer such as the Lord's Prayer, the Hail Mary"
+      "translation": "to pray, especially to repeat or recite a memorized prayer such as the Lord's Prayer, the Hail Mary"
     },
     {
       "pos": "VERB",
@@ -115256,7 +115148,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "(of a hot dog or a sandwich) having avocado, mayonnaise, and tomato"
+      "translation": "having avocado, mayonnaise, and tomato"
     },
     {
       "pos": "NOUN",
@@ -115680,7 +115572,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -116536,7 +116428,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -116612,7 +116504,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -116634,7 +116526,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -116918,7 +116810,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -117120,10 +117012,6 @@
     }
   ],
   "terminen|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -117508,7 +117396,7 @@
   "quedando|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -117640,7 +117528,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -117754,7 +117642,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "camarera|camarera": [
@@ -117860,7 +117748,7 @@
   "opuesto|oponer": [
     {
       "pos": "VERB",
-      "translation": "to pit (one thing against another); to set in opposition"
+      "translation": "to pit; to set in opposition"
     },
     {
       "pos": "VERB",
@@ -117904,7 +117792,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "American (native or inhabitant of the United States)"
+      "translation": "American"
     }
   ],
   "llevarle|llevar": [
@@ -118062,7 +117950,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     },
     {
       "pos": "ADJ",
@@ -118282,10 +118170,6 @@
   "terminada|terminar": [
     {
       "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
-    {
-      "pos": "VERB",
       "translation": "to end up with"
     },
     {
@@ -118350,7 +118234,7 @@
   "quedaras|quedar": [
     {
       "pos": "VERB",
-      "translation": "to be (as a result of something), to end up"
+      "translation": "to be, to end up"
     },
     {
       "pos": "VERB",
@@ -118568,7 +118452,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "lift (UK), elevator"
+      "translation": "lift, elevator"
     },
     {
       "pos": "NOUN",
@@ -118998,7 +118882,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -119692,7 +119576,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -119710,7 +119594,7 @@
   "subtitulos|subtítulo": [
     {
       "pos": "NOUN",
-      "translation": "subtitle, subhead, subheading"
+      "translation": "subtitle"
     },
     {
       "pos": "NOUN",
@@ -119822,7 +119706,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "(of a hot dog or a sandwich) having avocado, mayonnaise, and tomato"
+      "translation": "having avocado, mayonnaise, and tomato"
     },
     {
       "pos": "NOUN",
@@ -119860,10 +119744,6 @@
     }
   ],
   "fabulosa|fabuloso": [
-    {
-      "pos": "ADJ",
-      "translation": "fable, myth, legend; fabulous"
-    },
     {
       "pos": "ADJ",
       "translation": "fabulous"
@@ -119910,7 +119790,7 @@
   "cancha|cancha": [
     {
       "pos": "NOUN",
-      "translation": "pitch, (US) field"
+      "translation": "pitch, field"
     },
     {
       "pos": "NOUN",
@@ -119958,7 +119838,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to offer, provide, bring"
+      "translation": "to offer"
     },
     {
       "pos": "VERB",
@@ -119966,7 +119846,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to dedicate (to designate (a bull) as being for another person as a mark of respect or affection)"
+      "translation": "to dedicate"
     }
   ],
   "ayudarás|ayudar": [
@@ -120404,7 +120284,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "pustule (caused by acne), closed comedo"
+      "translation": "pustule, closed comedo"
     }
   ],
   "barro|barro": [
@@ -120418,7 +120298,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "pustule (caused by acne), closed comedo"
+      "translation": "pustule, closed comedo"
     }
   ],
   "arreglaremos|arreglar": [
@@ -121022,7 +120902,7 @@
     },
     {
       "pos": "PRON",
-      "translation": "they, them (singular); a gender-neutral singular third-person personal pronoun"
+      "translation": "they, them; a gender-neutral singular third-person personal pronoun"
     }
   ],
   "desnudos|desnudar": [
@@ -121410,15 +121290,15 @@
   "carguen|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -121498,7 +121378,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -121656,7 +121536,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to gather (together); to collect"
+      "translation": "to gather; to collect"
     },
     {
       "pos": "VERB",
@@ -121716,7 +121596,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -122734,7 +122614,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "legend, an explanatory caption or footer (on a photo or illustration), often indicating color"
+      "translation": "legend, an explanatory caption or footer, often indicating color"
     }
   ],
   "halla|hallar": [
@@ -122835,10 +122715,6 @@
     {
       "pos": "VERB",
       "translation": "to steer"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ a) to address, direct to"
     }
   ],
   "destruirá|destruir": [
@@ -123110,7 +122986,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -123280,10 +123156,6 @@
     }
   ],
   "terminan|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -123826,7 +123698,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -124110,7 +123982,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -124514,7 +124386,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to clock in (US), clock on (UK), to punch in (US); (leaving) to clock out (US)"
+      "translation": "to clock in, clock on; to clock out"
     },
     {
       "pos": "VERB",
@@ -124522,7 +124394,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to book, to put on file (arrested), n the crosshairs"
+      "translation": "to book, to put on file, n the crosshairs"
     },
     {
       "pos": "VERB",
@@ -124536,7 +124408,7 @@
   "fichas|fichar": [
     {
       "pos": "VERB",
-      "translation": "to clock in (US), clock on (UK), to punch in (US); (leaving) to clock out (US)"
+      "translation": "to clock in, clock on; to clock out"
     },
     {
       "pos": "VERB",
@@ -124544,7 +124416,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to book, to put on file (arrested), n the crosshairs"
+      "translation": "to book, to put on file, n the crosshairs"
     },
     {
       "pos": "VERB",
@@ -124596,7 +124468,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -124698,7 +124570,7 @@
   "anteriores|anterior": [
     {
       "pos": "ADJ",
-      "translation": "anterior (in time), previous, earlier"
+      "translation": "anterior, previous, earlier"
     }
   ],
   "alemana|alemán": [
@@ -124708,7 +124580,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "German (native or inhabitant of Germany)"
+      "translation": "German"
     },
     {
       "pos": "NOUN",
@@ -124760,7 +124632,7 @@
   "turnos|turno": [
     {
       "pos": "NOUN",
-      "translation": "turn (chance to use (something) shared in sequence with others)"
+      "translation": "turn"
     },
     {
       "pos": "NOUN",
@@ -125524,7 +125396,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -125556,7 +125428,7 @@
   "cenicienta|cenicienta": [
     {
       "pos": "NOUN",
-      "translation": "a Cinderella (figurative), someone who is mistreated"
+      "translation": "a Cinderella, someone who is mistreated"
     }
   ],
   "babor|babor": [
@@ -125916,7 +125788,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -125938,7 +125810,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -125960,7 +125832,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -126134,7 +126006,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "long weekend; a day which falls between two work-free days (holidays or weekend days), on which leave is preferred"
+      "translation": "long weekend; a day which falls between two work-free days, on which leave is preferred"
     }
   ],
   "sandwich|sándwich": [
@@ -126148,7 +126020,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "long weekend; a day which falls between two work-free days (holidays or weekend days), on which leave is preferred"
+      "translation": "long weekend; a day which falls between two work-free days, on which leave is preferred"
     }
   ],
   "romana|romano": [
@@ -126162,7 +126034,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Roman (native or inhabitant of the city of Rome, capital of Italy)"
+      "translation": "Roman"
     },
     {
       "pos": "NOUN",
@@ -126414,15 +126286,15 @@
     },
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -126436,15 +126308,15 @@
   "cargas|cargar": [
     {
       "pos": "VERB",
-      "translation": "to load (to put a load on or in (a means of conveyance or a place of storage))"
+      "translation": "to load"
     },
     {
       "pos": "VERB",
-      "translation": "to carry (to lift (something) and take it to another place; to transport (something) by lifting)"
+      "translation": "to carry"
     },
     {
       "pos": "VERB",
-      "translation": "to charge (to replenish energy to (a battery, or a device containing a battery) by use of an electrical device plugged into a power outlet)"
+      "translation": "to charge"
     },
     {
       "pos": "VERB",
@@ -126584,7 +126456,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -126974,11 +126846,11 @@
     },
     {
       "pos": "INTJ",
-      "translation": "I hope so; let's hope so"
+      "translation": "I hope; let's hope"
     },
     {
       "pos": "INTJ",
-      "translation": "God willing"
+      "translation": "God grant"
     },
     {
       "pos": "INTJ",
@@ -127580,7 +127452,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "injury time, stoppage time (UK), additional time"
+      "translation": "injury time, stoppage time, additional time"
     }
   ],
   "descuento|descuento": [
@@ -127590,7 +127462,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "injury time, stoppage time (UK), additional time"
+      "translation": "injury time, stoppage time, additional time"
     }
   ],
   "dense|dar": [
@@ -127770,7 +127642,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "magazine (of a gun), clip"
+      "translation": "magazine, clip"
     },
     {
       "pos": "NOUN",
@@ -128158,7 +128030,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -128408,7 +128280,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to offer, provide, bring"
+      "translation": "to offer"
     },
     {
       "pos": "VERB",
@@ -128416,7 +128288,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to dedicate (to designate (a bull) as being for another person as a mark of respect or affection)"
+      "translation": "to dedicate"
     }
   ],
   "apoyar|apoyar": [
@@ -128650,7 +128522,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to tag (someone) on social media"
+      "translation": "to tag on social media"
     },
     {
       "pos": "NOUN",
@@ -128736,7 +128608,7 @@
   "curado|curar": [
     {
       "pos": "VERB",
-      "translation": "to cure, heal (body, soul"
+      "translation": "to cure, heal; nurse, treat"
     },
     {
       "pos": "VERB",
@@ -128800,7 +128672,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "American (native or inhabitant of the Americas)"
+      "translation": "American"
     },
     {
       "pos": "NOUN",
@@ -128828,10 +128700,6 @@
     }
   ],
   "terminaré|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -129072,7 +128940,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -129237,10 +129105,6 @@
     {
       "pos": "VERB",
       "translation": "to upload"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ con) to hang out with, relax with"
     }
   ],
   "coartada|coartada": [
@@ -129490,7 +129354,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -129884,7 +129748,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     },
     {
       "pos": "ADJ",
@@ -130132,7 +129996,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "know-all, (US, Canada) blowhard"
+      "translation": "know-all, blowhard"
     }
   ],
   "cumplí|cumplir": [
@@ -130486,7 +130350,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -130776,7 +130640,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -130930,7 +130794,7 @@
   "rezando|rezar": [
     {
       "pos": "VERB",
-      "translation": "to pray, especially to repeat or recite (rather than sing) a memorized prayer such as the Lord's Prayer, the Hail Mary"
+      "translation": "to pray, especially to repeat or recite a memorized prayer such as the Lord's Prayer, the Hail Mary"
     },
     {
       "pos": "VERB",
@@ -130940,7 +130804,7 @@
   "repita|repetir": [
     {
       "pos": "VERB",
-      "translation": "to repeat; to take seconds"
+      "translation": "to repeat"
     },
     {
       "pos": "VERB",
@@ -131482,7 +131346,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -132278,7 +132142,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     }
   ],
   "amen|amar": [
@@ -132424,7 +132288,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "in a (good or bad) state"
+      "translation": "in a state"
     },
     {
       "pos": "NOUN",
@@ -132466,7 +132330,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "in a (good or bad) state"
+      "translation": "in a state"
     },
     {
       "pos": "NOUN",
@@ -132730,7 +132594,7 @@
   "velada|velada": [
     {
       "pos": "NOUN",
-      "translation": "an evening (a gathering held in the evening), a soirée"
+      "translation": "an evening, a soirée"
     }
   ],
   "velada|velar": [
@@ -132760,7 +132624,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "an evening (a gathering held in the evening), a soirée"
+      "translation": "an evening, a soirée"
     }
   ],
   "serias|serio": [
@@ -132950,7 +132814,7 @@
   "menuda|menudo": [
     {
       "pos": "ADJ",
-      "translation": "what (a/an)"
+      "translation": "what"
     },
     {
       "pos": "ADJ",
@@ -133124,7 +132988,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "acercándose|acercar": [
@@ -133718,7 +133582,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "ally (a person, group, or state (etc) which is associated with another for a common cause; one united to another by treaty or common purpose; a confederate)"
+      "translation": "ally"
     }
   ],
   "agradece|agradecer": [
@@ -134294,7 +134158,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -135326,7 +135190,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to insist, ask (for something), request"
+      "translation": "to insist, ask, request"
     },
     {
       "pos": "VERB",
@@ -135340,7 +135204,7 @@
   "demandas|demandar": [
     {
       "pos": "VERB",
-      "translation": "to insist, ask (for something), request"
+      "translation": "to insist, ask, request"
     },
     {
       "pos": "VERB",
@@ -135430,7 +135294,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bump (into), to collide"
+      "translation": "to bump, to collide"
     },
     {
       "pos": "VERB",
@@ -135472,7 +135336,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bump (into), to collide"
+      "translation": "to bump, to collide"
     },
     {
       "pos": "VERB",
@@ -135538,7 +135402,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     },
     {
       "pos": "NOUN",
@@ -135588,7 +135452,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "schedule (US, Canada), guide"
+      "translation": "schedule, guide, TV guide"
     }
   ],
   "privadas|privado": [
@@ -136348,7 +136212,7 @@
   "anteojos|anteojos": [
     {
       "pos": "NOUN",
-      "translation": "glasses, (formal) spectacles, (US) eyeglass"
+      "translation": "glasses, spectacles, eyeglass"
     }
   ],
   "amabilidad|amabilidad": [
@@ -137185,10 +137049,6 @@
     {
       "pos": "VERB",
       "translation": "to steer"
-    },
-    {
-      "pos": "VERB",
-      "translation": "(+ a) to address, direct to"
     }
   ],
   "dental|dental": [
@@ -138138,7 +137998,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to match (up), fit"
+      "translation": "to match, fit"
     }
   ],
   "balance|balance": [
@@ -138154,7 +138014,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -138702,7 +138562,7 @@
   "rezo|rezar": [
     {
       "pos": "VERB",
-      "translation": "to pray, especially to repeat or recite (rather than sing) a memorized prayer such as the Lord's Prayer, the Hail Mary"
+      "translation": "to pray, especially to repeat or recite a memorized prayer such as the Lord's Prayer, the Hail Mary"
     },
     {
       "pos": "VERB",
@@ -139066,7 +138926,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to fit, enter (to be able to be contained (by something; regardless of whether space or volume remains))"
+      "translation": "to fit, enter"
     },
     {
       "pos": "VERB",
@@ -139074,7 +138934,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to be held or contained (to be held inside (something) or passed through (regardless of whether space or volume remains))"
+      "translation": "to be held or contained"
     },
     {
       "pos": "VERB",
@@ -139488,7 +139348,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "blues|blues": [
@@ -139892,7 +139752,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to go (to release or excrete (urine, excrement))"
+      "translation": "to go"
     },
     {
       "pos": "VERB",
@@ -139954,7 +139814,7 @@
   "defenderse|defender": [
     {
       "pos": "VERB",
-      "translation": "to defend, to protect, to hold down (contra (“against”)"
+      "translation": "to defend, to protect, to hold down"
     },
     {
       "pos": "VERB",
@@ -140072,7 +139932,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -140180,7 +140040,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -140518,7 +140378,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     }
   ],
   "vacíos|vacío": [
@@ -141454,7 +141314,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -141506,7 +141366,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to grit (e.g., one's teeth), to clench"
+      "translation": "to grit, to clench"
     }
   ],
   "aprenderás|aprender": [
@@ -141606,7 +141466,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     }
   ],
   "vales|valer": [
@@ -141628,7 +141488,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     }
   ],
   "tardaste|tardar": [
@@ -141980,7 +141840,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -141998,7 +141858,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -142216,7 +142076,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -142238,7 +142098,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to assure (to give (someone) confidence in the trustworthiness of)"
+      "translation": "to assure"
     },
     {
       "pos": "VERB",
@@ -142366,7 +142226,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "life buoy (UK), life preserver (US), life ring"
+      "translation": "life buoy, life preserver, life ring"
     },
     {
       "pos": "NOUN",
@@ -142508,7 +142368,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "struggle, battle (in the figurative sense), strife"
+      "translation": "struggle, battle, strife"
     },
     {
       "pos": "NOUN",
@@ -142660,7 +142520,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -142830,7 +142690,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "bloqueo|bloquear": [
@@ -143014,7 +142874,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to introduce (someone), to acquaint"
+      "translation": "to introduce, to acquaint"
     },
     {
       "pos": "VERB",
@@ -143390,7 +143250,7 @@
   "buzón|buzón": [
     {
       "pos": "NOUN",
-      "translation": "mailbox (US), letterbox"
+      "translation": "mailbox, letterbox"
     },
     {
       "pos": "NOUN",
@@ -143640,7 +143500,7 @@
     },
     {
       "pos": "ADJ",
-      "translation": "crazy (in love); head over heels"
+      "translation": "crazy; head over heels"
     }
   ],
   "pensemos|pensar": [
@@ -144392,7 +144252,7 @@
   "bledo|bledo": [
     {
       "pos": "NOUN",
-      "translation": "blite, pigweed (a plant of the genus Amaranthus, especially the purple amaranth (Amaranthus blitum) and common amaranth"
+      "translation": "blite, pigweed"
     },
     {
       "pos": "NOUN",
@@ -144686,7 +144546,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to get (someone) interested"
+      "translation": "to get interested"
     }
   ],
   "indicios|indicio": [
@@ -144912,7 +144772,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -144972,7 +144832,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "scheme (systematic plan of future action)"
+      "translation": "scheme"
     }
   ],
   "protegen|proteger": [
@@ -145024,11 +144884,11 @@
   "nace|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     }
   ],
   "mirarlo|mirar": [
@@ -145882,7 +145742,7 @@
   "demandar|demandar": [
     {
       "pos": "VERB",
-      "translation": "to insist, ask (for something), request"
+      "translation": "to insist, ask, request"
     },
     {
       "pos": "VERB",
@@ -146454,13 +146314,17 @@
     },
     {
       "pos": "NOUN",
-      "translation": "cell phone (US), mobile phone"
+      "translation": "cell phone, mobile phone"
     }
   ],
   "campanas|campana": [
     {
       "pos": "NOUN",
       "translation": "bell"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "a bell-shaped object or component"
     },
     {
       "pos": "NOUN",
@@ -146516,7 +146380,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to constrain, limit (prevent or remove movement, leave (someone or something) without freedom of movement or ability to act)"
+      "translation": "to constrain, limit"
     },
     {
       "pos": "ADJ",
@@ -147966,7 +147830,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to draw (in); to attract"
+      "translation": "to draw; to attract"
     },
     {
       "pos": "VERB",
@@ -149212,7 +149076,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to turn in (e.g. homework), hand in"
+      "translation": "to turn in, hand in"
     },
     {
       "pos": "VERB",
@@ -149740,11 +149604,11 @@
   "mariquita|mariquita": [
     {
       "pos": "NOUN",
-      "translation": "ladybird (Commonwealth exc. Canada), ladybug"
+      "translation": "ladybird, ladybug"
     },
     {
       "pos": "NOUN",
-      "translation": "queer, faggot (US), poof"
+      "translation": "queer, faggot, poof"
     }
   ],
   "luchó|luchar": [
@@ -149828,7 +149692,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to exist; there be; “there is”, “there are” (hay)"
+      "translation": "to exist; there be; “there is”, “there are”"
     },
     {
       "pos": "VERB",
@@ -150072,7 +149936,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "besarte|besar": [
@@ -150092,7 +149956,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -150526,7 +150390,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "crossbreeding (action, effect or product of producing (an organism) by the mating of individuals of different breeds, varieties"
+      "translation": "crossbreeding"
     },
     {
       "pos": "VERB",
@@ -151488,7 +151352,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "violet (colour); purple"
+      "translation": "violet; purple"
     },
     {
       "pos": "NOUN",
@@ -151502,7 +151366,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "Trojan (native or inhabitant of Troy)"
+      "translation": "Trojan"
     }
   ],
   "traerle|traer": [
@@ -151602,7 +151466,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "bachelor (a man who has never married), bachelorette"
+      "translation": "bachelor, bachelorette"
     }
   ],
   "sólido|sólido": [
@@ -151978,7 +151842,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to trust"
+      "translation": "to trust"
     }
   ],
   "fé|fé": [
@@ -152160,7 +152024,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bring on (oneself), to ask for"
+      "translation": "to bring on, to ask for"
     }
   ],
   "burdel|burdel": [
@@ -152186,11 +152050,11 @@
     },
     {
       "pos": "VERB",
-      "translation": "to eject, to kick out (to compel (a person or persons) to leave)"
+      "translation": "to eject, to kick out"
     },
     {
       "pos": "VERB",
-      "translation": "to yield, to produce; to shed (light) on"
+      "translation": "to yield, to produce; to shed on"
     },
     {
       "pos": "VERB",
@@ -153286,7 +153150,7 @@
   "poste|poste": [
     {
       "pos": "NOUN",
-      "translation": "post (of wood), pole"
+      "translation": "post, pole"
     }
   ],
   "portátil|portátil": [
@@ -154740,7 +154604,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on"
+      "translation": "to continue; to keep, to keep on"
     },
     {
       "pos": "VERB",
@@ -155021,6 +154885,10 @@
     {
       "pos": "NOUN",
       "translation": "expanse"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "extension cord, extension lead, power extender"
     }
   ],
   "excursión|excursión": [
@@ -155132,7 +155000,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to bump (into), to collide"
+      "translation": "to bump, to collide"
     },
     {
       "pos": "VERB",
@@ -155396,10 +155264,6 @@
     }
   ],
   "terminarlo|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -155701,10 +155565,6 @@
       "translation": "to steer"
     },
     {
-      "pos": "VERB",
-      "translation": "(+ a) to address, direct to"
-    },
-    {
       "pos": "ADJ",
       "translation": "directed"
     }
@@ -155792,7 +155652,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(informal) to chatter"
+      "translation": "to chatter"
     },
     {
       "pos": "VERB",
@@ -155932,10 +155792,6 @@
     }
   ],
   "terminaría|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -156278,7 +156134,7 @@
   "gaseosa|gaseosa": [
     {
       "pos": "NOUN",
-      "translation": "soda pop (US), soda (US), pop (US)"
+      "translation": "soda pop, soda, pop"
     }
   ],
   "forastero|forastero": [
@@ -156478,7 +156334,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to offer, provide, bring"
+      "translation": "to offer"
     },
     {
       "pos": "VERB",
@@ -156486,7 +156342,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to dedicate (to designate (a bull) as being for another person as a mark of respect or affection)"
+      "translation": "to dedicate"
     }
   ],
   "ayuntamiento|ayuntamiento": [
@@ -157278,7 +157134,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to freak out (somebody), to creep out"
+      "translation": "to freak out, to creep out"
     },
     {
       "pos": "VERB",
@@ -157304,11 +157160,11 @@
     },
     {
       "pos": "VERB",
-      "translation": "to eject, to kick out (to compel (a person or persons) to leave)"
+      "translation": "to eject, to kick out"
     },
     {
       "pos": "VERB",
-      "translation": "to yield, to produce; to shed (light) on"
+      "translation": "to yield, to produce; to shed on"
     },
     {
       "pos": "VERB",
@@ -157406,10 +157262,6 @@
     }
   ],
   "terminas|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -157906,7 +157758,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to blow out (e.g., a candle), to snuff or snuff out"
+      "translation": "to blow out, to snuff or snuff out"
     }
   ],
   "agarrado|agarrado": [
@@ -157948,10 +157800,6 @@
     }
   ],
   "terminando|terminar": [
-    {
-      "pos": "VERB",
-      "translation": "to (cause to) finish, to (cause to) end, to (cause to) terminate"
-    },
     {
       "pos": "VERB",
       "translation": "to end up with"
@@ -158740,7 +158588,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "to (do) again"
+      "translation": "to again"
     },
     {
       "pos": "NOUN",
@@ -158890,11 +158738,11 @@
   "nacen|nacer": [
     {
       "pos": "VERB",
-      "translation": "to be born, to sprout, to begin to grow; to hatch"
+      "translation": "to be born, to sprout; to hatch"
     },
     {
       "pos": "VERB",
-      "translation": "to grow; to rise, to have its source (river); to rise (sun)"
+      "translation": "to grow; to rise, to have its source; to rise"
     }
   ],
   "morí|morir": [
@@ -159398,7 +159246,7 @@
     },
     {
       "pos": "VERB",
-      "translation": "(+ de) to make use of"
+      "translation": "to make use of"
     }
   ],
   "únete|unir": [
@@ -159556,7 +159404,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "plowshare (or ploughshare)"
+      "translation": "plowshare"
     }
   ],
   "receptor|receptor": [

@@ -77,10 +77,12 @@ _CLARIFICATION_STARTERS = {
     "with", "as", "when", "because", "can", "may", "e.g.", "i.e.",
     "including", "similar", "sometimes", "literally", "figuratively",
     "by", "from", "implies", "also", "regarded",
+    "accusative", "dative", "genitive", "nominative", "declined",
+    "apocopic", "conjugated", "inflected", "preceded",
 }
 
-# Trailing parenthetical at end of gloss
-_TRAILING_PAREN_RE = re.compile(r'\s*\(([^)]+)\)\s*$')
+# Match balanced parenthetical content (handles one level of nesting)
+_PAREN_RE = re.compile(r'\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)')
 
 # Stop words for sense merging (shared content-word extraction)
 _MERGE_STOP_WORDS = {
@@ -288,12 +290,12 @@ def clean_translation(gloss: str) -> str:
     """
     text = gloss.strip()
 
-    # --- Step 1: Strip trailing parenthetical clarifications ---
-    m = _TRAILING_PAREN_RE.search(text)
-    if m:
+    # --- Step 1: Strip parenthetical clarifications (anywhere in gloss) ---
+    # Process right-to-left so indices stay valid
+    matches = list(_PAREN_RE.finditer(text))
+    for m in reversed(matches):
         inner = m.group(1).strip()
         first_word = inner.split()[0].lower().rstrip(".,;:") if inner else ""
-        strip_it = False
 
         if len(inner) > 30:
             strip_it = True
@@ -308,7 +310,8 @@ def clean_translation(gloss: str) -> str:
             strip_it = True
 
         if strip_it:
-            text = text[:m.start()].strip()
+            text = text[:m.start()] + text[m.end():]
+    text = text.strip()
 
     # --- Step 2: Truncate comma-separated synonym chains ---
     parts = text.split(", ")
@@ -323,6 +326,10 @@ def clean_translation(gloss: str) -> str:
             first_word = part.strip().split()[0].lower().rstrip(".,;:") if part.strip() else ""
             if first_word in _CLARIFICATION_STARTERS:
                 break  # Drop this part and everything after
+            # Truncate comma chains within each semicolon segment
+            sub = part.split(", ")
+            if len(sub) >= 3:
+                part = ", ".join(sub[:2])
             kept.append(part)
         if len(kept) >= 4:
             kept = kept[:3]
