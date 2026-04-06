@@ -15,6 +15,10 @@ Fluency/
 ├── GoogleAppsScript.js          # Apps Script backend (deploy manually)
 ├── secrets.json                 # Google Apps Script URL (not in git)
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md
+│   └── Spanish/
+│       ├── layers/conjugations.json      # Conjugation tables (verbecc + Jehle)
+│       ├── layers/conjugation_reverse.json  # Form→infinitive reverse lookup
+│       └── corpora/jehle/                # Jehle verb conjugation corpus
 └── Artists/                     # Pipeline scripts + per-artist data — see Artists/CLAUDE.md
     └── vocabulary_master.json   # Shared master vocab (all word|lemma entries + senses)
 ```
@@ -37,6 +41,7 @@ Fluency/
 | Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json` |
 | Artist config | `artists.json` (root) + `Artists/{Name}/artist.json` |
 | Curated translation fixes | `Artists/{Name}/data/llm_analysis/curated_translations.json` |
+| Conjugation tables / verb data | `Data/Spanish/Scripts/build_conjugations.py`, front-end in `js/flashcards.js` → `buildConjugationTableHTML()` |
 
 ## Detailed Docs
 
@@ -63,6 +68,7 @@ Fluency/
 google-genai              # Gemini API (pipeline step 4, 6)
 lyricsgenius              # Genius API scraper (step 1)
 lingua-language-detector  # English line filter (step 2, 2b)
+verbecc               # Spanish verb conjugation (pipeline step 3)
 ```
 
 Python 3.9+ via `.venv/bin/python3`. Dev server: `python3 -m http.server 8765` from project root.
@@ -74,4 +80,5 @@ Python 3.9+ via `.venv/bin/python3`. Dev server: `python3 -m http.server 8765` f
 - **Short word whitelist**: Step 6 skips words <=2 chars unless in `_SHORT_WORD_WHITELIST`. If a short word gets POS=X, it probably needs adding to the whitelist.
 - **Easiness scoring**: Step 8 computes median Spanish frequency rank per example sentence. Strips adlibs and ignores interjections/English/proper nouns from the median. Front-end re-scores with personal easiness (`computePersonalEasiness` in `flashcards.js`) using `Data/Spanish/spanish_ranks.json` — excludes known words so sentences get progressively harder.
 - **POS=X filtering**: `buildFilteredVocab()` in `vocab.js` strips meanings with `pos=X` and empty translation. Words left with no valid meanings are removed from the deck.
+- **Normal mode pipeline**: 6 steps — build_inventory → build_examples → build_conjugations (verbecc) → build_senses (Wiktionary + conjugation POS filtering) → match_senses → build_vocabulary. Step 3 generates conjugation tables and reverse lookup; step 4 uses the reverse lookup to filter non-VERB senses from confirmed verb entries.
 - **Master vocabulary**: `Artists/vocabulary_master.json` holds all word|lemma entries with accumulated senses across all artists. 6-char hex IDs (`md5(word|lemma)[:6]`). Per-artist files hold only examples and corpus stats. Front-end joins master + artist index + artist examples at load time. Run `Artists/scripts/merge_to_master.py` to rebuild the master from existing artist vocabs.

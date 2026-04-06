@@ -77,6 +77,7 @@ if (activeArtist) {
 loadConfig().then(async () => {
     // Fire-and-forget: load Spanish rank lookup for personal easiness scoring
     if (window.loadSpanishRanks) window.loadSpanishRanks();
+    if (window.loadConjugationData) window.loadConjugationData();
     renderLanguageTabs();
     // Set first language with data as default (but don't auto-select it)
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
@@ -90,10 +91,11 @@ loadConfig().then(async () => {
     setupTooltipHandlers();
     setupAuthEventListeners();
 
-    // Wire shared top bar buttons (How to start, Estimate Level, gear)
+    // Wire shared top bar buttons (How to start, Estimate Level, mode switch, gear)
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
     document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
+    setupModeSwitchButton();
     document.getElementById('closeHelpModal').addEventListener('click', () => {
         document.getElementById('helpModal').classList.add('hidden');
     });
@@ -139,3 +141,75 @@ loadConfig().then(async () => {
     }
 });
 
+// Mode switch button: toggle between normal and artist modes
+async function setupModeSwitchButton() {
+    const btn = document.getElementById('modeSwitchBtn');
+    if (!btn) return;
+
+    if (activeArtist) {
+        // In artist mode → offer switch to normal
+        btn.textContent = 'Normal Mode';
+        btn.style.display = '';
+        btn.addEventListener('click', () => {
+            window.location.href = window.location.pathname;
+        });
+    } else {
+        // In normal mode → offer switch to artist mode
+        // Load artists.json to discover available artists
+        try {
+            const artists = allArtistsConfig || await fetch('artists.json').then(r => r.json());
+            const slugs = Object.keys(artists);
+            if (slugs.length === 0) return;
+
+            if (slugs.length === 1) {
+                btn.textContent = `${artists[slugs[0]].name} Lyrics`;
+                btn.style.display = '';
+                btn.addEventListener('click', () => {
+                    window.location.href = `${window.location.pathname}?artist=${slugs[0]}`;
+                });
+            } else {
+                btn.textContent = 'Lyrics Mode';
+                btn.style.display = '';
+                btn.addEventListener('click', () => {
+                    // Show a small picker dropdown
+                    showArtistPicker(btn, artists);
+                });
+            }
+        } catch (e) {
+            // No artists.json or fetch failed — hide button
+            console.warn('Could not load artists for mode switch:', e);
+        }
+    }
+}
+
+function showArtistPicker(anchorBtn, artists) {
+    // Remove existing picker if open
+    const existing = document.getElementById('modeSwitchPicker');
+    if (existing) { existing.remove(); return; }
+
+    const picker = document.createElement('div');
+    picker.id = 'modeSwitchPicker';
+    picker.className = 'mode-switch-picker';
+
+    for (const [slug, cfg] of Object.entries(artists)) {
+        const item = document.createElement('button');
+        item.className = 'mode-switch-picker-item';
+        item.textContent = cfg.name;
+        item.addEventListener('click', () => {
+            window.location.href = `${window.location.pathname}?artist=${slug}`;
+        });
+        picker.appendChild(item);
+    }
+
+    anchorBtn.style.position = 'relative';
+    anchorBtn.appendChild(picker);
+
+    // Close on outside click
+    const closeHandler = (e) => {
+        if (!picker.contains(e.target) && e.target !== anchorBtn) {
+            picker.remove();
+            document.removeEventListener('click', closeHandler);
+        }
+    };
+    setTimeout(() => document.addEventListener('click', closeHandler), 0);
+}

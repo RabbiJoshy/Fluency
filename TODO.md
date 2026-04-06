@@ -20,20 +20,10 @@ This is Josh's backlog. Items are NOT instructions to start working.
 
 ## UI / Front-End
 
-- **[now] Normal mode parity (L) [normal]**
-  Easiness-based sorting and improved card layout. Artist mode is far ahead.
-  Start: compare `loadVocabularyData()` and `updateCard()` paths for `activeArtist` vs normal.
-  `isMultiMeaning` is always true in artist mode; normal still has legacy single-meaning paths.
-
-- **[now] Mode switching button (S) [shared]**
-  Add a UI button to switch between normal and artist modes. Currently mode is set via URL
-  query params only (`?artist=bad-bunny`). No discoverable way to switch in-app.
-
-- **[now] Word highlight fix — short words match everywhere (S) [shared]**
-  When highlighting the target word in example sentences, single-letter words like "a" highlight
-  every occurrence of that letter in the sentence. The regex in `flashcards.js` (~line 1172)
-  uses `RegExp('(word)', 'gi')` without word boundaries (`\b`). Needs `\b` anchors, but must
-  handle Spanish-specific edge cases (accented chars, elisions).
+- **[soon] Conjugation table on card back (M) [shared]**
+  Display conjugation data on the card back for verb entries. Data layer exists
+  (`build_conjugations.py` generates `conjugation_reverse.json` and `conjugations.json`
+  from verbecc + Jehle CSV). Front-end needs to load and render the table.
 
 - **[soon] General vocab for level estimation (M) [shared]**
   Use base Spanish frequency list for estimation even in artist mode (less genre bias).
@@ -59,23 +49,18 @@ This is Josh's backlog. Items are NOT instructions to start working.
 
 ## Data / Pipeline
 
-- **[now] Normal mode translation quality — top words are wrong (M) [normal]**
-  The top ~25 words have bad Wiktionary-sourced translations. Examples: "a" → "bishop" (chess
-  piece instead of preposition), "de" → "the name of the Latin script letter D", "lo" → verbose
-  nominalizer definition missing the pronoun sense, "por" missing "for". Root cause: Wiktionary
-  (`kaikki-spanish.jsonl.gz` via `build_senses.py`) returns form-of entries, archaic defs, or
-  wrong senses for common function words. Needs either: curated overrides for top N words,
-  better sense selection logic in `build_senses.py`, or a Gemini pass on the worst offenders.
-  Related: translations don't prioritize the most common meaning — verbose definitions bury it.
+- **[soon] Normal mode translation quality — "a|a" still wrong (S) [normal]**
+  Most top-word translation issues fixed algorithmically in `build_senses.py` (see Decisions
+  Made). Remaining: "a|a" (preposition) has no usable Wiktionary entry — needs a curated
+  override in the senses layer or a different source.
 
-- **[now] Normal mode lemma/translation inconsistency (M) [normal]**
-  Cards are split by lemma (e.g. "pulso" appears as both lemma="pulso" NOUN and lemma="pulsar"
-  VERB), but translations aren't lemma-aware — both entries can show noun+verb senses. The raw
-  inventory lemmatizes words but the Wiktionary sense layer doesn't match senses to lemmas
-  properly, so you see verb-lemma cards with noun translations. This is a simpler, deterministic
-  version of sense-to-sentence matching: it's lemma/word pairing to senses, not sense to
-  sentence. Fix in `build_senses.py` or `match_senses.py` to align senses with the correct
-  lemma entry.
+- **[soon] Homograph lemma filtering — minor lemma flag (S) [shared]**
+  When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
+  flag the less common lemma pairing so it can be filtered or deprioritized. Currently
+  como|comer shows as a top-frequency word when it's actually rare. Inverse of
+  `most_frequent_lemma_instance` (which picks the best *form* per lemma — this picks
+  the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
+  reverse lookup to determine which lemma dominates.
 
 - **[soon] Sense-matched example prioritization (M) [shared]**
   When a word has multiple meanings, prioritize example sentences that match the active sense.
@@ -186,3 +171,34 @@ Resolved items kept for context, not actionable.
   on reversals, converges at step < 50 + 5 consecutive correct or 30 words max).
 
 - **Service worker strategy** — Network-first for all assets. Cache is offline fallback only.
+
+- **Word highlight fix** — DONE. Added Unicode-aware word boundaries (`\p{L}\p{N}`
+  lookbehind/lookahead) to the highlight regex in `flashcards.js`. Short words like "a"
+  no longer highlight every occurrence of that letter in example sentences.
+
+- **Mode switching button** — DONE. Added "Lyrics Mode" / "Normal Mode" toggle button in the
+  top bar. In normal mode shows artist picker dropdown if multiple artists configured; in
+  artist mode links back to the base URL.
+
+- **Normal mode parity** — DONE for Spanish. `vocabulary.index.json` already has meanings
+  arrays, and `loadVocabularyData()` builds `isMultiMeaning:true` cards for both modes.
+  The legacy `parseQuizlet`/`parseCSV` paths only applied to non-Spanish languages (all
+  languages already use JSON with meanings arrays) — removed as dead code.
+
+- **Normal mode translation quality** — Mostly DONE. Multiple algorithmic fixes in
+  `build_senses.py`: fixed sense merge bug (stop-word-only translations no longer incorrectly
+  merged); fixed alt-of extraction (rescued al, muy); deprioritized letter-name NOUN senses
+  (de→"of" ranks above "letter D"); improved verbose translation cleaning via colon/semicolon
+  pattern extraction (lo→"the, that which is", tu→"you", me→"me"); fixed pronoun form-of
+  extraction (nos→"us", les→"them"). Top 100 words much improved. Only "a|a" remains
+  unfixable algorithmically (preposition genuinely missing from Wiktionary).
+
+- **Normal mode lemma/translation inconsistency** — DONE. Added conjugation-based POS
+  filtering in `build_senses.py`. When `conjugation_reverse.json` confirms a word is a verb
+  form (e.g. como is conjugated form of comer), non-VERB senses are removed. Prevents
+  verb-lemma cards from showing noun/conjunction/adverb translations.
+
+- **Conjugation data layer** — DONE. `build_conjugations.py` generates conjugation data from
+  verbecc + Jehle CSV. Pipeline renumbered: step 3 = build_conjugations, step 4 =
+  build_senses, step 5 = match_senses, step 6 = build_vocabulary. Front-end display of
+  conjugation tables tracked separately above.

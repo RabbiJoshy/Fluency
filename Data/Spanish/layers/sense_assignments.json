@@ -114,7 +114,7 @@
       ]
     },
     {
-      "sense_idx": 1,
+      "sense_idx": 2,
       "examples": [
         2
       ]
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "sense_idx": 4,
+      "sense_idx": 5,
       "examples": [
         0,
         4,
@@ -204,11 +204,19 @@
     {
       "sense_idx": 0,
       "examples": [
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
         0,
         1,
         2,
-        3,
-        4
+        5,
+        6
       ]
     }
   ],
@@ -376,6 +384,12 @@
         3,
         4
       ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        6
+      ]
     }
   ],
   "712565": [
@@ -406,11 +420,17 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
+        0
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
         1,
         2,
         3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -427,6 +447,18 @@
     }
   ],
   "b78685": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "989529": [
     {
       "sense_idx": 0,
       "examples": [
@@ -556,12 +588,6 @@
       "examples": [
         4
       ]
-    },
-    {
-      "sense_idx": 8,
-      "examples": [
-        7
-      ]
     }
   ],
   "eab8e8": [
@@ -596,6 +622,18 @@
     }
   ],
   "d02f8f": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "53500a": [
     {
       "sense_idx": 0,
       "examples": [
@@ -1013,7 +1051,7 @@
   ],
   "98fdc0": [
     {
-      "sense_idx": 0,
+      "sense_idx": 2,
       "examples": [
         0,
         1,
@@ -1090,7 +1128,7 @@
       ]
     },
     {
-      "sense_idx": 8,
+      "sense_idx": 10,
       "examples": [
         0
       ]
@@ -1875,13 +1913,6 @@
         0,
         1,
         2,
-        5,
-        6
-      ]
-    },
-    {
-      "sense_idx": 2,
-      "examples": [
         3,
         4
       ]
@@ -2179,7 +2210,7 @@
       ]
     },
     {
-      "sense_idx": 5,
+      "sense_idx": 6,
       "examples": [
         1,
         2,
@@ -2188,13 +2219,13 @@
       ]
     },
     {
-      "sense_idx": 8,
+      "sense_idx": 9,
       "examples": [
         4
       ]
     },
     {
-      "sense_idx": 9,
+      "sense_idx": 10,
       "examples": [
         0
       ]
@@ -3091,7 +3122,7 @@
   ],
   "d67eb7": [
     {
-      "sense_idx": 3,
+      "sense_idx": 0,
       "examples": [
         0,
         1,
@@ -3702,11 +3733,18 @@
     {
       "sense_idx": 0,
       "examples": [
+        2,
+        6
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
         0,
         1,
-        2,
         3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -3813,11 +3851,19 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
         1,
         2,
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
+        0,
         3,
-        4
+        6,
+        7
       ]
     }
   ],
@@ -3825,11 +3871,7 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
-        1,
-        2,
-        5,
-        6
+        7
       ]
     },
     {
@@ -3837,6 +3879,16 @@
       "examples": [
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 4,
+      "examples": [
+        0,
+        1,
+        2,
+        5,
+        6
       ]
     }
   ],
@@ -4065,6 +4117,18 @@
     }
   ],
   "4737ce": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "7091b0": [
     {
       "sense_idx": 0,
       "examples": [
@@ -4358,11 +4422,19 @@
     {
       "sense_idx": 0,
       "examples": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
         0,
         1,
         2,
-        3,
-        4
+        5,
+        7
       ]
     }
   ],
@@ -5066,6 +5138,18 @@
       ]
     }
   ],
+  "8ad469": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
   "5d7ea4": [
     {
       "sense_idx": 0,
@@ -5295,6 +5379,13 @@
   "69fb72": [
     {
       "sense_idx": 0,
+      "examples": [
+        5,
+        7
+      ]
+    },
+    {
+      "sense_idx": 1,
       "examples": [
         0,
         1,
@@ -6113,7 +6204,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 1,
       "examples": [
         0,
         2,
@@ -6818,7 +6909,7 @@
       ]
     },
     {
-      "sense_idx": 1,
+      "sense_idx": 2,
       "examples": [
         0
       ]
@@ -7704,17 +7795,10 @@
       "sense_idx": 0,
       "examples": [
         0,
+        1,
         2,
         3,
-        4,
-        5
-      ]
-    },
-    {
-      "sense_idx": 3,
-      "examples": [
-        1,
-        6
+        4
       ]
     }
   ],
@@ -8483,7 +8567,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 3,
       "examples": [
         0,
         1,
@@ -9641,11 +9725,17 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
         1,
         2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
+        0
       ]
     }
   ],
@@ -11117,17 +11207,12 @@
     {
       "sense_idx": 0,
       "examples": [
+        1,
         7
       ]
     },
     {
-      "sense_idx": 2,
-      "examples": [
-        1
-      ]
-    },
-    {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         0,
         2,
@@ -11809,7 +11894,7 @@
       ]
     },
     {
-      "sense_idx": 4,
+      "sense_idx": 5,
       "examples": [
         0,
         2,
@@ -11955,7 +12040,7 @@
       ]
     },
     {
-      "sense_idx": 4,
+      "sense_idx": 5,
       "examples": [
         0,
         2,
@@ -12271,7 +12356,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 3,
       "examples": [
         1,
         5
@@ -12466,6 +12551,7 @@
     {
       "sense_idx": 0,
       "examples": [
+        1,
         4,
         5,
         6
@@ -12479,12 +12565,6 @@
         3,
         7
       ]
-    },
-    {
-      "sense_idx": 7,
-      "examples": [
-        1
-      ]
     }
   ],
   "fa1053": [
@@ -12492,16 +12572,10 @@
       "sense_idx": 0,
       "examples": [
         0,
+        1,
         2,
         3,
-        4,
-        5
-      ]
-    },
-    {
-      "sense_idx": 2,
-      "examples": [
-        1
+        4
       ]
     }
   ],
@@ -14369,7 +14443,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 3,
       "examples": [
         7
       ]
@@ -15019,7 +15093,7 @@
         1,
         2,
         5,
-        6
+        7
       ]
     },
     {
@@ -15027,6 +15101,12 @@
       "examples": [
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        6
       ]
     }
   ],
@@ -16527,18 +16607,10 @@
       "sense_idx": 0,
       "examples": [
         0,
-        2,
-        7
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
         1,
+        2,
         3,
-        4,
-        5,
-        6
+        4
       ]
     }
   ],
@@ -16547,23 +16619,16 @@
       "sense_idx": 0,
       "examples": [
         0,
-        7
+        1,
+        3,
+        4,
+        5
       ]
     },
     {
       "sense_idx": 4,
       "examples": [
         2
-      ]
-    },
-    {
-      "sense_idx": 5,
-      "examples": [
-        1,
-        3,
-        4,
-        5,
-        6
       ]
     }
   ],
@@ -17121,7 +17186,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 3,
       "examples": [
         2,
         5,
@@ -18979,10 +19044,16 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
         2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        1
       ]
     }
   ],
@@ -19936,12 +20007,6 @@
   "bf8f66": [
     {
       "sense_idx": 0,
-      "examples": [
-        5
-      ]
-    },
-    {
-      "sense_idx": 1,
       "examples": [
         0,
         1,
@@ -23311,10 +23376,18 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
-        1,
         2,
         3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        0,
+        1,
         4
       ]
     }
@@ -24966,6 +25039,12 @@
         1,
         2,
         3,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
         4
       ]
     }
@@ -25995,8 +26074,13 @@
       "sense_idx": 0,
       "examples": [
         3,
+        5
+      ]
+    },
+    {
+      "sense_idx": 4,
+      "examples": [
         4,
-        5,
         6,
         7
       ]
@@ -26418,7 +26502,7 @@
       ]
     },
     {
-      "sense_idx": 4,
+      "sense_idx": 5,
       "examples": [
         1,
         2,
@@ -26729,10 +26813,16 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
         2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        1
       ]
     }
   ],
@@ -26824,6 +26914,12 @@
         2,
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        7
       ]
     }
   ],
@@ -27397,7 +27493,7 @@
       ]
     },
     {
-      "sense_idx": 5,
+      "sense_idx": 6,
       "examples": [
         1
       ]
@@ -29877,10 +29973,17 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
-        2,
         3,
-        4
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
+        1,
+        2
       ]
     }
   ],
@@ -32710,7 +32813,7 @@
   ],
   "675c60": [
     {
-      "sense_idx": 0,
+      "sense_idx": 1,
       "examples": [
         0,
         1,
@@ -33473,6 +33576,12 @@
         3,
         4
       ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
+        6
+      ]
     }
   ],
   "612fad": [
@@ -33707,6 +33816,12 @@
         2,
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        7
       ]
     }
   ],
@@ -34232,9 +34347,15 @@
       "examples": [
         0,
         1,
-        2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        2
       ]
     }
   ],
@@ -34703,6 +34824,12 @@
         1,
         2,
         3,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
         4
       ]
     }
@@ -37077,8 +37204,15 @@
         0,
         1,
         2,
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
         3,
-        4
+        7
       ]
     }
   ],
@@ -41128,7 +41262,7 @@
   ],
   "105f71": [
     {
-      "sense_idx": 0,
+      "sense_idx": 2,
       "examples": [
         0,
         1,
@@ -41212,6 +41346,18 @@
     }
   ],
   "ffba77": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "a5ba41": [
     {
       "sense_idx": 0,
       "examples": [
@@ -42559,10 +42705,15 @@
   ],
   "cff5dc": [
     {
+      "sense_idx": 0,
+      "examples": [
+        1
+      ]
+    },
+    {
       "sense_idx": 1,
       "examples": [
-        0,
-        1
+        0
       ]
     }
   ],
@@ -42649,11 +42800,17 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
+        0
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
         1,
         2,
         3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -43269,10 +43426,16 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
         2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        1
       ]
     }
   ],
@@ -43781,6 +43944,12 @@
         1,
         2,
         3,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
         4
       ]
     }
@@ -43899,9 +44068,16 @@
       "examples": [
         0,
         1,
-        2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        2,
+        6
       ]
     }
   ],
@@ -44968,11 +45144,17 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
         1,
         2,
         3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        0
       ]
     }
   ],
@@ -45264,7 +45446,7 @@
       ]
     },
     {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         1
       ]
@@ -45757,11 +45939,17 @@
     {
       "sense_idx": 2,
       "examples": [
-        0,
+        0
+      ]
+    },
+    {
+      "sense_idx": 3,
+      "examples": [
         1,
         2,
         3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -46707,11 +46895,18 @@
     {
       "sense_idx": 0,
       "examples": [
+        4,
+        7
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
         0,
         1,
         2,
         3,
-        4
+        5
       ]
     }
   ],
@@ -46719,11 +46914,7 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
-        1,
-        2,
-        5,
-        6
+        7
       ]
     },
     {
@@ -46731,6 +46922,16 @@
       "examples": [
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 4,
+      "examples": [
+        0,
+        1,
+        2,
+        5,
+        6
       ]
     }
   ],
@@ -46977,23 +47178,10 @@
       "sense_idx": 0,
       "examples": [
         0,
+        1,
         2,
         3,
-        5
-      ]
-    },
-    {
-      "sense_idx": 8,
-      "examples": [
-        7
-      ]
-    },
-    {
-      "sense_idx": 9,
-      "examples": [
-        1,
-        4,
-        6
+        4
       ]
     }
   ],
@@ -47341,19 +47529,14 @@
         3,
         4
       ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
-        7
-      ]
     }
   ],
   "556410": [
     {
       "sense_idx": 0,
       "examples": [
-        1
+        1,
+        7
       ]
     },
     {
@@ -47364,12 +47547,6 @@
         3,
         4,
         5
-      ]
-    },
-    {
-      "sense_idx": 3,
-      "examples": [
-        7
       ]
     }
   ],
@@ -48251,6 +48428,18 @@
     {
       "sense_idx": 3,
       "examples": [
+        3,
+        4
+      ]
+    }
+  ],
+  "b48964": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
         3,
         4
       ]
@@ -49309,11 +49498,17 @@
     {
       "sense_idx": 0,
       "examples": [
+        3
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
         0,
         1,
         2,
-        3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -53469,17 +53664,11 @@
     {
       "sense_idx": 0,
       "examples": [
-        1
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
         0,
+        1,
         3,
         4,
-        5,
-        6
+        5
       ]
     },
     {
@@ -54120,8 +54309,13 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
         2
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        1
       ]
     }
   ],
@@ -57357,6 +57551,18 @@
     }
   ],
   "601f0a": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "17ccae": [
     {
       "sense_idx": 0,
       "examples": [
@@ -60821,7 +61027,7 @@
       ]
     },
     {
-      "sense_idx": 5,
+      "sense_idx": 6,
       "examples": [
         0,
         6
@@ -67101,10 +67307,15 @@
     {
       "sense_idx": 0,
       "examples": [
+        3
+      ]
+    },
+    {
+      "sense_idx": 4,
+      "examples": [
         0,
         1,
-        2,
-        3
+        2
       ]
     }
   ],
@@ -70601,6 +70812,12 @@
       ]
     }
   ],
+  "181d79": [
+    {
+      "sense_idx": 0,
+      "examples": []
+    }
+  ],
   "7f54bc": [
     {
       "sense_idx": 0,
@@ -70613,7 +70830,7 @@
       ]
     },
     {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         6
       ]
@@ -73142,10 +73359,16 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
         2,
-        3,
         4
+      ]
+    },
+    {
+      "sense_idx": 4,
+      "examples": [
+        1,
+        3,
+        5
       ]
     }
   ],
@@ -77654,17 +77877,10 @@
       "sense_idx": 0,
       "examples": [
         0,
-        3
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
         1,
         2,
-        4,
-        5,
-        6
+        3,
+        4
       ]
     }
   ],
@@ -78665,11 +78881,19 @@
     {
       "sense_idx": 0,
       "examples": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "sense_idx": 5,
+      "examples": [
         0,
         1,
         2,
-        3,
-        4
+        5,
+        7
       ]
     }
   ],
@@ -78677,11 +78901,19 @@
     {
       "sense_idx": 0,
       "examples": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "sense_idx": 3,
+      "examples": [
         0,
         1,
         2,
-        3,
-        4
+        5,
+        7
       ]
     }
   ],
@@ -79944,11 +80176,18 @@
     {
       "sense_idx": 0,
       "examples": [
+        2,
+        6
+      ]
+    },
+    {
+      "sense_idx": 5,
+      "examples": [
         0,
         1,
-        2,
         3,
-        4
+        4,
+        5
       ]
     }
   ],
@@ -81087,7 +81326,7 @@
       ]
     },
     {
-      "sense_idx": 9,
+      "sense_idx": 10,
       "examples": [
         0,
         1,
@@ -82962,9 +83201,14 @@
       "sense_idx": 0,
       "examples": [
         0,
-        1,
         2,
         3
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        1
       ]
     }
   ],
@@ -83274,8 +83518,14 @@
         0,
         1,
         2,
-        3,
-        4
+        4,
+        5
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
+        3
       ]
     }
   ],
@@ -84260,7 +84510,7 @@
   ],
   "fac058": [
     {
-      "sense_idx": 7,
+      "sense_idx": 8,
       "examples": [
         0,
         1,
@@ -86378,7 +86628,7 @@
       ]
     },
     {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         0,
         1
@@ -87293,21 +87543,15 @@
       "examples": [
         0,
         1,
+        2,
         3,
-        4,
-        5
+        4
       ]
     },
     {
       "sense_idx": 5,
       "examples": [
         6
-      ]
-    },
-    {
-      "sense_idx": 8,
-      "examples": [
-        2
       ]
     }
   ],
@@ -87849,7 +88093,7 @@
       ]
     },
     {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         0,
         1,
@@ -89182,15 +89426,21 @@
       "examples": [
         0,
         1,
-        3,
         4,
-        5
+        5,
+        6
       ]
     },
     {
       "sense_idx": 1,
       "examples": [
         2
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        3
       ]
     }
   ],
@@ -89962,6 +90212,12 @@
         2,
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 1,
+      "examples": [
+        5
       ]
     }
   ],
@@ -91923,6 +92179,12 @@
         1,
         2,
         3,
+        5
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
         4
       ]
     }
@@ -92093,11 +92355,19 @@
     {
       "sense_idx": 0,
       "examples": [
-        0,
         1,
-        2,
         3,
-        4
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "sense_idx": 4,
+      "examples": [
+        0,
+        2,
+        6
       ]
     }
   ],
@@ -92526,16 +92796,11 @@
     {
       "sense_idx": 0,
       "examples": [
+        0,
         1,
         2,
         3,
         4
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
-        0
       ]
     }
   ],
@@ -93850,6 +94115,12 @@
       ]
     }
   ],
+  "749fc4": [
+    {
+      "sense_idx": 0,
+      "examples": []
+    }
+  ],
   "2e906c": [
     {
       "sense_idx": 1,
@@ -94890,7 +95161,7 @@
   ],
   "e264ea": [
     {
-      "sense_idx": 0,
+      "sense_idx": 1,
       "examples": [
         0
       ]
@@ -95035,12 +95306,6 @@
         2,
         3,
         4
-      ]
-    },
-    {
-      "sense_idx": 2,
-      "examples": [
-        6
       ]
     }
   ],
@@ -98110,7 +98375,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 3,
       "examples": [
         1
       ]
@@ -98321,7 +98586,7 @@
         1,
         2,
         5,
-        6
+        7
       ]
     },
     {
@@ -98329,6 +98594,12 @@
       "examples": [
         3,
         4
+      ]
+    },
+    {
+      "sense_idx": 2,
+      "examples": [
+        6
       ]
     }
   ],
@@ -98764,7 +99035,7 @@
   ],
   "ea3e0f": [
     {
-      "sense_idx": 1,
+      "sense_idx": 2,
       "examples": [
         0,
         1,
@@ -102622,7 +102893,7 @@
   ],
   "536e10": [
     {
-      "sense_idx": 0,
+      "sense_idx": 1,
       "examples": [
         0,
         1,
@@ -103884,7 +104155,7 @@
   ],
   "a94fb8": [
     {
-      "sense_idx": 4,
+      "sense_idx": 3,
       "examples": [
         0,
         1,
@@ -108349,15 +108620,10 @@
     {
       "sense_idx": 0,
       "examples": [
+        0,
         1,
         2,
-        3
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
-        0,
+        3,
         4
       ]
     }
@@ -113009,11 +113275,16 @@
   ],
   "5f7370": [
     {
+      "sense_idx": 0,
+      "examples": [
+        2
+      ]
+    },
+    {
       "sense_idx": 5,
       "examples": [
         0,
         1,
-        2,
         3,
         4
       ]
@@ -113234,17 +113505,11 @@
     {
       "sense_idx": 0,
       "examples": [
+        0,
         1,
         2,
         3,
-        4,
-        5
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
-        0
+        4
       ]
     }
   ],
@@ -114850,6 +115115,14 @@
       "examples": [
         0,
         1
+      ]
+    }
+  ],
+  "7bf611": [
+    {
+      "sense_idx": 0,
+      "examples": [
+        0
       ]
     }
   ],
@@ -117131,7 +117404,7 @@
   ],
   "755233": [
     {
-      "sense_idx": 0,
+      "sense_idx": 1,
       "examples": [
         0
       ]
@@ -123363,7 +123636,7 @@
       ]
     },
     {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         2
       ]
@@ -128477,6 +128750,8 @@
       "sense_idx": 0,
       "examples": [
         0,
+        2,
+        3,
         5
       ]
     },
@@ -128485,13 +128760,6 @@
       "examples": [
         1,
         4
-      ]
-    },
-    {
-      "sense_idx": 4,
-      "examples": [
-        2,
-        3
       ]
     }
   ],
@@ -128582,7 +128850,7 @@
   ],
   "f6d4ad": [
     {
-      "sense_idx": 0,
+      "sense_idx": 1,
       "examples": [
         0,
         1
@@ -130052,12 +130320,6 @@
     {
       "sense_idx": 0,
       "examples": [
-        5
-      ]
-    },
-    {
-      "sense_idx": 1,
-      "examples": [
         0,
         1,
         2,
@@ -130168,7 +130430,7 @@
   ],
   "be1602": [
     {
-      "sense_idx": 3,
+      "sense_idx": 4,
       "examples": [
         0,
         1,
@@ -136156,7 +136418,7 @@
       ]
     },
     {
-      "sense_idx": 2,
+      "sense_idx": 3,
       "examples": [
         1,
         3,

@@ -8,11 +8,12 @@ Usage (from project root):
     python3 Data/Spanish/Scripts/run_pipeline.py --dry-run
 
 Steps:
-    1. build_inventory.py   — Word inventory from CSV (IDs, ranks, flags)
-    2. build_examples.py    — Match Tatoeba examples to vocabulary
-    3. build_senses.py      — Build sense inventory from Wiktionary
-    4. match_senses.py      — Assign examples to senses via keyword overlap
-    5. build_vocabulary.py  — Assemble final vocabulary from all layers
+    1.  build_inventory.py     — Word inventory from CSV (IDs, ranks, flags)
+    2.  build_examples.py      — Match Tatoeba examples to vocabulary
+    2b. build_conjugations.py  — Conjugation tables + reverse lookup (verbecc)
+    3.  build_senses.py        — Build sense inventory from Wiktionary
+    4.  match_senses.py        — Assign examples to senses via keyword overlap
+    5.  build_vocabulary.py    — Assemble final vocabulary from all layers
 """
 
 import argparse
@@ -32,13 +33,16 @@ STEPS = [
     {"num": 2, "label": "Match Tatoeba examples to vocabulary",
      "script": "build_examples.py",
      "output": "Data/Spanish/layers/examples_raw.json"},
-    {"num": 3, "label": "Build sense inventory from Wiktionary",
+    {"num": 3, "label": "Build conjugation tables (verbecc)",
+     "script": "build_conjugations.py",
+     "output": "Data/Spanish/layers/conjugations.json"},
+    {"num": 4, "label": "Build sense inventory from Wiktionary",
      "script": "build_senses.py",
      "output": "Data/Spanish/layers/senses_wiktionary.json"},
-    {"num": 4, "label": "Assign examples to senses",
+    {"num": 5, "label": "Assign examples to senses",
      "script": "match_senses.py",
      "output": "Data/Spanish/layers/sense_assignments.json"},
-    {"num": 5, "label": "Assemble final vocabulary from layers",
+    {"num": 6, "label": "Assemble final vocabulary from layers",
      "script": "build_vocabulary.py",
      "output": "Data/Spanish/vocabulary.index.json"},
 ]
@@ -77,7 +81,7 @@ def main():
         description="Normal-mode Spanish vocabulary pipeline orchestrator")
     parser.add_argument("--from-step", type=int, default=1, choices=VALID_STEPS,
                         help="Start from this step (default: 1)")
-    parser.add_argument("--to-step", type=int, default=5, choices=VALID_STEPS,
+    parser.add_argument("--to-step", type=int, default=6, choices=VALID_STEPS,
                         help="Stop after this step (default: 5)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print commands without running them")

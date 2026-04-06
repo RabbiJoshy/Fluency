@@ -33,6 +33,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
+CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
+CONJ_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugations.json"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "senses_wiktionary.json"
 
 # ---------------------------------------------------------------------------
@@ -59,8 +61,23 @@ POS_MAP = {
 # Tags that indicate a sense we should skip entirely
 SKIP_TAGS = {
     "archaic", "obsolete", "rare", "historical", "dated",
-    "alt-of", "abbreviation", "ellipsis",
+    "abbreviation", "ellipsis",
 }
+
+# Regex to extract useful translation from alt-of glosses like:
+# "contraction of a + el, literally "at the, to the"" → "at the, to the"
+# "apocopic form of mucho; very" → "very"
+# "apocopic form of malo bad; evil" → "bad; evil"
+_ALT_OF_PATTERNS = [
+    # "literally "X"" or 'literally "X"'
+    re.compile(r'literally\s+[\u0022\u201c]([^\u0022\u201c\u201d]+)[\u0022\u201d]'),
+    # "form of X; translation" (semicolon separates)
+    re.compile(r'form of\s+\S+\s*;\s*(.+)'),
+    # "form of X Y" where Y doesn't look like a gloss qualifier
+    re.compile(r'form of\s+\S+\s+(.+)'),
+    # "contraction of X, literally "Y""
+    re.compile(r'[\u0022\u201c]([^\u0022\u201c\u201d]+)[\u0022\u201d]'),
+]
 
 # form-of senses are skipped UNLESS they contain a useful gloss in parens
 # e.g. 'female equivalent of muñeco ("doll")' → extract "doll"
@@ -102,7 +119,13 @@ _FORM_OF_PATTERNS = [
     re.compile(r'[\u0022\u201c\u201d]([^\u0022\u201c\u201d]+)[\u0022\u201c\u201d]'),
     # "female equivalent of muchacho: girl, young lady" → girl, young lady
     # "comparative degree of malo: worse" → worse
-    re.compile(r'(?:equivalent of|degree of)\s+\w+:\s*(.+)'),
+    # "dative of nosotros: to us, for us" → to us, for us
+    # "accusative of él and usted: him, you" → him, you
+    # "dative of ellos and ellas: to them" → to them
+    re.compile(r'\bof\s+.{1,30}?:\s*(.+)'),
+    # "accusative of ellas; them" → them (semicolon variant)
+    # "dative of ellos and ellas; to them, for them" → to them, for them
+    re.compile(r'\bof\s+.{1,30}?;\s*(.+)'),
     # "female equivalent of amigo, friend" → friend
     re.compile(r'equivalent of\s+\w+,\s*(.+)'),
 ]
@@ -150,14 +173,32 @@ def load_wiktionary(path: Path) -> dict:
             for s in senses:
                 tags = set(s.get("tags", []))
 
-                # Skip senses with disqualifying tags (but handle form-of specially)
-                if tags & SKIP_TAGS:
-                    continue
-
                 glosses = s.get("glosses", [])
                 if not glosses:
                     continue
                 gloss = glosses[0]
+
+                # Handle alt-of first (before SKIP_TAGS) so we can rescue
+                # useful glosses like 'contraction of a + el, literally "at the, to the"'
+                # even when other skip tags (e.g. abbreviation) are present.
+                if "alt-of" in tags:
+                    extracted = None
+                    for pattern in _ALT_OF_PATTERNS:
+                        m = pattern.search(gloss)
+                        if m:
+                            extracted = m.group(1).strip()
+                            break
+                    if extracted:
+                        gloss = extracted
+                        # Clear skip tags so this sense survives
+                        tags = tags - SKIP_TAGS
+                    else:
+                        # Pure alt-of with no extractable translation, skip
+                        continue
+
+                # Skip senses with disqualifying tags (but handle form-of specially)
+                if tags & SKIP_TAGS:
+                    continue
 
                 # Handle form-of: extract the useful part if present
                 if "form-of" in tags:
@@ -284,11 +325,27 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
 def clean_translation(gloss: str) -> str:
     """
     Trim a Wiktionary gloss to flashcard-friendly length.
+    0. Extract translation from "grammar description: actual translation" pattern.
     1. Strip trailing parenthetical clarifications (keep essential objects).
     2. Truncate comma-separated synonym chains (keep first 3).
     3. Strip semicolon-separated usage notes.
     """
     text = gloss.strip()
+
+    # --- Step 0: Extract translation from "long description: translation" or
+    # "long description; translation" patterns ---
+    # e.g. "neuter definite article...: the, that which is" → "the, that which is"
+    # e.g. "second person pronoun in singular tense; you" → "you"
+    # Only when the part before the separator is clearly descriptive (long) and
+    # the part after is a short translation.
+    for sep in (": ", "; "):
+        if sep in text:
+            sep_idx = text.index(sep)
+            before = text[:sep_idx]
+            after = text[sep_idx + len(sep):].strip()
+            if len(before) > 30 and 0 < len(after) < 50:
+                text = after
+                break
 
     # --- Step 1: Strip parenthetical clarifications (anywhere in gloss) ---
     # Process right-to-left so indices stay valid
@@ -389,10 +446,14 @@ def merge_similar_senses(senses: list) -> list:
 
         for i in range(len(members)):
             for j in range(i + 1, len(members)):
+                ti = members[i][1]["translation"].lower().strip()
+                tj = members[j][1]["translation"].lower().strip()
                 wi, wj = words[i], words[j]
                 if not wi and not wj:
-                    # Both empty (e.g., both "to be") — merge
-                    union(i, j)
+                    # Both have empty content words (stop-word-only translations
+                    # like "with", "on", "to"). Only merge if literally identical.
+                    if ti == tj:
+                        union(i, j)
                     continue
                 union_size = len(wi | wj)
                 if union_size == 0:
@@ -425,6 +486,41 @@ def merge_similar_senses(senses: list) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Sense reordering: deprioritize letter-name and meta-linguistic senses
+# ---------------------------------------------------------------------------
+_LETTER_PATTERNS = re.compile(
+    r'\b(letter|script|alphabet|latin|greek|cyrillic|name of the)\b', re.IGNORECASE
+)
+
+# POS tags for function words — these should rank above letter-name NOUNs
+_FUNCTION_POS = {"ADP", "DET", "PRON", "CCONJ", "PART", "ADV", "CONTRACTION"}
+
+
+def _deprioritize_letter_senses(senses: list) -> list:
+    """
+    Move NOUN senses about letter names to the end, but only when better
+    function-word senses exist. Prevents "de" → NOUN "letter D" ranking
+    above ADP "of".
+    """
+    if len(senses) <= 1:
+        return senses
+
+    has_function_sense = any(s["pos"] in _FUNCTION_POS for s in senses)
+    if not has_function_sense:
+        return senses
+
+    normal = []
+    demoted = []
+    for s in senses:
+        if s["pos"] == "NOUN" and _LETTER_PATTERNS.search(s["translation"]):
+            demoted.append(s)
+        else:
+            normal.append(s)
+
+    return normal + demoted if demoted else senses
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
@@ -444,6 +540,31 @@ def main():
     # Load Wiktionary
     wikt_index, redirects = load_wiktionary(WIKT_FILE)
 
+    # Load conjugation data (optional — generated by build_conjugations.py)
+    conj_reverse = {}
+    conj_translations = {}
+    conj_known_verbs = set()  # All infinitives that have conjugation data
+    if CONJ_REVERSE_FILE.exists():
+        print("Loading conjugation reverse lookup...")
+        with open(CONJ_REVERSE_FILE, encoding="utf-8") as f:
+            conj_reverse = json.load(f)
+        print(f"  {len(conj_reverse)} conjugated forms")
+    else:
+        print("No conjugation_reverse.json found — skipping verb POS filtering")
+        print("  (run build_conjugations.py first to enable)")
+
+    if CONJ_FILE.exists():
+        print("Loading conjugation data...")
+        with open(CONJ_FILE, encoding="utf-8") as f:
+            conj_data = json.load(f)
+        conj_known_verbs = set(conj_data.keys())
+        conj_translations = {
+            k: v["translation"] for k, v in conj_data.items()
+            if "translation" in v
+        }
+        print(f"  {len(conj_known_verbs)} known verb infinitives")
+        print(f"  {len(conj_translations)} with Jehle translations")
+
     # Look up senses for each vocab word
     print("\nLooking up senses (with cleaning + merging)...")
     output = {}
@@ -455,6 +576,8 @@ def main():
         "total_raw": 0,
         "total_after_clean": 0,
         "total_final": 0,
+        "verb_filtered": 0,
+        "jehle_fallback": 0,
     }
     unmatched_words = []
 
@@ -488,6 +611,35 @@ def main():
 
             # Step 3: Merge near-duplicate senses
             senses = merge_similar_senses(senses)
+
+            # Step 4: Deprioritize letter-name / meta-linguistic NOUN senses
+            # e.g. NOUN "The name of the Latin script letter D/d." should rank
+            # below ADP "of" for the word "de"
+            senses = _deprioritize_letter_senses(senses)
+
+            # Step 5: Conjugation-based POS filtering
+            # If conjugation data confirms this is a verb entry (word is a
+            # conjugated form of lemma), remove non-VERB senses entirely.
+            # e.g. como|comer should only have VERB senses, not CCONJ/ADV/ADP
+            # from "como" the conjunction.
+            if conj_reverse:
+                word_lower = word.lower()
+                reverse_entries = conj_reverse.get(word_lower, [])
+                is_confirmed_verb = any(
+                    e["lemma"] == lemma.lower() for e in reverse_entries
+                )
+                # Also confirm if word == lemma and lemma is a known infinitive
+                if not is_confirmed_verb and word_lower == lemma.lower():
+                    is_confirmed_verb = word_lower in conj_known_verbs
+
+                if is_confirmed_verb:
+                    verb_senses = [s for s in senses if s["pos"] == "VERB"]
+                    if verb_senses:
+                        non_verb_count = len(senses) - len(verb_senses)
+                        if non_verb_count > 0:
+                            stats["verb_filtered"] += 1
+                        senses = verb_senses
+
             stats["total_final"] += len(senses)
 
             output[key] = senses
@@ -497,6 +649,18 @@ def main():
                 stats["multi_sense"] += 1
             stats["sense_counts"][min(n, 6)] += 1  # bucket 6+
         else:
+            # No Wiktionary senses — try Jehle translation fallback for verbs
+            if conj_translations:
+                lemma_lower = lemma.lower()
+                if lemma_lower in conj_translations:
+                    senses = [{"pos": "VERB", "translation": conj_translations[lemma_lower]}]
+                    output[key] = senses
+                    stats["matched"] += 1
+                    stats["jehle_fallback"] += 1
+                    stats["sense_counts"][1] += 1
+                    stats["total_final"] += 1
+                    continue
+
             stats["unmatched"] += 1
             unmatched_words.append(key)
 
@@ -512,8 +676,10 @@ def main():
     print(f"{'='*55}")
     print(f"Total vocabulary:    {total:>6}")
     print(f"Matched in Wikt:     {stats['matched']:>6}  ({100*stats['matched']/total:.1f}%)")
+    print(f"  Jehle fallback:    {stats['jehle_fallback']:>6}")
     print(f"Unmatched:           {stats['unmatched']:>6}  ({100*stats['unmatched']/total:.1f}%)")
     print(f"With 2+ senses:      {stats['multi_sense']:>6}  ({100*stats['multi_sense']/total:.1f}%)")
+    print(f"Verb POS filtered:   {stats['verb_filtered']:>6}  (non-VERB senses removed)")
     print()
     raw = stats["total_raw"]
     after_clean = stats["total_after_clean"]

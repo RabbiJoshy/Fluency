@@ -7,6 +7,8 @@ import './speech.js';
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
 let _spanishRanksLoading = false;
+let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, translation}
+let _conjugationLoading = false;
 
 async function loadSpanishRanks() {
     if (_spanishRanks || _spanishRanksLoading) return;
@@ -18,6 +20,20 @@ async function loadSpanishRanks() {
         // Non-fatal — falls back to static easiness
     }
     _spanishRanksLoading = false;
+}
+
+async function loadConjugationData() {
+    if (_conjugationData || _conjugationLoading) return;
+    const langConfig = config.languages[selectedLanguage];
+    if (!langConfig || !langConfig.conjugationsPath) return;
+    _conjugationLoading = true;
+    try {
+        const resp = await fetch(langConfig.conjugationsPath);
+        if (resp.ok) _conjugationData = await resp.json();
+    } catch (e) {
+        // Non-fatal — conjugation table just won't show
+    }
+    _conjugationLoading = false;
 }
 
 // Cache of known words built from progressData — rebuilt when progress changes
@@ -1164,14 +1180,14 @@ function updateCard() {
                 // MWE sense: highlight the current MWE expression
                 const expr = currentMeaning.allMWEs[activeMweIdx].expression;
                 const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`(${escaped})`, 'gi');
+                const regex = new RegExp(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
                     `<span style="${pillStyle}">$1</span>`);
             } else {
-                // Regular sense: highlight the target word
+                // Regular sense: highlight the target word (word boundaries for short words)
                 const word = card.targetWord;
                 const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`(${escaped})`, 'gi');
+                const regex = new RegExp(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
                     `<span style="${pillStyle}">$1</span>`);
             }
@@ -1258,12 +1274,25 @@ function updateCard() {
         isVerb = pos.includes('verb') || pos === 'v' || pos === 'vb';
     }
 
+    // Check for inline conjugation data
+    const conjEntry = isVerb && _conjugationData ? _conjugationData[card.lemma] : null;
+
     backHTML += `<div class="links-section" id="linksSection">`;
 
     for (const [key, url] of Object.entries(card.links)) {
         if (key === 'wordReference') continue; // Skip wordReference
         // Skip conjugation link for non-verbs
         if (key === 'conjugation' && !isVerb) continue;
+        // Replace external conjugation link with inline toggle when we have data
+        if (key === 'conjugation' && conjEntry) {
+            backHTML += `<button class="ref-icon-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
+                </svg>
+                <span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>
+            </button>`;
+            continue;
+        }
         const icon = linkIcons[key];
         const title = linkTitles[key] || key;
         if (icon) {
@@ -1274,6 +1303,11 @@ function updateCard() {
     }
 
     backHTML += `</div>`;
+
+    // Conjugation table (hidden by default, toggled by button)
+    if (conjEntry) {
+        backHTML += buildConjugationTableHTML(conjEntry, card.targetWord);
+    }
 
     document.getElementById('backContent').innerHTML = backHTML;
 
@@ -1874,7 +1908,54 @@ function navigateBack() {
     updateCard();
 }
 
+// ---------------------------------------------------------------------------
+// Conjugation table rendering
+// ---------------------------------------------------------------------------
+const CONJ_PRONOUNS = ['yo', 'tú', 'él', 'nosotros', 'vosotros', 'ellos'];
+const CONJ_PRONOUN_SHORT = ['yo', 'tú', 'él/ella', 'nos.', 'vos.', 'ellos'];
+
+function buildConjugationTableHTML(conjEntry, targetWord) {
+    const tenses = conjEntry.tenses || {};
+    if (Object.keys(tenses).length === 0) return '';
+
+    const targetLower = targetWord.toLowerCase();
+
+    let rows = '';
+    // Header row
+    rows += `<tr><th></th>${CONJ_PRONOUN_SHORT.map(p => `<th>${p}</th>`).join('')}</tr>`;
+
+    for (const [tenseName, forms] of Object.entries(tenses)) {
+        rows += `<tr><td class="conj-tense-label">${tenseName}</td>`;
+        for (const form of forms) {
+            const isActive = form.toLowerCase() === targetLower;
+            const cls = isActive ? ' class="conj-active"' : '';
+            rows += `<td${cls}>${form}</td>`;
+        }
+        rows += `</tr>`;
+    }
+
+    let extras = '';
+    if (conjEntry.gerund) extras += `<span>Gerundio: <b>${conjEntry.gerund}</b></span>`;
+    if (conjEntry.past_participle) extras += `<span>Participio: <b>${conjEntry.past_participle}</b></span>`;
+
+    return `
+        <div id="conjugationTable" class="conjugation-panel" style="display: none;">
+            ${extras ? `<div class="conj-extras">${extras}</div>` : ''}
+            <table class="conj-table">${rows}</table>
+        </div>
+    `;
+}
+
+function toggleConjugationTable() {
+    const panel = document.getElementById('conjugationTable');
+    if (panel) {
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
 window.loadSpanishRanks = loadSpanishRanks;
+window.loadConjugationData = loadConjugationData;
+window.toggleConjugationTable = toggleConjugationTable;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;

@@ -700,16 +700,8 @@ async function loadCSVFiles(ranges) {
 
             // Extract starting and ending rank from range (e.g., "0-50" -> 0, 50)
             const [rangeStart, rangeEnd] = range.range.split('-').map(Number);
-            const startRank = rangeStart;
 
-            // Check if this set uses the new multi-meaning format
-            if (range.format === 'multiMeaning' || fileText.includes('|')) {
-                parseMultiMeaning(fileText, langConfig, rangeStart, rangeEnd);
-            } else if (langConfig.fileFormat === 'quizlet') {
-                parseQuizlet(fileText, langConfig, startRank, rangeStart, rangeEnd);
-            } else {
-                parseCSV(fileText, langConfig, startRank, rangeStart, rangeEnd);
-            }
+            parseMultiMeaning(fileText, langConfig, rangeStart, rangeEnd);
         } catch (error) {
             console.error(`Failed to load ${range.path}:`, error);
             document.getElementById('loadingMessage').style.display = 'none';
@@ -820,165 +812,6 @@ function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
         document.getElementById('appContent').classList.remove('hidden');
         initializeApp();
     }, 500);
-}
-
-function parseQuizlet(text, langConfig, startRank = 0, rangeStart = 0, rangeEnd = Infinity) {
-    const lines = text.split('\n');
-    let i = 0;
-    let cardCount = 0;
-    let totalCardsParsed = 0; // Track position in file
-
-    while (i < lines.length) {
-        const line = lines[i].trim();
-
-        // Skip empty lines
-        if (!line) {
-            i++;
-            continue;
-        }
-
-        // First line: word and translation
-        // Format: "word\ttranslation" or "*inflected* (base)\ttranslation"
-        const parts = line.split('\t');
-        if (parts.length < 2) {
-            i++;
-            continue;
-        }
-
-        let targetWord = parts[0].trim();
-        let translation = parts[1].trim();
-
-        // Extract base form if present (e.g., "*mala* (malo)" -> base: "malo", inflected: "mala")
-        let baseForm = targetWord;
-        let inflectedForm = null;
-
-        // Check for inflected form pattern: *inflected* (base)
-        const inflectedMatch = targetWord.match(/\*(.+?)\*\s*\((.+?)\)/);
-        if (inflectedMatch) {
-            inflectedForm = inflectedMatch[1];
-            baseForm = inflectedMatch[2];
-            targetWord = inflectedForm;
-        }
-
-        // Remove asterisks from translation
-        translation = translation.replace(/\*/g, '');
-
-        // Next line should be the example sentence in target language
-        i++;
-        const targetSentence = (i < lines.length) ? lines[i].trim() : '';
-
-        // Next line should be the English translation of the sentence
-        i++;
-        const englishSentence = (i < lines.length) ? lines[i].trim() : '';
-
-        // Create the flashcard
-        if (targetWord && translation) {
-            const currentRank = startRank + totalCardsParsed;
-
-            // Only include cards within the specified range
-            if (currentRank >= rangeStart && currentRank < rangeEnd) {
-                // Build sentences array - always include primary sentence and a placeholder for demo
-                const sentences = [];
-                if (targetSentence || englishSentence) {
-                    sentences.push({ target: targetSentence, english: englishSentence });
-                }
-                // Add a placeholder second sentence to demonstrate swipe functionality
-                sentences.push({ target: '', english: '(Swipe up/down for more examples - coming soon!)' });
-
-                const card = {
-                    targetWord: targetWord,
-                    translation: translation,
-                    baseForm: baseForm,
-                    inflectedForm: inflectedForm,
-                    targetSentence: targetSentence,
-                    englishSentence: englishSentence,
-                    sentences: sentences,
-                    rank: currentRank + 1, // Calculate frequency rank
-                    links: generateLinks(baseForm, baseForm, langConfig.referenceLinks)
-                };
-
-                flashcards.push(card);
-                cardCount++;
-            }
-            totalCardsParsed++;
-        }
-
-        // Move past empty lines between entries
-        i++;
-        while (i < lines.length && !lines[i].trim()) {
-            i++;
-        }
-    }
-}
-
-function parseCSV(csv, langConfig) {
-    const lines = csv.split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
-
-    // Find column indices
-    const wordIndex = headers.indexOf(langConfig.wordColumn);
-    const sentenceIndex = headers.indexOf(langConfig.sentenceColumn);
-
-    // Spanish-specific columns
-    const showIndex = langConfig.showColumn ? headers.indexOf(langConfig.showColumn) : -1;
-    const lemmaIndex = langConfig.lemmaColumn ? headers.indexOf(langConfig.lemmaColumn) : -1;
-
-    // Dutch-specific columns
-    const posIndex = langConfig.posColumn ? headers.indexOf(langConfig.posColumn) : -1;
-
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-
-        // Handle quoted fields with commas
-        const values = parseCSVLine(line);
-
-        if (values.length > wordIndex) {
-            const word = cleanValue(values[wordIndex]);
-            const sentence = sentenceIndex >= 0 ? cleanValue(values[sentenceIndex]) : '';
-
-            if (!word) continue;
-
-            let card = {
-                word: word,
-                sentence: sentence
-            };
-
-            // Handle Spanish format
-            if (langConfig.csvFormat === 'spanish') {
-                card.show = showIndex >= 0 ? cleanValue(values[showIndex]) : word;
-                card.lemma = lemmaIndex >= 0 ? cleanValue(values[lemmaIndex]) : word;
-                card.links = generateLinks(word, card.lemma, langConfig.referenceLinks);
-            }
-            // Handle Dutch format
-            else if (langConfig.csvFormat === 'dutch') {
-                card.pos = posIndex >= 0 ? cleanValue(values[posIndex]) : '';
-                card.lemma = word;
-                card.links = generateLinks(word, word, langConfig.referenceLinks);
-            }
-
-            flashcards.push(card);
-        }
-    }
-}
-
-function parseCSVLine(line) {
-    const values = [];
-    let current = '';
-    let inQuotes = false;
-
-    for (let char of line) {
-        if (char === '"') {
-            inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-            values.push(current);
-            current = '';
-        } else {
-            current += char;
-        }
-    }
-    values.push(current);
-    return values;
 }
 
 // Truncate text to a maximum number of words, adding ellipsis if truncated
@@ -1191,9 +1024,6 @@ window.loadVocabularyData = loadVocabularyData;
 window.loadIncorrectWordsSet = loadIncorrectWordsSet;
 window.loadCSVFiles = loadCSVFiles;
 window.parseMultiMeaning = parseMultiMeaning;
-window.parseQuizlet = parseQuizlet;
-window.parseCSV = parseCSV;
-window.parseCSVLine = parseCSVLine;
 window.truncateText = truncateText;
 window.cleanValue = cleanValue;
 window.generateLinks = generateLinks;
