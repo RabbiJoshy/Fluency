@@ -34,6 +34,9 @@
 - [ ] Generate per-language `spanish_ranks.json` equivalent (frequency ranks)
 - [ ] Build vocabulary.json for each language
 
+## Future — Housekeeping
+- [ ] Converge cognate scripts: `Artists/scripts/7_flag_cognates.py` and `Data/Spanish/Scripts/flag_cognates.py` are copies. Move to a shared root-level location so both pipelines use one script. Low priority.
+
 ## Notes
 - Easiness scoring uses median frequency rank of sentence tokens (same as artist mode `8_rerank.py`)
 - `spanish_ranks.json` and `SpanishRawWiki.csv` stay at top level (front-end needs them)
