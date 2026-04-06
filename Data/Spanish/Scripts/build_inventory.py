@@ -5,6 +5,9 @@ build_inventory.py — Step 1: Build word inventory from frequency CSV.
 Reads SpanishRawWiki.csv and produces the base word inventory with stable
 6-char hex IDs. This is the foundation layer that all other steps reference.
 
+Stores corpus_count (raw frequency from corpus) rather than rank — the builder
+computes sort position from corpus_count.
+
 Usage:
     python3 Data/Spanish/Scripts/build_inventory.py
 
@@ -56,23 +59,23 @@ def main():
         for row in reader:
             word = row["word"]
             lemma = row["lemma"]
-            rank = int(row["rank"])
+            corpus_count = int(float(row["occurrences_ppm"]))
             word_id = make_stable_id(word, lemma, used_ids)
             used_ids.add(word_id)
 
             entries.append({
-                "rank": rank,
                 "word": word,
                 "lemma": lemma,
                 "id": word_id,
+                "corpus_count": corpus_count,
             })
 
     # Compute most_frequent_lemma_instance:
-    # For each lemma, the entry with the lowest rank (highest frequency) gets True
+    # For each lemma, the entry with the highest corpus_count gets True
     seen_lemmas = {}
     for entry in entries:
         lemma = entry["lemma"].lower()
-        if lemma not in seen_lemmas:
+        if lemma not in seen_lemmas or entry["corpus_count"] > seen_lemmas[lemma]["corpus_count"]:
             seen_lemmas[lemma] = entry
     for entry in entries:
         entry["most_frequent_lemma_instance"] = (

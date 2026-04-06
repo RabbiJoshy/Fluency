@@ -56,6 +56,9 @@ def _step_4_args(args, artist_dir):
 def _step_5_args(args, artist_dir):
     return _base_args(artist_dir)
 
+def _step_5b_args(args, artist_dir):
+    return _base_args(artist_dir)
+
 def _step_6_args(args, artist_dir):
     a = _base_args(artist_dir)
     if args.no_gemini:
@@ -72,60 +75,10 @@ def _step_7_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _step_8_args(args, artist_dir):
+    return _base_args(artist_dir) + ["--skip-split"]
+
+def _build_args(args, artist_dir):
     return _base_args(artist_dir)
-
-
-def split_vocabulary(vocab_path):
-    """Split a monolith vocabulary JSON into index (no examples) + examples (keyed by ID).
-
-    Artist mode index uses the compact format: {id, corpus_count,
-    most_frequent_lemma_instance, sense_frequencies} — the front end's
-    joinWithMaster() reconstructs full entries from this + the master vocab.
-    """
-    import json as _json
-
-    base = vocab_path.rsplit(".", 1)[0]
-    index_path = base + ".index.json"
-    examples_path = base + ".examples.json"
-
-    with open(vocab_path, "r", encoding="utf-8") as f:
-        data = _json.load(f)
-
-    index = []
-    examples = {}
-
-    for entry in data:
-        idx_entry = {
-            "id": entry["id"],
-            "corpus_count": entry.get("corpus_count", 0),
-            "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", True),
-            "sense_frequencies": [
-                float(m.get("frequency", 0)) for m in entry.get("meanings", [])
-            ],
-        }
-        index.append(idx_entry)
-
-        # Extract examples from meanings and MWEs
-        ex_m = [m.get("examples", []) for m in entry.get("meanings", [])]
-        if any(ex_m):
-            examples[entry["id"]] = {"m": ex_m}
-
-        mwe_list = entry.get("mwe_memberships", [])
-        if mwe_list:
-            ex_w = [mwe.get("examples", []) for mwe in mwe_list]
-            if any(ex_w):
-                if entry["id"] not in examples:
-                    examples[entry["id"]] = {"m": [[] for _ in entry.get("meanings", [])]}
-                examples[entry["id"]]["w"] = ex_w
-
-    with open(index_path, "w", encoding="utf-8") as f:
-        _json.dump(index, f, ensure_ascii=False)
-    with open(examples_path, "w", encoding="utf-8") as f:
-        _json.dump(examples, f, ensure_ascii=False)
-
-    print("\n  Split: %d index, %d examples" % (len(index), len(examples)))
-    print("  -> %s" % index_path)
-    print("  -> %s" % examples_path)
 
 
 def build_steps(vocab_file):
@@ -144,6 +97,10 @@ def build_steps(vocab_file):
          "script": "5_merge_elisions.py", "args_fn": _step_5_args,
          "input": "data/word_counts/vocab_evidence.json",
          "output": "data/elision_merge/vocab_evidence_merged.json", "needs_api_key": False},
+        {"num": "5b", "label": "Split evidence into inventory + examples layers",
+         "script": "5b_split_evidence.py", "args_fn": _step_5b_args,
+         "input": "data/elision_merge/vocab_evidence_merged.json",
+         "output": "data/layers/word_inventory.json", "needs_api_key": False},
         {"num": 6, "label": "LLM word analysis (Gemini)",
          "script": "6_llm_analyze.py", "args_fn": _step_6_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
@@ -154,6 +111,10 @@ def build_steps(vocab_file):
         {"num": 8, "label": "Rerank",
          "script": "8_rerank.py", "args_fn": _step_8_args,
          "input": vocab_file, "output": vocab_file, "needs_api_key": False},
+        {"num": "build", "label": "Build split files (index + examples)",
+         "script": "build_artist_vocabulary.py", "args_fn": _build_args,
+         "input": vocab_file, "output": vocab_file.rsplit(".", 1)[0] + ".index.json",
+         "needs_api_key": False},
     ]
 
 
@@ -263,12 +224,6 @@ def main():
         if not run_step(step, args, artist_dir, dry_run=args.dry_run):
             print("\nAborting — step %s failed." % step["num"])
             sys.exit(1)
-
-    # Auto-split monolith into index + examples after pipeline completes
-    if not args.dry_run:
-        vocab_path = os.path.join(artist_dir, config["vocabulary_file"])
-        if os.path.exists(vocab_path):
-            split_vocabulary(vocab_path)
 
     print("\n" + "=" * 60)
     if args.dry_run:

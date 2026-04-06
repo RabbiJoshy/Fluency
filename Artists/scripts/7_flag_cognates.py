@@ -170,12 +170,16 @@ def _suffix_rule_says_cognate(entry):
     return False
 
 
-def add_transparent_flag(path: str, intersection_mode: bool = False):
+def add_transparent_flag(path: str, intersection_mode: bool = False,
+                         layers_dir: str = None):
     """
     Flag transparent cognates.
 
     intersection_mode=False (default): suffix rules are authoritative (for non-LLM vocab).
     intersection_mode=True: only flag if BOTH LLM and suffix rules agree (for LLM-processed vocab).
+
+    If layers_dir is set, also writes data/layers/cognates.json mapping
+    word|lemma -> True for cognates (layer output for the builder).
     """
     p = Path(path)
     if not p.exists():
@@ -189,6 +193,7 @@ def add_transparent_flag(path: str, intersection_mode: bool = False):
     count_after = 0
     llm_only = 0
     suffix_only = 0
+    cognate_layer = {}
 
     for entry in data:
         llm_flag = entry.get("is_transparent_cognate", False)
@@ -207,6 +212,8 @@ def add_transparent_flag(path: str, intersection_mode: bool = False):
 
         if entry["is_transparent_cognate"]:
             count_after += 1
+            key = "%s|%s" % (entry.get("word", ""), entry.get("lemma", ""))
+            cognate_layer[key] = True
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -214,6 +221,14 @@ def add_transparent_flag(path: str, intersection_mode: bool = False):
     print(f"  {path}: {count_after} cognates flagged (was {count_before})")
     if intersection_mode:
         print(f"    LLM-only (dropped): {llm_only}, suffix-only (dropped): {suffix_only}")
+
+    # Write cognate layer file for the builder
+    if layers_dir:
+        os.makedirs(layers_dir, exist_ok=True)
+        layer_path = os.path.join(layers_dir, "cognates.json")
+        with open(layer_path, "w", encoding="utf-8") as f:
+            json.dump(cognate_layer, f, ensure_ascii=False)
+        print(f"  Layer: {len(cognate_layer)} cognates -> {layer_path}")
 
 
 # ---------------- main ----------------
@@ -230,10 +245,13 @@ def main():
     config = load_artist_config(artist_dir)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+    layers_dir = os.path.join(artist_dir, "data", "layers")
+
     print("=== Suffix rules only (no LLM data) ===")
     add_transparent_flag(os.path.join(project_root, "Data", "Spanish", "vocabulary.json"), intersection_mode=False)
     print("\n=== Intersection mode (LLM + suffix rules must agree) ===")
-    add_transparent_flag(os.path.join(artist_dir, config["vocabulary_file"]), intersection_mode=True)
+    add_transparent_flag(os.path.join(artist_dir, config["vocabulary_file"]),
+                         intersection_mode=True, layers_dir=layers_dir)
 
 
 if __name__ == "__main__":

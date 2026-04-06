@@ -14,7 +14,7 @@ Inputs:
     Data/Spanish/spanish_ranks.json
 
 Output:
-    Data/Spanish/layers/examples_raw.json  — {id: [{target, english, easiness}]}
+    Data/Spanish/layers/examples_raw.json  — {id: [{target, english, source, easiness}]}
 """
 
 import json
@@ -102,7 +102,7 @@ def select_examples(candidate_indices, sentences, word_to_rank,
             continue
         seen_targets.add(key)
         easiness = compute_easiness(spa, word_to_rank)
-        scored.append({"target": spa, "english": eng, "easiness": easiness})
+        scored.append({"target": spa, "english": eng, "source": "tatoeba", "easiness": easiness})
     scored.sort(key=lambda x: x["easiness"])
     return scored[:max_examples]
 

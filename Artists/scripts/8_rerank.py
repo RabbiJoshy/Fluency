@@ -105,8 +105,8 @@ def build_spanish_lookup(spanish_path):
     word_to_rank = {}
     lemma_to_rank = {}
 
-    for entry in spanish_data:
-        rank = entry["rank"]
+    for i, entry in enumerate(spanish_data):
+        rank = i + 1  # Array position is the rank (sorted by corpus_count desc)
         word = entry.get("word", "").lower().strip()
         lemma = entry.get("lemma", "").lower().strip()
 
@@ -330,6 +330,8 @@ def main():
     add_artist_arg(parser)
     parser.add_argument("--master-path", type=str, default=None,
                         help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
+    parser.add_argument("--skip-split", action="store_true",
+                        help="Skip writing split files (builder step handles this)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -451,13 +453,36 @@ def main():
                 entry.pop("mwe_memberships", None)
         print(f"\n  MWE annotation: {len(mwe_data.get('mwes', []))} MWEs -> {mwe_count} entries annotated")
 
+    # Write ranking layer for the builder
+    layers_dir = os.path.join(artist_dir, "data", "layers")
+    os.makedirs(layers_dir, exist_ok=True)
+    ranking_layer = {
+        "order": [e["id"] for e in bb_data],
+        "easiness": {},
+    }
+    for entry in bb_data:
+        per_meaning = []
+        for meaning in entry.get("meanings", []):
+            scores = [ex.get("easiness", SENTINEL_RANK)
+                      for ex in meaning.get("examples", [])]
+            per_meaning.append(scores)
+        if any(per_meaning):
+            ranking_layer["easiness"][entry["id"]] = {"m": per_meaning}
+    ranking_path = os.path.join(layers_dir, "ranking.json")
+    with open(ranking_path, "w", encoding="utf-8") as f:
+        json.dump(ranking_layer, f, ensure_ascii=False)
+    print(f"\n  Ranking layer: {len(ranking_layer['order'])} entries, "
+          f"{len(ranking_layer['easiness'])} with easiness -> {ranking_path}")
+
     # Write back monolith
     print(f"\nWriting to {BB_VOCAB_PATH}...")
     with open(BB_VOCAB_PATH, "w", encoding="utf-8") as f:
         json.dump(bb_data, f, ensure_ascii=False, indent=2)
 
-    # Generate split files
-    if os.path.isfile(master_path):
+    # Generate split files (skipped when builder step handles this)
+    if args.skip_split:
+        print("\n  Skipping split files (builder step will handle this)")
+    elif os.path.isfile(master_path):
         print(f"\nLoading master vocabulary from {master_path}...")
         with open(master_path, "r", encoding="utf-8") as f:
             master = json.load(f)

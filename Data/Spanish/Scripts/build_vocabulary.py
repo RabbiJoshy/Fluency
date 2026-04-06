@@ -2,10 +2,13 @@
 """
 build_vocabulary.py — Step 5: Assemble final vocabulary from all layers.
 
-Reads all 4 layer files and produces the final split output for the front end:
+Reads all layer files and produces the final split output for the front end:
   - vocabulary.index.json  (lean, eager load — no examples)
   - vocabulary.examples.json (lazy load — examples keyed by ID)
   - vocabulary.json (full monolith for debugging)
+
+Sort order is determined by corpus_count (descending). The front end computes
+rank from array position on load, so no rank field is stored.
 
 Usage:
     python3 Data/Spanish/Scripts/build_vocabulary.py
@@ -204,10 +207,10 @@ def main():
 
         # Monolith entry
         mono_entry = {
-            "rank": entry["rank"],
             "word": entry["word"],
             "lemma": entry["lemma"],
             "id": word_id,
+            "corpus_count": entry.get("corpus_count", 0),
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_full,
         }
@@ -215,10 +218,10 @@ def main():
 
         # Index entry (no examples)
         idx_entry = {
-            "rank": entry["rank"],
             "word": entry["word"],
             "lemma": entry["lemma"],
             "id": word_id,
+            "corpus_count": entry.get("corpus_count", 0),
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_lean,
         }
