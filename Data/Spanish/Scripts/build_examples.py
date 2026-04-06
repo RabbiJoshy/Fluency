@@ -1,27 +1,23 @@
 #!/usr/bin/env python3
 """
-build_examples.py — Build vocabulary.json with corpus-sourced example sentences.
+build_examples.py — Build vocabulary.json from frequency CSV + corpus examples.
 
-Takes the existing vocabulary structure (word/lemma/meanings) and matches
-example sentences from parallel corpora (Tatoeba, later OpenSubtitles).
+Generates the vocabulary from scratch using:
+  - SpanishRawWiki.csv as source of truth (rank, word, lemma)
+  - Tatoeba sentence pairs for example sentences
+  - spanish_ranks.json for easiness scoring
+  - 6-char hex IDs via md5(word|lemma)
 
 Usage:
     python3 Data/Spanish/Scripts/build_examples.py
 
 Run from the project root (Fluency/).
-
-Inputs:
-    Data/Spanish/vocabulary.json          — word/lemma/meanings structure (updated in-place)
-    Data/Spanish/corpora/tatoeba/spa.txt  — Tatoeba sentence pairs
-    Data/Spanish/spanish_ranks.json       — frequency ranks for easiness
-
-Output:
-    Data/Spanish/vocabulary.json          — same file, with examples replaced
 """
 
+import csv
+import hashlib
 import json
 import re
-import sys
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
@@ -31,7 +27,7 @@ from statistics import median
 # Paths (relative to project root)
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-VOCAB_INPUT = PROJECT_ROOT / "Data" / "Spanish" / "vocabulary.json"
+CSV_SOURCE = PROJECT_ROOT / "Data" / "Spanish" / "SpanishRawWiki.csv"
 TATOEBA_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "tatoeba" / "spa.txt"
 RANKS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "spanish_ranks.json"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "vocabulary.json"
@@ -47,7 +43,7 @@ MAX_SENTENCE_WORDS = 25  # Skip very long sentences
 _TOKEN_RE = re.compile(r"[a-záéíóúüñ]+")
 
 
-def strip_accents(s: str) -> str:
+def strip_accents(s):
     """Remove diacritics for accent-normalized matching."""
     return "".join(
         c for c in unicodedata.normalize("NFD", s)
@@ -55,15 +51,82 @@ def strip_accents(s: str) -> str:
     )
 
 
-def tokenize(text: str) -> list[str]:
+def tokenize(text):
     """Lowercase tokenize Spanish text, keeping only letter tokens."""
     return _TOKEN_RE.findall(text.lower())
 
 
 # ---------------------------------------------------------------------------
+# ID generation (mirrors Artists/scripts/merge_to_master.py)
+# ---------------------------------------------------------------------------
+def make_stable_id(word, lemma, used):
+    """6-char hex ID from md5(word|lemma). On collision, slide the hash window."""
+    h = hashlib.md5((word + "|" + lemma).encode("utf-8")).hexdigest()
+    base_id = h[:6]
+
+    if base_id not in used:
+        return base_id
+
+    for start in range(1, len(h) - 5):
+        candidate = h[start:start + 6]
+        if candidate not in used:
+            return candidate
+
+    val = int(base_id, 16) + 1
+    while True:
+        candidate = format(val % 0xFFFFFF, "06x")
+        if candidate not in used:
+            return candidate
+        val += 1
+
+
+# ---------------------------------------------------------------------------
+# Vocabulary building from CSV
+# ---------------------------------------------------------------------------
+def load_csv_vocab(path):
+    """
+    Load SpanishRawWiki.csv -> list of entries with rank, word, lemma, id.
+    Computes most_frequent_lemma_instance flag.
+    """
+    entries = []
+    used_ids = set()
+
+    with open(path, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            word = row["word"]
+            lemma = row["lemma"]
+            rank = int(row["rank"])
+            word_id = make_stable_id(word, lemma, used_ids)
+            used_ids.add(word_id)
+
+            entries.append({
+                "rank": rank,
+                "word": word,
+                "lemma": lemma,
+                "id": word_id,
+                "examples": [],
+            })
+
+    # Compute most_frequent_lemma_instance:
+    # For each lemma, the entry with the lowest rank (highest frequency) gets True
+    seen_lemmas = {}
+    for entry in entries:
+        lemma = entry["lemma"].lower()
+        if lemma not in seen_lemmas:
+            seen_lemmas[lemma] = entry
+    for entry in entries:
+        entry["most_frequent_lemma_instance"] = (
+            entry is seen_lemmas[entry["lemma"].lower()]
+        )
+
+    return entries
+
+
+# ---------------------------------------------------------------------------
 # Easiness scoring (mirrors Artists/scripts/8_rerank.py)
 # ---------------------------------------------------------------------------
-def compute_easiness(spanish_text: str, word_to_rank: dict) -> int:
+def compute_easiness(spanish_text, word_to_rank):
     """
     Compute sentence difficulty as median Spanish frequency rank of tokens.
     Lower = easier (more common words).
@@ -74,7 +137,6 @@ def compute_easiness(spanish_text: str, word_to_rank: dict) -> int:
 
     ranks = []
     for t in tokens:
-        # Try exact match first, then accent-stripped
         rank = word_to_rank.get(t)
         if rank is None:
             rank = word_to_rank.get(strip_accents(t))
@@ -88,7 +150,7 @@ def compute_easiness(spanish_text: str, word_to_rank: dict) -> int:
 # ---------------------------------------------------------------------------
 # Corpus loading
 # ---------------------------------------------------------------------------
-def load_tatoeba(path: Path) -> list[tuple[str, str]]:
+def load_tatoeba(path):
     """Load Tatoeba TSV: English\\tSpanish\\tAttribution -> [(english, spanish)]"""
     sentences = []
     with open(path, encoding="utf-8") as f:
@@ -104,9 +166,7 @@ def load_tatoeba(path: Path) -> list[tuple[str, str]]:
 # ---------------------------------------------------------------------------
 # Sentence index
 # ---------------------------------------------------------------------------
-def build_sentence_index(
-    sentences: list[tuple[str, str]],
-) -> dict[str, list[int]]:
+def build_sentence_index(sentences):
     """
     Build mapping: normalized_token -> [sentence_indices].
     Uses accent-normalized tokens so 'aquí' matches vocab entry 'aqui'.
@@ -114,7 +174,6 @@ def build_sentence_index(
     index = defaultdict(list)
     for i, (eng, spa) in enumerate(sentences):
         tokens = tokenize(spa)
-        # Filter sentences that are too short or too long
         if len(tokens) < MIN_SENTENCE_WORDS or len(tokens) > MAX_SENTENCE_WORDS:
             continue
         seen = set()
@@ -129,12 +188,8 @@ def build_sentence_index(
 # ---------------------------------------------------------------------------
 # Example selection
 # ---------------------------------------------------------------------------
-def select_examples(
-    candidate_indices: list[int],
-    sentences: list[tuple[str, str]],
-    word_to_rank: dict,
-    max_examples: int = MAX_EXAMPLES_PER_WORD,
-) -> list[dict]:
+def select_examples(candidate_indices, sentences, word_to_rank,
+                    max_examples=MAX_EXAMPLES_PER_WORD):
     """
     Score candidates by easiness, deduplicate, pick top N.
     Returns list of {"target": ..., "english": ..., "easiness": ...}.
@@ -143,7 +198,6 @@ def select_examples(
     seen_targets = set()
     for idx in candidate_indices:
         eng, spa = sentences[idx]
-        # Deduplicate by Spanish text (lowercased)
         key = spa.lower().strip()
         if key in seen_targets:
             continue
@@ -156,9 +210,7 @@ def select_examples(
             "easiness": easiness,
         })
 
-    # Sort by easiness (easier first)
     scored.sort(key=lambda x: x["easiness"])
-
     return scored[:max_examples]
 
 
@@ -166,10 +218,12 @@ def select_examples(
 # Main
 # ---------------------------------------------------------------------------
 def main():
-    print("Loading vocabulary...")
-    with open(VOCAB_INPUT, encoding="utf-8") as f:
-        vocab = json.load(f)
+    print("Loading vocabulary from CSV...")
+    vocab = load_csv_vocab(CSV_SOURCE)
     print(f"  {len(vocab)} entries")
+
+    lemma_true = sum(1 for e in vocab if e["most_frequent_lemma_instance"])
+    print(f"  {lemma_true} unique lemma representatives")
 
     print("Loading spanish_ranks.json...")
     with open(RANKS_FILE, encoding="utf-8") as f:
@@ -190,18 +244,12 @@ def main():
 
     print("Matching examples to vocabulary...")
     for entry in vocab:
-        word = entry["word"].lower()
-        word_norm = strip_accents(word)
-
-        # Find candidate sentences
+        word_norm = strip_accents(entry["word"].lower())
         candidate_indices = sentence_index.get(word_norm, [])
+        examples = select_examples(candidate_indices, sentences, word_to_rank)
 
-        # Select best examples
-        examples = select_examples(
-            candidate_indices, sentences, word_to_rank
-        )
+        entry["examples"] = examples
 
-        # Track stats
         n = len(examples)
         total_examples += n
         if n == 0:
@@ -213,11 +261,6 @@ def main():
         else:
             coverage["5+"] += 1
 
-        # Attach examples to meanings
-        # For now: all examples go to every meaning (no sense-specific matching)
-        for meaning in entry.get("meanings", []):
-            meaning["examples"] = examples
-
     # Write output
     print(f"\nWriting {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
@@ -225,7 +268,7 @@ def main():
 
     # Report
     print(f"\n{'='*50}")
-    print(f"RESULTS")
+    print("RESULTS")
     print(f"{'='*50}")
     print(f"Total vocabulary entries: {len(vocab)}")
     print(f"Total examples attached:  {total_examples}")
