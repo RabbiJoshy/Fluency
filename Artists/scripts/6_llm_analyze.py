@@ -1297,7 +1297,101 @@ def main():
     # Write per-artist split files (new format: index + examples)
     _write_artist_split_files(final_entries, master, OUTPUT_PATH)
 
+    # Write layer files for the builder
+    _write_layer_files(PIPELINE_DIR, final_entries, all_words, word_progress,
+                       sentence_progress, genius_lines)
+
     print("\nDone! Wrote %d entries to %s" % (len(final_entries), OUTPUT_PATH))
+
+
+def _write_layer_files(pipeline_dir, final_entries, all_words, word_progress,
+                       sentence_progress, genius_lines):
+    # type: (str, List[Dict], List[Dict], Dict, Dict, Optional[frozenset]) -> None
+    """Write layer files for the builder (dual-write alongside monolith).
+
+    Produces:
+      - example_translations.json: {spanish_line: {english, source}}
+      - senses_gemini.json: {word|lemma: [{pos, translation}]}
+      - sense_assignments.json: {word: [{sense_idx, examples: [indices]}]}
+    """
+    layers_dir = os.path.join(pipeline_dir, "data", "layers")
+    os.makedirs(layers_dir, exist_ok=True)
+
+    # --- example_translations.json ---
+    # Extract from sentence_progress (all translated lines) with provenance
+    example_translations = {}
+    for spanish, english in sentence_progress.items():
+        if spanish.startswith("_"):  # skip metadata keys like _prompt_hash
+            continue
+        if english:
+            source = "genius" if genius_lines and spanish in genius_lines else "gemini"
+            example_translations[spanish] = {"english": english, "source": source}
+
+    trans_path = os.path.join(layers_dir, "example_translations.json")
+    with open(trans_path, "w", encoding="utf-8") as f:
+        json.dump(example_translations, f, ensure_ascii=False)
+    print("  Layer example_translations: %d lines -> %s" % (len(example_translations), trans_path))
+
+    # --- senses_gemini.json + sense_assignments.json ---
+    # Extract from final_entries (which have resolved lemma + senses from Gemini or overrides)
+    # For each word, we know what meanings were assigned. We extract senses (pos+translation)
+    # and map examples back to indices in examples_raw.json.
+    senses_gemini = {}
+    sense_assignments = {}
+
+    # Build a quick lookup from examples_raw: for each word, map line text -> index
+    word_example_indices = {}  # type: Dict[str, Dict[str, int]]
+    for word_entry in all_words:
+        w = word_entry["word"]
+        idx_map = {}
+        for i, ex in enumerate(word_entry.get("examples", [])):
+            line = ex.get("line", "")
+            if line not in idx_map:  # first occurrence wins
+                idx_map[line] = i
+        word_example_indices[w] = idx_map
+
+    for fe in final_entries:
+        word = fe["word"]
+        lemma = fe.get("lemma", word)
+        key = "%s|%s" % (word, lemma)
+        meanings = fe.get("meanings", [])
+
+        # Senses: just pos + translation (parallel to senses_wiktionary.json)
+        senses_list = []
+        assignments_list = []
+
+        for m_idx, meaning in enumerate(meanings):
+            pos = meaning.get("pos", "X")
+            translation = meaning.get("translation", "")
+            senses_list.append({"pos": pos, "translation": translation})
+
+            # Map examples back to indices in examples_raw
+            idx_map = word_example_indices.get(word, {})
+            example_indices = []
+            for ex in meaning.get("examples", []):
+                spanish = ex.get("spanish", "")
+                if spanish in idx_map:
+                    example_indices.append(idx_map[spanish])
+
+            assignments_list.append({
+                "sense_idx": m_idx,
+                "examples": example_indices,
+            })
+
+        if senses_list:
+            senses_gemini[key] = senses_list
+        if assignments_list:
+            sense_assignments[word] = assignments_list
+
+    senses_path = os.path.join(layers_dir, "senses_gemini.json")
+    with open(senses_path, "w", encoding="utf-8") as f:
+        json.dump(senses_gemini, f, ensure_ascii=False)
+    print("  Layer senses_gemini: %d entries -> %s" % (len(senses_gemini), senses_path))
+
+    assign_path = os.path.join(layers_dir, "sense_assignments.json")
+    with open(assign_path, "w", encoding="utf-8") as f:
+        json.dump(sense_assignments, f, ensure_ascii=False)
+    print("  Layer sense_assignments: %d entries -> %s" % (len(sense_assignments), assign_path))
 
 
 def _write_artist_split_files(entries, master, vocab_path):
