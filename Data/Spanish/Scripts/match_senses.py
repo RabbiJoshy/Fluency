@@ -33,9 +33,9 @@ SENSES_FILE = LAYERS / "senses_wiktionary.json"
 OUTPUT_FILE = LAYERS / "sense_assignments.json"
 
 MAX_EXAMPLES_PER_MEANING = 5
-MIN_SENSE_FREQUENCY = 0.10  # drop senses with < 10% of examples
+MIN_SENSE_FREQUENCY = 0.05  # drop senses with < 5% of examples
 SENSE_MERGE_THRESHOLD = 0.70  # merge same-POS senses with cosine sim above this
-EMBEDDING_MODEL = "all-mpnet-base-v2"  # 768-dim, best quality
+EMBEDDING_MODEL = "paraphrase-multilingual-mpnet-base-v2"  # 768-dim, multilingual
 EMBEDDING_BATCH_SIZE = 256
 SAVE_INTERVAL = 2000  # intermediate save every N words
 
@@ -95,8 +95,11 @@ def build_embedding_index(senses_data, examples_data, inventory):
             add_text(enrich_sense_text(s))
         for ex in examples:
             eng = ex.get("english", "")
+            spa = ex.get("target", "")
             if eng:
-                add_text(eng)
+                # Include Spanish for bilingual disambiguation
+                embed_key = "{} [Spanish: {}]".format(eng, spa) if spa else eng
+                add_text(embed_key)
 
     return text_list, text_to_idx
 
@@ -313,8 +316,10 @@ def main():
                 continue
 
             if use_embeddings:
+                spa = ex.get("target", "")
+                embed_key = "{} [Spanish: {}]".format(eng, spa) if spa else eng
                 best_idx, confidence = classify_example_embedding(
-                    eng, senses, text_to_idx, embeddings)
+                    embed_key, senses, text_to_idx, embeddings)
             else:
                 best_idx, confidence = classify_example_keyword(eng, senses)
 
