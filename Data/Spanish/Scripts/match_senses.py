@@ -1,59 +1,41 @@
 #!/usr/bin/env python3
 """
-match_senses.py — Assign example sentences to specific word senses.
+match_senses.py — Step 4: Assign example sentences to word senses.
 
-Takes vocabulary.json (flat examples per word) and senses_wiktionary.json (sense
-inventory), classifies each example sentence to its best-matching sense using
-keyword overlap, and restructures vocabulary.json with a meanings array.
+Reads the examples and senses layers, classifies each example to its
+best-matching sense using keyword overlap, and writes an assignments layer.
 
 Usage:
     python3 Data/Spanish/Scripts/match_senses.py
 
-Run from the project root (Fluency/).
-
 Inputs:
-    Data/Spanish/vocabulary.json         — flat examples per word
-    Data/Spanish/senses_wiktionary.json  — Wiktionary sense inventory
+    Data/Spanish/layers/word_inventory.json
+    Data/Spanish/layers/examples_raw.json
+    Data/Spanish/layers/senses_wiktionary.json
 
 Output:
-    Data/Spanish/vocabulary.json         — restructured with meanings array
+    Data/Spanish/layers/sense_assignments.json
 """
 
 import json
 import re
-import sys
 from collections import defaultdict
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-VOCAB_FILE = PROJECT_ROOT / "Data" / "Spanish" / "vocabulary.json"
-SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "senses_wiktionary.json"
-OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "vocabulary.json"
+LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
+INVENTORY_FILE = LAYERS / "word_inventory.json"
+EXAMPLES_FILE = LAYERS / "examples_raw.json"
+SENSES_FILE = LAYERS / "senses_wiktionary.json"
+OUTPUT_FILE = LAYERS / "sense_assignments.json"
 
 MAX_EXAMPLES_PER_MEANING = 5
-
-
-def _build_meaning(sense, frequency, examples):
-    """Build a meaning dict from a sense, threading through optional detail."""
-    m = {
-        "pos": sense["pos"],
-        "translation": sense["translation"],
-        "frequency": frequency,
-        "examples": examples,
-    }
-    if sense.get("detail"):
-        m["detail"] = sense["detail"]
-    return m
 
 # ---------------------------------------------------------------------------
 # Keyword overlap matching
 # ---------------------------------------------------------------------------
 _WORD_RE = re.compile(r"[a-z]+")
 
-# Common English words that don't help disambiguate senses
 _STOP_WORDS = {
     "a", "an", "the", "to", "of", "in", "on", "at", "for", "is", "it",
     "be", "as", "or", "by", "and", "not", "with", "from", "that", "this",
@@ -65,63 +47,45 @@ _STOP_WORDS = {
 
 
 def tokenize_english(text):
-    """Extract lowercase content words from English text."""
     return {w for w in _WORD_RE.findall(text.lower()) if w not in _STOP_WORDS
             and len(w) > 1}
-
-
-def score_sentence_to_sense(sentence_words, sense_translation):
-    """
-    Score how well an English sentence matches a sense translation.
-    Returns count of overlapping content words.
-    """
-    sense_words = tokenize_english(sense_translation)
-    if not sense_words:
-        return 0
-    return len(sentence_words & sense_words)
 
 
 def classify_example(sentence_english, senses):
     """
     Classify an English sentence to the best-matching sense.
     Returns (best_sense_index, confidence).
-    Confidence = best_score - second_best_score.
     """
     sentence_words = tokenize_english(sentence_english)
-    scores = [score_sentence_to_sense(sentence_words, s["translation"])
-              for s in senses]
+    scores = []
+    for s in senses:
+        sense_words = tokenize_english(s["translation"])
+        scores.append(len(sentence_words & sense_words) if sense_words else 0)
 
-    best_idx = 0
-    best_score = scores[0]
-    for i, sc in enumerate(scores):
-        if sc > best_score:
-            best_score = sc
-            best_idx = i
-
-    # Confidence: gap between top 2
+    best_idx = max(range(len(scores)), key=lambda i: scores[i])
     sorted_scores = sorted(scores, reverse=True)
     confidence = sorted_scores[0] - sorted_scores[1] if len(sorted_scores) >= 2 else 0
-
     return best_idx, confidence
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 def main():
-    # Load data
-    print("Loading vocabulary...")
-    with open(VOCAB_FILE, encoding="utf-8") as f:
-        vocab = json.load(f)
-    print(f"  {len(vocab)} entries")
+    print("Loading word inventory...")
+    with open(INVENTORY_FILE, encoding="utf-8") as f:
+        inventory = json.load(f)
+    print(f"  {len(inventory)} entries")
 
-    print("Loading Wiktionary senses...")
+    print("Loading examples...")
+    with open(EXAMPLES_FILE, encoding="utf-8") as f:
+        examples_data = json.load(f)
+    print(f"  {len(examples_data)} entries with examples")
+
+    print("Loading senses...")
     with open(SENSES_FILE, encoding="utf-8") as f:
         senses_data = json.load(f)
     print(f"  {len(senses_data)} sense entries")
 
-    # Assign examples to senses
     print("\nAssigning examples to senses...")
+    output = {}
     stats = {
         "no_senses": 0,
         "single_sense": 0,
@@ -132,89 +96,76 @@ def main():
         "active_senses": defaultdict(int),
     }
 
-    for entry in vocab:
+    for entry in inventory:
+        word_id = entry["id"]
         key = f"{entry['word']}|{entry['lemma']}"
         senses = senses_data.get(key, [])
-        examples = entry.get("examples", [])
+        examples = examples_data.get(word_id, [])
 
-        # Remove flat examples key — will be replaced with meanings
-        if "examples" in entry:
-            del entry["examples"]
-
-        # Case 1: No Wiktionary senses found
+        # Case 1: No senses
         if not senses:
             stats["no_senses"] += 1
-            entry["meanings"] = [{
-                "pos": "X",
-                "translation": "",
-                "frequency": "1.00",
-                "examples": examples[:MAX_EXAMPLES_PER_MEANING],
-            }] if examples else []
-            stats["active_senses"][1 if examples else 0] += 1
+            # No assignment possible — builder will handle fallback
             continue
 
-        # Case 2: No examples for this word
+        # Case 2: No examples
         if not examples:
             stats["no_examples"] += 1
-            entry["meanings"] = [_build_meaning(senses[0], "1.00", [])]
+            # Assign to first sense with empty examples
+            output[word_id] = [{"sense_idx": 0, "examples": []}]
             stats["active_senses"][1] += 1
             continue
 
-        # Case 3: Single sense
+        # Case 3: Single sense — all examples go to it
         if len(senses) == 1:
             stats["single_sense"] += 1
-            entry["meanings"] = [_build_meaning(senses[0], "1.00",
-                                                examples[:MAX_EXAMPLES_PER_MEANING])]
+            indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING)))
+            output[word_id] = [{"sense_idx": 0, "examples": indices}]
             stats["active_senses"][1] += 1
             continue
 
         # Case 4: Multi-sense — classify by keyword overlap
         stats["multi_sense"] += 1
+        sense_example_indices = [[] for _ in senses]
 
-        sense_examples = [[] for _ in senses]
-        for ex in examples:
+        for ex_idx, ex in enumerate(examples):
             eng = ex.get("english", "")
             if not eng:
-                sense_examples[0].append(ex)
+                sense_example_indices[0].append(ex_idx)
                 continue
-
             best_idx, confidence = classify_example(eng, senses)
-            sense_examples[best_idx].append(ex)
-
+            sense_example_indices[best_idx].append(ex_idx)
             stats["confidence_sum"] += confidence
             stats["confidence_count"] += 1
 
-        # Build meanings array — only include senses that got examples
-        total_assigned = sum(len(se) for se in sense_examples)
-        meanings = []
-        for i, sense in enumerate(senses):
-            exs = sense_examples[i]
-            if not exs:
-                continue
-            freq = len(exs) / total_assigned if total_assigned > 0 else 0
-            meanings.append(_build_meaning(sense, f"{freq:.2f}",
-                                           exs[:MAX_EXAMPLES_PER_MEANING]))
+        # Build assignments — only senses that got examples
+        assignments = []
+        for i, indices in enumerate(sense_example_indices):
+            if indices:
+                assignments.append({
+                    "sense_idx": i,
+                    "examples": indices[:MAX_EXAMPLES_PER_MEANING],
+                })
 
-        # If no sense got examples via keyword match, assign all to first sense
-        if not meanings:
-            meanings = [_build_meaning(senses[0], "1.00",
-                                       examples[:MAX_EXAMPLES_PER_MEANING])]
+        # Fallback: if no sense matched, assign all to first
+        if not assignments:
+            indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING)))
+            assignments = [{"sense_idx": 0, "examples": indices}]
 
-        entry["meanings"] = meanings
-        stats["active_senses"][len(meanings)] += 1
+        output[word_id] = assignments
+        stats["active_senses"][len(assignments)] += 1
 
-    # Write output
     print(f"\nWriting {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(vocab, f, ensure_ascii=False, indent=2)
+        json.dump(output, f, ensure_ascii=False, indent=2)
 
     # Report
-    total = len(vocab)
+    total = len(inventory)
     avg_conf = (stats["confidence_sum"] / stats["confidence_count"]
                 if stats["confidence_count"] > 0 else 0)
 
     print(f"\n{'='*55}")
-    print("SENSE MATCHING RESULTS")
+    print("SENSE ASSIGNMENT RESULTS")
     print(f"{'='*55}")
     print(f"Total vocabulary:          {total:>6}")
     print(f"No Wiktionary senses:      {stats['no_senses']:>6}")
@@ -224,27 +175,10 @@ def main():
     print(f"")
     print(f"Avg keyword confidence:     {avg_conf:.3f}")
     print(f"")
-    print(f"Active senses per word after example assignment:")
+    print(f"Active senses per word:")
     for n in sorted(stats["active_senses"]):
         count = stats["active_senses"][n]
         print(f"  {n} senses: {count:>6} words")
-
-    # Show sample assignments
-    print(f"\nSample multi-sense assignments:")
-    sample_keys = ["banco|banco", "tiempo|tiempo", "rico|rico",
-                   "carta|carta", "poder|poder"]
-    for entry in vocab:
-        key = f"{entry['word']}|{entry['lemma']}"
-        if key in sample_keys:
-            sample_keys.remove(key)
-            print(f"\n  {key}:")
-            for m in entry.get("meanings", []):
-                exs = m.get("examples", [])
-                ex_preview = exs[0]["english"][:50] if exs else "(none)"
-                print(f"    {m['pos']:>6} {m['translation'][:35]:35s} "
-                      f"freq={m['frequency']}  ex: {ex_preview}")
-            if not sample_keys:
-                break
 
 
 if __name__ == "__main__":

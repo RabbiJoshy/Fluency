@@ -31,9 +31,9 @@ from pathlib import Path
 # Paths
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-VOCAB_FILE = PROJECT_ROOT / "Data" / "Spanish" / "vocabulary.json"
+INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
-OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "senses_wiktionary.json"
+OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "senses_wiktionary.json"
 
 # ---------------------------------------------------------------------------
 # POS mapping: Wiktionary pos -> project UPOS-style tags
@@ -435,9 +435,9 @@ def main():
         print('    "https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz"')
         sys.exit(1)
 
-    # Load vocab
-    print("Loading vocabulary...")
-    with open(VOCAB_FILE, encoding="utf-8") as f:
+    # Load word inventory
+    print("Loading word inventory...")
+    with open(INVENTORY_FILE, encoding="utf-8") as f:
         vocab = json.load(f)
     print(f"  {len(vocab)} entries")
 

@@ -4,14 +4,15 @@ Pipeline orchestrator for normal-mode Spanish vocabulary.
 
 Usage (from project root):
     python3 Data/Spanish/Scripts/run_pipeline.py
-    python3 Data/Spanish/Scripts/run_pipeline.py --from-step 2
+    python3 Data/Spanish/Scripts/run_pipeline.py --from-step 3
     python3 Data/Spanish/Scripts/run_pipeline.py --dry-run
 
 Steps:
-    1. build_examples.py  — Match Tatoeba examples to vocabulary
-    2. build_senses.py    — Build sense inventory from Wiktionary
-    3. match_senses.py    — Assign examples to senses via keyword overlap
-    4. finalize           — Split into index + examples for front end
+    1. build_inventory.py   — Word inventory from CSV (IDs, ranks, flags)
+    2. build_examples.py    — Match Tatoeba examples to vocabulary
+    3. build_senses.py      — Build sense inventory from Wiktionary
+    4. match_senses.py      — Assign examples to senses via keyword overlap
+    5. build_vocabulary.py  — Assemble final vocabulary from all layers
 """
 
 import argparse
@@ -24,32 +25,30 @@ SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(SCRIPTS_DIR)))
 PYTHON = sys.executable
 
-FINALIZE_SCRIPT = os.path.join(PROJECT_ROOT, "scripts", "finalize_vocabulary.py")
-VOCAB_PATH = "Data/Spanish/vocabulary.json"
-
 STEPS = [
-    {"num": 1, "label": "Match Tatoeba examples to vocabulary",
+    {"num": 1, "label": "Word inventory from CSV",
+     "script": "build_inventory.py",
+     "output": "Data/Spanish/layers/word_inventory.json"},
+    {"num": 2, "label": "Match Tatoeba examples to vocabulary",
      "script": "build_examples.py",
-     "output": "Data/Spanish/vocabulary.json"},
-    {"num": 2, "label": "Build sense inventory from Wiktionary",
+     "output": "Data/Spanish/layers/examples_raw.json"},
+    {"num": 3, "label": "Build sense inventory from Wiktionary",
      "script": "build_senses.py",
-     "output": "Data/Spanish/senses_wiktionary.json"},
-    {"num": 3, "label": "Assign examples to senses",
+     "output": "Data/Spanish/layers/senses_wiktionary.json"},
+    {"num": 4, "label": "Assign examples to senses",
      "script": "match_senses.py",
-     "output": "Data/Spanish/vocabulary.json"},
-    {"num": 4, "label": "Split into index + examples for front end",
-     "script": None,  # handled specially
+     "output": "Data/Spanish/layers/sense_assignments.json"},
+    {"num": 5, "label": "Assemble final vocabulary from layers",
+     "script": "build_vocabulary.py",
      "output": "Data/Spanish/vocabulary.index.json"},
 ]
 
+VALID_STEPS = [s["num"] for s in STEPS]
+
 
 def run_step(step, dry_run=False):
-    if step["num"] == 4:
-        # Finalize: shared script with --input arg
-        cmd = [PYTHON, FINALIZE_SCRIPT, "--input", VOCAB_PATH]
-    else:
-        script_path = os.path.join(SCRIPTS_DIR, step["script"])
-        cmd = [PYTHON, script_path]
+    script_path = os.path.join(SCRIPTS_DIR, step["script"])
+    cmd = [PYTHON, script_path]
 
     print("\n" + "=" * 60)
     print("Step %d: %s" % (step["num"], step["label"]))
@@ -76,10 +75,10 @@ def run_step(step, dry_run=False):
 def main():
     parser = argparse.ArgumentParser(
         description="Normal-mode Spanish vocabulary pipeline orchestrator")
-    parser.add_argument("--from-step", type=int, default=1, choices=[1, 2, 3, 4],
+    parser.add_argument("--from-step", type=int, default=1, choices=VALID_STEPS,
                         help="Start from this step (default: 1)")
-    parser.add_argument("--to-step", type=int, default=4, choices=[1, 2, 3, 4],
-                        help="Stop after this step (default: 4)")
+    parser.add_argument("--to-step", type=int, default=5, choices=VALID_STEPS,
+                        help="Stop after this step (default: 5)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print commands without running them")
     args = parser.parse_args()
@@ -105,9 +104,9 @@ def main():
                 age_str = "%.1fh ago" % age_h
             else:
                 age_str = "%.0fd ago" % (age_h / 24)
-            print("%s Step %d: %-40s  %s" % (marker, step["num"], step["output"], age_str))
+            print("%s Step %d: %-45s  %s" % (marker, step["num"], step["output"], age_str))
         else:
-            print("%s Step %d: %-40s  (missing)" % (marker, step["num"], step["output"]))
+            print("%s Step %d: %-45s  (missing)" % (marker, step["num"], step["output"]))
 
     total_start = time.time()
     for step in steps_to_run:
