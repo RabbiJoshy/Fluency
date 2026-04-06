@@ -31,6 +31,7 @@ Data/Spanish/Intermediates/
 
 # Large corpus files (downloaded, not generated)
 Data/Spanish/corpora/opensubtitles/OpenSubtitles.*
+Data/Spanish/corpora/embeddings_cache/
 
 # Bad Bunny pipeline — old/generated files
 Bad Bunny/archive/

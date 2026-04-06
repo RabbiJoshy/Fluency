@@ -99,23 +99,7 @@
       "translation": "bishop"
     }
   ],
-  "la|el": [
-    {
-      "pos": "DET",
-      "translation": "masculine singular definite article; the"
-    },
-    {
-      "pos": "DET",
-      "translation": "feminine singular definite article used before nouns which start with a stressed /a/"
-    },
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "la|la": [
     {
       "pos": "DET",
       "translation": "feminine singular definite article; the"
@@ -213,33 +197,13 @@
       "translation": "used after some verbs and translated by various prepositions in English"
     }
   ],
-  "lo|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "lo|lo": [
     {
       "pos": "DET",
       "translation": "neuter definite article used only before nominalized adjectives: the, that which is"
     }
   ],
-  "un|uno": [
-    {
-      "pos": "NUM",
-      "translation": "one"
-    },
-    {
-      "pos": "DET",
-      "translation": "one"
-    },
-    {
-      "pos": "PRON",
-      "translation": "one"
-    },
+  "un|un": [
     {
       "pos": "DET",
       "translation": "an; a"
@@ -289,7 +253,7 @@
       "translation": "what (interrogative only)"
     }
   ],
-  "me|yo": [
+  "me|me": [
     {
       "pos": "PRON",
       "translation": "first-person singular pronoun in the nominative case; I"
@@ -317,11 +281,7 @@
       "translation": "claw, hoof, stinger"
     }
   ],
-  "te|tú": [
-    {
-      "pos": "PRON",
-      "translation": "second person pronoun in singular tense; you"
-    },
+  "te|te": [
     {
       "pos": "NOUN",
       "translation": "The name of the Latin script letter T/t."
@@ -349,15 +309,7 @@
       "translation": "plural masculine or neuter pronoun"
     }
   ],
-  "se|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "se|se": [
     {
       "pos": "PRON",
       "translation": "A reflexive or reciprocal pronoun: oneself, himself, herself, itself, yourself; themselves; yourselves; each other; one another"
@@ -369,6 +321,14 @@
     {
       "pos": "PRON",
       "translation": "A pronoun used with a verb conjugated in the third-person singular to convey an impersonal meaning"
+    },
+    {
+      "pos": "PRON",
+      "translation": "Used to third person subjunctive moods to form an impersonal imperative."
+    },
+    {
+      "pos": "PRON",
+      "translation": "used instead of indirect object pronouns le and les before the direct object pronouns lo, la, los, or las"
     },
     {
       "pos": "INTJ",
@@ -547,19 +507,7 @@
       "translation": "Freud's concept of the ego"
     }
   ],
-  "eso|ese": [
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
-    },
-    {
-      "pos": "DET",
-      "translation": "that"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "hello"
-    },
+  "eso|eso": [
     {
       "pos": "PRON",
       "translation": "that one (near you)"
@@ -769,15 +717,7 @@
       "translation": "how"
     }
   ],
-  "le|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "le|le": [
     {
       "pos": "PRON",
       "translation": "to him, for him; dative of él"
@@ -789,6 +729,14 @@
     {
       "pos": "PRON",
       "translation": "to it, for it; dative of ello"
+    },
+    {
+      "pos": "PRON",
+      "translation": "to you, for you (formal); dative of usted"
+    },
+    {
+      "pos": "PRON",
+      "translation": "you (formal); accusative of usted (proscribed when used with feminine objects)"
     }
   ],
   "más|más": [
@@ -825,23 +773,7 @@
       "translation": "plus"
     }
   ],
-  "esto|este": [
-    {
-      "pos": "DET",
-      "translation": "this"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "uh, well (space filler in a conversation)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "east"
-    },
-    {
-      "pos": "PRON",
-      "translation": "this one"
-    },
+  "esto|esto": [
     {
       "pos": "PRON",
       "translation": "this"
@@ -907,19 +839,7 @@
       "translation": "everything"
     }
   ],
-  "esta|este": [
-    {
-      "pos": "DET",
-      "translation": "this"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "uh, well (space filler in a conversation)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "east"
-    },
+  "esta|esta": [
     {
       "pos": "PRON",
       "translation": "this one"
@@ -953,32 +873,6 @@
     {
       "pos": "INTJ",
       "translation": "come on! (expression of encouragement)"
-    }
-  ],
-  "muy|mucho": [
-    {
-      "pos": "DET",
-      "translation": "much, a lot of"
-    },
-    {
-      "pos": "DET",
-      "translation": "many, a lot of"
-    },
-    {
-      "pos": "ADV",
-      "translation": "much, a lot, far, way"
-    },
-    {
-      "pos": "ADV",
-      "translation": "very"
-    },
-    {
-      "pos": "ADV",
-      "translation": "long, a long time"
-    },
-    {
-      "pos": "PRON",
-      "translation": "a lot, many"
     }
   ],
   "hay|haber": [
@@ -1091,15 +985,7 @@
       "translation": "to have; to feel (internally)"
     }
   ],
-  "nos|yo": [
-    {
-      "pos": "PRON",
-      "translation": "first-person singular pronoun in the nominative case; I"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "Freud's concept of the ego"
-    },
+  "nos|nos": [
     {
       "pos": "INTJ",
       "translation": "damn, wow"
@@ -1707,15 +1593,7 @@
       "translation": "to create"
     }
   ],
-  "ella|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "ella|ella": [
     {
       "pos": "PRON",
       "translation": "she, her (used subjectively and after prepositions)"
@@ -1905,27 +1783,7 @@
       "translation": "a reason (e.g. the reason why something happens)"
     }
   ],
-  "dios|dio": [
-    {
-      "pos": "VERB",
-      "translation": "to give, to give out"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to hand over"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to hit (from any distance)"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to hit oneself, bump into, crash into"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to encounter; to find with effort"
-    },
+  "dios|dios": [
     {
       "pos": "NOUN",
       "translation": "god"
@@ -2473,7 +2331,7 @@
       "translation": "that (in certain phrases)"
     }
   ],
-  "ti|tú": [
+  "ti|ti": [
     {
       "pos": "PRON",
       "translation": "second person pronoun in singular tense; you"
@@ -2575,15 +2433,7 @@
       "translation": "without"
     }
   ],
-  "mí|yo": [
-    {
-      "pos": "PRON",
-      "translation": "first-person singular pronoun in the nominative case; I"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "Freud's concept of the ego"
-    },
+  "mí|mí": [
     {
       "pos": "PRON",
       "translation": "me; (declined form of yo used as the object of a preposition)"
@@ -2987,15 +2837,7 @@
       "translation": "opinion"
     }
   ],
-  "nosotros|yo": [
-    {
-      "pos": "PRON",
-      "translation": "first-person singular pronoun in the nominative case; I"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "Freud's concept of the ego"
-    },
+  "nosotros|nosotros": [
     {
       "pos": "PRON",
       "translation": "we (masculine plural)"
@@ -3165,15 +3007,7 @@
       "translation": "value, worth"
     }
   ],
-  "les|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "les|les": [
     {
       "pos": "DET",
       "translation": "the (plural)"
@@ -3303,15 +3137,7 @@
       "translation": "act of hatching a plan or an idea"
     }
   ],
-  "ellos|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "ellos|ellos": [
     {
       "pos": "PRON",
       "translation": "they, them"
@@ -3593,7 +3419,13 @@
       "translation": "wait"
     }
   ],
-  "mierda|mierdo": [
+  "espera|espera": [
+    {
+      "pos": "NOUN",
+      "translation": "wait"
+    }
+  ],
+  "mierda|mierda": [
     {
       "pos": "NOUN",
       "translation": "shit (solid excretory product evacuated from the bowels; feces.)"
@@ -3719,27 +3551,7 @@
       "translation": "starting at (a quantity, such as a price)"
     }
   ],
-  "fuera|ser": [
-    {
-      "pos": "VERB",
-      "translation": "to be (essentially or identified as)"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to exist; to occur"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a being, organism"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "nature, essence"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "value, worth"
-    },
+  "fuera|fuera": [
     {
       "pos": "ADV",
       "translation": "outside"
@@ -3765,6 +3577,32 @@
     {
       "pos": "VERB",
       "translation": "to play"
+    },
+    {
+      "pos": "ADV",
+      "translation": "outside"
+    }
+  ],
+  "fuera|ser": [
+    {
+      "pos": "VERB",
+      "translation": "to be (essentially or identified as)"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to exist; to occur"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "a being, organism"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "nature, essence"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "value, worth"
     },
     {
       "pos": "ADV",
@@ -3953,7 +3791,7 @@
       "translation": "state, status (a condition)"
     }
   ],
-  "estado|estadir": [
+  "estado|estado": [
     {
       "pos": "NOUN",
       "translation": "country, land (any broad area or territory)"
@@ -4149,7 +3987,7 @@
       "translation": "hello"
     }
   ],
-  "buena|buen": [
+  "buena|buena": [
     {
       "pos": "ADJ",
       "translation": "good"
@@ -4811,7 +4649,7 @@
       "translation": "to import"
     }
   ],
-  "contigo|contiguir": [
+  "contigo|contigo": [
     {
       "pos": "ADV",
       "translation": "with you (singular)"
@@ -5771,6 +5609,20 @@
       "translation": "gal, chick"
     }
   ],
+  "chica|chica": [
+    {
+      "pos": "NOUN",
+      "translation": "girl"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "gal, chick"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "A spice made from the Sobralia orchid."
+    }
+  ],
   "cariño|cariño": [
     {
       "pos": "NOUN",
@@ -5877,32 +5729,6 @@
     {
       "pos": "INTJ",
       "translation": "I mean; used to explain or correct a previous utterance"
-    }
-  ],
-  "algún|alguno": [
-    {
-      "pos": "DET",
-      "translation": "some, any"
-    },
-    {
-      "pos": "DET",
-      "translation": "any (used for emphasis)"
-    },
-    {
-      "pos": "DET",
-      "translation": "various"
-    },
-    {
-      "pos": "PRON",
-      "translation": "someone"
-    },
-    {
-      "pos": "PRON",
-      "translation": "some, some people"
-    },
-    {
-      "pos": "PRON",
-      "translation": "one (thing); a few"
     }
   ],
   "serio|serio": [
@@ -6287,6 +6113,28 @@
       "translation": "account"
     }
   ],
+  "cuenta|cuenta": [
+    {
+      "pos": "NOUN",
+      "translation": "count, tally"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "operation"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "bill"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "tab (e.g. at a bar or pub)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "account"
+    }
+  ],
   "quizás|quizás": [
     {
       "pos": "ADV",
@@ -6621,6 +6469,12 @@
       "translation": "news, novelty"
     }
   ],
+  "nueva|nueva": [
+    {
+      "pos": "NOUN",
+      "translation": "news, novelty"
+    }
+  ],
   "sabía|saber": [
     {
       "pos": "VERB",
@@ -6878,6 +6732,16 @@
       "pos": "ADV",
       "translation": "first; first of all; firstly"
     },
+    {
+      "pos": "NOUN",
+      "translation": "first gear (lowest gear in a motor vehicle)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "first class"
+    }
+  ],
+  "primera|primera": [
     {
       "pos": "NOUN",
       "translation": "first gear (lowest gear in a motor vehicle)"
@@ -7219,24 +7083,6 @@
       "translation": "raccoon (Procyon lotor)"
     }
   ],
-  "cualquier|cualquiera": [
-    {
-      "pos": "PRON",
-      "translation": "anyone, whoever, whomever"
-    },
-    {
-      "pos": "DET",
-      "translation": "any, whatever, whichever"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a person of no importance; a nobody, zero"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a female prostitute"
-    }
-  ],
   "viejo|viejo": [
     {
       "pos": "ADJ",
@@ -7554,6 +7400,20 @@
       "pos": "VERB",
       "translation": "(+ de) to make use of"
     },
+    {
+      "pos": "NOUN",
+      "translation": "a voucher; an IOU"
+    },
+    {
+      "pos": "INTJ",
+      "translation": "okay"
+    },
+    {
+      "pos": "INTJ",
+      "translation": "goodbye, be well"
+    }
+  ],
+  "vale|vale": [
     {
       "pos": "NOUN",
       "translation": "a voucher; an IOU"
@@ -8221,6 +8081,16 @@
       "translation": "speaking (action)"
     }
   ],
+  "habla|habla": [
+    {
+      "pos": "NOUN",
+      "translation": "speech (faculty of speech)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "speaking (action)"
+    }
+  ],
   "supongo|suponer": [
     {
       "pos": "VERB",
@@ -8456,6 +8326,16 @@
       "pos": "VERB",
       "translation": "to be called"
     },
+    {
+      "pos": "NOUN",
+      "translation": "flame"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "llama (camelid mammal)"
+    }
+  ],
+  "llama|llama": [
     {
       "pos": "NOUN",
       "translation": "flame"
@@ -8895,6 +8775,12 @@
       "translation": "beech, beech tree"
     }
   ],
+  "haya|haya": [
+    {
+      "pos": "NOUN",
+      "translation": "beech, beech tree"
+    }
+  ],
   "suficiente|suficiente": [
     {
       "pos": "ADJ",
@@ -9259,6 +9145,20 @@
     {
       "pos": "NOUN",
       "translation": "idle talk"
+    }
+  ],
+  "amo|amo": [
+    {
+      "pos": "NOUN",
+      "translation": "master (man who owns a slave)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "owner, master, keeper (man who owns an animal)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "boss, manager"
     }
   ],
   "amo|amar": [
@@ -9903,6 +9803,12 @@
       "translation": "homework"
     }
   ],
+  "pregunta|pregunta": [
+    {
+      "pos": "NOUN",
+      "translation": "question (sentence that asks for information)"
+    }
+  ],
   "pregunta|preguntar": [
     {
       "pos": "VERB",
@@ -10293,11 +10199,7 @@
       "translation": "latest; most recent"
     }
   ],
-  "afuera|afuero": [
-    {
-      "pos": "VERB",
-      "translation": "to grant (a privilege or immunity)"
-    },
+  "afuera|afuera": [
     {
       "pos": "ADV",
       "translation": "out, outside"
@@ -10309,6 +10211,10 @@
     {
       "pos": "INTJ",
       "translation": "get out!"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to grant (a privilege or immunity)"
     }
   ],
   "mujeres|mujer": [
@@ -10911,6 +10817,12 @@
       "translation": "wine (an alcoholic beverage made by fermenting grape juice, with an ABV ranging from 5.5–16%)"
     }
   ],
+  "vino|vino": [
+    {
+      "pos": "NOUN",
+      "translation": "wine (an alcoholic beverage made by fermenting grape juice, with an ABV ranging from 5.5–16%)"
+    }
+  ],
   "meses|mes": [
     {
       "pos": "NOUN",
@@ -11171,6 +11083,20 @@
     {
       "pos": "NOUN",
       "translation": "final (the last round, game or match in a contest, after which the winner is determined)"
+    }
+  ],
+  "lista|lista": [
+    {
+      "pos": "NOUN",
+      "translation": "list, roll"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "stripe"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "roster"
     }
   ],
   "lista|listo": [
@@ -11659,26 +11585,14 @@
       "translation": "blame"
     }
   ],
-  "veras|vera": [
-    {
-      "pos": "NOUN",
-      "translation": "side, face"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "shore, bank (of a watercourse)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "edge, border"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "verawood (Plectrocarpa arborea, syn. Bulnesia arborea)"
-    },
+  "veras|veras": [
     {
       "pos": "NOUN",
       "translation": "truth; reality"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "serious things"
     }
   ],
   "adónde|adónde": [
@@ -11915,6 +11829,16 @@
     {
       "pos": "NOUN",
       "translation": "knowledge"
+    }
+  ],
+  "recuerdo|recuerdo": [
+    {
+      "pos": "NOUN",
+      "translation": "memory"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "souvenir"
     }
   ],
   "recuerdo|recordar": [
@@ -12405,19 +12329,7 @@
       "translation": "latest; most recent"
     }
   ],
-  "ésta|este": [
-    {
-      "pos": "DET",
-      "translation": "this"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "uh, well (space filler in a conversation)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "east"
-    },
+  "ésta|ésta": [
     {
       "pos": "PRON",
       "translation": "this one"
@@ -12479,7 +12391,7 @@
       "translation": "authorization"
     }
   ],
-  "pequeña|pequeño": [
+  "pequeña|pequeña": [
     {
       "pos": "ADJ",
       "translation": "small; little"
@@ -12509,6 +12421,20 @@
     {
       "pos": "INTJ",
       "translation": "shut up!"
+    }
+  ],
+  "trato|trato": [
+    {
+      "pos": "NOUN",
+      "translation": "treatment (the process or manner of treating someone or something)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "deal, bargain, agreement"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "behaviour"
     }
   ],
   "trato|tratar": [
@@ -12721,6 +12647,28 @@
       "translation": "over"
     }
   ],
+  "falta|falta": [
+    {
+      "pos": "NOUN",
+      "translation": "lack, shortage"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "absence"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "day absent"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "fault"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mistake"
+    }
+  ],
   "falta|faltar": [
     {
       "pos": "VERB",
@@ -12911,11 +12859,7 @@
       "translation": "idle talk"
     }
   ],
-  "os|tú": [
-    {
-      "pos": "PRON",
-      "translation": "second person pronoun in singular tense; you"
-    },
+  "os|os": [
     {
       "pos": "PRON",
       "translation": "you, to you, for you; dative and accusative of vosotros"
@@ -13345,6 +13289,16 @@
     {
       "pos": "ADV",
       "translation": "probably; maybe; possibly; perhaps"
+    }
+  ],
+  "querida|querida": [
+    {
+      "pos": "NOUN",
+      "translation": "dear, honey, darling"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mistress"
     }
   ],
   "querida|querido": [
@@ -13812,6 +13766,20 @@
       "pos": "NOUN",
       "translation": "bad guy; baddie; bad boy; bad person"
     },
+    {
+      "pos": "NOUN",
+      "translation": "suitcase"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mailbag"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mail, post"
+    }
+  ],
+  "mala|mala": [
     {
       "pos": "NOUN",
       "translation": "suitcase"
@@ -15199,7 +15167,7 @@
       "translation": "to notify"
     }
   ],
-  "demás|demá": [
+  "demás|demás": [
     {
       "pos": "ADJ",
       "translation": "other, remaining"
@@ -16279,15 +16247,7 @@
       "translation": "come on"
     }
   ],
-  "ello|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "ello|ello": [
     {
       "pos": "PRON",
       "translation": "it, neuter third-person subject and disjunctive pronoun"
@@ -16663,7 +16623,7 @@
       "translation": "expert"
     }
   ],
-  "señorita|señoritar": [
+  "señorita|señorita": [
     {
       "pos": "NOUN",
       "translation": "young woman"
@@ -16945,14 +16905,10 @@
       "translation": "speech"
     }
   ],
-  "llamada|llamado": [
+  "llamada|llamada": [
     {
       "pos": "NOUN",
       "translation": "call"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "called"
     }
   ],
   "llamada|llamar": [
@@ -18339,23 +18295,7 @@
       "translation": "to like, to enjoy"
     }
   ],
-  "vista|visto": [
-    {
-      "pos": "ADJ",
-      "translation": "seen"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "obvious, clear"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "exposed, bare"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "known about, talked about, seen around"
-    },
+  "vista|vista": [
     {
       "pos": "NOUN",
       "translation": "sight, vision, eyesight (the ability to see)"
@@ -18697,7 +18637,7 @@
       "translation": "to encounter; to find with effort"
     }
   ],
-  "nena|nén": [
+  "nena|nena": [
     {
       "pos": "NOUN",
       "translation": "baby girl"
@@ -18809,15 +18749,7 @@
       "translation": "time since an event"
     }
   ],
-  "ellas|él": [
-    {
-      "pos": "PRON",
-      "translation": "he, him, masculine personal third person subject and disjunctive pronoun (used as a subject and after prepositions)"
-    },
-    {
-      "pos": "PRON",
-      "translation": "it, masculine non-personal third-person subject and disjunctive pronoun (usually used after prepositions to refer to masculine nouns)"
-    },
+  "ellas|ellas": [
     {
       "pos": "PRON",
       "translation": "they, them (used subjectively and after prepositions; can refer to women and feminine nouns)"
@@ -18991,6 +18923,28 @@
       "translation": "sick leave (absence for illness)"
     }
   ],
+  "baja|baja": [
+    {
+      "pos": "NOUN",
+      "translation": "casualty, loss"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "drop, fall, reduction"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "sick leave (absence for illness)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "withdrawal, retirement"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "pasha"
+    }
+  ],
   "sol|sol": [
     {
       "pos": "NOUN",
@@ -19103,6 +19057,12 @@
     {
       "pos": "NOUN",
       "translation": "sex organ"
+    }
+  ],
+  "vuelto|vuelto": [
+    {
+      "pos": "NOUN",
+      "translation": "change (money given back)"
     }
   ],
   "vuelto|volver": [
@@ -19251,7 +19211,7 @@
       "translation": "idle talk"
     }
   ],
-  "caja|cajar": [
+  "caja|caja": [
     {
       "pos": "NOUN",
       "translation": "box, case"
@@ -19429,6 +19389,28 @@
     {
       "pos": "NOUN",
       "translation": "return"
+    }
+  ],
+  "media|media": [
+    {
+      "pos": "NOUN",
+      "translation": "half (one of two equal parts of any whole)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "stocking (long thin leggings worn by women)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "pantyhose (stockings connected at the top and pulled up to the waist)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "sock (short unisex cloth covering for feet)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mean, average (the arithmetic middle in a set of values)"
     }
   ],
   "media|medio": [
@@ -19790,6 +19772,16 @@
       "pos": "VERB",
       "translation": "to bring on (oneself), to ask for"
     },
+    {
+      "pos": "NOUN",
+      "translation": "search (an attempt to find something)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "pager (a wireless telecommunications device that receives text or voice messages)"
+    }
+  ],
+  "busca|busca": [
     {
       "pos": "NOUN",
       "translation": "search (an attempt to find something)"
@@ -20659,7 +20651,7 @@
       "translation": "web (strip of material between flanges)"
     }
   ],
-  "diablo|diablir": [
+  "diablo|diablo": [
     {
       "pos": "NOUN",
       "translation": "devil"
@@ -20691,7 +20683,7 @@
       "translation": "to drop off"
     }
   ],
-  "cuántos|cuánto": [
+  "cuántos|cuántos": [
     {
       "pos": "ADV",
       "translation": "how much; how many"
@@ -20915,7 +20907,7 @@
       "translation": "authorization"
     }
   ],
-  "detective|detectivar": [
+  "detective|detective": [
     {
       "pos": "NOUN",
       "translation": "detective"
@@ -23485,6 +23477,12 @@
       "translation": "knowledge"
     }
   ],
+  "respeto|respeto": [
+    {
+      "pos": "NOUN",
+      "translation": "respect"
+    }
+  ],
   "respeto|respetar": [
     {
       "pos": "VERB",
@@ -23843,11 +23841,7 @@
       "translation": "to dribble (the ball)"
     }
   ],
-  "papa|papo": [
-    {
-      "pos": "NOUN",
-      "translation": "vagina"
-    },
+  "papa|papa": [
     {
       "pos": "NOUN",
       "translation": "pope (an honorary title of the Roman Catholic bishop of Rome)"
@@ -23863,6 +23857,10 @@
     {
       "pos": "NOUN",
       "translation": "nonsense, trifle, rubbish"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "dad"
     }
   ],
   "triste|triste": [
@@ -24209,6 +24207,20 @@
       "translation": "to be glad"
     }
   ],
+  "alegro|alegro": [
+    {
+      "pos": "VERB",
+      "translation": "to make happy"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to be happy"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to be glad"
+    }
+  ],
   "debajo|debajo": [
     {
       "pos": "ADP",
@@ -24411,11 +24423,7 @@
       "translation": "asshole, prick, jerk, dickhead, twit, twerp, schmuck, dumbass"
     }
   ],
-  "san|sar": [
-    {
-      "pos": "NOUN",
-      "translation": "HRH"
-    },
+  "san|san": [
     {
       "pos": "NOUN",
       "translation": "financial, temporal-savings scheme; the participants periodically contribute a quota to a communal pot that is given to one member, based on his/her turn amongst all the others"
@@ -24961,7 +24969,7 @@
       "translation": "bookish (lover of reading and or study)"
     }
   ],
-  "princesa|princesar": [
+  "princesa|princesa": [
     {
       "pos": "NOUN",
       "translation": "princess"
@@ -25745,7 +25753,7 @@
       "translation": "bridge, denture (artificial replacement of one or more teeth)"
     }
   ],
-  "memoria|memorio": [
+  "memoria|memoria": [
     {
       "pos": "NOUN",
       "translation": "memory (the ability of the brain to record information)"
@@ -29653,7 +29661,7 @@
       "translation": "cutscene"
     }
   ],
-  "tía|tir": [
+  "tía|tía": [
     {
       "pos": "NOUN",
       "translation": "aunt; the sister, sister-in-law or female cousin or cousin-in-law of either parent"
@@ -33549,7 +33557,7 @@
       "translation": "prideful, arrogant, haughty"
     }
   ],
-  "vos|vo": [
+  "vos|vos": [
     {
       "pos": "PRON",
       "translation": "you, familiar form of the second-person singular pronoun"
@@ -34237,6 +34245,12 @@
       "translation": "homework"
     }
   ],
+  "herida|herida": [
+    {
+      "pos": "NOUN",
+      "translation": "wound"
+    }
+  ],
   "herida|herido": [
     {
       "pos": "ADJ",
@@ -34647,11 +34661,7 @@
       "translation": "to indulge in"
     }
   ],
-  "aquella|aquel": [
-    {
-      "pos": "DET",
-      "translation": "that (over there; implying some distance)"
-    },
+  "aquella|aquella": [
     {
       "pos": "PRON",
       "translation": "that one (far from speaker and listener)"
@@ -36675,6 +36685,16 @@
       "translation": "to become ill; to get sick"
     }
   ],
+  "cuesta|cuesta": [
+    {
+      "pos": "NOUN",
+      "translation": "slope (acclivity or declivity)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "cuesta"
+    }
+  ],
   "cuesta|costar": [
     {
       "pos": "VERB",
@@ -36849,6 +36869,12 @@
     {
       "pos": "VERB",
       "translation": "to play"
+    }
+  ],
+  "robo|robo": [
+    {
+      "pos": "NOUN",
+      "translation": "robbery, theft"
     }
   ],
   "robo|robar": [
@@ -37471,6 +37497,28 @@
     {
       "pos": "NOUN",
       "translation": "American, US-American (native or inhabitant of the United States) (usually male)"
+    }
+  ],
+  "paseo|paseo": [
+    {
+      "pos": "NOUN",
+      "translation": "walk, stroll"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "outing, excursion"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "promenade (place where one takes a walk for leisure)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "vacation, holiday"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "walk in the park, stroll in the park (something easy)"
     }
   ],
   "paseo|pasear": [
@@ -38867,7 +38915,7 @@
       "translation": "data"
     }
   ],
-  "torre|torrir": [
+  "torre|torre": [
     {
       "pos": "NOUN",
       "translation": "tower"
@@ -38941,11 +38989,7 @@
       "translation": "tank (closed container for liquids or gases)"
     }
   ],
-  "aquellos|aquel": [
-    {
-      "pos": "DET",
-      "translation": "that (over there; implying some distance)"
-    },
+  "aquellos|aquellos": [
     {
       "pos": "PRON",
       "translation": "that one (far from speaker and listener)"
@@ -39539,19 +39583,7 @@
       "translation": "to examine some subject in detail"
     }
   ],
-  "evidencia|evidenciar": [
-    {
-      "pos": "VERB",
-      "translation": "to demonstrate"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to evidence"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to evince"
-    },
+  "evidencia|evidencia": [
     {
       "pos": "NOUN",
       "translation": "evidence"
@@ -41123,19 +41155,7 @@
       "translation": "universe"
     }
   ],
-  "política|político": [
-    {
-      "pos": "ADJ",
-      "translation": "political"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "in-law"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "politician"
-    },
+  "política|política": [
     {
       "pos": "NOUN",
       "translation": "politics (activities associated with running a government or organisation)"
@@ -41143,6 +41163,10 @@
     {
       "pos": "NOUN",
       "translation": "policy (a formal principle or protocol of conduct)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "politician"
     }
   ],
   "almuerzo|almuerzo": [
@@ -51327,6 +51351,12 @@
       "translation": "warrior"
     }
   ],
+  "esposas|esposas": [
+    {
+      "pos": "NOUN",
+      "translation": "handcuffs"
+    }
+  ],
   "esposas|esposa": [
     {
       "pos": "NOUN",
@@ -51426,6 +51456,16 @@
       "pos": "NOUN",
       "translation": "the act of opening"
     },
+    {
+      "pos": "NOUN",
+      "translation": "small bay, inlet"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "glade, clearing"
+    }
+  ],
+  "abra|abra": [
     {
       "pos": "NOUN",
       "translation": "small bay, inlet"
@@ -52163,7 +52203,7 @@
       "translation": "joule"
     }
   ],
-  "pene|penir": [
+  "pene|pene": [
     {
       "pos": "NOUN",
       "translation": "penis"
@@ -53103,6 +53143,20 @@
       "translation": "to turn out, e.g. well or poorly"
     }
   ],
+  "recompensa|recompensa": [
+    {
+      "pos": "NOUN",
+      "translation": "reward, recompense"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "bounty"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "recompense, indemnification (act of compensation)"
+    }
+  ],
   "recompensa|recompensar": [
     {
       "pos": "VERB",
@@ -53767,7 +53821,7 @@
       "translation": "to hear, to know (implies hearing for the first time)"
     }
   ],
-  "conde|condir": [
+  "conde|conde": [
     {
       "pos": "NOUN",
       "translation": "count, earl (nobility); countess in the feminine sense"
@@ -53875,7 +53929,7 @@
       "translation": "roof (exterior part)"
     }
   ],
-  "chiste|chistir": [
+  "chiste|chiste": [
     {
       "pos": "NOUN",
       "translation": "joke (told joke)"
@@ -53903,7 +53957,7 @@
       "translation": "essence, importance, matter or purpose of something"
     }
   ],
-  "celda|celdo": [
+  "celda|celda": [
     {
       "pos": "NOUN",
       "translation": "prison cell"
@@ -54309,7 +54363,7 @@
       "translation": "to stay, to remain"
     }
   ],
-  "bestia|bestio": [
+  "bestia|bestia": [
     {
       "pos": "NOUN",
       "translation": "beast"
@@ -55135,7 +55189,7 @@
       "translation": "ocean"
     }
   ],
-  "maestra|maestrar": [
+  "maestra|maestra": [
     {
       "pos": "NOUN",
       "translation": "teacher"
@@ -55311,39 +55365,7 @@
       "translation": "to graduate"
     }
   ],
-  "junta|junto": [
-    {
-      "pos": "ADJ",
-      "translation": "together"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "joined"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "next to"
-    },
-    {
-      "pos": "ADV",
-      "translation": "together"
-    },
-    {
-      "pos": "ADV",
-      "translation": "together, (in) total"
-    },
-    {
-      "pos": "ADP",
-      "translation": "next to, together with, alongside (+ a)"
-    },
-    {
-      "pos": "ADP",
-      "translation": "along with, together with, alongside (+ con)"
-    },
-    {
-      "pos": "ADP",
-      "translation": "in conjunction with (+ con)"
-    },
+  "junta|junta": [
     {
       "pos": "NOUN",
       "translation": "board, council, committee"
@@ -55699,11 +55721,7 @@
       "translation": "non-folding rigid hand fan"
     }
   ],
-  "bebida|bebido": [
-    {
-      "pos": "ADJ",
-      "translation": "drunk"
-    },
+  "bebida|bebida": [
     {
       "pos": "NOUN",
       "translation": "drink, beverage"
@@ -55891,11 +55909,7 @@
       "translation": "both"
     }
   ],
-  "trauma|traumo": [
-    {
-      "pos": "VERB",
-      "translation": "to traumatize"
-    },
+  "trauma|trauma": [
     {
       "pos": "NOUN",
       "translation": "trauma"
@@ -56383,6 +56397,24 @@
       "translation": "to step out (e.g. of a room, house or building)"
     }
   ],
+  "cuerda|cuerda": [
+    {
+      "pos": "NOUN",
+      "translation": "rope, cord, string"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "chord"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "string (of a musical stringed instrument)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "clockwork"
+    }
+  ],
   "cuerda|cuerdo": [
     {
       "pos": "ADJ",
@@ -56621,7 +56653,7 @@
       "translation": "choline"
     }
   ],
-  "porquería|porqueer": [
+  "porquería|porquería": [
     {
       "pos": "NOUN",
       "translation": "crap, trash, filth, junk, rubbish"
@@ -58059,7 +58091,7 @@
       "translation": "vivid"
     }
   ],
-  "roca|rocar": [
+  "roca|roca": [
     {
       "pos": "NOUN",
       "translation": "rock"
@@ -58117,7 +58149,7 @@
       "translation": "conductor (transmitter of electricity, heat, light or sound)"
     }
   ],
-  "camarada|camarado": [
+  "camarada|camarada": [
     {
       "pos": "NOUN",
       "translation": "comrade (mate, companion)"
@@ -58133,7 +58165,7 @@
       "translation": "to work in, work on, to workshop (+ en)"
     }
   ],
-  "caramba|carambo": [
+  "caramba|caramba": [
     {
       "pos": "INTJ",
       "translation": "gee, gosh, shucks, blimey, darn (an expression of shock, surprise or anger)"
@@ -58197,7 +58229,7 @@
       "translation": "cafeteria, canteen (staff restaurant)"
     }
   ],
-  "alteza|altezar": [
+  "alteza|alteza": [
     {
       "pos": "NOUN",
       "translation": "highness (the state of being high)"
@@ -58983,7 +59015,7 @@
       "translation": "to be called"
     }
   ],
-  "biblia|bibliar": [
+  "biblia|biblia": [
     {
       "pos": "NOUN",
       "translation": "bible (a comprehensive manual that describes something)"
@@ -59071,6 +59103,24 @@
       "translation": "reactionary political faction or movement"
     }
   ],
+  "falla|falla": [
+    {
+      "pos": "NOUN",
+      "translation": "flaw"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "failure"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "outage, such as a blackout"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "fault"
+    }
+  ],
   "falla|fallar": [
     {
       "pos": "VERB",
@@ -59129,6 +59179,28 @@
     {
       "pos": "ADV",
       "translation": "easily"
+    }
+  ],
+  "caza|caza": [
+    {
+      "pos": "NOUN",
+      "translation": "hunting, hunt (act of finding and killing a wild animal; art of hunting)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "persecution, hunting (act of pursuing in a manner to injure, grieve, or afflict)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "game (wild animals hunted for food; meat of these animals)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "prey (animal hunted by another animal)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "hunting ground (area used for hunting)"
     }
   ],
   "caza|cazar": [
@@ -60537,7 +60609,7 @@
       "translation": "chosenness, selectness"
     }
   ],
-  "cole|co él": [
+  "cole|cole": [
     {
       "pos": "NOUN",
       "translation": "school"
@@ -62565,6 +62637,16 @@
       "translation": "to fit"
     }
   ],
+  "armada|armada": [
+    {
+      "pos": "NOUN",
+      "translation": "navy"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "fleet"
+    }
+  ],
   "armada|armado": [
     {
       "pos": "ADJ",
@@ -63517,6 +63599,16 @@
     {
       "pos": "NOUN",
       "translation": "dormitory"
+    }
+  ],
+  "despacho|despacho": [
+    {
+      "pos": "NOUN",
+      "translation": "dispatch"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "office"
     }
   ],
   "despacho|despachar": [
@@ -64579,6 +64671,12 @@
       "translation": "to work, to function"
     }
   ],
+  "clínica|clínica": [
+    {
+      "pos": "NOUN",
+      "translation": "clinic (small medical facility)"
+    }
+  ],
   "clínica|clínico": [
     {
       "pos": "ADJ",
@@ -65127,6 +65225,16 @@
       "translation": "to table (e.g., a resolution, an amendment)"
     }
   ],
+  "logro|logro": [
+    {
+      "pos": "NOUN",
+      "translation": "attainment, achievement, accomplishment, success"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "achievement"
+    }
+  ],
   "logro|lograr": [
     {
       "pos": "VERB",
@@ -65447,6 +65555,12 @@
       "translation": "to try, to attempt; especially: to strain or put forth effort in so doing"
     }
   ],
+  "falsa|falsa": [
+    {
+      "pos": "VERB",
+      "translation": "to falsify"
+    }
+  ],
   "falsa|falso": [
     {
       "pos": "ADJ",
@@ -65707,19 +65821,7 @@
       "translation": "metal"
     }
   ],
-  "despedida|despedir": [
-    {
-      "pos": "VERB",
-      "translation": "to dismiss"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to fire from a job"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to say goodbye (to someone)"
-    },
+  "despedida|despedida": [
     {
       "pos": "NOUN",
       "translation": "farewell"
@@ -65737,6 +65839,32 @@
     {
       "pos": "ADJ",
       "translation": "laid off, dismissed (employees)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "farewell"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "farewell party"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "valediction, complimentary close"
+    }
+  ],
+  "despedida|despedir": [
+    {
+      "pos": "VERB",
+      "translation": "to dismiss"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to fire from a job"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to say goodbye (to someone)"
     },
     {
       "pos": "NOUN",
@@ -68085,7 +68213,7 @@
       "translation": "companionship"
     }
   ],
-  "charla|char él": [
+  "charla|charla": [
     {
       "pos": "NOUN",
       "translation": "talk, chat"
@@ -69433,6 +69561,16 @@
       "translation": "neighbourhood"
     }
   ],
+  "empleado|empleado": [
+    {
+      "pos": "ADJ",
+      "translation": "employed"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "employee"
+    }
+  ],
   "empleado|emplear": [
     {
       "pos": "VERB",
@@ -70178,6 +70316,16 @@
       "pos": "INTJ",
       "translation": "of course; for sure; sure (indicates enthusiastic agreement)"
     },
+    {
+      "pos": "NOUN",
+      "translation": "the white (of an egg)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "shandy"
+    }
+  ],
+  "clara|clara": [
     {
       "pos": "NOUN",
       "translation": "the white (of an egg)"
@@ -71339,6 +71487,16 @@
       "translation": "an elderly person"
     }
   ],
+  "alfombra|alfombra": [
+    {
+      "pos": "NOUN",
+      "translation": "carpet, rug (covering for a floor)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mat"
+    }
+  ],
   "alfombra|alfombrar": [
     {
       "pos": "VERB",
@@ -72481,6 +72639,20 @@
       "translation": "to upload"
     }
   ],
+  "médica|médica": [
+    {
+      "pos": "NOUN",
+      "translation": "doctor"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "physician"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "medical"
+    }
+  ],
   "médica|médico": [
     {
       "pos": "NOUN",
@@ -72993,11 +73165,7 @@
       "translation": "to help"
     }
   ],
-  "asesina|asesinar": [
-    {
-      "pos": "VERB",
-      "translation": "to murder"
-    },
+  "asesina|asesina": [
     {
       "pos": "NOUN",
       "translation": "murderess"
@@ -73019,6 +73187,16 @@
     {
       "pos": "NOUN",
       "translation": "traitor"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "murderess"
+    }
+  ],
+  "asesina|asesinar": [
+    {
+      "pos": "VERB",
+      "translation": "to murder"
     },
     {
       "pos": "NOUN",
@@ -74431,6 +74609,24 @@
       "translation": "reasonable"
     }
   ],
+  "puesta|puesta": [
+    {
+      "pos": "NOUN",
+      "translation": "clutch (of eggs)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "sunset"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "tie, draw"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "placement"
+    }
+  ],
   "puesta|puesto": [
     {
       "pos": "NOUN",
@@ -75419,6 +75615,16 @@
     {
       "pos": "NOUN",
       "translation": "beat, patrol"
+    }
+  ],
+  "cobra|cobra": [
+    {
+      "pos": "NOUN",
+      "translation": "cobra"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "the act of hacer la cobra"
     }
   ],
   "cobra|cobrar": [
@@ -76729,6 +76935,28 @@
     {
       "pos": "NOUN",
       "translation": "room"
+    }
+  ],
+  "liga|liga": [
+    {
+      "pos": "NOUN",
+      "translation": "league"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "band; suspender (UK), garter (US)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "alloy, mixture"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "elastic band"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "mistletoe"
     }
   ],
   "liga|ligar": [
@@ -78491,7 +78719,7 @@
       "translation": "nonsense, tosh"
     }
   ],
-  "hechizo|hechacer": [
+  "hechizo|hechizo": [
     {
       "pos": "ADJ",
       "translation": "artificial, fake"
@@ -81737,6 +81965,28 @@
       "translation": "task, action"
     }
   ],
+  "figura|figura": [
+    {
+      "pos": "NOUN",
+      "translation": "figure"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "charge"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "part, role"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "actor"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "swaggerer, show-off"
+    }
+  ],
   "figura|figurar": [
     {
       "pos": "VERB",
@@ -82411,6 +82661,28 @@
     {
       "pos": "ADJ",
       "translation": "expired"
+    }
+  ],
+  "vela|vela": [
+    {
+      "pos": "NOUN",
+      "translation": "candle"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "wakefulness, sleeplessness"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "vigil, watch"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "vigil (any of various indigenous festivals)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "sail"
     }
   ],
   "vela|velar": [
@@ -85113,6 +85385,20 @@
       "translation": "how much; how many"
     }
   ],
+  "sobra|sobra": [
+    {
+      "pos": "NOUN",
+      "translation": "surplus, excess, extra"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "leftovers, leavings"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "rubbish, trash"
+    }
+  ],
   "sobra|sobrar": [
     {
       "pos": "VERB",
@@ -85737,6 +86023,28 @@
     {
       "pos": "VERB",
       "translation": "to persuade"
+    }
+  ],
+  "conocida|conocida": [
+    {
+      "pos": "ADJ",
+      "translation": "known"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "well-known, famous, renowned"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "familiar"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "acquaintance, known person"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "friend"
     }
   ],
   "conocida|conocido": [
@@ -87267,7 +87575,7 @@
       "translation": "eyeglasses"
     }
   ],
-  "lentes|lent": [
+  "lentes|lentes": [
     {
       "pos": "NOUN",
       "translation": "eyeglasses"
@@ -89011,6 +89319,12 @@
       "translation": "to entrust"
     }
   ],
+  "cómoda|cómoda": [
+    {
+      "pos": "NOUN",
+      "translation": "chest of drawers"
+    }
+  ],
   "cómoda|cómodo": [
     {
       "pos": "ADJ",
@@ -89837,7 +90151,7 @@
       "translation": "balance, scales"
     }
   ],
-  "judas|juda": [
+  "judas|judas": [
     {
       "pos": "NOUN",
       "translation": "traitor"
@@ -90163,11 +90477,7 @@
       "translation": "shoulder"
     }
   ],
-  "hada|hado": [
-    {
-      "pos": "NOUN",
-      "translation": "fate, destiny"
-    },
+  "hada|hada": [
     {
       "pos": "NOUN",
       "translation": "fairy"
@@ -90845,7 +91155,7 @@
       "translation": "to cool"
     }
   ],
-  "atmósfera|atmósferar": [
+  "atmósfera|atmósfera": [
     {
       "pos": "NOUN",
       "translation": "atmosphere"
@@ -91091,7 +91401,7 @@
       "translation": "task"
     }
   ],
-  "delta|deltar": [
+  "delta|delta": [
     {
       "pos": "NOUN",
       "translation": "Greek letter delta"
@@ -91343,6 +91653,24 @@
       "translation": "tape"
     }
   ],
+  "agallas|agallas": [
+    {
+      "pos": "NOUN",
+      "translation": "gall, nerve"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "spunk, grit, backbone"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "guts, balls, stomach, gumption, stones, spine, courage"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "gills"
+    }
+  ],
   "agallas|agalla": [
     {
       "pos": "NOUN",
@@ -91363,6 +91691,12 @@
     {
       "pos": "NOUN",
       "translation": "guts, balls, stomach, gumption, stones, spine, courage"
+    }
+  ],
+  "vendido|vendido": [
+    {
+      "pos": "NOUN",
+      "translation": "sellout"
     }
   ],
   "vendido|vender": [
@@ -91483,7 +91817,7 @@
       "translation": "authorization"
     }
   ],
-  "desorden|desordir": [
+  "desorden|desorden": [
     {
       "pos": "NOUN",
       "translation": "disorder"
@@ -91779,7 +92113,7 @@
       "translation": "valuable"
     }
   ],
-  "profesora|profesorar": [
+  "profesora|profesora": [
     {
       "pos": "NOUN",
       "translation": "teacher"
@@ -92035,11 +92369,7 @@
       "translation": "criminal organization, mafia, mob"
     }
   ],
-  "campana|campán": [
-    {
-      "pos": "VERB",
-      "translation": "to stand out"
-    },
+  "campana|campana": [
     {
       "pos": "NOUN",
       "translation": "bell"
@@ -92191,6 +92521,28 @@
       "translation": "authorization"
     }
   ],
+  "pega|pega": [
+    {
+      "pos": "NOUN",
+      "translation": "Eurasian magpie (Pica pica)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "work"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "glue"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "gluing"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "obstacle"
+    }
+  ],
   "pega|pegar": [
     {
       "pos": "VERB",
@@ -92319,6 +92671,16 @@
     {
       "pos": "NOUN",
       "translation": "goutte"
+    }
+  ],
+  "fracasado|fracasado": [
+    {
+      "pos": "ADJ",
+      "translation": "failed, unsuccessful"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "loser, failure, flop"
     }
   ],
   "fracasado|fracasar": [
@@ -94125,7 +94487,7 @@
       "translation": "to use"
     }
   ],
-  "niñita|niñito": [
+  "niñita|niñita": [
     {
       "pos": "NOUN",
       "translation": "a boy or man considered effeminate or a coward"
@@ -94843,7 +95205,7 @@
       "translation": "the heck; on earth"
     }
   ],
-  "diana|dián": [
+  "diana|diana": [
     {
       "pos": "NOUN",
       "translation": "bullseye (of an archery target)"
@@ -95035,7 +95397,7 @@
       "translation": "harlot; prostitute"
     }
   ],
-  "perfume|perfumir": [
+  "perfume|perfume": [
     {
       "pos": "NOUN",
       "translation": "perfume"
@@ -95797,6 +96159,12 @@
       "translation": "to fit"
     }
   ],
+  "eléctrica|eléctrica": [
+    {
+      "pos": "NOUN",
+      "translation": "electric company"
+    }
+  ],
   "eléctrica|eléctrico": [
     {
       "pos": "ADJ",
@@ -96115,6 +96483,28 @@
     {
       "pos": "VERB",
       "translation": "to confirm"
+    }
+  ],
+  "quitado|quitado": [
+    {
+      "pos": "VERB",
+      "translation": "to remove, to take away, to take down, to take off, to pull off, to pull out, to clear, to clear away, to strip, to strip away"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to get rid of"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to get off"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to deprive of, to take away from (uses indirect object)"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to take off, to remove, to disrobe, to doff (as clothes or accoutrements)"
     }
   ],
   "quitado|quitar": [
@@ -96971,7 +97361,7 @@
       "translation": "to buy out"
     }
   ],
-  "comisaría|comisacer": [
+  "comisaría|comisaría": [
     {
       "pos": "NOUN",
       "translation": "police station"
@@ -97289,6 +97679,20 @@
       "translation": "upset (unexpected victory)"
     }
   ],
+  "respiro|respiro": [
+    {
+      "pos": "NOUN",
+      "translation": "breath"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "break, respite, breather, relief, reprieve, rest"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "breathing room, breathing space, slack"
+    }
+  ],
   "respiro|respirar": [
     {
       "pos": "VERB",
@@ -97369,6 +97773,20 @@
     {
       "pos": "VERB",
       "translation": "to heed; to listen to"
+    }
+  ],
+  "mordida|mordida": [
+    {
+      "pos": "NOUN",
+      "translation": "bite"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "bribe"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "petty theft"
     }
   ],
   "mordida|mordido": [
@@ -97573,6 +97991,12 @@
       "translation": "to watch"
     }
   ],
+  "tinta|tinta": [
+    {
+      "pos": "NOUN",
+      "translation": "ink"
+    }
+  ],
   "tinta|tinto": [
     {
       "pos": "ADJ",
@@ -97729,7 +98153,7 @@
       "translation": "female undergarment, panties, knickers"
     }
   ],
-  "brigada|brigado": [
+  "brigada|brigada": [
     {
       "pos": "NOUN",
       "translation": "team, squad (organized group)"
@@ -97745,7 +98169,7 @@
       "translation": "to help"
     }
   ],
-  "repugnante|repugnantir": [
+  "repugnante|repugnante": [
     {
       "pos": "ADJ",
       "translation": "repugnant, repulsive, rebarbative, abhorrent, ugly, hideous, obnoxious"
@@ -97765,6 +98189,12 @@
     {
       "pos": "NOUN",
       "translation": "mass (church)"
+    }
+  ],
+  "metrópolis|metrópolis": [
+    {
+      "pos": "NOUN",
+      "translation": "metropolis"
     }
   ],
   "metrópolis|metrópoli": [
@@ -97795,7 +98225,7 @@
       "translation": "to meddle, interfere, to get into"
     }
   ],
-  "mamita|mamito": [
+  "mamita|mamita": [
     {
       "pos": "NOUN",
       "translation": "mum, mom"
@@ -97949,7 +98379,7 @@
       "translation": "to be worthwhile, to have a pay off"
     }
   ],
-  "linterna|linterno": [
+  "linterna|linterna": [
     {
       "pos": "NOUN",
       "translation": "lantern"
@@ -98007,7 +98437,7 @@
       "translation": "to buy out"
     }
   ],
-  "cacería|caceer": [
+  "cacería|cacería": [
     {
       "pos": "NOUN",
       "translation": "hunt, hunting"
@@ -98085,7 +98515,7 @@
       "translation": "minor; child"
     }
   ],
-  "jungla|junglo": [
+  "jungla|jungla": [
     {
       "pos": "NOUN",
       "translation": "jungle"
@@ -98413,7 +98843,7 @@
       "translation": "murdered, slain"
     }
   ],
-  "artillería|artilleer": [
+  "artillería|artillería": [
     {
       "pos": "NOUN",
       "translation": "artillery"
@@ -99227,7 +99657,7 @@
       "translation": "to turn out, e.g. well or poorly"
     }
   ],
-  "micrófono|micrófonir": [
+  "micrófono|micrófono": [
     {
       "pos": "NOUN",
       "translation": "microphone"
@@ -100325,26 +100755,14 @@
       "translation": "to show"
     }
   ],
-  "afueras|afuera": [
+  "afueras|afueras": [
     {
-      "pos": "ADV",
-      "translation": "out, outside"
-    },
-    {
-      "pos": "ADV",
-      "translation": "peripheral"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "get out!"
+      "pos": "NOUN",
+      "translation": "outskirts, suburbs"
     },
     {
       "pos": "VERB",
       "translation": "to grant (a privilege or immunity)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "outskirts, suburbs"
     }
   ],
   "dejaras|dejar": [
@@ -100449,19 +100867,7 @@
       "translation": "bend"
     }
   ],
-  "postre|postrar": [
-    {
-      "pos": "VERB",
-      "translation": "to prostrate, lie prostrate, to lie low"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to prostrate oneself, to kneel, to fall to one's knees (in obedience, to beg etc.)"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to debilitate"
-    },
+  "postre|postre": [
     {
       "pos": "NOUN",
       "translation": "dessert; sweet"
@@ -100853,15 +101259,7 @@
       "translation": "milord"
     }
   ],
-  "orina|orinar": [
-    {
-      "pos": "VERB",
-      "translation": "to urinate, to pee"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to urinate upon"
-    },
+  "orina|orina": [
     {
       "pos": "NOUN",
       "translation": "urine"
@@ -101437,7 +101835,7 @@
       "translation": "to be dying (for, to)"
     }
   ],
-  "psicópata|psicópato": [
+  "psicópata|psicópata": [
     {
       "pos": "NOUN",
       "translation": "psychopath"
@@ -103721,7 +104119,7 @@
       "translation": "thorax"
     }
   ],
-  "patada|patado": [
+  "patada|patada": [
     {
       "pos": "NOUN",
       "translation": "kick"
@@ -104033,7 +104431,7 @@
       "translation": "invention"
     }
   ],
-  "compañia|compañio": [
+  "compañia|compañia": [
     {
       "pos": "NOUN",
       "translation": "company"
@@ -105359,6 +105757,26 @@
       "translation": "to engrave"
     }
   ],
+  "suma|suma": [
+    {
+      "pos": "NOUN",
+      "translation": "sum"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "addition"
+    }
+  ],
+  "durar|durar": [
+    {
+      "pos": "VERB",
+      "translation": "to last"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to take time"
+    }
+  ],
   "suma|sumar": [
     {
       "pos": "VERB",
@@ -105379,16 +105797,6 @@
     {
       "pos": "NOUN",
       "translation": "addition"
-    }
-  ],
-  "durar|durar": [
-    {
-      "pos": "VERB",
-      "translation": "to last"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to take time"
     }
   ],
   "culpables|culpable": [
@@ -105465,7 +105873,7 @@
       "translation": "A prayer that begins with \"Bendito y alabado sea...\""
     }
   ],
-  "caballería|caballeer": [
+  "caballería|caballería": [
     {
       "pos": "NOUN",
       "translation": "cavalry (soldiers mounted on horses)"
@@ -105681,7 +106089,7 @@
       "translation": "separated, apart"
     }
   ],
-  "otoño|otoñir": [
+  "otoño|otoño": [
     {
       "pos": "NOUN",
       "translation": "autumn, fall"
@@ -105799,7 +106207,7 @@
       "translation": "general elections"
     }
   ],
-  "iris|iri": [
+  "iris|iris": [
     {
       "pos": "NOUN",
       "translation": "iris"
@@ -107489,7 +107897,7 @@
       "translation": "angry"
     }
   ],
-  "infantería|infanteer": [
+  "infantería|infantería": [
     {
       "pos": "NOUN",
       "translation": "infantry"
@@ -108561,7 +108969,7 @@
       "translation": "pope (a Russian Orthodox priest)"
     }
   ],
-  "mochila|mochilar": [
+  "mochila|mochila": [
     {
       "pos": "NOUN",
       "translation": "backpack"
@@ -109889,27 +110297,7 @@
       "translation": "fuse"
     }
   ],
-  "seguida|seguir": [
-    {
-      "pos": "VERB",
-      "translation": "to follow"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to continue (on); to keep, to keep on (can be combined with the gerund to indicate that someone or something continues doing something)"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to further do something"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to follow, observe, to obey (a rule, religion)"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to remain, to stay, to still be"
-    },
+  "seguida|seguida": [
     {
       "pos": "ADV",
       "translation": "often"
@@ -109959,6 +110347,36 @@
     {
       "pos": "VERB",
       "translation": "to show, to be noticed, to become obvious"
+    }
+  ],
+  "seguida|seguir": [
+    {
+      "pos": "VERB",
+      "translation": "to follow"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to continue (on); to keep, to keep on (can be combined with the gerund to indicate that someone or something continues doing something)"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to further do something"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to follow, observe, to obey (a rule, religion)"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to remain, to stay, to still be"
+    },
+    {
+      "pos": "ADV",
+      "translation": "often"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "consecutive"
     }
   ],
   "fuí|ir": [
@@ -112827,7 +113245,7 @@
       "translation": "to pull out, to get out (e.g. a pencil, a hand, a key)"
     }
   ],
-  "suite|suitir": [
+  "suite|suite": [
     {
       "pos": "NOUN",
       "translation": "suite (rooms, hotel)"
@@ -113207,7 +113625,7 @@
       "translation": "to mow"
     }
   ],
-  "gilipollas|gilipol él": [
+  "gilipollas|gilipollas": [
     {
       "pos": "ADJ",
       "translation": "silly, fatheaded"
@@ -113365,11 +113783,7 @@
       "translation": "living person"
     }
   ],
-  "bailarina|bailarín": [
-    {
-      "pos": "ADJ",
-      "translation": "dancing (that dances)"
-    },
+  "bailarina|bailarina": [
     {
       "pos": "NOUN",
       "translation": "dancer"
@@ -113401,6 +113815,20 @@
     {
       "pos": "ADJ",
       "translation": "kidnapped"
+    }
+  ],
+  "bailarina|bailarín": [
+    {
+      "pos": "ADJ",
+      "translation": "dancing (that dances)"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "dancer"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "ballet flat, flat, dolly shoe, ballet pump, ballerina, ballerina shoes"
     }
   ],
   "religioso|religioso": [
@@ -113543,15 +113971,7 @@
       "translation": "someone with a fighting spirit"
     }
   ],
-  "rabia|rabio": [
-    {
-      "pos": "VERB",
-      "translation": "to rage, to be angry"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to have rabies"
-    },
+  "rabia|rabia": [
     {
       "pos": "NOUN",
       "translation": "rage, anger"
@@ -113753,7 +114173,7 @@
       "translation": "convict"
     }
   ],
-  "perla|per él": [
+  "perla|perla": [
     {
       "pos": "NOUN",
       "translation": "pearl"
@@ -114131,7 +114551,7 @@
       "translation": "money, dinero"
     }
   ],
-  "sobrina|sobrín": [
+  "sobrina|sobrina": [
     {
       "pos": "NOUN",
       "translation": "niece"
@@ -115733,7 +116153,7 @@
       "translation": "lucky, fortunate"
     }
   ],
-  "enlace|enlacir": [
+  "enlace|enlace": [
     {
       "pos": "NOUN",
       "translation": "link, connection"
@@ -116441,7 +116861,7 @@
       "translation": "to catch, to get"
     }
   ],
-  "protocolo|protoco él": [
+  "protocolo|protocolo": [
     {
       "pos": "NOUN",
       "translation": "protocol"
@@ -117799,7 +118219,7 @@
       "translation": "documentary"
     }
   ],
-  "hacha|hachaber": [
+  "hacha|hacha": [
     {
       "pos": "NOUN",
       "translation": "axe, hatchet (tool for felling trees or chopping wood)"
@@ -117899,11 +118319,7 @@
       "translation": "outlaw, bandit"
     }
   ],
-  "drogado|drogar": [
-    {
-      "pos": "VERB",
-      "translation": "to drug"
-    },
+  "drogado|drogado": [
     {
       "pos": "ADJ",
       "translation": "high (on drugs)"
@@ -117921,6 +118337,20 @@
     {
       "pos": "VERB",
       "translation": "to be grateful for"
+    }
+  ],
+  "drogado|drogar": [
+    {
+      "pos": "VERB",
+      "translation": "to drug"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "high (on drugs)"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "indebted"
     }
   ],
   "abdomen|abdomen": [
@@ -118267,7 +118697,7 @@
       "translation": "temptation"
     }
   ],
-  "tomate|tomatir": [
+  "tomate|tomate": [
     {
       "pos": "NOUN",
       "translation": "tomato (plant)"
@@ -119837,7 +120267,7 @@
       "translation": "a fabric of Irish wool"
     }
   ],
-  "cortina|cortín": [
+  "cortina|cortina": [
     {
       "pos": "NOUN",
       "translation": "curtain"
@@ -120515,11 +120945,7 @@
       "translation": "subdivision of Buenos Aires province"
     }
   ],
-  "envidia|envidiar": [
-    {
-      "pos": "VERB",
-      "translation": "to envy"
-    },
+  "envidia|envidia": [
     {
       "pos": "NOUN",
       "translation": "envy"
@@ -120533,6 +120959,16 @@
     {
       "pos": "ADJ",
       "translation": "Nazi"
+    }
+  ],
+  "envidia|envidiar": [
+    {
+      "pos": "VERB",
+      "translation": "to envy"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "envy"
     }
   ],
   "misterios|misterio": [
@@ -120849,7 +121285,7 @@
       "translation": "designed"
     }
   ],
-  "almohada|almohado": [
+  "almohada|almohada": [
     {
       "pos": "NOUN",
       "translation": "pillow (soft cushion used to support the head)"
@@ -121699,15 +122135,7 @@
       "translation": "crossbreeding"
     }
   ],
-  "pita|pitar": [
-    {
-      "pos": "VERB",
-      "translation": "to whistle, buzz, beep, honk, puff"
-    },
-    {
-      "pos": "VERB",
-      "translation": "to referee, call (to make a decision as a referee or umpire)"
-    },
+  "pita|pita": [
     {
       "pos": "NOUN",
       "translation": "century plant (Agave americana)"
