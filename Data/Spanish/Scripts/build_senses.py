@@ -468,9 +468,12 @@ def main():
         if senses:
             stats["total_raw"] += len(senses)
 
-            # Step 1: Clean translations
+            # Step 1: Clean translations (preserve raw as detail if changed)
             for s in senses:
-                s["translation"] = clean_translation(s["translation"])
+                raw = s["translation"]
+                s["translation"] = clean_translation(raw)
+                if s["translation"] != raw:
+                    s["detail"] = raw
 
             # Step 2: Exact dedup (cleaning may collapse previously-distinct glosses)
             seen = set()

@@ -35,6 +35,19 @@ OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "vocabulary.json"
 
 MAX_EXAMPLES_PER_MEANING = 5
 
+
+def _build_meaning(sense, frequency, examples):
+    """Build a meaning dict from a sense, threading through optional detail."""
+    m = {
+        "pos": sense["pos"],
+        "translation": sense["translation"],
+        "frequency": frequency,
+        "examples": examples,
+    }
+    if sense.get("detail"):
+        m["detail"] = sense["detail"]
+    return m
+
 # ---------------------------------------------------------------------------
 # Keyword overlap matching
 # ---------------------------------------------------------------------------
@@ -143,24 +156,15 @@ def main():
         # Case 2: No examples for this word
         if not examples:
             stats["no_examples"] += 1
-            entry["meanings"] = [{
-                "pos": senses[0]["pos"],
-                "translation": senses[0]["translation"],
-                "frequency": "1.00",
-                "examples": [],
-            }]
+            entry["meanings"] = [_build_meaning(senses[0], "1.00", [])]
             stats["active_senses"][1] += 1
             continue
 
         # Case 3: Single sense
         if len(senses) == 1:
             stats["single_sense"] += 1
-            entry["meanings"] = [{
-                "pos": senses[0]["pos"],
-                "translation": senses[0]["translation"],
-                "frequency": "1.00",
-                "examples": examples[:MAX_EXAMPLES_PER_MEANING],
-            }]
+            entry["meanings"] = [_build_meaning(senses[0], "1.00",
+                                                examples[:MAX_EXAMPLES_PER_MEANING])]
             stats["active_senses"][1] += 1
             continue
 
@@ -188,21 +192,13 @@ def main():
             if not exs:
                 continue
             freq = len(exs) / total_assigned if total_assigned > 0 else 0
-            meanings.append({
-                "pos": sense["pos"],
-                "translation": sense["translation"],
-                "frequency": f"{freq:.2f}",
-                "examples": exs[:MAX_EXAMPLES_PER_MEANING],
-            })
+            meanings.append(_build_meaning(sense, f"{freq:.2f}",
+                                           exs[:MAX_EXAMPLES_PER_MEANING]))
 
         # If no sense got examples via keyword match, assign all to first sense
         if not meanings:
-            meanings = [{
-                "pos": senses[0]["pos"],
-                "translation": senses[0]["translation"],
-                "frequency": "1.00",
-                "examples": examples[:MAX_EXAMPLES_PER_MEANING],
-            }]
+            meanings = [_build_meaning(senses[0], "1.00",
+                                       examples[:MAX_EXAMPLES_PER_MEANING])]
 
         entry["meanings"] = meanings
         stats["active_senses"][len(meanings)] += 1
