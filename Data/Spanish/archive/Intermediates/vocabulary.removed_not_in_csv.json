@@ -1,0 +1,2101 @@
+[
+  {
+    "rank": 918,
+    "word": "tal vez",
+    "lemma": "tal",
+    "duplicate": true
+  },
+  {
+    "rank": 923,
+    "word": "sefión",
+    "lemma": "señor",
+    "duplicate": true
+  },
+  {
+    "rank": 936,
+    "word": "Napoleón",
+    "lemma": "Napoleón",
+    "duplicate": true
+  },
+  {
+    "rank": 951,
+    "word": "provincia",
+    "lemma": "provincia",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "province, region, territory"
+      }
+    ],
+    "translations": [
+      "province",
+      "region"
+    ],
+    "example": {
+      "es": "Vive en una provincia.",
+      "en": "He lives in a province."
+    }
+  },
+  {
+    "rank": 957,
+    "word": "mañoso",
+    "lemma": "mañoso",
+    "meanings": [
+      {
+        "pos": "adj",
+        "definition": "cunning, crafty, tricky"
+      }
+    ],
+    "translations": [
+      "cunning",
+      "crafty"
+    ],
+    "example": {
+      "es": "Es un hombre mañoso.",
+      "en": "He is a cunning man."
+    }
+  },
+  {
+    "rank": 964,
+    "word": "instrumento",
+    "lemma": "instrumento",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "instrument, tool, device"
+      }
+    ],
+    "translations": [
+      "instrument",
+      "tool"
+    ],
+    "example": {
+      "es": "Es un instrumento musical.",
+      "en": "It is a musical instrument."
+    }
+  },
+  {
+    "rank": 967,
+    "word": "provincia",
+    "lemma": "provincia",
+    "duplicate": true
+  },
+  {
+    "rank": 968,
+    "word": "libertinaje",
+    "lemma": "libertinaje",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "licentiousness, debauchery"
+      }
+    ],
+    "translations": [
+      "licentiousness"
+    ],
+    "example": {
+      "es": "Rechaza el libertinaje.",
+      "en": "He rejects licentiousness."
+    }
+  },
+  {
+    "rank": 975,
+    "word": "escritura",
+    "lemma": "escritura",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "writing, script, document, deed"
+      }
+    ],
+    "translations": [
+      "writing",
+      "document"
+    ],
+    "example": {
+      "es": "La escritura es clara.",
+      "en": "The writing is clear."
+    }
+  },
+  {
+    "rank": 981,
+    "word": "vejez",
+    "lemma": "vejez",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "old age, senility"
+      }
+    ],
+    "translations": [
+      "old age"
+    ],
+    "example": {
+      "es": "La vejez es difícil.",
+      "en": "Old age is difficult."
+    }
+  },
+  {
+    "rank": 982,
+    "word": "silbato",
+    "lemma": "silbato",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "whistle, pipe"
+      }
+    ],
+    "translations": [
+      "whistle"
+    ],
+    "example": {
+      "es": "Escucho el silbato.",
+      "en": "I hear the whistle."
+    }
+  },
+  {
+    "rank": 994,
+    "word": "rama",
+    "lemma": "rama",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "branch, bough, limb"
+      }
+    ],
+    "translations": [
+      "branch"
+    ],
+    "example": {
+      "es": "La rama se rompió.",
+      "en": "The branch broke."
+    }
+  },
+  {
+    "rank": 996,
+    "word": "mariposa",
+    "lemma": "mariposa",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "butterfly, moth"
+      }
+    ],
+    "translations": [
+      "butterfly"
+    ],
+    "example": {
+      "es": "La mariposa es hermosa.",
+      "en": "The butterfly is beautiful."
+    }
+  },
+  {
+    "rank": 997,
+    "word": "abeja",
+    "lemma": "abeja",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "bee, honeybee"
+      }
+    ],
+    "translations": [
+      "bee"
+    ],
+    "example": {
+      "es": "La abeja produce miel.",
+      "en": "The bee produces honey."
+    }
+  },
+  {
+    "rank": 1000,
+    "word": "mercurio",
+    "lemma": "mercurio",
+    "meanings": [
+      {
+        "pos": "noun",
+        "definition": "mercury, quicksilver"
+      }
+    ],
+    "translations": [
+      "mercury"
+    ],
+    "example": {
+      "es": "El mercurio es tóxico.",
+      "en": "Mercury is toxic."
+    }
+  },
+  {
+    "rank": 3036,
+    "word": "Jesucristo",
+    "lemma": "Jesucristo",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "Jesus Christ",
+        "frequency": "23",
+        "example_spanish": "Jesucristo es una figura importante en el cristianismo.",
+        "example_english": "Jesus Christ is an important figure in Christianity."
+      }
+    ]
+  },
+  {
+    "rank": 4801,
+    "word": "recogida",
+    "lemma": "recogida",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "collection, pickup",
+        "frequency": "",
+        "example_spanish": "La recogida de basura es a las siete.",
+        "example_english": "The garbage collection is at seven."
+      }
+    ]
+  },
+  {
+    "rank": 4803,
+    "word": "anual",
+    "lemma": "anual",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "annual, yearly",
+        "frequency": "",
+        "example_spanish": "El informe anual está completo.",
+        "example_english": "The annual report is complete."
+      }
+    ]
+  },
+  {
+    "rank": 4805,
+    "word": "disputa",
+    "lemma": "disputa",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "dispute, argument",
+        "frequency": "",
+        "example_spanish": "La disputa terminó en acuerdo.",
+        "example_english": "The dispute ended in agreement."
+      }
+    ]
+  },
+  {
+    "rank": 4806,
+    "word": "reunidos",
+    "lemma": "reunir",
+    "duplicate": true
+  },
+  {
+    "rank": 4809,
+    "word": "financiación",
+    "lemma": "financiación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "financing, funding",
+        "frequency": "",
+        "example_spanish": "Necesitan financiación para el proyecto.",
+        "example_english": "They need funding for the project."
+      }
+    ]
+  },
+  {
+    "rank": 4811,
+    "word": "mínima",
+    "lemma": "mínimo",
+    "duplicate": true
+  },
+  {
+    "rank": 4813,
+    "word": "fijado",
+    "lemma": "fijar",
+    "duplicate": true
+  },
+  {
+    "rank": 4814,
+    "word": "parroquia",
+    "lemma": "parroquia",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "parish",
+        "frequency": "",
+        "example_spanish": "La parroquia organiza eventos comunitarios.",
+        "example_english": "The parish organizes community events."
+      }
+    ]
+  },
+  {
+    "rank": 4816,
+    "word": "conservación",
+    "lemma": "conservación",
+    "duplicate": true
+  },
+  {
+    "rank": 4817,
+    "word": "oposición",
+    "lemma": "oposición",
+    "duplicate": true
+  },
+  {
+    "rank": 4818,
+    "word": "recorrido",
+    "lemma": "recorrido",
+    "duplicate": true
+  },
+  {
+    "rank": 4821,
+    "word": "convenio",
+    "lemma": "convenio",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "agreement, convention",
+        "frequency": "",
+        "example_spanish": "Firmaron un convenio de colaboración.",
+        "example_english": "They signed a collaboration agreement."
+      }
+    ]
+  },
+  {
+    "rank": 4822,
+    "word": "interpretación",
+    "lemma": "interpretación",
+    "duplicate": true
+  },
+  {
+    "rank": 4823,
+    "word": "pleno",
+    "lemma": "pleno",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "full, complete",
+        "frequency": "",
+        "example_spanish": "Tiene pleno derecho a decidir.",
+        "example_english": "He has full right to decide."
+      }
+    ]
+  },
+  {
+    "rank": 4824,
+    "word": "manifestó",
+    "lemma": "manifestar",
+    "duplicate": true
+  },
+  {
+    "rank": 4825,
+    "word": "pilar",
+    "lemma": "pilar",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "pillar, column",
+        "frequency": "",
+        "example_spanish": "El pilar sostiene el edificio.",
+        "example_english": "The pillar supports the building."
+      }
+    ]
+  },
+  {
+    "rank": 4828,
+    "word": "limitada",
+    "lemma": "limitar",
+    "duplicate": true
+  },
+  {
+    "rank": 4829,
+    "word": "obligaciones",
+    "lemma": "obligación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "obligations, duties",
+        "frequency": "",
+        "example_spanish": "Tiene muchas obligaciones en el trabajo.",
+        "example_english": "He has many obligations at work."
+      }
+    ]
+  },
+  {
+    "rank": 4835,
+    "word": "fundado",
+    "lemma": "fundar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "founded, established",
+        "frequency": "",
+        "example_spanish": "La empresa fue fundada en mil novecientos.",
+        "example_english": "The company was founded in nineteen hundred."
+      }
+    ]
+  },
+  {
+    "rank": 4837,
+    "word": "aprobó",
+    "lemma": "aprobar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "approved, passed",
+        "frequency": "",
+        "example_spanish": "El gobierno aprobó la nueva ley.",
+        "example_english": "The government approved the new law."
+      }
+    ]
+  },
+  {
+    "rank": 4838,
+    "word": "afirmó",
+    "lemma": "afirmar",
+    "duplicate": true
+  },
+  {
+    "rank": 4840,
+    "word": "declaró",
+    "lemma": "declarar",
+    "duplicate": true
+  },
+  {
+    "rank": 4841,
+    "word": "índice",
+    "lemma": "índice",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "index, rate",
+        "frequency": "",
+        "example_spanish": "El índice de precios subió.",
+        "example_english": "The price index went up."
+      }
+    ]
+  },
+  {
+    "rank": 4842,
+    "word": "relacionadas",
+    "lemma": "relacionar",
+    "duplicate": true
+  },
+  {
+    "rank": 4843,
+    "word": "competición",
+    "lemma": "competición",
+    "duplicate": true
+  },
+  {
+    "rank": 4844,
+    "word": "manifiesto",
+    "lemma": "manifiesto",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "manifesto, statement",
+        "frequency": "",
+        "example_spanish": "El partido publicó su manifiesto.",
+        "example_english": "The party published its manifesto."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "manifest, evident",
+        "frequency": "",
+        "example_spanish": "Su intención era manifiesta.",
+        "example_english": "His intention was manifest."
+      }
+    ]
+  },
+  {
+    "rank": 4846,
+    "word": "destacar",
+    "lemma": "destacar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to highlight, to stand out",
+        "frequency": "",
+        "example_spanish": "Quiero destacar este punto importante.",
+        "example_english": "I want to highlight this important point."
+      }
+    ]
+  },
+  {
+    "rank": 4847,
+    "word": "funcionamiento",
+    "lemma": "funcionamiento",
+    "duplicate": true
+  },
+  {
+    "rank": 4848,
+    "word": "decoración",
+    "lemma": "decoración",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "decoration",
+        "frequency": "",
+        "example_spanish": "Me gusta la decoración de tu casa.",
+        "example_english": "I like your house decoration."
+      }
+    ]
+  },
+  {
+    "rank": 4851,
+    "word": "contempla",
+    "lemma": "contemplar",
+    "duplicate": true
+  },
+  {
+    "rank": 4853,
+    "word": "protagonista",
+    "lemma": "protagonista",
+    "duplicate": true
+  },
+  {
+    "rank": 4857,
+    "word": "edición",
+    "lemma": "edición",
+    "duplicate": true
+  },
+  {
+    "rank": 4858,
+    "word": "destinado",
+    "lemma": "destinar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "destined, intended",
+        "frequency": "",
+        "example_spanish": "El dinero está destinado a educación.",
+        "example_english": "The money is intended for education."
+      }
+    ]
+  },
+  {
+    "rank": 4859,
+    "word": "obispos",
+    "lemma": "obispo",
+    "duplicate": true
+  },
+  {
+    "rank": 4868,
+    "word": "propone",
+    "lemma": "proponer",
+    "duplicate": true
+  },
+  {
+    "rank": 4870,
+    "word": "fuegos",
+    "lemma": "fuego",
+    "duplicate": true
+  },
+  {
+    "rank": 4871,
+    "word": "polémica",
+    "lemma": "polémica",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "controversy, polemic",
+        "frequency": "",
+        "example_spanish": "El tema generó mucha polémica.",
+        "example_english": "The topic generated much controversy."
+      }
+    ]
+  },
+  {
+    "rank": 4873,
+    "word": "exteriores",
+    "lemma": "exterior",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "exterior, outer",
+        "frequency": "",
+        "example_spanish": "Las paredes exteriores necesitan pintura.",
+        "example_english": "The exterior walls need paint."
+      }
+    ]
+  },
+  {
+    "rank": 4876,
+    "word": "torno",
+    "lemma": "torno",
+    "duplicate": true
+  },
+  {
+    "rank": 4888,
+    "word": "convocatoria",
+    "lemma": "convocatoria",
+    "duplicate": true
+  },
+  {
+    "rank": 4890,
+    "word": "desempeño",
+    "lemma": "desempeño",
+    "duplicate": true
+  },
+  {
+    "rank": 4897,
+    "word": "fuegos",
+    "lemma": "fuego",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "fires",
+        "frequency": "",
+        "example_spanish": "Los fuegos artificiales iluminaron el cielo.",
+        "example_english": "The fireworks lit up the sky."
+      }
+    ]
+  },
+  {
+    "rank": 4899,
+    "word": "apoyar",
+    "lemma": "apoyar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to support, to back",
+        "frequency": "",
+        "example_spanish": "Voy a apoyar tu decisión.",
+        "example_english": "I will support your decision."
+      }
+    ]
+  },
+  {
+    "rank": 4901,
+    "word": "aprobación",
+    "lemma": "aprobación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "approval",
+        "frequency": "",
+        "example_spanish": "El proyecto necesita tu aprobación.",
+        "example_english": "The project needs your approval."
+      }
+    ]
+  },
+  {
+    "rank": 4905,
+    "word": "perjuicio",
+    "lemma": "perjuicio",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "damage, harm, prejudice",
+        "frequency": "",
+        "example_spanish": "El accidente causó un gran perjuicio.",
+        "example_english": "The accident caused great damage."
+      }
+    ]
+  },
+  {
+    "rank": 4908,
+    "word": "realización",
+    "lemma": "realización",
+    "duplicate": true
+  },
+  {
+    "rank": 4909,
+    "word": "interpretado",
+    "lemma": "interpretar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "interpreted, performed",
+        "frequency": "",
+        "example_spanish": "El actor interpretó su papel perfectamente.",
+        "example_english": "The actor performed his role perfectly."
+      }
+    ]
+  },
+  {
+    "rank": 4911,
+    "word": "elaboración",
+    "lemma": "elaboración",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "elaboration, preparation",
+        "frequency": "",
+        "example_spanish": "La elaboración del vino lleva tiempo.",
+        "example_english": "Wine preparation takes time."
+      }
+    ]
+  },
+  {
+    "rank": 4917,
+    "word": "ingresos",
+    "lemma": "ingreso",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "income, revenue",
+        "frequency": "",
+        "example_spanish": "Los ingresos de la empresa aumentaron.",
+        "example_english": "The company's income increased."
+      }
+    ]
+  },
+  {
+    "rank": 4918,
+    "word": "representantes",
+    "lemma": "representante",
+    "duplicate": true
+  },
+  {
+    "rank": 4919,
+    "word": "señala",
+    "lemma": "señalar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "points out, indicates",
+        "frequency": "",
+        "example_spanish": "El profesor señala los errores comunes.",
+        "example_english": "The teacher points out common mistakes."
+      }
+    ]
+  },
+  {
+    "rank": 4921,
+    "word": "limitado",
+    "lemma": "limitar",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "limited",
+        "frequency": "",
+        "example_spanish": "Tenemos un tiempo limitado para terminar.",
+        "example_english": "We have limited time to finish."
+      }
+    ]
+  },
+  {
+    "rank": 4924,
+    "word": "dispone",
+    "lemma": "disponer",
+    "duplicate": true
+  },
+  {
+    "rank": 4927,
+    "word": "procedente",
+    "lemma": "procedente",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "proceeding from, appropriate",
+        "frequency": "",
+        "example_spanish": "El vuelo procedente de Madrid llegó tarde.",
+        "example_english": "The flight coming from Madrid arrived late."
+      }
+    ]
+  },
+  {
+    "rank": 4928,
+    "word": "iniciativa",
+    "lemma": "iniciativa",
+    "duplicate": true
+  },
+  {
+    "rank": 4932,
+    "word": "vivienda",
+    "lemma": "vivienda",
+    "duplicate": true
+  },
+  {
+    "rank": 4933,
+    "word": "oposiciones",
+    "lemma": "oposición",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "competitive examinations",
+        "frequency": "",
+        "example_spanish": "Está estudiando para las oposiciones.",
+        "example_english": "He is studying for the competitive exams."
+      }
+    ]
+  },
+  {
+    "rank": 4935,
+    "word": "candidatos",
+    "lemma": "candidato",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "candidates",
+        "frequency": "",
+        "example_spanish": "Hay tres candidatos para el puesto.",
+        "example_english": "There are three candidates for the position."
+      }
+    ]
+  },
+  {
+    "rank": 4943,
+    "word": "perjuicios",
+    "lemma": "perjuicio",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "damages, harm",
+        "frequency": "",
+        "example_spanish": "Los perjuicios fueron considerables.",
+        "example_english": "The damages were considerable."
+      }
+    ]
+  },
+  {
+    "rank": 4945,
+    "word": "garantizar",
+    "lemma": "garantizar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to guarantee",
+        "frequency": "",
+        "example_spanish": "Debemos garantizar la calidad del producto.",
+        "example_english": "We must guarantee the product quality."
+      }
+    ]
+  },
+  {
+    "rank": 4949,
+    "word": "recomendaciones",
+    "lemma": "recomendación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "recommendations",
+        "frequency": "",
+        "example_spanish": "Siguió las recomendaciones del médico.",
+        "example_english": "He followed the doctor's recommendations."
+      }
+    ]
+  },
+  {
+    "rank": 4954,
+    "word": "planteamiento",
+    "lemma": "planteamiento",
+    "duplicate": true
+  },
+  {
+    "rank": 4958,
+    "word": "huelga",
+    "lemma": "huelga",
+    "duplicate": true
+  },
+  {
+    "rank": 4967,
+    "word": "regulación",
+    "lemma": "regulación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "regulation",
+        "frequency": "",
+        "example_spanish": "La nueva regulación es muy estricta.",
+        "example_english": "The new regulation is very strict."
+      }
+    ]
+  },
+  {
+    "rank": 4970,
+    "word": "relacionados",
+    "lemma": "relacionar",
+    "duplicate": true
+  },
+  {
+    "rank": 4979,
+    "word": "enseñanza",
+    "lemma": "enseñanza",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "teaching, education",
+        "frequency": "",
+        "example_spanish": "La enseñanza es su vocación.",
+        "example_english": "Teaching is his vocation."
+      }
+    ]
+  },
+  {
+    "rank": 4984,
+    "word": "cumplimiento",
+    "lemma": "cumplimiento",
+    "duplicate": true
+  },
+  {
+    "rank": 4986,
+    "word": "dirigido",
+    "lemma": "dirigir",
+    "duplicate": true
+  },
+  {
+    "rank": 4988,
+    "word": "afirma",
+    "lemma": "afirmar",
+    "duplicate": true
+  },
+  {
+    "rank": 4990,
+    "word": "consideración",
+    "lemma": "consideración",
+    "duplicate": true
+  },
+  {
+    "rank": 4991,
+    "word": "incorporación",
+    "lemma": "incorporación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "incorporation, joining",
+        "frequency": "",
+        "example_spanish": "Su incorporación al equipo fue importante.",
+        "example_english": "His joining the team was important."
+      }
+    ]
+  },
+  {
+    "rank": 4993,
+    "word": "sustituir",
+    "lemma": "sustituir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to substitute, to replace",
+        "frequency": "",
+        "example_spanish": "Van a sustituir al director.",
+        "example_english": "They are going to replace the director."
+      }
+    ]
+  },
+  {
+    "rank": 4999,
+    "word": "separación",
+    "lemma": "separación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "separation",
+        "frequency": "",
+        "example_spanish": "La separación fue difícil para todos.",
+        "example_english": "The separation was difficult for everyone."
+      }
+    ]
+  },
+  {
+    "rank": 5002,
+    "word": "afectados",
+    "lemma": "afectar",
+    "duplicate": true
+  },
+  {
+    "rank": 5005,
+    "word": "establecer",
+    "lemma": "establecer",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to establish, to set",
+        "frequency": "",
+        "example_spanish": "Vamos a establecer nuevas reglas.",
+        "example_english": "We are going to establish new rules."
+      }
+    ]
+  },
+  {
+    "rank": 5006,
+    "word": "adopción",
+    "lemma": "adopción",
+    "duplicate": true
+  },
+  {
+    "rank": 5009,
+    "word": "movilización",
+    "lemma": "movilización",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "mobilization",
+        "frequency": "",
+        "example_spanish": "La movilización fue pacífica.",
+        "example_english": "The mobilization was peaceful."
+      }
+    ]
+  },
+  {
+    "rank": 5011,
+    "word": "señaló",
+    "lemma": "señalar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "pointed out, indicated",
+        "frequency": "",
+        "example_spanish": "El profesor señaló el error.",
+        "example_english": "The teacher pointed out the error."
+      }
+    ]
+  },
+  {
+    "rank": 5014,
+    "word": "reforma",
+    "lemma": "reforma",
+    "duplicate": true
+  },
+  {
+    "rank": 5016,
+    "word": "exigen",
+    "lemma": "exigir",
+    "duplicate": true
+  },
+  {
+    "rank": 5019,
+    "word": "documental",
+    "lemma": "documental",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "documentary",
+        "frequency": "",
+        "example_spanish": "Vi un documental sobre naturaleza.",
+        "example_english": "I watched a documentary about nature."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "documentary",
+        "frequency": "",
+        "example_spanish": "Es un archivo documental importante.",
+        "example_english": "It is an important documentary file."
+      }
+    ]
+  },
+  {
+    "rank": 5020,
+    "word": "prevención",
+    "lemma": "prevención",
+    "duplicate": true
+  },
+  {
+    "rank": 5021,
+    "word": "manifestación",
+    "lemma": "manifestación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "demonstration, manifestation",
+        "frequency": "",
+        "example_spanish": "La manifestación fue multitudinaria.",
+        "example_english": "The demonstration was massive."
+      }
+    ]
+  },
+  {
+    "rank": 5023,
+    "word": "representación",
+    "lemma": "representación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "representation",
+        "frequency": "",
+        "example_spanish": "Tienen representación en el parlamento.",
+        "example_english": "They have representation in parliament."
+      }
+    ]
+  },
+  {
+    "rank": 5025,
+    "word": "ocupar",
+    "lemma": "ocupar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to occupy, to take up",
+        "frequency": "",
+        "example_spanish": "Voy a ocupar este asiento.",
+        "example_english": "I am going to take this seat."
+      }
+    ]
+  },
+  {
+    "rank": 5029,
+    "word": "iniciado",
+    "lemma": "iniciar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "initiated, started",
+        "frequency": "",
+        "example_spanish": "Han iniciado las negociaciones.",
+        "example_english": "They have started the negotiations."
+      }
+    ]
+  },
+  {
+    "rank": 5031,
+    "word": "defensor",
+    "lemma": "defensor",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "defender, advocate",
+        "frequency": "",
+        "example_spanish": "Es un defensor de los derechos humanos.",
+        "example_english": "He is a defender of human rights."
+      }
+    ]
+  },
+  {
+    "rank": 5033,
+    "word": "funcionarios",
+    "lemma": "funcionario",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "officials, civil servants",
+        "frequency": "",
+        "example_spanish": "Los funcionarios trabajan en el gobierno.",
+        "example_english": "The officials work in the government."
+      }
+    ]
+  },
+  {
+    "rank": 5036,
+    "word": "cumplió",
+    "lemma": "cumplir",
+    "duplicate": true
+  },
+  {
+    "rank": 5037,
+    "word": "facilitar",
+    "lemma": "facilitar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to facilitate, to make easier",
+        "frequency": "",
+        "example_spanish": "Esto puede facilitar el proceso.",
+        "example_english": "This can facilitate the process."
+      }
+    ]
+  },
+  {
+    "rank": 5040,
+    "word": "convocado",
+    "lemma": "convocar",
+    "duplicate": true
+  },
+  {
+    "rank": 5047,
+    "word": "aprobado",
+    "lemma": "aprobar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "approved, passed",
+        "frequency": "",
+        "example_spanish": "El proyecto fue aprobado ayer.",
+        "example_english": "The project was approved yesterday."
+      }
+    ]
+  },
+  {
+    "rank": 5055,
+    "word": "actualmente",
+    "lemma": "actualmente",
+    "duplicate": true
+  },
+  {
+    "rank": 5057,
+    "word": "propietario",
+    "lemma": "propietario",
+    "duplicate": true
+  },
+  {
+    "rank": 5058,
+    "word": "conflictos",
+    "lemma": "conflicto",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "conflicts",
+        "frequency": "",
+        "example_spanish": "Los conflictos deben resolverse pacíficamente.",
+        "example_english": "Conflicts must be resolved peacefully."
+      }
+    ]
+  },
+  {
+    "rank": 5059,
+    "word": "publicado",
+    "lemma": "publicar",
+    "duplicate": true
+  },
+  {
+    "rank": 5065,
+    "word": "reducir",
+    "lemma": "reducir",
+    "duplicate": true
+  },
+  {
+    "rank": 5066,
+    "word": "fija",
+    "lemma": "fijar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "fixes, sets",
+        "frequency": "",
+        "example_spanish": "La empresa fija los precios anualmente.",
+        "example_english": "The company sets prices annually."
+      },
+      {
+        "pos": "ADJ",
+        "translation": "fixed",
+        "frequency": "",
+        "example_spanish": "Tengo un salario fijo.",
+        "example_english": "I have a fixed salary."
+      }
+    ]
+  },
+  {
+    "rank": 5067,
+    "word": "asegura",
+    "lemma": "asegurar",
+    "duplicate": true
+  },
+  {
+    "rank": 5073,
+    "word": "sanciones",
+    "lemma": "sanción",
+    "duplicate": true
+  },
+  {
+    "rank": 5074,
+    "word": "solicitado",
+    "lemma": "solicitar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "requested, applied for",
+        "frequency": "",
+        "example_spanish": "Ha solicitado una beca.",
+        "example_english": "He has applied for a scholarship."
+      }
+    ]
+  },
+  {
+    "rank": 5075,
+    "word": "reunirse",
+    "lemma": "reunir",
+    "duplicate": true
+  },
+  {
+    "rank": 5079,
+    "word": "promover",
+    "lemma": "promover",
+    "duplicate": true
+  },
+  {
+    "rank": 5084,
+    "word": "continuación",
+    "lemma": "continuación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "continuation",
+        "frequency": "",
+        "example_spanish": "A continuación veremos los resultados.",
+        "example_english": "Next we will see the results."
+      }
+    ]
+  },
+  {
+    "rank": 5087,
+    "word": "organizaciones",
+    "lemma": "organización",
+    "duplicate": true
+  },
+  {
+    "rank": 5088,
+    "word": "necesaria",
+    "lemma": "necesario",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "necessary",
+        "frequency": "",
+        "example_spanish": "Es una medida necesaria.",
+        "example_english": "It is a necessary measure."
+      }
+    ]
+  },
+  {
+    "rank": 5091,
+    "word": "aplicar",
+    "lemma": "aplicar",
+    "duplicate": true
+  },
+  {
+    "rank": 5092,
+    "word": "desaparición",
+    "lemma": "desaparición",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "disappearance",
+        "frequency": "",
+        "example_spanish": "La desaparición fue misteriosa.",
+        "example_english": "The disappearance was mysterious."
+      }
+    ]
+  },
+  {
+    "rank": 5093,
+    "word": "indicó",
+    "lemma": "indicar",
+    "duplicate": true
+  },
+  {
+    "rank": 5095,
+    "word": "aparición",
+    "lemma": "aparición",
+    "duplicate": true
+  },
+  {
+    "rank": 5096,
+    "word": "propuso",
+    "lemma": "proponer",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "proposed, suggested",
+        "frequency": "",
+        "example_spanish": "Él propuso una solución.",
+        "example_english": "He proposed a solution."
+      }
+    ]
+  },
+  {
+    "rank": 5098,
+    "word": "expresar",
+    "lemma": "expresar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to express",
+        "frequency": "",
+        "example_spanish": "Quiero expresar mi opinión.",
+        "example_english": "I want to express my opinion."
+      }
+    ]
+  },
+  {
+    "rank": 5101,
+    "word": "proporcionó",
+    "lemma": "proporcionar",
+    "duplicate": true
+  },
+  {
+    "rank": 5103,
+    "word": "entidad",
+    "lemma": "entidad",
+    "duplicate": true
+  },
+  {
+    "rank": 5104,
+    "word": "encuesta",
+    "lemma": "encuesta",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "survey, poll",
+        "frequency": "",
+        "example_spanish": "Completé una encuesta en línea.",
+        "example_english": "I completed an online survey."
+      }
+    ]
+  },
+  {
+    "rank": 5106,
+    "word": "ubicado",
+    "lemma": "ubicar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "located",
+        "frequency": "",
+        "example_spanish": "El hotel está ubicado en el centro.",
+        "example_english": "The hotel is located downtown."
+      }
+    ]
+  },
+  {
+    "rank": 5109,
+    "word": "ofrecen",
+    "lemma": "ofrecer",
+    "duplicate": true
+  },
+  {
+    "rank": 5111,
+    "word": "denuncias",
+    "lemma": "denuncia",
+    "duplicate": true
+  },
+  {
+    "rank": 5114,
+    "word": "triunfo",
+    "lemma": "triunfo",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "triumph, victory",
+        "frequency": "",
+        "example_spanish": "El triunfo fue merecido.",
+        "example_english": "The triumph was deserved."
+      }
+    ]
+  },
+  {
+    "rank": 5116,
+    "word": "jornada",
+    "lemma": "jornada",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "day, working day",
+        "frequency": "",
+        "example_spanish": "Fue una jornada muy productiva.",
+        "example_english": "It was a very productive day."
+      }
+    ]
+  },
+  {
+    "rank": 5119,
+    "word": "destacado",
+    "lemma": "destacar",
+    "duplicate": true
+  },
+  {
+    "rank": 5124,
+    "word": "pretende",
+    "lemma": "pretender",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "intends, claims",
+        "frequency": "",
+        "example_spanish": "Pretende cambiar las reglas.",
+        "example_english": "He intends to change the rules."
+      }
+    ]
+  },
+  {
+    "rank": 5126,
+    "word": "traslado",
+    "lemma": "traslado",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "transfer, move",
+        "frequency": "",
+        "example_spanish": "El traslado fue rápido.",
+        "example_english": "The transfer was quick."
+      }
+    ]
+  },
+  {
+    "rank": 5127,
+    "word": "emprender",
+    "lemma": "emprender",
+    "duplicate": true
+  },
+  {
+    "rank": 5130,
+    "word": "rechazó",
+    "lemma": "rechazar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "rejected, refused",
+        "frequency": "",
+        "example_spanish": "El tribunal rechazó la apelación.",
+        "example_english": "The court rejected the appeal."
+      }
+    ]
+  },
+  {
+    "rank": 5133,
+    "word": "ejecutivo",
+    "lemma": "ejecutivo",
+    "duplicate": true
+  },
+  {
+    "rank": 5135,
+    "word": "dificultad",
+    "lemma": "dificultad",
+    "duplicate": true
+  },
+  {
+    "rank": 5136,
+    "word": "condenar",
+    "lemma": "condenar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to condemn, to sentence",
+        "frequency": "",
+        "example_spanish": "El juez va a condenar al acusado.",
+        "example_english": "The judge is going to sentence the accused."
+      }
+    ]
+  },
+  {
+    "rank": 5139,
+    "word": "proporción",
+    "lemma": "proporción",
+    "duplicate": true
+  },
+  {
+    "rank": 5140,
+    "word": "aceptó",
+    "lemma": "aceptar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "accepted",
+        "frequency": "",
+        "example_spanish": "Ella aceptó la propuesta.",
+        "example_english": "She accepted the proposal."
+      }
+    ]
+  },
+  {
+    "rank": 5142,
+    "word": "intervención",
+    "lemma": "intervención",
+    "duplicate": true
+  },
+  {
+    "rank": 5148,
+    "word": "denuncia",
+    "lemma": "denuncia",
+    "duplicate": true
+  },
+  {
+    "rank": 5154,
+    "word": "reconocido",
+    "lemma": "reconocer",
+    "duplicate": true
+  },
+  {
+    "rank": 5156,
+    "word": "previsto",
+    "lemma": "prever",
+    "duplicate": true
+  },
+  {
+    "rank": 5159,
+    "word": "debían",
+    "lemma": "deber",
+    "duplicate": true
+  },
+  {
+    "rank": 5162,
+    "word": "aspiraciones",
+    "lemma": "aspiración",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "aspirations",
+        "frequency": "",
+        "example_spanish": "Tiene grandes aspiraciones profesionales.",
+        "example_english": "He has great professional aspirations."
+      }
+    ]
+  },
+  {
+    "rank": 5166,
+    "word": "estimaciones",
+    "lemma": "estimación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "estimates",
+        "frequency": "",
+        "example_spanish": "Las estimaciones son bastante precisas.",
+        "example_english": "The estimates are quite accurate."
+      }
+    ]
+  },
+  {
+    "rank": 5169,
+    "word": "candidatura",
+    "lemma": "candidatura",
+    "duplicate": true
+  },
+  {
+    "rank": 5170,
+    "word": "contener",
+    "lemma": "contener",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to contain",
+        "frequency": "",
+        "example_spanish": "La caja puede contener muchos libros.",
+        "example_english": "The box can contain many books."
+      }
+    ]
+  },
+  {
+    "rank": 5173,
+    "word": "dicha",
+    "lemma": "dicho",
+    "duplicate": true
+  },
+  {
+    "rank": 5174,
+    "word": "intervenir",
+    "lemma": "intervenir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to intervene",
+        "frequency": "",
+        "example_spanish": "Tuvo que intervenir en la discusión.",
+        "example_english": "He had to intervene in the discussion."
+      }
+    ]
+  },
+  {
+    "rank": 5175,
+    "word": "referencia",
+    "lemma": "referencia",
+    "duplicate": true
+  },
+  {
+    "rank": 5176,
+    "word": "asegurarse",
+    "lemma": "asegurar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to make sure, to ensure",
+        "frequency": "",
+        "example_spanish": "Debes asegurarse de cerrar la puerta.",
+        "example_english": "You must make sure to close the door."
+      }
+    ]
+  },
+  {
+    "rank": 5177,
+    "word": "reclamo",
+    "lemma": "reclamo",
+    "duplicate": true
+  },
+  {
+    "rank": 5178,
+    "word": "reiteró",
+    "lemma": "reiterar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "reiterated, repeated",
+        "frequency": "",
+        "example_spanish": "El ministro reiteró su compromiso.",
+        "example_english": "The minister reiterated his commitment."
+      }
+    ]
+  },
+  {
+    "rank": 5184,
+    "word": "manifestar",
+    "lemma": "manifestar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to manifest, to express",
+        "frequency": "",
+        "example_spanish": "Quiero manifestar mi desacuerdo.",
+        "example_english": "I want to express my disagreement."
+      }
+    ]
+  },
+  {
+    "rank": 5185,
+    "word": "concluir",
+    "lemma": "concluir",
+    "duplicate": true
+  },
+  {
+    "rank": 5186,
+    "word": "sostiene",
+    "lemma": "sostener",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "sustains, holds, maintains",
+        "frequency": "",
+        "example_spanish": "Él sostiene una opinión diferente.",
+        "example_english": "He holds a different opinion."
+      }
+    ]
+  },
+  {
+    "rank": 5187,
+    "word": "elaborar",
+    "lemma": "elaborar",
+    "duplicate": true
+  },
+  {
+    "rank": 5188,
+    "word": "posee",
+    "lemma": "poseer",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "possesses, owns",
+        "frequency": "",
+        "example_spanish": "La empresa posee varias propiedades.",
+        "example_english": "The company owns several properties."
+      }
+    ]
+  },
+  {
+    "rank": 5189,
+    "word": "continuó",
+    "lemma": "continuar",
+    "duplicate": true
+  },
+  {
+    "rank": 5191,
+    "word": "manifestaciones",
+    "lemma": "manifestación",
+    "duplicate": true
+  },
+  {
+    "rank": 5192,
+    "word": "anunció",
+    "lemma": "anunciar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "announced",
+        "frequency": "",
+        "example_spanish": "La compañía anunció nuevos planes.",
+        "example_english": "The company announced new plans."
+      }
+    ]
+  },
+  {
+    "rank": 5199,
+    "word": "plantear",
+    "lemma": "plantear",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to pose, to raise",
+        "frequency": "",
+        "example_spanish": "Quiero plantear una pregunta.",
+        "example_english": "I want to pose a question."
+      }
+    ]
+  },
+  {
+    "rank": 5203,
+    "word": "defendió",
+    "lemma": "defender",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "defended",
+        "frequency": "",
+        "example_spanish": "Defendió su posición con argumentos.",
+        "example_english": "He defended his position with arguments."
+      }
+    ]
+  },
+  {
+    "rank": 5204,
+    "word": "mantenimiento",
+    "lemma": "mantenimiento",
+    "duplicate": true
+  },
+  {
+    "rank": 5205,
+    "word": "asamblea",
+    "lemma": "asamblea",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "assembly",
+        "frequency": "",
+        "example_spanish": "La asamblea votó a favor.",
+        "example_english": "The assembly voted in favor."
+      }
+    ]
+  },
+  {
+    "rank": 5209,
+    "word": "sustituido",
+    "lemma": "sustituir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "replaced, substituted",
+        "frequency": "",
+        "example_spanish": "Fue sustituido por otro jugador.",
+        "example_english": "He was replaced by another player."
+      }
+    ]
+  },
+  {
+    "rank": 5210,
+    "word": "resolvió",
+    "lemma": "resolver",
+    "duplicate": true
+  },
+  {
+    "rank": 5213,
+    "word": "acusaciones",
+    "lemma": "acusación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "accusations",
+        "frequency": "",
+        "example_spanish": "Las acusaciones son muy serias.",
+        "example_english": "The accusations are very serious."
+      }
+    ]
+  },
+  {
+    "rank": 5216,
+    "word": "rechazar",
+    "lemma": "rechazar",
+    "duplicate": true
+  },
+  {
+    "rank": 5217,
+    "word": "continuidad",
+    "lemma": "continuidad",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "continuity",
+        "frequency": "",
+        "example_spanish": "La continuidad del proyecto es importante.",
+        "example_english": "The continuity of the project is important."
+      }
+    ]
+  },
+  {
+    "rank": 5218,
+    "word": "creció",
+    "lemma": "crecer",
+    "duplicate": true
+  },
+  {
+    "rank": 5219,
+    "word": "defendió",
+    "lemma": "defender",
+    "duplicate": true
+  },
+  {
+    "rank": 5222,
+    "word": "aplicable",
+    "lemma": "aplicable",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "applicable",
+        "frequency": "",
+        "example_spanish": "Esta regla no es aplicable aquí.",
+        "example_english": "This rule is not applicable here."
+      }
+    ]
+  },
+  {
+    "rank": 5224,
+    "word": "debatir",
+    "lemma": "debatir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to debate",
+        "frequency": "",
+        "example_spanish": "Vamos a debatir este tema.",
+        "example_english": "We are going to debate this topic."
+      }
+    ]
+  },
+  {
+    "rank": 5226,
+    "word": "lanzó",
+    "lemma": "lanzar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "launched, threw",
+        "frequency": "",
+        "example_spanish": "La compañía lanzó un nuevo producto.",
+        "example_english": "The company launched a new product."
+      }
+    ]
+  },
+  {
+    "rank": 5227,
+    "word": "reclamaciones",
+    "lemma": "reclamación",
+    "duplicate": true
+  },
+  {
+    "rank": 5228,
+    "word": "dirigida",
+    "lemma": "dirigir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "directed, addressed",
+        "frequency": "",
+        "example_spanish": "La carta estaba dirigida a él.",
+        "example_english": "The letter was addressed to him."
+      }
+    ]
+  },
+  {
+    "rank": 5230,
+    "word": "existente",
+    "lemma": "existente",
+    "meanings": [
+      {
+        "pos": "ADJ",
+        "translation": "existing",
+        "frequency": "",
+        "example_spanish": "Usaremos los recursos existentes.",
+        "example_english": "We will use the existing resources."
+      }
+    ]
+  },
+  {
+    "rank": 5232,
+    "word": "instalaciones",
+    "lemma": "instalación",
+    "meanings": [
+      {
+        "pos": "NOUN",
+        "translation": "facilities, installations",
+        "frequency": "",
+        "example_spanish": "Las instalaciones son muy modernas.",
+        "example_english": "The facilities are very modern."
+      }
+    ]
+  },
+  {
+    "rank": 5234,
+    "word": "reclamó",
+    "lemma": "reclamar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "claimed, demanded",
+        "frequency": "",
+        "example_spanish": "Reclamó sus derechos legales.",
+        "example_english": "He claimed his legal rights."
+      }
+    ]
+  },
+  {
+    "rank": 5235,
+    "word": "comunitario",
+    "lemma": "comunitario",
+    "duplicate": true
+  },
+  {
+    "rank": 5237,
+    "word": "proceder",
+    "lemma": "proceder",
+    "duplicate": true
+  },
+  {
+    "rank": 5239,
+    "word": "propone",
+    "lemma": "proponer",
+    "duplicate": true
+  },
+  {
+    "rank": 5240,
+    "word": "dedicada",
+    "lemma": "dedicar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "dedicated",
+        "frequency": "",
+        "example_spanish": "Es una persona dedicada a su trabajo.",
+        "example_english": "She is a person dedicated to her work."
+      }
+    ]
+  },
+  {
+    "rank": 5241,
+    "word": "concebir",
+    "lemma": "concebir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "to conceive",
+        "frequency": "",
+        "example_spanish": "Es difícil concebir esa idea.",
+        "example_english": "It is difficult to conceive that idea."
+      }
+    ]
+  },
+  {
+    "rank": 5242,
+    "word": "previos",
+    "lemma": "previo",
+    "duplicate": true
+  },
+  {
+    "rank": 5247,
+    "word": "pretendía",
+    "lemma": "pretender",
+    "duplicate": true
+  },
+  {
+    "rank": 5249,
+    "word": "apoyó",
+    "lemma": "apoyar",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "supported, backed",
+        "frequency": "",
+        "example_spanish": "Apoyó la decisión del equipo.",
+        "example_english": "He supported the team's decision."
+      }
+    ]
+  },
+  {
+    "rank": 5250,
+    "word": "permitió",
+    "lemma": "permitir",
+    "meanings": [
+      {
+        "pos": "VERB",
+        "translation": "allowed, permitted",
+        "frequency": "",
+        "example_spanish": "El maestro permitió una excepción.",
+        "example_english": "The teacher allowed an exception."
+      }
+    ]
+  }
+]

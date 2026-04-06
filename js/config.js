@@ -51,7 +51,7 @@ async function loadPpmData(language) {
             const response = await fetch(langConfig.ppmDataPath);
             if (response.ok) {
                 const csvText = await response.text();
-                const lines = csvText.trim().split('\n');
+                const lines = csvText.replace(/\r/g, '').trim().split('\n');
                 const headers = lines[0].split(',');
                 const ppmIndex = headers.indexOf('occurrences_ppm');
                 const rankIndex = headers.indexOf('rank');

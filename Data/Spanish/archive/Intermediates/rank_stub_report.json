@@ -1,0 +1,16 @@
+{
+  "csv_unique_words": 5999,
+  "json_entries_written": 6698,
+  "json_entries_missing_word_field": 0,
+  "json_unique_words_in_csv": 4354,
+  "json_unique_words_not_in_csv": 0,
+  "rank_fields_updated_count": 4960,
+  "lemma_fields_updated_count": 0,
+  "stubs_added_count": 1645,
+  "stubs_duplicate_true": 774,
+  "stubs_duplicate_false": 871,
+  "completed_lemmas_count": 1960,
+  "out_json_path": "Data/Spanish/vocabulary.ranked_and_stubbed.json",
+  "intermediates_dir": "Data/Spanish/Intermediates",
+  "fix_lemma_from_csv": false
+}

@@ -172,6 +172,60 @@ async function migrateLocalStorageIds() {
     localStorage.setItem('id_migration_v1', 'done');
 }
 
+// Migrate localStorage progress from 4-char hex IDs to 6-char hex IDs
+// Uses the same id_migration.json files (which now include 4char→6char mappings)
+async function migrateLocalStorageIdsV2() {
+    if (localStorage.getItem('id_migration_v2') === 'done') return;
+
+    const key = 'flashcard_progress_guest';
+    const guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
+    if (Object.keys(guestProgress).length === 0) {
+        localStorage.setItem('id_migration_v2', 'done');
+        return;
+    }
+
+    const langMap = { es: 'Spanish', sv: 'Swedish', it: 'Italian', nl: 'Dutch', pl: 'Polish' };
+    const neededLangs = new Set();
+    for (const fullId of Object.keys(guestProgress)) {
+        const prefix = fullId.slice(0, 2);
+        if (langMap[prefix]) neededLangs.add(prefix);
+    }
+
+    const mappings = {};
+    for (const prefix of neededLangs) {
+        const lang = langMap[prefix];
+        try {
+            const resp = await fetch(`Data/${lang}/id_migration.json`);
+            if (resp.ok) mappings[prefix] = await resp.json();
+        } catch (e) {
+            console.warn(`Could not load ID migration for ${lang}:`, e);
+        }
+    }
+
+    const migrated = {};
+    let remapped = 0;
+    for (const [fullId, data] of Object.entries(guestProgress)) {
+        const prefix = fullId.slice(0, 2);
+        const mode = fullId[2];
+        const oldHex = fullId.slice(3);
+        const mapping = mappings[prefix];
+
+        if (mapping && mode === '0' && mapping[oldHex]) {
+            const newFullId = prefix + mode + mapping[oldHex];
+            migrated[newFullId] = data;
+            remapped++;
+        } else {
+            migrated[fullId] = data;
+        }
+    }
+
+    if (remapped > 0) {
+        localStorage.setItem(key, JSON.stringify(migrated));
+        console.log(`Migrated ${remapped} localStorage progress IDs (4-char → 6-char)`);
+    }
+    localStorage.setItem('id_migration_v2', 'done');
+}
+
 // ========== GOOGLE SHEETS INTEGRATION ==========
 
 // Load user progress from Google Sheets
@@ -407,6 +461,7 @@ function setupAuthEventListeners() {
 }
 
 window.migrateLocalStorageIds = migrateLocalStorageIds;
+window.migrateLocalStorageIdsV2 = migrateLocalStorageIdsV2;
 window.loadSecrets = loadSecrets;
 window.checkAuthentication = checkAuthentication;
 window.showAuthModal = showAuthModal;

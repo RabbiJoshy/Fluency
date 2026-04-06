@@ -162,7 +162,7 @@ def main():
             print()
 
     # Write combined file for front-end
-    combined_path = ROOT / "Data" / "spotify_tracks.json"
+    combined_path = ROOT / "Artists" / "spotify_tracks.json"
     json.dump(combined, open(combined_path, "w"), indent=2, ensure_ascii=False)
     print(f"\nCombined file: {combined_path}")
     total = sum(len(v) for v in combined.values())

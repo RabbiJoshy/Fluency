@@ -101,6 +101,7 @@ loadConfig().then(async () => {
     // Hide floating gear — replaced by gear in the top bar
     document.getElementById('gearBtn').style.display = 'none';
     await migrateLocalStorageIds();
+    await migrateLocalStorageIdsV2();
     await loadSecrets();
     checkAuthentication();
 
