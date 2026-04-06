@@ -1185,6 +1185,7 @@ window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.joinWithMaster = joinWithMaster;
 window.fetchAndJoinIndex = fetchAndJoinIndex;
 window.getWordId = getWordId;
+window.LANG_CODES = LANG_CODES;
 window.buildFilteredVocab = buildFilteredVocab;
 window.loadVocabularyData = loadVocabularyData;
 window.loadIncorrectWordsSet = loadIncorrectWordsSet;

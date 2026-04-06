@@ -110,15 +110,16 @@ loadConfig().then(async () => {
         await loadUserProgressFromSheet();
     }
 
+    // Set user name in top bar (both modes)
+    const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';
+    document.getElementById('topBarUserName').textContent = userName;
+
     // In artist mode, auto-select the artist's language and skip language selection
     if (activeArtist) {
         selectedLanguage = activeArtist.language || 'spanish';
         applyLanguageColorTheme();
         // Hide step 1 entirely (language auto-selected)
         document.getElementById('step1').style.display = 'none';
-        // Set user name in top bar
-        const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
-        document.getElementById('topBarUserName').textContent = userName;
         // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
         document.querySelector('#step2 .step-number').textContent = '1';
         document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';

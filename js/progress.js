@@ -3,13 +3,18 @@ import './state.js';
 function calculateCoveragePercent() {
     if (!ppmData || ppmData.length === 0 || !progressData) return { pct: 0, wordsCovered: 0, totalWords: 0 };
 
-    // Build id→ppmEntry lookup once for performance
+    // Build compositeId→ppmEntry lookup once for performance.
+    // ppmData entries have raw hex IDs (e.g. "91c4e7") but progressData keys
+    // are composite IDs (e.g. "es191c4e7"), so we must build composite keys.
+    const lang = (window.LANG_CODES || {})[selectedLanguage] || selectedLanguage.slice(0, 2);
+    const mode = activeArtist ? '1' : '0';
     const idToPpm = {};
     let totalWords = 0;
     for (const entry of ppmData) {
         if (entry.id) {
             if (hideSingleOccurrence && entry.ppm <= 1) continue;
-            idToPpm[entry.id] = entry;
+            const compositeId = `${lang}${mode}${entry.id}`;
+            idToPpm[compositeId] = entry;
             totalWords++;
         }
     }
