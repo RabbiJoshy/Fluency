@@ -31,7 +31,7 @@ RANKS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "spanish_ranks.json"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "examples_raw.json"
 
 SENTINEL_RANK = 999_999
-MAX_EXAMPLES_PER_WORD = 8
+MAX_EXAMPLES_PER_WORD = 50
 MIN_SENTENCE_WORDS = 3
 MAX_SENTENCE_WORDS = 25
 

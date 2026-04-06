@@ -86,6 +86,7 @@ _ALT_OF_PATTERNS = [
 # But we note them for possible later filtering
 
 MAX_SENSES_PER_POS = 5
+MAX_SENSES_TOTAL = 8
 
 # Words that start a parenthetical clarification (not an essential object)
 _CLARIFICATION_STARTERS = {
@@ -468,10 +469,30 @@ def merge_similar_senses(senses: list) -> list:
             clusters[find(i)].append(i)
 
         for cluster_indices in clusters.values():
-            # Pick the member with the shortest translation
-            best_idx = min(cluster_indices,
+            if len(cluster_indices) == 1:
+                merged.append(members[cluster_indices[0]][1])
+                continue
+            # Combine synonyms from all cluster members into one sense.
+            # Start with the longest translation, then append unique terms
+            # from others.
+            base_idx = max(cluster_indices,
                            key=lambda i: len(members[i][1]["translation"]))
-            merged.append(members[best_idx][1])
+            base_sense = dict(members[base_idx][1])  # copy
+            base_terms = [t.strip().lower()
+                          for t in base_sense["translation"].split(",")]
+            base_terms_set = set(base_terms)
+            combined = base_sense["translation"]
+            for ci in cluster_indices:
+                if ci == base_idx:
+                    continue
+                other = members[ci][1]["translation"]
+                for term in other.split(","):
+                    term_clean = term.strip()
+                    if term_clean.lower() not in base_terms_set and term_clean:
+                        combined += ", " + term_clean
+                        base_terms_set.add(term_clean.lower())
+            base_sense["translation"] = combined
+            merged.append(base_sense)
 
     # Preserve original POS ordering
     pos_order = []
@@ -639,6 +660,23 @@ def main():
                         if non_verb_count > 0:
                             stats["verb_filtered"] += 1
                         senses = verb_senses
+
+            # Step 6: Cross-POS dedup — if the same translation appears under
+            # multiple POS (e.g. "as" as ADV, CCONJ, ADP), keep only the first.
+            # Fewer senses = better embedding classification accuracy.
+            seen_trans = set()
+            cross_deduped = []
+            for s in senses:
+                norm = s["translation"].lower().strip().split("(")[0].strip()
+                if norm in seen_trans:
+                    continue
+                seen_trans.add(norm)
+                cross_deduped.append(s)
+            senses = cross_deduped
+
+            # Step 7: Total sense cap
+            if len(senses) > MAX_SENSES_TOTAL:
+                senses = senses[:MAX_SENSES_TOTAL]
 
             stats["total_final"] += len(senses)
 
