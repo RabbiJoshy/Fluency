@@ -2,7 +2,12 @@
 """
 match_senses.py — Step 5: Assign example sentences to word senses.
 
-Default: uses sentence-transformers (local PyTorch) for semantic similarity.
+Uses a cross-encoder for sentence-to-sense classification (most accurate),
+plus a bi-encoder for post-classification sense merging (cosine similarity).
+
+Cross-encoder scores all (sentence, sense) pairs per word in one batch.
+Only multi-sense words are processed; single-sense words skip classification.
+
 Fallback: --keyword-only uses keyword overlap (instant, ~70% accuracy).
 
 Usage:
@@ -33,11 +38,12 @@ SENSES_FILE = LAYERS / "senses_wiktionary.json"
 OUTPUT_FILE = LAYERS / "sense_assignments.json"
 
 MAX_EXAMPLES_PER_MEANING = 5
+MAX_CLASSIFY_EXAMPLES = 20  # cap examples used for classification (frequency voting)
 MIN_SENSE_FREQUENCY = 0.05  # drop senses with < 5% of examples
 SENSE_MERGE_THRESHOLD = 0.70  # merge same-POS senses with cosine sim above this
-EMBEDDING_MODEL = "paraphrase-multilingual-mpnet-base-v2"  # 768-dim, multilingual
-EMBEDDING_BATCH_SIZE = 256
-SAVE_INTERVAL = 2000  # intermediate save every N words
+BIENCODER_MODEL = "paraphrase-multilingual-mpnet-base-v2"  # for sense merge only
+CROSSENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+SAVE_INTERVAL = 500  # intermediate save every N multi-sense words
 
 # ---------------------------------------------------------------------------
 # POS enrichment for embedding
@@ -67,92 +73,114 @@ def enrich_sense_text(sense):
     return "{}: {}".format(label, text)
 
 
+def bilingual_text(ex):
+    """Build bilingual text from an example dict."""
+    eng = ex.get("english", "")
+    spa = ex.get("target", "")
+    if eng and spa:
+        return "{} [Spanish: {}]".format(eng, spa)
+    return eng
+
+
 # ---------------------------------------------------------------------------
-# Local embedding classifier (sentence-transformers)
+# Cross-encoder: batch classification per word
 # ---------------------------------------------------------------------------
 
-def build_embedding_index(senses_data, examples_data, inventory):
-    """Collect all unique texts that need embedding. Returns:
-    - text_list: ordered list of unique texts
-    - text_to_idx: text -> index in text_list
+def load_crossencoder():
+    """Load cross-encoder model."""
+    from sentence_transformers import CrossEncoder
+    print("Loading cross-encoder '{}'...".format(CROSSENCODER_MODEL))
+    return CrossEncoder(CROSSENCODER_MODEL)
+
+
+def classify_word_crossencoder(crossencoder, examples, senses, max_classify):
+    """Classify all examples for one word in a single batch.
+
+    Args:
+        crossencoder: loaded CrossEncoder model
+        examples: list of example dicts
+        senses: list of sense dicts
+        max_classify: max examples to use for classification
+
+    Returns:
+        sense_example_indices: list of lists, sense_idx -> [example indices]
+        num_pairs: number of pairs scored
     """
-    text_to_idx = {}
-    text_list = []
+    n_senses = len(senses)
+    sense_texts = [enrich_sense_text(s) for s in senses]
 
-    def add_text(text):
-        if text not in text_to_idx:
-            text_to_idx[text] = len(text_list)
-            text_list.append(text)
+    # Determine which examples to classify (cap at max_classify)
+    classify_indices = []
+    for ei, ex in enumerate(examples):
+        eng = ex.get("english", "")
+        if eng:
+            classify_indices.append(ei)
+        if len(classify_indices) >= max_classify:
+            break
 
-    for entry in inventory:
-        word_id = entry["id"]
-        key = "{}|{}".format(entry["word"], entry["lemma"])
-        senses = senses_data.get(key, [])
-        examples = examples_data.get(word_id, [])
-        if len(senses) < 2 or not examples:
-            continue
-        for s in senses:
-            add_text(enrich_sense_text(s))
-        for ex in examples:
-            eng = ex.get("english", "")
-            spa = ex.get("target", "")
-            if eng:
-                # Include Spanish for bilingual disambiguation
-                embed_key = "{} [Spanish: {}]".format(eng, spa) if spa else eng
-                add_text(embed_key)
+    if not classify_indices:
+        return [[] for _ in senses], 0
 
-    return text_list, text_to_idx
+    # Build all pairs for this word in one batch
+    pairs = []
+    pair_map = []  # (example_list_position, sense_idx)
+    for ci, ei in enumerate(classify_indices):
+        bt = bilingual_text(examples[ei])
+        for si, st in enumerate(sense_texts):
+            pairs.append((bt, st))
+            pair_map.append((ci, si))
+
+    # Score all pairs at once
+    scores = crossencoder.predict(pairs).tolist()
+
+    # Distribute: for each example, pick the sense with highest score
+    sense_example_indices = [[] for _ in senses]
+    for ci, ei in enumerate(classify_indices):
+        example_scores = scores[ci * n_senses:(ci + 1) * n_senses]
+        best_idx = max(range(n_senses), key=lambda i: example_scores[i])
+        sense_example_indices[best_idx].append(ei)
+
+    # Also assign non-English examples to sense 0
+    for ei, ex in enumerate(examples):
+        if not ex.get("english", "") and ei not in classify_indices:
+            sense_example_indices[0].append(ei)
+
+    return sense_example_indices, len(pairs)
 
 
-def embed_all_texts(text_list):
-    """Embed all texts locally using sentence-transformers."""
+# ---------------------------------------------------------------------------
+# Bi-encoder: for sense-to-sense similarity (merge step only)
+# ---------------------------------------------------------------------------
+
+def build_sense_embeddings(senses_data, inventory):
+    """Embed only sense texts for the merge step. Much smaller than full corpus."""
     from sentence_transformers import SentenceTransformer
 
-    print("Loading model '{}'...".format(EMBEDDING_MODEL))
-    model = SentenceTransformer(EMBEDDING_MODEL)
+    unique_texts = {}
+    text_list = []
 
-    total = len(text_list)
-    print("Embedding {:,} unique texts (batch size {})...".format(
-        total, EMBEDDING_BATCH_SIZE))
-
-    start = time.time()
-    embeddings = model.encode(
-        text_list,
-        batch_size=EMBEDDING_BATCH_SIZE,
-        show_progress_bar=True,
-        normalize_embeddings=True,  # pre-normalize so dot product = cosine sim
-    )
-    elapsed = time.time() - start
-    print("  Done in {:.1f}s ({:.0f} embeddings/sec, dim={})".format(
-        elapsed, total / elapsed, embeddings.shape[1]))
-
-    return embeddings
-
-
-def classify_example_embedding(sentence_english, senses, text_to_idx, embeddings):
-    """Classify using cosine similarity of pre-normalized embeddings."""
-    import numpy as np
-
-    sent_idx = text_to_idx.get(sentence_english)
-    if sent_idx is None:
-        return 0, 0.0
-
-    sent_emb = embeddings[sent_idx]
-
-    scores = []
-    for s in senses:
-        sense_text = enrich_sense_text(s)
-        sense_idx = text_to_idx.get(sense_text)
-        if sense_idx is None:
-            scores.append(0.0)
+    for entry in inventory:
+        key = "{}|{}".format(entry["word"], entry["lemma"])
+        senses = senses_data.get(key, [])
+        if len(senses) < 2:
             continue
-        # dot product of normalized vectors = cosine similarity
-        scores.append(float(np.dot(sent_emb, embeddings[sense_idx])))
+        for s in senses:
+            t = enrich_sense_text(s)
+            if t not in unique_texts:
+                unique_texts[t] = len(text_list)
+                text_list.append(t)
 
-    best_idx = max(range(len(scores)), key=lambda i: scores[i])
-    sorted_scores = sorted(scores, reverse=True)
-    confidence = sorted_scores[0] - sorted_scores[1] if len(sorted_scores) >= 2 else 0.0
-    return best_idx, confidence
+    if not text_list:
+        return {}, None
+
+    print("Loading bi-encoder '{}' (sense merge only)...".format(BIENCODER_MODEL))
+    model = SentenceTransformer(BIENCODER_MODEL)
+    print("Embedding {:,} unique sense texts...".format(len(text_list)))
+    start = time.time()
+    embeddings = model.encode(text_list, normalize_embeddings=True, show_progress_bar=False)
+    print("  Done in {:.1f}s".format(time.time() - start))
+
+    return unique_texts, embeddings
 
 
 # ---------------------------------------------------------------------------
@@ -200,7 +228,7 @@ def main():
     args = parser.parse_args()
 
     use_embeddings = not args.keyword_only
-    method = "local embeddings ({})".format(EMBEDDING_MODEL) if use_embeddings else "keyword overlap"
+    method = "cross-encoder + bi-encoder merge" if use_embeddings else "keyword overlap"
     print("Sense matching method: {}".format(method))
 
     print("\nLoading word inventory...")
@@ -218,18 +246,15 @@ def main():
         senses_data = json.load(f)
     print("  {:,} sense entries".format(len(senses_data)))
 
-    # Build embeddings if needed
-    text_to_idx = None
-    embeddings = None
+    # Load models if needed
+    crossencoder = None
+    sense_text_to_idx = None
+    sense_embeddings = None
     if use_embeddings:
         print()
-        text_list, text_to_idx = build_embedding_index(
-            senses_data, examples_data, inventory)
-        if text_list:
-            embeddings = embed_all_texts(text_list)
-        else:
-            print("  No texts to embed — falling back to keyword overlap")
-            use_embeddings = False
+        crossencoder = load_crossencoder()
+        sense_text_to_idx, sense_embeddings = build_sense_embeddings(
+            senses_data, inventory)
 
     # Load partial progress if it exists (resume after crash)
     partial_file = OUTPUT_FILE.with_suffix(".partial.json")
@@ -254,31 +279,19 @@ def main():
         "single_sense": 0,
         "multi_sense": 0,
         "no_examples": 0,
-        "confidence_sum": 0.0,
-        "confidence_count": 0,
+        "total_pairs": 0,
         "active_senses": defaultdict(int),
+        "merged_senses": 0,
+        "filtered_senses": 0,
     }
 
     classify_start = time.time()
     total_entries = len(inventory)
+    multi_processed = 0
 
     for entry_num, entry in enumerate(inventory):
-        # Progress + intermediate save
-        if entry_num > 0 and entry_num % SAVE_INTERVAL == 0:
-            elapsed = time.time() - classify_start
-            print("  {:,}/{:,} words ({:.1f}s) — saving checkpoint...".format(
-                entry_num, total_entries, elapsed), flush=True)
-            with open(partial_file, "w", encoding="utf-8") as f:
-                json.dump({"next_entry": entry_num, "assignments": output},
-                          f, ensure_ascii=False)
-
         if entry_num < start_from:
             continue
-
-        if (entry_num + 1) == total_entries:
-            elapsed = time.time() - classify_start
-            print("  {:,}/{:,} words ({:.1f}s)".format(
-                entry_num + 1, total_entries, elapsed), flush=True)
 
         word_id = entry["id"]
         key = "{}|{}".format(entry["word"], entry["lemma"])
@@ -297,7 +310,7 @@ def main():
             stats["active_senses"][1] += 1
             continue
 
-        # Case 3: Single sense — all examples go to it
+        # Case 3: Single sense — all examples go to it, no classification
         if len(senses) == 1:
             stats["single_sense"] += 1
             indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING)))
@@ -307,73 +320,71 @@ def main():
 
         # Case 4: Multi-sense — classify
         stats["multi_sense"] += 1
-        sense_example_indices = [[] for _ in senses]
+        multi_processed += 1
 
-        for ex_idx, ex in enumerate(examples):
-            eng = ex.get("english", "")
-            if not eng:
-                sense_example_indices[0].append(ex_idx)
-                continue
+        # Progress + checkpoint
+        if multi_processed % SAVE_INTERVAL == 0:
+            elapsed = time.time() - classify_start
+            rate = stats["total_pairs"] / elapsed if elapsed > 0 else 0
+            print("  {:,}/{:,} words | {:,} multi-sense | {:,} pairs scored ({:.0f}/sec, {:.1f}s)".format(
+                entry_num + 1, total_entries, multi_processed,
+                stats["total_pairs"], rate, elapsed), flush=True)
+            with open(partial_file, "w", encoding="utf-8") as f:
+                json.dump({"next_entry": entry_num, "assignments": output},
+                          f, ensure_ascii=False)
 
-            if use_embeddings:
-                spa = ex.get("target", "")
-                embed_key = "{} [Spanish: {}]".format(eng, spa) if spa else eng
-                best_idx, confidence = classify_example_embedding(
-                    embed_key, senses, text_to_idx, embeddings)
-            else:
-                best_idx, confidence = classify_example_keyword(eng, senses)
-
-            sense_example_indices[best_idx].append(ex_idx)
-            stats["confidence_sum"] += confidence
-            stats["confidence_count"] += 1
-
-        # Merge same-POS senses with high embedding similarity.
-        # Combines example pools so synonym senses don't dilute each other.
-        if use_embeddings and len(senses) >= 2:
-            import numpy as np
-            merged_into = {}  # sense_idx -> merge target sense_idx
-            for i in range(len(senses)):
-                if i in merged_into:
+        if use_embeddings:
+            sense_example_indices, n_pairs = classify_word_crossencoder(
+                crossencoder, examples, senses, MAX_CLASSIFY_EXAMPLES)
+            stats["total_pairs"] += n_pairs
+        else:
+            sense_example_indices = [[] for _ in senses]
+            for ex_idx, ex in enumerate(examples):
+                eng = ex.get("english", "")
+                if not eng:
+                    sense_example_indices[0].append(ex_idx)
                     continue
+                best_idx, _ = classify_example_keyword(eng, senses)
+                sense_example_indices[best_idx].append(ex_idx)
+
+        # Merge same-POS senses with high embedding similarity
+        if use_embeddings and sense_embeddings is not None and len(senses) >= 2:
+            import numpy as np
+            for i in range(len(senses)):
                 si_text = enrich_sense_text(senses[i])
-                si_idx = text_to_idx.get(si_text)
+                si_idx = sense_text_to_idx.get(si_text)
                 if si_idx is None:
                     continue
                 for j in range(i + 1, len(senses)):
-                    if j in merged_into:
+                    if not sense_example_indices[j]:
                         continue
                     if senses[i]["pos"] != senses[j]["pos"]:
                         continue
                     sj_text = enrich_sense_text(senses[j])
-                    sj_idx = text_to_idx.get(sj_text)
+                    sj_idx = sense_text_to_idx.get(sj_text)
                     if sj_idx is None:
                         continue
-                    sim = float(np.dot(embeddings[si_idx], embeddings[sj_idx]))
+                    sim = float(np.dot(sense_embeddings[si_idx], sense_embeddings[sj_idx]))
                     if sim >= SENSE_MERGE_THRESHOLD:
-                        merged_into[j] = i
                         sense_example_indices[i].extend(sense_example_indices[j])
                         sense_example_indices[j] = []
-                        stats["merged_senses"] = stats.get("merged_senses", 0) + 1
+                        stats["merged_senses"] += 1
 
-        # Build assignments — filter by frequency threshold, cap examples
+        # Filter by frequency threshold, cap examples
         total_classified = sum(len(idx) for idx in sense_example_indices)
         assignments = []
-        filtered_senses = 0
         for i, indices in enumerate(sense_example_indices):
             if not indices:
                 continue
-            # Drop senses below frequency threshold (only when we have
-            # enough examples for the threshold to be meaningful)
             if total_classified >= 5:
                 freq = len(indices) / total_classified
                 if freq < MIN_SENSE_FREQUENCY:
-                    filtered_senses += 1
+                    stats["filtered_senses"] += 1
                     continue
             assignments.append({
                 "sense_idx": i,
                 "examples": indices[:MAX_EXAMPLES_PER_MEANING],
             })
-        stats["filtered_senses"] = stats.get("filtered_senses", 0) + filtered_senses
 
         # Fallback: if no sense survived filtering, assign all to first
         if not assignments:
@@ -382,6 +393,11 @@ def main():
 
         output[word_id] = assignments
         stats["active_senses"][len(assignments)] += 1
+
+    elapsed = time.time() - classify_start
+    print("  {:,}/{:,} words | {:,} multi-sense | {:,} pairs scored ({:.1f}s)".format(
+        total_entries, total_entries, multi_processed,
+        stats["total_pairs"], elapsed), flush=True)
 
     # Write final output
     print("\nWriting {}...".format(OUTPUT_FILE))
@@ -395,10 +411,7 @@ def main():
 
     # Report
     total = len(inventory)
-    avg_conf = (stats["confidence_sum"] / stats["confidence_count"]
-                if stats["confidence_count"] > 0 else 0)
-
-    conf_label = "Avg cosine margin" if use_embeddings else "Avg keyword confidence"
+    rate = stats["total_pairs"] / elapsed if elapsed > 0 else 0
 
     print("\n{}".format("=" * 55))
     print("SENSE ASSIGNMENT RESULTS ({})".format(method))
@@ -409,19 +422,19 @@ def main():
     print("Multi-sense (classified):  {:>6,}".format(stats["multi_sense"]))
     print("No examples:               {:>6,}".format(stats["no_examples"]))
     print()
-    print("{}: {:.4f}".format(conf_label, avg_conf))
+    print("Total pairs scored:        {:>8,}".format(stats["total_pairs"]))
+    print("Throughput:                {:>6,.0f} pairs/sec".format(rate))
     print("Senses merged (sim>={:.2f}): {:>5,}".format(
-        SENSE_MERGE_THRESHOLD, stats.get("merged_senses", 0)))
+        SENSE_MERGE_THRESHOLD, stats["merged_senses"]))
     print("Senses filtered (<{:.0f}%): {:>6,}".format(
-        MIN_SENSE_FREQUENCY * 100, stats.get("filtered_senses", 0)))
+        MIN_SENSE_FREQUENCY * 100, stats["filtered_senses"]))
     print()
     print("Active senses per word:")
     for n in sorted(stats["active_senses"]):
         count = stats["active_senses"][n]
         print("  {} senses: {:>6,} words".format(n, count))
 
-    total_time = time.time() - classify_start
-    print("\nTotal classification time: {:.1f}s".format(total_time))
+    print("\nTotal time: {:.1f}s ({:.1f} min)".format(elapsed, elapsed / 60))
 
 
 if __name__ == "__main__":
