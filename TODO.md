@@ -68,12 +68,10 @@ This is Josh's backlog. Items are NOT instructions to start working.
   examples, fall back to standard method if no match exists. Prevents confusing sense/example
   pairings.
 
-- **[soon] OpenSubtitles integration (M) [normal]**
-  Data downloaded to `Data/Spanish/corpora/opensubtitles/` but not integrated into pipeline.
-  Parse Moses-format es-en parallel files, add as fallback corpus in `build_examples.py`
-  (Tatoeba primary, OpenSubtitles fills gaps). Deduplicate across corpora.
-  May need quality filtering for fragments/OCR artifacts/single-word lines.
-  Measure: how many of the ~1,002 uncovered words get filled?
+- **[done] OpenSubtitles integration (M) [normal]**
+  Integrated as fallback corpus in `build_examples.py`. Tatoeba primary, OpenSubtitles
+  fills gaps. Stride-sampled across full 105M lines, subtitle junk/OCR filters, trivial
+  sentence filter, proximity scoring, diversity sampling. Coverage: 100% (2 zero-example words).
 
 - **[soon] Spotify lookup for Rosalia (S) [artist]**
   Re-run `Artists/scripts/spotify_lookup.py` after rate limit resets.
