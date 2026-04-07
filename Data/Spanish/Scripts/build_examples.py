@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
 """
-build_examples.py — Step 2: Match Tatoeba example sentences to vocabulary.
+build_examples.py — Step 2: Match example sentences to vocabulary.
 
-Reads the word inventory and Tatoeba corpus, finds example sentences for each
-word, scores them by easiness, and writes a keyed examples layer.
+Reads the word inventory and corpora (Tatoeba + OpenSubtitles), finds example
+sentences for each word, scores them by easiness, and writes a keyed examples layer.
+Tatoeba examples are preferred; OpenSubtitles fills remaining slots up to 50.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_examples.py
+    python3 Data/Spanish/Scripts/build_examples.py [--max-lines N]
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
     Data/Spanish/corpora/tatoeba/spa.txt
+    Data/Spanish/corpora/opensubtitles/OpenSubtitles.en-es.{es,en}
     Data/Spanish/spanish_ranks.json
 
 Output:
     Data/Spanish/layers/examples_raw.json  — {id: [{target, english, source, easiness}]}
 """
 
+import argparse
 import json
+import random
 import re
+import sys
+import time
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
@@ -27,15 +33,31 @@ from statistics import median
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 TATOEBA_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "tatoeba" / "spa.txt"
+OPENSUBS_ES = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"
+OPENSUBS_EN = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.en"
 RANKS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "spanish_ranks.json"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "examples_raw.json"
 
 SENTINEL_RANK = 999_999
+DEFAULT_MAX_LINES = 5_000_000
 MAX_EXAMPLES_PER_WORD = 50
+MAX_CANDIDATES = 500          # random-sample cap before scoring
 MIN_SENTENCE_WORDS = 3
 MAX_SENTENCE_WORDS = 25
+TOP_N_TRIVIAL = 100           # sentences using only top-N words are trivial
 
 _TOKEN_RE = re.compile(r"[a-záéíóúüñ]+")
+
+# Subtitle junk patterns — reject entire line if matched
+_SUBTITLE_JUNK_RE = re.compile(
+    r"^\s*$"                    # empty / whitespace-only
+    r"|^\.{2,}"                 # leading ellipsis
+    r"|[♪♫]"                    # music cues
+    r"|^\[.*\]$"               # bracketed stage directions [risas]
+    r"|<[^>]+>"                 # HTML tags <i> etc.
+    r"|^\d+\s*$"               # bare numbers (leaked timecodes)
+    r"|^[A-Z\s]{10,}:$"        # ALL-CAPS headers
+)
 
 
 def strip_accents(s):
@@ -64,6 +86,68 @@ def compute_easiness(spanish_text, word_to_rank):
     return int(median(ranks))
 
 
+def clean_subtitle_line(line):
+    """Strip subtitle artifacts. Returns cleaned string or None if junk."""
+    line = line.strip()
+    if not line:
+        return None
+    if _SUBTITLE_JUNK_RE.search(line):
+        return None
+    # Strip leading dialogue dash: "- Hola" -> "Hola"
+    if line.startswith("- "):
+        line = line[2:].strip()
+    elif line.startswith("-"):
+        line = line[1:].strip()
+    if not line:
+        return None
+    return line
+
+
+def load_opensubtitles(es_path, en_path, max_lines):
+    """Load parallel OpenSubtitles corpus, sampling evenly across the full file.
+
+    Uses stride-based sampling to avoid bias toward whichever movies/shows
+    appear first in the file. Reads every Nth line to collect max_lines pairs.
+    """
+    # First pass: count total lines (fast, just counts newlines)
+    print("    Counting total lines...")
+    t0 = time.time()
+    total = 0
+    with open(es_path, "rb") as f:
+        for _ in f:
+            total += 1
+    stride = max(1, total // max_lines)
+    print(f"    {total:,} total lines, stride={stride} ({time.time() - t0:.1f}s)")
+
+    sentences = []
+    t0 = time.time()
+    report_every = total // 20  # report every 5%
+    with open(es_path, encoding="utf-8") as f_es, \
+         open(en_path, encoding="utf-8") as f_en:
+        for i, (line_es, line_en) in enumerate(zip(f_es, f_en)):
+            if report_every and i % report_every == 0 and i > 0:
+                pct = 100 * i / total
+                elapsed = time.time() - t0
+                rate = i / elapsed if elapsed > 0 else 0
+                remaining = (total - i) / rate if rate > 0 else 0
+                sys.stdout.write(
+                    f"\r    {pct:5.1f}%  {len(sentences):,} kept  "
+                    f"~{remaining:.0f}s remaining   "
+                )
+                sys.stdout.flush()
+            if i % stride != 0:
+                continue
+            if len(sentences) >= max_lines:
+                break
+            spa = clean_subtitle_line(line_es)
+            eng = clean_subtitle_line(line_en)
+            if spa and eng:
+                sentences.append((eng, spa))
+    elapsed = time.time() - t0
+    print(f"\r    Done: {len(sentences):,} pairs in {elapsed:.1f}s" + " " * 30)
+    return sentences
+
+
 def load_tatoeba(path):
     sentences = []
     with open(path, encoding="utf-8") as f:
@@ -78,7 +162,19 @@ def load_tatoeba(path):
 
 def build_sentence_index(sentences):
     index = defaultdict(list)
+    total = len(sentences)
+    report_every = max(1, total // 20)
+    t0 = time.time()
     for i, (eng, spa) in enumerate(sentences):
+        if i % report_every == 0 and i > 0:
+            pct = 100 * i / total
+            elapsed = time.time() - t0
+            rate = i / elapsed if elapsed > 0 else 0
+            remaining = (total - i) / rate if rate > 0 else 0
+            sys.stdout.write(
+                f"\r    {pct:5.1f}%  ~{remaining:.0f}s remaining   "
+            )
+            sys.stdout.flush()
         tokens = tokenize(spa)
         if len(tokens) < MIN_SENTENCE_WORDS or len(tokens) > MAX_SENTENCE_WORDS:
             continue
@@ -88,26 +184,104 @@ def build_sentence_index(sentences):
             if norm not in seen:
                 seen.add(norm)
                 index[norm].append(i)
+    elapsed = time.time() - t0
+    print(f"\r    Done in {elapsed:.1f}s" + " " * 30)
     return index
 
 
+def is_trivial(spanish_text, word_to_rank):
+    """True if every token is in the top-N most common words."""
+    tokens = tokenize(spanish_text)
+    if not tokens:
+        return True
+    return all(
+        (word_to_rank.get(t) or word_to_rank.get(strip_accents(t)) or SENTINEL_RANK)
+        <= TOP_N_TRIVIAL
+        for t in tokens
+    )
+
+
+def proximity_score(spanish_text, target_rank, inv_rank_lookup):
+    """Score a sentence by how many inventory words it contains near the target rank.
+
+    For each token that's in the inventory, adds 1/(1 + |target_rank - token_rank|).
+    Sentences with words close in rank to the target score highest.
+    """
+    tokens = tokenize(spanish_text)
+    score = 0.0
+    for t in tokens:
+        norm = strip_accents(t)
+        rank = inv_rank_lookup.get(norm)
+        if rank is not None:
+            score += 1.0 / (1 + abs(target_rank - rank))
+    return score
+
+
 def select_examples(candidate_indices, sentences, word_to_rank,
-                    max_examples=MAX_EXAMPLES_PER_WORD):
+                    source="tatoeba", max_examples=MAX_EXAMPLES_PER_WORD,
+                    exclude_targets=None, target_rank=0, inv_rank_lookup=None):
+    # Cap candidates to avoid scoring huge lists for common words
+    if len(candidate_indices) > MAX_CANDIDATES:
+        candidate_indices = random.sample(candidate_indices, MAX_CANDIDATES)
+
     scored = []
-    seen_targets = set()
+    seen_targets = set(exclude_targets) if exclude_targets else set()
     for idx in candidate_indices:
         eng, spa = sentences[idx]
         key = spa.lower().strip()
         if key in seen_targets:
             continue
         seen_targets.add(key)
+        # Skip trivial dialogue (all top-100 words)
+        if is_trivial(spa, word_to_rank):
+            continue
         easiness = compute_easiness(spa, word_to_rank)
-        scored.append({"target": spa, "english": eng, "source": "tatoeba", "easiness": easiness})
-    scored.sort(key=lambda x: x["easiness"])
-    return scored[:max_examples]
+        prox = proximity_score(spa, target_rank, inv_rank_lookup) if inv_rank_lookup else 0.0
+        scored.append({
+            "target": spa, "english": eng, "source": source,
+            "easiness": easiness, "_prox": prox,
+        })
+
+    # Sort: higher proximity first, then easier first
+    scored.sort(key=lambda x: (-x["_prox"], x["easiness"]))
+
+    # Diversity: pick from thirds within the top candidates
+    pool = scored[:max_examples * 3]  # generous pool
+    if len(pool) <= max_examples:
+        selected = pool
+    else:
+        third = len(pool) // 3
+        buckets = [pool[:third], pool[third:2*third], pool[2*third:]]
+        per_bucket = max_examples // 3
+        selected = buckets[0][:per_bucket] + buckets[1][:per_bucket] + buckets[2][:per_bucket]
+        # Fill remainder from whatever's left
+        used = set(id(x) for x in selected)
+        for ex in pool:
+            if len(selected) >= max_examples:
+                break
+            if id(ex) not in used:
+                selected.append(ex)
+
+    # Remove internal scoring field
+    for ex in selected:
+        del ex["_prox"]
+    return selected
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Match example sentences from corpora to vocabulary words."
+    )
+    parser.add_argument(
+        "--max-lines", type=int, default=DEFAULT_MAX_LINES,
+        help="Max OpenSubtitles lines to read (default: %(default)s)"
+    )
+    return parser.parse_args()
 
 
 def main():
+    args = parse_args()
+
     print("Loading word inventory...")
     with open(INVENTORY_FILE, encoding="utf-8") as f:
         inventory = json.load(f)
@@ -118,23 +292,60 @@ def main():
         word_to_rank = json.load(f)
     print(f"  {len(word_to_rank)} rank entries")
 
+    # --- Tatoeba ---
     print("Loading Tatoeba corpus...")
-    sentences = load_tatoeba(TATOEBA_FILE)
-    print(f"  {len(sentences)} sentence pairs")
+    tat_sentences = load_tatoeba(TATOEBA_FILE)
+    print(f"  {len(tat_sentences)} sentence pairs")
 
-    print("Building sentence index...")
-    sentence_index = build_sentence_index(sentences)
-    print(f"  {len(sentence_index)} unique normalized tokens indexed")
+    print("Building Tatoeba sentence index...")
+    tat_index = build_sentence_index(tat_sentences)
+    print(f"  {len(tat_index)} unique normalized tokens indexed")
 
+    # --- OpenSubtitles ---
+    print(f"Loading OpenSubtitles (first {args.max_lines:,} lines)...")
+    sub_sentences = load_opensubtitles(OPENSUBS_ES, OPENSUBS_EN, args.max_lines)
+    print(f"  {len(sub_sentences)} sentence pairs after cleaning")
+
+    print("Building OpenSubtitles sentence index...")
+    sub_index = build_sentence_index(sub_sentences)
+    print(f"  {len(sub_index)} unique normalized tokens indexed")
+
+    # --- Match and merge ---
     print("Matching examples to vocabulary...")
+    # Build rank lookup: normalised word -> position in inventory (by frequency order)
+    inv_rank_lookup = {}
+    for i, e in enumerate(inventory):
+        norm = strip_accents(e["word"].lower())
+        if norm not in inv_rank_lookup:
+            inv_rank_lookup[norm] = i
+
     output = {}
     coverage = {"0": 0, "1-2": 0, "3-5": 0, "5+": 0}
     total_examples = 0
 
-    for entry in inventory:
+    for i, entry in enumerate(inventory):
         word_norm = strip_accents(entry["word"].lower())
-        candidate_indices = sentence_index.get(word_norm, [])
-        examples = select_examples(candidate_indices, sentences, word_to_rank)
+
+        # Tatoeba first (preferred)
+        tat_candidates = tat_index.get(word_norm, [])
+        examples = select_examples(tat_candidates, tat_sentences, word_to_rank,
+                                   source="tatoeba",
+                                   target_rank=i, inv_rank_lookup=inv_rank_lookup)
+
+        # Fill remaining slots with OpenSubtitles
+        remaining = MAX_EXAMPLES_PER_WORD - len(examples)
+        if remaining > 0:
+            sub_candidates = sub_index.get(word_norm, [])
+            if sub_candidates:
+                # Pass Tatoeba targets to avoid cross-corpus duplicates
+                existing_targets = {ex["target"].lower().strip() for ex in examples}
+                sub_examples = select_examples(
+                    sub_candidates, sub_sentences, word_to_rank,
+                    source="opensubtitles", max_examples=remaining,
+                    exclude_targets=existing_targets,
+                    target_rank=i, inv_rank_lookup=inv_rank_lookup,
+                )
+                examples.extend(sub_examples)
 
         if examples:
             output[entry["id"]] = examples
@@ -154,11 +365,17 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
+    # --- Results ---
+    tat_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "tatoeba")
+    sub_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "opensubtitles")
+
     print(f"\n{'='*50}")
     print("RESULTS")
     print(f"{'='*50}")
     print(f"Total vocabulary entries: {len(inventory)}")
     print(f"Total examples attached:  {total_examples}")
+    print(f"  From Tatoeba:       {tat_count:,}")
+    print(f"  From OpenSubtitles: {sub_count:,}")
     print(f"")
     print(f"Coverage breakdown:")
     print(f"  0 examples:   {coverage['0']:5d} words")
