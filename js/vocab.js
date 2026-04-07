@@ -334,22 +334,26 @@ async function loadVocabularyData(rangeString) {
                 // Strip elision markers for fuzzy MWE matching
                 const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
                 for (const mwe of item.mwe_memberships) {
-                    const exprLower = mwe.expression.toLowerCase();
-                    const exprNorm = stripElisions(exprLower);
-                    // Find ALL matching examples for this MWE
-                    let matched = allCorpusExamples.filter(ex => {
-                        const text = (ex.spanish || ex.target || '').toLowerCase();
-                        return text.includes(exprLower);
-                    });
-                    if (matched.length === 0) {
+                    // Use pre-attached examples if available (from examples.json "w" field),
+                    // only fall back to corpus scan when needed (artist mode)
+                    let matched = mwe.examples || [];
+                    if (matched.length === 0 && allCorpusExamples.length > 0) {
+                        const exprLower = mwe.expression.toLowerCase();
+                        const exprNorm = stripElisions(exprLower);
                         matched = allCorpusExamples.filter(ex => {
-                            const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
-                            return text.includes(exprNorm);
+                            const text = (ex.spanish || ex.target || '').toLowerCase();
+                            return text.includes(exprLower);
                         });
+                        if (matched.length === 0) {
+                            matched = allCorpusExamples.filter(ex => {
+                                const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
+                                return text.includes(exprNorm);
+                            });
+                        }
                     }
                     allMWEs.push({
                         expression: mwe.expression,
-                        translation: mwe.translation,
+                        translation: mwe.translation || '',
                         examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
                     });
                 }
@@ -598,22 +602,26 @@ async function loadIncorrectWordsSet() {
                 // Strip elision markers for fuzzy MWE matching
                 const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
                 for (const mwe of item.mwe_memberships) {
-                    const exprLower = mwe.expression.toLowerCase();
-                    const exprNorm = stripElisions(exprLower);
-                    // Find ALL matching examples for this MWE
-                    let matched = allCorpusExamples.filter(ex => {
-                        const text = (ex.spanish || ex.target || '').toLowerCase();
-                        return text.includes(exprLower);
-                    });
-                    if (matched.length === 0) {
+                    // Use pre-attached examples if available (from examples.json "w" field),
+                    // only fall back to corpus scan when needed (artist mode)
+                    let matched = mwe.examples || [];
+                    if (matched.length === 0 && allCorpusExamples.length > 0) {
+                        const exprLower = mwe.expression.toLowerCase();
+                        const exprNorm = stripElisions(exprLower);
                         matched = allCorpusExamples.filter(ex => {
-                            const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
-                            return text.includes(exprNorm);
+                            const text = (ex.spanish || ex.target || '').toLowerCase();
+                            return text.includes(exprLower);
                         });
+                        if (matched.length === 0) {
+                            matched = allCorpusExamples.filter(ex => {
+                                const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
+                                return text.includes(exprNorm);
+                            });
+                        }
                     }
                     allMWEs.push({
                         expression: mwe.expression,
-                        translation: mwe.translation,
+                        translation: mwe.translation || '',
                         examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
                     });
                 }

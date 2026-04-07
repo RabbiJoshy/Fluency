@@ -18,6 +18,7 @@ Inputs:
     Data/Spanish/layers/examples_raw.json
     Data/Spanish/layers/senses_wiktionary.json
     Data/Spanish/layers/sense_assignments.json
+    Data/Spanish/layers/mwe_phrases.json (optional)
 
 Outputs:
     Data/Spanish/vocabulary.index.json
@@ -120,12 +121,21 @@ def main():
         assignments = json.load(f)
     print(f"  sense_assignments: {len(assignments)} assigned entries")
 
+    mwe_path = LAYERS / "mwe_phrases.json"
+    if mwe_path.exists():
+        with open(mwe_path, encoding="utf-8") as f:
+            mwe_data = json.load(f)
+        print(f"  mwe_phrases: {len(mwe_data)} words with MWEs")
+    else:
+        mwe_data = {}
+        print("  mwe_phrases: (not found, skipping)")
+
     # Build vocabulary
     print("\nAssembling vocabulary...")
     monolith = []
     index = []
     examples_out = {}
-    stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0}
+    stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0}
 
     for entry in inventory:
         word_id = entry["id"]
@@ -205,6 +215,27 @@ def main():
             # Edge case: no meanings at all, skip
             continue
 
+        # MWE memberships
+        word_mwes = mwe_data.get(word_id, [])
+        mwe_memberships = None
+        mwe_examples_by_idx = None
+        if word_mwes:
+            mwe_memberships = []
+            mwe_examples_by_idx = []
+            for mwe in word_mwes:
+                mwe_entry = {"expression": mwe["expression"]}
+                if mwe.get("translation"):
+                    mwe_entry["translation"] = mwe["translation"]
+                mwe_memberships.append(mwe_entry)
+                # Find examples containing this MWE expression
+                expr_lower = mwe["expression"].lower()
+                matched_exs = [
+                    ex for ex in word_examples
+                    if expr_lower in (ex.get("target", "") or ex.get("spanish", "")).lower()
+                ]
+                mwe_examples_by_idx.append(matched_exs[:5])
+            stats["with_mwes"] += 1
+
         # Monolith entry
         mono_entry = {
             "word": entry["word"],
@@ -214,6 +245,8 @@ def main():
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_full,
         }
+        if mwe_memberships:
+            mono_entry["mwe_memberships"] = mwe_memberships
         monolith.append(mono_entry)
 
         # Index entry (no examples)
@@ -225,12 +258,19 @@ def main():
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_lean,
         }
+        if mwe_memberships:
+            idx_entry["mwe_memberships"] = mwe_memberships
         index.append(idx_entry)
 
         # Examples file
+        ex_entry = {}
         if any(examples_by_meaning):
-            examples_out[word_id] = {"m": examples_by_meaning}
+            ex_entry["m"] = examples_by_meaning
             stats["with_examples"] += 1
+        if mwe_examples_by_idx and any(mwe_examples_by_idx):
+            ex_entry["w"] = mwe_examples_by_idx
+        if ex_entry:
+            examples_out[word_id] = ex_entry
 
     # Write outputs
     monolith_path = OUTPUT_DIR / "vocabulary.json"
@@ -257,6 +297,7 @@ def main():
     print(f"With examples:      {stats['with_examples']:>6}")
     print(f"No senses (pos=X):  {stats['no_senses']:>6}")
     print(f"Translations cleaned: {stats['cleaned']:>5}")
+    print(f"With MWEs:          {stats['with_mwes']:>6}")
     print()
 
     # Sample output
