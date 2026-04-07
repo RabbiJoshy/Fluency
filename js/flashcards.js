@@ -1192,6 +1192,18 @@ function updateCard() {
                     `<span style="${pillStyle}">$1</span>`);
             }
 
+            // Highlight other study set words in the sentence (same style for now)
+            const deckWords = getDeckWords();
+            const targetLower = card.targetWord.toLowerCase();
+            for (const dw of deckWords) {
+                if (dw === targetLower || dw.length <= 2) continue;
+                // Skip if already inside a <span> tag (already highlighted)
+                const dwEscaped = dw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const dwRegex = new RegExp(`(?<![\\p{L}\\p{N}])(${dwEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
+                displayTargetSentence = displayTargetSentence.replace(dwRegex,
+                    `<span style="${pillStyle}">$1</span>`);
+            }
+
             // Build example counter: shows count for current MWE's examples, not total MWEs
             let exampleCounter = '';
             if (hasMultipleExamples) {

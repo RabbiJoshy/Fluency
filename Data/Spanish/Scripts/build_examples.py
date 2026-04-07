@@ -40,7 +40,7 @@ OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "examples_raw.json"
 
 SENTINEL_RANK = 999_999
 DEFAULT_MAX_LINES = 5_000_000
-MAX_EXAMPLES_PER_WORD = 50
+MAX_EXAMPLES_PER_WORD = 20
 MAX_CANDIDATES = 500          # random-sample cap before scoring
 MIN_SENTENCE_WORDS = 3
 MAX_SENTENCE_WORDS = 25
@@ -103,12 +103,36 @@ def clean_subtitle_line(line):
     return line
 
 
+OPENSUBS_CACHE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "cached_pairs.json.gz"
+
+
 def load_opensubtitles(es_path, en_path, max_lines):
     """Load parallel OpenSubtitles corpus, sampling evenly across the full file.
 
     Uses stride-based sampling to avoid bias toward whichever movies/shows
     appear first in the file. Reads every Nth line to collect max_lines pairs.
+
+    The full-corpus result is cached to cached_pairs.json.gz (~30MB) so
+    subsequent runs skip the 60s stride-sampling step.
     """
+    # Try cache first (only for full corpus, not subsampled)
+    if OPENSUBS_CACHE.exists():
+        import gzip
+        print("    Loading cached pairs from {}...".format(OPENSUBS_CACHE.name))
+        t0 = time.time()
+        with gzip.open(OPENSUBS_CACHE, "rt", encoding="utf-8") as f:
+            sentences = json.load(f)
+        # Convert lists back to tuples
+        sentences = [(eng, spa) for eng, spa in sentences]
+        print(f"    {len(sentences):,} cached pairs loaded in {time.time() - t0:.1f}s")
+        # Subsample if requesting fewer than cached
+        if len(sentences) > max_lines:
+            stride = max(1, len(sentences) // max_lines)
+            sentences = sentences[::stride][:max_lines]
+            print(f"    Subsampled to {len(sentences):,} pairs")
+        return sentences
+
+    # No cache — process from raw files
     # First pass: count total lines (fast, just counts newlines)
     print("    Counting total lines...")
     t0 = time.time()
@@ -145,6 +169,15 @@ def load_opensubtitles(es_path, en_path, max_lines):
                 sentences.append((eng, spa))
     elapsed = time.time() - t0
     print(f"\r    Done: {len(sentences):,} pairs in {elapsed:.1f}s" + " " * 30)
+
+    # Save cache for next time
+    import gzip
+    print(f"    Saving cache to {OPENSUBS_CACHE.name}...")
+    t0 = time.time()
+    with gzip.open(OPENSUBS_CACHE, "wt", encoding="utf-8") as f:
+        json.dump(sentences, f, ensure_ascii=False)
+    print(f"    Cached {len(sentences):,} pairs in {time.time() - t0:.1f}s")
+
     return sentences
 
 
@@ -201,20 +234,31 @@ def is_trivial(spanish_text, word_to_rank):
     )
 
 
-def proximity_score(spanish_text, target_rank, inv_rank_lookup):
-    """Score a sentence by how many inventory words it contains near the target rank.
+OVERLAP_WINDOW = 10      # ±rank window for co-study words
+MAX_OVERLAP_TIER = 2     # cap benefit at 2 nearby words
+PREFERRED_MAX_WORDS = 12 # sentences under this length pay no penalty
+LENGTH_PENALTY_WEIGHT = 5  # per extra word above PREFERRED_MAX_WORDS
+MAX_SENTENCE_LEN = 18    # hard reject above this
 
-    For each token that's in the inventory, adds 1/(1 + |target_rank - token_rank|).
-    Sentences with words close in rank to the target score highest.
+
+def overlap_tier(spanish_text, target_rank, inv_rank_lookup):
+    """Count inventory words within ±OVERLAP_WINDOW of target rank.
+
+    Capped at MAX_OVERLAP_TIER — having 2 co-study words is enough,
+    more doesn't help and would bias toward long sentences.
     """
-    tokens = tokenize(spanish_text)
-    score = 0.0
-    for t in tokens:
+    if not inv_rank_lookup:
+        return 0
+    count = 0
+    for t in tokenize(spanish_text):
         norm = strip_accents(t)
         rank = inv_rank_lookup.get(norm)
-        if rank is not None:
-            score += 1.0 / (1 + abs(target_rank - rank))
-    return score
+        if rank is not None and rank != target_rank:
+            if abs(target_rank - rank) <= OVERLAP_WINDOW:
+                count += 1
+                if count >= MAX_OVERLAP_TIER:
+                    return MAX_OVERLAP_TIER
+    return count
 
 
 def select_examples(candidate_indices, sentences, word_to_rank,
@@ -235,15 +279,21 @@ def select_examples(candidate_indices, sentences, word_to_rank,
         # Skip trivial dialogue (all top-100 words)
         if is_trivial(spa, word_to_rank):
             continue
+        # Hard reject sentences that are too long
+        word_count = len(tokenize(spa))
+        if word_count > MAX_SENTENCE_LEN:
+            continue
         easiness = compute_easiness(spa, word_to_rank)
-        prox = proximity_score(spa, target_rank, inv_rank_lookup) if inv_rank_lookup else 0.0
+        tier = overlap_tier(spa, target_rank, inv_rank_lookup)
+        length_pen = max(0, word_count - PREFERRED_MAX_WORDS) * LENGTH_PENALTY_WEIGHT
         scored.append({
             "target": spa, "english": eng, "source": source,
-            "easiness": easiness, "_prox": prox,
+            "easiness": easiness,
+            "_tier": tier, "_length_pen": length_pen,
         })
 
-    # Sort: higher proximity first, then easier first
-    scored.sort(key=lambda x: (-x["_prox"], x["easiness"]))
+    # Sort: higher overlap tier first, then lower (easiness + length penalty)
+    scored.sort(key=lambda x: (-x["_tier"], x["easiness"] + x["_length_pen"]))
 
     # Diversity: pick from thirds within the top candidates
     pool = scored[:max_examples * 3]  # generous pool
@@ -262,9 +312,10 @@ def select_examples(candidate_indices, sentences, word_to_rank,
             if id(ex) not in used:
                 selected.append(ex)
 
-    # Remove internal scoring field
+    # Remove internal scoring fields
     for ex in selected:
-        del ex["_prox"]
+        del ex["_tier"]
+        del ex["_length_pen"]
     return selected
 
 
@@ -275,6 +326,14 @@ def parse_args():
     parser.add_argument(
         "--max-lines", type=int, default=DEFAULT_MAX_LINES,
         help="Max OpenSubtitles lines to read (default: %(default)s)"
+    )
+    parser.add_argument(
+        "--half", action="store_true",
+        help="Use half the corpus (faster iterative runs)"
+    )
+    parser.add_argument(
+        "--tenth", action="store_true",
+        help="Use a tenth of the corpus (fastest iteration)"
     )
     return parser.parse_args()
 
@@ -292,9 +351,23 @@ def main():
         word_to_rank = json.load(f)
     print(f"  {len(word_to_rank)} rank entries")
 
-    # --- Tatoeba ---
+    # --- Corpora ---
+    if args.tenth:
+        max_lines = args.max_lines // 10
+        stride = 10
+        print("*** --tenth mode: using 1/10 corpus for fastest iteration ***\n")
+    elif args.half:
+        max_lines = args.max_lines // 2
+        stride = 2
+        print("*** --half mode: using half corpus for faster iteration ***\n")
+    else:
+        max_lines = args.max_lines
+        stride = 1
+
     print("Loading Tatoeba corpus...")
     tat_sentences = load_tatoeba(TATOEBA_FILE)
+    if stride > 1:
+        tat_sentences = tat_sentences[::stride]
     print(f"  {len(tat_sentences)} sentence pairs")
 
     print("Building Tatoeba sentence index...")
@@ -302,8 +375,8 @@ def main():
     print(f"  {len(tat_index)} unique normalized tokens indexed")
 
     # --- OpenSubtitles ---
-    print(f"Loading OpenSubtitles (first {args.max_lines:,} lines)...")
-    sub_sentences = load_opensubtitles(OPENSUBS_ES, OPENSUBS_EN, args.max_lines)
+    print(f"Loading OpenSubtitles (first {max_lines:,} lines)...")
+    sub_sentences = load_opensubtitles(OPENSUBS_ES, OPENSUBS_EN, max_lines)
     print(f"  {len(sub_sentences)} sentence pairs after cleaning")
 
     print("Building OpenSubtitles sentence index...")
@@ -324,10 +397,26 @@ def main():
     total_examples = 0
 
     for i, entry in enumerate(inventory):
-        word_norm = strip_accents(entry["word"].lower())
+        word_lower = entry["word"].lower()
+        word_norm = strip_accents(word_lower)
+        # If accent-stripping changes the word (sé→se, más→mas, él→el),
+        # filter candidates to those containing the original accented form.
+        # This prevents reflexive "se" sentences matching "sé" (I know), etc.
+        accent_sensitive = (word_lower != word_norm)
+
+        def _filter_accent(candidate_ids, sentences):
+            if not accent_sensitive:
+                return candidate_ids
+            filtered = []
+            for idx in candidate_ids:
+                spa = sentences[idx][1].lower()
+                # Check the accented form appears as a whole token
+                if re.search(r'(?<![a-záéíóúüñ])' + re.escape(word_lower) + r'(?![a-záéíóúüñ])', spa):
+                    filtered.append(idx)
+            return filtered
 
         # Tatoeba first (preferred)
-        tat_candidates = tat_index.get(word_norm, [])
+        tat_candidates = _filter_accent(tat_index.get(word_norm, []), tat_sentences)
         examples = select_examples(tat_candidates, tat_sentences, word_to_rank,
                                    source="tatoeba",
                                    target_rank=i, inv_rank_lookup=inv_rank_lookup)
@@ -335,7 +424,7 @@ def main():
         # Fill remaining slots with OpenSubtitles
         remaining = MAX_EXAMPLES_PER_WORD - len(examples)
         if remaining > 0:
-            sub_candidates = sub_index.get(word_norm, [])
+            sub_candidates = _filter_accent(sub_index.get(word_norm, []), sub_sentences)
             if sub_candidates:
                 # Pass Tatoeba targets to avoid cross-corpus duplicates
                 existing_targets = {ex["target"].lower().strip() for ex in examples}

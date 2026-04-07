@@ -88,6 +88,26 @@ _ALT_OF_PATTERNS = [
 MAX_SENSES_PER_POS = 5
 MAX_SENSES_TOTAL = 8
 
+# Descriptive/encyclopedic senses that aren't real translations.
+# e.g. "used to express wishes" (así), "The name of the Latin script letter D" (de)
+_DESCRIPTIVE_SENSE_RE = re.compile(
+    r"^("
+    r"used to\b"
+    r"|a public\b"
+    r"|the name of\b"
+    r"|expression\b"
+    r"|indicating\b"
+    r"|stressed in\b"
+    r"|feminine\b"
+    r"|masculine\b"
+    r"|said of\b"
+    r"|placed before\b"
+    r"|placed after\b"
+    r"|an? [a-z]+ (of|that|which|used|for)\b"
+    r")",
+    re.IGNORECASE,
+)
+
 # Words that start a parenthetical clarification (not an essential object)
 _CLARIFICATION_STARTERS = {
     "used", "especially", "usually", "often", "expressing", "indicating",
@@ -599,6 +619,7 @@ def main():
         "total_final": 0,
         "verb_filtered": 0,
         "jehle_fallback": 0,
+        "descriptive_filtered": 0,
     }
     unmatched_words = []
 
@@ -618,6 +639,16 @@ def main():
                 s["translation"] = clean_translation(raw)
                 if s["translation"] != raw:
                     s["detail"] = raw
+
+            # Step 1b: Filter descriptive/encyclopedic senses
+            before_desc = len(senses)
+            senses_before_filter = list(senses)
+            senses = [s for s in senses
+                       if not _DESCRIPTIVE_SENSE_RE.match(s["translation"])]
+            if not senses:
+                # Don't remove ALL senses — keep first original
+                senses = senses_before_filter[:1]
+            stats["descriptive_filtered"] += before_desc - len(senses)
 
             # Step 2: Exact dedup (cleaning may collapse previously-distinct glosses)
             seen = set()
@@ -717,6 +748,7 @@ def main():
     print(f"  Jehle fallback:    {stats['jehle_fallback']:>6}")
     print(f"Unmatched:           {stats['unmatched']:>6}  ({100*stats['unmatched']/total:.1f}%)")
     print(f"With 2+ senses:      {stats['multi_sense']:>6}  ({100*stats['multi_sense']/total:.1f}%)")
+    print(f"Descriptive filter:  {stats['descriptive_filtered']:>6}  (encyclopedic senses removed)")
     print(f"Verb POS filtered:   {stats['verb_filtered']:>6}  (non-VERB senses removed)")
     print()
     raw = stats["total_raw"]

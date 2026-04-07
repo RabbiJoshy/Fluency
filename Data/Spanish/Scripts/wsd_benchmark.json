@@ -1,0 +1,206 @@
+{
+  "_description": "25 hand-picked WSD test cases for evaluating sense classification approaches. Each example has a clearly correct sense that a human would agree on.",
+  "_format": "Each test: spanish text, english text, target word in spanish, list of senses (pos: translation), index of correct sense, short label",
+  "tests": [
+    {
+      "spa": "Tom quería saber la hora.",
+      "eng": "Tom wanted to know the time.",
+      "target": "saber",
+      "senses": ["verb: to know, to understand (a fact), to realize", "verb: to know how to do something", "verb: to find out, to learn", "verb: to taste"],
+      "expected": 0,
+      "label": "saber: know (fact)"
+    },
+    {
+      "spa": "La comida no sabía bien.",
+      "eng": "The food didn't taste good.",
+      "target": "sabía",
+      "senses": ["verb: to know, to understand (a fact), to realize", "verb: to know how to do something", "verb: to find out, to learn", "verb: to taste"],
+      "expected": 3,
+      "label": "saber: taste"
+    },
+    {
+      "spa": "La compañía pidió al banco que le prestara dinero.",
+      "eng": "The company asked the bank to loan them money.",
+      "target": "banco",
+      "senses": ["noun: bank", "noun: bench", "noun: pew", "noun: school of fish"],
+      "expected": 0,
+      "label": "banco: bank"
+    },
+    {
+      "spa": "Se sentó en el banco del parque.",
+      "eng": "He sat on the bench in the park.",
+      "target": "banco",
+      "senses": ["noun: bank", "noun: bench", "noun: pew", "noun: school of fish"],
+      "expected": 1,
+      "label": "banco: bench"
+    },
+    {
+      "spa": "No tengo tiempo para esto.",
+      "eng": "I don't have time for this.",
+      "target": "tiempo",
+      "senses": ["noun: time", "noun: a while, period of time, long time", "noun: tense", "noun: weather"],
+      "expected": 0,
+      "label": "tiempo: time"
+    },
+    {
+      "spa": "El tiempo está bonito hoy.",
+      "eng": "The weather is nice today.",
+      "target": "tiempo",
+      "senses": ["noun: time", "noun: a while, period of time, long time", "noun: tense", "noun: weather"],
+      "expected": 3,
+      "label": "tiempo: weather"
+    },
+    {
+      "spa": "Usa el tiempo presente.",
+      "eng": "Use the present tense.",
+      "target": "tiempo",
+      "senses": ["noun: time", "noun: a while, period of time, long time", "noun: tense", "noun: weather"],
+      "expected": 2,
+      "label": "tiempo: tense"
+    },
+    {
+      "spa": "Supe que me había quebrado la muñeca izquierda.",
+      "eng": "I knew I'd broken my wrist.",
+      "target": "muñeca",
+      "senses": ["noun: wrist", "noun: doll"],
+      "expected": 0,
+      "label": "muñeca: wrist"
+    },
+    {
+      "spa": "Mamá compró una bonita muñeca para ella.",
+      "eng": "Mother bought a beautiful doll for her.",
+      "target": "muñeca",
+      "senses": ["noun: wrist", "noun: doll"],
+      "expected": 1,
+      "label": "muñeca: doll"
+    },
+    {
+      "spa": "Tom cree que el rico merece ser rico.",
+      "eng": "Tom believes that the rich deserve to be rich.",
+      "target": "rico",
+      "senses": ["adj: rich", "adj: luxurious", "adj: tasty, yummy"],
+      "expected": 0,
+      "label": "rico: rich"
+    },
+    {
+      "spa": "Esa planta necesita sombra.",
+      "eng": "That plant needs shade.",
+      "target": "planta",
+      "senses": ["noun: plant", "noun: floor, level", "noun: sole"],
+      "expected": 0,
+      "label": "planta: plant"
+    },
+    {
+      "spa": "Viven en la planta doce de este bloque.",
+      "eng": "They live on the 12th floor of this condo.",
+      "target": "planta",
+      "senses": ["noun: plant", "noun: floor, level", "noun: sole"],
+      "expected": 1,
+      "label": "planta: floor"
+    },
+    {
+      "spa": "Un conejo tiene las orejas largas y la cola corta.",
+      "eng": "A rabbit has long ears and a short tail.",
+      "target": "cola",
+      "senses": ["noun: tail", "noun: line, queue", "noun: train", "noun: coma (a comet's tail)"],
+      "expected": 0,
+      "label": "cola: tail"
+    },
+    {
+      "spa": "Elige una carta, cualquier carta.",
+      "eng": "Pick a card, any card.",
+      "target": "carta",
+      "senses": ["noun: letter", "noun: map", "noun: menu", "noun: playing card"],
+      "expected": 3,
+      "label": "carta: card"
+    },
+    {
+      "spa": "Esto ocurrió antes de recibir tu carta.",
+      "eng": "This happened prior to receiving your letter.",
+      "target": "carta",
+      "senses": ["noun: letter", "noun: map", "noun: menu", "noun: playing card"],
+      "expected": 0,
+      "label": "carta: letter"
+    },
+    {
+      "spa": "Escribe en una hoja de papel tus objetivos.",
+      "eng": "Write down your goals on a piece of paper.",
+      "target": "hoja",
+      "senses": ["noun: sheet, leaf", "noun: petal", "noun: blade", "noun: pad"],
+      "expected": 0,
+      "label": "hoja: sheet"
+    },
+    {
+      "spa": "Su partido sacó la mayoría de los votos.",
+      "eng": "Their party won the most votes in the election.",
+      "target": "partido",
+      "senses": ["noun: party", "noun: game, match"],
+      "expected": 0,
+      "label": "partido: party"
+    },
+    {
+      "spa": "Perdimos el partido de fútbol por una gran diferencia.",
+      "eng": "We lost the soccer game by a lot.",
+      "target": "partido",
+      "senses": ["noun: party", "noun: game, match"],
+      "expected": 1,
+      "label": "partido: game"
+    },
+    {
+      "spa": "Me gustaría tomar al menos una botella más de cerveza.",
+      "eng": "I'd like to drink at least one more bottle of beer.",
+      "target": "tomar",
+      "senses": ["verb: to take", "verb: to drink, have", "verb: to make (a decision)"],
+      "expected": 1,
+      "label": "tomar: drink"
+    },
+    {
+      "spa": "No debería volver a pasar.",
+      "eng": "It shouldn't happen again.",
+      "target": "pasar",
+      "senses": ["verb: to pass, to hand, to slip", "verb: to happen", "verb: to pass, to get past, to go past", "verb: to pass time", "verb: to enter a room"],
+      "expected": 1,
+      "label": "pasar: happen"
+    },
+    {
+      "spa": "Voy a pasar el fin de semana en Tokio.",
+      "eng": "I am going to spend the weekend in Tokyo.",
+      "target": "pasar",
+      "senses": ["verb: to pass, to hand, to slip", "verb: to happen", "verb: to pass, to get past, to go past", "verb: to pass time", "verb: to enter a room"],
+      "expected": 3,
+      "label": "pasar: spend time"
+    },
+    {
+      "spa": "Tienes el derecho a la libertad de expresión.",
+      "eng": "You have the right to free speech.",
+      "target": "derecho",
+      "senses": ["adj: straight; upright", "adj: right, right-hand", "noun: right", "noun: law, jurisprudence"],
+      "expected": 2,
+      "label": "derecho: right (noun)"
+    },
+    {
+      "spa": "No puedo correr porque estoy muy cansado.",
+      "eng": "I can't run because I'm very tired.",
+      "target": "correr",
+      "senses": ["verb: to run, to jog", "verb: to flow", "verb: to shoo, chase away", "verb: to throw out; to fire", "verb: to walk away"],
+      "expected": 0,
+      "label": "correr: run"
+    },
+    {
+      "spa": "Tom intentó meter a la fuerza la clavija en el agujero.",
+      "eng": "Tom tried to force the peg into the hole.",
+      "target": "meter",
+      "senses": ["verb: to put in, insert", "verb: to score", "verb: to make", "verb: to cram, to stuff, to stick", "verb: to meddle, interfere"],
+      "expected": 0,
+      "label": "meter: insert"
+    },
+    {
+      "spa": "Me podría meter en problemas si hiciera aquello.",
+      "eng": "I could get in trouble if I did that.",
+      "target": "meter",
+      "senses": ["verb: to put in, insert", "verb: to score", "verb: to make", "verb: to cram, to stuff, to stick", "verb: to meddle, interfere"],
+      "expected": 4,
+      "label": "meter: get into (trouble)"
+    }
+  ]
+}

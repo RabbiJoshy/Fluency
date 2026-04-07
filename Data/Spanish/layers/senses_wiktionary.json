@@ -56,10 +56,6 @@
       "pos": "ADP",
       "translation": "about",
       "detail": "about (concerning; with regard to)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter D/d."
     }
   ],
   "no|no": [
@@ -113,10 +109,6 @@
       "pos": "DET",
       "translation": "the",
       "detail": "masculine singular definite article; the"
-    },
-    {
-      "pos": "DET",
-      "translation": "feminine singular definite article used before nouns which start with a stressed /a/"
     },
     {
       "pos": "PRON",
@@ -276,10 +268,6 @@
   ],
   "te|te": [
     {
-      "pos": "NOUN",
-      "translation": "tea"
-    },
-    {
       "pos": "PRON",
       "translation": "to you, for you, you"
     },
@@ -289,7 +277,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "The name of the Latin script letter T/t."
+      "translation": "tea"
     }
   ],
   "los|lo": [
@@ -321,18 +309,6 @@
       "pos": "PRON",
       "translation": "themselves; yourselves; each other",
       "detail": "A reflexive or reciprocal pronoun: oneself, himself, herself, itself, yourself; themselves; yourselves; each other; one another"
-    },
-    {
-      "pos": "PRON",
-      "translation": "A pronoun used with transitive verbs to create the passive voice"
-    },
-    {
-      "pos": "PRON",
-      "translation": "A pronoun used with a verb conjugated in the third-person singular to convey an impersonal meaning"
-    },
-    {
-      "pos": "PRON",
-      "translation": "Used to third person subjunctive moods to form an impersonal imperative."
     },
     {
       "pos": "PRON",
@@ -537,10 +513,6 @@
     {
       "pos": "PRON",
       "translation": "them"
-    },
-    {
-      "pos": "PRON",
-      "translation": "feminine plural pronoun"
     },
     {
       "pos": "NOUN",
@@ -835,10 +807,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "ahora|ahora": [
@@ -978,10 +946,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -1058,10 +1022,6 @@
       "pos": "ADV",
       "translation": "like this; like that",
       "detail": "like this; like that; as such; thus; so; thereby; this way, that way"
-    },
-    {
-      "pos": "ADV",
-      "translation": "used to express wishes of misfortune against someone, or to cast a spell"
     }
   ],
   "puedo|poder": [
@@ -1204,10 +1164,6 @@
     {
       "pos": "INTJ",
       "translation": "well; a short pause in a sentence"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
     },
     {
       "pos": "INTJ",
@@ -1410,10 +1366,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "ese|ese": [
@@ -1438,10 +1390,6 @@
       "pos": "PRON",
       "translation": "dude, guy, pal",
       "detail": "dude, guy, pal, man, buddy; (sometimes) asshole"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "voy|ir": [
@@ -1639,10 +1587,6 @@
       "pos": "PRON",
       "translation": "dude, guy, pal",
       "detail": "dude, guy, pal, man, buddy; (sometimes) asshole"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "dos|dos": [
@@ -2307,10 +2251,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "ni|ni": [
@@ -2994,10 +2934,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "tus|tu": [
@@ -3399,10 +3335,6 @@
     },
     {
       "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
-    },
-    {
-      "pos": "INTJ",
       "translation": "Said when one is about to say goodbye/end a conversation."
     },
     {
@@ -3426,10 +3358,6 @@
     {
       "pos": "INTJ",
       "translation": "well; a short pause in a sentence"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
     },
     {
       "pos": "INTJ",
@@ -3563,10 +3491,6 @@
     },
     {
       "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
-    },
-    {
-      "pos": "INTJ",
       "translation": "Said when one is about to say goodbye/end a conversation."
     },
     {
@@ -3587,10 +3511,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     },
     {
       "pos": "VERB",
@@ -3815,10 +3735,6 @@
     {
       "pos": "NOUN",
       "translation": "mum, mom"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a term of affection for a woman"
     }
   ],
   "tienen|tener": [
@@ -4117,10 +4033,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "hombres|hombre": [
@@ -4745,10 +4657,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "amigos|amigo": [
@@ -5022,10 +4930,6 @@
     },
     {
       "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
-    },
-    {
-      "pos": "INTJ",
       "translation": "Said when one is about to say goodbye/end a conversation."
     },
     {
@@ -5261,10 +5165,6 @@
     {
       "pos": "PRON",
       "translation": "those ones"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "pues|pues": [
@@ -5623,10 +5523,6 @@
     {
       "pos": "NOUN",
       "translation": "car, automobile"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a public deed or ceremony"
     },
     {
       "pos": "NOUN",
@@ -6644,10 +6540,6 @@
     },
     {
       "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
-    },
-    {
-      "pos": "INTJ",
       "translation": "Said when one is about to say goodbye/end a conversation."
     },
     {
@@ -7489,10 +7381,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "haya|haya": [
@@ -7976,10 +7864,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "segundo|segundo": [
@@ -8511,10 +8395,6 @@
       "pos": "CCONJ",
       "translation": "what about, how about, and",
       "detail": "what about, how about, and, where is/are the"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter E/e."
     }
   ],
   "hagas|hacer": [
@@ -10107,10 +9987,6 @@
       "pos": "ADV",
       "translation": "like this; like that",
       "detail": "like this; like that; as such; thus; so; thereby; this way, that way"
-    },
-    {
-      "pos": "ADV",
-      "translation": "used to express wishes of misfortune against someone, or to cast a spell"
     }
   ],
   "jugar|jugar": [
@@ -11266,10 +11142,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "orden|orden": [
@@ -12067,10 +11939,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "hará|hacer": [
@@ -12105,10 +11973,6 @@
     {
       "pos": "NOUN",
       "translation": "journey, trip"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A state of hallucination or altered consciousness caused by a narcotic drug."
     },
     {
       "pos": "NOUN",
@@ -12348,10 +12212,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a member of any typically dark-skinned people"
-    },
-    {
-      "pos": "NOUN",
       "translation": "ghost writer"
     },
     {
@@ -12370,6 +12230,10 @@
     {
       "pos": "ADJ",
       "translation": "sad"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "clandestine"
     }
   ],
   "usar|usar": [
@@ -13148,10 +13012,6 @@
       "pos": "PRON",
       "translation": "dude, guy, pal",
       "detail": "dude, guy, pal, man, buddy; (sometimes) asshole"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "tranquilo|tranquilo": [
@@ -13841,10 +13701,6 @@
     {
       "pos": "NOUN",
       "translation": "bride"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a type of sweet roll"
     }
   ],
   "permiso|permiso": [
@@ -13959,10 +13815,6 @@
       "pos": "NOUN",
       "translation": "resemblance",
       "detail": "resemblance (to another person)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A type of muscle pain."
     },
     {
       "pos": "NOUN",
@@ -14683,10 +14535,6 @@
     {
       "pos": "ADJ",
       "translation": "perpendicular"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a school for becoming a teacher"
     }
   ],
   "segundos|segundo": [
@@ -16611,10 +16459,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "juro|jurar": [
@@ -17415,10 +17259,6 @@
     {
       "pos": "DET",
       "translation": "any, whatever, whichever"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a person of no importance; a nobody, zero"
     },
     {
       "pos": "NOUN",
@@ -18514,10 +18354,6 @@
       "pos": "PRON",
       "translation": "dude, guy, pal",
       "detail": "dude, guy, pal, man, buddy; (sometimes) asshole"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "base|base": [
@@ -18582,10 +18418,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     },
     {
       "pos": "VERB",
@@ -19012,7 +18844,7 @@
   "locura|locura": [
     {
       "pos": "NOUN",
-      "translation": "madness, craziness, an act of madness"
+      "translation": "madness, craziness"
     },
     {
       "pos": "NOUN",
@@ -20204,10 +20036,6 @@
       "pos": "NOUN",
       "translation": "beam, ray",
       "detail": "beam, ray (wave of energy)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a bolt of lightning"
     },
     {
       "pos": "INTJ",
@@ -21725,10 +21553,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "hayas|haya": [
@@ -22329,15 +22153,15 @@
   "don|don": [
     {
       "pos": "NOUN",
-      "translation": "a title of respect to a man, prefixed to first names, title of respect for a man: sir"
-    },
-    {
-      "pos": "NOUN",
       "translation": "gift, present"
     },
     {
       "pos": "NOUN",
       "translation": "gift, talent, knack"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "title of respect for a man: sir"
     }
   ],
   "soldado|soldado": [
@@ -22962,10 +22786,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "ganas|gana": [
@@ -23606,10 +23426,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a term of affection for a woman"
-    },
-    {
-      "pos": "NOUN",
       "translation": "a woman who runs a brothel; a madame"
     }
   ],
@@ -24193,10 +24009,6 @@
     {
       "pos": "NOUN",
       "translation": "mum, mom"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a term of affection for a woman"
     }
   ],
   "bienvenida|bienvenida": [
@@ -24541,10 +24353,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "podrá|poder": [
@@ -25488,10 +25296,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     }
   ],
   "tema|tema": [
@@ -25660,10 +25464,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "bebe|beber": [
@@ -26296,10 +26096,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     },
     {
       "pos": "NOUN",
@@ -27344,11 +27140,6 @@
     {
       "pos": "NOUN",
       "translation": "a married man"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a meal of rice, black beans, meat",
-      "detail": "a meal of rice, black beans, meat, salad, plantain banana and other ingredients"
     }
   ],
   "casado|casar": [
@@ -28319,10 +28110,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -28418,10 +28205,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "justicia|justicia": [
@@ -31318,10 +31101,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a member of any typically dark-skinned people"
-    },
-    {
-      "pos": "NOUN",
       "translation": "ghost writer"
     },
     {
@@ -31340,6 +31119,10 @@
     {
       "pos": "ADJ",
       "translation": "sad"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "clandestine"
     }
   ],
   "estrellas|estrella": [
@@ -31661,10 +31444,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "roto|roto": [
@@ -32157,10 +31936,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a member of any typically dark-skinned people"
-    },
-    {
-      "pos": "NOUN",
       "translation": "ghost writer"
     },
     {
@@ -32179,6 +31954,10 @@
     {
       "pos": "ADJ",
       "translation": "sad"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "clandestine"
     }
   ],
   "decidido|decidido": [
@@ -33649,10 +33428,6 @@
       "pos": "ADJ",
       "translation": "national, nationwide",
       "detail": "national, nationwide (of or relating to a nation)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a member of the national militia"
     }
   ],
   "gustó|gustar": [
@@ -35149,10 +34924,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a public deed or ceremony"
-    },
-    {
-      "pos": "NOUN",
       "translation": "order, writ, resolution"
     },
     {
@@ -35945,14 +35716,6 @@
     {
       "pos": "ADJ",
       "translation": "cut"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "A type of coffee made out of roughly 80% milk and 30% coffee"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a glass of pure liquor"
     }
   ],
   "corto|cortar": [
@@ -36188,10 +35951,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "continuar|continuar": [
@@ -37076,14 +36835,6 @@
       "translation": "cut"
     },
     {
-      "pos": "ADJ",
-      "translation": "A type of coffee made out of roughly 80% milk and 30% coffee"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a glass of pure liquor"
-    },
-    {
       "pos": "NOUN",
       "translation": "cutting",
       "detail": "cutting (of trees)"
@@ -37584,10 +37335,6 @@
     },
     {
       "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
-      "pos": "VERB",
       "translation": "makes pluperfect to verbs as part of the auxiliary verb haber."
     },
     {
@@ -37601,6 +37348,10 @@
     {
       "pos": "NOUN",
       "translation": "credit side"
+    },
+    {
+      "pos": "NOUN",
+      "translation": "chaver"
     }
   ],
   "emperador|emperador": [
@@ -38497,10 +38248,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "flota|flota": [
@@ -38761,10 +38508,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     },
     {
       "pos": "NOUN",
@@ -40058,10 +39801,6 @@
     {
       "pos": "NOUN",
       "translation": "a feint; something feigned; a simulation"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a gesture that hints something"
     },
     {
       "pos": "NOUN",
@@ -41481,10 +41220,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "tripulación|tripulación": [
@@ -42019,14 +41754,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a type of sandwich with spherical shaped roles and meats ranging from Sobrasada sausage, York ham or chorizo, containing cheese and even sometimes pieces of a Spanish omelette"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a roll used for said sandwich"
-    },
-    {
-      "pos": "NOUN",
       "translation": "hot dog bun"
     }
   ],
@@ -42392,10 +42119,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     }
   ],
   "salimos|salir": [
@@ -47492,10 +47215,6 @@
     {
       "pos": "NOUN",
       "translation": "jacket, piece of clothing worn on the upper body outside a shirt or blouse, often waist length to thigh length"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "an act of masturbation"
     }
   ],
   "alcalde|alcalde": [
@@ -47507,10 +47226,6 @@
     {
       "pos": "NOUN",
       "translation": "an official such as an administrator, mayor, or judge"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A variation of brisca for three players, that is played with the forty-card pack of Spanish-suited playing cards."
     }
   ],
   "vueltas|vuelta": [
@@ -50356,10 +50071,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "apesta|apestar": [
@@ -51375,10 +51086,6 @@
       "pos": "NOUN",
       "translation": "bible",
       "detail": "bible (a comprehensive manual that describes something)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a wall of text"
     }
   ],
   "reporte|reporte": [
@@ -51409,11 +51116,6 @@
     {
       "pos": "NOUN",
       "translation": "a married man, married woman"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a meal of rice, black beans, meat",
-      "detail": "a meal of rice, black beans, meat, salad, plantain banana and other ingredients"
     }
   ],
   "casada|casar": [
@@ -56160,7 +55862,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a native of India, a Native American"
+      "translation": "a Native American"
     },
     {
       "pos": "NOUN",
@@ -56174,7 +55876,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a native of India, a Native American"
+      "translation": "a Native American"
     },
     {
       "pos": "NOUN",
@@ -56188,7 +55890,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a native of India, a Native American"
+      "translation": "a Native American"
     },
     {
       "pos": "NOUN",
@@ -57168,11 +56870,6 @@
     {
       "pos": "NOUN",
       "translation": "a married man"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a meal of rice, black beans, meat",
-      "detail": "a meal of rice, black beans, meat, salad, plantain banana and other ingredients"
     }
   ],
   "casados|casar": [
@@ -57196,11 +56893,6 @@
     {
       "pos": "NOUN",
       "translation": "a married man"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a meal of rice, black beans, meat",
-      "detail": "a meal of rice, black beans, meat, salad, plantain banana and other ingredients"
     }
   ],
   "cañón|cañón": [
@@ -57906,10 +57598,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     },
     {
       "pos": "NOUN",
@@ -59426,10 +59114,6 @@
       "pos": "NOUN",
       "translation": "beam, ray",
       "detail": "beam, ray (wave of energy)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a bolt of lightning"
     }
   ],
   "pato|pato": [
@@ -60381,10 +60065,6 @@
     {
       "pos": "NOUN",
       "translation": "conniver"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a person of poor reputation"
     },
     {
       "pos": "ADJ",
@@ -62210,10 +61890,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -62528,10 +62204,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "experimento|experimento": [
@@ -64975,10 +64647,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -65390,10 +65058,6 @@
       "translation": "perpendicular"
     },
     {
-      "pos": "NOUN",
-      "translation": "a school for becoming a teacher"
-    },
-    {
       "pos": "VERB",
       "translation": "to norm"
     },
@@ -65801,7 +65465,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a native of India, a Native American"
+      "translation": "a Native American"
     },
     {
       "pos": "NOUN",
@@ -67510,10 +67174,6 @@
     {
       "pos": "NOUN",
       "translation": "Ponte los vaqueros y trabaja.\nPut on the jeans and work., Ponte los vaqueros y trabaja."
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a kind of bird:"
     }
   ],
   "únicos|único": [
@@ -68145,10 +67805,6 @@
     {
       "pos": "NOUN",
       "translation": "audience"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a tribunal of justice of a defined territory which hears its problems, cases and lawsuits"
     }
   ],
   "agenda|agenda": [
@@ -71080,10 +70736,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "A state of hallucination or altered consciousness caused by a narcotic drug."
-    },
-    {
-      "pos": "NOUN",
       "translation": "a lot, loads"
     },
     {
@@ -71170,10 +70822,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "fenómeno|fenómeno": [
@@ -71506,10 +71154,6 @@
     {
       "pos": "NOUN",
       "translation": "a feint; something feigned; a simulation"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a gesture that hints something"
     },
     {
       "pos": "NOUN",
@@ -74760,10 +74404,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "columna|columna": [
@@ -76486,10 +76126,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "estarían|estar": [
@@ -77506,10 +77142,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a genre of secular polyphonic music popular in 16th century Spain"
-    },
-    {
-      "pos": "NOUN",
       "translation": "mix-up; muddle"
     }
   ],
@@ -78117,10 +77749,6 @@
   "muebles|mueble": [
     {
       "pos": "NOUN",
-      "translation": "a piece of furniture"
-    },
-    {
-      "pos": "NOUN",
       "translation": "in the reality show Big Brother, a contestant who does not generate content, who isn't the source of so many comments and who wanders around the house without generating any interest in the viewer"
     },
     {
@@ -78264,11 +77892,6 @@
     {
       "pos": "NOUN",
       "translation": "ware, merchandise"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "an article of commerce)",
-      "detail": "goods, wares (commodity offered for sale; an article of commerce)"
     }
   ],
   "lastimado|lastimado": [
@@ -79352,10 +78975,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     }
   ],
   "submarino|submarino": [
@@ -79457,10 +79076,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "cañones|cañón": [
@@ -81086,10 +80701,6 @@
       "pos": "INTJ",
       "translation": "stop, whoa",
       "detail": "stop, whoa (especially when commanding a horse or imitative thereof)"
-    },
-    {
-      "pos": "INTJ",
-      "translation": "Used to express surprise, amazement, or confusion"
     }
   ],
   "federación|federación": [
@@ -81276,10 +80887,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "golpeado|golpear": [
@@ -83499,7 +83106,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a native of India, a Native American"
+      "translation": "a Native American"
     },
     {
       "pos": "NOUN",
@@ -85217,10 +84824,6 @@
     {
       "pos": "PRON",
       "translation": "those ones"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "ésas|esa": [
@@ -86623,10 +86226,6 @@
     {
       "pos": "PRON",
       "translation": "those ones"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "The name of the Latin script letter S/s."
     }
   ],
   "ésos|esos": [
@@ -89143,10 +88742,6 @@
     {
       "pos": "NOUN",
       "translation": "rib"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a type of biscuit or cookie filled with jam"
     }
   ],
   "sociales|social": [
@@ -90080,10 +89675,6 @@
     {
       "pos": "ADJ",
       "translation": "blessed"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A prayer that begins with \"Bendito y alabado sea...\""
     }
   ],
   "destruye|destruir": [
@@ -93554,10 +93145,6 @@
     {
       "pos": "ADJ",
       "translation": "blessed"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A prayer that begins with \"Bendito y alabado sea...\""
     }
   ],
   "caballería|caballería": [
@@ -93626,10 +93213,6 @@
     {
       "pos": "ADJ",
       "translation": "gifted or advanced for one's age"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a governor of a province; a commander"
     }
   ],
   "avanzada|avanzado": [
@@ -94748,10 +94331,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a type of music from the island of Puerto Rico featuring a characteristic rhythm played upon frame drums called panderetas"
-    },
-    {
-      "pos": "NOUN",
       "translation": "Dancehall music, Reggae en Español"
     },
     {
@@ -94771,6 +94350,11 @@
     {
       "pos": "ADJ",
       "translation": "fulfilling"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "at the height of",
+      "detail": "in the middle of (a time or space); at the height of; in broad"
     }
   ],
   "saturación|saturación": [
@@ -94972,10 +94556,6 @@
     {
       "pos": "ADJ",
       "translation": "frozen"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A product that is frozen and stored in refrigerators."
     }
   ],
   "congelado|congelar": [
@@ -95282,10 +94862,6 @@
     {
       "pos": "NOUN",
       "translation": "bride"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a type of sweet roll"
     }
   ],
   "soñado|soñar": [
@@ -95397,10 +94973,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a member of any typically dark-skinned people"
-    },
-    {
-      "pos": "NOUN",
       "translation": "ghost writer"
     },
     {
@@ -95419,6 +94991,10 @@
     {
       "pos": "ADJ",
       "translation": "sad"
+    },
+    {
+      "pos": "ADJ",
+      "translation": "clandestine"
     }
   ],
   "infantería|infantería": [
@@ -97189,10 +96765,6 @@
     {
       "pos": "NOUN",
       "translation": "gesture"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "expression"
     }
   ],
   "prepare|preparar": [
@@ -98229,10 +97801,6 @@
     {
       "pos": "NOUN",
       "translation": "a court of law with a judge"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a place for adjudicated individuals"
     }
   ],
   "juzgado|juzgar": [
@@ -98449,11 +98017,6 @@
       "translation": "ward; dormitory"
     },
     {
-      "pos": "NOUN",
-      "translation": "a unit of length and area, roughly equivalent to 100 meters or 1 hectare, respectively",
-      "detail": "a unit of length and area, roughly equivalent to 100 meters or 1 hectare, respectively, although the exact size differs from country to country"
-    },
-    {
       "pos": "VERB",
       "translation": "to conform"
     },
@@ -98468,6 +98031,10 @@
     {
       "pos": "VERB",
       "translation": "to fit"
+    },
+    {
+      "pos": "VERB",
+      "translation": "to add up, make sense"
     }
   ],
   "cometí|cometer": [
@@ -100085,11 +99652,6 @@
   "cruce|cruce": [
     {
       "pos": "NOUN",
-      "translation": "an intersection of two or more roads)",
-      "detail": "crossroads, crossing, intersection (a place where one road crosses another; an intersection of two or more roads)"
-    },
-    {
-      "pos": "NOUN",
       "translation": "crossing",
       "detail": "crossing, (action of crossing or traversing (a room, street, sea, etc.), or time elapsed for it)"
     },
@@ -100548,18 +100110,10 @@
   "fu|fu": [
     {
       "pos": "INTJ",
-      "translation": "an indication of disgust"
-    },
-    {
-      "pos": "INTJ",
       "translation": "the hissing of a cat"
     }
   ],
   "fu|kung fu": [
-    {
-      "pos": "INTJ",
-      "translation": "an indication of disgust"
-    },
     {
       "pos": "INTJ",
       "translation": "the hissing of a cat"
@@ -102009,10 +101563,6 @@
     {
       "pos": "NOUN",
       "translation": "conniver"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a person of poor reputation"
     },
     {
       "pos": "ADJ",
@@ -104062,11 +103612,6 @@
       "pos": "NOUN",
       "translation": "a shortcut, keyboard shortcut, hotkey, cutoff",
       "detail": "a shortcut, keyboard shortcut, hotkey (a combination of keystrokes that provides easier access to a command or operation)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a bunch of, a load of",
-      "detail": "a bunch of (something bad), a load of"
     }
   ],
   "acento|acento": [
@@ -104555,10 +104100,6 @@
     {
       "pos": "NUM",
       "translation": "thirteen"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a member of the Council of Thirteen of the Order of Santiago"
     }
   ],
   "crecí|crecer": [
@@ -104748,10 +104289,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -104857,16 +104394,6 @@
       "pos": "NOUN",
       "translation": "ace, wizard",
       "detail": "ace, wizard (someone who is especially skilled or unusually talented in a particular field)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a kind of torch or large candle",
-      "detail": "a kind of torch or large candle (often with four sticks)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a kind of wick or fuse, which does not go out easily in the wind",
-      "detail": "a kind of wick or fuse (often made with esparto grass and tar), which does not go out easily in the wind"
     },
     {
       "pos": "NOUN",
@@ -106947,10 +106474,6 @@
     {
       "pos": "NOUN",
       "translation": "chapel"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a hood that attaches to the neck of a cape, overcoat, or religious habit"
     }
   ],
   "botones|botón": [
@@ -107757,10 +107280,6 @@
     {
       "pos": "NOUN",
       "translation": "Ponte los vaqueros y trabaja.\nPut on the jeans and work., Ponte los vaqueros y trabaja."
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a kind of bird:"
     }
   ],
   "tronco|tronco": [
@@ -108341,10 +107860,6 @@
       "pos": "NOUN",
       "translation": "native or inhabitant of Switzerland",
       "detail": "native or inhabitant of Switzerland (usually male)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a type of bun covered in sugar"
     }
   ],
   "dados|dado": [
@@ -108397,10 +107912,6 @@
       "pos": "NOUN",
       "translation": "native or inhabitant of Switzerland",
       "detail": "native or inhabitant of Switzerland (usually male)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a type of bun covered in sugar"
     }
   ],
   "cruza|cruzar": [
@@ -109176,10 +108687,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "coman|comer": [
@@ -109383,10 +108890,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     }
   ],
   "bichos|bicho": [
@@ -111139,10 +110642,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     }
   ],
   "ríe|reír": [
@@ -111456,10 +110955,6 @@
     {
       "pos": "NOUN",
       "translation": "poo"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "an object that is dirty, unsanitary, or that should not be touched"
     }
   ],
   "bromeaba|bromear": [
@@ -111666,10 +111161,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "estudié|estudiar": [
@@ -114557,11 +114048,6 @@
     {
       "pos": "NOUN",
       "translation": "ward; dormitory"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a unit of length and area, roughly equivalent to 100 meters or 1 hectare, respectively",
-      "detail": "a unit of length and area, roughly equivalent to 100 meters or 1 hectare, respectively, although the exact size differs from country to country"
     }
   ],
   "cortando|cortar": [
@@ -114876,10 +114362,6 @@
     {
       "pos": "NOUN",
       "translation": "lifeguard"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A type of torture consisting of keeping someone's head underwater for long periods of time without drowning them."
     }
   ],
   "asustar|asustar": [
@@ -117584,10 +117066,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -117661,14 +117139,6 @@
     {
       "pos": "ADJ",
       "translation": "cut"
-    },
-    {
-      "pos": "ADJ",
-      "translation": "A type of coffee made out of roughly 80% milk and 30% coffee"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a glass of pure liquor"
     }
   ],
   "cooperar|cooperar": [
@@ -117790,11 +117260,6 @@
       "pos": "NOUN",
       "translation": "tango",
       "detail": "tango (ballroom dance)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a style of music associated with the tango dance",
-      "detail": "a style of music associated with the tango dance (used to accompany and set the beat for the dance)"
     }
   ],
   "tablero|tablero": [
@@ -119475,10 +118940,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "A type of muscle pain."
-    },
-    {
-      "pos": "NOUN",
       "translation": "solenodon"
     },
     {
@@ -119664,10 +119125,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "gratitud|gratitud": [
@@ -119934,10 +119391,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "experimentar|experimentar": [
@@ -121477,10 +120930,6 @@
     {
       "pos": "NOUN",
       "translation": "frog"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a sediment of clayey quartzite"
     }
   ],
   "preguntaron|preguntar": [
@@ -121929,10 +121378,6 @@
     {
       "pos": "ADJ",
       "translation": "of Rome as the seat of power of the popes, heads of the Roman Catholic Church"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a kind of scales"
     },
     {
       "pos": "NOUN",
@@ -124793,10 +124238,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -125183,10 +124624,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     },
     {
       "pos": "NOUN",
@@ -127199,10 +126636,6 @@
     {
       "pos": "VERB",
       "translation": "to be necessary"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
     }
   ],
   "honestos|honesto": [
@@ -132912,10 +132345,6 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a student of Glorioso Colegio Nacional de San Carlos (a school in Puno, Peru), a student of Real Convictorio de San Carlos (a school in Lima)"
-    },
-    {
-      "pos": "NOUN",
       "translation": "syn. Dipholis salicifolia)",
       "detail": "a tree of species Sideroxylon salicifolium (willow bully, white bully, willow bustic; syn. Dipholis salicifolia)"
     },
@@ -136287,10 +135716,6 @@
     {
       "pos": "VERB",
       "translation": "to tend to"
-    },
-    {
-      "pos": "VERB",
-      "translation": "used to"
     }
   ],
   "soda|soda": [
@@ -136398,7 +135823,7 @@
   "locuras|locura": [
     {
       "pos": "NOUN",
-      "translation": "madness, craziness, an act of madness"
+      "translation": "madness, craziness"
     },
     {
       "pos": "NOUN",
@@ -138334,10 +137759,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -139056,10 +138477,6 @@
     },
     {
       "pos": "INTJ",
-      "translation": "expression used when answering the phone, often with the pronunciation /bweˈno/, rather than /ˈbweno/"
-    },
-    {
-      "pos": "INTJ",
       "translation": "Said when one is about to say goodbye/end a conversation."
     },
     {
@@ -139168,7 +138585,7 @@
   "trueno|trueno": [
     {
       "pos": "NOUN",
-      "translation": "a clap of thunder, thunder"
+      "translation": "thunder"
     }
   ],
   "tesoros|tesoro": [
@@ -140766,10 +140183,6 @@
       "pos": "NOUN",
       "translation": "handful",
       "detail": "handful (amount held in hand)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "a group of rapists"
     }
   ],
   "hambrientos|hambriento": [
@@ -141473,10 +140886,6 @@
     {
       "pos": "NOUN",
       "translation": "a young man, a thin man"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "used to address someone without using their name"
     },
     {
       "pos": "NOUN",
@@ -143642,8 +143051,7 @@
     },
     {
       "pos": "NOUN",
-      "translation": "a type of mango, mango tree",
-      "detail": "a type of mango (fruit)"
+      "translation": "mango tree"
     }
   ],
   "llantas|llanta": [
@@ -144237,10 +143645,6 @@
       "pos": "NOUN",
       "translation": "Mexican",
       "detail": "Mexican (an inhabitant of the country of Mexico)"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A robbery of drugs."
     }
   ],
   "masajes|masaje": [
@@ -145595,10 +144999,6 @@
       "translation": "to be necessary"
     },
     {
-      "pos": "VERB",
-      "translation": "used to denote a past obligation"
-    },
-    {
       "pos": "NOUN",
       "translation": "asset"
     },
@@ -146274,11 +145674,6 @@
     }
   ],
   "cruces|cruce": [
-    {
-      "pos": "NOUN",
-      "translation": "an intersection of two or more roads)",
-      "detail": "crossroads, crossing, intersection (a place where one road crosses another; an intersection of two or more roads)"
-    },
     {
       "pos": "NOUN",
       "translation": "crossing",
@@ -151552,10 +150947,6 @@
     {
       "pos": "ADJ",
       "translation": "frozen"
-    },
-    {
-      "pos": "NOUN",
-      "translation": "A product that is frozen and stored in refrigerators."
     }
   ],
   "cercanos|cercano": [
