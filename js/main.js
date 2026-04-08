@@ -48,12 +48,8 @@ async function resolveArtist() {
         if (artistConfig) {
             activeArtist = artistConfig;
 
-            // Restore multi-artist selection from localStorage, ensuring URL artist is included
-            const saved = JSON.parse(localStorage.getItem('selected_artists') || '[]');
-            selectedArtistSlugs = saved.length > 0 ? saved : [artistSlug];
-            if (!selectedArtistSlugs.includes(artistSlug)) {
-                selectedArtistSlugs.push(artistSlug);
-            }
+            // Start with the URL artist; user can add more via settings
+            selectedArtistSlugs = [artistSlug];
         } else {
             console.warn(`Unknown artist slug: ${artistSlug}`);
         }
@@ -95,6 +91,17 @@ loadConfig().then(async () => {
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
     document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
+    document.getElementById('topBarUserName').addEventListener('click', () => {
+        if (currentUser && !currentUser.isGuest) {
+            // In flashcard mode, show set stats; on setup page, show total stats
+            const appContent = document.getElementById('appContent');
+            if (appContent && !appContent.classList.contains('hidden')) {
+                showStatsModal();
+            } else {
+                showTotalStatsModal();
+            }
+        }
+    });
     setupModeSwitchButton();
     document.getElementById('closeHelpModal').addEventListener('click', () => {
         document.getElementById('helpModal').classList.add('hidden');

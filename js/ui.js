@@ -268,7 +268,7 @@ function renderLevelSelector(language) {
     if (percentageMode && ppmData && ppmData.length > 0) {
         const percentageRanges = getPercentageLevelRanges();
         console.log('Using percentage levels:', percentageRanges);
-        const coverageType = activeArtist ? 'lyrics coverage' : 'language coverage';
+        const coverageType = activeArtist ? 'lyrics comprehension' : 'speech comprehension';
         const levelsHTML = percentageRanges.map(level => {
             const description = `${level.level} ${coverageType}`;
             return `
@@ -456,10 +456,6 @@ function setupPercentModeButton() {
         // Update button appearance
         updatePercentModeButton();
 
-        // Sync settings modal toggle
-        document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
-        document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
-
         // Load PPM data if enabling percentage mode
         if (percentageMode && !ppmData) {
             await loadPpmData(selectedLanguage);
@@ -482,7 +478,6 @@ function setupPercentModeButton() {
 
         document.getElementById('step4').style.display = 'none';
 
-        updateStatsTab();
     });
 }
 
@@ -818,20 +813,6 @@ function showSettingsModalWithTab(tabName) {
     document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
     document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
 
-    // Update percentage mode toggle visibility and state
-    const percentageModeToggle = document.getElementById('percentageModeToggle');
-    const langConfig = config.languages[selectedLanguage];
-    // Hide toggle in artist mode (always percentage mode)
-    if (activeArtist) {
-        percentageModeToggle.style.display = 'none';
-    } else if (langConfig && langConfig.ppmDataPath) {
-        percentageModeToggle.style.display = 'flex';
-        document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
-        document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
-    } else {
-        percentageModeToggle.style.display = 'none';
-    }
-
     // Show/hide single-occurrence toggle (only in artist mode)
     const hideSingleOccToggle = document.getElementById('hideSingleOccToggle');
     if (activeArtist) {
@@ -864,9 +845,6 @@ function showSettingsModalWithTab(tabName) {
         clearRow.style.display = 'none';
     }
 
-    // Update stats tab
-    updateStatsTab();
-
     // Switch to specified tab
     document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
     document.querySelector(`.settings-tab[data-tab="${tabName}"]`).classList.add('active');
@@ -878,22 +856,6 @@ function showSettingsModalWithTab(tabName) {
     document.getElementById('settingsModal').classList.remove('hidden');
 }
 
-function updateStatsTab() {
-    // Show current set progress
-    const total = flashcards ? flashcards.length : 0;
-    const studied = typeof cardsStudied !== 'undefined' ? cardsStudied : 0;
-    const correct = typeof correctCount !== 'undefined' ? correctCount : 0;
-    const incorrect = typeof incorrectCount !== 'undefined' ? incorrectCount : 0;
-    const answered = correct + incorrect;
-    const progress = total > 0 ? Math.round((studied / total) * 100) : 0;
-    const accuracy = answered > 0 ? Math.round((correct / answered) * 100) + '%' : '-';
-
-    document.getElementById('statsTabCardsStudied').textContent = `${studied} / ${total}`;
-    document.getElementById('statsTabProgress').textContent = progress + '%';
-    document.getElementById('statsTabCorrect').textContent = correct;
-    document.getElementById('statsTabIncorrect').textContent = incorrect;
-    document.getElementById('statsTabAccuracy').textContent = accuracy;
-}
 
 function hideSettingsModal() {
     document.getElementById('settingsModal').classList.add('hidden');
@@ -922,6 +884,48 @@ function showTotalStatsModal() {
 
     document.getElementById('totalWordsCorrect').textContent = wordsCorrect;
     document.getElementById('totalWordsSeen').textContent = wordsSeen;
+
+    // Coverage stats (reuse personal coverage logic)
+    const vocab = cachedVocabularyData;
+    const coverageEl = document.getElementById('totalStatsCoverage');
+    const wordsEl = document.getElementById('totalStatsWords');
+    if (vocab && vocab.length > 0 && progressData) {
+        let coveredFreq = 0, totalFreq = 0, coveredCount = 0;
+        for (const item of vocab) {
+            const freq = item.corpus_count || 1;
+            totalFreq += freq;
+            const fullId = getWordId(item);
+            const progress = progressData[fullId];
+            if (progress && progress.language === selectedLanguage) {
+                const lc = progress.lastCorrect ? new Date(progress.lastCorrect).getTime() : 0;
+                const lw = progress.lastWrong ? new Date(progress.lastWrong).getTime() : 0;
+                if (lc > 0 && lc >= lw) { coveredFreq += freq; coveredCount++; }
+            }
+        }
+        const coverageType = activeArtist ? 'lyrics' : 'speech';
+        if (coveredCount > 0) {
+            const pct = (coveredFreq / totalFreq * 100).toFixed(1);
+            coverageEl.textContent = `${pct}% ${coverageType}`;
+            wordsEl.textContent = `${coveredCount} / ${vocab.length}`;
+        } else {
+            coverageEl.textContent = '—';
+            wordsEl.textContent = '—';
+        }
+    } else {
+        coverageEl.textContent = '—';
+        wordsEl.textContent = '—';
+    }
+
+    // Lines fully understood
+    const linesEl = document.getElementById('totalStatsLinesUnderstood');
+    const linesRow = document.getElementById('totalStatsLinesRow');
+    const linesResult = computeLinesUnderstood();
+    if (linesResult && linesResult.total > 0) {
+        linesRow.style.display = '';
+        linesEl.textContent = `${linesResult.pct.toFixed(1)}% (${linesResult.understood} / ${linesResult.total})`;
+    } else {
+        linesRow.style.display = 'none';
+    }
 
     document.getElementById('totalStatsModal').classList.remove('hidden');
 }
@@ -960,7 +964,7 @@ window.updateStep5Tooltip = updateStep5Tooltip;
 window.renderLevelSelector = renderLevelSelector;
 window.setupCognateToggle = setupCognateToggle;
 window.setupGroupSizeSelector = setupGroupSizeSelector;
-// Open the help modal — always reset to About tab
+// Open the help modal — always reset to About tab, update content for mode
 function openHelpModal() {
     const modal = document.getElementById('helpModal');
     modal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
@@ -968,8 +972,42 @@ function openHelpModal() {
     const aboutTab = modal.querySelector('[data-tab="helpAbout"]');
     if (aboutTab) aboutTab.classList.add('active');
     const aboutContent = document.getElementById('helpAboutTabContent');
-    if (aboutContent) aboutContent.classList.add('active');
+    if (aboutContent) {
+        aboutContent.classList.add('active');
+        const helpContent = aboutContent.querySelector('.help-content');
+        if (helpContent) helpContent.innerHTML = activeArtist ? getArtistHelpContent() : getNormalHelpContent();
+    }
+    // Show/hide the lyrics-specific line in the study tab
+    const lyricsLine = document.getElementById('helpStudyLyricsLine');
+    if (lyricsLine) lyricsLine.style.display = activeArtist ? '' : 'none';
     modal.classList.remove('hidden');
+}
+
+function getArtistHelpContent() {
+    const name = activeArtist.name || 'this artist';
+    return `
+        <p><strong>What is this?</strong></p>
+        <p>This app teaches you Spanish vocabulary from ${name}'s lyrics, starting with the most common words and working toward the least common.</p>
+        <p><strong>Why frequency order?</strong></p>
+        <p>Language follows a power law: a small number of words make up the vast majority of speech. By learning the most frequent words first, you understand more lyrics faster.</p>
+        <p><strong>How are percentages calculated?</strong></p>
+        <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. The remaining 30% are rarer words that appear less often.</p>
+        <p><strong>How does it work?</strong></p>
+        <p>Each word is ranked by how many times it appears across the entire discography. The app groups these into sets of 25. You work through sets in order, and each card shows the word with real lyric examples from songs where it appears.</p>
+        <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
+    `;
+}
+
+function getNormalHelpContent() {
+    return `
+        <p><strong>What is this?</strong></p>
+        <p>This app teaches you vocabulary by frequency — starting with the most common words and working toward the least common.</p>
+        <p><strong>Why frequency order?</strong></p>
+        <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. Studies show that the top 1,000 words cover roughly 80% of spoken language, and the top 3,000 cover around 95%. By learning frequent words first, you build practical comprehension faster.</p>
+        <p><strong>How does it work?</strong></p>
+        <p>Words are ranked by how often they appear in real-world sources like movies, TV, and conversations. The app groups them into sets of 25 and each card includes example sentences to show the word in context.</p>
+        <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
+    `;
 }
 
 // Generic tab switching for any modal that uses .settings-tab / .settings-tab-content pattern
@@ -1003,7 +1041,6 @@ window.showStatsModal = showStatsModal;
 window.hideStatsModal = hideStatsModal;
 window.showSettingsModal = showSettingsModal;
 window.showSettingsModalWithTab = showSettingsModalWithTab;
-window.updateStatsTab = updateStatsTab;
 window.hideSettingsModal = hideSettingsModal;
 window.showTotalStatsModal = showTotalStatsModal;
 window.hideTotalStatsModal = hideTotalStatsModal;

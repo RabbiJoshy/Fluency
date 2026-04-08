@@ -2736,6 +2736,7 @@
             font-weight: 600;
             font-size: 16px;
             font-family: var(--font-emphasis);
+            cursor: pointer;
         }
 
         .top-bar-text-btn {

@@ -77,6 +77,47 @@ function computePersonalEasiness(spanishText) {
     return unknownRanks[Math.floor(unknownRanks.length / 2)];  // median
 }
 
+// Compute % of example lines where every vocabulary word is known.
+// Returns { understood, total, pct } or null if data not available.
+function computeLinesUnderstood() {
+    if (!_spanishRanks || !progressData) return null;
+    const examplesData = window._cachedExamplesData;
+    if (!examplesData) return null;
+
+    const lang = selectedLanguage || 'spanish';
+    const estimate = (levelEstimates && levelEstimates[lang]) || 0;
+    const knownWords = getKnownWords();
+
+    let understood = 0;
+    let total = 0;
+
+    for (const entry of Object.values(examplesData)) {
+        if (!entry.m) continue;
+        for (const meaningExamples of entry.m) {
+            if (!meaningExamples) continue;
+            for (const ex of meaningExamples) {
+                if (!ex.target) continue;
+                total++;
+                const cleaned = ex.target.replace(/\[[^\]]*\]|\([^\)]*\)/g, '').trim();
+                if (!cleaned) { understood++; continue; }
+                const tokens = cleaned.toLowerCase().replace(/[^\w\s']/g, ' ').split(/\s+/).filter(Boolean);
+                if (!tokens.length) { understood++; continue; }
+                let allKnown = true;
+                for (const t of tokens) {
+                    const rank = _spanishRanks[t];
+                    if (rank === undefined) continue;  // not in vocab — skip
+                    if (rank <= estimate || knownWords.has(t)) continue;
+                    allKnown = false;
+                    break;
+                }
+                if (allKnown) understood++;
+            }
+        }
+    }
+
+    return { understood, total, pct: total > 0 ? (understood / total * 100) : 0 };
+}
+
 // --- Example relevance sorting ---
 let _cachedDeckWords = null;
 let _cachedDeckId = null;  // track which deck set we computed for
@@ -282,46 +323,6 @@ function initializeApp() {
     });
 
     // Percentage mode toggle
-    document.getElementById('percentageModeToggle').addEventListener('click', async function() {
-        const langConfig = config.languages[selectedLanguage];
-        if (!langConfig || !langConfig.ppmDataPath) {
-            alert('Percentage mode is not available for this language yet.');
-            return;
-        }
-
-        percentageMode = !percentageMode;
-        document.getElementById('percentageModeStatus').textContent = percentageMode ? 'ON' : 'OFF';
-        document.getElementById('percentageModeStatus').style.color = percentageMode ? 'var(--accent-primary)' : 'var(--text-muted)';
-
-        // Load PPM data if enabling percentage mode
-        if (percentageMode && !ppmData) {
-            await loadPpmData(selectedLanguage);
-        }
-
-        // Re-render the level selector if we're on the setup screen
-        // Note: step2 is visible when display is 'block' or '' (empty)
-        const step2Display = document.getElementById('step2').style.display;
-        // Update the title text and tooltip
-        document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
-        updateStep2Tooltip();
-        updateStep5Tooltip();
-
-        if (selectedLanguage && step2Display !== 'none') {
-            selectedLevel = null;
-            renderLevelSelector(selectedLanguage);
-            document.getElementById('lemmaToggleContainer').style.display = 'none';
-            document.getElementById('cognateToggleContainer').style.display = 'none';
-
-            document.getElementById('step4').style.display = 'none';
-        }
-
-        // Update stats tab
-        updateStatsTab();
-
-        // Sync the % Mode button state
-        updatePercentModeButton();
-    });
-
     // Refresh study set - delete progress for words in current set
     document.getElementById('refreshSetToggle').addEventListener('click', async function() {
         if (!currentUser || currentUser.isGuest) {
@@ -799,11 +800,14 @@ function recordCardResult(result) {
 
 function showFloatingBtns(show) {
     const btns = document.getElementById('floatingBtns');
+    const userInfo = document.getElementById('userInfo');
     if (btns) {
         if (show) {
             btns.classList.add('visible');
+            if (userInfo) userInfo.classList.remove('hidden');
         } else {
             btns.classList.remove('visible');
+            if (userInfo) userInfo.classList.add('hidden');
         }
     }
 }
@@ -2003,6 +2007,7 @@ function toggleConjugationTable() {
     }
 }
 
+window.computeLinesUnderstood = computeLinesUnderstood;
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
 window.toggleConjugationTable = toggleConjugationTable;

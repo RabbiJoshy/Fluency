@@ -157,9 +157,9 @@ function updatePersonalCoverage(filteredVocab) {
     fill.style.transition = 'none';
     fill.style.width = '0%';
 
-    const coverageType = activeArtist ? 'lyrics' : 'corpus';
+    const coverageType = activeArtist ? 'lyrics' : 'speech';
     const wordPct = (coveredCount / filteredVocab.length * 100).toFixed(1);
-    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} covered<br>${wordPct}% words covered`;
+    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} understood<br>${wordPct}% words understood`;
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {

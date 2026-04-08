@@ -40,10 +40,9 @@ function hideAuthModal() {
     document.getElementById('setupPanel').style.display = 'block';
 }
 
-// Show user info badge
+// Show user info badge — no longer unhides #userInfo here;
+// the floating toolbar is shown/hidden by showFloatingBtns() in flashcard mode.
 function showUserInfo() {
-    const userInfo = document.getElementById('userInfo');
-    userInfo.classList.remove('hidden');
 }
 
 // Guest mode handler

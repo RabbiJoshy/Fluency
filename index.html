@@ -66,21 +66,6 @@
                     <span class="step-number">1</span>
                     <span class="step-title" id="step1Title">Choose Language</span>
                     <span id="selectedLanguageInline" class="selection-pill-inline" style="display: none;"></span>
-                    <button class="step-help-btn" data-tooltip="step1Tooltip" title="Help">?</button>
-                    <div id="step1Tooltip" class="step-info-tooltip">
-                        <p><strong>How to Study:</strong></p>
-                        <p><strong>Tap card</strong> to flip and see translation</p>
-                        <p><strong>Swipe right</strong> if you know the word ✓</p>
-                        <p><strong>Swipe left</strong> if you don't know it ✗</p>
-                        <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions and their example sentences</p>
-                        <p><strong>Arrow buttons</strong> to navigate cards manually</p>
-                        <p><strong>Language button</strong> (top-left) switches direction between Target → English and English → Target</p>
-                        <p><strong>At the end of each set</strong>, you'll see your accuracy and can review incorrect cards or continue to the next set</p>
-                        <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--border-color);">
-                        <p><strong>Why Frequency Matters:</strong></p>
-                        <p>Language follows a power law distribution: a small number of words account for the vast majority of everyday speech. Studies show that just 1,000 of the most common words make up approximately 80% of spoken language, while the top 3,000 words cover around 95% of typical conversations.</p>
-                        <p>This app uses word frequency data derived from movie and TV subtitles, which represent natural, authentic language as it's actually spoken. By learning words ranked by how often they appear in real dialogue, you build practical fluency more efficiently than memorizing random vocabulary lists.</p>
-                    </div>
                 </div>
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
@@ -519,6 +504,18 @@
             </div>
             <div class="stats-body">
                 <div class="stat-row">
+                    <span>Coverage:</span>
+                    <span id="totalStatsCoverage" style="color: var(--accent-secondary); font-weight: 600;">—</span>
+                </div>
+                <div class="stat-row">
+                    <span>Words understood:</span>
+                    <span id="totalStatsWords">—</span>
+                </div>
+                <div class="stat-row" id="totalStatsLinesRow">
+                    <span>Lines fully understood:</span>
+                    <span id="totalStatsLinesUnderstood">—</span>
+                </div>
+                <div class="stat-row">
                     <span style="color: var(--accent-green);">Words Correct:</span>
                     <span id="totalWordsCorrect" style="color: var(--accent-green);">0</span>
                 </div>
@@ -538,7 +535,6 @@
                 <div class="settings-tabs">
                     <button class="settings-tab active" data-tab="account">Account</button>
                     <button class="settings-tab" data-tab="settings">Settings</button>
-                    <button class="settings-tab" data-tab="stats">Stats</button>
                 </div>
                 <button class="modal-close" id="closeSettingsModal">✕</button>
             </div>
@@ -554,10 +550,6 @@
                         <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25">25</button>
                         <button class="group-size-btn" data-size="50" data-short="50" data-full="50">50</button>
                     </div>
-                </div>
-                <div class="stat-row" style="cursor: pointer;" id="percentageModeToggle">
-                    <span>Percentage coverage mode</span>
-                    <span id="percentageModeStatus" style="color: var(--text-muted);">OFF</span>
                 </div>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="hideSingleOccToggle">
                     <span>Hide single-occurrence words</span>
@@ -576,29 +568,6 @@
                             <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
                         </svg>
                     </span>
-                </div>
-            </div>
-            <!-- Stats tab content — current set progress -->
-            <div class="settings-tab-content" id="statsTabContent">
-                <div class="stat-row">
-                    <span>Cards studied</span>
-                    <span id="statsTabCardsStudied">0 / 0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Progress</span>
-                    <span id="statsTabProgress" style="color: var(--accent-secondary); font-weight: 600;">0%</span>
-                </div>
-                <div class="stat-row">
-                    <span style="color: var(--accent-green);">Correct</span>
-                    <span id="statsTabCorrect" style="color: var(--accent-green);">0</span>
-                </div>
-                <div class="stat-row">
-                    <span style="color: var(--error);">Incorrect</span>
-                    <span id="statsTabIncorrect" style="color: var(--error);">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Accuracy</span>
-                    <span id="statsTabAccuracy">-</span>
                 </div>
             </div>
             <!-- Account tab content -->
@@ -659,7 +628,7 @@
                     <p><strong>Tap card</strong> to flip and see the translation</p>
                     <p><strong>Swipe right</strong> if you know the word &#10003;</p>
                     <p><strong>Swipe left</strong> if you don't know it &#10007;</p>
-                    <p><strong>Tap example lyrics</strong> to cycle through different song examples</p>
+                    <p id="helpStudyLyricsLine"><strong>Tap example lyrics</strong> to cycle through different song examples</p>
                     <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions</p>
                     <p><strong>Arrow buttons</strong> to navigate cards manually</p>
                     <p><strong>At the end of each set</strong>, you'll see your accuracy and can review incorrect cards or continue to the next set</p>
