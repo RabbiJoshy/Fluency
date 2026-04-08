@@ -7,9 +7,6 @@
 .DS_Store
 Thumbs.db
 
-# Secrets
-secrets.json
-
 # Python
 __pycache__/
 *.py[cod]
