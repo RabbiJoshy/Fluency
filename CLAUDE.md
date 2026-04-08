@@ -9,11 +9,14 @@ Fluency/
 ├── index.html                   # App shell (HTML only, CSS + JS extracted)
 ├── css/style.css                # All CSS
 ├── js/                          # ES modules — see js/CLAUDE.md
-├── artists.json                 # Artist configs for lyrics mode (includes masterPath)
-├── config.json                  # Language config and file path mappings
+├── config/
+│   ├── artists.json             # Artist configs for lyrics mode (includes masterPath)
+│   ├── config.json              # Language config and file path mappings
+│   └── cefr_levels.json         # CEFR level definitions per language
+├── backend/
+│   ├── GoogleAppsScript.js      # Apps Script backend (deploy manually)
+│   └── secrets.template.json    # Template for secrets.json (not in git)
 ├── manifest.json / service-worker.js
-├── GoogleAppsScript.js          # Apps Script backend (deploy manually)
-├── secrets.json                 # Google Apps Script URL (not in git)
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md
 │   └── Spanish/
 │       ├── layers/conjugations.json      # Conjugation tables (verbecc + Jehle)
@@ -39,7 +42,7 @@ Fluency/
 | Pipeline word analysis | `Artists/scripts/6_llm_analyze.py` |
 | Pipeline reranking | `Artists/scripts/8_rerank.py` |
 | Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json` |
-| Artist config | `artists.json` (root) + `Artists/{Name}/artist.json` |
+| Artist config | `config/artists.json` + `Artists/{Name}/artist.json` |
 | Curated translation fixes | `Artists/{Name}/data/llm_analysis/curated_translations.json` |
 | Sense matching / embeddings | `Data/Spanish/Scripts/match_senses.py` → classify + merge + filter |
 | Conjugation tables / verb data | `Data/Spanish/Scripts/build_conjugations.py`, front-end in `js/flashcards.js` → `buildConjugationTableHTML()` |

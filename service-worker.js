@@ -4,7 +4,7 @@ const CACHE_NAME = 'flashcards-v9';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/artists.json'
+  '/config/artists.json'
 ];
 
 // Install event - cache files and skip waiting

@@ -36,7 +36,7 @@ async function resolveArtist() {
     if (!artistSlug) return; // normal mode
 
     try {
-        const response = await fetch('artists.json');
+        const response = await fetch('config/artists.json');
         allArtistsConfig = await response.json();
 
         // Tag each config with its slug
@@ -157,7 +157,7 @@ async function setupModeSwitchButton() {
         // In normal mode → offer switch to artist mode
         // Load artists.json to discover available artists
         try {
-            const artists = allArtistsConfig || await fetch('artists.json').then(r => r.json());
+            const artists = allArtistsConfig || await fetch('config/artists.json').then(r => r.json());
             const slugs = Object.keys(artists);
             if (slugs.length === 0) return;
 

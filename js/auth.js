@@ -4,13 +4,13 @@ import './state.js';
 
 async function loadSecrets() {
     try {
-        const response = await fetch('secrets.json');
+        const response = await fetch('backend/secrets.json');
         if (response.ok) {
             const secrets = await response.json();
             GOOGLE_SCRIPT_URL = secrets.googleScriptUrl || '';
         }
     } catch (error) {
-        console.warn('Could not load secrets.json - Google Sheets sync will be disabled');
+        console.warn('Could not load backend/secrets.json - Google Sheets sync will be disabled');
     }
 }
 

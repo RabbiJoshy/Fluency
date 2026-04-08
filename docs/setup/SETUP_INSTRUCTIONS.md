@@ -31,7 +31,7 @@ This guide will walk you through setting up the Google Sheets backend for your f
 2. **Replace the Default Code**
    - You'll see a default `function myFunction() {}`
    - **Delete all the default code**
-   - Copy the entire contents of `GoogleAppsScript.js` (included with this project)
+   - Copy the entire contents of `backend/GoogleAppsScript.js` (included with this project)
    - Paste it into the Apps Script editor
 
 3. **Save the Script**
@@ -338,7 +338,7 @@ If you run into issues:
 ## Summary Checklist
 
 - [ ] Created Google Sheet
-- [ ] Added Apps Script code from GoogleAppsScript.js
+- [ ] Added Apps Script code from backend/GoogleAppsScript.js
 - [ ] Deployed as Web App with "Anyone" access
 - [ ] Copied Web App URL
 - [ ] Updated GOOGLE_SCRIPT_URL in index.html

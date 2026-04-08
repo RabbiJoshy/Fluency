@@ -126,7 +126,7 @@ The `example_translations.json` layer tracks provenance: `source: "genius"|"gemi
 4. Copy reusable curated data from existing artist (conjugation_families, skip_mwes, etc.)
 5. Run pipeline (`--no-gemini` for free, then `--words-only` to add translations)
 6. Builder auto-produces index + examples from layers
-7. Add artist to `artists.json` at project root
+7. Add artist to `config/artists.json`
 8. Shared words get translations via client-side merge — no Gemini needed for overlapping vocab
 
 ## Pitfalls

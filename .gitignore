@@ -21,6 +21,7 @@ npm-debug.log
 
 # Secrets
 secrets.json
+backend/secrets.json
 
 # FastText models
 *.ftz

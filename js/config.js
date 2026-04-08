@@ -3,8 +3,8 @@ import './state.js';
 async function loadConfig() {
     try {
         const [configResponse, cefrResponse] = await Promise.all([
-            fetch('config.json'),
-            fetch('cefr_levels.json')
+            fetch('config/config.json'),
+            fetch('config/cefr_levels.json')
         ]);
         config = await configResponse.json();
         cefrLevelsConfig = await cefrResponse.json();

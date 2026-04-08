@@ -10,7 +10,7 @@
 ### Step 2: Add the Script
 1. In the sheet, click **Extensions** → **Apps Script**
 2. Delete the default code
-3. Copy all code from `GoogleAppsScript.js`
+3. Copy all code from `backend/GoogleAppsScript.js`
 4. Paste it into the editor
 5. Save (Ctrl+S / Cmd+S)
 
@@ -46,7 +46,7 @@
 
 ## 📁 Files Included
 
-- **GoogleAppsScript.js** - Copy this to Google Apps Script
+- **backend/GoogleAppsScript.js** - Copy this to Google Apps Script
 - **index.html** - Your updated app (remember to add the URL!)
 - **SETUP_INSTRUCTIONS.md** - Detailed setup guide
 - **IMPLEMENTATION_SUMMARY.md** - What was added
