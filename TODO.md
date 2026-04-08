@@ -8,6 +8,10 @@ This is Josh's backlog. Items are NOT instructions to start working.
 - When completing an item, move it to Decisions Made with a summary of what was done and why.
 - UPDATE this file when working on items — record what was tried, what was learned, and why decisions were made.
 - Do NOT use preview mode. Service worker caching makes previews unreliable — Josh tests in his own browser.
+
+For items needing investigation before implementation, create a design doc at `docs/design/`
+with `status: prompt`. See `docs/design/CLAUDE.md` for the lifecycle. Items marked [design doc]
+below have enough complexity to warrant this treatment when the time comes.
 -->
 
 ## Key
@@ -30,7 +34,7 @@ This is Josh's backlog. Items are NOT instructions to start working.
   Previously blocked on shared IDs — blocker resolved (both modes now use 6-char hex IDs).
   Open question: how to map general-rank result back to artist deck position.
 
-- **[soon] Progress sharing across modes (M) [shared]**
+- **[soon] Progress sharing across modes (M) [shared] [design doc]**
   Button/UI to share or migrate progress between normal and artist modes. Currently stored in
   separate Google Sheets tabs (`UserProgress` vs `Lyrics`) with separate fullId prefixes
   (`es0` vs `es1`). Same 6-char hex IDs underneath, so mapping is possible. Needs design:
@@ -54,7 +58,7 @@ This is Josh's backlog. Items are NOT instructions to start working.
   Made). Remaining: "a|a" (preposition) has no usable Wiktionary entry — needs a curated
   override in the senses layer or a different source.
 
-- **[soon] Homograph lemma filtering — minor lemma flag (S) [shared]**
+- **[soon] Homograph lemma filtering — minor lemma flag (S) [shared] [design doc]**
   When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
   flag the less common lemma pairing so it can be filtered or deprioritized. Currently
   como|comer shows as a top-frequency word when it's actually rare. Inverse of
@@ -85,15 +89,6 @@ This is Josh's backlog. Items are NOT instructions to start working.
 - **[idea] Quality filtering for corpus examples (S) [shared]**
   Drop sentences with too many unknown tokens, OCR noise, etc.
 
-- **[idea] Sense-specific example distribution (L) [shared]**
-  Distribute examples across meanings instead of duplicating to all senses.
-  Options: spaCy POS matching, cheap Gemini pass for sense disambiguation,
-  or heuristic (keyword overlap with translation).
-
-- **[idea] Per-sense frequency from corpus (M) [shared]**
-  Once sense-to-sentence mapping exists, compute how often each sense appears.
-  Frequency = count per sense / total occurrences.
-
 - **[idea] Cross-artist MWE detection (M) [artist]**
   Step 3 detects MWEs per-artist only. A shared pass across all artist corpora would find
   expressions below any single artist's frequency threshold. Master vocab already unions
@@ -111,7 +106,7 @@ This is Josh's backlog. Items are NOT instructions to start working.
   Scrape Genius album pages to auto-assign songs to albums. Currently manually curated.
   Not urgent — only 2 artists and their dictionaries are complete.
 
-- **[idea] Multi-language generalization (L) [shared]**
+- **[idea] Multi-language generalization (L) [shared] [design doc]**
   Generalize `build_examples.py` to accept language as argument.
   Download Tatoeba pairs for Italian, Swedish, etc.
   Generate per-language frequency ranks and vocabulary.json.
@@ -200,3 +195,13 @@ Resolved items kept for context, not actionable.
   verbecc + Jehle CSV. Pipeline renumbered: step 3 = build_conjugations, step 4 =
   build_senses, step 5 = match_senses, step 6 = build_vocabulary. Front-end display of
   conjugation tables tracked separately above.
+
+- **Sense-specific example distribution** — DONE (2026-04-08). `match_artist_senses.py` (step
+  6b) classifies lyric examples to senses using bi-encoder cosine similarity. Handles bilingual
+  (84%) and Spanish-only (72%) via paraphrase-multilingual-mpnet-base-v2. Sense source
+  fallback: Gemini > Wiktionary > Master. ~14s per artist. Normal mode already had this via
+  `match_senses.py`. See `docs/design/wsd_benchmark_results.md`.
+
+- **Per-sense frequency from corpus** — DONE (2026-04-08). Both `match_senses.py` (normal)
+  and `match_artist_senses.py` (artist) compute sense frequency from classified examples
+  and apply a 5% minimum threshold. Frequency stored in `sense_assignments.json`.
