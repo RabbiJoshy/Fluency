@@ -19,9 +19,7 @@ venv/
 node_modules/
 npm-debug.log
 
-# Secrets
-secrets.json
-backend/secrets.json
+# Secrets (backend/secrets.json is tracked — public Apps Script URL, not sensitive)
 
 # FastText models
 *.ftz
