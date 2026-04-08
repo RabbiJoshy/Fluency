@@ -37,6 +37,7 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 4 | `scripts/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua). Runs after step 5. |
 | 5b | `scripts/5b_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
 | 6 | `scripts/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
+| 6b | `scripts/match_artist_senses.py` | `sense_assignments.json` | Local bi-encoder sense matching (fallback for --no-gemini). Skips if assignments exist. |
 | 7 | `scripts/7_flag_cognates.py` | `cognates.json` | Flag transparent cognates (intersection: LLM + suffix rules) |
 | 8 | `scripts/8_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | build | `scripts/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |

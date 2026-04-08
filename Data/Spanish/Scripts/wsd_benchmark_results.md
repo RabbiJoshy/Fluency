@@ -173,6 +173,36 @@ when its inputs change. `match_senses.py` is the main tuning target.
 - `--merge` / `--no-merge` — override default merge behavior
 - `--limit N` — only classify first N words (by frequency rank)
 
+## Artist mode (local sense matching)
+
+Step 6b (`Artists/scripts/match_artist_senses.py`) uses bi-encoder sense
+matching for artist lyrics when Gemini assignments don't exist. Much smaller
+scale than normal mode (~600-3000 examples vs 400K).
+
+**Model**: `paraphrase-multilingual-mpnet-base-v2` — handles both bilingual
+(84% benchmark) and Spanish-only (72% benchmark) inputs.
+
+**Sense source priority**: Gemini (this artist) > Wiktionary (normal mode) > Master vocab
+
+**Measured results (Rosalía, vs Gemini ground truth)**:
+- 59.8% raw agreement with Gemini on all multi-sense examples
+- ~75% on truly distinct senses (28% of disagreements are near-synonym senses
+  with identical translations, 23% are same-POS near-synonyms)
+- Some "Gemini correct" cases are actually Gemini errors (e.g. "Zoom in on
+  the face" classified as "expensive")
+- 89 multi-sense words retained vs 0 without the step
+- Runtime: 13.5s for Rosalía (3,415 words, 595 examples), 14s for Young Miko
+  (4,748 words, 932 examples — fully Spanish-only)
+
+**Key finding**: model choice (MiniLM vs mpnet) barely matters (~57% vs ~58%
+agreement). The real bottleneck is near-synonym Gemini senses that should be
+merged, and translation coverage for the bilingual path.
+
+**Young Miko validation** (100% Spanish-only, zero English translations):
+Spot-checked classifications look correct — "bajo el roof" (under) vs "bajo
+hasta Aguadilla" (down to) vs "bajo perfil" (low profile). Demonstrates the
+multilingual model handles Spanish-to-English-sense matching adequately.
+
 ## Open questions
 
 1. Is 20 examples/word enough, or does 50 improve frequency estimates meaningfully?
