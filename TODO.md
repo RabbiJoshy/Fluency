@@ -24,21 +24,16 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## UI / Front-End
 
-- **[soon] Conjugation table on card back (M) [shared]**
-  Display conjugation data on the card back for verb entries. Data layer exists
-  (`build_conjugations.py` generates `conjugation_reverse.json` and `conjugations.json`
-  from verbecc + Jehle CSV). Front-end needs to load and render the table.
+- **[idea] Conjugation table UI polish (S) [shared]**
+  Conjugation data layer is done (`conjugations.json` + `conjugation_reverse.json`).
+  Front-end renders the table on card back but the UI needs improvement.
 
-- **[soon] General vocab for level estimation (M) [shared]**
-  Use base Spanish frequency list for estimation even in artist mode (less genre bias).
-  Previously blocked on shared IDs — blocker resolved (both modes now use 6-char hex IDs).
-  Open question: how to map general-rank result back to artist deck position.
-
-- **[soon] Progress sharing across modes (M) [shared] [design doc]**
-  Button/UI to share or migrate progress between normal and artist modes. Currently stored in
-  separate Google Sheets tabs (`UserProgress` vs `Lyrics`) with separate fullId prefixes
-  (`es0` vs `es1`). Same 6-char hex IDs underneath, so mapping is possible. Needs design:
-  mark-as-known sync? One-way or bidirectional? On-demand or automatic?
+- **[soon] Cross-mode progress + estimation (M) [shared] [design doc]**
+  Two related tasks: (1) Use base Spanish frequency list for level estimation in artist
+  mode (less genre bias). (2) Share/migrate progress between normal and artist modes.
+  Both blocked on the same plumbing — fullId prefixes differ (`es0` vs `es1`) but hex IDs
+  are shared. Needs design: how to map general-rank result to artist deck position,
+  mark-as-known sync direction, on-demand vs automatic.
 
 - **[idea] Album-specific mode (M) [artist]**
   Let users choose specific albums. Options range from light (filter example lyrics to chosen
@@ -61,18 +56,10 @@ below have enough complexity to warrant this treatment when the time comes.
   the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
   reverse lookup to determine which lemma dominates.
 
-- **[done] OpenSubtitles integration (M) [normal]**
-  Integrated as fallback corpus in `build_examples.py`. Tatoeba primary, OpenSubtitles
-  fills gaps. Stride-sampled across full 105M lines, subtitle junk/OCR filters, trivial
-  sentence filter, proximity scoring, diversity sampling. Coverage: 100% (2 zero-example words).
-
 - **[idea] Lemmatization pass (M) [shared]**
   spaCy `es_core_news_lg` to match conjugated corpus forms to lemmas.
   e.g. `disculpen` matches via `disculpar`. Estimated +4% coverage on top of accent
   normalization.
-
-- **[idea] Quality filtering for corpus examples (S) [shared]**
-  Drop sentences with too many unknown tokens, OCR noise, etc.
 
 - **[idea] Cross-artist MWE detection (M) [artist]**
   Step 3 detects MWEs per-artist only. A shared pass across all artist corpora would find
@@ -142,3 +129,6 @@ Resolved items. Detail in `docs/design/` where linked; small fixes inline.
 - **Sense-matched example prioritization** — Already implemented: `sense_assignments.json` partitions examples to senses at build time in both pipelines. No front-end change needed.
 - **Spotify lookup for Rosalía** — Completed.
 - **Gemini lemma hallucinations** — Deleted 5 corrupted master entries. No runtime correction needed — word|lemma pairs are unique identities, so different lemmas don't clash. Clean up junk entries from master periodically.
+- **OpenSubtitles integration** — Tatoeba primary, OpenSubtitles fills gaps. Stride-sampled, subtitle junk/OCR filters, trivial sentence filter, diversity sampling. 100% coverage.
+- **Quality filtering for corpus examples** — Implemented in `build_examples.py`: trivial sentence filter (rejects top-100-only sentences), subtitle junk regex (OCR noise, music cues, timecodes).
+- **Conjugation table on card back** — Data layer and front-end rendering done. UI polish remaining (tracked as idea).
