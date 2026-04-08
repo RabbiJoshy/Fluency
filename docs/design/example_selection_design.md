@@ -1,3 +1,10 @@
+---
+title: Example sentence selection
+status: implemented
+created: 2026-04-07
+updated: 2026-04-07
+---
+
 # Example Sentence Selection — Design Notes
 
 Reference for how `build_examples.py` picks example sentences and what needs to change.

@@ -1,3 +1,10 @@
+---
+title: Word sense disambiguation
+status: implemented
+created: 2026-04-07
+updated: 2026-04-08
+---
+
 # WSD (Word Sense Disambiguation) — Exploration Log
 
 Reference for all approaches tried, decisions made, and current state.

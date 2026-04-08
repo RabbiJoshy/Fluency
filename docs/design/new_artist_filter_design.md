@@ -1,3 +1,10 @@
+---
+title: Artist vocabulary filter
+status: implemented
+created: 2026-04-07
+updated: 2026-04-07
+---
+
 # New Artist Vocabulary Filter — Design Notes
 
 Reference for the vocabulary filter step that reduces an artist's raw word list to only the words that need Gemini analysis.
