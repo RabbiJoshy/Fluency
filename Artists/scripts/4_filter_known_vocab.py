@@ -26,12 +26,13 @@ Usage (from project root):
 
 import json
 import os
+import re
 import sys
 import argparse
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _artist_config import add_artist_arg, load_shared_list
+from _artist_config import add_artist_arg, load_shared_list, SHARED_DIR
 
 # Paths relative to project root (derived from this file's location)
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,6 +42,22 @@ PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
 NORMAL_VOCAB_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "vocabulary.json")
 ES_50K_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "es_50k_wordlist.txt")
 CONJ_REVERSE_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
+ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
+
+# D-elision regexes: Caribbean d-drop in past participles and derivatives.
+# Step 5 handles -a'o/-í'o when a canonical counterpart exists in the corpus.
+# These are backups for when step 5 can't merge (no counterpart), plus
+# feminine/plural variants that step 5 doesn't cover at all.
+_D_ELISION_PATTERNS = [
+    (re.compile(r"^(.+)a'o$"), "ado"),     # -a'o  -> -ado   (masc sing)
+    (re.compile(r"^(.+)a'a$"), "ada"),     # -a'a  -> -ada   (fem sing)
+    (re.compile(r"^(.+)a'os$"), "ados"),   # -a'os -> -ados  (masc pl)
+    (re.compile(r"^(.+)a'as$"), "adas"),   # -a'as -> -adas  (fem pl)
+    (re.compile(r"^(.+)í'o$"), "ido"),     # -í'o  -> -ido   (masc sing)
+    (re.compile(r"^(.+)í'a$"), "ida"),     # -í'a  -> -ida   (fem sing)
+    (re.compile(r"^(.+)í'os$"), "idos"),   # -í'os -> -idos  (masc pl)
+    (re.compile(r"^(.+)í'as$"), "idas"),   # -í'as -> -idas  (fem pl)
+]
 
 
 def load_es_50k(path):
@@ -88,21 +105,30 @@ def elision_canonical(word):
         candidates.add(stem + "z")     # die' -> diez
         candidates.add(stem + "r")     # possible verb infinitive truncation
 
+    # D-elision variants: backup for step 5 misses + feminine/plural forms
+    for pattern, suffix in _D_ELISION_PATTERNS:
+        m = pattern.match(word)
+        if m:
+            candidates.add(m.group(1) + suffix)
+
     # Apostrophe in middle: common contractions
     if "'" in word and not word.endswith("'"):
-        # pa'l -> para el, pa'trás -> para atrás
-        # These are multi-word, check the parts
         parts = word.split("'")
         if len(parts) == 2:
-            # pa'l -> para + el
             prefix_expansions = {
                 "pa": "para",
                 "po": "por",
+                "to": "todo",
             }
             expanded = prefix_expansions.get(parts[0])
             if expanded:
                 candidates.add(expanded)
                 candidates.add(parts[1])
+                # Also try expanding the suffix: l -> el
+                suffix_expansions = {"l": "el"}
+                suffix_exp = suffix_expansions.get(parts[1])
+                if suffix_exp:
+                    candidates.add(suffix_exp)
 
     # Common known mappings for very frequent forms
     known = {
@@ -123,6 +149,13 @@ def elision_canonical(word):
         "to's": "todos",
         "toas": "todas",
         "tó": "todo",
+        # Additional Caribbean/colloquial forms
+        "to'ito": "todito",
+        "ma'i": "mami",
+        "oí'te": "oíste",
+        "de'o": "dedo",
+        "a'o": "ado",       # bare d-elision suffix (too short for regex)
+        "dies'": "diez",    # diez with s-elision marker
     }
     if word in known:
         candidates.add(known[word])
@@ -270,6 +303,21 @@ def main():
                     known_elision.add(w)
                     remaining.discard(w)
                     break
+
+    # Load skip forms from step 5's elision mapping — these are non-s-elision
+    # forms that step 5 identified but chose not to merge. Tag them as known.
+    if os.path.exists(ELISION_MAPPING_PATH):
+        with open(ELISION_MAPPING_PATH, "r", encoding="utf-8") as f:
+            elision_mapping = json.load(f)
+        skip_forms = frozenset(
+            entry["word"] for entry in elision_mapping
+            if entry.get("action") == "skip"
+        )
+        for w in list(remaining):
+            if w in skip_forms:
+                known_elision.add(w)
+                remaining.discard(w)
+
     print("  Removed %d words (elision → known canonical form)" % len(known_elision))
 
     # ---------------------------------------------------------------
