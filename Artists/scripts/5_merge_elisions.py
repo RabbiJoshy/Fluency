@@ -192,6 +192,7 @@ def main():
 
     merged = merge_evidence(data, targets)
 
+    os.makedirs(os.path.dirname(str(OUT_PATH)), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(merged, f, ensure_ascii=False, indent=2)
 

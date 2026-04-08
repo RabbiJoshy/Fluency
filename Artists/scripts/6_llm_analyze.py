@@ -690,6 +690,7 @@ def load_progress(path, expected_hash):
 
 def save_progress(path, data, phash):
     # type: (str, Dict, str) -> None
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     out = {"_prompt_hash": phash}
     out.update(data)
     with open(path, "w", encoding="utf-8") as f:

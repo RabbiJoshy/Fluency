@@ -333,6 +333,7 @@ def main():
     }
 
     ranking_path = os.path.join(layers_dir, "ranking.json")
+    os.makedirs(layers_dir, exist_ok=True)
     with open(ranking_path, "w", encoding="utf-8") as f:
         json.dump(ranking_layer, f, ensure_ascii=False)
     print(f"\n  Ranking layer: {len(ranking_layer['order'])} entries -> {ranking_path}")

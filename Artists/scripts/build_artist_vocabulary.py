@@ -525,12 +525,14 @@ def write_split_files(entries, master, vocab_path, master_path):
             ex_entry["w"] = mwe_examples
         examples[fid] = ex_entry
 
+    os.makedirs(os.path.dirname(index_path), exist_ok=True)
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index, f, ensure_ascii=False)
     with open(examples_path, "w", encoding="utf-8") as f:
         json.dump(examples, f, ensure_ascii=False)
 
     # Write updated master
+    os.makedirs(os.path.dirname(master_path), exist_ok=True)
     with open(master_path, "w", encoding="utf-8") as f:
         json.dump(master, f, ensure_ascii=False)
 
@@ -581,6 +583,7 @@ def main():
                                            wiktionary_mwe_path)
 
     # Write monolith (debugging)
+    os.makedirs(os.path.dirname(vocab_path), exist_ok=True)
     with open(vocab_path, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)
     print("  Monolith: %d entries -> %s" % (len(entries), vocab_path))

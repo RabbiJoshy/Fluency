@@ -670,6 +670,7 @@ def main():
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
     out_list = to_evidence_json(counts, selected)
 
+    os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out_list, f, ensure_ascii=False, indent=2)
 
@@ -716,6 +717,7 @@ def main():
             "pmi_detected_count": len(pmi_detected),
         },
     }
+    os.makedirs(os.path.dirname(mwe_out_path), exist_ok=True)
     with open(mwe_out_path, "w", encoding="utf-8") as f:
         json.dump(mwe_output, f, ensure_ascii=False, indent=2)
     print(f"  MWE: {len(confirmed)} curated, {len(pmi_detected)} PMI-detected -> {mwe_out_path}")

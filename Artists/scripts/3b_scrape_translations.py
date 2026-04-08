@@ -582,6 +582,7 @@ def run_alignment(artist_dir):
     print("Total lines indexed: %d" % stats["lines_indexed"])
 
     out_path = os.path.join(artist_dir, "data", "input", "translations", "aligned_translations.json")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
     print("Wrote %s" % out_path)
