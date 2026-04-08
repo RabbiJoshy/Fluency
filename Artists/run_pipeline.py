@@ -71,6 +71,16 @@ def _step_6_args(args, artist_dir):
         a.extend(["--reset-sentences", "--reset-words"])
     return a
 
+def _step_6b_args(args, artist_dir):
+    a = _base_args(artist_dir)
+    if args.keyword_only_senses:
+        a.append("--keyword-only")
+    if args.no_gemini:
+        # Step 6 --no-gemini writes a bad sense_assignments.json (all on first sense)
+        # so 6b must overwrite it
+        a.append("--force")
+    return a
+
 def _step_7_args(args, artist_dir):
     return _base_args(artist_dir)
 
@@ -105,6 +115,10 @@ def build_steps(vocab_file):
          "script": "6_llm_analyze.py", "args_fn": _step_6_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
          "output": "data/layers/senses_gemini.json", "needs_api_key": True},
+        {"num": "6b", "label": "Local sense matching (bi-encoder)",
+         "script": "match_artist_senses.py", "args_fn": _step_6b_args,
+         "input": "data/layers/senses_gemini.json",
+         "output": "data/layers/sense_assignments.json", "needs_api_key": False},
         {"num": 7, "label": "Flag cognates -> layer",
          "script": "7_flag_cognates.py", "args_fn": _step_7_args,
          "input": "data/layers/senses_gemini.json",
@@ -180,6 +194,8 @@ def main():
                         help="Skip Gemini API calls in step 6. Uses only Genius translations + overrides.")
     parser.add_argument("--words-only", action="store_true",
                         help="Step 6: run word analysis but skip sentence translation.")
+    parser.add_argument("--keyword-only-senses", action="store_true",
+                        help="Step 6b: use keyword overlap instead of bi-encoder for sense matching.")
     args = parser.parse_args()
 
     artist_dir = os.path.join(ARTISTS_DIR, args.artist)
