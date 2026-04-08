@@ -48,6 +48,9 @@ async function resolveArtist() {
         if (artistConfig) {
             activeArtist = artistConfig;
 
+            // Store the URL artist slug — this is the immutable primary artist
+            window._urlArtistSlug = artistSlug;
+
             // Start with the URL artist; user can add more via settings
             selectedArtistSlugs = [artistSlug];
         } else {

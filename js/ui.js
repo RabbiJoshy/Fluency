@@ -1061,62 +1061,66 @@ function setupArtistSelection() {
     section.style.display = 'block';
     container.innerHTML = '';
 
+    const urlArtistSlug = window._urlArtistSlug;
+
     for (const [slug, cfg] of Object.entries(artists)) {
+        const isPrimary = slug === urlArtistSlug;
         const row = document.createElement('div');
         row.className = 'stat-row';
-        row.style.cursor = 'pointer';
+        row.style.cursor = isPrimary ? 'default' : 'pointer';
 
         const label = document.createElement('span');
         label.textContent = cfg.name;
+        if (isPrimary) label.style.opacity = '0.7';
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.checked = window._selectedArtistSlugs.includes(slug);
+        checkbox.checked = isPrimary || window._selectedArtistSlugs.includes(slug);
         checkbox.dataset.slug = slug;
         checkbox.style.accentColor = 'var(--accent-primary)';
 
+        // Primary artist is always selected — can't be unchecked
+        if (isPrimary) {
+            checkbox.disabled = true;
+            checkbox.style.opacity = '0.7';
+        }
+
         row.appendChild(label);
         row.appendChild(checkbox);
-        row.addEventListener('click', (e) => {
-            if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
-            onArtistSelectionChange();
-        });
+        if (!isPrimary) {
+            row.addEventListener('click', (e) => {
+                if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
+                onArtistSelectionChange();
+            });
+        }
         container.appendChild(row);
     }
 }
 
 function onArtistSelectionChange() {
+    const urlArtistSlug = window._urlArtistSlug;
     const checkboxes = document.querySelectorAll('#artistCheckboxes input[type="checkbox"]');
-    const selected = [];
-    checkboxes.forEach(cb => {
-        if (cb.checked) selected.push(cb.dataset.slug);
-    });
 
-    // Must have at least one artist selected
-    if (selected.length === 0) {
-        // Re-check the URL artist
-        checkboxes.forEach(cb => {
-            if (cb.dataset.slug === activeArtist.slug) cb.checked = true;
-        });
-        selected.push(activeArtist.slug);
-    }
+    // Primary (URL) artist is always first; add any checked secondary artists after
+    const selected = [urlArtistSlug];
+    checkboxes.forEach(cb => {
+        if (cb.checked && cb.dataset.slug !== urlArtistSlug) {
+            selected.push(cb.dataset.slug);
+        }
+    });
 
     window._selectedArtistSlugs = selected;
     localStorage.setItem('selected_artists', JSON.stringify(selected));
 
-    // Invalidate cached merge data
+    // Invalidate all cached vocabulary data
     window._cachedMergedIndex = null;
     window._cachedMergedExamples = null;
     window._cachedExamplesData = null;
-
-    // Update activeArtist to be the first selected (primary)
-    const artists = window._allArtistsConfig;
-    if (artists && artists[selected[0]]) {
-        activeArtist = artists[selected[0]];
-    }
+    window._cachedJoinedIndex = null;
+    window._cachedJoinedIndexPath = null;
 
     // Reload albums dictionary for multi-artist mode
-    loadMultiArtistAlbumsDictionaries(selected, artists);
+    loadMultiArtistAlbumsDictionaries(selected, window._allArtistsConfig);
 
     // If we're currently viewing flashcards, go back to setup so user re-picks a set
     // with the merged vocabulary
