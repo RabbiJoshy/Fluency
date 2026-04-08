@@ -135,73 +135,21 @@ Add to `duplicate_songs.json` and check for similar songs. Delete once resolved.
 
 ## Decisions Made
 
-Resolved items kept for context, not actionable.
+Resolved items. Detail in `docs/design/` where linked; small fixes inline.
 
-- **Shared master vocabulary architecture** — DONE. `Artists/vocabulary_master.json` exists,
-  keyed by 6-char hex IDs (`md5(word|lemma)[:6]`). Both pipelines share the same ID scheme.
-  Senses accumulate across artists. `merge_to_master.py` handles sense dedup via
-  normalization + spaCy morphology.
-
-- **Layered architecture** — DONE for both pipelines. Each step writes its own layer file;
-  builder assembles layers into front-end output. No step mutates another step's output.
-
-- **Example cycling in normal mode** — DONE. Click target moved from English text to whole
-  example box; Spanish tap triggers breakdown only (stopPropagation).
-
-- **Sense dedup/mapping** — DONE (main implementation). Merged 271 duplicates via
-  `normalize_translation()` + spaCy morphology in `merge_to_master.py`. Only polish remains
-  (English 3rd-person conjugation, tracked above).
-
-- **Per-artist verse filtering** — Decided against. Goal is understanding full songs.
-  Feature verses help learners. Genius verse labels are unreliable. Existing filters
-  (English stripping, exclusions, adlib removal) handle real quality problems.
-
-- **Alternative translation sources** — Researched April 2025, none viable. Genius + Gemini
-  (~$5/artist) remains best approach. Musixmatch blocked, LyricsTranslate too sparse,
-  LyricFind enterprise-only. Revisit if Musixmatch unofficial API stabilizes.
-
-- **Level estimation algorithm** — Adaptive staircase (one word at a time, step size halves
-  on reversals, converges at step < 50 + 5 consecutive correct or 30 words max).
-
-- **Service worker strategy** — Network-first for all assets. Cache is offline fallback only.
-
-- **Word highlight fix** — DONE. Added Unicode-aware word boundaries (`\p{L}\p{N}`
-  lookbehind/lookahead) to the highlight regex in `flashcards.js`. Short words like "a"
-  no longer highlight every occurrence of that letter in example sentences.
-
-- **Mode switching button** — DONE. Added "Lyrics Mode" / "Normal Mode" toggle button in the
-  top bar. In normal mode shows artist picker dropdown if multiple artists configured; in
-  artist mode links back to the base URL.
-
-- **Normal mode parity** — DONE for Spanish. `vocabulary.index.json` already has meanings
-  arrays, and `loadVocabularyData()` builds `isMultiMeaning:true` cards for both modes.
-  The legacy `parseQuizlet`/`parseCSV` paths only applied to non-Spanish languages (all
-  languages already use JSON with meanings arrays) — removed as dead code.
-
-- **Normal mode translation quality** — Mostly DONE. Multiple algorithmic fixes in
-  `build_senses.py`: fixed sense merge bug (stop-word-only translations no longer incorrectly
-  merged); fixed alt-of extraction (rescued al, muy); deprioritized letter-name NOUN senses
-  (de→"of" ranks above "letter D"); improved verbose translation cleaning via colon/semicolon
-  pattern extraction (lo→"the, that which is", tu→"you", me→"me"); fixed pronoun form-of
-  extraction (nos→"us", les→"them"). Top 100 words much improved. Only "a|a" remains
-  unfixable algorithmically (preposition genuinely missing from Wiktionary).
-
-- **Normal mode lemma/translation inconsistency** — DONE. Added conjugation-based POS
-  filtering in `build_senses.py`. When `conjugation_reverse.json` confirms a word is a verb
-  form (e.g. como is conjugated form of comer), non-VERB senses are removed. Prevents
-  verb-lemma cards from showing noun/conjunction/adverb translations.
-
-- **Conjugation data layer** — DONE. `build_conjugations.py` generates conjugation data from
-  verbecc + Jehle CSV. Pipeline renumbered: step 3 = build_conjugations, step 4 =
-  build_senses, step 5 = match_senses, step 6 = build_vocabulary. Front-end display of
-  conjugation tables tracked separately above.
-
-- **Sense-specific example distribution** — DONE (2026-04-08). `match_artist_senses.py` (step
-  6b) classifies lyric examples to senses using bi-encoder cosine similarity. Handles bilingual
-  (84%) and Spanish-only (72%) via paraphrase-multilingual-mpnet-base-v2. Sense source
-  fallback: Gemini > Wiktionary > Master. ~14s per artist. Normal mode already had this via
-  `match_senses.py`. See `docs/design/wsd_benchmark_results.md`.
-
-- **Per-sense frequency from corpus** — DONE (2026-04-08). Both `match_senses.py` (normal)
-  and `match_artist_senses.py` (artist) compute sense frequency from classified examples
-  and apply a 5% minimum threshold. Frequency stored in `sense_assignments.json`.
+- **Shared master vocabulary** — See [`master_vocabulary_architecture.md`](docs/design/master_vocabulary_architecture.md)
+- **Layered architecture** — See [`layered_pipeline_architecture.md`](docs/design/layered_pipeline_architecture.md)
+- **Sense dedup/mapping** — See [`sense_dedup_mapping.md`](docs/design/sense_dedup_mapping.md)
+- **Normal mode translation quality** — See [`translation_quality_normal_mode.md`](docs/design/translation_quality_normal_mode.md)
+- **Conjugation-based POS filtering** — See [`conjugation_pos_filtering.md`](docs/design/conjugation_pos_filtering.md)
+- **Level estimation algorithm** — See [`level_estimation.md`](docs/design/level_estimation.md)
+- **Per-artist verse filtering** — Decided against. See [`verse_filtering.md`](docs/design/verse_filtering.md)
+- **Alternative translation sources** — See [`alternative_translation_sources.md`](docs/design/alternative_translation_sources.md)
+- **Sense-to-example distribution** — See [`wsd_benchmark_results.md`](docs/design/wsd_benchmark_results.md)
+- **Per-sense frequency** — Implemented in both `match_senses.py` and `match_artist_senses.py` (5% min threshold)
+- **Conjugation data layer** — `build_conjugations.py` generates from verbecc + Jehle CSV
+- **Example cycling in normal mode** — Click on example box cycles; Spanish tap triggers breakdown only
+- **Word highlight fix** — Unicode-aware word boundaries in `flashcards.js`
+- **Mode switching button** — "Lyrics Mode" / "Normal Mode" toggle in top bar
+- **Normal mode parity** — Both modes use JSON with meanings arrays; legacy CSV/Quizlet paths removed
+- **Service worker strategy** — Network-first. Cache is offline fallback only.

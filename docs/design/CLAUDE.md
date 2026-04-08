@@ -4,7 +4,7 @@ Design documents live here. They have a lifecycle:
 
 ## Lifecycle
 
-1. **Prompt** — A new doc starts as a research brief. The `status: prompt` frontmatter means "this is a question, not an answer." A new chat should read it, do the research, and update the doc with findings.
+1. **Prompt** — A new doc starts as a research brief. Filename prefixed with `prompt_` (e.g., `prompt_translation_services.md`). The `status: prompt` frontmatter means "this is a question, not an answer." A new chat should read it, do the research, and update the doc with findings. Drop the `prompt_` prefix when status advances past prompt.
 
 2. **Research** — During investigation, findings get added below the original prompt. Status becomes `research`. The doc accumulates options, benchmarks, trade-offs.
 
@@ -40,4 +40,12 @@ updated: YYYY-MM-DD
 | `wsd_benchmark_results.md` | implemented | Word sense disambiguation — all approaches tried, Gemini chosen |
 | `example_selection_design.md` | implemented | Example sentence scoring and selection |
 | `new_artist_filter_design.md` | implemented | Known vocab filter chain (94% Gemini reduction) |
-| `translation_services.md` | prompt | Research: best translation API/model for Spanish lyrics → English |
+| `master_vocabulary_architecture.md` | implemented | Shared master vocab: ID scheme, sense accumulation, merge logic |
+| `layered_pipeline_architecture.md` | implemented | Both pipelines use independent layer files + builder assembly |
+| `sense_dedup_mapping.md` | implemented | Sense dedup via normalization + spaCy morphology |
+| `translation_quality_normal_mode.md` | implemented | Wiktionary translation fixes for common words |
+| `conjugation_pos_filtering.md` | implemented | Remove non-VERB senses from confirmed verb forms |
+| `level_estimation.md` | implemented | Adaptive staircase algorithm for level estimation |
+| `verse_filtering.md` | decided | Per-artist verse filtering — decided against |
+| `alternative_translation_sources.md` | decided | Lyrics translation sources — Genius + Gemini chosen |
+| `prompt_translation_services.md` | prompt | Research: best translation API/model for Spanish lyrics → English |
