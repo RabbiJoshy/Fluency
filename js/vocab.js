@@ -319,9 +319,15 @@ async function loadVocabularyData(rangeString) {
             // Synthesize a single MWE meaning that cycles through all expressions
             if (item.mwe_memberships && item.mwe_memberships.length > 0) {
                 const allMWEs = [];
+                // Sort artist-specific MWEs first, then wiktionary
+                const sortedMWEs = [...item.mwe_memberships].sort((a, b) => {
+                    const aArtist = (a.source || 'artist') === 'artist' ? 0 : 1;
+                    const bArtist = (b.source || 'artist') === 'artist' ? 0 : 1;
+                    return aArtist - bArtist;
+                });
                 // Strip elision markers for fuzzy MWE matching
                 const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
-                for (const mwe of item.mwe_memberships) {
+                for (const mwe of sortedMWEs) {
                     // Use pre-attached examples if available (from examples.json "w" field),
                     // only fall back to corpus scan when needed (artist mode)
                     let matched = mwe.examples || [];
@@ -572,9 +578,15 @@ async function loadIncorrectWordsSet() {
             // Synthesize a single MWE meaning that cycles through all expressions
             if (item.mwe_memberships && item.mwe_memberships.length > 0) {
                 const allMWEs = [];
+                // Sort artist-specific MWEs first, then wiktionary
+                const sortedMWEs = [...item.mwe_memberships].sort((a, b) => {
+                    const aArtist = (a.source || 'artist') === 'artist' ? 0 : 1;
+                    const bArtist = (b.source || 'artist') === 'artist' ? 0 : 1;
+                    return aArtist - bArtist;
+                });
                 // Strip elision markers for fuzzy MWE matching
                 const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
-                for (const mwe of item.mwe_memberships) {
+                for (const mwe of sortedMWEs) {
                     // Use pre-attached examples if available (from examples.json "w" field),
                     // only fall back to corpus scan when needed (artist mode)
                     let matched = mwe.examples || [];

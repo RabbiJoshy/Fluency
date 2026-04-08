@@ -324,6 +324,7 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                         "expression": expr,
                         "translation": mwe_entry["translation"],
                         "examples": mwe_examples_cache.get(expr, []),
+                        "source": "artist",
                     })
                 entry["mwe_memberships"] = memberships
                 mwe_count += 1
@@ -407,6 +408,7 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                     "expression": expr,
                     "translation": wm.get("translation", ""),
                     "examples": wikt_examples_cache[expr],
+                    "source": "wiktionary",
                 })
                 existing_exprs.add(expr.lower())
 
@@ -515,7 +517,8 @@ def write_split_files(entries, master, vocab_path, master_path):
             idx_entry["variants"] = entry["variants"]
         if entry_mwes:
             idx_entry["mwe_memberships"] = [
-                {"expression": mwe["expression"], "translation": mwe.get("translation", "")}
+                {"expression": mwe["expression"], "translation": mwe.get("translation", ""),
+                 "source": mwe.get("source", "artist")}
                 for mwe in entry_mwes
             ]
         index.append(idx_entry)

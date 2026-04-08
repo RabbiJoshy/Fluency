@@ -506,9 +506,9 @@ FUNCTION_WORDS = frozenset({
 })
 
 # PMI thresholds (conservative — only truly artist-specific collocations)
-MIN_PMI = 15.0
-MIN_PMI_COUNT = 8
-MIN_PMI_SONGS = 5
+MIN_PMI = 18.0
+MIN_PMI_COUNT = 10
+MIN_PMI_SONGS = 6
 
 
 def _load_step_json(filename):
