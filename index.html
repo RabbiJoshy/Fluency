@@ -34,7 +34,7 @@
                 </svg>
             </button>
         </div>
-        <button class="gear-btn" id="gearBtn" title="Settings">
+        <button class="gear-btn" id="gearBtn" title="Settings" style="display: none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -124,12 +124,6 @@
                     </div>
                 </div>
                 <div id="levelSelector" class="level-selector"></div>
-                <div id="coverageBarWrapper" class="coverage-bar-wrapper" style="display: none;">
-                    <div class="coverage-bar-container">
-                        <div id="coverageBarFill" class="coverage-bar-fill"></div>
-                    </div>
-                    <div id="coverageBarLabel" class="coverage-bar-label"></div>
-                </div>
             </div>
 
             <!-- Step 3: Cards per Lemma -->
@@ -140,9 +134,9 @@
                     <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
                     <span id="lemmaInfoLine" class="level-info-line" style="display: none;"></span>
                     <div id="step3Tooltip" class="step-info-tooltip">
-                        <p><strong>Lemma</strong> = the base/dictionary form of a word.</p>
+                        <p><strong>Lemma</strong> = the base/dictionary form of a word. For example, "correr" is the lemma for "corre", "corrí", "corriendo"; "casa" is the lemma for "casas".</p>
                         <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
-                        <p><strong>1+</strong> = See all forms including conjugations and declensions, which helps with recognition of different word forms in context.</p>
+                        <p><strong>1+</strong> = See all forms including conjugations and declensions (e.g., "run", "runs", "ran", "running"), which helps with recognition of different word forms in context.</p>
                     </div>
                 </div>
                 <div id="lemmaToggleSelector" class="group-size-selector">
@@ -359,26 +353,6 @@
             </div>
             <div class="cognate-rules-body">
                 <p class="rules-intro">A word is marked as a <strong>transparent cognate</strong> if it matches any of these patterns when comparing the Spanish word to its English translation:</p>
-
-                <div class="rule-section">
-                    <h4>Basic Requirements</h4>
-                    <ul>
-                        <li>Both words must be at least 4 characters long</li>
-                        <li>Plurals are stripped before comparison (e.g., "animals" → "animal")</li>
-                        <li>Accents are removed (e.g., "información" → "informacion")</li>
-                    </ul>
-                </div>
-
-                <div class="rule-section">
-                    <h4>Exact Match</h4>
-                    <p>Words that are identical (after normalization)</p>
-                    <div class="rule-examples">
-                        <span class="example">animal → animal</span>
-                        <span class="example">hotel → hotel</span>
-                        <span class="example">chocolate → chocolate</span>
-                        <span class="example">normal → normal</span>
-                    </div>
-                </div>
 
                 <div class="rule-section">
                     <h4>Suffix Transformations</h4>

@@ -834,6 +834,7 @@
 
         /* Setup Steps */
         .setup-step {
+            position: relative;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -1520,29 +1521,29 @@
         }
 
         .step-help-btn {
-            width: 36px;
-            height: 36px;
-            min-width: 44px;
-            min-height: 44px;
-            border-radius: 50%;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            color: var(--accent-secondary);
-            font-size: 18px;
-            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            width: auto;
+            height: auto;
+            min-width: unset;
+            min-height: unset;
+            border-radius: 0;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.3s;
             margin-left: 6px;
             flex-shrink: 0;
         }
 
         .step-help-btn:hover {
-            background: var(--accent-secondary);
-            color: var(--bg-primary);
-            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
         }
 
         .percent-mode-btn,
@@ -1685,9 +1686,9 @@
         }
 
         .step-header-with-help {
-            position: relative;
             display: flex;
             align-items: center;
+            padding-right: 20px;
         }
 
         .cefr-actions {
@@ -2664,7 +2665,7 @@
 
         /* Coverage Progress Bar */
         .coverage-bar-wrapper {
-            margin: 16px 0 8px 0;
+            margin: 0 0 8px 0;
             opacity: 0;
             transition: opacity 0.4s ease-in;
         }
@@ -2685,15 +2686,9 @@
             border-radius: 4px;
             transition: width 1.2s ease-out;
         }
-        .coverage-bar-label {
-            font-family: var(--font-data);
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 6px;
-            text-align: center;
-        }
 
         .personal-coverage-wrapper {
+            position: relative;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -2702,7 +2697,7 @@
         }
 
         .personal-coverage-fill {
-            background: var(--accent-green);
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
         }
 
         .personal-progress-header {
@@ -2710,7 +2705,7 @@
             align-items: center;
             gap: 6px;
             margin-bottom: 6px;
-            position: relative;
+            padding-right: 20px;
         }
 
         .personal-progress-title {

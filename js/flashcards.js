@@ -309,7 +309,6 @@ function initializeApp() {
         if (selectedLanguage && step2Display !== 'none') {
             selectedLevel = null;
             renderLevelSelector(selectedLanguage);
-            updateCoverageProgressBar();
             document.getElementById('lemmaToggleContainer').style.display = 'none';
             document.getElementById('cognateToggleContainer').style.display = 'none';
 
@@ -863,9 +862,6 @@ async function goBackToSetup() {
 
     // Re-render level selector to show updated progress
     renderLevelSelector(selectedLanguage);
-
-    // Show animated coverage progress bar
-    updateCoverageProgressBar();
 
     // If a level was selected, re-select the level button with full text
     // But only if the level still exists in the current mode (CEFR vs percentage)

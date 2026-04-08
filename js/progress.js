@@ -35,44 +35,6 @@ function calculateCoveragePercent() {
     return { pct, wordsCovered, totalWords };
 }
 
-// Show/update animated coverage progress bar on the setup page
-function updateCoverageProgressBar() {
-    const wrapper = document.getElementById('coverageBarWrapper');
-    const fill = document.getElementById('coverageBarFill');
-    const label = document.getElementById('coverageBarLabel');
-    if (!wrapper || !fill || !label) return;
-
-    // Only show if ppmData is available and user has progress
-    if (!ppmData || ppmData.length === 0 || !progressData) {
-        wrapper.style.display = 'none';
-        return;
-    }
-
-    const { pct: coverage, wordsCovered, totalWords } = calculateCoveragePercent();
-    if (coverage <= 0) {
-        wrapper.style.display = 'none';
-        return;
-    }
-
-    // Reset animation — start from 0 width
-    wrapper.style.display = 'block';
-    wrapper.classList.remove('visible');
-    fill.style.transition = 'none';
-    fill.style.width = '0%';
-
-    const coverageType = activeArtist ? 'lyrics' : 'corpus';
-    const wordPct = totalWords > 0 ? (wordsCovered / totalWords * 100).toFixed(1) : '0.0';
-    label.innerHTML = `${coverage.toFixed(1)}% ${coverageType} covered<br>${wordPct}% words covered (${wordsCovered.toLocaleString()} / ${totalWords.toLocaleString()})`;
-
-    // Trigger animation after a frame
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            fill.style.transition = 'width 1.2s ease-out';
-            fill.style.width = Math.min(coverage, 100) + '%';
-            wrapper.classList.add('visible');
-        });
-    });
-}
 
 // Update inline info text for lemma and cognate exclusion counts
 async function updateExclusionBars() {
@@ -197,7 +159,7 @@ function updatePersonalCoverage(filteredVocab) {
 
     const coverageType = activeArtist ? 'lyrics' : 'corpus';
     const wordPct = (coveredCount / filteredVocab.length * 100).toFixed(1);
-    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} covered<br>${wordPct}% words covered (${coveredCount.toLocaleString()} / ${filteredVocab.length.toLocaleString()})`;
+    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} covered<br>${wordPct}% words covered`;
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -211,6 +173,5 @@ function updatePersonalCoverage(filteredVocab) {
 // Setup tooltip handlers (needs to run early, before any set is picked)
 
 window.calculateCoveragePercent = calculateCoveragePercent;
-window.updateCoverageProgressBar = updateCoverageProgressBar;
 window.updateExclusionBars = updateExclusionBars;
 window.updatePersonalCoverage = updatePersonalCoverage;

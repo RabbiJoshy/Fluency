@@ -186,13 +186,12 @@ function setupLanguageTabs() {
             loadingIndicator.classList.remove('visible');
             document.getElementById('step2').style.display = 'block';
             // Update step 2 title, tooltip, and % Mode button based on current mode
-            document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
+            document.getElementById('step2Title').textContent = percentageMode ? 'Choose level' : 'Choose CEFR level';
             updatePercentModeButton();
             updateStep2Tooltip();
             updateStep5Tooltip();
 
             renderLevelSelector(selectedLanguage);
-            updateCoverageProgressBar();
             updateLemmaToggleVisibility();
             updateCognateToggleVisibility();
             updateExclusionBars();
@@ -467,7 +466,7 @@ function setupPercentModeButton() {
         }
 
         // Update the title text and tooltip
-        document.getElementById('step2Title').textContent = percentageMode ? 'Choose Corpus Coverage' : 'Choose CEFR level';
+        document.getElementById('step2Title').textContent = percentageMode ? 'Choose level' : 'Choose CEFR level';
         updateStep2Tooltip();
         updateStep5Tooltip();
 
@@ -478,7 +477,6 @@ function setupPercentModeButton() {
         // Re-render the level selector
         selectedLevel = null;
         renderLevelSelector(selectedLanguage);
-        updateCoverageProgressBar();
         document.getElementById('lemmaToggleContainer').style.display = 'none';
         document.getElementById('cognateToggleContainer').style.display = 'none';
 
@@ -1094,6 +1092,5 @@ function onArtistSelectionChange() {
         showFloatingBtns(false);
         // Re-render level selector with new merged data
         renderLevelSelector(selectedLanguage);
-        updateCoverageProgressBar();
     }
 }

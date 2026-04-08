@@ -135,7 +135,6 @@ loadConfig().then(async () => {
         await updateLemmaToggleVisibility();
         await updateCognateToggleVisibility();
         renderLevelSelector(activeArtist.language || 'spanish');
-        updateCoverageProgressBar();
         await updateExclusionBars();
         setupArtistSelection();
     }
