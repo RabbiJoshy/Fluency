@@ -48,5 +48,18 @@
       "secondary": "#1C1C1C"
     },
     "maxLevel": 3600
+  },
+  "young-miko": {
+    "name": "Young Miko",
+    "language": "spanish",
+    "masterPath": "Artists/vocabulary_master.json",
+    "dataPath": "Artists/Young Miko/YoungMikovocabulary.json",
+    "indexPath": "Artists/Young Miko/YoungMikovocabulary.index.json",
+    "examplesPath": "Artists/Young Miko/YoungMikovocabulary.examples.json",
+    "colorTheme": {
+      "primary": "#8B5CF6",
+      "secondary": "#1A1A2E"
+    },
+    "maxLevel": 4700
   }
 }
