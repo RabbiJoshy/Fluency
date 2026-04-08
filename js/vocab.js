@@ -281,23 +281,11 @@ async function loadVocabularyData(rangeString) {
                         });
                     }
                 }
-                // Build corpus-wide example pool for MWE matching from all examples
-                for (const ex of Object.values(examplesData)) {
-                    if (ex.m) {
-                        for (const meaningExamples of ex.m) {
-                            allCorpusExamples.push(...meaningExamples);
-                        }
-                    }
-                }
+                // MWE examples are pre-computed by the pipeline and stored in the "w"
+                // field of the examples file. No need to build a corpus pool here.
             }
         } else {
             // Fallback: monolith path — examples are inline in vocabularyData
-            for (const entry of vocabularyData) {
-                if (!entry.meanings) continue;
-                for (const m of entry.meanings) {
-                    if (m.examples) allCorpusExamples.push(...m.examples);
-                }
-            }
         }
 
         for (const item of filteredData) {
@@ -549,22 +537,7 @@ async function loadIncorrectWordsSet() {
                         });
                     }
                 }
-                // Build corpus-wide example pool for MWE matching
-                for (const ex of Object.values(examplesData)) {
-                    if (ex.m) {
-                        for (const meaningExamples of ex.m) {
-                            allCorpusExamples.push(...meaningExamples);
-                        }
-                    }
-                }
-            }
-        } else {
-            // Fallback: monolith path — examples are inline
-            for (const entry of vocabularyData) {
-                if (!entry.meanings) continue;
-                for (const m of entry.meanings) {
-                    if (m.examples) allCorpusExamples.push(...m.examples);
-                }
+                // MWE examples are pre-computed by the pipeline ("w" field)
             }
         }
 

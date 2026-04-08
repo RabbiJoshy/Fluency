@@ -31,7 +31,6 @@ WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaik
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "mwe_phrases.json"
 
 MIN_WORDS = 2
-MAX_MWES_PER_WORD = 15
 
 _SKIP_RE = re.compile(r'^[\d\s]+$|^\w$')
 
@@ -69,6 +68,8 @@ def main():
     mwe_by_word_id = defaultdict(list)
     # Standalone phrases need reverse-indexing since they have no parent word
     standalone_phrases = []
+    # Headword glosses: any multi-word entry's first English gloss (for enrichment)
+    headword_glosses = {}
     stats = {"derived": 0, "standalone": 0, "derived_attached": 0}
 
     with gzip.open(WIKT_FILE, "rt", encoding="utf-8") as f:
@@ -76,6 +77,15 @@ def main():
             item = json.loads(line)
             parent_word = item.get("word", "").lower()
             raw_pos = item.get("pos", "")
+
+            # Collect headword glosses for any multi-word entry
+            hw = item.get("word", "").strip()
+            if " " in hw and hw.lower() not in headword_glosses:
+                for s in item.get("senses", []):
+                    glosses = s.get("glosses", [])
+                    if glosses and len(glosses[0]) >= 2:
+                        headword_glosses[hw.lower()] = glosses[0]
+                        break
 
             # Source 1: Standalone phrase entries — collect for later reverse-indexing
             if raw_pos in ("phrase", "prep_phrase"):
@@ -162,21 +172,23 @@ def main():
 
     print(f"    Standalone attached: {standalone_attached}")
 
-    # Enrich derived items with standalone translations where available
+    # Enrich untranslated MWEs from headword glosses and standalone translations
     enriched = 0
     for wid, mwes in mwe_by_word_id.items():
         for mwe in mwes:
             if not mwe.get("translation"):
-                trans = standalone_translations.get(mwe["expression"].lower())
+                key = mwe["expression"].lower()
+                trans = (standalone_translations.get(key)
+                         or headword_glosses.get(key))
                 if trans:
                     mwe["translation"] = trans
                     enriched += 1
-    print(f"  Enriched from standalone translations: {enriched}")
+    print(f"  Enriched from Wiktionary headword glosses: {enriched}")
+    print(f"  Headword glosses available: {len(headword_glosses)}")
 
-    # Sort and cap: translated first, then by expression length
+    # Sort: translated first, then by expression length
     for wid in mwe_by_word_id:
         mwe_by_word_id[wid].sort(key=lambda m: (not m.get("translation"), len(m["expression"])))
-        mwe_by_word_id[wid] = mwe_by_word_id[wid][:MAX_MWES_PER_WORD]
 
     # Write output
     print(f"\nWriting {OUTPUT_FILE}...")

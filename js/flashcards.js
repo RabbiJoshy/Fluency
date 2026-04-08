@@ -1923,51 +1923,94 @@ function navigateBack() {
 // ---------------------------------------------------------------------------
 // Conjugation table rendering
 // ---------------------------------------------------------------------------
-const CONJ_PRONOUNS = ['yo', 'tú', 'él', 'nosotros', 'vosotros', 'ellos'];
-const CONJ_PRONOUN_SHORT = ['yo', 'tú', 'él/ella', 'nos.', 'vos.', 'ellos'];
+const CONJ_PRONOUNS_FULL = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', 'ellos / ellas'];
 
 function buildConjugationTableHTML(conjEntry, targetWord) {
     const tenses = conjEntry.tenses || {};
-    if (Object.keys(tenses).length === 0) return '';
+    const tenseNames = Object.keys(tenses);
+    if (tenseNames.length === 0) return '';
 
     const targetLower = targetWord.toLowerCase();
 
-    let rows = '';
-    // Header row
-    rows += `<tr><th></th>${CONJ_PRONOUN_SHORT.map(p => `<th>${p}</th>`).join('')}</tr>`;
-
+    // Find which tense contains the target word (default to Presente)
+    let defaultTense = 'Presente';
     for (const [tenseName, forms] of Object.entries(tenses)) {
-        rows += `<tr><td class="conj-tense-label">${tenseName}</td>`;
-        for (const form of forms) {
-            const isActive = form.toLowerCase() === targetLower;
-            const cls = isActive ? ' class="conj-active"' : '';
-            rows += `<td${cls}>${form}</td>`;
+        if (forms.some(f => f.toLowerCase() === targetLower)) {
+            defaultTense = tenseName;
+            break;
         }
-        rows += `</tr>`;
     }
 
+    // Build tense toggle buttons
+    const tenseButtons = tenseNames.map(t => {
+        const active = t === defaultTense ? ' conj-tense-active' : '';
+        return `<button class="conj-tense-btn${active}" onclick="switchConjTense('${t}')">${t}</button>`;
+    }).join('');
+
+    // Build a table per tense (only default is visible)
+    let tenseTables = '';
+    for (const [tenseName, forms] of Object.entries(tenses)) {
+        const hidden = tenseName !== defaultTense ? ' style="display:none"' : '';
+        let rows = '';
+        for (let i = 0; i < forms.length; i++) {
+            const isActive = forms[i].toLowerCase() === targetLower;
+            const cls = isActive ? ' conj-active' : '';
+            rows += `<tr class="${cls}">
+                <td class="conj-pronoun">${CONJ_PRONOUNS_FULL[i]}</td>
+                <td class="conj-form">${forms[i]}</td>
+            </tr>`;
+        }
+        tenseTables += `<table class="conj-table" data-tense="${tenseName}"${hidden}>${rows}</table>`;
+    }
+
+    // Gerund and participle at the bottom
     let extras = '';
-    if (conjEntry.gerund) extras += `<span>Gerundio: <b>${conjEntry.gerund}</b></span>`;
-    if (conjEntry.past_participle) extras += `<span>Participio: <b>${conjEntry.past_participle}</b></span>`;
+    if (conjEntry.gerund) {
+        const gActive = conjEntry.gerund.toLowerCase() === targetLower ? ' conj-active' : '';
+        extras += `<div class="conj-extra-row${gActive}"><span class="conj-extra-label">Gerundio</span><span class="conj-extra-form">${conjEntry.gerund}</span></div>`;
+    }
+    if (conjEntry.past_participle) {
+        const pActive = conjEntry.past_participle.toLowerCase() === targetLower ? ' conj-active' : '';
+        extras += `<div class="conj-extra-row${pActive}"><span class="conj-extra-label">Participio</span><span class="conj-extra-form">${conjEntry.past_participle}</span></div>`;
+    }
 
     return `
-        <div id="conjugationTable" class="conjugation-panel" style="display: none;">
-            ${extras ? `<div class="conj-extras">${extras}</div>` : ''}
-            <table class="conj-table">${rows}</table>
+        <div id="conjugationTable" class="conjugation-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 16px; font-weight: 700; color: var(--text-primary);">${conjEntry.translation || targetWord}</span>
+                <button onclick="toggleConjugationTable()" style="background: none; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; padding: 4px 8px; line-height: 1;">&times;</button>
+            </div>
+            <div class="conj-tense-toggle">${tenseButtons}</div>
+            ${tenseTables}
+            ${extras ? `<div class="conj-extras-bottom">${extras}</div>` : ''}
         </div>
     `;
+}
+
+function switchConjTense(tenseName) {
+    const panel = document.getElementById('conjugationTable');
+    if (!panel) return;
+    // Hide all tense tables, show the selected one
+    panel.querySelectorAll('.conj-table').forEach(t => {
+        t.style.display = t.dataset.tense === tenseName ? '' : 'none';
+    });
+    // Update active button
+    panel.querySelectorAll('.conj-tense-btn').forEach(b => {
+        b.classList.toggle('conj-tense-active', b.textContent === tenseName);
+    });
 }
 
 function toggleConjugationTable() {
     const panel = document.getElementById('conjugationTable');
     if (panel) {
-        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        panel.classList.toggle('visible');
     }
 }
 
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
 window.toggleConjugationTable = toggleConjugationTable;
+window.switchConjTense = switchConjTense;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;
