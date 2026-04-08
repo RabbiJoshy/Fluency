@@ -16,6 +16,8 @@ Fluency/
 ├── backend/
 │   ├── GoogleAppsScript.js      # Apps Script backend (deploy manually)
 │   └── secrets.template.json    # Template for secrets.json (not in git)
+├── shared/
+│   └── curated_translations.json  # Unified curated overrides (mode-tagged, both pipelines)
 ├── manifest.json / service-worker.js
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md
 │   └── Spanish/
@@ -43,7 +45,7 @@ Fluency/
 | Pipeline reranking | `Artists/scripts/8_rerank.py` |
 | Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json` |
 | Artist config | `config/artists.json` + `Artists/{Name}/artist.json` |
-| Curated translation fixes | `Artists/{Name}/data/llm_analysis/curated_translations.json` |
+| Curated translation fixes | `shared/curated_translations.json` (unified), `Artists/{Name}/data/llm_analysis/curated_translations.json` (artist-specific) |
 | Sense matching / embeddings | `Data/Spanish/Scripts/match_senses.py` → classify + merge + filter |
 | Conjugation tables / verb data | `Data/Spanish/Scripts/build_conjugations.py`, front-end in `js/flashcards.js` → `buildConjugationTableHTML()` |
 

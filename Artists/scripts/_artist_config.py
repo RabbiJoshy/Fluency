@@ -6,7 +6,9 @@ import time
 
 # Artists/scripts/_artist_config.py -> Artists/
 ARTISTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
 SHARED_DIR = os.path.join(ARTISTS_DIR, "shared")
+PROJECT_SHARED_DIR = os.path.join(PROJECT_ROOT, "shared")
 
 
 def add_artist_arg(parser):
@@ -146,12 +148,36 @@ def find_english_translation(song_id):
         return None
 
 
-def load_shared_dict(filename):
-    """Load a shared curated dict from Artists/shared/.
+def load_shared_dict(filename, modes=None):
+    """Load a shared curated dict from shared/ (project root).
 
-    Strips metadata keys (_format, _sources) and returns the plain dict.
+    Supports both the new tagged format (``{word: {translation, pos, mode}}``)
+    and the legacy flat format (``{word: translation}``).
+
+    Args:
+        filename: JSON filename inside ``shared/``.
+        modes: Optional set/tuple of mode strings to keep (e.g. ``("shared", "artist")``).
+               If *None*, all entries are returned.
+
+    Returns:
+        Plain ``{word: translation}`` dict with metadata keys stripped.
     """
-    path = os.path.join(SHARED_DIR, filename)
+    path = os.path.join(PROJECT_SHARED_DIR, filename)
+    if not os.path.isfile(path):
+        # Fall back to Artists/shared/ location
+        path = os.path.join(SHARED_DIR, filename)
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return {k: v for k, v in data.items() if not k.startswith("_")}
+    result = {}
+    for k, v in data.items():
+        if k.startswith("_"):
+            continue
+        if isinstance(v, dict):
+            # Tagged format
+            if modes and v.get("mode") not in modes:
+                continue
+            result[k] = v["translation"]
+        else:
+            # Legacy flat format
+            result[k] = v
+    return result

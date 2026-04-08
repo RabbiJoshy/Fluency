@@ -20,7 +20,7 @@ import os
 import sys
 import argparse
 
-from _artist_config import add_artist_arg, load_artist_config
+from _artist_config import add_artist_arg, load_artist_config, load_shared_dict
 
 
 # ---------------------------------------------------------------------------
@@ -118,21 +118,20 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
         total_wikt = sum(len(v) for v in wikt_mwe_by_id.values())
         print("  wiktionary MWEs: %d expressions across %d words" % (total_wikt, len(wikt_mwe_by_id)))
 
-    # Load curated translations
+    # Load curated translations (artist-specific first, then shared as fallback)
     curated = {}
     if curated_translations_path and os.path.isfile(curated_translations_path):
         with open(curated_translations_path, "r", encoding="utf-8") as f:
-            curated = json.load(f)
-        print("  curated_translations: %d overrides" % len(curated))
-    # Also load shared curated
-    shared_curated_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                                       "shared", "curated_translations.json")
-    if os.path.isfile(shared_curated_path):
-        with open(shared_curated_path, "r", encoding="utf-8") as f:
-            shared = json.load(f)
-        for k, v in shared.items():
-            if k not in curated:
-                curated[k] = v
+            raw = json.load(f)
+        curated = {k: v for k, v in raw.items() if not k.startswith("_")}
+        print("  curated_translations (artist): %d overrides" % len(curated))
+    # Load shared curated (tagged format, artist + shared modes)
+    shared = load_shared_dict("curated_translations.json", modes=("shared", "artist"))
+    for k, v in shared.items():
+        if k not in curated:
+            curated[k] = v
+    if shared:
+        print("  curated_translations (shared): %d entries" % len(shared))
 
     # --- Assemble entries ---
     print("\nAssembling vocabulary...")

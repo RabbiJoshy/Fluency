@@ -93,7 +93,7 @@ Artists/{Name}/
     vocab_evidence.json          # Step 3 output (word counts + evidence)
     mwe_detected.json            # Multi-word expressions detected
   data/llm_analysis/
-    curated_translations.json    # Manual translation fixes (NEVER delete these)
+    curated_translations.json    # Artist-specific translation fixes (overrides shared/curated_translations.json)
     llm_progress.json            # Gemini word analysis cache (internal)
     sentence_translations.json   # Gemini sentence translation cache (internal)
   data/elision_merge/            # Step 5 output

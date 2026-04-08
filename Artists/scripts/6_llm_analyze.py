@@ -254,6 +254,63 @@ def assign_ids_from_master(entries, master):
 
 
 # ---------------------------------------------------------------------------
+# Lemma override: Wiktionary is authoritative when available
+# ---------------------------------------------------------------------------
+
+def _override_lemmas_from_wiktionary(entries):
+    # type: (list) -> None
+    """Use Wiktionary lemmas over Gemini when the word exists in normal mode.
+
+    The raw Wiktionary data (SpanishRawWiki.csv) is the authoritative lemma
+    source.  Gemini lemmas are only kept for words not in the Wiktionary
+    vocabulary.  When a word has multiple Wiktionary lemmas (e.g. fue -> ir/ser)
+    and Gemini matches one, we keep Gemini's contextual pick.
+    """
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    normal_index_path = os.path.join(project_root, "Data", "Spanish",
+                                     "vocabulary.index.json")
+    if not os.path.isfile(normal_index_path):
+        return
+
+    with open(normal_index_path, "r", encoding="utf-8") as f:
+        normal_index = json.load(f)
+
+    # word -> set of Wiktionary lemmas
+    wikt_lemmas = {}  # type: dict
+    for entry in normal_index:
+        w = entry["word"].lower()
+        if w not in wikt_lemmas:
+            wikt_lemmas[w] = set()
+        wikt_lemmas[w].add(entry["lemma"])
+
+    overridden = 0
+    clashes = []  # type: list
+    for fe in entries:
+        w_lower = fe["word"].lower()
+        normal_set = wikt_lemmas.get(w_lower)
+        if not normal_set:
+            continue  # Not in Wiktionary — keep Gemini
+
+        gemini_lemma = fe.get("lemma", fe["word"])
+        if gemini_lemma in normal_set:
+            continue  # Gemini agrees with Wiktionary — all good
+
+        if len(normal_set) == 1:
+            wikt_lemma = next(iter(normal_set))
+            clashes.append((fe["word"], gemini_lemma, wikt_lemma))
+            fe["lemma"] = wikt_lemma
+            overridden += 1
+        # Multiple Wiktionary lemmas and Gemini matches none — keep Gemini
+        # (it may have picked a valid lemma not yet in our Wiktionary extract)
+
+    if overridden:
+        print("  Wiktionary lemma overrides: %d" % overridden)
+        print("  Clashes (Gemini vs Wiktionary — review raw wiki if Gemini looks right):")
+        for word, gemini, wikt in sorted(clashes):
+            print("    %s: gemini=%s  wikt=%s" % (word, gemini, wikt))
+
+
+# ---------------------------------------------------------------------------
 # Prompt hashing (cache invalidation on prompt changes)
 # ---------------------------------------------------------------------------
 
@@ -782,7 +839,8 @@ def main():
     MWE_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "mwe_detected.json")
 
     # Load curated overrides from shared/
-    CURATED_TRANSLATIONS = load_shared_dict("curated_translations.json")
+    CURATED_TRANSLATIONS = load_shared_dict("curated_translations.json",
+                                             modes=("shared", "artist"))
     PROPER_NOUNS = frozenset(load_shared_list("proper_nouns.json"))
     INTERJECTIONS = frozenset(load_shared_list("interjections.json"))
     EXTRA_ENGLISH = frozenset(load_shared_list("extra_english.json"))
@@ -1252,6 +1310,10 @@ def main():
                     reused += 1
         if reused:
             print("  Reused master senses for %d --no-gemini placeholder entries" % reused)
+
+    # Override Gemini lemmas with Wiktionary when the word exists in normal mode.
+    # Wiktionary (via SpanishRawWiki.csv) is the authoritative lemma source.
+    _override_lemmas_from_wiktionary(final_entries)
 
     # Assign IDs from master (or compute new ones for new words)
     assign_ids_from_master(final_entries, master)

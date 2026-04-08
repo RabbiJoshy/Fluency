@@ -121,6 +121,22 @@ def main():
         assignments = json.load(f)
     print(f"  sense_assignments: {len(assignments)} assigned entries")
 
+    # Load curated translation overrides (shared/ at project root)
+    curated = {}
+    curated_path = PROJECT_ROOT / "shared" / "curated_translations.json"
+    if curated_path.exists():
+        with open(curated_path, encoding="utf-8") as f:
+            raw_curated = json.load(f)
+        for k, v in raw_curated.items():
+            if k.startswith("_"):
+                continue
+            if isinstance(v, dict):
+                if v.get("mode") in ("shared", "normal"):
+                    curated[k] = v
+            else:
+                curated[k] = {"translation": v, "pos": "X"}
+        print(f"  curated_translations: {len(curated)} overrides")
+
     mwe_path = LAYERS / "mwe_phrases.json"
     if mwe_path.exists():
         with open(mwe_path, encoding="utf-8") as f:
@@ -149,22 +165,30 @@ def main():
         meanings_lean = []  # For index (no examples)
         examples_by_meaning = []  # For examples file
 
+        # Check for curated override
+        curated_entry = curated.get(entry["word"].lower())
+
         if not senses:
-            # No senses: fallback meaning
+            # No senses: use curated override if available, else fallback
             stats["no_senses"] += 1
+            c_trans = curated_entry["translation"] if curated_entry else ""
+            c_pos = curated_entry.get("pos", "X") if curated_entry else "X"
             if word_examples:
                 fallback_examples = word_examples[:5]
                 meanings_full.append({
-                    "pos": "X", "translation": "", "frequency": "1.00",
+                    "pos": c_pos, "translation": c_trans, "frequency": "1.00",
                     "examples": fallback_examples,
                 })
                 meanings_lean.append({
-                    "pos": "X", "translation": "", "frequency": "1.00",
+                    "pos": c_pos, "translation": c_trans, "frequency": "1.00",
                 })
                 examples_by_meaning.append(fallback_examples)
         elif not word_assignments:
             # Senses exist but no assignment (shouldn't happen, but handle gracefully)
-            cleaned = clean_translation(senses[0]["translation"])
+            if curated_entry:
+                cleaned = curated_entry["translation"]
+            else:
+                cleaned = clean_translation(senses[0]["translation"])
             meaning_lean = {
                 "pos": senses[0]["pos"],
                 "translation": cleaned,
@@ -192,8 +216,11 @@ def main():
                 # Compute frequency from assignment counts
                 freq = len(exs) / total_assigned if total_assigned > 0 else 0
 
-                # Clean translation
-                cleaned = clean_translation(sense["translation"])
+                # Clean translation (curated override replaces Wiktionary)
+                if curated_entry:
+                    cleaned = curated_entry["translation"]
+                else:
+                    cleaned = clean_translation(sense["translation"])
                 meaning_lean = {
                     "pos": sense["pos"],
                     "translation": cleaned,

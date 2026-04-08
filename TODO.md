@@ -53,18 +53,7 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## Data / Pipeline
 
-- **[soon] Normal mode translation quality — "a|a" still wrong (S) [normal]**
-  Most top-word translation issues fixed algorithmically in `build_senses.py` (see Decisions
-  Made). Remaining: "a|a" (preposition) has no usable Wiktionary entry — needs a curated
-  override in the senses layer or a different source.
-
-- **[soon] Gemini lemma override from Wiktionary (S) [artist]**
-  Gemini occasionally hallucinates lemmas (5 known cases, e.g. hallaron→"medicó" instead of
-  "hallar"). Override Gemini lemmas with authoritative Wiktionary-derived lemmas from normal mode
-  when available. Multi-lemma words (fue→ir/ser) need careful handling. Also fix 5 corrupted
-  master entries. Prompt: [`fix_gemini_lemma_override.md`](docs/design/prompts/fix_gemini_lemma_override.md)
-
-- **[soon] Homograph lemma filtering — minor lemma flag (S) [shared] [design doc]**
+- **[soon] Homograph lemma filtering — minor lemma flag (L) [shared] [design doc]**
   When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
   flag the less common lemma pairing so it can be filtered or deprioritized. Currently
   como|comer shows as a top-frequency word when it's actually rare. Inverse of
@@ -72,20 +61,10 @@ below have enough complexity to warrant this treatment when the time comes.
   the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
   reverse lookup to determine which lemma dominates.
 
-- **[soon] Sense-matched example prioritization (M) [shared]**
-  When a word has multiple meanings, prioritize example sentences that match the active sense.
-  Process: check if Gemini tagged which sense each example demonstrates; prefer sense-matched
-  examples, fall back to standard method if no match exists. Prevents confusing sense/example
-  pairings.
-
 - **[done] OpenSubtitles integration (M) [normal]**
   Integrated as fallback corpus in `build_examples.py`. Tatoeba primary, OpenSubtitles
   fills gaps. Stride-sampled across full 105M lines, subtitle junk/OCR filters, trivial
   sentence filter, proximity scoring, diversity sampling. Coverage: 100% (2 zero-example words).
-
-- **[soon] Spotify lookup for Rosalia (S) [artist]**
-  Re-run `Artists/scripts/spotify_lookup.py` after rate limit resets.
-  Front-end already wired. Credentials in `.env`. Bad Bunny done (248/302 matched).
 
 - **[idea] Lemmatization pass (M) [shared]**
   spaCy `es_core_news_lg` to match conjugated corpus forms to lemmas.
@@ -159,3 +138,7 @@ Resolved items. Detail in `docs/design/` where linked; small fixes inline.
 - **Mode switching button** — "Lyrics Mode" / "Normal Mode" toggle in top bar
 - **Normal mode parity** — Both modes use JSON with meanings arrays; legacy CSV/Quizlet paths removed
 - **Service worker strategy** — Network-first. Cache is offline fallback only.
+- **Unified curated translations** — Migrated artist/normal curated overrides to `shared/curated_translations.json` with per-entry mode tags (`shared`/`artist`/`normal`). Both pipelines load from same file. Fixed "a|a" = "bishop" → "to, at" in normal mode.
+- **Sense-matched example prioritization** — Already implemented: `sense_assignments.json` partitions examples to senses at build time in both pipelines. No front-end change needed.
+- **Spotify lookup for Rosalía** — Completed.
+- **Gemini lemma hallucinations** — Deleted 5 corrupted master entries caused by Gemini hallucinating wrong lemmas. Wiktionary raw data to be fixed separately as the authoritative lemma source; no runtime correction pass needed.
