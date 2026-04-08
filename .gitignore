@@ -19,6 +19,12 @@ venv/
 node_modules/
 npm-debug.log
 
+# Secrets
+secrets.json
+
+# FastText models
+*.ftz
+
 # Build outputs
 dist/
 build/
