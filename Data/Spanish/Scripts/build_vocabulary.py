@@ -146,6 +146,15 @@ def main():
         mwe_data = {}
         print("  mwe_phrases: (not found, skipping)")
 
+    cognates_path = LAYERS / "cognates.json"
+    if cognates_path.exists():
+        with open(cognates_path, encoding="utf-8") as f:
+            cognates = json.load(f)
+        print(f"  cognates: {len(cognates)} transparent cognates")
+    else:
+        cognates = {}
+        print("  cognates: (not found, skipping)")
+
     # Build vocabulary
     print("\nAssembling vocabulary...")
     monolith = []
@@ -264,6 +273,10 @@ def main():
                 mwe_examples_by_idx.append(matched_exs[:5])
             stats["with_mwes"] += 1
 
+        # Cognate flag
+        cognate_key = f"{entry['word']}|{entry['lemma']}"
+        is_cognate = cognate_key in cognates
+
         # Monolith entry
         mono_entry = {
             "word": entry["word"],
@@ -273,6 +286,8 @@ def main():
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_full,
         }
+        if is_cognate:
+            mono_entry["is_transparent_cognate"] = True
         if mwe_memberships:
             mono_entry["mwe_memberships"] = mwe_memberships
         monolith.append(mono_entry)
@@ -286,6 +301,8 @@ def main():
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_lean,
         }
+        if is_cognate:
+            idx_entry["is_transparent_cognate"] = True
         if mwe_memberships:
             idx_entry["mwe_memberships"] = mwe_memberships
         index.append(idx_entry)

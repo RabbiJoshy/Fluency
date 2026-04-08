@@ -56,9 +56,10 @@ below have enough complexity to warrant this treatment when the time comes.
   the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
   reverse lookup to determine which lemma dominates.
 
-- **[now] Converge cognate scripts (S) [shared]**
-  `Artists/scripts/7_flag_cognates.py` and `Data/Spanish/Scripts/flag_cognates.py` are copies.
-  Move to a shared root-level location so both pipelines use one script.
+- **[idea] Improve cognate flagger (M) [shared]**
+  Converged into `shared/flag_cognates.py`. Could improve: add more suffix rules,
+  tune similarity threshold, reduce false positives on short words, add LLM flagging
+  to normal mode pipeline.
 
 - **[idea] Sense dedup polish — English conjugation (S) [shared]**
   Generated 3rd-person translations say "he/she go" instead of "he/she goes".
