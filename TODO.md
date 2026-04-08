@@ -41,8 +41,8 @@ below have enough complexity to warrant this treatment when the time comes.
   Long-term extension: user provides their own song list and gets a custom deck. Probably far
   out — depends on the pipeline being easy to run for arbitrary input.
 
-- **[idea] Surface per-word "known lyrics %" in settings (S) [artist]**
-  Show what percentage of an artist's lyrics the user can understand based on known words.
+- **[now] Surface per-word "known lyrics %" in settings (S) [artist]**
+  Show what percentage of an artist's lyrics the user can understand the whole line for based on known words.
 
 ---
 
@@ -56,12 +56,7 @@ below have enough complexity to warrant this treatment when the time comes.
   the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
   reverse lookup to determine which lemma dominates.
 
-- **[idea] Lemmatization pass (M) [shared]**
-  spaCy `es_core_news_lg` to match conjugated corpus forms to lemmas.
-  e.g. `disculpen` matches via `disculpar`. Estimated +4% coverage on top of accent
-  normalization.
-
-- **[idea] Converge cognate scripts (S) [shared]**
+- **[now] Converge cognate scripts (S) [shared]**
   `Artists/scripts/7_flag_cognates.py` and `Data/Spanish/Scripts/flag_cognates.py` are copies.
   Move to a shared root-level location so both pipelines use one script.
 
