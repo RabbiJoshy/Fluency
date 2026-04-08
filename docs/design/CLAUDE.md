@@ -4,7 +4,7 @@ Design documents live here. They have a lifecycle:
 
 ## Lifecycle
 
-1. **Prompt** — A new doc starts as a research brief. Filename prefixed with `prompt_` (e.g., `prompt_translation_services.md`). The `status: prompt` frontmatter means "this is a question, not an answer." A new chat should read it, do the research, and update the doc with findings. Drop the `prompt_` prefix when status advances past prompt.
+1. **Prompt** — A new doc starts as a research brief in `docs/design/prompts/`. The `status: prompt` frontmatter means "this is a question, not an answer." A new chat should read it, do the research, and update the doc with findings. Move out of `prompts/` into `docs/design/` when status advances past prompt.
 
 2. **Research** — During investigation, findings get added below the original prompt. Status becomes `research`. The doc accumulates options, benchmarks, trade-offs.
 
@@ -48,4 +48,4 @@ updated: YYYY-MM-DD
 | `level_estimation.md` | implemented | Adaptive staircase algorithm for level estimation |
 | `verse_filtering.md` | decided | Per-artist verse filtering — decided against |
 | `alternative_translation_sources.md` | decided | Lyrics translation sources — Genius + Gemini chosen |
-| `prompt_translation_services.md` | prompt | Research: best translation API/model for Spanish lyrics → English |
+| `prompts/translation_services.md` | prompt | Research: best translation API/model for Spanish lyrics → English |
