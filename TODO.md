@@ -141,4 +141,4 @@ Resolved items. Detail in `docs/design/` where linked; small fixes inline.
 - **Unified curated translations** — Migrated artist/normal curated overrides to `shared/curated_translations.json` with per-entry mode tags (`shared`/`artist`/`normal`). Both pipelines load from same file. Fixed "a|a" = "bishop" → "to, at" in normal mode.
 - **Sense-matched example prioritization** — Already implemented: `sense_assignments.json` partitions examples to senses at build time in both pipelines. No front-end change needed.
 - **Spotify lookup for Rosalía** — Completed.
-- **Gemini lemma hallucinations** — Deleted 5 corrupted master entries caused by Gemini hallucinating wrong lemmas. Wiktionary raw data to be fixed separately as the authoritative lemma source; no runtime correction pass needed.
+- **Gemini lemma hallucinations** — Deleted 5 corrupted master entries. No runtime correction needed — word|lemma pairs are unique identities, so different lemmas don't clash. Clean up junk entries from master periodically.

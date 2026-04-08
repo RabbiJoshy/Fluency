@@ -173,7 +173,7 @@ def load_shared_dict(filename, modes=None):
         if k.startswith("_"):
             continue
         if isinstance(v, dict):
-            # Tagged format
+            # Tagged format — keys are word|lemma
             if modes and v.get("mode") not in modes:
                 continue
             result[k] = v["translation"]

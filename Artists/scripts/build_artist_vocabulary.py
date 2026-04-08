@@ -172,9 +172,10 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 pos = sense["pos"]
                 translation = sense["translation"]
 
-                # Apply curated override
-                if word.lower() in curated:
-                    translation = curated[word.lower()]
+                # Apply curated override (keyed by word|lemma)
+                curated_key = "%s|%s" % (word.lower(), word_lemma)
+                if curated_key in curated:
+                    translation = curated[curated_key]
 
                 # Gather examples
                 example_indices = assignment.get("examples", [])
@@ -206,8 +207,9 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
             # Senses exist but no assignments — put all examples on first sense
             sense = word_senses[0]
             translation = sense["translation"]
-            if word.lower() in curated:
-                translation = curated[word.lower()]
+            curated_key = "%s|%s" % (word.lower(), word_lemma)
+            if curated_key in curated:
+                translation = curated[curated_key]
             all_examples = []
             for raw_ex in raw_examples:
                 spanish = raw_ex.get("spanish", "")
@@ -227,7 +229,8 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
             })
         else:
             # No senses at all — fallback
-            translation = curated.get(word.lower(), "")
+            curated_key = "%s|%s" % (word.lower(), word_lemma)
+            translation = curated.get(curated_key, "")
             fallback_examples = []
             if raw_examples:
                 raw_ex = raw_examples[0]

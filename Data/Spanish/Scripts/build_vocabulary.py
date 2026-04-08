@@ -166,7 +166,8 @@ def main():
         examples_by_meaning = []  # For examples file
 
         # Check for curated override
-        curated_entry = curated.get(entry["word"].lower())
+        curated_key = f"{entry['word'].lower()}|{entry['lemma']}"
+        curated_entry = curated.get(curated_key)
 
         if not senses:
             # No senses: use curated override if available, else fallback
