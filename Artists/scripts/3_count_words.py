@@ -505,10 +505,10 @@ FUNCTION_WORDS = frozenset({
     "es", "no", "ya", "si",
 })
 
-# PMI thresholds
-MIN_PMI = 12.0
-MIN_PMI_COUNT = 5
-MIN_PMI_SONGS = 3
+# PMI thresholds (conservative — only truly artist-specific collocations)
+MIN_PMI = 15.0
+MIN_PMI_COUNT = 8
+MIN_PMI_SONGS = 5
 
 
 def _load_step_json(filename):
@@ -546,11 +546,14 @@ def _dedup_conjugation_families(confirmed, families):
     return no_family + list(family_best.values())
 
 
-def detect_mwes(ngram_data):
-    """Detect MWEs using curated matching + PMI on n-gram data from the counting pass."""
+def detect_mwes(ngram_data, wiktionary_exprs=None):
+    """Detect MWEs using curated matching + PMI on n-gram data from the counting pass.
+    wiktionary_exprs: frozenset of Wiktionary MWE expressions to exclude (already covered).
+    """
     curated_mwes = _load_step_json("curated_mwes.json")
     skip_mwes = frozenset(_load_step_json("skip_mwes.json"))
     conjugation_families = _load_step_json("conjugation_families.json")
+    wiktionary_exprs = wiktionary_exprs or frozenset()
 
     unigrams = ngram_data["unigrams"]
     ng_counts = ngram_data["counts"]
@@ -562,9 +565,13 @@ def detect_mwes(ngram_data):
         all_counts.update(ng_counts[n])
 
     # Match curated MWEs against actual corpus counts
+    # Skip curated entries already in Wiktionary unless they contain
+    # elision markers (apostrophe) — keeps Caribbean forms like "pa' que"
     confirmed = []
     matched_keys = set()
     for expression, translation in curated_mwes.items():
+        if expression in wiktionary_exprs and "'" not in expression:
+            continue
         count = all_counts.get(expression, 0)
         tokens = expression.split()
         if count > 0 or len(tokens) >= 4:
@@ -585,7 +592,7 @@ def detect_mwes(ngram_data):
         for ng, count in counts.items():
             if count < MIN_PMI_COUNT:
                 continue
-            if ng in matched_keys or ng in skip_mwes:
+            if ng in matched_keys or ng in skip_mwes or ng in wiktionary_exprs:
                 continue
             num_songs = len(ng_songs.get(ng, set()))
             if num_songs < MIN_PMI_SONGS:
@@ -677,8 +684,22 @@ def main():
     elif lid_detector is not None:
         print("  Lingua: no English lines detected")
 
+    # Load Wiktionary MWE expressions for filtering
+    wikt_mwe_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__)))), "Data", "Spanish", "layers", "mwe_phrases.json")
+    wiktionary_exprs = frozenset()
+    if os.path.isfile(wikt_mwe_path):
+        with open(wikt_mwe_path, "r", encoding="utf-8") as f:
+            wikt_data = json.load(f)
+        wiktionary_exprs = frozenset(
+            mwe["expression"].lower()
+            for mwes in wikt_data.values()
+            for mwe in mwes
+        )
+        print(f"  Wiktionary MWE filter: {len(wiktionary_exprs)} expressions loaded")
+
     # MWE detection
-    confirmed, pmi_detected = detect_mwes(ngram_data)
+    confirmed, pmi_detected = detect_mwes(ngram_data, wiktionary_exprs)
     mwe_out_path = args.mwe_out or os.path.join(os.path.dirname(args.out), "mwe_detected.json")
     mwe_output = {
         "mwes": [

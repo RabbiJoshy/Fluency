@@ -45,10 +45,10 @@ function joinWithMaster(indexData, master) {
             examples: []  // Attached later from examples file
         }));
 
-        // Build mwe_memberships from master (examples attached later)
-        const mwe_memberships = (m.mwe_memberships || []).map(mwe => ({
+        // Build mwe_memberships from index entry (per-artist, not master)
+        const mwe_memberships = (idx.mwe_memberships || []).map(mwe => ({
             expression: mwe.expression,
-            translation: mwe.translation,
+            translation: mwe.translation || '',
             examples: []
         }));
 

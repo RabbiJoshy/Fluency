@@ -1251,7 +1251,6 @@ def main():
                 "is_propernoun": fe.get("is_propernoun", False),
                 "is_transparent_cognate": fe.get("is_transparent_cognate", False),
                 "display_form": fe.get("display_form"),
-                "mwe_memberships": [],
             }
             new_master_entries += 1
 
@@ -1272,16 +1271,7 @@ def main():
                 m["senses"].append({"pos": pos, "translation": translation})
                 new_senses += 1
 
-        # Merge MWE memberships
-        for mwe in fe.get("mwe_memberships", []):
-            expr = mwe.get("expression", "")
-            trans = mwe.get("translation", "")
-            exists = any(
-                e["expression"] == expr and e["translation"] == trans
-                for e in m["mwe_memberships"]
-            )
-            if not exists:
-                m["mwe_memberships"].append({"expression": expr, "translation": trans})
+        # MWE memberships no longer stored in master (handled by build step)
 
     # Write updated master
     with open(master_path, "w", encoding="utf-8") as f:

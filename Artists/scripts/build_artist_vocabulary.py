@@ -78,7 +78,8 @@ def load_layer(path, name, required=True):
 # Assembly
 # ---------------------------------------------------------------------------
 
-def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path=None):
+def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path=None,
+                         wiktionary_mwe_path=None):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -108,6 +109,14 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 if not any(m["expression"] == expr for m in mwe_index[t]):
                     mwe_index[t].append({"expression": expr, "translation": mwe.get("translation", "")})
         print("  mwe_detected: %d MWEs" % len(mwe_data.get("mwes", [])))
+
+    # Load Wiktionary MWEs as baseline (keyed by word_id)
+    wikt_mwe_by_id = {}
+    if wiktionary_mwe_path and os.path.isfile(wiktionary_mwe_path):
+        with open(wiktionary_mwe_path, "r", encoding="utf-8") as f:
+            wikt_mwe_by_id = json.load(f)
+        total_wikt = sum(len(v) for v in wikt_mwe_by_id.values())
+        print("  wiktionary MWEs: %d expressions across %d words" % (total_wikt, len(wikt_mwe_by_id)))
 
     # Load curated translations
     curated = {}
@@ -265,41 +274,44 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
 
         entries.append(entry)
 
-    # --- MWE annotation ---
-    if mwe_index:
-        # Build line_info from all raw examples for substring matching
-        line_info = {}
-        for word, exs in examples_raw.items():
-            for ex in exs:
-                line = ex.get("spanish", "")
-                if line and line not in line_info:
-                    sid = ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"]
-                    line_info[line] = {"song_id": sid, "title": ex.get("title", "")}
+    # --- Build MWE examples cache from lyrics ---
+    # (Shared by both artist-specific and Wiktionary MWEs)
+    line_info = {}
+    for word, exs in examples_raw.items():
+        for ex in exs:
+            line = ex.get("spanish", "")
+            if line and line not in line_info:
+                sid = ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"]
+                line_info[line] = {"song_id": sid, "title": ex.get("title", "")}
 
-        # Pre-compute MWE examples
+    def find_mwe_examples(expression, max_examples=3):
+        """Find lyric lines containing an MWE expression."""
+        expr_lower = expression.lower()
+        found = []
+        for line, info in line_info.items():
+            if expr_lower in line.lower():
+                trans_info = translations.get(line, {})
+                english = trans_info.get("english", "")
+                if english:
+                    found.append({
+                        "song": info["song_id"],
+                        "song_name": info["title"],
+                        "spanish": line,
+                        "english": english,
+                        "translation_source": trans_info.get("source", ""),
+                    })
+                    if len(found) >= max_examples:
+                        break
+        return found
+
+    # --- Artist-specific MWE annotation (from mwe_detected.json) ---
+    if mwe_index:
         mwe_examples_cache = {}
         for w_lower, mwe_list in mwe_index.items():
             for mwe_entry in mwe_list:
                 expr = mwe_entry["expression"]
-                if expr in mwe_examples_cache:
-                    continue
-                expr_lower = expr.lower()
-                found = []
-                for line, info in line_info.items():
-                    if expr_lower in line.lower():
-                        trans_info = translations.get(line, {})
-                        english = trans_info.get("english", "")
-                        if english:
-                            found.append({
-                                "song": info["song_id"],
-                                "song_name": info["title"],
-                                "spanish": line,
-                                "english": english,
-                                "translation_source": trans_info.get("source", ""),
-                            })
-                            if len(found) >= 3:
-                                break
-                mwe_examples_cache[expr] = found
+                if expr not in mwe_examples_cache:
+                    mwe_examples_cache[expr] = find_mwe_examples(expr)
 
         mwe_count = 0
         for entry in entries:
@@ -315,7 +327,7 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                     })
                 entry["mwe_memberships"] = memberships
                 mwe_count += 1
-        print("  MWE annotation: %d entries" % mwe_count)
+        print("  Artist-specific MWE annotation: %d entries" % mwe_count)
 
     # --- Mark most frequent lemma instance ---
     lemma_groups = {}
@@ -346,7 +358,6 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 "is_propernoun": entry.get("is_propernoun", False),
                 "is_transparent_cognate": entry.get("is_transparent_cognate", False),
                 "display_form": entry.get("display_form"),
-                "mwe_memberships": [],
             }
             new_master += 1
 
@@ -370,18 +381,41 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 m["senses"].append({"pos": pos, "translation": translation})
                 new_senses += 1
 
-        # Merge MWE memberships into master
-        for mwe in entry.get("mwe_memberships", []):
-            expr = mwe.get("expression", "")
-            trans = mwe.get("translation", "")
-            exists = any(
-                e["expression"] == expr and e["translation"] == trans
-                for e in m.get("mwe_memberships", [])
-            )
-            if not exists:
-                m.setdefault("mwe_memberships", []).append({"expression": expr, "translation": trans})
-
     print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))
+
+    # --- Merge Wiktionary MWEs onto entries (after IDs are assigned) ---
+    if wikt_mwe_by_id:
+        wikt_count = 0
+        wikt_examples_cache = {}
+        for entry in entries:
+            fid = entry["id"]
+            wikt_mwes = wikt_mwe_by_id.get(fid, [])
+            if not wikt_mwes:
+                continue
+
+            # Get existing artist-specific MWE expressions for dedup
+            existing_exprs = {m["expression"].lower() for m in entry.get("mwe_memberships", [])}
+
+            for wm in wikt_mwes:
+                if wm["expression"].lower() in existing_exprs:
+                    continue
+                # Find lyric examples for this Wiktionary MWE
+                expr = wm["expression"]
+                if expr not in wikt_examples_cache:
+                    wikt_examples_cache[expr] = find_mwe_examples(expr)
+                entry.setdefault("mwe_memberships", []).append({
+                    "expression": expr,
+                    "translation": wm.get("translation", ""),
+                    "examples": wikt_examples_cache[expr],
+                })
+                existing_exprs.add(expr.lower())
+
+            wikt_count += 1
+        print("  Wiktionary MWE annotation: %d entries enriched" % wikt_count)
+
+    # --- Strip mwe_memberships from master (one-time cleanup) ---
+    for m in master.values():
+        m.pop("mwe_memberships", None)
 
     # --- Apply ranking ---
     if ranking:
@@ -467,15 +501,9 @@ def write_split_files(entries, master, vocab_path, master_path):
         for exs in sense_examples:
             sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
 
-        mwe_examples = []
-        for master_mwe in m.get("mwe_memberships", []):
-            matched = []
-            for entry_mwe in entry.get("mwe_memberships", []):
-                if (entry_mwe.get("expression") == master_mwe["expression"]
-                        and entry_mwe.get("translation") == master_mwe["translation"]):
-                    matched = entry_mwe.get("examples", [])
-                    break
-            mwe_examples.append(matched)
+        # MWE memberships from entry (Wiktionary + artist-specific, merged at build time)
+        entry_mwes = entry.get("mwe_memberships", [])
+        mwe_examples = [mwe.get("examples", []) for mwe in entry_mwes]
 
         idx_entry = {
             "id": fid,
@@ -485,6 +513,11 @@ def write_split_files(entries, master, vocab_path, master_path):
         }
         if entry.get("variants"):
             idx_entry["variants"] = entry["variants"]
+        if entry_mwes:
+            idx_entry["mwe_memberships"] = [
+                {"expression": mwe["expression"], "translation": mwe.get("translation", "")}
+                for mwe in entry_mwes
+            ]
         index.append(idx_entry)
 
         ex_entry = {"m": sense_examples}
@@ -539,8 +572,13 @@ def main():
     else:
         print("No master vocabulary — will create.")
 
+    # Wiktionary MWE baseline (shared across all artists)
+    wiktionary_mwe_path = os.path.join(os.path.dirname(artists_dir),
+                                       "Data", "Spanish", "layers", "mwe_phrases.json")
+
     # Assemble from layers
-    entries, master = assemble_from_layers(layers_dir, mwe_path, master, curated_path)
+    entries, master = assemble_from_layers(layers_dir, mwe_path, master, curated_path,
+                                           wiktionary_mwe_path)
 
     # Write monolith (debugging)
     with open(vocab_path, "w", encoding="utf-8") as f:

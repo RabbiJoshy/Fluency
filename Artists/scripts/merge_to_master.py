@@ -292,7 +292,6 @@ def build_master(artists):
                     "is_propernoun": entry.get("is_propernoun", False),
                     "is_transparent_cognate": entry.get("is_transparent_cognate", False),
                     "display_form": entry.get("display_form"),
-                    "mwe_memberships": [],
                 }
                 stats["unique_words"] += 1
 
@@ -331,19 +330,7 @@ def build_master(artists):
                     m["senses"].append({"pos": pos, "translation": translation})
                     stats["new_senses_added"] += 1
 
-            # Merge MWE memberships by exact (expression, translation) match
-            for mwe in entry.get("mwe_memberships", []):
-                expr = mwe.get("expression", "")
-                trans = mwe.get("translation", "")
-                exists = any(
-                    existing["expression"] == expr and existing["translation"] == trans
-                    for existing in m["mwe_memberships"]
-                )
-                if not exists:
-                    m["mwe_memberships"].append({
-                        "expression": expr,
-                        "translation": trans,
-                    })
+            # MWE memberships no longer stored in master (handled by build step)
 
             artist_entries.append({
                 "id": new_id,
@@ -417,23 +404,22 @@ def write_artist_files(master, artist_data):
             else:
                 sense_freq.append(0)
 
-        # Build MWE examples parallel to master mwe_memberships
-        mwe_examples = []
-        for master_mwe in m["mwe_memberships"]:
-            matched_mwe_ex = []
-            for entry_mwe in entry.get("mwe_memberships", []):
-                if (entry_mwe.get("expression") == master_mwe["expression"]
-                        and entry_mwe.get("translation") == master_mwe["translation"]):
-                    matched_mwe_ex = entry_mwe.get("examples", [])
-                    break
-            mwe_examples.append(matched_mwe_ex)
+        # MWE examples from entry (not master)
+        entry_mwes = entry.get("mwe_memberships", [])
+        mwe_examples = [mwe.get("examples", []) for mwe in entry_mwes]
 
-        index.append({
+        idx_entry = {
             "id": new_id,
             "corpus_count": entry.get("corpus_count", 0),
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
-        })
+        }
+        if entry_mwes:
+            idx_entry["mwe_memberships"] = [
+                {"expression": mwe["expression"], "translation": mwe.get("translation", "")}
+                for mwe in entry_mwes
+            ]
+        index.append(idx_entry)
 
         ex_entry = {"m": sense_examples}
         if any(mwe_examples):
@@ -476,15 +462,12 @@ def write_artist_files(master, artist_data):
             }
             meanings.append(meaning)
 
-        mwe_memberships = []
-        for i, master_mwe in enumerate(m["mwe_memberships"]):
-            mwe = {
-                "expression": master_mwe["expression"],
-                "translation": master_mwe["translation"],
-            }
-            if ex.get("w") and i < len(ex["w"]):
-                mwe["examples"] = ex["w"][i]
-            mwe_memberships.append(mwe)
+        # MWE memberships from index entry
+        mwe_memberships = idx_entry.get("mwe_memberships", [])
+        if ex.get("w"):
+            for i, mwe in enumerate(mwe_memberships):
+                if i < len(ex["w"]):
+                    mwe["examples"] = ex["w"][i]
 
         mono_entry = {
             "id": new_id,
@@ -492,14 +475,15 @@ def write_artist_files(master, artist_data):
             "lemma": m["lemma"],
             "meanings": meanings,
             "most_frequent_lemma_instance": idx_entry["most_frequent_lemma_instance"],
-            "is_english": m["is_english"],
-            "is_interjection": m["is_interjection"],
-            "is_propernoun": m["is_propernoun"],
-            "is_transparent_cognate": m["is_transparent_cognate"],
+            "is_english": m.get("is_english", False),
+            "is_interjection": m.get("is_interjection", False),
+            "is_propernoun": m.get("is_propernoun", False),
+            "is_transparent_cognate": m.get("is_transparent_cognate", False),
             "corpus_count": idx_entry["corpus_count"],
-            "display_form": m["display_form"],
-            "mwe_memberships": mwe_memberships,
+            "display_form": m.get("display_form"),
         }
+        if mwe_memberships:
+            mono_entry["mwe_memberships"] = mwe_memberships
         monolith.append(mono_entry)
 
     with open(vocab_path, "w", encoding="utf-8") as f:
