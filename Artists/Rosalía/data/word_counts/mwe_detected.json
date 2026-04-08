@@ -36,16 +36,6 @@
       "count": 11
     },
     {
-      "expression": "a ver",
-      "translation": "let's see",
-      "count": 9
-    },
-    {
-      "expression": "te quiero",
-      "translation": "I love you / I want you",
-      "count": 9
-    },
-    {
       "expression": "tú ere'",
       "translation": "you are (elided)",
       "count": 9
@@ -59,21 +49,6 @@
       "expression": "por qué",
       "translation": "why",
       "count": 7
-    },
-    {
-      "expression": "como si",
-      "translation": "as if",
-      "count": 7
-    },
-    {
-      "expression": "no sé",
-      "translation": "I don't know",
-      "count": 7
-    },
-    {
-      "expression": "hasta que",
-      "translation": "until",
-      "count": 6
     },
     {
       "expression": "a ti te",
@@ -91,23 +66,8 @@
       "count": 5
     },
     {
-      "expression": "por ahí",
-      "translation": "around there, out and about",
-      "count": 5
-    },
-    {
-      "expression": "encima de",
-      "translation": "on top of",
-      "count": 5
-    },
-    {
       "expression": "se siente",
       "translation": "feels, it feels",
-      "count": 5
-    },
-    {
-      "expression": "otra vez",
-      "translation": "again",
       "count": 5
     },
     {
@@ -141,19 +101,9 @@
       "count": 4
     },
     {
-      "expression": "me gusta",
-      "translation": "I like",
-      "count": 4
-    },
-    {
       "expression": "dice que",
       "translation": "says that",
       "count": 4
-    },
-    {
-      "expression": "de verdad",
-      "translation": "really, truly, for real",
-      "count": 3
     },
     {
       "expression": "me siento",
@@ -166,18 +116,8 @@
       "count": 3
     },
     {
-      "expression": "de nuevo",
-      "translation": "again",
-      "count": 2
-    },
-    {
       "expression": "lo mío",
       "translation": "my thing, what's mine",
-      "count": 2
-    },
-    {
-      "expression": "cada vez que",
-      "translation": "every time that",
       "count": 2
     },
     {
@@ -231,13 +171,13 @@
       "count": 2
     },
     {
-      "expression": "por eso",
-      "translation": "that's why, for that reason",
-      "count": 1
+      "expression": "le gusta",
+      "translation": "he/she likes",
+      "count": 2
     },
     {
-      "expression": "a ver si",
-      "translation": "let's see if",
+      "expression": "por eso",
+      "translation": "that's why, for that reason",
       "count": 1
     },
     {
@@ -253,11 +193,6 @@
     {
       "expression": "hace tiempo que",
       "translation": "it's been a while since",
-      "count": 1
-    },
-    {
-      "expression": "así que",
-      "translation": "so, therefore",
       "count": 1
     },
     {
@@ -319,18 +254,11 @@
       "expression": "yo hago lo que",
       "translation": "I do what(ever)",
       "count": 0
-    },
-    {
-      "expression": "lo va' a",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.2,
-      "num_songs": 3
     }
   ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 64,
-    "pmi_detected_count": 1
+    "confirmed_count": 51,
+    "pmi_detected_count": 0
   }
 }

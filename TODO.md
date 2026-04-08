@@ -58,6 +58,12 @@ below have enough complexity to warrant this treatment when the time comes.
   Made). Remaining: "a|a" (preposition) has no usable Wiktionary entry — needs a curated
   override in the senses layer or a different source.
 
+- **[soon] Gemini lemma override from Wiktionary (S) [artist]**
+  Gemini occasionally hallucinates lemmas (5 known cases, e.g. hallaron→"medicó" instead of
+  "hallar"). Override Gemini lemmas with authoritative Wiktionary-derived lemmas from normal mode
+  when available. Multi-lemma words (fue→ir/ser) need careful handling. Also fix 5 corrupted
+  master entries. Prompt: [`fix_gemini_lemma_override.md`](docs/design/prompts/fix_gemini_lemma_override.md)
+
 - **[soon] Homograph lemma filtering — minor lemma flag (S) [shared] [design doc]**
   When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
   flag the less common lemma pairing so it can be filtered or deprioritized. Currently

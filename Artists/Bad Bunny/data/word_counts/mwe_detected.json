@@ -16,11 +16,6 @@
       "count": 155
     },
     {
-      "expression": "no sé",
-      "translation": "I don't know",
-      "count": 135
-    },
-    {
       "expression": "tú ere'",
       "translation": "you are (elided)",
       "count": 112
@@ -46,19 +41,9 @@
       "count": 66
     },
     {
-      "expression": "me gusta",
-      "translation": "I like",
-      "count": 65
-    },
-    {
       "expression": "te vo'a",
       "translation": "I'm going to (you)",
       "count": 62
-    },
-    {
-      "expression": "hasta que",
-      "translation": "until",
-      "count": 59
     },
     {
       "expression": "de ti",
@@ -86,11 +71,6 @@
       "count": 50
     },
     {
-      "expression": "a ver",
-      "translation": "let's see",
-      "count": 48
-    },
-    {
       "expression": "la disco",
       "translation": "the club",
       "count": 47
@@ -111,11 +91,6 @@
       "count": 43
     },
     {
-      "expression": "de nuevo",
-      "translation": "again",
-      "count": 41
-    },
-    {
       "expression": "me siento",
       "translation": "I feel",
       "count": 41
@@ -124,11 +99,6 @@
       "expression": "me dice",
       "translation": "tells me",
       "count": 38
-    },
-    {
-      "expression": "te quiero",
-      "translation": "I love you / I want you",
-      "count": 36
     },
     {
       "expression": "se ve",
@@ -144,11 +114,6 @@
       "expression": "otra ve'",
       "translation": "again (elided)",
       "count": 36
-    },
-    {
-      "expression": "así que",
-      "translation": "so, therefore",
-      "count": 35
     },
     {
       "expression": "a ti te",
@@ -191,6 +156,11 @@
       "count": 34
     },
     {
+      "expression": "te gusta",
+      "translation": "you like",
+      "count": 34
+    },
+    {
       "expression": "hay que",
       "translation": "one must, you have to",
       "count": 31
@@ -199,11 +169,6 @@
       "expression": "te juro",
       "translation": "I swear to you",
       "count": 31
-    },
-    {
-      "expression": "después de",
-      "translation": "after",
-      "count": 30
     },
     {
       "expression": "me llama",
@@ -216,11 +181,6 @@
       "count": 30
     },
     {
-      "expression": "por ahí",
-      "translation": "around there, out and about",
-      "count": 29
-    },
-    {
       "expression": "se siente",
       "translation": "feels, it feels",
       "count": 29
@@ -229,16 +189,6 @@
       "expression": "hace tiempo",
       "translation": "a while ago",
       "count": 28
-    },
-    {
-      "expression": "como si",
-      "translation": "as if",
-      "count": 28
-    },
-    {
-      "expression": "encima de",
-      "translation": "on top of",
-      "count": 26
     },
     {
       "expression": "te juro que",
@@ -308,11 +258,6 @@
     {
       "expression": "pa' qué",
       "translation": "what for",
-      "count": 18
-    },
-    {
-      "expression": "a ver si",
-      "translation": "let's see if",
       "count": 18
     },
     {
@@ -396,16 +341,6 @@
       "count": 14
     },
     {
-      "expression": "por más que",
-      "translation": "no matter how much",
-      "count": 13
-    },
-    {
-      "expression": "cada vez que",
-      "translation": "every time that",
-      "count": 13
-    },
-    {
       "expression": "hace tiempo que",
       "translation": "it's been a while since",
       "count": 13
@@ -414,11 +349,6 @@
       "expression": "ya no hay",
       "translation": "there's no longer",
       "count": 13
-    },
-    {
-      "expression": "lo que sea",
-      "translation": "whatever",
-      "count": 12
     },
     {
       "expression": "no sé qué",
@@ -431,30 +361,6 @@
       "count": 11
     },
     {
-      "expression": "de verdad",
-      "translation": "really, truly, for real",
-      "count": 6
-    },
-    {
-      "expression": "a lo loco",
-      "translation": "wildly, recklessly",
-      "count": 1
-    },
-    {
-      "expression": "sigo siendo el mismo",
-      "translation": null,
-      "count": 5,
-      "pmi": 26.2,
-      "num_songs": 3
-    },
-    {
-      "expression": "que me da la gana",
-      "translation": null,
-      "count": 6,
-      "pmi": 25.8,
-      "num_songs": 5
-    },
-    {
       "expression": "real hasta la muerte",
       "translation": null,
       "count": 13,
@@ -462,1003 +368,16 @@
       "num_songs": 8
     },
     {
-      "expression": "un hijo e puta",
-      "translation": null,
-      "count": 5,
-      "pmi": 24.9,
-      "num_songs": 4
-    },
-    {
-      "expression": "hear this music",
-      "translation": null,
-      "count": 7,
-      "pmi": 24.9,
-      "num_songs": 7
-    },
-    {
-      "expression": "hago lo que me da",
-      "translation": null,
-      "count": 5,
-      "pmi": 23.9,
-      "num_songs": 4
-    },
-    {
-      "expression": "real g life",
-      "translation": null,
-      "count": 8,
-      "pmi": 23.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "estoy en mi peak",
-      "translation": null,
-      "count": 8,
-      "pmi": 22.5,
-      "num_songs": 3
-    },
-    {
-      "expression": "hoy te vo'a buscar",
-      "translation": null,
-      "count": 5,
-      "pmi": 22.3,
-      "num_songs": 3
-    },
-    {
-      "expression": "a mí sin cojone'",
-      "translation": null,
-      "count": 8,
-      "pmi": 21.7,
-      "num_songs": 7
-    },
-    {
-      "expression": "sin cojone' me tiene",
-      "translation": null,
-      "count": 5,
-      "pmi": 21.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "me importa un carajo",
-      "translation": null,
-      "count": 5,
-      "pmi": 21.5,
-      "num_songs": 5
-    },
-    {
       "expression": "qué vamo' a hacer",
       "translation": null,
       "count": 10,
       "pmi": 20.9,
       "num_songs": 6
-    },
-    {
-      "expression": "te vas a venir",
-      "translation": null,
-      "count": 5,
-      "pmi": 20.9,
-      "num_songs": 3
-    },
-    {
-      "expression": "que salga el sol",
-      "translation": null,
-      "count": 5,
-      "pmi": 20.8,
-      "num_songs": 4
-    },
-    {
-      "expression": "aquí to' el mundo",
-      "translation": null,
-      "count": 6,
-      "pmi": 20.2,
-      "num_songs": 4
-    },
-    {
-      "expression": "yo estoy puesto pa'",
-      "translation": null,
-      "count": 6,
-      "pmi": 19.8,
-      "num_songs": 6
-    },
-    {
-      "expression": "prende otro phillie",
-      "translation": null,
-      "count": 5,
-      "pmi": 19.7,
-      "num_songs": 4
-    },
-    {
-      "expression": "lo que me da la",
-      "translation": null,
-      "count": 6,
-      "pmi": 19.6,
-      "num_songs": 5
-    },
-    {
-      "expression": "yo hago lo que me",
-      "translation": null,
-      "count": 7,
-      "pmi": 19.4,
-      "num_songs": 4
-    },
-    {
-      "expression": "pa' que le dé",
-      "translation": null,
-      "count": 17,
-      "pmi": 18.5,
-      "num_songs": 5
-    },
-    {
-      "expression": "ya me cansé de",
-      "translation": null,
-      "count": 5,
-      "pmi": 18.3,
-      "num_songs": 5
-    },
-    {
-      "expression": "siempre he sido",
-      "translation": null,
-      "count": 9,
-      "pmi": 18.1,
-      "num_songs": 6
-    },
-    {
-      "expression": "tengo un par de",
-      "translation": null,
-      "count": 6,
-      "pmi": 18.0,
-      "num_songs": 6
-    },
-    {
-      "expression": "mueve ese culo",
-      "translation": null,
-      "count": 5,
-      "pmi": 18.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "billetes de cien",
-      "translation": null,
-      "count": 6,
-      "pmi": 17.6,
-      "num_songs": 3
-    },
-    {
-      "expression": "yo sé que tú me",
-      "translation": null,
-      "count": 5,
-      "pmi": 17.5,
-      "num_songs": 4
-    },
-    {
-      "expression": "no sé por qué",
-      "translation": null,
-      "count": 14,
-      "pmi": 17.4,
-      "num_songs": 10
-    },
-    {
-      "expression": "ya no hay más",
-      "translation": null,
-      "count": 5,
-      "pmi": 17.3,
-      "num_songs": 5
-    },
-    {
-      "expression": "pa' hacerte venir",
-      "translation": null,
-      "count": 5,
-      "pmi": 17.3,
-      "num_songs": 4
-    },
-    {
-      "expression": "soy el único que",
-      "translation": null,
-      "count": 5,
-      "pmi": 17.2,
-      "num_songs": 5
-    },
-    {
-      "expression": "la nueva religión",
-      "translation": null,
-      "count": 12,
-      "pmi": 17.2,
-      "num_songs": 11
-    },
-    {
-      "expression": "te voy a hacer",
-      "translation": null,
-      "count": 5,
-      "pmi": 16.8,
-      "num_songs": 4
-    },
-    {
-      "expression": "quítate la ropa",
-      "translation": null,
-      "count": 5,
-      "pmi": 16.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "hace tiempo que no",
-      "translation": null,
-      "count": 8,
-      "pmi": 16.6,
-      "num_songs": 6
-    },
-    {
-      "expression": "a ti te gusta",
-      "translation": null,
-      "count": 6,
-      "pmi": 16.6,
-      "num_songs": 6
-    },
-    {
-      "expression": "lo que tú quiera'",
-      "translation": null,
-      "count": 6,
-      "pmi": 16.5,
-      "num_songs": 6
-    },
-    {
-      "expression": "que se lo meta",
-      "translation": null,
-      "count": 7,
-      "pmi": 16.5,
-      "num_songs": 5
-    },
-    {
-      "expression": "si es por mí",
-      "translation": null,
-      "count": 5,
-      "pmi": 16.4,
-      "num_songs": 5
-    },
-    {
-      "expression": "el conejo malo",
-      "translation": null,
-      "count": 11,
-      "pmi": 16.3,
-      "num_songs": 9
-    },
-    {
-      "expression": "en p r",
-      "translation": null,
-      "count": 6,
-      "pmi": 15.9,
-      "num_songs": 5
-    },
-    {
-      "expression": "a mí me gusta",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.8,
-      "num_songs": 4
-    },
-    {
-      "expression": "tú y yo somo'",
-      "translation": null,
-      "count": 8,
-      "pmi": 15.7,
-      "num_songs": 8
-    },
-    {
-      "expression": "ponte en cuatro",
-      "translation": null,
-      "count": 6,
-      "pmi": 15.7,
-      "num_songs": 4
-    },
-    {
-      "expression": "por eso es que",
-      "translation": null,
-      "count": 11,
-      "pmi": 15.6,
-      "num_songs": 11
-    },
-    {
-      "expression": "pero en la cama",
-      "translation": null,
-      "count": 7,
-      "pmi": 15.5,
-      "num_songs": 3
-    },
-    {
-      "expression": "al otro día",
-      "translation": null,
-      "count": 6,
-      "pmi": 15.4,
-      "num_songs": 5
-    },
-    {
-      "expression": "baja pa' casa",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.2,
-      "num_songs": 3
-    },
-    {
-      "expression": "me llama pa' que",
-      "translation": null,
-      "count": 8,
-      "pmi": 15.1,
-      "num_songs": 6
-    },
-    {
-      "expression": "tú te va' a",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "que te lo metí",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "a mí me va",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "gracias a dios",
-      "translation": null,
-      "count": 8,
-      "pmi": 15.1,
-      "num_songs": 7
-    },
-    {
-      "expression": "dónde están las",
-      "translation": null,
-      "count": 6,
-      "pmi": 15.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "dé la gana",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.1,
-      "num_songs": 3
-    },
-    {
-      "expression": "sé que te gusta",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.0,
-      "num_songs": 5
-    },
-    {
-      "expression": "yo te lo meto",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "no digas que no",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "estos cabrones me",
-      "translation": null,
-      "count": 6,
-      "pmi": 15.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "pa' la disco y",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.9,
-      "num_songs": 3
-    },
-    {
-      "expression": "por si acaso",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.9,
-      "num_songs": 4
-    },
-    {
-      "expression": "el mundo entero",
-      "translation": null,
-      "count": 6,
-      "pmi": 14.7,
-      "num_songs": 6
-    },
-    {
-      "expression": "ese culo e'",
-      "translation": null,
-      "count": 6,
-      "pmi": 14.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "tú sabe' lo que",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.5,
-      "num_songs": 4
-    },
-    {
-      "expression": "de puerto rico",
-      "translation": null,
-      "count": 6,
-      "pmi": 14.5,
-      "num_songs": 6
-    },
-    {
-      "expression": "donald trump",
-      "translation": null,
-      "count": 6,
-      "pmi": 14.5,
-      "num_songs": 6
-    },
-    {
-      "expression": "como yo no hay",
-      "translation": null,
-      "count": 6,
-      "pmi": 14.4,
-      "num_songs": 6
-    },
-    {
-      "expression": "to' los día'",
-      "translation": null,
-      "count": 7,
-      "pmi": 14.4,
-      "num_songs": 7
-    },
-    {
-      "expression": "en puerto rico",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.4,
-      "num_songs": 5
-    },
-    {
-      "expression": "ese culo está",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.3,
-      "num_songs": 3
-    },
-    {
-      "expression": "va a haber",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.2,
-      "num_songs": 5
-    },
-    {
-      "expression": "hoy me levanté",
-      "translation": null,
-      "count": 8,
-      "pmi": 14.2,
-      "num_songs": 5
-    },
-    {
-      "expression": "te juro que yo",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.1,
-      "num_songs": 5
-    },
-    {
-      "expression": "soy un bellaco",
-      "translation": null,
-      "count": 8,
-      "pmi": 14.1,
-      "num_songs": 7
-    },
-    {
-      "expression": "está de moda",
-      "translation": null,
-      "count": 9,
-      "pmi": 14.1,
-      "num_songs": 3
-    },
-    {
-      "expression": "te vo'a dar",
-      "translation": null,
-      "count": 17,
-      "pmi": 14.1,
-      "num_songs": 12
-    },
-    {
-      "expression": "cuál es tu",
-      "translation": null,
-      "count": 9,
-      "pmi": 14.1,
-      "num_songs": 3
-    },
-    {
-      "expression": "puesta pa' mí",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "hoy se bebe",
-      "translation": null,
-      "count": 6,
-      "pmi": 14.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "vamo' a hacerlo",
-      "translation": null,
-      "count": 10,
-      "pmi": 14.0,
-      "num_songs": 8
-    },
-    {
-      "expression": "la primera vez",
-      "translation": null,
-      "count": 5,
-      "pmi": 14.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "eso es lo que",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.9,
-      "num_songs": 7
-    },
-    {
-      "expression": "nadie se entera",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.9,
-      "num_songs": 5
-    },
-    {
-      "expression": "latino gang",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.9,
-      "num_songs": 4
-    },
-    {
-      "expression": "carbon fiber",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.9,
-      "num_songs": 4
-    },
-    {
-      "expression": "te juro que me",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "yo siempre picheo",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "puesto pa' ti",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "nicky jam",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "como se supone",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.6,
-      "num_songs": 4
-    },
-    {
-      "expression": "no me va' a",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.5,
-      "num_songs": 4
-    },
-    {
-      "expression": "la noche entera",
-      "translation": null,
-      "count": 10,
-      "pmi": 13.5,
-      "num_songs": 9
-    },
-    {
-      "expression": "te quiero comer",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.5,
-      "num_songs": 3
-    },
-    {
-      "expression": "a mí no me",
-      "translation": null,
-      "count": 20,
-      "pmi": 13.4,
-      "num_songs": 18
-    },
-    {
-      "expression": "yo fui el que",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.4,
-      "num_songs": 4
-    },
-    {
-      "expression": "toda la noche",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.4,
-      "num_songs": 5
-    },
-    {
-      "expression": "va a pasar",
-      "translation": null,
-      "count": 9,
-      "pmi": 13.4,
-      "num_songs": 6
-    },
-    {
-      "expression": "yo te voy a",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.3,
-      "num_songs": 4
-    },
-    {
-      "expression": "te lo voy a",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.3,
-      "num_songs": 5
-    },
-    {
-      "expression": "solo pienso en",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.3,
-      "num_songs": 3
-    },
-    {
-      "expression": "ya se acabó",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.3,
-      "num_songs": 5
-    },
-    {
-      "expression": "pensando en ti",
-      "translation": null,
-      "count": 10,
-      "pmi": 13.2,
-      "num_songs": 8
-    },
-    {
-      "expression": "pasa el tiempo",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.2,
-      "num_songs": 5
-    },
-    {
-      "expression": "no se va a",
-      "translation": null,
-      "count": 5,
-      "pmi": 13.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "la noche yo te",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "pensar en ti",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "pa'l carajo el",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.0,
-      "num_songs": 6
-    },
-    {
-      "expression": "va a poder",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.0,
-      "num_songs": 6
-    },
-    {
-      "expression": "quién tú ere'",
-      "translation": null,
-      "count": 7,
-      "pmi": 13.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "new york",
-      "translation": null,
-      "count": 6,
-      "pmi": 13.0,
-      "num_songs": 6
-    },
-    {
-      "expression": "san juan",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.9,
-      "num_songs": 5
-    },
-    {
-      "expression": "favorito de tu",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.8,
-      "num_songs": 3
-    },
-    {
-      "expression": "encima de mí",
-      "translation": null,
-      "count": 14,
-      "pmi": 12.8,
-      "num_songs": 12
-    },
-    {
-      "expression": "el más duro",
-      "translation": null,
-      "count": 10,
-      "pmi": 12.8,
-      "num_songs": 7
-    },
-    {
-      "expression": "tú ere' mala",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.8,
-      "num_songs": 5
-    },
-    {
-      "expression": "tú eres mía",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.7,
-      "num_songs": 3
-    },
-    {
-      "expression": "tú ere' mía",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.7,
-      "num_songs": 4
-    },
-    {
-      "expression": "este bicho y",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.6,
-      "num_songs": 5
-    },
-    {
-      "expression": "que le den",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.6,
-      "num_songs": 3
-    },
-    {
-      "expression": "mo t",
-      "translation": null,
-      "count": 9,
-      "pmi": 12.6,
-      "num_songs": 9
-    },
-    {
-      "expression": "ella es la que",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.5,
-      "num_songs": 3
-    },
-    {
-      "expression": "to'a la noche",
-      "translation": null,
-      "count": 12,
-      "pmi": 12.5,
-      "num_songs": 10
-    },
-    {
-      "expression": "yo le llego",
-      "translation": null,
-      "count": 16,
-      "pmi": 12.5,
-      "num_songs": 6
-    },
-    {
-      "expression": "ya me acostumbré",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.5,
-      "num_songs": 4
-    },
-    {
-      "expression": "va a volver",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.5,
-      "num_songs": 3
-    },
-    {
-      "expression": "el mundo sabe",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.5,
-      "num_songs": 5
-    },
-    {
-      "expression": "louis vuitton",
-      "translation": null,
-      "count": 16,
-      "pmi": 12.5,
-      "num_songs": 16
-    },
-    {
-      "expression": "to' lo que tú",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.4,
-      "num_songs": 6
-    },
-    {
-      "expression": "no hay quien",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.4,
-      "num_songs": 6
-    },
-    {
-      "expression": "j balvin",
-      "translation": null,
-      "count": 7,
-      "pmi": 12.4,
-      "num_songs": 6
-    },
-    {
-      "expression": "don omar",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.4,
-      "num_songs": 5
-    },
-    {
-      "expression": "yo sé lo que",
-      "translation": null,
-      "count": 9,
-      "pmi": 12.3,
-      "num_songs": 5
-    },
-    {
-      "expression": "hablando de mí",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.3,
-      "num_songs": 3
-    },
-    {
-      "expression": "a ti no te",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.2,
-      "num_songs": 5
-    },
-    {
-      "expression": "tú ere' una",
-      "translation": null,
-      "count": 22,
-      "pmi": 12.2,
-      "num_songs": 19
-    },
-    {
-      "expression": "como si fuera",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.2,
-      "num_songs": 6
-    },
-    {
-      "expression": "mambo kingz",
-      "translation": null,
-      "count": 17,
-      "pmi": 12.2,
-      "num_songs": 12
-    },
-    {
-      "expression": "ten cuida'o",
-      "translation": null,
-      "count": 9,
-      "pmi": 12.2,
-      "num_songs": 6
-    },
-    {
-      "expression": "esta noche tú",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "dando vuelta'",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.1,
-      "num_songs": 4
-    },
-    {
-      "expression": "voy a estar",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "la más dura",
-      "translation": null,
-      "count": 6,
-      "pmi": 12.0,
-      "num_songs": 6
-    },
-    {
-      "expression": "pero tú tás",
-      "translation": null,
-      "count": 8,
-      "pmi": 12.0,
-      "num_songs": 5
-    },
-    {
-      "expression": "vamo' a ver",
-      "translation": null,
-      "count": 10,
-      "pmi": 12.0,
-      "num_songs": 3
-    },
-    {
-      "expression": "a mi manera",
-      "translation": null,
-      "count": 5,
-      "pmi": 12.0,
-      "num_songs": 5
     }
   ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 88,
-    "pmi_detected_count": 145
+    "confirmed_count": 72,
+    "pmi_detected_count": 2
   }
 }
