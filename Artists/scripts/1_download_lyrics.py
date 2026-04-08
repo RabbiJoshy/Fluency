@@ -31,7 +31,8 @@ from typing import Optional, Dict, Any, Set, List
 from requests.exceptions import Timeout, HTTPError
 from lyricsgenius import Genius
 
-from _artist_config import add_artist_arg, load_artist_config, scrape_lyrics_by_id, load_done_ids, save_done_ids
+from _artist_config import (add_artist_arg, load_artist_config, scrape_lyrics_by_id,
+                            load_done_ids, save_done_ids, find_english_translation)
 
 # ---------------------------------------------------------------------
 # CONFIG
@@ -97,6 +98,27 @@ def song_meta_to_record(meta, lyrics):
     return rec
 
 
+def fetch_translation_for_song(genius_client, song_id, title):
+    """Check geniURL for an English translation and scrape it if found.
+
+    Returns a dict with translation metadata + lyrics, or None.
+    """
+    result = find_english_translation(song_id)
+    if result is None:
+        return None
+
+    trans_id, trans_title, trans_url = result
+    print("    Found English translation: %s" % trans_title)
+    lyrics = scrape_lyrics_by_id(genius_client, trans_id)
+
+    return {
+        "id": trans_id,
+        "title": trans_title,
+        "url": trans_url,
+        "lyrics": lyrics,
+    }
+
+
 # ---------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------
@@ -128,7 +150,8 @@ def _is_relevant_song(meta, artist_name, lyrics=None):
 
 
 def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
-                           include_remixes=False, retry_nulls=False):
+                           include_remixes=False, retry_nulls=False,
+                           fetch_translations=True):
     """Download all lyrics for an artist."""
 
     # Set up excluded terms based on flags
@@ -204,6 +227,12 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
             lyrics = scrape_lyrics_by_id(genius_client, song_id)
 
             rec = song_meta_to_record(m, lyrics)
+
+            if fetch_translations:
+                trans = fetch_translation_for_song(genius_client, song_id, title)
+                if trans:
+                    rec["english_translation"] = trans
+
             batch.append(rec)
             total_new += 1
 
@@ -221,6 +250,10 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
 
             if _is_relevant_song(m, artist_name, lyrics=lyrics):
                 rec = song_meta_to_record(m, lyrics)
+                if fetch_translations:
+                    trans = fetch_translation_for_song(genius_client, song_id, title)
+                    if trans:
+                        rec["english_translation"] = trans
                 batch.append(rec)
                 total_new += 1
                 print("    Kept (artist found in lyrics)")
@@ -266,6 +299,8 @@ if __name__ == "__main__":
                         help="Also fetch remixes, live versions, etc.")
     parser.add_argument("--retry-nulls", action="store_true",
                         help="Re-attempt songs that previously got null lyrics")
+    parser.add_argument("--no-translations", action="store_true",
+                        help="Skip checking for English translations (faster)")
     parser.add_argument("--start-page", type=int, default=1,
                         help="Start from this page (default: 1)")
     args = parser.parse_args()
@@ -281,4 +316,5 @@ if __name__ == "__main__":
         start_page=args.start_page,
         include_remixes=args.include_remixes,
         retry_nulls=args.retry_nulls,
+        fetch_translations=not args.no_translations,
     )

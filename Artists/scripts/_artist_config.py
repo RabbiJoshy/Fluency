@@ -89,6 +89,63 @@ def save_done_ids(progress_path, done_ids):
         json.dump(sorted(done_ids), f, indent=2)
 
 
+# ---------------------------------------------------------------------------
+# geniURL: find English translations on Genius
+# ---------------------------------------------------------------------------
+
+GENIURL_BASE = "https://api.sv443.net/geniurl/translations"
+GENIURL_MIN_INTERVAL = 1.2  # seconds between requests (rate limit: 25/30s)
+
+import threading
+_geniurl_lock = threading.Lock()
+_geniurl_last_request = 0.0
+
+
+def _geniurl_throttle():
+    """Enforce minimum interval between geniURL requests across all threads."""
+    global _geniurl_last_request
+    with _geniurl_lock:
+        now = time.time()
+        wait = GENIURL_MIN_INTERVAL - (now - _geniurl_last_request)
+        if wait > 0:
+            time.sleep(wait)
+        _geniurl_last_request = time.time()
+
+
+def find_english_translation(song_id):
+    """Query geniURL for an English translation of song_id.
+
+    Returns (translation_genius_id, title, url) or None.
+    Thread-safe: uses global rate limiter.
+    """
+    import requests
+
+    _geniurl_throttle()
+    url = "%s/%s" % (GENIURL_BASE, song_id)
+    try:
+        resp = requests.get(url, timeout=15)
+
+        if resp.status_code == 429:
+            retry_after = int(resp.headers.get("Retry-After", 30))
+            time.sleep(retry_after)
+            resp = requests.get(url, timeout=15)
+
+        if resp.status_code >= 400:
+            return None
+
+        data = resp.json()
+        if data.get("error") or not data.get("translations"):
+            return None
+
+        for t in data["translations"]:
+            if t.get("language") == "en":
+                return (t["id"], t.get("title", ""), t.get("url", ""))
+        return None
+
+    except Exception as e:
+        return None
+
+
 def load_shared_dict(filename):
     """Load a shared curated dict from Artists/shared/.
 

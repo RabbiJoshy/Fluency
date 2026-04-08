@@ -570,8 +570,45 @@ def build_aligned_translations(artist_dir, max_diff_pct=0.10):
     return {"songs": songs_out, "index": index, "stats": stats}
 
 
+def extract_translations_from_batches(artist_dir):
+    """Extract english_translation data from batch files into translations.json.
+
+    Step 1 now stores translations in batch records. This function extracts
+    them into the translations.json format that the alignment code expects.
+    Merges with any existing translations.json (from legacy 3b scraping).
+    """
+    trans_dir = os.path.join(artist_dir, "data", "input", "translations")
+    os.makedirs(trans_dir, exist_ok=True)
+    translations = load_translations(trans_dir)
+    songs = load_all_song_ids(artist_dir)
+
+    added = 0
+    for song in songs:
+        sid = str(song["id"])
+        trans = song.get("english_translation")
+        if trans and trans.get("lyrics") and sid not in translations:
+            translations[sid] = {
+                "song_title": song.get("title", ""),
+                "translation_id": trans["id"],
+                "translation_title": trans.get("title", ""),
+                "translation_url": trans.get("url", ""),
+                "lyrics": trans["lyrics"],
+            }
+            added += 1
+
+    if added:
+        save_translations(translations, trans_dir)
+        print("Extracted %d translations from batch files (total: %d)" % (added, len(translations)))
+    else:
+        total = len(translations)
+        print("No new translations in batch files (existing: %d)" % total)
+
+    return translations
+
+
 def run_alignment(artist_dir):
-    """Build and save aligned_translations.json."""
+    """Extract translations from batches, then build aligned_translations.json."""
+    extract_translations_from_batches(artist_dir)
     result = build_aligned_translations(artist_dir)
     stats = result["stats"]
 

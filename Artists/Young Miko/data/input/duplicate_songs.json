@@ -1,0 +1,78 @@
+{
+  "description": "Song exclusions for Young Miko. See Artists/DEDUP_INSTRUCTIONS.md for format and rules.",
+  "duplicates": {
+    "8995365": {
+      "keep": "8970064",
+      "duplicate_title": "Classy 101 (Mixed)",
+      "original_title": "Classy 101"
+    },
+    "9866530": {
+      "keep": "8970064",
+      "duplicate_title": "Classy 101 (Mixed) [NYE 2024]",
+      "original_title": "Classy 101"
+    },
+    "11686305": {
+      "keep": "10874271",
+      "duplicate_title": "Come Play (Kordhell Remix)",
+      "original_title": "Come Play"
+    },
+    "8337275": {
+      "keep": "7750717",
+      "duplicate_title": "Besties (Remix)",
+      "original_title": "Besties"
+    }
+  },
+  "placeholders": [
+    "11757996",
+    "10116855",
+    "12510617"
+  ],
+  "non_spanish": {
+    "description": "Songs excluded because they are not in Spanish",
+    "songs": {
+      "11140480": {
+        "title": "En Esta Boca (English translation)",
+        "language": "english",
+        "reason": "Genius English translation page, not original song"
+      },
+      "12248415": {
+        "title": "Gabriela (Young Miko Remix)",
+        "language": "english",
+        "reason": "KATSEYE song; Young Miko remix vocals are in English"
+      },
+      "13199406": {
+        "title": "Safada",
+        "language": "portuguese",
+        "reason": "Luísa Sonza song, primarily in Portuguese"
+      }
+    }
+  },
+  "non_songs": {
+    "description": "Entries excluded because they are not actual songs",
+    "songs": {
+      "8224309": {
+        "title": "Stripper Diaries (Skit)",
+        "category": "skit",
+        "reason": "Conversational dialogue, not a song"
+      },
+      "10220936": {
+        "title": "en la pichi interlude",
+        "category": "interlude",
+        "reason": "Short interlude track"
+      },
+      "12570919": {
+        "title": "El intro",
+        "category": "intro",
+        "reason": "Album intro track"
+      }
+    }
+  },
+  "stats": {
+    "total_songs": 105,
+    "duplicates": 4,
+    "placeholders": 3,
+    "non_spanish": 3,
+    "non_songs": 3,
+    "unique_songs": 92
+  }
+}

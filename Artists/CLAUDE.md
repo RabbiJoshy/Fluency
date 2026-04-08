@@ -29,10 +29,10 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 
 | Step | Script | Output Layer | What it does |
 |------|--------|-------------|-------------|
-| 1 | `scripts/1_download_lyrics.py` | (batches) | Scrape lyrics from Genius API |
+| 1 | `scripts/1_download_lyrics.py` | (batches) | Scrape lyrics + English translations from Genius API (`--no-translations` to skip) |
 | 1b | (manual) | `duplicate_songs.json` | Curate song exclusions — see `DEDUP_INSTRUCTIONS.md` |
 | 3 | `scripts/3_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
-| 3b | `scripts/3b_scrape_translations.py` | `aligned_translations.json` | Scrape Genius community English translations |
+| 3b | `scripts/3b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 5 | `scripts/5_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
 | 4 | `scripts/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua). Runs after step 5. |
 | 5b | `scripts/5b_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
