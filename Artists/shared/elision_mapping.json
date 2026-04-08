@@ -32873,5 +32873,14 @@
     "target_lemma": "traste",
     "elided_ppm": 5.42,
     "combined_ppm": 5.42
+  },
+  {
+    "action": "merge",
+    "merge_type": "elision_pair",
+    "elided_word": "na",
+    "full_word": "nada",
+    "target_word": "nada",
+    "display_form": "na",
+    "target_lemma": "nada"
   }
 ]

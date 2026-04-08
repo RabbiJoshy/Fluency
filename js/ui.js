@@ -661,6 +661,7 @@ async function renderRangeSelector() {
 
         ranges.push({
             range: `${i}-${rangeEnd}`,
+            label: `${i}-${rangeEnd - 1}`,
             available: hasData,
             mastered: isMastered,
             attempted: isAttempted
@@ -673,7 +674,7 @@ async function renderRangeSelector() {
         const disabledClass = !r.available ? 'disabled' : '';
         const masteredClass = r.mastered ? 'mastered' : '';
         const attemptedClass = r.attempted ? 'attempted' : '';
-        let title = 'Load ' + r.range;
+        let title = 'Load ' + r.label;
         if (!r.available) {
             title = 'Greyed out because no vocabulary data exists for this range yet';
         } else if (r.mastered) {
@@ -686,7 +687,7 @@ async function renderRangeSelector() {
                     data-range="${r.range}"
                     ${disabledAttr}
                     title="${title}">
-                ${r.range}
+                ${r.label}
             </button>
         `;
     }).join('');
