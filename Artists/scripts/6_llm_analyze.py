@@ -777,6 +777,7 @@ def main():
     WORD_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "llm_progress.json")
     SENTENCE_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "sentence_translations.json")
     DETECTED_PROPN_PATH = os.path.join(PIPELINE_DIR, "data", "proper_nouns", "detected_proper_nouns.json")
+    SKIP_WORDS_PATH = os.path.join(PIPELINE_DIR, "data", "known_vocab", "skip_words.json")
     MWE_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "mwe_detected.json")
 
     # Load curated overrides from shared/
@@ -822,6 +823,19 @@ def main():
             INTERJECTIONS = INTERJECTIONS | new_intj
             print("  Auto-detected %d interjections (total: %d)" %
                   (len(new_intj), len(INTERJECTIONS)))
+
+    # Load step 4 known-vocab filter (if available)
+    SKIP_WORDS = frozenset()
+    if os.path.exists(SKIP_WORDS_PATH):
+        with open(SKIP_WORDS_PATH, "r", encoding="utf-8") as f:
+            skip_data = json.load(f)
+        # Combine all skip categories into one set
+        skip_all = set()
+        for key in ("known_spanish", "known_elision", "known_shared", "english", "low_frequency"):
+            skip_all.update(skip_data.get(key, []))
+        SKIP_WORDS = frozenset(skip_all)
+        print("  Step 4 filter: %d words to skip (%d remaining)" %
+              (len(SKIP_WORDS), skip_data.get("stats", {}).get("remaining", "?")))
 
     # Load MWE data (if available)
     mwe_index = {}  # type: Dict[str, List[Dict]]
@@ -962,6 +976,7 @@ def main():
 
     words_for_llm = []
     override_count = 0
+    known_vocab_count = 0
     zero_example_count = 0
     short_junk_count = 0
     gap_count = 0
@@ -972,6 +987,8 @@ def main():
         if (w_lower in PROPER_NOUNS or w_lower in INTERJECTIONS
                 or w_lower in EXTRA_ENGLISH or w_lower in CURATED_TRANSLATIONS):
             override_count += 1
+        elif w_lower in SKIP_WORDS:
+            known_vocab_count += 1
         elif not entry.get("examples"):
             zero_example_count += 1
         elif len(w_lower) <= 2 and w_lower not in _SHORT_WORD_WHITELIST:
@@ -985,6 +1002,8 @@ def main():
             words_for_llm.append(entry)
 
     print("  %d words handled by overrides" % override_count)
+    if known_vocab_count:
+        print("  %d words skipped (known vocab filter)" % known_vocab_count)
     print("  %d words skipped (zero examples)" % zero_example_count)
     print("  %d words skipped (short junk)" % short_junk_count)
     print("  %d words already in word cache" % len(word_progress))

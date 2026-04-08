@@ -33,8 +33,8 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 1b | (manual) | `duplicate_songs.json` | Curate song exclusions — see `DEDUP_INSTRUCTIONS.md` |
 | 3 | `scripts/3_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
 | 3b | `scripts/3b_scrape_translations.py` | `aligned_translations.json` | Scrape Genius community English translations |
-| 4 | `scripts/4_detect_proper_nouns.py` | `detected_proper_nouns.json` | Detect proper nouns, interjections, English (local) |
 | 5 | `scripts/5_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
+| 4 | `scripts/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua). Runs after step 5. |
 | 5b | `scripts/5b_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
 | 6 | `scripts/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
 | 7 | `scripts/7_flag_cognates.py` | `cognates.json` | Flag transparent cognates (intersection: LLM + suffix rules) |
@@ -96,7 +96,8 @@ Artists/{Name}/
     llm_progress.json            # Gemini word analysis cache (internal)
     sentence_translations.json   # Gemini sentence translation cache (internal)
   data/elision_merge/            # Step 5 output
-  data/proper_nouns/             # Step 4 output
+  data/known_vocab/              # Step 4 output (skip_words.json)
+  data/proper_nouns/             # Legacy step 4 output (deprecated)
 ```
 
 ## Modes
