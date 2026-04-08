@@ -50,8 +50,8 @@ Fluency/
 - **Front-end JS work?** Read `js/CLAUDE.md`
 - **Data schemas / IDs / progress?** Read `Data/CLAUDE.md`
 - **Backlog context?** Read `TODO.md` (root — unified backlog for both modes)
-- **WSD exploration log** — `Data/Spanish/Scripts/wsd_benchmark_results.md` (all approaches tried, decisions, current architecture)
-- **Example sentence selection** — `Data/Spanish/Scripts/example_selection_design.md` (proximity scoring problem, requirements for redesign)
+- **Design docs** — `docs/design/` (WSD exploration, example selection, vocab filter design)
+- **Setup guides** — `docs/setup/` (Google Sheets, quick start)
 
 ## Working with the Human
 
