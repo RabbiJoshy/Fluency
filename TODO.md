@@ -61,11 +61,6 @@ below have enough complexity to warrant this treatment when the time comes.
   e.g. `disculpen` matches via `disculpar`. Estimated +4% coverage on top of accent
   normalization.
 
-- **[idea] Cross-artist MWE detection (M) [artist]**
-  Step 3 detects MWEs per-artist only. A shared pass across all artist corpora would find
-  expressions below any single artist's frequency threshold. Master vocab already unions
-  MWE memberships; detection itself is per-artist.
-
 - **[idea] Converge cognate scripts (S) [shared]**
   `Artists/scripts/7_flag_cognates.py` and `Data/Spanish/Scripts/flag_cognates.py` are copies.
   Move to a shared root-level location so both pipelines use one script.
