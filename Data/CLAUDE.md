@@ -50,6 +50,25 @@ Examples: `es0a1b2c3` (Spanish normal), `es1a1b2c3` (Spanish lyrics), `sv06b7f8a
 
 Lang codes: spanish->es, swedish->sv, italian->it, dutch->nl, polish->pl, french->fr, russian->ru.
 
+## Word Inventory (intermediate layer)
+
+`Spanish/layers/word_inventory.json` — foundation layer produced by step 1 (`build_inventory.py`).
+
+```json
+{
+  "word": "como",
+  "lemma": "como",
+  "id": "227610",
+  "corpus_count": 1598,
+  "most_frequent_lemma_instance": true,
+  "homograph_ratio": 0.85
+}
+```
+
+- `corpus_count`: raw frequency from wiki corpus, adjusted by `homograph_ratio` when the word is a homograph
+- `most_frequent_lemma_instance`: true if this entry has the highest corpus_count among all entries sharing its lemma
+- `homograph_ratio`: (homographs only) the estimated proportion of this surface form's usage attributable to this lemma. Computed by spaCy over Tatoeba, with manual overrides from `layers/homograph_overrides.json`. See `docs/design/homograph_disambiguation.md`.
+
 ## PPM Data (optional per language)
 
 CSV files like `Spanish/SpanishRawWiki.csv` with columns: `rank,occurrences_ppm`. Used for % coverage mode. `totalPpm` = sum of all ppm values.

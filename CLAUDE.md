@@ -46,6 +46,7 @@ Fluency/
 | Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json` |
 | Artist config | `config/artists.json` + `Artists/{Name}/artist.json` |
 | Curated translation fixes | `shared/curated_translations.json` (unified), `Artists/{Name}/data/llm_analysis/curated_translations.json` (artist-specific) |
+| Homograph disambiguation | `Data/Spanish/Scripts/build_inventory.py` → `compute_homograph_ratios()`, overrides in `Data/Spanish/layers/homograph_overrides.json` |
 | Sense matching / embeddings | `Data/Spanish/Scripts/match_senses.py` → classify + merge + filter |
 | Conjugation tables / verb data | `Data/Spanish/Scripts/build_conjugations.py`, front-end in `js/flashcards.js` → `buildConjugationTableHTML()` |
 

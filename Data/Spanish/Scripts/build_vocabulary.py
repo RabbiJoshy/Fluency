@@ -290,6 +290,8 @@ def main():
             mono_entry["is_transparent_cognate"] = True
         if mwe_memberships:
             mono_entry["mwe_memberships"] = mwe_memberships
+        if entry.get("homograph_ids"):
+            mono_entry["homograph_ids"] = entry["homograph_ids"]
         monolith.append(mono_entry)
 
         # Index entry (no examples)
@@ -305,6 +307,8 @@ def main():
             idx_entry["is_transparent_cognate"] = True
         if mwe_memberships:
             idx_entry["mwe_memberships"] = mwe_memberships
+        if entry.get("homograph_ids"):
+            idx_entry["homograph_ids"] = entry["homograph_ids"]
         index.append(idx_entry)
 
         # Examples file

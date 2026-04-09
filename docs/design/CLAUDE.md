@@ -46,6 +46,7 @@ updated: YYYY-MM-DD
 | `translation_quality_normal_mode.md` | implemented | Wiktionary translation fixes for common words |
 | `conjugation_pos_filtering.md` | implemented | Remove non-VERB senses from confirmed verb forms |
 | `level_estimation.md` | implemented | Adaptive staircase algorithm for level estimation |
+| `homograph_disambiguation.md` | implemented | Homograph lemma disambiguation — spaCy + manual overrides |
 | `verse_filtering.md` | decided | Per-artist verse filtering — decided against |
 | `alternative_translation_sources.md` | decided | Lyrics translation sources — Genius + Gemini chosen |
 | `artist_sense_pipeline.md` | research | Artist sense discovery: Gemini-invented vs Wiktionary-sourced |
