@@ -253,10 +253,11 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
             assignments.append({
                 "sense_idx": i,
                 "examples": indices,
+                "method": "biencoder",
             })
 
         if not assignments:
-            assignments = [{"sense_idx": 0, "examples": list(range(len(examples)))}]
+            assignments = [{"sense_idx": 0, "examples": list(range(len(examples))), "method": "biencoder"}]
 
         output[word] = assignments
 
@@ -392,9 +393,9 @@ def main():
                     continue
                 if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
                     continue
-                assignments.append({"sense_idx": i, "examples": indices})
+                assignments.append({"sense_idx": i, "examples": indices, "method": "keyword"})
             if not assignments:
-                assignments = [{"sense_idx": 0, "examples": list(range(len(examples)))}]
+                assignments = [{"sense_idx": 0, "examples": list(range(len(examples))), "method": "keyword"}]
             output[word] = assignments
         else:
             work_items.append((word, word_senses, examples, keep_indices, source))

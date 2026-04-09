@@ -38,6 +38,7 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 5b | `scripts/5b_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
 | 6 | `scripts/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
 | 6b | `scripts/match_artist_senses.py` | `sense_assignments.json` | Local bi-encoder sense matching (fallback for --no-gemini). Skips if assignments exist. |
+| 6j | `scripts/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional — run after Google Translate or `--no-gemini` runs. |
 | 7 | `scripts/7_flag_cognates.py` | `cognates.json` | Flag transparent cognates (intersection: LLM + suffix rules) |
 | 8 | `scripts/8_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | build | `scripts/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
@@ -53,8 +54,9 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | `word_inventory.json` | `[{word, corpus_count, display_form, variants}]` | `word_inventory.json` |
 | `examples_raw.json` | `{word: [{id, spanish, title}]}` | `examples_raw.json` |
 | `example_translations.json` | `{spanish_line: {english, source}}` | (baked into examples in normal mode) |
-| `senses_gemini.json` | `{word\|lemma: [{pos, translation}]}` | `senses_wiktionary.json` |
-| `sense_assignments.json` | `{word: [{sense_idx, examples: [0,1,2]}]}` | `sense_assignments.json` |
+| `senses_gemini.json` | `{word\|lemma: [{pos, translation, source}]}` | `senses_wiktionary.json` |
+| `sense_assignments.json` | `{word: [{sense_idx, examples: [0,1,2], method}]}` | `sense_assignments.json` |
+| `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) |
 | `cognates.json` | `{word\|lemma: true}` | (planned) |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (planned) |
 
@@ -116,7 +118,18 @@ Step 6 checks two sources in order:
 1. **Genius index** (free): Built from `aligned_translations.json`. ~40% coverage for Bad Bunny.
 2. **Gemini** (expensive): Cached in `sentence_translations.json`. Only called for lines Genius doesn't cover.
 
-The `example_translations.json` layer tracks provenance: `source: "genius"|"gemini"`.
+The `example_translations.json` layer tracks provenance: `source: "genius"|"gemini"|"google"`.
+
+**Cost-optimized workflow**: For new artists, use `translate_sentences_google.py` (free) for all lines, then `judge_translations.py` to score quality and re-translate only bad ones via Gemini (~15-20% of lines). Flags lines scoring <=2 by default (`--threshold` to adjust). Use `--judge-only` to inspect scores before committing to re-translation.
+
+## Provenance Tracking
+
+Layer files track the method/source that produced each piece of data:
+- `example_translations.json`: `source` field — `"genius"`, `"gemini"`, or `"google"`
+- `sense_assignments.json`: `method` field — `"gemini"`, `"biencoder"`, or `"keyword"`
+- `senses_gemini.json`: `source` field — `"gemini"` (always)
+- `senses_wiktionary.json` (normal mode): `source` field — `"wiktionary"` or `"jehle"`
+- `translation_scores.json`: Gemini judge scores (1-5) per sentence
 
 ## Adding a New Artist
 

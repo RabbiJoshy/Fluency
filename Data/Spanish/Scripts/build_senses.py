@@ -334,6 +334,7 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
             results.append({
                 "pos": pos,
                 "translation": gloss,
+                "source": "wiktionary",
             })
             count_for_pos += 1
 
@@ -722,7 +723,7 @@ def main():
             if conj_translations:
                 lemma_lower = lemma.lower()
                 if lemma_lower in conj_translations:
-                    senses = [{"pos": "VERB", "translation": conj_translations[lemma_lower]}]
+                    senses = [{"pos": "VERB", "translation": conj_translations[lemma_lower], "source": "jehle"}]
                     output[key] = senses
                     stats["matched"] += 1
                     stats["jehle_fallback"] += 1

@@ -1377,7 +1377,7 @@ def _write_layer_files(pipeline_dir, final_entries, all_words, word_progress,
         for m_idx, meaning in enumerate(meanings):
             pos = meaning.get("pos", "X")
             translation = meaning.get("translation", "")
-            senses_list.append({"pos": pos, "translation": translation})
+            senses_list.append({"pos": pos, "translation": translation, "source": "gemini"})
 
             # Map examples back to indices in examples_raw
             idx_map = word_example_indices.get(word, {})
@@ -1390,6 +1390,7 @@ def _write_layer_files(pipeline_dir, final_entries, all_words, word_progress,
             assignments_list.append({
                 "sense_idx": m_idx,
                 "examples": example_indices,
+                "method": "gemini",
             })
 
         if senses_list:

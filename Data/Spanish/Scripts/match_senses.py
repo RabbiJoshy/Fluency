@@ -342,12 +342,13 @@ def classify_with_gemini(work_items, output, english_only=False):
             assignments.append({
                 "sense_idx": i,
                 "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices,
+                "method": "gemini",
             })
 
         if not assignments:
             indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING)
                                  if MAX_EXAMPLES_PER_MEANING else len(examples)))
-            assignments = [{"sense_idx": 0, "examples": indices}]
+            assignments = [{"sense_idx": 0, "examples": indices, "method": "gemini"}]
 
         output[word_id] = assignments
 
@@ -460,11 +461,12 @@ def classify_with_biencoder(work_items, output):
             assignments.append({
                 "sense_idx": i,
                 "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices,
+                "method": "biencoder",
             })
 
         if not assignments:
             indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples)))
-            assignments = [{"sense_idx": 0, "examples": indices}]
+            assignments = [{"sense_idx": 0, "examples": indices, "method": "biencoder"}]
 
         output[word_id] = assignments
 
@@ -792,9 +794,9 @@ def main():
                     continue
                 if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
                     continue
-                assignments.append({"sense_idx": i, "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices})
+                assignments.append({"sense_idx": i, "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices, "method": "keyword"})
             if not assignments:
-                assignments = [{"sense_idx": 0, "examples": list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples)))}]
+                assignments = [{"sense_idx": 0, "examples": list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples))), "method": "keyword"}]
             output[word_id] = assignments
 
     # Seed first-sense fallback for unprocessed multi-sense words so that
