@@ -1980,11 +1980,15 @@
         .spotify-btn {
             display: inline-flex;
             align-items: center;
-            padding: 2px;
+            padding: 6px;
             border: none;
             background: none;
             opacity: 0.85;
             transition: opacity 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .spotify-btn svg {
+            pointer-events: none;
         }
         .spotify-btn:hover {
             opacity: 1;
