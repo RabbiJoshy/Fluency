@@ -48,6 +48,13 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## Data / Pipeline
 
+- **[soon] Move elision resolution before tokenization (M) [artist] [design doc]**
+  Elision merging currently happens in step 5, after step 3 caps examples at 10.
+  Should resolve elisions in a preprocessing pass on raw lyrics so step 3 counts
+  canonical forms directly. Eliminates step 5, gives exact counts, and lets
+  ambiguous elisions (ve'→vez/ves) disambiguate on every occurrence.
+  See [`elision_resolution_refactor.md`](docs/design/prompts/elision_resolution_refactor.md).
+
 - **[soon] Homograph lemma filtering — minor lemma flag (L) [shared] [design doc]**
   When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
   flag the less common lemma pairing so it can be filtered or deprioritized. Currently
