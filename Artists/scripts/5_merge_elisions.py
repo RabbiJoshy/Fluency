@@ -47,6 +47,78 @@ D_ELISION_I_RE = re.compile(r"^(.+)í'o$")    # captures stem before í'o
 # Words ending in -a'o/-í'o that are NOT d-elisions (keep as-is)
 D_ELISION_EXCEPTIONS = frozenset()
 
+# ---------------------------------------------------------------------------
+# Ambiguous elisions: words where the s-elided form maps to different lemmas
+# depending on context.
+#   ve' → "vez" (noun: time/occasion) vs "ves" (verb: you see)
+#
+# Two disambiguation methods are available:
+#   "preceding_word" — check the word before the elided form (fast, no deps)
+#   "spacy_trf"      — POS-tag with es_dep_news_trf transformer model
+#
+# The preceding-word method scores 10/10 on test data; the transformer gets
+# 7/10 because the non-standard apostrophe token confuses the tagger.
+# Choose "preceding_word" unless you have a reason to switch.
+# ---------------------------------------------------------------------------
+DISAMBIG_METHOD = "preceding_word"   # "preceding_word" or "spacy_trf"
+
+AMBIGUOUS_ELISIONS = {
+    "ve'": {
+        "noun_target": "vez",
+        "verb_target": "ves",          # also the default fallback
+        # preceding_word method: these words before ve' signal "vez"
+        "noun_preceding": frozenset({
+            "una", "otra", "cada", "tal", "última", "primera",
+            "esta", "esa", "la", "qué", "alguna", "cualquier",
+        }),
+        # spacy_trf method: POS tags that map to the noun target
+        "noun_pos": frozenset({"NOUN"}),
+    },
+}
+
+_TOKENIZE_RE = re.compile(r"[\w''\u2019]+", re.UNICODE)
+_spacy_nlp = None  # lazy-loaded only if DISAMBIG_METHOD == "spacy_trf"
+
+
+def _get_spacy_trf():
+    """Lazy-load the spaCy transformer model."""
+    global _spacy_nlp
+    if _spacy_nlp is None:
+        import spacy
+        _spacy_nlp = spacy.load("es_dep_news_trf")
+    return _spacy_nlp
+
+
+def _preceding_word(line, target_form):
+    """Return the lowercased word immediately before target_form in line."""
+    tokens = _TOKENIZE_RE.findall(line.lower())
+    for i, tok in enumerate(tokens):
+        if tok == target_form and i > 0:
+            return tokens[i - 1]
+    return None
+
+
+def _disambiguate_example(amb, word, line):
+    """Decide which target an ambiguous elision example belongs to.
+
+    Returns the target word ("vez" or "ves" for ve').
+    """
+    if DISAMBIG_METHOD == "spacy_trf":
+        nlp = _get_spacy_trf()
+        doc = nlp(line)
+        for tok in doc:
+            if tok.text.lower().rstrip("'\u2019") == word.rstrip("'\u2019"):
+                if tok.pos_ in amb["noun_pos"]:
+                    return amb["noun_target"]
+                return amb["verb_target"]
+        return amb["verb_target"]  # token not found, fallback
+
+    # preceding_word method (default)
+    prev = _preceding_word(line, word)
+    if prev in amb["noun_preceding"]:
+        return amb["noun_target"]
+    return amb["verb_target"]
+
 
 def d_elision_canonical(word):
     """If word is a d-elision, return (canonical_form, display_form). Else None."""
@@ -107,6 +179,36 @@ def merge_evidence(data: list, targets: dict) -> list:
         word = entry["word"]
         count = entry.get("corpus_count", 0)
         examples = entry.get("examples", [])
+
+        # Check for ambiguous elisions that need per-example splitting
+        if word in AMBIGUOUS_ELISIONS and word in targets:
+            amb = AMBIGUOUS_ELISIONS[word]
+            display = targets[word]["display_form"]
+            # Route each example to its target and tally per-target counts
+            target_example_counts = defaultdict(int)
+            for ex in examples:
+                key = _disambiguate_example(amb, word, ex.get("line", ""))
+                groups[key]["display_form"] = display
+                groups[key]["examples"].append(ex)
+                target_example_counts[key] += 1
+            # Distribute the TOTAL corpus count proportionally based on
+            # the ratio observed in examples, so frequency stats stay accurate.
+            n_examples = len(examples)
+            if n_examples > 0:
+                for tgt, ex_count in target_example_counts.items():
+                    proportional = round(count * ex_count / n_examples)
+                    groups[tgt]["count"] += proportional
+                    groups[tgt]["variants"][word] = (
+                        groups[tgt]["variants"].get(word, 0) + proportional
+                    )
+            else:
+                # No examples at all — send everything to default
+                fallback = amb["verb_target"]
+                groups[fallback]["count"] += count
+                groups[fallback]["variants"][word] = (
+                    groups[fallback]["variants"].get(word, 0) + count
+                )
+            continue
 
         if word in targets:
             t = targets[word]
@@ -199,6 +301,24 @@ def main():
     print(f"Wrote {len(merged)} entries -> {OUT_PATH}")
     print(f"  Reduced by {len(data) - len(merged)} entries")
     print(f"  D-elisions merged: {d_elision_count} (-a'o/-í'o forms)")
+    if AMBIGUOUS_ELISIONS:
+        print(f"  Ambiguous elision method: {DISAMBIG_METHOD}")
+
+    # Report ambiguous elision splits
+    for amb_word, amb in AMBIGUOUS_ELISIONS.items():
+        noun_t = amb["noun_target"]
+        verb_t = amb["verb_target"]
+        noun_entry = next((e for e in merged if e["word"] == noun_t), None)
+        verb_entry = next((e for e in merged if e["word"] == verb_t), None)
+        noun_from_amb = 0
+        verb_from_amb = 0
+        if noun_entry and noun_entry.get("variants"):
+            noun_from_amb = noun_entry["variants"].get(amb_word, 0)
+        if verb_entry and verb_entry.get("variants"):
+            verb_from_amb = verb_entry["variants"].get(amb_word, 0)
+        if noun_from_amb or verb_from_amb:
+            print(f"  Ambiguous '{amb_word}' split: "
+                  f"{noun_from_amb} → {noun_t}, {verb_from_amb} → {verb_t}")
 
     # Show top merged entries
     print("\n=== Top 20 merged entries ===")

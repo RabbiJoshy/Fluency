@@ -1003,17 +1003,12 @@
   },
   {
     "action": "merge",
-    "merge_type": "same_word_dup",
-    "word": "toy",
-    "target_word": "toy",
-    "display_form": "toy",
-    "target_lemma": "tar",
-    "combined_ppm": 477.15097490619644,
-    "current_lemmas": [
-      "tar",
-      "toy"
-    ],
-    "also_in_elision_merge": false
+    "merge_type": "elision_pair",
+    "elided_word": "toy",
+    "full_word": "estoy",
+    "target_word": "estoy",
+    "display_form": "'toy",
+    "target_lemma": "estar"
   },
   {
     "action": "merge",
