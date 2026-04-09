@@ -262,8 +262,7 @@ def main():
         for m in mwe_by_word_id[wid]:
             mf = m.get("corpus_freq", 0)
             ratio = mf / wf
-            if ratio >= MIN_FREQ_RATIO or mf == 0:
-                # Keep if above threshold, or if freq=0 (no corpus data to judge)
+            if ratio >= MIN_FREQ_RATIO:
                 filtered.append(m)
             else:
                 ratio_removed += 1
