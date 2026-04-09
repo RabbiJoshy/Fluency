@@ -661,15 +661,17 @@ async function renderRangeSelector() {
             const estimate = levelEstimates[selectedLanguage] || 0;
             isMastered = wordsInRange.every(item => {
                 if (item.rank <= estimate) return true;
-                const progress = progressData[getWordId(item)];
-                return progress && Number(progress.correct) > 0 && progress.language === selectedLanguage;
+                return isWordKnown(getWordId(item));
             });
 
             if (!isMastered) {
                 isAttempted = wordsInRange.some(item => {
-                    const progress = progressData[getWordId(item)];
-                    return progress && progress.language === selectedLanguage &&
-                           (Number(progress.correct) > 0 || Number(progress.wrong) > 0);
+                    const id = getWordId(item);
+                    const crossId = getCrossModeId(id);
+                    const p = progressData?.[id];
+                    const cp = crossId ? progressData?.[crossId] : null;
+                    return (p && p.language === selectedLanguage && (Number(p.correct) > 0 || Number(p.wrong) > 0))
+                        || (cp && cp.language === selectedLanguage && (Number(cp.correct) > 0 || Number(cp.wrong) > 0));
                 });
             }
         }
@@ -917,12 +919,9 @@ function showTotalStatsModal() {
         for (const item of vocab) {
             const freq = item.corpus_count || 1;
             totalFreq += freq;
-            const fullId = getWordId(item);
-            const progress = progressData[fullId];
-            if (progress && progress.language === selectedLanguage) {
-                const lc = progress.lastCorrect ? new Date(progress.lastCorrect).getTime() : 0;
-                const lw = progress.lastWrong ? new Date(progress.lastWrong).getTime() : 0;
-                if (lc > 0 && lc >= lw) { coveredFreq += freq; coveredCount++; }
+            if (isWordKnown(getWordId(item))) {
+                coveredFreq += freq;
+                coveredCount++;
             }
         }
         const coverageType = activeArtist ? 'lyrics' : 'speech';

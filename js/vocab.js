@@ -279,6 +279,7 @@ async function loadVocabularyData(rangeString) {
 
         // Count total in range before mastered filtering
         const totalInRange = filteredData.length;
+        const allInRange = filteredData.slice(); // preserve for "study anyway"
 
         // Filter out words the user has already got correct (for logged-in users),
         // including words covered by the level estimate high-water mark.
@@ -474,13 +475,20 @@ async function loadVocabularyData(rangeString) {
 
         if (filteredData.length === 0) {
             // Check if this is because all words are mastered
-            if (currentUser && !currentUser.isGuest && progressData) {
-                alert('You\'ve already mastered all words in this set! Choose another set or use the "Refresh Set" option in settings to reset your progress.');
+            if (currentUser && !currentUser.isGuest && progressData && allInRange.length > 0) {
+                const studyAnyway = confirm('You\'ve already mastered all words in this set! Press OK to study them again, or Cancel to choose another set.');
+                if (studyAnyway) {
+                    filteredData = allInRange;
+                    excludedMastered = 0;
+                } else {
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    return;
+                }
             } else {
                 alert('No flashcards found in this range. Please try another set.');
+                document.getElementById('loadingMessage').style.display = 'none';
+                return;
             }
-            document.getElementById('loadingMessage').style.display = 'none';
-            return;
         }
 
         // Build exclusion summary message (only report in-range exclusions)
