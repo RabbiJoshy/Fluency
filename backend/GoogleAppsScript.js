@@ -16,6 +16,10 @@ function doPost(e) {
       return loadProgress(params);
     } else if (action === 'delete') {
       return deleteProgress(params);
+    } else if (action === 'dump') {
+      return dumpSheet(params);
+    } else if (action === 'bulkSave') {
+      return bulkSave(params);
     } else {
       return createResponse(false, 'Invalid action');
     }
@@ -159,6 +163,23 @@ function deleteProgress(params) {
 }
 
 /**
+ * Dump all rows from a sheet (unfiltered, for local backup/debug)
+ */
+function dumpSheet(params) {
+  const sheetName = params.sheet || 'UserProgress';
+  const sheetObj = getOrCreateSheet(sheetName);
+  const data = sheetObj.getDataRange().getValues();
+
+  const headers = data[0] || [];
+  const rows = [];
+  for (let i = 1; i < data.length; i++) {
+    rows.push(data[i]);
+  }
+
+  return createResponse(true, 'Sheet dumped successfully', { headers: headers, rows: rows });
+}
+
+/**
  * Get or create the sheet
  */
 function getOrCreateSheet(sheetName) {
@@ -185,33 +206,55 @@ function getOrCreateSheet(sheetName) {
 }
 
 /**
- * One-time migration: remap old rank-based wordIds to new md5-based wordIds.
- * Call from Apps Script editor: migrateWordIds(mapping, 'UserProgress')
- *
- * @param {Object} mapping - {oldHexId: newHexId} e.g. {"0001":"ed68","0002":"cb97"}
- * @param {string} sheetName - 'UserProgress' or 'Lyrics'
- * @param {string} langPrefix - 2-char lang code + mode digit, e.g. 'es0' for Spanish normal
+ * Bulk save rows to a sheet (for migrations/push from local)
  */
-function migrateWordIds(mapping, sheetName, langPrefix) {
-  const sheet = getOrCreateSheet(sheetName);
-  const data = sheet.getDataRange().getValues();
-  let updated = 0;
+function bulkSave(params) {
+  const { rows, sheet } = params;
+  const sheetName = sheet || 'UserProgress';
 
+  if (!rows || !Array.isArray(rows) || rows.length === 0) {
+    return createResponse(false, 'Missing or empty rows array');
+  }
+
+  const sheetObj = getOrCreateSheet(sheetName);
+  const data = sheetObj.getDataRange().getValues();
+
+  // Build lookup: user+wordId → row index (1-based)
+  const lookup = {};
   for (let i = 1; i < data.length; i++) {
-    const wordId = String(data[i][2]);
-    // Only remap wordIds matching the target prefix (e.g. "es0")
-    if (wordId.startsWith(langPrefix)) {
-      const oldHex = wordId.slice(langPrefix.length);
-      if (mapping[oldHex]) {
-        const newWordId = langPrefix + mapping[oldHex];
-        sheet.getRange(i + 1, 3).setValue(newWordId);
-        updated++;
-      }
+    const key = data[i][0] + '|' + data[i][2];
+    lookup[key] = i + 1;
+  }
+
+  let updated = 0;
+  let inserted = 0;
+
+  for (const row of rows) {
+    const { user, word, wordId, language, correct, wrong, lastCorrect, lastWrong } = row;
+    if (!user || wordId === undefined) continue;
+
+    const key = user + '|' + wordId;
+    const values = [
+      user,
+      word || '',
+      wordId,
+      language || '',
+      correct || 0,
+      wrong || 0,
+      lastCorrect || '',
+      lastWrong || ''
+    ];
+
+    if (lookup[key]) {
+      sheetObj.getRange(lookup[key], 1, 1, 8).setValues([values]);
+      updated++;
+    } else {
+      sheetObj.appendRow(values);
+      inserted++;
     }
   }
 
-  Logger.log('Migrated ' + updated + ' rows in ' + sheetName + ' for prefix ' + langPrefix);
-  return updated;
+  return createResponse(true, 'Bulk save complete: ' + updated + ' updated, ' + inserted + ' inserted');
 }
 
 /**
