@@ -237,7 +237,8 @@ async function loadVocabularyData(rangeString) {
                 if (item.rank <= estimate) return false;
                 const progress = progressData[getWordId(item)];
                 // Keep the word if no progress exists, or if correct is 0 or undefined
-                return !progress || !progress.correct || progress.correct === 0 || progress.language !== selectedLanguage;
+                // Use Number() because progress values may be strings from Google Sheets
+                return !progress || Number(progress.correct) === 0 || progress.language !== selectedLanguage;
             });
             excludedMastered = beforeMastered - filteredData.length;
             if (excludedMastered > 0) {

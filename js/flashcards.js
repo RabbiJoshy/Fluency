@@ -879,6 +879,8 @@ async function goBackToSetup() {
             if (cognateFieldAvailable) {
                 document.getElementById('cognateToggleContainer').style.display = 'block';
             }
+            // Re-render range selector so "Choose Set" reappears
+            renderRangeSelector();
         } else {
             // Level no longer exists (e.g., switched from CEFR to percentage mode)
             // Reset selectedLevel and hide subsequent steps
@@ -1092,11 +1094,15 @@ function updateCard() {
                 </div>
                 `;
             } else {
-                // Regular meaning row: unified pill [POS | %] on left, translation on right
+                // Regular meaning row: POS pill absolute-left, translation centered
+                const pctVal = Math.round(m.percentage * 100);
+                const posPill = pctVal >= 100
+                    ? `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos}</span>`
+                    : `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos} <span style="opacity: 0.6;">|</span> ${pctVal}%</span>`;
                 backHTML += `
-                <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;">${m.pos} <span style="opacity: 0.6;">|</span> ${Math.round(m.percentage * 100)}%</span>
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; flex: 1; margin-left: 10px;">${displayMeaning}</span>
+                <div style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                    ${posPill}
+                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}</span>
                 </div>
                 `;
             }

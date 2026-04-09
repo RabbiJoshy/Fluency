@@ -14,6 +14,18 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        // Hide body instantly in artist mode to prevent flash of normal-mode UI
+        if (new URLSearchParams(window.location.search).get('artist') ||
+            new URLSearchParams(window.location.search).get('mode') === 'badbunny') {
+            document.documentElement.classList.add('artist-loading');
+            // Safety: always reveal after 4s even if init hangs
+            setTimeout(function() { document.documentElement.classList.remove('artist-loading'); }, 4000);
+        }
+    </script>
+    <style>
+        .artist-loading body { visibility: hidden; }
+    </style>
 </head>
 <body>
     <!-- User Info Display -->
@@ -43,7 +55,7 @@
     </div>
 
     <div class="container">
-        <div class="file-upload" id="setupPanel">
+        <div class="file-upload" id="setupPanel"
             <!-- Top bar: How to start, Estimate Level, gear (shared by both modes) -->
             <div id="topBar" class="setup-step">
                 <div class="step-header top-bar-header">
@@ -84,11 +96,11 @@
                     <span class="personal-progress-title">Your progress</span>
                     <button class="step-help-btn" data-tooltip="personalProgressTooltip" title="Help">?</button>
                     <span id="personalCoverageLabel" class="personal-progress-info"></span>
-                    <div id="personalProgressTooltip" class="step-info-tooltip">
+                    <div id="personalProgressTooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p>Coverage is weighted by word frequency. Common words like "que" and "de" appear thousands of times, so knowing just the top 10% of words can cover 50%+ of actual lyrics.</p>
                         <p>This means your coverage percentage will be much higher than the fraction of total words you've learned — that's expected and reflects real comprehension.</p>
                         <p>The count adjusts as you change filters below — using lemma mode or excluding cognates changes which words are eligible.</p>
-                    </div>
+                    </div></div>
                 </div>
                 <div class="coverage-bar-container">
                     <div id="personalCoverageFill" class="coverage-bar-fill personal-coverage-fill"></div>
@@ -103,10 +115,10 @@
                     <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
                     <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
                     <button class="percent-mode-btn" id="percentModeBtn">% Mode</button>
-                    <div id="step2Tooltip" class="step-info-tooltip">
+                    <div id="step2Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
                         <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
-                    </div>
+                    </div></div>
                 </div>
                 <div id="levelSelector" class="level-selector"></div>
             </div>
@@ -118,11 +130,11 @@
                     <span class="step-title">Cards per Lemma</span>
                     <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
                     <span id="lemmaInfoLine" class="level-info-line" style="display: none;"></span>
-                    <div id="step3Tooltip" class="step-info-tooltip">
+                    <div id="step3Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p><strong>Lemma</strong> = the base/dictionary form of a word. For example, "correr" is the lemma for "corre", "corrí", "corriendo"; "casa" is the lemma for "casas".</p>
                         <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
                         <p><strong>1+</strong> = See all forms including conjugations and declensions (e.g., "run", "runs", "ran", "running"), which helps with recognition of different word forms in context.</p>
-                    </div>
+                    </div></div>
                 </div>
                 <div id="lemmaToggleSelector" class="group-size-selector">
                     <button class="lemma-toggle-btn selected" data-lemma="on" data-short="1" data-full="1 card per lemma">1 card per lemma</button>
@@ -137,12 +149,12 @@
                     <span class="step-title">Exclude Cognates</span>
                     <button class="step-help-btn" data-tooltip="cognateTooltip" title="Help">?</button>
                     <span id="cognateInfoLine" class="level-info-line" style="display: none;"></span>
-                    <div id="cognateTooltip" class="step-info-tooltip">
+                    <div id="cognateTooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
                         <p><strong>Include</strong> = Show all words, including cognates.</p>
                         <p><strong>Exclude</strong> = Skip transparent cognates to focus on words that require more effort to learn.</p>
                         <button class="tooltip-detail-btn" id="cognateRulesBtn">More Detail →</button>
-                    </div>
+                    </div></div>
                 </div>
                 <div id="cognateToggleSelector" class="group-size-selector">
                     <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
@@ -156,11 +168,11 @@
                     <span class="step-number" id="rangeStepNumber">5</span>
                     <span class="step-title">Choose Set</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
-                    <div id="step5Tooltip" class="step-info-tooltip">
+                    <div id="step5Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
                         <p>Set size (25 or 50 cards) can be changed in Settings.</p>
                         <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
-                    </div>
+                    </div></div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
             </div>
@@ -535,6 +547,7 @@
                 <div class="settings-tabs">
                     <button class="settings-tab active" data-tab="account">Account</button>
                     <button class="settings-tab" data-tab="settings">Settings</button>
+                    <button class="settings-tab" data-tab="artists" id="artistsTabBtn" style="display: none;">Artists</button>
                 </div>
                 <button class="modal-close" id="closeSettingsModal">✕</button>
             </div>
@@ -555,12 +568,7 @@
                     <span>Hide single-occurrence words</span>
                     <span id="hideSingleOccStatus" style="color: var(--accent-primary);">ON</span>
                 </div>
-                <div id="artistSelectionSection" style="display: none;">
-                    <div class="stat-row" style="font-weight: 600; color: var(--accent-primary); padding-top: 8px;">
-                        <span>Active Artists</span>
-                    </div>
-                    <div id="artistCheckboxes" style="padding: 4px 0;"></div>
-                </div>
+                <!-- Artist selection moved to its own tab -->
                 <div class="stat-row" style="cursor: pointer; display: none;" id="refreshSetToggle">
                     <span>Refresh this study set</span>
                     <span style="color: var(--warning);">
@@ -594,6 +602,12 @@
                         </svg>
                     </span>
                 </div>
+            </div>
+            <!-- Artists tab content -->
+            <div class="settings-tab-content" id="artistsTabContent">
+                <div id="artistPrimarySection" style="padding: 4px 0;"></div>
+                <div style="padding: 8px 0 4px; color: var(--text-muted); font-size: 13px;">Add to mix</div>
+                <div id="artistSecondarySection" style="padding: 4px 0;"></div>
             </div>
         </div>
     </div>

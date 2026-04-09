@@ -3,7 +3,7 @@
 import './state.js';
 
 function setupTooltipHandlers() {
-    // Step help tooltip handlers
+    // Step help tooltip handlers — open as modal
     document.querySelectorAll('.step-help-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -12,23 +12,18 @@ function setupTooltipHandlers() {
 
             // Close all other tooltips first
             document.querySelectorAll('.step-info-tooltip').forEach(t => {
-                if (t.id !== tooltipId) {
-                    t.classList.remove('visible');
-                }
+                if (t.id !== tooltipId) t.classList.remove('visible');
             });
 
-            // Toggle this tooltip
             tooltip.classList.toggle('visible');
         });
     });
 
-    // Close tooltips when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.step-help-btn') && !e.target.closest('.step-info-tooltip')) {
-            document.querySelectorAll('.step-info-tooltip').forEach(t => {
-                t.classList.remove('visible');
-            });
-        }
+    // Close tooltip modal on backdrop click (click on outer overlay, not inner content)
+    document.querySelectorAll('.step-info-tooltip').forEach(tooltip => {
+        tooltip.addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('visible');
+        });
     });
 
     // Cognate rules modal
@@ -345,9 +340,9 @@ function updateLevelInfoLine(btn) {
     const freqLabel = activeArtist ? 'corpus count' : 'frequency';
 
     if (activeArtist) {
-        infoLine.innerHTML = endRank.toLocaleString() + ' words<br>Words appear ' + minFreq + '+ times';
+        infoLine.innerHTML = 'Most common ' + endRank.toLocaleString() + ' words<br>Words appear ' + minFreq + '+ times';
     } else {
-        infoLine.innerHTML = endRank.toLocaleString() + ' words<br>Frequency \u2265 ' + minFreq;
+        infoLine.innerHTML = 'Most common ' + endRank.toLocaleString() + ' words<br>Frequency \u2265 ' + minFreq;
     }
     infoLine.style.display = 'block';
 }
@@ -571,6 +566,19 @@ function applyLanguageColorTheme() {
             return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 0, 0';
         };
 
+        // WCAG relative luminance — returns 0 (black) to 1 (white)
+        const luminance = (hex) => {
+            const [r, g, b] = hex.replace('#', '').match(/.{2}/g).map(x => {
+                const c = parseInt(x, 16) / 255;
+                return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+            });
+            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        };
+
+        const bgPrimary = getComputedStyle(root).getPropertyValue('--bg-primary').trim() || '#0f0f1a';
+        root.style.setProperty('--accent-primary-text', luminance(langConfig.colorTheme.primary) < 0.4 ? '#ffffff' : bgPrimary);
+        root.style.setProperty('--accent-secondary-text', luminance(langConfig.colorTheme.secondary) < 0.4 ? '#ffffff' : bgPrimary);
+
         root.style.setProperty('--accent-primary-rgb', hexToRgb(langConfig.colorTheme.primary));
         root.style.setProperty('--accent-secondary-rgb', hexToRgb(langConfig.colorTheme.secondary));
     }
@@ -610,9 +618,21 @@ async function renderRangeSelector() {
         console.error('Failed to load vocabulary data:', error);
     }
 
-    const { vocab: lemmaFilteredVocab } = buildFilteredVocab(vocabularyData);
+    const { vocab: lemmaFilteredVocab, counts: filterCounts } = buildFilteredVocab(vocabularyData);
 
-    // Now slice to this level's range
+    // Update lemma info line with exclusion count
+    const lemmaInfo = document.getElementById('lemmaInfoLine');
+    if (lemmaInfo) {
+        if (filterCounts.lemma > 0) {
+            lemmaInfo.textContent = filterCounts.lemma.toLocaleString() + ' flashcards excluded';
+            lemmaInfo.style.display = '';
+        } else {
+            lemmaInfo.style.display = 'none';
+        }
+    }
+
+    // Slice to this level's range using original rank (pre-filter position)
+    // to determine which display-rank span this level covers
     const wordsInLevel = lemmaFilteredVocab.filter(item =>
         item.rank >= minWord && item.rank < maxWord
     );
@@ -625,11 +645,13 @@ async function renderRangeSelector() {
     const minDisplayRank = wordsInLevel[0].displayRank;
     const maxDisplayRank = wordsInLevel[wordsInLevel.length - 1].displayRank;
 
-    // Generate range buttons using corpus-wide display ranks
+    // Generate range buttons using corpus-wide display ranks.
+    // Mastery checks must use the same displayRank-based selection that
+    // loadVocabularyData() uses when the button is clicked.
     const ranges = [];
     for (let i = minDisplayRank; i <= maxDisplayRank; i += groupSize) {
         const rangeEnd = Math.min(i + groupSize, maxDisplayRank + 1);
-        const wordsInRange = wordsInLevel.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
+        const wordsInRange = lemmaFilteredVocab.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
         const hasData = wordsInRange.length > 0;
 
         // Check mastery and attempted status
@@ -640,14 +662,14 @@ async function renderRangeSelector() {
             isMastered = wordsInRange.every(item => {
                 if (item.rank <= estimate) return true;
                 const progress = progressData[getWordId(item)];
-                return progress && progress.correct > 0 && progress.language === selectedLanguage;
+                return progress && Number(progress.correct) > 0 && progress.language === selectedLanguage;
             });
 
             if (!isMastered) {
                 isAttempted = wordsInRange.some(item => {
                     const progress = progressData[getWordId(item)];
                     return progress && progress.language === selectedLanguage &&
-                           ((progress.correct && progress.correct > 0) || (progress.wrong && progress.wrong > 0));
+                           (Number(progress.correct) > 0 || Number(progress.wrong) > 0);
                 });
             }
         }
@@ -850,6 +872,7 @@ function showSettingsModalWithTab(tabName) {
     document.querySelector(`.settings-tab[data-tab="${tabName}"]`).classList.add('active');
     document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
     const tabContentId = tabName === 'settings' ? 'settingsTabContent' :
+                         tabName === 'artists' ? 'artistsTabContent' :
                          tabName === 'stats' ? 'statsTabContent' : 'accountTabContent';
     document.getElementById(tabContentId).classList.add('active');
 
@@ -983,6 +1006,15 @@ function openHelpModal() {
     modal.classList.remove('hidden');
 }
 
+function get70pctWordCount() {
+    const ranges = getPercentageLevelRanges();
+    const level70 = ranges.find(r => r.level === '70%');
+    if (level70) {
+        return `With only ${level70.endRank.toLocaleString()} words, you know enough to understand roughly 70% of the words in any song. That's what's meant by 70% coverage.`;
+    }
+    return `For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. That's what's meant by 70% coverage.`;
+}
+
 function getArtistHelpContent() {
     const name = activeArtist.name || 'this artist';
     return `
@@ -991,7 +1023,7 @@ function getArtistHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of speech. By learning the most frequent words first, you understand more lyrics faster.</p>
         <p><strong>How are percentages calculated?</strong></p>
-        <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. The remaining 30% are rarer words that appear less often.</p>
+        <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
         <p>Each word is ranked by how many times it appears across the entire discography. The app groups these into sets of 25. You work through sets in order, and each card shows the word with real lyric examples from songs where it appears.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
@@ -1048,53 +1080,113 @@ window.updateTotalStatsButtonVisibility = updateTotalStatsButtonVisibility;
 window.updateStatsModal = updateStatsModal;
 window.setupArtistSelection = setupArtistSelection;
 
-// Multi-artist selection UI in the settings modal
+// Multi-artist selection UI in the settings modal (Artists tab)
 function setupArtistSelection() {
-    const section = document.getElementById('artistSelectionSection');
-    const container = document.getElementById('artistCheckboxes');
-    if (!section || !container || !activeArtist) return;
+    const primaryContainer = document.getElementById('artistPrimarySection');
+    const secondaryContainer = document.getElementById('artistSecondarySection');
+    const tabBtn = document.getElementById('artistsTabBtn');
+    if (!primaryContainer || !secondaryContainer || !activeArtist) return;
 
-    // allArtistsConfig is set in main.js during resolveArtist()
     const artists = window._allArtistsConfig;
     if (!artists) return;
 
-    section.style.display = 'block';
-    container.innerHTML = '';
+    // Show the Artists tab
+    if (tabBtn) tabBtn.style.display = '';
+
+    primaryContainer.innerHTML = '';
+    secondaryContainer.innerHTML = '';
 
     const urlArtistSlug = window._urlArtistSlug;
 
     for (const [slug, cfg] of Object.entries(artists)) {
         const isPrimary = slug === urlArtistSlug;
-        const row = document.createElement('div');
-        row.className = 'stat-row';
-        row.style.cursor = isPrimary ? 'default' : 'pointer';
 
-        const label = document.createElement('span');
-        label.textContent = cfg.name;
-        if (isPrimary) label.style.opacity = '0.7';
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = isPrimary || window._selectedArtistSlugs.includes(slug);
-        checkbox.dataset.slug = slug;
-        checkbox.style.accentColor = 'var(--accent-primary)';
-
-        // Primary artist is always selected — can't be unchecked
         if (isPrimary) {
-            checkbox.disabled = true;
-            checkbox.style.opacity = '0.7';
+            // Primary: highlighted row, not clickable
+            const row = document.createElement('div');
+            row.className = 'stat-row artist-primary-row';
+            row.innerHTML = `<span>${cfg.name}</span>`;
+            primaryContainer.appendChild(row);
+        } else {
+            // Other artists: tappable to switch primary
+            const row = document.createElement('div');
+            row.className = 'stat-row artist-switch-row';
+            row.style.cursor = 'pointer';
+            row.innerHTML = `<span>${cfg.name}</span>`;
+            row.addEventListener('click', () => switchPrimaryArtist(slug));
+            primaryContainer.appendChild(row);
         }
 
-        row.appendChild(label);
-        row.appendChild(checkbox);
+        // Secondary section: toggles for non-primary artists
         if (!isPrimary) {
-            row.addEventListener('click', (e) => {
-                if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
+            const toggleRow = document.createElement('div');
+            toggleRow.className = 'stat-row';
+            toggleRow.style.cursor = 'pointer';
+
+            const label = document.createElement('span');
+            label.textContent = cfg.name;
+
+            const toggle = document.createElement('span');
+            const isSelected = window._selectedArtistSlugs.includes(slug);
+            toggle.style.color = isSelected ? 'var(--accent-primary)' : 'var(--text-muted)';
+            toggle.textContent = isSelected ? 'ON' : 'OFF';
+            toggle.dataset.slug = slug;
+
+            toggleRow.appendChild(label);
+            toggleRow.appendChild(toggle);
+            toggleRow.addEventListener('click', () => {
+                const nowSelected = !window._selectedArtistSlugs.includes(slug);
+                if (nowSelected) {
+                    window._selectedArtistSlugs.push(slug);
+                } else {
+                    window._selectedArtistSlugs = window._selectedArtistSlugs.filter(s => s !== slug);
+                }
+                toggle.textContent = nowSelected ? 'ON' : 'OFF';
+                toggle.style.color = nowSelected ? 'var(--accent-primary)' : 'var(--text-muted)';
                 onArtistSelectionChange();
             });
+            secondaryContainer.appendChild(toggleRow);
         }
-        container.appendChild(row);
     }
+}
+
+function switchPrimaryArtist(newSlug) {
+    const allConfigs = window._allArtistsConfig;
+    const newConfig = allConfigs[newSlug];
+    if (!newConfig) return;
+
+    // Update the primary artist globals
+    window._urlArtistSlug = newSlug;
+    activeArtist = newConfig;
+
+    // Reset to only the new primary (clear secondaries)
+    window._selectedArtistSlugs = [newSlug];
+
+    // Update URL without reload
+    const url = new URL(window.location);
+    url.searchParams.set('artist', newSlug);
+    history.replaceState(null, '', url);
+
+    // Update config with new artist's paths and colors
+    const lang = newConfig.language || 'spanish';
+    config.languages[lang] = {
+        ...config.languages[lang],
+        name: `${config.languages[lang].name.replace(/\s*\(.*\)$/, '')} (${newConfig.name})`,
+        dataPath: newConfig.dataPath,
+        indexPath: newConfig.indexPath || newConfig.dataPath,
+        examplesPath: newConfig.examplesPath || null,
+        masterPath: newConfig.masterPath || null,
+        ppmDataPath: null,
+        colorTheme: newConfig.colorTheme || config.languages[lang].colorTheme
+    };
+    document.title = `${newConfig.name} Vocabulary`;
+
+    // Re-apply color theme and re-render checkboxes
+    applyLanguageColorTheme();
+    setupArtistSelection();
+
+    // Trigger full vocabulary reload (cache invalidation + UI reset)
+    onArtistSelectionChange();
 }
 
 function onArtistSelectionChange() {

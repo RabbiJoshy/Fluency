@@ -128,25 +128,30 @@ loadConfig().then(async () => {
 
     // In artist mode, auto-select the artist's language and skip language selection
     if (activeArtist) {
-        selectedLanguage = activeArtist.language || 'spanish';
-        applyLanguageColorTheme();
-        // Hide step 1 entirely (language auto-selected)
-        document.getElementById('step1').style.display = 'none';
-        // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
-        document.querySelector('#step2 .step-number').textContent = '1';
-        document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
-        document.querySelector('#cognateToggleContainer .step-number').textContent = '3';
-        await loadPpmData(activeArtist.language || 'spanish');
-        document.getElementById('step2').style.display = 'block';
-        document.getElementById('step2Title').textContent = 'Choose Level';
-        document.getElementById('percentModeBtn').style.display = 'none';
-        updateStep2Tooltip();
-        updateStep5Tooltip();
-        await updateLemmaToggleVisibility();
-        await updateCognateToggleVisibility();
-        renderLevelSelector(activeArtist.language || 'spanish');
-        await updateExclusionBars();
-        setupArtistSelection();
+        try {
+            selectedLanguage = activeArtist.language || 'spanish';
+            applyLanguageColorTheme();
+            // Hide step 1 entirely (language auto-selected)
+            document.getElementById('step1').style.display = 'none';
+            // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
+            document.querySelector('#step2 .step-number').textContent = '1';
+            document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
+            document.querySelector('#cognateToggleContainer .step-number').textContent = '3';
+            await loadPpmData(activeArtist.language || 'spanish');
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('step2Title').textContent = 'Choose Level';
+            document.getElementById('percentModeBtn').style.display = 'none';
+            updateStep2Tooltip();
+            updateStep5Tooltip();
+            await updateLemmaToggleVisibility();
+            await updateCognateToggleVisibility();
+            renderLevelSelector(activeArtist.language || 'spanish');
+            await updateExclusionBars();
+            setupArtistSelection();
+        } finally {
+            // Always reveal body, even if something above threw
+            document.documentElement.classList.remove('artist-loading');
+        }
     }
 });
 

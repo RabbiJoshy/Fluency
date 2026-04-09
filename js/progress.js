@@ -159,7 +159,7 @@ function updatePersonalCoverage(filteredVocab) {
 
     const coverageType = activeArtist ? 'lyrics' : 'speech';
     const wordPct = (coveredCount / filteredVocab.length * 100).toFixed(1);
-    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} understood<br>${wordPct}% words understood`;
+    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} understood<br>${wordPct}% flashcards learned`;
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
