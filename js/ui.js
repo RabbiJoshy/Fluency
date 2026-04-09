@@ -1033,9 +1033,9 @@ function getArtistHelpContent() {
 function getNormalHelpContent() {
     return `
         <p><strong>What is this?</strong></p>
-        <p>This app teaches you vocabulary by frequency — starting with the most common words and working toward the least common.</p>
+        <p>This app teaches you vocabulary by its frequency in speech.</p>
         <p><strong>Why frequency order?</strong></p>
-        <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. Studies show that the top 1,000 words cover roughly 80% of spoken language, and the top 3,000 cover around 95%. By learning frequent words first, you build practical comprehension faster.</p>
+        <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
         <p>Words are ranked by how often they appear in real-world sources like movies, TV, and conversations. The app groups them into sets of 25 and each card includes example sentences to show the word in context.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
