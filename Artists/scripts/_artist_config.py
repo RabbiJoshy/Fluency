@@ -181,3 +181,58 @@ def load_shared_dict(filename, modes=None):
             # Legacy flat format
             result[k] = v
     return result
+
+
+# ---------------------------------------------------------------------------
+# Translation normalization for sense deduplication
+# ---------------------------------------------------------------------------
+
+_SUBJECT_PRONOUNS = frozenset({
+    "i", "you", "he", "she", "it", "we", "they", "he/she", "he/she/it",
+})
+_TRAILING_PRONOUNS = (
+    " myself", " oneself", " himself", " herself",
+    " them", " me", " you", " him", " her", " us", " it",
+)
+
+
+def _strip_english_conjugation(word):
+    # type: (str) -> str
+    """Strip 3rd-person -s/-es/-ies from an English verb."""
+    if len(word) <= 3:
+        return word
+    if word.endswith("ies"):
+        return word[:-3] + "y"
+    if word.endswith(("ches", "shes", "sses", "xes", "zes")):
+        return word[:-2]
+    if word.endswith(("ces", "ges", "ses")):
+        return word[:-1]
+    if word.endswith("oes"):
+        return word[:-2]
+    if word.endswith("s") and not word.endswith("ss"):
+        return word[:-1]
+    return word
+
+
+def normalize_translation(translation):
+    # type: (str) -> str
+    """Normalize an English translation for sense matching.
+
+    Strips case, 'to ' prefix, subject/object pronouns, and English
+    conjugation so that 'you want', 'to want', and 'wants' all match.
+    """
+    t = translation.strip().lower()
+    if t.startswith("to "):
+        t = t[3:]
+    words = t.split()
+    if words and words[0] in _SUBJECT_PRONOUNS:
+        t = " ".join(words[1:])
+    for p in _TRAILING_PRONOUNS:
+        if t.endswith(p):
+            t = t[:len(t) - len(p)].strip()
+            break
+    words = t.split()
+    if words:
+        words[0] = _strip_english_conjugation(words[0])
+        t = " ".join(words)
+    return t

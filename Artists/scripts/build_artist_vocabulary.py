@@ -20,7 +20,7 @@ import os
 import sys
 import argparse
 
-from _artist_config import add_artist_arg, load_artist_config, load_shared_dict
+from _artist_config import add_artist_arg, load_artist_config, load_shared_dict, normalize_translation
 
 
 # ---------------------------------------------------------------------------
@@ -375,11 +375,12 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
         if entry.get("display_form") and not m.get("display_form"):
             m["display_form"] = entry["display_form"]
 
-        # Merge senses into master
+        # Merge senses into master (normalized matching to avoid near-duplicates)
         for meaning in entry.get("meanings", []):
             pos = meaning.get("pos", "X")
             translation = meaning.get("translation", "")
-            exists = any(s["pos"] == pos and s["translation"] == translation for s in m["senses"])
+            norm = normalize_translation(translation)
+            exists = any(s["pos"] == pos and normalize_translation(s["translation"]) == norm for s in m["senses"])
             if not exists:
                 m["senses"].append({"pos": pos, "translation": translation})
                 new_senses += 1

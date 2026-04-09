@@ -125,6 +125,7 @@ function buildFilteredVocab(vocabData) {
     }
     result = result.filter(item => item.meanings.length > 0);
 
+
     const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
 
     // Artist/lyrics mode: skip English loanwords, interjections, proper nouns
@@ -287,6 +288,26 @@ async function loadVocabularyData(rangeString) {
             }
         } else {
             // Fallback: monolith path — examples are inline in vocabularyData
+        }
+
+        // Artist mode: filter sense pills for cleaner display.
+        // Must happen AFTER examples are attached (above) so positional indices are correct,
+        // but BEFORE card building (below) so cards only show relevant senses.
+        if (activeArtist) {
+            const MIN_SENSE_FREQ = 0.05;
+            const MAX_SENSES = 6;
+            for (const item of filteredData) {
+                // Drop zero-frequency senses (unused by this artist/merge)
+                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) > 0);
+                // Drop senses below minimum threshold
+                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) >= MIN_SENSE_FREQ);
+                // Hard cap: keep top N by frequency
+                if (item.meanings.length > MAX_SENSES) {
+                    item.meanings.sort((a, b) => parseFloat(b.frequency) - parseFloat(a.frequency));
+                    item.meanings = item.meanings.slice(0, MAX_SENSES);
+                }
+            }
+            filteredData = filteredData.filter(item => item.meanings.length > 0);
         }
 
         for (const item of filteredData) {

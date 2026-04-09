@@ -56,6 +56,11 @@ below have enough complexity to warrant this treatment when the time comes.
   the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
   reverse lookup to determine which lemma dominates.
 
+- **[idea] Artist sense pipeline: Wiktionary-sourced senses (L) [artist] [design doc]**
+  Switch artist mode from "Gemini invents senses" to "pick from Wiktionary senses + classify."
+  Would eliminate sense proliferation and cross-artist inconsistency. MWEs cover most idiomatic
+  gaps. Gemini fallback only for words Wiktionary doesn't have. See `docs/design/artist_sense_pipeline.md`.
+
 - **[idea] Improve cognate flagger (M) [shared]**
   Converged into `shared/flag_cognates.py`. Could improve: add more suffix rules,
   tune similarity threshold, reduce false positives on short words, add LLM flagging
