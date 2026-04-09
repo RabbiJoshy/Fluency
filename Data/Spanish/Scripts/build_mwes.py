@@ -36,6 +36,7 @@ OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "mwe_phrases.json"
 
 MAX_MWES_PER_WORD = 10
 MAX_TRANSLATION_LEN = 100
+MIN_FREQ_RATIO = 0.02  # MWE must appear in >= 2% of parent word's lines
 SAMPLE_STRIDE = 10  # read every Nth line from OpenSubtitles
 
 MIN_WORDS = 2
@@ -203,12 +204,26 @@ def main():
             key = m["expression"].lower()
             all_expressions.setdefault(key, []).append((wid, i))
 
+    # Build reverse map: word ID -> parent word (for ratio filtering)
+    id_to_word = {}
+    for entry in inventory:
+        id_to_word[entry["id"]] = entry["word"].lower()
+
+    # Collect parent words that need counting (only those with MWEs)
+    parent_words = {}  # word_lower -> set of word IDs
+    for wid in mwe_by_word_id:
+        w = id_to_word.get(wid, "")
+        if w:
+            parent_words.setdefault(w, set()).add(wid)
+
     A = ahocorasick.Automaton()
     for expr in all_expressions:
         A.add_word(expr, expr)
     A.make_automaton()
 
     expr_counts = {e: 0 for e in all_expressions}
+    word_counts = {w: 0 for w in parent_words}
+    parent_word_set = set(parent_words)
     t0 = time.time()
     line_count = 0
     with open(OPENSUBS_FILE, "r", encoding="utf-8", errors="replace") as f:
@@ -217,8 +232,13 @@ def main():
                 continue
             line_count += 1
             low = line.lower()
+            # Count MWE expressions via Aho-Corasick
             for _, expr in A.iter(low):
                 expr_counts[expr] += 1
+            # Count parent words — iterate the smaller set (line tokens)
+            for tok in low.split():
+                if tok in parent_word_set:
+                    word_counts[tok] += 1
 
     elapsed = time.time() - t0
     nonzero = sum(1 for c in expr_counts.values() if c > 0)
@@ -230,6 +250,27 @@ def main():
         freq = expr_counts[expr]
         for wid, idx in pointers:
             mwe_by_word_id[wid][idx]["corpus_freq"] = freq
+
+    # --- Filter by frequency ratio (MWE freq / parent word freq) ---
+    ratio_removed = 0
+    for wid in list(mwe_by_word_id):
+        w = id_to_word.get(wid, "")
+        wf = word_counts.get(w, 0)
+        if wf == 0:
+            continue  # can't compute ratio, keep all
+        filtered = []
+        for m in mwe_by_word_id[wid]:
+            mf = m.get("corpus_freq", 0)
+            ratio = mf / wf
+            if ratio >= MIN_FREQ_RATIO or mf == 0:
+                # Keep if above threshold, or if freq=0 (no corpus data to judge)
+                filtered.append(m)
+            else:
+                ratio_removed += 1
+        mwe_by_word_id[wid] = filtered
+        if not mwe_by_word_id[wid]:
+            del mwe_by_word_id[wid]
+    print(f"  Ratio filter (>={MIN_FREQ_RATIO:.0%} of parent word): removed {ratio_removed}")
 
     # --- Truncate long translations ---
     for mwes in mwe_by_word_id.values():
