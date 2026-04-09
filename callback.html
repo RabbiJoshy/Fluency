@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Spotify Auth</title></head>
+<body>
+<p>Connecting to Spotify…</p>
+<script>
+(async function() {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+
+    if (error || !code) {
+        document.body.textContent = 'Spotify auth error: ' + (error || 'no code received') + '. Full URL: ' + window.location.href;
+        console.error('Spotify callback error:', error, 'Full params:', window.location.search);
+        return;
+    }
+
+    // Auth state is passed via the Spotify `state` param (avoids cross-origin sessionStorage issues)
+    const stateB64 = params.get('state');
+    let codeVerifier, clientId, redirectUri;
+    try {
+        const stateObj = JSON.parse(atob(stateB64));
+        codeVerifier = stateObj.verifier;
+        clientId = stateObj.clientId;
+        redirectUri = stateObj.redirectUri;
+    } catch (e) {
+        // Fallback to sessionStorage for backwards compat
+        codeVerifier = sessionStorage.getItem('spotify_code_verifier');
+        clientId = sessionStorage.getItem('spotify_client_id');
+        redirectUri = sessionStorage.getItem('spotify_redirect_uri');
+    }
+
+    if (!codeVerifier || !clientId) {
+        document.body.textContent = 'Missing auth state. Please try again.';
+        setTimeout(() => { window.location.href = '/'; }, 2000);
+        return;
+    }
+
+    try {
+        const resp = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                grant_type: 'authorization_code',
+                code,
+                redirect_uri: redirectUri,
+                client_id: clientId,
+                code_verifier: codeVerifier
+            })
+        });
+
+        const data = await resp.json();
+        if (!resp.ok) throw new Error(data.error_description || data.error || 'Token exchange failed');
+
+        const tokens = {
+            access_token: data.access_token,
+            refresh_token: data.refresh_token,
+            token_expiry: String(Date.now() + data.expires_in * 1000)
+        };
+
+        // Store locally (same-origin fallback)
+        localStorage.setItem('spotify_access_token', tokens.access_token);
+        localStorage.setItem('spotify_refresh_token', tokens.refresh_token);
+        localStorage.setItem('spotify_token_expiry', tokens.token_expiry);
+
+        // Send tokens to opener via postMessage (handles cross-origin: localhost vs 127.0.0.1)
+        if (window.opener) {
+            window.opener.postMessage({ type: 'spotify-auth', tokens }, '*');
+        }
+
+        sessionStorage.removeItem('spotify_code_verifier');
+        sessionStorage.removeItem('spotify_client_id');
+        sessionStorage.removeItem('spotify_redirect_uri');
+        sessionStorage.removeItem('spotify_return_url');
+
+        document.body.textContent = 'Spotify connected! This window will close.';
+        window.close();
+    } catch (err) {
+        document.body.textContent = 'Auth failed: ' + err.message;
+        console.error('Spotify token exchange error:', err);
+        setTimeout(() => { window.location.href = '/'; }, 3000);
+    }
+})();
+</script>
+</body>
+</html>

@@ -8,6 +8,8 @@ async function loadSecrets() {
         if (response.ok) {
             const secrets = await response.json();
             GOOGLE_SCRIPT_URL = secrets.googleScriptUrl || '';
+            window._spotifyClientId = secrets.spotifyClientId || '';
+            window._spotifyRedirectUri = secrets.spotifyRedirectUri || '';
         }
     } catch (error) {
         console.warn('Could not load backend/secrets.json - Google Sheets sync will be disabled');

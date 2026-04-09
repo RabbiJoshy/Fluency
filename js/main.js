@@ -2,6 +2,7 @@ import './state.js';
 import './speech.js';
 import './artist-ui.js';
 import './auth.js';
+import './spotify.js';
 import './estimation.js';
 import './config.js';
 import './progress.js';
