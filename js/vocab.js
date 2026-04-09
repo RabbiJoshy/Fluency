@@ -466,7 +466,8 @@ async function loadVocabularyData(rangeString) {
                 englishSentence: firstExample.englishSentence,
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                 isMultiMeaning: true,
-                variants: item.variants || null
+                variants: item.variants || null,
+                homographIds: item.homograph_ids || null
             };
             flashcards.push(card);
         }
@@ -731,7 +732,8 @@ async function loadIncorrectWordsSet() {
                 englishSentence: firstExample.englishSentence,
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                 isMultiMeaning: true,
-                variants: item.variants || null
+                variants: item.variants || null,
+                homographIds: item.homograph_ids || null
             };
             flashcards.push(card);
         }

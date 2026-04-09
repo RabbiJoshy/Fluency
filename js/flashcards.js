@@ -775,21 +775,22 @@ function restartAllCards() {
 }
 
 function recordCardResult(result) {
-    // Initialize card stats if not exists
-    if (!stats.cardStats[currentIndex]) {
-        stats.cardStats[currentIndex] = { correct: 0, incorrect: 0 };
-    }
-
-    // Record the result
     const isCorrect = result === 'correct';
-    if (isCorrect) {
-        stats.correct++;
-        stats.cardStats[currentIndex].correct++;
-    } else {
-        stats.incorrect++;
-        stats.cardStats[currentIndex].incorrect++;
+
+    // Skip session stats for peek/stacked cards, but still save progress below
+    if (cardNavStack.length === 0) {
+        if (!stats.cardStats[currentIndex]) {
+            stats.cardStats[currentIndex] = { correct: 0, incorrect: 0 };
+        }
+        if (isCorrect) {
+            stats.correct++;
+            stats.cardStats[currentIndex].correct++;
+        } else {
+            stats.incorrect++;
+            stats.cardStats[currentIndex].incorrect++;
+        }
+        stats.total++;
     }
-    stats.total++;
 
     // Save progress to Google Sheets or LocalStorage
     const currentCard = flashcards[currentIndex];
@@ -827,6 +828,7 @@ async function goBackToSetup() {
     // Clear nav stack and vocab lookup
     cardNavStack = [];
     fullVocabLookup = null;
+    vocabByIdLookup = null;
 
     // Scroll to top
     document.querySelector('.container').scrollTop = 0;
@@ -1057,11 +1059,30 @@ function updateCard() {
         wordDisplay = `${backWordText} <span style="color: var(--accent-primary); font-size: 28px;">(${card.lemma})</span>`;
     }
 
+    // Build homograph chip HTML if siblings exist
+    let homographChipHTML = '';
+    if (card.homographIds && card.homographIds.length > 0) {
+        const lookup = getVocabByIdLookup();
+        const chips = [];
+        for (const sibId of card.homographIds) {
+            const sib = lookup.get(sibId);
+            if (!sib) continue;
+            const sibLemma = sib.lemma || sib.word;
+            const sibTranslation = (sib.meanings && sib.meanings.length > 0) ? sib.meanings[0].translation : '';
+            const label = sibTranslation ? `${sibLemma} (${sibTranslation})` : sibLemma;
+            chips.push(`<span class="homograph-chip" onclick="peekHomograph('${sibId}')">also: ${label}</span>`);
+        }
+        if (chips.length > 0) {
+            homographChipHTML = `<div class="homograph-chips">${chips.join('')}</div>`;
+        }
+    }
+
     let backHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold;">${wordDisplay}</div>
             </div>
+            ${homographChipHTML}
         </div>
     `;
 
@@ -1333,9 +1354,11 @@ function updateCard() {
     const navBackBtn = document.getElementById('navBackBtn');
     if (navBackBtn) navBackBtn.classList.toggle('hidden', cardNavStack.length === 0);
 
-    // Update frequency display
-    stats.studied.add(currentIndex);
-    updateStats();
+    // Update frequency display (skip for peek/stacked cards)
+    if (cardNavStack.length === 0) {
+        stats.studied.add(currentIndex);
+        updateStats();
+    }
 
     // Update disabled state for all nav buttons
     const isPrevDisabled = currentIndex === 0;
@@ -1554,6 +1577,17 @@ function updateStats() {
 
 // Module-level cache for full vocab lookup (not in state — doesn't need proxy)
 let fullVocabLookup = null;
+let vocabByIdLookup = null;
+
+function getVocabByIdLookup() {
+    if (vocabByIdLookup) return vocabByIdLookup;
+    if (!cachedVocabularyData) return new Map();
+    vocabByIdLookup = new Map();
+    for (const entry of cachedVocabularyData) {
+        if (entry.id) vocabByIdLookup.set(entry.id, entry);
+    }
+    return vocabByIdLookup;
+}
 
 // Common Spanish elisions: elided form → possible full forms
 const ELISION_MAP = {
@@ -1925,6 +1959,86 @@ function navigateBack() {
     document.getElementById('flashcard').classList.remove('flipped');
     updateCard();
 }
+
+// ---------------------------------------------------------------------------
+// Homograph peek
+// ---------------------------------------------------------------------------
+
+function peekHomograph(siblingId) {
+    if (cardNavStack.length > 0) return;
+
+    const lookup = getVocabByIdLookup();
+    const vocabEntry = lookup.get(siblingId);
+    if (!vocabEntry) return;
+
+    // Attach examples from cached examples data (they aren't on cachedVocabularyData entries)
+    const examplesData = window._cachedExamplesData;
+    if (examplesData && examplesData[siblingId]) {
+        const ex = examplesData[siblingId];
+        (vocabEntry.meanings || []).forEach((m, i) => {
+            if (!m.examples || m.examples.length === 0) {
+                m.examples = ex.m[i] || [];
+            }
+        });
+    }
+
+    const langConfig = config.languages[selectedLanguage] || {};
+    const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+    const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
+    const meanings = (vocabEntry.meanings || []).map(m => {
+        const ex = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+        return {
+            pos: m.pos,
+            meaning: m.translation,
+            percentage: parseFloat(m.frequency) || 0,
+            targetSentence: ex.targetSentence,
+            englishSentence: ex.englishSentence,
+            allExamples: ex.allExamples
+        };
+    });
+
+    const firstExample = meanings.length > 0
+        ? { targetSentence: meanings[0].targetSentence, englishSentence: meanings[0].englishSentence }
+        : { targetSentence: '', englishSentence: '' };
+
+    const tempCard = {
+        targetWord: vocabEntry.word,
+        lemma: vocabEntry.lemma || '',
+        id: vocabEntry.id || '0000',
+        fullId: getWordId(vocabEntry),
+        rank: vocabEntry.rank || 0,
+        corpusCount: vocabEntry.corpus_count || null,
+        meanings: meanings,
+        translation: meanings.length > 0 ? meanings[0].meaning : '',
+        targetSentence: firstExample.targetSentence,
+        englishSentence: firstExample.englishSentence,
+        links: generateLinks(vocabEntry.word, vocabEntry.lemma || vocabEntry.word, langConfig.referenceLinks || {}),
+        isMultiMeaning: true,
+        homographIds: vocabEntry.homograph_ids || null,
+        isPeekCard: true
+    };
+
+    const tempIndex = flashcards.length;
+    flashcards.push(tempCard);
+
+    cardNavStack.push({
+        index: currentIndex,
+        meaningIndex: currentMeaningIndex,
+        exampleIndex: currentExampleIndex,
+        mweIndex: currentMWEIndex,
+        tempCard: true,
+        tempIndex: tempIndex
+    });
+
+    currentIndex = tempIndex;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    document.getElementById('flashcard').classList.remove('flipped');
+    updateCard();
+}
+window.peekHomograph = peekHomograph;
 
 // ---------------------------------------------------------------------------
 // Conjugation table rendering
