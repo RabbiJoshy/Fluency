@@ -95,7 +95,7 @@ loadConfig().then(async () => {
     document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
     document.getElementById('topBarUserName').addEventListener('click', () => {
-        if (currentUser && !currentUser.isGuest) {
+        if (currentUser && !currentUser.isGuest && selectedLanguage) {
             // In flashcard mode, show set stats; on setup page, show total stats
             const appContent = document.getElementById('appContent');
             if (appContent && !appContent.classList.contains('hidden')) {
@@ -117,16 +117,17 @@ loadConfig().then(async () => {
     await loadSecrets();
     checkAuthentication();
 
-    // Ensure progress data is loaded before rendering coverage bars
-    if (currentUser && !currentUser.isGuest) {
-        await loadUserProgressFromSheet();
-    }
-
-    // Set user name in top bar (both modes)
+    // Set user name in top bar immediately (don't wait for progress load)
     const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';
     document.getElementById('topBarUserName').textContent = userName;
 
-    // In artist mode, auto-select the artist's language and skip language selection
+    // Start loading progress from Google Sheets (loads cache synchronously, then fetches)
+    let progressPromise = Promise.resolve(false);
+    if (currentUser && !currentUser.isGuest) {
+        progressPromise = loadUserProgressFromSheet();
+    }
+
+    // Render UI immediately using cached progress data
     if (activeArtist) {
         try {
             selectedLanguage = activeArtist.language || 'spanish';
@@ -152,6 +153,12 @@ loadConfig().then(async () => {
             // Always reveal body, even if something above threw
             document.documentElement.classList.remove('artist-loading');
         }
+    }
+
+    // Wait for Sheets refresh to complete; re-render set badges if data changed
+    const dataChanged = await progressPromise;
+    if (dataChanged && selectedLanguage) {
+        try { await renderRangeSelector(); } catch (e) { /* range selector may not be visible yet */ }
     }
 });
 

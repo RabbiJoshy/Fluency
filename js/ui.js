@@ -166,9 +166,10 @@ function setupLanguageTabs() {
             const loadingIndicator = document.getElementById('dataLoadingIndicator');
             loadingIndicator.classList.add('visible');
 
-            // Refresh progress data from Google Sheets
+            // Start refreshing progress from Sheets (cache loads synchronously inside)
+            let progressRefresh = Promise.resolve(false);
             if (currentUser && !currentUser.isGuest) {
-                await loadUserProgressFromSheet();
+                progressRefresh = loadUserProgressFromSheet();
             }
 
             // Always load PPM data if available (needed for coverage bar even in CEFR mode)
@@ -177,7 +178,7 @@ function setupLanguageTabs() {
                 await loadPpmData(selectedLanguage);
             }
 
-            // Hide loading indicator and show step 2
+            // Hide loading indicator and show step 2 immediately (using cached progress)
             loadingIndicator.classList.remove('visible');
             document.getElementById('step2').style.display = 'block';
             // Update step 2 title, tooltip, and % Mode button based on current mode
@@ -191,6 +192,11 @@ function setupLanguageTabs() {
             updateCognateToggleVisibility();
             updateExclusionBars();
             updateIncorrectButtonVisibility();
+
+            // When Sheets refresh completes, re-render set badges if data changed
+            progressRefresh.then(changed => {
+                if (changed) renderRangeSelector();
+            }).catch(() => {});
             updateTotalStatsButtonVisibility();
         });
     });
@@ -886,40 +892,55 @@ function hideSettingsModal() {
     document.getElementById('settingsModal').classList.add('hidden');
 }
 
-function showTotalStatsModal() {
+async function showTotalStatsModal() {
     // Update language name in the header
     const langConfig = config.languages[selectedLanguage];
     const langName = langConfig ? langConfig.name : selectedLanguage;
     document.getElementById('totalStatsLanguage').textContent = langName;
 
-    // Calculate total stats from progressData for the selected language
-    let wordsCorrect = 0;
-    let wordsSeen = 0;
-
-    if (progressData) {
-        Object.values(progressData).forEach(data => {
-            if (data.language === selectedLanguage) {
-                wordsSeen++;
-                if (data.correct > 0) {
-                    wordsCorrect++;
-                }
-            }
-        });
+    // Ensure vocabulary index is loaded (needed for comprehension + words understood)
+    if (!cachedVocabularyData && langConfig) {
+        try {
+            const vocab = await fetchAndJoinIndex(langConfig);
+            vocab.forEach((item, index) => { item.rank = index + 1; });
+            cachedVocabularyData = vocab;
+        } catch (e) {
+            console.warn('Could not load vocab for stats:', e);
+        }
     }
 
-    document.getElementById('totalWordsCorrect').textContent = wordsCorrect;
-    document.getElementById('totalWordsSeen').textContent = wordsSeen;
-
-    // Coverage stats (reuse personal coverage logic)
+    // Calculate all stats in a single pass
+    // "Words understood" = last answer was correct (current knowledge, cross-mode)
+    // "Correct" / "Incorrect" = all-time totals from progressData
+    // "Comprehension" = frequency-weighted % based on current knowledge
     const vocab = cachedVocabularyData;
     const coverageEl = document.getElementById('totalStatsCoverage');
     const wordsEl = document.getElementById('totalStatsWords');
+
+    // Check if a word is currently understood (most recent answer was correct)
+    // across both modes, using timestamps. Falls back to correct > 0 if no timestamps.
+    const isCurrentlyUnderstood = (id) => {
+        const crossId = getCrossModeId(id);
+        const entries = [progressData[id], crossId ? progressData[crossId] : null].filter(Boolean);
+        let bestLc = 0, bestLw = 0;
+        for (const p of entries) {
+            if (p.language !== selectedLanguage) continue;
+            const lc = p.lastCorrect ? new Date(p.lastCorrect).getTime() : 0;
+            const lw = p.lastWrong ? new Date(p.lastWrong).getTime() : 0;
+            if (lc > bestLc) bestLc = lc;
+            if (lw > bestLw) bestLw = lw;
+        }
+        if (bestLc > 0 || bestLw > 0) return bestLc >= bestLw;
+        return isWordKnown(id);
+    };
+
     if (vocab && vocab.length > 0 && progressData) {
         let coveredFreq = 0, totalFreq = 0, coveredCount = 0;
         for (const item of vocab) {
             const freq = item.corpus_count || 1;
             totalFreq += freq;
-            if (isWordKnown(getWordId(item))) {
+            const id = getWordId(item);
+            if (isCurrentlyUnderstood(id)) {
                 coveredFreq += freq;
                 coveredCount++;
             }
@@ -928,7 +949,8 @@ function showTotalStatsModal() {
         if (coveredCount > 0) {
             const pct = (coveredFreq / totalFreq * 100).toFixed(1);
             coverageEl.textContent = `${pct}% ${coverageType}`;
-            wordsEl.textContent = `${coveredCount} / ${vocab.length}`;
+            const wordPct = (coveredCount / vocab.length * 100).toFixed(1);
+            wordsEl.textContent = `${wordPct}% (${coveredCount} / ${vocab.length})`;
         } else {
             coverageEl.textContent = '—';
             wordsEl.textContent = '—';
@@ -938,10 +960,27 @@ function showTotalStatsModal() {
         wordsEl.textContent = '—';
     }
 
+    // Correct / Incorrect: all-time totals across both modes, deduped
+    let totalCorrect = 0, totalIncorrect = 0;
+    if (progressData) {
+        const counted = new Set();
+        for (const [id, data] of Object.entries(progressData)) {
+            if (data.language !== selectedLanguage) continue;
+            const baseId = id.length >= 4 && id[2] === '1'
+                ? id.slice(0, 2) + '0' + id.slice(3) : id;
+            if (counted.has(baseId)) continue;
+            counted.add(baseId);
+            totalCorrect += Number(data.correct) || 0;
+            totalIncorrect += Number(data.wrong) || 0;
+        }
+    }
+    document.getElementById('totalWordsCorrect').textContent = totalCorrect;
+    document.getElementById('totalWordsIncorrect').textContent = totalIncorrect;
+
     // Lines fully understood
     const linesEl = document.getElementById('totalStatsLinesUnderstood');
     const linesRow = document.getElementById('totalStatsLinesRow');
-    const linesResult = computeLinesUnderstood();
+    const linesResult = activeArtist ? computeLinesUnderstood() : null;
     if (linesResult && linesResult.total > 0) {
         linesRow.style.display = '';
         linesEl.textContent = `${linesResult.pct.toFixed(1)}% (${linesResult.understood} / ${linesResult.total})`;

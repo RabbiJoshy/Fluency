@@ -91,6 +91,9 @@ async function submitLogin() {
 // Logout handler
 function logout() {
     if (confirm('Are you sure you want to logout? Unsaved progress will be lost.')) {
+        if (currentUser?.initials) {
+            localStorage.removeItem(`progress_cache_${currentUser.initials}`);
+        }
         localStorage.removeItem('flashcardUser');
         currentUser = null;
         progressData = {};
@@ -227,10 +230,29 @@ async function migrateLocalStorageIdsV2() {
 
 // ========== GOOGLE SHEETS INTEGRATION ==========
 
-// Load user progress from Google Sheets (both mode tabs for cross-mode sharing)
+// Load user progress from Google Sheets (both mode tabs for cross-mode sharing).
+// Loads from localStorage cache first (instant), then refreshes from Sheets.
+// Returns true if the Sheets fetch brought different data than the cache.
 async function loadUserProgressFromSheet() {
-    if (!currentUser || currentUser.isGuest) return;
+    if (!currentUser || currentUser.isGuest) return false;
 
+    // 1. Load from localStorage cache immediately
+    const cacheKey = `progress_cache_${currentUser.initials}`;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+        try {
+            const { progress, estimates } = JSON.parse(cached);
+            progressData = progress || {};
+            levelEstimates = estimates || {};
+            updateIncorrectButtonVisibility();
+            updateTotalStatsButtonVisibility();
+            console.log(`Loaded ${Object.keys(progressData).length} cached progress entries`);
+        } catch (e) {
+            console.warn('Failed to parse progress cache:', e);
+        }
+    }
+
+    // 2. Fetch fresh data from Google Sheets
     const primarySheet = activeArtist ? 'Lyrics' : 'UserProgress';
     const secondarySheet = activeArtist ? 'UserProgress' : 'Lyrics';
 
@@ -246,6 +268,7 @@ async function loadUserProgressFromSheet() {
             fetchSheet(secondarySheet)
         ]);
 
+        const prevCount = Object.keys(progressData).length;
         progressData = {};
 
         // Load secondary sheet first so primary overwrites on conflict
@@ -281,9 +304,20 @@ async function loadUserProgressFromSheet() {
 
         updateIncorrectButtonVisibility();
         updateTotalStatsButtonVisibility();
+
+        // 3. Update cache
+        localStorage.setItem(cacheKey, JSON.stringify({
+            progress: progressData,
+            estimates: levelEstimates
+        }));
+
+        // Return whether data changed (different count = something changed)
+        const newCount = Object.keys(progressData).length;
+        return newCount !== prevCount || !cached;
     } catch (error) {
         console.error('Failed to load progress from Google Sheets:', error);
-        // Continue anyway - user can still practice
+        // Continue with cached data if available
+        return false;
     }
 }
 
