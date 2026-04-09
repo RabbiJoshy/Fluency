@@ -3,12 +3,12 @@
 import './state.js';
 
 const SPOTIFY_SCOPES = 'streaming user-modify-playback-state user-read-playback-state user-read-email user-read-private';
-const PLAYBACK_DURATION_MS = 15000;
 let _player = null;
 let _deviceId = null;
 let _playerReady = false;
 let _playerInitStarted = false;
-let _stopTimer = null;
+let _currentTrackId = null;
+let _isPlaying = false;
 
 // --- PKCE helpers ---
 
@@ -214,6 +214,16 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
 async function spotifyPlayTrack(trackId, positionMs) {
     console.log('spotifyPlayTrack called:', trackId, positionMs);
+
+    // Toggle pause if same track is already playing
+    if (_isPlaying && _currentTrackId === trackId && _player) {
+        _player.pause();
+        _isPlaying = false;
+        _currentTrackId = null;
+        console.log('Spotify: paused');
+        return;
+    }
+
     let token = await getSpotifyToken();
 
     if (!token) {
@@ -267,12 +277,8 @@ async function spotifyPlayTrack(trackId, positionMs) {
 
         if (resp.status === 204 || resp.status === 202) {
             console.log(`Spotify: playing track ${trackId} at ${positionMs}ms in browser`);
-            // Auto-pause after 15 seconds
-            if (_stopTimer) clearTimeout(_stopTimer);
-            _stopTimer = setTimeout(() => {
-                if (_player) _player.pause();
-                console.log('Spotify: auto-paused after 15s');
-            }, PLAYBACK_DURATION_MS);
+            _currentTrackId = trackId;
+            _isPlaying = true;
             return;
         }
 
