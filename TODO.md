@@ -61,6 +61,18 @@ below have enough complexity to warrant this treatment when the time comes.
   Would eliminate sense proliferation and cross-artist inconsistency. MWEs cover most idiomatic
   gaps. Gemini fallback only for words Wiktionary doesn't have. See `docs/design/artist_sense_pipeline.md`.
 
+- **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared]**
+  Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would
+  give better granularity for ordering. Change `SAMPLE_STRIDE` to 1 and re-run:
+  ```bash
+  # Edit Data/Spanish/Scripts/build_mwes.py: SAMPLE_STRIDE = 1
+  .venv/bin/python3 Data/Spanish/Scripts/build_mwes.py
+  .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny" --from-step build
+  .venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --from-step build
+  .venv/bin/python3 Artists/run_pipeline.py --artist "Young Miko" --from-step build
+  ```
+  Estimated ~5 minutes for the full 105M lines. Tatoeba adds negligible signal over full OpenSubs.
+
 - **[idea] Improve cognate flagger (M) [shared]**
   Converged into `shared/flag_cognates.py`. Could improve: add more suffix rules,
   tune similarity threshold, reduce false positives on short words, add LLM flagging

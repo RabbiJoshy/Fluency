@@ -21,14 +21,22 @@ Output:
 import gzip
 import json
 import re
+import time
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
+import ahocorasick
+
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
+OPENSUBS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "mwe_phrases.json"
+
+MAX_MWES_PER_WORD = 10
+MAX_TRANSLATION_LEN = 100
+SAMPLE_STRIDE = 10  # read every Nth line from OpenSubtitles
 
 MIN_WORDS = 2
 
@@ -186,9 +194,69 @@ def main():
     print(f"  Enriched from Wiktionary headword glosses: {enriched}")
     print(f"  Headword glosses available: {len(headword_glosses)}")
 
-    # Sort: translated first, then by expression length
-    for wid in mwe_by_word_id:
-        mwe_by_word_id[wid].sort(key=lambda m: (not m.get("translation"), len(m["expression"])))
+    # --- Count corpus frequency via Aho-Corasick on OpenSubtitles sample ---
+    total_before = sum(len(v) for v in mwe_by_word_id.values())
+    print(f"\nCounting corpus frequency ({OPENSUBS_FILE.name}, 1/{SAMPLE_STRIDE} sample)...")
+    all_expressions = {}  # expression_lower -> list of (wid, idx) pointers
+    for wid, mwes in mwe_by_word_id.items():
+        for i, m in enumerate(mwes):
+            key = m["expression"].lower()
+            all_expressions.setdefault(key, []).append((wid, i))
+
+    A = ahocorasick.Automaton()
+    for expr in all_expressions:
+        A.add_word(expr, expr)
+    A.make_automaton()
+
+    expr_counts = {e: 0 for e in all_expressions}
+    t0 = time.time()
+    line_count = 0
+    with open(OPENSUBS_FILE, "r", encoding="utf-8", errors="replace") as f:
+        for i, line in enumerate(f):
+            if i % SAMPLE_STRIDE != 0:
+                continue
+            line_count += 1
+            low = line.lower()
+            for _, expr in A.iter(low):
+                expr_counts[expr] += 1
+
+    elapsed = time.time() - t0
+    nonzero = sum(1 for c in expr_counts.values() if c > 0)
+    print(f"  Scanned {line_count:,} lines in {elapsed:.1f}s")
+    print(f"  Expressions with >0 hits: {nonzero}/{len(all_expressions)}")
+
+    # Attach corpus_freq to each MWE entry
+    for expr, pointers in all_expressions.items():
+        freq = expr_counts[expr]
+        for wid, idx in pointers:
+            mwe_by_word_id[wid][idx]["corpus_freq"] = freq
+
+    # --- Truncate long translations ---
+    for mwes in mwe_by_word_id.values():
+        for m in mwes:
+            trans = m.get("translation", "")
+            if len(trans) > MAX_TRANSLATION_LEN:
+                parts = re.split(r"[;,]\s*", trans)
+                result = parts[0]
+                for part in parts[1:]:
+                    candidate = result + ", " + part
+                    if len(candidate) > MAX_TRANSLATION_LEN:
+                        break
+                    result = candidate
+                if len(result) > MAX_TRANSLATION_LEN:
+                    result = result[:MAX_TRANSLATION_LEN - 3] + "..."
+                m["translation"] = result
+
+    # --- Sort by corpus frequency (descending), cap per word ---
+    for wid in list(mwe_by_word_id):
+        mwe_by_word_id[wid].sort(key=lambda m: -m.get("corpus_freq", 0))
+        mwe_by_word_id[wid] = mwe_by_word_id[wid][:MAX_MWES_PER_WORD]
+        if not mwe_by_word_id[wid]:
+            del mwe_by_word_id[wid]
+
+    total_after = sum(len(v) for v in mwe_by_word_id.values())
+    print(f"\n  Before filtering: {total_before:,} MWEs across {len(mwe_by_word_id):,} words")
+    print(f"  After cap ({MAX_MWES_PER_WORD}/word): {total_after:,} MWEs")
 
     # Write output
     print(f"\nWriting {OUTPUT_FILE}...")
@@ -196,7 +264,6 @@ def main():
         json.dump(dict(mwe_by_word_id), f, ensure_ascii=False, indent=2)
 
     # Stats
-    total_memberships = sum(len(v) for v in mwe_by_word_id.values())
     words_with_mwes = len(mwe_by_word_id)
     translated = sum(
         1 for mwes in mwe_by_word_id.values()
@@ -207,11 +274,11 @@ def main():
     print("MWE EXTRACTION RESULTS")
     print(f"{'='*55}")
     print(f"Words with MWEs:         {words_with_mwes:>6}")
-    print(f"Total MWE memberships:   {total_memberships:>6}")
+    print(f"Total MWE memberships:   {total_after:>6}")
     print(f"  With translation:      {translated:>6}")
-    print(f"  Without translation:   {total_memberships - translated:>6}")
+    print(f"  Without translation:   {total_after - translated:>6}")
 
-    # Sample output
+    # Sample output — show top MWEs by corpus frequency
     print("\nSample entries:")
     sample_words = {"verdad", "mano", "hacer", "dar", "ojo", "cuenta"}
     for entry in inventory:
@@ -221,7 +288,8 @@ def main():
             print(f"\n  {entry['word']} ({len(mwes)} MWEs):")
             for m in mwes[:5]:
                 trans = m.get("translation", "(no translation)")
-                print(f"    {m['expression']:30s}  {trans}")
+                freq = m.get("corpus_freq", 0)
+                print(f"    {m['expression']:30s}  freq={freq:<6}  {trans}")
             if len(mwes) > 5:
                 print(f"    ... and {len(mwes) - 5} more")
             if not sample_words:

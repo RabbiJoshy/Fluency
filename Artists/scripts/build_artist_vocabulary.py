@@ -17,6 +17,7 @@ Usage (from project root):
 import hashlib
 import json
 import os
+import re
 import sys
 import argparse
 
@@ -107,7 +108,7 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 if t not in mwe_index:
                     mwe_index[t] = []
                 if not any(m["expression"] == expr for m in mwe_index[t]):
-                    mwe_index[t].append({"expression": expr, "translation": mwe.get("translation", "")})
+                    mwe_index[t].append({"expression": expr, "translation": mwe.get("translation", ""), "count": mwe.get("count", 0)})
         print("  mwe_detected: %d MWEs" % len(mwe_data.get("mwes", [])))
 
     # Load Wiktionary MWEs as baseline (keyed by word_id)
@@ -286,12 +287,22 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 sid = ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"]
                 line_info[line] = {"song_id": sid, "title": ex.get("title", "")}
 
+    # Unicode-aware word-boundary pattern: matches if character before/after
+    # is NOT a Spanish letter (handles accented chars that \b misses)
+    _SPANISH_LETTER = r'a-zA-ZáéíóúñüÁÉÍÓÚÑÜ'
+
     def find_mwe_examples(expression, max_examples=3):
-        """Find lyric lines containing an MWE expression."""
+        """Find lyric lines containing an MWE expression (word-boundary match)."""
         expr_lower = expression.lower()
+        pattern = re.compile(
+            r'(?<![' + _SPANISH_LETTER + r'])' +
+            re.escape(expr_lower) +
+            r'(?![' + _SPANISH_LETTER + r'])',
+            re.IGNORECASE,
+        )
         found = []
         for line, info in line_info.items():
-            if expr_lower in line.lower():
+            if pattern.search(line):
                 trans_info = translations.get(line, {})
                 english = trans_info.get("english", "")
                 if english:
@@ -319,14 +330,17 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
         for entry in entries:
             w_lower = entry["word"].lower()
             if w_lower in mwe_index:
+                # Sort by artist corpus count (descending)
+                sorted_mwes = sorted(mwe_index[w_lower], key=lambda m: -m.get("count", 0))
                 memberships = []
-                for mwe_entry in mwe_index[w_lower]:
+                for mwe_entry in sorted_mwes:
                     expr = mwe_entry["expression"]
                     memberships.append({
                         "expression": expr,
                         "translation": mwe_entry["translation"],
                         "examples": mwe_examples_cache.get(expr, []),
                         "source": "artist",
+                        "corpus_count": mwe_entry.get("count", 0),
                     })
                 entry["mwe_memberships"] = memberships
                 mwe_count += 1
@@ -388,6 +402,8 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
     print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))
 
     # --- Merge Wiktionary MWEs onto entries (after IDs are assigned) ---
+    MAX_WIKT_PER_ENTRY = 5
+    MAX_TRANSLATION_LEN = 100
     if wikt_mwe_by_id:
         wikt_count = 0
         wikt_examples_cache = {}
@@ -400,23 +416,45 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
             # Get existing artist-specific MWE expressions for dedup
             existing_exprs = {m["expression"].lower() for m in entry.get("mwe_memberships", [])}
 
-            for wm in wikt_mwes:
+            # Sort by corpus_freq (from build_mwes.py), highest first
+            sorted_wikt = sorted(wikt_mwes, key=lambda m: -m.get("corpus_freq", 0))
+
+            added = 0
+            for wm in sorted_wikt:
+                if added >= MAX_WIKT_PER_ENTRY:
+                    break
                 if wm["expression"].lower() in existing_exprs:
                     continue
                 # Find lyric examples for this Wiktionary MWE
                 expr = wm["expression"]
                 if expr not in wikt_examples_cache:
                     wikt_examples_cache[expr] = find_mwe_examples(expr)
+                # Truncate long translations
+                trans = wm.get("translation", "")
+                if len(trans) > MAX_TRANSLATION_LEN:
+                    parts = re.split(r'[;,]\s*', trans)
+                    result = parts[0]
+                    for part in parts[1:]:
+                        candidate = result + ", " + part
+                        if len(candidate) > MAX_TRANSLATION_LEN:
+                            break
+                        result = candidate
+                    if len(result) > MAX_TRANSLATION_LEN:
+                        result = result[:MAX_TRANSLATION_LEN - 3] + "..."
+                    trans = result
                 entry.setdefault("mwe_memberships", []).append({
                     "expression": expr,
-                    "translation": wm.get("translation", ""),
+                    "translation": trans,
                     "examples": wikt_examples_cache[expr],
                     "source": "wiktionary",
+                    "corpus_freq": wm.get("corpus_freq", 0),
                 })
                 existing_exprs.add(expr.lower())
+                added += 1
 
-            wikt_count += 1
-        print("  Wiktionary MWE annotation: %d entries enriched" % wikt_count)
+            if added > 0:
+                wikt_count += 1
+        print("  Wiktionary MWE annotation: %d entries enriched (max %d/entry)" % (wikt_count, MAX_WIKT_PER_ENTRY))
 
     # --- Strip mwe_memberships from master (one-time cleanup) ---
     for m in master.values():

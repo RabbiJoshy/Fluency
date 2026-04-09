@@ -356,14 +356,21 @@ async function loadVocabularyData(rangeString) {
                     if (matched.length === 0 && allCorpusExamples.length > 0) {
                         const exprLower = mwe.expression.toLowerCase();
                         const exprNorm = stripElisions(exprLower);
+                        // Word-boundary regex to avoid substring false positives
+                        // (e.g. "solo que" matching "solo quedan")
+                        const SP = 'a-zA-Z\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1\u00fc\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00dc';
+                        const escExpr = exprLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        const escNorm = exprNorm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        const exprRe = new RegExp('(?<![' + SP + '])' + escExpr + '(?![' + SP + '])', 'i');
+                        const normRe = new RegExp('(?<![' + SP + '])' + escNorm + '(?![' + SP + '])', 'i');
                         matched = allCorpusExamples.filter(ex => {
                             const text = (ex.spanish || ex.target || '').toLowerCase();
-                            return text.includes(exprLower);
+                            return exprRe.test(text);
                         });
                         if (matched.length === 0) {
                             matched = allCorpusExamples.filter(ex => {
                                 const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
-                                return text.includes(exprNorm);
+                                return normRe.test(text);
                             });
                         }
                     }
@@ -615,14 +622,21 @@ async function loadIncorrectWordsSet() {
                     if (matched.length === 0 && allCorpusExamples.length > 0) {
                         const exprLower = mwe.expression.toLowerCase();
                         const exprNorm = stripElisions(exprLower);
+                        // Word-boundary regex to avoid substring false positives
+                        // (e.g. "solo que" matching "solo quedan")
+                        const SP = 'a-zA-Z\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1\u00fc\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00dc';
+                        const escExpr = exprLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        const escNorm = exprNorm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        const exprRe = new RegExp('(?<![' + SP + '])' + escExpr + '(?![' + SP + '])', 'i');
+                        const normRe = new RegExp('(?<![' + SP + '])' + escNorm + '(?![' + SP + '])', 'i');
                         matched = allCorpusExamples.filter(ex => {
                             const text = (ex.spanish || ex.target || '').toLowerCase();
-                            return text.includes(exprLower);
+                            return exprRe.test(text);
                         });
                         if (matched.length === 0) {
                             matched = allCorpusExamples.filter(ex => {
                                 const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
-                                return text.includes(exprNorm);
+                                return normRe.test(text);
                             });
                         }
                     }
