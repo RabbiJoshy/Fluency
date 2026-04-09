@@ -151,3 +151,4 @@ Resolved items. Detail in `docs/design/` where linked; small fixes inline.
 - **OpenSubtitles integration** — Tatoeba primary, OpenSubtitles fills gaps. Stride-sampled, subtitle junk/OCR filters, trivial sentence filter, diversity sampling. 100% coverage.
 - **Quality filtering for corpus examples** — Implemented in `build_examples.py`: trivial sentence filter (rejects top-100-only sentences), subtitle junk regex (OCR noise, music cues, timecodes).
 - **Conjugation table on card back** — Data layer and front-end rendering done. UI polish remaining (tracked as idea).
+- **iOS Safari Spotify button fix** — `onclick` never fired on iOS due to click synthesis failure inside `touch-action: none` card. Fixed with inline `ontouchend` handler. See [`ios_touch_events.md`](docs/design/ios_touch_events.md).
