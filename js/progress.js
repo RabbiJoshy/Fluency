@@ -21,12 +21,23 @@ function calculateCoveragePercent() {
 
     let coveredPpm = 0;
     let wordsCovered = 0;
+    const coveredIds = new Set(); // track already-counted IDs to avoid double-counting cross-mode
     for (const [wordId, data] of Object.entries(progressData)) {
         if (data.language === selectedLanguage && data.correct > 0) {
-            const ppmEntry = idToPpm[wordId];
-            if (ppmEntry) {
+            // Check direct match first, then cross-mode match
+            let ppmEntry = idToPpm[wordId];
+            let matchedId = wordId;
+            if (!ppmEntry) {
+                const crossId = getCrossModeId(wordId);
+                if (crossId) {
+                    ppmEntry = idToPpm[crossId];
+                    matchedId = crossId;
+                }
+            }
+            if (ppmEntry && !coveredIds.has(matchedId)) {
                 coveredPpm += ppmEntry.ppm;
                 wordsCovered++;
+                coveredIds.add(matchedId);
             }
         }
     }
@@ -133,7 +144,8 @@ function updatePersonalCoverage(filteredVocab) {
         const freq = item.corpus_count || 1;
         totalFreq += freq;
         const fullId = getWordId(item);
-        const progress = progressData[fullId];
+        // Check progress in both current mode and cross-mode
+        const progress = progressData[fullId] || (getCrossModeId(fullId) ? progressData[getCrossModeId(fullId)] : null);
         if (progress && progress.language === selectedLanguage) {
             const lastCorrect = progress.lastCorrect ? new Date(progress.lastCorrect).getTime() : 0;
             const lastWrong = progress.lastWrong ? new Date(progress.lastWrong).getTime() : 0;

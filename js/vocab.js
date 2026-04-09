@@ -23,6 +23,57 @@ function getWordId(item) {
 }
 
 /**
+ * Flip the mode bit in a fullId: es0... ↔ es1...
+ * Returns null if the ID is too short or has no mode bit.
+ */
+function getCrossModeId(fullId) {
+    if (!fullId || fullId.length < 4) return null;
+    const modeChar = fullId[2];
+    if (modeChar === '0') return fullId.slice(0, 2) + '1' + fullId.slice(3);
+    if (modeChar === '1') return fullId.slice(0, 2) + '0' + fullId.slice(3);
+    return null;
+}
+
+/**
+ * Check if a word is known in either mode (correct > 0, matching language).
+ */
+function isWordKnown(fullId) {
+    const check = (id) => {
+        const p = progressData?.[id];
+        return p && Number(p.correct) > 0 && p.language === selectedLanguage;
+    };
+    if (check(fullId)) return true;
+    const crossId = getCrossModeId(fullId);
+    return crossId ? check(crossId) : false;
+}
+
+/**
+ * Build a Set of hex IDs for words covered by the level estimate.
+ * Uses the normal-mode vocabulary index (general frequency ordering).
+ * Cached per language + estimate so it's only computed once per session.
+ */
+async function buildEstimatedKnownIds(estimate) {
+    if (!estimate || estimate <= 0) return new Set();
+
+    const cacheKey = `${selectedLanguage}_${estimate}`;
+    if (window._estimatedKnownIdsCache?.key === cacheKey) {
+        return window._estimatedKnownIdsCache.ids;
+    }
+
+    const normalConfig = window._normalModeLangConfigs?.[selectedLanguage];
+    if (!normalConfig) return new Set();
+
+    const normalVocab = await fetchAndJoinIndex(normalConfig);
+    const ids = new Set();
+    for (let i = 0; i < Math.min(estimate, normalVocab.length); i++) {
+        if (normalVocab[i].id) ids.add(normalVocab[i].id);
+    }
+
+    window._estimatedKnownIdsCache = { key: cacheKey, ids };
+    return ids;
+}
+
+/**
  * Join per-artist index entries with the shared master vocabulary.
  * Reconstructs the full entry shape (word, lemma, meanings, flags, mwe_memberships)
  * expected by buildFilteredVocab() and the flashcard builder.
@@ -230,16 +281,24 @@ async function loadVocabularyData(rangeString) {
         const totalInRange = filteredData.length;
 
         // Filter out words the user has already got correct (for logged-in users),
-        // including words covered by the level estimate high-water mark
+        // including words covered by the level estimate high-water mark.
+        // In artist mode, estimate maps to an ID set from normal-mode vocab (general frequency).
         if (currentUser && !currentUser.isGuest && progressData) {
             const beforeMastered = filteredData.length;
             const estimate = levelEstimates[selectedLanguage] || 0;
+
+            // In artist mode, use ID set from normal-mode vocab for level estimate filtering
+            const estimatedIds = activeArtist ? await buildEstimatedKnownIds(estimate) : null;
+
             filteredData = filteredData.filter(item => {
-                if (item.rank <= estimate) return false;
-                const progress = progressData[getWordId(item)];
-                // Keep the word if no progress exists, or if correct is 0 or undefined
-                // Use Number() because progress values may be strings from Google Sheets
-                return !progress || Number(progress.correct) === 0 || progress.language !== selectedLanguage;
+                // Level estimate filter: rank-based for normal mode, ID-based for artist mode
+                if (activeArtist) {
+                    if (item.id && estimatedIds.has(item.id)) return false;
+                } else {
+                    if (item.rank <= estimate) return false;
+                }
+                // Cross-mode progress check: known in either mode → skip
+                return !isWordKnown(getWordId(item));
             });
             excludedMastered = beforeMastered - filteredData.length;
             if (excludedMastered > 0) {
@@ -1047,6 +1106,9 @@ window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.joinWithMaster = joinWithMaster;
 window.fetchAndJoinIndex = fetchAndJoinIndex;
 window.getWordId = getWordId;
+window.getCrossModeId = getCrossModeId;
+window.isWordKnown = isWordKnown;
+window.buildEstimatedKnownIds = buildEstimatedKnownIds;
 window.LANG_CODES = LANG_CODES;
 window.buildFilteredVocab = buildFilteredVocab;
 window.loadVocabularyData = loadVocabularyData;

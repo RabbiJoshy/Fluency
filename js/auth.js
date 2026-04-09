@@ -227,25 +227,30 @@ async function migrateLocalStorageIdsV2() {
 
 // ========== GOOGLE SHEETS INTEGRATION ==========
 
-// Load user progress from Google Sheets
+// Load user progress from Google Sheets (both mode tabs for cross-mode sharing)
 async function loadUserProgressFromSheet() {
     if (!currentUser || currentUser.isGuest) return;
 
-    try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
+    const primarySheet = activeArtist ? 'Lyrics' : 'UserProgress';
+    const secondarySheet = activeArtist ? 'UserProgress' : 'Lyrics';
+
+    const fetchSheet = (sheet) =>
+        fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            body: JSON.stringify({
-                action: 'load',
-                user: currentUser.initials,
-                sheet: activeArtist ? 'Lyrics' : 'UserProgress'
-            })
-        });
+            body: JSON.stringify({ action: 'load', user: currentUser.initials, sheet })
+        }).then(r => r.json()).catch(() => null);
 
-        const result = await response.json();
+    try {
+        const [primaryResult, secondaryResult] = await Promise.all([
+            fetchSheet(primarySheet),
+            fetchSheet(secondarySheet)
+        ]);
 
-        if (result.success && result.data && result.data.progress) {
-            // Convert array to object for easier lookup
-            progressData = {};
+        progressData = {};
+
+        // Load secondary sheet first so primary overwrites on conflict
+        const mergeProgress = (result, label) => {
+            if (!result?.success || !result.data?.progress) return 0;
             result.data.progress.forEach(item => {
                 progressData[item.wordId] = {
                     word: item.word,
@@ -257,13 +262,25 @@ async function loadUserProgressFromSheet() {
                     lastSeen: item.lastSeen
                 };
             });
-            console.log(`Loaded progress for ${result.data.progress.length} words`);
-            if (result.data.levelEstimates) {
-                levelEstimates = result.data.levelEstimates;
-            }
-            updateIncorrectButtonVisibility();
-            updateTotalStatsButtonVisibility();
+            return result.data.progress.length;
+        };
+
+        const secondaryCount = mergeProgress(secondaryResult, secondarySheet);
+        const primaryCount = mergeProgress(primaryResult, primarySheet);
+        console.log(`Loaded progress: ${primaryCount} from ${primarySheet}, ${secondaryCount} from ${secondarySheet}`);
+
+        if (primaryResult?.success && primaryResult.data?.levelEstimates) {
+            levelEstimates = primaryResult.data.levelEstimates;
         }
+        // Also pick up level estimates from secondary sheet if primary had none
+        if (secondaryResult?.success && secondaryResult.data?.levelEstimates) {
+            for (const [lang, rank] of Object.entries(secondaryResult.data.levelEstimates)) {
+                if (!levelEstimates[lang]) levelEstimates[lang] = rank;
+            }
+        }
+
+        updateIncorrectButtonVisibility();
+        updateTotalStatsButtonVisibility();
     } catch (error) {
         console.error('Failed to load progress from Google Sheets:', error);
         // Continue anyway - user can still practice

@@ -9,6 +9,12 @@ async function loadConfig() {
         config = await configResponse.json();
         cefrLevelsConfig = await cefrResponse.json();
 
+        // Stash normal-mode lang configs before artist override (used by estimation + cross-mode progress)
+        window._normalModeLangConfigs = {};
+        for (const [lang, cfg] of Object.entries(config.languages)) {
+            window._normalModeLangConfigs[lang] = { ...cfg };
+        }
+
         // Override config for artist/lyrics mode
         if (activeArtist) {
             const lang = activeArtist.language || 'spanish';

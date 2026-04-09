@@ -2,16 +2,17 @@ import './state.js';
 
 // Compute max level for estimation, accounting for multi-artist mode
 function getEstimationMaxLevel() {
+    // Always use normal-mode vocab size as ceiling (set after loading in startEstimation)
     if (!activeArtist) return 11000;
-    const selectedSlugs = window._selectedArtistSlugs || [];
-    const allConfigs = window._allArtistsConfig;
-    if (selectedSlugs.length > 1 && allConfigs) {
-        return Math.max(...selectedSlugs.map(slug => {
-            const cfg = allConfigs[slug];
-            return cfg ? (cfg.maxLevel || 8500) : 0;
-        }));
-    }
-    return activeArtist.maxLevel || 8500;
+    return 11000;
+}
+
+// Return the normal-mode lang config for estimation (unbiased by artist corpus ordering)
+function getEstimationLangConfig() {
+    const langConfig = config.languages[selectedLanguage];
+    if (!activeArtist) return langConfig;
+    const normalConfig = window._normalModeLangConfigs?.[selectedLanguage];
+    return normalConfig || langConfig;
 }
 
 // Open estimation modal
@@ -121,7 +122,7 @@ function getWordTranslation(word) {
 
 // Start the estimation test
 async function startEstimation() {
-    const langConfig = config.languages[selectedLanguage];
+    const langConfig = getEstimationLangConfig();
     try {
         estimationState.vocabularyData = await fetchAndJoinIndex(langConfig);
     } catch (error) {
