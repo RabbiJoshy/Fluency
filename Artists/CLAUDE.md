@@ -41,6 +41,7 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 6j | `scripts/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional — run after Google Translate or `--no-gemini` runs. |
 | 7 | `scripts/7_flag_cognates.py` | `cognates.json` | Flag transparent cognates (intersection: LLM + suffix rules) |
 | 8 | `scripts/8_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
+| 9 | `scripts/9_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
 | build | `scripts/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
 
 Shared helper: `scripts/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
@@ -59,6 +60,7 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) |
 | `cognates.json` | `{word\|lemma: true}` | (planned) |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (planned) |
+| `lyrics_timestamps.json` | `{timestamps: {song_name: {spanish_line: {ms, confidence}}}}` | (none) |
 
 ## Shared Master Vocabulary
 

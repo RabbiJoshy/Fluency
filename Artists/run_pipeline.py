@@ -87,6 +87,9 @@ def _step_7_args(args, artist_dir):
 def _step_8_args(args, artist_dir):
     return _base_args(artist_dir)
 
+def _step_9_args(args, artist_dir):
+    return _base_args(artist_dir)
+
 def _build_args(args, artist_dir):
     return _base_args(artist_dir)
 
@@ -127,6 +130,10 @@ def build_steps(vocab_file):
          "script": "8_rerank.py", "args_fn": _step_8_args,
          "input": "data/layers/word_inventory.json",
          "output": "data/layers/ranking.json", "needs_api_key": False},
+        {"num": 9, "label": "Fetch LRC timestamps",
+         "script": "9_fetch_lrc_timestamps.py", "args_fn": _step_9_args,
+         "input": "data/layers/examples_raw.json",
+         "output": "data/layers/lyrics_timestamps.json", "needs_api_key": False},
         {"num": "build", "label": "Build vocabulary (assemble layers)",
          "script": "build_artist_vocabulary.py", "args_fn": _build_args,
          "input": "data/layers/ranking.json",

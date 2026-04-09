@@ -95,6 +95,8 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
     assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
     cognates = load_layer(os.path.join(layers_dir, "cognates.json"), "cognates", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
+    lyrics_ts = load_layer(os.path.join(layers_dir, "lyrics_timestamps.json"), "lyrics_timestamps", required=False)
+    ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
 
     # Load MWE data
     mwe_index = {}
@@ -189,13 +191,17 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                         trans_info = translations.get(spanish, {})
                         english = trans_info.get("english", "")
                         source = trans_info.get("source", "")
-                        meaning_examples.append({
+                        ex_dict = {
                             "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
                             "song_name": raw_ex.get("title", ""),
                             "spanish": spanish,
                             "english": english,
                             "translation_source": source,
-                        })
+                        }
+                        ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                        if ts_entry:
+                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        meaning_examples.append(ex_dict)
 
                 freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
                 meanings.append({
@@ -215,13 +221,17 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
             for raw_ex in raw_examples:
                 spanish = raw_ex.get("spanish", "")
                 trans_info = translations.get(spanish, {})
-                all_examples.append({
+                ex_dict = {
                     "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
                     "song_name": raw_ex.get("title", ""),
                     "spanish": spanish,
                     "english": trans_info.get("english", ""),
                     "translation_source": trans_info.get("source", ""),
-                })
+                }
+                ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                if ts_entry:
+                    ex_dict["timestamp_ms"] = ts_entry["ms"]
+                all_examples.append(ex_dict)
             meanings.append({
                 "pos": sense["pos"],
                 "translation": translation,
@@ -237,13 +247,17 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 raw_ex = raw_examples[0]
                 spanish = raw_ex.get("spanish", "")
                 trans_info = translations.get(spanish, {})
-                fallback_examples.append({
+                ex_dict = {
                     "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
                     "song_name": raw_ex.get("title", ""),
                     "spanish": spanish,
                     "english": trans_info.get("english", ""),
                     "translation_source": trans_info.get("source", ""),
-                })
+                }
+                ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                if ts_entry:
+                    ex_dict["timestamp_ms"] = ts_entry["ms"]
+                fallback_examples.append(ex_dict)
             meanings.append({
                 "pos": "X",
                 "translation": translation,
@@ -306,13 +320,17 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                 trans_info = translations.get(line, {})
                 english = trans_info.get("english", "")
                 if english:
-                    found.append({
+                    ex_dict = {
                         "song": info["song_id"],
                         "song_name": info["title"],
                         "spanish": line,
                         "english": english,
                         "translation_source": trans_info.get("source", ""),
-                    })
+                    }
+                    ts_entry = ts_map.get(info["title"], {}).get(line)
+                    if ts_entry:
+                        ex_dict["timestamp_ms"] = ts_entry["ms"]
+                    found.append(ex_dict)
                     if len(found) >= max_examples:
                         break
         return found

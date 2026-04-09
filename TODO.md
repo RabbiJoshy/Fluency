@@ -116,8 +116,12 @@ pipeline/data problem. Delete items from this list once resolved.
 Songs that shouldn't be in the corpus (remixes, live versions, non-artist songs, etc.).
 Add to `duplicate_songs.json` and check for similar songs. Delete once resolved.
 
-(none currently)
-
+120 DRILL
+Calm Down / Party (Mixed)
+  [197/302] Otra Vez (Remake)                         52/88 lines matched
+  [198/302] Otra Vez (Remix)                          56/71 lines matched
+  [199/302] Otra Ve’ (Remix)                          no synced lyrics
+PASA EL TIEMPO (TE MUDASTE) 
 ---
 
 ## Decisions Made
