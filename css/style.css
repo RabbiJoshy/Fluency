@@ -207,7 +207,129 @@
 
         @media (min-width: 768px) {
             .card {
-                max-height: calc(100vh - 120px);
+                height: calc(100vh - 120px);
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .card-container {
+                position: relative;
+            }
+
+            .desktop-side-controls {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                z-index: 10;
+            }
+
+            .desktop-side-controls.left {
+                left: 20px;
+            }
+
+            .desktop-side-controls.right {
+                right: 20px;
+            }
+
+            .desktop-answer-btn-outside,
+            .desktop-nav-btn-outside {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 12px;
+                border-radius: 12px;
+                transition: all 0.2s;
+            }
+
+            .desktop-answer-btn-outside .answer-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .desktop-nav-btn-outside .nav-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 32px;
+                font-weight: 600;
+                background: rgba(255, 255, 255, 0.08);
+                color: rgba(255, 255, 255, 0.85);
+                line-height: 1;
+                padding-bottom: 4px;
+            }
+
+            .desktop-answer-btn-outside.incorrect .answer-icon {
+                background: var(--error);
+                color: white;
+            }
+
+            .desktop-answer-btn-outside.correct .answer-icon {
+                background: var(--success);
+                color: white;
+            }
+
+            .answer-hint {
+                font-size: 11px;
+                color: var(--text-secondary);
+                opacity: 0.7;
+            }
+
+            .answer-hint kbd {
+                display: inline-block;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-bottom-width: 2px;
+                border-radius: 4px;
+                padding: 2px 8px;
+                font-family: inherit;
+                font-size: 13px;
+                color: rgba(255, 255, 255, 0.7);
+                line-height: 1.4;
+            }
+
+            .desktop-answer-btn-outside:hover,
+            .desktop-nav-btn-outside:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .desktop-nav-btn-outside:hover .nav-icon {
+                background: rgba(255, 255, 255, 0.15);
+                color: white;
+            }
+
+            .desktop-answer-btn-outside.pressed .answer-icon {
+                animation: btnPress 0.3s ease-out;
+            }
+
+            @keyframes btnPress {
+                0% { transform: scale(1); }
+                30% { transform: scale(1.3); }
+                100% { transform: scale(1); }
+            }
+
+            /* (hide rules moved to after .desktop-nav-row display:flex rule) */
+        }
+
+        @media (max-width: 767px) {
+            .desktop-side-controls {
+                display: none;
             }
         }
 
@@ -306,6 +428,8 @@
 
         .card-back {
             transform: rotateY(180deg);
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
         .card-word {
@@ -342,17 +466,17 @@
         }
 
         /* Part of Speech Colors */
-        .pos-noun { background: rgba(74, 158, 255, 0.35); border-color: rgba(74, 158, 255, 0.5); color: #4a9eff; }
-        .pos-verb { background: rgba(0, 212, 170, 0.35); border-color: rgba(0, 212, 170, 0.5); color: #00d4aa; }
-        .pos-adj { background: rgba(245, 166, 35, 0.35); border-color: rgba(245, 166, 35, 0.5); color: #f5a623; }
-        .pos-adv { background: rgba(168, 85, 247, 0.35); border-color: rgba(168, 85, 247, 0.5); color: #a855f7; }
-        .pos-prep { background: rgba(236, 72, 153, 0.35); border-color: rgba(236, 72, 153, 0.5); color: #ec4899; }
-        .pos-conj { background: rgba(20, 184, 166, 0.35); border-color: rgba(20, 184, 166, 0.5); color: #14b8a6; }
-        .pos-pron { background: rgba(99, 102, 241, 0.35); border-color: rgba(99, 102, 241, 0.5); color: #6366f1; }
-        .pos-det { background: rgba(244, 63, 94, 0.35); border-color: rgba(244, 63, 94, 0.5); color: #f43f5e; }
-        .pos-int { background: rgba(234, 179, 8, 0.35); border-color: rgba(234, 179, 8, 0.5); color: #eab308; }
-        .pos-num { background: rgba(6, 182, 212, 0.35); border-color: rgba(6, 182, 212, 0.5); color: #06b6d4; }
-        .pos-mwe { background: rgba(251, 191, 36, 0.35); border-color: rgba(251, 191, 36, 0.5); color: #fbbf24; }
+        .pos-noun { background: rgba(74, 158, 255, 0.35); border-color: rgba(74, 158, 255, 0.5); color: #8fc2ff; }
+        .pos-verb { background: rgba(0, 212, 170, 0.35); border-color: rgba(0, 212, 170, 0.5); color: #66e4cc; }
+        .pos-adj { background: rgba(245, 166, 35, 0.35); border-color: rgba(245, 166, 35, 0.5); color: #f9c96e; }
+        .pos-adv { background: rgba(168, 85, 247, 0.35); border-color: rgba(168, 85, 247, 0.5); color: #c9a0f9; }
+        .pos-prep { background: rgba(236, 72, 153, 0.35); border-color: rgba(236, 72, 153, 0.5); color: #f291be; }
+        .pos-conj { background: rgba(20, 184, 166, 0.35); border-color: rgba(20, 184, 166, 0.5); color: #6dd4c8; }
+        .pos-pron { background: rgba(99, 102, 241, 0.35); border-color: rgba(99, 102, 241, 0.5); color: #9b9df6; }
+        .pos-det { background: rgba(244, 63, 94, 0.35); border-color: rgba(244, 63, 94, 0.5); color: #f88da5; }
+        .pos-int { background: rgba(234, 179, 8, 0.35); border-color: rgba(234, 179, 8, 0.5); color: #f2d166; }
+        .pos-num { background: rgba(6, 182, 212, 0.35); border-color: rgba(6, 182, 212, 0.5); color: #66d4e6; }
+        .pos-mwe { background: rgba(251, 191, 36, 0.35); border-color: rgba(251, 191, 36, 0.5); color: #fcd57a; }
 
         .card-ranking {
             font-family: var(--font-reading);
@@ -411,21 +535,19 @@
         }
 
         .card-action-small {
-            padding: 10px 34px;
-            background: var(--bg-card);
-            color: var(--text-muted);
-            border: 1.5px solid #333333;
+            padding: 8px 16px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.85);
+            border: none;
             border-radius: 6px;
-            font-size: 17px;
+            font-size: 28px;
             font-weight: 700;
             font-family: var(--font-emphasis);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 128px;
-            height: 46px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
             transform-style: preserve-3d;
@@ -434,14 +556,13 @@
         }
 
         .card-action-small:hover {
-            background: #2a2a2a;
-            border-color: #444444;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transform: scale(1.1);
         }
 
         .card-action-small:active {
             transform: scale(0.95);
-            background: #0f0f0f;
         }
 
         .card-details {
@@ -471,7 +592,6 @@
             padding: 15px;
             background: rgba(var(--accent-primary-rgb), 0.08);
             border: 1px solid var(--accent-primary);
-            border-left: 3px solid var(--accent-primary);
             border-radius: 8px;
             font-family: var(--font-reading);
             font-style: italic;
@@ -572,34 +692,45 @@
         }
 
         .nav-btn-inline {
-            padding: 10px 14px;
-            background: var(--bg-tertiary);
-            color: white;
-            border: 1px solid var(--border-color);
+            padding: 0;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.85);
+            border: none;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 48px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            width: 48px;
-            height: 48px;
+            transition: all 0.2s;
+            width: 64px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: center;
+            line-height: 1;
+            padding-bottom: 4px;
             pointer-events: auto;
             z-index: 10;
             transform-style: preserve-3d;
         }
 
         .nav-btn-inline:hover {
-            background: var(--accent-secondary);
-            color: var(--accent-secondary-text);
-            border-color: var(--accent-secondary);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .nav-btn-inline:active {
+            transform: scale(0.95);
         }
 
         .nav-btn-inline:disabled {
-            opacity: 0.3;
+            color: rgba(255, 255, 255, 0.15);
+            background: transparent;
             cursor: not-allowed;
+        }
+
+        .nav-btn-inline:disabled:hover {
+            transform: none;
         }
 
         .progress {
@@ -2029,19 +2160,25 @@
         /* Conjugation table */
         .conjugation-panel {
             position: absolute;
-            inset: 0;
+            top: -20px;
+            bottom: -20px;
+            left: -15px;
+            right: -15px;
             padding: 20px;
             background: var(--bg-card);
             border-radius: 16px;
             overflow-y: auto;
             overflow-x: auto;
             z-index: 10;
-            transform: translateX(100%);
+            transform: translateX(calc(100% + 30px));
             transition: transform 0.25s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            visibility: hidden;
         }
 
         .conjugation-panel.visible {
             transform: translateX(0);
+            visibility: visible;
         }
 
         .conj-tense-toggle {
@@ -3218,6 +3355,11 @@
             }
             .desktop-nav-row {
                 display: flex !important;
+            }
+            /* Hide nav arrows moved outside the card on desktop */
+            .desktop-front-nav-hidden,
+            .desktop-back-nav-hidden {
+                display: none !important;
             }
         }
 

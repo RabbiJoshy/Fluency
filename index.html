@@ -195,7 +195,7 @@
                                 </div>
                                 <div style="display: flex; gap: 8px; pointer-events: auto;">
                                     <button class="card-action-small" id="shuffleBtnTop" title="Shuffle">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="16 3 21 3 21 8"></polyline>
                                             <line x1="4" y1="20" x2="21" y2="3"></line>
                                             <polyline points="21 16 21 21 16 21"></polyline>
@@ -211,47 +211,69 @@
                                 <div class="card-pos" id="frontPOS"></div>
                                 <div class="card-ranking" id="frontRanking"></div>
                             </button>
-                            <!-- Desktop: Left/right nav buttons beside the word -->
-                            <div class="desktop-nav-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
+                            <!-- Desktop: Left/right nav buttons (hidden on desktop, moved outside card) -->
+                            <div class="desktop-nav-row desktop-front-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
                             <!-- Mobile: Bottom row with arrows and speaker -->
                             <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
                                 <button class="nav-btn-inline" id="prevBtnFrontMobile" style="pointer-events: auto;">←</button>
-                                <button class="nav-btn-inline" id="speakBtnMobile" title="Speak word" style="pointer-events: auto;">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <button class="nav-btn-inline" id="speakBtnMobile" title="Toggle auto-speak" style="pointer-events: auto;">
+                                    <svg id="speakBtnMobileIcon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <line class="speak-off-indicator" x1="23" y1="1" x2="17" y2="7" style="display:none"></line>
                                     </svg>
                                 </button>
                                 <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
                             </div>
-                            <!-- Desktop: Speaker button on bottom right -->
-                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; right: 20px; z-index: 5; pointer-events: none;">
-                                <button class="card-action-small" id="speakBtn" title="Speak word" style="pointer-events: auto;">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Desktop: Speaker button centered at bottom -->
+                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; left: 0; right: 0; z-index: 5; pointer-events: none; display: flex; justify-content: center;">
+                                <button class="card-action-small" id="speakBtn" title="Toggle auto-speak" style="pointer-events: auto;">
+                                    <svg id="speakBtnIcon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <path class="speak-on-indicator" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        <line class="speak-off-indicator" x1="23" y1="1" x2="17" y2="7" style="display:none"></line>
                                     </svg>
                                 </button>
                             </div>
                         </div>
                         <div class="card-face card-back">
-                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
+                            <div class="desktop-back-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
                                     <button class="nav-btn-inline nav-back-btn hidden" id="navBackBtn" title="Back to previous card">↩</button>
                                     <button class="nav-btn-inline" id="prevBtnBack">←</button>
-                                    <button class="nav-btn-inline desktop-answer-btn" id="incorrectBtnTop" title="Mark as incorrect" style="display: none; background: var(--error); color: white; border-color: var(--error);">✗</button>
                                 </div>
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
-                                    <button class="nav-btn-inline desktop-answer-btn" id="correctBtnTop" title="Mark as correct" style="display: none; background: var(--success); color: white; border-color: var(--success);">✓</button>
                                     <button class="nav-btn-inline" id="nextBtnBack">→</button>
                                 </div>
                             </div>
                             <div class="card-details" id="backContent"></div>
                         </div>
+                    </div>
+                    <!-- Desktop: left side controls (incorrect + prev) -->
+                    <div class="desktop-side-controls left">
+                        <button class="desktop-answer-btn-outside incorrect" id="incorrectBtnOutside" title="Mark as incorrect (↓)">
+                            <span class="answer-icon">✗</span>
+                            <span class="answer-hint"><kbd>↓</kbd></span>
+                        </button>
+                        <button class="desktop-nav-btn-outside" id="prevBtnFrontOutside" title="Previous card (←)">
+                            <span class="nav-icon">←</span>
+                            <span class="answer-hint"><kbd>←</kbd></span>
+                        </button>
+                    </div>
+                    <!-- Desktop: right side controls (correct + next) -->
+                    <div class="desktop-side-controls right">
+                        <button class="desktop-answer-btn-outside correct" id="correctBtnOutside" title="Mark as correct (↑)">
+                            <span class="answer-icon">✓</span>
+                            <span class="answer-hint"><kbd>↑</kbd></span>
+                        </button>
+                        <button class="desktop-nav-btn-outside" id="nextBtnFrontOutside" title="Next card (→)">
+                            <span class="nav-icon">→</span>
+                            <span class="answer-hint"><kbd>→</kbd></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -553,10 +575,6 @@
             </div>
             <!-- Settings tab content -->
             <div class="settings-tab-content" id="settingsTabContent">
-                <div class="stat-row" style="cursor: pointer;" id="autoSpeakToggle">
-                    <span>Auto-speak words</span>
-                    <span id="autoSpeakStatus" style="color: var(--accent-primary);">ON</span>
-                </div>
                 <div class="stat-row" style="cursor: pointer;" id="groupSizeToggle">
                     <span>Cards per set</span>
                     <div id="groupSizeSelector" class="group-size-selector settings-toggle">

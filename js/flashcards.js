@@ -268,8 +268,7 @@ function initializeApp() {
     });
     document.getElementById('speakBtnMobile').addEventListener('click', function(e) {
         e.stopPropagation();
-        const card = flashcards[currentIndex];
-        if (card) speakWord(card.targetWord);
+        toggleAutoSpeak();
     });
 
     // Floating buttons (outside the card, for both mobile and desktop)
@@ -282,21 +281,15 @@ function initializeApp() {
         showStatsModal();
     });
 
-    // Desktop speak button
+    // Desktop speak button — toggles auto-speak
     document.getElementById('speakBtn').addEventListener('click', function(e) {
         e.stopPropagation();
-        const card = flashcards[currentIndex];
-        if (card) speakWord(card.targetWord);
+        toggleAutoSpeak();
     });
 
     document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
 
     // Settings modal interactions
-    document.getElementById('autoSpeakToggle').addEventListener('click', function() {
-        speechEnabled = !speechEnabled;
-        document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
-        document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
-    });
 
     // Hide single-occurrence words toggle
     document.getElementById('hideSingleOccToggle').addEventListener('click', function() {
@@ -635,6 +628,35 @@ function setupSwipeGestures() {
     }, { passive: true });
 }
 
+function pressAnswerBtn(id) {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.classList.remove('pressed');
+    // Force reflow to restart animation if pressed rapidly
+    void btn.offsetWidth;
+    btn.classList.add('pressed');
+    btn.addEventListener('animationend', () => btn.classList.remove('pressed'), { once: true });
+}
+
+function toggleAutoSpeak() {
+    speechEnabled = !speechEnabled;
+    updateSpeakIcons();
+}
+
+function updateSpeakIcons() {
+    // Update both desktop and mobile speaker icons
+    ['speakBtnIcon', 'speakBtnMobileIcon'].forEach(id => {
+        const svg = document.getElementById(id);
+        if (!svg) return;
+        svg.querySelectorAll('.speak-on-indicator').forEach(el => {
+            el.style.display = speechEnabled ? '' : 'none';
+        });
+        svg.querySelectorAll('.speak-off-indicator').forEach(el => {
+            el.style.display = speechEnabled ? 'none' : '';
+        });
+    });
+}
+
 function setupKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
         // Ignore if typing in an input field
@@ -642,14 +664,26 @@ function setupKeyboardShortcuts() {
             return;
         }
 
-        // Left arrow = incorrect
+        // Left arrow = previous card
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
-            handleSwipeAction('incorrect');
+            previousCard();
         }
-        // Right arrow = correct
+        // Right arrow = next card
         else if (e.key === 'ArrowRight') {
             e.preventDefault();
+            nextCard();
+        }
+        // Down arrow = incorrect
+        else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            pressAnswerBtn('incorrectBtnOutside');
+            handleSwipeAction('incorrect');
+        }
+        // Up arrow = correct
+        else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            pressAnswerBtn('correctBtnOutside');
             handleSwipeAction('correct');
         }
         // Space or Enter = flip card
@@ -1108,9 +1142,9 @@ function updateCard() {
             if (isMWE) {
                 // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
                 backHTML += `
-                <div style="display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 14px; color: white; padding: 3px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap;">${mweExpr}</span>
-                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; margin-left: 10px;">${displayMeaning}</span>
+                <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
+                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${displayMeaning}</span>
                     ${mweCounter}
                 </div>
                 `;
@@ -1332,7 +1366,7 @@ function updateCard() {
         // Replace external conjugation link with inline toggle when we have data
         if (key === 'conjugation' && conjEntry) {
             backHTML += `<button class="ref-icon-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
                 </svg>
                 <span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>
@@ -1377,25 +1411,37 @@ function updateCard() {
     document.getElementById('prevBtnFrontMobile').disabled = isPrevDisabled;
     document.getElementById('nextBtnFrontMobile').disabled = isNextDisabled;
 
-    // Setup top answer buttons (desktop only)
-    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (!isTouchDevice) {
-        const correctBtnTop = document.getElementById('correctBtnTop');
-        const incorrectBtnTop = document.getElementById('incorrectBtnTop');
+    // Setup outside nav buttons (desktop)
+    const prevBtnOutside = document.getElementById('prevBtnFrontOutside');
+    const nextBtnOutside = document.getElementById('nextBtnFrontOutside');
+    if (prevBtnOutside) {
+        prevBtnOutside.disabled = isPrevDisabled;
+        prevBtnOutside.onclick = function(e) {
+            e.stopPropagation();
+            previousCard();
+        };
+    }
+    if (nextBtnOutside) {
+        nextBtnOutside.disabled = isNextDisabled;
+        nextBtnOutside.onclick = function(e) {
+            e.stopPropagation();
+            nextCard();
+        };
+    }
 
-        if (correctBtnTop && incorrectBtnTop) {
-            correctBtnTop.style.display = 'flex';
-            incorrectBtnTop.style.display = 'flex';
+    // Setup outside answer buttons (desktop only, hidden via CSS on mobile)
+    const correctBtnOutside = document.getElementById('correctBtnOutside');
+    const incorrectBtnOutside = document.getElementById('incorrectBtnOutside');
 
-            correctBtnTop.onclick = function(e) {
-                e.stopPropagation();
-                handleSwipeAction('correct');
-            };
-            incorrectBtnTop.onclick = function(e) {
-                e.stopPropagation();
-                handleSwipeAction('incorrect');
-            };
-        }
+    if (correctBtnOutside && incorrectBtnOutside) {
+        correctBtnOutside.onclick = function(e) {
+            e.stopPropagation();
+            handleSwipeAction('correct');
+        };
+        incorrectBtnOutside.onclick = function(e) {
+            e.stopPropagation();
+            handleSwipeAction('incorrect');
+        };
     }
 
     // Speak the word if showing target language on front

@@ -839,10 +839,6 @@ function showSettingsModal() {
 }
 
 function showSettingsModalWithTab(tabName) {
-    // Update settings tab
-    document.getElementById('autoSpeakStatus').textContent = speechEnabled ? 'ON' : 'OFF';
-    document.getElementById('autoSpeakStatus').style.color = speechEnabled ? 'var(--accent-primary)' : 'var(--text-muted)';
-
     // Show/hide single-occurrence toggle (only in artist mode)
     const hideSingleOccToggle = document.getElementById('hideSingleOccToggle');
     if (activeArtist) {
