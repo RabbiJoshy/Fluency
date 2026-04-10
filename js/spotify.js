@@ -104,8 +104,8 @@ async function _prepareAuth() {
     }
 
     const redirectUri = _isMobile
-        ? window.location.origin + '/callback.html'
-        : (window._spotifyRedirectUri || window.location.origin + '/callback.html');
+        ? new URL('callback.html', window.location.href).href
+        : (window._spotifyRedirectUri || new URL('callback.html', window.location.href).href);
 
     const verifier = generateCodeVerifier();
     const challenge = await generateCodeChallenge(verifier);
@@ -116,8 +116,8 @@ function spotifyLogin(pendingTrackId, pendingPositionMs) {
     return new Promise(async (resolve) => {
         const clientId = window._spotifyClientId;
         const redirectUri = _isMobile
-            ? window.location.origin + '/callback.html'
-            : (window._spotifyRedirectUri || window.location.origin + '/callback.html');
+            ? new URL('callback.html', window.location.href).href
+            : (window._spotifyRedirectUri || new URL('callback.html', window.location.href).href);
 
         if (!clientId) {
             _debugLog('ERROR: Spotify client ID not configured in secrets.json');
