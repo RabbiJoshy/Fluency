@@ -11,6 +11,12 @@ let _playerInitStarted = false;
 let _currentTrackId = null;
 let _isPlaying = false;
 
+// --- Mobile debug logging (Safari Web Inspector console is broken for remote iOS) ---
+
+function _debugLog(msg) {
+    console.log('[Spotify]', msg);
+}
+
 // --- PKCE helpers ---
 
 function generateCodeVerifier() {
@@ -20,30 +26,155 @@ function generateCodeVerifier() {
         .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
+// Pure JS SHA-256 fallback for insecure contexts (HTTP on non-localhost)
+// where crypto.subtle is unavailable. Spotify requires S256 PKCE.
+function _sha256bytes(bytes) {
+    const K = [
+        0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+        0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+        0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+        0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+        0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+        0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+        0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+        0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+    ];
+    const rr = (x, n) => (x >>> n) | (x << (32 - n));
+    const bitLen = bytes.length * 8;
+    const padded = new Uint8Array(Math.ceil((bytes.length + 9) / 64) * 64);
+    padded.set(bytes);
+    padded[bytes.length] = 0x80;
+    new DataView(padded.buffer).setUint32(padded.length - 4, bitLen, false);
+    let [h0, h1, h2, h3, h4, h5, h6, h7] = [
+        0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+        0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+    ];
+    const dv = new DataView(padded.buffer);
+    for (let i = 0; i < padded.length; i += 64) {
+        const w = new Array(64);
+        for (let j = 0; j < 16; j++) w[j] = dv.getUint32(i + j * 4, false);
+        for (let j = 16; j < 64; j++) {
+            const s0 = rr(w[j-15], 7) ^ rr(w[j-15], 18) ^ (w[j-15] >>> 3);
+            const s1 = rr(w[j-2], 17) ^ rr(w[j-2], 19) ^ (w[j-2] >>> 10);
+            w[j] = (w[j-16] + s0 + w[j-7] + s1) | 0;
+        }
+        let a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
+        for (let j = 0; j < 64; j++) {
+            const t1 = (h + (rr(e,6) ^ rr(e,11) ^ rr(e,25)) + ((e & f) ^ (~e & g)) + K[j] + w[j]) | 0;
+            const t2 = ((rr(a,2) ^ rr(a,13) ^ rr(a,22)) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+            h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+        }
+        h0 = (h0+a)|0; h1 = (h1+b)|0; h2 = (h2+c)|0; h3 = (h3+d)|0;
+        h4 = (h4+e)|0; h5 = (h5+f)|0; h6 = (h6+g)|0; h7 = (h7+h)|0;
+    }
+    const out = new Uint8Array(32);
+    new DataView(out.buffer).setUint32(0,h0); new DataView(out.buffer).setUint32(4,h1);
+    new DataView(out.buffer).setUint32(8,h2); new DataView(out.buffer).setUint32(12,h3);
+    new DataView(out.buffer).setUint32(16,h4); new DataView(out.buffer).setUint32(20,h5);
+    new DataView(out.buffer).setUint32(24,h6); new DataView(out.buffer).setUint32(28,h7);
+    return out;
+}
+
 async function generateCodeChallenge(verifier) {
-    const data = new TextEncoder().encode(verifier);
-    const digest = await crypto.subtle.digest('SHA-256', data);
-    return btoa(String.fromCharCode(...new Uint8Array(digest)))
+    let digest;
+    if (window.crypto && window.crypto.subtle) {
+        const data = new TextEncoder().encode(verifier);
+        digest = new Uint8Array(await crypto.subtle.digest('SHA-256', data));
+    } else {
+        _debugLog('No crypto.subtle (HTTP), using JS SHA-256');
+        digest = _sha256bytes(new TextEncoder().encode(verifier));
+    }
+    return btoa(String.fromCharCode(...digest))
         .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
 // --- Auth flow ---
 
-function spotifyLogin() {
+// Mobile: prepare PKCE + auth URL synchronously, then redirect the full page.
+// We split the async work (code challenge) into a pre-computed step so that
+// the actual navigation happens synchronously from the user gesture.
+let _pendingAuth = null;
+
+// Pre-compute PKCE challenge so mobile login can navigate synchronously
+async function _prepareAuth() {
+    const clientId = window._spotifyClientId;
+    if (!clientId) {
+        _debugLog('ERROR: No spotifyClientId loaded');
+        return null;
+    }
+
+    const redirectUri = _isMobile
+        ? window.location.origin + '/callback.html'
+        : (window._spotifyRedirectUri || window.location.origin + '/callback.html');
+
+    const verifier = generateCodeVerifier();
+    const challenge = await generateCodeChallenge(verifier);
+    return { clientId, redirectUri, verifier, challenge };
+}
+
+function spotifyLogin(pendingTrackId, pendingPositionMs) {
     return new Promise(async (resolve) => {
         const clientId = window._spotifyClientId;
-        const redirectUri = window._spotifyRedirectUri;
-        if (!clientId || !redirectUri) {
-            console.error('Spotify client ID or redirect URI not configured in secrets.json');
+        const redirectUri = _isMobile
+            ? window.location.origin + '/callback.html'
+            : (window._spotifyRedirectUri || window.location.origin + '/callback.html');
+
+        if (!clientId) {
+            _debugLog('ERROR: Spotify client ID not configured in secrets.json');
             resolve(false);
             return;
         }
 
+        _debugLog('Starting login, mobile=' + _isMobile + ', redirect=' + redirectUri);
+
+        if (_isMobile) {
+            // --- Mobile: full-page redirect (popups are blocked on iOS Safari) ---
+
+            // Use pre-computed auth if available (from synchronous gesture path),
+            // otherwise compute now (may fail on iOS if called after async gap)
+            let auth = _pendingAuth;
+            _pendingAuth = null;
+            if (!auth) {
+                auth = await _prepareAuth();
+            }
+            if (!auth) { resolve(false); return; }
+
+            // Save pending play so we can auto-play after returning from auth
+            if (pendingTrackId) {
+                sessionStorage.setItem('spotify_pending_play', JSON.stringify({
+                    trackId: pendingTrackId,
+                    positionMs: pendingPositionMs || 0
+                }));
+            }
+
+            const stateObj = JSON.stringify({
+                verifier: auth.verifier,
+                clientId: auth.clientId,
+                redirectUri: auth.redirectUri,
+                returnUrl: window.location.href
+            });
+            const stateB64 = btoa(stateObj);
+
+            const params = new URLSearchParams({
+                response_type: 'code',
+                client_id: auth.clientId,
+                scope: SPOTIFY_SCOPES,
+                redirect_uri: auth.redirectUri,
+                code_challenge_method: 'S256',
+                code_challenge: auth.challenge,
+                state: stateB64
+            });
+
+            _debugLog('Redirecting to Spotify auth...');
+            window.location.href = `https://accounts.spotify.com/authorize?${params}`;
+            return;
+        }
+
+        // --- Desktop: popup flow (existing behavior) ---
+
         const verifier = generateCodeVerifier();
         const challenge = await generateCodeChallenge(verifier);
 
-        // Encode auth state in the Spotify `state` param so the callback can read it
-        // (sessionStorage is per-origin, and the callback may be on 127.0.0.1 while app is on localhost)
         const stateObj = JSON.stringify({ verifier, clientId, redirectUri });
         const stateB64 = btoa(stateObj);
 
@@ -60,7 +191,6 @@ function spotifyLogin() {
         const authUrl = `https://accounts.spotify.com/authorize?${params}`;
         const popup = window.open(authUrl, 'spotify-auth', 'width=500,height=700,left=200,top=100');
 
-        // Poll for the popup closing (callback.html stores tokens and closes itself)
         const poll = setInterval(() => {
             if (!popup || popup.closed) {
                 clearInterval(poll);
@@ -214,12 +344,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 // --- Playback ---
 
 async function spotifyPlayTrack(trackId, positionMs) {
-    console.log('spotifyPlayTrack called:', trackId, positionMs, _isMobile ? '(mobile)' : '(desktop)');
+  try {
+    _debugLog('spotifyPlayTrack: ' + trackId + ' @' + positionMs + 'ms (' + (_isMobile ? 'mobile' : 'desktop') + ')');
 
     // Toggle play/pause if same track
     if (_currentTrackId === trackId) {
         if (_isPlaying) {
-            // Pause
             if (_isMobile) {
                 const t = await getSpotifyToken();
                 if (t) await fetch('https://api.spotify.com/v1/me/player/pause', {
@@ -230,9 +360,8 @@ async function spotifyPlayTrack(trackId, positionMs) {
                 _player.pause();
             }
             _isPlaying = false;
-            console.log('Spotify: paused');
+            _debugLog('Paused');
         } else {
-            // Resume
             if (_isMobile) {
                 const t = await getSpotifyToken();
                 if (t) await fetch('https://api.spotify.com/v1/me/player/play', {
@@ -243,7 +372,7 @@ async function spotifyPlayTrack(trackId, positionMs) {
                 _player.resume();
             }
             _isPlaying = true;
-            console.log('Spotify: resumed');
+            _debugLog('Resumed');
         }
         return;
     }
@@ -251,23 +380,30 @@ async function spotifyPlayTrack(trackId, positionMs) {
     let token = await getSpotifyToken();
 
     if (!token) {
-        console.log('No token, starting login...');
-        const loggedIn = await spotifyLogin();
-        if (!loggedIn) { console.log('Login failed or cancelled'); return; }
+        _debugLog('No token, starting login...');
+        // On mobile, pre-compute PKCE before any navigation to avoid async gaps
+        if (_isMobile) {
+            _pendingAuth = await _prepareAuth();
+        }
+        const loggedIn = await spotifyLogin(trackId, positionMs);
+        // On mobile, spotifyLogin navigates away — we won't reach here
+        if (!loggedIn) { _debugLog('Login failed or cancelled'); return; }
         token = await getSpotifyToken();
-        if (!token) { console.log('Still no token after login'); return; }
+        if (!token) { _debugLog('Still no token after login'); return; }
     }
 
     if (_isMobile) {
-        // Mobile: play via Spotify Connect on the active device (phone's Spotify app)
         await _playViaConnect(trackId, positionMs, token);
     } else {
-        // Desktop: play via Web Playback SDK in browser
         await _playViaSdk(trackId, positionMs, token);
     }
+  } catch (err) {
+    _debugLog('ERROR in spotifyPlayTrack: ' + err.message);
+  }
 }
 
 async function _playViaConnect(trackId, positionMs, token) {
+    _debugLog('Connect: playing ' + trackId + ' @' + positionMs + 'ms');
     const body = JSON.stringify({
         uris: [`spotify:track:${trackId}`],
         position_ms: positionMs || 0
@@ -282,23 +418,26 @@ async function _playViaConnect(trackId, positionMs, token) {
             method: 'PUT', headers, body
         });
 
+        _debugLog('Connect response: ' + resp.status);
+
         if (resp.status === 204 || resp.status === 202) {
-            console.log(`Spotify Connect: playing ${trackId} at ${positionMs}ms`);
+            _debugLog('Connect: playing OK');
             _currentTrackId = trackId;
             _isPlaying = true;
             return;
         }
 
         if (resp.status === 401) {
+            _debugLog('Connect: 401, refreshing token...');
             token = await refreshSpotifyToken();
-            if (!token) { await spotifyLogin(); return; }
+            if (!token) { await spotifyLogin(trackId, positionMs); return; }
             const retry = await fetch('https://api.spotify.com/v1/me/player/play', {
                 method: 'PUT',
                 headers: { ...headers, 'Authorization': `Bearer ${token}` },
                 body
             });
             if (retry.status === 204 || retry.status === 202) {
-                console.log(`Spotify Connect: playing ${trackId} at ${positionMs}ms (after refresh)`);
+                _debugLog('Connect: playing OK (after refresh)');
                 _currentTrackId = trackId;
                 _isPlaying = true;
                 return;
@@ -306,19 +445,21 @@ async function _playViaConnect(trackId, positionMs, token) {
         }
 
         if (resp.status === 404) {
+            _debugLog('Connect: 404 — no active device');
             alert('No active Spotify device found. Open the Spotify app first, then try again.');
             return;
         }
 
         if (resp.status === 403) {
+            _debugLog('Connect: 403 — Premium required');
             alert('Spotify Premium is required for playback control.');
             return;
         }
 
         const err = await resp.json().catch(() => ({}));
-        console.error('Spotify Connect error:', resp.status, err);
+        _debugLog('Connect error: ' + resp.status + ' ' + JSON.stringify(err));
     } catch (err) {
-        console.error('Spotify Connect request failed:', err);
+        _debugLog('Connect request failed: ' + err.message);
     }
 }
 
@@ -405,6 +546,19 @@ async function _playViaSdk(trackId, positionMs, token) {
         console.error('Spotify playback request failed:', err);
     }
 }
+
+// --- Auto-play on return from mobile auth redirect ---
+
+(function _checkPendingPlay() {
+    const pending = sessionStorage.getItem('spotify_pending_play');
+    if (pending && isSpotifyConnected()) {
+        sessionStorage.removeItem('spotify_pending_play');
+        const { trackId, positionMs } = JSON.parse(pending);
+        _debugLog('Resuming pending play: ' + trackId + ' @' + positionMs + 'ms');
+        // Small delay to let the page finish loading
+        setTimeout(() => spotifyPlayTrack(trackId, positionMs), 800);
+    }
+})();
 
 // Expose on window for inline onclick handlers
 window.spotifyLogin = spotifyLogin;

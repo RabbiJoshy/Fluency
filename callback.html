@@ -17,9 +17,9 @@
 
     // Auth state is passed via the Spotify `state` param (avoids cross-origin sessionStorage issues)
     const stateB64 = params.get('state');
-    let codeVerifier, clientId, redirectUri;
+    let codeVerifier, clientId, redirectUri, stateObj;
     try {
-        const stateObj = JSON.parse(atob(stateB64));
+        stateObj = JSON.parse(atob(stateB64));
         codeVerifier = stateObj.verifier;
         clientId = stateObj.clientId;
         redirectUri = stateObj.redirectUri;
@@ -58,23 +58,28 @@
             token_expiry: String(Date.now() + data.expires_in * 1000)
         };
 
-        // Store locally (same-origin fallback)
+        // Store tokens
         localStorage.setItem('spotify_access_token', tokens.access_token);
         localStorage.setItem('spotify_refresh_token', tokens.refresh_token);
         localStorage.setItem('spotify_token_expiry', tokens.token_expiry);
-
-        // Send tokens to opener via postMessage (handles cross-origin: localhost vs 127.0.0.1)
-        if (window.opener) {
-            window.opener.postMessage({ type: 'spotify-auth', tokens }, '*');
-        }
 
         sessionStorage.removeItem('spotify_code_verifier');
         sessionStorage.removeItem('spotify_client_id');
         sessionStorage.removeItem('spotify_redirect_uri');
         sessionStorage.removeItem('spotify_return_url');
 
-        document.body.textContent = 'Spotify connected! This window will close.';
-        window.close();
+        if (window.opener) {
+            // Desktop popup flow: send tokens to opener and close
+            window.opener.postMessage({ type: 'spotify-auth', tokens }, '*');
+            document.body.textContent = 'Spotify connected! This window will close.';
+            window.close();
+        } else {
+            // Mobile redirect flow: navigate back to the app
+            // returnUrl was encoded in the state param by spotifyLogin()
+            const returnUrl = (stateObj && stateObj.returnUrl) || '/';
+            document.body.textContent = 'Spotify connected! Returning to app...';
+            window.location.href = returnUrl;
+        }
     } catch (err) {
         document.body.textContent = 'Auth failed: ' + err.message;
         console.error('Spotify token exchange error:', err);
