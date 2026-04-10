@@ -45,23 +45,26 @@ def gap_fill_gemini(word, lemma, senses, examples, api_key):
         spa = ex.get("spanish", "")
         lines.append("%d. %s | %s" % (i + 1, spa, eng))
 
-    prompt = """You are a Spanish word sense classifier for the word "%s" (lemma: %s).
-Your goal is to help language learners understand what this word means in context.
+    prompt = """You are helping build a Spanish vocabulary flashcard app. The word is "%s" (lemma: %s).
 
-AVAILABLE SENSES:
+Step 1: Read these example lyrics and determine what "%s" actually means in this artist's usage:
 %s
 
-EXAMPLE LYRICS (Spanish | English translation):
+Step 2: Check whether any of these dictionary senses captures that meaning:
 %s
 
-For EACH example, decide:
-- If one of the available senses would help a learner understand the meaning, return its number.
-- If the word is being used with a slang, figurative, or regional meaning that a learner could NOT guess from any of the listed senses, return 0 and propose the actual contextual meaning.
+Step 3: If the dictionary senses DON'T cover the actual meaning (e.g., the word is used figuratively, as slang, or with a regional meaning a learner couldn't guess from the dictionary), propose ONE short reusable sense definition that would work as a flashcard translation for all the unmatched examples.
 
-Think from a learner's perspective: if a student saw only the dictionary definition on a flashcard, would they understand what the artist means? If not, propose the real meaning.
+Return JSON:
+{
+  "actual_meaning": "<what the word means in these lyrics, 2-5 words>",
+  "covered_by_existing": <true if any dictionary sense adequately captures it, false if not>,
+  "proposed_sense": "<short flashcard-friendly translation if not covered, else null>",
+  "proposed_pos": "<POS tag if proposing: NOUN/VERB/ADJ/ADV/INTJ, else null>",
+  "examples_needing_new_sense": <count of examples that need the new sense, 0 if covered>
+}
 
-Return JSON: an array of objects, one per example:
-{"sense": <number 1-N or 0>, "proposed": "<short English translation if sense=0, else null>"}""" % (word, lemma, menu, "\n".join(lines))
+Be conservative: only propose if the existing senses would genuinely confuse a learner. Figurative extensions of a listed sense (e.g., "fire" covering slang "heat") are usually fine.""" % (word, lemma, word, "\n".join(lines), menu)
 
     response = client.models.generate_content(
         model="gemini-2.5-flash-lite",
@@ -126,24 +129,18 @@ def main():
         if not result:
             continue
 
-        # Check for proposals
-        word_proposals = [r for r in result if r.get("sense") == 0 and r.get("proposed")]
-        unique_proposals = list(set(r["proposed"] for r in word_proposals))
-
         print("\n%s (lemma=%s, %d senses, %d examples):" % (word, lemma, len(senses), len(examples)))
         print("  Menu: %s" % " | ".join("[%s] %s" % (s["pos"], s["translation"]) for s in senses))
+        print("  Gemini says it means: \"%s\"" % result.get("actual_meaning", "?"))
 
-        if unique_proposals:
-            existing_picks = sum(1 for r in result if r.get("sense", 0) > 0)
-            print("  Existing senses used: %d/%d examples" % (existing_picks, len(result)))
-            print("  PROPOSED NEW SENSES:")
-            for p in unique_proposals:
-                count = sum(1 for r in word_proposals if r["proposed"] == p)
-                print("    → \"%s\" (%d examples)" % (p, count))
-            proposals.append((word, unique_proposals))
+        if not result.get("covered_by_existing") and result.get("proposed_sense"):
+            n = result.get("examples_needing_new_sense", "?")
+            pos = result.get("proposed_pos", "?")
+            print("  → PROPOSED: [%s] %s (%s examples)" % (pos, result["proposed_sense"], n))
+            proposals.append((word, result["proposed_sense"], pos, n))
         else:
             no_proposals.append(word)
-            print("  ✓ All examples covered by existing senses")
+            print("  ✓ Covered by existing senses")
 
     elapsed = time.time() - t_start
 
@@ -151,14 +148,13 @@ def main():
     print("SUMMARY (%.1fs, %d words)" % (elapsed, len(TEST_WORDS)))
     print("=" * 70)
     print("No Wiktionary entry:    %d  %s" % (len(no_wiktionary), no_wiktionary))
-    print("Proposed new senses:    %d  %s" % (len(proposals), [w for w, _ in proposals]))
+    print("Proposed new senses:    %d  %s" % (len(proposals), [w for w, p, _, _ in proposals]))
     print("All senses sufficient:  %d  %s" % (len(no_proposals), no_proposals))
     print()
     if proposals:
         print("PROPOSALS:")
-        for word, props in proposals:
-            for p in props:
-                print("  %s → \"%s\"" % (word, p))
+        for word, sense, pos, n in proposals:
+            print("  %s → [%s] \"%s\" (%s examples)" % (word, pos, sense, n))
 
 
 if __name__ == "__main__":
