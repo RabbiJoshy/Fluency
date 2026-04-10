@@ -177,7 +177,7 @@ def main():
     import argparse
     from _artist_config import add_artist_arg, load_artist_config
 
-    parser = argparse.ArgumentParser(description="Step 8: Rerank vocabulary")
+    parser = argparse.ArgumentParser(description="Step 7: Rerank vocabulary")
     add_artist_arg(parser)
     parser.add_argument("--skip-split", action="store_true",
                         help="(Deprecated, ignored — builder handles splits)")

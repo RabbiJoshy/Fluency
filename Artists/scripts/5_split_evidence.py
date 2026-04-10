@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Step 5b: Split vocab_evidence_merged.json into layer files.
+Step 5: Split vocab_evidence_merged.json into layer files.
 
-Reads the merged evidence from step 5 and produces two layer files that
+Reads the merged evidence from step 3 and produces two layer files that
 mirror the normal-mode layer schema:
   - word_inventory.json: word identity + corpus frequency
   - examples_raw.json: raw Spanish example lines (no English yet — step 6A adds that)
@@ -28,7 +28,7 @@ from _artist_config import add_artist_arg, load_artist_config
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Step 5b: Split evidence into inventory + examples layers")
+    parser = argparse.ArgumentParser(description="Step 5: Split evidence into inventory + examples layers")
     add_artist_arg(parser)
     args = parser.parse_args()
 

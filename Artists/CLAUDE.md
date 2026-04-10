@@ -16,12 +16,14 @@ All scripts run from the **project root** (`Fluency/`), not from inside `Artists
 Each step produces its own **layer file** in `data/layers/`. No step mutates another step's output. The builder assembles all layers into the final front-end files.
 
 ```
-Steps 3-5b: Corpus processing → word_inventory.json, examples_raw.json
-Step 6:     Gemini analysis    → senses_gemini.json, sense_assignments.json, example_translations.json
-Step 7:     Cognate detection  → cognates.json
-Step 8:     Ranking            → ranking.json
-Builder:    Assembly           → index.json, examples.json, monolith (debug)
+Steps 2-5: Corpus processing → word_inventory.json, examples_raw.json
+Step 6:    Gemini analysis    → senses_gemini.json, sense_assignments.json, example_translations.json
+Step 7:    Ranking            → ranking.json
+Step 8:    LRC timestamps     → lyrics_timestamps.json
+Builder:   Assembly           → index.json, examples.json, monolith (debug)
 ```
+
+Cognates use a shared layer (`Data/Spanish/layers/cognates.json`).
 
 This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer concepts, different data sources.
 
@@ -31,18 +33,19 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 |------|--------|-------------|-------------|
 | 1 | `scripts/1_download_lyrics.py` | (batches) | Scrape lyrics + English translations from Genius API (`--no-translations` to skip) |
 | 1b | (manual) | `duplicate_songs.json` | Curate song exclusions — see `DEDUP_INSTRUCTIONS.md` |
-| 3 | `scripts/3_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
-| 3b | `scripts/3b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
-| 5 | `scripts/5_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `scripts/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua). Runs after step 5. |
-| 5b | `scripts/5b_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
+| 2 | `scripts/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
+| 2b | `scripts/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
+| 3 | `scripts/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
+| 4 | `scripts/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua) |
+| 5 | `scripts/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
 | 6 | `scripts/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
 | 6b | `scripts/match_artist_senses.py` | `sense_assignments.json` | Local bi-encoder sense matching (fallback for --no-gemini). Skips if assignments exist. |
-| 6j | `scripts/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional — run after Google Translate or `--no-gemini` runs. |
-| 7 | _(shared layer)_ | `cognates.json` | Shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step. Builder loads it directly. |
-| 8 | `scripts/8_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
-| 9 | `scripts/9_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
+| 6j | `scripts/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
+| 7 | `scripts/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
+| 8 | `scripts/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
 | build | `scripts/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
+
+Cognates use a shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step needed.
 
 Shared helper: `scripts/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
 
@@ -82,25 +85,24 @@ Artists/{Name}/
   {Name}vocabulary.index.json    # Compact index for front end (built by builder)
   {Name}vocabulary.examples.json # Examples keyed by ID (built by builder)
   data/layers/                   # Layer files — each step writes here
-    word_inventory.json          # Step 5b
-    examples_raw.json            # Step 5b
+    word_inventory.json          # Step 5
+    examples_raw.json            # Step 5
     example_translations.json    # Step 6
     senses_gemini.json           # Step 6
     sense_assignments.json       # Step 6
-    cognates.json                # Step 7
-    ranking.json                 # Step 8
+    ranking.json                 # Step 7
   data/input/
     lyrics/                      # Raw lyrics per song
-    translations/aligned_translations.json  # Genius community translations (step 3b)
+    translations/aligned_translations.json  # Genius community translations (step 2b)
     duplicate_songs.json         # Songs to exclude from corpus
   data/word_counts/
-    vocab_evidence.json          # Step 3 output (word counts + evidence)
+    vocab_evidence.json          # Step 2 output (word counts + evidence)
     mwe_detected.json            # Multi-word expressions detected
   data/llm_analysis/
     curated_translations.json    # Artist-specific translation fixes (overrides shared/curated_translations.json)
     llm_progress.json            # Gemini word analysis cache (internal)
     sentence_translations.json   # Gemini sentence translation cache (internal)
-  data/elision_merge/            # Step 5 output
+  data/elision_merge/            # Step 3 output
   data/known_vocab/              # Step 4 output (skip_words.json)
   data/lrclib_cache/             # Step 9 LRCLIB response cache
 ```

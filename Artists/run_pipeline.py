@@ -4,7 +4,7 @@ Pipeline orchestrator for artist vocabulary pipelines.
 
 Usage (from project root):
     .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"
-    .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny" --from-step 6
+    .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny" --from-step 6  # Gemini analysis onward
     .venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --dry-run
 
 API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
@@ -40,23 +40,23 @@ _load_dotenv()
 def _base_args(artist_dir):
     return ["--artist-dir", artist_dir]
 
-def _step_3_args(args, artist_dir):
+def _step_2_args(args, artist_dir):
     return _base_args(artist_dir) + [
         "--batch_glob", os.path.join(artist_dir, "data", "input", "batches", "batch_*.json"),
         "--out", os.path.join(artist_dir, "data", "word_counts", "vocab_evidence.json"),
         "--mwe-out", os.path.join(artist_dir, "data", "word_counts", "mwe_detected.json"),
     ]
 
-def _step_3b_args(args, artist_dir):
+def _step_2b_args(args, artist_dir):
     return _base_args(artist_dir) + ["--align"]
+
+def _step_3_args(args, artist_dir):
+    return _base_args(artist_dir)
 
 def _step_4_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _step_5_args(args, artist_dir):
-    return _base_args(artist_dir)
-
-def _step_5b_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _step_6_args(args, artist_dir):
@@ -81,10 +81,10 @@ def _step_6b_args(args, artist_dir):
         a.append("--force")
     return a
 
-def _step_8_args(args, artist_dir):
+def _step_7_args(args, artist_dir):
     return _base_args(artist_dir)
 
-def _step_9_args(args, artist_dir):
+def _step_8_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _build_args(args, artist_dir):
@@ -93,22 +93,22 @@ def _build_args(args, artist_dir):
 
 def build_steps(vocab_file):
     return [
-        {"num": 3, "label": "Tokenise, count words, detect MWEs",
-         "script": "3_count_words.py", "args_fn": _step_3_args,
+        {"num": 2, "label": "Tokenise, count words, detect MWEs",
+         "script": "2_count_words.py", "args_fn": _step_2_args,
          "input": None, "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
-        {"num": "3b", "label": "Scrape Genius translations",
-         "script": "3b_scrape_translations.py", "args_fn": _step_3b_args,
+        {"num": "2b", "label": "Scrape Genius translations",
+         "script": "2b_scrape_translations.py", "args_fn": _step_2b_args,
          "input": None, "output": "data/input/translations/aligned_translations.json", "needs_api_key": False},
-        {"num": 5, "label": "Merge elisions",
-         "script": "5_merge_elisions.py", "args_fn": _step_5_args,
+        {"num": 3, "label": "Merge elisions",
+         "script": "3_merge_elisions.py", "args_fn": _step_3_args,
          "input": "data/word_counts/vocab_evidence.json",
          "output": "data/elision_merge/vocab_evidence_merged.json", "needs_api_key": False},
         {"num": 4, "label": "Filter known vocabulary (reduce Gemini workload)",
          "script": "4_filter_known_vocab.py", "args_fn": _step_4_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
          "output": "data/known_vocab/skip_words.json", "needs_api_key": False},
-        {"num": "5b", "label": "Split evidence into inventory + examples layers",
-         "script": "5b_split_evidence.py", "args_fn": _step_5b_args,
+        {"num": 5, "label": "Split evidence into inventory + examples layers",
+         "script": "5_split_evidence.py", "args_fn": _step_5_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
          "output": "data/layers/word_inventory.json", "needs_api_key": False},
         {"num": 6, "label": "LLM word analysis (Gemini) -> layers",
@@ -119,13 +119,12 @@ def build_steps(vocab_file):
          "script": "match_artist_senses.py", "args_fn": _step_6b_args,
          "input": "data/layers/senses_gemini.json",
          "output": "data/layers/sense_assignments.json", "needs_api_key": False},
-        # Step 7 (cognates) removed — shared layer at Data/Spanish/layers/cognates.json
-        {"num": 8, "label": "Rerank -> layer",
-         "script": "8_rerank.py", "args_fn": _step_8_args,
+        {"num": 7, "label": "Rerank -> layer",
+         "script": "7_rerank.py", "args_fn": _step_7_args,
          "input": "data/layers/word_inventory.json",
          "output": "data/layers/ranking.json", "needs_api_key": False},
-        {"num": 9, "label": "Fetch LRC timestamps",
-         "script": "9_fetch_lrc_timestamps.py", "args_fn": _step_9_args,
+        {"num": 8, "label": "Fetch LRC timestamps",
+         "script": "8_fetch_lrc_timestamps.py", "args_fn": _step_8_args,
          "input": "data/layers/examples_raw.json",
          "output": "data/layers/lyrics_timestamps.json", "needs_api_key": False},
         {"num": "build", "label": "Build vocabulary (assemble layers)",

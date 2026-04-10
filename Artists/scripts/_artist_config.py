@@ -7,7 +7,7 @@ import time
 # Artists/scripts/_artist_config.py -> Artists/
 ARTISTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
-SHARED_DIR = os.path.join(ARTISTS_DIR, "shared")
+SHARED_DIR = os.path.join(ARTISTS_DIR, "curations")
 PROJECT_SHARED_DIR = os.path.join(PROJECT_ROOT, "shared")
 
 
@@ -45,7 +45,7 @@ def load_dotenv_from_project_root():
 
 
 def load_shared_list(filename):
-    """Load a shared curated list from Artists/shared/.
+    """Load a shared curated list from Artists/curations/.
 
     Handles both old format (plain list) and new format (dict with 'entries' key).
     Returns a plain list of strings.
@@ -164,7 +164,7 @@ def load_shared_dict(filename, modes=None):
     """
     path = os.path.join(PROJECT_SHARED_DIR, filename)
     if not os.path.isfile(path):
-        # Fall back to Artists/shared/ location
+        # Fall back to Artists/curations/ location
         path = os.path.join(SHARED_DIR, filename)
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)

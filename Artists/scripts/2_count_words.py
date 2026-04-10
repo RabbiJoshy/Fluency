@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Step 3: Tokenise lyrics and count word frequencies.
+Step 2: Tokenise lyrics and count word frequencies.
 
 Genius batch JSONs -> minimal "evidence" vocab JSON:
 
@@ -512,7 +512,7 @@ MIN_PMI_SONGS = 6
 
 
 def _load_step_json(filename):
-    """Load from Artists/shared/ (curated data)."""
+    """Load from Artists/curations/ (curated data)."""
     from _artist_config import SHARED_DIR
     path = os.path.join(SHARED_DIR, filename)
     with open(path, "r", encoding="utf-8") as f:

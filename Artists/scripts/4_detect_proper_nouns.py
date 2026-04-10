@@ -14,7 +14,7 @@ false positive loses a real vocabulary word from the deck.
 No API key needed. Runs in seconds (--no-spacy --no-lingua) to ~60s (full).
 
 Reads:  <artist-dir>/data/word_counts/vocab_evidence.json
-        Artists/shared/known_proper_nouns.json, not_proper_nouns.json,
+        Artists/curations/known_proper_nouns.json, not_proper_nouns.json,
         interjections.json, extra_english.json
 Writes: <artist-dir>/data/proper_nouns/detected_proper_nouns.json
 

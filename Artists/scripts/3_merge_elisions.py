@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Step 5: Merge s-elision pairs in vocab_evidence.json before LLM analysis.
+Step 3: Merge s-elision pairs in vocab_evidence.json before LLM analysis.
 
 Elided words like ere' (= eres) get merged into their full form:
 - word key becomes the full form (eres)
@@ -267,7 +267,7 @@ def merge_evidence(data: list, targets: dict) -> list:
 def main():
     global PIPELINE_DIR, IN_PATH, OUT_PATH, MAPPING_PATH
 
-    parser = argparse.ArgumentParser(description="Step 5: Merge s-elision pairs")
+    parser = argparse.ArgumentParser(description="Step 3: Merge s-elision pairs")
     parser.add_argument("--artist-dir", required=True, help="Path to artist data directory")
     args = parser.parse_args()
 

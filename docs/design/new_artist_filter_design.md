@@ -52,9 +52,9 @@ Format: `word count` per line, sorted by frequency. One-time download.
 `Data/Spanish/layers/conjugation_reverse.json` maps ~84k inflected forms → infinitives. Catches conjugated forms of known verbs that aren't in the 50k wordlist (e.g., `llueven`, `boté`, `prendías`).
 
 ### 5. Subtract shared curated lists
-- `Artists/shared/proper_nouns.json` (~145 entries)
-- `Artists/shared/interjections.json`
-- `Artists/shared/extra_english.json`
+- `Artists/curations/proper_nouns.json` (~145 entries)
+- `Artists/curations/interjections.json`
+- `Artists/curations/extra_english.json`
 
 These accumulate across artists.
 

@@ -15,7 +15,7 @@ Reads:  <artist-dir>/data/elision_merge/vocab_evidence_merged.json
         Data/Spanish/vocabulary.json
         Data/Spanish/es_50k_wordlist.txt
         Data/Spanish/layers/conjugation_reverse.json
-        Artists/shared/proper_nouns.json, interjections.json, extra_english.json
+        Artists/curations/proper_nouns.json, interjections.json, extra_english.json
 Writes: <artist-dir>/data/known_vocab/skip_words.json
 
 Usage (from project root):
@@ -46,8 +46,8 @@ ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
 
 # D-elision regexes: Caribbean d-drop in past participles and derivatives.
 # Step 5 handles -a'o/-í'o when a canonical counterpart exists in the corpus.
-# These are backups for when step 5 can't merge (no counterpart), plus
-# feminine/plural variants that step 5 doesn't cover at all.
+# These are backups for when step 3 can't merge (no counterpart), plus
+# feminine/plural variants that step 3 doesn't cover at all.
 _D_ELISION_PATTERNS = [
     (re.compile(r"^(.+)a'o$"), "ado"),     # -a'o  -> -ado   (masc sing)
     (re.compile(r"^(.+)a'a$"), "ada"),     # -a'a  -> -ada   (fem sing)
@@ -89,8 +89,8 @@ def elision_canonical(word):
     """Map common non-s-elision contractions to their standard forms.
 
     Returns a set of candidate standard forms to check against wordlists.
-    S-elisions (lo' -> los) are already handled by step 5 merge. This
-    covers the remaining contractions that step 5 skips.
+    S-elisions (lo' -> los) are already handled by step 3 merge. This
+    covers the remaining contractions that step 3 skips.
     """
     candidates = set()
 
@@ -105,7 +105,7 @@ def elision_canonical(word):
         candidates.add(stem + "z")     # die' -> diez
         candidates.add(stem + "r")     # possible verb infinitive truncation
 
-    # D-elision variants: backup for step 5 misses + feminine/plural forms
+    # D-elision variants: backup for step 3 misses + feminine/plural forms
     for pattern, suffix in _D_ELISION_PATTERNS:
         m = pattern.match(word)
         if m:
@@ -304,8 +304,8 @@ def main():
                     remaining.discard(w)
                     break
 
-    # Load skip forms from step 5's elision mapping — these are non-s-elision
-    # forms that step 5 identified but chose not to merge. Tag them as known.
+    # Load skip forms from step 3's elision mapping — these are non-s-elision
+    # forms that step 3 identified but chose not to merge. Tag them as known.
     if os.path.exists(ELISION_MAPPING_PATH):
         with open(ELISION_MAPPING_PATH, "r", encoding="utf-8") as f:
             elision_mapping = json.load(f)

@@ -29,14 +29,13 @@ Artist layers live at `Artists/{Name}/data/layers/` and follow the same pattern:
 
 | File | Key format | Value | Producer |
 |------|-----------|-------|----------|
-| `word_inventory.json` | Array | Same as normal mode | `3_count_words.py` (step 3) |
-| `examples_raw.json` | bare word | `[{id, spanish, title}]` | `5b_split_evidence.py` (step 5b) |
+| `word_inventory.json` | Array | Same as normal mode | `2_count_words.py` (step 2) |
+| `examples_raw.json` | bare word | `[{id, spanish, title}]` | `5_split_evidence.py` (step 5) |
 | `example_translations.json` | Spanish text line | `{english, source}` — source: `"genius"\|"gemini"\|"google"` | `6_llm_analyze.py` (step 6) |
 | `senses_gemini.json` | `word\|lemma` | List of `{pos, translation, source}` | `6_llm_analyze.py` (step 6) |
 | `sense_assignments.json` | `word\|lemma` | List of `{sense_idx, examples: [int], method}` — method: `"gemini"\|"biencoder"\|"keyword"` | Step 6 / 6b |
-| `cognates.json` | `word\|lemma` | `true` (legacy per-artist) — shared layer at `Data/Spanish/layers/cognates.json` is preferred | Shared layer |
-| `ranking.json` | top-level | `{order: [words], easiness: {word: {m: [[scores]]}}}` | `8_rerank.py` (step 8) |
-| `lyrics_timestamps.json` | top-level | `{_meta: {...}, timestamps: {song: {line: {ms, confidence}}}}` | `9_fetch_lrc_timestamps.py` (step 9) |
+| `ranking.json` | top-level | `{order: [words], easiness: {word: {m: [[scores]]}}}` | `7_rerank.py` (step 7) |
+| `lyrics_timestamps.json` | top-level | `{_meta: {...}, timestamps: {song: {line: {ms, confidence}}}}` | `8_fetch_lrc_timestamps.py` (step 8) |
 | `translation_scores.json` | Spanish text line | `{score: 1-5}` — Gemini quality scores | `judge_translations.py` (step 6j) |
 
 ## How Layers Are Consumed
