@@ -389,7 +389,9 @@ def main():
                 focus_words[word] = ("wiktionary-multi", wikt_senses, new_entry["meanings"])
 
     # --- Write output ---
-    output_path = vocab_path.replace(".json", "_cascade_%s.json" % method)
+    # Default: write to _test.json (feeds "Bad Bunny (Test)" artist entry)
+    # Each method also writes to _cascade_{method}.json for A/B comparison
+    output_path = vocab_path.replace(".json", "_test.json")
     print("\nWriting cascade monolith: %s" % output_path)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(cascade_entries, f, ensure_ascii=False, indent=2)
@@ -427,9 +429,15 @@ def main():
         stats["gemini_fallback"], 100 * stats["gemini_fallback"] / len(entries)))
     print("No examples:         %6d" % stats["no_examples"])
     print()
+    # Also write method-specific file for A/B comparison via ?variant=
+    method_path = vocab_path.replace(".json", "_cascade_%s.json" % method)
+    with open(method_path, "w", encoding="utf-8") as f:
+        json.dump(cascade_entries, f, ensure_ascii=False, indent=2)
+
     print("View in browser:")
-    print("  Normal:  http://localhost:8765/?artist=bad-bunny")
-    print("  This:    http://localhost:8765/?variant=cascade_%s&artist=bad-bunny" % method)
+    print("  Original:  http://localhost:8765/?artist=bad-bunny")
+    print("  Test:      http://localhost:8765/?artist=bad-bunny-test")
+    print("  (also):    http://localhost:8765/?variant=cascade_%s&artist=bad-bunny" % method)
 
 
 if __name__ == "__main__":

@@ -25,10 +25,10 @@
     },
     "maxLevel": 8500
   },
-  "bad-bunny-cascade": {
-    "name": "Bad Bunny (Cascade)",
+  "bad-bunny-test": {
+    "name": "Bad Bunny (Test)",
     "language": "spanish",
-    "dataPath": "Artists/Bad Bunny/BadBunnyvocabulary_cascade.json",
+    "dataPath": "Artists/Bad Bunny/BadBunnyvocabulary_test.json",
     "albumsDictionary": "Artists/Bad Bunny/bad_bunny_albums_dictionary.json",
     "albumImageMap": {
       "X 100PRE (2018)": "Artists/Bad Bunny/Images/X100PRE.jpg",
