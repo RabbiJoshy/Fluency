@@ -59,7 +59,9 @@ Format: `word count` per line, sorted by frequency. One-time download.
 These accumulate across artists.
 
 ### 6. Lingua language detection
-Run `lingua-language-detector` (already a dependency) on remaining words. Remove any word classified as English with ≥0.90 confidence. Catches obvious English (`flow`, `babies`, `booty`, `shirt`) without false-positiving on ambiguous words (`trap`, `carbon`, `combo`).
+Run `lingua-language-detector` (already a dependency) on remaining words. Remove any word classified as English with ≥0.90 confidence. Catches obvious English (`flow`, `shirt`) without false-positiving on ambiguous words (`trap`, `carbon`, `combo`).
+
+**Known limitation (2026-04):** Lingua fails on short/common English words — `babies`, `boobies`, `wannabes`, `fit`, `hoes`, `goddamn`, `milf`, `wifey`, `picky` all pass through at 0.90 threshold because single-word character n-gram detection can't confidently distinguish them. Proposed fix: supplement with a common English word list (top 20-30k). By this point in the filter chain, Spanish homographs (no, pan, solo) are already removed by the 50k Spanish wordlist, so false positive risk from the English list is low. The real question is "would an English speaker recognise this word?" — a frequency list answers that directly without needing NLP.
 
 ### 7. Cut frequency=1
 Words appearing only once in the artist's corpus. This removes ~1,600 words — mostly single-mention proper nouns, OCR artifacts, English words, and very rare slang. Biggest single reduction after step 3.

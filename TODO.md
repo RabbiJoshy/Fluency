@@ -55,6 +55,13 @@ below have enough complexity to warrant this treatment when the time comes.
   ambiguous elisions (ve'→vez/ves) disambiguate on every occurrence.
   See [`elision_resolution_refactor.md`](docs/design/prompts/elision_resolution_refactor.md).
 
+- **[soon] English word list filter for step 4 (S) [artist]**
+  Lingua misses short/common English words (babies, boobies, wannabes, fit, etc.) at 0.90
+  threshold. Add a common English word list (top 20-30k) as a supplementary filter after
+  the 50k Spanish wordlist removal — by that point Spanish homographs (no, pan, solo) are
+  already gone, so false positive risk is low. Existing design doc covers the general
+  filtering problem: [`new_artist_filter_design.md`](docs/design/new_artist_filter_design.md).
+
 - **[soon] Homograph lemma filtering — minor lemma flag (L) [shared] [design doc]**
   When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
   flag the less common lemma pairing so it can be filtered or deprioritized. Currently
