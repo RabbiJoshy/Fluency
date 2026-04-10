@@ -92,8 +92,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None):
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
     senses = load_layer(os.path.join(layers_dir, "senses_gemini.json"), "senses_gemini")
     assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
-    # Cognates: shared layer at Data/Spanish/layers/cognates.json
-    project_root = os.path.dirname(os.path.dirname(os.path.dirname(layers_dir)))
+    # Shared layers at Data/Spanish/layers/ (project root from script location)
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
     cognates = load_layer(shared_cognates, "cognates (shared)", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
