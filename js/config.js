@@ -28,14 +28,15 @@ async function loadConfig() {
                 ppmDataPath: null, // PPM data is embedded in artist vocabulary JSON
                 colorTheme: activeArtist.colorTheme || config.languages[lang].colorTheme
             };
-            // ?variant=cascade → load cascade monolith for A/B testing
+            // ?variant=X → load alternate monolith for A/B testing
+            // e.g. ?variant=cascade_crossencoder → BadBunnyvocabulary_cascade_crossencoder.json
             const variant = new URLSearchParams(window.location.search).get('variant');
-            if (variant === 'cascade') {
-                config.languages[lang].dataPath = activeArtist.dataPath.replace('.json', '_cascade.json');
+            if (variant) {
+                config.languages[lang].dataPath = activeArtist.dataPath.replace('.json', `_${variant}.json`);
                 config.languages[lang].indexPath = config.languages[lang].dataPath;
                 config.languages[lang].examplesPath = null;
                 config.languages[lang].masterPath = null;
-                document.title = `${activeArtist.name} Vocabulary (cascade)`;
+                document.title = `${activeArtist.name} Vocabulary (${variant})`;
             }
             percentageMode = true;
             if (!variant) document.title = `${activeArtist.name} Vocabulary`;

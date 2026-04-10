@@ -1,6 +1,6 @@
 ---
 title: Artist mode sense discovery and assignment
-status: research
+status: decided
 created: 2026-04-08
 updated: 2026-04-10
 ---
@@ -211,19 +211,63 @@ Spanish Wiktionary is useful as a **human reference** when curating overrides, n
 
 Keep MAX_SENSES_TOTAL = 8. More senses → more false positives. The Wiktionary lookup already caps and deduplicates. Gap-fill adds at most 1-2 new senses per word, not a dump.
 
+## Classifier benchmark results (2026-04-10)
+
+Tested 14 problem words (vez, real, entera, nombre, pone, paso, etc.) across classifiers:
+
+| Classifier | vez | real | entera | nombre | Speed | Cost |
+|------------|-----|------|--------|--------|-------|------|
+| Biencoder (multilingual-mpnet) | 60% turn ✗ | 70% NOUN ✗ | 80% find out ✗ | 80% name | ~10min | free |
+| Biencoder (E5-large) | 60% turn ✗ | 60% NOUN ✗ | 60% find out ✗ | 80% name | ~10min | free |
+| NLI (bart-large-mnli) | 60% turn ✗ | 90% NOUN ✗ | 50% inform ✗ | 100% name | ~87min | free |
+| NLI (distilbart) | 90% place ✗ | 60% ADJ ✓ | 40% find out ✗ | 90% name | ~55min | free |
+| **Gemini 2.5 Flash Lite** | **100% time ✓** | **90% ADJ ✓** | **80% whole ✓** | **100% name** | **~13s** | **~$0.05** |
+
+**Decision: Gemini Flash Lite as classifier.** Biencoder architecture (even large models) fundamentally can't handle this task — it embeds example and sense separately, never seeing them as a pair. NLI/cross-encoder approaches are better but still fail on near-synonym disambiguation and take 55-87 minutes. Gemini gets near-100% accuracy in seconds for negligible cost.
+
+The biencoder remains available as `--no-gemini` fallback (free, 80% accuracy on easy cases, fails on hard cases).
+
+## Gap-fill benchmark results (2026-04-10)
+
+Tested 28 words (20 slang candidates + 8 normal words). Gemini proposes missing senses when Wiktionary doesn't cover the contextual meaning.
+
+**Results:**
+- 22/28 correctly said "all senses sufficient" (zero false positives on normal words)
+- 6/28 proposed new senses: gata, loca, pone, rico, vivo, nuevo
+- Genuinely useful: loca → "crazy, wild, excited" (10/10 examples needed it), pone → "to become" (ponerse reflexive), pone → "to wear"
+- Borderline: nuevo → "again" (really an MWE "de nuevo"), rico → "deliciously" (adverb)
+- gata → only 1/10 proposed "girlfriend" (prompt too conservative — needs learner-perspective framing)
+
+**Prompt refinement needed:** Ask "would a learner understand from the dictionary definition alone?" rather than "is the existing sense close enough?" — catches figurative/slang usage like gata = "hot girl" where "cat" is technically present but useless for comprehension.
+
+## Decided architecture
+
+1. **Wiktionary senses** — primary sense source via `lookup_senses()` + `clean_translation()` + `merge_similar_senses()`. Covers 82% of vocabulary with clean, cross-artist-consistent senses. Pickle cache for fast reloads.
+2. **Gemini Flash Lite classifier** — picks from menu. ~$0.05 per artist, 13s for 140 examples. Near-100% accuracy.
+3. **Gap-fill** — for words where classifier finds no good match, Gemini proposes 1-2 additional senses (learner-perspective prompt). Low false positive rate. Results persist in master for future artists.
+4. **Curated overrides** — highest trust, applied first, never deleted.
+5. **Biencoder fallback** — for `--no-gemini` runs (free, lower accuracy).
+
+### Scaling: gap-fill senses in the master
+
+Gap-fill senses accumulate in the shared master vocabulary (`source: "gap-fill"`). Cap at MAX_SENSES_TOTAL=8 prevents bloat even with many artists. Irrelevant gap-fill senses (from other artists' idiolects) naturally get 0% frequency and are filtered out — the classifier ignores them without explicit genre/region scoping.
+
 ## Implementation plan
 
-1. Extract `lookup_senses()` and `load_wiktionary()` from `build_senses.py` into a shared module (e.g., `pipeline/artist/wiktionary_utils.py` or similar)
-2. Modify step 6 to do Wiktionary lookup as the primary sense source instead of Gemini generation
-3. Upgrade `match_artist_senses.py` from fallback to primary classifier path
-4. Add confidence detection for gap-fill triggering
-5. Rename sense layer file, add source provenance
-6. Test: re-run Bad Bunny pipeline, diff senses, spot-check focus words (bicho, candela, rico, gata)
+1. Add `--gemini` classifier to `test_wiktionary_cascade.py` for full browsable deck
+2. Integrate gap-fill into the cascade script (confidence-gated, learner-perspective prompt)
+3. Modify step 6 to use cascade as primary path (Wiktionary + Gemini classifier + gap-fill)
+4. Persist gap-fill senses in master vocabulary with `source: "gap-fill"` provenance
+5. Keep biencoder path as `--no-gemini` fallback
+6. Test: re-run Bad Bunny pipeline, diff senses, spot-check focus words in browser
 
-## Eval script
+## Test scripts
 
-`pipeline/artist/eval_wiktionary_cascade.py` — standalone eval that tests the cascade hypothesis. Compares biencoder classification accuracy across translation sources (Gemini, Genius, Google, Spanish-only) using Wiktionary senses. Run with:
+- `pipeline/artist/test_wiktionary_cascade.py` — full cascade test, writes browsable `_cascade_{method}.json`
+- `pipeline/artist/bench_nli.py` — quick classifier comparison (biencoder, NLI, Gemini) on 14 problem words
+- `pipeline/artist/bench_gapfill.py` — gap-fill proposal test on 28 words
+- `pipeline/artist/eval_wiktionary_cascade.py` — original eval (translation source comparison)
 
-```
-.venv/bin/python3 pipeline/artist/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
-```
+Run cascade test: `.venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"`
+Run classifier bench: `.venv/bin/python3 pipeline/artist/bench_nli.py --gemini`
+Run gap-fill bench: `.venv/bin/python3 pipeline/artist/bench_gapfill.py`

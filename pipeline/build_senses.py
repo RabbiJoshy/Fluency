@@ -166,12 +166,24 @@ def strip_accents(s: str) -> str:
 # ---------------------------------------------------------------------------
 # Load Wiktionary index: word -> [{pos, senses: [{gloss, tags}]}]
 # ---------------------------------------------------------------------------
-def load_wiktionary(path: Path) -> dict:
+def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
     """
     Load kaikki.org JSONL and build a lookup dict.
     Keys = lowercase word AND accent-stripped word.
     Value = list of (pos, [senses]) tuples.
+
+    Caches the parsed index as a pickle next to the JSONL for fast reloads.
     """
+    import pickle
+    cache_path = Path(str(path) + ".cache.pkl")
+    if use_cache and cache_path.exists():
+        if cache_path.stat().st_mtime >= path.stat().st_mtime:
+            print(f"Loading Wiktionary from cache ({cache_path.name})...")
+            with open(cache_path, "rb") as f:
+                data = pickle.load(f)
+            print(f"  {len(data[0])} unique lookup keys, {len(data[1])} form-of redirects")
+            return data
+
     print(f"Loading Wiktionary from {path}...")
     index = defaultdict(list)
     redirects = {}  # form-of word → base lemma (e.g. amiga → amigo)
@@ -265,7 +277,15 @@ def load_wiktionary(path: Path) -> dict:
 
     print(f"  {total} total entries, {skipped} skipped (no real senses)")
     print(f"  {len(index)} unique lookup keys, {len(redirects)} form-of redirects")
-    return dict(index), dict(redirects)
+    result = dict(index), dict(redirects)
+
+    if use_cache:
+        import pickle
+        print(f"  Caching to {cache_path.name}...")
+        with open(cache_path, "wb") as f:
+            pickle.dump(result, f)
+
+    return result
 
 
 # ---------------------------------------------------------------------------

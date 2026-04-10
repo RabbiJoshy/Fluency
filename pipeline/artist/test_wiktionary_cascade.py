@@ -3,12 +3,18 @@
 test_wiktionary_cascade.py — Test Wiktionary sense cascade on existing artist vocabulary.
 
 Reads the existing artist monolith, replaces Gemini-invented senses with Wiktionary
-senses + biencoder classification. Writes a parallel monolith for A/B comparison
-in the browser (?variant=cascade).
+senses + classifier. Writes a parallel monolith for A/B comparison in the browser
+(?variant=cascade).
 
 Does NOT modify any pipeline files, master vocabulary, or existing outputs.
 
+Classifier options:
+  --cross-encoder    Cross-encoder (sees example+sense pairs together, most accurate)
+  --model MODEL      Bi-encoder model name (default: paraphrase-multilingual-mpnet-base-v2)
+  --keyword-only     Keyword overlap (instant, lowest accuracy)
+
 Usage (from project root):
+    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --cross-encoder
     .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
     .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --keyword-only
 """
@@ -30,7 +36,8 @@ from build_senses import load_wiktionary, lookup_senses, clean_translation, merg
 from _artist_config import add_artist_arg, load_artist_config
 
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
-CLASSIFY_MODEL = "paraphrase-multilingual-mpnet-base-v2"
+BIENCODER_MODEL = "paraphrase-multilingual-mpnet-base-v2"
+CROSS_ENCODER_MODEL = "cross-encoder/stsb-roberta-large"
 MIN_SENSE_FREQUENCY = 0.05
 
 _POS_LABELS = {
@@ -119,6 +126,65 @@ def classify_keyword(examples, senses):
     return assignments
 
 
+def classify_cross_encoder_batch(work_items, model):
+    """Cross-encoder classification — scores (example, sense) pairs together.
+
+    More accurate than bi-encoder because the model sees both texts at once.
+    O(examples × senses) forward passes, but fast at artist scale.
+
+    work_items: list of (examples, wikt_senses) tuples.
+    Returns: list of assignment lists (one per work item).
+    """
+    import numpy as np
+
+    # Build all (example_text, sense_text) pairs
+    all_pairs = []
+    pair_map = []  # (work_idx, example_idx, sense_idx)
+
+    for wi, (examples, senses) in enumerate(work_items):
+        for ei, ex in enumerate(examples):
+            eng = ex.get("english", "")
+            spa = ex.get("spanish", "")
+            if eng and spa:
+                ex_text = "%s [Spanish: %s]" % (eng, spa)
+            elif spa:
+                ex_text = spa
+            else:
+                ex_text = eng or ""
+
+            for si, s in enumerate(senses):
+                label = _POS_LABELS.get(s["pos"], s["pos"])
+                sense_text = "%s: %s" % (label, s["translation"])
+                all_pairs.append((ex_text, sense_text))
+                pair_map.append((wi, ei, si))
+
+    print("  %d (example, sense) pairs to score" % len(all_pairs))
+
+    t0 = time.time()
+    scores = model.predict(all_pairs, show_progress_bar=True, batch_size=64)
+    print("  Scored in %.1fs" % (time.time() - t0))
+
+    # Group scores by (work_idx, example_idx) and pick best sense
+    from collections import defaultdict
+    best = defaultdict(lambda: (-float("inf"), 0))  # (work_idx, example_idx) → (score, sense_idx)
+    for flat_idx, (wi, ei, si) in enumerate(pair_map):
+        score = float(scores[flat_idx])
+        key = (wi, ei)
+        if score > best[key][0]:
+            best[key] = (score, si)
+
+    # Build per-word assignment lists
+    results = []
+    for wi, (examples, senses) in enumerate(work_items):
+        assignments = []
+        for ei in range(len(examples)):
+            _, best_si = best.get((wi, ei), (0, 0))
+            assignments.append(best_si)
+        results.append(assignments)
+
+    return results
+
+
 def classify_biencoder_batch(work_items, model):
     """Batch biencoder classification for all multi-sense words.
 
@@ -195,13 +261,19 @@ def main():
     parser = argparse.ArgumentParser(
         description="Test Wiktionary cascade on existing artist vocabulary")
     add_artist_arg(parser)
-    parser.add_argument("--keyword-only", action="store_true",
-                        help="Keyword overlap instead of biencoder (instant, lower accuracy)")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--cross-encoder", action="store_true",
+                      help="Cross-encoder (most accurate, scores example+sense pairs together)")
+    mode.add_argument("--keyword-only", action="store_true",
+                      help="Keyword overlap (instant, lowest accuracy)")
+    parser.add_argument("--model", type=str, default=None,
+                        help="Override model name (bi-encoder or cross-encoder)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
     config = load_artist_config(artist_dir)
-    method = "keyword" if args.keyword_only else "biencoder"
+    use_cross_encoder = args.cross_encoder
+    method = "keyword" if args.keyword_only else ("cross-encoder" if use_cross_encoder else "biencoder")
 
     # Load monolith
     vocab_path = os.path.join(artist_dir, config["vocabulary_file"])
@@ -219,12 +291,19 @@ def main():
         sys.exit(1)
     wikt_index, redirects = load_wiktionary(WIKT_FILE)
 
-    # Load biencoder if needed
+    # Load classifier model
     model = None
     if not args.keyword_only:
-        from sentence_transformers import SentenceTransformer
-        print("\nLoading model: %s" % CLASSIFY_MODEL)
-        model = SentenceTransformer(CLASSIFY_MODEL)
+        if use_cross_encoder:
+            from sentence_transformers import CrossEncoder
+            model_name = args.model or CROSS_ENCODER_MODEL
+            print("\nLoading cross-encoder: %s" % model_name)
+            model = CrossEncoder(model_name)
+        else:
+            from sentence_transformers import SentenceTransformer
+            model_name = args.model or BIENCODER_MODEL
+            print("\nLoading bi-encoder: %s" % model_name)
+            model = SentenceTransformer(model_name)
 
     # --- Pass 1: categorize entries ---
     print("\nCategorizing %d entries..." % len(entries))
@@ -293,11 +372,14 @@ def main():
     print("  Gemini fallback:   %d" % stats["gemini_fallback"])
     print("  No examples:       %d" % stats["no_examples"])
 
-    # --- Pass 2: batch biencoder ---
+    # --- Pass 2: batch classification ---
     if biencoder_queue:
-        print("\nClassifying %d multi-sense words with biencoder..." % len(biencoder_queue))
+        print("\nClassifying %d multi-sense words with %s..." % (len(biencoder_queue), method))
         work_items = [(examples, senses) for (_, examples, senses, _, _) in biencoder_queue]
-        all_assignments = classify_biencoder_batch(work_items, model)
+        if use_cross_encoder:
+            all_assignments = classify_cross_encoder_batch(work_items, model)
+        else:
+            all_assignments = classify_biencoder_batch(work_items, model)
 
         for (pos, examples, wikt_senses, entry, word), assignments in zip(biencoder_queue, all_assignments):
             new_entry = {k: v for k, v in entry.items() if k != "meanings"}
@@ -307,7 +389,7 @@ def main():
                 focus_words[word] = ("wiktionary-multi", wikt_senses, new_entry["meanings"])
 
     # --- Write output ---
-    output_path = vocab_path.replace(".json", "_cascade.json")
+    output_path = vocab_path.replace(".json", "_cascade_%s.json" % method)
     print("\nWriting cascade monolith: %s" % output_path)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(cascade_entries, f, ensure_ascii=False, indent=2)
@@ -347,7 +429,7 @@ def main():
     print()
     print("View in browser:")
     print("  Normal:  http://localhost:8765/?artist=bad-bunny")
-    print("  Cascade: http://localhost:8765/?variant=cascade&artist=bad-bunny")
+    print("  This:    http://localhost:8765/?variant=cascade_%s&artist=bad-bunny" % method)
 
 
 if __name__ == "__main__":
