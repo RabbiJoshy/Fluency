@@ -7,6 +7,9 @@
 .DS_Store
 Thumbs.db
 
+# Claude Code worktrees
+.claude/worktrees/
+
 # Python
 __pycache__/
 *.py[cod]
