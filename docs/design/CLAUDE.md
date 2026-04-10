@@ -49,5 +49,5 @@ updated: YYYY-MM-DD
 | `homograph_disambiguation.md` | implemented | Homograph lemma disambiguation — spaCy + manual overrides |
 | `verse_filtering.md` | decided | Per-artist verse filtering — decided against |
 | `alternative_translation_sources.md` | decided | Lyrics translation sources — Genius + Gemini chosen |
-| `artist_sense_pipeline.md` | research | Artist sense discovery: Gemini-invented vs Wiktionary-sourced |
+| `artist_sense_pipeline.md` | decided | Artist sense discovery: Wiktionary primary + confidence-gated Gemini gap-fill |
 | `prompts/translation_services.md` | prompt | Research: best translation API/model for Spanish lyrics → English |
