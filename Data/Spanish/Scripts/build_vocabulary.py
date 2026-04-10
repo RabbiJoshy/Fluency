@@ -36,7 +36,7 @@ LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 OUTPUT_DIR = PROJECT_ROOT / "Data" / "Spanish"
 
 # ---------------------------------------------------------------------------
-# Translation cleaning (same logic as build_senses.py / finalize_vocabulary.py)
+# Translation cleaning (same logic as build_senses.py)
 # ---------------------------------------------------------------------------
 _CLARIFICATION_STARTERS = {
     "used", "especially", "usually", "often", "expressing", "indicating",

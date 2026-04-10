@@ -781,7 +781,7 @@ def main():
     OUTPUT_PATH = os.path.join(PIPELINE_DIR, config["vocabulary_file"])
     WORD_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "llm_progress.json")
     SENTENCE_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "sentence_translations.json")
-    DETECTED_PROPN_PATH = os.path.join(PIPELINE_DIR, "data", "proper_nouns", "detected_proper_nouns.json")
+    DETECTED_PROPN_PATH = os.path.join(PIPELINE_DIR, "data", "layers", "detected_proper_nouns.json")
     SKIP_WORDS_PATH = os.path.join(PIPELINE_DIR, "data", "known_vocab", "skip_words.json")
     MWE_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "mwe_detected.json")
 

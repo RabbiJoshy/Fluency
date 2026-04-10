@@ -219,7 +219,7 @@ def main():
 
     artist_dir = os.path.abspath(args.artist_dir)
     input_path = os.path.join(artist_dir, "data", "word_counts", "vocab_evidence.json")
-    output_path = os.path.join(artist_dir, "data", "proper_nouns", "detected_proper_nouns.json")
+    output_path = os.path.join(artist_dir, "data", "layers", "detected_proper_nouns.json")
 
     KNOWN_PROPER_NOUNS = frozenset(load_shared_list("known_proper_nouns.json"))
     NOT_PROPER_NOUNS = frozenset(load_shared_list("not_proper_nouns.json"))

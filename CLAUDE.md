@@ -20,9 +20,6 @@ Fluency/
 │   ├── curated_translations.json  # Unified curated overrides (mode-tagged, both pipelines)
 │   ├── flag_cognates.py           # Cognate detection logic (used by both pipelines)
 │   └── cognet_spa_eng.json        # CogNet cognate database
-├── scripts/                     # Root-level one-off utilities
-│   ├── finalize_vocabulary.py     # Post-build vocabulary finalization
-│   └── migrate_vocab_ids.py       # One-off ID migration tool
 ├── research/                    # Playlist pipeline PoC — see research/CLAUDE.md
 ├── manifest.json / service-worker.js
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md

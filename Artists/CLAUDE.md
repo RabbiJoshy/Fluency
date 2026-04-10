@@ -102,14 +102,12 @@ Artists/{Name}/
     sentence_translations.json   # Gemini sentence translation cache (internal)
   data/elision_merge/            # Step 5 output
   data/known_vocab/              # Step 4 output (skip_words.json)
-  data/proper_nouns/             # Legacy step 4 output (deprecated)
   data/lrclib_cache/             # Step 9 LRCLIB response cache
 ```
 
 ## Other Directories
 
 - `Artists/tools/` — audit utilities (`check_translations.py`, `split_lang_audit.py`)
-- `Artists/migration/` — legacy progress migration scripts (one-off, can be removed)
 
 ## Modes
 
