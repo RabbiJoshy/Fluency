@@ -3,7 +3,7 @@
 merge_to_master.py — Build/rebuild the shared master vocabulary from artist monoliths.
 
 Usage (from project root):
-    .venv/bin/python3 Artists/scripts/merge_to_master.py
+    .venv/bin/python3 pipeline/artist/merge_to_master.py
 
 Reads every artist's monolith vocabulary file, computes 6-char hex IDs, merges
 senses by exact (pos, translation) match, and writes:
@@ -30,8 +30,8 @@ from _artist_config import normalize_translation
 # ---------------------------------------------------------------------------
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ARTISTS_DIR = os.path.dirname(SCRIPT_DIR)
-PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+ARTISTS_DIR = os.path.join(PROJECT_ROOT, "Artists")
 MASTER_PATH = os.path.join(ARTISTS_DIR, "vocabulary_master.json")
 
 

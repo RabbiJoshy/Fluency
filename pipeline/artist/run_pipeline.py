@@ -3,9 +3,9 @@
 Pipeline orchestrator for artist vocabulary pipelines.
 
 Usage (from project root):
-    .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"
-    .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny" --from-step 6  # Gemini analysis onward
-    .venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --dry-run
+    .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny"
+    .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny" --from-step 6
+    .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Rosalía" --dry-run
 
 API key is read from .env (GEMINI_API_KEY=...) or --api-key flag.
 """
@@ -29,10 +29,10 @@ def _load_dotenv():
                     os.environ.setdefault(key.strip(), val.strip())
 
 
-ARTISTS_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPTS_DIR))
+ARTISTS_DIR = os.path.join(PROJECT_ROOT, "Artists")
 PYTHON = os.path.join(PROJECT_ROOT, ".venv", "bin", "python3")
-SCRIPTS_DIR = os.path.join(ARTISTS_DIR, "scripts")
 
 _load_dotenv()
 

@@ -6,7 +6,7 @@ Shared layer used by both normal and artist pipelines.
 All voters written to one file: score (suffix/similarity), CogNet, Gemini.
 
 Usage (from project root):
-    python3 Data/Spanish/Scripts/flag_cognates.py
+    python3 pipeline/flag_cognates.py
 """
 
 import json
@@ -14,12 +14,11 @@ import os
 import sys
 
 # Allow importing from project root
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from shared.flag_cognates import detect_cognates
 
-SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
-LANG_DIR = os.path.dirname(SCRIPTS_DIR)
-LAYERS_DIR = os.path.join(LANG_DIR, "layers")
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LAYERS_DIR = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers")
 
 
 def main():

@@ -79,11 +79,11 @@ below have enough complexity to warrant this treatment when the time comes.
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would
   give better granularity for ordering. Change `SAMPLE_STRIDE` to 1 and re-run:
   ```bash
-  # Edit Data/Spanish/Scripts/build_mwes.py: SAMPLE_STRIDE = 1
-  .venv/bin/python3 Data/Spanish/Scripts/build_mwes.py
-  .venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny" --from-step build
-  .venv/bin/python3 Artists/run_pipeline.py --artist "Rosalía" --from-step build
-  .venv/bin/python3 Artists/run_pipeline.py --artist "Young Miko" --from-step build
+  # Edit pipeline/build_mwes.py: SAMPLE_STRIDE = 1
+  .venv/bin/python3 pipeline/build_mwes.py
+  .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny" --from-step build
+  .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Rosalía" --from-step build
+  .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Young Miko" --from-step build
   ```
   Estimated ~5 minutes for the full 105M lines. Tatoeba adds negligible signal over full OpenSubs.
 

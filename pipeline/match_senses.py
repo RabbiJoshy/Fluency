@@ -15,12 +15,12 @@ Options:
   --limit N              Only classify first N words (by frequency rank)
 
 Usage:
-    python3 Data/Spanish/Scripts/match_senses.py                      # gemini, no merge
-    python3 Data/Spanish/Scripts/match_senses.py --gemini --merge     # gemini + merge
-    python3 Data/Spanish/Scripts/match_senses.py --english-only       # gemini, English-only
-    python3 Data/Spanish/Scripts/match_senses.py --biencoder          # bi-encoder + merge
-    python3 Data/Spanish/Scripts/match_senses.py --keyword-only       # instant fallback
-    python3 Data/Spanish/Scripts/match_senses.py --limit 1000         # first 1000 words
+    python3 pipeline/match_senses.py                      # gemini, no merge
+    python3 pipeline/match_senses.py --gemini --merge     # gemini + merge
+    python3 pipeline/match_senses.py --english-only       # gemini, English-only
+    python3 pipeline/match_senses.py --biencoder          # bi-encoder + merge
+    python3 pipeline/match_senses.py --keyword-only       # instant fallback
+    python3 pipeline/match_senses.py --limit 1000         # first 1000 words
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
@@ -40,7 +40,7 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
 EXAMPLES_FILE = LAYERS / "examples_raw.json"
@@ -114,7 +114,7 @@ def classify_with_gemini(work_items, output, english_only=False):
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        env_path = Path(__file__).resolve().parents[3] / ".env"
+        env_path = Path(__file__).resolve().parents[1] / ".env"
         if env_path.exists():
             for line in open(env_path):
                 if line.startswith("GEMINI_API_KEY="):

@@ -4,9 +4,9 @@ import json
 import os
 import time
 
-# Artists/scripts/_artist_config.py -> Artists/
-ARTISTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
+# pipeline/artist/_artist_config.py -> pipeline/ -> Fluency/
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ARTISTS_DIR = os.path.join(PROJECT_ROOT, "Artists")
 SHARED_DIR = os.path.join(ARTISTS_DIR, "curations")
 PROJECT_SHARED_DIR = os.path.join(PROJECT_ROOT, "shared")
 
@@ -30,7 +30,7 @@ def load_dotenv_from_project_root():
     """Load .env from the project root (Fluency/).
 
     Works regardless of where the script lives — derives project root
-    from this file's location: Artists/scripts/_artist_config.py -> Artists/ -> Fluency/
+    from this file's location: pipeline/artist/_artist_config.py -> artist/ -> pipeline/ -> Fluency/
     """
     this_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(os.path.dirname(this_dir))

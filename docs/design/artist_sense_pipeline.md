@@ -113,7 +113,7 @@ Use Wiktionary senses. Run classifier. If a significant fraction of examples don
 
 ## Eval results (2026-04-10)
 
-Ran `Artists/scripts/eval_wiktionary_cascade.py` against Bad Bunny. Key findings:
+Ran `pipeline/artist/eval_wiktionary_cascade.py` against Bad Bunny. Key findings:
 
 ### Wiktionary coverage (raw file, not pre-extracted subset)
 
@@ -213,7 +213,7 @@ Keep MAX_SENSES_TOTAL = 8. More senses → more false positives. The Wiktionary 
 
 ## Implementation plan
 
-1. Extract `lookup_senses()` and `load_wiktionary()` from `build_senses.py` into a shared module (e.g., `Artists/scripts/wiktionary_utils.py` or similar)
+1. Extract `lookup_senses()` and `load_wiktionary()` from `build_senses.py` into a shared module (e.g., `pipeline/artist/wiktionary_utils.py` or similar)
 2. Modify step 6 to do Wiktionary lookup as the primary sense source instead of Gemini generation
 3. Upgrade `match_artist_senses.py` from fallback to primary classifier path
 4. Add confidence detection for gap-fill triggering
@@ -222,8 +222,8 @@ Keep MAX_SENSES_TOTAL = 8. More senses → more false positives. The Wiktionary 
 
 ## Eval script
 
-`Artists/scripts/eval_wiktionary_cascade.py` — standalone eval that tests the cascade hypothesis. Compares biencoder classification accuracy across translation sources (Gemini, Genius, Google, Spanish-only) using Wiktionary senses. Run with:
+`pipeline/artist/eval_wiktionary_cascade.py` — standalone eval that tests the cascade hypothesis. Compares biencoder classification accuracy across translation sources (Gemini, Genius, Google, Spanish-only) using Wiktionary senses. Run with:
 
 ```
-.venv/bin/python3 Artists/scripts/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
+.venv/bin/python3 pipeline/artist/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
 ```

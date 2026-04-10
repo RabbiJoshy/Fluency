@@ -7,7 +7,7 @@ each word in vocabulary.json, looks up senses by lemma and produces a clean
 sense inventory with POS + English translation.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_senses.py
+    python3 pipeline/build_senses.py
 
 Run from the project root (Fluency/).
 
@@ -30,7 +30,7 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"

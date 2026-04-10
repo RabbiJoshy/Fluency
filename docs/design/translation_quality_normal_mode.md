@@ -25,4 +25,4 @@ Wiktionary-sourced translations had quality issues for common words: wrong sense
 
 ## Key files
 
-- `Data/Spanish/Scripts/build_senses.py` — all fixes here
+- `pipeline/build_senses.py` — all fixes here

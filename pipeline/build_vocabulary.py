@@ -11,7 +11,7 @@ Sort order is determined by corpus_count (descending). The front end computes
 rank from array position on load, so no rank field is stored.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_vocabulary.py
+    python3 pipeline/build_vocabulary.py
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
@@ -31,7 +31,7 @@ import re
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 OUTPUT_DIR = PROJECT_ROOT / "Data" / "Spanish"
 

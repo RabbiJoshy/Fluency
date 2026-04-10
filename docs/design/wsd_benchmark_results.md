@@ -8,7 +8,7 @@ updated: 2026-04-08
 # WSD (Word Sense Disambiguation) — Exploration Log
 
 Reference for all approaches tried, decisions made, and current state.
-Test set: `Data/Spanish/Scripts/wsd_benchmark.json` (25 hand-picked examples).
+Test set: `pipeline/wsd_benchmark.json` (25 hand-picked examples).
 
 ## Current architecture (2026-04-07)
 
@@ -182,7 +182,7 @@ when its inputs change. `match_senses.py` is the main tuning target.
 
 ## Artist mode (local sense matching)
 
-Step 6b (`Artists/scripts/match_artist_senses.py`) uses bi-encoder sense
+Step 6b (`pipeline/artist/match_artist_senses.py`) uses bi-encoder sense
 matching for artist lyrics when Gemini assignments don't exist. Much smaller
 scale than normal mode (~600-3000 examples vs 400K).
 

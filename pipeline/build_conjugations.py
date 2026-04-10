@@ -6,7 +6,7 @@ Uses verbecc to conjugate all verb lemmas found in word_inventory.json.
 Supplements with Jehle's English translations where available.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_conjugations.py
+    python3 pipeline/build_conjugations.py
 
 Run from the project root (Fluency/).
 
@@ -27,7 +27,7 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
 SENSES_FILE = LAYERS / "senses_wiktionary.json"

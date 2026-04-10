@@ -3,9 +3,9 @@
 Pipeline orchestrator for normal-mode Spanish vocabulary.
 
 Usage (from project root):
-    python3 Data/Spanish/Scripts/run_pipeline.py
-    python3 Data/Spanish/Scripts/run_pipeline.py --from-step 3
-    python3 Data/Spanish/Scripts/run_pipeline.py --dry-run
+    python3 pipeline/run_pipeline.py
+    python3 pipeline/run_pipeline.py --from-step 3
+    python3 pipeline/run_pipeline.py --dry-run
 
 Steps:
     1.  build_inventory.py     — Word inventory from CSV (IDs, ranks, flags)
@@ -25,7 +25,7 @@ import sys
 import time
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(SCRIPTS_DIR)))
+PROJECT_ROOT = os.path.dirname(SCRIPTS_DIR)
 PYTHON = sys.executable
 
 STEPS = [

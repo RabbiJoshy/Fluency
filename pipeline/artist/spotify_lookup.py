@@ -5,7 +5,7 @@ Reads each artist's examples JSON, queries the Spotify Search API,
 and writes a mapping file per artist: data/spotify_tracks.json
 
 Usage:
-    python3 Artists/scripts/spotify_lookup.py
+    python3 pipeline/artist/spotify_lookup.py
 
 Requires SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in .env
 """

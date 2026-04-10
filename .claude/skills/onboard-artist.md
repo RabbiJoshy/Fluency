@@ -57,7 +57,7 @@ Derive a slug from the name (lowercase, spaces to hyphens, strip accents). Use e
 Print the command for Josh to run — it's long-running:
 
 ```
-.venv/bin/python3 Artists/scripts/1_download_lyrics.py --artist "{Name}"
+.venv/bin/python3 pipeline/artist/1_download_lyrics.py --artist "{Name}"
 ```
 
 Wait for Josh to confirm it's done before proceeding.

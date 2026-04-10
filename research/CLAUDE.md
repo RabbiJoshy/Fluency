@@ -28,7 +28,7 @@ Proof-of-concept for running the vocabulary pipeline on a Spotify playlist (mixe
   --input-dir research/TestPlaylist/lyrics/french
 
 # 6. Feed into main pipeline step 3+ (not yet run)
-.venv/bin/python3 Artists/scripts/3_count_words.py \
+.venv/bin/python3 pipeline/artist/3_count_words.py \
   --artist-dir research/TestPlaylist \
   --batch_glob "research/TestPlaylist/lyrics/french/*.json" \
   --out research/TestPlaylist/vocab_evidence.json

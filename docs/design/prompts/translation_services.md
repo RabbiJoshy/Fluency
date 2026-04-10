@@ -16,7 +16,7 @@ What's the best way to translate ~10k Spanish lyric lines per artist to English,
 - Input is reggaeton/Latin pop lyrics — colloquial, slang-heavy, code-switching (Spanglish)
 - Full sentence translation, not single words
 - Quality needs to be "good enough for language learners" — doesn't need to be literary
-- Currently using Gemini for this in step 6 (`Artists/scripts/6_llm_analyze.py`), which is expensive at scale
+- Currently using Gemini for this in step 6 (`pipeline/artist/6_llm_analyze.py`), which is expensive at scale
 - Young Miko has 0% English translation coverage — Genius community translations barely exist for her
 - Python 3.9, sentence-transformers already installed, `.venv/bin/python3`
 - Willing to pay a little but prefer free/cheap

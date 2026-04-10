@@ -7,7 +7,7 @@ sentences for each word, scores them by easiness, and writes a keyed examples la
 Tatoeba examples are preferred; OpenSubtitles fills remaining slots up to 50.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_examples.py [--max-lines N]
+    python3 pipeline/build_examples.py [--max-lines N]
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
@@ -30,7 +30,7 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import median
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 TATOEBA_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "tatoeba" / "spa.txt"
 OPENSUBS_ES = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"

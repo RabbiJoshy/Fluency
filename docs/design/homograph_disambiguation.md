@@ -73,7 +73,7 @@ to `{lemma: ratio}` where ratios sum to 1.0.
 
 ## Implementation
 
-**Where**: `Data/Spanish/Scripts/build_inventory.py` — `compute_homograph_ratios()`
+**Where**: `pipeline/build_inventory.py` — `compute_homograph_ratios()`
 runs as part of step 1 of the normal-mode pipeline.
 
 **Flow**:
@@ -85,7 +85,7 @@ runs as part of step 1 of the normal-mode pipeline.
 6. Write `homograph_ratio` field to inventory entries
 
 **Files**:
-- `Data/Spanish/Scripts/build_inventory.py` — disambiguation logic
+- `pipeline/build_inventory.py` — disambiguation logic
 - `Data/Spanish/layers/homograph_overrides.json` — manual corrections (~108 entries)
 - `Data/Spanish/layers/word_inventory.json` — output with adjusted counts
 - `Data/Spanish/corpora/tatoeba/spa.txt` — sentence source for spaCy

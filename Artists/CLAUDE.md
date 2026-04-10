@@ -5,10 +5,10 @@ All scripts run from the **project root** (`Fluency/`), not from inside `Artists
 ## Quick Start
 
 ```bash
-.venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny"
-.venv/bin/python3 Artists/run_pipeline.py --artist "Rosalia" --from-step 6 --words-only
-.venv/bin/python3 Artists/run_pipeline.py --artist "Anuel" --no-gemini
-.venv/bin/python3 Artists/run_pipeline.py --artist "Bad Bunny" --from-step build  # re-assemble only
+.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny"
+.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Rosalia" --from-step 6 --words-only
+.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Anuel" --no-gemini
+.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny" --from-step build  # re-assemble only
 ```
 
 ## Architecture: Layered Pipeline
@@ -31,23 +31,23 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 
 | Step | Script | Output Layer | What it does |
 |------|--------|-------------|-------------|
-| 1 | `scripts/1_download_lyrics.py` | (batches) | Scrape lyrics + English translations from Genius API (`--no-translations` to skip) |
+| 1 | `pipeline/artist/1_download_lyrics.py` | (batches) | Scrape lyrics + English translations from Genius API (`--no-translations` to skip) |
 | 1b | (manual) | `duplicate_songs.json` | Curate song exclusions — see `DEDUP_INSTRUCTIONS.md` |
-| 2 | `scripts/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
-| 2b | `scripts/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
-| 3 | `scripts/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `scripts/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua) |
-| 5 | `scripts/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
-| 6 | `scripts/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
-| 6b | `scripts/match_artist_senses.py` | `sense_assignments.json` | Local bi-encoder sense matching (fallback for --no-gemini). Skips if assignments exist. |
-| 6j | `scripts/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
-| 7 | `scripts/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
-| 8 | `scripts/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
-| build | `scripts/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
+| 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
+| 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
+| 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
+| 4 | `pipeline/artist/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab via set-difference (50k Spanish + conjugations + lingua) |
+| 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
+| 6 | `pipeline/artist/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
+| 6b | `pipeline/artist/match_artist_senses.py` | `sense_assignments.json` | Local bi-encoder sense matching (fallback for --no-gemini). Skips if assignments exist. |
+| 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
+| 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
+| 8 | `pipeline/artist/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
+| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
 
 Cognates use a shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step needed.
 
-Shared helper: `scripts/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
+Shared helper: `pipeline/artist/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
 
 ## Layer Files
 
@@ -74,7 +74,7 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 - Senses accumulate across artists — a new artist's Gemini run can discover new senses
 - The **builder** handles master integration (ID assignment, sense merging, flag union)
 - `--no-gemini` runs pull existing senses from the master instead of producing placeholders
-- Migration/rebuild: `Artists/scripts/merge_to_master.py`
+- Migration/rebuild: `Artists/pipeline/artist/merge_to_master.py`
 
 ## Key Files Per Artist
 

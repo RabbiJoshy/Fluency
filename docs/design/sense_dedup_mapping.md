@@ -24,5 +24,5 @@ English 3rd-person conjugation: generated translations say "he/she go" instead o
 
 ## Key files
 
-- `Artists/scripts/merge_to_master.py` — merge logic
+- `pipeline/artist/merge_to_master.py` — merge logic
 - `Artists/vocabulary_master.json` — output

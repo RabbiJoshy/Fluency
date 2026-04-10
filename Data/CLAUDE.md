@@ -2,7 +2,7 @@
 
 Static vocabulary JSON files consumed by the front-end. No backend.
 
-Pipeline layers (intermediate files produced by each build step) are in `Spanish/layers/` — see `layers/CLAUDE.md` for schemas and provenance design. The normal-mode pipeline orchestrator is `Spanish/Scripts/run_pipeline.py`.
+Pipeline layers (intermediate files produced by each build step) are in `Spanish/layers/` — see `layers/CLAUDE.md` for schemas and provenance design. The normal-mode pipeline orchestrator is `pipeline/run_pipeline.py`.
 
 ## Vocabulary Files
 

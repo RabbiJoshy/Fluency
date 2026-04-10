@@ -8,7 +8,7 @@ Also collects standalone pos="phrase"/pos="prep_phrase" entries, which get
 reverse-indexed to their content words in the inventory.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_mwes.py
+    python3 pipeline/build_mwes.py
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
@@ -28,7 +28,7 @@ from pathlib import Path
 
 import ahocorasick
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 OPENSUBS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"

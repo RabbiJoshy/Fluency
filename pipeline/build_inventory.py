@@ -14,8 +14,8 @@ This step redistributes the count using spaCy POS-tagging over Tatoeba sentences
 for noun/verb splits, and a manual overrides file for verb/verb collisions.
 
 Usage:
-    python3 Data/Spanish/Scripts/build_inventory.py
-    python3 Data/Spanish/Scripts/build_inventory.py --skip-homographs
+    python3 pipeline/build_inventory.py
+    python3 pipeline/build_inventory.py --skip-homographs
 
 Inputs:
     Data/Spanish/SpanishRawWiki.csv
@@ -35,7 +35,7 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CSV_SOURCE = PROJECT_ROOT / "Data" / "Spanish" / "SpanishRawWiki.csv"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 TATOEBA_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "tatoeba" / "spa.txt"

@@ -23,6 +23,6 @@ updated: 2026-04-08
 ## Key files
 
 - `Artists/vocabulary_master.json` — the master
-- `Artists/scripts/merge_to_master.py` — rebuild/migration tool
-- `Artists/scripts/build_artist_vocabulary.py` — builder that reads master for ID assignment
+- `pipeline/artist/merge_to_master.py` — rebuild/migration tool
+- `pipeline/artist/build_artist_vocabulary.py` — builder that reads master for ID assignment
 - `js/vocab.js` → `joinWithMaster()` — front-end join logic
