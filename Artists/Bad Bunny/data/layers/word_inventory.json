@@ -221,6 +221,15 @@
     }
   },
   {
+    "word": "estoy",
+    "corpus_count": 359,
+    "display_form": "'toy",
+    "variants": {
+      "estoy": 312,
+      "toy": 47
+    }
+  },
+  {
     "word": "ella",
     "corpus_count": 350
   },
@@ -249,10 +258,6 @@
     "corpus_count": 316
   },
   {
-    "word": "estoy",
-    "corpus_count": 312
-  },
-  {
     "word": "dime",
     "corpus_count": 311
   },
@@ -276,6 +281,15 @@
   {
     "word": "al",
     "corpus_count": 284
+  },
+  {
+    "word": "vez",
+    "corpus_count": 275,
+    "display_form": "ve'",
+    "variants": {
+      "ve'": 122,
+      "vez": 153
+    }
   },
   {
     "word": "quieres",
@@ -336,6 +350,15 @@
     "corpus_count": 247
   },
   {
+    "word": "nada",
+    "corpus_count": 240,
+    "display_form": "na",
+    "variants": {
+      "na": 129,
+      "nada": 111
+    }
+  },
+  {
     "word": "aquí",
     "corpus_count": 238
   },
@@ -358,15 +381,6 @@
   {
     "word": "bad",
     "corpus_count": 229
-  },
-  {
-    "word": "ves",
-    "corpus_count": 229,
-    "display_form": "ve'",
-    "variants": {
-      "ve'": 204,
-      "ves": 25
-    }
   },
   {
     "word": "así",
@@ -507,10 +521,6 @@
     "corpus_count": 154
   },
   {
-    "word": "vez",
-    "corpus_count": 153
-  },
-  {
     "word": "hago",
     "corpus_count": 152
   },
@@ -615,10 +625,6 @@
     "corpus_count": 129
   },
   {
-    "word": "na",
-    "corpus_count": 129
-  },
-  {
     "word": "dale",
     "corpus_count": 127
   },
@@ -690,16 +696,21 @@
     "corpus_count": 111
   },
   {
-    "word": "nada",
-    "corpus_count": 111
-  },
-  {
     "word": "somos",
     "corpus_count": 111,
     "display_form": "somo'",
     "variants": {
       "somo'": 59,
       "somos": 52
+    }
+  },
+  {
+    "word": "ves",
+    "corpus_count": 107,
+    "display_form": "ve'",
+    "variants": {
+      "ve'": 82,
+      "ves": 25
     }
   },
   {
@@ -1422,10 +1433,6 @@
   },
   {
     "word": "siente",
-    "corpus_count": 47
-  },
-  {
-    "word": "toy",
     "corpus_count": 47
   },
   {

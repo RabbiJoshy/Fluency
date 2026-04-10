@@ -1,0 +1,5403 @@
+{
+ "_prompt_hash": "df6933791551",
+ "chingar": {
+  "word": "chingar",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "to fuck",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "besties": {
+  "word": "besties",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bestie",
+    "pos": "NOUN",
+    "translation": "best friends",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "picky": {
+  "word": "picky",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "picky",
+    "pos": "ADJ",
+    "translation": "picky",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "picky",
+    "pos": "NOUN",
+    "translation": "drug",
+    "lines": [
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "pacas": {
+  "word": "pacas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "paca",
+    "pos": "NOUN",
+    "translation": "money",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "babies": {
+  "word": "babies",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "baby",
+    "pos": "NOUN",
+    "translation": "babies",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "putero": {
+  "word": "putero",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "putero",
+    "pos": "NOUN",
+    "translation": "brothel",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "bestie": {
+  "word": "bestie",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bestie",
+    "pos": "NOUN",
+    "translation": "best friend",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "freaky": {
+  "word": "freaky",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "freaky",
+    "pos": "ADJ",
+    "translation": "freaky",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "gyal": {
+  "word": "gyal",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "gyal",
+    "pos": "NOUN",
+    "translation": "girl",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "mahón": {
+  "word": "mahón",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mahón",
+    "pos": "NOUN",
+    "translation": "jeans",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "let's": {
+  "word": "let's",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "let's",
+    "pos": "INTJ",
+    "translation": "let's",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "tamo": {
+  "word": "tamo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "estar",
+    "pos": "VERB",
+    "translation": "we are",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "type": {
+  "word": "type",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "type",
+    "pos": "NOUN",
+    "translation": "type",
+    "lines": [
+     1,
+     2
+    ]
+   },
+   {
+    "lemma": "type",
+    "pos": "NOUN",
+    "translation": "type of thing",
+    "lines": [
+     3
+    ]
+   },
+   {
+    "lemma": "type",
+    "pos": "NOUN",
+    "translation": "type",
+    "lines": [
+     4
+    ]
+   }
+  ]
+ },
+ "trili": {
+  "word": "trili",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "trili",
+    "pos": "NOUN",
+    "translation": "deal",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "trili",
+    "pos": "NOUN",
+    "translation": "deal",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "chingando": {
+  "word": "chingando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "fucking",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "gistro": {
+  "word": "gistro",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "gistro",
+    "pos": "NOUN",
+    "translation": "style",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "milf": {
+  "word": "milf",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "milf",
+    "pos": "NOUN",
+    "translation": "MILF",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "viran": {
+  "word": "viran",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "virar",
+    "pos": "VERB",
+    "translation": "turn around",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "cel": {
+  "word": "cel",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "celular",
+    "pos": "NOUN",
+    "translation": "phone",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ]
+ },
+ "chiquitita": {
+  "word": "chiquitita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chiquitito",
+    "pos": "ADJ",
+    "translation": "tiny",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "pull": {
+  "word": "pull",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pull",
+    "pos": "VERB",
+    "translation": "pull up",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "reggaetón": {
+  "word": "reggaetón",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "reggaetón",
+    "pos": "NOUN",
+    "translation": "reggaeton",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "chavos": {
+  "word": "chavos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chavo",
+    "pos": "NOUN",
+    "translation": "money",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "ao'": {
+  "word": "ao'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "ao'",
+    "pos": "X",
+    "translation": "ao'",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "brega": {
+  "word": "brega",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bregar",
+    "pos": "VERB",
+    "translation": "deal with it",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "bregar",
+    "pos": "VERB",
+    "translation": "handle",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "bríncame": {
+  "word": "bríncame",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "brincar",
+    "pos": "VERB",
+    "translation": "jump on me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "guayar": {
+  "word": "guayar",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "guayar",
+    "pos": "VERB",
+    "translation": "grind",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "mmh": {
+  "word": "mmh",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mmh",
+    "pos": "INTJ",
+    "translation": "mmh",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "palgo": {
+  "word": "palgo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "palgo",
+    "pos": "X",
+    "translation": "palgo",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "borinquen": {
+  "word": "borinquen",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Borinquen",
+    "pos": "PROPN",
+    "translation": "Puerto Rico",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "decline": {
+  "word": "decline",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "decline",
+    "pos": "NOUN",
+    "translation": "decline",
+    "lines": [
+     1,
+     3,
+     4,
+     5
+    ]
+   },
+   {
+    "lemma": "decline",
+    "pos": "VERB",
+    "translation": "decline",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "dispo": {
+  "word": "dispo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "disponible",
+    "pos": "ADJ",
+    "translation": "available",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "enrola": {
+  "word": "enrola",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enrollar",
+    "pos": "VERB",
+    "translation": "rolls up",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "fit": {
+  "word": "fit",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "fit",
+    "pos": "NOUN",
+    "translation": "outfit",
+    "lines": [
+     1,
+     3
+    ]
+   },
+   {
+    "lemma": "fit",
+    "pos": "NOUN",
+    "translation": "no-hitter",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "henny": {
+  "word": "henny",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "hennessy",
+    "pos": "NOUN",
+    "translation": "henny",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "i'ma": {
+  "word": "i'ma",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "I'm going to",
+    "pos": "VERB",
+    "translation": "I'm going to",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "pichea": {
+  "word": "pichea",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pichear",
+    "pos": "VERB",
+    "translation": "ignores",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "stories": {
+  "word": "stories",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "stories",
+    "pos": "NOUN",
+    "translation": "stories",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "amg": {
+  "word": "amg",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "amg",
+    "pos": "PROPN",
+    "translation": "AMG",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "aserejé": {
+  "word": "aserejé",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "aserejé",
+    "pos": "X",
+    "translation": "Aserejé",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bellaquear": {
+  "word": "bellaquear",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bellaquear",
+    "pos": "VERB",
+    "translation": "to fool around",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "blicky": {
+  "word": "blicky",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "blicky",
+    "pos": "NOUN",
+    "translation": "gun",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "clout": {
+  "word": "clout",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "clout",
+    "pos": "NOUN",
+    "translation": "clout",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "diabla": {
+  "word": "diabla",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "diabla",
+    "pos": "NOUN",
+    "translation": "devil",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "dnd": {
+  "word": "dnd",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "dnd",
+    "pos": "X",
+    "translation": "DND",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "hijueputa": {
+  "word": "hijueputa",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "hijueputa",
+    "pos": "NOUN",
+    "translation": "son of a bitch",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "hookero'": {
+  "word": "hookero'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "likey": {
+  "word": "likey",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "likey",
+    "pos": "ADV",
+    "translation": "likey",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "muéveme": {
+  "word": "muéveme",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mover",
+    "pos": "VERB",
+    "translation": "move me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "pichar": {
+  "word": "pichar",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pichar",
+    "pos": "VERB",
+    "translation": "to fuck",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "poncha": {
+  "word": "poncha",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "ponchar",
+    "pos": "VERB",
+    "translation": "punch",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "rican": {
+  "word": "rican",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "puertorriqueño",
+    "pos": "ADJ",
+    "translation": "Puerto Rican",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "slo": {
+  "word": "slo",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "slo",
+    "pos": "ADV",
+    "translation": "slow",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "trépate": {
+  "word": "trépate",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "trepar",
+    "pos": "VERB",
+    "translation": "climb up",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "acicalá'": {
+  "word": "acicalá'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "bayamón": {
+  "word": "bayamón",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Bayamón",
+    "pos": "PROPN",
+    "translation": "Bayamón",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "bellaquera": {
+  "word": "bellaquera",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bellaquera",
+    "pos": "NOUN",
+    "translation": "lustfulness",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "calentón": {
+  "word": "calentón",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "calentón",
+    "pos": "NOUN",
+    "translation": "heat",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "cantito": {
+  "word": "cantito",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cantito",
+    "pos": "NOUN",
+    "translation": "little song",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "chinga": {
+  "word": "chinga",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "to fuck",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "cotizado": {
+  "word": "cotizado",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cotizar",
+    "pos": "VERB",
+    "translation": "quoted",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "culote": {
+  "word": "culote",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "culote",
+    "pos": "NOUN",
+    "translation": "big ass",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "flipear": {
+  "word": "flipear",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "flipear",
+    "pos": "VERB",
+    "translation": "to flip",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "jeva": {
+  "word": "jeva",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "jeva",
+    "pos": "NOUN",
+    "translation": "chick",
+    "lines": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "romantic": {
+  "word": "romantic",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "romántico",
+    "pos": "ADJ",
+    "translation": "romantic",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "rómpela": {
+  "word": "rómpela",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "romper",
+    "pos": "VERB",
+    "translation": "break it",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "shortie'": {
+  "word": "shortie'",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "shortie",
+    "pos": "NOUN",
+    "translation": "shorty",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "supreme": {
+  "word": "supreme",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "supreme",
+    "pos": "ADJ",
+    "translation": "supreme",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "vibe": {
+  "word": "vibe",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "vibe",
+    "pos": "NOUN",
+    "translation": "vibe",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "webcam": {
+  "word": "webcam",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "webcam",
+    "pos": "NOUN",
+    "translation": "webcam",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "zirconia": {
+  "word": "zirconia",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "zirconia",
+    "pos": "NOUN",
+    "translation": "zirconia",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "avilawtf": {
+  "word": "avilawtf",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "avilawtf",
+    "pos": "PROPN",
+    "translation": "AvilaWTF",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "bebernos": {
+  "word": "bebernos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "beber",
+    "pos": "VERB",
+    "translation": "drink",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bnb": {
+  "word": "bnb",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bnb",
+    "pos": "NOUN",
+    "translation": "bnb",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bonaroti": {
+  "word": "bonaroti",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bonaroti",
+    "pos": "PROPN",
+    "translation": "Bonaroti",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "boobies": {
+  "word": "boobies",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "booby",
+    "pos": "NOUN",
+    "translation": "boob",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "boujee": {
+  "word": "boujee",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "boujee",
+    "pos": "ADJ",
+    "translation": "boujee",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "careta": {
+  "word": "careta",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "careta",
+    "pos": "NOUN",
+    "translation": "mask",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "carola": {
+  "word": "carola",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Carola",
+    "pos": "PROPN",
+    "translation": "Carola",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "chambeé": {
+  "word": "chambeé",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chambear",
+    "pos": "VERB",
+    "translation": "worked",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "chq": {
+  "word": "chq",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chq",
+    "pos": "INTJ",
+    "translation": "chq",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "combi": {
+  "word": "combi",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "combi",
+    "pos": "NOUN",
+    "translation": "car",
+    "lines": [
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "conectao'": {
+  "word": "conectao'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "conectado",
+    "pos": "ADJ",
+    "translation": "connected",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "corito": {
+  "word": "corito",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "corito",
+    "pos": "NOUN",
+    "translation": "chorus",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "cuki": {
+  "word": "cuki",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cuki",
+    "pos": "NOUN",
+    "translation": "sweetie",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "cookie",
+    "pos": "NOUN",
+    "translation": "cookie",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "disimules": {
+  "word": "disimules",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "disimular",
+    "pos": "VERB",
+    "translation": "hide",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "district": {
+  "word": "district",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "district",
+    "pos": "PROPN",
+    "translation": "District",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "fantastic": {
+  "word": "fantastic",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "fantastic",
+    "pos": "ADJ",
+    "translation": "fantastic",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "frontea": {
+  "word": "frontea",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "frontear",
+    "pos": "VERB",
+    "translation": "shows off",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "joseando": {
+  "word": "joseando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "josear",
+    "pos": "VERB",
+    "translation": "hustling",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "metíos": {
+  "word": "metíos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "meter",
+    "pos": "VERB",
+    "translation": "put in",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "mhm": {
+  "word": "mhm",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mhm",
+    "pos": "INTJ",
+    "translation": "mhm",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "nakey": {
+  "word": "nakey",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "nakey",
+    "pos": "ADJ",
+    "translation": "naked",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "nigga": {
+  "word": "nigga",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "nigga",
+    "pos": "NOUN",
+    "translation": "nigga",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "opo": {
+  "word": "opo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "opo",
+    "pos": "INTJ",
+    "translation": "opo",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "ousi": {
+  "word": "ousi",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Ousi",
+    "pos": "PROPN",
+    "translation": "Ousi",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "pegaíto'": {
+  "word": "pegaíto'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pegado",
+    "pos": "ADJ",
+    "translation": "stuck",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "plug": {
+  "word": "plug",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "plug",
+    "pos": "NOUN",
+    "translation": "plug",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "problematic": {
+  "word": "problematic",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "problematic",
+    "pos": "ADJ",
+    "translation": "problematic",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "purse": {
+  "word": "purse",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "purse",
+    "pos": "NOUN",
+    "translation": "purse",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "reset": {
+  "word": "reset",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "reset",
+    "pos": "VERB",
+    "translation": "reset",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "ricota": {
+  "word": "ricota",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "ricota",
+    "pos": "ADJ",
+    "translation": "delicious",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "ricota",
+    "pos": "NOUN",
+    "translation": "ricota",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "tamagotchi": {
+  "word": "tamagotchi",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Tamagotchi",
+    "pos": "PROPN",
+    "translation": "Tamagotchi",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "tocándote": {
+  "word": "tocándote",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tocarse",
+    "pos": "VERB",
+    "translation": "touching you",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "tri": {
+  "word": "tri",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tri",
+    "pos": "NOUN",
+    "translation": "threesome",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "wannabes": {
+  "word": "wannabes",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "wannabe",
+    "pos": "NOUN",
+    "translation": "wannabe",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "wifey": {
+  "word": "wifey",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "wifey",
+    "pos": "NOUN",
+    "translation": "wifey",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "achicaban": {
+  "word": "achicaban",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "achicar",
+    "pos": "VERB",
+    "translation": "to shrink",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "aprovéchame": {
+  "word": "aprovéchame",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "aprovechar",
+    "pos": "VERB",
+    "translation": "take advantage of me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "baguettes": {
+  "word": "baguettes",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "baguette",
+    "pos": "NOUN",
+    "translation": "baguette",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bandida": {
+  "word": "bandida",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bandido",
+    "pos": "NOUN",
+    "translation": "bandit",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "bestie'": {
+  "word": "bestie'",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bestie",
+    "pos": "NOUN",
+    "translation": "bestie",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bitchy": {
+  "word": "bitchy",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bitchy",
+    "pos": "ADJ",
+    "translation": "bitchy",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bregar": {
+  "word": "bregar",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bregar",
+    "pos": "VERB",
+    "translation": "to deal with",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "brilloteo": {
+  "word": "brilloteo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "brilloteo",
+    "pos": "NOUN",
+    "translation": "sparkle",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "bubis": {
+  "word": "bubis",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bubi",
+    "pos": "NOUN",
+    "translation": "boobs",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "caché": {
+  "word": "caché",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cachar",
+    "pos": "VERB",
+    "translation": "to catch",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "cacharse",
+    "pos": "VERB",
+    "translation": "to buy",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "camita": {
+  "word": "camita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cama",
+    "pos": "NOUN",
+    "translation": "bed",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "capsu": {
+  "word": "capsu",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "capsu",
+    "pos": "NOUN",
+    "translation": "capsule",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "chimba": {
+  "word": "chimba",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chimba",
+    "pos": "NOUN",
+    "translation": "cool thing",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "chingarte": {
+  "word": "chingarte",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "to fuck",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "chingo": {
+  "word": "chingo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "to fuck",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "comiéndote": {
+  "word": "comiéndote",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "comer",
+    "pos": "VERB",
+    "translation": "eating you",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "corillo": {
+  "word": "corillo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "corillo",
+    "pos": "NOUN",
+    "translation": "crew",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "cubanas": {
+  "word": "cubanas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cubana",
+    "pos": "NOUN",
+    "translation": "Cuban cigars",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "cucándome": {
+  "word": "cucándome",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cucar",
+    "pos": "VERB",
+    "translation": "to tease me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "culprit": {
+  "word": "culprit",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "culprit",
+    "pos": "NOUN",
+    "translation": "culprit",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "declina": {
+  "word": "declina",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "declinar",
+    "pos": "VERB",
+    "translation": "declines",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "demasia": {
+  "word": "demasia",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "demasía",
+    "pos": "ADV",
+    "translation": "too much",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "emoji": {
+  "word": "emoji",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "emoji",
+    "pos": "NOUN",
+    "translation": "emoji",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "enchulara": {
+  "word": "enchulara",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enchular",
+    "pos": "VERB",
+    "translation": "to fall in love",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "enchulo": {
+  "word": "enchulo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enchular",
+    "pos": "VERB",
+    "translation": "to fall in love",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "engancho": {
+  "word": "engancho",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enganchar",
+    "pos": "VERB",
+    "translation": "hook",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "enterita": {
+  "word": "enterita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enterito",
+    "pos": "ADJ",
+    "translation": "whole",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "facey": {
+  "word": "facey",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "face",
+    "pos": "NOUN",
+    "translation": "face",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "fantasmear": {
+  "word": "fantasmear",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "fantasmear",
+    "pos": "VERB",
+    "translation": "to brag",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "fronteando": {
+  "word": "fronteando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "frontear",
+    "pos": "VERB",
+    "translation": "to show off",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "goddamn": {
+  "word": "goddamn",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "goddamn",
+    "pos": "INTJ",
+    "translation": "goddamn",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "hentai": {
+  "word": "hentai",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "hentai",
+    "pos": "NOUN",
+    "translation": "hentai",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "hoes": {
+  "word": "hoes",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "hoe",
+    "pos": "NOUN",
+    "translation": "hoes",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "infraganti": {
+  "word": "infraganti",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "infraganti",
+    "pos": "ADJ",
+    "translation": "in the act",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "khalifa": {
+  "word": "khalifa",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Khalifa",
+    "pos": "PROPN",
+    "translation": "Khalifa",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "lingote": {
+  "word": "lingote",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "lingote",
+    "pos": "NOUN",
+    "translation": "ingot",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "llaqueando": {
+  "word": "llaqueando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "llaquear",
+    "pos": "VERB",
+    "translation": "hanging out",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "mamis": {
+  "word": "mamis",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mami",
+    "pos": "NOUN",
+    "translation": "moms",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "metérselo": {
+  "word": "metérselo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "metérselo",
+    "pos": "VERB",
+    "translation": "to put it in",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "moñas": {
+  "word": "moñas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "moña",
+    "pos": "NOUN",
+    "translation": "bows",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "moña",
+    "pos": "NOUN",
+    "translation": "weed",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "noviecito": {
+  "word": "noviecito",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "noviecito",
+    "pos": "NOUN",
+    "translation": "boyfriend",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "omg": {
+  "word": "omg",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "omg",
+    "pos": "INTJ",
+    "translation": "OMG",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "pantis": {
+  "word": "pantis",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pantis",
+    "pos": "NOUN",
+    "translation": "pantyhose",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "pensarte": {
+  "word": "pensarte",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pensar",
+    "pos": "VERB",
+    "translation": "to think of you",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "phone": {
+  "word": "phone",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "phone",
+    "pos": "NOUN",
+    "translation": "phone",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "rockstar": {
+  "word": "rockstar",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "rockstar",
+    "pos": "NOUN",
+    "translation": "rockstar",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "rola": {
+  "word": "rola",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "rola",
+    "pos": "NOUN",
+    "translation": "joint",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "rola",
+    "pos": "NOUN",
+    "translation": "song",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "sheesh": {
+  "word": "sheesh",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "sheesh",
+    "pos": "INTJ",
+    "translation": "sheesh",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "superame": {
+  "word": "superame",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "superar",
+    "pos": "VERB",
+    "translation": "overcome me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "swipe": {
+  "word": "swipe",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "swipe",
+    "pos": "NOUN",
+    "translation": "swipe",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "tease": {
+  "word": "tease",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tease",
+    "pos": "VERB",
+    "translation": "tease",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "tease",
+    "pos": "NOUN",
+    "translation": "tease",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "tenqui": {
+  "word": "tenqui",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tenqui",
+    "pos": "NOUN",
+    "translation": "thank you",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "todito": {
+  "word": "todito",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "todo",
+    "pos": "PRON",
+    "translation": "everything",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "trajecito": {
+  "word": "trajecito",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "trajecito",
+    "pos": "NOUN",
+    "translation": "little suit",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "trap": {
+  "word": "trap",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "trap",
+    "pos": "NOUN",
+    "translation": "trap",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "treparon": {
+  "word": "treparon",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "trepar",
+    "pos": "VERB",
+    "translation": "climbed",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "tryna": {
+  "word": "tryna",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tryna",
+    "pos": "VERB",
+    "translation": "trying to",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "twix": {
+  "word": "twix",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "twix",
+    "pos": "NOUN",
+    "translation": "Twix",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "vander": {
+  "word": "vander",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "vander",
+    "pos": "PROPN",
+    "translation": "Vander",
+    "lines": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "violetita": {
+  "word": "violetita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "violetita",
+    "pos": "NOUN",
+    "translation": "violet",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "wiggyridi": {
+  "word": "wiggyridi",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "wiggyridi",
+    "pos": "NOUN",
+    "translation": "wiggyridi",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "prendíos": {
+  "word": "prendíos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "sortijas": {
+  "word": "sortijas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "abusadora": {
+  "word": "abusadora",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "abusador",
+    "pos": "NOUN",
+    "translation": "user",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "achinao'": {
+  "word": "achinao'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "algare": {
+  "word": "algare",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "algare",
+    "pos": "ADJ",
+    "translation": "energetic",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "amiri": {
+  "word": "amiri",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "amiri",
+    "pos": "PROPN",
+    "translation": "Amiri",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "apoderar": {
+  "word": "apoderar",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "apoderar",
+    "pos": "VERB",
+    "translation": "take over",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "arrebata'os": {
+  "word": "arrebata'os",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "baccarat": {
+  "word": "baccarat",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "baccarat",
+    "pos": "PROPN",
+    "translation": "Baccarat",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bebecita": {
+  "word": "bebecita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bebecita",
+    "pos": "NOUN",
+    "translation": "baby girl",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bicha": {
+  "word": "bicha",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bicha",
+    "pos": "NOUN",
+    "translation": "bitch",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "bitches": {
+  "word": "bitches",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bitch",
+    "pos": "NOUN",
+    "translation": "bitches",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "biza": {
+  "word": "biza",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Biza",
+    "pos": "PROPN",
+    "translation": "Biza",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "blin": {
+  "word": "blin",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "blin-blin",
+    "pos": "NOUN",
+    "translation": "bling",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "boci": {
+  "word": "boci",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "boca",
+    "pos": "NOUN",
+    "translation": "mouth",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "brego": {
+  "word": "brego",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bregar",
+    "pos": "VERB",
+    "translation": "deal with",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "bumper": {
+  "word": "bumper",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "bumper",
+    "pos": "NOUN",
+    "translation": "bumper",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "cachetito'": {
+  "word": "cachetito'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cachetito",
+    "pos": "NOUN",
+    "translation": "little cheek",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "caté": {
+  "word": "caté",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "catar",
+    "pos": "VERB",
+    "translation": "taste",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "cele": {
+  "word": "cele",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "celebrar",
+    "pos": "VERB",
+    "translation": "celebrates",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "ceni": {
+  "word": "ceni",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cenicero",
+    "pos": "NOUN",
+    "translation": "ashtray",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "chillin'": {
+  "word": "chillin'",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chilling",
+    "pos": "ADJ",
+    "translation": "chilling",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "chingas": {
+  "word": "chingas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "fucks",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "fucks",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "chingarnos": {
+  "word": "chingarnos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingarnos",
+    "pos": "VERB",
+    "translation": "fuck each other",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "chingue": {
+  "word": "chingue",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chingar",
+    "pos": "VERB",
+    "translation": "fuck you",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "chó": {
+  "word": "chó",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "chó",
+    "pos": "INTJ",
+    "translation": "chó",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "concocí": {
+  "word": "concocí",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "conocer",
+    "pos": "VERB",
+    "translation": "met",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "cosi": {
+  "word": "cosi",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "coso",
+    "pos": "NOUN",
+    "translation": "thing",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "coxis": {
+  "word": "coxis",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "coxis",
+    "pos": "NOUN",
+    "translation": "coccyx",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "crop": {
+  "word": "crop",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "crop top",
+    "pos": "NOUN",
+    "translation": "crop top",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "cucarme": {
+  "word": "cucarme",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cucarse",
+    "pos": "VERB",
+    "translation": "to tease me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "cute": {
+  "word": "cute",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cute",
+    "pos": "ADJ",
+    "translation": "cute",
+    "lines": [
+     1
+    ]
+   },
+   {
+    "lemma": "cute",
+    "pos": "NOUN",
+    "translation": "cuteness",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "cutie": {
+  "word": "cutie",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "cutie",
+    "pos": "NOUN",
+    "translation": "cutie",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "delatan": {
+  "word": "delatan",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "delatar",
+    "pos": "VERB",
+    "translation": "betray",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "delay": {
+  "word": "delay",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "delay",
+    "pos": "NOUN",
+    "translation": "delay",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "descabronamo'": {
+  "word": "descabronamo'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "descabronar",
+    "pos": "VERB",
+    "translation": "to mess up",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "desvestirte": {
+  "word": "desvestirte",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "desvestir",
+    "pos": "VERB",
+    "translation": "to undress you",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "desvisto": {
+  "word": "desvisto",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "desvistar",
+    "pos": "VERB",
+    "translation": "to undress",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "deuces": {
+  "word": "deuces",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "deuces",
+    "pos": "INTJ",
+    "translation": "goodbye",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "diablita": {
+  "word": "diablita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "diablita",
+    "pos": "NOUN",
+    "translation": "little devil",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "difficulté": {
+  "word": "difficulté",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "difficulté",
+    "pos": "NOUN",
+    "translation": "difficulty",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "embriago": {
+  "word": "embriago",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "embriagar",
+    "pos": "VERB",
+    "translation": "to get drunk",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "embuste": {
+  "word": "embuste",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "embuste",
+    "pos": "NOUN",
+    "translation": "lie",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "enredás": {
+  "word": "enredás",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enredar",
+    "pos": "VERB",
+    "translation": "entangled",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "enrolando": {
+  "word": "enrolando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "enrolar",
+    "pos": "VERB",
+    "translation": "enrolling",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "esboca": {
+  "word": "esboca",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "esbocarse",
+    "pos": "VERB",
+    "translation": "opens up",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "explicit": {
+  "word": "explicit",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "explicit",
+    "pos": "ADJ",
+    "translation": "explicit",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "feca": {
+  "word": "feca",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "feca",
+    "pos": "NOUN",
+    "translation": "fake",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "fecas": {
+  "word": "fecas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "feca",
+    "pos": "NOUN",
+    "translation": "fakes",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "fem": {
+  "word": "fem",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "fem",
+    "pos": "ADJ",
+    "translation": "female",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "ferxxo": {
+  "word": "ferxxo",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "ferxxo",
+    "pos": "PROPN",
+    "translation": "Ferxxo",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "festeja": {
+  "word": "festeja",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "festejar",
+    "pos": "VERB",
+    "translation": "is celebrated",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "flex": {
+  "word": "flex",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "flex",
+    "pos": "NOUN",
+    "translation": "flex",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "flexiando": {
+  "word": "flexiando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "flexiar",
+    "pos": "VERB",
+    "translation": "flexing",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "foam": {
+  "word": "foam",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "foam",
+    "pos": "NOUN",
+    "translation": "foam",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "frecuento": {
+  "word": "frecuento",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "frecuentar",
+    "pos": "VERB",
+    "translation": "frequent",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "frik": {
+  "word": "frik",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "frik",
+    "pos": "X",
+    "translation": "frik",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "fulete": {
+  "word": "fulete",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "fulete",
+    "pos": "NOUN",
+    "translation": "gun",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "fumándose": {
+  "word": "fumándose",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "fumarse",
+    "pos": "VERB",
+    "translation": "smoking",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "gozarnos": {
+  "word": "gozarnos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "gozarse",
+    "pos": "VERB",
+    "translation": "enjoy",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "grra": {
+  "word": "grra",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "grra",
+    "pos": "INTJ",
+    "translation": "grra",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "guatauba": {
+  "word": "guatauba",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "guatauba",
+    "pos": "NOUN",
+    "translation": "weed",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "guayamos": {
+  "word": "guayamos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "guayar",
+    "pos": "VERB",
+    "translation": "dance",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "guayo": {
+  "word": "guayo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "guayar",
+    "pos": "VERB",
+    "translation": "dance",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "guillaste": {
+  "word": "guillaste",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "guillar",
+    "pos": "VERB",
+    "translation": "acted",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "hijeputa'": {
+  "word": "hijeputa'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "hijeputa",
+    "pos": "NOUN",
+    "translation": "son of a bitch",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "imitada": {
+  "word": "imitada",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "imitado",
+    "pos": "ADJ",
+    "translation": "imitated",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "imposi": {
+  "word": "imposi",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "imposible",
+    "pos": "ADJ",
+    "translation": "impossible",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "info": {
+  "word": "info",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "info",
+    "pos": "NOUN",
+    "translation": "info",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "intro": {
+  "word": "intro",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "intro",
+    "pos": "NOUN",
+    "translation": "intro",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "jevas": {
+  "word": "jevas",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "jeva",
+    "pos": "NOUN",
+    "translation": "girls",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "joseo": {
+  "word": "joseo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "joseo",
+    "pos": "NOUN",
+    "translation": "hustle",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "killa": {
+  "word": "killa",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "killa",
+    "pos": "NOUN",
+    "translation": "killer",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "lamben": {
+  "word": "lamben",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "lamber",
+    "pos": "VERB",
+    "translation": "lick",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "lap": {
+  "word": "lap",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "lap",
+    "pos": "NOUN",
+    "translation": "lap",
+    "lines": [
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "michu": {
+  "word": "michu",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "michu",
+    "pos": "INTJ",
+    "translation": "meow",
+    "lines": [
+     5
+    ]
+   }
+  ]
+ },
+ "modelito'": {
+  "word": "modelito'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "modelito",
+    "pos": "NOUN",
+    "translation": "little model",
+    "lines": [
+     6
+    ]
+   }
+  ]
+ },
+ "mojarte": {
+  "word": "mojarte",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mojar",
+    "pos": "VERB",
+    "translation": "wet yourself",
+    "lines": [
+     7
+    ]
+   }
+  ]
+ },
+ "montarse": {
+  "word": "montarse",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "montarse",
+    "pos": "VERB",
+    "translation": "get on",
+    "lines": [
+     8,
+     9
+    ]
+   }
+  ]
+ },
+ "mood": {
+  "word": "mood",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mood",
+    "pos": "NOUN",
+    "translation": "mood",
+    "lines": [
+     10
+    ]
+   }
+  ]
+ },
+ "morenita'": {
+  "word": "morenita'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "morenita",
+    "pos": "ADJ",
+    "translation": "brunette",
+    "lines": [
+     11
+    ]
+   }
+  ]
+ },
+ "mostrame": {
+  "word": "mostrame",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mostrar",
+    "pos": "VERB",
+    "translation": "show me",
+    "lines": [
+     12
+    ]
+   }
+  ]
+ },
+ "mézclame": {
+  "word": "mézclame",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "mezclar",
+    "pos": "VERB",
+    "translation": "mix me",
+    "lines": [
+     13
+    ]
+   }
+  ]
+ },
+ "móntate": {
+  "word": "móntate",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "montarse",
+    "pos": "VERB",
+    "translation": "get in",
+    "lines": [
+     14,
+     15
+    ]
+   }
+  ]
+ },
+ "nae": {
+  "word": "nae",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "nae",
+    "pos": "ADV",
+    "translation": "nigh",
+    "lines": [
+     16
+    ]
+   }
+  ]
+ },
+ "naqui": {
+  "word": "naqui",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "naqui",
+    "pos": "X",
+    "translation": "naqui",
+    "lines": [
+     17
+    ]
+   }
+  ]
+ },
+ "naturola": {
+  "word": "naturola",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "naturola",
+    "pos": "NOUN",
+    "translation": "nature lover",
+    "lines": [
+     18,
+     19
+    ]
+   }
+  ]
+ },
+ "nda": {
+  "word": "nda",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "nda",
+    "pos": "NOUN",
+    "translation": "NDA",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "nublá'": {
+  "word": "nublá'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "nublado",
+    "pos": "ADJ",
+    "translation": "cloudy",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "nudes": {
+  "word": "nudes",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "nudes",
+    "pos": "NOUN",
+    "translation": "nudes",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "oah": {
+  "word": "oah",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "oah",
+    "pos": "INTJ",
+    "translation": "oah",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "pequita'": {
+  "word": "pequita'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pequita",
+    "pos": "NOUN",
+    "translation": "freckles",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "perreando": {
+  "word": "perreando",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "perrear",
+    "pos": "VERB",
+    "translation": "grinding",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "perrearme": {
+  "word": "perrearme",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "perrearme",
+    "pos": "VERB",
+    "translation": "grind on me",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "picheamo'": {
+  "word": "picheamo'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pichear",
+    "pos": "VERB",
+    "translation": "ignore",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "picheo": {
+  "word": "picheo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "pichear",
+    "pos": "VERB",
+    "translation": "ignore",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "posi": {
+  "word": "posi",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "posición",
+    "pos": "NOUN",
+    "translation": "positions",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "psycha": {
+  "word": "psycha",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "psicópata",
+    "pos": "ADJ",
+    "translation": "psycho",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "rebajo": {
+  "word": "rebajo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "rebajar",
+    "pos": "VERB",
+    "translation": "take off",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "rebelá'": {
+  "word": "rebelá'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "rebelde",
+    "pos": "ADJ",
+    "translation": "rebellious",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "refe": {
+  "word": "refe",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "referencia",
+    "pos": "NOUN",
+    "translation": "reference",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "riri": {
+  "word": "riri",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Riri",
+    "pos": "PROPN",
+    "translation": "Riri",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "risito'": {
+  "word": "risito'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "risito",
+    "pos": "NOUN",
+    "translation": "little smile",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "ropita": {
+  "word": "ropita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "ropita",
+    "pos": "NOUN",
+    "translation": "clothes",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "roster": {
+  "word": "roster",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "roster",
+    "pos": "NOUN",
+    "translation": "roster",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "samu": {
+  "word": "samu",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Samu",
+    "pos": "PROPN",
+    "translation": "Samu",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "satita": {
+  "word": "satita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "satita",
+    "pos": "ADJ",
+    "translation": "flashy",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "sativa": {
+  "word": "sativa",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "sativa",
+    "pos": "NOUN",
+    "translation": "sativa",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "sazón": {
+  "word": "sazón",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "sazón",
+    "pos": "NOUN",
+    "translation": "flavor",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "scene": {
+  "word": "scene",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "scene",
+    "pos": "NOUN",
+    "translation": "scene",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "sextape": {
+  "word": "sextape",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "sextape",
+    "pos": "NOUN",
+    "translation": "sextape",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "siren": {
+  "word": "siren",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "siren",
+    "pos": "NOUN",
+    "translation": "siren",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "sprite": {
+  "word": "sprite",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "Sprite",
+    "pos": "PROPN",
+    "translation": "Sprite",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "sticker": {
+  "word": "sticker",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "sticker",
+    "pos": "NOUN",
+    "translation": "sticker",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "taca'": {
+  "word": "taca'",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "taca",
+    "pos": "NOUN",
+    "translation": "heels",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "tato": {
+  "word": "tato",
+  "is_english": false,
+  "is_propernoun": true,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "Tato",
+    "pos": "PROPN",
+    "translation": "Tato",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "teteo": {
+  "word": "teteo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "teteo",
+    "pos": "NOUN",
+    "translation": "party",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "text": {
+  "word": "text",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "text",
+    "pos": "NOUN",
+    "translation": "text",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "texteó": {
+  "word": "texteó",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "textear",
+    "pos": "VERB",
+    "translation": "texted",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ },
+ "thottie": {
+  "word": "thottie",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "thottie",
+    "pos": "NOUN",
+    "translation": "thottie",
+    "lines": [
+     3
+    ]
+   }
+  ]
+ },
+ "tickes": {
+  "word": "tickes",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "senses": []
+ },
+ "titereo": {
+  "word": "titereo",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "titereo",
+    "pos": "NOUN",
+    "translation": "drama",
+    "lines": [
+     7
+    ]
+   }
+  ]
+ },
+ "tlc": {
+  "word": "tlc",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tlc",
+    "pos": "NOUN",
+    "translation": "TLC",
+    "lines": [
+     8
+    ]
+   }
+  ]
+ },
+ "tmz": {
+  "word": "tmz",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "tmz",
+    "pos": "PROPN",
+    "translation": "TMZ",
+    "lines": [
+     9
+    ]
+   }
+  ]
+ },
+ "todita": {
+  "word": "todita",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "todo",
+    "pos": "ADJ",
+    "translation": "all",
+    "lines": [
+     1
+    ]
+   }
+  ]
+ },
+ "toxic": {
+  "word": "toxic",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "toxic",
+    "pos": "ADJ",
+    "translation": "toxic",
+    "lines": [
+     2
+    ]
+   }
+  ]
+ },
+ "truquito": {
+  "word": "truquito",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "truco",
+    "pos": "NOUN",
+    "translation": "trick",
+    "lines": [
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ "twerkeas": {
+  "word": "twerkeas",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "twerk",
+    "pos": "VERB",
+    "translation": "twerk",
+    "lines": [
+     5
+    ]
+   }
+  ]
+ },
+ "uhmm": {
+  "word": "uhmm",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": true,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "uhmm",
+    "pos": "INTJ",
+    "translation": "uhmm",
+    "lines": [
+     6
+    ]
+   }
+  ]
+ },
+ "vanilla": {
+  "word": "vanilla",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": true,
+  "senses": [
+   {
+    "lemma": "vainilla",
+    "pos": "ADJ",
+    "translation": "vanilla",
+    "lines": [
+     7,
+     8
+    ]
+   }
+  ]
+ },
+ "velándote": {
+  "word": "velándote",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "velar",
+    "pos": "VERB",
+    "translation": "watching you",
+    "lines": [
+     9
+    ]
+   }
+  ]
+ },
+ "wet": {
+  "word": "wet",
+  "is_english": true,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "wet",
+    "pos": "ADJ",
+    "translation": "wet",
+    "lines": [
+     10
+    ]
+   }
+  ]
+ },
+ "jevos": {
+  "word": "jevos",
+  "is_english": false,
+  "is_propernoun": false,
+  "is_interjection": false,
+  "is_transparent_cognate": false,
+  "senses": [
+   {
+    "lemma": "jevo",
+    "pos": "NOUN",
+    "translation": "guys",
+    "lines": [
+     1,
+     2
+    ]
+   }
+  ]
+ }
+}

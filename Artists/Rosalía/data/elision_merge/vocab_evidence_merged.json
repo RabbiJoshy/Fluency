@@ -901,8 +901,8 @@
     }
   },
   {
-    "word": "na",
-    "corpus_count": 199,
+    "word": "nada",
+    "corpus_count": 218,
     "examples": [
       {
         "id": "5187929:13",
@@ -923,8 +923,43 @@
         "id": "3646825:18",
         "line": "Uh, na, na, na, na, na",
         "title": "Brillo"
+      },
+      {
+        "id": "12650523:10",
+        "line": "Yo no me privo de nada, quito lo que antes se gasta",
+        "title": "Fire, Fire"
+      },
+      {
+        "id": "12581295:4",
+        "line": "Cuando no quede na', nada que perder",
+        "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:4",
+        "line": "Cuando no quede na', nada que perder",
+        "title": "Sauvignon Blanc (A Cappella)"
+      },
+      {
+        "id": "8916307:22",
+        "line": "Y aunque pase el tiempo, no olvidarme de nada",
+        "title": "PROMESA"
+      },
+      {
+        "id": "7528115:5",
+        "line": "Nada que me arrepienta ni de que yo lamente ahora",
+        "title": "BULERÍAS"
+      },
+      {
+        "id": "7659063:10",
+        "line": "Nada te debo y tú no me debes nada",
+        "title": "COMO UN G"
       }
-    ]
+    ],
+    "display_form": "na",
+    "variants": {
+      "na": 199,
+      "nada": 19
+    }
   },
   {
     "word": "tu",
@@ -2709,6 +2744,67 @@
     ]
   },
   {
+    "word": "estoy",
+    "corpus_count": 66,
+    "examples": [
+      {
+        "id": "7528145:20",
+        "line": "Pero yo siempre estoy ahí",
+        "title": "CUUUUuuuuuute"
+      },
+      {
+        "id": "7515161:16",
+        "line": "Y yo estoy enamorá', enamorá' de la calle",
+        "title": "CHIRI"
+      },
+      {
+        "id": "7515170:4",
+        "line": "De cuero na', pero estoy encuerá' (Ah-ah)",
+        "title": "HENTAI"
+      },
+      {
+        "id": "12581295:18",
+        "line": "Estoy bien si estás tú",
+        "title": "Sauvignon Blanc"
+      },
+      {
+        "id": "13104176:17",
+        "line": "Estoy bien si estás tú",
+        "title": "Sauvignon Blanc (A Cappella)"
+      },
+      {
+        "id": "10615838:44",
+        "line": "Yo estoy enfocá', no presiona na'",
+        "title": "New Woman"
+      },
+      {
+        "id": "5187929:1",
+        "line": "Te estoy amando locamente",
+        "title": "Te Estoy Amando Locamente (Cover)"
+      },
+      {
+        "id": "3750274:17",
+        "line": "Sueño que estoy andando por un puente y que la acera (Mira, mira, mira, mira)",
+        "title": "MALAMENTE (Cap.1: Augurio)"
+      },
+      {
+        "id": "7659063:2",
+        "line": "No estoy a tu lado, pero te deseo paz y libertad (Mmm, mmm)",
+        "title": "COMO UN G"
+      },
+      {
+        "id": "8173139:5",
+        "line": "Que yo estoy ocupá' olvidando tus male'",
+        "title": "DESPECHÁ"
+      }
+    ],
+    "display_form": "'toy",
+    "variants": {
+      "estoy": 43,
+      "toy": 23
+    }
+  },
+  {
     "word": "le",
     "corpus_count": 63,
     "examples": [
@@ -3885,62 +3981,6 @@
         "id": "3646825:13",
         "line": "Un día despiertas y ya no me ves aquí",
         "title": "Brillo"
-      }
-    ]
-  },
-  {
-    "word": "estoy",
-    "corpus_count": 43,
-    "examples": [
-      {
-        "id": "7528145:20",
-        "line": "Pero yo siempre estoy ahí",
-        "title": "CUUUUuuuuuute"
-      },
-      {
-        "id": "7515161:16",
-        "line": "Y yo estoy enamorá', enamorá' de la calle",
-        "title": "CHIRI"
-      },
-      {
-        "id": "7515170:4",
-        "line": "De cuero na', pero estoy encuerá' (Ah-ah)",
-        "title": "HENTAI"
-      },
-      {
-        "id": "12581295:18",
-        "line": "Estoy bien si estás tú",
-        "title": "Sauvignon Blanc"
-      },
-      {
-        "id": "13104176:17",
-        "line": "Estoy bien si estás tú",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "10615838:44",
-        "line": "Yo estoy enfocá', no presiona na'",
-        "title": "New Woman"
-      },
-      {
-        "id": "5187929:1",
-        "line": "Te estoy amando locamente",
-        "title": "Te Estoy Amando Locamente (Cover)"
-      },
-      {
-        "id": "3750274:17",
-        "line": "Sueño que estoy andando por un puente y que la acera (Mira, mira, mira, mira)",
-        "title": "MALAMENTE (Cap.1: Augurio)"
-      },
-      {
-        "id": "7659063:2",
-        "line": "No estoy a tu lado, pero te deseo paz y libertad (Mmm, mmm)",
-        "title": "COMO UN G"
-      },
-      {
-        "id": "8173139:5",
-        "line": "Que yo estoy ocupá' olvidando tus male'",
-        "title": "DESPECHÁ"
       }
     ]
   },
@@ -5617,57 +5657,6 @@
     ]
   },
   {
-    "word": "ves",
-    "corpus_count": 29,
-    "examples": [
-      {
-        "id": "7515371:17",
-        "line": "No es en serio, ¿no lo ves?",
-        "title": "LAX"
-      },
-      {
-        "id": "4459381:10",
-        "line": "Ay, amor que no lo ves",
-        "title": "Me Traicionaste"
-      },
-      {
-        "id": "7515176:16",
-        "line": "Lo que tú nunca ves, que",
-        "title": "AISLAMIENTO"
-      },
-      {
-        "id": "3646825:1",
-        "line": "Estoy brillando con highlighter, ¿no lo ves?",
-        "title": "Brillo"
-      },
-      {
-        "id": "8264237:50",
-        "line": "Que tú lo ves que yo soy un asesino y yo sé que a ella le gusta cuando hablándole la miro",
-        "title": "DESPECHÁ (Demo)"
-      },
-      {
-        "id": "5384007:14",
-        "line": "Que no tenga que ir yo una ve' má' a buscarte",
-        "title": "Dolerme"
-      },
-      {
-        "id": "3814300:2",
-        "line": "Porque todos pueden ve' los hoyuelitos que te salen",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
-      },
-      {
-        "id": "8365376:19",
-        "line": "Yo no he borra'o y recuerdo cómo es que desnuda tú te ve'",
-        "title": "CANDY (Remix)"
-      }
-    ],
-    "display_form": "ve'",
-    "variants": {
-      "ves": 20,
-      "ve'": 9
-    }
-  },
-  {
     "word": "donde",
     "corpus_count": 28,
     "examples": [
@@ -6501,6 +6490,52 @@
     ]
   },
   {
+    "word": "ves",
+    "corpus_count": 24,
+    "examples": [
+      {
+        "id": "7515371:17",
+        "line": "No es en serio, ¿no lo ves?",
+        "title": "LAX"
+      },
+      {
+        "id": "4459381:10",
+        "line": "Ay, amor que no lo ves",
+        "title": "Me Traicionaste"
+      },
+      {
+        "id": "7515176:16",
+        "line": "Lo que tú nunca ves, que",
+        "title": "AISLAMIENTO"
+      },
+      {
+        "id": "3646825:1",
+        "line": "Estoy brillando con highlighter, ¿no lo ves?",
+        "title": "Brillo"
+      },
+      {
+        "id": "8264237:50",
+        "line": "Que tú lo ves que yo soy un asesino y yo sé que a ella le gusta cuando hablándole la miro",
+        "title": "DESPECHÁ (Demo)"
+      },
+      {
+        "id": "3814300:2",
+        "line": "Porque todos pueden ve' los hoyuelitos que te salen",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)"
+      },
+      {
+        "id": "8365376:19",
+        "line": "Yo no he borra'o y recuerdo cómo es que desnuda tú te ve'",
+        "title": "CANDY (Remix)"
+      }
+    ],
+    "display_form": "ve'",
+    "variants": {
+      "ves": 20,
+      "ve'": 4
+    }
+  },
+  {
     "word": "ser",
     "corpus_count": 23,
     "examples": [
@@ -6609,57 +6644,6 @@
         "id": "8701915:32",
         "line": "Será mi tótem, lo sabes tú y nadie más",
         "title": "LLYLM"
-      }
-    ]
-  },
-  {
-    "word": "toy",
-    "corpus_count": 23,
-    "examples": [
-      {
-        "id": "7791131:20",
-        "line": "'Toy perdía' hasta que encuentro escrita' mis señale'",
-        "title": "LA KILIÉ"
-      },
-      {
-        "id": "4801759:6",
-        "line": "'Toy, 'toy, 'toy viviendo la vida",
-        "title": "KLK"
-      },
-      {
-        "id": "7659063:8",
-        "line": "'Toy triste si pienso en lo bueno que tengo que no pue' durar",
-        "title": "COMO UN G"
-      },
-      {
-        "id": "4470734:12",
-        "line": "Toy flotando y pico, como Alí (Gy-gypsy)",
-        "title": "Como Alí"
-      },
-      {
-        "id": "8324985:3",
-        "line": "Ay, porque 'toy enamorá' y no soy correspondía'",
-        "title": "El Pañuelo"
-      },
-      {
-        "id": "7142770:8",
-        "line": "Hoy estoy a fuego, 'toy chucky",
-        "title": "Linda"
-      },
-      {
-        "id": "6211010:20",
-        "line": "Cuando 'toy contigo dejo que la vibra corra",
-        "title": "LA NOCHE DE ANOCHE"
-      },
-      {
-        "id": "8173139:18",
-        "line": "'Toy con la Fefa, ella es la jefa",
-        "title": "DESPECHÁ"
-      },
-      {
-        "id": "8264237:19",
-        "line": "'Toy con la Fefa, ella es la jefa",
-        "title": "DESPECHÁ (Demo)"
       }
     ]
   },
@@ -7443,6 +7427,67 @@
     ]
   },
   {
+    "word": "vez",
+    "corpus_count": 21,
+    "examples": [
+      {
+        "id": "8176090:5",
+        "line": "Si alguna vez sentiste algo lindo por mí",
+        "title": "PERDÓNAME"
+      },
+      {
+        "id": "3131429:5",
+        "line": "Y yo en vez de aborrecerte",
+        "title": "Por Castigarme Tan Fuerte"
+      },
+      {
+        "id": "12581298:31",
+        "line": "Y quedaros despiertos hasta que vuelva otra vez la luz",
+        "title": "Magnolias"
+      },
+      {
+        "id": "8682586:19",
+        "line": "Y cada vez que yo te busco",
+        "title": "Es Por Ti"
+      },
+      {
+        "id": "3065897:37",
+        "line": "Y a la vez me voy quemando",
+        "title": "Si Tú Supieras Compañero"
+      },
+      {
+        "id": "12581294:6",
+        "line": "Y a la vez más cerca",
+        "title": "La Yugular"
+      },
+      {
+        "id": "4425584:39",
+        "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
+        "title": "Con Altura"
+      },
+      {
+        "id": "7659063:26",
+        "line": "Otra vez, otra vez",
+        "title": "COMO UN G"
+      },
+      {
+        "id": "6211010:41",
+        "line": "Que yo me iría otra vez pa' Japón (Hey)",
+        "title": "LA NOCHE DE ANOCHE"
+      },
+      {
+        "id": "5384007:14",
+        "line": "Que no tenga que ir yo una ve' má' a buscarte",
+        "title": "Dolerme"
+      }
+    ],
+    "display_form": "ve'",
+    "variants": {
+      "vez": 17,
+      "ve'": 4
+    }
+  },
+  {
     "word": "ojos",
     "corpus_count": 21,
     "examples": [
@@ -7791,62 +7836,6 @@
         "id": "3750274:1",
         "line": "Ese cristalito roto yo sentí cómo crujía (Hm)",
         "title": "MALAMENTE (Cap.1: Augurio)"
-      }
-    ]
-  },
-  {
-    "word": "nada",
-    "corpus_count": 19,
-    "examples": [
-      {
-        "id": "12650523:10",
-        "line": "Yo no me privo de nada, quito lo que antes se gasta",
-        "title": "Fire, Fire"
-      },
-      {
-        "id": "12581295:4",
-        "line": "Cuando no quede na', nada que perder",
-        "title": "Sauvignon Blanc"
-      },
-      {
-        "id": "13104176:4",
-        "line": "Cuando no quede na', nada que perder",
-        "title": "Sauvignon Blanc (A Cappella)"
-      },
-      {
-        "id": "8916307:22",
-        "line": "Y aunque pase el tiempo, no olvidarme de nada",
-        "title": "PROMESA"
-      },
-      {
-        "id": "7528115:5",
-        "line": "Nada que me arrepienta ni de que yo lamente ahora",
-        "title": "BULERÍAS"
-      },
-      {
-        "id": "7659063:10",
-        "line": "Nada te debo y tú no me debes nada",
-        "title": "COMO UN G"
-      },
-      {
-        "id": "8365376:11",
-        "line": "Y en la nada quedó lo que contigo soñé",
-        "title": "CANDY (Remix)"
-      },
-      {
-        "id": "7288792:9",
-        "line": "Y yo como si nada",
-        "title": "LA FAMA"
-      },
-      {
-        "id": "7515279:38",
-        "line": "Nada te pue' parar, y ya",
-        "title": "SAOKO"
-      },
-      {
-        "id": "8416396:2",
-        "line": "Hace tiempo que no sé nada de ti (Eh-eh)",
-        "title": "Besos Moja2"
       }
     ]
   },
@@ -8712,57 +8701,6 @@
         "id": "9077775:33",
         "line": "Dime si todo el mundo lo sabe",
         "title": "Choices"
-      }
-    ]
-  },
-  {
-    "word": "vez",
-    "corpus_count": 17,
-    "examples": [
-      {
-        "id": "8176090:5",
-        "line": "Si alguna vez sentiste algo lindo por mí",
-        "title": "PERDÓNAME"
-      },
-      {
-        "id": "3131429:5",
-        "line": "Y yo en vez de aborrecerte",
-        "title": "Por Castigarme Tan Fuerte"
-      },
-      {
-        "id": "12581298:31",
-        "line": "Y quedaros despiertos hasta que vuelva otra vez la luz",
-        "title": "Magnolias"
-      },
-      {
-        "id": "8682586:19",
-        "line": "Y cada vez que yo te busco",
-        "title": "Es Por Ti"
-      },
-      {
-        "id": "3065897:37",
-        "line": "Y a la vez me voy quemando",
-        "title": "Si Tú Supieras Compañero"
-      },
-      {
-        "id": "12581294:6",
-        "line": "Y a la vez más cerca",
-        "title": "La Yugular"
-      },
-      {
-        "id": "4425584:39",
-        "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
-        "title": "Con Altura"
-      },
-      {
-        "id": "7659063:26",
-        "line": "Otra vez, otra vez",
-        "title": "COMO UN G"
-      },
-      {
-        "id": "6211010:41",
-        "line": "Que yo me iría otra vez pa' Japón (Hey)",
-        "title": "LA NOCHE DE ANOCHE"
       }
     ]
   },

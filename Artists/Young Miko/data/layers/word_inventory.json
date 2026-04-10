@@ -195,6 +195,15 @@
     "corpus_count": 100
   },
   {
+    "word": "estoy",
+    "corpus_count": 95,
+    "display_form": "'toy",
+    "variants": {
+      "estoy": 63,
+      "toy": 32
+    }
+  },
+  {
     "word": "más",
     "corpus_count": 92,
     "display_form": "má'",
@@ -310,10 +319,6 @@
     "corpus_count": 64
   },
   {
-    "word": "estoy",
-    "corpus_count": 63
-  },
-  {
     "word": "va",
     "corpus_count": 63
   },
@@ -354,6 +359,15 @@
     "corpus_count": 55
   },
   {
+    "word": "vez",
+    "corpus_count": 54,
+    "display_form": "ve'",
+    "variants": {
+      "ve'": 26,
+      "vez": 28
+    }
+  },
+  {
     "word": "desde",
     "corpus_count": 53
   },
@@ -368,15 +382,6 @@
     "variants": {
       "estás": 43,
       "está'": 9
-    }
-  },
-  {
-    "word": "ves",
-    "corpus_count": 52,
-    "display_form": "ve'",
-    "variants": {
-      "ve'": 33,
-      "ves": 19
     }
   },
   {
@@ -478,6 +483,15 @@
   {
     "word": "quieren",
     "corpus_count": 41
+  },
+  {
+    "word": "nada",
+    "corpus_count": 41,
+    "display_form": "na",
+    "variants": {
+      "nada": 31,
+      "na": 10
+    }
   },
   {
     "word": "cara",
@@ -595,10 +609,6 @@
     "corpus_count": 32
   },
   {
-    "word": "toy",
-    "corpus_count": 32
-  },
-  {
     "word": "tus",
     "corpus_count": 32,
     "display_form": "tu'",
@@ -621,10 +631,6 @@
   },
   {
     "word": "mueve",
-    "corpus_count": 31
-  },
-  {
-    "word": "nada",
     "corpus_count": 31
   },
   {
@@ -689,10 +695,6 @@
     "corpus_count": 28
   },
   {
-    "word": "vez",
-    "corpus_count": 28
-  },
-  {
     "word": "pues",
     "corpus_count": 28,
     "display_form": "pue'",
@@ -733,6 +735,15 @@
     "variants": {
       "hacemo'": 22,
       "hacemos": 5
+    }
+  },
+  {
+    "word": "ves",
+    "corpus_count": 26,
+    "display_form": "ve'",
+    "variants": {
+      "ve'": 7,
+      "ves": 19
     }
   },
   {
@@ -1948,10 +1959,6 @@
   },
   {
     "word": "miran",
-    "corpus_count": 10
-  },
-  {
-    "word": "na",
     "corpus_count": 10
   },
   {

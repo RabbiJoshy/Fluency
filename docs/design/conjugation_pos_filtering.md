@@ -16,7 +16,7 @@ When a word is a confirmed verb form (e.g., `como` is conjugated from `comer`), 
 Added conjugation-based POS filtering in `build_senses.py`. When `conjugation_reverse.json` confirms a word is a verb form, non-VERB senses are removed.
 
 ## Key files
-
+La verite. When you call my name, it's like a little breath. I hear your voice. Hmmm. 
 - `Data/Spanish/Scripts/build_senses.py` — filtering logic
 - `Data/Spanish/layers/conjugation_reverse.json` — ~84k inflected forms → infinitives
 - `Data/Spanish/Scripts/build_conjugations.py` — generates conjugation data from verbecc + Jehle CSV
