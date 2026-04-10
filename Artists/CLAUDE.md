@@ -39,7 +39,7 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 6 | `scripts/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
 | 6b | `scripts/match_artist_senses.py` | `sense_assignments.json` | Local bi-encoder sense matching (fallback for --no-gemini). Skips if assignments exist. |
 | 6j | `scripts/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional — run after Google Translate or `--no-gemini` runs. |
-| 7 | `scripts/7_flag_cognates.py` | `cognates.json` | Flag transparent cognates (intersection: LLM + suffix rules) |
+| 7 | _(shared layer)_ | `cognates.json` | Shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step. Builder loads it directly. |
 | 8 | `scripts/8_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | 9 | `scripts/9_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
 | build | `scripts/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
@@ -53,14 +53,14 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | Layer | Schema | Normal-Mode Parallel |
 |-------|--------|---------------------|
 | `word_inventory.json` | `[{word, corpus_count, display_form, variants}]` | `word_inventory.json` |
-| `examples_raw.json` | `{word: [{id, spanish, title}]}` | `examples_raw.json` |
-| `example_translations.json` | `{spanish_line: {english, source}}` | (baked into examples in normal mode) |
+| `examples_raw.json` | `{bare_word: [{id, spanish, title}]}` | `examples_raw.json` |
+| `example_translations.json` | `{spanish_text_line: {english, source}}` | (baked into examples in normal mode) |
 | `senses_gemini.json` | `{word\|lemma: [{pos, translation, source}]}` | `senses_wiktionary.json` |
 | `sense_assignments.json` | `{word: [{sense_idx, examples: [0,1,2], method}]}` | `sense_assignments.json` |
 | `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) |
-| `cognates.json` | `{word\|lemma: true}` | (planned) |
-| `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (planned) |
-| `lyrics_timestamps.json` | `{timestamps: {song_name: {spanish_line: {ms, confidence}}}}` | (none) |
+| `cognates.json` | `{word\|lemma: true}` (legacy per-artist; shared layer preferred) | `cognates.json` |
+| `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (none) |
+| `lyrics_timestamps.json` | `{_meta: {...}, timestamps: {song: {line: {ms, confidence}}}}` | (none) |
 
 ## Shared Master Vocabulary
 
@@ -91,7 +91,7 @@ Artists/{Name}/
     ranking.json                 # Step 8
   data/input/
     lyrics/                      # Raw lyrics per song
-    translations/translations.json  # Genius community translations
+    translations/aligned_translations.json  # Genius community translations (step 3b)
     duplicate_songs.json         # Songs to exclude from corpus
   data/word_counts/
     vocab_evidence.json          # Step 3 output (word counts + evidence)
@@ -103,7 +103,13 @@ Artists/{Name}/
   data/elision_merge/            # Step 5 output
   data/known_vocab/              # Step 4 output (skip_words.json)
   data/proper_nouns/             # Legacy step 4 output (deprecated)
+  data/lrclib_cache/             # Step 9 LRCLIB response cache
 ```
+
+## Other Directories
+
+- `Artists/tools/` — audit utilities (`check_translations.py`, `split_lang_audit.py`)
+- `Artists/migration/` — legacy progress migration scripts (one-off, can be removed)
 
 ## Modes
 

@@ -16,14 +16,20 @@ Fluency/
 ├── backend/
 │   ├── GoogleAppsScript.js      # Apps Script backend (deploy manually)
 │   └── secrets.template.json    # Template for secrets.json (not in git)
-├── shared/
-│   └── curated_translations.json  # Unified curated overrides (mode-tagged, both pipelines)
+├── shared/                      # Cross-pipeline shared code + data
+│   ├── curated_translations.json  # Unified curated overrides (mode-tagged, both pipelines)
+│   ├── flag_cognates.py           # Cognate detection logic (used by both pipelines)
+│   └── cognet_spa_eng.json        # CogNet cognate database
+├── scripts/                     # Root-level one-off utilities
+│   ├── finalize_vocabulary.py     # Post-build vocabulary finalization
+│   └── migrate_vocab_ids.py       # One-off ID migration tool
+├── research/                    # Playlist pipeline PoC — see research/CLAUDE.md
 ├── manifest.json / service-worker.js
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md
 │   └── Spanish/
-│       ├── layers/conjugations.json      # Conjugation tables (verbecc + Jehle)
-│       ├── layers/conjugation_reverse.json  # Form→infinitive reverse lookup
-│       └── corpora/jehle/                # Jehle verb conjugation corpus
+│       ├── layers/                # Pipeline layer files — see layers/CLAUDE.md
+│       ├── Scripts/               # Normal-mode pipeline scripts + orchestrator
+│       └── corpora/               # Tatoeba, OpenSubtitles, Wiktionary, Jehle
 └── Artists/                     # Pipeline scripts + per-artist data — see Artists/CLAUDE.md
     └── vocabulary_master.json   # Shared master vocab (all word|lemma entries + senses)
 ```
@@ -32,7 +38,7 @@ Fluency/
 
 | Task | Start at |
 |------|----------|
-| Flashcard display issue | `js/flashcards.js` → `updateCard()` (~line 890) |
+| Flashcard display issue | `js/flashcards.js` → `updateCard()` (~line 960) |
 | Filtering / deck logic | `js/vocab.js` → `buildFilteredVocab()` |
 | Multi-artist merge | `js/vocab.js` → `mergeArtistVocabularies()`, `joinWithMaster()` |
 | Master vocab / IDs | `Artists/scripts/merge_to_master.py`, `6_llm_analyze.py` → `assign_ids_from_master()` |
@@ -74,7 +80,7 @@ Fluency/
 ## Dependencies
 
 ```
-google-genai              # Gemini API (artist pipeline step 4, 6)
+google-genai              # Gemini API (artist pipeline step 6, optionally 4)
 lyricsgenius              # Genius API scraper (step 1)
 lingua-language-detector  # English line filter (step 2, 2b)
 verbecc                   # Spanish verb conjugation (pipeline step 3)
@@ -91,5 +97,5 @@ Python 3.9+ via `.venv/bin/python3`. Dev server: `python3 -m http.server 8765` f
 - **Short word whitelist**: Step 6 skips words <=2 chars unless in `_SHORT_WORD_WHITELIST`. If a short word gets POS=X, it probably needs adding to the whitelist.
 - **Easiness scoring**: Step 8 computes median Spanish frequency rank per example sentence. Strips adlibs and ignores interjections/English/proper nouns from the median. Front-end re-scores with personal easiness (`computePersonalEasiness` in `flashcards.js`) using `Data/Spanish/spanish_ranks.json` — excludes known words so sentences get progressively harder.
 - **POS=X filtering**: `buildFilteredVocab()` in `vocab.js` strips meanings with `pos=X` and empty translation. Words left with no valid meanings are removed from the deck.
-- **Normal mode pipeline**: 6 steps — build_inventory → build_examples (Tatoeba + OpenSubtitles, 50 examples/word) → build_conjugations (verbecc) → build_senses (Wiktionary + conjugation POS filtering + cross-POS dedup + sense cap) → match_senses (local embeddings via sentence-transformers, ~3 min) → build_vocabulary. Step 2 loads Tatoeba first (preferred), then fills remaining slots from OpenSubtitles (stride-sampled across full corpus, `--max-lines` flag, default 5M). Quality filters: subtitle junk regex, trivial sentence filter (all top-100 words), MAX_CANDIDATES=500 cap. Scoring: proximity to target word's inventory rank + easiness, with diversity sampling across difficulty thirds. Step 3 generates conjugation tables and reverse lookup; step 4 uses the reverse lookup to filter non-VERB senses from confirmed verb entries. Step 5 classifies examples to senses using `all-mpnet-base-v2` embeddings, merges synonym senses (cosine sim ≥ 0.70), and drops senses with < 10% frequency. Use `--keyword-only` flag for instant fallback without embeddings.
+- **Normal mode pipeline**: 8 steps (orchestrated by `Data/Spanish/Scripts/run_pipeline.py`) — (1) build_inventory → (2) build_examples (Tatoeba + OpenSubtitles, 50 examples/word) → (3) build_conjugations (verbecc) → (4) build_senses (Wiktionary + conjugation POS filtering + cross-POS dedup + sense cap) → (5) build_mwes (Wiktionary derived terms) → (6) match_senses (local embeddings via sentence-transformers, ~3 min) → (7) flag_cognates (suffix rules + CogNet) → (8) build_vocabulary. Step 2 loads Tatoeba first (preferred), then fills remaining slots from OpenSubtitles (stride-sampled across full corpus, `--max-lines` flag, default 5M). Quality filters: subtitle junk regex, trivial sentence filter (all top-100 words), MAX_CANDIDATES=500 cap. Scoring: proximity to target word's inventory rank + easiness, with diversity sampling across difficulty thirds. Step 3 generates conjugation tables and reverse lookup; step 4 uses the reverse lookup to filter non-VERB senses from confirmed verb entries. Step 6 classifies examples to senses using `all-mpnet-base-v2` embeddings, merges synonym senses (cosine sim ≥ 0.70), and drops senses with < 10% frequency. Use `--keyword-only` flag for instant fallback without embeddings.
 - **Master vocabulary**: `Artists/vocabulary_master.json` holds all word|lemma entries with accumulated senses across all artists. 6-char hex IDs (`md5(word|lemma)[:6]`). Per-artist files hold only examples and corpus stats. Front-end joins master + artist index + artist examples at load time. Run `Artists/scripts/merge_to_master.py` to rebuild the master from existing artist vocabs.

@@ -2,6 +2,8 @@
 
 Static vocabulary JSON files consumed by the front-end. No backend.
 
+Pipeline layers (intermediate files produced by each build step) are in `Spanish/layers/` — see `layers/CLAUDE.md` for schemas and provenance design. The normal-mode pipeline orchestrator is `Spanish/Scripts/run_pipeline.py`.
+
 ## Vocabulary Files
 
 | Language | File | Entries |
@@ -12,7 +14,15 @@ Static vocabulary JSON files consumed by the front-end. No backend.
 | Dutch | `Dutch/vocabulary.json` | ~100 |
 | Polish | `Polish/vocabulary.json` | ~300 |
 
-## Vocabulary Entry Schema
+## Vocabulary File Formats
+
+Spanish uses a **split format** for efficiency:
+
+- `vocabulary.index.json` — compact index (no examples), loaded first
+- `vocabulary.examples.json` — examples keyed by hex ID, lazy-loaded
+- `vocabulary.json` — full monolith (debug/legacy, contains everything)
+
+### Index Entry Schema (`vocabulary.index.json`)
 
 ```json
 {
@@ -20,17 +30,30 @@ Static vocabulary JSON files consumed by the front-end. No backend.
   "lemma": "hacer",
   "id": "a1b2c3",
   "rank": 42,
+  "corpus_count": 1598,
+  "most_frequent_lemma_instance": true,
   "meanings": [
-    {
-      "pos": "VERB",
-      "translation": "to do / to make",
-      "example_spanish": "Voy a hacer la tarea",
-      "example_english": "I'm going to do the homework"
-    }
+    { "pos": "VERB", "translation": "to do / to make", "frequency": "0.85" }
   ],
-  "is_transparent_cognate": false
+  "is_transparent_cognate": false,
+  "cognate_score": 0.0
 }
 ```
+
+### Examples Entry Schema (`vocabulary.examples.json`)
+
+```json
+{
+  "a1b2c3": {
+    "m": [
+      [{ "target": "Voy a hacer la tarea", "english": "I'm going to do the homework" }]
+    ],
+    "w": []
+  }
+}
+```
+
+`m[i]` = examples for meaning at index i, `w[i]` = examples for MWE at index i.
 
 ## Word IDs
 
