@@ -28,8 +28,17 @@ async function loadConfig() {
                 ppmDataPath: null, // PPM data is embedded in artist vocabulary JSON
                 colorTheme: activeArtist.colorTheme || config.languages[lang].colorTheme
             };
+            // ?variant=cascade → load cascade monolith for A/B testing
+            const variant = new URLSearchParams(window.location.search).get('variant');
+            if (variant === 'cascade') {
+                config.languages[lang].dataPath = activeArtist.dataPath.replace('.json', '_cascade.json');
+                config.languages[lang].indexPath = config.languages[lang].dataPath;
+                config.languages[lang].examplesPath = null;
+                config.languages[lang].masterPath = null;
+                document.title = `${activeArtist.name} Vocabulary (cascade)`;
+            }
             percentageMode = true;
-            document.title = `${activeArtist.name} Vocabulary`;
+            if (!variant) document.title = `${activeArtist.name} Vocabulary`;
         }
     } catch (error) {
         console.error('Failed to load config:', error);
