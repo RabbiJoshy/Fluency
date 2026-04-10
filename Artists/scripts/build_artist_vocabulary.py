@@ -417,7 +417,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None):
                     mwe_examples_cache[expr] = find_mwe_examples(expr)
 
                 # Truncate long translations
-                trans = mwe.get("translation", "")
+                trans = mwe.get("translation") or ""
                 if len(trans) > MAX_TRANSLATION_LEN:
                     parts = re.split(r'[;,]\s*', trans)
                     result = parts[0]
