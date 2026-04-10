@@ -31,6 +31,7 @@ export const state = {
     lemmaFieldAvailable: false,
     excludeCognates: false,
     cognateFieldAvailable: false,
+    cognateThreshold: 0.85,
     percentageMode: false,
     hideSingleOccurrence: true,
     speechEnabled: true,

@@ -1654,6 +1654,33 @@
             pointer-events: none;
         }
 
+        .cognate-threshold-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+            padding: 0 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .cognate-threshold-row label {
+            flex: 0 0 auto;
+            font-family: var(--font-emphasis);
+        }
+
+        .cognate-threshold-row input[type="range"] {
+            flex: 1;
+            accent-color: var(--accent-primary);
+        }
+
+        .threshold-label {
+            flex: 0 0 32px;
+            text-align: right;
+            font-family: var(--font-mono, monospace);
+            font-size: 12px;
+        }
+
         .step-help-btn {
             position: absolute;
             top: 10px;

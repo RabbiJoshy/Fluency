@@ -90,7 +90,7 @@ async function updateExclusionBars() {
 
     let afterCognate = afterLemma;
     if (excludeCognates && cognateFieldAvailable) {
-        afterCognate = afterLemma.filter(item => !item.is_transparent_cognate);
+        afterCognate = afterLemma.filter(item => item.cognate_score < cognateThreshold);
     }
     const totalAfterCognate = afterCognate.length;
 

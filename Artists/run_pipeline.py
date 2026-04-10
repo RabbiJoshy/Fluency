@@ -81,9 +81,6 @@ def _step_6b_args(args, artist_dir):
         a.append("--force")
     return a
 
-def _step_7_args(args, artist_dir):
-    return _base_args(artist_dir)
-
 def _step_8_args(args, artist_dir):
     return _base_args(artist_dir)
 
@@ -122,10 +119,7 @@ def build_steps(vocab_file):
          "script": "match_artist_senses.py", "args_fn": _step_6b_args,
          "input": "data/layers/senses_gemini.json",
          "output": "data/layers/sense_assignments.json", "needs_api_key": False},
-        {"num": 7, "label": "Flag cognates -> layer",
-         "script": "7_flag_cognates.py", "args_fn": _step_7_args,
-         "input": "data/layers/senses_gemini.json",
-         "output": "data/layers/cognates.json", "needs_api_key": False},
+        # Step 7 (cognates) removed — shared layer at Data/Spanish/layers/cognates.json
         {"num": 8, "label": "Rerank -> layer",
          "script": "8_rerank.py", "args_fn": _step_8_args,
          "input": "data/layers/word_inventory.json",

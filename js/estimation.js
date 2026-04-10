@@ -62,7 +62,7 @@ function buildEstimationWordList() {
         item.word && item.word.trim() !== '' &&
         !item.duplicate &&
         item.meanings && item.meanings.length > 0 &&
-        !item.is_transparent_cognate &&
+        (item.cognate_score ?? 0) < 0.83 &&
         !item.is_interjection &&
         !item.is_propernoun &&
         !item.is_english

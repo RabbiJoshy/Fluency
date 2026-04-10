@@ -112,7 +112,8 @@ function joinWithMaster(indexData, master) {
             is_english: m.is_english || false,
             is_interjection: m.is_interjection || false,
             is_propernoun: m.is_propernoun || false,
-            is_transparent_cognate: m.is_transparent_cognate || false,
+            cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
+            cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
             corpus_count: idx.corpus_count || 0,
             display_form: m.display_form || null,
             variants: idx.variants || null,
@@ -163,7 +164,13 @@ async function fetchAndJoinIndex(langConfig) {
 
 function buildFilteredVocab(vocabData) {
     // Assign stable rank from array position (pipeline sort order)
-    vocabData.forEach((item, index) => { item.rank = index + 1; });
+    vocabData.forEach((item, index) => {
+        item.rank = index + 1;
+        // Backward compat: old boolean cognate flag → score
+        if (item.cognate_score === undefined && item.is_transparent_cognate) {
+            item.cognate_score = 1;
+        }
+    });
 
     // Basic: non-blank, no duplicates, has meanings
     let result = vocabData.filter(item =>
@@ -186,10 +193,10 @@ function buildFilteredVocab(vocabData) {
         counts.english = before - result.length;
     }
 
-    // Cognate exclusion
+    // Cognate exclusion (score-based threshold)
     if (excludeCognates && cognateFieldAvailable) {
         const before = result.length;
-        result = result.filter(item => !item.is_transparent_cognate);
+        result = result.filter(item => item.cognate_score < cognateThreshold);
         counts.cognates = before - result.length;
     }
 

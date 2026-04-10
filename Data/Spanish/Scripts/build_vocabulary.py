@@ -150,7 +150,7 @@ def main():
     if cognates_path.exists():
         with open(cognates_path, encoding="utf-8") as f:
             cognates = json.load(f)
-        print(f"  cognates: {len(cognates)} transparent cognates")
+        print(f"  cognates: {len(cognates)} entries")
     else:
         cognates = {}
         print("  cognates: (not found, skipping)")
@@ -273,9 +273,14 @@ def main():
                 mwe_examples_by_idx.append(matched_exs[:5])
             stats["with_mwes"] += 1
 
-        # Cognate flag
+        # Cognate signals (single layer, object per entry)
         cognate_key = f"{entry['word']}|{entry['lemma']}"
-        is_cognate = cognate_key in cognates
+        cognate_obj = cognates.get(cognate_key)
+        # Backward compat: old format stores bare float or True
+        if isinstance(cognate_obj, (int, float)):
+            cognate_obj = {"score": cognate_obj}
+        elif cognate_obj is True:
+            cognate_obj = {"score": 1.0}
 
         # Monolith entry
         mono_entry = {
@@ -286,8 +291,10 @@ def main():
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_full,
         }
-        if is_cognate:
-            mono_entry["is_transparent_cognate"] = True
+        if cognate_obj:
+            mono_entry["cognate_score"] = cognate_obj["score"]
+            if cognate_obj.get("cognet"):
+                mono_entry["cognet_cognate"] = True
         if mwe_memberships:
             mono_entry["mwe_memberships"] = mwe_memberships
         if entry.get("homograph_ids"):
@@ -303,8 +310,10 @@ def main():
             "most_frequent_lemma_instance": entry["most_frequent_lemma_instance"],
             "meanings": meanings_lean,
         }
-        if is_cognate:
-            idx_entry["is_transparent_cognate"] = True
+        if cognate_obj:
+            idx_entry["cognate_score"] = cognate_obj["score"]
+            if cognate_obj.get("cognet"):
+                idx_entry["cognet_cognate"] = True
         if mwe_memberships:
             idx_entry["mwe_memberships"] = mwe_memberships
         if entry.get("homograph_ids"):

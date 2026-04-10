@@ -370,20 +370,39 @@ function setupCognateToggle() {
             this.textContent = this.dataset.full;
             excludeCognates = this.dataset.cognate === 'exclude';
 
-            // Re-render level selector with new word counts, and re-render range selector if a level is selected
-            renderLevelSelector(selectedLanguage);
-            // Re-select the current level if one was selected
-            if (selectedLevel) {
-                const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
-                if (levelBtn) {
-                    levelBtn.classList.add('selected');
-                    levelBtn.textContent = levelBtn.dataset.full;
-                }
-                renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
-            }
-            updateExclusionBars();
+            // Show/hide threshold slider
+            const sliderRow = document.getElementById('cognateThresholdRow');
+            if (sliderRow) sliderRow.style.display = excludeCognates ? '' : 'none';
+
+            _refreshAfterCognateChange();
         });
     });
+
+    // Threshold slider
+    const slider = document.getElementById('cognateThresholdSlider');
+    const label = document.getElementById('cognateThresholdLabel');
+    if (slider) {
+        slider.value = String(cognateThreshold);
+        if (label) label.textContent = Number(cognateThreshold).toFixed(2);
+        slider.addEventListener('input', function() {
+            cognateThreshold = parseFloat(this.value);
+            if (label) label.textContent = cognateThreshold.toFixed(2);
+            _refreshAfterCognateChange();
+        });
+    }
+}
+
+function _refreshAfterCognateChange() {
+    renderLevelSelector(selectedLanguage);
+    if (selectedLevel) {
+        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+        if (levelBtn) {
+            levelBtn.classList.add('selected');
+            levelBtn.textContent = levelBtn.dataset.full;
+        }
+        renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+    }
+    updateExclusionBars();
 }
 
 function setupGroupSizeSelector() {
@@ -535,13 +554,13 @@ async function updateCognateToggleVisibility() {
     const cognateContainer = document.getElementById('cognateToggleContainer');
     const cognateSelector = document.getElementById('cognateToggleSelector');
 
-    // Check if vocabulary has is_transparent_cognate field
+    // Check if vocabulary has cognate_score field
     cognateFieldAvailable = false;
     if (langConfig) {
         try {
             const vocabData = await fetchAndJoinIndex(langConfig);
             cognateFieldAvailable = vocabData.some(item =>
-                item.hasOwnProperty('is_transparent_cognate')
+                (item.cognate_score > 0) || item.cognet_cognate || item.is_transparent_cognate
             );
         } catch (error) {
             console.error('Error checking cognate field availability:', error);

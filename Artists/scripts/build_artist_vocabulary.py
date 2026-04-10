@@ -93,7 +93,10 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
     senses = load_layer(os.path.join(layers_dir, "senses_gemini.json"), "senses_gemini")
     assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
-    cognates = load_layer(os.path.join(layers_dir, "cognates.json"), "cognates", required=False) or {}
+    # Cognates: shared layer at Data/Spanish/layers/cognates.json
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(layers_dir)))
+    shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
+    cognates = load_layer(shared_cognates, "cognates (shared)", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
     lyrics_ts = load_layer(os.path.join(layers_dir, "lyrics_timestamps.json"), "lyrics_timestamps", required=False)
     ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
@@ -284,10 +287,20 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
         if variants:
             entry["variants"] = variants
 
-        # Apply cognate flag from layer
+        # Apply cognate signals from layer (object per entry)
         cognate_key = "%s|%s" % (word, word_lemma)
-        if cognate_key in cognates:
-            entry["is_transparent_cognate"] = True
+        cognate_obj = cognates.get(cognate_key)
+        # Backward compat: old format stores bare float or True
+        if isinstance(cognate_obj, (int, float)):
+            cognate_obj = {"score": cognate_obj}
+        elif cognate_obj is True:
+            cognate_obj = {"score": 1.0}
+        if cognate_obj:
+            entry["cognate_score"] = cognate_obj["score"]
+            if cognate_obj.get("cognet"):
+                entry["cognet_cognate"] = True
+            if cognate_obj.get("gemini"):
+                entry["is_transparent_cognate"] = True
 
         entries.append(entry)
 
@@ -572,6 +585,10 @@ def write_split_files(entries, master, vocab_path, master_path):
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
         }
+        if entry.get("cognate_score") is not None:
+            idx_entry["cognate_score"] = entry["cognate_score"]
+        if entry.get("cognet_cognate"):
+            idx_entry["cognet_cognate"] = True
         if entry.get("variants"):
             idx_entry["variants"] = entry["variants"]
         if entry_mwes:
