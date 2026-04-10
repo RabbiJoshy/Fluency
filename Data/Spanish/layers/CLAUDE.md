@@ -21,7 +21,7 @@ This also applies to the artist pipeline layers in `Artists/{Name}/data/layers/`
 | `conjugations.json` | infinitive | Full conjugation table `{translation, gerund, past_participle, moods: {...}}` | `build_conjugations.py` | Step 3 |
 | `conjugation_reverse.json` | conjugated form | List of `{lemma, mood, tense, person}` | `build_conjugations.py` | Step 3 |
 | `homograph_overrides.json` | surface form | `{lemma: ratio}` pairs summing to 1.0 | Manual | — |
-| `mwe_phrases.json` | hex ID | List of `{expression, translation, corpus_freq}` | `build_inventory.py` | Step 1 |
+| `mwe_phrases.json` | hex ID | List of `{expression, translation, source, corpus_freq?, count?}` — unified, all sources with provenance | `build_mwes.py` + merge | Step 1 |
 
 ## Artist Pipeline Layers
 

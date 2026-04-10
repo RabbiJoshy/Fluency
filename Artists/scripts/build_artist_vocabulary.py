@@ -79,8 +79,7 @@ def load_layer(path, name, required=True):
 # Assembly
 # ---------------------------------------------------------------------------
 
-def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path=None,
-                         wiktionary_mwe_path=None):
+def assemble_from_layers(layers_dir, master, curated_translations_path=None):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -101,28 +100,9 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
     lyrics_ts = load_layer(os.path.join(layers_dir, "lyrics_timestamps.json"), "lyrics_timestamps", required=False)
     ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
 
-    # Load MWE data
-    mwe_index = {}
-    if os.path.isfile(mwe_path):
-        with open(mwe_path, "r", encoding="utf-8") as f:
-            mwe_data = json.load(f)
-        for mwe in mwe_data.get("mwes", []):
-            expr = mwe["expression"]
-            for token in expr.split():
-                t = token.lower()
-                if t not in mwe_index:
-                    mwe_index[t] = []
-                if not any(m["expression"] == expr for m in mwe_index[t]):
-                    mwe_index[t].append({"expression": expr, "translation": mwe.get("translation", ""), "count": mwe.get("count", 0)})
-        print("  mwe_detected: %d MWEs" % len(mwe_data.get("mwes", [])))
-
-    # Load Wiktionary MWEs as baseline (keyed by word_id)
-    wikt_mwe_by_id = {}
-    if wiktionary_mwe_path and os.path.isfile(wiktionary_mwe_path):
-        with open(wiktionary_mwe_path, "r", encoding="utf-8") as f:
-            wikt_mwe_by_id = json.load(f)
-        total_wikt = sum(len(v) for v in wikt_mwe_by_id.values())
-        print("  wiktionary MWEs: %d expressions across %d words" % (total_wikt, len(wikt_mwe_by_id)))
+    # MWEs: shared layer at Data/Spanish/layers/mwe_phrases.json (all sources with provenance)
+    shared_mwes_path = os.path.join(project_root, "Data", "Spanish", "layers", "mwe_phrases.json")
+    mwe_by_id = load_layer(shared_mwes_path, "mwe_phrases (shared)", required=False) or {}
 
     # Load curated translations (artist-specific first, then shared as fallback)
     curated = {}
@@ -348,35 +328,6 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                         break
         return found
 
-    # --- Artist-specific MWE annotation (from mwe_detected.json) ---
-    if mwe_index:
-        mwe_examples_cache = {}
-        for w_lower, mwe_list in mwe_index.items():
-            for mwe_entry in mwe_list:
-                expr = mwe_entry["expression"]
-                if expr not in mwe_examples_cache:
-                    mwe_examples_cache[expr] = find_mwe_examples(expr)
-
-        mwe_count = 0
-        for entry in entries:
-            w_lower = entry["word"].lower()
-            if w_lower in mwe_index:
-                # Sort by artist corpus count (descending)
-                sorted_mwes = sorted(mwe_index[w_lower], key=lambda m: -m.get("count", 0))
-                memberships = []
-                for mwe_entry in sorted_mwes:
-                    expr = mwe_entry["expression"]
-                    memberships.append({
-                        "expression": expr,
-                        "translation": mwe_entry["translation"],
-                        "examples": mwe_examples_cache.get(expr, []),
-                        "source": "artist",
-                        "corpus_count": mwe_entry.get("count", 0),
-                    })
-                entry["mwe_memberships"] = memberships
-                mwe_count += 1
-        print("  Artist-specific MWE annotation: %d entries" % mwe_count)
-
     # --- Mark most frequent lemma instance ---
     lemma_groups = {}
     for entry in entries:
@@ -432,36 +383,41 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
 
     print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))
 
-    # --- Merge Wiktionary MWEs onto entries (after IDs are assigned) ---
-    MAX_WIKT_PER_ENTRY = 5
+    # --- MWE annotation from shared layer (after IDs are assigned) ---
+    MAX_MWES_PER_ENTRY = 10
     MAX_TRANSLATION_LEN = 100
-    if wikt_mwe_by_id:
-        wikt_count = 0
-        wikt_examples_cache = {}
+    if mwe_by_id:
+        mwe_examples_cache = {}
+        mwe_count = 0
         for entry in entries:
             fid = entry["id"]
-            wikt_mwes = wikt_mwe_by_id.get(fid, [])
-            if not wikt_mwes:
+            word_mwes = mwe_by_id.get(fid, [])
+            if not word_mwes:
                 continue
 
-            # Get existing artist-specific MWE expressions for dedup
-            existing_exprs = {m["expression"].lower() for m in entry.get("mwe_memberships", [])}
+            # Sort: artist-sourced first (by count desc), then wiktionary (by corpus_freq desc)
+            def mwe_sort_key(m):
+                is_wikt = 1 if m.get("source") == "wiktionary" else 0
+                freq = -(m.get("count", 0) or m.get("corpus_freq", 0))
+                return (is_wikt, freq)
+            sorted_mwes = sorted(word_mwes, key=mwe_sort_key)
 
-            # Sort by corpus_freq (from build_mwes.py), highest first
-            sorted_wikt = sorted(wikt_mwes, key=lambda m: -m.get("corpus_freq", 0))
-
-            added = 0
-            for wm in sorted_wikt:
-                if added >= MAX_WIKT_PER_ENTRY:
+            memberships = []
+            seen_exprs = set()
+            for mwe in sorted_mwes:
+                if len(memberships) >= MAX_MWES_PER_ENTRY:
                     break
-                if wm["expression"].lower() in existing_exprs:
+                expr = mwe["expression"]
+                if expr.lower() in seen_exprs:
                     continue
-                # Find lyric examples for this Wiktionary MWE
-                expr = wm["expression"]
-                if expr not in wikt_examples_cache:
-                    wikt_examples_cache[expr] = find_mwe_examples(expr)
+                seen_exprs.add(expr.lower())
+
+                # Find lyric examples
+                if expr not in mwe_examples_cache:
+                    mwe_examples_cache[expr] = find_mwe_examples(expr)
+
                 # Truncate long translations
-                trans = wm.get("translation", "")
+                trans = mwe.get("translation", "")
                 if len(trans) > MAX_TRANSLATION_LEN:
                     parts = re.split(r'[;,]\s*', trans)
                     result = parts[0]
@@ -473,19 +429,17 @@ def assemble_from_layers(layers_dir, mwe_path, master, curated_translations_path
                     if len(result) > MAX_TRANSLATION_LEN:
                         result = result[:MAX_TRANSLATION_LEN - 3] + "..."
                     trans = result
-                entry.setdefault("mwe_memberships", []).append({
+
+                memberships.append({
                     "expression": expr,
                     "translation": trans,
-                    "examples": wikt_examples_cache[expr],
-                    "source": "wiktionary",
-                    "corpus_freq": wm.get("corpus_freq", 0),
+                    "examples": mwe_examples_cache[expr],
+                    "source": mwe.get("source", "wiktionary"),
                 })
-                existing_exprs.add(expr.lower())
-                added += 1
-
-            if added > 0:
-                wikt_count += 1
-        print("  Wiktionary MWE annotation: %d entries enriched (max %d/entry)" % (wikt_count, MAX_WIKT_PER_ENTRY))
+            if memberships:
+                entry["mwe_memberships"] = memberships
+                mwe_count += 1
+        print("  MWE annotation (shared layer): %d entries" % mwe_count)
 
     # --- Strip mwe_memberships from master (one-time cleanup) ---
     for m in master.values():
@@ -641,7 +595,6 @@ def main():
     artists_dir = os.path.dirname(artist_dir)
     master_path = args.master_path or os.path.join(artists_dir, "vocabulary_master.json")
     layers_dir = os.path.join(artist_dir, "data", "layers")
-    mwe_path = os.path.join(artist_dir, "data", "word_counts", "mwe_detected.json")
     curated_path = os.path.join(artist_dir, "data", "llm_analysis", "curated_translations.json")
 
     # Load master
@@ -653,13 +606,8 @@ def main():
     else:
         print("No master vocabulary — will create.")
 
-    # Wiktionary MWE baseline (shared across all artists)
-    wiktionary_mwe_path = os.path.join(os.path.dirname(artists_dir),
-                                       "Data", "Spanish", "layers", "mwe_phrases.json")
-
     # Assemble from layers
-    entries, master = assemble_from_layers(layers_dir, mwe_path, master, curated_path,
-                                           wiktionary_mwe_path)
+    entries, master = assemble_from_layers(layers_dir, master, curated_path)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)

@@ -263,6 +263,8 @@ def main():
                 mwe_entry = {"expression": mwe["expression"]}
                 if mwe.get("translation"):
                     mwe_entry["translation"] = mwe["translation"]
+                if mwe.get("source"):
+                    mwe_entry["source"] = mwe["source"]
                 mwe_memberships.append(mwe_entry)
                 # Find examples containing this MWE expression
                 expr_lower = mwe["expression"].lower()
