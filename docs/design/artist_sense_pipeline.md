@@ -1,6 +1,6 @@
 ---
 title: Artist mode sense discovery and assignment
-status: decided
+status: research
 created: 2026-04-08
 updated: 2026-04-10
 ---
@@ -96,12 +96,20 @@ Use Wiktionary senses. Run classifier. If a significant fraction of examples don
 - `match_senses.py` — Gemini classifier already built and benchmarked for normal mode
 - Normalized matching in `_artist_config.py` — prevents dedup issues regardless of approach
 
-## Open questions
+## Open questions (original, pre-eval)
 
-1. How often do artist lyrics use a word in a sense Wiktionary doesn't list? (Needs measurement)
-2. Is the MWE system sufficient to cover idiomatic gaps, or do we need single-word sense fallback?
-3. Should Gemini still handle lemma/POS/flag detection even if sense discovery moves to Wiktionary?
-4. Would Option C's confidence threshold be reliable enough to automate, or would it need manual review?
+1. ~~How often do artist lyrics use a word in a sense Wiktionary doesn't list?~~ **Answered**: ~18% no Wiktionary match; ~8% genuinely missing (rest is English/propn/intj leakage)
+2. Is the MWE system sufficient to cover idiomatic gaps, or do we need single-word sense fallback? **Still open**
+3. Should Gemini still handle lemma/POS/flag detection even if sense discovery moves to Wiktionary? **Still open** — Wiktionary provides lemma and POS per sense, but flags (is_english, is_interjection, is_cognate) currently come from Gemini Pass B or steps 4/7. Need to decide source for each flag during implementation.
+4. ~~Would Option C's confidence threshold be reliable enough to automate?~~ **Partially answered**: approach decided, threshold and exact mechanism need design during implementation
+
+## Open design questions (for implementation chat)
+
+5. How does confidence detection work for gap-fill triggering? What metric (max cosine similarity? entropy across senses?), what threshold?
+6. Does lemma resolution change when Wiktionary provides the lemma instead of Gemini? Current Pass B determines lemma — if we skip Pass B for 82% of words, lemma comes from the Wiktionary key. Need to verify this is consistent with how the master vocabulary and front-end use lemma.
+7. Default classifier: Gemini Flash Lite (100% accuracy, ~$0.50/run) or biencoder (84%, free)? May depend on whether user ran Pass A with Gemini or only has Google Translate.
+8. How does `--no-gemini` mode work? Presumably: Wiktionary lookup + biencoder only, gap-fill skipped, words without Wiktionary match get no senses (or master fallback).
+9. What happens to existing `senses_gemini.json` files and master vocabulary entries when the pipeline switches to Wiktionary senses? Migration path needed.
 
 ## Eval results (2026-04-10)
 
@@ -151,7 +159,9 @@ Checked whether es.wiktionary.org covers gaps. It does add senses — bicho has 
 
 Not tested yet (skipped for speed). Expected to land between Genius (80%) and Spanish-only (69%). The key question is whether Google correctly translates Caribbean slang in sentences — if Google renders "bicho" as "bug" in sentence context, the easy alignment task becomes wrong.
 
-## Decision: Modified Option B — Wiktionary primary, confidence-gated Gemini gap-fill
+## Proposed direction: Modified Option B — Wiktionary primary, confidence-gated Gemini gap-fill
+
+Based on the eval, this is the most promising direction. The details below are a starting point for implementation, not a finished spec — the open design questions above need resolving during implementation.
 
 ### Architecture
 
