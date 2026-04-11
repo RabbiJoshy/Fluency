@@ -674,22 +674,63 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             nextCard();
         }
-        // Down arrow = incorrect
-        else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            pressAnswerBtn('incorrectBtnOutside');
-            handleSwipeAction('incorrect');
-        }
-        // Up arrow = correct
+        // Up arrow = previous meaning
         else if (e.key === 'ArrowUp') {
             e.preventDefault();
-            pressAnswerBtn('correctBtnOutside');
+            const card = flashcards[currentIndex];
+            if (card && card.meanings && card.meanings.length > 1 && currentMeaningIndex > 0) {
+                selectMeaning(currentMeaningIndex - 1);
+            }
+        }
+        // Down arrow = next meaning
+        else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const card = flashcards[currentIndex];
+            if (card && card.meanings && card.meanings.length > 1 && currentMeaningIndex < card.meanings.length - 1) {
+                selectMeaning(currentMeaningIndex + 1);
+            }
+        }
+        // Tab = cycle examples / MWE expressions
+        else if (e.key === 'Tab') {
+            e.preventDefault();
+            const card = flashcards[currentIndex];
+            if (!card || !card.meanings) return;
+            const m = card.meanings[currentMeaningIndex];
+            if (m && m.allMWEs && m.allMWEs.length > 1) {
+                // MWE meaning: cycle expressions
+                cycleMWEForward();
+            } else {
+                // Regular meaning: cycle examples
+                cycleExampleForward();
+            }
+        }
+        // Enter = correct
+        else if (e.key === 'Enter') {
+            e.preventDefault();
             handleSwipeAction('correct');
         }
-        // Space or Enter = flip card
-        else if (e.key === ' ' || e.key === 'Enter') {
+        // X = incorrect
+        else if (e.key === 'x' || e.key === 'X') {
+            e.preventDefault();
+            handleSwipeAction('incorrect');
+        }
+        // Space = flip card
+        else if (e.key === ' ') {
             e.preventDefault();
             flipCard();
+        }
+        // Escape = close modal or return to setup
+        else if (e.key === 'Escape') {
+            e.preventDefault();
+            const deckModal = document.getElementById('deckCompleteModal');
+            const statsModal = document.getElementById('statsModal');
+            if (deckModal && !deckModal.classList.contains('hidden')) {
+                hideDeckCompleteModal();
+            } else if (statsModal && !statsModal.classList.contains('hidden')) {
+                hideStatsModal();
+            } else {
+                goBackToSetup();
+            }
         }
     });
 }
@@ -1136,7 +1177,7 @@ function updateCard() {
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
-            const mweCounter = (isMWE && mweCount > 1) ? ` <span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span>` : '';
+            const mweCounter = (isMWE && mweCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous expression">‹</button><span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next expression">›</button></span>` : '';
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
             const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
             if (isMWE) {
@@ -1273,7 +1314,7 @@ function updateCard() {
             let exampleCounter = '';
             if (hasMultipleExamples) {
                 const exIdx = currentExampleIndex % exampleCount;
-                exampleCounter = `<span>${exIdx + 1}/${exampleCount}</span>`;
+                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${exIdx + 1}/${exampleCount}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
             }
             // Breakdown button removed — English translation is now clickable instead
             const spotifySvg = `<svg width="28" height="28" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
@@ -1509,6 +1550,64 @@ function cycleExample(event) {
 
     currentExampleIndex = (currentExampleIndex + 1) % examples.length;
     updateCard();
+}
+
+function cycleExampleForward(event) {
+    if (event) event.stopPropagation();
+    const card = flashcards[currentIndex];
+    if (!card || !card.meanings) return;
+    const currentMeaning = card.meanings[currentMeaningIndex];
+    if (!currentMeaning) return;
+    let examples;
+    if (currentMeaning.allMWEs) {
+        const mweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
+        examples = dedupeExamples(currentMeaning.allMWEs[mweIdx].examples || []);
+    } else {
+        examples = dedupeExamples(currentMeaning.allExamples || []);
+    }
+    if (examples.length <= 1) return;
+    currentExampleIndex = (currentExampleIndex + 1) % examples.length;
+    updateCard();
+}
+
+function cycleExampleBackward(event) {
+    if (event) event.stopPropagation();
+    const card = flashcards[currentIndex];
+    if (!card || !card.meanings) return;
+    const currentMeaning = card.meanings[currentMeaningIndex];
+    if (!currentMeaning) return;
+    let examples;
+    if (currentMeaning.allMWEs) {
+        const mweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
+        examples = dedupeExamples(currentMeaning.allMWEs[mweIdx].examples || []);
+    } else {
+        examples = dedupeExamples(currentMeaning.allExamples || []);
+    }
+    if (examples.length <= 1) return;
+    currentExampleIndex = (currentExampleIndex - 1 + examples.length) % examples.length;
+    updateCard();
+}
+
+function cycleMWEForward(event) {
+    if (event) event.stopPropagation();
+    const card = flashcards[currentIndex];
+    const m = card && card.meanings[currentMeaningIndex];
+    if (m && m.allMWEs && m.allMWEs.length > 1) {
+        currentMWEIndex = (currentMWEIndex + 1) % m.allMWEs.length;
+        currentExampleIndex = 0;
+        updateCard();
+    }
+}
+
+function cycleMWEBackward(event) {
+    if (event) event.stopPropagation();
+    const card = flashcards[currentIndex];
+    const m = card && card.meanings[currentMeaningIndex];
+    if (m && m.allMWEs && m.allMWEs.length > 1) {
+        currentMWEIndex = (currentMWEIndex - 1 + m.allMWEs.length) % m.allMWEs.length;
+        currentExampleIndex = 0;
+        updateCard();
+    }
 }
 
 function selectMeaning(index) {
@@ -2200,6 +2299,10 @@ window.goBackToSetup = goBackToSetup;
 window.updateCard = updateCard;
 window.flipCard = flipCard;
 window.cycleExample = cycleExample;
+window.cycleExampleForward = cycleExampleForward;
+window.cycleExampleBackward = cycleExampleBackward;
+window.cycleMWEForward = cycleMWEForward;
+window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
 window.previousCard = previousCard;
 window.nextCard = nextCard;

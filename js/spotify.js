@@ -332,14 +332,21 @@ window.addEventListener('message', (event) => {
     }
 });
 
+// Try to init player when both prerequisites are met: SDK loaded + client ID available
+function _tryInitPlayer() {
+    if (_isMobile || !isSpotifyConnected() || !window._spotifyClientId) return;
+    initSpotifyPlayer();
+}
+
 // The SDK calls this global when it's loaded
 window.onSpotifyWebPlaybackSDKReady = () => {
     console.log('Spotify Web Playback SDK loaded');
-    // Auto-init if already authenticated (desktop only — SDK not supported on mobile)
-    if (!_isMobile && isSpotifyConnected()) {
-        initSpotifyPlayer();
-    }
+    window._spotifySdkReady = true;
+    // Try init — may no-op if secrets haven't loaded yet (main.js retries after loadSecrets)
+    _tryInitPlayer();
 };
+
+window._spotifyTryInit = _tryInitPlayer;
 
 // --- Playback ---
 

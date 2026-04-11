@@ -116,6 +116,8 @@ loadConfig().then(async () => {
     await migrateLocalStorageIds();
     await migrateLocalStorageIdsV2();
     await loadSecrets();
+    // Retry Spotify player init now that client ID is available (handles race with SDK load)
+    if (window._spotifyTryInit) window._spotifyTryInit();
     checkAuthentication();
 
     // Set user name in top bar immediately (don't wait for progress load)

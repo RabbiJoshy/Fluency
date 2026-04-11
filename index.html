@@ -258,28 +258,50 @@
                             <div class="card-details" id="backContent"></div>
                         </div>
                     </div>
-                    <!-- Desktop: left side controls (incorrect + prev) -->
-                    <div class="desktop-side-controls left">
-                        <button class="desktop-answer-btn-outside incorrect" id="incorrectBtnOutside" title="Mark as incorrect (↓)">
-                            <span class="answer-icon">✗</span>
-                            <span class="answer-hint"><kbd>↓</kbd></span>
-                        </button>
-                        <button class="desktop-nav-btn-outside" id="prevBtnFrontOutside" title="Previous card (←)">
-                            <span class="nav-icon">←</span>
-                            <span class="answer-hint"><kbd>←</kbd></span>
-                        </button>
+                    <!-- Desktop: keyboard shortcut guide (left side) -->
+                    <div class="desktop-keyboard-guide">
+                        <div class="kb-section">
+                            <kbd class="kb-key" title="Back to menu">Esc</kbd>
+                        </div>
+                        <div class="kb-section">
+                            <div class="kb-row">
+                                <kbd class="kb-key" title="Correct">Enter</kbd>
+                                <span class="kb-hint correct">✓</span>
+                            </div>
+                            <div class="kb-row">
+                                <kbd class="kb-key" title="Incorrect">X</kbd>
+                                <span class="kb-hint incorrect">✗</span>
+                            </div>
+                        </div>
+                        <div class="kb-section">
+                            <kbd class="kb-key wide" title="Cycle examples / expressions">Tab</kbd>
+                            <span class="kb-hint">cycle</span>
+                        </div>
+                        <div class="kb-section kb-arrows">
+                            <div class="kb-arrow-row">
+                                <kbd class="kb-key arrow">↑</kbd>
+                            </div>
+                            <div class="kb-arrow-row">
+                                <kbd class="kb-key arrow">←</kbd>
+                                <kbd class="kb-key arrow">↓</kbd>
+                                <kbd class="kb-key arrow">→</kbd>
+                            </div>
+                            <div class="kb-arrow-labels">
+                                <span class="kb-hint">prev</span>
+                                <span class="kb-hint">meaning</span>
+                                <span class="kb-hint">next</span>
+                            </div>
+                        </div>
+                        <div class="kb-section">
+                            <kbd class="kb-key wide" title="Flip card">Space</kbd>
+                            <span class="kb-hint">flip</span>
+                        </div>
                     </div>
-                    <!-- Desktop: right side controls (correct + next) -->
-                    <div class="desktop-side-controls right">
-                        <button class="desktop-answer-btn-outside correct" id="correctBtnOutside" title="Mark as correct (↑)">
-                            <span class="answer-icon">✓</span>
-                            <span class="answer-hint"><kbd>↑</kbd></span>
-                        </button>
-                        <button class="desktop-nav-btn-outside" id="nextBtnFrontOutside" title="Next card (→)">
-                            <span class="nav-icon">→</span>
-                            <span class="answer-hint"><kbd>→</kbd></span>
-                        </button>
-                    </div>
+                    <!-- Hidden: keep IDs for pressAnswerBtn animation -->
+                    <button id="incorrectBtnOutside" class="hidden" aria-hidden="true"></button>
+                    <button id="correctBtnOutside" class="hidden" aria-hidden="true"></button>
+                    <button id="prevBtnFrontOutside" class="hidden" aria-hidden="true"></button>
+                    <button id="nextBtnFrontOutside" class="hidden" aria-hidden="true"></button>
                 </div>
             </div>
         </div>
@@ -360,9 +382,9 @@
                         <span>Review Mistakes</span>
                     </button>
                 </div>
-                <button class="deck-complete-btn mark-complete-btn" id="markCompleteBtn">
-                    <span class="btn-icon">✅</span>
-                    <span>Mark Complete & Exit</span>
+                <button class="deck-complete-btn exit-btn" id="markCompleteBtn">
+                    <span class="btn-icon">↩</span>
+                    <span>Back to Menu</span>
                 </button>
             </div>
         </div>

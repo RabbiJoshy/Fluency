@@ -1,0 +1,2100 @@
+{
+  "gata": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "low"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "low"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "low"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "cat",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "carjack, jack",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "(Galeus arae) Pez marino de hasta cuatro metros que se pesca en las aguas del Atlántico. Su carne es poco apreciada.",
+        "source": "es-wikt"
+      }
+    ]
+  },
+  "candela": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 5,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "candle",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "candela",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "combustible",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "fire, light",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "soapwood",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Fuego.",
+        "source": "es-wikt"
+      }
+    ]
+  },
+  "bellaca": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 5,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "scoundrel, rascal",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "plantain",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "one who is horny",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "vile",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "cunning",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "horny",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "prende": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "VERB",
+        "translation": "to catch, to arrest",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to take, to pick up",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to light, to ignite",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to turn on",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to join, to go with",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "perreo": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "twerking",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "flow": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "flow",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "bruja": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "sorcery, witchcraft",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "a spell",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "witch, sorceress",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "specifically, a Wiccan",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "crone, hag",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "loca": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 1,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 2,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 1,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 1,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "a madwoman, female equivalent of loco",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "slut",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "a very flirtatious homosexual man or boy, an effeminate man or boy",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Mujer promiscua.",
+        "source": "es-wikt"
+      }
+    ]
+  },
+  "carajo": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 3,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "cock",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "shit, jackshit, sod all",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "crow's nest",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "shit! fuck!",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "used as an intensifier, similar to the fuck",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "corillo": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "A friend-group; gang, crew",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Grupo de jóvenes que van de fiesta.",
+        "source": "es-wikt"
+      }
+    ]
+  },
+  "bicho": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 4,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "bug",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "vermin",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "beast",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "vulva",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "penis",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Parásito del sistema intestinal.",
+        "source": "es-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Pene.",
+        "source": "es-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "Persona altanero y de carácter poco simpático.",
+        "source": "es-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "Dicho de alguien: De gran astucia o capacidad para sacar provecho de las situaciones.",
+        "source": "es-wikt"
+      }
+    ]
+  },
+  "disco": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "club, discotheque",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "disc, disk",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "phonograph record or disc",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "rotary dial",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "discus",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "fuego": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "fire",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "fire!",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "duro": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": -1,
+        "confidence": "low"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "ADJ",
+        "translation": "hard, difficult",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "firm, solid",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "resilient, strong, tough",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "harsh, cruel, severe",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "hardball",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "meto": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 1,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "VERB",
+        "translation": "to put in, insert",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to score",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to make",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to cram, to stuff, to stick",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to meddle, interfere, to get into",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "real": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "ADJ",
+        "translation": "real",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "royal, regal",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "true friend, best friend",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "real",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "true",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "pone": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 4,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 4,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "VERB",
+        "translation": "to put, to put up, to place",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to set, to set up",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "put on a pot of coffee, put something on display)",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to choose, to designate",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to make",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "cabrones": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 2,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "billy goat",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "coward",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "bastard, motherfucker",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "cuckold",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "pimp",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "super cool",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "rico": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": -1,
+        "confidence": "low"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": -1,
+        "confidence": "low"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "ADJ",
+        "translation": "rich",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "luxurious",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "tasty, yummy",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "physically attractive",
+        "source": "es-wikt"
+      }
+    ]
+  },
+  "vivo": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 3,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 5,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 6,
+        "confidence": "medium"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "VERB",
+        "translation": "to live; to be alive",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to make a living, to live on",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to live in, reside, inhabit",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to experience, to live through",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "life; lifestyle",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "alive, living",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "vivid, lively",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "intense, strong",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "tiempo": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "time",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "a while, period of time, long time",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "tense",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "weather",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "noche": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "night",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "evening",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADV",
+        "translation": "after dark, at night, nocturnally",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "corazón": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 1,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "heart",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "emotions, kindness, spirit",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "the center of an object",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "ojos": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "eye",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "keyhole",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "caution",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "look! watch out!",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "nombre": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "name",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "noun",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "wow!",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "INTJ",
+        "translation": "yikes, nope",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "nuevo": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "ADJ",
+        "translation": "brand new, all-new, new",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "fresh",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "sola": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 2,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 2,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "ADJ",
+        "translation": "sole; one; only",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "lonely, lonesome",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "alone, by oneself",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "automatic; self-, by itself",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADJ",
+        "translation": "solar",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "ADV",
+        "translation": "only; solely; just",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "ground, land",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "house, noble lineage",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "NOUN",
+        "translation": "tenement house",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to pave",
+        "source": "en-wikt"
+      },
+      {
+        "pos": "VERB",
+        "translation": "to sole a shoe",
+        "source": "en-wikt"
+      }
+    ]
+  },
+  "gente": {
+    "assignments": [
+      {
+        "example_idx": 0,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 1,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 2,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 3,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 4,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 5,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 6,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 7,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 8,
+        "sense_idx": 0,
+        "confidence": "high"
+      },
+      {
+        "example_idx": 9,
+        "sense_idx": 0,
+        "confidence": "high"
+      }
+    ],
+    "senses": [
+      {
+        "pos": "NOUN",
+        "translation": "people",
+        "source": "en-wikt"
+      }
+    ]
+  }
+}

@@ -84,6 +84,21 @@
             .container {
                 max-width: 800px;
                 padding: 20px;
+                scrollbar-width: thin;
+                scrollbar-color: var(--border-color) transparent;
+            }
+
+            .container::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .container::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .container::-webkit-scrollbar-thumb {
+                background: var(--border-color);
+                border-radius: 3px;
             }
         }
 
@@ -331,6 +346,127 @@
             .desktop-side-controls {
                 display: none;
             }
+        }
+
+        /* Desktop keyboard shortcut guide */
+        .desktop-keyboard-guide {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-keyboard-guide {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+                position: absolute;
+                right: calc(50% + 250px);
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                opacity: 0.5;
+                transition: opacity 0.3s;
+            }
+
+            .desktop-keyboard-guide:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .kb-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .kb-row {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .kb-key {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom-width: 2px;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-family: var(--font-data);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.2;
+            min-width: 24px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .kb-key.small {
+            padding: 2px 5px;
+            font-size: 10px;
+            min-width: 18px;
+        }
+
+        .kb-key.arrow {
+            padding: 3px 7px;
+            font-size: 13px;
+            min-width: 28px;
+        }
+
+        .kb-key.wide {
+            padding: 3px 16px;
+        }
+
+        .kb-plus {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 9px;
+            margin: 0 1px;
+        }
+
+        .kb-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.5);
+            min-width: 58px;
+            text-align: right;
+            margin-right: 4px;
+        }
+
+        .kb-hint {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .kb-hint.correct {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .kb-hint.incorrect {
+            color: var(--error);
+            font-weight: 600;
+        }
+
+        .kb-arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .kb-arrow-row {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .kb-arrow-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 2px;
         }
 
         .swipe-indicator {
@@ -618,6 +754,55 @@
             color: white;
             font-size: 16px;
             font-weight: 500;
+        }
+
+        /* Desktop-only utility: hidden on mobile, inline-flex on desktop */
+        .desktop-only {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-only {
+                display: inline-flex;
+            }
+        }
+
+        /* Example and MWE cycling buttons (desktop only) */
+        .example-counter-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .example-cycle-btn,
+        .mwe-cycle-btn {
+            width: 22px;
+            height: 22px;
+            background: none;
+            border: none;
+            border-radius: 50%;
+            color: var(--text-muted);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+            .example-cycle-btn,
+            .mwe-cycle-btn {
+                display: inline-flex;
+            }
+        }
+
+        .example-cycle-btn:hover,
+        .mwe-cycle-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         .links-section {
@@ -2187,10 +2372,10 @@
         /* Conjugation table */
         .conjugation-panel {
             position: absolute;
-            top: -20px;
-            bottom: -20px;
-            left: -15px;
-            right: -15px;
+            top: -40px;
+            bottom: -40px;
+            left: -5px;
+            right: -5px;
             padding: 20px;
             background: var(--bg-card);
             border-radius: 16px;
@@ -2880,16 +3065,18 @@
             cursor: not-allowed;
         }
 
-        .deck-complete-btn.mark-complete-btn {
+        .deck-complete-btn.exit-btn {
             width: 100%;
-            background: var(--accent-green);
-            color: var(--bg-primary);
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
             flex-direction: row;
             gap: 10px;
         }
 
-        .deck-complete-btn.mark-complete-btn:hover {
-            box-shadow: 0 0 20px var(--glow-green);
+        .deck-complete-btn.exit-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-light, var(--accent-secondary));
         }
 
         /* Coverage Progress Bar */
