@@ -38,6 +38,7 @@ Data/Spanish/layers/examples_raw.json
 # Large corpus files (downloaded, not generated)
 Data/Spanish/corpora/opensubtitles/OpenSubtitles.*
 Data/Spanish/corpora/embeddings_cache/
+Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-spanish.jsonl
 
 # Bad Bunny pipeline — old/generated files
 Bad Bunny/archive/

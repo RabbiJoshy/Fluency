@@ -2,7 +2,7 @@
 title: Artist mode sense discovery and assignment
 status: decided
 created: 2026-04-08
-updated: 2026-04-10
+updated: 2026-04-11
 ---
 
 # Artist Mode Sense Pipeline — Design Notes
@@ -240,13 +240,55 @@ Tested 28 words (20 slang candidates + 8 normal words). Gemini proposes missing 
 
 **Prompt refinement needed:** Ask "would a learner understand from the dictionary definition alone?" rather than "is the existing sense close enough?" — catches figurative/slang usage like gata = "hot girl" where "cat" is technically present but useless for comprehension.
 
+## Spanish Wiktionary (eswiktionary) as regional supplement (2026-04-11)
+
+The Spanish edition of Wiktionary (`kaikki-eswiktionary-raw.jsonl.gz`, 98.7MB) has excellent dialect/region tagging per sense. Tags include `Puerto-Rico`, `Caribbean`, `Cuba`, `Dominican-Republic`, `Mexico`, `Venezuela`, etc.
+
+**Coverage overlap with Bad Bunny (PR + Caribbean + Cuba):**
+- 1,113 words with dialect-tagged senses in the full corpus
+- 236 overlap with Bad Bunny's vocabulary
+- Key wins: bicho → "Pene" (PR/Cuba), prender → "turn on a device" (Caribbean), candela → "Fuego" (PR/Cuba), rico → "physically attractive" (Cuba), corillo → "group of young people who party" (PR), mami → "attractive woman" (PR/Cuba)
+- Still missing: gata → "attractive woman" (not in either Wiktionary)
+
+**Architecture decision:** Use eswiktionary as a supplement, not a replacement. Per-artist `dialect` config drives which regional tags to include. English Wiktionary senses go first on the menu; dialect senses are appended. No dedup — Gemini classifier prefers English senses when both cover the same meaning.
+
+**Translation of Spanish glosses:** When Gemini picks a Spanish-only sense, it translates it in the same response. Translations cached in `.eswikt_translation_cache.json` so the same gloss gets the same English translation across artists and runs. Already working: rico → "Dicho de una persona, que tiene gran atractivo físico" → "physically attractive" cached on first run.
+
+**Data file:** `Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz` (raw wiktextract format, `lang_code: "es"` entries, senses have `tags` array with region names).
+
+## Gap-fill prompt v3 results (2026-04-11)
+
+Tested 5 prompt variations with the combined English + Spanish Wiktionary menu on 28 words. The core challenge: balancing false positives (proposing senses when existing ones are fine) vs false negatives (saying "covered" when the dictionary definition would mislead).
+
+**Best results so far (substitution test prompt, 21/28 correct):**
+- Fixed from original: prende, perreo, carajo, candela, corazón, real now correctly "covered"
+- Genuine proposals: meto → "to have sex with", nuevo → "again" (MWE), pone → "makes feel"
+- Remaining false positives: fuego ("fire" covers "passion"), duro ("tough" covers "intensely")
+- **Persistent failure: gata** — Flash Lite cannot distinguish "cat→girlfriend" (genuinely misleading) from "fire→passion" (figurative extension). It sees "cat" and says covered every time, even with explicit substitution test instructions. Pro gets it right.
+
+**Prompt evolution:**
+1. Original two-step prompt → 6/28 proposals (too many FPs: prende, perreo, carajo)
+2. "Err strongly on covered" → 1/28 proposals (too conservative: gata says covered)
+3. "Learner substitution test" → 7/28 proposals (gata still covered, fuego/duro still FP)
+4. "Show your substitution work" (chain-of-thought) → 19/28 correct, **gata finally works** (7/10, proposes "woman, girlfriend"). Substitution output: "I don't know if you have a cat or you have a boyfriend" — clearly wrong. But more FPs return: candela, fuego, duro, rico (ignored its own Spanish Wiktionary "physically attractive" sense)
+
+**Key insight:** Flash Lite correctly identifies `actual_meaning: "girlfriend, woman"` for gata — it KNOWS the meaning. Without chain-of-thought it fails the coverage judgment, treating "cat→girlfriend" as a metaphorical extension. With chain-of-thought (forced to write out the substitution) it catches the error, but the literal substitution test is too strict for figurative extensions — "The streets are on fire, light" sounds awkward when you jam in the full dictionary text.
+
+**Trade-off:** Conservative prompt (v2) → 27/28 correct but misses gata. Chain-of-thought (v4) → catches gata but 9/28 proposals (too many FPs). Need to find a middle ground — possibly substituting just the core word, or a two-pass approach.
+
+**Next steps:**
+1. Refine chain-of-thought substitution — substitute just the first word/phrase, not the full dictionary text
+2. Or accept v2 prompt + curated override for the small number of gata-type words
+3. Or use Pro for gap-fill only (handles nuance correctly, negligible cost on small word counts)
+
 ## Decided architecture
 
-1. **Wiktionary senses** — primary sense source via `lookup_senses()` + `clean_translation()` + `merge_similar_senses()`. Covers 82% of vocabulary with clean, cross-artist-consistent senses. Pickle cache for fast reloads.
-2. **Gemini Flash Lite classifier** — picks from menu. ~$0.05 per artist, 13s for 140 examples. Near-100% accuracy.
-3. **Gap-fill** — for words where classifier finds no good match, Gemini proposes 1-2 additional senses (learner-perspective prompt). Low false positive rate. Results persist in master for future artists.
-4. **Curated overrides** — highest trust, applied first, never deleted.
-5. **Biencoder fallback** — for `--no-gemini` runs (free, lower accuracy).
+1. **English Wiktionary senses** — primary sense source via `lookup_senses()` + `clean_translation()` + `merge_similar_senses()`. Covers 82% of vocabulary with clean, cross-artist-consistent senses. Pickle cache for fast reloads.
+2. **Spanish Wiktionary dialect supplement** — regional senses filtered by artist's `dialect` config (e.g., `["Puerto-Rico", "Caribbean", "Cuba"]` for Bad Bunny). Appended after English senses. Spanish glosses translated by Gemini on first use, cached for reuse.
+3. **Gemini Flash Lite classifier** — picks from combined menu. ~$0.05 per artist, 13s for 140 examples. Near-100% accuracy.
+4. **Gap-fill** — for words where classifier finds no good match, Gemini proposes 1-2 additional senses (learner-perspective prompt). Low false positive rate. Results persist in master for future artists.
+5. **Curated overrides** — highest trust, applied first, never deleted.
+6. **Biencoder fallback** — for `--no-gemini` runs (free, lower accuracy).
 
 ### Scaling: gap-fill senses in the master
 
@@ -254,20 +296,28 @@ Gap-fill senses accumulate in the shared master vocabulary (`source: "gap-fill"`
 
 ## Implementation plan
 
-1. Add `--gemini` classifier to `test_wiktionary_cascade.py` for full browsable deck
-2. Integrate gap-fill into the cascade script (confidence-gated, learner-perspective prompt)
-3. Modify step 6 to use cascade as primary path (Wiktionary + Gemini classifier + gap-fill)
-4. Persist gap-fill senses in master vocabulary with `source: "gap-fill"` provenance
-5. Keep biencoder path as `--no-gemini` fallback
-6. Test: re-run Bad Bunny pipeline, diff senses, spot-check focus words in browser
+1. **Finalize gap-fill prompt** — resolve gata false negative (Flash Lite vs Pro, or better prompting)
+2. Add `--gemini` classifier to `test_wiktionary_cascade.py` for full browsable deck
+3. Integrate Spanish Wiktionary dialect supplement into cascade (loader, dialect config, translation cache)
+4. Integrate gap-fill into the cascade script (after classifier, for genuinely unmatched words)
+5. Modify step 6 to use cascade as primary path (Wiktionary + Gemini classifier + gap-fill)
+6. Persist gap-fill senses in master vocabulary with `source: "gap-fill"` provenance
+7. Keep biencoder path as `--no-gemini` fallback
+8. Test: re-run Bad Bunny pipeline, diff senses, spot-check focus words in browser
 
 ## Test scripts
 
 - `pipeline/artist/test_wiktionary_cascade.py` — full cascade test, writes browsable `_cascade_{method}.json`
-- `pipeline/artist/bench_nli.py` — quick classifier comparison (biencoder, NLI, Gemini) on 14 problem words
-- `pipeline/artist/bench_gapfill.py` — gap-fill proposal test on 28 words
-- `pipeline/artist/eval_wiktionary_cascade.py` — original eval (translation source comparison)
+- `pipeline/artist/bench/bench_nli.py` — quick classifier comparison (biencoder, NLI, Gemini) on 14 problem words
+- `pipeline/artist/bench/bench_gapfill.py` — gap-fill proposal test on 28 words, now with Spanish Wiktionary supplement
+- `pipeline/artist/bench/eval_wiktionary_cascade.py` — original eval (translation source comparison)
 
 Run cascade test: `.venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"`
-Run classifier bench: `.venv/bin/python3 pipeline/artist/bench_nli.py --gemini`
-Run gap-fill bench: `.venv/bin/python3 pipeline/artist/bench_gapfill.py`
+Run classifier bench: `.venv/bin/python3 pipeline/artist/bench/bench_nli.py --gemini`
+Run gap-fill bench: `.venv/bin/python3 pipeline/artist/bench/bench_gapfill.py`
+
+## Data files
+
+- `Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz` — English Wiktionary (primary), 118K lookup keys
+- `Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz` — Spanish Wiktionary (dialect supplement), raw wiktextract format, 850K entries, 1,113 words with Caribbean/PR/Cuba tags
+- `pipeline/artist/bench/.eswikt_translation_cache.json` — cached Spanish→English gloss translations from gap-fill runs
