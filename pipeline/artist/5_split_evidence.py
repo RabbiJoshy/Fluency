@@ -42,6 +42,14 @@ def main():
         data = json.load(f)
     print(f"  {len(data)} entries")
 
+    # Load previous examples to preserve order (keeps sense assignments stable)
+    ex_path = os.path.join(layers_dir, "examples_raw.json")
+    prev_examples = {}
+    if os.path.isfile(ex_path):
+        with open(ex_path, "r", encoding="utf-8") as f:
+            prev_examples = json.load(f)
+        print(f"  Previous examples_raw: {len(prev_examples)} words (preserving order)")
+
     inventory = []
     examples_raw = {}
 
@@ -60,17 +68,35 @@ def main():
 
         inventory.append(inv_entry)
 
-        # Examples: raw Spanish lines with metadata
+        # Examples: preserve previous order so sense assignment indices stay valid.
+        # Keep previous examples that still exist in the corpus, then append new ones.
         raw_examples = entry.get("examples", [])
-        if raw_examples:
-            examples_raw[word] = [
-                {
+        if not raw_examples:
+            continue
+
+        new_by_id = {ex["id"]: ex for ex in raw_examples}
+        prev_word_examples = prev_examples.get(word, [])
+
+        kept = []
+        seen_ids = set()
+        # First: keep previous examples in order if they still exist
+        for prev_ex in prev_word_examples:
+            eid = prev_ex.get("id", "")
+            if eid in new_by_id:
+                kept.append(prev_ex)
+                seen_ids.add(eid)
+
+        # Then: append new examples not seen before
+        for ex in raw_examples:
+            if ex["id"] not in seen_ids:
+                kept.append({
                     "id": ex["id"],
                     "spanish": ex["line"],
                     "title": ex.get("title", ""),
-                }
-                for ex in raw_examples
-            ]
+                })
+
+        if kept:
+            examples_raw[word] = kept
 
     # Write layers
     inv_path = os.path.join(layers_dir, "word_inventory.json")

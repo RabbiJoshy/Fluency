@@ -47,7 +47,7 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-from _artist_config import add_artist_arg, load_artist_config
+from _artist_config import add_artist_arg, load_artist_config, assign_sense_ids
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "senses_wiktionary.json"
@@ -156,7 +156,8 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
     bilingual_count = 0
     spanish_only_count = 0
 
-    for wi, (word, senses, examples, keep_indices, source) in enumerate(work_items):
+    for wi, item in enumerate(work_items):
+        word, senses, examples, keep_indices, source = item[:5]
         for ei, ex in enumerate(examples):
             spanish = ex.get("spanish", "")
             trans_info = translations.get(spanish, {})
@@ -180,7 +181,8 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
     # Collect all sense texts (raw "pos: translation" — best for bi-encoder)
     sense_texts = []
     sense_map = []  # (work_idx, original_sense_idx)
-    for wi, (word, senses, examples, keep_indices, source) in enumerate(work_items):
+    for wi, item in enumerate(work_items):
+        word, senses, examples, keep_indices, source = item[:5]
         for ki in keep_indices:
             s = senses[ki]
             label = _POS_LABELS.get(s["pos"], s["pos"])
@@ -218,7 +220,10 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
     # Classify each word
     print("\nClassifying %d words by cosine similarity..." % len(work_items))
     t0 = time.time()
-    for wi, (word, senses, examples, keep_indices, source) in enumerate(work_items):
+    for wi, item in enumerate(work_items):
+        word, senses, examples, keep_indices, source = item[:5]
+        id_list = item[5] if len(item) > 5 else None
+
         sense_example_indices = [[] for _ in senses]
 
         ex_pairs = word_example_embs.get(wi, [])
@@ -240,26 +245,37 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
             if ei not in embedded_indices:
                 sense_example_indices[keep_indices[0] if keep_indices else 0].append(ei)
 
-        # Frequency filter
+        # Frequency filter + output
         total_classified = sum(len(idx) for idx in sense_example_indices)
-        assignments = []
-        for i, indices in enumerate(sense_example_indices):
-            if not indices:
-                continue
-            if total_classified >= 5:
-                freq = len(indices) / total_classified
-                if freq < MIN_SENSE_FREQUENCY:
+        if id_list:
+            # New format with sense IDs
+            assignments = []
+            for i, indices in enumerate(sense_example_indices):
+                if not indices:
                     continue
-            assignments.append({
-                "sense_idx": i,
-                "examples": indices,
-                "method": "biencoder",
-            })
-
-        if not assignments:
-            assignments = [{"sense_idx": 0, "examples": list(range(len(examples))), "method": "biencoder"}]
-
-        output[word] = assignments
+                if total_classified >= 5:
+                    freq = len(indices) / total_classified
+                    if freq < MIN_SENSE_FREQUENCY:
+                        continue
+                sid = id_list[i] if i < len(id_list) else id_list[0]
+                assignments.append({"sense": sid, "examples": indices})
+            if not assignments:
+                assignments = [{"sense": id_list[0], "examples": list(range(len(examples)))}]
+            output[word] = {"biencoder": assignments}
+        else:
+            # Old format
+            assignments = []
+            for i, indices in enumerate(sense_example_indices):
+                if not indices:
+                    continue
+                if total_classified >= 5:
+                    freq = len(indices) / total_classified
+                    if freq < MIN_SENSE_FREQUENCY:
+                        continue
+                assignments.append({"sense_idx": i, "examples": indices, "method": "biencoder"})
+            if not assignments:
+                assignments = [{"sense_idx": 0, "examples": list(range(len(examples))), "method": "biencoder"}]
+            output[word] = assignments
 
     elapsed = time.time() - t0
     print("  Done in %.1fs" % elapsed)
@@ -282,6 +298,9 @@ def main():
                         help="Sentence-transformers model (default: %s)" % CLASSIFY_MODEL)
     parser.add_argument("--force", action="store_true",
                         help="Overwrite existing sense_assignments.json")
+    parser.add_argument("--normal-only", action="store_true",
+                        help="Only classify words that exist in normal-mode senses. "
+                             "Writes to senses_wiktionary.json / sense_assignments_wiktionary.json")
     args = parser.parse_args()
 
     artist_dir = args.artist_dir
@@ -293,10 +312,16 @@ def main():
     print("Artist sense matching (%s)" % method)
     print("Artist: %s" % config["name"])
 
-    # Check if assignments already exist
-    output_file = layers_dir / "sense_assignments.json"
+    # Output file name depends on mode
+    if args.normal_only:
+        output_file = layers_dir / "sense_assignments_wiktionary.json"
+        senses_output_file = layers_dir / "senses_wiktionary.json"
+    else:
+        output_file = layers_dir / "sense_assignments.json"
+        senses_output_file = None
+
     if output_file.exists() and not args.force:
-        print("\nsense_assignments.json already exists. Use --force to overwrite.")
+        print("\n%s already exists. Use --force to overwrite." % output_file.name)
         return
 
     # Load inputs
@@ -332,6 +357,16 @@ def main():
     if wiktionary_senses:
         print("  senses_wiktionary (fallback): %d entries" % len(wiktionary_senses))
 
+    # Load eswiktionary dialect senses for --normal-only (appended to menu)
+    eswikt_index = {}
+    if args.normal_only:
+        import gzip, pickle
+        eswikt_cache = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz.eswikt_dialect.cache.pkl"
+        if eswikt_cache.exists():
+            with open(eswikt_cache, "rb") as f:
+                _, eswikt_index = pickle.load(f)
+            print("  eswiktionary dialect senses: %d words" % len(eswikt_index))
+
     master_path = PROJECT_ROOT / "Artists" / "vocabulary_master.json"
     master = {}
     if master_path.exists():
@@ -348,12 +383,47 @@ def main():
     no_examples_count = 0
     sense_sources = defaultdict(int)
 
+    normal_only_senses = {}  # word|lemma -> senses (for writing senses_wiktionary.json)
+    skipped_not_normal = 0
+
     for inv_entry in inventory:
         word = inv_entry["word"]
         examples = examples_data.get(word, [])
 
-        # Resolve senses with fallback chain
-        word_senses, source = resolve_senses(word, gemini_senses, wiktionary_senses, master)
+        # In --normal-only mode: skip words not in normal-mode Wiktionary senses
+        if args.normal_only:
+            wikt_key = None
+            for key in wiktionary_senses:
+                if key.startswith(word + "|"):
+                    wikt_key = key
+                    break
+            if not wikt_key:
+                skipped_not_normal += 1
+                continue
+            word_senses = []
+            for s in wiktionary_senses[wikt_key]:
+                s_copy = dict(s)
+                if "source" not in s_copy:
+                    s_copy["source"] = "en-wikt"
+                word_senses.append(s_copy)
+            lemma = wikt_key.split("|", 1)[1]
+            source = "wiktionary"
+
+            # Append eswiktionary dialect senses if available
+            for lookup in sorted(set([word, lemma])):
+                for es_sense in eswikt_index.get(lookup, []):
+                    word_senses.append({
+                        "pos": es_sense["pos"],
+                        "translation": es_sense["gloss_es"],
+                        "source": "es-wikt",
+                    })
+
+            # Build ID map for new format output
+            id_map = assign_sense_ids(word_senses)
+            normal_only_senses[wikt_key] = id_map
+        else:
+            # Resolve senses with fallback chain
+            word_senses, source = resolve_senses(word, gemini_senses, wiktionary_senses, master)
 
         if not word_senses:
             no_senses_count += 1
@@ -366,9 +436,21 @@ def main():
             output[word] = [{"sense_idx": 0, "examples": []}]
             continue
 
+        # Get sense IDs (new format) or generate them
+        if args.normal_only:
+            id_map = normal_only_senses.get(
+                next((k for k in normal_only_senses if k.startswith(word + "|")), ""), {})
+            id_list = list(id_map.keys())
+        else:
+            id_list = None  # old format path
+
         if len(word_senses) == 1:
             single_sense_count += 1
-            output[word] = [{"sense_idx": 0, "examples": list(range(len(examples)))}]
+            if id_list:
+                output[word] = {"wiktionary-auto": [{"sense": id_list[0],
+                                                      "examples": list(range(len(examples)))}]}
+            else:
+                output[word] = [{"sense_idx": 0, "examples": list(range(len(examples)))}]
             continue
 
         keep_indices = list(range(len(word_senses)))
@@ -387,19 +469,35 @@ def main():
                 sense_example_indices[best_idx].append(ex_idx)
 
             total_classified = sum(len(idx) for idx in sense_example_indices)
-            assignments = []
-            for i, indices in enumerate(sense_example_indices):
-                if not indices:
-                    continue
-                if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
-                    continue
-                assignments.append({"sense_idx": i, "examples": indices, "method": "keyword"})
-            if not assignments:
-                assignments = [{"sense_idx": 0, "examples": list(range(len(examples))), "method": "keyword"}]
-            output[word] = assignments
+            if id_list:
+                # New format
+                assignments = []
+                for i, indices in enumerate(sense_example_indices):
+                    if not indices:
+                        continue
+                    if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
+                        continue
+                    assignments.append({"sense": id_list[i], "examples": indices})
+                if not assignments:
+                    assignments = [{"sense": id_list[0], "examples": list(range(len(examples)))}]
+                output[word] = {"keyword": assignments}
+            else:
+                # Old format
+                assignments = []
+                for i, indices in enumerate(sense_example_indices):
+                    if not indices:
+                        continue
+                    if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
+                        continue
+                    assignments.append({"sense_idx": i, "examples": indices, "method": "keyword"})
+                if not assignments:
+                    assignments = [{"sense_idx": 0, "examples": list(range(len(examples))), "method": "keyword"}]
+                output[word] = assignments
         else:
-            work_items.append((word, word_senses, examples, keep_indices, source))
+            work_items.append((word, word_senses, examples, keep_indices, source, id_list))
 
+    if args.normal_only:
+        print("  Skipped (not in normal mode): %d" % skipped_not_normal)
     print("  Single-sense (no classification): %d" % single_sense_count)
     print("  Multi-sense to classify: %d" % len(work_items))
     print("  No senses: %d" % no_senses_count)
@@ -408,9 +506,10 @@ def main():
 
     # Check translation coverage for multi-sense examples
     if work_items and not use_keyword:
-        total_ex = sum(len(ex) for _, _, ex, _, _ in work_items)
+        total_ex = sum(len(item[2]) for item in work_items)
         has_eng = 0
-        for _, _, examples, _, _ in work_items:
+        for item in work_items:
+            examples = item[2]
             for ex in examples:
                 spanish = ex.get("spanish", "")
                 if translations.get(spanish, {}).get("english"):
@@ -425,10 +524,34 @@ def main():
     elif use_keyword:
         print("\nKeyword classification done (instant)")
 
-    # Write output
+    # Write output — merge with existing if --normal-only (add biencoder alongside other methods)
+    if args.normal_only and output_file.exists():
+        with open(output_file, encoding="utf-8") as f:
+            existing = json.load(f)
+        # Merge: for each word, add/replace the biencoder method
+        for word, word_data in output.items():
+            if isinstance(word_data, dict):
+                if word not in existing or not isinstance(existing[word], dict):
+                    existing[word] = {}
+                existing[word].update(word_data)
+            else:
+                existing[word] = word_data
+        output = existing
+
     print("\nWriting %s..." % output_file)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+
+    # In --normal-only mode, also write/merge the senses layer
+    if senses_output_file and normal_only_senses:
+        existing_senses = {}
+        if senses_output_file.exists():
+            with open(senses_output_file, encoding="utf-8") as f:
+                existing_senses = json.load(f)
+        existing_senses.update(normal_only_senses)
+        print("Writing %s (%d entries)..." % (senses_output_file, len(existing_senses)))
+        with open(senses_output_file, "w", encoding="utf-8") as f:
+            json.dump(existing_senses, f, ensure_ascii=False, indent=2)
 
     elapsed = time.time() - t0
 

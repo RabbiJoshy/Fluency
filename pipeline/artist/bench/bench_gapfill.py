@@ -38,7 +38,19 @@ def load_eswiktionary(path, dialect_tags):
     """Load Spanish Wiktionary raw data, filtering to dialect-tagged senses.
 
     Returns: dict of word -> list of {pos, gloss_es, tags}
+    Caches the parsed index as a pickle next to the JSONL for fast reloads.
     """
+    import pickle
+    cache_path = Path(str(path) + ".eswikt_dialect.cache.pkl")
+    cache_key = tuple(sorted(dialect_tags))
+    if cache_path.exists() and cache_path.stat().st_mtime >= path.stat().st_mtime:
+        print("Loading eswiktionary from cache (%s)..." % cache_path.name)
+        with open(cache_path, "rb") as f:
+            cached_key, index = pickle.load(f)
+        if cached_key == cache_key:
+            print("  %d words with dialect senses" % len(index))
+            return index
+
     index = {}
     with gzip.open(path, "rt", encoding="utf-8") as f:
         for line in f:
@@ -65,6 +77,9 @@ def load_eswiktionary(path, dialect_tags):
                     "gloss_es": glosses[0],
                     "tags": sorted(tags & dialect_tags),
                 })
+    print("  Caching to %s..." % cache_path.name)
+    with open(cache_path, "wb") as f:
+        pickle.dump((cache_key, index), f)
     return index
 
 

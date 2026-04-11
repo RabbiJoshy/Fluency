@@ -294,27 +294,236 @@ Tested 5 prompt variations with the combined English + Spanish Wiktionary menu o
 
 Gap-fill senses accumulate in the shared master vocabulary (`source: "gap-fill"`). Cap at MAX_SENSES_TOTAL=8 prevents bloat even with many artists. Irrelevant gap-fill senses (from other artists' idiolects) naturally get 0% frequency and are filtered out — the classifier ignores them without explicit genre/region scoping.
 
-## Implementation plan
+## Gap-fill divergence detection experiments (2026-04-11)
 
-1. **Finalize gap-fill prompt** — resolve gata false negative (Flash Lite vs Pro, or better prompting)
-2. Add `--gemini` classifier to `test_wiktionary_cascade.py` for full browsable deck
-3. Integrate Spanish Wiktionary dialect supplement into cascade (loader, dialect config, translation cache)
-4. Integrate gap-fill into the cascade script (after classifier, for genuinely unmatched words)
-5. Modify step 6 to use cascade as primary path (Wiktionary + Gemini classifier + gap-fill)
-6. Persist gap-fill senses in master vocabulary with `source: "gap-fill"` provenance
-7. Keep biencoder path as `--no-gemini` fallback
-8. Test: re-run Bad Bunny pipeline, diff senses, spot-check focus words in browser
+Tested three architectural approaches to automated gap-fill detection on the 28-word test set. All use Flash Lite. The core problem: Flash Lite KNOWS gata means "girlfriend" (it says so every time) but won't FLAG the mismatch with the "cat" sense.
+
+### Approach 1: Combined classifier + meaning extraction (anchored)
+
+Single call: classify examples to senses AND state `actual_meaning`. Problem: showing the sense menu **anchors** Flash Lite — it said `actual_meaning: "female cat or girl"` for gata, echoing the dictionary. The word "cat" in `actual_meaning` causes the word-overlap divergence check to say "covered."
+
+Result: 73% accuracy. Catches pone, loca. Misses gata (hedges), meto (self-censors to "put in or insert"). False positives on ojos (stemmer bug), candela (cross-language), real/rico (synonym blindness).
+
+### Approach 2: Blind meaning extraction + embedding similarity
+
+Two calls: (1) extract meaning WITHOUT showing sense menu (prevents anchoring), (2) classify with sense menu. Compare blind meaning against sense via cosine similarity (`all-MiniLM-L6-v2`).
+
+Blind extraction results (no anchoring): gata → "girlfriend or cat" (STILL hedges — model knows gata=cat from training, not from the prompt), meto → "hit it or go hard" (works! no self-censoring without "to put" as safe landing), loca → "crazy or wild", pone → "makes, becomes, puts."
+
+Embedding similarities: clean separation for most words, but gata (0.667) sits right next to fuego (0.664) and corillo (0.666). No threshold separates them. Best accuracy: **88% at threshold 0.50** (catches meto/loca/pone, misses gata/vivo).
+
+Key finding: **gata hedging is NOT caused by the sense menu**. Flash Lite includes "cat" in its meaning extraction even blind, because it knows the word's literal meaning from training data.
+
+### Approach 3: Self-checking classifier
+
+Single call: classify + check whether English translations match the assigned sense. The model sees "Mi gata salvaje | My wild girl" assigned to sense "cat" and is asked to notice the mismatch.
+
+Result: **77% accuracy**. The model DID notice both words — it reported `translation_uses: "cat, girlfriend"`. But it still said "covered" because "cat" appears in enough translations (~44%). Even with the prompt literally saying "only flag when translations use a genuinely different word (cat→girlfriend)" — using gata's exact case as the example — Flash Lite didn't flag it.
+
+Catches pone. Misses gata, meto, loca, vivo. False positives on rico, tiempo.
+
+### Key insight across all approaches
+
+Flash Lite consistently **understands** that gata means "girlfriend" in these lyrics. Every approach confirms this — it correctly extracts the meaning. The failure is always in the **flagging/judgment** step: the model sees evidence for both "cat" and "girlfriend" in the data (because some translations genuinely say "cat" in simile contexts) and defaults to "covered."
+
+The translations for gata are genuinely mixed: ~44% say "cat" (similes like "loose like a sassy cat"), ~56% say "girl/girlfriend." This mixed evidence is what makes gata uniquely hard — unlike meto (translations unanimously avoid "put") or loca (translations unanimously say "crazy" not "madwoman").
+
+### Approach 4: Per-example translation word extraction (model extracts, code counts)
+
+Single call: classify + extract the 1-3 English words each translation uses for the target word. Code counts whether majority diverge from the assigned sense. Problem: **Flash Lite extracts from its own knowledge, not from the translation text.** For gata, model extracted "cat" for 8/10 examples even though translations say "girl" — same world-knowledge bias as every other approach.
+
+Result: 65% accuracy. Catches loca, meto, pone. Misses gata, vivo. 7 false positives (candela from Spanish gloss, bicho/cabrones/ojos from stemmer inconsistencies, bellaca/carajo/rico from synonym blindness).
+
+### Approach 5: Programmatic keyword check (no model, spacy lemmatization)
+
+Zero extra API calls. For each example, check if any lemmatized content word from the assigned sense definition appears in the English translation sentence. Uses spacy `en_core_web_sm` for lemmatization. Fixes stemmer issues (eyes→eye, motherfuckers→motherfucker). Piggybacks on self-checking classifier's sense assignments.
+
+Result: **69% accuracy.** Catches loca, meto, pone. Misses gata, vivo. 6 false positives (bellaca, perreo, carajo, bicho, cabrones, rico — synonym blindness: "dick"≠"penis", "freak"≠"horny", etc.).
+
+### Approach 6: Bilingual word alignment (SimAlign)
+
+Attempted to use SimAlign (XLM-R / mBERT based) to align Spanish tokens to English translation tokens. Would find gata→girl directly. Problem: **alignment model has same world-knowledge bias.** SimAlign aligned gata→wild (positional) instead of gata→girl because its cross-lingual embeddings encode gata≈cat. Works for easy cases (fuego→fire, loca→crazy) but fails exactly where needed.
+
+### Root cause: gata translations literally say "cat"
+
+Examined the actual English translations for gata: **8 out of 10 say "cat"** because translators preserved the Spanish metaphor ("My wild cat", "Wild cat, come here"). Only 2 use "girl/girlfriend." The earlier "56% girl" figure came from the model's semantic understanding, not the translation text. No translation-based approach — keyword, extraction, or alignment — can detect gata's slang meaning because the translations themselves use the literal word.
+
+### Conclusion: gap-fill detection deprioritized
+
+The v2 gap-fill prompt (27/28, 96%) is the most accurate approach. It catches all detectable cases. Gata-class words (sense exists but translations preserve the literal metaphor) require manual curation — estimated 30-50 words per artist annually.
+
+## New direction: dedicated WSD models on Spanish text (2026-04-11)
+
+### The cross-lingual problem
+
+All approaches above operate on English translations, which creates two problems:
+1. **Translation quality** — translators preserve Spanish metaphors literally ("my wild cat" instead of "my wild girl")
+2. **Cross-lingual bridge** — the target word (Spanish) doesn't appear in the classification context (English translation), so standard WSD models don't apply
+
+### Spanish-native WSD
+
+If we disambiguate the **Spanish word in the Spanish sentence** against **Spanish sense definitions**, both problems vanish:
+- The target word IS in the sentence ("Mi **gata** salvaje") — standard monolingual WSD
+- No dependency on translation quality
+- "Mi gata salvaje" in reggaeton context has pragmatic cues (possessive + romantic context) that suggest a person, not an animal
+
+### Candidate models
+
+| Model | Spanish? | Arbitrary glosses? | Size | Notes |
+|-------|----------|-------------------|------|-------|
+| ConSeC (SapienzaNLP 2021) | Yes, tested | Yes, gloss-based | BERT-scale | Open source, cross-lingual CLEF benchmarks |
+| AMuSE-WSD (Babelscape 2021) | Yes, RAE dictionary | Yes | BERT-scale | Requires API key |
+| LLM-wsd-FT-ALL (2024) | Yes | Yes, flexible | 8B (Llama) | HuggingFace, needs GPU |
+| GlossBERT (2019) | English only | Yes | BERT-scale | Architecture is right, needs multilingual version |
+
+### Sense inventory flexibility
+
+Not committed to Wiktionary. If WSD models work best with WordNet synset IDs or BabelNet, use those. The inventory format matters less than classification accuracy. BabelNet unifies WordNet + Wiktionary + Wikipedia — may be the best of all worlds.
+
+### Key architectural insight: gap-fill accumulates across artists
+
+If WSD classification is accurate, the sense inventory becomes the simpler problem. Gap-fill senses (like gata→"girlfriend") discovered for one artist accumulate in the master vocabulary and are available for all future artists. Each new artist only contributes genuinely new slang. The sense inventory grows organically.
+
+### Cost model
+
+WSD model runs locally — free, instant. Only gap-fill (proposing new senses for uncovered words) needs Gemini. Per-artist cost approaches zero as the sense inventory matures.
+
+## WSD model benchmark results (2026-04-11)
+
+### Setup
+
+Benchmarked 28 test words (20 slang + 8 normal) from Bad Bunny corpus, 259 total example sentences. Ground truth: Gemini Flash Lite classifications (100% accuracy on prior benchmarks). Script: `pipeline/artist/bench/bench_wsd.py`.
+
+### ConSeC assessment
+
+ConSeC (SapienzaNLP/consec) **does accept arbitrary glosses** — its `predict.py` is purely gloss-based with no WordNet lookup at inference time. However:
+- Requires `transformers==4.3.3`, `pytorch-lightning==1.1.7`, Java, Debian `apt-get` — incompatible with our env (transformers 4.57.6, macOS)
+- Released checkpoint uses English DeBERTa — would tokenize Spanish input poorly
+- Cross-lingual scores in the paper (68-77% on Spanish) likely used translated glosses or an unreleased multilingual variant
+- **Not viable** without significant rework
+
+### BabelNet assessment
+
+BabelNet unifies WordNet + Wiktionary + Wikipedia senses. Could provide richer sense inventories, but:
+- Free tier: 1000 API calls/day (insufficient for pipeline)
+- Offline: 45GB download, research-only license
+- **Not practical** — Wiktionary + gap-fill accumulation is more sustainable
+
+### Benchmark results: all local models
+
+| Model | Accuracy | Speed | Cost |
+|-------|----------|-------|------|
+| **Gemini Flash Lite (ref)** | **100%** | **71s** | **$0.05** |
+| mDeBERTa NLI (en glosses) | 42.5% | 45s | free |
+| mDeBERTa NLI (es glosses) | 42.1% | 44s | free |
+| Bi-encoder (en glosses) | 47.9% | 9s | free |
+| Bi-encoder (es glosses) | 47.9% | 7s | free |
+
+**Spanish vs English glosses make no difference** — NLI: 42.5% vs 42.1%, bi-encoder: 47.9% vs 47.9%. The language of the sense definition doesn't help when the model fundamentally can't do fine-grained WSD.
+
+### Per-word breakdown
+
+Easy words (1-2 senses, unambiguous): gata 100%, flow 100%, perreo 100%, gente 100%, ojos 90-100%.
+
+Hard words (many similar senses): meto 10-30%, pone 10-50%, vivo 22-33%, duro 0-33%, real 0-10%, sola 0-11%, bellaca 0-22%, bicho 0%.
+
+### Failure analysis
+
+The models fail on **fine-grained sense distinctions**:
+- "vivo" has 8 senses (live/reside/experience/alive/vivid/intense). "Vivo en PR como si fuera Dubái" → NLI picks "vivid, lively" (wrong), should be "to live in, reside". The NLI model doesn't understand that "vivo en" is the verb "vivir" with a locative complement.
+- "pone" has 5 senses. "Se pone bellaca" → NLI picks "to put" (wrong), should be "to make" (reflexive ponerse = to become). The model has no knowledge of Spanish reflexive constructions.
+- "meto" examples — NLI assigns 0.985+ confidence to wrong senses because the entailment framework doesn't capture word-in-context disambiguation.
+
+### Conclusion: local WSD models are not viable
+
+Off-the-shelf encoder models (NLI cross-encoder, bi-encoder) plateau at ~45% accuracy on this task. The gap to Gemini (100%) is fundamental, not addressable by template tuning or gloss language. The models lack:
+1. Fine-grained sense disambiguation capability (they match sentences to glosses by surface similarity, not meaning)
+2. Spanish grammar understanding (reflexive constructions, syntactic cues)
+3. Register/context awareness (reggaeton slang, figurative usage)
+
+**Gemini Flash Lite remains the right classifier** — $0.05/artist for 100% accuracy. The cost is negligible. The bi-encoder fallback (48%) is only useful as a `--no-gemini` degraded mode.
+
+### Remaining option: LLM-wsd-FT-ALL (8B Llama)
+
+The 2024 Llama-8B model fine-tuned on WSD might close the gap, but requires GPU and significant memory. Worth investigating if the $0.05/artist cost ever becomes a concern at scale. Not a priority given current economics.
+
+## Shipped: unified sense layer format (2026-04-11)
+
+### New layer format
+
+One senses file + one assignments file per artist, with stable content-hash IDs and multi-method evidence.
+
+**`senses_wiktionary.json`** — senses keyed by stable content-hash IDs:
+```json
+{
+  "bicho|bicho": {
+    "34c": {"pos": "NOUN", "translation": "bug", "source": "en-wikt"},
+    "88b": {"pos": "NOUN", "translation": "penis", "source": "en-wikt"},
+    "22c": {"pos": "NOUN", "translation": "Pene.", "source": "es-wikt"}
+  }
+}
+```
+
+**`sense_assignments_wiktionary.json`** — multi-method assignments per word:
+```json
+{
+  "bicho": {
+    "biencoder": [{"sense": "88b", "examples": [1, 3, 5]}],
+    "flash-lite-wiktionary": [{"sense": "88b", "examples": [0, 1, 2, 3]}]
+  }
+}
+```
+
+Sense IDs: `md5(pos + "|" + translation)[:3]`, extended on collision. Senses are append-only. Methods coexist — adding a new classification method doesn't touch existing ones. Orphaned sense IDs (from removed senses) are skipped by the builder.
+
+### Architecture for new artists
+
+| Words | Method | Cost |
+|-------|--------|------|
+| In normal mode (~4K/artist) | Bi-encoder against normal-mode Wiktionary senses + eswiktionary dialect senses | Free |
+| Normal-mode with eswikt slang (~170/artist) | Gemini Flash Lite with expanded menu | ~$0.02 |
+| New words not in normal mode (~300/artist) | Gemini Flash Lite with Wiktionary + gap-fill | ~$0.05 |
+| English/propn/intj/short/single-use | Skip | Free |
+
+Per new artist total: ~$0.07. Bi-encoder runs first (free), Gemini only for words that need it.
+
+### Scripts
+
+- `pipeline/artist/match_artist_senses.py --normal-only` — bi-encoder on normal-mode words, includes eswiktionary dialect senses, writes new format
+- `pipeline/artist/build_wiktionary_senses.py` — Gemini Flash Lite on Wiktionary menu, with substitution test prompt, `--normal-slang-only` for dialect words, `--new-only` for non-normal words (TODO)
+- `pipeline/artist/build_artist_vocabulary.py --sense-source wiktionary` — builds from new layers (default), `--sense-source gemini` for old layers
+- Builder handles both old (list) and new (dict-of-IDs) format automatically
+
+### Remaining work
+
+1. **Improve word filters** — better is_english, is_interjection, is_propernoun detection to reduce the ~300 new words to genuinely novel slang
+2. **Add `--new-only` flag** to build_wiktionary_senses.py for non-normal-mode words
+3. **Run Gemini** on remaining non-normal-mode words after filters are improved
+4. **Curate gata-class edge cases** — words where the sense exists but translations preserve the literal metaphor
+
+### Utilities added
+
+`pipeline/build_senses.py` now has `stem_en()`, `stemmed_content_words()`, and `content_word_overlap()` for programmatic divergence checking.
+
+`pipeline/artist/_artist_config.py` now has `make_sense_id()` and `assign_sense_ids()` for stable content-hash sense IDs.
+
+`pipeline/artist/5_split_evidence.py` preserves example order across re-runs (keeps sense assignments stable when songs are removed).
 
 ## Test scripts
 
 - `pipeline/artist/test_wiktionary_cascade.py` — full cascade test, writes browsable `_cascade_{method}.json`
 - `pipeline/artist/bench/bench_nli.py` — quick classifier comparison (biencoder, NLI, Gemini) on 14 problem words
 - `pipeline/artist/bench/bench_gapfill.py` — gap-fill proposal test on 28 words, now with Spanish Wiktionary supplement
+- `pipeline/artist/bench/bench_divergence.py` — divergence detection bench (6 approaches tested)
+- `pipeline/artist/bench/bench_wsd.py` — local WSD model benchmark (ConSeC, NLI, bi-encoder)
+- `pipeline/artist/bench/bench_wsd.py` — WSD model benchmark (NLI, bi-encoder, ConSeC) on 28 words, Gemini ground truth
 - `pipeline/artist/bench/eval_wiktionary_cascade.py` — original eval (translation source comparison)
 
 Run cascade test: `.venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"`
 Run classifier bench: `.venv/bin/python3 pipeline/artist/bench/bench_nli.py --gemini`
 Run gap-fill bench: `.venv/bin/python3 pipeline/artist/bench/bench_gapfill.py`
+Run divergence bench: `.venv/bin/python3 pipeline/artist/bench/bench_divergence.py`
+Run WSD bench: `.venv/bin/python3 pipeline/artist/bench/bench_wsd.py --model all`
 
 ## Data files
 

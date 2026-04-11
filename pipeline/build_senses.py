@@ -548,6 +548,58 @@ def merge_similar_senses(senses: list) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Stemming + divergence detection for gap-fill triggering
+# ---------------------------------------------------------------------------
+_STEM_SUFFIXES = [
+    ("ying", 1, "y"),   # lying → ly (then +y)
+    ("ies", 3, "y"),    # carries → carry
+    ("ied", 3, "y"),    # carried → carry
+    ("ing", 3, ""),     # putting → putt → put (handled by min-length)
+    ("tion", 4, "te"),  # attraction → attracte ≈ attract (close enough for overlap)
+    ("ness", 4, ""),    # sadness → sad
+    ("ment", 4, ""),    # movement → move
+    ("ally", 4, "al"),  # physically → physical
+    ("ly", 2, ""),      # intensely → intense
+    ("ed", 2, ""),      # placed → plac ≈ place
+    ("er", 2, ""),      # harder → hard
+    ("es", 2, ""),      # places → plac
+    ("s", 1, ""),       # cats → cat
+]
+
+
+def stem_en(word: str) -> str:
+    """Minimal English suffix stripper for overlap comparison.
+
+    Not a real stemmer — just strips common suffixes so that
+    'puts'/'putting'/'put' and 'attractive'/'attract' converge.
+    """
+    w = word.lower()
+    for suffix, min_stem, replacement in _STEM_SUFFIXES:
+        if w.endswith(suffix) and len(w) - len(suffix) >= min_stem:
+            return w[:-len(suffix)] + replacement
+    return w
+
+
+def stemmed_content_words(text: str) -> set:
+    """Extract stemmed content words from English text."""
+    return {stem_en(w) for w in _WORD_RE.findall(text.lower())
+            if w not in _MERGE_STOP_WORDS and len(w) > 1}
+
+
+def content_word_overlap(text_a: str, text_b: str) -> bool:
+    """Check if two English texts share any stemmed content words.
+
+    Used by gap-fill divergence detection: if actual_meaning shares a word
+    with the Wiktionary sense translation, the sense probably covers the usage.
+    """
+    a = stemmed_content_words(text_a)
+    b = stemmed_content_words(text_b)
+    if not a or not b:
+        return False  # empty content → can't confirm overlap
+    return bool(a & b)
+
+
+# ---------------------------------------------------------------------------
 # Sense reordering: deprioritize letter-name and meta-linguistic senses
 # ---------------------------------------------------------------------------
 _LETTER_PATTERNS = re.compile(

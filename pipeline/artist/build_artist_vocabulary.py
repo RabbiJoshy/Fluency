@@ -79,7 +79,8 @@ def load_layer(path, name, required=True):
 # Assembly
 # ---------------------------------------------------------------------------
 
-def assemble_from_layers(layers_dir, master, curated_translations_path=None):
+def assemble_from_layers(layers_dir, master, curated_translations_path=None,
+                         sense_source="wiktionary"):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -90,8 +91,25 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None):
     inventory = load_layer(os.path.join(layers_dir, "word_inventory.json"), "word_inventory")
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
-    senses = load_layer(os.path.join(layers_dir, "senses_gemini.json"), "senses_gemini")
-    assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
+    if sense_source == "wiktionary":
+        senses_file = "senses_wiktionary.json"
+        assign_file = "sense_assignments_wiktionary.json"
+    elif sense_source == "wiktionary-gemini":
+        senses_file = "senses_wiktionary_gemini.json"
+        assign_file = "sense_assignments_wiktionary_gemini.json"
+    else:
+        senses_file = "senses_gemini.json"
+        assign_file = "sense_assignments.json"
+    senses = load_layer(os.path.join(layers_dir, senses_file), senses_file,
+                        required=False)
+    assignments = load_layer(os.path.join(layers_dir, assign_file), assign_file,
+                             required=False)
+    # Fallback to gemini layers if wiktionary not found
+    if senses is None or assignments is None:
+        if sense_source == "wiktionary":
+            print("  Wiktionary layers not found, falling back to gemini layers")
+        senses = load_layer(os.path.join(layers_dir, "senses_gemini.json"), "senses_gemini")
+        assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
     # Shared layers at Data/Spanish/layers/ (project root from script location)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
@@ -129,18 +147,52 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None):
         display_form = inv_entry.get("display_form")
         variants = inv_entry.get("variants")
 
-        # Look up senses
-        # Try word|lemma keys — we need to find the right key since lemma comes from senses
-        word_senses = None
+        # Look up senses — handle both old (list) and new (dict-of-IDs) format
+        word_senses_raw = None
         word_lemma = word  # default
-        for key, s_list in senses.items():
+        for key, s_data in senses.items():
             if key.startswith(word + "|"):
-                word_senses = s_list
+                word_senses_raw = s_data
                 word_lemma = key.split("|", 1)[1]
                 break
 
-        # Get sense assignments for this word
-        word_assignments = assignments.get(word, [])
+        # Normalize to (sense_list, sense_by_id) for both formats
+        sense_by_id = None
+        if isinstance(word_senses_raw, dict):
+            # New format: {sense_id: {pos, translation, ...}}
+            sense_by_id = word_senses_raw
+            word_senses = list(word_senses_raw.values())
+        elif isinstance(word_senses_raw, list):
+            # Old format: [{pos, translation, ...}]
+            word_senses = word_senses_raw
+        else:
+            word_senses = None
+
+        # Get sense assignments — handle both old (list) and new (dict-of-methods)
+        raw_assignments = assignments.get(word, [])
+        if isinstance(raw_assignments, dict):
+            # New format: {method: [{sense, examples}]}
+            # Pick best available method by priority
+            METHOD_PRIORITY = ["flash-lite-wiktionary", "biencoder",
+                               "wiktionary-auto", "gap-fill",
+                               "keyword-wiktionary", "flash-lite-wiktionary-fallback"]
+            word_assignments = []
+            for method in METHOD_PRIORITY:
+                if method in raw_assignments:
+                    # Convert sense IDs to sense dicts for the builder
+                    for a in raw_assignments[method]:
+                        sid = a.get("sense")
+                        if sense_by_id and sid in sense_by_id:
+                            s = sense_by_id[sid]
+                            word_assignments.append({
+                                "sense_idx": list(sense_by_id.keys()).index(sid),
+                                "examples": a.get("examples", []),
+                                "method": method,
+                            })
+                    break  # use first matching method
+        else:
+            # Old format: [{sense_idx, examples, method}]
+            word_assignments = raw_assignments
 
         # Get raw examples for this word
         raw_examples = examples_raw.get(word, [])
@@ -586,6 +638,9 @@ def main():
     add_artist_arg(parser)
     parser.add_argument("--master-path", type=str, default=None,
                         help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
+    parser.add_argument("--sense-source", choices=["gemini", "wiktionary", "wiktionary-gemini"],
+                        default="wiktionary",
+                        help="Which sense layers to use (default: wiktionary)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -607,7 +662,9 @@ def main():
         print("No master vocabulary — will create.")
 
     # Assemble from layers
-    entries, master = assemble_from_layers(layers_dir, master, curated_path)
+    print("Sense source: %s" % args.sense_source)
+    entries, master = assemble_from_layers(layers_dir, master, curated_path,
+                                           sense_source=args.sense_source)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)

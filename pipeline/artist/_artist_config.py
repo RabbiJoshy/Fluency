@@ -236,3 +236,32 @@ def normalize_translation(translation):
         words[0] = _strip_english_conjugation(words[0])
         t = " ".join(words)
     return t
+
+
+def make_sense_id(pos, translation):
+    """Generate a stable content-hash ID for a sense.
+
+    Derived from pos + translation so the same sense always gets the same ID.
+    Returns 3-char hex string. Caller handles collisions by extending length.
+    """
+    import hashlib
+    return hashlib.md5(("%s|%s" % (pos, translation)).encode("utf-8")).hexdigest()[:3]
+
+
+def assign_sense_ids(senses_list):
+    """Assign stable content-hash IDs to a list of sense dicts.
+
+    Returns dict of {sense_id: sense_dict}. Extends ID length on collision.
+    """
+    import hashlib
+    result = {}
+    for s in senses_list:
+        full_hash = hashlib.md5(
+            ("%s|%s" % (s["pos"], s["translation"])).encode("utf-8")
+        ).hexdigest()
+        for length in range(3, len(full_hash) + 1):
+            sid = full_hash[:length]
+            if sid not in result:
+                break
+        result[sid] = s
+    return result
