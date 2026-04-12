@@ -25,7 +25,7 @@ Usage:
 Inputs:
     Data/Spanish/layers/word_inventory.json
     Data/Spanish/layers/examples_raw.json
-    Data/Spanish/layers/senses_wiktionary.json
+    Data/Spanish/layers/sense_menu.json
 
 Outputs:
     Data/Spanish/layers/sense_assignments.json
@@ -48,7 +48,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
 EXAMPLES_FILE = LAYERS / "examples_raw.json"
-SENSES_FILE = LAYERS / "senses_wiktionary.json"
+SENSES_FILE = LAYERS / "sense_menu.json"
 OUTPUT_FILE = LAYERS / "sense_assignments.json"
 
 MAX_EXAMPLES_PER_MEANING = None  # keep all classified examples; downstream selects best
@@ -847,6 +847,23 @@ def main():
             print("\nCorrupt partial file, starting fresh")
             partial_file.unlink()
 
+    # Load spaCy for POS pre-filtering (cheap, avoids classifying easy cases)
+    _nlp = None
+    def get_nlp():
+        nonlocal _nlp
+        if _nlp is None:
+            import spacy
+            for model in ["es_core_news_sm", "es_core_news_md"]:
+                try:
+                    _nlp = spacy.load(model, disable=["ner"])
+                    print("  POS pre-filter: loaded {}".format(model))
+                    break
+                except OSError:
+                    continue
+            if _nlp is None:
+                print("  POS pre-filter: no spaCy model, skipping")
+        return _nlp
+
     # Build work items for multi-sense words
     print("\nPreparing work items...")
     work_items = []  # (key, senses, examples, keep_indices)
@@ -854,6 +871,7 @@ def main():
     no_senses_count = 0
     no_examples_count = 0
     skipped_priority = 0
+    pos_resolved = 0
 
     for entry in inventory:
         word_id = entry["id"]
@@ -890,6 +908,52 @@ def main():
 
         keep_indices = merge_map.get(key, list(range(len(senses))))
 
+        # POS pre-filtering: if senses split by POS, tag examples and assign
+        # directly for words where POS fully disambiguates.
+        sense_poses = [senses[i]["pos"] for i in keep_indices]
+        unique_pos = set(sense_poses)
+        if len(unique_pos) >= 2 and len(unique_pos) == len(keep_indices):
+            # Every kept sense has a unique POS — POS alone disambiguates
+            nlp = get_nlp()
+            if nlp is not None:
+                word_lower = entry["word"].lower()
+                lemma_lower = entry["lemma"].lower()
+                pos_map = {senses[i]["pos"]: i for i in keep_indices}
+                sense_example_indices = [[] for _ in senses]
+                for ei, ex in enumerate(examples):
+                    text = ex.get("target", ex.get("spanish", ""))
+                    if not text:
+                        sense_example_indices[keep_indices[0]].append(ei)
+                        continue
+                    doc = nlp(text)
+                    tagged_pos = None
+                    for tok in doc:
+                        tl = tok.text.lower()
+                        ll = tok.lemma_.lower()
+                        if tl == word_lower or ll == lemma_lower or ll == word_lower:
+                            spacy_pos = {"AUX": "VERB", "SCONJ": "CCONJ"}.get(tok.pos_, tok.pos_)
+                            if spacy_pos in pos_map:
+                                tagged_pos = spacy_pos
+                            break
+                    if tagged_pos:
+                        sense_example_indices[pos_map[tagged_pos]].append(ei)
+                    else:
+                        # Couldn't find word or POS not in menu — first sense
+                        sense_example_indices[keep_indices[0]].append(ei)
+
+                assignments_list = []
+                total_cls = sum(len(idx) for idx in sense_example_indices)
+                for i, indices in enumerate(sense_example_indices):
+                    if not indices:
+                        continue
+                    if total_cls >= 5 and len(indices) / total_cls < MIN_SENSE_FREQUENCY:
+                        continue
+                    assignments_list.append({"sense_idx": i, "examples": indices, "method": my_method})
+                if assignments_list:
+                    output[key] = assignments_list
+                    pos_resolved += 1
+                    continue
+
         if use_gemini or use_biencoder:
             work_items.append((key, senses, examples, keep_indices))
         else:
@@ -917,6 +981,9 @@ def main():
     if skipped_priority:
         print("  Skipped {:,} words (existing priority >= {})".format(
             skipped_priority, my_method))
+    if pos_resolved:
+        print("  POS pre-filter resolved {:,} words (no classifier needed)".format(
+            pos_resolved))
 
     # Seed first-sense fallback for unprocessed multi-sense words so that
     # sense_assignments.json is always complete even after Ctrl+C.

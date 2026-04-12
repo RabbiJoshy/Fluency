@@ -22,7 +22,7 @@ LAYERS_DIR = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers")
 
 
 def main():
-    senses_path = os.path.join(LAYERS_DIR, "senses_wiktionary.json")
+    senses_path = os.path.join(LAYERS_DIR, "sense_menu.json")
     if not os.path.isfile(senses_path):
         print("ERROR: %s not found. Run build_senses.py first." % senses_path)
         sys.exit(1)
@@ -31,7 +31,7 @@ def main():
         senses_data = json.load(f)
 
     print("=== Flag transparent cognates (all voters) ===")
-    print("  Loaded %d sense entries from senses_wiktionary.json" % len(senses_data))
+    print("  Loaded %d sense entries from sense_menu.json" % len(senses_data))
 
     output_path = os.path.join(LAYERS_DIR, "cognates.json")
     detect_cognates(senses_data, output_path)

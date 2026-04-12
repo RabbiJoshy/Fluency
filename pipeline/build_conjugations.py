@@ -12,7 +12,7 @@ Run from the project root (Fluency/).
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
-    Data/Spanish/layers/senses_wiktionary.json        (to identify verb entries)
+    Data/Spanish/layers/sense_menu.json        (to identify verb entries)
     Data/Spanish/corpora/jehle/jehle_verb_database.csv (optional, for translations)
 
 Outputs:
@@ -30,7 +30,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
-SENSES_FILE = LAYERS / "senses_wiktionary.json"
+SENSES_FILE = LAYERS / "sense_menu.json"
 JEHLE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "jehle" / "jehle_verb_database.csv"
 CONJUGATIONS_FILE = LAYERS / "conjugations.json"
 REVERSE_FILE = LAYERS / "conjugation_reverse.json"

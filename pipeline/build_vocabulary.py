@@ -16,7 +16,7 @@ Usage:
 Inputs:
     Data/Spanish/layers/word_inventory.json
     Data/Spanish/layers/examples_raw.json
-    Data/Spanish/layers/senses_wiktionary.json
+    Data/Spanish/layers/sense_menu.json
     Data/Spanish/layers/sense_assignments.json
     Data/Spanish/layers/mwe_phrases.json (optional)
 
@@ -156,13 +156,25 @@ def main():
         examples_raw = json.load(f)
     print(f"  examples_raw: {len(examples_raw)} entries with examples")
 
-    with open(LAYERS / "senses_wiktionary.json", encoding="utf-8") as f:
+    with open(LAYERS / "sense_menu.json", encoding="utf-8") as f:
         senses_data = json.load(f)
-    print(f"  senses_wiktionary: {len(senses_data)} sense entries")
+    print(f"  sense_menu: {len(senses_data)} sense entries")
 
     with open(LAYERS / "sense_assignments.json", encoding="utf-8") as f:
         assignments = json.load(f)
     print(f"  sense_assignments: {len(assignments)} assigned entries")
+
+    # Merge POS-refined layer (overwrites per-word methods with pos-* variants)
+    pos_path = LAYERS / "sense_assignments_pos.json"
+    if pos_path.exists():
+        with open(pos_path, encoding="utf-8") as f:
+            pos_assigns = json.load(f)
+        for k, methods in pos_assigns.items():
+            if k not in assignments:
+                assignments[k] = {}
+            if isinstance(assignments[k], dict):
+                assignments[k].update(methods)
+        print(f"  sense_assignments_pos: {len(pos_assigns)} POS-refined entries merged")
 
     # Load curated translation overrides (shared/ at project root)
     curated = {}

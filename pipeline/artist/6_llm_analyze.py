@@ -782,7 +782,7 @@ def main():
     WORD_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "llm_progress.json")
     SENTENCE_PROGRESS_PATH = os.path.join(PIPELINE_DIR, "data", "llm_analysis", "sentence_translations.json")
     DETECTED_PROPN_PATH = os.path.join(PIPELINE_DIR, "data", "layers", "detected_proper_nouns.json")
-    SKIP_WORDS_PATH = os.path.join(PIPELINE_DIR, "data", "known_vocab", "skip_words.json")
+    SKIP_WORDS_PATH = os.path.join(PIPELINE_DIR, "data", "known_vocab", "word_routing.json")
     MWE_PATH = os.path.join(PIPELINE_DIR, "data", "word_counts", "mwe_detected.json")
 
     # Load curated overrides from shared/ (keyed by word|lemma)
@@ -836,19 +836,23 @@ def main():
             print("  Auto-detected %d interjections (total: %d)" %
                   (len(new_intj), len(INTERJECTIONS)))
 
-    # Load step 4 known-vocab filter (if available)
+    # Load step 4 word routing (if available) — skip everything not routed to Gemini
     SKIP_WORDS = frozenset()
     if os.path.exists(SKIP_WORDS_PATH):
         with open(SKIP_WORDS_PATH, "r", encoding="utf-8") as f:
-            skip_data = json.load(f)
-        # Combine all skip categories into one set
+            routing_data = json.load(f)
         skip_all = set()
-        for key in ("known_normal_vocab", "known_conjugation",
-                    "known_elision", "known_shared", "english", "low_frequency"):
-            skip_all.update(skip_data.get(key, []))
+        for cat_list in routing_data.get("exclude", {}).values():
+            skip_all.update(cat_list)
+        for cat_val in routing_data.get("biencoder", {}).values():
+            if isinstance(cat_val, list):
+                skip_all.update(cat_val)
+            elif isinstance(cat_val, dict):
+                skip_all.update(cat_val.keys())
         SKIP_WORDS = frozenset(skip_all)
-        print("  Step 4 filter: %d words to skip (%d remaining)" %
-              (len(SKIP_WORDS), skip_data.get("stats", {}).get("remaining", "?")))
+        n_gemini = routing_data.get("stats", {}).get("gemini", "?")
+        print("  Step 4 routing: %d words to skip (%s for Gemini)" %
+              (len(SKIP_WORDS), n_gemini))
 
     # Load MWE data (if available)
     mwe_index = {}  # type: Dict[str, List[Dict]]
@@ -1371,7 +1375,7 @@ def _write_layer_files(pipeline_dir, final_entries, all_words, word_progress,
         key = "%s|%s" % (word, lemma)
         meanings = fe.get("meanings", [])
 
-        # Senses: just pos + translation (parallel to senses_wiktionary.json)
+        # Senses: just pos + translation (parallel to sense_menu.json)
         senses_list = []
         assignments_list = []
 

@@ -19,11 +19,11 @@ match_artist_senses.py.
 Reads:  <artist-dir>/data/elision_merge/vocab_evidence_merged.json
         Data/Spanish/vocabulary.json
         Data/Spanish/layers/conjugation_reverse.json
-        Data/Spanish/layers/senses_wiktionary.json
+        Data/Spanish/layers/sense_menu.json
         Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz
         Data/English/en_50k_wordlist.txt
         Artists/curations/*.json
-Writes: <artist-dir>/data/known_vocab/skip_words.json
+Writes: <artist-dir>/data/known_vocab/word_routing.json
 
 Usage (from project root):
     .venv/bin/python3 pipeline/artist/4_filter_known_vocab.py --artist-dir "Artists/Bad Bunny"
@@ -38,6 +38,7 @@ import re
 import sys
 import argparse
 import time
+import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _artist_config import add_artist_arg, load_shared_list, SHARED_DIR
@@ -50,7 +51,7 @@ PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
 NORMAL_VOCAB_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "vocabulary.json")
 CONJ_REVERSE_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
 ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
-WIKTIONARY_SENSES_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "senses_wiktionary.json")
+WIKTIONARY_SENSES_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "sense_menu.json")
 WIKTIONARY_RAW_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "corpora", "wiktionary", "kaikki-spanish.jsonl.gz")
 EN_50K_PATH = os.path.join(PROJECT_ROOT, "Data", "English", "en_50k_wordlist.txt")
 
@@ -68,6 +69,122 @@ _D_ELISION_PATTERNS = [
     (re.compile(r"^(.+)í'os$"), "idos"),   # -í'os -> -idos  (masc pl)
     (re.compile(r"^(.+)í'as$"), "idas"),   # -í'as -> -idas  (fem pl)
 ]
+
+
+# ---------------------------------------------------------------------------
+# Diminutive suffix rules: (suffix, min_stem_length, replacement_endings)
+# Longer suffixes first to avoid partial matches.  Conservative: only
+# reliable diminutive + superlative patterns, NOT augmentatives (-ote/-ón/-azo)
+# which frequently have semantic shifts.
+# ---------------------------------------------------------------------------
+_DERIVATION_RULES = [
+    # Superlatives
+    ("ísimos", 3, ("os", "o")),
+    ("ísimas", 3, ("as", "a")),
+    ("ísimo", 3, ("o", "")),
+    ("ísima", 3, ("a", "")),
+    # Diminutives: -ecito family (monosyllabic/short bases)
+    ("ecitos", 2, ("es", "s", "")),
+    ("ecitas", 2, ("as", "es", "")),
+    ("ecito", 2, ("e", "", "o")),
+    ("ecita", 2, ("a", "e", "")),
+    # Diminutives: -cito family (bases ending in consonant)
+    ("citos", 3, ("es", "s", "")),
+    ("citas", 3, ("as", "s", "")),
+    ("cito", 3, ("", "e", "n")),
+    ("cita", 3, ("a", "", "e")),
+    # Diminutives: -ito/-ita
+    ("itos", 3, ("os", "es", "s", "")),
+    ("itas", 3, ("as", "es", "s", "")),
+    ("ito", 3, ("o", "e", "")),
+    ("ita", 3, ("a", "e", "")),
+    # Diminutives: -illo/-illa
+    ("illos", 3, ("os", "es")),
+    ("illas", 3, ("as", "es")),
+    ("illo", 3, ("o", "e", "")),
+    ("illa", 3, ("a", "e", "")),
+]
+
+# Clitic pronouns for gerund decomposition (longest first to avoid partial matches)
+_CLITIC_PRONOUNS = ("nos", "les", "los", "las", "me", "te", "se", "lo", "la", "le")
+
+
+def _strip_acute(s):
+    """Strip acute accents only (á→a), preserving ñ and ü."""
+    return "".join(c for c in unicodedata.normalize("NFD", s) if c != "\u0301")
+
+
+def resolve_derivation(word, known_words):
+    """Resolve a Spanish diminutive/superlative to its base form.
+
+    Returns the base form if found in known_words, else None.
+    Handles orthographic alternations (qu→c, gu→g) and accents.
+    """
+    wl = word.lower()
+    for suffix, min_stem, endings in _DERIVATION_RULES:
+        if not wl.endswith(suffix):
+            continue
+        stem = wl[:-len(suffix)]
+        if len(stem) < min_stem:
+            continue
+        for ending in endings:
+            # Generate candidates with orthographic alternations
+            bare = stem + ending
+            stripped = _strip_acute(stem) + ending
+            candidates = {bare, stripped}
+            # qu → c before back vowels (chiquito → chico)
+            if stem.endswith("qu") and ending and ending[0] in "oa":
+                candidates.add(stem[:-2] + "c" + ending)
+                candidates.add(_strip_acute(stem[:-2]) + "c" + ending)
+            # gu → g before back vowels (amiguita → amiga)
+            if stem.endswith("gu") and ending and ending[0] in "oa":
+                candidates.add(stem[:-2] + "g" + ending)
+                candidates.add(_strip_acute(stem[:-2]) + "g" + ending)
+            for c in candidates:
+                if c in known_words:
+                    return c
+    return None
+
+
+def decompose_gerund_clitic(word, known_words):
+    """Decompose a gerund+clitic form into base infinitive.
+
+    Returns (base_infinitive, is_reflexive) if decomposable, else None.
+    E.g., 'dándote' → ('dar', False), 'ahogándome' → ('ahogar', False)
+    """
+    wl = word.lower()
+    remaining = wl
+    clitics = []
+    for _ in range(2):  # max 2 clitics (e.g. haciéndomelo)
+        matched = False
+        for pron in _CLITIC_PRONOUNS:
+            if remaining.endswith(pron) and len(remaining) > len(pron) + 4:
+                remaining = remaining[:-len(pron)]
+                clitics.insert(0, pron)
+                matched = True
+                break
+        if not matched:
+            break
+
+    if not clitics:
+        return None
+
+    # Strip accents from gerund (dándo → dando)
+    clean = _strip_acute(remaining)
+
+    # Gerund → infinitive conversion
+    if clean.endswith("ando"):
+        infinitive = clean[:-4] + "ar"
+    elif clean.endswith("iendo"):
+        infinitive = clean[:-5] + "ir"
+    elif clean.endswith("endo"):
+        infinitive = clean[:-4] + "er"
+    else:
+        return None
+
+    if infinitive in known_words:
+        return (infinitive, "se" in clitics)
+    return None
 
 
 def load_en_50k(path):
@@ -219,6 +336,10 @@ def elision_canonical(word):
         "de'o": "dedo",
         "a'o": "ado",       # bare d-elision suffix (too short for regex)
         "dies'": "diez",    # diez with s-elision marker
+        # Accented variants of known contractions
+        "ná'": "nada",
+        "pá'": "para",
+        "tó'": "todo",
     }
     if word in known:
         candidates.add(known[word])
@@ -454,7 +575,7 @@ def main():
     artist_dir = os.path.abspath(args.artist_dir)
     input_path = os.path.join(artist_dir, "data", "elision_merge", "vocab_evidence_merged.json")
     output_dir = os.path.join(artist_dir, "data", "known_vocab")
-    output_path = os.path.join(output_dir, "skip_words.json")
+    output_path = os.path.join(output_dir, "word_routing.json")
     os.makedirs(output_dir, exist_ok=True)
 
     start_time = time.time()
@@ -559,10 +680,27 @@ def main():
             clitic_keep.add(w)  # tier 3: meaning-shifting reflexive
         else:
             clitic_merge[w] = base  # tier 1+2: safe to merge
+    # Programmatic gerund+clitic detection (catches forms not in Wiktionary)
+    gerund_clitic_all = normal_words | conj_forms | wikt_spanish
+    gerund_clitic_added = 0
+    for w in artist_words:
+        if w in clitic_merge or w in clitic_keep:
+            continue
+        result = decompose_gerund_clitic(w, gerund_clitic_all)
+        if result:
+            base, is_refl = result
+            if is_refl and base in wikt_refl_verbs:
+                clitic_keep.add(w)
+            else:
+                clitic_merge[w] = base
+            gerund_clitic_added += 1
+
     if clitic_merge or clitic_keep:
         print("\n--- Clitic detection ---")
         print("  Tier 1+2 (merge into base verb): %d" % len(clitic_merge))
         print("  Tier 3 (keep separate, reflexive): %d" % len(clitic_keep))
+        if gerund_clitic_added:
+            print("  Gerund+clitic (programmatic): %d" % gerund_clitic_added)
 
     # ===================================================================
     # Phase 1: JUNK DETECTION (full word set, fast detectors)
@@ -630,8 +768,8 @@ def main():
     remaining -= matched
     print("  Conjugation forms: %d" % len(matched))
 
-    # 2c. Elision resolution (canonical forms against known wordlists)
-    all_known = normal_words | conj_forms
+    # 2c. Elision resolution (canonical forms against known wordlists + Wiktionary)
+    all_known = normal_words | conj_forms | wikt_spanish
     for w in list(remaining):
         if w in elision_candidates:
             for candidate in elision_candidates[w]:
@@ -661,6 +799,29 @@ def main():
     known_shared |= matched
     remaining -= matched
     print("  Shared curated: %d" % len(matched))
+
+    # 2e. Morphological derivations (diminutives/superlatives of known words)
+    #     + gerund+clitic forms not caught by Wiktionary clitic detection
+    known_derivation = {}  # word -> base_form
+    deriv_lookup = normal_words | conj_forms | wikt_spanish
+    for w in list(remaining):
+        base = resolve_derivation(w, deriv_lookup)
+        if base:
+            known_derivation[w] = base
+            remaining.discard(w)
+    deriv_diminutive = len(known_derivation)
+
+    # Gerund+clitic forms already added to clitic_merge above,
+    # but they're still in remaining — move them out.
+    for w in list(remaining):
+        if w in clitic_merge:
+            known_derivation[w] = clitic_merge[w]
+            remaining.discard(w)
+    deriv_gerund = len(known_derivation) - deriv_diminutive
+
+    if known_derivation:
+        print("  Derivations: %d (%d diminutive, %d gerund+clitic)" %
+              (len(known_derivation), deriv_diminutive, deriv_gerund))
 
     # ===================================================================
     # Phase 3: ENGLISH DETECTION (on remaining after known vocab)
@@ -729,52 +890,59 @@ def main():
     elapsed = time.time() - start_time
     total_known_vocab = len(known_normal_vocab) + len(known_conjugation)
     total_skipped = (total_known_vocab + len(known_elision) + len(known_shared) +
-                     len(english) + len(interjections_detected) +
+                     len(known_derivation) + len(english) +
+                     len(interjections_detected) +
                      len(proper_nouns_detected) + len(low_frequency))
 
-    print("\n=== Filter Summary ===")
+    n_exclude = len(english) + len(interjections_detected) + len(proper_nouns_detected) + len(low_frequency)
+    n_biencoder = len(known_normal_vocab) + len(known_conjugation) + len(known_elision) + len(known_derivation) + len(known_shared)
+
+    print("\n=== Word Routing Summary ===")
     print("  Input words:          %d" % len(artist_words))
-    print("  Known normal vocab:   %d" % len(known_normal_vocab))
-    print("  Known conjugation:    %d" % len(known_conjugation))
-    print("  Known elisions:       %d" % len(known_elision))
-    print("  Shared curated lists: %d" % len(known_shared))
-    print("  English (all):        %d (en_50k + lingua + reclassified)" % len(english))
-    print("  Interjections:        %d (curated + Wiktionary POS + regex)" % len(interjections_detected))
-    print("  Proper nouns:         %d (curated + capitalization + NER)" % len(proper_nouns_detected))
-    print("  Low frequency:        %d (freq < %d)" % (len(low_frequency), args.min_freq))
     print("  ---")
-    print("  Total skipped:        %d (%.0f%%)" % (total_skipped, total_skipped * 100 / len(artist_words)))
-    print("  Remaining for Gemini: %d" % len(remaining))
+    print("  EXCLUDE (%d):" % n_exclude)
+    print("    English:            %d" % len(english))
+    print("    Proper nouns:       %d" % len(proper_nouns_detected))
+    print("    Interjections:      %d" % len(interjections_detected))
+    print("    Low frequency:      %d (freq < %d)" % (len(low_frequency), args.min_freq))
+    print("  BIENCODER (%d):" % n_biencoder)
+    print("    Normal vocab:       %d" % len(known_normal_vocab))
+    print("    Conjugation:        %d" % len(known_conjugation))
+    print("    Elision:            %d" % len(known_elision))
+    print("    Derivation:         %d (diminutive + gerund+clitic)" % len(known_derivation))
+    print("    Shared curated:     %d" % len(known_shared))
+    print("  GEMINI (%d):          %s" % (len(remaining), "(Caribbean slang, regional vocab)"))
+    print("  CLITIC MERGE:         %d (+ %d tier 3 kept separate)" % (len(clitic_merge), len(clitic_keep)))
+    print("  ---")
     print("  Time: %.1f seconds" % elapsed)
 
     # ---------------------------------------------------------------
-    # Write output
+    # Write output — grouped by treatment
     # ---------------------------------------------------------------
     output = {
-        "known_normal_vocab": sorted(known_normal_vocab),
-        "known_conjugation": sorted(known_conjugation),
-        "known_elision": sorted(known_elision),
-        "known_shared": sorted(known_shared),
-        "english": sorted(english),
-        "interjections_detected": sorted(interjections_detected),
-        "proper_nouns_detected": sorted(proper_nouns_detected),
-        "low_frequency": sorted(low_frequency),
-        "remaining": sorted(remaining, key=lambda w: word_freq.get(w, 0), reverse=True),
+        "exclude": {
+            "english": sorted(english),
+            "proper_nouns": sorted(proper_nouns_detected),
+            "interjections": sorted(interjections_detected),
+            "low_frequency": sorted(low_frequency),
+        },
+        "biencoder": {
+            "normal_vocab": sorted(known_normal_vocab),
+            "conjugation": sorted(known_conjugation),
+            "elision": sorted(known_elision),
+            "derivation": known_derivation,  # word -> base_form
+            "shared": sorted(known_shared),
+        },
+        "gemini": sorted(remaining, key=lambda w: word_freq.get(w, 0), reverse=True),
         "clitic_merge": clitic_merge,  # word -> base_verb (tier 1+2)
+        "clitic_keep": sorted(clitic_keep),  # tier 3 reflexive
         "stats": {
             "input_words": len(artist_words),
-            "known_normal_vocab": len(known_normal_vocab),
-            "known_conjugation": len(known_conjugation),
-            "known_elision": len(known_elision),
-            "known_shared": len(known_shared),
-            "english": len(english),
-            "interjections_detected": len(interjections_detected),
-            "proper_nouns_detected": len(proper_nouns_detected),
-            "low_frequency": len(low_frequency),
+            "exclude": n_exclude,
+            "biencoder": n_biencoder,
+            "gemini": len(remaining),
             "clitic_merge": len(clitic_merge),
             "clitic_keep": len(clitic_keep),
-            "total_skipped": total_skipped,
-            "remaining": len(remaining),
             "min_freq": args.min_freq,
             "lingua_threshold": args.lingua_threshold if not args.no_lingua else None,
         },

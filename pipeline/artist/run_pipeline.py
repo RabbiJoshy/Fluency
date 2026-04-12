@@ -63,21 +63,9 @@ def _step_6_args(args, artist_dir):
     a = _base_args(artist_dir)
     if args.no_gemini:
         a.append("--no-gemini")
-    else:
-        a.extend(["--api-key", args.api_key])
-    if args.words_only:
-        a.append("--words-only")
-    if args.reset:
-        a.extend(["--reset-sentences", "--reset-words"])
-    return a
-
-def _step_6b_args(args, artist_dir):
-    a = _base_args(artist_dir)
-    if args.keyword_only_senses:
+    if getattr(args, "keyword_only_senses", False):
         a.append("--keyword-only")
-    if args.no_gemini:
-        # Step 6 --no-gemini writes a bad sense_assignments.json (all on first sense)
-        # so 6b must overwrite it
+    if getattr(args, "force", False):
         a.append("--force")
     return a
 
@@ -106,18 +94,14 @@ def build_steps(vocab_file):
         {"num": 4, "label": "Filter known vocabulary (reduce Gemini workload)",
          "script": "4_filter_known_vocab.py", "args_fn": _step_4_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
-         "output": "data/known_vocab/skip_words.json", "needs_api_key": False},
+         "output": "data/known_vocab/word_routing.json", "needs_api_key": False},
         {"num": 5, "label": "Split evidence into inventory + examples layers",
          "script": "5_split_evidence.py", "args_fn": _step_5_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
          "output": "data/layers/word_inventory.json", "needs_api_key": False},
-        {"num": 6, "label": "LLM word analysis (Gemini) -> layers",
-         "script": "6_llm_analyze.py", "args_fn": _step_6_args,
-         "input": "data/elision_merge/vocab_evidence_merged.json",
-         "output": "data/layers/senses_gemini.json", "needs_api_key": True},
-        {"num": "6b", "label": "Local sense matching (bi-encoder)",
-         "script": "match_artist_senses.py", "args_fn": _step_6b_args,
-         "input": "data/layers/senses_gemini.json",
+        {"num": 6, "label": "Assign senses (bi-encoder + Gemini)",
+         "script": "assign_senses.py", "args_fn": _step_6_args,
+         "input": "data/layers/word_inventory.json",
          "output": "data/layers/sense_assignments.json", "needs_api_key": False},
         {"num": 7, "label": "Rerank -> layer",
          "script": "7_rerank.py", "args_fn": _step_7_args,

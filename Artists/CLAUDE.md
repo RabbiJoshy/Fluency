@@ -36,26 +36,25 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `pipeline/artist/4_filter_known_vocab.py` | `skip_words.json` | Classify words for sense-mapping method. 6 phases: junk detection (interjections + proper nouns incl. Wiktionary POS), known vocab (normal-mode + conjugation), English (50k + lingua), Wiktionary reclassification, spaCy NER, frequency threshold. Also detects clitic forms (3-tier: non-reflexive merge, reflexive-no-shift merge, reflexive-with-shift keep). Output: `known_normal_vocab` / `known_conjugation` + `clitic_merge` map. |
+| 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 6 phases: junk → known vocab → English → Wiktionary reclassify → NER → frequency. Also detects derivations (diminutives, gerund+clitics) and clitic forms (3-tier). Output grouped by treatment: `exclude`, `biencoder`, `gemini`, `clitic_merge`/`clitic_keep`. |
 | 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
-| 6 | `pipeline/artist/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
-| 6b | `pipeline/artist/match_artist_senses.py` | `sense_assignments_wiktionary.json` | Bi-encoder sense matching against Wiktionary senses. Writes new format. Priority-aware (skips words with Gemini results). |
+| 6 | `pipeline/artist/assign_senses.py` | `sense_assignments.json` | Unified sense assignment. Dispatches to bi-encoder (biencoder-routed) then Gemini (gemini-routed, if API key set). Gap-fill reuses existing inline senses. Single output file. |
 | 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
 | 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | 8 | `pipeline/artist/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
-| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, `clitic_forms.json`, monolith | Assemble all layers → front-end output. Reads skip_words for clitic merge + flags. Writes clitic layer (MWE-style). |
+| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, `clitic_forms.json`, monolith | Assemble all layers → front-end output. Reads word_routing for clitic merge + flags. Writes clitic layer (MWE-style). |
 
 Cognates use a shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step needed.
 
 Shared helper: `pipeline/artist/_artist_config.py` — `add_artist_arg()`, `load_artist_config()`.
 
-## Wiktionary Sense Pipeline (new, replaces step 6 for senses)
+## Sense Assignment Architecture
 
-The old pipeline used Gemini to invent senses (step 6). The new pipeline uses Wiktionary senses + classifier:
+Two files per artist:
+- **`sense_menu.json`** — sense definitions from Wiktionary (en-wikt + es-wikt). The menu classifiers classify against. Built by normal-mode `build_senses.py`.
+- **`sense_assignments.json`** — unified assignments from all methods. Each word keyed by bare word, each method keyed by name. Gap-fill senses inlined with `pos`/`translation`. Builder picks highest-priority method per word.
 
-1. **Bi-encoder** (`match_artist_senses.py`, no flags) — classifies all words with Wiktionary senses. Free, ~10 min. Covers normal-mode words AND 50k/conjugation words.
-2. **Gemini Flash Lite** (`build_wiktionary_senses.py --new-only`) — classifies step 4's remaining words against Wiktionary + eswiktionary senses. Gap-fills words not in Wiktionary.
-3. **Gemini dialect** (`build_wiktionary_senses.py --normal-slang-only`) — reclassifies normal-mode words that have eswiktionary dialect senses with expanded menu.
+The `word_routing.json` controls which classifier runs on which words. `assign_senses.py` reads it automatically. Existing assignments are skipped by priority check — re-running is safe (zero work if already done).
 
 Results merge additively into `senses_wiktionary.json` + `sense_assignments_wiktionary.json`. Methods coexist per word.
 

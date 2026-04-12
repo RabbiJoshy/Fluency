@@ -365,15 +365,17 @@ def main():
     no_senses_queue = []    # (word, lemma, examples_with_eng)
     no_examples = 0
 
-    # Load skip_words.json for flag-based skipping (preferred, from step 4)
-    skip_words_path = os.path.join(artist_dir, "data", "known_vocab", "skip_words.json")
+    # Load word_routing.json for flag-based skipping (preferred, from step 4)
+    routing_path = os.path.join(artist_dir, "data", "known_vocab", "word_routing.json")
     skip_set = set()
-    if os.path.isfile(skip_words_path):
-        with open(skip_words_path) as f:
-            skip_data = json.load(f)
-        for cat in ("english", "interjections_detected",
-                     "proper_nouns_detected", "known_shared"):
-            skip_set.update(skip_data.get(cat, []))
+    routing_data = {}
+    if os.path.isfile(routing_path):
+        with open(routing_path) as f:
+            routing_data = json.load(f)
+        exclude = routing_data.get("exclude", {})
+        for cat in ("english", "proper_nouns", "interjections"):
+            skip_set.update(exclude.get(cat, []))
+        skip_set.update(routing_data.get("biencoder", {}).get("shared", []))
         print("  Skip words (from step 4): %d" % len(skip_set))
 
     # Load master for flag lookups (fallback when skip_words.json absent)
@@ -391,9 +393,9 @@ def main():
     skipped_not_slang = 0
     skipped_priority = 0
 
-    # Load existing assignments for priority checking
+    # Load existing assignments for priority checking + gap-fill reuse
     existing_assigns = {}
-    assignments_path = os.path.join(layers_dir, "sense_assignments_wiktionary.json")
+    assignments_path = os.path.join(layers_dir, "sense_assignments.json")
     if os.path.isfile(assignments_path):
         with open(assignments_path, "r", encoding="utf-8") as f:
             existing_assigns = json.load(f)
@@ -404,7 +406,7 @@ def main():
     # For --normal-slang-only: load normal-mode senses
     normal_wl = set()
     if args.normal_slang_only:
-        normal_senses_path = PROJECT_ROOT / "Data/Spanish/layers/senses_wiktionary.json"
+        normal_senses_path = PROJECT_ROOT / "Data/Spanish/layers/sense_menu.json"
         if normal_senses_path.exists():
             with open(normal_senses_path) as f:
                 normal_wl = set(json.load(f).keys())
@@ -413,11 +415,11 @@ def main():
     # For --new-only: use step 4's remaining list as whitelist
     new_only_words = set()
     if args.new_only:
-        if os.path.isfile(skip_words_path):
-            new_only_words = set(skip_data.get("remaining", []))
+        if os.path.isfile(routing_path):
+            new_only_words = set(routing_data.get("gemini", []))
             print("  --new-only whitelist (from step 4): %d words" % len(new_only_words))
         else:
-            print("  WARNING: skip_words.json not found — run step 4 first")
+            print("  WARNING: word_routing.json not found — run step 4 first")
             sys.exit(1)
 
     print("\nProcessing %d words..." % len(inventory))
@@ -648,9 +650,28 @@ def main():
         print("GAP-FILL %d words without Wiktionary entry" % len(no_senses_queue))
         print("=" * 60)
 
+        # Check existing assignments for reusable gap-fill senses
+        reused = 0
+        need_gemini = []
+        for word, lemma, examples in no_senses_queue:
+            existing = existing_assigns.get(word, {})
+            gf = existing.get("gap-fill", [])
+            # Reuse if the existing gap-fill has inline sense definitions
+            if gf and isinstance(gf[0], dict) and "pos" in gf[0]:
+                # Reuse existing inline senses, reassign all examples
+                for entry in gf:
+                    entry["examples"] = list(range(len(examples)))
+                assignments_out[word] = {"gap-fill": gf}
+                reused += 1
+            else:
+                need_gemini.append((word, lemma, examples))
+
+        if reused:
+            print("  Reused %d existing gap-fill senses" % reused)
+
         t_start = time.time()
         proposed = 0
-        for word, lemma, examples in no_senses_queue:
+        for word, lemma, examples in need_gemini:
             wl_key = "%s|%s" % (word, lemma)
             result = gap_fill_gemini(word, lemma, [], examples[:20], api_key)
             if result and result.get("proposed_sense"):
@@ -659,10 +680,12 @@ def main():
                 sense_list = [{"pos": pos, "translation": trans,
                                "source": "gap-fill"}]
                 id_map = assign_sense_ids(sense_list)
-                senses_out[wl_key] = id_map
+                # Gap-fill senses stay inline in assignments, not in menu
                 sid = list(id_map.keys())[0]
                 assignments_out[word] = {"gap-fill": [{
                     "sense": sid,
+                    "pos": pos,
+                    "translation": trans,
                     "examples": list(range(len(examples))),
                 }]}
                 proposed += 1
@@ -679,8 +702,8 @@ def main():
     # ---------------------------------------------------------------------------
     # Write layer files (merge with existing)
     # ---------------------------------------------------------------------------
-    senses_path = os.path.join(layers_dir, "senses_wiktionary.json")
-    assignments_path = os.path.join(layers_dir, "sense_assignments_wiktionary.json")
+    senses_path = os.path.join(layers_dir, "sense_menu.json")
+    assignments_path = os.path.join(layers_dir, "sense_assignments.json")
 
     # Merge senses with existing file
     existing_senses = {}

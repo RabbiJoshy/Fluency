@@ -93,7 +93,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
     if sense_source == "wiktionary":
-        senses_file = "senses_wiktionary.json"
+        senses_file = "sense_menu.json"
         assign_file = "sense_assignments_wiktionary.json"
     elif sense_source == "wiktionary-gemini":
         senses_file = "senses_wiktionary_gemini.json"
@@ -111,6 +111,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             print("  Wiktionary layers not found, falling back to gemini layers")
         senses = load_layer(os.path.join(layers_dir, "senses_gemini.json"), "senses_gemini")
         assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
+    # Merge POS-refined layer (overwrites per-word methods with pos-* variants)
+    pos_assigns = load_layer(os.path.join(layers_dir, "sense_assignments_pos.json"),
+                              "sense_assignments_pos", required=False)
+    if pos_assigns and assignments:
+        for k, methods in pos_assigns.items():
+            if k not in assignments:
+                assignments[k] = {}
+            if isinstance(assignments[k], dict):
+                assignments[k].update(methods)
     # Shared layers at Data/Spanish/layers/ (project root from script location)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
@@ -142,26 +151,27 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     if shared:
         print("  curated_translations (shared): %d entries" % len(shared))
 
-    # Load skip_words for clitic merge and flag categories
-    skip_data = {}
+    # Load word routing for clitic merge and flag categories
+    routing_data = {}
     clitic_merge = {}  # word -> base_verb
     skip_english = set()
     skip_propn = set()
     skip_intj = set()
     if skip_words_path and os.path.isfile(skip_words_path):
         with open(skip_words_path, "r", encoding="utf-8") as f:
-            skip_data = json.load(f)
-        clitic_merge = skip_data.get("clitic_merge", {})
-        # Build flag sets from skip categories
-        for w in skip_data.get("english", []):
-            skip_english.add(w.lower() if isinstance(w, str) else w.get("word", "").lower())
-        for w in skip_data.get("proper_nouns_detected", []):
-            skip_propn.add(w.lower() if isinstance(w, str) else w.get("word", "").lower())
-        for w in skip_data.get("interjections_detected", []):
-            skip_intj.add(w.lower() if isinstance(w, str) else w.get("word", "").lower())
+            routing_data = json.load(f)
+        clitic_merge = routing_data.get("clitic_merge", {})
+        # Build flag sets from exclude categories
+        exclude = routing_data.get("exclude", {})
+        for w in exclude.get("english", []):
+            skip_english.add(w.lower() if isinstance(w, str) else w)
+        for w in exclude.get("proper_nouns", []):
+            skip_propn.add(w.lower() if isinstance(w, str) else w)
+        for w in exclude.get("interjections", []):
+            skip_intj.add(w.lower() if isinstance(w, str) else w)
         if clitic_merge:
             print("  clitic_merge: %d words to fold into base verbs" % len(clitic_merge))
-        print("  skip_words flags: %d english, %d propn, %d intj" %
+        print("  routing flags: %d english, %d propn, %d intj" %
               (len(skip_english), len(skip_propn), len(skip_intj)))
 
     # Pre-process clitic merges: skip clitics from main deck, build separate
@@ -851,7 +861,7 @@ def main():
 
     # Assemble from layers
     print("Sense source: %s" % args.sense_source)
-    skip_words_path = os.path.join(artist_dir, "data", "known_vocab", "skip_words.json")
+    skip_words_path = os.path.join(artist_dir, "data", "known_vocab", "word_routing.json")
     entries, master, clitic_data = assemble_from_layers(
         layers_dir, master, curated_path,
         sense_source=args.sense_source,

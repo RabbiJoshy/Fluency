@@ -40,7 +40,7 @@ STEPS = [
      "output": "Data/Spanish/layers/conjugations.json"},
     {"num": 4, "label": "Build sense inventory from Wiktionary",
      "script": "build_senses.py",
-     "output": "Data/Spanish/layers/senses_wiktionary.json"},
+     "output": "Data/Spanish/layers/sense_menu.json"},
     {"num": 5, "label": "Extract MWE phrases from Wiktionary",
      "script": "build_mwes.py",
      "output": "Data/Spanish/layers/mwe_phrases.json"},

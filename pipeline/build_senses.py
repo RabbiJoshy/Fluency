@@ -16,7 +16,7 @@ Inputs:
     Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz   — Wiktionary extract
 
 Output:
-    Data/Spanish/senses_wiktionary.json  — {word|lemma: [{pos, translation}, ...]}
+    Data/Spanish/sense_menu.json  — {word|lemma: [{pos, translation}, ...]}
 """
 
 import gzip
@@ -35,7 +35,7 @@ INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
 CONJ_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugations.json"
-OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "senses_wiktionary.json"
+OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
 
 # ---------------------------------------------------------------------------
 # POS mapping: Wiktionary pos -> project UPOS-style tags

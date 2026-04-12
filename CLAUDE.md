@@ -22,11 +22,13 @@ Fluency/
 │   └── cognet_spa_eng.json        # CogNet cognate database
 ├── pipeline/                    # All pipeline scripts — see Artists/CLAUDE.md for artist variant
 │   ├── method_priority.py         # Shared METHOD_PRIORITY + sense ID helpers (both pipelines)
+│   ├── classify_senses.py         # Shared classifiers: bi-encoder, Gemini, keyword, gap-fill
 │   ├── build_inventory.py         # Normal-mode pipeline steps
 │   ├── build_examples.py
 │   ├── build_vocabulary.py        # ... (8 steps + run_pipeline.py)
 │   └── artist/                    # Artist-mode variant scripts
 │       ├── run_pipeline.py          # Artist pipeline orchestrator
+│       ├── assign_senses.py         # Step 6: unified sense assignment (bi-encoder + Gemini)
 │       ├── 6_llm_analyze.py         # ... (numbered steps + utilities)
 │       └── _artist_config.py        # Shared helper for artist scripts
 ├── research/                    # Playlist pipeline PoC — see research/CLAUDE.md
@@ -56,9 +58,9 @@ Fluency/
 | Pipeline word analysis | `pipeline/artist/6_llm_analyze.py` |
 | Pipeline reranking | `pipeline/artist/7_rerank.py` |
 | Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json`, `Artists/tools/scan_duplicates.py` |
-| Word filter pipeline | `pipeline/artist/4_filter_known_vocab.py` (6 phases: junk → known vocab → English → Wiktionary reclassify → NER → frequency + clitic detection) |
-| Clitic bundling | `pipeline/build_senses.py` → `load_wiktionary()` (redirect fix + tier 3 reflexive extraction), `pipeline/artist/4_filter_known_vocab.py` (3-tier classification), builders write `clitic_forms.json` |
-| Wiktionary sense assignment | `pipeline/artist/match_artist_senses.py` (bi-encoder), `pipeline/artist/build_wiktionary_senses.py` (Gemini) |
+| Word filter pipeline | `pipeline/artist/4_filter_known_vocab.py` (6 phases: junk → known vocab → English → Wiktionary reclassify → NER → frequency + derivation detection). Output: `word_routing.json` grouped by treatment (exclude/biencoder/gemini/clitic). |
+| Clitic bundling | `pipeline/build_senses.py` → `load_wiktionary()` (redirect fix + tier 3 reflexive extraction), `pipeline/artist/4_filter_known_vocab.py` (3-tier classification + programmatic gerund+clitic), builders write `clitic_forms.json` |
+| Sense assignment | `pipeline/artist/assign_senses.py` (unified step 6: bi-encoder for biencoder-routed words, Gemini for gemini-routed words). Single output: `sense_assignments.json`. |
 | Method priority | `pipeline/method_priority.py` → `METHOD_PRIORITY`, `TRANSLATION_PRIORITY`, `best_method_priority()` (re-exported by `_artist_config.py`) |
 | Artist config | `config/artists.json` + `Artists/{Name}/artist.json` |
 | Curated translation fixes | `shared/curated_translations.json` (unified), `Artists/{Name}/data/llm_analysis/curated_translations.json` (artist-specific) |
@@ -110,4 +112,6 @@ Python 3.9+ via `.venv/bin/python3`. Dev server: `python3 -m http.server 8765` f
 - **Normal mode pipeline**: 8 steps (orchestrated by `pipeline/run_pipeline.py`) — (1) build_inventory → (2) build_examples (Tatoeba + OpenSubtitles, 50 examples/word) → (3) build_conjugations (verbecc) → (4) build_senses (Wiktionary + conjugation POS filtering + cross-POS dedup + sense cap) → (5) build_mwes (Wiktionary derived terms) → (6) match_senses (local embeddings via sentence-transformers, ~3 min) → (7) flag_cognates (suffix rules + CogNet) → (8) build_vocabulary. Step 2 loads Tatoeba first (preferred), then fills remaining slots from OpenSubtitles (stride-sampled across full corpus, `--max-lines` flag, default 5M). Quality filters: subtitle junk regex, trivial sentence filter (all top-100 words), MAX_CANDIDATES=500 cap. Scoring: proximity to target word's inventory rank + easiness, with diversity sampling across difficulty thirds. Step 3 generates conjugation tables and reverse lookup; step 4 uses the reverse lookup to filter non-VERB senses from confirmed verb entries. Step 6 classifies examples to senses using `all-mpnet-base-v2` embeddings, merges synonym senses (cosine sim ≥ 0.70), and drops senses with < 10% frequency. Use `--keyword-only` flag for instant fallback without embeddings. Step 6 is priority-aware: checks `METHOD_PRIORITY` and skips words with equal-or-higher priority assignments. Use `--force` to reclassify all. Output uses unified method-keyed format (`{word|lemma: {method: [{sense, examples}]}}`) shared with artist pipeline.
 - **Master vocabulary**: `Artists/vocabulary_master.json` holds all word|lemma entries with accumulated senses across all artists. 6-char hex IDs (`md5(word|lemma)[:6]`). Per-artist files hold only examples and corpus stats. Front-end joins master + artist index + artist examples at load time. Run `pipeline/artist/merge_to_master.py` to rebuild the master from existing artist vocabs.
 - **Clitic bundling**: Verb+clitic forms (calentarte, hacértelo) are detected via Wiktionary form-of data and classified into 3 tiers. Tier 1+2 (non-reflexive clitics, or reflexive where base has no reflexive senses) → merged into base verb, removed from deck, data preserved in `clitic_forms.json` layer (MWE-style, keyed by hex ID, with own examples and sense assignments). Tier 3 (reflexive where base HAS reflexive senses, e.g. irse) → kept as own entry with reflexive-only senses extracted from base verb. Detection in step 4 (`load_wiktionary_raw`), tier 3 sense extraction in `build_senses.py` post-processing, merge in builders. Both pipelines use unified method-aware assignment format with content-hash sense IDs. Clitic hex IDs preserved in master + migration maps for progress reversibility.
-- **Builder reads skip_words.json**: Artist builder sets is_english/is_propernoun/is_interjection flags from step 4's current output, not stale master union. Flags propagate TO master (for cross-artist benefit) but not FROM master (prevents stale accumulation). is_transparent_cognate still unions from cognates layer.
+- **Word routing**: Step 4 produces `word_routing.json` (replaces old `skip_words.json`), grouped by treatment: `exclude` (english/proper_nouns/interjections/low_frequency), `biencoder` (normal_vocab/conjugation/elision/derivation/shared), `gemini` (Caribbean slang), `clitic_merge`/`clitic_keep`. Step 6 reads the routing to dispatch words to the right classifier. Builder reads `exclude` sub-categories for is_english/is_propernoun/is_interjection flags.
+- **Sense files**: Two files per artist. `sense_menu.json` = the sense definitions (from Wiktionary, shared across classifiers). `sense_assignments.json` = unified assignments from all methods (bi-encoder, Gemini, gap-fill). Gap-fill senses are inlined in assignments (not in the menu). Method priority picks the best assignment per word.
+- **Derivation detection**: Step 4 catches diminutives (carita→cara, chiquito→chico with qu→c) and gerund+clitic forms (dándote→dar) programmatically. These skip Gemini and get bi-encoder treatment.

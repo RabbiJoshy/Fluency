@@ -14,13 +14,18 @@ import hashlib
 # ---------------------------------------------------------------------------
 
 METHOD_PRIORITY = {
-    "flash-lite-wiktionary": 50,   # Gemini Flash Lite classifier (artist)
-    "gap-fill": 50,                # Gemini gap-fill for words not in Wiktionary
-    "gemini": 40,                  # Gemini classifier (normal mode)
-    "biencoder": 30,               # Bi-encoder cosine similarity
-    "keyword-wiktionary": 10,      # Keyword overlap (with Wiktionary senses)
-    "keyword": 10,                 # Keyword overlap (basic)
-    "wiktionary-auto": 0,          # Single-sense default, always overwritable
+    "pos-flash-lite-wiktionary": 55,  # POS-refined Gemini Flash Lite
+    "flash-lite-wiktionary": 50,      # Gemini Flash Lite classifier (artist)
+    "gap-fill": 50,                   # Gemini gap-fill for words not in Wiktionary
+    "pos-gemini": 45,                 # POS-refined Gemini classifier
+    "gemini": 40,                     # Gemini classifier (normal mode)
+    "pos-biencoder": 35,              # POS-refined bi-encoder
+    "biencoder": 30,                  # Bi-encoder cosine similarity
+    "pos-keyword-wiktionary": 15,     # POS-refined keyword
+    "pos-keyword": 15,                # POS-refined keyword
+    "keyword-wiktionary": 10,         # Keyword overlap (with Wiktionary senses)
+    "keyword": 10,                    # Keyword overlap (basic)
+    "wiktionary-auto": 0,             # Single-sense default, always overwritable
 }
 
 # ---------------------------------------------------------------------------

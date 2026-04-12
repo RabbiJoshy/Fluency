@@ -13,7 +13,7 @@ At artist scale (~600-3000 lines to classify), this runs in under 30 seconds.
 
 Sense sources (in priority order):
   1. senses_gemini.json (this artist's Gemini analysis)
-  2. senses_wiktionary.json (normal-mode dictionary senses — unbiased fallback)
+  2. sense_menu.json (normal-mode dictionary senses — unbiased fallback)
   3. Master vocabulary senses (last resort)
 
 Classification methods (per example):
@@ -34,7 +34,7 @@ Inputs:
     {artist}/data/layers/examples_raw.json
     {artist}/data/layers/example_translations.json
     {artist}/data/layers/senses_gemini.json
-    Data/Spanish/layers/senses_wiktionary.json  (fallback)
+    Data/Spanish/layers/sense_menu.json  (fallback)
 
 Outputs:
     {artist}/data/layers/sense_assignments.json
@@ -56,7 +56,7 @@ from build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "senses_wiktionary.json"
+WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
 WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 
 MIN_SENSE_FREQUENCY = 0.05
@@ -291,7 +291,7 @@ def main():
                         help="Overwrite existing sense_assignments.json")
     parser.add_argument("--normal-only", action="store_true",
                         help="Only classify words that exist in normal-mode senses. "
-                             "Writes to senses_wiktionary.json / sense_assignments_wiktionary.json")
+                             "Writes to sense_menu.json / sense_assignments_wiktionary.json")
     args = parser.parse_args()
 
     artist_dir = args.artist_dir
@@ -303,9 +303,9 @@ def main():
     print("Artist sense matching (%s)" % method)
     print("Artist: %s" % config["name"])
 
-    # Always write to wiktionary format (new pipeline)
-    output_file = layers_dir / "sense_assignments_wiktionary.json"
-    senses_output_file = layers_dir / "senses_wiktionary.json"
+    # Single unified assignments file (all methods merge into one)
+    output_file = layers_dir / "sense_assignments.json"
+    senses_output_file = layers_dir / "sense_menu.json"
 
     # No early exit — priority checking handles skip logic per-word
 
@@ -344,7 +344,7 @@ def main():
     # Also keep the normal-mode senses layer for backward compat
     wiktionary_senses = load_wiktionary_senses()
     if wiktionary_senses:
-        print("  senses_wiktionary (normal-mode): %d entries" % len(wiktionary_senses))
+        print("  sense_menu (normal-mode): %d entries" % len(wiktionary_senses))
 
     # Load eswiktionary dialect senses (appended to menu)
     eswikt_index = {}
@@ -368,6 +368,19 @@ def main():
         with open(output_file, encoding="utf-8") as f:
             existing_assigns = json.load(f)
 
+    # Load word routing to skip excluded/gemini-routed words
+    routing_path = Path(artist_dir) / "data" / "known_vocab" / "word_routing.json"
+    routing_skip = set()
+    if routing_path.exists():
+        with open(routing_path, encoding="utf-8") as f:
+            routing = json.load(f)
+        # Skip excluded words (junk)
+        for cat_list in routing.get("exclude", {}).values():
+            routing_skip.update(cat_list)
+        # Skip gemini-routed words (they get Gemini, not bi-encoder)
+        routing_skip.update(routing.get("gemini", []))
+        print("  word_routing: skipping %d excluded + gemini words" % len(routing_skip))
+
     my_method = "keyword" if use_keyword else "biencoder"
     my_priority = METHOD_PRIORITY.get(my_method, 0)
 
@@ -381,11 +394,18 @@ def main():
     skipped_priority = 0
     sense_sources = defaultdict(int)
 
-    normal_only_senses = {}  # word|lemma -> senses (for writing senses_wiktionary.json)
+    normal_only_senses = {}  # word|lemma -> senses (for writing sense_menu.json)
     skipped_not_normal = 0
 
+    skipped_routing = 0
     for inv_entry in inventory:
         word = inv_entry["word"]
+
+        # Skip words not routed to bi-encoder
+        if word.lower() in routing_skip:
+            skipped_routing += 1
+            continue
+
         examples = examples_data.get(word, [])
 
         # Skip words with equal or higher priority assignments
@@ -498,6 +518,8 @@ def main():
         else:
             work_items.append((word, word_senses, examples, keep_indices, source, id_list))
 
+    if skipped_routing:
+        print("  Skipped (excluded/gemini-routed): %d" % skipped_routing)
     if skipped_priority:
         print("  Skipped (higher-priority method exists): %d" % skipped_priority)
     if args.normal_only:
