@@ -26,6 +26,7 @@ Outputs:
     Data/Spanish/vocabulary.json
 """
 
+import gzip
 import json
 import re
 import sys
@@ -34,6 +35,45 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 OUTPUT_DIR = PROJECT_ROOT / "Data" / "Spanish"
+WIKTIONARY_RAW = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
+
+
+def load_clitic_map(path):
+    """Scan Wiktionary JSONL for verb+clitic form-of entries.
+
+    Returns (clitic_map, verbs_with_refl_senses):
+      clitic_map: {word: (base_verb, is_reflexive)}
+      verbs_with_refl_senses: set of verbs with reflexive-tagged senses.
+    """
+    clitic_map = {}
+    verbs_with_refl = set()
+    if not path.exists():
+        return clitic_map, verbs_with_refl
+    with gzip.open(path, "rt", encoding="utf-8") as f:
+        for line in f:
+            entry = json.loads(line)
+            w = entry.get("word", "")
+            if not w:
+                continue
+            wl = w.lower()
+            raw_pos = entry.get("pos", "")
+            for s in entry.get("senses", []):
+                tags = set(s.get("tags", []))
+                if raw_pos == "verb" and "form-of" not in tags:
+                    if "reflexive" in tags or "pronominal" in tags:
+                        verbs_with_refl.add(wl)
+                if "form-of" in tags:
+                    gloss = (s.get("glosses") or [""])[0]
+                    if "combined with" in gloss:
+                        links = s.get("links", [])
+                        if links and isinstance(links[0], list):
+                            base = links[0][0].lower()
+                            clitics = [l[0].lower() for l in links[1:]
+                                       if isinstance(l, list)]
+                            is_refl = "reflexive" in tags or "se" in clitics
+                            if base and base != wl:
+                                clitic_map[wl] = (base, is_refl)
+    return clitic_map, verbs_with_refl
 
 # ---------------------------------------------------------------------------
 # Translation cleaning (same logic as build_senses.py)
@@ -164,14 +204,83 @@ def main():
         conj_reverse = {}
         print("  conjugation_reverse: (not found, skipping)")
 
+    # Clitic detection: skip verb+clitic forms, write separate clitic layer
+    print("\nDetecting clitics...")
+    clitic_map, verbs_with_refl = load_clitic_map(WIKTIONARY_RAW)
+    print(f"  Wiktionary: {len(clitic_map)} clitic forms, {len(verbs_with_refl)} verbs with reflexive senses")
+
+    inv_by_word = {e["word"].lower(): e for e in inventory}
+    clitic_merged_ids = set()  # IDs to skip in entry loop
+    clitic_data = {}  # word -> {base_verb, examples, assignments, ...}
+    id_migration = {}
+
+    for e in inventory:
+        wl = e["word"].lower()
+        if wl not in clitic_map:
+            continue
+        base_verb, is_refl = clitic_map[wl]
+        if is_refl and base_verb in verbs_with_refl:
+            continue  # tier 3: keep separate
+        base_entry = inv_by_word.get(base_verb)
+        if not base_entry:
+            continue
+        clitic_id = e["id"]
+        base_id = base_entry["id"]
+        # Add clitic count to base
+        base_entry["corpus_count"] = base_entry.get("corpus_count", 0) + e.get("corpus_count", 0)
+        # Build self-contained clitic entry
+        clitic_exs = examples_raw.get(clitic_id, [])
+        clitic_assigns = assignments.get(clitic_id, [])
+        key = f"{e['word']}|{e['lemma']}"
+        clitic_senses = senses_data.get(key, [])
+        translation = clitic_senses[0]["translation"] if clitic_senses else ""
+        clitic_data[wl] = {
+            "id": clitic_id,
+            "base_verb": base_verb,
+            "base_id": base_id,
+            "lemma": e["lemma"],
+            "corpus_count": e.get("corpus_count", 0),
+            "translation": translation,
+            "assignments": clitic_assigns,
+            "examples": clitic_exs,
+        }
+        base_entry.setdefault("variants", []).append(wl)
+        clitic_merged_ids.add(clitic_id)
+        id_migration[clitic_id] = base_id
+
+    if clitic_data:
+        print(f"  {len(clitic_data)} clitic forms skipped from deck, data in clitic layer")
+        # Write clitic layer
+        clitic_by_id = {info["id"]: info for info in clitic_data.values()}
+        clitic_path = LAYERS / "clitic_forms.json"
+        with open(clitic_path, "w", encoding="utf-8") as f:
+            json.dump(clitic_by_id, f, ensure_ascii=False, indent=2)
+        print(f"  Clitic forms: {len(clitic_by_id)} entries -> {clitic_path}")
+        archive_dir = LAYERS / "archive"
+        archive_dir.mkdir(exist_ok=True)
+        migration_path = archive_dir / "clitic_id_migration.json"
+        with open(migration_path, "w", encoding="utf-8") as f:
+            json.dump(id_migration, f, ensure_ascii=False, indent=2)
+        print(f"  ID migration: {len(id_migration)} mappings -> {migration_path}")
+
+    # Precompute: base_id -> {clitic_id: clitic_word}
+    merged_ids_by_base = {}
+    for cword, cinfo in clitic_data.items():
+        bid = cinfo.get("base_id")
+        if bid:
+            merged_ids_by_base.setdefault(bid, {})[cinfo["id"]] = cword
+
     # Build vocabulary
     print("\nAssembling vocabulary...")
     monolith = []
     index = []
     examples_out = {}
-    stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0, "with_morphology": 0}
+    stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0,
+             "with_morphology": 0, "clitic_merged": len(clitic_data)}
 
     for entry in inventory:
+        if entry["id"] in clitic_merged_ids:
+            continue
         word_id = entry["id"]
         key = f"{entry['word']}|{entry['lemma']}"
         senses = senses_data.get(key, [])
@@ -329,6 +438,11 @@ def main():
         if morphology:
             mono_entry["morphology"] = morphology
             stats["with_morphology"] += 1
+        if entry.get("variants"):
+            mono_entry["variants"] = entry["variants"]
+            merged_ids = merged_ids_by_base.get(word_id)
+            if merged_ids:
+                mono_entry["merged_clitic_ids"] = merged_ids
         monolith.append(mono_entry)
 
         # Index entry (no examples)
@@ -389,6 +503,7 @@ def main():
     print(f"Translations cleaned: {stats['cleaned']:>5}")
     print(f"With MWEs:          {stats['with_mwes']:>6}")
     print(f"With morphology:    {stats['with_morphology']:>6}")
+    print(f"Clitics merged:     {stats['clitic_merged']:>6}")
     print()
 
     # Sample output
