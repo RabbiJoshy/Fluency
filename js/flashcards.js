@@ -1184,12 +1184,18 @@ function updateCard() {
             const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
+            const isClitic = m.pos === 'CLITIC';
             // For MWE pill, show the current expression/translation based on MWE index
             const mweIdx = (isMWE && isSelected) ? currentMWEIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
             const mweCounter = (isMWE && mweCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous expression">‹</button><span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next expression">›</button></span>` : '';
+            // For Clitic pill, reuse MWE cycling with allClitics
+            const cliticIdx = (isClitic && isSelected) ? currentMWEIndex % (m.allClitics ? m.allClitics.length : 1) : 0;
+            const cliticForm = isClitic && m.allClitics ? m.allClitics[cliticIdx].form : '';
+            const cliticCount = isClitic && m.allClitics ? m.allClitics.length : 0;
+            const cliticCounter = (isClitic && cliticCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous form">‹</button><span style="opacity: 0.6; font-size: 10px;">${cliticIdx + 1}/${cliticCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next form">›</button></span>` : '';
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
             const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
             if (isMWE) {
@@ -1199,6 +1205,15 @@ function updateCard() {
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${displayMeaning}</span>
                     ${mweCounter}
+                </div>
+                `;
+            } else if (isClitic) {
+                // Clitic row: form in a light pill, translation centered, cycling counter
+                backHTML += `
+                <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.12); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
+                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${m.allClitics ? m.allClitics[cliticIdx].translation : ''}</span>
+                    ${cliticCounter}
                 </div>
                 `;
             } else {
@@ -1225,6 +1240,9 @@ function updateCard() {
             if (currentMeaning.allMWEs) {
                 activeMweIdx = currentMWEIndex % currentMeaning.allMWEs.length;
                 activeExamples = dedupeExamples(currentMeaning.allMWEs[activeMweIdx].examples || []);
+            } else if (currentMeaning.allClitics) {
+                activeMweIdx = currentMWEIndex % currentMeaning.allClitics.length;
+                activeExamples = dedupeExamples(currentMeaning.allClitics[activeMweIdx].examples || []);
             } else {
                 activeExamples = dedupeExamples(currentMeaning.allExamples || []);
             }
@@ -1604,8 +1622,9 @@ function cycleMWEForward(event) {
     if (event) event.stopPropagation();
     const card = flashcards[currentIndex];
     const m = card && card.meanings[currentMeaningIndex];
-    if (m && m.allMWEs && m.allMWEs.length > 1) {
-        currentMWEIndex = (currentMWEIndex + 1) % m.allMWEs.length;
+    const items = m && (m.allMWEs || m.allClitics);
+    if (items && items.length > 1) {
+        currentMWEIndex = (currentMWEIndex + 1) % items.length;
         currentExampleIndex = 0;
         updateCard();
     }
@@ -1615,8 +1634,9 @@ function cycleMWEBackward(event) {
     if (event) event.stopPropagation();
     const card = flashcards[currentIndex];
     const m = card && card.meanings[currentMeaningIndex];
-    if (m && m.allMWEs && m.allMWEs.length > 1) {
-        currentMWEIndex = (currentMWEIndex - 1 + m.allMWEs.length) % m.allMWEs.length;
+    const items = m && (m.allMWEs || m.allClitics);
+    if (items && items.length > 1) {
+        currentMWEIndex = (currentMWEIndex - 1 + items.length) % items.length;
         currentExampleIndex = 0;
         updateCard();
     }

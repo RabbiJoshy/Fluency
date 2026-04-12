@@ -702,7 +702,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 # Output writing
 # ---------------------------------------------------------------------------
 
-def write_split_files(entries, master, vocab_path, master_path):
+def write_split_files(entries, master, vocab_path, master_path, clitic_data=None):
     """Write compact index + examples aligned to master senses."""
     base = vocab_path.rsplit(".", 1)[0]
     index_path = base + ".index.json"
@@ -710,6 +710,13 @@ def write_split_files(entries, master, vocab_path, master_path):
 
     index = []
     examples = {}
+
+    # Build clitic lookup: base_verb_word -> [(clitic_word, clitic_info), ...]
+    clitics_by_base = {}
+    if clitic_data:
+        for cword, cinfo in clitic_data.items():
+            base = cinfo.get("base_verb", "")
+            clitics_by_base.setdefault(base, []).append((cword, cinfo))
 
     for entry in entries:
         fid = entry.get("id")
@@ -760,11 +767,25 @@ def write_split_files(entries, master, vocab_path, master_path):
                  "source": mwe.get("source", "artist")}
                 for mwe in entry_mwes
             ]
+        # Clitic memberships (parallel to MWEs)
+        entry_clitics = clitics_by_base.get(entry.get("word", "").lower(), [])
+        clitic_examples = []
+        if entry_clitics:
+            idx_entry["clitic_memberships"] = []
+            for cword, cinfo in entry_clitics:
+                idx_entry["clitic_memberships"].append({
+                    "form": cword,
+                    "translation": cinfo.get("translation", ""),
+                    "corpus_count": cinfo.get("corpus_count", 0),
+                })
+                clitic_examples.append(cinfo.get("examples", []))
         index.append(idx_entry)
 
         ex_entry = {"m": sense_examples}
         if any(mwe_examples):
             ex_entry["w"] = mwe_examples
+        if any(clitic_examples):
+            ex_entry["c"] = clitic_examples
         examples[fid] = ex_entry
 
     os.makedirs(os.path.dirname(index_path), exist_ok=True)
@@ -862,7 +883,7 @@ def main():
         print("  ID migration: %d mappings -> %s" % (len(id_migration), migration_path))
 
     # Write split files
-    write_split_files(entries, master, vocab_path, master_path)
+    write_split_files(entries, master, vocab_path, master_path, clitic_data)
 
     print("Done!")
 

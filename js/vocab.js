@@ -103,6 +103,14 @@ function joinWithMaster(indexData, master) {
             examples: []
         }));
 
+        // Build clitic_memberships from index entry
+        const clitic_memberships = (idx.clitic_memberships || []).map(cl => ({
+            form: cl.form,
+            translation: cl.translation || '',
+            corpus_count: cl.corpus_count || 0,
+            examples: []
+        }));
+
         result.push({
             id: idx.id,
             word: m.word,
@@ -118,6 +126,7 @@ function joinWithMaster(indexData, master) {
             display_form: m.display_form || null,
             variants: idx.variants || null,
             mwe_memberships: mwe_memberships.length > 0 ? mwe_memberships : undefined,
+            clitic_memberships: clitic_memberships.length > 0 ? clitic_memberships : undefined,
             morphology: idx.morphology || null,
         });
     }
@@ -458,6 +467,31 @@ async function loadVocabularyData(rangeString) {
                     targetSentence: firstEx.spanish || firstEx.target || '',
                     englishSentence: firstEx.english || '',
                     allExamples: allMWEs[0].examples
+                });
+            }
+
+            // Synthesize clitic meaning (parallel to MWE, cycles through forms)
+            if (item.clitic_memberships && item.clitic_memberships.length > 0) {
+                const allClitics = [];
+                for (const cl of item.clitic_memberships) {
+                    const matched = cl.examples || [];
+                    allClitics.push({
+                        form: cl.form,
+                        translation: cl.translation || '',
+                        corpus_count: cl.corpus_count || 0,
+                        examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
+                    });
+                }
+                allClitics.sort((a, b) => b.corpus_count - a.corpus_count);
+                const firstEx = allClitics[0].examples[0];
+                meanings.push({
+                    pos: 'CLITIC',
+                    meaning: allClitics[0].form,
+                    allClitics: allClitics,
+                    percentage: 0,
+                    targetSentence: firstEx.spanish || firstEx.target || '',
+                    englishSentence: firstEx.english || '',
+                    allExamples: allClitics[0].examples
                 });
             }
 
@@ -1026,6 +1060,11 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 if (ex.w && entry.mwe_memberships) {
                     entry.mwe_memberships.forEach((mwe, i) => {
                         mwe.examples = ex.w[i] || [];
+                    });
+                }
+                if (ex.c && entry.clitic_memberships) {
+                    entry.clitic_memberships.forEach((cl, i) => {
+                        cl.examples = ex.c[i] || [];
                     });
                 }
             }
