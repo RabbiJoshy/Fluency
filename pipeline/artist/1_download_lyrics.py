@@ -292,6 +292,58 @@ def find_null_lyrics_songs(out_dir):
     return null_ids
 
 
+def rescrape_with_headers(out_dir):
+    """Re-scrape lyrics for all songs, preserving section headers.
+
+    Patches existing batch files in-place. Adds a 'primary_artist_name' field
+    from the Genius API and re-scrapes lyrics with remove_section_headers=False
+    so [Verse: Artist] tags are preserved.
+    """
+    import glob
+
+    g = Genius(TOKEN, timeout=30, retries=3, sleep_time=1.0)
+    g.verbose = False
+    g.remove_section_headers = False
+    g.skip_non_songs = False
+
+    batch_files = sorted(glob.glob(str(Path(out_dir) / "batch_*.json")))
+    total = 0
+    patched = 0
+
+    for bf in batch_files:
+        with open(bf, "r", encoding="utf-8") as f:
+            batch = json.load(f)
+
+        changed = False
+        for song in batch:
+            total += 1
+            sid = song["id"]
+            title = song.get("title", "?")
+
+            # Skip if already has section headers
+            if song.get("lyrics") and "[" in song["lyrics"] and "]" in song["lyrics"]:
+                # Check if it has actual section tags (not just ad-libs)
+                import re as _re
+                tags = _re.findall(r"\[(?:Verso|Verse|Chorus|Estribillo|Intro|Outro|Pre|Bridge|Puente|Hook|Refrán|Letra)[^\]]*\]", song.get("lyrics", ""))
+                if tags:
+                    continue
+
+            print("  [%d] %s..." % (sid, title[:50]))
+            lyrics = scrape_lyrics_by_id(g, sid)
+            if lyrics:
+                song["lyrics"] = lyrics
+                changed = True
+                patched += 1
+            time.sleep(0.5)  # Be gentle with the API
+
+        if changed:
+            with open(bf, "w", encoding="utf-8") as f:
+                json.dump(batch, f, ensure_ascii=False, indent=2)
+            print("  Patched %s" % os.path.basename(bf))
+
+    print("\nDone! %d/%d songs re-scraped." % (patched, total))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Download artist lyrics from Genius")
     add_artist_arg(parser)
@@ -303,6 +355,8 @@ if __name__ == "__main__":
                         help="Skip checking for English translations (faster)")
     parser.add_argument("--start-page", type=int, default=1,
                         help="Start from this page (default: 1)")
+    parser.add_argument("--rescrape-headers", action="store_true",
+                        help="Re-scrape lyrics with section headers preserved (patches existing batches)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -310,11 +364,14 @@ if __name__ == "__main__":
     ARTIST_QUERY = config["genius_query"]
     OUT_DIR = os.path.join(artist_dir, "data", "input", "batches")
 
-    download_artist_lyrics(
-        ARTIST_QUERY,
-        batch_size=BATCH_SIZE,
-        start_page=args.start_page,
-        include_remixes=args.include_remixes,
-        retry_nulls=args.retry_nulls,
-        fetch_translations=not args.no_translations,
-    )
+    if args.rescrape_headers:
+        rescrape_with_headers(OUT_DIR)
+    else:
+        download_artist_lyrics(
+            ARTIST_QUERY,
+            batch_size=BATCH_SIZE,
+            start_page=args.start_page,
+            include_remixes=args.include_remixes,
+            retry_nulls=args.retry_nulls,
+            fetch_translations=not args.no_translations,
+        )

@@ -720,6 +720,60 @@
       "keep": "4589199",
       "duplicate_title": "What's the Use? (Nusnce Remix) / Callaita (Mixed)",
       "original_title": "Callaita"
+    },
+    "8845820": {
+      "keep": "6211047",
+      "duplicate_title": "120 DRILL",
+      "original_title": "120"
+    },
+    "6250618": {
+      "keep": "6210872",
+      "duplicate_title": "PASA EL TIEMPO (TE MUDASTE)",
+      "original_title": "TE MUDASTE"
+    },
+    "3016127": {
+      "keep": "3020821",
+      "duplicate_title": "Otra Vez (Remake)",
+      "original_title": "Otra Vez (Remix)"
+    },
+    "3020821": {
+      "keep": "2953042",
+      "duplicate_title": "Otra Ve' (Remix)",
+      "original_title": "Otra Vez (Remix)"
+    },
+    "2953042": {
+      "keep": "3020821",
+      "duplicate_title": "Otra Vez (Remix)",
+      "original_title": "Otra Ve' (Remix)"
+    },
+    "9274662": {
+      "keep": "6100181",
+      "duplicate_title": "DÁKITI / Summer (Loud Luxury Edit) [Mixed]",
+      "original_title": "DÁKITI"
+    },
+    "4162745": {
+      "keep": "3256611",
+      "duplicate_title": "El Combo Me Llama 2.1",
+      "original_title": "El Combo Me Llama 2",
+      "note": "BB verse copied, only 1 unique BB line"
+    },
+    "3351321": {
+      "keep": "2962706",
+      "duplicate_title": "La Pistola",
+      "original_title": "Demonia Baila",
+      "note": "BB verse copied, 0 unique BB lines"
+    },
+    "4645957": {
+      "keep": "3100770",
+      "duplicate_title": "4u",
+      "original_title": "Give It Up",
+      "note": "BB lines identical, 4u is shorter version"
+    },
+    "9618292": {
+      "keep": "2978566",
+      "duplicate_title": "Me Acostumbré (Tauro Turbo)",
+      "original_title": "Me Acostumbré",
+      "note": "13/17 lines shared, same song different beat"
     }
   },
   "placeholders": [
@@ -985,6 +1039,31 @@
         "title": "Moon - No te cortes REMIX FT. Bad Bunny",
         "language": "not_bad_bunny",
         "reason": "Not a BB primary song"
+      },
+      "8568145": {
+        "title": "Calm Down / Party (Mixed)",
+        "language": "english",
+        "note": "Rema/Selena Gomez mashup with BB, primarily English"
+      },
+      "9614082": {
+        "title": "NO ME QUIERO CASAR",
+        "language": "spanish",
+        "note": "BB not performing: 0% BB lines"
+      },
+      "3888736": {
+        "title": "Como Ayer",
+        "language": "spanish",
+        "note": "BB not performing: 0% BB lines"
+      },
+      "3422118": {
+        "title": "De Las 2",
+        "language": "spanish",
+        "note": "BB not performing: 1% BB lines (1/103)"
+      },
+      "3027008": {
+        "title": "La Movie",
+        "language": "spanish",
+        "note": "BB not performing: 4% BB lines (4/114)"
       }
     }
   },
@@ -1065,9 +1144,9 @@
   },
   "stats": {
     "total_songs": 537,
-    "duplicates": 144,
+    "duplicates": 154,
     "placeholders": 19,
-    "non_spanish": 48,
+    "non_spanish": 53,
     "non_songs": 14,
     "unique_songs": 317
   }

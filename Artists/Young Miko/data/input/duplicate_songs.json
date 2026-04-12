@@ -44,6 +44,11 @@
         "title": "Safada",
         "language": "portuguese",
         "reason": "Luísa Sonza song, primarily in Portuguese"
+      },
+      "10220945": {
+        "title": "MADRE",
+        "language": "spanish",
+        "note": "Young Miko not performing: 0% lines"
       }
     }
   },
@@ -64,6 +69,10 @@
         "title": "El intro",
         "category": "intro",
         "reason": "Album intro track"
+      },
+      "7134331": {
+        "title": "105 Freestyle",
+        "category": "freestyle"
       }
     }
   },
@@ -72,7 +81,7 @@
     "duplicates": 4,
     "placeholders": 3,
     "non_spanish": 3,
-    "non_songs": 3,
+    "non_songs": 4,
     "unique_songs": 92
   }
 }

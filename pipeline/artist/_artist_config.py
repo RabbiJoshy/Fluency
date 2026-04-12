@@ -238,6 +238,33 @@ def normalize_translation(translation):
     return t
 
 
+# ---------------------------------------------------------------------------
+# Method priority for sense assignments
+# ---------------------------------------------------------------------------
+# Higher number = higher quality. A run should skip words that already have
+# an assignment from an equal or higher-priority method.
+
+METHOD_PRIORITY = {
+    "flash-lite-wiktionary": 50,
+    "gap-fill": 50,
+    "biencoder": 30,
+    "keyword-wiktionary": 10,
+    "keyword": 10,
+    "wiktionary-auto": 0,    # single-sense default, always overwritable
+}
+
+
+def best_method_priority(word_assignments):
+    """Return the highest method priority for a word's existing assignments.
+
+    word_assignments: the value from sense_assignments_wiktionary.json for one word.
+    Can be a dict of {method: [assignments]} (new format) or a list (old format).
+    """
+    if isinstance(word_assignments, dict):
+        return max(METHOD_PRIORITY.get(m, 0) for m in word_assignments)
+    return 0
+
+
 def make_sense_id(pos, translation):
     """Generate a stable content-hash ID for a sense.
 

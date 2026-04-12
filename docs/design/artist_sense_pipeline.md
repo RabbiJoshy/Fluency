@@ -1,6 +1,6 @@
 ---
 title: Artist mode sense discovery and assignment
-status: decided
+status: implemented
 created: 2026-04-08
 updated: 2026-04-11
 ---
@@ -490,16 +490,26 @@ Per new artist total: ~$0.07. Bi-encoder runs first (free), Gemini only for word
 ### Scripts
 
 - `pipeline/artist/match_artist_senses.py --normal-only` — bi-encoder on normal-mode words, includes eswiktionary dialect senses, writes new format
-- `pipeline/artist/build_wiktionary_senses.py` — Gemini Flash Lite on Wiktionary menu, with substitution test prompt, `--normal-slang-only` for dialect words, `--new-only` for non-normal words (TODO)
+- `pipeline/artist/build_wiktionary_senses.py` — Gemini Flash Lite on Wiktionary menu, with substitution test prompt, `--normal-slang-only` for dialect words, `--new-only` for non-normal words
 - `pipeline/artist/build_artist_vocabulary.py --sense-source wiktionary` — builds from new layers (default), `--sense-source gemini` for old layers
 - Builder handles both old (list) and new (dict-of-IDs) format automatically
 
+### Shipped: word filters + song exclusions + method priority (2026-04-11)
+
+**Word filters** (`4_filter_known_vocab.py`): Added English 50k wordlist filter (catches loanwords lingua misses), interjection regex patterns, proper noun capitalization ratio + spaCy NER. Output categories in `skip_words.json` consumed by `build_wiktionary_senses.py --new-only` as whitelist.
+
+**Song exclusions**: `scan_duplicates.py` tool finds copied verses via consecutive line matching + artist attribution from Genius section tags (rescrape with `--rescrape-headers`). Reports BB line count vs other artists per song. Used to exclude ~15 additional songs (copied verses, 0% artist lines, mashups).
+
+**Method priority** (`_artist_config.py`): `METHOD_PRIORITY` dict defines quality ordering (flash-lite-wiktionary=50, biencoder=30, keyword=10, wiktionary-auto=0). Both `match_artist_senses.py` and `build_wiktionary_senses.py` check existing assignments and skip words with equal or higher priority. Methods coexist additively per word.
+
+**`--new-only` flag**: Reads step 4's remaining list as whitelist. Single source of truth for which words need Gemini.
+
+**`match_artist_senses.py`**: Always writes to `sense_assignments_wiktionary.json` (new format). Always merges additively. No longer needs `--normal-only` to write new format.
+
 ### Remaining work
 
-1. **Improve word filters** — better is_english, is_interjection, is_propernoun detection to reduce the ~300 new words to genuinely novel slang
-2. **Add `--new-only` flag** to build_wiktionary_senses.py for non-normal-mode words
-3. **Run Gemini** on remaining non-normal-mode words after filters are improved
-4. **Curate gata-class edge cases** — words where the sense exists but translations preserve the literal metaphor
+1. **Curate gata-class edge cases** — words where the sense exists but translations preserve the literal metaphor
+2. **Find better English frequency list** — current OpenSubtitles-derived list has foreign word artifacts
 
 ### Utilities added
 

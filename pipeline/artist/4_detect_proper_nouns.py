@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+SUPERSEDED by 4_filter_known_vocab.py (which now includes all NLP detection).
+Kept as reference. Run 4_filter_known_vocab.py instead.
+
+Original description:
 Step 4: Pre-tag vocabulary words to save Gemini tokens in step 6.
 
 Detects three categories using cheap local methods:

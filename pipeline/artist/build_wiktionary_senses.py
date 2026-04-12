@@ -26,7 +26,8 @@ sys.path.insert(0, str(PROJECT_ROOT / "pipeline" / "artist"))
 from build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
 from _artist_config import (add_artist_arg, load_artist_config,
-                           load_dotenv_from_project_root, assign_sense_ids)
+                           load_dotenv_from_project_root, assign_sense_ids,
+                           METHOD_PRIORITY, best_method_priority)
 load_dotenv_from_project_root()
 
 # ---------------------------------------------------------------------------
@@ -292,8 +293,11 @@ def main():
     add_artist_arg(parser)
     parser.add_argument("--no-gemini", action="store_true",
                         help="Skip Gemini, use keyword classifier (free, lower accuracy)")
-    parser.add_argument("--normal-slang-only", action="store_true",
+    mode_group = parser.add_mutually_exclusive_group()
+    mode_group.add_argument("--normal-slang-only", action="store_true",
                         help="Only process normal-mode words that have eswiktionary dialect senses")
+    mode_group.add_argument("--new-only", action="store_true",
+                        help="Only process non-normal-mode words with corpus_count > 1")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -361,7 +365,18 @@ def main():
     no_senses_queue = []    # (word, lemma, examples_with_eng)
     no_examples = 0
 
-    # Load master for flag lookups (is_english, is_propernoun, is_interjection)
+    # Load skip_words.json for flag-based skipping (preferred, from step 4)
+    skip_words_path = os.path.join(artist_dir, "data", "known_vocab", "skip_words.json")
+    skip_set = set()
+    if os.path.isfile(skip_words_path):
+        with open(skip_words_path) as f:
+            skip_data = json.load(f)
+        for cat in ("english", "interjections_detected",
+                     "proper_nouns_detected", "known_shared"):
+            skip_set.update(skip_data.get(cat, []))
+        print("  Skip words (from step 4): %d" % len(skip_set))
+
+    # Load master for flag lookups (fallback when skip_words.json absent)
     artists_dir = os.path.dirname(artist_dir)
     master_path = os.path.join(artists_dir, "vocabulary_master.json")
     master_flags = {}
@@ -374,8 +389,19 @@ def main():
     skipped_flags = 0
     skipped_short = 0
     skipped_not_slang = 0
+    skipped_priority = 0
 
-    # For --normal-slang-only: load normal-mode senses to filter
+    # Load existing assignments for priority checking
+    existing_assigns = {}
+    assignments_path = os.path.join(layers_dir, "sense_assignments_wiktionary.json")
+    if os.path.isfile(assignments_path):
+        with open(assignments_path, "r", encoding="utf-8") as f:
+            existing_assigns = json.load(f)
+
+    my_method = "keyword-wiktionary" if not use_gemini else "flash-lite-wiktionary"
+    my_priority = METHOD_PRIORITY.get(my_method, 0)
+
+    # For --normal-slang-only: load normal-mode senses
     normal_wl = set()
     if args.normal_slang_only:
         normal_senses_path = PROJECT_ROOT / "Data/Spanish/layers/senses_wiktionary.json"
@@ -383,6 +409,16 @@ def main():
             with open(normal_senses_path) as f:
                 normal_wl = set(json.load(f).keys())
             print("  Normal-mode senses: %d entries" % len(normal_wl))
+
+    # For --new-only: use step 4's remaining list as whitelist
+    new_only_words = set()
+    if args.new_only:
+        if os.path.isfile(skip_words_path):
+            new_only_words = set(skip_data.get("remaining", []))
+            print("  --new-only whitelist (from step 4): %d words" % len(new_only_words))
+        else:
+            print("  WARNING: skip_words.json not found — run step 4 first")
+            sys.exit(1)
 
     print("\nProcessing %d words..." % len(inventory))
 
@@ -392,7 +428,10 @@ def main():
         wl_key = "%s|%s" % (word, lemma)
         corpus_count = entry.get("corpus_count", 1)
 
-        # Skip words flagged in master as not needing sense mapping
+        # Skip words flagged by step 4 (preferred) or master flags (fallback)
+        if word in skip_set:
+            skipped_flags += 1
+            continue
         mf = master_flags.get(wl_key, {})
         if mf.get("is_english") or mf.get("is_propernoun") or mf.get("is_interjection"):
             skipped_flags += 1
@@ -411,6 +450,19 @@ def main():
             has_eswikt = bool(eswikt_index.get(word) or eswikt_index.get(lemma))
             if not has_eswikt:
                 skipped_not_slang += 1
+                continue
+
+        # --new-only: only process words in step 4's remaining list
+        if args.new_only:
+            if word not in new_only_words:
+                skipped_not_slang += 1
+                continue
+
+        # Skip words with equal or higher priority assignments
+        if word in existing_assigns:
+            existing_priority = best_method_priority(existing_assigns[word])
+            if existing_priority >= my_priority:
+                skipped_priority += 1
                 continue
 
         # Get examples with English translations
@@ -462,8 +514,12 @@ def main():
 
     print("  Skipped (english/propn/intj): %d" % skipped_flags)
     print("  Skipped (short/contraction): %d" % skipped_short)
+    if skipped_priority:
+        print("  Skipped (higher-priority method): %d" % skipped_priority)
     if args.normal_slang_only:
         print("  Skipped (no eswikt or not in normal): %d" % skipped_not_slang)
+    if args.new_only:
+        print("  Skipped (normal-mode or freq<=1): %d" % skipped_not_slang)
     print("  No examples (skipped): %d" % no_examples)
     print("  Single-sense (auto-assigned): %d" % single_sense)
     print("  Multi-sense (need classifier): %d" % len(multi_sense_queue))

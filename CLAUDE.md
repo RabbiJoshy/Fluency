@@ -54,7 +54,10 @@ Fluency/
 | CSS changes | `css/style.css` (single file) |
 | Pipeline word analysis | `pipeline/artist/6_llm_analyze.py` |
 | Pipeline reranking | `pipeline/artist/7_rerank.py` |
-| Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json` |
+| Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json`, `Artists/tools/scan_duplicates.py` |
+| Word filter pipeline | `pipeline/artist/4_filter_known_vocab.py` (known vocab + English + intj + propn) |
+| Wiktionary sense assignment | `pipeline/artist/match_artist_senses.py` (bi-encoder), `pipeline/artist/build_wiktionary_senses.py` (Gemini) |
+| Method priority | `pipeline/artist/_artist_config.py` → `METHOD_PRIORITY`, `best_method_priority()` |
 | Artist config | `config/artists.json` + `Artists/{Name}/artist.json` |
 | Curated translation fixes | `shared/curated_translations.json` (unified), `Artists/{Name}/data/llm_analysis/curated_translations.json` (artist-specific) |
 | Homograph disambiguation | `pipeline/build_inventory.py` → `compute_homograph_ratios()`, overrides in `Data/Spanish/layers/homograph_overrides.json` |

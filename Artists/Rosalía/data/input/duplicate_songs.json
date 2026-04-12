@@ -170,6 +170,26 @@
       "keep": "5197781",
       "duplicate_title": "Juro Que / MALAMENTE (Live at the 62nd Grammy Awards)",
       "original_title": "Juro Que"
+    },
+    "8643641": {
+      "keep": "8173139",
+      "duplicate_title": "DESPECHÁ RMX",
+      "original_title": "DESPECHÁ"
+    },
+    "8264237": {
+      "keep": "8173139",
+      "duplicate_title": "DESPECHÁ (Demo)",
+      "original_title": "DESPECHÁ"
+    },
+    "13104176": {
+      "keep": "12581295",
+      "duplicate_title": "Sauvignon Blanc (A Cappella)",
+      "original_title": "Sauvignon Blanc"
+    },
+    "3874078": {
+      "keep": "12397133",
+      "duplicate_title": "De Madrugá (2018)",
+      "original_title": "De Madrugá"
     }
   },
   "placeholders": [
@@ -552,7 +572,7 @@
   },
   "stats": {
     "total_songs": 241,
-    "duplicates": 34,
+    "duplicates": 38,
     "placeholders": 1,
     "non_spanish": 74,
     "non_songs": 2,
