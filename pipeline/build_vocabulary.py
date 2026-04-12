@@ -27,10 +27,34 @@ Outputs:
 """
 
 import gzip
+import hashlib
 import json
 import re
 import sys
 from pathlib import Path
+
+
+def _sense_id(pos, translation):
+    """Content-hash ID for a sense (matches artist pipeline's make_sense_id)."""
+    return hashlib.md5(("%s|%s" % (pos, translation)).encode("utf-8")).hexdigest()[:3]
+
+
+def _convert_assignments(old_assigns, senses, method="biencoder"):
+    """Convert old-format assignments to method-aware format with sense IDs.
+
+    Old: [{sense_idx: 0, examples: [0,1,2]}]
+    New: {method: [{sense: "abc", examples: [0,1,2]}]}
+    """
+    if not old_assigns or not senses:
+        return {}
+    items = []
+    for a in old_assigns:
+        idx = a.get("sense_idx", 0)
+        if idx < len(senses):
+            s = senses[idx]
+            sid = _sense_id(s["pos"], s["translation"])
+            items.append({"sense": sid, "examples": a.get("examples", [])})
+    return {method: items} if items else {}
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -234,6 +258,8 @@ def main():
         key = f"{e['word']}|{e['lemma']}"
         clitic_senses = senses_data.get(key, [])
         translation = clitic_senses[0]["translation"] if clitic_senses else ""
+        # Convert old-format assignments to method-aware format
+        converted_assigns = _convert_assignments(clitic_assigns, clitic_senses)
         clitic_data[wl] = {
             "id": clitic_id,
             "base_verb": base_verb,
@@ -241,7 +267,7 @@ def main():
             "lemma": e["lemma"],
             "corpus_count": e.get("corpus_count", 0),
             "translation": translation,
-            "assignments": clitic_assigns,
+            "assignments": converted_assigns,
             "examples": clitic_exs,
         }
         base_entry.setdefault("variants", []).append(wl)
