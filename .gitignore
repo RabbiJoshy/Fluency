@@ -60,3 +60,4 @@ Data/Spanish/vocabulary.json
 Artists/*/[A-Z]*vocabulary.json
 *.cache.pkl
 .bench_sense_cache.json
+*.bak
