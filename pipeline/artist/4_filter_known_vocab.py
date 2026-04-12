@@ -84,27 +84,54 @@ def load_en_50k(path):
 
 
 def load_wiktionary_raw(path):
-    """Load raw Wiktionary JSONL. Returns (word_set, all_propn).
+    """Load raw Wiktionary JSONL.
 
-    word_set: all lowercase word forms that have any entry.
-    all_propn: words where EVERY entry has pos="name" (definitely proper nouns).
+    Returns (word_set, all_propn, clitic_map, verbs_with_refl_senses):
+      word_set: all lowercase word forms that have any entry.
+      all_propn: words where EVERY entry has pos="name" (proper nouns).
+      clitic_map: {clitic_word: (base_verb, clitics, is_reflexive)} for
+                  form-of entries with clitic pronouns ("combined with").
+      verbs_with_refl_senses: set of base verbs that have at least one
+                              non-form-of sense tagged 'reflexive' or 'pronominal'.
     """
     import gzip
     from collections import defaultdict
     word_poses = defaultdict(set)  # word -> set of raw POS values
+    clitic_map = {}  # clitic_word -> (base_verb, [clitics], is_reflexive)
+    verbs_with_refl_senses = set()
     if not os.path.exists(path):
-        return set(), set()
+        return set(), set(), {}, set()
     with gzip.open(path, "rt", encoding="utf-8") as f:
         for line in f:
             entry = json.loads(line)
             w = entry.get("word", "")
-            if w:
-                word_poses[w.lower()].add(entry.get("pos", ""))
+            if not w:
+                continue
+            wl = w.lower()
+            raw_pos = entry.get("pos", "")
+            word_poses[wl].add(raw_pos)
+            for s in entry.get("senses", []):
+                tags = set(s.get("tags", []))
+                # Collect verbs with reflexive/pronominal senses
+                if raw_pos == "verb" and "form-of" not in tags:
+                    if "reflexive" in tags or "pronominal" in tags:
+                        verbs_with_refl_senses.add(wl)
+                # Collect clitic form-of entries
+                if "form-of" in tags:
+                    gloss = (s.get("glosses") or [""])[0]
+                    if "combined with" in gloss:
+                        links = s.get("links", [])
+                        if links and isinstance(links[0], list):
+                            base = links[0][0].lower()
+                            clitics = [l[0].lower() for l in links[1:]
+                                       if isinstance(l, list)]
+                            is_refl = "reflexive" in tags or "se" in clitics
+                            if base and base != wl:
+                                clitic_map[wl] = (base, clitics, is_refl)
     words = set(word_poses.keys())
-    # Words where ALL Wiktionary entries are pos="name" → definitely proper nouns
     all_propn = {w for w, poses in word_poses.items()
                  if poses and poses <= {"name"}}
-    return words, all_propn
+    return words, all_propn, clitic_map, verbs_with_refl_senses
 
 
 def load_normal_vocab(path):
@@ -508,10 +535,34 @@ def main():
         wikt_intj = load_wiktionary_interjections(WIKTIONARY_SENSES_PATH)
         print("  Wiktionary all-INTJ: %d words" % len(wikt_intj))
 
-    # Raw Wiktionary (word set + POS-based proper noun detection)
+    # Raw Wiktionary (word set + POS-based proper noun detection + clitic data)
     print("  Loading raw Wiktionary...")
-    wikt_spanish, wikt_propn = load_wiktionary_raw(WIKTIONARY_RAW_PATH)
-    print("  Raw Wiktionary: %d word forms, %d all-PROPN" % (len(wikt_spanish), len(wikt_propn)))
+    wikt_spanish, wikt_propn, wikt_clitic_map, wikt_refl_verbs = load_wiktionary_raw(WIKTIONARY_RAW_PATH)
+    print("  Raw Wiktionary: %d word forms, %d all-PROPN, %d clitic forms, %d verbs with reflexive senses" %
+          (len(wikt_spanish), len(wikt_propn), len(wikt_clitic_map), len(wikt_refl_verbs)))
+
+    # ===================================================================
+    # Clitic detection: identify verb+clitic forms for merging into base verb
+    # Three tiers based on Wiktionary data:
+    #   Tier 1+2 (clitic_merge): non-reflexive clitics OR reflexive where
+    #            base verb has no reflexive-tagged senses → merge into base
+    #   Tier 3: reflexive where base verb HAS reflexive senses → keep separate
+    #           (these get their own Wiktionary index entries via build_senses.py)
+    # ===================================================================
+    clitic_merge = {}  # word -> base_verb (tier 1+2, will be merged)
+    clitic_keep = set()  # tier 3, kept as separate entries
+    for w in artist_words:
+        if w not in wikt_clitic_map:
+            continue
+        base, clitics, is_refl = wikt_clitic_map[w]
+        if is_refl and base in wikt_refl_verbs:
+            clitic_keep.add(w)  # tier 3: meaning-shifting reflexive
+        else:
+            clitic_merge[w] = base  # tier 1+2: safe to merge
+    if clitic_merge or clitic_keep:
+        print("\n--- Clitic detection ---")
+        print("  Tier 1+2 (merge into base verb): %d" % len(clitic_merge))
+        print("  Tier 3 (keep separate, reflexive): %d" % len(clitic_keep))
 
     # ===================================================================
     # Phase 1: JUNK DETECTION (full word set, fast detectors)
@@ -709,6 +760,7 @@ def main():
         "proper_nouns_detected": sorted(proper_nouns_detected),
         "low_frequency": sorted(low_frequency),
         "remaining": sorted(remaining, key=lambda w: word_freq.get(w, 0), reverse=True),
+        "clitic_merge": clitic_merge,  # word -> base_verb (tier 1+2)
         "stats": {
             "input_words": len(artist_words),
             "known_normal_vocab": len(known_normal_vocab),
@@ -719,6 +771,8 @@ def main():
             "interjections_detected": len(interjections_detected),
             "proper_nouns_detected": len(proper_nouns_detected),
             "low_frequency": len(low_frequency),
+            "clitic_merge": len(clitic_merge),
+            "clitic_keep": len(clitic_keep),
             "total_skipped": total_skipped,
             "remaining": len(remaining),
             "min_freq": args.min_freq,

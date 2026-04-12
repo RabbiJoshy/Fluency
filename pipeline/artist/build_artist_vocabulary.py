@@ -81,7 +81,7 @@ def load_layer(path, name, required=True):
 # ---------------------------------------------------------------------------
 
 def assemble_from_layers(layers_dir, master, curated_translations_path=None,
-                         sense_source="wiktionary"):
+                         sense_source="wiktionary", skip_words_path=None):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -140,11 +140,106 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     if shared:
         print("  curated_translations (shared): %d entries" % len(shared))
 
+    # Load skip_words for clitic merge and flag categories
+    skip_data = {}
+    clitic_merge = {}  # word -> base_verb
+    skip_english = set()
+    skip_propn = set()
+    skip_intj = set()
+    if skip_words_path and os.path.isfile(skip_words_path):
+        with open(skip_words_path, "r", encoding="utf-8") as f:
+            skip_data = json.load(f)
+        clitic_merge = skip_data.get("clitic_merge", {})
+        # Build flag sets from skip categories
+        for w in skip_data.get("english", []):
+            skip_english.add(w.lower() if isinstance(w, str) else w.get("word", "").lower())
+        for w in skip_data.get("proper_nouns_detected", []):
+            skip_propn.add(w.lower() if isinstance(w, str) else w.get("word", "").lower())
+        for w in skip_data.get("interjections_detected", []):
+            skip_intj.add(w.lower() if isinstance(w, str) else w.get("word", "").lower())
+        if clitic_merge:
+            print("  clitic_merge: %d words to fold into base verbs" % len(clitic_merge))
+        print("  skip_words flags: %d english, %d propn, %d intj" %
+              (len(skip_english), len(skip_propn), len(skip_intj)))
+
+    # Pre-process clitic merges: fold clitic inventory + assignments into base verb
+    clitic_merged_words = set()  # words to skip in entry loop
+    clitic_archive = {}  # preserve merged-away entries for reference
+    if clitic_merge:
+        inv_by_word = {e["word"].lower(): e for e in inventory}
+        for clitic_word, base_verb in clitic_merge.items():
+            clitic_entry = inv_by_word.get(clitic_word)
+            base_entry = inv_by_word.get(base_verb)
+            if not clitic_entry or not base_entry:
+                continue
+            # Add clitic's corpus count to base
+            base_entry["corpus_count"] = base_entry.get("corpus_count", 0) + clitic_entry.get("corpus_count", 0)
+            # Track example offset before appending
+            base_exs = examples_raw.get(base_verb, [])
+            offset = len(base_exs)
+            # Add clitic's raw examples to base, tagged with source variant
+            clitic_exs = examples_raw.get(clitic_word, [])
+            if clitic_exs:
+                for ex in clitic_exs:
+                    ex["_source_variant"] = clitic_word
+                examples_raw.setdefault(base_verb, []).extend(clitic_exs)
+            # Merge sense assignments: offset example indices, dedup by sense ID
+            clitic_assigns = assignments.get(clitic_word, {})
+            if isinstance(clitic_assigns, dict) and clitic_exs:
+                base_assigns = assignments.setdefault(base_verb, {})
+                if not isinstance(base_assigns, dict):
+                    base_assigns = {}
+                    assignments[base_verb] = base_assigns
+                for method, items in clitic_assigns.items():
+                    method_list = base_assigns.setdefault(method, [])
+                    # Build lookup of existing sense -> item for dedup
+                    existing = {a.get("sense"): a for a in method_list}
+                    for item in items:
+                        sid = item.get("sense")
+                        offset_exs = [i + offset for i in item.get("examples", [])]
+                        if sid in existing:
+                            # Same sense already assigned — merge examples
+                            existing[sid]["examples"].extend(offset_exs)
+                        else:
+                            new_item = dict(item)
+                            new_item["examples"] = offset_exs
+                            method_list.append(new_item)
+                            existing[sid] = new_item
+            # Archive the clitic entry with resolved sentences (not just indices).
+            # Indices are fragile — they break if examples_raw is regenerated.
+            resolved_assigns = {}
+            if isinstance(clitic_assigns, dict):
+                for method, items in clitic_assigns.items():
+                    resolved_items = []
+                    for item in items:
+                        resolved = {"sense": item.get("sense")}
+                        resolved["sentences"] = [
+                            clitic_exs[i].get("spanish", "") if i < len(clitic_exs) else ""
+                            for i in item.get("examples", [])
+                        ]
+                        resolved_items.append(resolved)
+                    resolved_assigns[method] = resolved_items
+            clitic_archive[clitic_word] = {
+                "base_verb": base_verb,
+                "corpus_count": clitic_entry.get("corpus_count", 0),
+                "assignments": resolved_assigns,
+                "examples": [ex.get("spanish", "") for ex in clitic_exs],
+            }
+            # Track variant for metadata
+            base_entry.setdefault("variants", []).append(clitic_word)
+            clitic_merged_words.add(clitic_word.lower())
+        print("  Merged %d clitic forms into base verbs (%d sense assignments transferred)"
+              % (len(clitic_merged_words),
+                 sum(1 for a in clitic_archive.values() if a["assignments"])))
+
     # --- Assemble entries ---
     print("\nAssembling vocabulary...")
     entries = []
 
     for inv_entry in inventory:
+        # Skip clitic forms that were merged into their base verb
+        if inv_entry["word"].lower() in clitic_merged_words:
+            continue
         word = inv_entry["word"]
         corpus_count = inv_entry.get("corpus_count", 0)
         display_form = inv_entry.get("display_form")
@@ -235,6 +330,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         if ts_entry:
                             ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        if raw_ex.get("_source_variant"):
+                            ex_dict["source_variant"] = raw_ex["_source_variant"]
                         meaning_examples.append(ex_dict)
 
                 freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
@@ -316,17 +413,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 morphology = {"mood": "infinitivo"}
 
         # Build the entry
-        # Get flags from senses_gemini key or master (flags come through master)
+        # Set flags from step 4 skip_words (current run) instead of stale master
         has_wikt = bool(word_senses and word_assignments and isinstance(raw_assignments, dict))
+        wl = word.lower()
         entry = {
             "id": "",
             "word": word,
             "lemma": word_lemma,
             "meanings": meanings,
             "most_frequent_lemma_instance": True,
-            "is_english": False,
-            "is_interjection": False,
-            "is_propernoun": False,
+            "is_english": wl in skip_english,
+            "is_interjection": wl in skip_intj,
+            "is_propernoun": wl in skip_propn,
             "is_transparent_cognate": False,
             "corpus_count": corpus_count,
             "_has_wikt_assignments": has_wikt,
@@ -413,6 +511,29 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # --- Master vocabulary integration ---
     assign_ids_from_master(entries, master)
 
+    # Record merged clitic IDs on base verb master entries
+    if clitic_archive:
+        wl_to_id = {}
+        for mid, m in master.items():
+            wl_to_id[(m["word"].lower(), m["lemma"].lower())] = mid
+        for entry in entries:
+            variants = entry.get("variants", [])
+            if not variants:
+                continue
+            fid = entry["id"]
+            merged_ids = {}
+            for v in variants:
+                # Clitic IDs use word|word or word|base as the key
+                vid = wl_to_id.get((v.lower(), v.lower()))
+                if not vid:
+                    base = clitic_archive.get(v, {}).get("base_verb", "")
+                    vid = wl_to_id.get((v.lower(), base.lower()))
+                if vid:
+                    merged_ids[vid] = v
+            if merged_ids:
+                master[fid].setdefault("merged_clitic_ids", {}).update(merged_ids)
+                entry["merged_clitic_ids"] = merged_ids
+
     # Update master with new/updated entries
     new_master = 0
     new_senses = 0
@@ -432,13 +553,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             new_master += 1
 
         m = master[fid]
-        # Union flags
+        # Propagate flags TO master for cross-artist benefit.
+        # Flags on entry are set from step 4 skip_words (current data),
+        # NOT pulled from stale master. is_transparent_cognate comes from
+        # the cognates layer, so still union that from master.
         for flag in ("is_english", "is_interjection", "is_propernoun", "is_transparent_cognate"):
             if entry.get(flag, False):
                 m[flag] = True
-            # Also pull flags FROM master to entry
-            if m.get(flag, False):
-                entry[flag] = True
+        # Only pull is_transparent_cognate from master (not step-4 derived)
+        if m.get("is_transparent_cognate", False):
+            entry["is_transparent_cognate"] = True
         if entry.get("display_form") and not m.get("display_form"):
             m["display_form"] = entry["display_form"]
 
@@ -571,7 +695,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 examples.sort(key=lambda e: e.get("easiness", SENTINEL))
         print("  Easiness scores applied, examples sorted")
 
-    return entries, master
+    return entries, master, clitic_archive
 
 
 # ---------------------------------------------------------------------------
@@ -696,14 +820,47 @@ def main():
 
     # Assemble from layers
     print("Sense source: %s" % args.sense_source)
-    entries, master = assemble_from_layers(layers_dir, master, curated_path,
-                                           sense_source=args.sense_source)
+    skip_words_path = os.path.join(artist_dir, "data", "known_vocab", "skip_words.json")
+    entries, master, clitic_archive = assemble_from_layers(
+        layers_dir, master, curated_path,
+        sense_source=args.sense_source,
+        skip_words_path=skip_words_path)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)
     with open(vocab_path, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)
     print("  Monolith: %d entries -> %s" % (len(entries), vocab_path))
+
+    # Archive merged clitic data + build ID migration map
+    if clitic_archive:
+        archive_dir = os.path.join(artist_dir, "data", "layers", "archive")
+        os.makedirs(archive_dir, exist_ok=True)
+        # Build ID migration: clitic_id -> base_verb_id
+        # so front-end/backend can transfer saved progress
+        master_wl_to_id = {}
+        for mid, m in master.items():
+            master_wl_to_id[(m["word"].lower(), m["lemma"].lower())] = mid
+        id_migration = {}
+        for clitic_word, info in clitic_archive.items():
+            base = info["base_verb"]
+            clitic_id = master_wl_to_id.get((clitic_word, clitic_word))
+            if not clitic_id:
+                # Try word|base as lemma
+                clitic_id = master_wl_to_id.get((clitic_word, base))
+            base_id = master_wl_to_id.get((base, base))
+            if clitic_id and base_id:
+                id_migration[clitic_id] = base_id
+                info["old_id"] = clitic_id
+                info["new_id"] = base_id
+        archive_path = os.path.join(archive_dir, "clitic_merged.json")
+        with open(archive_path, "w", encoding="utf-8") as f:
+            json.dump(clitic_archive, f, ensure_ascii=False, indent=2)
+        migration_path = os.path.join(archive_dir, "clitic_id_migration.json")
+        with open(migration_path, "w", encoding="utf-8") as f:
+            json.dump(id_migration, f, ensure_ascii=False, indent=2)
+        print("  Clitic archive: %d entries -> %s" % (len(clitic_archive), archive_path))
+        print("  ID migration: %d mappings -> %s" % (len(id_migration), migration_path))
 
     # Write split files
     write_split_files(entries, master, vocab_path, master_path)

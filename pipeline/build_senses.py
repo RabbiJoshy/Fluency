@@ -188,6 +188,7 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
     print(f"Loading Wiktionary from {path}...")
     index = defaultdict(list)
     redirects = {}  # form-of word → base lemma (e.g. amiga → amigo)
+    reflexive_formofs = []  # (word, base) for reflexive form-of entries
     total = 0
     skipped = 0
 
@@ -261,11 +262,27 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
                 for s in senses:
                     for fo in s.get("form_of", []):
                         base = fo.get("word", "").lower()
+                        # Multi-clitic forms have descriptive text in form_of
+                        # e.g. "hacer combined with indirect object te and lo"
+                        # The links field always has the clean base verb at [0]
+                        if " " in base:
+                            links = s.get("links", [])
+                            if links and isinstance(links[0], list):
+                                base = links[0][0].lower()
+                            else:
+                                continue
                         if base and base != word:
                             redirects[word] = base
                             norm = strip_accents(word)
                             if norm != word:
                                 redirects[norm] = base
+                            # Track reflexive form-of for post-processing
+                            stags = set(s.get("tags", []))
+                            links = s.get("links", [])
+                            clitics = [l[0].lower() for l in links[1:]
+                                       ] if len(links) > 1 else []
+                            if "reflexive" in stags or "se" in clitics:
+                                reflexive_formofs.append((word, base))
                 skipped += 1
                 continue
 
@@ -276,8 +293,40 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
             if norm != word:
                 index[norm].append(entry)
 
+    # Post-process: create real index entries for reflexive form-of words
+    # whose base verb has reflexive-tagged senses (tier 3).
+    # e.g. irse gets only ir's reflexive senses, not all 31.
+    refl_created = 0
+    for refl_word, base_verb in reflexive_formofs:
+        base_entries = index.get(base_verb, [])
+        if not base_entries:
+            continue
+        refl_senses = []
+        pos = None
+        for be in base_entries:
+            for sense in be["senses"]:
+                stags = set(sense.get("tags", []))
+                if "reflexive" in stags or "pronominal" in stags:
+                    refl_senses.append(sense)
+                    if pos is None:
+                        pos = be["pos"]
+        if refl_senses:
+            # Promote to real index entry with only reflexive senses.
+            # _reflexive_of marker tells lookup_senses to skip the lemma
+            # group (otherwise irse|ir would get all 31 ir senses too).
+            refl_entry = {"pos": pos, "senses": refl_senses,
+                          "_reflexive_of": base_verb}
+            index[refl_word].append(refl_entry)
+            norm = strip_accents(refl_word)
+            if norm != refl_word:
+                index[norm].append(refl_entry)
+            redirects.pop(refl_word, None)
+            redirects.pop(strip_accents(refl_word), None)
+            refl_created += 1
+
     print(f"  {total} total entries, {skipped} skipped (no real senses)")
     print(f"  {len(index)} unique lookup keys, {len(redirects)} form-of redirects")
+    print(f"  {len(reflexive_formofs)} reflexive form-of entries, {refl_created} promoted to own senses")
     result = dict(index), dict(redirects)
 
     if use_cache:
@@ -335,14 +384,24 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
     lemma_forms = follow_redirects(lemma_forms, redirects, wikt_index)
     groups.append(lemma_forms)
     # Group 2: word form and its variants (if different from lemma)
+    word_has_own_entry = False
     if word.lower() != lemma.lower():
         word_forms = [word.lower(), strip_accents(word.lower())]
         word_forms = follow_redirects(word_forms, redirects, wikt_index)
         groups.append(word_forms)
+        # Check if word has a _reflexive_of entry (tier 3 reflexive verb).
+        # If so, use ONLY the word's senses — don't mix in the base verb's
+        # full sense list from the lemma group.
+        word_entries = wikt_index.get(word.lower(), [])
+        if any(e.get("_reflexive_of") for e in word_entries):
+            word_has_own_entry = True
 
     # Collect candidates from all groups
     all_candidates = []
-    for group in groups:
+    for i, group in enumerate(groups):
+        # Skip lemma group (i=0) if word has reflexive-of entry
+        if word_has_own_entry and i == 0:
+            continue
         for form in group:
             candidates = wikt_index.get(form)
             if candidates:
