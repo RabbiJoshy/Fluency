@@ -92,34 +92,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     inventory = load_layer(os.path.join(layers_dir, "word_inventory.json"), "word_inventory")
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
-    if sense_source == "wiktionary":
-        senses_file = "sense_menu.json"
-        assign_file = "sense_assignments_wiktionary.json"
-    elif sense_source == "wiktionary-gemini":
-        senses_file = "senses_wiktionary_gemini.json"
-        assign_file = "sense_assignments_wiktionary_gemini.json"
-    else:
-        senses_file = "senses_gemini.json"
-        assign_file = "sense_assignments.json"
-    senses = load_layer(os.path.join(layers_dir, senses_file), senses_file,
-                        required=False)
-    assignments = load_layer(os.path.join(layers_dir, assign_file), assign_file,
-                             required=False)
-    # Fallback to gemini layers if wiktionary not found
-    if senses is None or assignments is None:
-        if sense_source == "wiktionary":
-            print("  Wiktionary layers not found, falling back to gemini layers")
-        senses = load_layer(os.path.join(layers_dir, "senses_gemini.json"), "senses_gemini")
-        assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
-    # Merge POS-refined layer (overwrites per-word methods with pos-* variants)
-    pos_assigns = load_layer(os.path.join(layers_dir, "sense_assignments_pos.json"),
-                              "sense_assignments_pos", required=False)
-    if pos_assigns and assignments:
-        for k, methods in pos_assigns.items():
-            if k not in assignments:
-                assignments[k] = {}
-            if isinstance(assignments[k], dict):
-                assignments[k].update(methods)
+    # Sense menu (definitions) + assignments (example→sense mappings)
+    senses = load_layer(os.path.join(layers_dir, "sense_menu.json"), "sense_menu")
+    assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
     # Shared layers at Data/Spanish/layers/ (project root from script location)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
