@@ -155,12 +155,21 @@ def main():
         cognates = {}
         print("  cognates: (not found, skipping)")
 
+    conj_reverse_path = LAYERS / "conjugation_reverse.json"
+    if conj_reverse_path.exists():
+        with open(conj_reverse_path, encoding="utf-8") as f:
+            conj_reverse = json.load(f)
+        print(f"  conjugation_reverse: {len(conj_reverse)} forms")
+    else:
+        conj_reverse = {}
+        print("  conjugation_reverse: (not found, skipping)")
+
     # Build vocabulary
     print("\nAssembling vocabulary...")
     monolith = []
     index = []
     examples_out = {}
-    stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0}
+    stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0, "with_morphology": 0}
 
     for entry in inventory:
         word_id = entry["id"]
@@ -275,6 +284,22 @@ def main():
                 mwe_examples_by_idx.append(matched_exs[:5])
             stats["with_mwes"] += 1
 
+        # Morphology from conjugation reverse lookup
+        morphology = None
+        if entry["word"].lower() != entry["lemma"].lower() and conj_reverse:
+            candidates = conj_reverse.get(entry["word"].lower(), [])
+            matches = [{"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                       for c in candidates if c["lemma"] == entry["lemma"].lower()]
+            if len(matches) == 1:
+                morphology = matches[0]
+            elif len(matches) > 1:
+                morphology = matches
+        elif entry["word"].lower() == entry["lemma"].lower():
+            # Tag infinitives: word == lemma and has a VERB meaning
+            has_verb = any(m["pos"] == "VERB" for m in senses)
+            if has_verb:
+                morphology = {"mood": "infinitivo"}
+
         # Cognate signals (single layer, object per entry)
         cognate_key = f"{entry['word']}|{entry['lemma']}"
         cognate_obj = cognates.get(cognate_key)
@@ -301,6 +326,9 @@ def main():
             mono_entry["mwe_memberships"] = mwe_memberships
         if entry.get("homograph_ids"):
             mono_entry["homograph_ids"] = entry["homograph_ids"]
+        if morphology:
+            mono_entry["morphology"] = morphology
+            stats["with_morphology"] += 1
         monolith.append(mono_entry)
 
         # Index entry (no examples)
@@ -320,6 +348,8 @@ def main():
             idx_entry["mwe_memberships"] = mwe_memberships
         if entry.get("homograph_ids"):
             idx_entry["homograph_ids"] = entry["homograph_ids"]
+        if morphology:
+            idx_entry["morphology"] = morphology
         index.append(idx_entry)
 
         # Examples file
@@ -358,6 +388,7 @@ def main():
     print(f"No senses (pos=X):  {stats['no_senses']:>6}")
     print(f"Translations cleaned: {stats['cleaned']:>5}")
     print(f"With MWEs:          {stats['with_mwes']:>6}")
+    print(f"With morphology:    {stats['with_morphology']:>6}")
     print()
 
     # Sample output

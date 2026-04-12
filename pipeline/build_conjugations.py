@@ -262,9 +262,11 @@ def main():
 
         # Reverse lookup
         for form, info in build_reverse_lookup(verb, cg):
-            # Only add if not already present with same lemma
+            # Only add if not already present with same lemma+mood+tense+person
             existing = reverse.get(form, [])
-            if not any(e["lemma"] == info["lemma"] for e in existing):
+            if not any(e["lemma"] == info["lemma"] and e["mood"] == info["mood"]
+                       and e["tense"] == info["tense"] and e["person"] == info["person"]
+                       for e in existing):
                 reverse[form].append(info)
 
     # Write outputs

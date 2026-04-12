@@ -118,6 +118,7 @@ function joinWithMaster(indexData, master) {
             display_form: m.display_form || null,
             variants: idx.variants || null,
             mwe_memberships: mwe_memberships.length > 0 ? mwe_memberships : undefined,
+            morphology: idx.morphology || null,
         });
     }
     return result;
@@ -475,7 +476,8 @@ async function loadVocabularyData(rangeString) {
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                 isMultiMeaning: true,
                 variants: item.variants || null,
-                homographIds: item.homograph_ids || null
+                homographIds: item.homograph_ids || null,
+                morphology: item.morphology || null
             };
             flashcards.push(card);
         }
@@ -748,7 +750,8 @@ async function loadIncorrectWordsSet() {
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
                 isMultiMeaning: true,
                 variants: item.variants || null,
-                homographIds: item.homograph_ids || null
+                homographIds: item.homograph_ids || null,
+                morphology: item.morphology || null
             };
             flashcards.push(card);
         }
@@ -904,7 +907,8 @@ function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
                 englishSentence: group.meanings[0].englishSentence,
                 links: generateLinks(group.word, group.lemma || group.word, langConfig.referenceLinks),
                 isMultiMeaning: true,
-                variants: group.variants || null
+                variants: group.variants || null,
+                morphology: group.morphology || null
             };
 
             flashcards.push(card);

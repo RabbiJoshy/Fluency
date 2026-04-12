@@ -1152,11 +1152,23 @@ function updateCard() {
         }
     }
 
+    // Build morphology tag if available (single object or array of objects)
+    let morphologyHTML = '';
+    if (card.morphology) {
+        const morphList = Array.isArray(card.morphology) ? card.morphology : [card.morphology];
+        const labels = morphList.map(m => [m.mood, m.tense, m.person].filter(Boolean).join(' · '));
+        const unique = [...new Set(labels)];
+        if (unique.length > 0) {
+            morphologyHTML = `<div style="text-align: center; font-size: 11px; color: var(--text-secondary); opacity: 0.7; margin-top: 4px;">${unique.join(' / ')}</div>`;
+        }
+    }
+
     let backHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold;">${wordDisplay}</div>
             </div>
+            ${morphologyHTML}
             ${homographChipHTML}
         </div>
     `;
