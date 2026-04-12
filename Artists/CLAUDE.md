@@ -61,15 +61,23 @@ Results merge additively into `senses_wiktionary.json` + `sense_assignments_wikt
 
 ### Method Priority
 
-Defined in `_artist_config.py`. Higher priority = better quality. Scripts skip words that already have equal or higher priority assignments.
+Defined in `pipeline/method_priority.py` (re-exported by `_artist_config.py`). Higher priority = better quality. Both pipelines use this — scripts skip words with equal-or-higher priority assignments.
 
 ```
 flash-lite-wiktionary: 50   (Gemini classifier)
 gap-fill:             50   (Gemini gap-fill)
+gemini:               40   (normal-mode Gemini classifier)
 biencoder:            30
 keyword-wiktionary:   10
 keyword:              10
 wiktionary-auto:       0   (single-sense default)
+```
+
+Translation priority (artist builder uses for example sorting):
+```
+gemini:  50   (LLM re-translation)
+genius:  40   (fan translations)
+google:  10   (raw Google Translate)
 ```
 
 ### Typical run order for a new artist
@@ -100,8 +108,8 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | `senses_gemini.json` | `{word\|lemma: [{pos, translation, source}]}` (old) | `senses_wiktionary.json` |
 | `senses_wiktionary.json` | `{word\|lemma: {sense_id: {pos, translation, source}}}` (new) | `senses_wiktionary.json` |
 | `sense_assignments_wiktionary.json` | `{word: {method: [{sense, examples}]}}` (new) | `sense_assignments.json` |
-| `sense_assignments.json` | `{word: [{sense_idx, examples, method}]}` (old) | `sense_assignments.json` |
-| `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) |
+| `sense_assignments.json` | `{word: [{sense_idx, examples, method}]}` (old) | `sense_assignments.json` (now uses unified format) |
+| `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) — consumed by builder for example quality sorting |
 | `cognates.json` | `{word\|lemma: true}` (legacy per-artist; shared layer preferred) | `cognates.json` |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (none) |
 | `lyrics_timestamps.json` | `{_meta: {...}, timestamps: {song: {line: {ms, confidence}}}}` | (none) |

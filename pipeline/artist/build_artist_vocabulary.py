@@ -118,6 +118,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     conj_reverse_path = os.path.join(project_root, "Data", "Spanish", "layers", "conjugation_reverse.json")
     conj_reverse = load_layer(conj_reverse_path, "conjugation_reverse (shared)", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
+    translation_scores = load_layer(os.path.join(layers_dir, "translation_scores.json"),
+                                     "translation_scores", required=False) or {}
     lyrics_ts = load_layer(os.path.join(layers_dir, "lyrics_timestamps.json"), "lyrics_timestamps", required=False)
     ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
 
@@ -329,10 +331,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             "english": english,
                             "translation_source": source,
                         }
+                        # Attach translation quality score if available
+                        score_entry = translation_scores.get(spanish, {})
+                        if isinstance(score_entry, dict) and "score" in score_entry:
+                            ex_dict["translation_quality"] = score_entry["score"]
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         if ts_entry:
                             ex_dict["timestamp_ms"] = ts_entry["ms"]
                         meaning_examples.append(ex_dict)
+
+                # Sort examples by translation quality (highest first)
+                meaning_examples.sort(
+                    key=lambda e: e.get("translation_quality", 3), reverse=True)
 
                 freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
                 meanings.append({

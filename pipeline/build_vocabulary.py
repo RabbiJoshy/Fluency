@@ -27,34 +27,13 @@ Outputs:
 """
 
 import gzip
-import hashlib
 import json
 import re
 import sys
 from pathlib import Path
 
-
-def _sense_id(pos, translation):
-    """Content-hash ID for a sense (matches artist pipeline's make_sense_id)."""
-    return hashlib.md5(("%s|%s" % (pos, translation)).encode("utf-8")).hexdigest()[:3]
-
-
-def _convert_assignments(old_assigns, senses, method="biencoder"):
-    """Convert old-format assignments to method-aware format with sense IDs.
-
-    Old: [{sense_idx: 0, examples: [0,1,2]}]
-    New: {method: [{sense: "abc", examples: [0,1,2]}]}
-    """
-    if not old_assigns or not senses:
-        return {}
-    items = []
-    for a in old_assigns:
-        idx = a.get("sense_idx", 0)
-        if idx < len(senses):
-            s = senses[idx]
-            sid = _sense_id(s["pos"], s["translation"])
-            items.append({"sense": sid, "examples": a.get("examples", [])})
-    return {method: items} if items else {}
+from method_priority import (METHOD_PRIORITY, best_method_priority,
+                              make_sense_id, assign_sense_ids)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -254,12 +233,28 @@ def main():
         base_entry["corpus_count"] = base_entry.get("corpus_count", 0) + e.get("corpus_count", 0)
         # Build self-contained clitic entry
         clitic_exs = examples_raw.get(clitic_id, [])
-        clitic_assigns = assignments.get(clitic_id, [])
-        key = f"{e['word']}|{e['lemma']}"
-        clitic_senses = senses_data.get(key, [])
+        clitic_key = f"{e['word']}|{e['lemma']}"
+        clitic_raw_assigns = assignments.get(clitic_key, assignments.get(clitic_id, {}))
+        clitic_senses = senses_data.get(clitic_key, [])
         translation = clitic_senses[0]["translation"] if clitic_senses else ""
-        # Convert old-format assignments to method-aware format
-        converted_assigns = _convert_assignments(clitic_assigns, clitic_senses)
+        # Normalize to method-aware format
+        if isinstance(clitic_raw_assigns, dict):
+            converted_assigns = clitic_raw_assigns
+        elif isinstance(clitic_raw_assigns, list) and clitic_senses:
+            # Old format: convert positional to sense-ID-keyed
+            sid_map = assign_sense_ids(clitic_senses)
+            id_list = list(sid_map.keys())
+            method_name = "biencoder"
+            if clitic_raw_assigns and isinstance(clitic_raw_assigns[0], dict):
+                method_name = clitic_raw_assigns[0].get("method", "biencoder")
+            items = []
+            for a in clitic_raw_assigns:
+                idx = a.get("sense_idx", 0)
+                if idx < len(id_list):
+                    items.append({"sense": id_list[idx], "examples": a.get("examples", [])})
+            converted_assigns = {method_name: items} if items else {}
+        else:
+            converted_assigns = {}
         clitic_data[wl] = {
             "id": clitic_id,
             "base_verb": base_verb,
@@ -311,7 +306,34 @@ def main():
         key = f"{entry['word']}|{entry['lemma']}"
         senses = senses_data.get(key, [])
         word_examples = examples_raw.get(word_id, [])
-        word_assignments = assignments.get(word_id, [])
+
+        # Resolve assignments: new format (word|lemma key, method-keyed)
+        # with fallback to old format (hex ID key, flat list)
+        raw_assigns = assignments.get(key, assignments.get(word_id, {}))
+
+        # Normalize to flat list of {sense_idx, examples} for downstream
+        word_assignments = []
+        if isinstance(raw_assigns, dict) and raw_assigns:
+            # New format: {method: [{sense, examples}]}
+            best_method = max(raw_assigns.keys(),
+                              key=lambda m: METHOD_PRIORITY.get(m, -1))
+            sense_id_map = assign_sense_ids(senses) if senses else {}
+            id_list = list(sense_id_map.keys())
+            for a in raw_assigns[best_method]:
+                sid = a.get("sense")
+                if sid and sid in sense_id_map:
+                    word_assignments.append({
+                        "sense_idx": id_list.index(sid),
+                        "examples": a.get("examples", []),
+                    })
+                elif senses:
+                    word_assignments.append({
+                        "sense_idx": 0,
+                        "examples": a.get("examples", []),
+                    })
+        elif isinstance(raw_assigns, list):
+            # Old format: [{sense_idx, examples}]
+            word_assignments = raw_assigns
 
         # Build meanings from senses + assignments
         meanings_full = []  # For monolith (with examples)
@@ -358,13 +380,13 @@ def main():
             total_assigned = sum(len(a["examples"]) for a in word_assignments)
 
             for a in word_assignments:
-                sense_idx = a["sense_idx"]
+                sense_idx = a.get("sense_idx", 0)
                 if sense_idx >= len(senses):
                     continue
                 sense = senses[sense_idx]
 
                 # Gather actual example objects
-                exs = [word_examples[i] for i in a["examples"]
+                exs = [word_examples[i] for i in a.get("examples", [])
                        if i < len(word_examples)]
 
                 # Compute frequency from assignment counts

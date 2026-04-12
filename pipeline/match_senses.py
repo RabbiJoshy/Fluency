@@ -36,9 +36,13 @@ import argparse
 import json
 import os
 import re
+import shutil
 import time
 from collections import defaultdict
 from pathlib import Path
+
+from method_priority import (METHOD_PRIORITY, best_method_priority,
+                              assign_sense_ids)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -133,7 +137,7 @@ def classify_with_gemini(work_items, output, english_only=False):
     sense_id_to_text = {}
     word_sense_ids = {}  # work_item index -> sense_list_id
 
-    for wi, (word_id, senses, examples, keep_indices) in enumerate(work_items):
+    for wi, (key, senses, examples, keep_indices) in enumerate(work_items):
         reduced = [senses[i] for i in keep_indices]
         sig = tuple((s["pos"], s["translation"]) for s in reduced)
         if sig not in sense_sig_to_id:
@@ -177,7 +181,7 @@ def classify_with_gemini(work_items, output, english_only=False):
         batch_info = []
         batch_example_count = 0
 
-        for wi_offset, (word_id, senses, examples, keep_indices) in enumerate(batch):
+        for wi_offset, (key, senses, examples, keep_indices) in enumerate(batch):
             word_num = wi_offset + 1
             sid = word_sense_ids[batch_indices[wi_offset]]
 
@@ -198,7 +202,7 @@ def classify_with_gemini(work_items, output, english_only=False):
                         word_num, sent_num, eng[:120], spa[:80]))
                 batch_example_count += 1
 
-            batch_info.append((word_id, word_num, senses, keep_indices, examples_with_eng))
+            batch_info.append((key, word_num, senses, keep_indices, examples_with_eng))
             prompt_lines.append("")
 
         prompt = "\n".join(prompt_lines)
@@ -228,7 +232,7 @@ def classify_with_gemini(work_items, output, english_only=False):
     ]
 
     def _parse_response(resp_text, batch_info, batch_idx=0):
-        """Parse Gemini response and return list of (word_id, senses, orig_idx, ei)."""
+        """Parse Gemini response and return list of (key, senses, orig_idx, ei)."""
         results = []
         # Strip markdown code fences
         text = resp_text.strip()
@@ -253,7 +257,7 @@ def classify_with_gemini(work_items, output, english_only=False):
             sent_num = int(m.group(2))
             chosen_sense = int(m.group(3))
 
-            for word_id, wn, senses, keep_indices, examples_with_eng in batch_info:
+            for key, wn, senses, keep_indices, examples_with_eng in batch_info:
                 if wn != word_num:
                     continue
                 if sent_num < 1 or sent_num > len(examples_with_eng):
@@ -296,10 +300,10 @@ def classify_with_gemini(work_items, output, english_only=False):
                         return
 
             results = _parse_response(resp_text, batch_info, batch_idx)
-            for word_id, senses, orig_idx, ei in results:
-                if word_id not in output or not isinstance(output[word_id], dict):
-                    output[word_id] = {"_indices": [[] for _ in senses]}
-                output[word_id]["_indices"][orig_idx].append(ei)
+            for key, senses, orig_idx, ei in results:
+                if key not in output or not isinstance(output[key], dict):
+                    output[key] = {"_indices": [[] for _ in senses]}
+                output[key]["_indices"][orig_idx].append(ei)
                 total_classified += 1
 
             batches_done += 1
@@ -322,8 +326,8 @@ def classify_with_gemini(work_items, output, english_only=False):
         print("  {} batches failed (words fell back to first-sense default)".format(errors))
 
     # Convert _indices dicts to assignment format with frequency filtering
-    for word_id, senses, examples, keep_indices in work_items:
-        raw = output.get(word_id, {})
+    for key, senses, examples, keep_indices in work_items:
+        raw = output.get(key, {})
         if isinstance(raw, dict) and "_indices" in raw:
             sense_example_indices = raw["_indices"]
         else:
@@ -350,7 +354,7 @@ def classify_with_gemini(work_items, output, english_only=False):
                                  if MAX_EXAMPLES_PER_MEANING else len(examples)))
             assignments = [{"sense_idx": 0, "examples": indices, "method": "gemini"}]
 
-        output[word_id] = assignments
+        output[key] = assignments
 
     elapsed = time.time() - t0
     print("\n  Done: {:,} examples classified in {:.1f}s (~${:.2f})".format(
@@ -379,7 +383,7 @@ def classify_with_biencoder(work_items, output):
     print("\nPreparing example texts...")
     example_texts = []   # flat list of bilingual texts
     example_map = []     # (work_idx, example_idx) for each text
-    for wi, (word_id, senses, examples, keep_indices) in enumerate(work_items):
+    for wi, (key, senses, examples, keep_indices) in enumerate(work_items):
         for ei, ex in enumerate(examples):
             if ex.get("english", ""):
                 example_texts.append(bilingual_text(ex))
@@ -389,7 +393,7 @@ def classify_with_biencoder(work_items, output):
     # Collect all sense texts (raw "pos: translation" — best for bi-encoder)
     sense_texts = []
     sense_map = []       # (work_idx, sense_original_idx) for each text
-    for wi, (word_id, senses, examples, keep_indices) in enumerate(work_items):
+    for wi, (key, senses, examples, keep_indices) in enumerate(work_items):
         for ki in keep_indices:
             s = senses[ki]
             label = _POS_LABELS.get(s["pos"], s["pos"])
@@ -425,7 +429,7 @@ def classify_with_biencoder(work_items, output):
     # Classify each word
     print("\nClassifying {:,} words by cosine similarity...".format(len(work_items)))
     t0 = time.time()
-    for wi, (word_id, senses, examples, keep_indices) in enumerate(work_items):
+    for wi, (key, senses, examples, keep_indices) in enumerate(work_items):
         n_senses = len(senses)
         sense_example_indices = [[] for _ in senses]
 
@@ -468,7 +472,7 @@ def classify_with_biencoder(work_items, output):
             indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples)))
             assignments = [{"sense_idx": 0, "examples": indices, "method": "biencoder"}]
 
-        output[word_id] = assignments
+        output[key] = assignments
 
     elapsed = time.time() - t0
     print("  Done in {:.1f}s".format(elapsed))
@@ -635,6 +639,48 @@ def classify_example_keyword(sentence_english, senses):
 
 
 # ---------------------------------------------------------------------------
+# Output format conversion
+# ---------------------------------------------------------------------------
+
+def _write_new_format(output, existing_assigns, senses_data, sense_id_maps):
+    """Convert internal output to method-keyed format, merge with existing, and write.
+
+    Internal format: {key: [{sense_idx, examples, method?}]}
+    New format:      {key: {method: [{sense: id, examples: [...]}]}}
+    """
+    for key, assigns in output.items():
+        if not isinstance(assigns, list):
+            continue  # already converted or intermediate _indices dict
+
+        senses = senses_data.get(key, [])
+        id_map_list = list(sense_id_maps.get(key, {}).keys())
+
+        # Determine method from assignments (all should agree, use first)
+        method_name = "keyword"
+        if assigns and isinstance(assigns[0], dict):
+            method_name = assigns[0].get("method", "keyword")
+
+        items = []
+        for a in assigns:
+            idx = a.get("sense_idx", 0)
+            if idx < len(id_map_list):
+                items.append({"sense": id_map_list[idx],
+                              "examples": a.get("examples", [])})
+            elif id_map_list:
+                # Fallback to first sense
+                items.append({"sense": id_map_list[0],
+                              "examples": a.get("examples", [])})
+
+        if items:
+            if key not in existing_assigns or not isinstance(existing_assigns.get(key), dict):
+                existing_assigns[key] = {}
+            existing_assigns[key][method_name] = items
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(existing_assigns, f, ensure_ascii=False, indent=2)
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -655,6 +701,8 @@ def main():
                         help="Only classify first N words (by frequency rank)")
     parser.add_argument("--english-only", action="store_true",
                         help="Gemini: drop Spanish from examples (saves ~40%% input tokens)")
+    parser.add_argument("--force", action="store_true",
+                        help="Bypass priority checking — reclassify all words")
     args = parser.parse_args()
 
     # Default mode is gemini
@@ -695,6 +743,65 @@ def main():
         senses_data = json.load(f)
     print("  {:,} sense entries".format(len(senses_data)))
 
+    # Determine current method and its priority
+    if use_gemini:
+        my_method = "gemini"
+    elif use_biencoder:
+        my_method = "biencoder"
+    else:
+        my_method = "keyword"
+    my_priority = METHOD_PRIORITY.get(my_method, 0)
+
+    # Build sense ID maps for new-format output
+    sense_id_maps = {}
+    for skey, senses_list in senses_data.items():
+        if isinstance(senses_list, list):
+            sense_id_maps[skey] = assign_sense_ids(senses_list)
+
+    # Build word_id -> word|lemma lookup for migrating old-format assignments
+    id_to_key = {}
+    for entry in inventory:
+        id_to_key[entry["id"]] = "{}|{}".format(entry["word"], entry["lemma"])
+
+    # Load existing assignments (with auto-migration from old format)
+    existing_assigns = {}
+    if OUTPUT_FILE.exists():
+        with open(OUTPUT_FILE, encoding="utf-8") as f:
+            raw_assigns = json.load(f)
+        if raw_assigns:
+            first_val = next(iter(raw_assigns.values()))
+            if isinstance(first_val, list):
+                # Old format (keyed by hex ID with sense_idx) — migrate
+                print("  Migrating old-format assignments to method-keyed format...")
+                backup_path = OUTPUT_FILE.with_suffix(".json.bak")
+                if not backup_path.exists():
+                    shutil.copy2(OUTPUT_FILE, backup_path)
+                    print("  Backed up old file to {}".format(backup_path.name))
+                migrated = 0
+                for wid, assigns in raw_assigns.items():
+                    key = id_to_key.get(wid)
+                    if not key:
+                        continue
+                    senses = senses_data.get(key, [])
+                    id_map_list = list(sense_id_maps.get(key, {}).keys())
+                    old_method = "biencoder"
+                    if assigns and isinstance(assigns[0], dict):
+                        old_method = assigns[0].get("method", "biencoder")
+                    items = []
+                    for a in assigns:
+                        idx = a.get("sense_idx", 0)
+                        if idx < len(id_map_list):
+                            items.append({"sense": id_map_list[idx],
+                                          "examples": a.get("examples", [])})
+                    if items:
+                        existing_assigns[key] = {old_method: items}
+                        migrated += 1
+                print("  Migrated {:,} entries".format(migrated))
+            else:
+                # Already new format
+                existing_assigns = raw_assigns
+        print("  Loaded {:,} existing assignments".format(len(existing_assigns)))
+
     # Apply --limit (inventory is sorted by frequency rank)
     if args.limit > 0:
         inventory = inventory[:args.limit]
@@ -724,14 +831,14 @@ def main():
     # Load partial progress (only if fingerprint matches)
     partial_file = OUTPUT_FILE.with_suffix(".partial.json")
     output = {}
-    done_ids = set()
+    done_keys = set()
     if partial_file.exists():
         try:
             with open(partial_file, encoding="utf-8") as f:
                 saved = json.load(f)
             if saved.get("fingerprint") == run_fingerprint:
                 output = saved.get("assignments", {})
-                done_ids = set(output.keys())
+                done_keys = set(output.keys())
                 print("\nResuming: {:,} assignments loaded from checkpoint".format(len(output)))
             else:
                 print("\nStale checkpoint detected (inputs changed), starting fresh")
@@ -742,10 +849,11 @@ def main():
 
     # Build work items for multi-sense words
     print("\nPreparing work items...")
-    work_items = []  # (word_id, senses, examples, keep_indices)
+    work_items = []  # (key, senses, examples, keep_indices)
     single_sense_count = 0
     no_senses_count = 0
     no_examples_count = 0
+    skipped_priority = 0
 
     for entry in inventory:
         word_id = entry["id"]
@@ -757,26 +865,33 @@ def main():
             no_senses_count += 1
             continue
 
+        # Priority check: skip words with equal-or-higher priority assignments
+        if not args.force and key in existing_assigns:
+            existing_priority = best_method_priority(existing_assigns[key])
+            if existing_priority >= my_priority:
+                skipped_priority += 1
+                continue
+
         if not examples:
             no_examples_count += 1
-            if word_id not in done_ids:
-                output[word_id] = [{"sense_idx": 0, "examples": []}]
+            if key not in done_keys:
+                output[key] = [{"sense_idx": 0, "examples": []}]
             continue
 
         if len(senses) == 1:
             single_sense_count += 1
-            if word_id not in done_ids:
+            if key not in done_keys:
                 indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples)))
-                output[word_id] = [{"sense_idx": 0, "examples": indices}]
+                output[key] = [{"sense_idx": 0, "examples": indices}]
             continue
 
-        if word_id in done_ids:
+        if key in done_keys:
             continue
 
         keep_indices = merge_map.get(key, list(range(len(senses))))
 
         if use_gemini or use_biencoder:
-            work_items.append((word_id, senses, examples, keep_indices))
+            work_items.append((key, senses, examples, keep_indices))
         else:
             # Keyword fallback — process inline
             sense_example_indices = [[] for _ in senses]
@@ -797,33 +912,36 @@ def main():
                 assignments.append({"sense_idx": i, "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices, "method": "keyword"})
             if not assignments:
                 assignments = [{"sense_idx": 0, "examples": list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples))), "method": "keyword"}]
-            output[word_id] = assignments
+            output[key] = assignments
+
+    if skipped_priority:
+        print("  Skipped {:,} words (existing priority >= {})".format(
+            skipped_priority, my_method))
 
     # Seed first-sense fallback for unprocessed multi-sense words so that
     # sense_assignments.json is always complete even after Ctrl+C.
     # Real cross-encoder results overwrite these as they complete.
     seeded = 0
-    for word_id, senses, examples, keep_indices in work_items:
-        if word_id not in done_ids:
+    for key, senses, examples, keep_indices in work_items:
+        if key not in done_keys:
             indices = list(range(
                 min(len(examples), MAX_EXAMPLES_PER_MEANING)
                 if MAX_EXAMPLES_PER_MEANING else len(examples)))
-            output[word_id] = [{"sense_idx": 0, "examples": indices}]
+            output[key] = [{"sense_idx": 0, "examples": indices}]
             seeded += 1
 
     # Write initial assignments so sense_assignments.json is usable immediately
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
+    _write_new_format(output, existing_assigns, senses_data, sense_id_maps)
     if seeded:
         print("  Seeded {:,} multi-sense words with first-sense fallback".format(seeded))
     print("  Wrote initial assignments ({:,} entries) to {}".format(
-        len(output), OUTPUT_FILE.name))
+        len(existing_assigns), OUTPUT_FILE.name))
 
-    skipped = len(done_ids & {wi[0] for wi in work_items}) if done_ids else 0
+    skipped = len(done_keys & {wi[0] for wi in work_items}) if done_keys else 0
     print("  Single-sense (no classification): {:,}".format(single_sense_count))
     print("  Multi-sense to classify: {:,}".format(len(work_items)))
-    if done_ids:
-        print("  Already done (checkpoint): {:,}".format(len(done_ids)))
+    if done_keys:
+        print("  Already done (checkpoint): {:,}".format(len(done_keys)))
 
     if not work_items:
         print("\nNo work to do!")
@@ -834,10 +952,9 @@ def main():
     else:
         print("\nKeyword classification done (instant)")
 
-    # Write final output
+    # Write final output — convert internal format to method-keyed with sense IDs
     print("\nWriting {}...".format(OUTPUT_FILE))
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
+    _write_new_format(output, existing_assigns, senses_data, sense_id_maps)
 
     if partial_file.exists():
         partial_file.unlink()
@@ -845,17 +962,34 @@ def main():
 
     # Report
     from collections import Counter
-    active = Counter(len(v) for v in output.values())
+    method_counts = Counter()
+    for key, methods in existing_assigns.items():
+        if isinstance(methods, dict):
+            for m in methods:
+                method_counts[m] += 1
     print("\n{}".format("=" * 55))
     print("SENSE ASSIGNMENT RESULTS ({})".format(method))
     print("{}".format("=" * 55))
-    print("Total assignments:         {:>6,}".format(len(output)))
+    print("Total assignments:         {:>6,}".format(len(existing_assigns)))
     print("No Wiktionary senses:      {:>6,}".format(no_senses_count))
     print("Single sense:              {:>6,}".format(single_sense_count))
     print("Multi-sense (classified):  {:>6,}".format(len(work_items)))
     print("No examples:               {:>6,}".format(no_examples_count))
+    if skipped_priority:
+        print("Skipped (higher priority):  {:>5,}".format(skipped_priority))
+    if method_counts:
+        print("\nMethods in output:")
+        for m, cnt in method_counts.most_common():
+            print("  {:25s} {:>6,}  (priority={})".format(
+                m, cnt, METHOD_PRIORITY.get(m, "?")))
     print()
     print("Active senses per word:")
+    active = Counter()
+    for key, methods in existing_assigns.items():
+        if isinstance(methods, dict):
+            # Count senses from the best method
+            best_m = max(methods.keys(), key=lambda m: METHOD_PRIORITY.get(m, -1))
+            active[len(methods[best_m])] += 1
     for n in sorted(active):
         print("  {} senses: {:>6,} words".format(n, active[n]))
 

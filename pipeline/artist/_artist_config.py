@@ -239,56 +239,12 @@ def normalize_translation(translation):
 
 
 # ---------------------------------------------------------------------------
-# Method priority for sense assignments
+# Method priority for sense assignments — shared module
 # ---------------------------------------------------------------------------
-# Higher number = higher quality. A run should skip words that already have
-# an assignment from an equal or higher-priority method.
+# Re-exported from pipeline/method_priority.py so existing imports keep working.
 
-METHOD_PRIORITY = {
-    "flash-lite-wiktionary": 50,
-    "gap-fill": 50,
-    "biencoder": 30,
-    "keyword-wiktionary": 10,
-    "keyword": 10,
-    "wiktionary-auto": 0,    # single-sense default, always overwritable
-}
-
-
-def best_method_priority(word_assignments):
-    """Return the highest method priority for a word's existing assignments.
-
-    word_assignments: the value from sense_assignments_wiktionary.json for one word.
-    Can be a dict of {method: [assignments]} (new format) or a list (old format).
-    """
-    if isinstance(word_assignments, dict):
-        return max(METHOD_PRIORITY.get(m, 0) for m in word_assignments)
-    return 0
-
-
-def make_sense_id(pos, translation):
-    """Generate a stable content-hash ID for a sense.
-
-    Derived from pos + translation so the same sense always gets the same ID.
-    Returns 3-char hex string. Caller handles collisions by extending length.
-    """
-    import hashlib
-    return hashlib.md5(("%s|%s" % (pos, translation)).encode("utf-8")).hexdigest()[:3]
-
-
-def assign_sense_ids(senses_list):
-    """Assign stable content-hash IDs to a list of sense dicts.
-
-    Returns dict of {sense_id: sense_dict}. Extends ID length on collision.
-    """
-    import hashlib
-    result = {}
-    for s in senses_list:
-        full_hash = hashlib.md5(
-            ("%s|%s" % (s["pos"], s["translation"])).encode("utf-8")
-        ).hexdigest()
-        for length in range(3, len(full_hash) + 1):
-            sid = full_hash[:length]
-            if sid not in result:
-                break
-        result[sid] = s
-    return result
+import sys as _sys
+import os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+from method_priority import (METHOD_PRIORITY, TRANSLATION_PRIORITY,  # noqa: E402, F401
+                              best_method_priority, make_sense_id, assign_sense_ids)
