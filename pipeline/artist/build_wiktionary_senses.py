@@ -326,17 +326,23 @@ def main():
     with open(translations_path) as f:
         translations = json.load(f)
 
-    # Load existing senses to get lemma mapping
-    senses_gemini_path = os.path.join(layers_dir, "senses_gemini.json")
-    with open(senses_gemini_path) as f:
-        senses_gemini = json.load(f)
-
-    # Build word→lemma map from existing senses
+    # Build word→lemma map from sense menu (and archived senses_gemini if present)
     word_to_lemma = {}
-    for key in senses_gemini:
-        parts = key.split("|", 1)
-        if len(parts) == 2:
-            word_to_lemma[parts[0]] = parts[1]
+    sense_menu_path = os.path.join(layers_dir, "sense_menu.json")
+    if os.path.isfile(sense_menu_path):
+        with open(sense_menu_path) as f:
+            for key in json.load(f):
+                parts = key.split("|", 1)
+                if len(parts) == 2:
+                    word_to_lemma[parts[0]] = parts[1]
+    # Fallback: old senses_gemini.json if it exists
+    senses_gemini_path = os.path.join(layers_dir, "senses_gemini.json")
+    if os.path.isfile(senses_gemini_path):
+        with open(senses_gemini_path) as f:
+            for key in json.load(f):
+                parts = key.split("|", 1)
+                if len(parts) == 2 and parts[0] not in word_to_lemma:
+                    word_to_lemma[parts[0]] = parts[1]
 
     # Load Wiktionary
     print("Loading English Wiktionary...")
