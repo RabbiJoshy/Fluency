@@ -21,7 +21,8 @@ import re
 import sys
 import argparse
 
-from _artist_config import add_artist_arg, load_artist_config, load_shared_dict, normalize_translation
+from _artist_config import (add_artist_arg, load_artist_config, load_shared_dict,
+                            normalize_translation, METHOD_PRIORITY, best_method_priority)
 
 
 # ---------------------------------------------------------------------------
@@ -114,6 +115,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
     cognates = load_layer(shared_cognates, "cognates (shared)", required=False) or {}
+    conj_reverse_path = os.path.join(project_root, "Data", "Spanish", "layers", "conjugation_reverse.json")
+    conj_reverse = load_layer(conj_reverse_path, "conjugation_reverse (shared)", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
     lyrics_ts = load_layer(os.path.join(layers_dir, "lyrics_timestamps.json"), "lyrics_timestamps", required=False)
     ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
@@ -172,24 +175,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         raw_assignments = assignments.get(word, [])
         if isinstance(raw_assignments, dict):
             # New format: {method: [{sense, examples}]}
-            # Pick best available method by priority
-            METHOD_PRIORITY = ["flash-lite-wiktionary", "biencoder",
-                               "wiktionary-auto", "gap-fill",
-                               "keyword-wiktionary", "flash-lite-wiktionary-fallback"]
+            # Pick best available method by priority (from _artist_config.py)
+            best_method = max(raw_assignments.keys(),
+                              key=lambda m: METHOD_PRIORITY.get(m, -1))
             word_assignments = []
-            for method in METHOD_PRIORITY:
-                if method in raw_assignments:
-                    # Convert sense IDs to sense dicts for the builder
-                    for a in raw_assignments[method]:
-                        sid = a.get("sense")
-                        if sense_by_id and sid in sense_by_id:
-                            s = sense_by_id[sid]
-                            word_assignments.append({
-                                "sense_idx": list(sense_by_id.keys()).index(sid),
-                                "examples": a.get("examples", []),
-                                "method": method,
-                            })
-                    break  # use first matching method
+            for a in raw_assignments[best_method]:
+                sid = a.get("sense")
+                if sense_by_id and sid in sense_by_id:
+                    word_assignments.append({
+                        "sense_idx": list(sense_by_id.keys()).index(sid),
+                        "examples": a.get("examples", []),
+                        "method": best_method,
+                    })
         else:
             # Old format: [{sense_idx, examples, method}]
             word_assignments = raw_assignments
@@ -210,9 +207,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 pos = sense["pos"]
                 translation = sense["translation"]
 
-                # Apply curated override (keyed by word|lemma)
+                # Apply curated override only for single-sense words.
+                # Multi-sense Wiktionary assignments have per-sense translations
+                # that are more specific than a blanket curated override.
                 curated_key = "%s|%s" % (word.lower(), word_lemma)
-                if curated_key in curated:
+                if curated_key in curated and len(word_assignments) == 1:
                     translation = curated[curated_key]
 
                 # Gather examples
@@ -300,8 +299,25 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "examples": fallback_examples,
             })
 
+        # Morphology from conjugation reverse lookup
+        morphology = None
+        if word.lower() != word_lemma.lower() and conj_reverse:
+            candidates = conj_reverse.get(word.lower(), [])
+            matches = [{"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                       for c in candidates if c["lemma"] == word_lemma.lower()]
+            if len(matches) == 1:
+                morphology = matches[0]
+            elif len(matches) > 1:
+                morphology = matches
+        elif word.lower() == word_lemma.lower():
+            # Tag infinitives: word == lemma and has a VERB sense
+            has_verb = word_senses and any(s.get("pos") == "VERB" for s in word_senses)
+            if has_verb:
+                morphology = {"mood": "infinitivo"}
+
         # Build the entry
         # Get flags from senses_gemini key or master (flags come through master)
+        has_wikt = bool(word_senses and word_assignments and isinstance(raw_assignments, dict))
         entry = {
             "id": "",
             "word": word,
@@ -313,11 +329,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             "is_propernoun": False,
             "is_transparent_cognate": False,
             "corpus_count": corpus_count,
+            "_has_wikt_assignments": has_wikt,
         }
         if display_form:
             entry["display_form"] = display_form
         if variants:
             entry["variants"] = variants
+        if morphology:
+            entry["morphology"] = morphology
 
         # Apply cognate signals from layer (object per entry)
         cognate_key = "%s|%s" % (word, word_lemma)
@@ -423,15 +442,27 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         if entry.get("display_form") and not m.get("display_form"):
             m["display_form"] = entry["display_form"]
 
-        # Merge senses into master (normalized matching to avoid near-duplicates)
-        for meaning in entry.get("meanings", []):
-            pos = meaning.get("pos", "X")
-            translation = meaning.get("translation", "")
-            norm = normalize_translation(translation)
-            exists = any(s["pos"] == pos and normalize_translation(s["translation"]) == norm for s in m["senses"])
-            if not exists:
-                m["senses"].append({"pos": pos, "translation": translation})
-                new_senses += 1
+        # Update master senses. If this entry has Wiktionary assignments
+        # (biencoder/flash-lite/gap-fill), replace master senses entirely —
+        # those are higher quality than old Gemini step 6 senses.
+        # Otherwise union (for entries with only old Gemini data).
+        entry_meanings = entry.get("meanings", [])
+        if entry.get("_has_wikt_assignments"):
+            new_senses_list = [{"pos": m_.get("pos", "X"), "translation": m_.get("translation", "")}
+                               for m_ in entry_meanings]
+            if new_senses_list:
+                old_count = len(m["senses"])
+                m["senses"] = new_senses_list
+                new_senses += len(new_senses_list) - old_count
+        else:
+            for meaning in entry_meanings:
+                pos = meaning.get("pos", "X")
+                translation = meaning.get("translation", "")
+                norm = normalize_translation(translation)
+                exists = any(s["pos"] == pos and normalize_translation(s["translation"]) == norm for s in m["senses"])
+                if not exists:
+                    m["senses"].append({"pos": pos, "translation": translation})
+                    new_senses += 1
 
     print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))
 
@@ -597,6 +628,8 @@ def write_split_files(entries, master, vocab_path, master_path):
             idx_entry["cognet_cognate"] = True
         if entry.get("variants"):
             idx_entry["variants"] = entry["variants"]
+        if entry.get("morphology"):
+            idx_entry["morphology"] = entry["morphology"]
         if entry_mwes:
             idx_entry["mwe_memberships"] = [
                 {"expression": mwe["expression"], "translation": mwe.get("translation", ""),

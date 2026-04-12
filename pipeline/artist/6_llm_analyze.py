@@ -843,7 +843,8 @@ def main():
             skip_data = json.load(f)
         # Combine all skip categories into one set
         skip_all = set()
-        for key in ("known_spanish", "known_elision", "known_shared", "english", "low_frequency"):
+        for key in ("known_normal_vocab", "known_conjugation",
+                    "known_elision", "known_shared", "english", "low_frequency"):
             skip_all.update(skip_data.get(key, []))
         SKIP_WORDS = frozenset(skip_all)
         print("  Step 4 filter: %d words to skip (%d remaining)" %

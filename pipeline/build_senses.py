@@ -52,6 +52,7 @@ POS_MAP = {
     "det": "DET",
     "article": "DET",
     "intj": "INTJ",
+    "name": "PROPN",
     "num": "NUM",
     "particle": "PART",
     "phrase": "PHRASE",
@@ -301,21 +302,42 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
     """
     redirects = redirects or {}
 
+    def follow_redirects(forms, redirects, index, max_hops=5):
+        """Expand a list of lookup forms by following redirect chains.
+
+        Follows form-of redirects up to max_hops until an indexed entry is
+        found or the chain dead-ends. Avoids cycles.
+        """
+        seen = set(forms)
+        queue = list(forms)
+        for f in queue:
+            target = redirects.get(f)
+            if target and target not in seen:
+                seen.add(target)
+                queue.append(target)
+                # Follow chain from target
+                for _ in range(max_hops - 1):
+                    if target in index:
+                        break  # reached an indexed entry, stop
+                    next_target = redirects.get(target)
+                    if not next_target or next_target in seen:
+                        break
+                    seen.add(next_target)
+                    queue.append(next_target)
+                    target = next_target
+        return queue
+
     # Build groups of forms: primary (lemma), secondary (word if different)
     # We merge results from all matching groups
     groups = []
     # Group 1: lemma and its variants
     lemma_forms = [lemma.lower(), strip_accents(lemma.lower())]
-    for f in list(lemma_forms):
-        if f in redirects:
-            lemma_forms.append(redirects[f])
+    lemma_forms = follow_redirects(lemma_forms, redirects, wikt_index)
     groups.append(lemma_forms)
     # Group 2: word form and its variants (if different from lemma)
     if word.lower() != lemma.lower():
         word_forms = [word.lower(), strip_accents(word.lower())]
-        for f in list(word_forms):
-            if f in redirects:
-                word_forms.append(redirects[f])
+        word_forms = follow_redirects(word_forms, redirects, wikt_index)
         groups.append(word_forms)
 
     # Collect candidates from all groups

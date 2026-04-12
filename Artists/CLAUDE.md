@@ -36,7 +36,7 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `pipeline/artist/4_filter_known_vocab.py` | `skip_words.json` | Filter known vocab (50k Spanish + conjugations + lingua + English 50k wordlist + interjection regex + proper noun capitalization/NER) |
+| 4 | `pipeline/artist/4_filter_known_vocab.py` | `skip_words.json` | Classify words for sense-mapping method. 6 phases: junk detection (interjections + proper nouns incl. Wiktionary POS), known vocab (normal-mode + conjugation), English (50k + lingua), Wiktionary reclassification, spaCy NER, frequency threshold. Output splits `known_normal_vocab` / `known_conjugation`. |
 | 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
 | 6 | `pipeline/artist/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
 | 6b | `pipeline/artist/match_artist_senses.py` | `sense_assignments_wiktionary.json` | Bi-encoder sense matching against Wiktionary senses. Writes new format. Priority-aware (skips words with Gemini results). |
