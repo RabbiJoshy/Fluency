@@ -36,14 +36,14 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `pipeline/artist/4_filter_known_vocab.py` | `skip_words.json` | Classify words for sense-mapping method. 6 phases: junk detection (interjections + proper nouns incl. Wiktionary POS), known vocab (normal-mode + conjugation), English (50k + lingua), Wiktionary reclassification, spaCy NER, frequency threshold. Output splits `known_normal_vocab` / `known_conjugation`. |
+| 4 | `pipeline/artist/4_filter_known_vocab.py` | `skip_words.json` | Classify words for sense-mapping method. 6 phases: junk detection (interjections + proper nouns incl. Wiktionary POS), known vocab (normal-mode + conjugation), English (50k + lingua), Wiktionary reclassification, spaCy NER, frequency threshold. Also detects clitic forms (3-tier: non-reflexive merge, reflexive-no-shift merge, reflexive-with-shift keep). Output: `known_normal_vocab` / `known_conjugation` + `clitic_merge` map. |
 | 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
 | 6 | `pipeline/artist/6_llm_analyze.py` | `senses_gemini.json`, `sense_assignments.json`, `example_translations.json` | Gemini: POS, lemma, translation, sense disambiguation |
 | 6b | `pipeline/artist/match_artist_senses.py` | `sense_assignments_wiktionary.json` | Bi-encoder sense matching against Wiktionary senses. Writes new format. Priority-aware (skips words with Gemini results). |
 | 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
 | 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | 8 | `pipeline/artist/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
-| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, monolith | Assemble all layers → front-end output |
+| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, `clitic_forms.json`, monolith | Assemble all layers → front-end output. Reads skip_words for clitic merge + flags. Writes clitic layer (MWE-style). |
 
 Cognates use a shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step needed.
 
@@ -105,6 +105,8 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | `cognates.json` | `{word\|lemma: true}` (legacy per-artist; shared layer preferred) | `cognates.json` |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (none) |
 | `lyrics_timestamps.json` | `{_meta: {...}, timestamps: {song: {line: {ms, confidence}}}}` | (none) |
+| `clitic_forms.json` | `{hex_id: {id, base_verb, base_id, lemma, translation, assignments: {method: [{sense, examples}]}, examples: [...]}}` | `clitic_forms.json` |
+| `archive/clitic_id_migration.json` | `{old_clitic_id: base_verb_id}` | `archive/clitic_id_migration.json` |
 
 ## Shared Master Vocabulary
 
