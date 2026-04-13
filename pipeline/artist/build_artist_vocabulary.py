@@ -23,6 +23,7 @@ import argparse
 
 from _artist_config import (add_artist_arg, load_artist_config, load_shared_dict,
                             normalize_translation, METHOD_PRIORITY, best_method_priority)
+from sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 
 
 # ---------------------------------------------------------------------------
@@ -56,6 +57,30 @@ def assign_ids_from_master(entries, master):
                     final_id = format(val % 0xFFFFFF, '06x')
             used.add(final_id)
             entry["id"] = final_id
+
+
+def split_count_proportionally(total, weights):
+    """Split an integer total across weights using largest remainder."""
+    if not weights:
+        return []
+    if total <= 0:
+        return [0 for _ in weights]
+    weight_sum = sum(weights)
+    if weight_sum <= 0:
+        base = total // len(weights)
+        out = [base] * len(weights)
+        for i in range(total - sum(out)):
+            out[i] += 1
+        return out
+    raw = [total * w / weight_sum for w in weights]
+    floors = [int(x) for x in raw]
+    remainder = total - sum(floors)
+    order = sorted(range(len(weights)),
+                   key=lambda i: (raw[i] - floors[i], weights[i]),
+                   reverse=True)
+    for i in order[:remainder]:
+        floors[i] += 1
+    return floors
 
 
 # ---------------------------------------------------------------------------
@@ -93,7 +118,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
     # Sense menu (definitions) + assignments (example→sense mappings)
-    senses = load_layer(os.path.join(layers_dir, "sense_menu.json"), "sense_menu")
+    senses = normalize_artist_sense_menu(
+        load_layer(os.path.join(layers_dir, "sense_menu.json"), "sense_menu")
+    )
     assignments = load_layer(os.path.join(layers_dir, "sense_assignments.json"), "sense_assignments")
     # Shared layers at Data/Spanish/layers/ (project root from script location)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -167,13 +194,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             clitic_exs = examples_raw.get(clitic_word, [])
             clitic_assigns = assignments.get(clitic_word, {})
             # Look up senses for this clitic
-            clitic_senses_raw = None
-            clitic_lemma = clitic_word
-            for skey, sdata in senses.items():
-                if skey.startswith(clitic_word + "|"):
-                    clitic_senses_raw = sdata
-                    clitic_lemma = skey.split("|", 1)[1]
-                    break
+            clitic_analysis = resolve_analysis_for_assignments(senses, clitic_word, clitic_assigns)
+            clitic_senses_raw = clitic_analysis.get("senses")
+            clitic_lemma = clitic_analysis.get("lemma", clitic_word)
             # Build resolved examples with translations
             resolved_examples = []
             for ex in clitic_exs:
@@ -234,219 +257,232 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         display_form = inv_entry.get("display_form")
         variants = inv_entry.get("variants")
 
-        # Look up senses — handle both old (list) and new (dict-of-IDs) format
-        word_senses_raw = None
-        word_lemma = word  # default
-        for key, s_data in senses.items():
-            if key.startswith(word + "|"):
-                word_senses_raw = s_data
-                word_lemma = key.split("|", 1)[1]
-                break
-
-        # Normalize to (sense_list, sense_by_id) for both formats
-        sense_by_id = None
-        if isinstance(word_senses_raw, dict):
-            # New format: {sense_id: {pos, translation, ...}}
-            sense_by_id = word_senses_raw
-            word_senses = list(word_senses_raw.values())
-        elif isinstance(word_senses_raw, list):
-            # Old format: [{pos, translation, ...}]
-            word_senses = word_senses_raw
-        else:
-            word_senses = None
+        analyses = senses.get(word, [])
 
         # Get sense assignments — handle both old (list) and new (dict-of-methods)
         raw_assignments = assignments.get(word, [])
-        if isinstance(raw_assignments, dict):
-            # New format: {method: [{sense, examples}]}
-            # Pick best available method by priority (from _artist_config.py)
+        best_method = None
+        if isinstance(raw_assignments, dict) and raw_assignments:
             best_method = max(raw_assignments.keys(),
                               key=lambda m: METHOD_PRIORITY.get(m, -1))
-            word_assignments = []
-            for a in raw_assignments[best_method]:
-                sid = a.get("sense")
-                if sense_by_id and sid in sense_by_id:
-                    word_assignments.append({
-                        "sense_idx": list(sense_by_id.keys()).index(sid),
-                        "examples": a.get("examples", []),
-                        "method": best_method,
-                    })
+            selected_assignments = raw_assignments[best_method]
         else:
-            # Old format: [{sense_idx, examples, method}]
-            word_assignments = raw_assignments
+            selected_assignments = raw_assignments or []
+
+        # Group assignments by analysis (lemma) using sense IDs
+        grouped = []
+        sid_to_group = {}
+        for analysis in analyses:
+            sense_map = analysis.get("senses", {}) if isinstance(analysis, dict) else {}
+            group = {
+                "lemma": analysis.get("lemma", word) if isinstance(analysis, dict) else word,
+                "sense_by_id": sense_map if isinstance(sense_map, dict) else {},
+                "word_senses": list(sense_map.values()) if isinstance(sense_map, dict) else [],
+                "assignments": [],
+            }
+            grouped.append(group)
+            for sid in group["sense_by_id"]:
+                sid_to_group[sid] = group
+
+        if selected_assignments and grouped:
+            for a in selected_assignments:
+                sid = a.get("sense")
+                group = sid_to_group.get(sid)
+                if not group:
+                    continue
+                group["assignments"].append({
+                    "sense_idx": list(group["sense_by_id"].keys()).index(sid),
+                    "examples": a.get("examples", []),
+                    "method": best_method,
+                    "sense": sid,
+                })
+        elif not grouped:
+            fallback_analysis = resolve_analysis_for_assignments(senses, word, raw_assignments)
+            word_senses_raw = fallback_analysis.get("senses")
+            grouped = [{
+                "lemma": fallback_analysis.get("lemma", word),
+                "sense_by_id": word_senses_raw if isinstance(word_senses_raw, dict) else {},
+                "word_senses": list(word_senses_raw.values()) if isinstance(word_senses_raw, dict) else (word_senses_raw or []),
+                "assignments": selected_assignments if isinstance(selected_assignments, list) else [],
+            }]
 
         # Get raw examples for this word
         raw_examples = examples_raw.get(word, [])
-
-        # Build meanings
-        meanings = []
-        if word_senses and word_assignments:
-            total_assigned = sum(len(a.get("examples", [])) for a in word_assignments)
-
-            for assignment in word_assignments:
-                sense_idx = assignment["sense_idx"]
-                if sense_idx >= len(word_senses):
-                    continue
-                sense = word_senses[sense_idx]
-                pos = sense["pos"]
-                translation = sense["translation"]
-
-                # Apply curated override only for single-sense words.
-                # Multi-sense Wiktionary assignments have per-sense translations
-                # that are more specific than a blanket curated override.
-                curated_key = "%s|%s" % (word.lower(), word_lemma)
-                if curated_key in curated and len(word_assignments) == 1:
-                    translation = curated[curated_key]
-
-                # Gather examples
-                example_indices = assignment.get("examples", [])
-                meaning_examples = []
-                for ex_idx in example_indices:
-                    if ex_idx < len(raw_examples):
-                        raw_ex = raw_examples[ex_idx]
-                        spanish = raw_ex.get("spanish", "")
-                        # Look up translation
-                        trans_info = translations.get(spanish, {})
-                        english = trans_info.get("english", "")
-                        source = trans_info.get("source", "")
-                        ex_dict = {
-                            "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
-                            "song_name": raw_ex.get("title", ""),
-                            "spanish": spanish,
-                            "english": english,
-                            "translation_source": source,
-                        }
-                        # Attach translation quality score if available
-                        score_entry = translation_scores.get(spanish, {})
-                        if isinstance(score_entry, dict) and "score" in score_entry:
-                            ex_dict["translation_quality"] = score_entry["score"]
-                        ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                        if ts_entry:
-                            ex_dict["timestamp_ms"] = ts_entry["ms"]
-                        meaning_examples.append(ex_dict)
-
-                # Sort examples by translation quality (highest first)
-                meaning_examples.sort(
-                    key=lambda e: e.get("translation_quality", 3), reverse=True)
-
-                freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
-                meanings.append({
-                    "pos": pos,
-                    "translation": translation,
-                    "frequency": freq,
-                    "examples": meaning_examples,
-                })
-        elif word_senses:
-            # Senses exist but no assignments — put all examples on first sense
-            sense = word_senses[0]
-            translation = sense["translation"]
-            curated_key = "%s|%s" % (word.lower(), word_lemma)
-            if curated_key in curated:
-                translation = curated[curated_key]
-            all_examples = []
-            for raw_ex in raw_examples:
-                spanish = raw_ex.get("spanish", "")
-                trans_info = translations.get(spanish, {})
-                ex_dict = {
-                    "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
-                    "song_name": raw_ex.get("title", ""),
-                    "spanish": spanish,
-                    "english": trans_info.get("english", ""),
-                    "translation_source": trans_info.get("source", ""),
-                }
-                ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                if ts_entry:
-                    ex_dict["timestamp_ms"] = ts_entry["ms"]
-                all_examples.append(ex_dict)
-            meanings.append({
-                "pos": sense["pos"],
-                "translation": translation,
-                "frequency": "1.00",
-                "examples": all_examples,
-            })
+        if selected_assignments:
+            # Once we have explicit sense assignments, only emit analyses that
+            # actually own assigned examples. This avoids zero-frequency shadow
+            # cards from other analyses of the same surface form.
+            active_groups = [g for g in grouped if g["assignments"]]
         else:
-            # No senses at all — fallback
-            curated_key = "%s|%s" % (word.lower(), word_lemma)
-            translation = curated.get(curated_key, "")
-            fallback_examples = []
-            if raw_examples:
-                raw_ex = raw_examples[0]
-                spanish = raw_ex.get("spanish", "")
-                trans_info = translations.get(spanish, {})
-                ex_dict = {
-                    "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
-                    "song_name": raw_ex.get("title", ""),
-                    "spanish": spanish,
-                    "english": trans_info.get("english", ""),
-                    "translation_source": trans_info.get("source", ""),
-                }
-                ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                if ts_entry:
-                    ex_dict["timestamp_ms"] = ts_entry["ms"]
-                fallback_examples.append(ex_dict)
-            meanings.append({
-                "pos": "X",
-                "translation": translation,
-                "frequency": "1.00",
-                "examples": fallback_examples,
-            })
+            active_groups = [g for g in grouped if g["word_senses"]]
+        assigned_weights = [sum(len(a.get("examples", [])) for a in g["assignments"]) for g in active_groups]
+        if any(assigned_weights):
+            group_counts = split_count_proportionally(corpus_count, assigned_weights)
+        else:
+            group_counts = [corpus_count] + [0] * max(0, len(active_groups) - 1)
 
-        # Morphology from conjugation reverse lookup
-        morphology = None
-        if word.lower() != word_lemma.lower() and conj_reverse:
-            candidates = conj_reverse.get(word.lower(), [])
-            matches = [{"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
-                       for c in candidates if c["lemma"] == word_lemma.lower()]
-            if len(matches) == 1:
-                morphology = matches[0]
-            elif len(matches) > 1:
-                morphology = matches
-        elif word.lower() == word_lemma.lower():
-            # Tag infinitives: word == lemma and has a VERB sense
-            has_verb = word_senses and any(s.get("pos") == "VERB" for s in word_senses)
-            if has_verb:
-                morphology = {"mood": "infinitivo"}
+        for g_idx, group in enumerate(active_groups or [{
+            "lemma": word, "sense_by_id": {}, "word_senses": [], "assignments": []
+        }]):
+            word_lemma = group.get("lemma", word)
+            sense_by_id = group.get("sense_by_id")
+            word_senses = group.get("word_senses")
+            word_assignments = group.get("assignments", [])
 
-        # Build the entry
-        # Set flags from step 4 skip_words (current run) instead of stale master
-        has_wikt = bool(word_senses and word_assignments and isinstance(raw_assignments, dict))
-        wl = word.lower()
-        entry = {
-            "id": "",
-            "word": word,
-            "lemma": word_lemma,
-            "meanings": meanings,
-            "most_frequent_lemma_instance": True,
-            "is_english": wl in skip_english,
-            "is_interjection": wl in skip_intj,
-            "is_propernoun": wl in skip_propn,
-            "is_transparent_cognate": False,
-            "corpus_count": corpus_count,
-            "_has_wikt_assignments": has_wikt,
-        }
-        if display_form:
-            entry["display_form"] = display_form
-        if variants:
-            entry["variants"] = variants
-        if morphology:
-            entry["morphology"] = morphology
+            # Build meanings
+            meanings = []
+            if word_senses and word_assignments:
+                total_assigned = sum(len(a.get("examples", [])) for a in word_assignments)
 
-        # Apply cognate signals from layer (object per entry)
-        cognate_key = "%s|%s" % (word, word_lemma)
-        cognate_obj = cognates.get(cognate_key)
-        # Backward compat: old format stores bare float or True
-        if isinstance(cognate_obj, (int, float)):
-            cognate_obj = {"score": cognate_obj}
-        elif cognate_obj is True:
-            cognate_obj = {"score": 1.0}
-        if cognate_obj:
-            entry["cognate_score"] = cognate_obj["score"]
-            if cognate_obj.get("cognet"):
-                entry["cognet_cognate"] = True
-            if cognate_obj.get("gemini"):
-                entry["is_transparent_cognate"] = True
+                for assignment in word_assignments:
+                    sense_idx = assignment["sense_idx"]
+                    if sense_idx >= len(word_senses):
+                        continue
+                    sense = word_senses[sense_idx]
+                    pos = sense["pos"]
+                    translation = sense["translation"]
 
-        entries.append(entry)
+                    curated_key = "%s|%s" % (word.lower(), word_lemma)
+                    if curated_key in curated and len(word_assignments) == 1:
+                        translation = curated[curated_key]
+
+                    example_indices = assignment.get("examples", [])
+                    meaning_examples = []
+                    for ex_idx in example_indices:
+                        if ex_idx < len(raw_examples):
+                            raw_ex = raw_examples[ex_idx]
+                            spanish = raw_ex.get("spanish", "")
+                            trans_info = translations.get(spanish, {})
+                            english = trans_info.get("english", "")
+                            source = trans_info.get("source", "")
+                            ex_dict = {
+                                "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                                "song_name": raw_ex.get("title", ""),
+                                "spanish": spanish,
+                                "english": english,
+                                "translation_source": source,
+                            }
+                            score_entry = translation_scores.get(spanish, {})
+                            if isinstance(score_entry, dict) and "score" in score_entry:
+                                ex_dict["translation_quality"] = score_entry["score"]
+                            ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                            if ts_entry:
+                                ex_dict["timestamp_ms"] = ts_entry["ms"]
+                            meaning_examples.append(ex_dict)
+
+                    meaning_examples.sort(
+                        key=lambda e: e.get("translation_quality", 3), reverse=True)
+
+                    freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
+                    meanings.append({
+                        "pos": pos,
+                        "translation": translation,
+                        "frequency": freq,
+                        "examples": meaning_examples,
+                    })
+            elif word_senses:
+                sense = word_senses[0]
+                translation = sense["translation"]
+                curated_key = "%s|%s" % (word.lower(), word_lemma)
+                if curated_key in curated:
+                    translation = curated[curated_key]
+                all_examples = []
+                for raw_ex in raw_examples:
+                    spanish = raw_ex.get("spanish", "")
+                    trans_info = translations.get(spanish, {})
+                    ex_dict = {
+                        "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                        "song_name": raw_ex.get("title", ""),
+                        "spanish": spanish,
+                        "english": trans_info.get("english", ""),
+                        "translation_source": trans_info.get("source", ""),
+                    }
+                    ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                    if ts_entry:
+                        ex_dict["timestamp_ms"] = ts_entry["ms"]
+                    all_examples.append(ex_dict)
+                meanings.append({
+                    "pos": sense["pos"],
+                    "translation": translation,
+                    "frequency": "1.00",
+                    "examples": all_examples,
+                })
+            else:
+                curated_key = "%s|%s" % (word.lower(), word_lemma)
+                translation = curated.get(curated_key, "")
+                fallback_examples = []
+                if raw_examples:
+                    raw_ex = raw_examples[0]
+                    spanish = raw_ex.get("spanish", "")
+                    trans_info = translations.get(spanish, {})
+                    ex_dict = {
+                        "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                        "song_name": raw_ex.get("title", ""),
+                        "spanish": spanish,
+                        "english": trans_info.get("english", ""),
+                        "translation_source": trans_info.get("source", ""),
+                    }
+                    ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                    if ts_entry:
+                        ex_dict["timestamp_ms"] = ts_entry["ms"]
+                    fallback_examples.append(ex_dict)
+                meanings.append({
+                    "pos": "X",
+                    "translation": translation,
+                    "frequency": "1.00",
+                    "examples": fallback_examples,
+                })
+
+            morphology = None
+            if word.lower() != word_lemma.lower() and conj_reverse:
+                candidates = conj_reverse.get(word.lower(), [])
+                matches = [{"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                           for c in candidates if c["lemma"] == word_lemma.lower()]
+                if len(matches) == 1:
+                    morphology = matches[0]
+                elif len(matches) > 1:
+                    morphology = matches
+            elif word.lower() == word_lemma.lower():
+                has_verb = word_senses and any(s.get("pos") == "VERB" for s in word_senses)
+                if has_verb:
+                    morphology = {"mood": "infinitivo"}
+
+            has_wikt = bool(word_senses and word_assignments and isinstance(raw_assignments, dict))
+            wl = word.lower()
+            entry = {
+                "id": "",
+                "word": word,
+                "lemma": word_lemma,
+                "meanings": meanings,
+                "most_frequent_lemma_instance": True,
+                "is_english": wl in skip_english,
+                "is_interjection": wl in skip_intj,
+                "is_propernoun": wl in skip_propn,
+                "is_transparent_cognate": False,
+                "corpus_count": group_counts[g_idx] if g_idx < len(group_counts) else 0,
+                "_has_wikt_assignments": has_wikt,
+            }
+            if display_form:
+                entry["display_form"] = display_form
+            if variants:
+                entry["variants"] = variants
+            if morphology:
+                entry["morphology"] = morphology
+
+            cognate_key = "%s|%s" % (word, word_lemma)
+            cognate_obj = cognates.get(cognate_key)
+            if isinstance(cognate_obj, (int, float)):
+                cognate_obj = {"score": cognate_obj}
+            elif cognate_obj is True:
+                cognate_obj = {"score": 1.0}
+            if cognate_obj:
+                entry["cognate_score"] = cognate_obj["score"]
+                if cognate_obj.get("cognet"):
+                    entry["cognet_cognate"] = True
+                if cognate_obj.get("gemini"):
+                    entry["is_transparent_cognate"] = True
+
+            entries.append(entry)
 
     # --- Build MWE examples cache from lyrics ---
     # (Shared by both artist-specific and Wiktionary MWEs)
@@ -526,6 +562,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 if vid:
                     merged_ids[vid] = v
             if merged_ids:
+                master.setdefault(fid, {
+                    "word": entry["word"],
+                    "lemma": entry["lemma"],
+                    "senses": [],
+                    "is_english": entry.get("is_english", False),
+                    "is_interjection": entry.get("is_interjection", False),
+                    "is_propernoun": entry.get("is_propernoun", False),
+                    "is_transparent_cognate": entry.get("is_transparent_cognate", False),
+                    "display_form": entry.get("display_form"),
+                })
                 master[fid].setdefault("merged_clitic_ids", {}).update(merged_ids)
                 entry["merged_clitic_ids"] = merged_ids
 
@@ -655,13 +701,21 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         if order:
             # Ranking may be keyed by word (layer mode) or ID (legacy mode)
             # Try word-keyed first, fall back to ID-keyed
-            word_to_entry = {e["word"]: e for e in entries}
+            word_to_entries = {}
+            for e in entries:
+                word_to_entries.setdefault(e["word"], []).append(e)
             id_to_entry = {e["id"]: e for e in entries}
 
             sorted_entries = []
             used = set()
             for key in order:
-                entry = word_to_entry.get(key) or id_to_entry.get(key)
+                if key in word_to_entries:
+                    for entry in word_to_entries.get(key, []):
+                        if id(entry) not in used:
+                            sorted_entries.append(entry)
+                            used.add(id(entry))
+                    continue
+                entry = id_to_entry.get(key)
                 if entry and id(entry) not in used:
                     sorted_entries.append(entry)
                     used.add(id(entry))

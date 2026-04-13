@@ -26,6 +26,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from method_priority import assign_sense_ids
+from artist.sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -104,6 +105,7 @@ def refine_assignments(nlp, senses_data, assignments, examples_data, inventory,
 
     # Build inventory lookup
     if artist_mode:
+        senses_data = normalize_artist_sense_menu(senses_data)
         # Artist mode: bare word keys, no hex IDs
         inv_words = {entry["word"].lower() for entry in inventory}
     else:
@@ -122,17 +124,22 @@ def refine_assignments(nlp, senses_data, assignments, examples_data, inventory,
 
         # Try multiple sense key formats
         senses = None
-        for skey in [key, "%s|%s" % (word, lemma)]:
-            s = senses_data.get(skey)
-            if isinstance(s, list) and len(s) >= 2:
-                senses = s
-                break
-            elif isinstance(s, dict):
-                # Artist sense_menu.json: {sense_id: {pos, translation}}
+        if artist_mode:
+            analysis = resolve_analysis_for_assignments(senses_data, word, methods)
+            s = analysis.get("senses", {})
+            if isinstance(s, dict):
                 senses = list(s.values())
-                if len(senses) >= 2:
+        else:
+            for skey in [key, "%s|%s" % (word, lemma)]:
+                s = senses_data.get(skey)
+                if isinstance(s, list) and len(s) >= 2:
+                    senses = s
                     break
-                senses = None
+                elif isinstance(s, dict):
+                    senses = list(s.values())
+                    if len(senses) >= 2:
+                        break
+                    senses = None
 
         if not senses:
             continue

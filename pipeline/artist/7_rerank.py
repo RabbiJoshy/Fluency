@@ -21,7 +21,16 @@ Output: BadBunnyvocabulary.json  (updated with new ranks)
 import json
 import os
 import re
+import sys
 from statistics import median
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from pipeline.method_priority import METHOD_PRIORITY
+from pipeline.artist.sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
 _ADLIB_RE = re.compile(r'\[[^\]]*\]|\([^\)]*\)')
@@ -153,6 +162,29 @@ def get_spanish_rank(entry, word_to_rank, lemma_to_rank):
     return SENTINEL_RANK
 
 
+def load_artist_senses(layers_dir):
+    """Load the artist sense menu, falling back to legacy Gemini senses."""
+    sense_menu_path = os.path.join(layers_dir, "sense_menu.json")
+    if os.path.isfile(sense_menu_path):
+        with open(sense_menu_path, "r", encoding="utf-8") as f:
+            return normalize_artist_sense_menu(json.load(f)), "sense_menu"
+
+    legacy_path = os.path.join(layers_dir, "senses_gemini.json")
+    with open(legacy_path, "r", encoding="utf-8") as f:
+        return json.load(f), "senses_gemini"
+
+
+def flatten_best_assignments(raw_assignments):
+    """Normalize assignments to a simple list aligned with the builder."""
+    if isinstance(raw_assignments, dict):
+        best_method = max(raw_assignments.keys(),
+                          key=lambda m: METHOD_PRIORITY.get(m, -1))
+        return raw_assignments.get(best_method, [])
+    if isinstance(raw_assignments, list):
+        return raw_assignments
+    return []
+
+
 def sort_key(entry, word_to_rank, lemma_to_rank):
     """
     Generate sort key for an entry. Python sorts tuples element by element.
@@ -196,9 +228,8 @@ def main():
         inventory = json.load(f)
     print(f"  word_inventory: {len(inventory)} entries")
 
-    with open(os.path.join(layers_dir, "senses_gemini.json"), "r", encoding="utf-8") as f:
-        senses_data = json.load(f)
-    print(f"  senses_gemini: {len(senses_data)} entries")
+    senses_data, senses_label = load_artist_senses(layers_dir)
+    print(f"  {senses_label}: {len(senses_data)} entries")
 
     with open(os.path.join(layers_dir, "examples_raw.json"), "r", encoding="utf-8") as f:
         examples_raw = json.load(f)
@@ -230,12 +261,9 @@ def main():
     entries = []
     for inv in inventory:
         word = inv["word"]
-        # Find lemma from senses
-        lemma = word
-        for key in senses_data:
-            if key.startswith(word + "|"):
-                lemma = key.split("|", 1)[1]
-                break
+        # Find lemma from sense menu / assignments
+        analysis = resolve_analysis_for_assignments(senses_data, word, assignments.get(word, []))
+        lemma = analysis.get("lemma", word)
 
         # Count distinct songs from examples
         songs = set()
@@ -297,7 +325,7 @@ def main():
 
     for entry in entries:
         word = entry["word"]
-        word_assignments = assignments.get(word, [])
+        word_assignments = flatten_best_assignments(assignments.get(word, []))
         raw_exs = examples_raw.get(word, [])
 
         per_meaning = []

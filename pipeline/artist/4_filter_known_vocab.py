@@ -801,23 +801,19 @@ def main():
     print("  Shared curated: %d" % len(matched))
 
     # 2e. Morphological derivations (diminutives/superlatives of known words)
-    #     + gerund+clitic forms not caught by Wiktionary clitic detection
+    # Clitic-handled words must stay exclusively in clitic buckets; otherwise
+    # later routing-aware stages can accidentally process them as assignable.
     known_derivation = {}  # word -> base_form
     deriv_lookup = normal_words | conj_forms | wikt_spanish
     for w in list(remaining):
+        if w in clitic_merge or w in clitic_keep:
+            continue
         base = resolve_derivation(w, deriv_lookup)
         if base:
             known_derivation[w] = base
             remaining.discard(w)
     deriv_diminutive = len(known_derivation)
-
-    # Gerund+clitic forms already added to clitic_merge above,
-    # but they're still in remaining — move them out.
-    for w in list(remaining):
-        if w in clitic_merge:
-            known_derivation[w] = clitic_merge[w]
-            remaining.discard(w)
-    deriv_gerund = len(known_derivation) - deriv_diminutive
+    deriv_gerund = 0
 
     if known_derivation:
         print("  Derivations: %d (%d diminutive, %d gerund+clitic)" %

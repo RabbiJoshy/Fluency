@@ -54,12 +54,20 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
+from pos_menu_filter import filter_senses_by_pos, filter_senses_by_precomputed_pos
+from sense_menu_format import (
+    normalize_artist_sense_menu, merge_analysis,
+    collect_surface_analyses_from_shared_menu, flatten_analyses_with_ids,
+    assign_analysis_sense_ids, extract_form_of_targets, extend_ids_for_extra_senses,
+)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
 WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 
 MIN_SENSE_FREQUENCY = 0.05
+MAX_EXAMPLES_PER_WORD = 3
 # Multilingual model: 84% bilingual, 72% Spanish-only (handles both)
 CLASSIFY_MODEL = "paraphrase-multilingual-mpnet-base-v2"
 
@@ -337,6 +345,15 @@ def main():
     else:
         print("  example_translations: (not found)")
 
+    example_pos = {}
+    example_pos_path = layers_dir / "example_pos.json"
+    if example_pos_path.exists():
+        with open(example_pos_path, encoding="utf-8") as f:
+            example_pos = json.load(f)
+        print("  example_pos: %d words" % len(example_pos))
+    else:
+        print("  example_pos: (not found, spaCy fallback)")
+
     # Load Wiktionary (raw, full 118K entries)
     print("Loading English Wiktionary...")
     wikt_index, wikt_redirects = load_wiktionary(WIKTIONARY_RAW_PATH)
@@ -394,10 +411,12 @@ def main():
     skipped_priority = 0
     sense_sources = defaultdict(int)
 
-    normal_only_senses = {}  # word|lemma -> senses (for writing sense_menu.json)
+    normal_only_senses = {}  # word -> analyses (for writing sense_menu.json)
     skipped_not_normal = 0
 
     skipped_routing = 0
+    pos_filtered_count = 0
+    pos_single_sense_count = 0
     for inv_entry in inventory:
         word = inv_entry["word"]
 
@@ -406,7 +425,7 @@ def main():
             skipped_routing += 1
             continue
 
-        examples = examples_data.get(word, [])
+        examples = examples_data.get(word, [])[:MAX_EXAMPLES_PER_WORD]
 
         # Skip words with equal or higher priority assignments
         if word in existing_assigns and not args.force:
@@ -415,18 +434,9 @@ def main():
                 skipped_priority += 1
                 continue
 
-        # Look up senses from raw Wiktionary (full 118K, not just 11K normal-mode)
+        # Sense mapping is surface-word-first. Lemmatization is a separate layer,
+        # so the stable fallback identity here is lemma = word.
         lemma = word
-        # Try to get lemma from gemini senses or normal-mode senses
-        for key in gemini_senses:
-            if key.startswith(word + "|"):
-                lemma = key.split("|", 1)[1]
-                break
-        else:
-            for key in wiktionary_senses:
-                if key.startswith(word + "|"):
-                    lemma = key.split("|", 1)[1]
-                    break
 
         # In --normal-only mode: only process words in the normal-mode senses layer
         if args.normal_only:
@@ -439,15 +449,37 @@ def main():
                 skipped_not_normal += 1
                 continue
 
-        # Look up senses from raw Wiktionary
-        en_senses = lookup_senses(word, lemma, wikt_index, wikt_redirects)
-        if en_senses:
-            for s in en_senses:
-                s["translation"] = clean_translation(s["translation"])
-            en_senses = merge_similar_senses(en_senses)
-
-        word_senses = []
-        if en_senses:
+        # Build the candidate menu from all shared surface-form analyses first.
+        shared_analyses = collect_surface_analyses_from_shared_menu(word, wiktionary_senses)
+        if shared_analyses:
+            present_lemmas = {a.get("lemma", word) for a in shared_analyses}
+            for target_lemma in extract_form_of_targets(shared_analyses):
+                if target_lemma in present_lemmas:
+                    continue
+                target_senses = lookup_senses(word, target_lemma, wikt_index, wikt_redirects)
+                if not target_senses:
+                    continue
+                for s in target_senses:
+                    s["translation"] = clean_translation(s["translation"])
+                target_senses = merge_similar_senses(target_senses)
+                if target_senses:
+                    shared_analyses.append({"lemma": target_lemma, "senses": target_senses})
+                    present_lemmas.add(target_lemma)
+        if shared_analyses:
+            word_senses, id_list, normalized_analyses = flatten_analyses_with_ids(shared_analyses)
+            for analysis in normalized_analyses:
+                merge_analysis(normal_only_senses, word, analysis.get("lemma", word), analysis.get("senses", {}))
+        else:
+            word_senses = []
+            id_list = []
+        if not word_senses:
+            en_senses = lookup_senses(word, lemma, wikt_index, wikt_redirects)
+            if en_senses:
+                for s in en_senses:
+                    s["translation"] = clean_translation(s["translation"])
+                en_senses = merge_similar_senses(en_senses)
+            else:
+                en_senses = []
             for s in en_senses:
                 s_copy = dict(s)
                 if "source" not in s_copy:
@@ -462,17 +494,22 @@ def main():
                     "translation": es_sense["gloss_es"],
                     "source": "es-wikt",
                 })
+        if id_list and len(word_senses) > len(id_list):
+            id_list.extend(
+                extend_ids_for_extra_senses(id_list, lemma, word_senses[len(id_list):])
+            )
 
         if not word_senses:
             no_senses_count += 1
             continue
 
-        wl_key = "%s|%s" % (word, lemma)
         source = "wiktionary"
 
         # Build ID map for new format output
-        id_map = assign_sense_ids(word_senses)
-        normal_only_senses[wl_key] = id_map
+        if not id_list:
+            id_map = assign_analysis_sense_ids(lemma, word_senses)
+            id_list = list(id_map.keys())
+            merge_analysis(normal_only_senses, word, lemma, id_map)
 
         sense_sources[source] += 1
 
@@ -480,16 +517,24 @@ def main():
             no_examples_count += 1
             continue
 
-        # Get sense IDs (new format)
-        id_list = list(id_map.keys())
+        keep_indices = list(range(len(word_senses)))
+        precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
+        if precomputed:
+            pos_keep_indices, pos_stats = filter_senses_by_precomputed_pos(word_senses, precomputed)
+        else:
+            pos_keep_indices, pos_stats = filter_senses_by_pos(word, lemma, word_senses, examples)
+        if pos_stats.get("used") and pos_stats.get("reduced"):
+            keep_indices = pos_keep_indices
+            pos_filtered_count += 1
 
-        if len(word_senses) == 1:
+        if len(keep_indices) == 1:
             single_sense_count += 1
-            output[word] = {"wiktionary-auto": [{"sense": id_list[0],
+            if len(word_senses) > 1:
+                pos_single_sense_count += 1
+            only_idx = keep_indices[0]
+            output[word] = {"wiktionary-auto": [{"sense": id_list[only_idx],
                                                   "examples": list(range(len(examples)))}]}
             continue
-
-        keep_indices = list(range(len(word_senses)))
 
         if use_keyword:
             # Keyword fallback — process inline
@@ -524,6 +569,10 @@ def main():
         print("  Skipped (higher-priority method exists): %d" % skipped_priority)
     if args.normal_only:
         print("  Skipped (not in normal mode): %d" % skipped_not_normal)
+    if pos_filtered_count:
+        print("  POS-filtered menus: %d" % pos_filtered_count)
+    if pos_single_sense_count:
+        print("  POS-resolved to single sense: %d" % pos_single_sense_count)
     print("  Single-sense (no classification): %d" % single_sense_count)
     print("  Multi-sense to classify: %d" % len(work_items))
     print("  No senses: %d" % no_senses_count)
@@ -572,8 +621,10 @@ def main():
         existing_senses = {}
         if senses_output_file.exists():
             with open(senses_output_file, encoding="utf-8") as f:
-                existing_senses = json.load(f)
-        existing_senses.update(normal_only_senses)
+                existing_senses = normalize_artist_sense_menu(json.load(f))
+        for word, analyses in normal_only_senses.items():
+            for analysis in analyses:
+                merge_analysis(existing_senses, word, analysis.get("lemma", word), analysis.get("senses", {}))
         print("Writing %s (%d entries)..." % (senses_output_file, len(existing_senses)))
         with open(senses_output_file, "w", encoding="utf-8") as f:
             json.dump(existing_senses, f, ensure_ascii=False, indent=2)

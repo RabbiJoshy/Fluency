@@ -28,13 +28,19 @@ from build_senses import (load_wiktionary, lookup_senses, clean_translation,
 from _artist_config import (add_artist_arg, load_artist_config,
                            load_dotenv_from_project_root, assign_sense_ids,
                            METHOD_PRIORITY, best_method_priority)
+from pos_menu_filter import filter_senses_by_pos, filter_senses_by_precomputed_pos
+from sense_menu_format import (
+    normalize_artist_sense_menu, merge_analysis,
+    collect_surface_analyses_from_shared_menu, flatten_analyses_with_ids,
+    assign_analysis_sense_ids, extract_form_of_targets, extend_ids_for_extra_senses,
+)
 load_dotenv_from_project_root()
 
 # ---------------------------------------------------------------------------
 # Spanish Wiktionary dialect supplement (inlined from bench_gapfill)
 # ---------------------------------------------------------------------------
 ESWIKT_FILE = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz"
-DIALECT_TAGS = {"Puerto-Rico", "Caribbean", "Cuba"}
+DEFAULT_DIALECT_TAGS = {"Puerto-Rico", "Caribbean", "Cuba"}
 _ESWIKT_POS_MAP = {
     "noun": "NOUN", "verb": "VERB", "adj": "ADJ", "adv": "ADV",
     "intj": "INTJ", "phrase": "PHRASE", "name": "PROPN",
@@ -110,10 +116,12 @@ def build_combined_senses(word, lemma, en_senses, eswikt_index, translation_cach
 # ---------------------------------------------------------------------------
 # Flash Lite classification (batch)
 # ---------------------------------------------------------------------------
-BATCH_SIZE = 15
+BATCH_SIZE = 50
+GAP_FILL_BATCH_SIZE = 10
+MAX_EXAMPLES_PER_WORD = 3
 
 
-def classify_batch_gemini(words_data, api_key):
+def classify_batch_gemini(words_data, api_key, gemini_model):
     """Classify examples to senses for a batch of multi-sense words.
 
     Returns list of per-word assignment lists: [{sense_idx, examples, method}]
@@ -163,7 +171,7 @@ def classify_batch_gemini(words_data, api_key):
     for attempt in range(5):
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash-lite",
+                model=gemini_model,
                 contents=prompt,
                 config={"temperature": 0.0, "response_mime_type": "application/json"},
             )
@@ -181,7 +189,7 @@ def classify_batch_gemini(words_data, api_key):
     return None
 
 
-def gap_fill_gemini(word, lemma, senses, examples, api_key):
+def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
     """Ask Gemini: pick a sense or propose a new one. Returns result dict."""
     from google import genai
     client = genai.Client(api_key=api_key)
@@ -235,13 +243,75 @@ def gap_fill_gemini(word, lemma, senses, examples, api_key):
     for attempt in range(5):
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash-lite",
+                model=gemini_model,
                 contents=prompt,
                 config={"temperature": 0.0, "response_mime_type": "application/json"},
             )
             return json.loads(response.text)
         except (json.JSONDecodeError, TypeError):
             print("    WARNING: gap-fill parse error")
+            return None
+        except Exception as e:
+            wait = 2 ** attempt * 5
+            print("    API error (attempt %d/5): %s" % (attempt + 1, str(e)[:100]))
+            print("    Retrying in %ds..." % wait)
+            time.sleep(wait)
+    print("    FAILED after 5 retries")
+    return None
+
+
+def gap_fill_batch_gemini(words_data, api_key, gemini_model):
+    """Ask Gemini to propose or reuse one sense for a batch of gap-fill words."""
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    prompt_parts = [
+        "You are helping build a Spanish vocabulary flashcard app for learners.",
+        "For each word below, decide whether the examples are covered by an existing",
+        "dictionary sense menu. If not, propose ONE short flashcard-friendly sense.",
+        "Return a JSON array with one object per word.",
+        "",
+    ]
+
+    for wi, wd in enumerate(words_data, start=1):
+        prompt_parts.append('--- Word %d: "%s" (lemma: %s) ---' % (
+            wi, wd["word"], wd["lemma"]))
+        if wd.get("senses"):
+            prompt_parts.append("Candidate senses:")
+            for si, s in enumerate(wd["senses"], start=1):
+                label = "[ES] " if s.get("is_spanish") else ""
+                prompt_parts.append("  %d. %s[%s] %s" % (
+                    si, label, s["pos"], s["translation"]))
+        else:
+            prompt_parts.append("Candidate senses: (none)")
+        prompt_parts.append("Examples:")
+        for ei, ex in enumerate(wd["examples"], start=1):
+            prompt_parts.append("  %d. %s | %s" % (
+                ei, ex.get("spanish", ""), ex.get("english", "")))
+        prompt_parts.append("")
+
+    prompt_parts.append("Return JSON like:")
+    prompt_parts.append(json.dumps([{
+        "word": "example",
+        "covered_by_existing": False,
+        "best_sense_index": None,
+        "english_translation": None,
+        "proposed_sense": "short meaning",
+        "proposed_pos": "NOUN"
+    }], indent=2))
+
+    prompt = "\n".join(prompt_parts)
+
+    for attempt in range(5):
+        try:
+            response = client.models.generate_content(
+                model=gemini_model,
+                contents=prompt,
+                config={"temperature": 0.0, "response_mime_type": "application/json"},
+            )
+            return json.loads(response.text)
+        except (json.JSONDecodeError, TypeError):
+            print("    WARNING: gap-fill batch parse error")
             return None
         except Exception as e:
             wait = 2 ** attempt * 5
@@ -284,6 +354,15 @@ def classify_keyword(examples, senses):
     return assignments
 
 
+def normalize_assignment_methods(word_data, default_method):
+    """Coerce legacy or malformed assignment payloads to {method: [items]}."""
+    if isinstance(word_data, dict):
+        return word_data
+    if isinstance(word_data, list):
+        return {default_method: word_data}
+    return {}
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -293,6 +372,12 @@ def main():
     add_artist_arg(parser)
     parser.add_argument("--no-gemini", action="store_true",
                         help="Skip Gemini, use keyword classifier (free, lower accuracy)")
+    parser.add_argument("--all-gemini", action="store_true",
+                        help="Treat biencoder-routed words as Gemini candidates for this run")
+    parser.add_argument("--force", action="store_true",
+                        help="Re-classify all eligible words (ignore existing assignments)")
+    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
+                        help="Gemini model to use when Gemini is enabled")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--normal-slang-only", action="store_true",
                         help="Only process normal-mode words that have eswiktionary dialect senses")
@@ -305,6 +390,7 @@ def main():
     layers_dir = os.path.join(artist_dir, "data", "layers")
 
     use_gemini = not args.no_gemini
+    gemini_model = args.gemini_model
     if use_gemini:
         api_key = os.environ.get("GEMINI_API_KEY", "")
         if not api_key:
@@ -322,35 +408,32 @@ def main():
     with open(os.path.join(layers_dir, "examples_raw.json")) as f:
         examples_raw = json.load(f)
 
+    example_pos = {}
+    example_pos_path = os.path.join(layers_dir, "example_pos.json")
+    if os.path.isfile(example_pos_path):
+        with open(example_pos_path) as f:
+            example_pos = json.load(f)
+        print("  example_pos: %d words" % len(example_pos))
+    else:
+        print("  example_pos: (not found, spaCy fallback)")
+
     translations_path = os.path.join(layers_dir, "example_translations.json")
     with open(translations_path) as f:
         translations = json.load(f)
-
-    # Build word→lemma map from sense menu (and archived senses_gemini if present)
-    word_to_lemma = {}
-    sense_menu_path = os.path.join(layers_dir, "sense_menu.json")
-    if os.path.isfile(sense_menu_path):
-        with open(sense_menu_path) as f:
-            for key in json.load(f):
-                parts = key.split("|", 1)
-                if len(parts) == 2:
-                    word_to_lemma[parts[0]] = parts[1]
-    # Fallback: old senses_gemini.json if it exists
-    senses_gemini_path = os.path.join(layers_dir, "senses_gemini.json")
-    if os.path.isfile(senses_gemini_path):
-        with open(senses_gemini_path) as f:
-            for key in json.load(f):
-                parts = key.split("|", 1)
-                if len(parts) == 2 and parts[0] not in word_to_lemma:
-                    word_to_lemma[parts[0]] = parts[1]
 
     # Load Wiktionary
     print("Loading English Wiktionary...")
     wikt_path = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz"
     wikt_index, redirects = load_wiktionary(wikt_path)
+    shared_menu_path = PROJECT_ROOT / "Data/Spanish/layers/sense_menu.json"
+    shared_wikt_menu = {}
+    if shared_menu_path.exists():
+        with open(shared_menu_path) as f:
+            shared_wikt_menu = json.load(f)
 
-    print("Loading Spanish Wiktionary (dialect: %s)..." % ", ".join(sorted(DIALECT_TAGS)))
-    eswikt_index = load_eswiktionary(ESWIKT_FILE, DIALECT_TAGS)
+    dialect_tags = set(config.get("dialect_tags", DEFAULT_DIALECT_TAGS))
+    print("Loading Spanish Wiktionary (dialect: %s)..." % ", ".join(sorted(dialect_tags)))
+    eswikt_index = load_eswiktionary(ESWIKT_FILE, dialect_tags)
 
     # Translation cache for Spanish glosses
     cache_path = PROJECT_ROOT / "pipeline/artist/bench/.eswikt_translation_cache.json"
@@ -363,7 +446,7 @@ def main():
     # ---------------------------------------------------------------------------
     # Process each word
     # ---------------------------------------------------------------------------
-    senses_out = {}        # word|lemma -> [{pos, translation, source}]
+    senses_out = {}        # word -> [{lemma, senses}]
     assignments_out = {}   # word -> [{sense_idx, examples, method}]
 
     single_sense = 0
@@ -381,7 +464,8 @@ def main():
         exclude = routing_data.get("exclude", {})
         for cat in ("english", "proper_nouns", "interjections"):
             skip_set.update(exclude.get(cat, []))
-        skip_set.update(routing_data.get("biencoder", {}).get("shared", []))
+        if not args.all_gemini:
+            skip_set.update(routing_data.get("biencoder", {}).get("shared", []))
         print("  Skip words (from step 4): %d" % len(skip_set))
 
     # Load master for flag lookups (fallback when skip_words.json absent)
@@ -398,6 +482,8 @@ def main():
     skipped_short = 0
     skipped_not_slang = 0
     skipped_priority = 0
+    pos_filtered_count = 0
+    pos_single_sense_count = 0
 
     # Load existing assignments for priority checking + gap-fill reuse
     existing_assigns = {}
@@ -406,7 +492,12 @@ def main():
         with open(assignments_path, "r", encoding="utf-8") as f:
             existing_assigns = json.load(f)
 
-    my_method = "keyword-wiktionary" if not use_gemini else "flash-lite-wiktionary"
+    if not use_gemini:
+        my_method = "keyword-wiktionary"
+    elif "flash-lite" in gemini_model:
+        my_method = "flash-lite-wiktionary"
+    else:
+        my_method = "flash-wiktionary"
     my_priority = METHOD_PRIORITY.get(my_method, 0)
 
     # For --normal-slang-only: load normal-mode senses
@@ -423,6 +514,12 @@ def main():
     if args.new_only:
         if os.path.isfile(routing_path):
             new_only_words = set(routing_data.get("gemini", []))
+            if args.all_gemini:
+                for value in routing_data.get("biencoder", {}).values():
+                    if isinstance(value, list):
+                        new_only_words.update(value)
+                    elif isinstance(value, dict):
+                        new_only_words.update(value.keys())
             print("  --new-only whitelist (from step 4): %d words" % len(new_only_words))
         else:
             print("  WARNING: word_routing.json not found — run step 4 first")
@@ -432,19 +529,13 @@ def main():
 
     for entry in inventory:
         word = entry["word"]
-        lemma = word_to_lemma.get(word, word)
-        wl_key = "%s|%s" % (word, lemma)
+        lemma = word
         corpus_count = entry.get("corpus_count", 1)
 
         # Skip words flagged by step 4 (preferred) or master flags (fallback)
         if word in skip_set:
             skipped_flags += 1
             continue
-        mf = master_flags.get(wl_key, {})
-        if mf.get("is_english") or mf.get("is_propernoun") or mf.get("is_interjection"):
-            skipped_flags += 1
-            continue
-
         # Skip very short words and contractions
         if len(word) <= 2 or "'" in word:
             skipped_short += 1
@@ -467,14 +558,14 @@ def main():
                 continue
 
         # Skip words with equal or higher priority assignments
-        if word in existing_assigns:
+        if word in existing_assigns and not args.force:
             existing_priority = best_method_priority(existing_assigns[word])
             if existing_priority >= my_priority:
                 skipped_priority += 1
                 continue
 
         # Get examples with English translations
-        raw_exs = examples_raw.get(word, [])
+        raw_exs = examples_raw.get(word, [])[:MAX_EXAMPLES_PER_WORD]
         examples = []
         for ex in raw_exs:
             spa = ex.get("spanish", "")
@@ -487,17 +578,51 @@ def main():
             no_examples += 1
             continue
 
-        # Look up Wiktionary senses
-        en_senses = lookup_senses(word, lemma, wikt_index, redirects)
-        if en_senses:
-            for s in en_senses:
-                s["translation"] = clean_translation(s["translation"])
-            en_senses = merge_similar_senses(en_senses)
+        precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
+        wl_key = "%s|%s" % (word, lemma)
+        mf = master_flags.get(wl_key, {})
+        if mf.get("is_english") or mf.get("is_propernoun") or mf.get("is_interjection"):
+            skipped_flags += 1
+            continue
+
+        id_list = []
+        # Build the candidate menu from all shared surface-form analyses first.
+        shared_analyses = collect_surface_analyses_from_shared_menu(word, shared_wikt_menu)
+        if shared_analyses:
+            present_lemmas = {a.get("lemma", word) for a in shared_analyses}
+            for target_lemma in extract_form_of_targets(shared_analyses):
+                if target_lemma in present_lemmas:
+                    continue
+                target_senses = lookup_senses(word, target_lemma, wikt_index, redirects)
+                if not target_senses:
+                    continue
+                for s in target_senses:
+                    s["translation"] = clean_translation(s["translation"])
+                target_senses = merge_similar_senses(target_senses)
+                if target_senses:
+                    shared_analyses.append({"lemma": target_lemma, "senses": target_senses})
+                    present_lemmas.add(target_lemma)
+        if shared_analyses:
+            en_senses, id_list, normalized_analyses = flatten_analyses_with_ids(shared_analyses)
+            for analysis in normalized_analyses:
+                merge_analysis(senses_out, word, analysis.get("lemma", word), analysis.get("senses", {}))
         else:
             en_senses = []
+        if not en_senses:
+            en_senses = lookup_senses(word, lemma, wikt_index, redirects)
+            if en_senses:
+                for s in en_senses:
+                    s["translation"] = clean_translation(s["translation"])
+                en_senses = merge_similar_senses(en_senses)
+            else:
+                en_senses = []
 
         combined = build_combined_senses(word, lemma, en_senses, eswikt_index,
                                          translation_cache)
+        if id_list and len(combined) > len(id_list):
+            id_list.extend(
+                extend_ids_for_extra_senses(id_list, lemma, combined[len(id_list):])
+            )
 
         if not combined:
             # No Wiktionary entry — queue for gap-fill (only if used more than once)
@@ -505,20 +630,38 @@ def main():
                 no_senses_queue.append((word, lemma, examples))
             continue
 
-        if len(combined) == 1:
+        keep_indices = list(range(len(combined)))
+        if precomputed:
+            pos_keep_indices, pos_stats = filter_senses_by_precomputed_pos(combined, precomputed)
+        else:
+            pos_keep_indices, pos_stats = filter_senses_by_pos(word, lemma, combined, examples)
+        if pos_stats.get("used") and pos_stats.get("reduced"):
+            keep_indices = pos_keep_indices
+            pos_filtered_count += 1
+
+        if len(keep_indices) == 1:
             # Single sense: auto-assign all examples
             single_sense += 1
-            id_map = assign_sense_ids(combined)
-            senses_out[wl_key] = id_map
-            sid = list(id_map.keys())[0]
+            if len(combined) > 1:
+                pos_single_sense_count += 1
+            filtered_combined = [combined[keep_indices[0]]]
+            if shared_analyses:
+                sid = id_list[keep_indices[0]]
+            else:
+                id_map = assign_analysis_sense_ids(lemma, filtered_combined)
+                merge_analysis(senses_out, word, lemma, id_map)
+                sid = list(id_map.keys())[0]
             assignments_out[word] = {"wiktionary-auto": [{
                 "sense": sid,
                 "examples": list(range(len(examples))),
             }]}
         else:
             # Multi-sense: queue for classification
-            multi_sense_queue.append((word, lemma, combined, examples))
-            senses_out[wl_key] = assign_sense_ids(combined)
+            filtered_combined = [combined[i] for i in keep_indices]
+            filtered_ids = [id_list[i] for i in keep_indices] if shared_analyses else None
+            multi_sense_queue.append((word, lemma, filtered_combined, examples, filtered_ids))
+            if not shared_analyses:
+                merge_analysis(senses_out, word, lemma, assign_analysis_sense_ids(lemma, filtered_combined))
 
     print("  Skipped (english/propn/intj): %d" % skipped_flags)
     print("  Skipped (short/contraction): %d" % skipped_short)
@@ -528,6 +671,10 @@ def main():
         print("  Skipped (no eswikt or not in normal): %d" % skipped_not_slang)
     if args.new_only:
         print("  Skipped (normal-mode or freq<=1): %d" % skipped_not_slang)
+    if pos_filtered_count:
+        print("  POS-filtered menus: %d" % pos_filtered_count)
+    if pos_single_sense_count:
+        print("  POS-resolved to single sense: %d" % pos_single_sense_count)
     print("  No examples (skipped): %d" % no_examples)
     print("  Single-sense (auto-assigned): %d" % single_sense)
     print("  Multi-sense (need classifier): %d" % len(multi_sense_queue))
@@ -539,8 +686,8 @@ def main():
     if multi_sense_queue:
         print("\n" + "=" * 60)
         if use_gemini:
-            print("CLASSIFYING %d multi-sense words (Flash Lite, batches of %d)" % (
-                len(multi_sense_queue), BATCH_SIZE))
+            print("CLASSIFYING %d multi-sense words (%s, batches of %d)" % (
+                len(multi_sense_queue), gemini_model, BATCH_SIZE))
         else:
             print("CLASSIFYING %d multi-sense words (keyword fallback)" % len(multi_sense_queue))
         print("=" * 60)
@@ -553,7 +700,11 @@ def main():
         if os.path.isfile(checkpoint_path):
             with open(checkpoint_path) as f:
                 checkpoint = json.load(f)
-            assignments_out.update(checkpoint.get("assignments", {}))
+            for word, word_data in checkpoint.get("assignments", {}).items():
+                assignments_out[word] = normalize_assignment_methods(
+                    word_data,
+                    my_method,
+                )
             done_words = set(checkpoint.get("done_words", []))
             print("  Resuming from checkpoint: %d words done" % len(done_words))
 
@@ -561,22 +712,20 @@ def main():
             for batch_start in range(0, len(multi_sense_queue), BATCH_SIZE):
                 batch = multi_sense_queue[batch_start:batch_start + BATCH_SIZE]
                 # Skip batches where all words are already done
-                batch = [(w, l, s, ex) for w, l, s, ex in batch if w not in done_words]
+                batch = [(w, l, s, ex, ids) for w, l, s, ex, ids in batch if w not in done_words]
                 if not batch:
                     continue
                 batch_data = [{"word": w, "lemma": l, "senses": s,
                                "examples": ex[:20]}
-                              for w, l, s, ex in batch]
-                batch_words = [w for w, _, _, _ in batch]
+                              for w, l, s, ex, ids in batch]
+                batch_words = [w for w, _, _, _, _ in batch]
                 print("  Batch %d: %s" % (
                     batch_start // BATCH_SIZE + 1, batch_words[:5]))
 
-                results = classify_batch_gemini(batch_data, api_key)
+                results = classify_batch_gemini(batch_data, api_key, gemini_model)
 
-                for i, (word, lemma, senses, examples) in enumerate(batch):
-                    wl_key = "%s|%s" % (word, lemma)
-                    id_map = senses_out.get(wl_key, {})
-                    id_list = list(id_map.keys())  # positional → sense_id
+                for i, (word, lemma, senses, examples, explicit_ids) in enumerate(batch):
+                    id_list = explicit_ids or list(assign_analysis_sense_ids(lemma, senses).keys())
 
                     if results and i < len(results):
                         r = results[i]
@@ -605,10 +754,10 @@ def main():
                         if not assignments:
                             assignments = [{"sense": id_list[0],
                                             "examples": list(range(len(examples)))}]
-                        assignments_out[word] = {"flash-lite-wiktionary": assignments}
+                        assignments_out[word] = {my_method: assignments}
                     else:
                         # Fallback: assign all to first sense
-                        assignments_out[word] = {"flash-lite-wiktionary": [{
+                        assignments_out[word] = {my_method: [{
                             "sense": id_list[0] if id_list else "000",
                             "examples": list(range(len(examples))),
                         }]}
@@ -620,10 +769,8 @@ def main():
                                "done_words": sorted(done_words)}, f)
         else:
             # Keyword fallback
-            for word, lemma, senses, examples in multi_sense_queue:
-                wl_key = "%s|%s" % (word, lemma)
-                id_map = senses_out.get(wl_key, {})
-                id_list = list(id_map.keys())
+            for word, lemma, senses, examples, explicit_ids in multi_sense_queue:
+                id_list = explicit_ids or list(assign_analysis_sense_ids(lemma, senses).keys())
                 assigns = classify_keyword(examples, senses)
                 sense_buckets = {}
                 for ei, si in enumerate(assigns):
@@ -677,28 +824,40 @@ def main():
 
         t_start = time.time()
         proposed = 0
-        for word, lemma, examples in need_gemini:
-            wl_key = "%s|%s" % (word, lemma)
-            result = gap_fill_gemini(word, lemma, [], examples[:20], api_key)
-            if result and result.get("proposed_sense"):
-                pos = result.get("proposed_pos", "NOUN")
-                trans = result["proposed_sense"]
-                sense_list = [{"pos": pos, "translation": trans,
-                               "source": "gap-fill"}]
-                id_map = assign_sense_ids(sense_list)
-                # Gap-fill senses stay inline in assignments, not in menu
-                sid = list(id_map.keys())[0]
-                assignments_out[word] = {"gap-fill": [{
-                    "sense": sid,
-                    "pos": pos,
-                    "translation": trans,
-                    "examples": list(range(len(examples))),
-                }]}
-                proposed += 1
-            else:
-                # No sense proposed — still record the word with empty senses
-                # so the builder can fall back to curated translations
-                pass
+        for batch_start in range(0, len(need_gemini), GAP_FILL_BATCH_SIZE):
+            batch = need_gemini[batch_start:batch_start + GAP_FILL_BATCH_SIZE]
+            batch_words = [w for w, _, _ in batch]
+            print("  Gap-fill batch %d: %s" % (
+                batch_start // GAP_FILL_BATCH_SIZE + 1, batch_words[:5]))
+            batch_data = [{
+                "word": word,
+                "lemma": lemma,
+                "senses": [],
+                "examples": examples[:20],
+            } for word, lemma, examples in batch]
+            results = gap_fill_batch_gemini(batch_data, api_key, gemini_model)
+            result_map = {}
+            if isinstance(results, list):
+                for item in results:
+                    if isinstance(item, dict) and item.get("word"):
+                        result_map[item["word"]] = item
+
+            for word, lemma, examples in batch:
+                result = result_map.get(word)
+                if result and result.get("proposed_sense"):
+                    pos = result.get("proposed_pos", "NOUN")
+                    trans = result["proposed_sense"]
+                    sense_list = [{"pos": pos, "translation": trans,
+                                   "source": "gap-fill"}]
+                    id_map = assign_sense_ids(sense_list)
+                    sid = list(id_map.keys())[0]
+                    assignments_out[word] = {"gap-fill": [{
+                        "sense": sid,
+                        "pos": pos,
+                        "translation": trans,
+                        "examples": list(range(len(examples))),
+                    }]}
+                    proposed += 1
 
         elapsed = time.time() - t_start
         print("  Proposed %d new senses (%.1fs)" % (proposed, elapsed))
@@ -715,8 +874,10 @@ def main():
     existing_senses = {}
     if os.path.isfile(senses_path):
         with open(senses_path, "r", encoding="utf-8") as f:
-            existing_senses = json.load(f)
-    existing_senses.update(senses_out)
+            existing_senses = normalize_artist_sense_menu(json.load(f))
+    for word, analyses in senses_out.items():
+        for analysis in analyses:
+            merge_analysis(existing_senses, word, analysis.get("lemma", word), analysis.get("senses", {}))
     with open(senses_path, "w", encoding="utf-8") as f:
         json.dump(existing_senses, f, ensure_ascii=False, indent=2)
     print("\nWrote %s (%d entries, %d new)" % (senses_path, len(existing_senses), len(senses_out)))
@@ -729,7 +890,12 @@ def main():
     for word, methods in assignments_out.items():
         if word not in existing_assigns or not isinstance(existing_assigns[word], dict):
             existing_assigns[word] = {}
-        existing_assigns[word].update(methods)
+        existing_assigns[word].update(
+            normalize_assignment_methods(
+                methods,
+                my_method,
+            )
+        )
     with open(assignments_path, "w", encoding="utf-8") as f:
         json.dump(existing_assigns, f, ensure_ascii=False, indent=2)
     print("Wrote %s (%d entries, %d updated)" % (assignments_path, len(existing_assigns), len(assignments_out)))

@@ -46,7 +46,8 @@ def main():
         description="Step 6: Assign senses (bi-encoder + Gemini)")
 
     sys.path.insert(0, SCRIPTS_DIR)
-    from _artist_config import add_artist_arg
+    from _artist_config import add_artist_arg, load_dotenv_from_project_root
+    load_dotenv_from_project_root()
     add_artist_arg(parser)
 
     parser.add_argument("--no-gemini", action="store_true",
@@ -55,19 +56,26 @@ def main():
                         help="Use keyword overlap instead of bi-encoder (instant)")
     parser.add_argument("--force", action="store_true",
                         help="Re-classify all words (ignore existing assignments)")
+    parser.add_argument("--all-gemini", action="store_true",
+                        help="Skip bi-encoder and promote biencoder-routed words into the Gemini stage for this run")
+    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
+                        help="Gemini model for the Gemini stage (default: gemini-2.5-flash-lite)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
     has_api_key = bool(os.environ.get("GEMINI_API_KEY"))
 
     # Stage 1: bi-encoder for biencoder-routed words
-    bienc_args = ["--artist-dir", artist_dir]
-    if args.keyword_only:
-        bienc_args.append("--keyword-only")
-    if args.force:
-        bienc_args.append("--force")
-    run_step("STAGE 1: Bi-encoder (biencoder-routed words)",
-             "match_artist_senses.py", bienc_args)
+    if args.all_gemini:
+        print("\n  Skipping bi-encoder stage (--all-gemini)")
+    else:
+        bienc_args = ["--artist-dir", artist_dir]
+        if args.keyword_only:
+            bienc_args.append("--keyword-only")
+        if args.force:
+            bienc_args.append("--force")
+        run_step("STAGE 1: Bi-encoder (biencoder-routed words)",
+                 "match_artist_senses.py", bienc_args)
 
     # Stage 2: Gemini for gemini-routed words
     if args.no_gemini:
@@ -76,6 +84,12 @@ def main():
         print("\n  Skipping Gemini stage (no GEMINI_API_KEY set)")
     else:
         gemini_args = ["--artist-dir", artist_dir, "--new-only"]
+        if args.all_gemini:
+            gemini_args.append("--all-gemini")
+        if args.force:
+            gemini_args.append("--force")
+        if args.gemini_model:
+            gemini_args.extend(["--gemini-model", args.gemini_model])
         run_step("STAGE 2: Gemini Flash Lite (gemini-routed words)",
                  "build_wiktionary_senses.py", gemini_args)
 

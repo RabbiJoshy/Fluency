@@ -14,7 +14,9 @@ import hashlib
 # ---------------------------------------------------------------------------
 
 METHOD_PRIORITY = {
-    "pos-flash-lite-wiktionary": 55,  # POS-refined Gemini Flash Lite
+    "pos-flash-wiktionary": 60,       # POS-refined Gemini Flash
+    "flash-wiktionary": 55,           # Gemini Flash classifier (artist)
+    "pos-flash-lite-wiktionary": 52,  # POS-refined Gemini Flash Lite
     "flash-lite-wiktionary": 50,      # Gemini Flash Lite classifier (artist)
     "gap-fill": 50,                   # Gemini gap-fill for words not in Wiktionary
     "pos-gemini": 45,                 # POS-refined Gemini classifier
