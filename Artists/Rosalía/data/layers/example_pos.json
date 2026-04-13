@@ -1,0 +1,10659 @@
+{
+  "que": {
+    "0": "PRON",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "de": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "la": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "y": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "a": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "no": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "me": {
+    "0": "PART",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "el": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "en": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "yo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "lo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "te": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "tú": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "por": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "es": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "mi": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "nada": {
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "un": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "NUM",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "tu": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "PRON",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "se": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "si": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "mmm": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ",
+    "6": "INTJ",
+    "8": "INTJ"
+  },
+  "como": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "con": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "ya": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "ti": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "qué": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "DET",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "DET",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "DET"
+  },
+  "las": {
+    "0": "DET",
+    "1": "DET",
+    "2": "PRON",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "una": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "mí": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "noche": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "pero": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "quiero": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "los": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "del": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "más": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "soy": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "nos": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "al": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "cuando": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "PRON",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "mira": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "INTJ",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "aunque": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "tengo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "está": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "ay": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "INTJ",
+    "7": "INTJ",
+    "8": "INTJ",
+    "9": "INTJ"
+  },
+  "estoy": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "solo": {
+    "0": "ADJ",
+    "1": "ADV",
+    "2": "ADJ",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "voy": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "eres": {
+    "5": "VERB",
+    "6": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "palé": {
+    "0": "NOUN"
+  },
+  "ni": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "ADV",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "ADV"
+  },
+  "mal": {
+    "1": "ADV",
+    "2": "ADJ",
+    "3": "NOUN",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "NOUN",
+    "7": "ADV",
+    "8": "NOUN"
+  },
+  "sé": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "le": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "sin": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "nunca": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "porque": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "esta": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "tiene": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "ah": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "7": "INTJ",
+    "9": "INTJ"
+  },
+  "ella": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "ta": {
+    "0": "INTJ"
+  },
+  "amor": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "día": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "nadie": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "antes": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "llévame": {
+    "0": "VERB",
+    "2": "VERB"
+  },
+  "tus": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "vas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "aquí": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "cielo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "hasta": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADV",
+    "9": "ADP"
+  },
+  "para": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "hay": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "tiempo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "oh": {
+    "1": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "INTJ",
+    "7": "INTJ",
+    "8": "INTJ"
+  },
+  "corazón": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "has": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "siempre": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "mis": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "esto": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON"
+  },
+  "he": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "tumba": {
+    "0": "NOUN"
+  },
+  "madrugá": {
+    "0": "INTJ"
+  },
+  "bien": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "ha": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "o": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ"
+  },
+  "puedo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "fue": {
+    "0": "VERB",
+    "1": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "así": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "eso": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "NOUN",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "hacer": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "mundo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "uh": {
+    "1": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "7": "INTJ",
+    "8": "INTJ"
+  },
+  "mía": {
+    "0": "DET",
+    "1": "DET",
+    "2": "PRON",
+    "3": "DET",
+    "4": "PRON",
+    "5": "DET",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "ADJ",
+    "9": "PRON"
+  },
+  "su": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "yeah": {
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "INTJ",
+    "7": "INTJ",
+    "8": "ADV",
+    "9": "INTJ"
+  },
+  "tan": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "dinero": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "donde": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "esa": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "PRON",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "da": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "hoy": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "luna": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "algo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "dos": {
+    "0": "NUM",
+    "1": "NUM",
+    "2": "NUM",
+    "3": "NUM",
+    "4": "NUM",
+    "5": "NUM",
+    "6": "NUM",
+    "7": "NUM",
+    "8": "NUM",
+    "9": "NUM"
+  },
+  "encendío": {
+    "0": "ADJ"
+  },
+  "ves": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "ser": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "estás": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "somos": {
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "tá": {
+    "1": "NOUN"
+  },
+  "va": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "ver": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "vida": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "tienes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "dentro": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV"
+  },
+  "dónde": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON"
+  },
+  "libre": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "ADJ",
+    "3": "VERB"
+  },
+  "mío": {
+    "0": "ADP",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET"
+  },
+  "sol": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "sí": {
+    "0": "NOUN",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "ADV",
+    "7": "INTJ",
+    "8": "INTJ"
+  },
+  "él": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "ojos": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "calle": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "duro": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "eh": {
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "ADV",
+    "7": "INTJ",
+    "8": "INTJ",
+    "9": "INTJ"
+  },
+  "fuera": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "malamente": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "palmas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "quién": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON"
+  },
+  "sólo": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "veces": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vez": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "será": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "ahí": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV"
+  },
+  "baby": {
+    "0": "INTJ",
+    "1": "NOUN",
+    "2": "INTJ",
+    "3": "NOUN",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV"
+  },
+  "contigo": {
+    "0": "ADV",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "pienso": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "querer": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "santería": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sabes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "cuerpo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "cómo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "dime": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "mejor": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ",
+    "6": "ADV",
+    "7": "ADJ",
+    "8": "ADJ",
+    "9": "ADJ"
+  },
+  "morir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "muera": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "piel": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "separa": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "todo": {
+    "0": "PRON",
+    "1": "DET",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "DET",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "DET",
+    "8": "DET",
+    "9": "PRON"
+  },
+  "cerca": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "e": {
+    "0": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ"
+  },
+  "este": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "VERB",
+    "8": "DET",
+    "9": "DET"
+  },
+  "junta": {
+    "0": "VERB"
+  },
+  "linda": {
+    "0": "ADJ",
+    "2": "ADJ"
+  },
+  "pecho": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "pelo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "puede": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "quiere": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "boca": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "entre": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP"
+  },
+  "era": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "NOUN"
+  },
+  "i": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "3": "PRON",
+    "5": "PRON",
+    "6": "CCONJ",
+    "7": "CCONJ"
+  },
+  "mami": {
+    "1": "INTJ",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "INTJ",
+    "7": "NOUN",
+    "8": "INTJ",
+    "9": "NOUN"
+  },
+  "olvidar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pasado": {
+    "4": "NOUN",
+    "5": "VERB"
+  },
+  "ahora": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "contra": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP"
+  },
+  "dice": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "flor": {
+    "0": "NOUN"
+  },
+  "matar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "mirar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "nuevo": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "pa": {
+    "0": "ADP",
+    "2": "ADP",
+    "3": "INTJ"
+  },
+  "queda": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "quería": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "siente": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "también": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "tuya": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "miras": {
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "quieres": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "ayer": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "canto": {
+    "0": "NOUN",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "chi": {
+    "0": "INTJ"
+  },
+  "ciudad": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "cura": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "encima": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "ey": {
+    "0": "ADV",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "ADV",
+    "4": "CCONJ"
+  },
+  "millón": {
+    "0": "NOUN"
+  },
+  "nombre": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "otra": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "DET",
+    "3": "DET",
+    "4": "PRON",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "PRON"
+  },
+  "otro": {
+    "0": "PRON",
+    "1": "DET",
+    "2": "PRON",
+    "3": "DET",
+    "4": "PRON",
+    "5": "DET",
+    "6": "PRON"
+  },
+  "pena": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "presiento": {
+    "0": "VERB"
+  },
+  "quede": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sale": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "sea": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "toma": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "bala": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "bebé": {
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "INTJ"
+  },
+  "ciento": {
+    "0": "NUM"
+  },
+  "conocí": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "decir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "desde": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP"
+  },
+  "diablo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "hago": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "magnolias": {
+    "0": "NOUN"
+  },
+  "mente": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "mujer": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "papi": {
+    "1": "INTJ"
+  },
+  "seré": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "tenga": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "tírame": {
+    "0": "VERB"
+  },
+  "flores": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "todas": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "PRON"
+  },
+  "aún": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV"
+  },
+  "brillas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cabe": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "cara": {
+    "0": "ADJ",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "dura": {
+    "0": "ADJ",
+    "1": "VERB",
+    "2": "ADJ"
+  },
+  "loco": {
+    "0": "NOUN",
+    "2": "NOUN"
+  },
+  "mano": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "mañana": {
+    "0": "NOUN",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "NOUN"
+  },
+  "miedo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "motomami": {
+    "1": "NOUN",
+    "3": "NOUN",
+    "4": "ADJ"
+  },
+  "muy": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV"
+  },
+  "ninguna": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "DET",
+    "3": "PRON",
+    "4": "DET"
+  },
+  "puerta": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "son": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "suerte": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "tarde": {
+    "0": "NOUN",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "manos": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "cosas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "apúnteme": {
+    "0": "VERB"
+  },
+  "cada": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET"
+  },
+  "caimos": {
+    "0": "VERB"
+  },
+  "canta": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "dando": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "dejé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "esperaré": {
+    "0": "VERB"
+  },
+  "estés": {
+    "0": "VERB"
+  },
+  "gata": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "je": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "ADV",
+    "4": "INTJ"
+  },
+  "momento": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "ocupa": {
+    "0": "VERB"
+  },
+  "oro": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "sabe": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "lejos": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "puedes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "demasiado": {
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "detrás": {
+    "0": "ADV",
+    "1": "ADV",
+    "4": "ADV"
+  },
+  "sales": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "buena": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ"
+  },
+  "dame": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "ese": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "PRON",
+    "6": "DET",
+    "7": "DET"
+  },
+  "espero": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "han": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "ir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "manera": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "mar": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "mierda": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mucho": {
+    "0": "ADV",
+    "1": "DET",
+    "2": "ADV",
+    "3": "DET",
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "puta": {
+    "0": "ADJ",
+    "1": "NOUN",
+    "2": "ADJ",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "salgo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "tuyo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON"
+  },
+  "usted": {
+    "0": "PRON"
+  },
+  "vaya": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "ve": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "verdad": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "vivo": {
+    "0": "ADJ",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "volver": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "das": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "amar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "amigo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "azabache": {
+    "0": "ADJ"
+  },
+  "bonita": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ",
+    "6": "ADJ"
+  },
+  "combi": {
+    "0": "NOUN"
+  },
+  "conmigo": {
+    "0": "ADV",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "ADV",
+    "5": "PRON",
+    "6": "ADV"
+  },
+  "derroche": {
+    "0": "NOUN"
+  },
+  "di": {
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "dolor": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "ego": {
+    "1": "NOUN"
+  },
+  "falta": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "fuego": {
+    "1": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "good": {
+    "0": "ADV"
+  },
+  "guapa": {
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "gusta": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "hace": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "joven": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "liberé": {
+    "0": "VERB"
+  },
+  "llévamelo": {
+    "0": "INTJ"
+  },
+  "morirme": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "nací": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "NOUN"
+  },
+  "ola": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "parar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "parece": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "parte": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "NOUN"
+  },
+  "perder": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "perdóname": {
+    "0": "VERB"
+  },
+  "perrearnos": {
+    "0": "VERB"
+  },
+  "ponme": {
+    "0": "ADV",
+    "1": "VERB"
+  },
+  "quien": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON"
+  },
+  "quisiera": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "quítate": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "real": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "romper": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "sakura": {
+    "0": "NOUN"
+  },
+  "sobre": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP"
+  },
+  "tener": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "todos": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "triste": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "vivir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "diamantes": {
+    "1": "NOUN"
+  },
+  "anoche": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "azúcar": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "beso": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "bájale": {
+    "0": "ADJ"
+  },
+  "creas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "cuenta": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "cógela": {
+    "0": "ADJ"
+  },
+  "córtala": {
+    "0": "VERB"
+  },
+  "deprisa": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "divina": {
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "doy": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "escribano": {
+    "0": "NOUN"
+  },
+  "esquina": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "estar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "están": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "final": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "fría": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "hacerlo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "igual": {
+    "0": "ADV",
+    "1": "ADJ",
+    "2": "ADV",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "infierno": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "jugar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "llamas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "VERB",
+    "3": "NOUN"
+  },
+  "llevo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "luz": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "malo": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "medio": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mete": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "mirada": {
+    "0": "NOUN"
+  },
+  "mirando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "mirarte": {
+    "0": "VERB",
+    "2": "VERB"
+  },
+  "morder": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "noches": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "omega": {
+    "0": "NOUN"
+  },
+  "pared": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "pasar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "paz": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "pensar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "perdí": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "perla": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "poder": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "prima": {
+    "1": "NOUN"
+  },
+  "puestas": {
+    "0": "NOUN"
+  },
+  "salga": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "suelo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "tanto": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "transformo": {
+    "0": "VERB"
+  },
+  "uno": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON"
+  },
+  "vi'a": {
+    "0": "NOUN",
+    "1": "ADP"
+  },
+  "ojitos": {
+    "0": "NOUN"
+  },
+  "ganas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "4": "NOUN"
+  },
+  "les": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "pues": {
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ"
+  },
+  "vienes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "agua": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "alguien": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON"
+  },
+  "alma": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "alumbraré": {
+    "0": "VERB"
+  },
+  "amo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bueno": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "cae": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "calla": {
+    "0": "VERB"
+  },
+  "cama": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "chiri": {
+    "0": "NOUN"
+  },
+  "deja": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "diría": {
+    "0": "VERB"
+  },
+  "dándole": {
+    "0": "VERB"
+  },
+  "encontrar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "estaba": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "explicar": {
+    "0": "VERB"
+  },
+  "fondo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "fuente": {
+    "0": "NOUN"
+  },
+  "fui": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "guita": {
+    "0": "NOUN"
+  },
+  "hablar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "hacerte": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "hazme": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "heavy": {
+    "0": "ADJ"
+  },
+  "hookah": {
+    "0": "NOUN"
+  },
+  "inténtalo": {
+    "0": "VERB"
+  },
+  "iré": {
+    "0": "VERB"
+  },
+  "jamás": {
+    "0": "ADV"
+  },
+  "juntas": {
+    "0": "NOUN"
+  },
+  "libertad": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "luego": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "mala": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "mata": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "NOUN"
+  },
+  "muerdes": {
+    "0": "VERB"
+  },
+  "pasen": {
+    "0": "VERB"
+  },
+  "pasó": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "peso": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "poco": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "podemos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "primero": {
+    "0": "ADV",
+    "1": "ADJ",
+    "2": "ADV"
+  },
+  "quemar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "reliquia": {
+    "0": "NOUN"
+  },
+  "reniego": {
+    "0": "NOUN"
+  },
+  "rico": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "rodillas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "rompió": {
+    "0": "VERB"
+  },
+  "rápido": {
+    "0": "ADV"
+  },
+  "sangre": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "sepultura": {
+    "0": "NOUN"
+  },
+  "señor": {
+    "0": "NOUN"
+  },
+  "siete": {
+    "0": "NUM",
+    "1": "NUM",
+    "2": "NUM"
+  },
+  "solamente": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "sus": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET"
+  },
+  "tenía": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "toda": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET"
+  },
+  "travesura": {
+    "0": "NOUN"
+  },
+  "tuve": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "ven": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "vengo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "viene": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "viva": {
+    "0": "NOUN",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "VERB"
+  },
+  "volvería": {
+    "0": "VERB"
+  },
+  "besos": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "prendas": {
+    "0": "NOUN"
+  },
+  "atrás": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "menos": {
+    "0": "ADV"
+  },
+  "quieras": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "alejas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ando": {
+    "0": "VERB"
+  },
+  "arriba": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "bajé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cabello": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "carita": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "chiqui": {
+    "0": "ADJ"
+  },
+  "cruz": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "dejo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "deseo": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "VERB",
+    "3": "NOUN"
+  },
+  "devoramos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "digo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "disco": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "duermo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "encuentro": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "entiendas": {
+    "0": "VERB"
+  },
+  "estrella": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "fama": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "fe": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "fin": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "forma": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "hentai": {
+    "0": "NOUN"
+  },
+  "hiciste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hombre": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "hoyuelitos": {
+    "0": "NOUN"
+  },
+  "invierno": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "like": {
+    "0": "NOUN"
+  },
+  "llegué": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "lleva": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "madre": {
+    "0": "NOUN",
+    "4": "INTJ"
+  },
+  "mando": {
+    "0": "NOUN",
+    "1": "VERB"
+  },
+  "melena": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mismo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "ADJ",
+    "3": "PRON"
+  },
+  "muere": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "muerte": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "necesito": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "niño": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "nuestros": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "oliva": {
+    "0": "NOUN"
+  },
+  "olvidarme": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "olvide": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "penas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "plata": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "pueden": {
+    "0": "VERB"
+  },
+  "punta": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "quiera": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "racineta": {
+    "1": "NOUN"
+  },
+  "remedio": {
+    "1": "NOUN"
+  },
+  "respeto": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "rumba": {
+    "1": "NOUN"
+  },
+  "río": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "salen": {
+    "0": "VERB"
+  },
+  "salir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "santo": {
+    "0": "ADJ",
+    "1": "NOUN",
+    "2": "ADJ",
+    "3": "NOUN"
+  },
+  "sigue": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sola": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "sonriendo": {
+    "0": "VERB"
+  },
+  "ternura": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "tienen": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "tierra": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "to'a": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP"
+  },
+  "up": {
+    "0": "NOUN",
+    "1": "ADV"
+  },
+  "van": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vera": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "verde": {
+    "0": "ADJ"
+  },
+  "vi": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "vive": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "viviendo": {
+    "0": "VERB"
+  },
+  "vuelva": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "vuelve": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "ángeles": {
+    "0": "NOUN"
+  },
+  "azules": {
+    "0": "ADJ"
+  },
+  "dices": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "dorado": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "esas": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "fuimos": {
+    "1": "VERB"
+  },
+  "tres": {
+    "3": "NUM"
+  },
+  "digas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "esos": {
+    "0": "PRON"
+  },
+  "labios": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "pienses": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "acaba": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "acelero": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "aire": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "alguna": {
+    "0": "DET"
+  },
+  "allá": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "altura": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "aquel": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "DET"
+  },
+  "artista": {
+    "0": "NOUN"
+  },
+  "bajo": {
+    "0": "ADP",
+    "1": "ADJ",
+    "2": "NOUN",
+    "3": "ADP"
+  },
+  "belleza": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "bizcochito": {
+    "0": "NOUN"
+  },
+  "blanco": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "ADJ"
+  },
+  "boletos": {
+    "0": "NOUN"
+  },
+  "brillando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "broche": {
+    "0": "NOUN"
+  },
+  "calor": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "camino": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cancha": {
+    "0": "NOUN"
+  },
+  "cantantes": {
+    "0": "NOUN"
+  },
+  "cantar": {
+    "0": "VERB",
+    "1": "VERB",
+    "3": "VERB"
+  },
+  "casar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "coge": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "condena": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "creo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cuarto": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cuchillo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "cuello": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "dale": {
+    "0": "INTJ",
+    "1": "INTJ"
+  },
+  "dar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "darte": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dejame": {
+    "0": "VERB"
+  },
+  "dejes": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dicen": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "dicho": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dolerme": {
+    "0": "VERB"
+  },
+  "dulce": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "duró": {
+    "0": "VERB"
+  },
+  "ea": {
+    "0": "INTJ"
+  },
+  "empeño": {
+    "0": "VERB"
+  },
+  "enamorada": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "enamorar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "esmalte": {
+    "0": "NOUN"
+  },
+  "espera": {
+    "1": "VERB"
+  },
+  "esté": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "firmé": {
+    "0": "VERB"
+  },
+  "frío": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "fácil": {
+    "0": "ADJ"
+  },
+  "g": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "gente": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "guitarra": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "guárdame": {
+    "0": "VERB"
+  },
+  "habla": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "habrá": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hijo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "hizo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hola": {
+    "0": "INTJ",
+    "1": "INTJ"
+  },
+  "hotel": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "importa": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "intervención": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ja": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "INTJ"
+  },
+  "lamento": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lindo": {
+    "0": "ADJ"
+  },
+  "llega": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "llego": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "llevan": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "llorar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "marfil": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "maten": {
+    "0": "VERB"
+  },
+  "mentira": {
+    "0": "NOUN"
+  },
+  "metal": {
+    "0": "NOUN"
+  },
+  "millon": {
+    "0": "NOUN"
+  },
+  "muero": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "muevo": {
+    "0": "VERB"
+  },
+  "murió": {
+    "0": "VERB"
+  },
+  "mándame": {
+    "0": "VERB"
+  },
+  "nace": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "olé": {
+    "0": "INTJ",
+    "2": "INTJ"
+  },
+  "pago": {
+    "0": "VERB",
+    "1": "NOUN"
+  },
+  "pensamos": {
+    "0": "VERB"
+  },
+  "pesa": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "pido": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "pistola": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pongan": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pongo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "primer": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "pudiera": {
+    "0": "VERB"
+  },
+  "pura": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "puse": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quedamos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quedó": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "quemando": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "quilates": {
+    "0": "NOUN"
+  },
+  "quita": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "quito": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rabia": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "recuerda": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "restos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "rojo": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "NOUN"
+  },
+  "saben": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "saber": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "sacar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sazón": {
+    "0": "NOUN"
+  },
+  "seguro": {
+    "0": "NOUN",
+    "1": "ADJ"
+  },
+  "sentiste": {
+    "0": "VERB"
+  },
+  "serio": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sería": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "sexo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "siento": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "so": {
+    "0": "ADV"
+  },
+  "sonaría": {
+    "0": "VERB"
+  },
+  "tendrás": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "testigo": {
+    "0": "NOUN"
+  },
+  "traicionera": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "traje": {
+    "0": "VERB"
+  },
+  "trenzas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "usarlo": {
+    "0": "VERB"
+  },
+  "veneno": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "veo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "visto": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "voz": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "vuelves": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "woah": {
+    "0": "INTJ"
+  },
+  "billetes": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "cadenas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "crees": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dejado": {
+    "2": "VERB"
+  },
+  "después": {
+    "2": "ADV"
+  },
+  "haces": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "juntos": {
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "rosas": {
+    "1": "NOUN"
+  },
+  "tenemos": {
+    "2": "VERB"
+  },
+  "llames": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "nosotros": {
+    "2": "PRON"
+  },
+  "querías": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "abajo": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "acabar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "admito": {
+    "0": "VERB"
+  },
+  "adoré": {
+    "0": "VERB"
+  },
+  "alfa": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "aliviarnos": {
+    "0": "VERB"
+  },
+  "allí": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "amante": {
+    "0": "NOUN"
+  },
+  "amigas": {
+    "0": "NOUN"
+  },
+  "angustia": {
+    "0": "NOUN"
+  },
+  "apagar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "aprende": {
+    "0": "VERB"
+  },
+  "aseguro": {
+    "0": "VERB"
+  },
+  "bajar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bendiga": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "besan": {
+    "0": "VERB"
+  },
+  "besito": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "bonito": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "borra": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "borrar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "brilla": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "brillaban": {
+    "0": "VERB"
+  },
+  "brillante": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "caidas": {
+    "0": "NOUN"
+  },
+  "calma": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cambié": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "canción": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "casi": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "cayó": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "celosa": {
+    "0": "ADJ"
+  },
+  "cheque": {
+    "0": "INTJ"
+  },
+  "chiquiti": {
+    "0": "NOUN"
+  },
+  "chándal": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cien": {
+    "0": "NUM",
+    "1": "NUM",
+    "2": "NUM"
+  },
+  "cierto": {
+    "0": "ADJ"
+  },
+  "cita": {
+    "0": "NOUN"
+  },
+  "clavel": {
+    "0": "NOUN"
+  },
+  "cola": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "color": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "compañía": {
+    "0": "NOUN"
+  },
+  "confiaré": {
+    "0": "VERB"
+  },
+  "consuelo": {
+    "0": "NOUN"
+  },
+  "coraje": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "corre": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "correcto": {
+    "0": "ADJ"
+  },
+  "corriente": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cuanto": {
+    "0": "ADV",
+    "1": "NOUN"
+  },
+  "cuchillos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cuerpos": {
+    "0": "NOUN"
+  },
+  "culo": {
+    "0": "NOUN"
+  },
+  "culpa": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "debajo": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "debo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "decía": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "delito": {
+    "0": "NOUN"
+  },
+  "demás": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "derrito": {
+    "0": "VERB"
+  },
+  "desastre": {
+    "0": "NOUN"
+  },
+  "despiertas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "destino": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "difícil": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "dile": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dinamita": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "dispara": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "diva": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "domingo": {
+    "0": "NOUN"
+  },
+  "don": {
+    "0": "NOUN"
+  },
+  "emocional": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "emperatriz": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "encontrados": {
+    "0": "ADJ"
+  },
+  "enseñado": {
+    "0": "VERB"
+  },
+  "enseñarías": {
+    "0": "VERB"
+  },
+  "entero": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "enterraor": {
+    "0": "NOUN"
+  },
+  "eran": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "escucharme": {
+    "0": "VERB"
+  },
+  "espere": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "estilo": {
+    "0": "NOUN"
+  },
+  "eterna": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "existir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "falla": {
+    "0": "NOUN"
+  },
+  "familia": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "flow": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "focos": {
+    "0": "NOUN"
+  },
+  "for": {
+    "0": "ADP"
+  },
+  "fortuna": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "fríos": {
+    "0": "ADJ"
+  },
+  "fueron": {
+    "0": "VERB"
+  },
+  "fuerte": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "fuiste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "futuro": {
+    "0": "NOUN"
+  },
+  "gota": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "haber": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "haré": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "haya": {
+    "0": "VERB"
+  },
+  "haz": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "hecho": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "VERB"
+  },
+  "hice": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "hoodie": {
+    "1": "NOUN"
+  },
+  "hubo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ilusión": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "imperio": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "incito": {
+    "0": "VERB"
+  },
+  "invento": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "lamborghinis": {
+    "0": "NOUN"
+  },
+  "lealtad": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "leche": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "llamarme": {
+    "0": "VERB"
+  },
+  "llegas": {
+    "0": "VERB"
+  },
+  "lleven": {
+    "0": "VERB"
+  },
+  "lloro": {
+    "0": "VERB"
+  },
+  "loca": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "m'a": {
+    "0": "ADP",
+    "1": "ADP"
+  },
+  "maki": {
+    "0": "NOUN"
+  },
+  "mamá": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "manden": {
+    "0": "VERB"
+  },
+  "mato": {
+    "0": "VERB"
+  },
+  "mayor": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "memoria": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "miro": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "mojados": {
+    "0": "ADJ"
+  },
+  "monta": {
+    "0": "VERB"
+  },
+  "mucha": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "muerta": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "mulata": {
+    "0": "NOUN"
+  },
+  "més": {
+    "0": "ADV"
+  },
+  "mírame": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "nacer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "negro": {
+    "0": "NOUN",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "ninguno": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "niña": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "nuestra": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET"
+  },
+  "número": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "oblígame": {
+    "0": "VERB"
+  },
+  "odio": {
+    "0": "VERB"
+  },
+  "olvido": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "paga": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "país": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pañuelo": {
+    "0": "NOUN"
+  },
+  "peor": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "perlas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "piensas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pierdo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pirámide": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pisas": {
+    "0": "VERB"
+  },
+  "placer": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "poderle": {
+    "0": "VERB"
+  },
+  "ponte": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "porcelana": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "porvenir": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "prenda": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "presencia": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "prisión": {
+    "0": "NOUN"
+  },
+  "problema": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "promesa": {
+    "0": "NOUN"
+  },
+  "protege": {
+    "0": "VERB"
+  },
+  "pudo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "puesto": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pureza": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "quererte": {
+    "0": "VERB",
+    "1": "PRON"
+  },
+  "quilo": {
+    "0": "NOUN"
+  },
+  "quince": {
+    "0": "NUM"
+  },
+  "recuerdo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "reina": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "roja": {
+    "1": "ADJ"
+  },
+  "sabré": {
+    "0": "VERB"
+  },
+  "sacais": {
+    "0": "VERB"
+  },
+  "seco": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "segundo": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "NOUN"
+  },
+  "seras": {
+    "0": "VERB"
+  },
+  "serenata": {
+    "0": "NOUN"
+  },
+  "sido": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sobra": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sonando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "stalkear": {
+    "0": "VERB"
+  },
+  "stories": {
+    "0": "NOUN"
+  },
+  "suave": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "subi'o": {
+    "0": "VERB"
+  },
+  "suena": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "sueña": {
+    "0": "VERB"
+  },
+  "sueño": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "taba": {
+    "0": "NOUN"
+  },
+  "tabaco": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "tanta": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "tarjeta": {
+    "0": "NOUN"
+  },
+  "ten": {
+    "0": "ADJ"
+  },
+  "termina": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "terrón": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "todito": {
+    "1": "ADJ"
+  },
+  "trozo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "té": {
+    "1": "NOUN"
+  },
+  "vengan": {
+    "0": "VERB"
+  },
+  "vuelta": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "vuelto": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ángel": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "és": {
+    "0": "VERB"
+  },
+  "única": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "canciones": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "decías": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "días": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "esperas": {
+    "0": "NOUN"
+  },
+  "estrellas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "llevas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pones": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "puedas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vámonos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "aah": {
+    "0": "INTJ"
+  },
+  "acabé": {
+    "0": "VERB"
+  },
+  "acera": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "acompañan": {
+    "0": "VERB"
+  },
+  "acordarme": {
+    "0": "VERB"
+  },
+  "acá": {
+    "0": "ADV"
+  },
+  "adelanto": {
+    "0": "VERB"
+  },
+  "agujerito": {
+    "0": "NOUN"
+  },
+  "algún": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "alrededor": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "amapola": {
+    "0": "NOUN"
+  },
+  "amarrar": {
+    "0": "VERB"
+  },
+  "amazing": {
+    "0": "INTJ"
+  },
+  "ambición": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "amores": {
+    "0": "NOUN"
+  },
+  "anestesia": {
+    "0": "VERB"
+  },
+  "angelada": {
+    "0": "ADJ"
+  },
+  "aniquilado": {
+    "0": "ADJ"
+  },
+  "aprendí": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "aquella": {
+    "0": "DET",
+    "1": "PRON"
+  },
+  "arrepentiré": {
+    "0": "VERB"
+  },
+  "arrepiento": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "arruine": {
+    "0": "VERB"
+  },
+  "arte": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "astilla": {
+    "0": "NOUN"
+  },
+  "ata'a": {
+    "0": "ADJ"
+  },
+  "atardecer": {
+    "0": "NOUN"
+  },
+  "ataúd": {
+    "0": "NOUN"
+  },
+  "atreverte": {
+    "0": "VERB"
+  },
+  "bachata": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "bailas": {
+    "0": "VERB"
+  },
+  "bailando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bailaora": {
+    "0": "NOUN"
+  },
+  "baladas": {
+    "0": "NOUN"
+  },
+  "basta": {
+    "0": "VERB"
+  },
+  "beber": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bella": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "besar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "beses": {
+    "0": "VERB"
+  },
+  "bike": {
+    "0": "NOUN"
+  },
+  "bitches": {
+    "0": "NOUN"
+  },
+  "bonitas": {
+    "0": "ADJ"
+  },
+  "bote": {
+    "0": "NOUN"
+  },
+  "botella": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "brava": {
+    "0": "NOUN"
+  },
+  "brillan": {
+    "0": "VERB"
+  },
+  "brillantes": {
+    "0": "NOUN"
+  },
+  "brillar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "brillarían": {
+    "0": "VERB"
+  },
+  "buscando": {
+    "0": "VERB"
+  },
+  "buscarte": {
+    "0": "PRON"
+  },
+  "caballo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "caben": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cabrón": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cadena": {
+    "0": "NOUN"
+  },
+  "caerse": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "café": {
+    "1": "NOUN"
+  },
+  "caja": {
+    "0": "NOUN"
+  },
+  "calibra": {
+    "0": "VERB"
+  },
+  "callejón": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cambiar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "camina": {
+    "0": "VERB"
+  },
+  "caminar": {
+    "0": "VERB"
+  },
+  "canela": {
+    "0": "VERB",
+    "1": "NOUN"
+  },
+  "cantaora": {
+    "0": "NOUN"
+  },
+  "cante": {
+    "0": "NOUN"
+  },
+  "capitana": {
+    "0": "NOUN"
+  },
+  "capítulo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "carcelero": {
+    "0": "ADJ"
+  },
+  "carnet": {
+    "0": "NOUN"
+  },
+  "carrera": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "carretero": {
+    "0": "NOUN"
+  },
+  "casa": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "castigarme": {
+    "0": "VERB"
+  },
+  "causa": {
+    "0": "VERB"
+  },
+  "caviar": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "caía": {
+    "0": "VERB"
+  },
+  "caída": {
+    "0": "NOUN"
+  },
+  "cena": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ceros": {
+    "0": "NOUN"
+  },
+  "cerramos": {
+    "0": "VERB"
+  },
+  "chica": {
+    "0": "NOUN"
+  },
+  "china": {
+    "0": "NOUN"
+  },
+  "chingarte": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "chino": {
+    "0": "NOUN"
+  },
+  "choqué": {
+    "0": "VERB"
+  },
+  "ciegas": {
+    "0": "NOUN"
+  },
+  "cielos": {
+    "0": "NOUN"
+  },
+  "clavé": {
+    "0": "VERB"
+  },
+  "cocaína": {
+    "0": "NOUN"
+  },
+  "coche": {
+    "0": "NOUN"
+  },
+  "coco": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cogió": {
+    "0": "VERB"
+  },
+  "cogía": {
+    "0": "VERB"
+  },
+  "comer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "compañero": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "concierto": {
+    "0": "NOUN"
+  },
+  "consigo": {
+    "0": "VERB"
+  },
+  "construye": {
+    "0": "VERB"
+  },
+  "continente": {
+    "0": "NOUN"
+  },
+  "controla": {
+    "0": "VERB"
+  },
+  "convierto": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cookie": {
+    "0": "NOUN"
+  },
+  "copa": {
+    "0": "NOUN"
+  },
+  "corona": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "corren": {
+    "0": "VERB"
+  },
+  "corri'o": {
+    "0": "CCONJ"
+  },
+  "cos": {
+    "0": "NOUN"
+  },
+  "crecer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "creer": {
+    "0": "VERB"
+  },
+  "crujío": {
+    "0": "NOUN"
+  },
+  "cuatro": {
+    "0": "NUM"
+  },
+  "cuántas": {
+    "0": "DET"
+  },
+  "cuánto": {
+    "0": "PRON"
+  },
+  "cámaras": {
+    "0": "NOUN"
+  },
+  "darle": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dará": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "debes": {
+    "0": "VERB"
+  },
+  "debilidad": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "decepción": {
+    "0": "NOUN"
+  },
+  "decirlo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dejar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dejaste": {
+    "0": "VERB"
+  },
+  "dejó": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "delante": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "deliciosa": {
+    "0": "ADJ"
+  },
+  "derecha": {
+    "0": "NOUN"
+  },
+  "derecho": {
+    "0": "NOUN"
+  },
+  "desaparezca": {
+    "0": "VERB"
+  },
+  "despertarnos": {
+    "0": "VERB"
+  },
+  "despierto": {
+    "0": "ADJ"
+  },
+  "desquitarme": {
+    "0": "VERB"
+  },
+  "destruye": {
+    "0": "VERB"
+  },
+  "detenerme": {
+    "0": "VERB"
+  },
+  "deuda": {
+    "0": "NOUN"
+  },
+  "diamante": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "dieran": {
+    "0": "VERB"
+  },
+  "diferente": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "dije": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dijo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "doblar": {
+    "0": "VERB"
+  },
+  "doblo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dormir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "duras": {
+    "0": "VERB"
+  },
+  "duran": {
+    "0": "VERB"
+  },
+  "dártelo": {
+    "0": "VERB"
+  },
+  "dé": {
+    "0": "VERB"
+  },
+  "déjame": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "echas": {
+    "0": "VERB"
+  },
+  "ejército": {
+    "0": "NOUN"
+  },
+  "elegí": {
+    "0": "VERB"
+  },
+  "ellas": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "embuste": {
+    "0": "NOUN"
+  },
+  "empiece": {
+    "0": "VERB"
+  },
+  "enamores": {
+    "0": "VERB"
+  },
+  "encontré": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "engarzá": {
+    "0": "VERB"
+  },
+  "engaño": {
+    "0": "VERB"
+  },
+  "entender": {
+    "0": "VERB"
+  },
+  "entenderá": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "entera": {
+    "0": "ADJ"
+  },
+  "entierro": {
+    "0": "NOUN"
+  },
+  "entrando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "entrar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "entro": {
+    "0": "VERB"
+  },
+  "equipaje": {
+    "0": "NOUN"
+  },
+  "equivocada": {
+    "0": "ADJ"
+  },
+  "equivocarme": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "escena": {
+    "0": "NOUN"
+  },
+  "escondida": {
+    "0": "ADJ"
+  },
+  "escribo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "escuchado": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "escuchar": {
+    "0": "VERB"
+  },
+  "especial": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "esperanza": {
+    "0": "NOUN"
+  },
+  "esperes": {
+    "0": "VERB"
+  },
+  "espina": {
+    "0": "NOUN"
+  },
+  "espérame": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "esquinas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "estas": {
+    "0": "DET",
+    "1": "PRON"
+  },
+  "estrellarme": {
+    "0": "VERB"
+  },
+  "et": {
+    "0": "CCONJ",
+    "1": "CCONJ"
+  },
+  "falda": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "fallé": {
+    "0": "VERB"
+  },
+  "farol": {
+    "0": "NOUN"
+  },
+  "faros": {
+    "0": "NOUN"
+  },
+  "fieras": {
+    "0": "NOUN"
+  },
+  "fina": {
+    "0": "ADJ"
+  },
+  "flash": {
+    "0": "NOUN"
+  },
+  "flechas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "flecos": {
+    "0": "NOUN"
+  },
+  "frente": {
+    "0": "ADV"
+  },
+  "fuma": {
+    "0": "VERB"
+  },
+  "fía": {
+    "0": "VERB"
+  },
+  "fío": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "galaxia": {
+    "0": "NOUN"
+  },
+  "gana": {
+    "0": "NOUN"
+  },
+  "gasta": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "gastaría": {
+    "0": "VERB"
+  },
+  "gato": {
+    "0": "NOUN"
+  },
+  "gitana": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "golf": {
+    "0": "NOUN"
+  },
+  "golpe": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "golpea": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "gracias": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "grandioso": {
+    "0": "ADJ"
+  },
+  "gris": {
+    "0": "ADJ"
+  },
+  "gritar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "guardaespaldas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "habitar": {
+    "0": "VERB"
+  },
+  "hablarme": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hablas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "haciendo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hacía": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "haga": {
+    "0": "VERB"
+  },
+  "haiku": {
+    "0": "NOUN"
+  },
+  "harán": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "harás": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hechas": {
+    "0": "ADJ"
+  },
+  "hermano": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "hermosas": {
+    "0": "ADJ"
+  },
+  "heroína": {
+    "0": "NOUN"
+  },
+  "hey": {
+    "0": "INTJ",
+    "1": "INTJ"
+  },
+  "hicimos": {
+    "0": "VERB"
+  },
+  "hielo": {
+    "0": "NOUN"
+  },
+  "hits": {
+    "0": "NOUN"
+  },
+  "homenaje": {
+    "0": "NOUN"
+  },
+  "hondura": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "hora": {
+    "0": "NOUN"
+  },
+  "hubiera": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "huele": {
+    "0": "VERB"
+  },
+  "iba": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "importó": {
+    "0": "VERB"
+  },
+  "infiel": {
+    "0": "ADJ"
+  },
+  "infiernos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "inicial": {
+    "0": "NOUN"
+  },
+  "invisible": {
+    "0": "ADJ"
+  },
+  "invitadas": {
+    "0": "ADJ"
+  },
+  "jaja": {
+    "0": "INTJ",
+    "1": "INTJ"
+  },
+  "junto": {
+    "0": "ADJ"
+  },
+  "jurar": {
+    "0": "VERB"
+  },
+  "justiciero": {
+    "0": "ADJ"
+  },
+  "lastima": {
+    "0": "VERB"
+  },
+  "late": {
+    "0": "VERB"
+  },
+  "leguas": {
+    "0": "NOUN"
+  },
+  "lenguas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lentamente": {
+    "0": "ADV"
+  },
+  "leopardo": {
+    "0": "NOUN"
+  },
+  "levante": {
+    "0": "VERB"
+  },
+  "llanto": {
+    "0": "NOUN"
+  },
+  "llave": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lloran": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "lluvia": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "local": {
+    "0": "ADJ"
+  },
+  "locamente": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "loquita": {
+    "0": "ADJ"
+  },
+  "lore": {
+    "0": "NOUN"
+  },
+  "luchar": {
+    "0": "VERB"
+  },
+  "lugar": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lunares": {
+    "0": "NOUN"
+  },
+  "lágrima": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lágrimas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "macheteé": {
+    "0": "VERB"
+  },
+  "madrugada": {
+    "0": "ADV",
+    "1": "NOUN"
+  },
+  "mai": {
+    "0": "NOUN"
+  },
+  "maldición": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mana": {
+    "1": "VERB"
+  },
+  "manual": {
+    "0": "NOUN"
+  },
+  "marca": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "marché": {
+    "0": "VERB"
+  },
+  "martirizando": {
+    "0": "VERB"
+  },
+  "matas": {
+    "0": "VERB"
+  },
+  "matcha": {
+    "0": "NOUN"
+  },
+  "mate": {
+    "0": "NOUN"
+  },
+  "maté": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "medalla": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "medirse": {
+    "0": "VERB"
+  },
+  "melón": {
+    "0": "NOUN"
+  },
+  "mensaje": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mentido": {
+    "0": "VERB"
+  },
+  "merced": {
+    "1": "NOUN"
+  },
+  "mesa": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "meto": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "miento": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "mil": {
+    "0": "NUM",
+    "1": "NUM"
+  },
+  "miraban": {
+    "0": "VERB"
+  },
+  "mire": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "miremos": {
+    "0": "VERB"
+  },
+  "modo": {
+    "0": "NOUN"
+  },
+  "molestia": {
+    "0": "NOUN"
+  },
+  "mon": {
+    "0": "ADV"
+  },
+  "muchos": {
+    "0": "DET"
+  },
+  "muerde": {
+    "0": "VERB"
+  },
+  "mueve": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "mundial": {
+    "0": "ADJ"
+  },
+  "muro": {
+    "0": "NOUN"
+  },
+  "muñeca": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mírala": {
+    "0": "VERB"
+  },
+  "nacional": {
+    "0": "ADJ"
+  },
+  "nació": {
+    "0": "VERB"
+  },
+  "navaja": {
+    "0": "NOUN"
+  },
+  "negra": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "nena": {
+    "0": "NOUN"
+  },
+  "nene": {
+    "0": "NOUN"
+  },
+  "nieve": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ningún": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "novia": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ofende": {
+    "0": "VERB"
+  },
+  "olvi'ando": {
+    "0": "VERB"
+  },
+  "olvida": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ombligo": {
+    "0": "NOUN"
+  },
+  "omertá": {
+    "0": "NOUN"
+  },
+  "oponga": {
+    "0": "VERB"
+  },
+  "orgullo": {
+    "0": "NOUN"
+  },
+  "origen": {
+    "0": "NOUN"
+  },
+  "oye": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pagada": {
+    "0": "ADJ"
+  },
+  "palabras": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pan": {
+    "0": "NOUN"
+  },
+  "par": {
+    "0": "NOUN"
+  },
+  "parecía": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "partirme": {
+    "0": "VERB"
+  },
+  "partió": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pasa": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pasará": {
+    "0": "VERB"
+  },
+  "pasos": {
+    "0": "NOUN"
+  },
+  "peleara": {
+    "0": "VERB"
+  },
+  "pelota": {
+    "0": "NOUN"
+  },
+  "penitencia": {
+    "0": "NOUN"
+  },
+  "per": {
+    "0": "ADP"
+  },
+  "perdiera": {
+    "0": "VERB"
+  },
+  "perdone": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "perdón": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "permiso": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "peñas": {
+    "0": "NOUN"
+  },
+  "pie": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "piensa": {
+    "0": "VERB"
+  },
+  "piercing": {
+    "0": "NOUN"
+  },
+  "pierde": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pimpea": {
+    "0": "VERB"
+  },
+  "pimpean": {
+    "0": "VERB"
+  },
+  "pintalabios": {
+    "0": "NOUN"
+  },
+  "pintando": {
+    "0": "VERB"
+  },
+  "pisa": {
+    "0": "VERB"
+  },
+  "plan": {
+    "1": "NOUN"
+  },
+  "playa": {
+    "0": "NOUN"
+  },
+  "poderte": {
+    "0": "PRON"
+  },
+  "podido": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "popstar": {
+    "0": "NOUN"
+  },
+  "prefieres": {
+    "0": "VERB"
+  },
+  "prefiero": {
+    "0": "VERB"
+  },
+  "preguntaban": {
+    "0": "VERB"
+  },
+  "preguntaras": {
+    "0": "VERB"
+  },
+  "presente": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "presiona": {
+    "0": "VERB"
+  },
+  "primaveras": {
+    "0": "NOUN"
+  },
+  "prisma": {
+    "0": "NOUN"
+  },
+  "pueblo": {
+    "0": "NOUN"
+  },
+  "pueda": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "puertas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "puñal": {
+    "0": "NOUN"
+  },
+  "puñalás": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "puños": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pájaro": {
+    "0": "NOUN"
+  },
+  "pámpara": {
+    "0": "NOUN"
+  },
+  "pégate": {
+    "0": "VERB"
+  },
+  "quedaste": {
+    "0": "VERB"
+  },
+  "quepo": {
+    "0": "VERB"
+  },
+  "querido": {
+    "0": "VERB"
+  },
+  "querré": {
+    "0": "VERB"
+  },
+  "quieren": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quitará": {
+    "0": "VERB"
+  },
+  "quizá": {
+    "0": "ADV"
+  },
+  "quédatelo": {
+    "0": "VERB"
+  },
+  "química": {
+    "0": "NOUN"
+  },
+  "rango": {
+    "0": "NOUN"
+  },
+  "rara": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "rato": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "razón": {
+    "0": "NOUN"
+  },
+  "recojas": {
+    "0": "VERB"
+  },
+  "reguero": {
+    "0": "NOUN"
+  },
+  "reimos": {
+    "0": "VERB"
+  },
+  "relajes": {
+    "0": "VERB"
+  },
+  "rendre": {
+    "0": "VERB"
+  },
+  "renegar": {
+    "0": "VERB"
+  },
+  "repitamos": {
+    "0": "VERB"
+  },
+  "retornes": {
+    "0": "VERB"
+  },
+  "reírme": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ride": {
+    "0": "ADJ"
+  },
+  "ridiculous": {
+    "0": "ADJ"
+  },
+  "riesgo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "robo": {
+    "0": "VERB",
+    "1": "NOUN"
+  },
+  "rompa": {
+    "0": "VERB"
+  },
+  "rompe": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rompecorazones": {
+    "0": "NOUN"
+  },
+  "rosa": {
+    "1": "NOUN"
+  },
+  "roto": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "rue'a": {
+    "0": "ADP"
+  },
+  "saliendo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "saliva": {
+    "0": "NOUN"
+  },
+  "secreto": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "secretos": {
+    "0": "NOUN"
+  },
+  "seguidora": {
+    "0": "ADJ"
+  },
+  "sentimental": {
+    "0": "ADJ"
+  },
+  "sentimos": {
+    "0": "VERB"
+  },
+  "señala'íto": {
+    "0": "ADJ"
+  },
+  "shooting": {
+    "0": "NOUN"
+  },
+  "siendo": {
+    "0": "VERB"
+  },
+  "siglo": {
+    "0": "NOUN"
+  },
+  "sigo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sigues": {
+    "0": "VERB"
+  },
+  "solas": {
+    "0": "NOUN",
+    "1": "ADJ"
+  },
+  "solté": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sombra": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sonaba": {
+    "0": "VERB"
+  },
+  "sonrisa": {
+    "1": "NOUN"
+  },
+  "soñando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "soñé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "suelos": {
+    "0": "NOUN"
+  },
+  "supiera": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "suspiro": {
+    "0": "NOUN"
+  },
+  "sío": {
+    "0": "VERB"
+  },
+  "tacones": {
+    "0": "NOUN"
+  },
+  "taina": {
+    "0": "ADJ"
+  },
+  "tantas": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "tape": {
+    "0": "NOUN"
+  },
+  "tar": {
+    "0": "ADV"
+  },
+  "tatuarme": {
+    "0": "VERB"
+  },
+  "taza": {
+    "0": "NOUN"
+  },
+  "tee": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "temas": {
+    "0": "VERB"
+  },
+  "tenerla": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tenerte": {
+    "0": "PRON"
+  },
+  "tercer": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "terrorista": {
+    "0": "NOUN"
+  },
+  "testamento": {
+    "0": "NOUN"
+  },
+  "teteo": {
+    "0": "NOUN"
+  },
+  "tierno": {
+    "0": "ADJ"
+  },
+  "tigueraje": {
+    "0": "NOUN"
+  },
+  "tocaba": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tra": {
+    "0": "NOUN"
+  },
+  "traes": {
+    "0": "VERB"
+  },
+  "traicionaste": {
+    "0": "VERB"
+  },
+  "traigo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tratarme": {
+    "0": "VERB"
+  },
+  "tuviera": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tuvo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tás": {
+    "0": "VERB"
+  },
+  "tíguere": {
+    "0": "NOUN"
+  },
+  "vale": {
+    "0": "VERB"
+  },
+  "valor": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vaso": {
+    "0": "NOUN"
+  },
+  "veas": {
+    "0": "VERB"
+  },
+  "venido": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ventana": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "verla": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vestidita": {
+    "0": "NOUN"
+  },
+  "viaje": {
+    "0": "NOUN"
+  },
+  "vibra": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vino": {
+    "0": "VERB",
+    "1": "NOUN"
+  },
+  "viste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vivos": {
+    "0": "ADJ"
+  },
+  "volante": {
+    "0": "NOUN"
+  },
+  "volvemos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "volverás": {
+    "0": "VERB"
+  },
+  "volvió": {
+    "0": "VERB"
+  },
+  "vuelvo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "white": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "zorra": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "álbum": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "último": {
+    "0": "ADJ"
+  },
+  "des": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "guantes": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "llegado": {
+    "1": "VERB"
+  },
+  "males": {
+    "1": "NOUN"
+  },
+  "perdido": {
+    "0": "ADJ"
+  },
+  "pies": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sentimientos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "señales": {
+    "1": "NOUN"
+  },
+  "uñas": {
+    "1": "NOUN"
+  },
+  "abejas": {
+    "0": "NOUN"
+  },
+  "abierta": {
+    "0": "ADJ"
+  },
+  "abismo": {
+    "0": "NOUN"
+  },
+  "abofetean": {
+    "0": "VERB"
+  },
+  "aborrecerte": {
+    "0": "VERB"
+  },
+  "abra": {
+    "0": "VERB"
+  },
+  "abrazaban": {
+    "0": "VERB"
+  },
+  "abrazan": {
+    "0": "VERB"
+  },
+  "abrazo": {
+    "0": "NOUN"
+  },
+  "abril": {
+    "0": "NOUN"
+  },
+  "abriré": {
+    "0": "VERB"
+  },
+  "abrázame": {
+    "0": "VERB"
+  },
+  "abusas": {
+    "0": "VERB"
+  },
+  "acaban": {
+    "0": "VERB"
+  },
+  "acabe": {
+    "0": "VERB"
+  },
+  "acabo": {
+    "0": "VERB"
+  },
+  "acaricio": {
+    "0": "VERB"
+  },
+  "acerca": {
+    "0": "VERB"
+  },
+  "acierta": {
+    "0": "VERB"
+  },
+  "acompaña": {
+    "0": "VERB"
+  },
+  "acostarme": {
+    "0": "VERB"
+  },
+  "acostumbrá": {
+    "0": "VERB"
+  },
+  "acostumbré": {
+    "0": "VERB"
+  },
+  "actitud": {
+    "0": "NOUN"
+  },
+  "actuar": {
+    "0": "VERB"
+  },
+  "acuerdas": {
+    "0": "VERB"
+  },
+  "acuerdo": {
+    "0": "VERB"
+  },
+  "admite": {
+    "0": "VERB"
+  },
+  "adorada": {
+    "0": "ADJ"
+  },
+  "adrenalina": {
+    "0": "NOUN"
+  },
+  "afilada": {
+    "0": "ADJ"
+  },
+  "aflojó": {
+    "0": "VERB"
+  },
+  "agarro": {
+    "0": "VERB"
+  },
+  "agonía": {
+    "0": "NOUN"
+  },
+  "agotada": {
+    "0": "ADJ"
+  },
+  "agradecer": {
+    "0": "VERB"
+  },
+  "agradecida": {
+    "0": "ADJ"
+  },
+  "aguantar": {
+    "0": "VERB"
+  },
+  "agujero": {
+    "0": "NOUN"
+  },
+  "ahorita": {
+    "0": "ADJ"
+  },
+  "ajedrez": {
+    "0": "NOUN"
+  },
+  "ajena": {
+    "0": "ADJ"
+  },
+  "ajá": {
+    "0": "INTJ"
+  },
+  "alegre": {
+    "0": "ADJ"
+  },
+  "alejada": {
+    "0": "ADJ"
+  },
+  "alfileres": {
+    "0": "NOUN"
+  },
+  "algodón": {
+    "0": "NOUN"
+  },
+  "alguno": {
+    "0": "PRON"
+  },
+  "alien": {
+    "0": "NOUN"
+  },
+  "aliento": {
+    "0": "NOUN"
+  },
+  "all": {
+    "0": "ADV"
+  },
+  "alumbraba": {
+    "0": "VERB"
+  },
+  "amando": {
+    "0": "VERB"
+  },
+  "amanecer": {
+    "0": "NOUN"
+  },
+  "amapolas": {
+    "0": "NOUN"
+  },
+  "amargas": {
+    "0": "ADJ"
+  },
+  "amarguras": {
+    "0": "NOUN"
+  },
+  "amarle": {
+    "0": "VERB"
+  },
+  "amarme": {
+    "0": "VERB"
+  },
+  "amarrados": {
+    "0": "ADJ"
+  },
+  "amarrarse": {
+    "0": "VERB"
+  },
+  "amarres": {
+    "0": "VERB"
+  },
+  "amenaza": {
+    "0": "VERB"
+  },
+  "amiga": {
+    "0": "NOUN"
+  },
+  "amigos": {
+    "0": "NOUN"
+  },
+  "amiguita": {
+    "0": "NOUN"
+  },
+  "amistad": {
+    "0": "NOUN"
+  },
+  "amm": {
+    "0": "INTJ"
+  },
+  "amándote": {
+    "0": "VERB"
+  },
+  "and": {
+    "0": "CCONJ"
+  },
+  "andando": {
+    "0": "VERB"
+  },
+  "andante": {
+    "0": "ADJ"
+  },
+  "angelitos": {
+    "0": "NOUN"
+  },
+  "anillo": {
+    "0": "NOUN"
+  },
+  "aniquilarse": {
+    "0": "VERB"
+  },
+  "anudar": {
+    "0": "VERB"
+  },
+  "aparecer": {
+    "0": "VERB"
+  },
+  "aparecía": {
+    "0": "VERB"
+  },
+  "apartan": {
+    "0": "VERB"
+  },
+  "aparten": {
+    "0": "VERB"
+  },
+  "aprendi'o": {
+    "0": "CCONJ"
+  },
+  "aprete": {
+    "0": "VERB"
+  },
+  "aprietas": {
+    "0": "VERB"
+  },
+  "apuesto": {
+    "0": "VERB"
+  },
+  "aquello": {
+    "0": "PRON"
+  },
+  "aquél": {
+    "0": "PRON"
+  },
+  "arde": {
+    "0": "VERB"
+  },
+  "ardió": {
+    "0": "VERB"
+  },
+  "ardoso": {
+    "0": "ADJ"
+  },
+  "arena": {
+    "0": "NOUN"
+  },
+  "arma": {
+    "0": "NOUN"
+  },
+  "armada": {
+    "0": "NOUN"
+  },
+  "armas": {
+    "0": "NOUN"
+  },
+  "aro": {
+    "0": "NOUN"
+  },
+  "aros": {
+    "0": "NOUN"
+  },
+  "arrancarlo": {
+    "0": "VERB"
+  },
+  "arrastrado": {
+    "0": "VERB"
+  },
+  "arrebatada": {
+    "0": "ADJ"
+  },
+  "arreglamos": {
+    "0": "VERB"
+  },
+  "arrepienta": {
+    "0": "VERB"
+  },
+  "arrepientes": {
+    "0": "VERB"
+  },
+  "arrope": {
+    "0": "VERB"
+  },
+  "arroz": {
+    "0": "NOUN"
+  },
+  "artificial": {
+    "0": "ADJ"
+  },
+  "asciendo": {
+    "0": "VERB"
+  },
+  "asesinar": {
+    "0": "VERB"
+  },
+  "asiento": {
+    "0": "NOUN"
+  },
+  "asusta": {
+    "0": "VERB"
+  },
+  "atan": {
+    "0": "VERB"
+  },
+  "ataque": {
+    "0": "VERB"
+  },
+  "atelier": {
+    "0": "NOUN"
+  },
+  "atormenta": {
+    "0": "VERB"
+  },
+  "atraco": {
+    "0": "VERB"
+  },
+  "atrapa": {
+    "0": "VERB"
+  },
+  "atreve": {
+    "0": "VERB"
+  },
+  "aumentan": {
+    "0": "VERB"
+  },
+  "ausencia": {
+    "0": "NOUN"
+  },
+  "autoinvita": {
+    "0": "VERB"
+  },
+  "autopista": {
+    "0": "NOUN"
+  },
+  "autores": {
+    "0": "NOUN"
+  },
+  "auténtico": {
+    "0": "ADJ"
+  },
+  "avalancha": {
+    "0": "NOUN"
+  },
+  "aviso": {
+    "0": "VERB"
+  },
+  "avisó": {
+    "0": "VERB"
+  },
+  "ayuda": {
+    "0": "NOUN"
+  },
+  "azadón": {
+    "0": "NOUN"
+  },
+  "azul": {
+    "0": "ADJ"
+  },
+  "año": {
+    "0": "NOUN"
+  },
+  "años": {
+    "0": "NOUN"
+  },
+  "baila": {
+    "0": "VERB"
+  },
+  "bailar": {
+    "0": "VERB"
+  },
+  "baile": {
+    "0": "NOUN"
+  },
+  "baja": {
+    "0": "VERB"
+  },
+  "bajado": {
+    "0": "VERB"
+  },
+  "bajeza": {
+    "0": "NOUN"
+  },
+  "balacera": {
+    "0": "ADJ"
+  },
+  "balanza": {
+    "0": "NOUN"
+  },
+  "banco": {
+    "0": "NOUN"
+  },
+  "baqueta": {
+    "0": "NOUN"
+  },
+  "basado": {
+    "0": "ADJ"
+  },
+  "bases": {
+    "0": "NOUN"
+  },
+  "basé": {
+    "0": "VERB"
+  },
+  "bata": {
+    "0": "NOUN"
+  },
+  "bate": {
+    "0": "VERB"
+  },
+  "battle": {
+    "0": "NOUN"
+  },
+  "batí": {
+    "0": "VERB"
+  },
+  "bautice": {
+    "0": "VERB"
+  },
+  "beben": {
+    "0": "VERB"
+  },
+  "beberé": {
+    "0": "VERB"
+  },
+  "bebes": {
+    "0": "VERB"
+  },
+  "bebo": {
+    "0": "VERB"
+  },
+  "bebí": {
+    "0": "VERB"
+  },
+  "bendicen": {
+    "0": "VERB"
+  },
+  "bendigo": {
+    "0": "VERB"
+  },
+  "bendita": {
+    "0": "ADJ"
+  },
+  "besarte": {
+    "0": "VERB"
+  },
+  "besas": {
+    "0": "VERB"
+  },
+  "besaste": {
+    "0": "VERB"
+  },
+  "besitos": {
+    "0": "NOUN"
+  },
+  "bienvenidas": {
+    "0": "NOUN"
+  },
+  "billete": {
+    "0": "NOUN"
+  },
+  "bizcocho": {
+    "0": "NOUN"
+  },
+  "blanca": {
+    "0": "ADJ"
+  },
+  "blessed": {
+    "0": "ADJ"
+  },
+  "blonde": {
+    "0": "ADJ"
+  },
+  "bloque": {
+    "0": "NOUN"
+  },
+  "blunt": {
+    "0": "NOUN"
+  },
+  "blurry": {
+    "0": "NOUN"
+  },
+  "boba": {
+    "0": "NOUN"
+  },
+  "boquita": {
+    "0": "NOUN"
+  },
+  "bordón": {
+    "0": "NOUN"
+  },
+  "borrachera": {
+    "0": "NOUN"
+  },
+  "botellas": {
+    "0": "NOUN"
+  },
+  "brasero": {
+    "0": "NOUN"
+  },
+  "bravo": {
+    "0": "ADJ"
+  },
+  "brazos": {
+    "0": "NOUN"
+  },
+  "brechas": {
+    "0": "NOUN"
+  },
+  "breve": {
+    "0": "ADJ"
+  },
+  "brillo": {
+    "0": "NOUN"
+  },
+  "brincando": {
+    "0": "VERB"
+  },
+  "buen": {
+    "0": "ADJ"
+  },
+  "bulería": {
+    "0": "NOUN"
+  },
+  "bulerías": {
+    "0": "NOUN"
+  },
+  "burlando": {
+    "0": "VERB"
+  },
+  "busco": {
+    "0": "VERB"
+  },
+  "buzón": {
+    "0": "NOUN"
+  },
+  "bye": {
+    "0": "INTJ"
+  },
+  "bájame": {
+    "0": "VERB"
+  },
+  "básica": {
+    "0": "NOUN"
+  },
+  "caballos": {
+    "0": "NOUN"
+  },
+  "cabaña": {
+    "0": "NOUN"
+  },
+  "cabizbaja": {
+    "0": "ADJ"
+  },
+  "cachemir": {
+    "0": "NOUN"
+  },
+  "cachete": {
+    "0": "NOUN"
+  },
+  "caderas": {
+    "0": "NOUN"
+  },
+  "cadáver": {
+    "0": "NOUN"
+  },
+  "caen": {
+    "0": "VERB"
+  },
+  "caer": {
+    "0": "VERB"
+  },
+  "caigo": {
+    "0": "VERB"
+  },
+  "cajón": {
+    "0": "NOUN"
+  },
+  "calentando": {
+    "0": "VERB"
+  },
+  "caliente": {
+    "0": "ADJ"
+  },
+  "callas": {
+    "0": "VERB"
+  },
+  "callarme": {
+    "0": "VERB"
+  },
+  "cambió": {
+    "0": "VERB"
+  },
+  "cameles": {
+    "0": "VERB"
+  },
+  "camelo": {
+    "0": "VERB"
+  },
+  "caminarás": {
+    "0": "VERB"
+  },
+  "camisa": {
+    "0": "NOUN"
+  },
+  "camión": {
+    "0": "NOUN"
+  },
+  "campeón": {
+    "0": "NOUN"
+  },
+  "campo": {
+    "0": "NOUN"
+  },
+  "canasta": {
+    "0": "NOUN"
+  },
+  "cansarme": {
+    "0": "VERB"
+  },
+  "cantando": {
+    "0": "VERB"
+  },
+  "cantándote": {
+    "0": "VERB"
+  },
+  "capaz": {
+    "0": "ADJ"
+  },
+  "capear": {
+    "0": "VERB"
+  },
+  "capeo": {
+    "0": "NOUN"
+  },
+  "capital": {
+    "0": "NOUN"
+  },
+  "caramelos": {
+    "0": "NOUN"
+  },
+  "carnaval": {
+    "0": "NOUN"
+  },
+  "caro": {
+    "0": "ADJ"
+  },
+  "carreras": {
+    "0": "NOUN"
+  },
+  "carta": {
+    "0": "NOUN"
+  },
+  "cartel": {
+    "0": "NOUN"
+  },
+  "casas": {
+    "0": "NOUN"
+  },
+  "casual": {
+    "0": "ADJ"
+  },
+  "casualidad": {
+    "0": "NOUN"
+  },
+  "catorce": {
+    "0": "NUM"
+  },
+  "caudalosas": {
+    "0": "ADJ"
+  },
+  "causó": {
+    "0": "VERB"
+  },
+  "cazadora": {
+    "0": "NOUN"
+  },
+  "cañón": {
+    "0": "NOUN"
+  },
+  "cel": {
+    "0": "NOUN"
+  },
+  "celos": {
+    "0": "NOUN"
+  },
+  "cenar": {
+    "0": "VERB"
+  },
+  "centro": {
+    "0": "NOUN"
+  },
+  "cera": {
+    "0": "NOUN"
+  },
+  "cerebro": {
+    "0": "NOUN"
+  },
+  "cerezas": {
+    "0": "NOUN"
+  },
+  "cerilla": {
+    "0": "NOUN"
+  },
+  "cheques": {
+    "0": "NOUN"
+  },
+  "chicas": {
+    "0": "NOUN"
+  },
+  "chocarrimándosele": {
+    "0": "VERB"
+  },
+  "chocolate": {
+    "0": "NOUN"
+  },
+  "chorrea": {
+    "0": "VERB"
+  },
+  "chula": {
+    "0": "NOUN"
+  },
+  "cigarrillo": {
+    "0": "NOUN"
+  },
+  "cinta": {
+    "0": "NOUN"
+  },
+  "cinturón": {
+    "0": "NOUN"
+  },
+  "claridad": {
+    "0": "NOUN"
+  },
+  "claro": {
+    "0": "ADJ"
+  },
+  "clase": {
+    "0": "NOUN"
+  },
+  "clavan": {
+    "0": "VERB"
+  },
+  "clavando": {
+    "0": "VERB"
+  },
+  "clavas": {
+    "0": "VERB"
+  },
+  "clave": {
+    "0": "NOUN"
+  },
+  "clavo": {
+    "0": "VERB"
+  },
+  "clavó": {
+    "0": "VERB"
+  },
+  "clásicos": {
+    "0": "NOUN"
+  },
+  "cobrarle": {
+    "0": "VERB"
+  },
+  "coches": {
+    "0": "NOUN"
+  },
+  "colabo": {
+    "0": "NOUN"
+  },
+  "colada": {
+    "0": "ADJ"
+  },
+  "colección": {
+    "0": "NOUN"
+  },
+  "coleta": {
+    "0": "NOUN"
+  },
+  "colgando": {
+    "0": "VERB"
+  },
+  "colgarlo": {
+    "0": "VERB"
+  },
+  "collar": {
+    "0": "NOUN"
+  },
+  "colmadón": {
+    "0": "NOUN"
+  },
+  "colmena": {
+    "0": "NOUN"
+  },
+  "coloqué": {
+    "0": "VERB"
+  },
+  "combino": {
+    "0": "VERB"
+  },
+  "comerte": {
+    "0": "VERB"
+  },
+  "compasión": {
+    "0": "NOUN"
+  },
+  "competimos": {
+    "0": "VERB"
+  },
+  "compito": {
+    "0": "VERB"
+  },
+  "completa": {
+    "0": "ADJ"
+  },
+  "completo": {
+    "0": "NOUN"
+  },
+  "compra": {
+    "0": "VERB"
+  },
+  "comprar": {
+    "0": "VERB"
+  },
+  "compras": {
+    "0": "NOUN"
+  },
+  "comprende": {
+    "0": "VERB"
+  },
+  "comprendieras": {
+    "0": "VERB"
+  },
+  "compromete": {
+    "0": "VERB"
+  },
+  "compré": {
+    "0": "VERB"
+  },
+  "compás": {
+    "0": "NOUN"
+  },
+  "común": {
+    "0": "NOUN"
+  },
+  "concebido": {
+    "0": "VERB"
+  },
+  "concepto": {
+    "0": "NOUN"
+  },
+  "confirmo": {
+    "0": "VERB"
+  },
+  "confundidos": {
+    "0": "ADJ"
+  },
+  "confías": {
+    "0": "VERB"
+  },
+  "congela": {
+    "0": "VERB"
+  },
+  "conjuro": {
+    "0": "VERB"
+  },
+  "conocerte": {
+    "0": "VERB"
+  },
+  "conocido": {
+    "0": "VERB"
+  },
+  "conseguir": {
+    "0": "VERB"
+  },
+  "consiento": {
+    "0": "VERB"
+  },
+  "construyó": {
+    "0": "VERB"
+  },
+  "consumo": {
+    "0": "VERB"
+  },
+  "contará": {
+    "0": "VERB"
+  },
+  "continuo": {
+    "0": "ADJ"
+  },
+  "contradigo": {
+    "0": "VERB"
+  },
+  "controlar": {
+    "0": "VERB"
+  },
+  "controlas": {
+    "0": "VERB"
+  },
+  "convertido": {
+    "0": "VERB"
+  },
+  "copas": {
+    "0": "NOUN"
+  },
+  "coqueta": {
+    "0": "NOUN"
+  },
+  "corales": {
+    "0": "NOUN"
+  },
+  "corazones": {
+    "0": "NOUN"
+  },
+  "coronada": {
+    "0": "ADJ"
+  },
+  "coronan": {
+    "0": "VERB"
+  },
+  "corra": {
+    "0": "VERB"
+  },
+  "corrientes": {
+    "0": "NOUN"
+  },
+  "cortan": {
+    "0": "VERB"
+  },
+  "cortando": {
+    "0": "VERB"
+  },
+  "corte": {
+    "0": "NOUN"
+  },
+  "cortina": {
+    "0": "NOUN"
+  },
+  "cosa": {
+    "0": "NOUN"
+  },
+  "coste": {
+    "0": "NOUN"
+  },
+  "costillas": {
+    "0": "NOUN"
+  },
+  "cotizar": {
+    "0": "VERB"
+  },
+  "cotorra": {
+    "0": "NOUN"
+  },
+  "creando": {
+    "0": "VERB"
+  },
+  "crecí": {
+    "0": "VERB"
+  },
+  "creen": {
+    "0": "VERB"
+  },
+  "criaturas": {
+    "0": "NOUN"
+  },
+  "cristales": {
+    "0": "NOUN"
+  },
+  "cristalito": {
+    "0": "NOUN"
+  },
+  "crucificarme": {
+    "0": "VERB"
+  },
+  "crujía": {
+    "0": "VERB"
+  },
+  "cruzando": {
+    "0": "VERB"
+  },
+  "cruzar": {
+    "0": "VERB"
+  },
+  "cruzarlo": {
+    "0": "VERB"
+  },
+  "cuadro": {
+    "0": "NOUN"
+  },
+  "cualquier": {
+    "0": "DET"
+  },
+  "cualquiera": {
+    "0": "PRON"
+  },
+  "cubata": {
+    "0": "NOUN"
+  },
+  "cubre": {
+    "0": "VERB"
+  },
+  "cuco": {
+    "0": "ADJ"
+  },
+  "cuelando": {
+    "0": "VERB"
+  },
+  "cuento": {
+    "0": "VERB"
+  },
+  "cuerdas": {
+    "0": "NOUN"
+  },
+  "cuero": {
+    "0": "NOUN"
+  },
+  "cuesta": {
+    "0": "NOUN"
+  },
+  "cueste": {
+    "0": "VERB"
+  },
+  "cuidas": {
+    "0": "VERB"
+  },
+  "cuide": {
+    "0": "VERB"
+  },
+  "culpable": {
+    "0": "NOUN"
+  },
+  "cumple": {
+    "0": "VERB"
+  },
+  "cumpleaños": {
+    "0": "NOUN"
+  },
+  "cumpliré": {
+    "0": "VERB"
+  },
+  "curar": {
+    "0": "VERB"
+  },
+  "cuál": {
+    "0": "PRON"
+  },
+  "d": {
+    "0": "NOUN"
+  },
+  "daba": {
+    "0": "VERB"
+  },
+  "dalia": {
+    "0": "NOUN"
+  },
+  "dan": {
+    "0": "VERB"
+  },
+  "darme": {
+    "0": "VERB"
+  },
+  "darnos": {
+    "0": "VERB"
+  },
+  "daré": {
+    "0": "VERB"
+  },
+  "dañando": {
+    "0": "VERB"
+  },
+  "daño": {
+    "0": "NOUN"
+  },
+  "debe": {
+    "0": "VERB"
+  },
+  "debería": {
+    "0": "VERB"
+  },
+  "debí": {
+    "0": "ADJ"
+  },
+  "decidí": {
+    "0": "VERB"
+  },
+  "decirte": {
+    "0": "VERB"
+  },
+  "decían": {
+    "0": "VERB"
+  },
+  "decírmelo": {
+    "0": "VERB"
+  },
+  "dedicado": {
+    "0": "ADJ"
+  },
+  "dedicar": {
+    "0": "VERB"
+  },
+  "dedicarte": {
+    "0": "VERB"
+  },
+  "dejaban": {
+    "0": "VERB"
+  },
+  "dejaré": {
+    "0": "VERB"
+  },
+  "dejas": {
+    "0": "VERB"
+  },
+  "dejen": {
+    "0": "VERB"
+  },
+  "dejándote": {
+    "0": "VERB"
+  },
+  "delfines": {
+    "0": "NOUN"
+  },
+  "delirio": {
+    "0": "NOUN"
+  },
+  "dembow": {
+    "0": "NOUN"
+  },
+  "demostrar": {
+    "0": "VERB"
+  },
+  "deportes": {
+    "0": "NOUN"
+  },
+  "derrames": {
+    "0": "VERB"
+  },
+  "derramo": {
+    "0": "VERB"
+  },
+  "derriten": {
+    "0": "VERB"
+  },
+  "derrocha": {
+    "0": "VERB"
+  },
+  "desacato": {
+    "0": "VERB"
+  },
+  "desanudar": {
+    "0": "VERB"
+  },
+  "desaparecer": {
+    "0": "VERB"
+  },
+  "desaparecerá": {
+    "0": "VERB"
+  },
+  "desapareció": {
+    "0": "VERB"
+  },
+  "desarmó": {
+    "0": "VERB"
+  },
+  "desarrolla": {
+    "0": "VERB"
+  },
+  "desayuno": {
+    "0": "NOUN"
+  },
+  "descalzos": {
+    "0": "ADJ"
+  },
+  "descansillo": {
+    "0": "NOUN"
+  },
+  "descaro": {
+    "0": "NOUN"
+  },
+  "descenso": {
+    "0": "NOUN"
+  },
+  "desciende": {
+    "0": "VERB"
+  },
+  "desconoce": {
+    "0": "VERB"
+  },
+  "desdibuixant": {
+    "0": "ADV"
+  },
+  "deseas": {
+    "0": "VERB"
+  },
+  "deseado": {
+    "0": "ADJ"
+  },
+  "deseos": {
+    "0": "NOUN"
+  },
+  "desfilamos": {
+    "0": "VERB"
+  },
+  "deshilé": {
+    "0": "VERB"
+  },
+  "deshonestidad": {
+    "0": "NOUN"
+  },
+  "desilusión": {
+    "0": "NOUN"
+  },
+  "desnuda": {
+    "0": "ADJ"
+  },
+  "desnudar": {
+    "0": "VERB"
+  },
+  "desnudarse": {
+    "0": "VERB"
+  },
+  "desordenado": {
+    "0": "ADJ"
+  },
+  "despejo": {
+    "0": "VERB"
+  },
+  "despidió": {
+    "0": "VERB"
+  },
+  "despierte": {
+    "0": "VERB"
+  },
+  "despiertos": {
+    "0": "ADJ"
+  },
+  "despiértate": {
+    "0": "INTJ"
+  },
+  "desquítate": {
+    "0": "VERB"
+  },
+  "destellos": {
+    "0": "NOUN"
+  },
+  "destrozarán": {
+    "0": "VERB"
+  },
+  "desvestirme": {
+    "0": "VERB"
+  },
+  "desvía": {
+    "0": "VERB"
+  },
+  "detalles": {
+    "0": "NOUN"
+  },
+  "devolverá": {
+    "0": "VERB"
+  },
+  "devoré": {
+    "0": "VERB"
+  },
+  "diablilla": {
+    "0": "NOUN"
+  },
+  "diablillo": {
+    "0": "NOUN"
+  },
+  "diablura": {
+    "0": "NOUN"
+  },
+  "dibujo": {
+    "0": "NOUN"
+  },
+  "dicte": {
+    "0": "VERB"
+  },
+  "diez": {
+    "0": "NUM"
+  },
+  "diferencias": {
+    "0": "NOUN"
+  },
+  "digan": {
+    "0": "VERB"
+  },
+  "dijiste": {
+    "0": "VERB"
+  },
+  "dio": {
+    "0": "VERB"
+  },
+  "directamente": {
+    "0": "ADV"
+  },
+  "dirá": {
+    "0": "VERB"
+  },
+  "diré": {
+    "0": "VERB"
+  },
+  "diseñaste": {
+    "0": "VERB"
+  },
+  "disfrazar": {
+    "0": "VERB"
+  },
+  "disfruta": {
+    "0": "VERB"
+  },
+  "disgusta": {
+    "0": "VERB"
+  },
+  "disimular": {
+    "0": "VERB"
+  },
+  "dispare": {
+    "0": "VERB"
+  },
+  "diversos": {
+    "0": "DET"
+  },
+  "divertirme": {
+    "0": "VERB"
+  },
+  "divino": {
+    "0": "ADJ"
+  },
+  "doliendo": {
+    "0": "VERB"
+  },
+  "dolió": {
+    "0": "VERB"
+  },
+  "doradas": {
+    "0": "ADJ"
+  },
+  "dormida": {
+    "0": "ADJ"
+  },
+  "dormía": {
+    "0": "VERB"
+  },
+  "drag": {
+    "0": "NOUN"
+  },
+  "drena": {
+    "0": "VERB"
+  },
+  "ducas": {
+    "0": "NOUN"
+  },
+  "duele": {
+    "0": "VERB"
+  },
+  "duerme": {
+    "0": "VERB"
+  },
+  "dueña": {
+    "0": "ADJ"
+  },
+  "dueño": {
+    "0": "NOUN"
+  },
+  "duquelas": {
+    "0": "NOUN"
+  },
+  "durar": {
+    "0": "VERB"
+  },
+  "déjalo": {
+    "0": "VERB"
+  },
+  "díctame": {
+    "0": "VERB"
+  },
+  "dímelo": {
+    "0": "VERB"
+  },
+  "echada": {
+    "0": "ADJ"
+  },
+  "echar": {
+    "0": "VERB"
+  },
+  "eclipsó": {
+    "0": "VERB"
+  },
+  "electronic": {
+    "0": "ADJ"
+  },
+  "elevar": {
+    "0": "VERB"
+  },
+  "els": {
+    "0": "DET"
+  },
+  "emana": {
+    "0": "VERB"
+  },
+  "emborrache": {
+    "0": "VERB"
+  },
+  "embriagué": {
+    "0": "VERB"
+  },
+  "emisora": {
+    "0": "NOUN"
+  },
+  "empañen": {
+    "0": "VERB"
+  },
+  "empezar": {
+    "0": "VERB"
+  },
+  "empresa": {
+    "0": "NOUN"
+  },
+  "enamoro": {
+    "0": "VERB"
+  },
+  "encanta": {
+    "0": "VERB"
+  },
+  "encantador": {
+    "0": "ADJ"
+  },
+  "encargo": {
+    "0": "NOUN"
+  },
+  "encomiendo": {
+    "0": "VERB"
+  },
+  "encontraba": {
+    "0": "VERB"
+  },
+  "encontramos": {
+    "0": "VERB"
+  },
+  "encontrarte": {
+    "0": "VERB"
+  },
+  "encontrary": {
+    "0": "VERB"
+  },
+  "encontraría": {
+    "0": "VERB"
+  },
+  "encontraste": {
+    "0": "VERB"
+  },
+  "endiablas": {
+    "0": "VERB"
+  },
+  "enemigo": {
+    "0": "NOUN"
+  },
+  "enemigos": {
+    "0": "NOUN"
+  },
+  "energía": {
+    "0": "NOUN"
+  },
+  "engañaba": {
+    "0": "VERB"
+  },
+  "engañado": {
+    "0": "VERB"
+  },
+  "engañar": {
+    "0": "VERB"
+  },
+  "engañó": {
+    "0": "VERB"
+  },
+  "enigma": {
+    "0": "NOUN"
+  },
+  "enredaba": {
+    "0": "VERB"
+  },
+  "enrolo": {
+    "0": "VERB"
+  },
+  "enseña": {
+    "0": "VERB"
+  },
+  "enseñar": {
+    "0": "VERB"
+  },
+  "enséñame": {
+    "0": "VERB"
+  },
+  "entenderás": {
+    "0": "VERB"
+  },
+  "enterada": {
+    "0": "ADJ"
+  },
+  "enteras": {
+    "0": "VERB"
+  },
+  "entere": {
+    "0": "VERB"
+  },
+  "enterrar": {
+    "0": "VERB"
+  },
+  "enterraron": {
+    "0": "VERB"
+  },
+  "entiende": {
+    "0": "VERB"
+  },
+  "entiendes": {
+    "0": "VERB"
+  },
+  "entra": {
+    "0": "VERB"
+  },
+  "entrañas": {
+    "0": "NOUN"
+  },
+  "entrometes": {
+    "0": "VERB"
+  },
+  "entrégate": {
+    "0": "VERB"
+  },
+  "envenenar": {
+    "0": "VERB"
+  },
+  "envicié": {
+    "0": "VERB"
+  },
+  "envidia": {
+    "0": "NOUN"
+  },
+  "equivoque": {
+    "0": "VERB"
+  },
+  "equivoques": {
+    "0": "VERB"
+  },
+  "erizó": {
+    "0": "VERB"
+  },
+  "error": {
+    "0": "NOUN"
+  },
+  "escalera": {
+    "0": "NOUN"
+  },
+  "escaparse": {
+    "0": "VERB"
+  },
+  "escapemos": {
+    "0": "VERB"
+  },
+  "escarlata": {
+    "0": "ADJ"
+  },
+  "escolta": {
+    "0": "VERB"
+  },
+  "escondía": {
+    "0": "VERB"
+  },
+  "escopeta": {
+    "0": "NOUN"
+  },
+  "escrito": {
+    "0": "ADJ"
+  },
+  "escucha": {
+    "0": "VERB"
+  },
+  "escuchando": {
+    "0": "VERB"
+  },
+  "escucharlo": {
+    "0": "VERB"
+  },
+  "escucharé": {
+    "0": "VERB"
+  },
+  "escucho": {
+    "0": "VERB"
+  },
+  "escultura": {
+    "0": "NOUN"
+  },
+  "escupen": {
+    "0": "VERB"
+  },
+  "escupo": {
+    "0": "VERB"
+  },
+  "espacio": {
+    "0": "NOUN"
+  },
+  "espalda": {
+    "0": "NOUN"
+  },
+  "espaldas": {
+    "0": "NOUN"
+  },
+  "espantan": {
+    "0": "VERB"
+  },
+  "especialidad": {
+    "0": "NOUN"
+  },
+  "espejismo": {
+    "0": "NOUN"
+  },
+  "espejos": {
+    "0": "NOUN"
+  },
+  "esperaba": {
+    "0": "VERB"
+  },
+  "esperando": {
+    "0": "VERB"
+  },
+  "esperanzaba": {
+    "0": "VERB"
+  },
+  "esperarme": {
+    "0": "VERB"
+  },
+  "esperaste": {
+    "0": "VERB"
+  },
+  "espinada": {
+    "0": "ADJ"
+  },
+  "espiritual": {
+    "0": "ADJ"
+  },
+  "esposa": {
+    "0": "NOUN"
+  },
+  "estando": {
+    "0": "VERB"
+  },
+  "estarías": {
+    "0": "VERB"
+  },
+  "estrellan": {
+    "0": "VERB"
+  },
+  "estremecer": {
+    "0": "VERB"
+  },
+  "estremecido": {
+    "0": "ADJ"
+  },
+  "estrenado": {
+    "0": "VERB"
+  },
+  "estuviera": {
+    "0": "VERB"
+  },
+  "eterno": {
+    "0": "ADJ"
+  },
+  "evidente": {
+    "0": "ADJ"
+  },
+  "existen": {
+    "0": "VERB"
+  },
+  "expensiva": {
+    "0": "ADJ"
+  },
+  "experiencias": {
+    "0": "NOUN"
+  },
+  "expiró": {
+    "0": "VERB"
+  },
+  "explotar": {
+    "0": "VERB"
+  },
+  "exponente": {
+    "0": "NOUN"
+  },
+  "extrañado": {
+    "0": "VERB"
+  },
+  "extraño": {
+    "0": "VERB"
+  },
+  "fabricando": {
+    "0": "VERB"
+  },
+  "factura": {
+    "0": "NOUN"
+  },
+  "faena": {
+    "0": "NOUN"
+  },
+  "fake": {
+    "0": "ADJ"
+  },
+  "falle": {
+    "0": "VERB"
+  },
+  "famosa": {
+    "0": "ADJ"
+  },
+  "fantasía": {
+    "0": "NOUN"
+  },
+  "favor": {
+    "0": "NOUN"
+  },
+  "favorito": {
+    "0": "ADJ"
+  },
+  "felicidad": {
+    "0": "NOUN"
+  },
+  "feliz": {
+    "0": "ADJ"
+  },
+  "femenina": {
+    "0": "ADJ"
+  },
+  "fidelidad": {
+    "0": "NOUN"
+  },
+  "fiestas": {
+    "0": "NOUN"
+  },
+  "figura": {
+    "0": "NOUN"
+  },
+  "fijé": {
+    "0": "VERB"
+  },
+  "fingiendo": {
+    "0": "VERB"
+  },
+  "firma": {
+    "0": "NOUN"
+  },
+  "flamenco": {
+    "0": "NOUN"
+  },
+  "flop": {
+    "0": "NOUN"
+  },
+  "florero": {
+    "0": "NOUN"
+  },
+  "follarte": {
+    "0": "VERB"
+  },
+  "forzadas": {
+    "0": "ADJ"
+  },
+  "francotiradora": {
+    "0": "NOUN"
+  },
+  "frappé": {
+    "0": "NOUN"
+  },
+  "from": {
+    "0": "ADP"
+  },
+  "frontea": {
+    "0": "ADJ"
+  },
+  "frontear": {
+    "0": "VERB"
+  },
+  "frontera": {
+    "0": "NOUN"
+  },
+  "fruta": {
+    "0": "NOUN"
+  },
+  "fruto": {
+    "0": "NOUN"
+  },
+  "fuegos": {
+    "0": "NOUN"
+  },
+  "fueran": {
+    "0": "VERB"
+  },
+  "fuertes": {
+    "0": "ADJ"
+  },
+  "fuertísimo": {
+    "0": "ADJ"
+  },
+  "fuerza": {
+    "0": "NOUN"
+  },
+  "fumas": {
+    "0": "VERB"
+  },
+  "fumar": {
+    "0": "VERB"
+  },
+  "fumo": {
+    "0": "VERB"
+  },
+  "fumé": {
+    "0": "VERB"
+  },
+  "fundamento": {
+    "0": "NOUN"
+  },
+  "funde": {
+    "0": "VERB"
+  },
+  "funeral": {
+    "0": "NOUN"
+  },
+  "ganando": {
+    "0": "VERB"
+  },
+  "ganaré": {
+    "0": "VERB"
+  },
+  "ganga": {
+    "0": "NOUN"
+  },
+  "garantía": {
+    "0": "NOUN"
+  },
+  "garganta": {
+    "0": "NOUN"
+  },
+  "gargantas": {
+    "0": "NOUN"
+  },
+  "gargantilla": {
+    "0": "NOUN"
+  },
+  "gasolina": {
+    "0": "NOUN"
+  },
+  "gira": {
+    "0": "NOUN"
+  },
+  "giras": {
+    "0": "VERB"
+  },
+  "goma": {
+    "0": "NOUN"
+  },
+  "gorra": {
+    "0": "NOUN"
+  },
+  "gozar": {
+    "0": "VERB"
+  },
+  "grabé": {
+    "0": "VERB"
+  },
+  "gracia": {
+    "0": "NOUN"
+  },
+  "gramos": {
+    "0": "NOUN"
+  },
+  "gran": {
+    "0": "ADJ"
+  },
+  "grande": {
+    "0": "ADJ"
+  },
+  "grandeza": {
+    "0": "NOUN"
+  },
+  "grave": {
+    "0": "ADJ"
+  },
+  "gritando": {
+    "0": "VERB"
+  },
+  "guantanamera": {
+    "0": "NOUN"
+  },
+  "guantera": {
+    "0": "NOUN"
+  },
+  "guapo": {
+    "0": "ADJ"
+  },
+  "guarden": {
+    "0": "VERB"
+  },
+  "guardes": {
+    "0": "VERB"
+  },
+  "guayando": {
+    "0": "VERB"
+  },
+  "gusto": {
+    "0": "VERB"
+  },
+  "gustó": {
+    "0": "VERB"
+  },
+  "guía": {
+    "0": "VERB"
+  },
+  "h": {
+    "0": "NOUN"
+  },
+  "haberle": {
+    "0": "PRON"
+  },
+  "habichuela": {
+    "0": "NOUN"
+  },
+  "habladurías": {
+    "0": "NOUN"
+  },
+  "hablando": {
+    "0": "VERB"
+  },
+  "hablé": {
+    "0": "VERB"
+  },
+  "habéis": {
+    "0": "VERB"
+  },
+  "había": {
+    "0": "VERB"
+  },
+  "habías": {
+    "0": "VERB"
+  },
+  "hacerle": {
+    "0": "VERB"
+  },
+  "hacéis": {
+    "0": "VERB"
+  },
+  "hagas": {
+    "0": "VERB"
+  },
+  "hahaha": {
+    "0": "NOUN"
+  },
+  "halago": {
+    "0": "NOUN"
+  },
+  "halla": {
+    "0": "VERB"
+  },
+  "hallar": {
+    "0": "VERB"
+  },
+  "hartan": {
+    "0": "VERB"
+  },
+  "hayamos": {
+    "0": "VERB"
+  },
+  "hazte": {
+    "0": "VERB"
+  },
+  "hecha": {
+    "0": "ADJ"
+  },
+  "hechizó": {
+    "0": "VERB"
+  },
+  "heels": {
+    "0": "NOUN"
+  },
+  "hermanas": {
+    "0": "NOUN"
+  },
+  "hermanico": {
+    "0": "NOUN"
+  },
+  "hermanito": {
+    "0": "NOUN"
+  },
+  "hermosura": {
+    "0": "NOUN"
+  },
+  "hierve": {
+    "0": "VERB"
+  },
+  "hija": {
+    "0": "NOUN"
+  },
+  "historia": {
+    "0": "NOUN"
+  },
+  "historias": {
+    "0": "NOUN"
+  },
+  "hojas": {
+    "0": "NOUN"
+  },
+  "hombro": {
+    "0": "NOUN"
+  },
+  "hondo": {
+    "0": "ADJ"
+  },
+  "horas": {
+    "0": "NOUN"
+  },
+  "horita": {
+    "0": "NOUN"
+  },
+  "horitas": {
+    "0": "NOUN"
+  },
+  "hostia": {
+    "0": "NOUN"
+  },
+  "hubieras": {
+    "0": "VERB"
+  },
+  "huelen": {
+    "0": "VERB"
+  },
+  "hui": {
+    "0": "VERB"
+  },
+  "humillar": {
+    "0": "VERB"
+  },
+  "humo": {
+    "0": "NOUN"
+  },
+  "hundir": {
+    "0": "VERB"
+  },
+  "hundió": {
+    "0": "VERB"
+  },
+  "huyendo": {
+    "0": "VERB"
+  },
+  "iban": {
+    "0": "VERB"
+  },
+  "ideas": {
+    "0": "NOUN"
+  },
+  "identidad": {
+    "0": "NOUN"
+  },
+  "idioma": {
+    "0": "NOUN"
+  },
+  "ido": {
+    "0": "VERB"
+  },
+  "ignores": {
+    "0": "VERB"
+  },
+  "ilumina": {
+    "0": "VERB"
+  },
+  "iluminen": {
+    "0": "VERB"
+  },
+  "imagine": {
+    "0": "VERB"
+  },
+  "improvisa": {
+    "0": "VERB"
+  },
+  "in": {
+    "0": "ADP"
+  },
+  "incendiar": {
+    "0": "VERB"
+  },
+  "incondicional": {
+    "0": "ADJ"
+  },
+  "indeseables": {
+    "0": "ADJ"
+  },
+  "infinita": {
+    "0": "ADJ"
+  },
+  "infinito": {
+    "0": "ADJ"
+  },
+  "inglés": {
+    "0": "NOUN"
+  },
+  "ingrata": {
+    "0": "NOUN"
+  },
+  "iniciales": {
+    "0": "NOUN"
+  },
+  "inseparables": {
+    "0": "ADJ"
+  },
+  "inspirar": {
+    "0": "VERB"
+  },
+  "inteligencia": {
+    "0": "NOUN"
+  },
+  "intenta": {
+    "0": "VERB"
+  },
+  "invitarme": {
+    "0": "VERB"
+  },
+  "irme": {
+    "0": "VERB"
+  },
+  "irte": {
+    "0": "VERB"
+  },
+  "iría": {
+    "0": "VERB"
+  },
+  "jangueando": {
+    "0": "VERB"
+  },
+  "jaque": {
+    "0": "NOUN"
+  },
+  "jarabe": {
+    "0": "NOUN"
+  },
+  "jefa": {
+    "0": "NOUN"
+  },
+  "jeva": {
+    "0": "NOUN"
+  },
+  "joya": {
+    "0": "NOUN"
+  },
+  "joyero": {
+    "0": "NOUN"
+  },
+  "juega": {
+    "0": "VERB"
+  },
+  "juegues": {
+    "0": "VERB"
+  },
+  "jueves": {
+    "0": "NOUN"
+  },
+  "juguetes": {
+    "0": "NOUN"
+  },
+  "jugué": {
+    "0": "VERB"
+  },
+  "juntaba": {
+    "0": "VERB"
+  },
+  "junte": {
+    "0": "NOUN"
+  },
+  "just": {
+    "0": "ADV"
+  },
+  "justo": {
+    "0": "ADJ"
+  },
+  "juzgarme": {
+    "0": "VERB"
+  },
+  "laberinto": {
+    "0": "NOUN"
+  },
+  "labia": {
+    "0": "NOUN"
+  },
+  "ladrón": {
+    "0": "NOUN"
+  },
+  "lamente": {
+    "0": "VERB"
+  },
+  "lanzará": {
+    "0": "VERB"
+  },
+  "larga": {
+    "0": "ADJ"
+  },
+  "largo": {
+    "0": "ADJ"
+  },
+  "laíco": {
+    "0": "NOUN"
+  },
+  "lengua": {
+    "0": "NOUN"
+  },
+  "lento": {
+    "0": "ADJ"
+  },
+  "leo": {
+    "0": "VERB"
+  },
+  "letra": {
+    "0": "NOUN"
+  },
+  "levantarte": {
+    "0": "VERB"
+  },
+  "levanto": {
+    "0": "VERB"
+  },
+  "levanté": {
+    "0": "VERB"
+  },
+  "leyenda": {
+    "0": "NOUN"
+  },
+  "libera": {
+    "0": "VERB"
+  },
+  "libren": {
+    "0": "VERB"
+  },
+  "listo": {
+    "0": "ADJ"
+  },
+  "llama": {
+    "0": "VERB"
+  },
+  "llaman": {
+    "0": "VERB"
+  },
+  "llamando": {
+    "0": "VERB"
+  },
+  "llamo": {
+    "0": "VERB"
+  },
+  "llantas": {
+    "0": "NOUN"
+  },
+  "llavero": {
+    "0": "NOUN"
+  },
+  "llegar": {
+    "0": "VERB"
+  },
+  "llegó": {
+    "0": "VERB"
+  },
+  "llevaba": {
+    "0": "VERB"
+  },
+  "llevado": {
+    "0": "VERB"
+  },
+  "llevamos": {
+    "0": "VERB"
+  },
+  "llevará": {
+    "0": "VERB"
+  },
+  "llevó": {
+    "0": "VERB"
+  },
+  "lloraba": {
+    "0": "VERB"
+  },
+  "llorando": {
+    "0": "VERB"
+  },
+  "lloré": {
+    "0": "VERB"
+  },
+  "llover": {
+    "0": "VERB"
+  },
+  "llueve": {
+    "0": "VERB"
+  },
+  "logo": {
+    "0": "NOUN"
+  },
+  "loquillo": {
+    "0": "ADJ"
+  },
+  "luceros": {
+    "0": "NOUN"
+  },
+  "luces": {
+    "0": "NOUN"
+  },
+  "lunes": {
+    "0": "NOUN"
+  },
+  "lustraría": {
+    "0": "VERB"
+  },
+  "luzca": {
+    "0": "VERB"
+  },
+  "límite": {
+    "0": "NOUN"
+  },
+  "líneas": {
+    "0": "NOUN"
+  },
+  "línies": {
+    "0": "NOUN"
+  },
+  "madera": {
+    "0": "NOUN"
+  },
+  "madurse": {
+    "0": "VERB"
+  },
+  "magia": {
+    "0": "NOUN"
+  },
+  "maldad": {
+    "0": "NOUN"
+  },
+  "maldigan": {
+    "0": "VERB"
+  },
+  "malos": {
+    "0": "ADJ"
+  },
+  "maltrata": {
+    "0": "VERB"
+  },
+  "mama": {
+    "0": "NOUN"
+  },
+  "mamacita": {
+    "0": "NOUN"
+  },
+  "mambo": {
+    "0": "NOUN"
+  },
+  "manejo": {
+    "0": "VERB"
+  },
+  "manida": {
+    "0": "NOUN"
+  },
+  "manita": {
+    "0": "NOUN"
+  },
+  "manito": {
+    "0": "NOUN"
+  },
+  "mantenerme": {
+    "0": "VERB"
+  },
+  "mantenme": {
+    "0": "VERB"
+  },
+  "marcan": {
+    "0": "VERB"
+  },
+  "marchó": {
+    "0": "VERB"
+  },
+  "mares": {
+    "0": "NOUN"
+  },
+  "marino": {
+    "0": "ADJ"
+  },
+  "mariposa": {
+    "0": "NOUN"
+  },
+  "mariposas": {
+    "0": "NOUN"
+  },
+  "martirizado": {
+    "0": "ADJ"
+  },
+  "maría": {
+    "0": "NOUN"
+  },
+  "mas": {
+    "0": "CCONJ"
+  },
+  "masilla": {
+    "0": "NOUN"
+  },
+  "masterpiece": {
+    "0": "NOUN"
+  },
+  "matando": {
+    "0": "VERB"
+  },
+  "mataría": {
+    "0": "VERB"
+  },
+  "mató": {
+    "0": "VERB"
+  },
+  "maybe": {
+    "0": "INTJ"
+  },
+  "medida": {
+    "0": "NOUN"
+  },
+  "medidas": {
+    "0": "NOUN"
+  },
+  "mejilla": {
+    "0": "NOUN"
+  },
+  "memoricé": {
+    "0": "VERB"
+  },
+  "meneado": {
+    "0": "ADJ"
+  },
+  "menor": {
+    "0": "ADJ"
+  },
+  "mentir": {
+    "0": "VERB"
+  },
+  "mentiste": {
+    "0": "VERB"
+  },
+  "merece": {
+    "0": "VERB"
+  },
+  "merezco": {
+    "0": "VERB"
+  },
+  "metida": {
+    "0": "ADJ"
+  },
+  "metidas": {
+    "0": "ADJ"
+  },
+  "metido": {
+    "0": "ADJ"
+  },
+  "metió": {
+    "0": "VERB"
+  },
+  "miel": {
+    "0": "NOUN"
+  },
+  "miente": {
+    "0": "VERB"
+  },
+  "mientes": {
+    "0": "VERB"
+  },
+  "mientras": {
+    "0": "CCONJ"
+  },
+  "miles": {
+    "0": "NOUN"
+  },
+  "milla": {
+    "0": "NOUN"
+  },
+  "millonaria": {
+    "0": "NOUN"
+  },
+  "mina": {
+    "0": "NOUN"
+  },
+  "minas": {
+    "0": "NOUN"
+  },
+  "minuto": {
+    "0": "NOUN"
+  },
+  "mirarlos": {
+    "0": "VERB"
+  },
+  "mires": {
+    "0": "VERB"
+  },
+  "misión": {
+    "0": "NOUN"
+  },
+  "misma": {
+    "0": "PRON"
+  },
+  "misterio": {
+    "0": "NOUN"
+  },
+  "mitad": {
+    "0": "NOUN"
+  },
+  "mm": {
+    "0": "NOUN"
+  },
+  "mmh": {
+    "0": "INTJ"
+  },
+  "modesta": {
+    "0": "ADJ"
+  },
+  "moja": {
+    "0": "VERB"
+  },
+  "monedas": {
+    "0": "NOUN"
+  },
+  "montarme": {
+    "0": "VERB"
+  },
+  "montañas": {
+    "0": "NOUN"
+  },
+  "montó": {
+    "0": "VERB"
+  },
+  "monumento": {
+    "0": "NOUN"
+  },
+  "mood": {
+    "0": "NOUN"
+  },
+  "mora'os": {
+    "0": "NOUN"
+  },
+  "morena": {
+    "0": "NOUN"
+  },
+  "moreno": {
+    "0": "ADJ"
+  },
+  "morfina": {
+    "0": "NOUN"
+  },
+  "moría": {
+    "0": "VERB"
+  },
+  "morías": {
+    "0": "VERB"
+  },
+  "mota": {
+    "0": "NOUN"
+  },
+  "moto": {
+    "0": "NOUN"
+  },
+  "motor": {
+    "0": "NOUN"
+  },
+  "movernos": {
+    "0": "VERB"
+  },
+  "movería": {
+    "0": "VERB"
+  },
+  "muchas": {
+    "0": "DET"
+  },
+  "muela": {
+    "0": "NOUN"
+  },
+  "muerdo": {
+    "0": "VERB"
+  },
+  "muerto": {
+    "0": "VERB"
+  },
+  "mueves": {
+    "0": "VERB"
+  },
+  "muriendo": {
+    "0": "VERB"
+  },
+  "musicales": {
+    "0": "ADJ"
+  },
+  "mutáis": {
+    "0": "NOUN"
+  },
+  "muévetelo": {
+    "0": "VERB"
+  },
+  "mátame": {
+    "0": "VERB"
+  },
+  "mías": {
+    "0": "DET"
+  },
+  "míos": {
+    "0": "DET"
+  },
+  "míralas": {
+    "0": "ADJ"
+  },
+  "mírate": {
+    "0": "VERB"
+  },
+  "n": {
+    "0": "NOUN"
+  },
+  "nacimos": {
+    "0": "VERB"
+  },
+  "nah": {
+    "0": "INTJ"
+  },
+  "natural": {
+    "0": "ADJ"
+  },
+  "navajazo": {
+    "0": "NOUN"
+  },
+  "nave": {
+    "0": "NOUN"
+  },
+  "necesitarás": {
+    "0": "VERB"
+  },
+  "negros": {
+    "0": "ADJ"
+  },
+  "nieva": {
+    "0": "VERB"
+  },
+  "nombro": {
+    "0": "VERB"
+  },
+  "només": {
+    "0": "ADV"
+  },
+  "nosotras": {
+    "0": "PRON"
+  },
+  "nota": {
+    "0": "NOUN"
+  },
+  "notaba": {
+    "0": "VERB"
+  },
+  "notar": {
+    "0": "VERB"
+  },
+  "now": {
+    "0": "ADV"
+  },
+  "nubes": {
+    "0": "NOUN"
+  },
+  "nuca": {
+    "0": "NOUN"
+  },
+  "nuestras": {
+    "0": "DET"
+  },
+  "nuestro": {
+    "0": "PRON"
+  },
+  "obediencia": {
+    "0": "NOUN"
+  },
+  "obligadas": {
+    "0": "ADJ"
+  },
+  "obsesioné": {
+    "0": "VERB"
+  },
+  "obsesión": {
+    "0": "NOUN"
+  },
+  "ocupada": {
+    "0": "ADJ"
+  },
+  "ocupo": {
+    "0": "VERB"
+  },
+  "ocurra": {
+    "0": "VERB"
+  },
+  "odiar": {
+    "0": "VERB"
+  },
+  "oficialmente": {
+    "0": "ADV"
+  },
+  "olas": {
+    "0": "NOUN"
+  },
+  "olivar": {
+    "0": "NOUN"
+  },
+  "olvidando": {
+    "0": "VERB"
+  },
+  "olvidas": {
+    "0": "VERB"
+  },
+  "olímpica": {
+    "0": "ADJ"
+  },
+  "omnipotente": {
+    "0": "ADJ"
+  },
+  "opuesto": {
+    "0": "ADJ"
+  },
+  "or": {
+    "0": "CCONJ"
+  },
+  "orden": {
+    "0": "NOUN"
+  },
+  "orgullosas": {
+    "0": "ADJ"
+  },
+  "original": {
+    "0": "ADJ"
+  },
+  "orquídea": {
+    "0": "NOUN"
+  },
+  "oscura": {
+    "0": "ADJ"
+  },
+  "oscuras": {
+    "0": "NOUN"
+  },
+  "oscurecida": {
+    "0": "VERB"
+  },
+  "oscuridad": {
+    "0": "NOUN"
+  },
+  "oscuros": {
+    "0": "ADJ"
+  },
+  "otros": {
+    "0": "DET"
+  },
+  "over": {
+    "0": "ADJ"
+  },
+  "paca": {
+    "0": "NOUN"
+  },
+  "padecer": {
+    "0": "VERB"
+  },
+  "pagao": {
+    "0": "ADJ"
+  },
+  "pague": {
+    "0": "VERB"
+  },
+  "pala": {
+    "0": "NOUN"
+  },
+  "paleta": {
+    "0": "NOUN"
+  },
+  "palomas": {
+    "0": "NOUN"
+  },
+  "palos": {
+    "0": "NOUN"
+  },
+  "pantalla": {
+    "0": "NOUN"
+  },
+  "pantera": {
+    "0": "NOUN"
+  },
+  "papa": {
+    "0": "NOUN"
+  },
+  "paran": {
+    "0": "VERB"
+  },
+  "pareciste": {
+    "0": "VERB"
+  },
+  "parecío": {
+    "0": "VERB"
+  },
+  "parirás": {
+    "0": "VERB"
+  },
+  "parpadeando": {
+    "0": "VERB"
+  },
+  "partes": {
+    "0": "NOUN"
+  },
+  "partir": {
+    "0": "VERB"
+  },
+  "parto": {
+    "0": "VERB"
+  },
+  "pasaban": {
+    "0": "VERB"
+  },
+  "pase": {
+    "0": "VERB"
+  },
+  "pasear": {
+    "0": "VERB"
+  },
+  "pasillo": {
+    "0": "NOUN"
+  },
+  "pasional": {
+    "0": "ADJ"
+  },
+  "pasitos": {
+    "0": "NOUN"
+  },
+  "paso": {
+    "0": "NOUN"
+  },
+  "pasé": {
+    "0": "VERB"
+  },
+  "patinando": {
+    "0": "VERB"
+  },
+  "pavo": {
+    "0": "NOUN"
+  },
+  "pecando": {
+    "0": "VERB"
+  },
+  "pedir": {
+    "0": "VERB"
+  },
+  "pedirte": {
+    "0": "VERB"
+  },
+  "peleas": {
+    "0": "NOUN"
+  },
+  "penita": {
+    "0": "INTJ"
+  },
+  "pensamiento": {
+    "0": "NOUN"
+  },
+  "pensara": {
+    "0": "VERB"
+  },
+  "pensarlo": {
+    "0": "VERB"
+  },
+  "pensarte": {
+    "0": "VERB"
+  },
+  "pensen": {
+    "0": "VERB"
+  },
+  "pequeña": {
+    "0": "ADJ"
+  },
+  "perdida": {
+    "0": "ADJ"
+  },
+  "perdió": {
+    "0": "VERB"
+  },
+  "perdona": {
+    "0": "VERB"
+  },
+  "perdonas": {
+    "0": "VERB"
+  },
+  "perdío": {
+    "0": "ADJ"
+  },
+  "perfil": {
+    "0": "NOUN"
+  },
+  "perfumada": {
+    "0": "ADJ"
+  },
+  "permiteme": {
+    "0": "VERB"
+  },
+  "perseguirlo": {
+    "0": "VERB"
+  },
+  "persona": {
+    "0": "NOUN"
+  },
+  "personas": {
+    "0": "NOUN"
+  },
+  "personales": {
+    "0": "ADJ"
+  },
+  "pesan": {
+    "0": "VERB"
+  },
+  "pestañas": {
+    "0": "NOUN"
+  },
+  "pi'o": {
+    "0": "CCONJ"
+  },
+  "piano": {
+    "0": "NOUN"
+  },
+  "pica": {
+    "0": "VERB"
+  },
+  "pico": {
+    "0": "NOUN"
+  },
+  "pida": {
+    "0": "VERB"
+  },
+  "pide": {
+    "0": "VERB"
+  },
+  "pides": {
+    "0": "VERB"
+  },
+  "piedad": {
+    "0": "NOUN"
+  },
+  "piense": {
+    "0": "VERB"
+  },
+  "pierda": {
+    "0": "VERB"
+  },
+  "pierdas": {
+    "0": "VERB"
+  },
+  "pino": {
+    "0": "NOUN"
+  },
+  "piquete": {
+    "0": "NOUN"
+  },
+  "pista": {
+    "0": "NOUN"
+  },
+  "pistolas": {
+    "0": "NOUN"
+  },
+  "piénsalo": {
+    "0": "VERB"
+  },
+  "piña": {
+    "0": "NOUN"
+  },
+  "planes": {
+    "0": "NOUN"
+  },
+  "plaza": {
+    "0": "NOUN"
+  },
+  "pluma": {
+    "0": "NOUN"
+  },
+  "plásticas": {
+    "0": "ADJ"
+  },
+  "poderla": {
+    "0": "VERB"
+  },
+  "podio": {
+    "0": "NOUN"
+  },
+  "podrás": {
+    "0": "VERB"
+  },
+  "policía": {
+    "0": "NOUN"
+  },
+  "poloché": {
+    "0": "NOUN"
+  },
+  "polvo": {
+    "0": "NOUN"
+  },
+  "poma": {
+    "0": "NOUN"
+  },
+  "pon": {
+    "0": "VERB"
+  },
+  "pondré": {
+    "0": "VERB"
+  },
+  "pone": {
+    "0": "VERB"
+  },
+  "ponga": {
+    "0": "VERB"
+  },
+  "poniéndome": {
+    "0": "VERB"
+  },
+  "pony": {
+    "0": "NOUN"
+  },
+  "pop": {
+    "0": "NOUN"
+  },
+  "popola": {
+    "0": "NOUN"
+  },
+  "practica": {
+    "0": "VERB"
+  },
+  "prado": {
+    "0": "NOUN"
+  },
+  "precede": {
+    "0": "VERB"
+  },
+  "preciosa": {
+    "0": "ADJ"
+  },
+  "preguntan": {
+    "0": "VERB"
+  },
+  "preguntar": {
+    "0": "VERB"
+  },
+  "pregúntate": {
+    "0": "VERB"
+  },
+  "prendaste": {
+    "0": "VERB"
+  },
+  "prenderé": {
+    "0": "VERB"
+  },
+  "presentimiento": {
+    "0": "NOUN"
+  },
+  "preso": {
+    "0": "ADJ"
+  },
+  "presta": {
+    "0": "VERB"
+  },
+  "prestes": {
+    "0": "VERB"
+  },
+  "presumo": {
+    "0": "VERB"
+  },
+  "primavera": {
+    "0": "ADJ"
+  },
+  "primera": {
+    "0": "ADJ"
+  },
+  "primo": {
+    "0": "NOUN"
+  },
+  "prisioneras": {
+    "0": "NOUN"
+  },
+  "privo": {
+    "0": "VERB"
+  },
+  "probar": {
+    "0": "VERB"
+  },
+  "procede": {
+    "0": "VERB"
+  },
+  "prohibida": {
+    "0": "ADJ"
+  },
+  "promete": {
+    "0": "VERB"
+  },
+  "prometiste": {
+    "0": "VERB"
+  },
+  "pronto": {
+    "0": "NOUN"
+  },
+  "propia": {
+    "0": "ADJ"
+  },
+  "propias": {
+    "0": "ADJ"
+  },
+  "propiedad": {
+    "0": "NOUN"
+  },
+  "propio": {
+    "0": "DET"
+  },
+  "protagonista": {
+    "0": "NOUN"
+  },
+  "protegerás": {
+    "0": "VERB"
+  },
+  "protejan": {
+    "0": "VERB"
+  },
+  "prueba": {
+    "0": "NOUN"
+  },
+  "psicólogo": {
+    "0": "NOUN"
+  },
+  "psiquiatra": {
+    "0": "NOUN"
+  },
+  "puchaina": {
+    "0": "NOUN"
+  },
+  "pude": {
+    "0": "VERB"
+  },
+  "pue'es": {
+    "0": "VERB"
+  },
+  "puente": {
+    "0": "NOUN"
+  },
+  "puesta": {
+    "0": "ADJ"
+  },
+  "puestos": {
+    "0": "VERB"
+  },
+  "pulsera": {
+    "0": "NOUN"
+  },
+  "pulso": {
+    "0": "NOUN"
+  },
+  "punto": {
+    "0": "NOUN"
+  },
+  "puros": {
+    "0": "NOUN"
+  },
+  "putas": {
+    "0": "NOUN"
+  },
+  "puñales": {
+    "0": "NOUN"
+  },
+  "póliza": {
+    "0": "NOUN"
+  },
+  "quedan": {
+    "0": "VERB"
+  },
+  "quedar": {
+    "0": "VERB"
+  },
+  "quedaros": {
+    "0": "VERB"
+  },
+  "quedarse": {
+    "0": "VERB"
+  },
+  "quedarán": {
+    "0": "VERB"
+  },
+  "queen": {
+    "0": "NOUN"
+  },
+  "quema": {
+    "0": "VERB"
+  },
+  "quemaré": {
+    "0": "VERB"
+  },
+  "quemen": {
+    "0": "VERB"
+  },
+  "quererme": {
+    "0": "VERB"
+  },
+  "querida": {
+    "0": "ADJ"
+  },
+  "quinto": {
+    "0": "NOUN"
+  },
+  "quise": {
+    "0": "VERB"
+  },
+  "quiso": {
+    "0": "VERB"
+  },
+  "quitando": {
+    "0": "VERB"
+  },
+  "quitte": {
+    "0": "NOUN"
+  },
+  "quizás": {
+    "0": "ADV"
+  },
+  "quédate": {
+    "0": "VERB"
+  },
+  "rabiar": {
+    "0": "VERB"
+  },
+  "ramo": {
+    "0": "NOUN"
+  },
+  "rayo": {
+    "0": "NOUN"
+  },
+  "realidad": {
+    "0": "NOUN"
+  },
+  "recargo": {
+    "0": "ADJ"
+  },
+  "reces": {
+    "0": "VERB"
+  },
+  "rechura": {
+    "0": "VERB"
+  },
+  "recibo": {
+    "0": "NOUN"
+  },
+  "recordarlo": {
+    "0": "VERB"
+  },
+  "recordé": {
+    "0": "VERB"
+  },
+  "recordó": {
+    "0": "VERB"
+  },
+  "recuerdan": {
+    "0": "VERB"
+  },
+  "reflejan": {
+    "0": "VERB"
+  },
+  "refúgiate": {
+    "0": "VERB"
+  },
+  "regalaré": {
+    "0": "VERB"
+  },
+  "regálame": {
+    "0": "VERB"
+  },
+  "rehenes": {
+    "0": "NOUN"
+  },
+  "relojes": {
+    "0": "NOUN"
+  },
+  "relucen": {
+    "0": "VERB"
+  },
+  "relájate": {
+    "0": "VERB"
+  },
+  "renovado": {
+    "0": "ADJ"
+  },
+  "resbala": {
+    "0": "VERB"
+  },
+  "resbalan": {
+    "0": "VERB"
+  },
+  "retire": {
+    "0": "VERB"
+  },
+  "revés": {
+    "0": "NOUN"
+  },
+  "rey": {
+    "0": "NOUN"
+  },
+  "rezaba": {
+    "0": "VERB"
+  },
+  "rezar": {
+    "0": "VERB"
+  },
+  "rezarle": {
+    "0": "VERB"
+  },
+  "rezo": {
+    "0": "NOUN"
+  },
+  "reías": {
+    "0": "VERB"
+  },
+  "riegan": {
+    "0": "VERB"
+  },
+  "ring": {
+    "0": "NOUN"
+  },
+  "risa": {
+    "0": "NOUN"
+  },
+  "ritmo": {
+    "0": "NOUN"
+  },
+  "roba": {
+    "0": "VERB"
+  },
+  "robaron": {
+    "0": "VERB"
+  },
+  "robó": {
+    "0": "VERB"
+  },
+  "robótica": {
+    "0": "ADJ"
+  },
+  "roca": {
+    "0": "NOUN"
+  },
+  "rococo": {
+    "0": "ADJ"
+  },
+  "romero": {
+    "0": "NOUN"
+  },
+  "romperé": {
+    "0": "VERB"
+  },
+  "rompi'o": {
+    "0": "ADJ"
+  },
+  "rompo": {
+    "0": "VERB"
+  },
+  "rompí": {
+    "0": "VERB"
+  },
+  "rompía": {
+    "0": "VERB"
+  },
+  "ropa": {
+    "0": "NOUN"
+  },
+  "rota": {
+    "0": "ADJ"
+  },
+  "roza": {
+    "0": "VERB"
+  },
+  "rozarse": {
+    "0": "VERB"
+  },
+  "rueda": {
+    "0": "NOUN"
+  },
+  "ruina": {
+    "0": "NOUN"
+  },
+  "ruleta": {
+    "0": "NOUN"
+  },
+  "ruta": {
+    "0": "NOUN"
+  },
+  "ríe": {
+    "0": "VERB"
+  },
+  "sabemos": {
+    "0": "VERB"
+  },
+  "sabido": {
+    "0": "VERB"
+  },
+  "sabiendo": {
+    "0": "VERB"
+  },
+  "sabor": {
+    "0": "NOUN"
+  },
+  "sabrosura": {
+    "0": "NOUN"
+  },
+  "sabía": {
+    "0": "VERB"
+  },
+  "sacia": {
+    "0": "VERB"
+  },
+  "saco": {
+    "0": "VERB"
+  },
+  "sala": {
+    "0": "NOUN"
+  },
+  "salgan": {
+    "0": "VERB"
+  },
+  "sali'a": {
+    "0": "ADP"
+  },
+  "salida": {
+    "0": "NOUN"
+  },
+  "salseros": {
+    "0": "NOUN"
+  },
+  "saltando": {
+    "0": "VERB"
+  },
+  "salto": {
+    "0": "NOUN"
+  },
+  "salven": {
+    "0": "VERB"
+  },
+  "salí": {
+    "0": "VERB"
+  },
+  "santa": {
+    "0": "NOUN"
+  },
+  "santas": {
+    "0": "NOUN"
+  },
+  "santos": {
+    "0": "NOUN"
+  },
+  "saque": {
+    "0": "VERB"
+  },
+  "satén": {
+    "0": "NOUN"
+  },
+  "seca": {
+    "0": "VERB"
+  },
+  "secarte": {
+    "0": "VERB"
+  },
+  "secuestrar": {
+    "0": "VERB"
+  },
+  "sed": {
+    "0": "NOUN"
+  },
+  "seguir": {
+    "0": "VERB"
+  },
+  "segura": {
+    "0": "ADJ"
+  },
+  "sello": {
+    "0": "NOUN"
+  },
+  "semana": {
+    "0": "NOUN"
+  },
+  "sembrará": {
+    "0": "VERB"
+  },
+  "sencillo": {
+    "0": "NOUN"
+  },
+  "sensibilidad": {
+    "0": "NOUN"
+  },
+  "sentencia": {
+    "0": "NOUN"
+  },
+  "sentimiento": {
+    "0": "NOUN"
+  },
+  "senté": {
+    "0": "VERB"
+  },
+  "sentí": {
+    "0": "VERB"
+  },
+  "sepas": {
+    "0": "VERB"
+  },
+  "sepulcro": {
+    "0": "NOUN"
+  },
+  "servir": {
+    "0": "VERB"
+  },
+  "seu": {
+    "0": "NUM"
+  },
+  "señas": {
+    "0": "NOUN"
+  },
+  "siguiendo": {
+    "0": "VERB"
+  },
+  "silencio": {
+    "0": "NOUN"
+  },
+  "silla": {
+    "0": "NOUN"
+  },
+  "silueta": {
+    "0": "NOUN"
+  },
+  "singando": {
+    "0": "VERB"
+  },
+  "sino": {
+    "0": "CCONJ"
+  },
+  "sinrazón": {
+    "0": "NOUN"
+  },
+  "sirve": {
+    "0": "VERB"
+  },
+  "sirven": {
+    "0": "VERB"
+  },
+  "sitúa": {
+    "0": "VERB"
+  },
+  "siéntate": {
+    "0": "VERB"
+  },
+  "sniper": {
+    "0": "NOUN"
+  },
+  "solita": {
+    "0": "NOUN"
+  },
+  "solitos": {
+    "0": "ADJ"
+  },
+  "solos": {
+    "0": "ADJ"
+  },
+  "soltando": {
+    "0": "VERB"
+  },
+  "soltar": {
+    "0": "VERB"
+  },
+  "sombras": {
+    "0": "NOUN"
+  },
+  "sonreias": {
+    "0": "VERB"
+  },
+  "sonreías": {
+    "0": "VERB"
+  },
+  "soñar": {
+    "0": "VERB"
+  },
+  "suavecita": {
+    "0": "ADJ"
+  },
+  "sube": {
+    "0": "VERB"
+  },
+  "subiendo": {
+    "0": "VERB"
+  },
+  "subir": {
+    "0": "VERB"
+  },
+  "subo": {
+    "0": "VERB"
+  },
+  "subí": {
+    "0": "VERB"
+  },
+  "sueltes": {
+    "0": "VERB"
+  },
+  "sueños": {
+    "0": "NOUN"
+  },
+  "sufrir": {
+    "0": "VERB"
+  },
+  "sujetas": {
+    "0": "VERB"
+  },
+  "sujetes": {
+    "0": "VERB"
+  },
+  "suma": {
+    "0": "NOUN"
+  },
+  "superior": {
+    "0": "ADJ"
+  },
+  "supervise": {
+    "0": "VERB"
+  },
+  "supervisó": {
+    "0": "VERB"
+  },
+  "supone": {
+    "0": "VERB"
+  },
+  "surfista": {
+    "0": "NOUN"
+  },
+  "suspire": {
+    "0": "NOUN"
+  },
+  "sábanas": {
+    "0": "NOUN"
+  },
+  "séptima": {
+    "0": "ADJ"
+  },
+  "sígueme": {
+    "0": "VERB"
+  },
+  "talento": {
+    "0": "NOUN"
+  },
+  "tambalea": {
+    "0": "VERB"
+  },
+  "tanga": {
+    "0": "NOUN"
+  },
+  "tanguillo": {
+    "0": "NOUN"
+  },
+  "tapar": {
+    "0": "VERB"
+  },
+  "tararea": {
+    "0": "VERB"
+  },
+  "teardrops": {
+    "0": "NOUN"
+  },
+  "tela": {
+    "0": "NOUN"
+  },
+  "teléfono": {
+    "0": "NOUN"
+  },
+  "tema": {
+    "0": "NOUN"
+  },
+  "temblando": {
+    "0": "VERB"
+  },
+  "temblaron": {
+    "0": "VERB"
+  },
+  "tembló": {
+    "0": "VERB"
+  },
+  "temo": {
+    "0": "VERB"
+  },
+  "temprano": {
+    "0": "ADV"
+  },
+  "tendrá": {
+    "0": "VERB"
+  },
+  "tennis": {
+    "0": "NOUN"
+  },
+  "tenían": {
+    "0": "VERB"
+  },
+  "tenías": {
+    "0": "VERB"
+  },
+  "terapia": {
+    "0": "NOUN"
+  },
+  "terminé": {
+    "0": "VERB"
+  },
+  "tienda": {
+    "0": "NOUN"
+  },
+  "tientan": {
+    "0": "VERB"
+  },
+  "tinto": {
+    "0": "ADJ"
+  },
+  "tira": {
+    "0": "VERB"
+  },
+  "tirando": {
+    "0": "VERB"
+  },
+  "tirarme": {
+    "0": "VERB"
+  },
+  "tirarnos": {
+    "0": "VERB"
+  },
+  "tirará": {
+    "0": "VERB"
+  },
+  "tiraré": {
+    "0": "VERB"
+  },
+  "tiraría": {
+    "0": "VERB"
+  },
+  "tire": {
+    "0": "VERB"
+  },
+  "tiro": {
+    "0": "VERB"
+  },
+  "titánica": {
+    "0": "NOUN"
+  },
+  "to": {
+    "0": "INTJ"
+  },
+  "toca": {
+    "0": "VERB"
+  },
+  "tomando": {
+    "0": "VERB"
+  },
+  "tomar": {
+    "0": "VERB"
+  },
+  "top": {
+    "0": "NOUN"
+  },
+  "tope": {
+    "0": "NOUN"
+  },
+  "toquen": {
+    "0": "VERB"
+  },
+  "tormenta": {
+    "0": "NOUN"
+  },
+  "tormentos": {
+    "0": "NOUN"
+  },
+  "toro": {
+    "0": "NOUN"
+  },
+  "tot": {
+    "0": "NOUN"
+  },
+  "tote": {
+    "0": "ADV"
+  },
+  "trabaja": {
+    "0": "VERB"
+  },
+  "trabajo": {
+    "0": "NOUN"
+  },
+  "track": {
+    "0": "NOUN"
+  },
+  "trago": {
+    "0": "NOUN"
+  },
+  "traiga": {
+    "0": "VERB"
+  },
+  "tramo": {
+    "0": "NOUN"
+  },
+  "transformarte": {
+    "0": "VERB"
+  },
+  "tras": {
+    "0": "ADP"
+  },
+  "trasquilé": {
+    "0": "VERB"
+  },
+  "traste": {
+    "0": "NOUN"
+  },
+  "trata": {
+    "0": "VERB"
+  },
+  "tratarte": {
+    "0": "VERB"
+  },
+  "tremendo": {
+    "0": "ADJ"
+  },
+  "trenza": {
+    "0": "NOUN"
+  },
+  "trepé": {
+    "0": "VERB"
+  },
+  "trillan": {
+    "0": "VERB"
+  },
+  "trofeo": {
+    "0": "NOUN"
+  },
+  "trono": {
+    "0": "NOUN"
+  },
+  "tráeme": {
+    "0": "VERB"
+  },
+  "trío": {
+    "0": "NOUN"
+  },
+  "tutú": {
+    "0": "NOUN"
+  },
+  "tuviste": {
+    "0": "VERB"
+  },
+  "tán": {
+    "0": "ADV"
+  },
+  "técnicamente": {
+    "0": "ADV"
+  },
+  "tía": {
+    "0": "NOUN"
+  },
+  "tíralo": {
+    "0": "VERB"
+  },
+  "tótem": {
+    "0": "NOUN"
+  },
+  "tóxico": {
+    "0": "ADJ"
+  },
+  "u": {
+    "0": "CCONJ"
+  },
+  "uff": {
+    "0": "INTJ"
+  },
+  "ultrasonidos": {
+    "0": "NOUN"
+  },
+  "umbral": {
+    "0": "NOUN"
+  },
+  "undivé": {
+    "0": "ADJ"
+  },
+  "ups": {
+    "0": "INTJ"
+  },
+  "urbano": {
+    "0": "ADJ"
+  },
+  "usas": {
+    "0": "VERB"
+  },
+  "utopía": {
+    "0": "NOUN"
+  },
+  "uva": {
+    "0": "NOUN"
+  },
+  "vacié": {
+    "0": "VERB"
+  },
+  "vadearla": {
+    "0": "VERB"
+  },
+  "vagabundo": {
+    "0": "NOUN"
+  },
+  "vaginal": {
+    "0": "ADJ"
+  },
+  "vajilla": {
+    "0": "NOUN"
+  },
+  "vampiros": {
+    "0": "NOUN"
+  },
+  "varios": {
+    "0": "DET"
+  },
+  "vayas": {
+    "0": "VERB"
+  },
+  "vea": {
+    "0": "VERB"
+  },
+  "vecina": {
+    "0": "NOUN"
+  },
+  "vecinas": {
+    "0": "NOUN"
+  },
+  "vecino": {
+    "0": "NOUN"
+  },
+  "vela": {
+    "0": "NOUN"
+  },
+  "vena": {
+    "0": "NOUN"
+  },
+  "venas": {
+    "0": "NOUN"
+  },
+  "venden": {
+    "0": "VERB"
+  },
+  "vendo": {
+    "0": "VERB"
+  },
+  "vendrás": {
+    "0": "VERB"
+  },
+  "venga": {
+    "0": "VERB"
+  },
+  "venida": {
+    "0": "VERB"
+  },
+  "venir": {
+    "0": "VERB"
+  },
+  "verano": {
+    "0": "NOUN"
+  },
+  "verdes": {
+    "0": "ADJ"
+  },
+  "verlas": {
+    "0": "VERB"
+  },
+  "verle": {
+    "0": "VERB"
+  },
+  "verás": {
+    "0": "VERB"
+  },
+  "vestida": {
+    "0": "ADJ"
+  },
+  "vestidas": {
+    "0": "ADJ"
+  },
+  "vestirme": {
+    "0": "VERB"
+  },
+  "via": {
+    "0": "NOUN"
+  },
+  "viejas": {
+    "0": "ADJ"
+  },
+  "viendo": {
+    "0": "VERB"
+  },
+  "viento": {
+    "0": "NOUN"
+  },
+  "vieras": {
+    "0": "VERB"
+  },
+  "vierte": {
+    "0": "VERB"
+  },
+  "vigilo": {
+    "0": "VERB"
+  },
+  "vine": {
+    "0": "VERB"
+  },
+  "vio": {
+    "0": "VERB"
+  },
+  "violencia": {
+    "0": "NOUN"
+  },
+  "violento": {
+    "0": "ADJ"
+  },
+  "violeta": {
+    "0": "NOUN"
+  },
+  "virgencita": {
+    "0": "NOUN"
+  },
+  "visa": {
+    "0": "NOUN"
+  },
+  "visitando": {
+    "0": "VERB"
+  },
+  "vivía": {
+    "0": "VERB"
+  },
+  "volar": {
+    "0": "VERB"
+  },
+  "volverá": {
+    "0": "VERB"
+  },
+  "volviera": {
+    "0": "VERB"
+  },
+  "volviste": {
+    "0": "VERB"
+  },
+  "vous": {
+    "0": "NOUN"
+  },
+  "wifey": {
+    "0": "NOUN"
+  },
+  "yantas": {
+    "0": "NOUN"
+  },
+  "yard": {
+    "0": "NOUN"
+  },
+  "yenes": {
+    "0": "NOUN"
+  },
+  "your": {
+    "0": "ADJ"
+  },
+  "yugular": {
+    "0": "ADJ"
+  },
+  "z": {
+    "0": "INTJ"
+  },
+  "zafiro": {
+    "0": "NOUN"
+  },
+  "zapatos": {
+    "0": "NOUN"
+  },
+  "zarzamora": {
+    "0": "NOUN"
+  },
+  "átame": {
+    "0": "VERB"
+  },
+  "échale": {
+    "0": "VERB"
+  },
+  "éxito": {
+    "0": "NOUN"
+  },
+  "última": {
+    "0": "ADJ"
+  },
+  "único": {
+    "0": "ADJ"
+  }
+}

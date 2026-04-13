@@ -1,13 +1,13 @@
 {
-  "560d99": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 1,
-    "translation": "to do",
+  "d66991": {
+    "base_verb": "fumar",
+    "lemma": "fumándose",
+    "corpus_count": 2,
+    "translation": "to smoke",
     "assignments": {
-      "biencoder": [
+      "wiktionary-auto": [
         {
-          "sense": "3fb",
+          "sense": "4f1",
           "examples": [
             0
           ]
@@ -15,333 +15,36 @@
       ]
     },
     "examples": [
-      {
-        "song": "8086635",
-        "song_name": "Un Poquito",
-        "spanish": "Como cuando lo mueve', sigue haciéndolo asimismo (Pew, pew)",
-        "english": "Like when he moves it, he keeps doing it too (Pew, pew)",
-        "timestamp_ms": 68750
-      }
-    ],
-    "id": "560d99",
-    "base_id": "7a798b"
-  },
-  "78b583": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 3,
-    "translation": "to do",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "3fb",
-          "examples": [
-            1
-          ]
-        },
-        {
-          "sense": "407",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9614105",
-        "song_name": "FINA",
-        "spanish": "Dale, vamos pa' la Gucci pa' hacerlo en el probador",
-        "english": "Come on, let's go to the Gucci to do it in the fitting room",
-        "timestamp_ms": 110620
-      },
-      {
-        "song": "8422401",
-        "song_name": "SALVAJE",
-        "spanish": "Hacerlo en la playa en Rincón",
-        "english": "Do it on the beach in Rincón",
-        "timestamp_ms": 72880
-      }
-    ],
-    "id": "78b583",
-    "base_id": "7a798b"
-  },
-  "adbdd8": {
-    "base_verb": "compartir",
-    "lemma": "compartirme",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10220933",
-        "song_name": "fuck TMZ",
-        "spanish": "Me quiere solo pa' ella, no quiere compartirme (Woh-oh; ey, oh)",
-        "english": "He wants me only for her, he doesn't want to share me (Woh-oh; hey, oh)",
-        "timestamp_ms": 25620
-      }
-    ],
-    "id": "adbdd8",
-    "base_id": "b07e50"
-  },
-  "c6fa05": {
-    "base_verb": "llamar",
-    "lemma": "llamar",
-    "corpus_count": 4,
-    "translation": "to refer to, to call, to summon",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "c79",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9077520",
-        "song_name": "8 AM",
-        "spanish": "Llámame, bad boy",
-        "english": "Call me, bad boy",
-        "timestamp_ms": 1950
-      }
-    ],
-    "id": "c6fa05",
-    "base_id": "cc6577"
-  },
-  "a7ee96": {
-    "base_verb": "ver",
-    "lemma": "véame",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6924324",
-        "song_name": "Saturno",
-        "spanish": "Véame en el noticier-",
-        "english": "See me on the news"
-      }
-    ],
-    "id": "a7ee96",
-    "base_id": "cd9482"
-  },
-  "c7e798": {
-    "base_verb": "tener",
-    "lemma": "tener",
-    "corpus_count": 5,
-    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "d8e",
-          "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "742",
-          "examples": [
-            1
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "Dice que está castigada, pero se escapa pa' verme, que quiere tenerme (Uh)",
-        "english": "She says she's punished, but she runs away to see me, she wants to have me (Uh)",
-        "timestamp_ms": 10290
-      },
       {
         "song": "9216707",
         "song_name": "Chulo pt.2",
-        "spanish": "Dice que quiere tenerme a su lao'",
-        "english": "He says he wants to have me at his side'",
-        "timestamp_ms": 52070
+        "spanish": "Huele a Baccarat, fumándose un puro (Sí)",
+        "english": "It smells like Baccarat, smoking a cigar (Yes)",
+        "timestamp_ms": 12650
       }
     ],
-    "id": "c7e798",
-    "base_id": "a132bf"
-  },
-  "550f62": {
-    "base_verb": "hablar",
-    "lemma": "hablar",
-    "corpus_count": 2,
-    "translation": "to talk; to speak; to communicate using words",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "e3d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8224314",
-        "song_name": "Putero",
-        "spanish": "Shorty, háblame claro",
-        "english": "Shorty, speak to me clearly",
-        "timestamp_ms": 68400
-      }
-    ],
-    "id": "550f62",
-    "base_id": "04cb0b"
-  },
-  "abb9fe": {
-    "base_verb": "enseñar",
-    "lemma": "enseñar",
-    "corpus_count": 1,
-    "translation": "to teach",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "b55",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9614105",
-        "song_name": "FINA",
-        "spanish": "Mami, hoy voy a enseñarte cómo es que un culo se mama, jeje",
-        "english": "Mommy, today I'm going to show you how an ass sucks, hehe",
-        "timestamp_ms": 154410
-      }
-    ],
-    "id": "abb9fe",
-    "base_id": "ed5c0c"
-  },
-  "622bee": {
-    "base_verb": "ir",
-    "lemma": "vela",
-    "corpus_count": 1,
-    "translation": "candle",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "4b7",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "7930766",
-        "song_name": "Standard",
-        "spanish": "Si estamo' enrolando ella vela cortina",
-        "english": "If we are enlisting the curtain candle",
-        "timestamp_ms": 104650
-      }
-    ],
-    "id": "622bee",
-    "base_id": "be037b"
-  },
-  "4fb161": {
-    "base_verb": "comer",
-    "lemma": "comiéndote",
-    "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11888474",
-        "song_name": "TOA",
-        "spanish": "En casita comiéndote to'a",
-        "english": "At home eating everything",
-        "timestamp_ms": 35670
-      },
-      {
-        "song": "8721872",
-        "song_name": "Cuando Te Toca",
-        "spanish": "Comiéndote to'a, cuando te pone' en four (Ay)",
-        "english": "Eating you all, when he puts you on four (Ay)",
-        "timestamp_ms": 109620
-      }
-    ],
-    "id": "4fb161",
-    "base_id": "8c2806"
-  },
-  "0eb62e": {
-    "base_verb": "besar",
-    "lemma": "besar",
-    "corpus_count": 2,
-    "translation": "to kiss",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "8c3",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9237320",
-        "song_name": "mañana",
-        "spanish": "Muero por besarte y por tenerte otra vez, bebé, mmm",
-        "english": "I'm dying to kiss you and have you again, baby, mmm",
-        "timestamp_ms": 700
-      },
-      {
-        "song": "12556569",
-        "song_name": "Gyoza",
-        "spanish": "Yo estoy loca por besarte hasta quitarte el gloss, ah",
-        "english": "I'm crazy about kissing you until you take off the gloss, ah",
-        "timestamp_ms": 64640
-      }
-    ],
-    "id": "0eb62e",
-    "base_id": "16a666"
-  },
-  "1f8b77": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 4,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "410",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8693529",
-        "song_name": "Déjanos Pasar",
-        "spanish": "Uh-la-la, déjanos pasar que no estamos pa' pelear",
-        "english": "Uh-la-la, let us pass that we are not here to fight",
-        "timestamp_ms": 25960
-      }
-    ],
-    "id": "1f8b77",
-    "base_id": "023f8c"
+    "id": "d66991",
+    "base_id": "d3244d"
   },
   "771a3b": {
     "base_verb": "mover",
     "lemma": "muévelo",
     "corpus_count": 15,
-    "translation": "",
-    "assignments": {},
+    "translation": "to move to, to cause to, to move",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "64c",
+          "examples": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "9347157",
@@ -382,23 +85,209 @@
     "id": "771a3b",
     "base_id": "7cfb5a"
   },
-  "bb9d30": {
-    "base_verb": "ver",
-    "lemma": "ver",
-    "corpus_count": 5,
-    "translation": "to see, to check, to spot",
+  "4f7e4d": {
+    "base_verb": "ir",
+    "lemma": "ir",
+    "corpus_count": 1,
+    "translation": "to go",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "4d3",
+          "sense": "960",
           "examples": [
             0
           ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "Voy a preguntarle si vamo’ a irnos",
+        "english": "I'm going to ask him if we're going to leave",
+        "timestamp_ms": 47990
+      }
+    ],
+    "id": "4f7e4d",
+    "base_id": "be037b"
+  },
+  "d79414": {
+    "base_verb": "dar",
+    "lemma": "dar",
+    "corpus_count": 18,
+    "translation": "to give, to give out",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "0e3",
+          "examples": [
+            3
+          ]
         },
         {
-          "sense": "2cf",
+          "sense": "dc6",
           "examples": [
-            1
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "sense": "eac",
+          "examples": [
+            0,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8827239",
+        "song_name": "Pretty Bad Bitch",
+        "spanish": "Pa’ darle a ese culo hay que hacerle una ceremonia",
+        "english": "To give that ass you have to do a ceremony",
+        "timestamp_ms": 26960
+      },
+      {
+        "song": "12591720",
+        "song_name": "Algo casual",
+        "spanish": "¿Cambiar tu nombre en el cel o darle un break? A ver",
+        "english": "Change your name on the cell phone or break it? Let's see",
+        "timestamp_ms": 75540
+      },
+      {
+        "song": "6924324",
+        "song_name": "Saturno",
+        "spanish": "Me fui pa’ la disco a darle sin miedo y",
+        "english": "I went to the disco to hit it without fear and"
+      },
+      {
+        "song": "9402498",
+        "song_name": "DISPO",
+        "spanish": "Pa' darle lento, pa' darle lento",
+        "english": "To take it slow, to take it slow",
+        "timestamp_ms": 124390
+      },
+      {
+        "song": "12591719",
+        "song_name": "Traviesa",
+        "spanish": "Es que tengo una jeva que está pa' darle to' el día",
+        "english": "It's just that I have a girl who is there to give you all day",
+        "timestamp_ms": 178470
+      },
+      {
+        "song": "8783598",
+        "song_name": "Big Booty",
+        "spanish": "Esta pa' darle to'a la noche hasta quedarme empty (De una)",
+        "english": "I'm here to give it all night until I'm empty (One time)",
+        "timestamp_ms": 106240
+      },
+      {
+        "song": "11690948",
+        "song_name": "EN LA CITY",
+        "spanish": "Pa' darle hasta abajo no hay que pedir permiso, nah",
+        "english": "To hit it all the way down you don't have to ask for permission, nah",
+        "timestamp_ms": 100200
+      }
+    ],
+    "id": "d79414",
+    "base_id": "695915"
+  },
+  "568ce2": {
+    "base_verb": "llevar",
+    "lemma": "llevar",
+    "corpus_count": 1,
+    "translation": "to take, to carry, to take away, to take out",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "490",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "Baby, hoy estoy libre y quiero llevarme ese booty",
+        "english": "Baby, today I'm free and I want to take that booty",
+        "timestamp_ms": 128520
+      }
+    ],
+    "id": "568ce2",
+    "base_id": "903283"
+  },
+  "428ab6": {
+    "base_verb": "subir",
+    "lemma": "subirme",
+    "corpus_count": 1,
+    "translation": "to go up or come up",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "dcd",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12570921",
+        "song_name": "En el Ritz",
+        "spanish": "¿Puede' subirme un poquito, everything?",
+        "english": "Can you raise me a little bit, everything?",
+        "timestamp_ms": 1460
+      }
+    ],
+    "id": "428ab6",
+    "base_id": "7ebd32"
+  },
+  "5226e8": {
+    "base_verb": "olvidar",
+    "lemma": "olvidar",
+    "corpus_count": 1,
+    "translation": "to leave behind, to forget",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "f4d",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9402498",
+        "song_name": "DISPO",
+        "spanish": "¿Qué tú crees, bebé? A ver, olvídate de él",
+        "english": "What do you think, baby? Let's see, forget about him",
+        "timestamp_ms": 112120
+      }
+    ],
+    "id": "5226e8",
+    "base_id": "06f03a"
+  },
+  "40d54d": {
+    "base_verb": "mandar",
+    "lemma": "mandándote",
+    "corpus_count": 1,
+    "translation": "to send",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "2e0",
+          "examples": [
+            0
           ]
         }
       ]
@@ -407,37 +296,23 @@
       {
         "song": "9077520",
         "song_name": "8 AM",
-        "spanish": "Pues vamo' a verno', baby",
-        "english": "Well let's go see each other, baby"
-      },
-      {
-        "song": "10220934",
-        "song_name": "offline",
-        "spanish": "El party es adentro y nadie va a verno'",
-        "english": "The party is inside and no one is going to see it'",
-        "timestamp_ms": 62360
+        "spanish": "Mandándote canciones en nota' de voz",
+        "english": "Sending you songs in voice notes",
+        "timestamp_ms": 56280
       }
     ],
-    "id": "bb9d30",
-    "base_id": "cd9482"
+    "id": "40d54d",
+    "base_id": "9945a2"
   },
-  "e2f9e5": {
-    "base_verb": "poner",
-    "lemma": "poner",
-    "corpus_count": 7,
-    "translation": "to put, to put up, to place",
+  "6e5249": {
+    "base_verb": "perrear",
+    "lemma": "perrearme",
+    "corpus_count": 2,
+    "translation": "to deceive",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "dfc",
-          "examples": [
-            1,
-            2,
-            3
-          ]
-        },
-        {
-          "sense": "53b",
+          "sense": "79c",
           "examples": [
             0
           ]
@@ -446,60 +321,58 @@
     },
     "examples": [
       {
-        "song": "8693529",
-        "song_name": "Déjanos Pasar",
-        "spanish": "Ponte agresiva baby, ponte commander",
-        "english": "Get aggressive baby, get commander",
-        "timestamp_ms": 55220
-      },
-      {
-        "song": "9614105",
-        "song_name": "FINA",
-        "spanish": "Dame acá, ven aquí, baby, ponte en cuatro, dale",
-        "english": "Give me here, come here, baby, get on all fours, give it",
-        "timestamp_ms": 158470
-      },
-      {
-        "song": "13209653",
-        "song_name": "MVP",
-        "spanish": "Ponte ahí en la jersey: \"la one y la only\"",
-        "english": "Put yourself there in the jersey: \"the one and the only\""
-      },
-      {
-        "song": "8981516",
-        "song_name": "Brinca",
-        "spanish": "Ponte 'e espalda, dame nalga' y despué' mírame (Ey)",
-        "english": "Stand on your back, give me your butt and then look at me (Hey)",
-        "timestamp_ms": 40390
+        "song": "8721872",
+        "song_name": "Cuando Te Toca",
+        "spanish": "Quiere perrearme, pero sin ropa",
+        "english": "He wants to fuck me, but without clothes",
+        "timestamp_ms": 24290
       }
     ],
-    "id": "e2f9e5",
-    "base_id": "1fa2ba"
+    "id": "6e5249",
+    "base_id": "e5cddf"
   },
-  "3a981c": {
-    "base_verb": "hablar",
-    "lemma": "háblale",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
+  "e725ad": {
+    "base_verb": "ser",
+    "lemma": "ser",
+    "corpus_count": 1,
+    "translation": "to be",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "654",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
-        "song": "9614105",
-        "song_name": "FINA",
-        "spanish": "Háblale de ticket, no le hable' de boda",
-        "english": "Talk to him about the ticket, don't talk to him about the wedding",
-        "timestamp_ms": 186880
+        "song": "12570923",
+        "song_name": "Dosis",
+        "spanish": "Yo soy una puertorriqueña bien bellaca, y estoy bien orgullosa de serlo",
+        "english": "I am a very beautiful Puerto Rican, and I am very proud to be so.",
+        "timestamp_ms": 132030
       }
     ],
-    "id": "3a981c",
-    "base_id": "04cb0b"
+    "id": "e725ad",
+    "base_id": "301728"
   },
   "280820": {
     "base_verb": "ir",
     "lemma": "vele",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
+    "translation": "to see, to check, to spot",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "e29",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "7930766",
@@ -512,34 +385,621 @@
     "id": "280820",
     "base_id": "be037b"
   },
+  "7720bd": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 1,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "b3e",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12591721",
+        "song_name": "Piki",
+        "spanish": "Say she wanna fuck hard, pero sin dejarme hickey (Cuida'o)",
+        "english": "Say she wanna fuck hard, but without making me hickey (Cuida'o)",
+        "timestamp_ms": 50780
+      }
+    ],
+    "id": "7720bd",
+    "base_id": "023f8c"
+  },
+  "76034c": {
+    "base_verb": "hacer",
+    "lemma": "haciéndote",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "dc4",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220932",
+        "song_name": "ay mami",
+        "spanish": "Yo desde la high haciéndote creampie",
+        "english": "Me from high up giving you a creampie",
+        "timestamp_ms": 142670
+      }
+    ],
+    "id": "76034c",
+    "base_id": "7a798b"
+  },
+  "e1cc16": {
+    "base_verb": "sentir",
+    "lemma": "sentir",
+    "corpus_count": 2,
+    "translation": "to regret, feel or be sorry, to feel",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "210",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8617423",
+        "song_name": "Sale el Sol",
+        "spanish": "No quiero sentirme así, así",
+        "english": "I don't want to feel like this, like this",
+        "timestamp_ms": 45450
+      }
+    ],
+    "id": "e1cc16",
+    "base_id": "33d445"
+  },
+  "1181bf": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 2,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "fe4",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9555844",
+        "song_name": "CC (Remix)",
+        "spanish": "Déjale saber que aquí se fuma con cojone'",
+        "english": "Let him know that here we smoke with cojone'",
+        "timestamp_ms": 101550
+      }
+    ],
+    "id": "1181bf",
+    "base_id": "023f8c"
+  },
+  "f76fc9": {
+    "base_verb": "comer",
+    "lemma": "comernos",
+    "corpus_count": 1,
+    "translation": "to eat away, corrode, to eat",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "764",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8970064",
+        "song_name": "Classy 101",
+        "spanish": "Vamo' a comerno', baby, aunque no sea formal",
+        "english": "Let's eat, baby, even if it's not formal",
+        "timestamp_ms": 23770
+      }
+    ],
+    "id": "f76fc9",
+    "base_id": "8c2806"
+  },
+  "87c7b5": {
+    "base_verb": "hacer",
+    "lemma": "hacer",
+    "corpus_count": 6,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "03d",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "bf6",
+          "examples": [
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "Me escribe antes de acostarse, me cuenta qué quiere hacerme",
+        "english": "He writes to me before going to bed, tells me what he wants to do to me",
+        "timestamp_ms": 20040
+      },
+      {
+        "song": "12582446",
+        "song_name": "Sin pausa",
+        "spanish": "Ma, qué manía tú tienes de hacerme esos tatuaje' nuevo' con forma de mordida",
+        "english": "Ma, what a habit you have of giving me those 'new' tattoos in the shape of a bite",
+        "timestamp_ms": 89000
+      }
+    ],
+    "id": "87c7b5",
+    "base_id": "7a798b"
+  },
+  "dfa10d": {
+    "base_verb": "hacer",
+    "lemma": "hacer",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "bf6",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10874271",
+        "song_name": "Come Play",
+        "spanish": "Llegamo' con el combo ready pa' hacerle' una avería-ía",
+        "english": "We arrive with the combo ready to make a breakdown",
+        "timestamp_ms": 72930
+      }
+    ],
+    "id": "dfa10d",
+    "base_id": "7a798b"
+  },
+  "4d05d2": {
+    "base_verb": "hacer",
+    "lemma": "hacer",
+    "corpus_count": 6,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "03d",
+          "examples": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8827239",
+        "song_name": "Pretty Bad Bitch",
+        "spanish": "Pa’ darle a ese culo hay que hacerle una ceremonia",
+        "english": "To give that ass you have to do a ceremony",
+        "timestamp_ms": 26960
+      },
+      {
+        "song": "12591719",
+        "song_name": "Traviesa",
+        "spanish": "Dame ese culo pa' acá, pa' hacerle un RKO",
+        "english": "Give me that ass here, to do an RKO",
+        "timestamp_ms": 85460
+      }
+    ],
+    "id": "4d05d2",
+    "base_id": "7a798b"
+  },
+  "a49c83": {
+    "base_verb": "decir",
+    "lemma": "decir",
+    "corpus_count": 69,
+    "translation": "to be said, to say, to tell",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "6b5",
+          "examples": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220934",
+        "song_name": "offline",
+        "spanish": "Dime quién te hizo así, diablo, qué talento",
+        "english": "Tell me who made you like this, devil, what a talent",
+        "timestamp_ms": 65310
+      },
+      {
+        "song": "11373471",
+        "song_name": "Gata",
+        "spanish": "Yo te hablo claro, no excuses, dime cómo prefiere' las luce'",
+        "english": "I speak clearly to you, do not excuse, tell me how you prefer to look",
+        "timestamp_ms": 169840
+      },
+      {
+        "song": "9237320",
+        "song_name": "mañana",
+        "spanish": "Dime, que en tu cama yo te llevaré (Uh, uh)",
+        "english": "Tell me, that in your bed I will take you (Uh, uh)",
+        "timestamp_ms": 22870
+      },
+      {
+        "song": "8617423",
+        "song_name": "Sale el Sol",
+        "spanish": "Dime si piensa' en mí, en mí",
+        "english": "Tell me if he thinks about me, about me",
+        "timestamp_ms": 41470
+      },
+      {
+        "song": "9211494",
+        "song_name": "6B",
+        "spanish": "Y yo no soy un santo, dime a ver, ¿qué vamo' a hacer?",
+        "english": "And I'm not a saint, tell me, what are we going to do?",
+        "timestamp_ms": 129990
+      },
+      {
+        "song": "10220937",
+        "song_name": "tres tristes tragos",
+        "spanish": "Baby, dime cómo le hago",
+        "english": "Baby, tell me how I do it",
+        "timestamp_ms": 38350
+      },
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "Dime, Maura, ey",
+        "english": "Tell me, Maura, hey",
+        "timestamp_ms": 158200
+      },
+      {
+        "song": "10116729",
+        "song_name": "Paso Fino",
+        "spanish": "Pa' estar contigo tu dime pa' cuando",
+        "english": "To be with you, tell me when"
+      },
+      {
+        "song": "9077520",
+        "song_name": "8 AM",
+        "spanish": "Dime, cuando piensa' en mí, ¿qué estás pensando?",
+        "english": "Tell me, when you think of me, what are you thinking?",
+        "timestamp_ms": 73250
+      },
+      {
+        "song": "10055523",
+        "song_name": "curita",
+        "spanish": "Hoy yo voy a hacer que tú la olvide', tú solo dime",
+        "english": "Today I'm going to make you forget her, just tell me",
+        "timestamp_ms": 32970
+      }
+    ],
+    "id": "a49c83",
+    "base_id": "2159c9"
+  },
+  "1f8b77": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 4,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "fe4",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8693529",
+        "song_name": "Déjanos Pasar",
+        "spanish": "Uh-la-la, déjanos pasar que no estamos pa' pelear",
+        "english": "Uh-la-la, let us pass that we are not here to fight",
+        "timestamp_ms": 25960
+      }
+    ],
+    "id": "1f8b77",
+    "base_id": "023f8c"
+  },
+  "abb9fe": {
+    "base_verb": "enseñar",
+    "lemma": "enseñar",
+    "corpus_count": 1,
+    "translation": "to teach",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "039",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9614105",
+        "song_name": "FINA",
+        "spanish": "Mami, hoy voy a enseñarte cómo es que un culo se mama, jeje",
+        "english": "Mommy, today I'm going to show you how an ass sucks, hehe",
+        "timestamp_ms": 154410
+      }
+    ],
+    "id": "abb9fe",
+    "base_id": "ed5c0c"
+  },
+  "a536ca": {
+    "base_verb": "preguntar",
+    "lemma": "preguntándole",
+    "corpus_count": 1,
+    "translation": "to ask",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11581491",
+        "song_name": "WOAHH",
+        "spanish": "Preguntándole si va' a volver o no",
+        "english": "Asking him if he's going to come back or not",
+        "timestamp_ms": 4940
+      }
+    ],
+    "id": "a536ca",
+    "base_id": "34c595"
+  },
+  "3a981c": {
+    "base_verb": "hablar",
+    "lemma": "háblale",
+    "corpus_count": 2,
+    "translation": "to talk; to speak; to communicate using words",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "d2c",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9614105",
+        "song_name": "FINA",
+        "spanish": "Háblale de ticket, no le hable' de boda",
+        "english": "Talk to him about the ticket, don't talk to him about the wedding",
+        "timestamp_ms": 186880
+      }
+    ],
+    "id": "3a981c",
+    "base_id": "04cb0b"
+  },
+  "eb476b": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 7,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "fe4",
+          "examples": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8043163",
+        "song_name": "2seater",
+        "spanish": "Martino (Ey, eh, Baby Miko), déjala caer de nuevo pa' que esta gente se orienten (Juanka, Martino, prr, Martino, prr; ah, ah , ey)",
+        "english": "Martino (Hey, eh, Baby Miko), let it fall again so that these people can get their bearings (Juanka, Martino, prr, Martino, prr; ah, ah, hey)",
+        "timestamp_ms": 137790
+      },
+      {
+        "song": "8406201",
+        "song_name": "La Mini",
+        "spanish": "Martino, déjala caer",
+        "english": "Martino, let it fall",
+        "timestamp_ms": 2890
+      },
+      {
+        "song": "7750717",
+        "song_name": "Besties",
+        "spanish": "Martino, déjala caer",
+        "english": "Martino, let it fall",
+        "timestamp_ms": 11630
+      },
+      {
+        "song": "8602168",
+        "song_name": "Kilimanjaro",
+        "spanish": "Martino, déjala caer",
+        "english": "Martino, let it fall",
+        "timestamp_ms": 11760
+      }
+    ],
+    "id": "eb476b",
+    "base_id": "023f8c"
+  },
+  "e7f0b4": {
+    "base_verb": "chingar",
+    "lemma": "chingarte",
+    "corpus_count": 3,
+    "translation": "to bother, to fuck with",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "71c",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "b41",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9110676",
+        "song_name": "COLMILLO",
+        "spanish": "Chingarte a ti",
+        "english": "Fuck you",
+        "timestamp_ms": 208390
+      },
+      {
+        "song": "10220932",
+        "song_name": "ay mami",
+        "spanish": "Despué' que la nota sube, yo quiero chingarte",
+        "english": "After the grade goes up, I want to fuck you",
+        "timestamp_ms": 117850
+      }
+    ],
+    "id": "e7f0b4",
+    "base_id": "209610"
+  },
+  "f3f1ba": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 1,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "f47",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12556569",
+        "song_name": "Gyoza",
+        "spanish": "Mejor te hablo con la mano hasta dejarte muda",
+        "english": "Better I talk to you with my hand until I leave you mute",
+        "timestamp_ms": 71280
+      }
+    ],
+    "id": "f3f1ba",
+    "base_id": "023f8c"
+  },
+  "ad9c07": {
+    "base_verb": "pegar",
+    "lemma": "pégate",
+    "corpus_count": 2,
+    "translation": "to stick",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "4cb",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "91d",
+          "examples": [
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12570923",
+        "song_name": "Dosis",
+        "spanish": "Pégate a mi Gucci, a mi hebilla",
+        "english": "Stick to my Gucci, to my buckle",
+        "timestamp_ms": 64960
+      },
+      {
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Y dale, pégate, muévete, ma, ¿tú no querías fuete?",
+        "english": "And come on, hit it, move, mom, didn't you want to be strong?",
+        "timestamp_ms": 138090
+      }
+    ],
+    "id": "ad9c07",
+    "base_id": "9bc35d"
+  },
   "59ebce": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 18,
     "translation": "to give, to give out",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "d46",
+          "sense": "dc6",
           "examples": [
-            1,
-            4,
-            5,
-            6
+            2,
+            6,
+            7
           ]
         },
         {
-          "sense": "00c",
-          "examples": [
-            3
-          ]
-        },
-        {
-          "sense": "29d",
+          "sense": "eac",
           "examples": [
             0,
-            2,
-            7
+            1,
+            3,
+            4,
+            5
           ]
         }
       ]
@@ -605,158 +1065,33 @@
     "id": "59ebce",
     "base_id": "695915"
   },
-  "40d54d": {
-    "base_verb": "mandar",
-    "lemma": "mandándote",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9077520",
-        "song_name": "8 AM",
-        "spanish": "Mandándote canciones en nota' de voz",
-        "english": "Sending you songs in voice notes",
-        "timestamp_ms": 56280
-      }
-    ],
-    "id": "40d54d",
-    "base_id": "9945a2"
-  },
-  "e7f0b4": {
-    "base_verb": "chingar",
-    "lemma": "chingarte",
+  "67465b": {
+    "base_verb": "pensar",
+    "lemma": "pensarte",
     "corpus_count": 3,
-    "translation": "",
+    "translation": "to reflect, think through, to think, ponder, to think of, think that",
     "assignments": {},
     "examples": [
       {
-        "song": "9110676",
-        "song_name": "COLMILLO",
-        "spanish": "Chingarte a ti",
-        "english": "Fuck you",
-        "timestamp_ms": 208390
-      },
-      {
-        "song": "10220932",
-        "song_name": "ay mami",
-        "spanish": "Despué' que la nota sube, yo quiero chingarte",
-        "english": "After the grade goes up, I want to fuck you",
-        "timestamp_ms": 117850
+        "song": "8617423",
+        "song_name": "Sale el Sol",
+        "spanish": "Me hace pensarte ahora, yeah-yeah",
+        "english": "It makes me think of you now, yeah-yeah",
+        "timestamp_ms": 19290
       }
     ],
-    "id": "e7f0b4",
-    "base_id": "209610"
+    "id": "67465b",
+    "base_id": "196911"
   },
-  "4854bc": {
-    "base_verb": "bajar",
-    "lemma": "bajarte",
+  "8c1826": {
+    "base_verb": "poner",
+    "lemma": "poner",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8406201",
-        "song_name": "La Mini",
-        "spanish": "Bajarte pa' Carola al calentón, ah (Okey)",
-        "english": "Get down for Carola to the heat, ah (Okay)",
-        "timestamp_ms": 61150
-      }
-    ],
-    "id": "4854bc",
-    "base_id": "5efe67"
-  },
-  "1f93ba": {
-    "base_verb": "bajar",
-    "lemma": "bájalo",
-    "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9347157",
-        "song_name": "wiggy",
-        "spanish": "Sube y bájalo otra ve'",
-        "english": "Go up and down again",
-        "timestamp_ms": 14460
-      }
-    ],
-    "id": "1f93ba",
-    "base_id": "5efe67"
-  },
-  "7fbc69": {
-    "base_verb": "decir",
-    "lemma": "decir",
-    "corpus_count": 8,
-    "translation": "to be said, to say, to tell",
+    "translation": "to put, to put up, to place",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "a24",
-          "examples": [
-            0,
-            1,
-            2,
-            4
-          ]
-        },
-        {
-          "sense": "df4",
-          "examples": [
-            3
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10220944",
-        "song_name": "no quiero pelear",
-        "spanish": "Dímelo, Pichu",
-        "english": "Tell me, Pichu",
-        "timestamp_ms": 149940
-      },
-      {
-        "song": "8464254",
-        "song_name": "Aprovéchame BB",
-        "spanish": "Dímelo Ninow (Pichéale a lo' storie', apaga el celular)",
-        "english": "Tell me Ninow (Pichéale to the 'storie', turn off the cell phone)",
-        "timestamp_ms": 165990
-      },
-      {
-        "song": "8361727",
-        "song_name": "Condado",
-        "spanish": "Dímelo Ninow",
-        "english": "Tell me Ninow",
-        "timestamp_ms": 205090
-      },
-      {
-        "song": "8503396",
-        "song_name": "Kachipun",
-        "spanish": "Dímelo, Meta",
-        "english": "Tell me, Meta",
-        "timestamp_ms": 152880
-      },
-      {
-        "song": "9185102",
-        "song_name": "ID",
-        "spanish": "Dímelo, dímelo, dímelo, dímelo, Young Miko",
-        "english": "Tell me, tell me, tell me, tell me, Young Miko",
-        "timestamp_ms": 211200
-      }
-    ],
-    "id": "7fbc69",
-    "base_id": "2159c9"
-  },
-  "050d0b": {
-    "base_verb": "apagar",
-    "lemma": "apagar",
-    "corpus_count": 4,
-    "translation": "to extinguish (a flame, fire), to douse",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "73f",
+          "sense": "11a",
           "examples": [
             0
           ]
@@ -765,22 +1100,31 @@
     },
     "examples": [
       {
-        "song": "10220933",
-        "song_name": "fuck TMZ",
-        "spanish": "Si salimo' en la tele, mejor apágala",
-        "english": "If we appear on TV, you better turn it off",
-        "timestamp_ms": 46490
+        "song": "8580461",
+        "song_name": "De Pasajero",
+        "spanish": "Muchos satélite' viendo, ponla debajo 'el asiento y shh",
+        "english": "Lots of satellites watching, put it under the seat and shh",
+        "timestamp_ms": 114090
       }
     ],
-    "id": "050d0b",
-    "base_id": "11bc09"
+    "id": "8c1826",
+    "base_id": "1fa2ba"
   },
   "2d851b": {
     "base_verb": "poner",
     "lemma": "póntela",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
+    "translation": "to put, to put up, to place",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "83a",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "8406201",
@@ -793,15 +1137,15 @@
     "id": "2d851b",
     "base_id": "1fa2ba"
   },
-  "c7e9d6": {
-    "base_verb": "llevar",
-    "lemma": "llevar",
-    "corpus_count": 1,
-    "translation": "to take, to carry, to take away, to take out",
+  "971aeb": {
+    "base_verb": "preguntar",
+    "lemma": "preguntar",
+    "corpus_count": 2,
+    "translation": "to ask",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "622",
+          "sense": "a37",
           "examples": [
             0
           ]
@@ -810,32 +1154,54 @@
     },
     "examples": [
       {
-        "song": "10220935",
-        "song_name": "princess peach",
-        "spanish": "Llévate la black card, que no hay PIN",
-        "english": "Take the black card, there is no PIN",
-        "timestamp_ms": 85600
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "Ay, sí, voy a preguntarle si vamo' a irno'",
+        "english": "Oh yes, I'm going to ask him if we're going to go",
+        "timestamp_ms": 47990
       }
     ],
-    "id": "c7e9d6",
-    "base_id": "903283"
+    "id": "971aeb",
+    "base_id": "34c595"
   },
-  "87c7b5": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 6,
-    "translation": "to do",
+  "0c7f0d": {
+    "base_verb": "amar",
+    "lemma": "amarte",
+    "corpus_count": 1,
+    "translation": "to love, have great affection for, care about",
     "assignments": {
-      "biencoder": [
+      "wiktionary-auto": [
         {
-          "sense": "3fb",
+          "sense": "d2b",
           "examples": [
             0
           ]
-        },
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10396585",
+        "song_name": "sorry es que soy bipolarrr",
+        "spanish": "Y en una de las dos quisiera amarte bien",
+        "english": "And in one of the two I would like to love you well",
+        "timestamp_ms": 103260
+      }
+    ],
+    "id": "0c7f0d",
+    "base_id": "eb56ef"
+  },
+  "c871b6": {
+    "base_verb": "pegar",
+    "lemma": "pegar",
+    "corpus_count": 3,
+    "translation": "to stick",
+    "assignments": {
+      "flash-lite-wiktionary": [
         {
-          "sense": "f9f",
+          "sense": "018",
           "examples": [
+            0,
             1
           ]
         }
@@ -843,65 +1209,93 @@
     },
     "examples": [
       {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "Me escribe antes de acostarse, me cuenta qué quiere hacerme",
-        "english": "He writes to me before going to bed, tells me what he wants to do to me",
-        "timestamp_ms": 20040
+        "song": "12570923",
+        "song_name": "Dosis",
+        "spanish": "Quiero pegarme y decirte un par de cosi",
+        "english": "I want to hit up and tell you a couple of things",
+        "timestamp_ms": 25530
       },
       {
-        "song": "12582446",
-        "song_name": "Sin pausa",
-        "spanish": "Ma, qué manía tú tienes de hacerme esos tatuaje' nuevo' con forma de mordida",
-        "english": "Ma, what a habit you have of giving me those 'new' tattoos in the shape of a bite",
-        "timestamp_ms": 89000
+        "song": "7134347",
+        "song_name": "Vendetta",
+        "spanish": "’Toy a punto de pegarme pero yo ni lo trato",
+        "english": "'He's about to hit me but I don't even try",
+        "timestamp_ms": 87120
       }
     ],
-    "id": "87c7b5",
-    "base_id": "7a798b"
+    "id": "c871b6",
+    "base_id": "9bc35d"
   },
-  "558c14": {
-    "base_verb": "coger",
-    "lemma": "cógelo",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "Cógelo suave, cógelo easy",
-        "english": "Take it soft, take it easy",
-        "timestamp_ms": 130840
-      }
-    ],
-    "id": "558c14",
-    "base_id": "e2557e"
-  },
-  "d34868": {
-    "base_verb": "hacer",
-    "lemma": "haciéndome",
+  "923d05": {
+    "base_verb": "aguantar",
+    "lemma": "aguantarme",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
+    "translation": "to hold, withhold, hold back",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "245",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
-        "song": "10220921",
-        "song_name": "rookie of the year",
-        "spanish": "Y yo haciéndome la loca",
-        "english": "And I acting crazy",
-        "timestamp_ms": 125660
+        "song": "9077520",
+        "song_name": "8 AM",
+        "spanish": "Aguantarme las gana' está difícil",
+        "english": "Holding on to the desire is difficult",
+        "timestamp_ms": 11120
       }
     ],
-    "id": "d34868",
-    "base_id": "7a798b"
+    "id": "923d05",
+    "base_id": "234879"
+  },
+  "152722": {
+    "base_verb": "ir",
+    "lemma": "ir",
+    "corpus_count": 1,
+    "translation": "to go",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "3e7",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8827239",
+        "song_name": "Pretty Bad Bitch",
+        "spanish": "Tiene su fulete y su come y vete",
+        "english": "He has his fillet and his come and go",
+        "timestamp_ms": 56840
+      }
+    ],
+    "id": "152722",
+    "base_id": "be037b"
   },
   "7f3040": {
     "base_verb": "venir",
     "lemma": "vente",
     "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
+    "translation": "to blow",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "edb",
+          "examples": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "10220928",
@@ -921,226 +1315,27 @@
     "id": "7f3040",
     "base_id": "3d404f"
   },
-  "e1bec8": {
-    "base_verb": "comer",
-    "lemma": "comerte",
-    "corpus_count": 7,
-    "translation": "",
+  "7eacb5": {
+    "base_verb": "decir",
+    "lemma": "decir",
+    "corpus_count": 4,
+    "translation": "to be said, to say, to tell",
     "assignments": {},
     "examples": [
       {
-        "song": "12570920",
-        "song_name": "What’s Ur Vibe?",
-        "spanish": "Quiero comerte esa mm-mmm",
-        "english": "I want to eat that mm-mmm",
-        "timestamp_ms": 44700
-      },
-      {
         "song": "12570923",
         "song_name": "Dosis",
-        "spanish": "Yo estoy pa' comerte, yeah, con este tema en las boci",
-        "english": "I'm here to eat you, yeah, with this topic in my mouth",
-        "timestamp_ms": 51950
-      },
-      {
-        "song": "12591719",
-        "song_name": "Traviesa",
-        "spanish": "Tengo hambre, vo a comerte, ma",
-        "english": "I'm hungry, I'm going to eat you, ma",
-        "timestamp_ms": 90990
-      },
-      {
-        "song": "9110676",
-        "song_name": "COLMILLO",
-        "spanish": "Comerte, eh, sin darte ni un beso",
-        "english": "Eat you, eh, without giving you even a kiss",
-        "timestamp_ms": 50
-      }
-    ],
-    "id": "e1bec8",
-    "base_id": "8c2806"
-  },
-  "971aeb": {
-    "base_verb": "preguntar",
-    "lemma": "preguntar",
-    "corpus_count": 2,
-    "translation": "to ask",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "f01",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "Ay, sí, voy a preguntarle si vamo' a irno'",
-        "english": "Oh yes, I'm going to ask him if we're going to go",
-        "timestamp_ms": 47990
-      }
-    ],
-    "id": "971aeb",
-    "base_id": "34c595"
-  },
-  "206dca": {
-    "base_verb": "ver",
-    "lemma": "ver",
-    "corpus_count": 8,
-    "translation": "to see, to check, to spot",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "4d3",
-          "examples": [
-            0,
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "Dice que está castigada, pero se escapa pa' verme, que quiere tenerme (Uh)",
-        "english": "She says she's punished, but she runs away to see me, she wants to have me (Uh)",
-        "timestamp_ms": 10290
-      },
-      {
-        "song": "6924324",
-        "song_name": "Saturno",
-        "spanish": "Ahora te toca con otra verme",
-        "english": "Now it's your turn to see me again"
-      },
-      {
-        "song": "7930766",
-        "song_name": "Standard",
-        "spanish": "Y que le guste verme en la tarima",
-        "english": "And that he likes to see me on stage",
-        "timestamp_ms": 102690
-      },
-      {
-        "song": "8043163",
-        "song_name": "2seater",
-        "spanish": "Le gusta verme bien así que la luz no apague (Uh)",
-        "english": "He likes to see me well so the light doesn't go out (Uh)",
-        "timestamp_ms": 27960
-      },
-      {
-        "song": "8361727",
-        "song_name": "Condado",
-        "spanish": "Me texteó que quiere verme, eh-eh",
-        "english": "He texted me that he wants to see me, eh-eh",
-        "timestamp_ms": 16410
-      }
-    ],
-    "id": "206dca",
-    "base_id": "cd9482"
-  },
-  "baf9f9": {
-    "base_verb": "ver",
-    "lemma": "ver",
-    "corpus_count": 6,
-    "translation": "to see, to check, to spot",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "4d3",
-          "examples": [
-            1,
-            2,
-            3
-          ]
-        },
-        {
-          "sense": "2cf",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "11888474",
-        "song_name": "TOA",
-        "spanish": "Quisiera verla semanal",
-        "english": "I would like to see it weekly",
-        "timestamp_ms": 49920
-      },
-      {
-        "song": "10220933",
-        "song_name": "fuck TMZ",
-        "spanish": "Y quisiera verla, pero aquí estoy, por otro estado",
-        "english": "And I would like to see it, but here I am, in another state",
-        "timestamp_ms": 77770
+        "spanish": "Quiero pegarme y decirte un par de cosi",
+        "english": "I want to hit up and tell you a couple of things",
+        "timestamp_ms": 25530
       },
       {
         "song": "12582446",
         "song_name": "Sin pausa",
-        "spanish": "Cuando tú me pone' esa cara 'e bellaca, yo quiero verla en missionary",
-        "english": "When you give me that mischievous face, I want to see it in missionary",
-        "timestamp_ms": 166480
+        "spanish": "Tan rico que parece un favor, me dan ganas de decirte \"mi amor\"",
+        "english": "So rich that it seems like a favor, it makes me want to tell you \"my love\"",
+        "timestamp_ms": 110320
       },
-      {
-        "song": "12591719",
-        "song_name": "Traviesa",
-        "spanish": "'Toy loca por verla sin ropa, si está que estilla",
-        "english": "'I'm crazy to see her without clothes, she looks really cool",
-        "timestamp_ms": 124590
-      },
-      {
-        "song": "12591723",
-        "song_name": "Esa nena",
-        "spanish": "Que la dancer me diga pa' verla, Siri, ponle: \"Yes, I do\"",
-        "english": ""
-      }
-    ],
-    "id": "baf9f9",
-    "base_id": "cd9482"
-  },
-  "68f966": {
-    "base_verb": "ver",
-    "lemma": "ver",
-    "corpus_count": 1,
-    "translation": "to see, to check, to spot",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "2cf",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12003129",
-        "song_name": "Jetski",
-        "spanish": "Quiero verle ese culo cómo se come ese gistro marca Louis",
-        "english": "I want to see that ass how he eats that Louis brand gistro",
-        "timestamp_ms": 48220
-      }
-    ],
-    "id": "68f966",
-    "base_id": "cd9482"
-  },
-  "8f61b7": {
-    "base_verb": "mandar",
-    "lemma": "mandarte",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
       {
         "song": "8621461",
         "song_name": "Amandita",
@@ -1149,697 +1344,8 @@
         "timestamp_ms": 100150
       }
     ],
-    "id": "8f61b7",
-    "base_id": "9945a2"
-  },
-  "c34b26": {
-    "base_verb": "cambiar",
-    "lemma": "cámbiame",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "13209653",
-        "song_name": "MVP",
-        "spanish": "Pérate, dame un break, cámbiame el flowcito ahí",
-        "english": "Stand up, give me a break, change my flow there"
-      }
-    ],
-    "id": "c34b26",
-    "base_id": "818ee7"
-  },
-  "d66991": {
-    "base_verb": "fumar",
-    "lemma": "fumándose",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Huele a Baccarat, fumándose un puro (Sí)",
-        "english": "It smells like Baccarat, smoking a cigar (Yes)",
-        "timestamp_ms": 12650
-      }
-    ],
-    "id": "d66991",
-    "base_id": "d3244d"
-  },
-  "8ffc9a": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 2,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "410",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "11888474",
-        "song_name": "TOA",
-        "spanish": "Solo pa' dejarnos saber que esto nunca murió",
-        "english": "Just to let us know that this never died",
-        "timestamp_ms": 162480
-      }
-    ],
-    "id": "8ffc9a",
-    "base_id": "023f8c"
-  },
-  "1181bf": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 2,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "0d5",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9555844",
-        "song_name": "CC (Remix)",
-        "spanish": "Déjale saber que aquí se fuma con cojone'",
-        "english": "Let him know that here we smoke with cojone'",
-        "timestamp_ms": 101550
-      }
-    ],
-    "id": "1181bf",
-    "base_id": "023f8c"
-  },
-  "820dab": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 4,
-    "translation": "to do",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "3fb",
-          "examples": [
-            1,
-            2
-          ]
-        },
-        {
-          "sense": "f9f",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12556569",
-        "song_name": "Gyoza",
-        "spanish": "Hazme una coreografía como las de E11EVEN",
-        "english": "Make me a choreography like the ones from E11EVEN",
-        "timestamp_ms": 76760
-      },
-      {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "En mi sudadera Nike hazme un lap dance",
-        "english": "In my Nike sweatshirt do me a lap dance",
-        "timestamp_ms": 152190
-      },
-      {
-        "song": "12591723",
-        "song_name": "Esa nena",
-        "spanish": "Ja, say \"cheese\", cambia la cara y hazme el favor, please",
-        "english": "Ha, say \"cheese\", change your face and do me a favor, please",
-        "timestamp_ms": 85650
-      }
-    ],
-    "id": "820dab",
-    "base_id": "7a798b"
-  },
-  "428ab6": {
-    "base_verb": "subir",
-    "lemma": "subirme",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "12570921",
-        "song_name": "En el Ritz",
-        "spanish": "¿Puede' subirme un poquito, everything?",
-        "english": "Can you raise me a little bit, everything?",
-        "timestamp_ms": 1460
-      }
-    ],
-    "id": "428ab6",
-    "base_id": "7ebd32"
-  },
-  "7720bd": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 1,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "326",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12591721",
-        "song_name": "Piki",
-        "spanish": "Say she wanna fuck hard, pero sin dejarme hickey (Cuida'o)",
-        "english": "Say she wanna fuck hard, but without making me hickey (Cuida'o)",
-        "timestamp_ms": 50780
-      }
-    ],
-    "id": "7720bd",
-    "base_id": "023f8c"
-  },
-  "834324": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 4,
-    "translation": "to do",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "3fb",
-          "examples": [
-            0,
-            2
-          ]
-        },
-        {
-          "sense": "f9f",
-          "examples": [
-            1
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8970064",
-        "song_name": "Classy 101",
-        "spanish": "Esta noche vo'a hacerte to' lo que dije por texto, yeah",
-        "english": "Tonight I'm going to do to you everything I said by text, yeah",
-        "timestamp_ms": 82840
-      },
-      {
-        "song": "12570923",
-        "song_name": "Dosis",
-        "spanish": "Con ganas de envolverme, par de nene' hacerte",
-        "english": "Wanting to wrap me up, couple of babies' make you",
-        "timestamp_ms": 82720
-      },
-      {
-        "song": "12582446",
-        "song_name": "Sin pausa",
-        "spanish": "Tengo tantas cosas pa' yo hacerte que no sé ni cuál voy a escoger",
-        "english": "I have so many things to do to you that I don't even know which one I'm going to choose.",
-        "timestamp_ms": 69830
-      }
-    ],
-    "id": "834324",
-    "base_id": "7a798b"
-  },
-  "de6fde": {
-    "base_verb": "buscar",
-    "lemma": "buscar",
-    "corpus_count": 1,
-    "translation": "to seek, search for, look for, to look up",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "914",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8981516",
-        "song_name": "Brinca",
-        "spanish": "Tiene curiosidad que yo pase a buscarla saliendo de E11EVEN",
-        "english": "She is curious that I should pick her up leaving E11EVEN",
-        "timestamp_ms": 43730
-      }
-    ],
-    "id": "de6fde",
-    "base_id": "02ca62"
-  },
-  "d509f3": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 1,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "0d5",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12570920",
-        "song_name": "What’s Ur Vibe?",
-        "spanish": "Baby, déjalos que sigan waiting",
-        "english": "Baby, let them keep waiting",
-        "timestamp_ms": 49040
-      }
-    ],
-    "id": "d509f3",
-    "base_id": "023f8c"
-  },
-  "4a8b26": {
-    "base_verb": "pasar",
-    "lemma": "pasar",
-    "corpus_count": 3,
-    "translation": "to pass, to hand, to slip",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "454",
-          "examples": [
-            0,
-            1,
-            2
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12289314",
-        "song_name": "BIRTHDAY BEHAVIOR",
-        "spanish": "Pásame el Casa Blue, ah",
-        "english": "Pass me the Casa Blue, ah",
-        "timestamp_ms": 66300
-      },
-      {
-        "song": "8224313",
-        "song_name": "Pull Up",
-        "spanish": "Pásame la molly, please (Please)",
-        "english": "Pass me the molly, please (Please)",
-        "timestamp_ms": 60350
-      },
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Sexo crudo, pásame del puro",
-        "english": "Raw sex, pass me the cigar",
-        "timestamp_ms": 136220
-      }
-    ],
-    "id": "4a8b26",
-    "base_id": "c5b0c1"
-  },
-  "5a7145": {
-    "base_verb": "prender",
-    "lemma": "prenderla",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11888474",
-        "song_name": "TOA",
-        "spanish": "Y pa' prenderla no hace falta gasolina",
-        "english": "And to light it you don't need gasoline",
-        "timestamp_ms": 64960
-      }
-    ],
-    "id": "5a7145",
-    "base_id": "6d5789"
-  },
-  "423f17": {
-    "base_verb": "poner",
-    "lemma": "ponle",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "12591723",
-        "song_name": "Esa nena",
-        "spanish": "Que la dancer me diga pa' verla, Siri, ponle: \"Yes, I do\"",
-        "english": ""
-      }
-    ],
-    "id": "423f17",
-    "base_id": "1fa2ba"
-  },
-  "f82331": {
-    "base_verb": "subir",
-    "lemma": "subir",
-    "corpus_count": 1,
-    "translation": "to go up or come up",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "696",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9347157",
-        "song_name": "wiggy",
-        "spanish": "Súbete la falda, me gusta esa blusa (Uh, uh)",
-        "english": "Raise your skirt, I like that blouse (Uh, uh)",
-        "timestamp_ms": 53620
-      }
-    ],
-    "id": "f82331",
-    "base_id": "7ebd32"
-  },
-  "1f2757": {
-    "base_verb": "ir",
-    "lemma": "ir",
-    "corpus_count": 4,
-    "translation": "to go",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "407",
-          "examples": [
-            0,
-            1,
-            2
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8464254",
-        "song_name": "Aprovéchame BB",
-        "spanish": "Mami, hablando claro, vámono' de aquí",
-        "english": "Mommy, speaking clearly, let's get out of here",
-        "timestamp_ms": 8670
-      },
-      {
-        "song": "8086635",
-        "song_name": "Un Poquito",
-        "spanish": "I don't need a lot, baby, vámono' esta noche",
-        "english": "I don't need a lot, baby, let's go tonight",
-        "timestamp_ms": 58750
-      },
-      {
-        "song": "9788043",
-        "song_name": "Señorita",
-        "spanish": "Yo no sé si vo'a poder aguantar estas ganas, vámonos de aquí (Let's go)",
-        "english": "I don't know if I'll be able to endure this desire, let's get out of here (Let's go)",
-        "timestamp_ms": 1370
-      }
-    ],
-    "id": "1f2757",
-    "base_id": "be037b"
-  },
-  "0c7f0d": {
-    "base_verb": "amar",
-    "lemma": "amarte",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10396585",
-        "song_name": "sorry es que soy bipolarrr",
-        "spanish": "Y en una de las dos quisiera amarte bien",
-        "english": "And in one of the two I would like to love you well",
-        "timestamp_ms": 103260
-      }
-    ],
-    "id": "0c7f0d",
-    "base_id": "eb56ef"
-  },
-  "b4e3a2": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 4,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "410",
-          "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "402",
-          "examples": [
-            1,
-            2
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10084300",
-        "song_name": "En Esta Boca",
-        "spanish": "Yo no te espero, pero, déjate el cuento (Ah-ah-ah)",
-        "english": "I'm not waiting for you, but leave the story alone (Ah-ah-ah)",
-        "timestamp_ms": 111130
-      },
-      {
-        "song": "6924324",
-        "song_name": "Saturno",
-        "spanish": "Oye mami, ya déjate de cuentos",
-        "english": "Hey mommy, stop telling stories"
-      },
-      {
-        "song": "9614105",
-        "song_name": "FINA",
-        "spanish": "Eso no es na', déjate ver, ¿te va' a hacer? Sí (Oye)",
-        "english": "That's nothing, let me see, is it going to do it to you? Yes (Hey)",
-        "timestamp_ms": 78990
-      }
-    ],
-    "id": "b4e3a2",
-    "base_id": "023f8c"
-  },
-  "3fe80f": {
-    "base_verb": "dar",
-    "lemma": "dártelo",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8621461",
-        "song_name": "Amandita",
-        "spanish": "Pa' dártelo all night, baby, all mine",
-        "english": "To give it to you all night, baby, all mine",
-        "timestamp_ms": 136380
-      }
-    ],
-    "id": "3fe80f",
-    "base_id": "695915"
-  },
-  "2daa5e": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 1,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "326",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Pa' dejarlo asfixiao' y decirle \"chao, chao\"",
-        "english": "To leave him suffocating and say \"bye, bye\"",
-        "timestamp_ms": 56560
-      }
-    ],
-    "id": "2daa5e",
-    "base_id": "023f8c"
-  },
-  "d69365": {
-    "base_verb": "perrear",
-    "lemma": "perreándote",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9788043",
-        "song_name": "Señorita",
-        "spanish": "Perreándote (Yeah), mami, de espalda te viro",
-        "english": "Perrearte (Yeah), mommy, I turn you on your back",
-        "timestamp_ms": 1370
-      }
-    ],
-    "id": "d69365",
-    "base_id": "e5cddf"
-  },
-  "04960a": {
-    "base_verb": "besar",
-    "lemma": "besar",
-    "corpus_count": 8,
-    "translation": "to kiss",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "8c3",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10220944",
-        "song_name": "no quiero pelear",
-        "spanish": "Bésame, bésa-be-bésame",
-        "english": "Kiss me, kiss-be-kiss me",
-        "timestamp_ms": 137080
-      }
-    ],
-    "id": "04960a",
-    "base_id": "16a666"
-  },
-  "822b43": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 1,
-    "translation": "to do",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "407",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12570922",
-        "song_name": "Sexo de moteles",
-        "spanish": "En el Vander, pero, baby, hazlo como pa'l tiempo 'e Tío Flor",
-        "english": "At the Vander, but, baby, do it like for the weather 'e Tío Flor",
-        "timestamp_ms": 105030
-      }
-    ],
-    "id": "822b43",
-    "base_id": "7a798b"
-  },
-  "f3f1ba": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 1,
-    "translation": "to leave, to keep",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "326",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12556569",
-        "song_name": "Gyoza",
-        "spanish": "Mejor te hablo con la mano hasta dejarte muda",
-        "english": "Better I talk to you with my hand until I leave you mute",
-        "timestamp_ms": 71280
-      }
-    ],
-    "id": "f3f1ba",
-    "base_id": "023f8c"
-  },
-  "c51770": {
-    "base_verb": "ver",
-    "lemma": "ver",
-    "corpus_count": 3,
-    "translation": "to see, to check, to spot",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "4d3",
-          "examples": [
-            0,
-            2
-          ]
-        },
-        {
-          "sense": "2cf",
-          "examples": [
-            1
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12570921",
-        "song_name": "En el Ritz",
-        "spanish": "Para verlo en HD-D",
-        "english": "To watch in HD-D",
-        "timestamp_ms": 32830
-      },
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Y yo con gana' de verlo vaciao'",
-        "english": "And I want to see it empty",
-        "timestamp_ms": 54450
-      },
-      {
-        "song": "12591723",
-        "song_name": "Esa nena",
-        "spanish": "La modelo montada en el Porsche, tú lo monta' pa' verlo en la caja",
-        "english": "The model mounted on the Porsche, you mount it to see it in the box",
-        "timestamp_ms": 82090
-      }
-    ],
-    "id": "c51770",
-    "base_id": "cd9482"
+    "id": "7eacb5",
+    "base_id": "2159c9"
   },
   "c976a8": {
     "base_verb": "dejar",
@@ -1847,15 +1353,15 @@
     "corpus_count": 4,
     "translation": "to leave, to keep",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "410",
+          "sense": "b3e",
           "examples": [
             0
           ]
         },
         {
-          "sense": "0d5",
+          "sense": "fe4",
           "examples": [
             1
           ]
@@ -1881,23 +1387,140 @@
     "id": "c976a8",
     "base_id": "023f8c"
   },
-  "827275": {
-    "base_verb": "subir",
-    "lemma": "súbeme",
-    "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
+  "b4c2d7": {
+    "base_verb": "grabar",
+    "lemma": "grabarme",
+    "corpus_count": 1,
+    "translation": "to record",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "ce7",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
-        "song": "9428284",
-        "song_name": "Tempo",
-        "spanish": "Pero súbeme el tempo",
-        "english": "But increase the tempo",
-        "timestamp_ms": 23090
+        "song": "12591722",
+        "song_name": "Ni le cabe",
+        "spanish": "A mí sin cojone', ma, si quiere' grabarme",
+        "english": "To me without cojone', ma, if you want' to record me",
+        "timestamp_ms": 48210
       }
     ],
-    "id": "827275",
-    "base_id": "7ebd32"
+    "id": "b4c2d7",
+    "base_id": "98d6e8"
+  },
+  "1f93ba": {
+    "base_verb": "bajar",
+    "lemma": "bájalo",
+    "corpus_count": 3,
+    "translation": "to go down, come down",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "6bb",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9347157",
+        "song_name": "wiggy",
+        "spanish": "Sube y bájalo otra ve'",
+        "english": "Go up and down again",
+        "timestamp_ms": 14460
+      }
+    ],
+    "id": "1f93ba",
+    "base_id": "5efe67"
+  },
+  "2dde35": {
+    "base_verb": "preguntar",
+    "lemma": "preguntar",
+    "corpus_count": 1,
+    "translation": "to ask",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "a37",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220928",
+        "song_name": "arcoíris",
+        "spanish": "Tú sabe' quién yo soy, si no pregúntale a Siri (Uh)",
+        "english": "You know who I am, if you don't ask Siri (Uh)",
+        "timestamp_ms": 44420
+      }
+    ],
+    "id": "2dde35",
+    "base_id": "34c595"
+  },
+  "ffb89e": {
+    "base_verb": "joder",
+    "lemma": "joderme",
+    "corpus_count": 4,
+    "translation": "to annoy, bug, bother",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "059",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "Me mira con eso' ojito' y tiene el poder de joderme, puede convencerme",
+        "english": "He looks at me with that little eye and he has the power to screw me, he can convince me",
+        "timestamp_ms": 15060
+      }
+    ],
+    "id": "ffb89e",
+    "base_id": "f747a0"
+  },
+  "aebf35": {
+    "base_verb": "enseñar",
+    "lemma": "enseñar",
+    "corpus_count": 1,
+    "translation": "to teach",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "039",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10051011",
+        "song_name": "Duro",
+        "spanish": "¿'Tás soltera? Same (Same), enséñame el bumper, ey",
+        "english": "Are you single? Same (Same), show me the bumper, hey",
+        "timestamp_ms": 83240
+      }
+    ],
+    "id": "aebf35",
+    "base_id": "ed5c0c"
   },
   "346710": {
     "base_verb": "poner",
@@ -1905,9 +1528,9 @@
     "corpus_count": 1,
     "translation": "to put, to put up, to place",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "cf1",
+          "sense": "11a",
           "examples": [
             0
           ]
@@ -1926,111 +1549,15 @@
     "id": "346710",
     "base_id": "1fa2ba"
   },
-  "5226e8": {
-    "base_verb": "olvidar",
-    "lemma": "olvidar",
-    "corpus_count": 1,
-    "translation": "to leave behind, to forget",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "de6",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "9402498",
-        "song_name": "DISPO",
-        "spanish": "¿Qué tú crees, bebé? A ver, olvídate de él",
-        "english": "What do you think, baby? Let's see, forget about him",
-        "timestamp_ms": 112120
-      }
-    ],
-    "id": "5226e8",
-    "base_id": "06f03a"
-  },
-  "28b48e": {
-    "base_verb": "chingar",
-    "lemma": "chingarnos",
+  "c3bac5": {
+    "base_verb": "mover",
+    "lemma": "moverlo",
     "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "O vamo’ a chingarnos adentro 'el strip club, baby, aquí",
-        "english": "Or let's go fuck ourselves inside the strip club, baby, here",
-        "timestamp_ms": 50510
-      }
-    ],
-    "id": "28b48e",
-    "base_id": "209610"
-  },
-  "eb476b": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 7,
-    "translation": "to leave, to keep",
+    "translation": "to move to, to cause to, to move",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "402",
-          "examples": [
-            0,
-            1,
-            2,
-            3
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8043163",
-        "song_name": "2seater",
-        "spanish": "Martino (Ey, eh, Baby Miko), déjala caer de nuevo pa' que esta gente se orienten (Juanka, Martino, prr, Martino, prr; ah, ah , ey)",
-        "english": "Martino (Hey, eh, Baby Miko), let it fall again so that these people can get their bearings (Juanka, Martino, prr, Martino, prr; ah, ah, hey)",
-        "timestamp_ms": 137790
-      },
-      {
-        "song": "8406201",
-        "song_name": "La Mini",
-        "spanish": "Martino, déjala caer",
-        "english": "Martino, let it fall",
-        "timestamp_ms": 2890
-      },
-      {
-        "song": "7750717",
-        "song_name": "Besties",
-        "spanish": "Martino, déjala caer",
-        "english": "Martino, let it fall",
-        "timestamp_ms": 11630
-      },
-      {
-        "song": "8602168",
-        "song_name": "Kilimanjaro",
-        "spanish": "Martino, déjala caer",
-        "english": "Martino, let it fall",
-        "timestamp_ms": 11760
-      }
-    ],
-    "id": "eb476b",
-    "base_id": "023f8c"
-  },
-  "0e10e9": {
-    "base_verb": "decir",
-    "lemma": "decir",
-    "corpus_count": 1,
-    "translation": "to be said, to say, to tell",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "a24",
+          "sense": "9f7",
           "examples": [
             0
           ]
@@ -2041,23 +1568,23 @@
       {
         "song": "9216707",
         "song_name": "Chulo pt.2",
-        "spanish": "Pa' dejarlo asfixiao' y decirle \"chao, chao\"",
-        "english": "To leave him suffocating and say \"bye, bye\"",
-        "timestamp_ms": 56560
+        "spanish": "Pa' moverlo como e' (Ay)",
+        "english": "To move it like that (Ay)",
+        "timestamp_ms": 27990
       }
     ],
-    "id": "0e10e9",
-    "base_id": "2159c9"
+    "id": "c3bac5",
+    "base_id": "7cfb5a"
   },
-  "8c1826": {
-    "base_verb": "poner",
-    "lemma": "poner",
-    "corpus_count": 1,
-    "translation": "to put, to put up, to place",
+  "871f52": {
+    "base_verb": "comer",
+    "lemma": "comiéndose",
+    "corpus_count": 3,
+    "translation": "to eat away, corrode, to eat",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "dfc",
+          "sense": "3f2",
           "examples": [
             0
           ]
@@ -2066,49 +1593,60 @@
     },
     "examples": [
       {
-        "song": "8580461",
-        "song_name": "De Pasajero",
-        "spanish": "Muchos satélite' viendo, ponla debajo 'el asiento y shh",
-        "english": "Lots of satellites watching, put it under the seat and shh",
-        "timestamp_ms": 114090
+        "song": "8827239",
+        "song_name": "Pretty Bad Bitch",
+        "spanish": "Comiéndose el mundo y salió de una colonia",
+        "english": "Taking on the world and left a colony",
+        "timestamp_ms": 34090
       }
     ],
-    "id": "8c1826",
-    "base_id": "1fa2ba"
+    "id": "871f52",
+    "base_id": "8c2806"
   },
-  "ffb89e": {
-    "base_verb": "joder",
-    "lemma": "joderme",
-    "corpus_count": 4,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "Me mira con eso' ojito' y tiene el poder de joderme, puede convencerme",
-        "english": "He looks at me with that little eye and he has the power to screw me, he can convince me",
-        "timestamp_ms": 15060
-      }
-    ],
-    "id": "ffb89e",
-    "base_id": "f747a0"
-  },
-  "c871b6": {
-    "base_verb": "pegar",
-    "lemma": "pegar",
-    "corpus_count": 3,
-    "translation": "to stick",
+  "0eb62e": {
+    "base_verb": "besar",
+    "lemma": "besar",
+    "corpus_count": 2,
+    "translation": "to kiss",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "473",
+          "sense": "7e1",
           "examples": [
+            0,
             1
           ]
-        },
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9237320",
+        "song_name": "mañana",
+        "spanish": "Muero por besarte y por tenerte otra vez, bebé, mmm",
+        "english": "I'm dying to kiss you and have you again, baby, mmm",
+        "timestamp_ms": 700
+      },
+      {
+        "song": "12556569",
+        "song_name": "Gyoza",
+        "spanish": "Yo estoy loca por besarte hasta quitarte el gloss, ah",
+        "english": "I'm crazy about kissing you until you take off the gloss, ah",
+        "timestamp_ms": 64640
+      }
+    ],
+    "id": "0eb62e",
+    "base_id": "16a666"
+  },
+  "622bee": {
+    "base_verb": "ir",
+    "lemma": "vela",
+    "corpus_count": 1,
+    "translation": "candle",
+    "assignments": {
+      "flash-lite-wiktionary": [
         {
-          "sense": "fe5",
+          "sense": "5d0",
           "examples": [
             0
           ]
@@ -2117,22 +1655,15 @@
     },
     "examples": [
       {
-        "song": "12570923",
-        "song_name": "Dosis",
-        "spanish": "Quiero pegarme y decirte un par de cosi",
-        "english": "I want to hit up and tell you a couple of things",
-        "timestamp_ms": 25530
-      },
-      {
-        "song": "7134347",
-        "song_name": "Vendetta",
-        "spanish": "’Toy a punto de pegarme pero yo ni lo trato",
-        "english": "'He's about to hit me but I don't even try",
-        "timestamp_ms": 87120
+        "song": "7930766",
+        "song_name": "Standard",
+        "spanish": "Si estamo' enrolando ella vela cortina",
+        "english": "If we are enlisting the curtain candle",
+        "timestamp_ms": 104650
       }
     ],
-    "id": "c871b6",
-    "base_id": "9bc35d"
+    "id": "622bee",
+    "base_id": "be037b"
   },
   "a70ded": {
     "base_verb": "ver",
@@ -2140,19 +1671,29 @@
     "corpus_count": 24,
     "translation": "to see, to check, to spot",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "4d3",
+          "sense": "5cb",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "c3b",
           "examples": [
             0,
-            1,
             2,
             3,
             4,
             5,
             6,
             7,
-            8,
+            8
+          ]
+        },
+        {
+          "sense": "ea9",
+          "examples": [
             9
           ]
         }
@@ -2232,15 +1773,369 @@
     "id": "a70ded",
     "base_id": "cd9482"
   },
-  "d3dea5": {
-    "base_verb": "tener",
-    "lemma": "tener",
-    "corpus_count": 4,
-    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+  "7a6b0d": {
+    "base_verb": "pensar",
+    "lemma": "pensándote",
+    "corpus_count": 1,
+    "translation": "to reflect, think through, to think, ponder, to think of, think that",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "a39",
+          "sense": "cf2",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8970064",
+        "song_name": "Classy 101",
+        "spanish": "Que yo esté pensándote para mí es normal",
+        "english": "That I am thinking about you is normal for me",
+        "timestamp_ms": 18790
+      }
+    ],
+    "id": "7a6b0d",
+    "base_id": "196911"
+  },
+  "4854bc": {
+    "base_verb": "bajar",
+    "lemma": "bajarte",
+    "corpus_count": 1,
+    "translation": "to go down, come down",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "f46",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8406201",
+        "song_name": "La Mini",
+        "spanish": "Bajarte pa' Carola al calentón, ah (Okey)",
+        "english": "Get down for Carola to the heat, ah (Okay)",
+        "timestamp_ms": 61150
+      }
+    ],
+    "id": "4854bc",
+    "base_id": "5efe67"
+  },
+  "2cae70": {
+    "base_verb": "pegar",
+    "lemma": "pegar",
+    "corpus_count": 6,
+    "translation": "to stick",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "018",
+          "examples": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8361727",
+        "song_name": "Condado",
+        "spanish": "Pégame el mahón, que esta noche yo te vo'a hacer algo histórico",
+        "english": "Hit me hard, tonight I'm going to do something historic to you",
+        "timestamp_ms": 137060
+      },
+      {
+        "song": "12591724",
+        "song_name": "Plug (Type Shit)",
+        "spanish": "Pégame ese cu, ja, ey",
+        "english": "Hit me that cu, ha, hey",
+        "timestamp_ms": 48860
+      },
+      {
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Pégame ese culo que tú no tienes grillete",
+        "english": "Hit me with that ass, you don't have a shackle",
+        "timestamp_ms": 140990
+      },
+      {
+        "song": "9185102",
+        "song_name": "ID",
+        "spanish": "Perreando duro, pégame ese culo",
+        "english": "Twerking hard, hit me with that ass",
+        "timestamp_ms": 117060
+      }
+    ],
+    "id": "2cae70",
+    "base_id": "9bc35d"
+  },
+  "4fb161": {
+    "base_verb": "comer",
+    "lemma": "comiéndote",
+    "corpus_count": 3,
+    "translation": "to eat away, corrode, to eat",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "505",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "77d",
+          "examples": [
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "11888474",
+        "song_name": "TOA",
+        "spanish": "En casita comiéndote to'a",
+        "english": "At home eating everything",
+        "timestamp_ms": 35670
+      },
+      {
+        "song": "8721872",
+        "song_name": "Cuando Te Toca",
+        "spanish": "Comiéndote to'a, cuando te pone' en four (Ay)",
+        "english": "Eating you all, when he puts you on four (Ay)",
+        "timestamp_ms": 109620
+      }
+    ],
+    "id": "4fb161",
+    "base_id": "8c2806"
+  },
+  "b991c1": {
+    "base_verb": "preguntar",
+    "lemma": "preguntar",
+    "corpus_count": 1,
+    "translation": "to ask",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "a37",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12570920",
+        "song_name": "What’s Ur Vibe?",
+        "spanish": "De eso' ojitos que me dan ganas de preguntarte",
+        "english": "About those little eyes that make me want to ask you",
+        "timestamp_ms": 65780
+      }
+    ],
+    "id": "b991c1",
+    "base_id": "34c595"
+  },
+  "f82331": {
+    "base_verb": "subir",
+    "lemma": "subir",
+    "corpus_count": 1,
+    "translation": "to go up or come up",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "134",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9347157",
+        "song_name": "wiggy",
+        "spanish": "Súbete la falda, me gusta esa blusa (Uh, uh)",
+        "english": "Raise your skirt, I like that blouse (Uh, uh)",
+        "timestamp_ms": 53620
+      }
+    ],
+    "id": "f82331",
+    "base_id": "7ebd32"
+  },
+  "cc1fb6": {
+    "base_verb": "mirar",
+    "lemma": "mirar",
+    "corpus_count": 2,
+    "translation": "used for emphasis; look, to look at, to seek, look for",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "ca4",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Ponte 'e espalda, dame nalga' y despué' mírame (Ey)",
+        "english": "Stand on your back, give me your butt and then look at me (Hey)",
+        "timestamp_ms": 40390
+      }
+    ],
+    "id": "cc1fb6",
+    "base_id": "d9ba72"
+  },
+  "c51770": {
+    "base_verb": "ver",
+    "lemma": "ver",
+    "corpus_count": 3,
+    "translation": "to see, to check, to spot",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "c3b",
+          "examples": [
+            1,
+            2
+          ]
+        },
+        {
+          "sense": "ea9",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12570921",
+        "song_name": "En el Ritz",
+        "spanish": "Para verlo en HD-D",
+        "english": "To watch in HD-D",
+        "timestamp_ms": 32830
+      },
+      {
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Y yo con gana' de verlo vaciao'",
+        "english": "And I want to see it empty",
+        "timestamp_ms": 54450
+      },
+      {
+        "song": "12591723",
+        "song_name": "Esa nena",
+        "spanish": "La modelo montada en el Porsche, tú lo monta' pa' verlo en la caja",
+        "english": "The model mounted on the Porsche, you mount it to see it in the box",
+        "timestamp_ms": 82090
+      }
+    ],
+    "id": "c51770",
+    "base_id": "cd9482"
+  },
+  "a2d772": {
+    "base_verb": "decir",
+    "lemma": "decir",
+    "corpus_count": 1,
+    "translation": "to be said, to say, to tell",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "6b5",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "No voy a decirme que es casualidad que aquí nos vimos",
+        "english": "I'm not going to tell myself that it's a coincidence that we saw each other here.",
+        "timestamp_ms": 101080
+      }
+    ],
+    "id": "a2d772",
+    "base_id": "2159c9"
+  },
+  "fc4f85": {
+    "base_verb": "beber",
+    "lemma": "bebernos",
+    "corpus_count": 4,
+    "translation": "to drink",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "c38",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9237320",
+        "song_name": "mañana",
+        "spanish": "Bebernos un trago otra vez, bebé (Uh, uh)",
+        "english": "Have a drink again, baby (Uh, uh)",
+        "timestamp_ms": 31930
+      }
+    ],
+    "id": "fc4f85",
+    "base_id": "fb4574"
+  },
+  "c34b26": {
+    "base_verb": "cambiar",
+    "lemma": "cámbiame",
+    "corpus_count": 1,
+    "translation": "to switch, to switch up, to change, to shift",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "b34",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "13209653",
+        "song_name": "MVP",
+        "spanish": "Pérate, dame un break, cámbiame el flowcito ahí",
+        "english": "Stand up, give me a break, change my flow there"
+      }
+    ],
+    "id": "c34b26",
+    "base_id": "818ee7"
+  },
+  "c7e9d6": {
+    "base_verb": "llevar",
+    "lemma": "llevar",
+    "corpus_count": 1,
+    "translation": "to take, to carry, to take away, to take out",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "490",
           "examples": [
             0
           ]
@@ -2251,31 +2146,160 @@
       {
         "song": "10220935",
         "song_name": "princess peach",
-        "spanish": "Me deja en seen pa' despué' tenerla encima",
-        "english": "It leaves me in seen so that later I can have it on me",
-        "timestamp_ms": 38950
+        "spanish": "Llévate la black card, que no hay PIN",
+        "english": "Take the black card, there is no PIN",
+        "timestamp_ms": 85600
       }
     ],
-    "id": "d3dea5",
-    "base_id": "a132bf"
+    "id": "c7e9d6",
+    "base_id": "903283"
   },
-  "76034c": {
+  "820dab": {
     "base_verb": "hacer",
-    "lemma": "haciéndote",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
+    "lemma": "hacer",
+    "corpus_count": 4,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "03d",
+          "examples": [
+            1,
+            2
+          ]
+        },
+        {
+          "sense": "bf6",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
-        "song": "10220932",
-        "song_name": "ay mami",
-        "spanish": "Yo desde la high haciéndote creampie",
-        "english": "Me from high up giving you a creampie",
-        "timestamp_ms": 142670
+        "song": "12556569",
+        "song_name": "Gyoza",
+        "spanish": "Hazme una coreografía como las de E11EVEN",
+        "english": "Make me a choreography like the ones from E11EVEN",
+        "timestamp_ms": 76760
+      },
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "En mi sudadera Nike hazme un lap dance",
+        "english": "In my Nike sweatshirt do me a lap dance",
+        "timestamp_ms": 152190
+      },
+      {
+        "song": "12591723",
+        "song_name": "Esa nena",
+        "spanish": "Ja, say \"cheese\", cambia la cara y hazme el favor, please",
+        "english": "Ha, say \"cheese\", change your face and do me a favor, please",
+        "timestamp_ms": 85650
       }
     ],
-    "id": "76034c",
+    "id": "820dab",
     "base_id": "7a798b"
+  },
+  "c890f6": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 6,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "b3e",
+          "examples": [
+            3
+          ]
+        },
+        {
+          "sense": "fe4",
+          "examples": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12289314",
+        "song_name": "BIRTHDAY BEHAVIOR",
+        "spanish": "Déjame probar un poco de tu birthday cake",
+        "english": "Let me try some of your birthday cake",
+        "timestamp_ms": 45410
+      },
+      {
+        "song": "8783598",
+        "song_name": "Big Booty",
+        "spanish": "Ey, déjame ver tu panty finito",
+        "english": "Hey, let me see your thin panty",
+        "timestamp_ms": 50130
+      },
+      {
+        "song": "8970064",
+        "song_name": "Classy 101",
+        "spanish": "Déjame ver to'",
+        "english": "Let me see everything",
+        "timestamp_ms": 76620
+      },
+      {
+        "song": "9923845",
+        "song_name": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+        "spanish": "Biza, apaga las luce', déjame a oscura'",
+        "english": "Biza, turn off the lights, leave me in the dark",
+        "timestamp_ms": 75470
+      },
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "Déjame acabar con esta paca",
+        "english": "Let me finish this bale",
+        "timestamp_ms": 159600
+      },
+      {
+        "song": "12591722",
+        "song_name": "Ni le cabe",
+        "spanish": "Si no llegas al zipper, déjame ayudarte",
+        "english": "If you can't reach the zipper, let me help you",
+        "timestamp_ms": 46200
+      }
+    ],
+    "id": "c890f6",
+    "base_id": "023f8c"
+  },
+  "2daa5e": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 1,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "b3e",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Pa' dejarlo asfixiao' y decirle \"chao, chao\"",
+        "english": "To leave him suffocating and say \"bye, bye\"",
+        "timestamp_ms": 56560
+      }
+    ],
+    "id": "2daa5e",
+    "base_id": "023f8c"
   },
   "1c4feb": {
     "base_verb": "llevar",
@@ -2283,9 +2307,9 @@
     "corpus_count": 2,
     "translation": "to take, to carry, to take away, to take out",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "622",
+          "sense": "490",
           "examples": [
             0
           ]
@@ -2304,57 +2328,50 @@
     "id": "1c4feb",
     "base_id": "903283"
   },
-  "2e6e19": {
-    "base_verb": "medir",
-    "lemma": "medirte",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8602168",
-        "song_name": "Kilimanjaro",
-        "spanish": "¿Medirte conmigo? ¿'Tás algaro? Ja",
-        "english": "Measure yourself with me? 'Are you fussing? Ha",
-        "timestamp_ms": 52640
-      }
-    ],
-    "id": "2e6e19",
-    "base_id": "91c2ac"
-  },
-  "91c3e0": {
+  "78b583": {
     "base_verb": "hacer",
-    "lemma": "hágale",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9110676",
-        "song_name": "COLMILLO",
-        "spanish": "Hágale pues, trépate como chiringa",
-        "english": "So do it, climb like a chiringa",
-        "timestamp_ms": 136270
-      }
-    ],
-    "id": "91c3e0",
-    "base_id": "7a798b"
-  },
-  "3d37aa": {
-    "base_verb": "poner",
-    "lemma": "poner",
-    "corpus_count": 2,
-    "translation": "to put, to put up, to place",
+    "lemma": "hacer",
+    "corpus_count": 3,
+    "translation": "to do",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "dfc",
+          "sense": "03d",
           "examples": [
+            0,
             1
           ]
-        },
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9614105",
+        "song_name": "FINA",
+        "spanish": "Dale, vamos pa' la Gucci pa' hacerlo en el probador",
+        "english": "Come on, let's go to the Gucci to do it in the fitting room",
+        "timestamp_ms": 110620
+      },
+      {
+        "song": "8422401",
+        "song_name": "SALVAJE",
+        "spanish": "Hacerlo en la playa en Rincón",
+        "english": "Do it on the beach in Rincón",
+        "timestamp_ms": 72880
+      }
+    ],
+    "id": "78b583",
+    "base_id": "7a798b"
+  },
+  "050d0b": {
+    "base_verb": "apagar",
+    "lemma": "apagar",
+    "corpus_count": 4,
+    "translation": "to extinguish (a flame, fire), to douse",
+    "assignments": {
+      "flash-lite-wiktionary": [
         {
-          "sense": "cf1",
+          "sense": "6e9",
           "examples": [
             0
           ]
@@ -2363,221 +2380,52 @@
     },
     "examples": [
       {
-        "song": "8224314",
-        "song_name": "Putero",
-        "spanish": "Y ponme el peso, aquí seguimo' activo', seguimo' encendío'",
-        "english": "And put the weight on me, here we continue 'active', we continue 'on'"
-      },
+        "song": "10220933",
+        "song_name": "fuck TMZ",
+        "spanish": "Si salimo' en la tele, mejor apágala",
+        "english": "If we appear on TV, you better turn it off",
+        "timestamp_ms": 46490
+      }
+    ],
+    "id": "050d0b",
+    "base_id": "11bc09"
+  },
+  "de6fde": {
+    "base_verb": "buscar",
+    "lemma": "buscar",
+    "corpus_count": 1,
+    "translation": "to seek, search for, look for, to look up",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "6d8",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
       {
         "song": "8981516",
         "song_name": "Brinca",
-        "spanish": "Ponme a rebota' esas nalga', mami, I wanna see",
-        "english": "Make me bounce those buttocks, mommy, I wanna see",
+        "spanish": "Tiene curiosidad que yo pase a buscarla saliendo de E11EVEN",
+        "english": "She is curious that I should pick her up leaving E11EVEN",
         "timestamp_ms": 43730
       }
     ],
-    "id": "3d37aa",
-    "base_id": "1fa2ba"
+    "id": "de6fde",
+    "base_id": "02ca62"
   },
-  "dfa10d": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 1,
-    "translation": "to do",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "f9f",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10874271",
-        "song_name": "Come Play",
-        "spanish": "Llegamo' con el combo ready pa' hacerle' una avería-ía",
-        "english": "We arrive with the combo ready to make a breakdown",
-        "timestamp_ms": 72930
-      }
-    ],
-    "id": "dfa10d",
-    "base_id": "7a798b"
-  },
-  "7eacb5": {
+  "0e10e9": {
     "base_verb": "decir",
     "lemma": "decir",
-    "corpus_count": 4,
+    "corpus_count": 1,
     "translation": "to be said, to say, to tell",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "a24",
-          "examples": [
-            0,
-            1,
-            2
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "12570923",
-        "song_name": "Dosis",
-        "spanish": "Quiero pegarme y decirte un par de cosi",
-        "english": "I want to hit up and tell you a couple of things",
-        "timestamp_ms": 25530
-      },
-      {
-        "song": "12582446",
-        "song_name": "Sin pausa",
-        "spanish": "Tan rico que parece un favor, me dan ganas de decirte \"mi amor\"",
-        "english": "So rich that it seems like a favor, it makes me want to tell you \"my love\"",
-        "timestamp_ms": 110320
-      },
-      {
-        "song": "8621461",
-        "song_name": "Amandita",
-        "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
-        "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
-        "timestamp_ms": 100150
-      }
-    ],
-    "id": "7eacb5",
-    "base_id": "2159c9"
-  },
-  "d79414": {
-    "base_verb": "dar",
-    "lemma": "dar",
-    "corpus_count": 18,
-    "translation": "to give, to give out",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "d46",
-          "examples": [
-            4,
-            5
-          ]
-        },
-        {
-          "sense": "00c",
-          "examples": [
-            0,
-            1,
-            3
-          ]
-        },
-        {
-          "sense": "29d",
-          "examples": [
-            2,
-            6
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8827239",
-        "song_name": "Pretty Bad Bitch",
-        "spanish": "Pa’ darle a ese culo hay que hacerle una ceremonia",
-        "english": "To give that ass you have to do a ceremony",
-        "timestamp_ms": 26960
-      },
-      {
-        "song": "12591720",
-        "song_name": "Algo casual",
-        "spanish": "¿Cambiar tu nombre en el cel o darle un break? A ver",
-        "english": "Change your name on the cell phone or break it? Let's see",
-        "timestamp_ms": 75540
-      },
-      {
-        "song": "6924324",
-        "song_name": "Saturno",
-        "spanish": "Me fui pa’ la disco a darle sin miedo y",
-        "english": "I went to the disco to hit it without fear and"
-      },
-      {
-        "song": "9402498",
-        "song_name": "DISPO",
-        "spanish": "Pa' darle lento, pa' darle lento",
-        "english": "To take it slow, to take it slow",
-        "timestamp_ms": 124390
-      },
-      {
-        "song": "12591719",
-        "song_name": "Traviesa",
-        "spanish": "Es que tengo una jeva que está pa' darle to' el día",
-        "english": "It's just that I have a girl who is there to give you all day",
-        "timestamp_ms": 178470
-      },
-      {
-        "song": "8783598",
-        "song_name": "Big Booty",
-        "spanish": "Esta pa' darle to'a la noche hasta quedarme empty (De una)",
-        "english": "I'm here to give it all night until I'm empty (One time)",
-        "timestamp_ms": 106240
-      },
-      {
-        "song": "11690948",
-        "song_name": "EN LA CITY",
-        "spanish": "Pa' darle hasta abajo no hay que pedir permiso, nah",
-        "english": "To hit it all the way down you don't have to ask for permission, nah",
-        "timestamp_ms": 100200
-      }
-    ],
-    "id": "d79414",
-    "base_id": "695915"
-  },
-  "7d4be0": {
-    "base_verb": "caer",
-    "lemma": "caerme",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10220937",
-        "song_name": "tres tristes tragos",
-        "spanish": "Caerme, si termino en tu piel",
-        "english": "Fall, if I end up in your skin",
-        "timestamp_ms": 68780
-      }
-    ],
-    "id": "7d4be0",
-    "base_id": "d988e1"
-  },
-  "6e5249": {
-    "base_verb": "perrear",
-    "lemma": "perrearme",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8721872",
-        "song_name": "Cuando Te Toca",
-        "spanish": "Quiere perrearme, pero sin ropa",
-        "english": "He wants to fuck me, but without clothes",
-        "timestamp_ms": 24290
-      }
-    ],
-    "id": "6e5249",
-    "base_id": "e5cddf"
-  },
-  "e725ad": {
-    "base_verb": "ser",
-    "lemma": "ser",
-    "corpus_count": 1,
-    "translation": "to be",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "d0d",
+          "sense": "6b5",
           "examples": [
             0
           ]
@@ -2586,15 +2434,15 @@
     },
     "examples": [
       {
-        "song": "12570923",
-        "song_name": "Dosis",
-        "spanish": "Yo soy una puertorriqueña bien bellaca, y estoy bien orgullosa de serlo",
-        "english": "I am a very beautiful Puerto Rican, and I am very proud to be so.",
-        "timestamp_ms": 132030
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Pa' dejarlo asfixiao' y decirle \"chao, chao\"",
+        "english": "To leave him suffocating and say \"bye, bye\"",
+        "timestamp_ms": 56560
       }
     ],
-    "id": "e725ad",
-    "base_id": "301728"
+    "id": "0e10e9",
+    "base_id": "2159c9"
   },
   "30b9e1": {
     "base_verb": "pasar",
@@ -2602,16 +2450,11 @@
     "corpus_count": 7,
     "translation": "to pass, to hand, to slip",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "beb",
+          "sense": "220",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "1bb",
-          "examples": [
+            0,
             1
           ]
         }
@@ -2636,33 +2479,441 @@
     "id": "30b9e1",
     "base_id": "c5b0c1"
   },
+  "3fe80f": {
+    "base_verb": "dar",
+    "lemma": "dártelo",
+    "corpus_count": 1,
+    "translation": "to give, to give out",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "e26",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8621461",
+        "song_name": "Amandita",
+        "spanish": "Pa' dártelo all night, baby, all mine",
+        "english": "To give it to you all night, baby, all mine",
+        "timestamp_ms": 136380
+      }
+    ],
+    "id": "3fe80f",
+    "base_id": "695915"
+  },
+  "206dca": {
+    "base_verb": "ver",
+    "lemma": "ver",
+    "corpus_count": 8,
+    "translation": "to see, to check, to spot",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "c3b",
+          "examples": [
+            2,
+            3
+          ]
+        },
+        {
+          "sense": "f2a",
+          "examples": [
+            0,
+            1,
+            4
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "Dice que está castigada, pero se escapa pa' verme, que quiere tenerme (Uh)",
+        "english": "She says she's punished, but she runs away to see me, she wants to have me (Uh)",
+        "timestamp_ms": 10290
+      },
+      {
+        "song": "6924324",
+        "song_name": "Saturno",
+        "spanish": "Ahora te toca con otra verme",
+        "english": "Now it's your turn to see me again"
+      },
+      {
+        "song": "7930766",
+        "song_name": "Standard",
+        "spanish": "Y que le guste verme en la tarima",
+        "english": "And that he likes to see me on stage",
+        "timestamp_ms": 102690
+      },
+      {
+        "song": "8043163",
+        "song_name": "2seater",
+        "spanish": "Le gusta verme bien así que la luz no apague (Uh)",
+        "english": "He likes to see me well so the light doesn't go out (Uh)",
+        "timestamp_ms": 27960
+      },
+      {
+        "song": "8361727",
+        "song_name": "Condado",
+        "spanish": "Me texteó que quiere verme, eh-eh",
+        "english": "He texted me that he wants to see me, eh-eh",
+        "timestamp_ms": 16410
+      }
+    ],
+    "id": "206dca",
+    "base_id": "cd9482"
+  },
+  "aabe47": {
+    "base_verb": "mover",
+    "lemma": "mover",
+    "corpus_count": 1,
+    "translation": "to move to, to cause to, to move",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "002",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Y dale, pégate, muévete, ma, ¿tú no querías fuete?",
+        "english": "And come on, hit it, move, mom, didn't you want to be strong?",
+        "timestamp_ms": 138090
+      }
+    ],
+    "id": "aabe47",
+    "base_id": "7cfb5a"
+  },
+  "560d99": {
+    "base_verb": "hacer",
+    "lemma": "hacer",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "03d",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "Como cuando lo mueve', sigue haciéndolo asimismo (Pew, pew)",
+        "english": "Like when he moves it, he keeps doing it too (Pew, pew)",
+        "timestamp_ms": 68750
+      }
+    ],
+    "id": "560d99",
+    "base_id": "7a798b"
+  },
+  "d3dea5": {
+    "base_verb": "tener",
+    "lemma": "tener",
+    "corpus_count": 4,
+    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "2d9",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220935",
+        "song_name": "princess peach",
+        "spanish": "Me deja en seen pa' despué' tenerla encima",
+        "english": "It leaves me in seen so that later I can have it on me",
+        "timestamp_ms": 38950
+      }
+    ],
+    "id": "d3dea5",
+    "base_id": "a132bf"
+  },
+  "558c14": {
+    "base_verb": "coger",
+    "lemma": "cógelo",
+    "corpus_count": 2,
+    "translation": "to take, catch, hold",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "519",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "Cógelo suave, cógelo easy",
+        "english": "Take it soft, take it easy",
+        "timestamp_ms": 130840
+      }
+    ],
+    "id": "558c14",
+    "base_id": "e2557e"
+  },
+  "896301": {
+    "base_verb": "llevar",
+    "lemma": "llevar",
+    "corpus_count": 5,
+    "translation": "to take, to carry, to take away, to take out",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "490",
+          "examples": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12582445",
+        "song_name": "Ojalá",
+        "spanish": "Sepa hacer lo que yo hacía pa' llevarte al cielo",
+        "english": "Know how to do what I did to take you to heaven",
+        "timestamp_ms": 62310
+      },
+      {
+        "song": "8464254",
+        "song_name": "Aprovéchame BB",
+        "spanish": "Loquita de llevarte de aquí",
+        "english": "Crazy to take you from here",
+        "timestamp_ms": 71460
+      },
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "Antes de llevarte pa' mi casa",
+        "english": "Before taking you to my house",
+        "timestamp_ms": 161660
+      }
+    ],
+    "id": "896301",
+    "base_id": "903283"
+  },
+  "28b48e": {
+    "base_verb": "chingar",
+    "lemma": "chingarnos",
+    "corpus_count": 2,
+    "translation": "to bother, to fuck with",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "87b",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "O vamo’ a chingarnos adentro 'el strip club, baby, aquí",
+        "english": "Or let's go fuck ourselves inside the strip club, baby, here",
+        "timestamp_ms": 50510
+      }
+    ],
+    "id": "28b48e",
+    "base_id": "209610"
+  },
+  "423f17": {
+    "base_verb": "poner",
+    "lemma": "poner",
+    "corpus_count": 1,
+    "translation": "to put, to put up, to place",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "11a",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12591723",
+        "song_name": "Esa nena",
+        "spanish": "Que la dancer me diga pa' verla, Siri, ponle: \"Yes, I do\"",
+        "english": ""
+      }
+    ],
+    "id": "423f17",
+    "base_id": "1fa2ba"
+  },
+  "baf9f9": {
+    "base_verb": "ver",
+    "lemma": "ver",
+    "corpus_count": 6,
+    "translation": "to see, to check, to spot",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "c3b",
+          "examples": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "11888474",
+        "song_name": "TOA",
+        "spanish": "Quisiera verla semanal",
+        "english": "I would like to see it weekly",
+        "timestamp_ms": 49920
+      },
+      {
+        "song": "10220933",
+        "song_name": "fuck TMZ",
+        "spanish": "Y quisiera verla, pero aquí estoy, por otro estado",
+        "english": "And I would like to see it, but here I am, in another state",
+        "timestamp_ms": 77770
+      },
+      {
+        "song": "12582446",
+        "song_name": "Sin pausa",
+        "spanish": "Cuando tú me pone' esa cara 'e bellaca, yo quiero verla en missionary",
+        "english": "When you give me that mischievous face, I want to see it in missionary",
+        "timestamp_ms": 166480
+      },
+      {
+        "song": "12591719",
+        "song_name": "Traviesa",
+        "spanish": "'Toy loca por verla sin ropa, si está que estilla",
+        "english": "'I'm crazy to see her without clothes, she looks really cool",
+        "timestamp_ms": 124590
+      },
+      {
+        "song": "12591723",
+        "song_name": "Esa nena",
+        "spanish": "Que la dancer me diga pa' verla, Siri, ponle: \"Yes, I do\"",
+        "english": ""
+      }
+    ],
+    "id": "baf9f9",
+    "base_id": "cd9482"
+  },
+  "3d37aa": {
+    "base_verb": "poner",
+    "lemma": "poner",
+    "corpus_count": 2,
+    "translation": "to put, to put up, to place",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "11a",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "872",
+          "examples": [
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8224314",
+        "song_name": "Putero",
+        "spanish": "Y ponme el peso, aquí seguimo' activo', seguimo' encendío'",
+        "english": "And put the weight on me, here we continue 'active', we continue 'on'"
+      },
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Ponme a rebota' esas nalga', mami, I wanna see",
+        "english": "Make me bounce those buttocks, mommy, I wanna see",
+        "timestamp_ms": 43730
+      }
+    ],
+    "id": "3d37aa",
+    "base_id": "1fa2ba"
+  },
+  "231721": {
+    "base_verb": "jugar",
+    "lemma": "jugarme",
+    "corpus_count": 1,
+    "translation": "to play",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "134",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8618160",
+        "song_name": "Katana",
+        "spanish": "Me salió por jugarme la carta (Ah)",
+        "english": "It came out for me by playing the card (Ah)",
+        "timestamp_ms": 99690
+      }
+    ],
+    "id": "231721",
+    "base_id": "9a83d3"
+  },
   "7fe1ac": {
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 8,
     "translation": "to be said, to say, to tell",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "a24",
+          "sense": "6b5",
           "examples": [
             0,
             1,
+            2,
             3,
             4,
+            5,
             6
-          ]
-        },
-        {
-          "sense": "df4",
-          "examples": [
-            2
-          ]
-        },
-        {
-          "sense": "ca2",
-          "examples": [
-            5
           ]
         }
       ]
@@ -2721,210 +2972,33 @@
     "id": "7fe1ac",
     "base_id": "2159c9"
   },
-  "e1cc16": {
-    "base_verb": "sentir",
-    "lemma": "sentir",
-    "corpus_count": 2,
-    "translation": "to regret, feel or be sorry, to feel",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "754",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8617423",
-        "song_name": "Sale el Sol",
-        "spanish": "No quiero sentirme así, así",
-        "english": "I don't want to feel like this, like this",
-        "timestamp_ms": 45450
-      }
-    ],
-    "id": "e1cc16",
-    "base_id": "33d445"
-  },
-  "4f7e4d": {
-    "base_verb": "ir",
-    "lemma": "ir",
+  "c7389e": {
+    "base_verb": "buscar",
+    "lemma": "buscándome",
     "corpus_count": 1,
-    "translation": "to go",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "407",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to seek, search for, look for, to look up",
+    "assignments": {},
     "examples": [
       {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "Voy a preguntarle si vamo’ a irnos",
-        "english": "I'm going to ask him if we're going to leave",
-        "timestamp_ms": 47990
+        "song": "9077520",
+        "song_name": "8 AM",
+        "spanish": "Están buscándome (Eh), están tirándome",
+        "english": "They are looking for me (Eh), they are throwing me",
+        "timestamp_ms": 58750
       }
     ],
-    "id": "4f7e4d",
-    "base_id": "be037b"
+    "id": "c7389e",
+    "base_id": "02ca62"
   },
-  "fc4f85": {
-    "base_verb": "beber",
-    "lemma": "bebernos",
+  "6e7ba7": {
+    "base_verb": "caer",
+    "lemma": "caerle",
     "corpus_count": 4,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9237320",
-        "song_name": "mañana",
-        "spanish": "Bebernos un trago otra vez, bebé (Uh, uh)",
-        "english": "Have a drink again, baby (Uh, uh)",
-        "timestamp_ms": 31930
-      }
-    ],
-    "id": "fc4f85",
-    "base_id": "fb4574"
-  },
-  "3232ca": {
-    "base_verb": "poner",
-    "lemma": "poner",
-    "corpus_count": 1,
-    "translation": "to put, to put up, to place",
+    "translation": "to come here",
     "assignments": {
-      "biencoder": [
+      "wiktionary-auto": [
         {
-          "sense": "dfc",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10220934",
-        "song_name": "offline",
-        "spanish": "Sabe' que si me tira' y es pa' ponerno' fresco', me ofrezco",
-        "english": "He knows that if he pulls me and it's to get fresh, I offer myself",
-        "timestamp_ms": 69940
-      }
-    ],
-    "id": "3232ca",
-    "base_id": "1fa2ba"
-  },
-  "aebf35": {
-    "base_verb": "enseñar",
-    "lemma": "enseñar",
-    "corpus_count": 1,
-    "translation": "to teach",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "b55",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10051011",
-        "song_name": "Duro",
-        "spanish": "¿'Tás soltera? Same (Same), enséñame el bumper, ey",
-        "english": "Are you single? Same (Same), show me the bumper, hey",
-        "timestamp_ms": 83240
-      }
-    ],
-    "id": "aebf35",
-    "base_id": "ed5c0c"
-  },
-  "b4c2d7": {
-    "base_verb": "grabar",
-    "lemma": "grabarme",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "12591722",
-        "song_name": "Ni le cabe",
-        "spanish": "A mí sin cojone', ma, si quiere' grabarme",
-        "english": "To me without cojone', ma, if you want' to record me",
-        "timestamp_ms": 48210
-      }
-    ],
-    "id": "b4c2d7",
-    "base_id": "98d6e8"
-  },
-  "2cae70": {
-    "base_verb": "pegar",
-    "lemma": "pegar",
-    "corpus_count": 6,
-    "translation": "to stick",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "473",
-          "examples": [
-            0,
-            1,
-            2,
-            3
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8361727",
-        "song_name": "Condado",
-        "spanish": "Pégame el mahón, que esta noche yo te vo'a hacer algo histórico",
-        "english": "Hit me hard, tonight I'm going to do something historic to you",
-        "timestamp_ms": 137060
-      },
-      {
-        "song": "12591724",
-        "song_name": "Plug (Type Shit)",
-        "spanish": "Pégame ese cu, ja, ey",
-        "english": "Hit me that cu, ha, hey",
-        "timestamp_ms": 48860
-      },
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Pégame ese culo que tú no tienes grillete",
-        "english": "Hit me with that ass, you don't have a shackle",
-        "timestamp_ms": 140990
-      },
-      {
-        "song": "9185102",
-        "song_name": "ID",
-        "spanish": "Perreando duro, pégame ese culo",
-        "english": "Twerking hard, hit me with that ass",
-        "timestamp_ms": 117060
-      }
-    ],
-    "id": "2cae70",
-    "base_id": "9bc35d"
-  },
-  "a2d772": {
-    "base_verb": "decir",
-    "lemma": "decir",
-    "corpus_count": 1,
-    "translation": "to be said, to say, to tell",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "a24",
+          "sense": "2ad",
           "examples": [
             0
           ]
@@ -2935,23 +3009,23 @@
       {
         "song": "8156995",
         "song_name": "Castigada",
-        "spanish": "No voy a decirme que es casualidad que aquí nos vimos",
-        "english": "I'm not going to tell myself that it's a coincidence that we saw each other here.",
-        "timestamp_ms": 101080
+        "spanish": "A casa quiere caerle y yo me dejo",
+        "english": "Home wants to fall and I let myself",
+        "timestamp_ms": 24680
       }
     ],
-    "id": "a2d772",
-    "base_id": "2159c9"
+    "id": "6e7ba7",
+    "base_id": "d988e1"
   },
-  "568ce2": {
-    "base_verb": "llevar",
-    "lemma": "llevar",
+  "a7ee96": {
+    "base_verb": "ver",
+    "lemma": "véame",
     "corpus_count": 1,
-    "translation": "to take, to carry, to take away, to take out",
+    "translation": "to see, to check, to spot",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "622",
+          "sense": "c98",
           "examples": [
             0
           ]
@@ -2960,90 +3034,52 @@
     },
     "examples": [
       {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "Baby, hoy estoy libre y quiero llevarme ese booty",
-        "english": "Baby, today I'm free and I want to take that booty",
-        "timestamp_ms": 128520
+        "song": "6924324",
+        "song_name": "Saturno",
+        "spanish": "Véame en el noticier-",
+        "english": "See me on the news"
       }
     ],
-    "id": "568ce2",
-    "base_id": "903283"
+    "id": "a7ee96",
+    "base_id": "cd9482"
   },
-  "aabe47": {
-    "base_verb": "mover",
-    "lemma": "mover",
-    "corpus_count": 1,
-    "translation": "to move to, to cause to, to move",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "8e7",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+  "e2f9e5": {
+    "base_verb": "poner",
+    "lemma": "poner",
+    "corpus_count": 7,
+    "translation": "to put, to put up, to place",
+    "assignments": {},
     "examples": [
       {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Y dale, pégate, muévete, ma, ¿tú no querías fuete?",
-        "english": "And come on, hit it, move, mom, didn't you want to be strong?",
-        "timestamp_ms": 138090
-      }
-    ],
-    "id": "aabe47",
-    "base_id": "7cfb5a"
-  },
-  "396530": {
-    "base_verb": "dar",
-    "lemma": "dar",
-    "corpus_count": 3,
-    "translation": "to give, to give out",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "d46",
-          "examples": [
-            0,
-            1
-          ]
-        },
-        {
-          "sense": "25b",
-          "examples": [
-            2
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10220935",
-        "song_name": "princess peach",
-        "spanish": "Solo aparece pa' darme",
-        "english": "He only appears to give me",
-        "timestamp_ms": 71170
+        "song": "8693529",
+        "song_name": "Déjanos Pasar",
+        "spanish": "Ponte agresiva baby, ponte commander",
+        "english": "Get aggressive baby, get commander",
+        "timestamp_ms": 55220
       },
       {
-        "song": "12591724",
-        "song_name": "Plug (Type Shit)",
-        "spanish": "Un melón sin darme cuenta, otro día en la oficina, yeah (Yeah-yeah, ey)",
-        "english": "A melon without realizing it, another day at the office, yeah (Yeah-yeah, hey)",
-        "timestamp_ms": 72290
+        "song": "9614105",
+        "song_name": "FINA",
+        "spanish": "Dame acá, ven aquí, baby, ponte en cuatro, dale",
+        "english": "Give me here, come here, baby, get on all fours, give it",
+        "timestamp_ms": 158470
       },
       {
-        "song": "12591723",
-        "song_name": "Esa nena",
-        "spanish": "Quieren ponerme el leash, quieren darme un French kiss (Mua)",
-        "english": "They want to put the leash on me, they want to give me a French kiss (Mua)",
-        "timestamp_ms": 94540
+        "song": "13209653",
+        "song_name": "MVP",
+        "spanish": "Ponte ahí en la jersey: \"la one y la only\"",
+        "english": "Put yourself there in the jersey: \"the one and the only\""
+      },
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Ponte 'e espalda, dame nalga' y despué' mírame (Ey)",
+        "english": "Stand on your back, give me your butt and then look at me (Hey)",
+        "timestamp_ms": 40390
       }
     ],
-    "id": "396530",
-    "base_id": "695915"
+    "id": "e2f9e5",
+    "base_id": "1fa2ba"
   },
   "042ec3": {
     "base_verb": "poner",
@@ -3051,17 +3087,12 @@
     "corpus_count": 2,
     "translation": "to put, to put up, to place",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "cf1",
+          "sense": "11a",
           "examples": [
+            0,
             1
-          ]
-        },
-        {
-          "sense": "f9f",
-          "examples": [
-            0
           ]
         }
       ]
@@ -3085,23 +3116,177 @@
     "id": "042ec3",
     "base_id": "1fa2ba"
   },
-  "6e7ba7": {
-    "base_verb": "caer",
-    "lemma": "caerle",
-    "corpus_count": 4,
-    "translation": "",
-    "assignments": {},
+  "1c514c": {
+    "base_verb": "tener",
+    "lemma": "tener",
+    "corpus_count": 2,
+    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "2d9",
+          "examples": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
     "examples": [
       {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "A casa quiere caerle y yo me dejo",
-        "english": "Home wants to fall and I let myself",
-        "timestamp_ms": 24680
+        "song": "9237320",
+        "song_name": "mañana",
+        "spanish": "Muero por besarte y por tenerte otra vez, bebé, mmm",
+        "english": "I'm dying to kiss you and have you again, baby, mmm",
+        "timestamp_ms": 700
+      },
+      {
+        "song": "9077520",
+        "song_name": "8 AM",
+        "spanish": "Es que no tenerte aquí me está matando",
+        "english": "Not having you here is killing me",
+        "timestamp_ms": 75850
       }
     ],
-    "id": "6e7ba7",
-    "base_id": "d988e1"
+    "id": "1c514c",
+    "base_id": "a132bf"
+  },
+  "7fbc69": {
+    "base_verb": "decir",
+    "lemma": "decir",
+    "corpus_count": 8,
+    "translation": "to be said, to say, to tell",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "6b5",
+          "examples": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220944",
+        "song_name": "no quiero pelear",
+        "spanish": "Dímelo, Pichu",
+        "english": "Tell me, Pichu",
+        "timestamp_ms": 149940
+      },
+      {
+        "song": "8464254",
+        "song_name": "Aprovéchame BB",
+        "spanish": "Dímelo Ninow (Pichéale a lo' storie', apaga el celular)",
+        "english": "Tell me Ninow (Pichéale to the 'storie', turn off the cell phone)",
+        "timestamp_ms": 165990
+      },
+      {
+        "song": "8361727",
+        "song_name": "Condado",
+        "spanish": "Dímelo Ninow",
+        "english": "Tell me Ninow",
+        "timestamp_ms": 205090
+      },
+      {
+        "song": "8503396",
+        "song_name": "Kachipun",
+        "spanish": "Dímelo, Meta",
+        "english": "Tell me, Meta",
+        "timestamp_ms": 152880
+      },
+      {
+        "song": "9185102",
+        "song_name": "ID",
+        "spanish": "Dímelo, dímelo, dímelo, dímelo, Young Miko",
+        "english": "Tell me, tell me, tell me, tell me, Young Miko",
+        "timestamp_ms": 211200
+      }
+    ],
+    "id": "7fbc69",
+    "base_id": "2159c9"
+  },
+  "04960a": {
+    "base_verb": "besar",
+    "lemma": "besar",
+    "corpus_count": 8,
+    "translation": "to kiss",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "7e1",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220944",
+        "song_name": "no quiero pelear",
+        "spanish": "Bésame, bésa-be-bésame",
+        "english": "Kiss me, kiss-be-kiss me",
+        "timestamp_ms": 137080
+      }
+    ],
+    "id": "04960a",
+    "base_id": "16a666"
+  },
+  "e1bec8": {
+    "base_verb": "comer",
+    "lemma": "comerte",
+    "corpus_count": 7,
+    "translation": "to eat away, corrode, to eat",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "997",
+          "examples": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12570920",
+        "song_name": "What’s Ur Vibe?",
+        "spanish": "Quiero comerte esa mm-mmm",
+        "english": "I want to eat that mm-mmm",
+        "timestamp_ms": 44700
+      },
+      {
+        "song": "12570923",
+        "song_name": "Dosis",
+        "spanish": "Yo estoy pa' comerte, yeah, con este tema en las boci",
+        "english": "I'm here to eat you, yeah, with this topic in my mouth",
+        "timestamp_ms": 51950
+      },
+      {
+        "song": "12591719",
+        "song_name": "Traviesa",
+        "spanish": "Tengo hambre, vo a comerte, ma",
+        "english": "I'm hungry, I'm going to eat you, ma",
+        "timestamp_ms": 90990
+      },
+      {
+        "song": "9110676",
+        "song_name": "COLMILLO",
+        "spanish": "Comerte, eh, sin darte ni un beso",
+        "english": "Eat you, eh, without giving you even a kiss",
+        "timestamp_ms": 50
+      }
+    ],
+    "id": "e1bec8",
+    "base_id": "8c2806"
   },
   "e9e3f7": {
     "base_verb": "dar",
@@ -3109,18 +3294,18 @@
     "corpus_count": 4,
     "translation": "to give, to give out",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "d46",
+          "sense": "eac",
           "examples": [
+            0,
             1,
             2
           ]
         },
         {
-          "sense": "00c",
+          "sense": "f3c",
           "examples": [
-            0,
             3
           ]
         }
@@ -3159,15 +3344,15 @@
     "id": "e9e3f7",
     "base_id": "695915"
   },
-  "b991c1": {
-    "base_verb": "preguntar",
-    "lemma": "preguntar",
+  "2e6e19": {
+    "base_verb": "medir",
+    "lemma": "medirte",
     "corpus_count": 1,
-    "translation": "to ask",
+    "translation": "to measure",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "133",
+          "sense": "ab4",
           "examples": [
             0
           ]
@@ -3176,40 +3361,399 @@
     },
     "examples": [
       {
-        "song": "12570920",
-        "song_name": "What’s Ur Vibe?",
-        "spanish": "De eso' ojitos que me dan ganas de preguntarte",
-        "english": "About those little eyes that make me want to ask you",
-        "timestamp_ms": 65780
+        "song": "8602168",
+        "song_name": "Kilimanjaro",
+        "spanish": "¿Medirte conmigo? ¿'Tás algaro? Ja",
+        "english": "Measure yourself with me? 'Are you fussing? Ha",
+        "timestamp_ms": 52640
       }
     ],
-    "id": "b991c1",
-    "base_id": "34c595"
+    "id": "2e6e19",
+    "base_id": "91c2ac"
   },
-  "f76fc9": {
-    "base_verb": "comer",
-    "lemma": "comernos",
+  "c7e798": {
+    "base_verb": "tener",
+    "lemma": "tener",
+    "corpus_count": 5,
+    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "2d9",
+          "examples": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "Dice que está castigada, pero se escapa pa' verme, que quiere tenerme (Uh)",
+        "english": "She says she's punished, but she runs away to see me, she wants to have me (Uh)",
+        "timestamp_ms": 10290
+      },
+      {
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Dice que quiere tenerme a su lao'",
+        "english": "He says he wants to have me at his side'",
+        "timestamp_ms": 52070
+      }
+    ],
+    "id": "c7e798",
+    "base_id": "a132bf"
+  },
+  "8ffc9a": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 2,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "fe4",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "11888474",
+        "song_name": "TOA",
+        "spanish": "Solo pa' dejarnos saber que esto nunca murió",
+        "english": "Just to let us know that this never died",
+        "timestamp_ms": 162480
+      }
+    ],
+    "id": "8ffc9a",
+    "base_id": "023f8c"
+  },
+  "1f2757": {
+    "base_verb": "ir",
+    "lemma": "ir",
+    "corpus_count": 4,
+    "translation": "to go",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "3e7",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "960",
+          "examples": [
+            0,
+            2
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8464254",
+        "song_name": "Aprovéchame BB",
+        "spanish": "Mami, hablando claro, vámono' de aquí",
+        "english": "Mommy, speaking clearly, let's get out of here",
+        "timestamp_ms": 8670
+      },
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "I don't need a lot, baby, vámono' esta noche",
+        "english": "I don't need a lot, baby, let's go tonight",
+        "timestamp_ms": 58750
+      },
+      {
+        "song": "9788043",
+        "song_name": "Señorita",
+        "spanish": "Yo no sé si vo'a poder aguantar estas ganas, vámonos de aquí (Let's go)",
+        "english": "I don't know if I'll be able to endure this desire, let's get out of here (Let's go)",
+        "timestamp_ms": 1370
+      }
+    ],
+    "id": "1f2757",
+    "base_id": "be037b"
+  },
+  "d34868": {
+    "base_verb": "hacer",
+    "lemma": "haciéndome",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "180",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220921",
+        "song_name": "rookie of the year",
+        "spanish": "Y yo haciéndome la loca",
+        "english": "And I acting crazy",
+        "timestamp_ms": 125660
+      }
+    ],
+    "id": "d34868",
+    "base_id": "7a798b"
+  },
+  "3232ca": {
+    "base_verb": "poner",
+    "lemma": "poner",
+    "corpus_count": 1,
+    "translation": "to put, to put up, to place",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "11a",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220934",
+        "song_name": "offline",
+        "spanish": "Sabe' que si me tira' y es pa' ponerno' fresco', me ofrezco",
+        "english": "He knows that if he pulls me and it's to get fresh, I offer myself",
+        "timestamp_ms": 69940
+      }
+    ],
+    "id": "3232ca",
+    "base_id": "1fa2ba"
+  },
+  "550f62": {
+    "base_verb": "hablar",
+    "lemma": "hablar",
+    "corpus_count": 2,
+    "translation": "to talk; to speak; to communicate using words",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "c3f",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8224314",
+        "song_name": "Putero",
+        "spanish": "Shorty, háblame claro",
+        "english": "Shorty, speak to me clearly",
+        "timestamp_ms": 68400
+      }
+    ],
+    "id": "550f62",
+    "base_id": "04cb0b"
+  },
+  "834324": {
+    "base_verb": "hacer",
+    "lemma": "hacer",
+    "corpus_count": 4,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "03d",
+          "examples": [
+            0,
+            2
+          ]
+        },
+        {
+          "sense": "bf6",
+          "examples": [
+            1
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "8970064",
         "song_name": "Classy 101",
-        "spanish": "Vamo' a comerno', baby, aunque no sea formal",
-        "english": "Let's eat, baby, even if it's not formal",
-        "timestamp_ms": 23770
+        "spanish": "Esta noche vo'a hacerte to' lo que dije por texto, yeah",
+        "english": "Tonight I'm going to do to you everything I said by text, yeah",
+        "timestamp_ms": 82840
+      },
+      {
+        "song": "12570923",
+        "song_name": "Dosis",
+        "spanish": "Con ganas de envolverme, par de nene' hacerte",
+        "english": "Wanting to wrap me up, couple of babies' make you",
+        "timestamp_ms": 82720
+      },
+      {
+        "song": "12582446",
+        "song_name": "Sin pausa",
+        "spanish": "Tengo tantas cosas pa' yo hacerte que no sé ni cuál voy a escoger",
+        "english": "I have so many things to do to you that I don't even know which one I'm going to choose.",
+        "timestamp_ms": 69830
       }
     ],
-    "id": "f76fc9",
-    "base_id": "8c2806"
+    "id": "834324",
+    "base_id": "7a798b"
+  },
+  "d69365": {
+    "base_verb": "perrear",
+    "lemma": "perreándote",
+    "corpus_count": 1,
+    "translation": "to deceive",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "936",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9788043",
+        "song_name": "Señorita",
+        "spanish": "Perreándote (Yeah), mami, de espalda te viro",
+        "english": "Perrearte (Yeah), mommy, I turn you on your back",
+        "timestamp_ms": 1370
+      }
+    ],
+    "id": "d69365",
+    "base_id": "e5cddf"
+  },
+  "7d4be0": {
+    "base_verb": "caer",
+    "lemma": "caerme",
+    "corpus_count": 1,
+    "translation": "to fall into, to fall for; to be ensnared by, to fall, to fall down, to collapse, to fall out",
+    "assignments": {
+      "wiktionary-auto": [
+        {
+          "sense": "479",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220937",
+        "song_name": "tres tristes tragos",
+        "spanish": "Caerme, si termino en tu piel",
+        "english": "Fall, if I end up in your skin",
+        "timestamp_ms": 68780
+      }
+    ],
+    "id": "7d4be0",
+    "base_id": "d988e1"
+  },
+  "68f966": {
+    "base_verb": "ver",
+    "lemma": "ver",
+    "corpus_count": 1,
+    "translation": "to see, to check, to spot",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "c3b",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12003129",
+        "song_name": "Jetski",
+        "spanish": "Quiero verle ese culo cómo se come ese gistro marca Louis",
+        "english": "I want to see that ass how he eats that Louis brand gistro",
+        "timestamp_ms": 48220
+      }
+    ],
+    "id": "68f966",
+    "base_id": "cd9482"
+  },
+  "396530": {
+    "base_verb": "dar",
+    "lemma": "dar",
+    "corpus_count": 3,
+    "translation": "to give, to give out",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "0e3",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "eac",
+          "examples": [
+            0,
+            2
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220935",
+        "song_name": "princess peach",
+        "spanish": "Solo aparece pa' darme",
+        "english": "He only appears to give me",
+        "timestamp_ms": 71170
+      },
+      {
+        "song": "12591724",
+        "song_name": "Plug (Type Shit)",
+        "spanish": "Un melón sin darme cuenta, otro día en la oficina, yeah (Yeah-yeah, ey)",
+        "english": "A melon without realizing it, another day at the office, yeah (Yeah-yeah, hey)",
+        "timestamp_ms": 72290
+      },
+      {
+        "song": "12591723",
+        "song_name": "Esa nena",
+        "spanish": "Quieren ponerme el leash, quieren darme un French kiss (Mua)",
+        "english": "They want to put the leash on me, they want to give me a French kiss (Mua)",
+        "timestamp_ms": 94540
+      }
+    ],
+    "id": "396530",
+    "base_id": "695915"
   },
   "d178d7": {
     "base_verb": "esconder",
     "lemma": "esconderlo",
     "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
+    "translation": "to hide",
+    "assignments": {
+      "wiktionary-auto": [
+        {
+          "sense": "401",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "12556569",
@@ -3222,36 +3766,46 @@
     "id": "d178d7",
     "base_id": "cda962"
   },
-  "c890f6": {
-    "base_verb": "dejar",
-    "lemma": "dejar",
-    "corpus_count": 6,
-    "translation": "to leave, to keep",
+  "c6fa05": {
+    "base_verb": "llamar",
+    "lemma": "llamar",
+    "corpus_count": 4,
+    "translation": "to refer to, to call, to summon",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "410",
-          "examples": []
-        },
+          "sense": "751",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9077520",
+        "song_name": "8 AM",
+        "spanish": "Llámame, bad boy",
+        "english": "Call me, bad boy",
+        "timestamp_ms": 1950
+      }
+    ],
+    "id": "c6fa05",
+    "base_id": "cc6577"
+  },
+  "4a8b26": {
+    "base_verb": "pasar",
+    "lemma": "pasar",
+    "corpus_count": 3,
+    "translation": "to pass, to hand, to slip",
+    "assignments": {
+      "flash-lite-wiktionary": [
         {
-          "sense": "0d5",
+          "sense": "d39",
           "examples": [
             0,
             1,
-            4
-          ]
-        },
-        {
-          "sense": "326",
-          "examples": [
             2
-          ]
-        },
-        {
-          "sense": "402",
-          "examples": [
-            3,
-            5
           ]
         }
       ]
@@ -3260,58 +3814,70 @@
       {
         "song": "12289314",
         "song_name": "BIRTHDAY BEHAVIOR",
-        "spanish": "Déjame probar un poco de tu birthday cake",
-        "english": "Let me try some of your birthday cake",
-        "timestamp_ms": 45410
+        "spanish": "Pásame el Casa Blue, ah",
+        "english": "Pass me the Casa Blue, ah",
+        "timestamp_ms": 66300
       },
       {
-        "song": "8783598",
-        "song_name": "Big Booty",
-        "spanish": "Ey, déjame ver tu panty finito",
-        "english": "Hey, let me see your thin panty",
-        "timestamp_ms": 50130
+        "song": "8224313",
+        "song_name": "Pull Up",
+        "spanish": "Pásame la molly, please (Please)",
+        "english": "Pass me the molly, please (Please)",
+        "timestamp_ms": 60350
       },
       {
-        "song": "8970064",
-        "song_name": "Classy 101",
-        "spanish": "Déjame ver to'",
-        "english": "Let me see everything",
-        "timestamp_ms": 76620
-      },
-      {
-        "song": "9923845",
-        "song_name": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
-        "spanish": "Biza, apaga las luce', déjame a oscura'",
-        "english": "Biza, turn off the lights, leave me in the dark",
-        "timestamp_ms": 75470
-      },
-      {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "Déjame acabar con esta paca",
-        "english": "Let me finish this bale",
-        "timestamp_ms": 159600
-      },
-      {
-        "song": "12591722",
-        "song_name": "Ni le cabe",
-        "spanish": "Si no llegas al zipper, déjame ayudarte",
-        "english": "If you can't reach the zipper, let me help you",
-        "timestamp_ms": 46200
+        "song": "9216707",
+        "song_name": "Chulo pt.2",
+        "spanish": "Sexo crudo, pásame del puro",
+        "english": "Raw sex, pass me the cigar",
+        "timestamp_ms": 136220
       }
     ],
-    "id": "c890f6",
-    "base_id": "023f8c"
+    "id": "4a8b26",
+    "base_id": "c5b0c1"
   },
-  "1c514c": {
-    "base_verb": "tener",
-    "lemma": "tener",
-    "corpus_count": 2,
-    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+  "8f61b7": {
+    "base_verb": "mandar",
+    "lemma": "mandarte",
+    "corpus_count": 1,
+    "translation": "to send",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "a39",
+          "sense": "67c",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8621461",
+        "song_name": "Amandita",
+        "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
+        "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
+        "timestamp_ms": 100150
+      }
+    ],
+    "id": "8f61b7",
+    "base_id": "9945a2"
+  },
+  "b4e3a2": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
+    "corpus_count": 4,
+    "translation": "to leave, to keep",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "f47",
+          "examples": [
+            2
+          ]
+        },
+        {
+          "sense": "fe4",
           "examples": [
             0,
             1
@@ -3321,121 +3887,153 @@
     },
     "examples": [
       {
-        "song": "9237320",
-        "song_name": "mañana",
-        "spanish": "Muero por besarte y por tenerte otra vez, bebé, mmm",
-        "english": "I'm dying to kiss you and have you again, baby, mmm",
-        "timestamp_ms": 700
+        "song": "10084300",
+        "song_name": "En Esta Boca",
+        "spanish": "Yo no te espero, pero, déjate el cuento (Ah-ah-ah)",
+        "english": "I'm not waiting for you, but leave the story alone (Ah-ah-ah)",
+        "timestamp_ms": 111130
       },
       {
-        "song": "9077520",
-        "song_name": "8 AM",
-        "spanish": "Es que no tenerte aquí me está matando",
-        "english": "Not having you here is killing me",
-        "timestamp_ms": 75850
+        "song": "6924324",
+        "song_name": "Saturno",
+        "spanish": "Oye mami, ya déjate de cuentos",
+        "english": "Hey mommy, stop telling stories"
+      },
+      {
+        "song": "9614105",
+        "song_name": "FINA",
+        "spanish": "Eso no es na', déjate ver, ¿te va' a hacer? Sí (Oye)",
+        "english": "That's nothing, let me see, is it going to do it to you? Yes (Hey)",
+        "timestamp_ms": 78990
       }
     ],
-    "id": "1c514c",
-    "base_id": "a132bf"
+    "id": "b4e3a2",
+    "base_id": "023f8c"
   },
-  "896301": {
-    "base_verb": "llevar",
-    "lemma": "llevar",
-    "corpus_count": 5,
-    "translation": "to take, to carry, to take away, to take out",
+  "827275": {
+    "base_verb": "subir",
+    "lemma": "súbeme",
+    "corpus_count": 3,
+    "translation": "to go up or come up",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "622",
+          "sense": "85b",
           "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "9428284",
+        "song_name": "Tempo",
+        "spanish": "Pero súbeme el tempo",
+        "english": "But increase the tempo",
+        "timestamp_ms": 23090
+      }
+    ],
+    "id": "827275",
+    "base_id": "7ebd32"
+  },
+  "822b43": {
+    "base_verb": "hacer",
+    "lemma": "hacer",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "03d",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "12570922",
+        "song_name": "Sexo de moteles",
+        "spanish": "En el Vander, pero, baby, hazlo como pa'l tiempo 'e Tío Flor",
+        "english": "At the Vander, but, baby, do it like for the weather 'e Tío Flor",
+        "timestamp_ms": 105030
+      }
+    ],
+    "id": "822b43",
+    "base_id": "7a798b"
+  },
+  "5a7145": {
+    "base_verb": "prender",
+    "lemma": "prenderla",
+    "corpus_count": 1,
+    "translation": "to catch, to arrest",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "b82",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "11888474",
+        "song_name": "TOA",
+        "spanish": "Y pa' prenderla no hace falta gasolina",
+        "english": "And to light it you don't need gasoline",
+        "timestamp_ms": 64960
+      }
+    ],
+    "id": "5a7145",
+    "base_id": "6d5789"
+  },
+  "bb9d30": {
+    "base_verb": "ver",
+    "lemma": "ver",
+    "corpus_count": 5,
+    "translation": "to see, to check, to spot",
+    "assignments": {
+      "flash-lite-wiktionary": [
+        {
+          "sense": "f2a",
+          "examples": [
+            0,
             1
           ]
-        },
-        {
-          "sense": "ca4",
-          "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "d98",
-          "examples": [
-            2
-          ]
         }
       ]
     },
-    "examples": [
-      {
-        "song": "12582445",
-        "song_name": "Ojalá",
-        "spanish": "Sepa hacer lo que yo hacía pa' llevarte al cielo",
-        "english": "Know how to do what I did to take you to heaven",
-        "timestamp_ms": 62310
-      },
-      {
-        "song": "8464254",
-        "song_name": "Aprovéchame BB",
-        "spanish": "Loquita de llevarte de aquí",
-        "english": "Crazy to take you from here",
-        "timestamp_ms": 71460
-      },
-      {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "Antes de llevarte pa' mi casa",
-        "english": "Before taking you to my house",
-        "timestamp_ms": 161660
-      }
-    ],
-    "id": "896301",
-    "base_id": "903283"
-  },
-  "67465b": {
-    "base_verb": "pensar",
-    "lemma": "pensarte",
-    "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8617423",
-        "song_name": "Sale el Sol",
-        "spanish": "Me hace pensarte ahora, yeah-yeah",
-        "english": "It makes me think of you now, yeah-yeah",
-        "timestamp_ms": 19290
-      }
-    ],
-    "id": "67465b",
-    "base_id": "196911"
-  },
-  "923d05": {
-    "base_verb": "aguantar",
-    "lemma": "aguantarme",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
     "examples": [
       {
         "song": "9077520",
         "song_name": "8 AM",
-        "spanish": "Aguantarme las gana' está difícil",
-        "english": "Holding on to the desire is difficult",
-        "timestamp_ms": 11120
+        "spanish": "Pues vamo' a verno', baby",
+        "english": "Well let's go see each other, baby"
+      },
+      {
+        "song": "10220934",
+        "song_name": "offline",
+        "spanish": "El party es adentro y nadie va a verno'",
+        "english": "The party is inside and no one is going to see it'",
+        "timestamp_ms": 62360
       }
     ],
-    "id": "923d05",
-    "base_id": "234879"
+    "id": "bb9d30",
+    "base_id": "cd9482"
   },
-  "cc1fb6": {
-    "base_verb": "mirar",
-    "lemma": "mirar",
-    "corpus_count": 2,
-    "translation": "used for emphasis; look, to look at, to seek, look for",
+  "91c3e0": {
+    "base_verb": "hacer",
+    "lemma": "hágale",
+    "corpus_count": 1,
+    "translation": "to do",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "2cf",
+          "sense": "da1",
           "examples": [
             0
           ]
@@ -3444,15 +4042,15 @@
     },
     "examples": [
       {
-        "song": "8981516",
-        "song_name": "Brinca",
-        "spanish": "Ponte 'e espalda, dame nalga' y despué' mírame (Ey)",
-        "english": "Stand on your back, give me your butt and then look at me (Hey)",
-        "timestamp_ms": 40390
+        "song": "9110676",
+        "song_name": "COLMILLO",
+        "spanish": "Hágale pues, trépate como chiringa",
+        "english": "So do it, climb like a chiringa",
+        "timestamp_ms": 136270
       }
     ],
-    "id": "cc1fb6",
-    "base_id": "d9ba72"
+    "id": "91c3e0",
+    "base_id": "7a798b"
   },
   "63888d": {
     "base_verb": "decir",
@@ -3460,11 +4058,12 @@
     "corpus_count": 2,
     "translation": "to be said, to say, to tell",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "a24",
+          "sense": "6b5",
           "examples": [
-            0
+            0,
+            1
           ]
         }
       ]
@@ -3487,51 +4086,15 @@
     "id": "63888d",
     "base_id": "2159c9"
   },
-  "c3bac5": {
-    "base_verb": "mover",
-    "lemma": "moverlo",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Pa' moverlo como e' (Ay)",
-        "english": "To move it like that (Ay)",
-        "timestamp_ms": 27990
-      }
-    ],
-    "id": "c3bac5",
-    "base_id": "7cfb5a"
-  },
-  "a536ca": {
-    "base_verb": "preguntar",
-    "lemma": "preguntándole",
+  "d509f3": {
+    "base_verb": "dejar",
+    "lemma": "dejar",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11581491",
-        "song_name": "WOAHH",
-        "spanish": "Preguntándole si va' a volver o no",
-        "english": "Asking him if he's going to come back or not",
-        "timestamp_ms": 4940
-      }
-    ],
-    "id": "a536ca",
-    "base_id": "34c595"
-  },
-  "2dde35": {
-    "base_verb": "preguntar",
-    "lemma": "preguntar",
-    "corpus_count": 1,
-    "translation": "to ask",
+    "translation": "to leave, to keep",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "f01",
+          "sense": "fe4",
           "examples": [
             0
           ]
@@ -3540,79 +4103,25 @@
     },
     "examples": [
       {
-        "song": "10220928",
-        "song_name": "arcoíris",
-        "spanish": "Tú sabe' quién yo soy, si no pregúntale a Siri (Uh)",
-        "english": "You know who I am, if you don't ask Siri (Uh)",
-        "timestamp_ms": 44420
+        "song": "12570920",
+        "song_name": "What’s Ur Vibe?",
+        "spanish": "Baby, déjalos que sigan waiting",
+        "english": "Baby, let them keep waiting",
+        "timestamp_ms": 49040
       }
     ],
-    "id": "2dde35",
-    "base_id": "34c595"
+    "id": "d509f3",
+    "base_id": "023f8c"
   },
-  "c7389e": {
-    "base_verb": "buscar",
-    "lemma": "buscándome",
+  "adbdd8": {
+    "base_verb": "compartir",
+    "lemma": "compartirme",
     "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9077520",
-        "song_name": "8 AM",
-        "spanish": "Están buscándome (Eh), están tirándome",
-        "english": "They are looking for me (Eh), they are throwing me",
-        "timestamp_ms": 58750
-      }
-    ],
-    "id": "c7389e",
-    "base_id": "02ca62"
-  },
-  "231721": {
-    "base_verb": "jugar",
-    "lemma": "jugarme",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8618160",
-        "song_name": "Katana",
-        "spanish": "Me salió por jugarme la carta (Ah)",
-        "english": "It came out for me by playing the card (Ah)",
-        "timestamp_ms": 99690
-      }
-    ],
-    "id": "231721",
-    "base_id": "9a83d3"
-  },
-  "7a6b0d": {
-    "base_verb": "pensar",
-    "lemma": "pensándote",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8970064",
-        "song_name": "Classy 101",
-        "spanish": "Que yo esté pensándote para mí es normal",
-        "english": "That I am thinking about you is normal for me",
-        "timestamp_ms": 18790
-      }
-    ],
-    "id": "7a6b0d",
-    "base_id": "196911"
-  },
-  "152722": {
-    "base_verb": "ir",
-    "lemma": "ir",
-    "corpus_count": 1,
-    "translation": "to go",
+    "translation": "to share",
     "assignments": {
-      "biencoder": [
+      "flash-lite-wiktionary": [
         {
-          "sense": "407",
+          "sense": "49c",
           "examples": [
             0
           ]
@@ -3621,205 +4130,14 @@
     },
     "examples": [
       {
-        "song": "8827239",
-        "song_name": "Pretty Bad Bitch",
-        "spanish": "Tiene su fulete y su come y vete",
-        "english": "He has his fillet and his come and go",
-        "timestamp_ms": 56840
+        "song": "10220933",
+        "song_name": "fuck TMZ",
+        "spanish": "Me quiere solo pa' ella, no quiere compartirme (Woh-oh; ey, oh)",
+        "english": "He wants me only for her, he doesn't want to share me (Woh-oh; hey, oh)",
+        "timestamp_ms": 25620
       }
     ],
-    "id": "152722",
-    "base_id": "be037b"
-  },
-  "a49c83": {
-    "base_verb": "decir",
-    "lemma": "decir",
-    "corpus_count": 69,
-    "translation": "to be said, to say, to tell",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "a24",
-          "examples": [
-            1,
-            2,
-            3,
-            6,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "sense": "df4",
-          "examples": [
-            5
-          ]
-        },
-        {
-          "sense": "919",
-          "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "ca2",
-          "examples": [
-            4
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "10220934",
-        "song_name": "offline",
-        "spanish": "Dime quién te hizo así, diablo, qué talento",
-        "english": "Tell me who made you like this, devil, what a talent",
-        "timestamp_ms": 65310
-      },
-      {
-        "song": "11373471",
-        "song_name": "Gata",
-        "spanish": "Yo te hablo claro, no excuses, dime cómo prefiere' las luce'",
-        "english": "I speak clearly to you, do not excuse, tell me how you prefer to look",
-        "timestamp_ms": 169840
-      },
-      {
-        "song": "9237320",
-        "song_name": "mañana",
-        "spanish": "Dime, que en tu cama yo te llevaré (Uh, uh)",
-        "english": "Tell me, that in your bed I will take you (Uh, uh)",
-        "timestamp_ms": 22870
-      },
-      {
-        "song": "8617423",
-        "song_name": "Sale el Sol",
-        "spanish": "Dime si piensa' en mí, en mí",
-        "english": "Tell me if he thinks about me, about me",
-        "timestamp_ms": 41470
-      },
-      {
-        "song": "9211494",
-        "song_name": "6B",
-        "spanish": "Y yo no soy un santo, dime a ver, ¿qué vamo' a hacer?",
-        "english": "And I'm not a saint, tell me, what are we going to do?",
-        "timestamp_ms": 129990
-      },
-      {
-        "song": "10220937",
-        "song_name": "tres tristes tragos",
-        "spanish": "Baby, dime cómo le hago",
-        "english": "Baby, tell me how I do it",
-        "timestamp_ms": 38350
-      },
-      {
-        "song": "8086635",
-        "song_name": "Un Poquito",
-        "spanish": "Dime, Maura, ey",
-        "english": "Tell me, Maura, hey",
-        "timestamp_ms": 158200
-      },
-      {
-        "song": "10116729",
-        "song_name": "Paso Fino",
-        "spanish": "Pa' estar contigo tu dime pa' cuando",
-        "english": "To be with you, tell me when"
-      },
-      {
-        "song": "9077520",
-        "song_name": "8 AM",
-        "spanish": "Dime, cuando piensa' en mí, ¿qué estás pensando?",
-        "english": "Tell me, when you think of me, what are you thinking?",
-        "timestamp_ms": 73250
-      },
-      {
-        "song": "10055523",
-        "song_name": "curita",
-        "spanish": "Hoy yo voy a hacer que tú la olvide', tú solo dime",
-        "english": "Today I'm going to make you forget her, just tell me",
-        "timestamp_ms": 32970
-      }
-    ],
-    "id": "a49c83",
-    "base_id": "2159c9"
-  },
-  "871f52": {
-    "base_verb": "comer",
-    "lemma": "comiéndose",
-    "corpus_count": 3,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8827239",
-        "song_name": "Pretty Bad Bitch",
-        "spanish": "Comiéndose el mundo y salió de una colonia",
-        "english": "Taking on the world and left a colony",
-        "timestamp_ms": 34090
-      }
-    ],
-    "id": "871f52",
-    "base_id": "8c2806"
-  },
-  "ad9c07": {
-    "base_verb": "pegar",
-    "lemma": "pégate",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "12570923",
-        "song_name": "Dosis",
-        "spanish": "Pégate a mi Gucci, a mi hebilla",
-        "english": "Stick to my Gucci, to my buckle",
-        "timestamp_ms": 64960
-      },
-      {
-        "song": "9216707",
-        "song_name": "Chulo pt.2",
-        "spanish": "Y dale, pégate, muévete, ma, ¿tú no querías fuete?",
-        "english": "And come on, hit it, move, mom, didn't you want to be strong?",
-        "timestamp_ms": 138090
-      }
-    ],
-    "id": "ad9c07",
-    "base_id": "9bc35d"
-  },
-  "4d05d2": {
-    "base_verb": "hacer",
-    "lemma": "hacer",
-    "corpus_count": 6,
-    "translation": "to do",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "3fb",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8827239",
-        "song_name": "Pretty Bad Bitch",
-        "spanish": "Pa’ darle a ese culo hay que hacerle una ceremonia",
-        "english": "To give that ass you have to do a ceremony",
-        "timestamp_ms": 26960
-      },
-      {
-        "song": "12591719",
-        "song_name": "Traviesa",
-        "spanish": "Dame ese culo pa' acá, pa' hacerle un RKO",
-        "english": "Give me that ass here, to do an RKO",
-        "timestamp_ms": 85460
-      }
-    ],
-    "id": "4d05d2",
-    "base_id": "7a798b"
+    "id": "adbdd8",
+    "base_id": "b07e50"
   }
 }
