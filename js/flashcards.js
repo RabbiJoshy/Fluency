@@ -10,6 +10,58 @@ let _spanishRanksLoading = false;
 let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, translation}
 let _conjugationLoading = false;
 
+function formatMorphMood(mood) {
+    const moodMap = {
+        indicativo: '',
+        subjuntivo: 'subj',
+        imperativo: 'imp',
+        gerundio: 'gerund',
+        participio: 'participle',
+        'participio-pasado': 'past participle',
+        condicional: 'cond',
+    };
+    return moodMap[mood] || mood;
+}
+
+function formatMorphTense(tense) {
+    const tenseMap = {
+        presente: 'present',
+        afirmativo: 'aff',
+        negativo: 'neg',
+        futuro: 'future',
+        'futuro-perfecto': 'future perfect',
+        'pretérito-perfecto-simple': 'preterite',
+        'pretérito-imperfecto': 'imperfect',
+        'pretérito-imperfecto-1': 'imperfect',
+        'pretérito-imperfecto-2': 'imperfect',
+        'pretérito-perfecto': 'present perfect',
+        'pretérito-pluscuamperfecto-1': 'pluperfect',
+        'pretérito-pluscuamperfecto-2': 'pluperfect',
+        infinitivo: 'infinitive',
+    };
+    return tenseMap[tense] || tense;
+}
+
+function formatMorphPerson(person) {
+    const personMap = {
+        '1s': '1s',
+        '2s': '2s',
+        '3s': '3s',
+        '1p': '1pl',
+        '2p': '2pl',
+        '3p': '3pl',
+    };
+    return personMap[person] || person;
+}
+
+function formatMorphLabel(m) {
+    return [
+        formatMorphMood(m.mood),
+        formatMorphTense(m.tense),
+        formatMorphPerson(m.person),
+    ].filter(Boolean).join(' · ');
+}
+
 async function loadSpanishRanks() {
     if (_spanishRanks || _spanishRanksLoading) return;
     _spanishRanksLoading = true;
@@ -1098,10 +1150,17 @@ function updateCard() {
         frontPOSEl.style.display = 'none';
     }
 
-    // Display lemma on front if different from target word
-    // But hide it when reversed (English → Target) as it gives away the answer
+    const morphologyText = card.morphology
+        ? [...new Set((Array.isArray(card.morphology) ? card.morphology : [card.morphology]).map(formatMorphLabel))].join(' / ')
+        : '';
+
+    // Display lemma on front if different from target word.
+    // In English → Target mode, reuse this line for morphology instead.
     const frontLemmaEl = document.getElementById('frontLemma');
-    if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
+    if (isFlipped && morphologyText) {
+        frontLemmaEl.textContent = morphologyText;
+        frontLemmaEl.style.display = 'block';
+    } else if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
         frontLemmaEl.textContent = card.lemma;
         frontLemmaEl.style.display = 'block';
     } else {
@@ -1152,23 +1211,11 @@ function updateCard() {
         }
     }
 
-    // Build morphology tag if available (single object or array of objects)
-    let morphologyHTML = '';
-    if (card.morphology) {
-        const morphList = Array.isArray(card.morphology) ? card.morphology : [card.morphology];
-        const labels = morphList.map(m => [m.mood, m.tense, m.person].filter(Boolean).join(' · '));
-        const unique = [...new Set(labels)];
-        if (unique.length > 0) {
-            morphologyHTML = `<div style="text-align: center; font-size: 11px; color: var(--text-secondary); opacity: 0.7; margin-top: 4px;">${unique.join(' / ')}</div>`;
-        }
-    }
-
     let backHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold;">${wordDisplay}</div>
             </div>
-            ${morphologyHTML}
             ${homographChipHTML}
         </div>
     `;

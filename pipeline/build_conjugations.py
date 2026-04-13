@@ -54,6 +54,24 @@ CORE_TENSES = {
     ],
 }
 
+DISPLAY_TENSE_TO_REVERSE = {
+    "Presente": ("indicativo", "presente"),
+    "Pretérito": ("indicativo", "pretérito-perfecto-simple"),
+    "Imperfecto": ("indicativo", "pretérito-imperfecto"),
+    "Futuro": ("indicativo", "futuro"),
+    "Condicional": ("condicional", "presente"),
+    "Subj. Presente": ("subjuntivo", "presente"),
+}
+
+INDEX_TO_PERSON = {
+    0: "1s",
+    1: "2s",
+    2: "3s",
+    3: "1p",
+    4: "2p",
+    5: "3p",
+}
+
 
 def strip_accents(s: str) -> str:
     return "".join(
@@ -206,6 +224,26 @@ def build_reverse_lookup(verb: str, cg) -> list:
     return entries
 
 
+def backfill_reverse_from_conjugation_entry(verb: str, entry: dict) -> list:
+    """Backfill reverse entries from the core table shown in the front end."""
+    entries = []
+    for display_name, forms in entry.get("tenses", {}).items():
+        mood_tense = DISPLAY_TENSE_TO_REVERSE.get(display_name)
+        if not mood_tense:
+            continue
+        mood_name, tense_name = mood_tense
+        for idx, form in enumerate(forms):
+            if not form or form == "—":
+                continue
+            entries.append((form.strip().lower(), {
+                "lemma": verb,
+                "mood": mood_name,
+                "tense": tense_name,
+                "person": INDEX_TO_PERSON.get(idx, ""),
+            }))
+    return entries
+
+
 def main():
     # Load inventory to find verb lemmas
     print("Loading word inventory...")
@@ -260,8 +298,11 @@ def main():
             failed.append(verb)
             continue
 
-        # Reverse lookup
-        for form, info in build_reverse_lookup(verb, cg):
+        # Reverse lookup from verbecc + an explicit backfill from the
+        # front-end core table so ambiguous displayed forms are preserved.
+        reverse_entries = build_reverse_lookup(verb, cg)
+        reverse_entries.extend(backfill_reverse_from_conjugation_entry(verb, entry))
+        for form, info in reverse_entries:
             # Only add if not already present with same lemma+mood+tense+person
             existing = reverse.get(form, [])
             if not any(e["lemma"] == info["lemma"] and e["mood"] == info["mood"]
