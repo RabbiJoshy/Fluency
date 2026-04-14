@@ -26,9 +26,9 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline" / "artist"))
-from build_senses import (load_wiktionary, lookup_senses, clean_translation,
+from step_5c_build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
-from _artist_config import load_dotenv_from_project_root
+from util_artist_config import load_dotenv_from_project_root
 load_dotenv_from_project_root()
 
 from bench_gapfill import (load_eswiktionary, build_combined_senses,

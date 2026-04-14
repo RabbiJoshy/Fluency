@@ -12,8 +12,8 @@ Compares sense classification accuracy across translation sources:
   - Spanish only (no translation, baseline)
 
 Usage:
-    .venv/bin/python3 Artists/scripts/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 Artists/scripts/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --skip-google
+    .venv/bin/python3 pipeline/artist/bench/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
+    .venv/bin/python3 pipeline/artist/bench/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --skip-google
 """
 
 import argparse
@@ -36,13 +36,13 @@ PROJECT_ROOT = SCRIPT_DIR.parents[2]
 sys.path.insert(0, str(SCRIPT_DIR))
 sys.path.insert(0, str(PROJECT_ROOT / "Data" / "Spanish" / "Scripts"))
 
-from _artist_config import add_artist_arg, load_artist_config
+from util_artist_config import add_artist_arg, load_artist_config
 
 WIKTIONARY_GZ = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 CLASSIFY_MODEL = "paraphrase-multilingual-mpnet-base-v2"
 
 # ---------------------------------------------------------------------------
-# Wiktionary loading (adapted from build_senses.py)
+# Wiktionary loading (adapted from step_5c_build_senses.py)
 # ---------------------------------------------------------------------------
 
 POS_MAP = {
@@ -265,7 +265,7 @@ def generate_google_translations(lines, cache_path, batch_save=50):
 
 
 # ---------------------------------------------------------------------------
-# Biencoder classification (simplified from match_artist_senses.py)
+# Biencoder classification (simplified from step_6b_assign_senses_local.py)
 # ---------------------------------------------------------------------------
 
 def classify_words(words_data, translations, model):
