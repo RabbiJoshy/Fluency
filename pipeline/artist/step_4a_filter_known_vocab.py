@@ -20,7 +20,7 @@ Reads:  <artist-dir>/data/elision_merge/vocab_evidence_merged.json
         Data/Spanish/vocabulary.json
         Data/Spanish/layers/conjugation_reverse.json
         Data/Spanish/layers/sense_menu.json
-        Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz
+        Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz
         Data/English/en_50k_wordlist.txt
         Artists/curations/*.json
 Writes: <artist-dir>/data/known_vocab/word_routing.json

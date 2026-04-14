@@ -356,7 +356,7 @@ def main():
 
     print("Loading English Wiktionary...")
     wikt_index, redirects = load_wiktionary(
-        PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz")
+        PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz")
 
     print("Loading Spanish Wiktionary (dialect: %s)..." % ", ".join(sorted(DIALECT_TAGS)))
     eswikt_index = load_eswiktionary(ESWIKT_FILE, DIALECT_TAGS)

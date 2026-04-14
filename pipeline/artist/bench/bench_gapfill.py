@@ -23,7 +23,7 @@ from step_5c_build_senses import load_wiktionary, lookup_senses, clean_translati
 from util_artist_config import load_dotenv_from_project_root
 load_dotenv_from_project_root()
 
-ESWIKT_FILE = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz"
+ESWIKT_FILE = PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-eswiktionary-raw.jsonl.gz"
 TRANSLATION_CACHE_FILE = Path(__file__).resolve().parent / ".eswikt_translation_cache.json"
 DIALECT_TAGS = {"Puerto-Rico", "Caribbean", "Cuba"}
 
@@ -217,7 +217,7 @@ def main():
 
     print("Loading English Wiktionary...")
     wikt_index, redirects = load_wiktionary(
-        PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz")
+        PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz")
 
     print("Loading Spanish Wiktionary (dialect: %s)..." % ", ".join(sorted(DIALECT_TAGS)))
     eswikt_index = load_eswiktionary(ESWIKT_FILE, DIALECT_TAGS)

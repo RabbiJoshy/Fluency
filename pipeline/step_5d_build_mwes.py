@@ -12,7 +12,7 @@ Usage:
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
-    Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz
+    Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz
 
 Output:
     Data/Spanish/layers/mwe_phrases.json

@@ -17,6 +17,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", message=".*urllib3.*")
 
 import argparse, gzip, json, os, sys, time
+from copy import deepcopy
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -31,7 +32,7 @@ from util_1a_artist_config import (add_artist_arg, load_artist_config,
                            METHOD_PRIORITY, best_method_priority)
 from util_6a_pos_menu_filter import filter_senses_by_pos, filter_senses_by_precomputed_pos
 from util_5c_sense_menu_format import (
-    normalize_artist_sense_menu, merge_analysis,
+    normalize_artist_sense_menu, merge_analysis, get_analyses,
     collect_surface_analyses_from_shared_menu, flatten_analyses_with_ids,
     assign_analysis_sense_ids, extract_form_of_targets, extend_ids_for_extra_senses,
 )
@@ -40,7 +41,7 @@ load_dotenv_from_project_root()
 # ---------------------------------------------------------------------------
 # Spanish Wiktionary dialect supplement (inlined from bench_gapfill)
 # ---------------------------------------------------------------------------
-ESWIKT_FILE = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz"
+ESWIKT_FILE = PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-eswiktionary-raw.jsonl.gz"
 DEFAULT_DIALECT_TAGS = {"Puerto-Rico", "Caribbean", "Cuba"}
 _ESWIKT_POS_MAP = {
     "noun": "NOUN", "verb": "VERB", "adj": "ADJ", "adv": "ADV",
@@ -119,7 +120,7 @@ def build_combined_senses(word, lemma, en_senses, eswikt_index, translation_cach
 # ---------------------------------------------------------------------------
 BATCH_SIZE = 50
 GAP_FILL_BATCH_SIZE = 10
-MAX_EXAMPLES_PER_WORD = 3
+MAX_EXAMPLES_PER_WORD = 10
 
 
 def classify_batch_gemini(words_data, api_key, gemini_model):
@@ -454,7 +455,7 @@ def main():
     else:
         # Load Wiktionary
         print("Loading English Wiktionary...")
-        wikt_path = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz"
+        wikt_path = PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz"
         wikt_index, redirects = load_wiktionary(wikt_path)
         shared_menu_path = PROJECT_ROOT / "Data/Spanish/layers/sense_menu.json"
         shared_wikt_menu = {}
@@ -632,7 +633,16 @@ def main():
 
         id_list = []
         # Build the candidate menu from all shared surface-form analyses first.
-        shared_analyses = collect_surface_analyses_from_shared_menu(word, shared_wikt_menu)
+        if custom_menu_mode:
+            shared_analyses = []
+            for analysis in get_analyses(shared_wikt_menu, word):
+                sense_map = analysis.get("senses", {})
+                shared_analyses.append({
+                    "headword": analysis.get("headword", analysis.get("lemma", word)),
+                    "senses": list(deepcopy(sense_map).values()) if isinstance(sense_map, dict) else deepcopy(sense_map or []),
+                })
+        else:
+            shared_analyses = collect_surface_analyses_from_shared_menu(word, shared_wikt_menu)
         if shared_analyses and not custom_menu_mode:
             present_lemmas = {a.get("headword", a.get("lemma", word)) for a in shared_analyses}
             for target_lemma in extract_form_of_targets(shared_analyses):

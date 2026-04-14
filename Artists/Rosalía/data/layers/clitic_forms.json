@@ -4,16 +4,7 @@
     "lemma": "piénsalo",
     "corpus_count": 1,
     "translation": "think about it",
-    "assignments": {
-      "spanishdict-biencoder": [
-        {
-          "sense": "94a",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -32,7 +23,7 @@
     "corpus_count": 1,
     "translation": "follow me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "21f",
           "examples": [
@@ -59,7 +50,7 @@
     "corpus_count": 1,
     "translation": "throw him out",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "d69",
           "examples": [
@@ -86,16 +77,11 @@
     "corpus_count": 3,
     "translation": "look at me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "fb5",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "2b4",
-          "examples": [
+            0,
             1
           ]
         }
@@ -126,9 +112,9 @@
     "corpus_count": 2,
     "translation": "can",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "a88",
+          "sense": "390",
           "examples": [
             0
           ]
@@ -149,13 +135,13 @@
   },
   "9ebcef": {
     "base_verb": "ver",
-    "lemma": "verse",
+    "lemma": "ver",
     "corpus_count": 1,
-    "translation": "to see oneself",
+    "translation": "to see",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "3d6",
+          "sense": "74d",
           "examples": [
             0
           ]
@@ -176,19 +162,10 @@
   },
   "67465b": {
     "base_verb": "pensar",
-    "lemma": "pensarse",
+    "lemma": "pensar",
     "corpus_count": 1,
-    "translation": "to think of oneself as",
-    "assignments": {
-      "spanishdict-biencoder": [
-        {
-          "sense": "d61",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to think",
+    "assignments": {},
     "examples": [
       {
         "song": "3750274",
@@ -207,24 +184,19 @@
     "corpus_count": 17,
     "translation": "tell me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "9ba",
           "examples": [
+            0,
             1,
+            2,
             3,
             4,
             5,
             6,
             7,
             8
-          ]
-        },
-        {
-          "sense": "75d",
-          "examples": [
-            0,
-            2
           ]
         }
       ]
@@ -297,13 +269,13 @@
   },
   "4eb945": {
     "base_verb": "amarrar",
-    "lemma": "amarrarse",
+    "lemma": "amarrar",
     "corpus_count": 1,
     "translation": "to tie",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "bbc",
+          "sense": "033",
           "examples": [
             0
           ]
@@ -328,7 +300,7 @@
     "corpus_count": 1,
     "translation": "candle",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "5d0",
           "examples": [
@@ -355,9 +327,9 @@
     "corpus_count": 1,
     "translation": "to leave",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "505",
+          "sense": "8d5",
           "examples": [
             0
           ]
@@ -382,7 +354,7 @@
     "corpus_count": 1,
     "translation": "to love me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "75c",
           "examples": [
@@ -405,13 +377,13 @@
   },
   "396530": {
     "base_verb": "dar",
-    "lemma": "darse",
+    "lemma": "dar",
     "corpus_count": 1,
-    "translation": "to grow",
+    "translation": "to give",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "413",
+          "sense": "662",
           "examples": [
             0
           ]
@@ -436,9 +408,9 @@
     "corpus_count": 1,
     "translation": "to find",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "18b",
+          "sense": "f09",
           "examples": [
             0
           ]
@@ -459,13 +431,13 @@
   },
   "0eb62e": {
     "base_verb": "besar",
-    "lemma": "besarse",
+    "lemma": "besar",
     "corpus_count": 1,
-    "translation": "to kiss each other",
+    "translation": "to kiss",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "14f",
+          "sense": "7e1",
           "examples": [
             0
           ]
@@ -489,7 +461,7 @@
     "corpus_count": 3,
     "translation": "can",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "390",
           "examples": [
@@ -516,7 +488,7 @@
     "corpus_count": 1,
     "translation": "tell me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "fee",
           "examples": [
@@ -543,9 +515,9 @@
     "corpus_count": 2,
     "translation": "sight",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "f87",
+          "sense": "2a5",
           "examples": [
             0
           ]
@@ -570,17 +542,17 @@
     "corpus_count": 4,
     "translation": "to give",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6bf",
+          "sense": "07f",
           "examples": [
-            1
+            0
           ]
         },
         {
-          "sense": "b8e",
+          "sense": "662",
           "examples": [
-            0
+            1
           ]
         }
       ]
@@ -609,7 +581,7 @@
     "corpus_count": 2,
     "translation": "to cut",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "e23",
           "examples": [
@@ -636,7 +608,7 @@
     "corpus_count": 8,
     "translation": "to die",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "d2d",
           "examples": [
@@ -671,7 +643,7 @@
     "corpus_count": 3,
     "translation": "let's go",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "ade",
           "examples": [
@@ -706,17 +678,12 @@
     "corpus_count": 2,
     "translation": "to see",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "7bb",
+          "sense": "74d",
           "examples": [
+            0,
             1
-          ]
-        },
-        {
-          "sense": "3d6",
-          "examples": [
-            0
           ]
         }
       ]
@@ -746,23 +713,13 @@
     "corpus_count": 7,
     "translation": "to look at",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "181",
           "examples": [
+            0,
+            1,
             2
-          ]
-        },
-        {
-          "sense": "1be",
-          "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "da4",
-          "examples": [
-            1
           ]
         }
       ]
@@ -799,16 +756,11 @@
     "corpus_count": 2,
     "translation": "let me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "3ab",
+          "sense": "994",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "f85",
-          "examples": [
+            0,
             1
           ]
         }
@@ -833,13 +785,13 @@
   },
   "aebf35": {
     "base_verb": "enseñar",
-    "lemma": "enséñame",
+    "lemma": "enseñar",
     "corpus_count": 1,
-    "translation": "teach me",
+    "translation": "to teach",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "879",
+          "sense": "039",
           "examples": [
             0
           ]
@@ -860,13 +812,13 @@
   },
   "780570": {
     "base_verb": "amar",
-    "lemma": "amarse",
+    "lemma": "amar",
     "corpus_count": 1,
-    "translation": "to love each other",
+    "translation": "to love",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "18c",
+          "sense": "dd2",
           "examples": [
             0
           ]
@@ -889,16 +841,7 @@
     "lemma": "mira",
     "corpus_count": 1,
     "translation": "sight",
-    "assignments": {
-      "spanishdict-biencoder": [
-        {
-          "sense": "2a5",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7528145",
@@ -913,13 +856,13 @@
   },
   "68f966": {
     "base_verb": "ver",
-    "lemma": "verse",
+    "lemma": "ver",
     "corpus_count": 1,
-    "translation": "to see oneself",
+    "translation": "to see",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "3d6",
+          "sense": "74d",
           "examples": [
             0
           ]
@@ -944,7 +887,7 @@
     "corpus_count": 1,
     "translation": "to leave",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "8d5",
           "examples": [
@@ -971,9 +914,9 @@
     "corpus_count": 2,
     "translation": "to have",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "d71",
+          "sense": "9b6",
           "examples": [
             0
           ]
@@ -997,7 +940,7 @@
     "corpus_count": 1,
     "translation": "to look at",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "fb7",
           "examples": [
@@ -1023,7 +966,16 @@
     "lemma": "dártelo",
     "corpus_count": 2,
     "translation": "",
-    "assignments": {},
+    "assignments": {
+      "gap-fill": [
+        {
+          "sense": "4f4",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "8916306",
@@ -1042,9 +994,9 @@
     "corpus_count": 1,
     "translation": "can",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "73d",
+          "sense": "390",
           "examples": [
             0
           ]
@@ -1069,7 +1021,7 @@
     "corpus_count": 1,
     "translation": "to eat",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "d41",
           "examples": [
@@ -1096,9 +1048,9 @@
     "corpus_count": 1,
     "translation": "to look at",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fb7",
+          "sense": "181",
           "examples": [
             0
           ]
@@ -1123,7 +1075,7 @@
     "corpus_count": 1,
     "translation": "to love me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "07a",
           "examples": [
@@ -1150,17 +1102,12 @@
     "corpus_count": 2,
     "translation": "to give",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "662",
           "examples": [
+            0,
             1
-          ]
-        },
-        {
-          "sense": "738",
-          "examples": [
-            0
           ]
         }
       ]
@@ -1186,21 +1133,16 @@
   },
   "f8a4ea": {
     "base_verb": "hablar",
-    "lemma": "hablar",
+    "lemma": "hablarse",
     "corpus_count": 2,
-    "translation": "to speak",
+    "translation": "to speak to each other",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "a6e",
+          "sense": "dca",
           "examples": [
+            0,
             1
-          ]
-        },
-        {
-          "sense": "e97",
-          "examples": [
-            0
           ]
         }
       ]
@@ -1230,9 +1172,9 @@
     "corpus_count": 1,
     "translation": "to ask for",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6ab",
+          "sense": "c26",
           "examples": [
             0
           ]
@@ -1257,7 +1199,7 @@
     "corpus_count": 1,
     "translation": "to let oneself",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "4a5",
           "examples": [
@@ -1280,13 +1222,13 @@
   },
   "a94cf2": {
     "base_verb": "hacer",
-    "lemma": "hacerse",
+    "lemma": "hacer",
     "corpus_count": 1,
-    "translation": "to make oneself",
+    "translation": "to do",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "3e1",
+          "sense": "03d",
           "examples": [
             0
           ]
@@ -1311,9 +1253,9 @@
     "corpus_count": 1,
     "translation": "to ask",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "795",
+          "sense": "a37",
           "examples": [
             0
           ]
@@ -1334,13 +1276,13 @@
   },
   "e1bec8": {
     "base_verb": "comer",
-    "lemma": "comerse",
+    "lemma": "comer",
     "corpus_count": 1,
     "translation": "to eat",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "bab",
+          "sense": "d41",
           "examples": [
             0
           ]
@@ -1365,7 +1307,7 @@
     "corpus_count": 1,
     "translation": "to cross",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "e27",
           "examples": [
@@ -1388,28 +1330,18 @@
   },
   "834324": {
     "base_verb": "hacer",
-    "lemma": "hacerte",
+    "lemma": "hacer",
     "corpus_count": 6,
-    "translation": "to make for yourself",
+    "translation": "to do",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fe1",
+          "sense": "bf6",
           "examples": [
             0,
+            1,
+            2,
             3
-          ]
-        },
-        {
-          "sense": "432",
-          "examples": [
-            1
-          ]
-        },
-        {
-          "sense": "abb",
-          "examples": [
-            2
           ]
         }
       ]
@@ -1452,16 +1384,7 @@
     "lemma": "decir",
     "corpus_count": 1,
     "translation": "to say",
-    "assignments": {
-      "spanishdict-biencoder": [
-        {
-          "sense": "375",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8916306",
@@ -1480,24 +1403,24 @@
     "corpus_count": 7,
     "translation": "to do it",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "43a",
           "examples": [
-            0
+            0,
+            3
           ]
         },
         {
-          "sense": "692",
+          "sense": "bf6b",
           "examples": [
-            3
+            2
           ]
         },
         {
           "sense": "d0d",
           "examples": [
-            1,
-            2
+            1
           ]
         }
       ]
@@ -1536,13 +1459,13 @@
   },
   "cebeee": {
     "base_verb": "desnudar",
-    "lemma": "desnudar",
+    "lemma": "desnudarse",
     "corpus_count": 1,
-    "translation": "to undress",
+    "translation": "to get undressed",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "54b",
+          "sense": "5ea",
           "examples": [
             0
           ]
@@ -1567,7 +1490,7 @@
     "corpus_count": 1,
     "translation": "to pray",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "a33",
           "examples": [
@@ -1594,17 +1517,12 @@
     "corpus_count": 3,
     "translation": "to want",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "8af",
+          "sense": "bb1",
           "examples": [
+            0,
             1
-          ]
-        },
-        {
-          "sense": "a36",
-          "examples": [
-            0
           ]
         }
       ]
@@ -1634,7 +1552,7 @@
     "corpus_count": 2,
     "translation": "to say",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "c70",
           "examples": [
@@ -1669,9 +1587,9 @@
     "corpus_count": 1,
     "translation": "let him",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "648",
+          "sense": "934",
           "examples": [
             0
           ]
@@ -1692,13 +1610,13 @@
   },
   "f32ef5": {
     "base_verb": "escuchar",
-    "lemma": "escucharse",
+    "lemma": "escuchar",
     "corpus_count": 1,
-    "translation": "to listen to oneself",
+    "translation": "to listen to",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "379",
+          "sense": "a9a",
           "examples": [
             0
           ]
@@ -1723,7 +1641,7 @@
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "03d",
           "examples": [
@@ -1750,7 +1668,7 @@
     "corpus_count": 1,
     "translation": "to love",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "dd2",
           "examples": [
@@ -1777,7 +1695,7 @@
     "corpus_count": 1,
     "translation": "to be left",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "59f",
           "examples": [
@@ -1800,17 +1718,32 @@
   },
   "ea3422": {
     "base_verb": "olvidar",
-    "lemma": "olvidar",
+    "lemma": "olvidarse",
     "corpus_count": 5,
     "translation": "to forget",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
+        {
+          "sense": "3c5",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "3c51",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "3c515",
+          "examples": [
+            2
+          ]
+        },
         {
           "sense": "f40",
           "examples": [
-            0,
-            1,
-            2,
             3
           ]
         }
@@ -1850,18 +1783,23 @@
   },
   "820dab": {
     "base_verb": "hacer",
-    "lemma": "hazme",
+    "lemma": "hacer",
     "corpus_count": 6,
-    "translation": "make me",
+    "translation": "to do",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "666",
+          "sense": "03d",
+          "examples": [
+            3
+          ]
+        },
+        {
+          "sense": "bf6",
           "examples": [
             0,
             1,
             2,
-            3,
             4
           ]
         }
@@ -1911,9 +1849,9 @@
     "corpus_count": 1,
     "translation": "to have",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "657",
+          "sense": "d62",
           "examples": [
             0
           ]
@@ -1938,7 +1876,7 @@
     "corpus_count": 1,
     "translation": "to dedicate",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "484",
           "examples": [
@@ -1965,7 +1903,7 @@
     "corpus_count": 1,
     "translation": "to sing",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "09f",
           "examples": [
@@ -1992,7 +1930,7 @@
     "corpus_count": 3,
     "translation": "say",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "12a",
           "examples": [
@@ -2027,7 +1965,7 @@
     "corpus_count": 2,
     "translation": "stay",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "479",
           "examples": [
@@ -2054,7 +1992,7 @@
     "corpus_count": 1,
     "translation": "to go down",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "c20",
           "examples": [
@@ -2081,7 +2019,7 @@
     "corpus_count": 1,
     "translation": "to give",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
           "sense": "662",
           "examples": [
@@ -2103,13 +2041,13 @@
   },
   "54bfa6": {
     "base_verb": "pensar",
-    "lemma": "pensarse",
+    "lemma": "pensar",
     "corpus_count": 1,
-    "translation": "to think of oneself as",
+    "translation": "to think",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6df",
+          "sense": "357",
           "examples": [
             0
           ]
@@ -2134,7 +2072,7 @@
     "corpus_count": 1,
     "translation": "kill me",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "cee",
           "examples": [
@@ -2157,13 +2095,13 @@
   },
   "785c57": {
     "base_verb": "escuchar",
-    "lemma": "escucharse",
+    "lemma": "escuchar",
     "corpus_count": 3,
-    "translation": "to listen to oneself",
+    "translation": "to listen to",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "219",
+          "sense": "6f7",
           "examples": [
             0
           ]
@@ -2188,16 +2126,11 @@
     "corpus_count": 2,
     "translation": "to have",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "586",
+          "sense": "9b6",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "d71",
-          "examples": [
+            0,
             1
           ]
         }
@@ -2227,7 +2160,7 @@
     "corpus_count": 1,
     "translation": "stay",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-auto": [
         {
           "sense": "479",
           "examples": [
@@ -2254,9 +2187,9 @@
     "corpus_count": 6,
     "translation": "giving him",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "7de",
+          "sense": "278",
           "examples": [
             0
           ]
@@ -2281,9 +2214,9 @@
     "corpus_count": 1,
     "translation": "say so",
     "assignments": {
-      "spanishdict-biencoder": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b71",
+          "sense": "a56",
           "examples": [
             0
           ]

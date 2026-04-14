@@ -102,7 +102,7 @@ def main():
     parser.add_argument("menu_paths", nargs="+", help="Path(s) to sense_menu.json files")
     args = parser.parse_args()
 
-    raw_path = Path("Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz")
+    raw_path = Path("Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz")
     if not raw_path.exists():
         raise SystemExit(f"Missing raw Wiktionary file: {raw_path}")
 

@@ -1,13 +1,13 @@
 {
   "d66991": {
     "base_verb": "fumar",
-    "lemma": "fumándose",
+    "lemma": "fumar",
     "corpus_count": 2,
     "translation": "to smoke",
     "assignments": {
-      "wiktionary-auto": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "4f1",
+          "sense": "46c",
           "examples": [
             0
           ]
@@ -30,11 +30,11 @@
     "base_verb": "mover",
     "lemma": "muévelo",
     "corpus_count": 15,
-    "translation": "to move to, to cause to, to move",
+    "translation": "move it",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "64c",
+          "sense": "e5d",
           "examples": [
             0,
             1,
@@ -87,13 +87,13 @@
   },
   "4f7e4d": {
     "base_verb": "ir",
-    "lemma": "ir",
+    "lemma": "irse",
     "corpus_count": 1,
-    "translation": "to go",
+    "translation": "to leave",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "960",
+          "sense": "8d5",
           "examples": [
             0
           ]
@@ -116,29 +116,49 @@
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 18,
-    "translation": "to give, to give out",
+    "translation": "to give",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "0e3",
+          "sense": "662",
           "examples": [
-            3
+            0
+          ]
+        },
+        {
+          "sense": "6627",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "76f",
+          "examples": [
+            5
+          ]
+        },
+        {
+          "sense": "791",
+          "examples": [
+            2
+          ]
+        },
+        {
+          "sense": "9e4",
+          "examples": [
+            4
           ]
         },
         {
           "sense": "dc6",
           "examples": [
-            1,
-            2,
             6
           ]
         },
         {
-          "sense": "eac",
+          "sense": "fa0",
           "examples": [
-            0,
-            4,
-            5
+            3
           ]
         }
       ]
@@ -200,11 +220,11 @@
     "base_verb": "llevar",
     "lemma": "llevar",
     "corpus_count": 1,
-    "translation": "to take, to carry, to take away, to take out",
+    "translation": "to take",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "490",
+          "sense": "301",
           "examples": [
             0
           ]
@@ -225,13 +245,13 @@
   },
   "428ab6": {
     "base_verb": "subir",
-    "lemma": "subirme",
+    "lemma": "subir",
     "corpus_count": 1,
-    "translation": "to go up or come up",
+    "translation": "to go up",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "dcd",
+          "sense": "134",
           "examples": [
             0
           ]
@@ -254,11 +274,11 @@
     "base_verb": "olvidar",
     "lemma": "olvidar",
     "corpus_count": 1,
-    "translation": "to leave behind, to forget",
+    "translation": "to forget",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "f4d",
+          "sense": "f40",
           "examples": [
             0
           ]
@@ -279,13 +299,13 @@
   },
   "40d54d": {
     "base_verb": "mandar",
-    "lemma": "mandándote",
+    "lemma": "mandar",
     "corpus_count": 1,
-    "translation": "to send",
+    "translation": "to order",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "2e0",
+          "sense": "4a0",
           "examples": [
             0
           ]
@@ -306,13 +326,13 @@
   },
   "6e5249": {
     "base_verb": "perrear",
-    "lemma": "perrearme",
+    "lemma": "perrear",
     "corpus_count": 2,
-    "translation": "to deceive",
+    "translation": "to twerk",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "79c",
+          "sense": "880",
           "examples": [
             0
           ]
@@ -337,7 +357,7 @@
     "corpus_count": 1,
     "translation": "to be",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "654",
           "examples": [
@@ -360,13 +380,13 @@
   },
   "280820": {
     "base_verb": "ir",
-    "lemma": "vele",
+    "lemma": "velar",
     "corpus_count": 1,
-    "translation": "to see, to check, to spot",
+    "translation": "to keep vigil over",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "e29",
+          "sense": "2fb",
           "examples": [
             0
           ]
@@ -389,11 +409,11 @@
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 1,
-    "translation": "to leave, to keep",
+    "translation": "to leave",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b3e",
+          "sense": "419",
           "examples": [
             0
           ]
@@ -414,13 +434,13 @@
   },
   "76034c": {
     "base_verb": "hacer",
-    "lemma": "haciéndote",
+    "lemma": "hacer",
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "dc4",
+          "sense": "bf6",
           "examples": [
             0
           ]
@@ -443,11 +463,11 @@
     "base_verb": "sentir",
     "lemma": "sentir",
     "corpus_count": 2,
-    "translation": "to regret, feel or be sorry, to feel",
+    "translation": "to feel",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "210",
+          "sense": "acf",
           "examples": [
             0
           ]
@@ -468,13 +488,13 @@
   },
   "1181bf": {
     "base_verb": "dejar",
-    "lemma": "dejar",
+    "lemma": "déjale",
     "corpus_count": 2,
-    "translation": "to leave, to keep",
+    "translation": "let him",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fe4",
+          "sense": "eff",
           "examples": [
             0
           ]
@@ -495,13 +515,13 @@
   },
   "f76fc9": {
     "base_verb": "comer",
-    "lemma": "comernos",
+    "lemma": "comer",
     "corpus_count": 1,
-    "translation": "to eat away, corrode, to eat",
+    "translation": "to eat",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "764",
+          "sense": "d41",
           "examples": [
             0
           ]
@@ -526,16 +546,11 @@
     "corpus_count": 6,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "03d",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "bf6",
-          "examples": [
+            0,
             1
           ]
         }
@@ -566,7 +581,7 @@
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "bf6",
           "examples": [
@@ -593,7 +608,7 @@
     "corpus_count": 6,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "03d",
           "examples": [
@@ -624,13 +639,13 @@
   },
   "a49c83": {
     "base_verb": "decir",
-    "lemma": "decir",
+    "lemma": "dime",
     "corpus_count": 69,
-    "translation": "to be said, to say, to tell",
+    "translation": "tell me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6b5",
+          "sense": "9ba",
           "examples": [
             0,
             1,
@@ -722,13 +737,13 @@
   },
   "1f8b77": {
     "base_verb": "dejar",
-    "lemma": "dejar",
+    "lemma": "déjanos",
     "corpus_count": 4,
-    "translation": "to leave, to keep",
+    "translation": "leave us",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fe4",
+          "sense": "f1d",
           "examples": [
             0
           ]
@@ -753,7 +768,7 @@
     "corpus_count": 1,
     "translation": "to teach",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "039",
           "examples": [
@@ -778,7 +793,7 @@
     "base_verb": "preguntar",
     "lemma": "preguntándole",
     "corpus_count": 1,
-    "translation": "to ask",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -794,13 +809,13 @@
   },
   "3a981c": {
     "base_verb": "hablar",
-    "lemma": "háblale",
+    "lemma": "habla",
     "corpus_count": 2,
-    "translation": "to talk; to speak; to communicate using words",
+    "translation": "speech",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "d2c",
+          "sense": "a1b",
           "examples": [
             0
           ]
@@ -821,13 +836,13 @@
   },
   "eb476b": {
     "base_verb": "dejar",
-    "lemma": "dejar",
+    "lemma": "déjalo",
     "corpus_count": 7,
-    "translation": "to leave, to keep",
+    "translation": "let him",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fe4",
+          "sense": "648",
           "examples": [
             0,
             1,
@@ -872,19 +887,19 @@
   },
   "e7f0b4": {
     "base_verb": "chingar",
-    "lemma": "chingarte",
+    "lemma": "chingar",
     "corpus_count": 3,
-    "translation": "to bother, to fuck with",
+    "translation": "to fuck with",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "71c",
+          "sense": "176",
           "examples": [
             1
           ]
         },
         {
-          "sense": "b41",
+          "sense": "5d2",
           "examples": [
             0
           ]
@@ -914,11 +929,11 @@
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 1,
-    "translation": "to leave, to keep",
+    "translation": "to leave",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "f47",
+          "sense": "419",
           "examples": [
             0
           ]
@@ -939,21 +954,21 @@
   },
   "ad9c07": {
     "base_verb": "pegar",
-    "lemma": "pégate",
+    "lemma": "pegar",
     "corpus_count": 2,
-    "translation": "to stick",
+    "translation": "to hit",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "4cb",
+          "sense": "4aa",
           "examples": [
-            0
+            1
           ]
         },
         {
-          "sense": "91d",
+          "sense": "f89",
           "examples": [
-            1
+            0
           ]
         }
       ]
@@ -981,25 +996,50 @@
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 18,
-    "translation": "to give, to give out",
+    "translation": "to give",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
+        {
+          "sense": "662",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "6627",
+          "examples": [
+            1
+          ]
+        },
+        {
+          "sense": "76f",
+          "examples": [
+            5
+          ]
+        },
+        {
+          "sense": "791",
+          "examples": [
+            2
+          ]
+        },
+        {
+          "sense": "9e4",
+          "examples": [
+            4
+          ]
+        },
         {
           "sense": "dc6",
           "examples": [
-            2,
             6,
             7
           ]
         },
         {
-          "sense": "eac",
+          "sense": "fa0",
           "examples": [
-            0,
-            1,
-            3,
-            4,
-            5
+            3
           ]
         }
       ]
@@ -1067,9 +1107,9 @@
   },
   "67465b": {
     "base_verb": "pensar",
-    "lemma": "pensarte",
+    "lemma": "pensar",
     "corpus_count": 3,
-    "translation": "to reflect, think through, to think, ponder, to think of, think that",
+    "translation": "to think",
     "assignments": {},
     "examples": [
       {
@@ -1085,13 +1125,13 @@
   },
   "8c1826": {
     "base_verb": "poner",
-    "lemma": "poner",
+    "lemma": "pon",
     "corpus_count": 1,
-    "translation": "to put, to put up, to place",
+    "translation": "ride",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "11a",
+          "sense": "d04",
           "examples": [
             0
           ]
@@ -1114,17 +1154,8 @@
     "base_verb": "poner",
     "lemma": "póntela",
     "corpus_count": 1,
-    "translation": "to put, to put up, to place",
-    "assignments": {
-      "flash-lite-wiktionary": [
-        {
-          "sense": "83a",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "",
+    "assignments": {},
     "examples": [
       {
         "song": "8406201",
@@ -1143,7 +1174,7 @@
     "corpus_count": 2,
     "translation": "to ask",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "a37",
           "examples": [
@@ -1166,13 +1197,13 @@
   },
   "0c7f0d": {
     "base_verb": "amar",
-    "lemma": "amarte",
+    "lemma": "amar",
     "corpus_count": 1,
-    "translation": "to love, have great affection for, care about",
+    "translation": "to love",
     "assignments": {
-      "wiktionary-auto": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "d2b",
+          "sense": "dd2",
           "examples": [
             0
           ]
@@ -1195,14 +1226,19 @@
     "base_verb": "pegar",
     "lemma": "pegar",
     "corpus_count": 3,
-    "translation": "to stick",
+    "translation": "to hit",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "018",
+          "sense": "4aa",
           "examples": [
-            0,
             1
+          ]
+        },
+        {
+          "sense": "dc6",
+          "examples": [
+            0
           ]
         }
       ]
@@ -1228,13 +1264,13 @@
   },
   "923d05": {
     "base_verb": "aguantar",
-    "lemma": "aguantarme",
+    "lemma": "aguantar",
     "corpus_count": 1,
-    "translation": "to hold, withhold, hold back",
+    "translation": "to bear",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "245",
+          "sense": "ca0",
           "examples": [
             0
           ]
@@ -1255,13 +1291,13 @@
   },
   "152722": {
     "base_verb": "ir",
-    "lemma": "ir",
+    "lemma": "vetar",
     "corpus_count": 1,
-    "translation": "to go",
+    "translation": "to veto",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "3e7",
+          "sense": "b19",
           "examples": [
             0
           ]
@@ -1282,13 +1318,13 @@
   },
   "7f3040": {
     "base_verb": "venir",
-    "lemma": "vente",
+    "lemma": "venir",
     "corpus_count": 3,
-    "translation": "to blow",
+    "translation": "to come",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "edb",
+          "sense": "420",
           "examples": [
             0,
             1
@@ -1319,7 +1355,7 @@
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 4,
-    "translation": "to be said, to say, to tell",
+    "translation": "to say",
     "assignments": {},
     "examples": [
       {
@@ -1349,19 +1385,19 @@
   },
   "c976a8": {
     "base_verb": "dejar",
-    "lemma": "dejar",
+    "lemma": "déjalo",
     "corpus_count": 4,
-    "translation": "to leave, to keep",
+    "translation": "let him",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b3e",
+          "sense": "648",
           "examples": [
             0
           ]
         },
         {
-          "sense": "fe4",
+          "sense": "934",
           "examples": [
             1
           ]
@@ -1389,13 +1425,13 @@
   },
   "b4c2d7": {
     "base_verb": "grabar",
-    "lemma": "grabarme",
+    "lemma": "grabar",
     "corpus_count": 1,
     "translation": "to record",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "ce7",
+          "sense": "ad8",
           "examples": [
             0
           ]
@@ -1416,13 +1452,13 @@
   },
   "1f93ba": {
     "base_verb": "bajar",
-    "lemma": "bájalo",
+    "lemma": "bajar",
     "corpus_count": 3,
-    "translation": "to go down, come down",
+    "translation": "to go down",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6bb",
+          "sense": "95d",
           "examples": [
             0
           ]
@@ -1443,13 +1479,13 @@
   },
   "2dde35": {
     "base_verb": "preguntar",
-    "lemma": "preguntar",
+    "lemma": "pregunta",
     "corpus_count": 1,
-    "translation": "to ask",
+    "translation": "question",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "a37",
+          "sense": "f30",
           "examples": [
             0
           ]
@@ -1470,13 +1506,13 @@
   },
   "ffb89e": {
     "base_verb": "joder",
-    "lemma": "joderme",
+    "lemma": "joder",
     "corpus_count": 4,
-    "translation": "to annoy, bug, bother",
+    "translation": "to fuck",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "059",
+          "sense": "24f",
           "examples": [
             0
           ]
@@ -1501,7 +1537,7 @@
     "corpus_count": 1,
     "translation": "to teach",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "039",
           "examples": [
@@ -1526,11 +1562,11 @@
     "base_verb": "poner",
     "lemma": "poner",
     "corpus_count": 1,
-    "translation": "to put, to put up, to place",
+    "translation": "to put",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "11a",
+          "sense": "4bc",
           "examples": [
             0
           ]
@@ -1551,13 +1587,13 @@
   },
   "c3bac5": {
     "base_verb": "mover",
-    "lemma": "moverlo",
+    "lemma": "mover",
     "corpus_count": 2,
-    "translation": "to move to, to cause to, to move",
+    "translation": "to move",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "9f7",
+          "sense": "e93",
           "examples": [
             0
           ]
@@ -1578,13 +1614,13 @@
   },
   "871f52": {
     "base_verb": "comer",
-    "lemma": "comiéndose",
+    "lemma": "comer",
     "corpus_count": 3,
-    "translation": "to eat away, corrode, to eat",
+    "translation": "to eat",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "3f2",
+          "sense": "d41",
           "examples": [
             0
           ]
@@ -1609,7 +1645,7 @@
     "corpus_count": 2,
     "translation": "to kiss",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "7e1",
           "examples": [
@@ -1644,7 +1680,7 @@
     "corpus_count": 1,
     "translation": "candle",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "5d0",
           "examples": [
@@ -1669,17 +1705,11 @@
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 24,
-    "translation": "to see, to check, to spot",
+    "translation": "to see",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "5cb",
-          "examples": [
-            1
-          ]
-        },
-        {
-          "sense": "c3b",
+          "sense": "74d",
           "examples": [
             0,
             2,
@@ -1688,13 +1718,14 @@
             5,
             6,
             7,
-            8
+            8,
+            9
           ]
         },
         {
-          "sense": "ea9",
+          "sense": "7bb",
           "examples": [
-            9
+            1
           ]
         }
       ]
@@ -1775,13 +1806,13 @@
   },
   "7a6b0d": {
     "base_verb": "pensar",
-    "lemma": "pensándote",
+    "lemma": "pensar",
     "corpus_count": 1,
-    "translation": "to reflect, think through, to think, ponder, to think of, think that",
+    "translation": "to think",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "cf2",
+          "sense": "357",
           "examples": [
             0
           ]
@@ -1802,13 +1833,13 @@
   },
   "4854bc": {
     "base_verb": "bajar",
-    "lemma": "bajarte",
+    "lemma": "bajar",
     "corpus_count": 1,
-    "translation": "to go down, come down",
+    "translation": "to go down",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "f46",
+          "sense": "c20",
           "examples": [
             0
           ]
@@ -1831,11 +1862,11 @@
     "base_verb": "pegar",
     "lemma": "pegar",
     "corpus_count": 6,
-    "translation": "to stick",
+    "translation": "to hit",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "018",
+          "sense": "4aa",
           "examples": [
             0,
             1,
@@ -1880,20 +1911,15 @@
   },
   "4fb161": {
     "base_verb": "comer",
-    "lemma": "comiéndote",
+    "lemma": "comer",
     "corpus_count": 3,
-    "translation": "to eat away, corrode, to eat",
+    "translation": "to eat",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "505",
+          "sense": "d41",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "77d",
-          "examples": [
+            0,
             1
           ]
         }
@@ -1924,7 +1950,7 @@
     "corpus_count": 1,
     "translation": "to ask",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "a37",
           "examples": [
@@ -1949,11 +1975,11 @@
     "base_verb": "subir",
     "lemma": "subir",
     "corpus_count": 1,
-    "translation": "to go up or come up",
+    "translation": "to go up",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "134",
+          "sense": "2a6",
           "examples": [
             0
           ]
@@ -1974,13 +2000,13 @@
   },
   "cc1fb6": {
     "base_verb": "mirar",
-    "lemma": "mirar",
+    "lemma": "mírame",
     "corpus_count": 2,
-    "translation": "used for emphasis; look, to look at, to seek, look for",
+    "translation": "look at me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "ca4",
+          "sense": "fb5",
           "examples": [
             0
           ]
@@ -2003,11 +2029,11 @@
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 3,
-    "translation": "to see, to check, to spot",
+    "translation": "to see",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "c3b",
+          "sense": "74d",
           "examples": [
             1,
             2
@@ -2049,13 +2075,13 @@
   },
   "a2d772": {
     "base_verb": "decir",
-    "lemma": "decir",
+    "lemma": "decirme",
     "corpus_count": 1,
-    "translation": "to be said, to say, to tell",
+    "translation": "to tell me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6b5",
+          "sense": "cbb",
           "examples": [
             0
           ]
@@ -2076,13 +2102,13 @@
   },
   "fc4f85": {
     "base_verb": "beber",
-    "lemma": "bebernos",
+    "lemma": "beber",
     "corpus_count": 4,
     "translation": "to drink",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "c38",
+          "sense": "bbf",
           "examples": [
             0
           ]
@@ -2103,13 +2129,13 @@
   },
   "c34b26": {
     "base_verb": "cambiar",
-    "lemma": "cámbiame",
+    "lemma": "cambiar",
     "corpus_count": 1,
-    "translation": "to switch, to switch up, to change, to shift",
+    "translation": "to change",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b34",
+          "sense": "a8c",
           "examples": [
             0
           ]
@@ -2131,11 +2157,11 @@
     "base_verb": "llevar",
     "lemma": "llevar",
     "corpus_count": 1,
-    "translation": "to take, to carry, to take away, to take out",
+    "translation": "to take",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "490",
+          "sense": "301",
           "examples": [
             0
           ]
@@ -2160,18 +2186,18 @@
     "corpus_count": 4,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "03d",
           "examples": [
-            1,
-            2
+            0,
+            1
           ]
         },
         {
-          "sense": "bf6",
+          "sense": "642",
           "examples": [
-            0
+            2
           ]
         }
       ]
@@ -2204,25 +2230,25 @@
   },
   "c890f6": {
     "base_verb": "dejar",
-    "lemma": "dejar",
+    "lemma": "déjame",
     "corpus_count": 6,
-    "translation": "to leave, to keep",
+    "translation": "let me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b3e",
-          "examples": [
-            3
-          ]
-        },
-        {
-          "sense": "fe4",
+          "sense": "994",
           "examples": [
             0,
             1,
             2,
             4,
             5
+          ]
+        },
+        {
+          "sense": "f85",
+          "examples": [
+            3
           ]
         }
       ]
@@ -2278,11 +2304,11 @@
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 1,
-    "translation": "to leave, to keep",
+    "translation": "to leave",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b3e",
+          "sense": "419",
           "examples": [
             0
           ]
@@ -2303,13 +2329,13 @@
   },
   "1c4feb": {
     "base_verb": "llevar",
-    "lemma": "llevar",
+    "lemma": "llévame",
     "corpus_count": 2,
-    "translation": "to take, to carry, to take away, to take out",
+    "translation": "take me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "490",
+          "sense": "f1c",
           "examples": [
             0
           ]
@@ -2330,13 +2356,13 @@
   },
   "78b583": {
     "base_verb": "hacer",
-    "lemma": "hacer",
+    "lemma": "hacerlo",
     "corpus_count": 3,
-    "translation": "to do",
+    "translation": "to do it",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "03d",
+          "sense": "43a",
           "examples": [
             0,
             1
@@ -2367,11 +2393,11 @@
     "base_verb": "apagar",
     "lemma": "apagar",
     "corpus_count": 4,
-    "translation": "to extinguish (a flame, fire), to douse",
+    "translation": "to turn off",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6e9",
+          "sense": "1c7",
           "examples": [
             0
           ]
@@ -2394,11 +2420,11 @@
     "base_verb": "buscar",
     "lemma": "buscar",
     "corpus_count": 1,
-    "translation": "to seek, search for, look for, to look up",
+    "translation": "to look for",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6d8",
+          "sense": "3f2",
           "examples": [
             0
           ]
@@ -2421,11 +2447,11 @@
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 1,
-    "translation": "to be said, to say, to tell",
+    "translation": "to say",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6b5",
+          "sense": "c70",
           "examples": [
             0
           ]
@@ -2446,13 +2472,13 @@
   },
   "30b9e1": {
     "base_verb": "pasar",
-    "lemma": "pasar",
+    "lemma": "pasarse",
     "corpus_count": 7,
-    "translation": "to pass, to hand, to slip",
+    "translation": "to pass",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "220",
+          "sense": "bf8",
           "examples": [
             0,
             1
@@ -2483,17 +2509,8 @@
     "base_verb": "dar",
     "lemma": "dártelo",
     "corpus_count": 1,
-    "translation": "to give, to give out",
-    "assignments": {
-      "flash-lite-wiktionary": [
-        {
-          "sense": "e26",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "",
+    "assignments": {},
     "examples": [
       {
         "song": "8621461",
@@ -2508,23 +2525,18 @@
   },
   "206dca": {
     "base_verb": "ver",
-    "lemma": "ver",
+    "lemma": "verme",
     "corpus_count": 8,
-    "translation": "to see, to check, to spot",
+    "translation": "intestinal worm",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "c3b",
-          "examples": [
-            2,
-            3
-          ]
-        },
-        {
-          "sense": "f2a",
+          "sense": "d11",
           "examples": [
             0,
             1,
+            2,
+            3,
             4
           ]
         }
@@ -2573,11 +2585,11 @@
     "base_verb": "mover",
     "lemma": "mover",
     "corpus_count": 1,
-    "translation": "to move to, to cause to, to move",
+    "translation": "to move",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "002",
+          "sense": "e93",
           "examples": [
             0
           ]
@@ -2602,7 +2614,7 @@
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "03d",
           "examples": [
@@ -2627,11 +2639,11 @@
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 4,
-    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+    "translation": "to have",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "2d9",
+          "sense": "9b6",
           "examples": [
             0
           ]
@@ -2652,13 +2664,13 @@
   },
   "558c14": {
     "base_verb": "coger",
-    "lemma": "cógelo",
+    "lemma": "cómelo",
     "corpus_count": 2,
-    "translation": "to take, catch, hold",
+    "translation": "eat it",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "519",
+          "sense": "f23",
           "examples": [
             0
           ]
@@ -2681,11 +2693,11 @@
     "base_verb": "llevar",
     "lemma": "llevar",
     "corpus_count": 5,
-    "translation": "to take, to carry, to take away, to take out",
+    "translation": "to take",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "490",
+          "sense": "301",
           "examples": [
             0,
             1,
@@ -2722,13 +2734,13 @@
   },
   "28b48e": {
     "base_verb": "chingar",
-    "lemma": "chingarnos",
+    "lemma": "chingar",
     "corpus_count": 2,
-    "translation": "to bother, to fuck with",
+    "translation": "to fuck with",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "87b",
+          "sense": "176",
           "examples": [
             0
           ]
@@ -2749,13 +2761,13 @@
   },
   "423f17": {
     "base_verb": "poner",
-    "lemma": "poner",
+    "lemma": "pon",
     "corpus_count": 1,
-    "translation": "to put, to put up, to place",
+    "translation": "ride",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "11a",
+          "sense": "d04",
           "examples": [
             0
           ]
@@ -2777,11 +2789,11 @@
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 6,
-    "translation": "to see, to check, to spot",
+    "translation": "to see",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "c3b",
+          "sense": "74d",
           "examples": [
             0,
             1,
@@ -2833,20 +2845,15 @@
   },
   "3d37aa": {
     "base_verb": "poner",
-    "lemma": "poner",
+    "lemma": "ponme",
     "corpus_count": 2,
-    "translation": "to put, to put up, to place",
+    "translation": "I'll have",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "11a",
+          "sense": "182",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "872",
-          "examples": [
+            0,
             1
           ]
         }
@@ -2872,13 +2879,13 @@
   },
   "231721": {
     "base_verb": "jugar",
-    "lemma": "jugarme",
+    "lemma": "jugar",
     "corpus_count": 1,
     "translation": "to play",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "134",
+          "sense": "c27",
           "examples": [
             0
           ]
@@ -2899,13 +2906,13 @@
   },
   "7fe1ac": {
     "base_verb": "decir",
-    "lemma": "decir",
+    "lemma": "di",
     "corpus_count": 8,
-    "translation": "to be said, to say, to tell",
+    "translation": "say",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "6b5",
+          "sense": "12a",
           "examples": [
             0,
             1,
@@ -2974,9 +2981,9 @@
   },
   "c7389e": {
     "base_verb": "buscar",
-    "lemma": "buscándome",
+    "lemma": "buscar",
     "corpus_count": 1,
-    "translation": "to seek, search for, look for, to look up",
+    "translation": "to look for",
     "assignments": {},
     "examples": [
       {
@@ -2992,13 +2999,13 @@
   },
   "6e7ba7": {
     "base_verb": "caer",
-    "lemma": "caerle",
+    "lemma": "caer",
     "corpus_count": 4,
-    "translation": "to come here",
+    "translation": "to fall",
     "assignments": {
-      "wiktionary-auto": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "2ad",
+          "sense": "6e9",
           "examples": [
             0
           ]
@@ -3019,13 +3026,13 @@
   },
   "a7ee96": {
     "base_verb": "ver",
-    "lemma": "véame",
+    "lemma": "ver",
     "corpus_count": 1,
-    "translation": "to see, to check, to spot",
+    "translation": "to see",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "c98",
+          "sense": "74d",
           "examples": [
             0
           ]
@@ -3047,7 +3054,7 @@
     "base_verb": "poner",
     "lemma": "poner",
     "corpus_count": 7,
-    "translation": "to put, to put up, to place",
+    "translation": "to put",
     "assignments": {},
     "examples": [
       {
@@ -3085,14 +3092,19 @@
     "base_verb": "poner",
     "lemma": "poner",
     "corpus_count": 2,
-    "translation": "to put, to put up, to place",
+    "translation": "to put",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "11a",
+          "sense": "0f5",
           "examples": [
-            0,
             1
+          ]
+        },
+        {
+          "sense": "4bc",
+          "examples": [
+            0
           ]
         }
       ]
@@ -3120,11 +3132,11 @@
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 2,
-    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+    "translation": "to have",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "2d9",
+          "sense": "9b6",
           "examples": [
             0,
             1
@@ -3153,13 +3165,13 @@
   },
   "7fbc69": {
     "base_verb": "decir",
-    "lemma": "decir",
+    "lemma": "dímelo",
     "corpus_count": 8,
-    "translation": "to be said, to say, to tell",
+    "translation": "say so",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6b5",
+          "sense": "a56",
           "examples": [
             0,
             1,
@@ -3212,13 +3224,13 @@
   },
   "04960a": {
     "base_verb": "besar",
-    "lemma": "besar",
+    "lemma": "bésame",
     "corpus_count": 8,
-    "translation": "to kiss",
+    "translation": "kiss me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "7e1",
+          "sense": "a0a",
           "examples": [
             0
           ]
@@ -3239,13 +3251,13 @@
   },
   "e1bec8": {
     "base_verb": "comer",
-    "lemma": "comerte",
+    "lemma": "comer",
     "corpus_count": 7,
-    "translation": "to eat away, corrode, to eat",
+    "translation": "to eat",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "997",
+          "sense": "d41",
           "examples": [
             0,
             1,
@@ -3290,22 +3302,17 @@
   },
   "e9e3f7": {
     "base_verb": "dar",
-    "lemma": "dar",
+    "lemma": "dándole",
     "corpus_count": 4,
-    "translation": "to give, to give out",
+    "translation": "giving him",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "eac",
+          "sense": "278",
           "examples": [
             0,
             1,
-            2
-          ]
-        },
-        {
-          "sense": "f3c",
-          "examples": [
+            2,
             3
           ]
         }
@@ -3346,13 +3353,13 @@
   },
   "2e6e19": {
     "base_verb": "medir",
-    "lemma": "medirte",
+    "lemma": "medir",
     "corpus_count": 1,
     "translation": "to measure",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "ab4",
+          "sense": "c76",
           "examples": [
             0
           ]
@@ -3375,11 +3382,11 @@
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 5,
-    "translation": "to have; to possess; to be (a condition or quality), to have; to possess",
+    "translation": "to have",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "2d9",
+          "sense": "9b6",
           "examples": [
             0,
             1
@@ -3410,11 +3417,11 @@
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 2,
-    "translation": "to leave, to keep",
+    "translation": "to leave",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fe4",
+          "sense": "11e",
           "examples": [
             0
           ]
@@ -3435,21 +3442,16 @@
   },
   "1f2757": {
     "base_verb": "ir",
-    "lemma": "ir",
+    "lemma": "vámonos",
     "corpus_count": 4,
-    "translation": "to go",
+    "translation": "let's go",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-auto": [
         {
-          "sense": "3e7",
-          "examples": [
-            1
-          ]
-        },
-        {
-          "sense": "960",
+          "sense": "ade",
           "examples": [
             0,
+            1,
             2
           ]
         }
@@ -3483,13 +3485,13 @@
   },
   "d34868": {
     "base_verb": "hacer",
-    "lemma": "haciéndome",
+    "lemma": "hacer",
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "180",
+          "sense": "ecc",
           "examples": [
             0
           ]
@@ -3512,11 +3514,11 @@
     "base_verb": "poner",
     "lemma": "poner",
     "corpus_count": 1,
-    "translation": "to put, to put up, to place",
+    "translation": "to put",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "11a",
+          "sense": "4bc",
           "examples": [
             0
           ]
@@ -3537,13 +3539,13 @@
   },
   "550f62": {
     "base_verb": "hablar",
-    "lemma": "hablar",
+    "lemma": "háblame",
     "corpus_count": 2,
-    "translation": "to talk; to speak; to communicate using words",
+    "translation": "tell me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "c3f",
+          "sense": "ec6",
           "examples": [
             0
           ]
@@ -3564,22 +3566,22 @@
   },
   "834324": {
     "base_verb": "hacer",
-    "lemma": "hacer",
+    "lemma": "hacerte",
     "corpus_count": 4,
-    "translation": "to do",
+    "translation": "to make for yourself",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "03d",
+          "sense": "bf6bd0",
           "examples": [
-            0,
-            2
+            1
           ]
         },
         {
-          "sense": "bf6",
+          "sense": "fe1",
           "examples": [
-            1
+            0,
+            2
           ]
         }
       ]
@@ -3612,13 +3614,13 @@
   },
   "d69365": {
     "base_verb": "perrear",
-    "lemma": "perreándote",
+    "lemma": "perrear",
     "corpus_count": 1,
-    "translation": "to deceive",
+    "translation": "to twerk",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "936",
+          "sense": "880",
           "examples": [
             0
           ]
@@ -3639,13 +3641,13 @@
   },
   "7d4be0": {
     "base_verb": "caer",
-    "lemma": "caerme",
+    "lemma": "caer",
     "corpus_count": 1,
-    "translation": "to fall into, to fall for; to be ensnared by, to fall, to fall down, to collapse, to fall out",
+    "translation": "to fall",
     "assignments": {
-      "wiktionary-auto": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "479",
+          "sense": "6e9",
           "examples": [
             0
           ]
@@ -3668,11 +3670,11 @@
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 1,
-    "translation": "to see, to check, to spot",
+    "translation": "to see",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "c3b",
+          "sense": "74d",
           "examples": [
             0
           ]
@@ -3695,20 +3697,20 @@
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 3,
-    "translation": "to give, to give out",
+    "translation": "to give",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "0e3",
-          "examples": [
-            1
-          ]
-        },
-        {
-          "sense": "eac",
+          "sense": "662",
           "examples": [
             0,
             2
+          ]
+        },
+        {
+          "sense": "6bf",
+          "examples": [
+            1
           ]
         }
       ]
@@ -3741,13 +3743,13 @@
   },
   "d178d7": {
     "base_verb": "esconder",
-    "lemma": "esconderlo",
+    "lemma": "esconder",
     "corpus_count": 3,
     "translation": "to hide",
     "assignments": {
-      "wiktionary-auto": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "401",
+          "sense": "60d",
           "examples": [
             0
           ]
@@ -3768,13 +3770,13 @@
   },
   "c6fa05": {
     "base_verb": "llamar",
-    "lemma": "llamar",
+    "lemma": "llámame",
     "corpus_count": 4,
-    "translation": "to refer to, to call, to summon",
+    "translation": "call me",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "751",
+          "sense": "f10",
           "examples": [
             0
           ]
@@ -3797,11 +3799,11 @@
     "base_verb": "pasar",
     "lemma": "pasar",
     "corpus_count": 3,
-    "translation": "to pass, to hand, to slip",
+    "translation": "to pass",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "d39",
+          "sense": "0f1",
           "examples": [
             0,
             1,
@@ -3838,13 +3840,13 @@
   },
   "8f61b7": {
     "base_verb": "mandar",
-    "lemma": "mandarte",
+    "lemma": "mandar",
     "corpus_count": 1,
-    "translation": "to send",
+    "translation": "to order",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "67c",
+          "sense": "4a0",
           "examples": [
             0
           ]
@@ -3867,20 +3869,15 @@
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 4,
-    "translation": "to leave, to keep",
+    "translation": "to leave",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "f47",
-          "examples": [
-            2
-          ]
-        },
-        {
-          "sense": "fe4",
+          "sense": "419",
           "examples": [
             0,
-            1
+            1,
+            2
           ]
         }
       ]
@@ -3912,13 +3909,13 @@
   },
   "827275": {
     "base_verb": "subir",
-    "lemma": "súbeme",
+    "lemma": "subir",
     "corpus_count": 3,
-    "translation": "to go up or come up",
+    "translation": "to go up",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "85b",
+          "sense": "134",
           "examples": [
             0
           ]
@@ -3943,7 +3940,7 @@
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
           "sense": "03d",
           "examples": [
@@ -3966,13 +3963,13 @@
   },
   "5a7145": {
     "base_verb": "prender",
-    "lemma": "prenderla",
+    "lemma": "prender",
     "corpus_count": 1,
-    "translation": "to catch, to arrest",
+    "translation": "to light",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "b82",
+          "sense": "3c6",
           "examples": [
             0
           ]
@@ -3995,13 +3992,18 @@
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 5,
-    "translation": "to see, to check, to spot",
+    "translation": "to see",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "f2a",
+          "sense": "3d6",
           "examples": [
-            0,
+            0
+          ]
+        },
+        {
+          "sense": "74db369",
+          "examples": [
             1
           ]
         }
@@ -4027,13 +4029,13 @@
   },
   "91c3e0": {
     "base_verb": "hacer",
-    "lemma": "hágale",
+    "lemma": "hacer",
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "da1",
+          "sense": "03d",
           "examples": [
             0
           ]
@@ -4056,11 +4058,11 @@
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 2,
-    "translation": "to be said, to say, to tell",
+    "translation": "to say",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "6b5",
+          "sense": "375",
           "examples": [
             0,
             1
@@ -4088,13 +4090,13 @@
   },
   "d509f3": {
     "base_verb": "dejar",
-    "lemma": "dejar",
+    "lemma": "déjalo",
     "corpus_count": 1,
-    "translation": "to leave, to keep",
+    "translation": "let him",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "fe4",
+          "sense": "c39",
           "examples": [
             0
           ]
@@ -4115,13 +4117,13 @@
   },
   "adbdd8": {
     "base_verb": "compartir",
-    "lemma": "compartirme",
+    "lemma": "compartir",
     "corpus_count": 1,
     "translation": "to share",
     "assignments": {
-      "flash-lite-wiktionary": [
+      "spanishdict-flash-lite": [
         {
-          "sense": "49c",
+          "sense": "a40",
           "examples": [
             0
           ]

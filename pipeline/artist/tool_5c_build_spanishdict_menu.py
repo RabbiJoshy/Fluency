@@ -1,215 +1,24 @@
 #!/usr/bin/env python3
-"""Build a parallel SpanishDict sense menu for an artist.
-
-Writes only:
-  - sense_menu_spanishdict.json
-
-This script does extraction only. It does not classify examples or write
-assignments. That is handled by tool_6b_assign_spanishdict_senses.py.
-"""
+"""Build an artist SpanishDict menu from the shared SpanishDict cache."""
 
 import argparse
-import concurrent.futures
-import json
-import re
-from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
-from urllib.parse import quote
+import sys
 
-import requests
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from util_1a_artist_config import add_artist_arg, load_artist_config, artist_sense_menu_path
 from util_5c_sense_menu_format import flatten_analyses_with_ids, normalize_artist_sense_menu
-
-_POS_MAP = {
-    "noun": "NOUN",
-    "plural noun": "NOUN",
-    "proper noun": "PROPN",
-    "verb": "VERB",
-    "adjective": "ADJ",
-    "adverb": "ADV",
-    "pronoun": "PRON",
-    "determiner": "DET",
-    "article": "DET",
-    "definite article": "DET",
-    "indefinite article": "DET",
-    "interjection": "INTJ",
-    "preposition": "ADP",
-    "conjunction": "CCONJ",
-    "coordinating conjunction": "CCONJ",
-    "subordinating conjunction": "CCONJ",
-    "number": "NUM",
-    "numeral": "NUM",
-    "particle": "PART",
-    "contraction": "CONTRACTION",
-    "phrase": "PHRASE",
-}
-
-
-def normalize_pos(part):
-    part = (part or "").strip().lower()
-    if part in _POS_MAP:
-        return _POS_MAP[part]
-    if "noun" in part:
-        return "NOUN"
-    if "verb" in part:
-        return "VERB"
-    if "adjective" in part:
-        return "ADJ"
-    if "adverb" in part:
-        return "ADV"
-    if "pronoun" in part:
-        return "PRON"
-    if "article" in part:
-        return "DET"
-    if "determiner" in part:
-        return "DET"
-    if "interjection" in part:
-        return "INTJ"
-    if "preposition" in part:
-        return "ADP"
-    if "conjunction" in part:
-        return "CCONJ"
-    if "proper noun" in part:
-        return "PROPN"
-    if "number" in part or "numeral" in part:
-        return "NUM"
-    if "particle" in part:
-        return "PART"
-    if "contraction" in part:
-        return "CONTRACTION"
-    return "X"
-
-
-def extract_component_data(html):
-    match = re.search(r"SD_COMPONENT_DATA\s*=\s*(\{.*?\});", html, re.S)
-    if not match:
-        raise ValueError("Cannot find SD_COMPONENT_DATA in SpanishDict HTML")
-    return json.loads(match.group(1))
-
-
-def fetch_spanishdict_component(session, word):
-    url = "https://www.spanishdict.com/translate/%s" % quote(word)
-    response = session.get(url, timeout=20)
-    response.raise_for_status()
-    return extract_component_data(response.text)
-
-
-def build_session():
-    session = requests.Session()
-    session.headers.update({
-        "User-Agent": "Fluency SpanishDict menu research/1.0",
-        "Accept-Language": "en-US,en;q=0.9",
-    })
-    return session
-
-
-def extract_translation_rows(component):
-    props = component.get("sdDictionaryResultsProps") or {}
-    entry = props.get("entry") or {}
-    neodict = entry.get("neodict") or []
-    entry_lang = props.get("entryLang") or entry.get("entryLang") or "es"
-
-    rows = []
-    for nd in neodict:
-        for pos_group in nd.get("posGroups") or []:
-            for sense in pos_group.get("senses") or []:
-                part = ((sense.get("partOfSpeech") or {}).get("nameEn")) or ""
-                for translation in sense.get("translations") or []:
-                    examples = []
-                    for example in translation.get("examples") or []:
-                        if entry_lang == "es":
-                            examples.append({
-                                "original": example.get("textEs", ""),
-                                "translated": example.get("textEn", ""),
-                            })
-                        else:
-                            examples.append({
-                                "original": example.get("textEn", ""),
-                                "translated": example.get("textEs", ""),
-                            })
-                    rows.append({
-                        "word": (sense.get("subheadword") or "").strip() or "",
-                        "translation": (translation.get("translation") or "").strip(),
-                        "part": part,
-                        "context": (sense.get("context") or "").strip(),
-                        "regions": [
-                            region.get("nameEn", "")
-                            for region in (sense.get("regions") or []) + (translation.get("regions") or [])
-                            if region.get("nameEn")
-                        ],
-                        "examples": examples,
-                    })
-    return rows, component.get("dictionaryPossibleResults") or []
-
-
-def infer_analysis_order(surface, analyses, possible_results):
-    order_hint = []
-    seen = set()
-    for item in possible_results:
-        lemma = (item.get("wordSource") or item.get("result") or "").strip()
-        if lemma and lemma not in seen:
-            seen.add(lemma)
-            order_hint.append(lemma)
-    if surface not in seen:
-        order_hint.insert(0, surface)
-
-    rank = {lemma: i for i, lemma in enumerate(order_hint)}
-    return sorted(
-        analyses,
-        key=lambda a: (
-            rank.get(a.get("lemma", ""), 10 ** 6),
-            a.get("lemma", "") != surface,
-            -len(a.get("senses", [])),
-            a.get("lemma", ""),
-        ),
-    )
-
-
-def build_analyses(surface, rows, possible_results):
-    grouped = defaultdict(list)
-    seen = defaultdict(set)
-
-    for row in rows:
-        headword = row.get("word") or surface
-        sense = {
-            "pos": normalize_pos(row.get("part")),
-            "translation": row.get("translation") or "",
-            "source": "spanishdict",
-            "headword": headword,
-        }
-        if row.get("context"):
-            sense["context"] = row["context"]
-        if row.get("examples"):
-            sense["examples"] = deepcopy(row["examples"][:2])
-        if row.get("regions"):
-            sense["regions"] = list(dict.fromkeys(row["regions"]))
-
-        key = (sense["pos"], sense["translation"])
-        if key in seen[headword]:
-            continue
-        seen[headword].add(key)
-        grouped[headword].append(sense)
-
-    analyses = [
-        {"headword": headword, "senses": senses}
-        for headword, senses in grouped.items()
-        if senses
-    ]
-    return infer_analysis_order(surface, analyses, possible_results)
-
-
-def load_json(path, default):
-    if path.exists():
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return default
-
-
-def save_menu(path, menu):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(menu, f, ensure_ascii=False, indent=2)
+from pipeline.util_5c_spanishdict import (
+    SPANISHDICT_HEADWORD_CACHE,
+    SPANISHDICT_REDIRECTS,
+    SPANISHDICT_SURFACE_CACHE,
+    SPANISHDICT_STATUS,
+    load_json,
+)
 
 
 def load_excluded_words(artist_dir):
@@ -224,33 +33,85 @@ def load_excluded_words(artist_dir):
     return skipped
 
 
-def fetch_word_analyses(word):
-    session = build_session()
-    component = fetch_spanishdict_component(session, word)
-    rows, possible_results = extract_translation_rows(component)
-    analyses = build_analyses(word, rows, possible_results)
-    if not analyses:
-        raise ValueError("No SpanishDict senses extracted")
-    _, _, normalized_analyses = flatten_analyses_with_ids(analyses)
-    return word, normalized_analyses
+def normalize_cached_analyses(analyses):
+    out = []
+    for analysis in analyses or []:
+        senses = analysis.get("senses") or []
+        if isinstance(senses, dict):
+            senses = list(senses.values())
+        out.append({
+            "headword": analysis.get("headword"),
+            "senses": [deepcopy(s) for s in senses if isinstance(s, dict)],
+        })
+    return out
+
+
+def analysis_signature(analysis):
+    senses = analysis.get("senses") or []
+    if isinstance(senses, dict):
+        senses = senses.values()
+    normalized = []
+    for sense in senses:
+        normalized.append((
+            sense.get("pos", ""),
+            sense.get("translation", ""),
+            sense.get("context", ""),
+        ))
+    normalized.sort()
+    return (
+        analysis.get("headword"),
+        tuple(normalized),
+    )
+
+
+def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True):
+    surface_entry = surface_cache.get(surface) or {}
+    analyses = normalize_cached_analyses(surface_entry.get("dictionary_analyses") or [])
+    seen_headwords = {a.get("headword") for a in analyses if a.get("headword")}
+    seen_signatures = {analysis_signature(a) for a in analyses}
+
+    if include_redirects:
+        for result in surface_entry.get("possible_results") or []:
+            headword = (result.get("headword") or "").strip()
+            if not headword or headword in seen_headwords:
+                continue
+            headword_entry = headword_cache.get(headword) or {}
+            headword_analyses = normalize_cached_analyses(headword_entry.get("dictionary_analyses") or [])
+            for analysis in headword_analyses:
+                if not analysis.get("headword"):
+                    analysis["headword"] = headword
+                analysis["surface_relation"] = result.get("heuristic", "")
+                analysis["surface_from"] = surface
+                sig = analysis_signature(analysis)
+                if sig in seen_signatures:
+                    continue
+                analyses.append(analysis)
+                seen_headwords.add(analysis.get("headword"))
+                seen_signatures.add(sig)
+    return analyses
+
+
+def artist_cache_state(artist_dir):
+    status = load_json(SPANISHDICT_STATUS, {"artists": {}})
+    artist_key = str(Path(artist_dir).resolve())
+    return (status.get("artists") or {}).get(artist_key) or {}
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Build parallel SpanishDict menu for an artist")
+    parser = argparse.ArgumentParser(description="Build artist SpanishDict menu from shared cache")
     add_artist_arg(parser)
     parser.add_argument("--force", action="store_true",
-                        help="Rebuild words even if they already exist in the menu")
+                        help="Rebuild words even if already present in the artist menu")
     parser.add_argument("--word", action="append", default=[],
                         help="Only process a specific surface word (repeatable)")
     parser.add_argument("--max-words", type=int, default=None,
                         help="Only process the first N eligible words")
-    parser.add_argument("--workers", type=int, default=8,
-                        help="Concurrent SpanishDict requests (default: 8)")
     parser.add_argument("--include-excluded", action="store_true",
                         help="Include step-4 excluded words instead of skipping them")
-    parser.add_argument("--save-every", type=int, default=100,
-                        help="Write partial progress every N completed fetches (default: 100)")
+    parser.add_argument("--no-redirects", action="store_true",
+                        help="Only use the direct surface-page dictionary analyses")
+    parser.add_argument("--allow-incomplete-cache", action="store_true",
+                        help="Allow building from a partial shared SpanishDict cache instead of requiring a completed artist scrape")
     args = parser.parse_args()
 
     artist_dir = Path(args.artist_dir).resolve()
@@ -260,11 +121,15 @@ def main():
 
     inventory = load_json(layers_dir / "word_inventory.json", [])
     existing_menu = normalize_artist_sense_menu(load_json(menu_path, {}))
+    surface_cache = load_json(SPANISHDICT_SURFACE_CACHE, {})
+    headword_cache = load_json(SPANISHDICT_HEADWORD_CACHE, {})
+    redirects = load_json(SPANISHDICT_REDIRECTS, {})
     excluded_words = set() if args.include_excluded else load_excluded_words(artist_dir)
 
     requested_words = set(args.word or [])
     words = []
     skipped_excluded = 0
+    skipped_uncached = 0
     for entry in inventory:
         word = (entry.get("word") or "").strip()
         if not word:
@@ -281,48 +146,63 @@ def main():
     if args.max_words is not None:
         words = words[:args.max_words]
 
-    print("SpanishDict menu builder")
+    is_full_build = not requested_words and args.max_words is None
+    cache_state = artist_cache_state(artist_dir)
+    if is_full_build and not args.allow_incomplete_cache:
+        if cache_state.get("status") != "complete":
+            print("ERROR: SpanishDict cache is not complete for this artist.")
+            print("Run the shared cache phase first:")
+            print("  .venv/bin/python3 %s --artist-dir \"%s\"" % (
+                PROJECT_ROOT / "pipeline" / "tool_5c_build_spanishdict_cache.py",
+                artist_dir,
+            ))
+            raise SystemExit(1)
+
+    words_with_cache = []
+    for word in words:
+        if word not in surface_cache:
+            skipped_uncached += 1
+            continue
+        words_with_cache.append(word)
+    words = words_with_cache
+
+    print("SpanishDict artist menu builder")
     print("Artist: %s" % config.get("name", artist_dir.name))
     print("Eligible words: %d" % len(words))
     if skipped_excluded:
         print("Skipped excluded words: %d" % skipped_excluded)
-    print("Workers: %d" % max(1, args.workers))
-    print("Save every: %d" % max(1, args.save_every))
+    if skipped_uncached:
+        print("Skipped uncached words: %d" % skipped_uncached)
+    print("Surface cache: %d words" % len(surface_cache))
+    print("Headword cache: %d words" % len(headword_cache))
+    print("Redirect entries: %d" % len(redirects))
+    if cache_state:
+        print("Cache state: %s" % cache_state.get("status", "unknown"))
     print("Output: %s" % menu_path)
 
-    if not words:
-        print("Nothing to do.")
-        return
-
     built = 0
-    failed = 0
-    processed = 0
-    worker_count = max(1, args.workers)
-    save_every = max(1, args.save_every)
-    future_to_index = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=worker_count) as executor:
-        for index, word in enumerate(words, start=1):
-            future_to_index[executor.submit(fetch_word_analyses, word)] = (index, word)
+    empty = 0
+    for word in words:
+        analyses = build_menu_analyses(
+            word,
+            surface_cache,
+            headword_cache,
+            include_redirects=not args.no_redirects,
+        )
+        if not analyses:
+            empty += 1
+            continue
+        _, _, normalized_analyses = flatten_analyses_with_ids(analyses)
+        existing_menu[word] = normalized_analyses
+        built += 1
 
-        for future in concurrent.futures.as_completed(future_to_index):
-            index, word = future_to_index[future]
-            try:
-                resolved_word, normalized_analyses = future.result()
-                existing_menu[resolved_word] = normalized_analyses
-                built += 1
-            except Exception as exc:
-                failed += 1
-                print("  [%d/%d] %s failed: %s" % (index, len(words), word, exc))
-            processed += 1
-            if processed % save_every == 0:
-                save_menu(menu_path, existing_menu)
-                print("  Saved partial progress at %d/%d" % (processed, len(words)))
-
-    save_menu(menu_path, existing_menu)
+    with open(menu_path, "w", encoding="utf-8") as f:
+        import json
+        json.dump(existing_menu, f, ensure_ascii=False, indent=2)
 
     print("\nDone.")
     print("Built/updated words: %d" % built)
-    print("Failed words: %d" % failed)
+    print("Empty words: %d" % empty)
     print("Total menu words: %d" % len(existing_menu))
 
 

@@ -68,7 +68,7 @@ WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_m
 WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 
 MIN_SENSE_FREQUENCY = 0.05
-MAX_EXAMPLES_PER_WORD = 3
+MAX_EXAMPLES_PER_WORD = 10
 # Multilingual model: 84% bilingual, 72% Spanish-only (handles both)
 CLASSIFY_MODEL = "paraphrase-multilingual-mpnet-base-v2"
 
@@ -394,7 +394,7 @@ def main():
         # Load eswiktionary dialect senses (appended to menu)
         eswikt_index = {}
         import pickle as _pickle
-        eswikt_cache = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz.eswikt_dialect.cache.pkl"
+        eswikt_cache = PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-eswiktionary-raw.jsonl.gz.eswikt_dialect.cache.pkl"
         if eswikt_cache.exists():
             with open(eswikt_cache, "rb") as f:
                 _, eswikt_index = _pickle.load(f)

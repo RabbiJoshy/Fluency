@@ -15,6 +15,7 @@ import os
 import sys
 import time
 import base64
+import argparse
 import urllib.request
 import urllib.parse
 import urllib.error
@@ -113,18 +114,27 @@ def collect_songs(artist_dir, artist_name):
 # ---------- main ----------
 
 def main():
+    parser = argparse.ArgumentParser(description="Look up Spotify track IDs for artist vocabulary songs")
+    parser.add_argument("--artist", action="append", default=[],
+                        help="Only process a specific artist by folder name (repeatable)")
+    args = parser.parse_args()
+
     artists_dir = ROOT / "Artists"
     # Find artist folders (have a vocabulary.examples.json)
     artist_folders = []
     for d in sorted(artists_dir.iterdir()):
         if d.is_dir() and not d.name.startswith(".") and d.name not in ("scripts", "shared", "tools", "__pycache__"):
             artist_folders.append(d)
+    requested = {a.strip() for a in (args.artist or []) if a and a.strip()}
+    if requested:
+        artist_folders = [d for d in artist_folders if d.name in requested]
 
     token = get_access_token()
     print("Authenticated with Spotify\n")
 
     # Also build a combined file for the front-end
-    combined = {}
+    combined_path = ROOT / "Artists" / "spotify_tracks.json"
+    combined = json.load(open(combined_path)) if combined_path.exists() else {}
 
     for artist_dir in artist_folders:
         artist_name = artist_dir.name
@@ -133,10 +143,14 @@ def main():
             continue
 
         print(f"{artist_name}: {len(songs)} songs")
-        results = {}
+        out_path = artist_dir / "data" / "spotify_tracks.json"
+        results = json.load(open(out_path)) if out_path.exists() else {}
         missed = []
 
         for i, song_name in enumerate(sorted(songs)):
+            if song_name in results:
+                print(f"  [{i+1}/{len(songs)}] SKIP: {song_name}")
+                continue
             track_id, track_url = search_track(token, song_name, artist_name)
             if track_id:
                 results[song_name] = track_id
@@ -145,14 +159,14 @@ def main():
                 missed.append(song_name)
                 status = "MISS"
             print(f"  [{i+1}/{len(songs)}] {status}: {song_name}")
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(out_path, "w", encoding="utf-8") as f:
+                json.dump(results, f, indent=2, ensure_ascii=False)
             time.sleep(0.1)  # rate limiting
 
-        # Write per-artist file
-        out_path = artist_dir / "data" / "spotify_tracks.json"
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        json.dump(results, open(out_path, "w"), indent=2, ensure_ascii=False)
-
         combined[artist_name] = results
+        with open(combined_path, "w", encoding="utf-8") as f:
+            json.dump(combined, f, indent=2, ensure_ascii=False)
 
         hit_rate = len(results) / len(songs) * 100 if songs else 0
         print(f"  -> {len(results)}/{len(songs)} matched ({hit_rate:.0f}%)")
@@ -162,8 +176,6 @@ def main():
             print()
 
     # Write combined file for front-end
-    combined_path = ROOT / "Artists" / "spotify_tracks.json"
-    json.dump(combined, open(combined_path, "w"), indent=2, ensure_ascii=False)
     print(f"\nCombined file: {combined_path}")
     total = sum(len(v) for v in combined.values())
     print(f"Total tracks matched: {total}")

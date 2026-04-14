@@ -37,7 +37,7 @@ from bench_gapfill import (load_eswiktionary, build_combined_senses,
 
 GROUND_TRUTH_FILE = Path(__file__).resolve().parent / ".wsd_ground_truth.json"
 VOCAB_FILE = PROJECT_ROOT / "Artists/Bad Bunny/BadBunnyvocabulary.json"
-WIKT_FILE = PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz"
+WIKT_FILE = PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz"
 
 
 # ---------------------------------------------------------------------------

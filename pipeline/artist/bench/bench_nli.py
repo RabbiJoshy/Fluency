@@ -81,7 +81,7 @@ def main():
     else:
         print("Loading Wiktionary (first run — caching senses for next time)...")
         wikt_index, redirects = load_wiktionary(
-            PROJECT_ROOT / "Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz")
+            PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz")
         word_senses = {}
         for word in TEST_WORDS:
             e = entry_by_word.get(word)
