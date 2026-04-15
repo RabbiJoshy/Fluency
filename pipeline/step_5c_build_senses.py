@@ -16,16 +16,29 @@ Inputs:
     Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz   — Wiktionary extract
 
 Output:
-    Data/Spanish/sense_menu.json  — {word|lemma: [{pos, translation}, ...]}
+    Data/Spanish/layers/sense_menu.json  — {word: [{headword, senses: {id: {pos, translation}}}]}
 """
 
 import gzip
 import json
+import os
 import re
 import sys
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
+
+# Import shared sense menu utilities
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "artist"))
+from util_5c_sense_menu_format import assign_analysis_sense_ids, flatten_analyses_with_ids
+
+# SpanishDict imports (shared caches at pipeline level, menu builder in artist/)
+from util_5c_spanishdict import (SPANISHDICT_SURFACE_CACHE,
+                                 SPANISHDICT_HEADWORD_CACHE, load_json)
+from tool_5c_build_spanishdict_menu import build_menu_analyses
+
+# Per-source path helpers
+from util_5c_sense_paths import sense_menu_path
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -35,7 +48,7 @@ INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
 CONJ_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugations.json"
-OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
+LAYERS_DIR = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 
 # ---------------------------------------------------------------------------
 # POS mapping: Wiktionary pos -> project UPOS-style tags
@@ -718,19 +731,97 @@ def _deprioritize_letter_senses(senses: list) -> list:
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
-def main():
-    if not WIKT_FILE.exists():
-        print(f"ERROR: Wiktionary file not found: {WIKT_FILE}")
-        print("Download it with:")
-        print('  curl -L -o Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz \\')
-        print('    "https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz"')
+def build_spanishdict_menu(vocab, output_file):
+    """Build sense menu from SpanishDict shared caches."""
+    surface_cache = load_json(SPANISHDICT_SURFACE_CACHE, {})
+    headword_cache = load_json(SPANISHDICT_HEADWORD_CACHE, {})
+    print(f"  SpanishDict surface cache: {len(surface_cache)} entries")
+    print(f"  SpanishDict headword cache: {len(headword_cache)} entries")
+
+    if not surface_cache:
+        print("ERROR: SpanishDict surface cache is empty or missing.")
+        print(f"  Expected at: {SPANISHDICT_SURFACE_CACHE}")
         sys.exit(1)
+
+    output = {}
+    matched = 0
+    unmatched = 0
+    total_senses = 0
+    multi_analysis = 0
+
+    for entry in vocab:
+        word = entry["word"]
+        analyses = build_menu_analyses(word, surface_cache, headword_cache)
+        if not analyses:
+            unmatched += 1
+            continue
+
+        _, _, normalized = flatten_analyses_with_ids(analyses)
+        output[word] = normalized
+        matched += 1
+        n_senses = sum(len(a.get("senses", {})) for a in normalized)
+        total_senses += n_senses
+        if len(normalized) >= 2:
+            multi_analysis += 1
+
+    # Write output
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    print(f"\nWriting {output_file}...")
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    # Report
+    total = len(vocab)
+    print(f"\n{'='*55}")
+    print("SPANISHDICT SENSE MENU RESULTS")
+    print(f"{'='*55}")
+    print(f"Total vocabulary:    {total:>6}")
+    print(f"Matched:             {matched:>6}  ({100*matched/total:.1f}%)")
+    print(f"Unmatched:           {unmatched:>6}  ({100*unmatched/total:.1f}%)")
+    print(f"With 2+ analyses:    {multi_analysis:>6}  (homographs)")
+    print(f"Total senses:        {total_senses:>6}")
+    print()
+
+    # Sample output
+    print("Sample entries:")
+    sample_words = ["banco", "tomar", "hacer", "tiempo", "como", "de"]
+    for word in sample_words:
+        if word in output:
+            analyses = output[word]
+            n = sum(len(a.get("senses", {})) for a in analyses)
+            print(f"\n  {word} ({n} senses, {len(analyses)} analyses):")
+            for a in analyses:
+                print(f"    [{a.get('headword', '?')}]")
+                for sid, s in (a.get("senses", {})).items():
+                    print(f"      {s.get('pos', '?'):>8}  {s.get('translation', '')}")
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Build sense menu from Wiktionary or SpanishDict")
+    parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
+                        default="wiktionary",
+                        help="Sense dictionary source (default: wiktionary)")
+    args = parser.parse_args()
 
     # Load word inventory
     print("Loading word inventory...")
     with open(INVENTORY_FILE, encoding="utf-8") as f:
         vocab = json.load(f)
     print(f"  {len(vocab)} entries")
+
+    if args.sense_source == "spanishdict":
+        print("\nBuilding sense menu from SpanishDict...")
+        output_file = sense_menu_path(LAYERS_DIR, "spanishdict")
+        build_spanishdict_menu(vocab, output_file)
+        return
+
+    if not WIKT_FILE.exists():
+        print(f"ERROR: Wiktionary file not found: {WIKT_FILE}")
+        print("Download it with:")
+        print('  curl -L -o Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz \\')
+        print('    "https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz"')
+        sys.exit(1)
 
     # Load Wiktionary
     wikt_index, redirects = load_wiktionary(WIKT_FILE)
@@ -760,13 +851,14 @@ def main():
         print(f"  {len(conj_known_verbs)} known verb infinitives")
         print(f"  {len(conj_translations)} with Jehle translations")
 
-    # Look up senses for each vocab word
+    # Look up senses for each surface word, grouped by analysis (lemma)
     print("\nLooking up senses (with cleaning + merging)...")
     output = {}
     stats = {
         "matched": 0,
         "unmatched": 0,
         "multi_sense": 0,
+        "multi_analysis": 0,
         "sense_counts": defaultdict(int),
         "total_raw": 0,
         "total_after_clean": 0,
@@ -777,119 +869,130 @@ def main():
     }
     unmatched_words = []
 
+    def clean_sense_list(senses, word, lemma):
+        """Run the full cleaning pipeline on a raw sense list for one lemma."""
+        stats["total_raw"] += len(senses)
+
+        # Step 1: Clean translations (preserve raw as detail if changed)
+        for s in senses:
+            raw = s["translation"]
+            s["translation"] = clean_translation(raw)
+            if s["translation"] != raw:
+                s["detail"] = raw
+
+        # Step 1b: Filter descriptive/encyclopedic senses
+        before_desc = len(senses)
+        senses_before_filter = list(senses)
+        senses = [s for s in senses
+                   if not _DESCRIPTIVE_SENSE_RE.match(s["translation"])]
+        if not senses:
+            senses = senses_before_filter[:1]
+        stats["descriptive_filtered"] += before_desc - len(senses)
+
+        # Step 2: Exact dedup
+        seen = set()
+        deduped = []
+        for s in senses:
+            dedup_key = (s["pos"], s["translation"].lower())
+            if dedup_key not in seen:
+                seen.add(dedup_key)
+                deduped.append(s)
+        senses = deduped
+        stats["total_after_clean"] += len(senses)
+
+        # Step 3: Merge near-duplicate senses
+        senses = merge_similar_senses(senses)
+
+        # Step 4: Deprioritize letter-name NOUN senses
+        senses = _deprioritize_letter_senses(senses)
+
+        # Step 5: Conjugation-based POS filtering (per-lemma)
+        if conj_reverse:
+            word_lower = word.lower()
+            reverse_entries = conj_reverse.get(word_lower, [])
+            is_confirmed_verb = any(
+                e["lemma"] == lemma.lower() for e in reverse_entries
+            )
+            if not is_confirmed_verb and word_lower == lemma.lower():
+                is_confirmed_verb = word_lower in conj_known_verbs
+
+            if is_confirmed_verb:
+                verb_senses = [s for s in senses if s["pos"] == "VERB"]
+                if verb_senses:
+                    non_verb_count = len(senses) - len(verb_senses)
+                    if non_verb_count > 0:
+                        stats["verb_filtered"] += 1
+                    senses = verb_senses
+
+        # Step 6: Cross-POS dedup
+        seen_trans = set()
+        cross_deduped = []
+        for s in senses:
+            norm = s["translation"].lower().strip().split("(")[0].strip()
+            if norm in seen_trans:
+                continue
+            seen_trans.add(norm)
+            cross_deduped.append(s)
+        senses = cross_deduped
+
+        # Step 7: Total sense cap
+        if len(senses) > MAX_SENSES_TOTAL:
+            senses = senses[:MAX_SENSES_TOTAL]
+
+        return senses
+
     for entry in vocab:
         word = entry["word"]
-        lemma = entry.get("lemma", word)
-        key = f"{word}|{lemma}"
+        known_lemmas = entry.get("known_lemmas", [word])
 
-        senses = lookup_senses(word, lemma, wikt_index, redirects)
+        # Build analyses: one per known lemma
+        analyses = []
+        used_ids = set()
+        word_matched = False
 
-        if senses:
-            stats["total_raw"] += len(senses)
+        for lemma in known_lemmas:
+            senses = lookup_senses(word, lemma, wikt_index, redirects)
 
-            # Step 1: Clean translations (preserve raw as detail if changed)
-            for s in senses:
-                raw = s["translation"]
-                s["translation"] = clean_translation(raw)
-                if s["translation"] != raw:
-                    s["detail"] = raw
-
-            # Step 1b: Filter descriptive/encyclopedic senses
-            before_desc = len(senses)
-            senses_before_filter = list(senses)
-            senses = [s for s in senses
-                       if not _DESCRIPTIVE_SENSE_RE.match(s["translation"])]
             if not senses:
-                # Don't remove ALL senses — keep first original
-                senses = senses_before_filter[:1]
-            stats["descriptive_filtered"] += before_desc - len(senses)
+                # Jehle translation fallback for verb lemmas
+                if conj_translations:
+                    lemma_lower = lemma.lower()
+                    if lemma_lower in conj_translations:
+                        senses = [{"pos": "VERB", "translation": conj_translations[lemma_lower], "source": "jehle"}]
+                        stats["jehle_fallback"] += 1
 
-            # Step 2: Exact dedup (cleaning may collapse previously-distinct glosses)
-            seen = set()
-            deduped = []
-            for s in senses:
-                dedup_key = (s["pos"], s["translation"].lower())
-                if dedup_key not in seen:
-                    seen.add(dedup_key)
-                    deduped.append(s)
-            senses = deduped
-            stats["total_after_clean"] += len(senses)
+            if not senses:
+                continue
 
-            # Step 3: Merge near-duplicate senses
-            senses = merge_similar_senses(senses)
+            senses = clean_sense_list(senses, word, lemma)
+            if not senses:
+                continue
 
-            # Step 4: Deprioritize letter-name / meta-linguistic NOUN senses
-            # e.g. NOUN "The name of the Latin script letter D/d." should rank
-            # below ADP "of" for the word "de"
-            senses = _deprioritize_letter_senses(senses)
+            # Assign stable sense IDs for this analysis
+            id_map = assign_analysis_sense_ids(lemma, senses, used_ids=used_ids)
+            used_ids.update(id_map.keys())
+            analyses.append({"headword": lemma, "senses": id_map})
+            word_matched = True
 
-            # Step 5: Conjugation-based POS filtering
-            # If conjugation data confirms this is a verb entry (word is a
-            # conjugated form of lemma), remove non-VERB senses entirely.
-            # e.g. como|comer should only have VERB senses, not CCONJ/ADV/ADP
-            # from "como" the conjunction.
-            if conj_reverse:
-                word_lower = word.lower()
-                reverse_entries = conj_reverse.get(word_lower, [])
-                is_confirmed_verb = any(
-                    e["lemma"] == lemma.lower() for e in reverse_entries
-                )
-                # Also confirm if word == lemma and lemma is a known infinitive
-                if not is_confirmed_verb and word_lower == lemma.lower():
-                    is_confirmed_verb = word_lower in conj_known_verbs
-
-                if is_confirmed_verb:
-                    verb_senses = [s for s in senses if s["pos"] == "VERB"]
-                    if verb_senses:
-                        non_verb_count = len(senses) - len(verb_senses)
-                        if non_verb_count > 0:
-                            stats["verb_filtered"] += 1
-                        senses = verb_senses
-
-            # Step 6: Cross-POS dedup — if the same translation appears under
-            # multiple POS (e.g. "as" as ADV, CCONJ, ADP), keep only the first.
-            # Fewer senses = better embedding classification accuracy.
-            seen_trans = set()
-            cross_deduped = []
-            for s in senses:
-                norm = s["translation"].lower().strip().split("(")[0].strip()
-                if norm in seen_trans:
-                    continue
-                seen_trans.add(norm)
-                cross_deduped.append(s)
-            senses = cross_deduped
-
-            # Step 7: Total sense cap
-            if len(senses) > MAX_SENSES_TOTAL:
-                senses = senses[:MAX_SENSES_TOTAL]
-
-            stats["total_final"] += len(senses)
-
-            output[key] = senses
+        if analyses:
+            output[word] = analyses
             stats["matched"] += 1
-            n = len(senses)
-            if n >= 2:
+            total_senses = sum(len(a["senses"]) for a in analyses)
+            stats["total_final"] += total_senses
+            if total_senses >= 2:
                 stats["multi_sense"] += 1
-            stats["sense_counts"][min(n, 6)] += 1  # bucket 6+
+            if len(analyses) >= 2:
+                stats["multi_analysis"] += 1
+            stats["sense_counts"][min(total_senses, 6)] += 1
         else:
-            # No Wiktionary senses — try Jehle translation fallback for verbs
-            if conj_translations:
-                lemma_lower = lemma.lower()
-                if lemma_lower in conj_translations:
-                    senses = [{"pos": "VERB", "translation": conj_translations[lemma_lower], "source": "jehle"}]
-                    output[key] = senses
-                    stats["matched"] += 1
-                    stats["jehle_fallback"] += 1
-                    stats["sense_counts"][1] += 1
-                    stats["total_final"] += 1
-                    continue
-
             stats["unmatched"] += 1
-            unmatched_words.append(key)
+            unmatched_words.append(word)
 
     # Write output
-    print(f"\nWriting {OUTPUT_FILE}...")
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    output_file = sense_menu_path(LAYERS_DIR, args.sense_source)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    print(f"\nWriting {output_file}...")
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
     # Report
@@ -902,6 +1005,7 @@ def main():
     print(f"  Jehle fallback:    {stats['jehle_fallback']:>6}")
     print(f"Unmatched:           {stats['unmatched']:>6}  ({100*stats['unmatched']/total:.1f}%)")
     print(f"With 2+ senses:      {stats['multi_sense']:>6}  ({100*stats['multi_sense']/total:.1f}%)")
+    print(f"With 2+ analyses:    {stats['multi_analysis']:>6}  (homographs)")
     print(f"Descriptive filter:  {stats['descriptive_filtered']:>6}  (encyclopedic senses removed)")
     print(f"Verb POS filtered:   {stats['verb_filtered']:>6}  (non-VERB senses removed)")
     print()
@@ -929,16 +1033,17 @@ def main():
     # Show a few polysemous examples
     print()
     print("Sample multi-sense entries:")
-    examples = ["banco|banco", "tomar|tomar", "pasar|pasar", "poder|poder",
-                "rico|rico", "muñeca|muñeca", "hacer|hacer",
-                "tiempo|tiempo", "mejor|mejor", "bien|bien", "de|de",
-                "está|estar", "como|como"]
-    for key in examples:
-        if key in output:
-            senses = output[key]
-            print(f"\n  {key} ({len(senses)} senses):")
-            for s in senses:
-                print(f"    {s['pos']:>8}  {s['translation']}")
+    sample_words = ["banco", "tomar", "pasar", "poder", "rico", "muñeca",
+                    "hacer", "tiempo", "mejor", "bien", "de", "está", "como"]
+    for word in sample_words:
+        if word in output:
+            analyses = output[word]
+            total_n = sum(len(a["senses"]) for a in analyses)
+            print(f"\n  {word} ({total_n} senses, {len(analyses)} analyses):")
+            for a in analyses:
+                print(f"    [{a['headword']}]")
+                for sid, s in a["senses"].items():
+                    print(f"      {s['pos']:>8}  {s['translation']}")
 
 
 if __name__ == "__main__":

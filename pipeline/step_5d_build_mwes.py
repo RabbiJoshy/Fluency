@@ -15,7 +15,7 @@ Inputs:
     Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz
 
 Output:
-    Data/Spanish/layers/mwe_phrases.json
+    Data/Spanish/layers/mwe_phrases.json  — {word: [{expression, translation?, corpus_freq?}]}
 """
 
 import gzip
@@ -62,19 +62,19 @@ def main():
     with open(INVENTORY_FILE, encoding="utf-8") as f:
         inventory = json.load(f)
 
-    word_to_id = {}
+    word_set = set()
     word_to_rank = {}
     for i, entry in enumerate(inventory):
         w = entry["word"].lower()
-        if w not in word_to_id:
-            word_to_id[w] = entry["id"]
+        if w not in word_set:
+            word_set.add(w)
             word_to_rank[w] = i  # inventory is sorted by frequency desc, so index = rank
 
-    print(f"  {len(word_to_id)} unique inventory words")
+    print(f"  {len(word_set)} unique inventory words")
 
     # Scan Wiktionary
     print(f"Scanning {WIKT_FILE}...")
-    mwe_by_word_id = defaultdict(list)
+    mwe_by_word = defaultdict(list)
     # Standalone phrases need reverse-indexing since they have no parent word
     standalone_phrases = []
     # Headword glosses: any multi-word entry's first English gloss (for enrichment)
@@ -116,7 +116,8 @@ def main():
                     stats["standalone"] += 1
 
             # Source 2: Derived terms — attach to parent word
-            parent_id = word_to_id.get(parent_word) or word_to_id.get(strip_accents(parent_word))
+            parent_in_inv = parent_word in word_set or strip_accents(parent_word) in word_set
+            parent_key = parent_word if parent_word in word_set else strip_accents(parent_word)
             derived = item.get("derived", [])
             for d in derived:
                 dword = d.get("word", "").strip()
@@ -129,7 +130,7 @@ def main():
                     continue
 
                 stats["derived"] += 1
-                if not parent_id:
+                if not parent_in_inv:
                     continue
 
                 translation = d.get("english", "") or d.get("translation", "") or ""
@@ -138,9 +139,9 @@ def main():
                     mwe_entry["translation"] = translation
 
                 # Deduplicate on same parent
-                existing = {m["expression"].lower() for m in mwe_by_word_id[parent_id]}
+                existing = {m["expression"].lower() for m in mwe_by_word[parent_key]}
                 if dword.lower() not in existing:
-                    mwe_by_word_id[parent_id].append(mwe_entry)
+                    mwe_by_word[parent_key].append(mwe_entry)
                     stats["derived_attached"] += 1
 
     print(f"  Derived multi-word items: {stats['derived']}")
@@ -159,31 +160,32 @@ def main():
         # Find the best host: least frequent (highest rank) inventory word in the phrase
         tokens = tokenize_phrase(sp["expression"])
         best_rank = -1
-        best_id = None
+        best_word = None
         for t in tokens:
             t_norm = strip_accents(t)
-            wid = word_to_id.get(t) or word_to_id.get(t_norm)
+            in_inv = t in word_set or t_norm in word_set
+            matched_word = t if t in word_set else (t_norm if t_norm in word_set else None)
             rank = word_to_rank.get(t, word_to_rank.get(t_norm, -1))
-            if wid and rank > best_rank:
+            if in_inv and rank > best_rank:
                 best_rank = rank
-                best_id = wid
+                best_word = matched_word
 
-        if not best_id:
+        if not best_word:
             continue
 
-        existing = {m["expression"].lower() for m in mwe_by_word_id[best_id]}
+        existing = {m["expression"].lower() for m in mwe_by_word[best_word]}
         if key not in existing:
             mwe_entry = {"expression": sp["expression"]}
             if sp["translation"]:
                 mwe_entry["translation"] = sp["translation"]
-            mwe_by_word_id[best_id].append(mwe_entry)
+            mwe_by_word[best_word].append(mwe_entry)
             standalone_attached += 1
 
     print(f"    Standalone attached: {standalone_attached}")
 
     # Enrich untranslated MWEs from headword glosses and standalone translations
     enriched = 0
-    for wid, mwes in mwe_by_word_id.items():
+    for parent_w, mwes in mwe_by_word.items():
         for mwe in mwes:
             if not mwe.get("translation"):
                 key = mwe["expression"].lower()
@@ -196,25 +198,16 @@ def main():
     print(f"  Headword glosses available: {len(headword_glosses)}")
 
     # --- Count corpus frequency via Aho-Corasick on OpenSubtitles sample ---
-    total_before = sum(len(v) for v in mwe_by_word_id.values())
+    total_before = sum(len(v) for v in mwe_by_word.values())
     print(f"\nCounting corpus frequency ({OPENSUBS_FILE.name}, 1/{SAMPLE_STRIDE} sample)...")
-    all_expressions = {}  # expression_lower -> list of (wid, idx) pointers
-    for wid, mwes in mwe_by_word_id.items():
+    all_expressions = {}  # expression_lower -> list of (parent_word, idx) pointers
+    for parent_w, mwes in mwe_by_word.items():
         for i, m in enumerate(mwes):
             key = m["expression"].lower()
-            all_expressions.setdefault(key, []).append((wid, i))
-
-    # Build reverse map: word ID -> parent word (for ratio filtering)
-    id_to_word = {}
-    for entry in inventory:
-        id_to_word[entry["id"]] = entry["word"].lower()
+            all_expressions.setdefault(key, []).append((parent_w, i))
 
     # Collect parent words that need counting (only those with MWEs)
-    parent_words = {}  # word_lower -> set of word IDs
-    for wid in mwe_by_word_id:
-        w = id_to_word.get(wid, "")
-        if w:
-            parent_words.setdefault(w, set()).add(wid)
+    parent_words = set(mwe_by_word.keys())
 
     A = ahocorasick.Automaton()
     for expr in all_expressions:
@@ -223,7 +216,7 @@ def main():
 
     expr_counts = {e: 0 for e in all_expressions}
     word_counts = {w: 0 for w in parent_words}
-    parent_word_set = set(parent_words)
+    parent_word_set = parent_words
     t0 = time.time()
     line_count = 0
     with open(OPENSUBS_FILE, "r", encoding="utf-8", errors="replace") as f:
@@ -248,31 +241,30 @@ def main():
     # Attach corpus_freq to each MWE entry
     for expr, pointers in all_expressions.items():
         freq = expr_counts[expr]
-        for wid, idx in pointers:
-            mwe_by_word_id[wid][idx]["corpus_freq"] = freq
+        for parent_w, idx in pointers:
+            mwe_by_word[parent_w][idx]["corpus_freq"] = freq
 
     # --- Filter by frequency ratio (MWE freq / parent word freq) ---
     ratio_removed = 0
-    for wid in list(mwe_by_word_id):
-        w = id_to_word.get(wid, "")
+    for w in list(mwe_by_word):
         wf = word_counts.get(w, 0)
         if wf == 0:
             continue  # can't compute ratio, keep all
         filtered = []
-        for m in mwe_by_word_id[wid]:
+        for m in mwe_by_word[w]:
             mf = m.get("corpus_freq", 0)
             ratio = mf / wf
             if ratio >= MIN_FREQ_RATIO:
                 filtered.append(m)
             else:
                 ratio_removed += 1
-        mwe_by_word_id[wid] = filtered
-        if not mwe_by_word_id[wid]:
-            del mwe_by_word_id[wid]
+        mwe_by_word[w] = filtered
+        if not mwe_by_word[w]:
+            del mwe_by_word[w]
     print(f"  Ratio filter (>={MIN_FREQ_RATIO:.0%} of parent word): removed {ratio_removed}")
 
     # --- Truncate long translations ---
-    for mwes in mwe_by_word_id.values():
+    for mwes in mwe_by_word.values():
         for m in mwes:
             trans = m.get("translation", "")
             if len(trans) > MAX_TRANSLATION_LEN:
@@ -288,25 +280,25 @@ def main():
                 m["translation"] = result
 
     # --- Sort by corpus frequency (descending), cap per word ---
-    for wid in list(mwe_by_word_id):
-        mwe_by_word_id[wid].sort(key=lambda m: -m.get("corpus_freq", 0))
-        mwe_by_word_id[wid] = mwe_by_word_id[wid][:MAX_MWES_PER_WORD]
-        if not mwe_by_word_id[wid]:
-            del mwe_by_word_id[wid]
+    for w in list(mwe_by_word):
+        mwe_by_word[w].sort(key=lambda m: -m.get("corpus_freq", 0))
+        mwe_by_word[w] = mwe_by_word[w][:MAX_MWES_PER_WORD]
+        if not mwe_by_word[w]:
+            del mwe_by_word[w]
 
-    total_after = sum(len(v) for v in mwe_by_word_id.values())
-    print(f"\n  Before filtering: {total_before:,} MWEs across {len(mwe_by_word_id):,} words")
+    total_after = sum(len(v) for v in mwe_by_word.values())
+    print(f"\n  Before filtering: {total_before:,} MWEs across {len(mwe_by_word):,} words")
     print(f"  After cap ({MAX_MWES_PER_WORD}/word): {total_after:,} MWEs")
 
     # Write output
     print(f"\nWriting {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(dict(mwe_by_word_id), f, ensure_ascii=False, indent=2)
+        json.dump(dict(mwe_by_word), f, ensure_ascii=False, indent=2)
 
     # Stats
-    words_with_mwes = len(mwe_by_word_id)
+    words_with_mwes = len(mwe_by_word)
     translated = sum(
-        1 for mwes in mwe_by_word_id.values()
+        1 for mwes in mwe_by_word.values()
         for m in mwes if m.get("translation")
     )
 
@@ -322,9 +314,10 @@ def main():
     print("\nSample entries:")
     sample_words = {"verdad", "mano", "hacer", "dar", "ojo", "cuenta"}
     for entry in inventory:
-        if entry["word"] in sample_words and entry["id"] in mwe_by_word_id:
-            sample_words.discard(entry["word"])
-            mwes = mwe_by_word_id[entry["id"]]
+        w = entry["word"]
+        if w in sample_words and w in mwe_by_word:
+            sample_words.discard(w)
+            mwes = mwe_by_word[w]
             print(f"\n  {entry['word']} ({len(mwes)} MWEs):")
             for m in mwes[:5]:
                 trans = m.get("translation", "(no translation)")

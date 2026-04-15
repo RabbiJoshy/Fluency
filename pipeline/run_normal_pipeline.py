@@ -62,9 +62,9 @@ STEPS = [
 VALID_STEPS = [s["num"] for s in STEPS]
 
 
-def run_step(step, dry_run=False):
+def run_step(step, dry_run=False, extra_args=None):
     script_path = os.path.join(SCRIPTS_DIR, step["script"])
-    cmd = [PYTHON, script_path]
+    cmd = [PYTHON, script_path] + (extra_args or [])
 
     print("\n" + "=" * 60)
     print("Step %d: %s" % (step["num"], step["label"]))
@@ -97,6 +97,9 @@ def main():
                         help="Stop after this step (default: 9)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print commands without running them")
+    parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
+                        default="wiktionary",
+                        help="Sense dictionary source (default: wiktionary)")
     args = parser.parse_args()
 
     steps_to_run = [s for s in STEPS if args.from_step <= s["num"] <= args.to_step]
@@ -125,8 +128,18 @@ def main():
             print("%s Step %d: %-45s  (missing)" % (marker, step["num"], step["output"]))
 
     total_start = time.time()
+    # Steps that accept --sense-source
+    source_aware_scripts = {
+        "step_5c_build_senses.py",
+        "step_6a_assign_senses.py",
+        "step_8a_assemble_vocabulary.py",
+    }
+
     for step in steps_to_run:
-        if not run_step(step, dry_run=args.dry_run):
+        extra = []
+        if step["script"] in source_aware_scripts:
+            extra = ["--sense-source", args.sense_source]
+        if not run_step(step, dry_run=args.dry_run, extra_args=extra):
             print("\nAborting — step %d failed." % step["num"])
             sys.exit(1)
 

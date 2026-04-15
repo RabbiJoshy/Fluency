@@ -1,151 +1,101 @@
 #!/usr/bin/env python3
 """
-step_7a_map_senses_to_lemmas.py — Normalize sense assignments onto word|lemma keys.
+step_7a_map_senses_to_lemmas.py — Split surface-word assignments onto word|lemma keys.
 
-This is a small consolidation step that runs after sense assignment.
-It prefers explicit lemma-aware keys when they already exist, but can also
-recover them from word_inventory.json when assignments are keyed only by
-surface form or legacy hex IDs.
-
-If no reliable lemma is available, it degrades gracefully to word|word.
+Auto-discovers all available sense sources by scanning sense_assignments/.
+For each source, loads the matching sense_menu/{source}.json, splits assignments
+into word|lemma keyed entries, and writes to sense_assignments_lemma/{source}.json.
 
 Inputs:
-    Data/Spanish/layers/word_inventory.json
-    Data/Spanish/layers/sense_menu.json
-    Data/Spanish/layers/sense_assignments.json
+    Data/Spanish/layers/sense_menu/{source}.json
+    Data/Spanish/layers/sense_assignments/{source}.json
 
-Output:
-    Data/Spanish/layers/sense_assignments_lemma.json
+Outputs:
+    Data/Spanish/layers/sense_assignments_lemma/{source}.json
 """
 
 import json
-from collections import defaultdict
+import os
+import sys
 from pathlib import Path
+
+# Import shared split logic
+from util_7a_lemma_split import split_word_assignments, merge_method_maps
+
+# Import sense menu format helper
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "artist"))
+from util_5c_sense_menu_format import normalize_artist_sense_menu
+
+from util_5c_sense_paths import (sense_menu_path, sense_assignments_path,
+                                  sense_assignments_lemma_path, discover_sources)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
-INVENTORY_FILE = LAYERS / "word_inventory.json"
-SENSE_MENU_FILE = LAYERS / "sense_menu.json"
-ASSIGNMENTS_FILE = LAYERS / "sense_assignments.json"
-OUTPUT_FILE = LAYERS / "sense_assignments_lemma.json"
 
 
-def make_key(word, lemma):
-    return f"{word}|{lemma}"
+def process_source(source):
+    """Process one sense source: split surface-word assignments into word|lemma keys."""
+    menu_file = sense_menu_path(LAYERS, source)
+    assignments_file = sense_assignments_path(LAYERS, source)
+    output_file = sense_assignments_lemma_path(LAYERS, source)
 
+    if not menu_file.exists():
+        print(f"  WARNING: sense menu not found for {source}: {menu_file}")
+        return
+    if not assignments_file.exists():
+        print(f"  WARNING: assignments not found for {source}: {assignments_file}")
+        return
 
-def choose_target_key(raw_key, inventory_by_id, candidates_by_word, senses_data):
-    if "|" in raw_key:
-        return raw_key
-
-    if raw_key in inventory_by_id:
-        entry = inventory_by_id[raw_key]
-        return make_key(entry["word"], entry.get("lemma", entry["word"]))
-
-    word = raw_key
-    candidates = candidates_by_word.get(word.lower(), [])
-    if not candidates:
-        fallback = make_key(word, word)
-        return fallback
-
-    exact_surface = [
-        c for c in candidates
-        if c.get("lemma", c["word"]).lower() == c["word"].lower()
-    ]
-    if exact_surface:
-        candidates = exact_surface
-
-    menu_candidates = [
-        c for c in candidates
-        if make_key(c["word"], c.get("lemma", c["word"])) in senses_data
-    ]
-    if menu_candidates:
-        candidates = menu_candidates
-
-    preferred = [
-        c for c in candidates if c.get("most_frequent_lemma_instance")
-    ]
-    if preferred:
-        candidates = preferred
-
-    best = max(candidates, key=lambda c: c.get("corpus_count", 0))
-    return make_key(best["word"], best.get("lemma", best["word"]))
-
-
-def merge_method_items(items):
-    merged = {}
-    order = []
-    for item in items:
-        sense = item.get("sense")
-        if not sense:
-            continue
-        examples = sorted(set(item.get("examples", [])))
-        if sense not in merged:
-            merged[sense] = {"sense": sense, "examples": examples}
-            order.append(sense)
-        else:
-            merged[sense]["examples"] = sorted(
-                set(merged[sense]["examples"]) | set(examples)
-            )
-    return [merged[sense] for sense in order]
-
-
-def merge_assignment_values(existing, incoming):
-    if isinstance(existing, list) and isinstance(incoming, list):
-        return existing + incoming
-
-    if isinstance(existing, dict) and isinstance(incoming, dict):
-        out = {method: list(items) for method, items in existing.items()}
-        for method, items in incoming.items():
-            if method not in out:
-                out[method] = list(items)
-            else:
-                out[method] = merge_method_items(out[method] + list(items))
-        return out
-
-    return incoming
-
-
-def main():
-    with open(INVENTORY_FILE, encoding="utf-8") as f:
-        inventory = json.load(f)
-    with open(SENSE_MENU_FILE, encoding="utf-8") as f:
-        senses_data = json.load(f)
-    with open(ASSIGNMENTS_FILE, encoding="utf-8") as f:
+    with open(menu_file, encoding="utf-8") as f:
+        menu = normalize_artist_sense_menu(json.load(f))
+    with open(assignments_file, encoding="utf-8") as f:
         assignments = json.load(f)
-
-    inventory_by_id = {}
-    candidates_by_word = defaultdict(list)
-    for entry in inventory:
-        inventory_by_id[entry["id"]] = entry
-        candidates_by_word[entry["word"].lower()].append(entry)
 
     remapped = {}
     changed = 0
-    fallback_word_word = 0
+    fallbacks = 0
 
-    for raw_key, value in assignments.items():
-        target_key = choose_target_key(raw_key, inventory_by_id, candidates_by_word, senses_data)
-        if target_key != raw_key:
+    for word, raw_value in assignments.items():
+        analyses = menu.get(word, [])
+        split = split_word_assignments(word, analyses, raw_value)
+
+        if len(split) != 1 or next(iter(split.keys())) != "%s|%s" % (word, word):
             changed += 1
-        word, lemma = target_key.split("|", 1)
-        if word.lower() == lemma.lower() and raw_key not in inventory_by_id and "|" not in raw_key:
-            fallback_word_word += 1
-        if target_key in remapped:
-            remapped[target_key] = merge_assignment_values(remapped[target_key], value)
-        else:
-            remapped[target_key] = value
+        elif analyses and any(
+            (a.get("headword") or "").strip() and a.get("headword") != word
+            for a in analyses
+        ):
+            fallbacks += 1
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        for target_key, value in split.items():
+            if target_key in remapped:
+                remapped[target_key] = merge_method_maps(remapped[target_key], value)
+            else:
+                remapped[target_key] = value
+
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(remapped, f, ensure_ascii=False, indent=2)
 
-    print(f"Wrote {OUTPUT_FILE}")
-    print(f"  input keys: {len(assignments)}")
-    print(f"  output keys: {len(remapped)}")
-    print(f"  remapped keys: {changed}")
-    if fallback_word_word:
-        print(f"  word|word fallbacks: {fallback_word_word}")
+    print(f"  [{source}] {assignments_file.name} -> {output_file}")
+    print(f"    input keys: {len(assignments)}, output keys: {len(remapped)}, "
+          f"remapped: {changed}", end="")
+    if fallbacks:
+        print(f", fallbacks: {fallbacks}")
+    else:
+        print()
+
+
+def main():
+    sources = discover_sources(LAYERS, "sense_assignments")
+    if not sources:
+        print("No sense assignment sources found in %s" % (LAYERS / "sense_assignments"))
+        sys.exit(1)
+
+    print(f"Consolidating {len(sources)} source(s): {', '.join(sources)}")
+    for source in sources:
+        process_source(source)
 
 
 if __name__ == "__main__":

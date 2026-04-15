@@ -16,7 +16,7 @@ Inputs:
     Data/Spanish/spanish_ranks.json
 
 Output:
-    Data/Spanish/layers/examples_raw.json  — {id: [{target, english, source, easiness}]}
+    Data/Spanish/layers/examples_raw.json  — {word: [{target, english, source, easiness}]}
 """
 
 import argparse
@@ -437,7 +437,7 @@ def main():
                 examples.extend(sub_examples)
 
         if examples:
-            output[entry["id"]] = examples
+            output[entry["word"]] = examples
 
         n = len(examples)
         total_examples += n

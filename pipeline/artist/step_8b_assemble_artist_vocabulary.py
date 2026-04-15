@@ -27,6 +27,7 @@ from util_1a_artist_config import (add_artist_arg, load_artist_config, load_shar
                             artist_sense_menu_path, artist_sense_assignments_path,
                             artist_sense_assignments_lemma_path)
 from util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
+from util_8a_assembly_helpers import split_count_proportionally
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 PYTHON = os.path.join(os.path.dirname(os.path.dirname(SCRIPTS_DIR)), ".venv", "bin", "python3")
@@ -70,29 +71,6 @@ def assign_ids_from_master(entries, master):
             used.add(final_id)
             entry["id"] = final_id
 
-
-def split_count_proportionally(total, weights):
-    """Split an integer total across weights using largest remainder."""
-    if not weights:
-        return []
-    if total <= 0:
-        return [0 for _ in weights]
-    weight_sum = sum(weights)
-    if weight_sum <= 0:
-        base = total // len(weights)
-        out = [base] * len(weights)
-        for i in range(total - sum(out)):
-            out[i] += 1
-        return out
-    raw = [total * w / weight_sum for w in weights]
-    floors = [int(x) for x in raw]
-    remainder = total - sum(floors)
-    order = sorted(range(len(weights)),
-                   key=lambda i: (raw[i] - floors[i], weights[i]),
-                   reverse=True)
-    for i in order[:remainder]:
-        floors[i] += 1
-    return floors
 
 
 # ---------------------------------------------------------------------------

@@ -13,7 +13,6 @@ import argparse
 import json
 import os
 import sys
-from copy import deepcopy
 
 from util_1a_artist_config import (
     add_artist_arg,
@@ -22,95 +21,9 @@ from util_1a_artist_config import (
     artist_sense_menu_path,
 )
 from util_5c_sense_menu_format import normalize_artist_sense_menu
-
-
-def normalize_assignment_methods(raw_value):
-    if isinstance(raw_value, dict):
-        return {method: list(items or []) for method, items in raw_value.items()}
-    if isinstance(raw_value, list):
-        return {"legacy": list(raw_value)}
-    return {}
-
-
-def merge_items(existing, incoming):
-    merged = {}
-    order = []
-    for item in list(existing) + list(incoming):
-        sense = item.get("sense")
-        if not sense:
-            continue
-        examples = sorted(set(item.get("examples", [])))
-        if sense not in merged:
-            merged[sense] = {"sense": sense, "examples": examples}
-            order.append(sense)
-        else:
-            merged[sense]["examples"] = sorted(set(merged[sense]["examples"]) | set(examples))
-    return [merged[sense] for sense in order]
-
-
-def merge_method_maps(existing, incoming):
-    out = {method: list(items) for method, items in existing.items()}
-    for method, items in incoming.items():
-        if method not in out:
-            out[method] = list(items)
-        else:
-            out[method] = merge_items(out[method], items)
-    return out
-
-
-def analysis_key(word, analysis):
-    headword = analysis.get("headword")
-    lemma = headword if isinstance(headword, str) and headword.strip() else word
-    return "%s|%s" % (word, lemma)
-
-
-def split_word_assignments(word, analyses, raw_value):
-    methods = normalize_assignment_methods(raw_value)
-    if not methods:
-        return {}
-
-    inline_lemma = None
-    for items in methods.values():
-        for item in items:
-            lemma = item.get("lemma")
-            if isinstance(lemma, str) and lemma.strip():
-                inline_lemma = lemma.strip()
-                break
-        if inline_lemma:
-            break
-
-    if not analyses:
-        fallback_lemma = inline_lemma or word
-        return {"%s|%s" % (word, fallback_lemma): deepcopy(methods)}
-
-    analysis_maps = []
-    for analysis in analyses:
-        sense_map = analysis.get("senses", {})
-        sense_ids = set(sense_map.keys()) if isinstance(sense_map, dict) else set()
-        analysis_maps.append((analysis_key(word, analysis), sense_ids))
-
-    split = {}
-    for target_key, sense_ids in analysis_maps:
-        target_methods = {}
-        for method, items in methods.items():
-            kept = []
-            for item in items:
-                sid = item.get("sense")
-                if sid and sid in sense_ids:
-                    kept.append({
-                        "sense": sid,
-                        "examples": sorted(set(item.get("examples", []))),
-                    })
-            if kept:
-                target_methods[method] = kept
-        if target_methods:
-            split[target_key] = target_methods
-
-    if split:
-        return split
-
-    fallback_key = "%s|%s" % (word, inline_lemma or word)
-    return {fallback_key: deepcopy(methods)}
+from util_7a_lemma_split import (
+    split_word_assignments, merge_method_maps,
+)
 
 
 def main():

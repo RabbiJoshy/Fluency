@@ -23,33 +23,31 @@ Usage:
     python3 pipeline/step_6a_assign_senses.py --limit 1000         # first 1000 words
 
 Inputs:
-    Data/Spanish/layers/word_inventory.json
-    Data/Spanish/layers/examples_raw.json
-    Data/Spanish/layers/sense_menu.json
+    Data/Spanish/layers/word_inventory.json   (surface-word entries, no hex IDs)
+    Data/Spanish/layers/examples_raw.json     (keyed by surface word)
+    Data/Spanish/layers/sense_menu.json       (analysis-based: {word: [{headword, senses: {id: {...}}}]})
 
 Outputs:
-    Data/Spanish/layers/sense_assignments.json
-    Data/Spanish/layers/sense_merges.json (cached, when merge is used)
+    Data/Spanish/layers/sense_assignments.json  (keyed by surface word)
+    Data/Spanish/layers/sense_merges.json       (cached, when merge is used)
 """
 
 import argparse
 import json
 import os
 import re
-import shutil
 import time
 from collections import defaultdict
 from pathlib import Path
 
-from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority,
-                              assign_sense_ids)
+from util_5c_sense_paths import sense_menu_path, sense_assignments_path
+from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
 EXAMPLES_FILE = LAYERS / "examples_raw.json"
-SENSES_FILE = LAYERS / "sense_menu.json"
-OUTPUT_FILE = LAYERS / "sense_assignments.json"
+# SENSES_FILE and OUTPUT_FILE are computed in main() based on --sense-source
 
 MAX_EXAMPLES_PER_MEANING = None  # keep all classified examples; downstream selects best
 MAX_CLASSIFY_EXAMPLES = 20
@@ -108,7 +106,7 @@ def bilingual_text(ex):
 # Gemini classification
 # ---------------------------------------------------------------------------
 
-def classify_with_gemini(work_items, output, english_only=False):
+def classify_with_gemini(work_items, output, english_only=False, method_name="gemini"):
     """Classify examples using Gemini Flash Lite.  Groups examples by word
     (senses listed once per word) and batches multiple words per API call.
     Uses async parallelism for ~10x speedup over sequential calls."""
@@ -267,7 +265,7 @@ def classify_with_gemini(work_items, output, english_only=False):
                     orig_idx = keep_indices[chosen_sense]
                 else:
                     orig_idx = keep_indices[0]
-                results.append((word_id, senses, orig_idx, ei))
+                results.append((key, senses, orig_idx, ei))
                 break
 
         if not results and text:
@@ -346,13 +344,13 @@ def classify_with_gemini(work_items, output, english_only=False):
             assignments.append({
                 "sense_idx": i,
                 "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices,
-                "method": "gemini",
+                "method": method_name,
             })
 
         if not assignments:
             indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING)
                                  if MAX_EXAMPLES_PER_MEANING else len(examples)))
-            assignments = [{"sense_idx": 0, "examples": indices, "method": "gemini"}]
+            assignments = [{"sense_idx": 0, "examples": indices, "method": method_name}]
 
         output[key] = assignments
 
@@ -366,7 +364,7 @@ def classify_with_gemini(work_items, output, english_only=False):
 # Bi-encoder classification
 # ---------------------------------------------------------------------------
 
-def classify_with_biencoder(work_items, output):
+def classify_with_biencoder(work_items, output, method_name="biencoder"):
     """Classify all multi-sense words using bi-encoder cosine similarity.
 
     Embeds all example sentences and sense texts in batch, then assigns each
@@ -465,12 +463,12 @@ def classify_with_biencoder(work_items, output):
             assignments.append({
                 "sense_idx": i,
                 "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices,
-                "method": "biencoder",
+                "method": method_name,
             })
 
         if not assignments:
             indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples)))
-            assignments = [{"sense_idx": 0, "examples": indices, "method": "biencoder"}]
+            assignments = [{"sense_idx": 0, "examples": indices, "method": method_name}]
 
         output[key] = assignments
 
@@ -485,11 +483,11 @@ def classify_with_biencoder(work_items, output):
 MERGE_CACHE_FILE = LAYERS / "sense_merges.json"
 
 
-def _merge_fingerprint():
+def _merge_fingerprint(senses_file):
     """Fingerprint for sense merge cache: senses file + threshold + model."""
     import hashlib
     data = "{}-{}-{}-{}".format(
-        os.path.getsize(SENSES_FILE),
+        os.path.getsize(senses_file),
         SENSE_MERGE_THRESHOLD,
         BIENCODER_MODEL,
         2,  # bump when merge logic changes
@@ -497,9 +495,9 @@ def _merge_fingerprint():
     return hashlib.md5(data.encode()).hexdigest()[:12]
 
 
-def load_or_compute_sense_merges(senses_data, inventory):
+def load_or_compute_sense_merges(flat_senses_by_word, inventory, senses_file=None):
     """Load cached sense merges or compute and cache them."""
-    fingerprint = _merge_fingerprint()
+    fingerprint = _merge_fingerprint(senses_file)
 
     # Try cache
     if MERGE_CACHE_FILE.exists():
@@ -509,13 +507,13 @@ def load_or_compute_sense_merges(senses_data, inventory):
             if cached.get("fingerprint") == fingerprint:
                 merge_map = cached["merge_map"]
                 total_merged = sum(
-                    len(senses_data.get(k, [])) - len(v)
-                    for k, v in merge_map.items()
+                    len(flat_senses_by_word.get(w, [])) - len(v)
+                    for w, v in merge_map.items()
                 )
                 print("  Loaded cached merge map ({:,} merges across {:,} words)".format(
                     total_merged,
-                    sum(1 for k, v in merge_map.items()
-                        if len(v) < len(senses_data.get(k, [])))))
+                    sum(1 for w, v in merge_map.items()
+                        if len(v) < len(flat_senses_by_word.get(w, [])))))
                 return merge_map
             else:
                 print("  Stale merge cache, recomputing...")
@@ -523,7 +521,7 @@ def load_or_compute_sense_merges(senses_data, inventory):
             print("  Corrupt merge cache, recomputing...")
 
     # Compute from scratch
-    merge_map = _compute_sense_merges(senses_data, inventory)
+    merge_map = _compute_sense_merges(flat_senses_by_word, inventory)
 
     # Save cache
     with open(MERGE_CACHE_FILE, "w", encoding="utf-8") as f:
@@ -538,8 +536,11 @@ def load_or_compute_sense_merges(senses_data, inventory):
     return merge_map
 
 
-def _compute_sense_merges(senses_data, inventory):
-    """Compute which senses to merge for each word using bi-encoder similarity."""
+def _compute_sense_merges(flat_senses_by_word, inventory):
+    """Compute which senses to merge for each word using bi-encoder similarity.
+
+    flat_senses_by_word: {word: [sense_dict, ...]} — pre-flattened from analysis format.
+    """
     from sentence_transformers import SentenceTransformer
     import numpy as np
 
@@ -547,8 +548,8 @@ def _compute_sense_merges(senses_data, inventory):
     unique_texts = {}
     text_list = []
     for entry in inventory:
-        key = "{}|{}".format(entry["word"], entry["lemma"])
-        senses = senses_data.get(key, [])
+        word = entry["word"]
+        senses = flat_senses_by_word.get(word, [])
         if len(senses) < 2:
             continue
         for s in senses:
@@ -571,8 +572,8 @@ def _compute_sense_merges(senses_data, inventory):
     merge_map = {}
     total_merged = 0
     for entry in inventory:
-        key = "{}|{}".format(entry["word"], entry["lemma"])
-        senses = senses_data.get(key, [])
+        word = entry["word"]
+        senses = flat_senses_by_word.get(word, [])
         if len(senses) < 2:
             continue
 
@@ -599,10 +600,10 @@ def _compute_sense_merges(senses_data, inventory):
                     total_merged += 1
 
         keep = [i for i in range(len(senses)) if i not in merged_into]
-        merge_map[key] = keep
+        merge_map[word] = keep
 
     print("  Pre-merged {:,} senses across {:,} words".format(
-        total_merged, sum(1 for k in merge_map if len(merge_map[k]) < len(senses_data.get(k, [])))))
+        total_merged, sum(1 for w in merge_map if len(merge_map[w]) < len(flat_senses_by_word.get(w, [])))))
 
     return merge_map
 
@@ -642,18 +643,19 @@ def classify_example_keyword(sentence_english, senses):
 # Output format conversion
 # ---------------------------------------------------------------------------
 
-def _write_new_format(output, existing_assigns, senses_data, sense_id_maps):
+def _write_new_format(output, existing_assigns, flat_ids_by_word, output_file):
     """Convert internal output to method-keyed format, merge with existing, and write.
 
-    Internal format: {key: [{sense_idx, examples, method?}]}
-    New format:      {key: {method: [{sense: id, examples: [...]}]}}
+    Internal format: {word: [{sense_idx, examples, method?}]}
+    New format:      {word: {method: [{sense: id, examples: [...]}]}}
+
+    flat_ids_by_word: {word: [id, ...]} — flat sense ID list in classification order.
     """
-    for key, assigns in output.items():
+    for word, assigns in output.items():
         if not isinstance(assigns, list):
             continue  # already converted or intermediate _indices dict
 
-        senses = senses_data.get(key, [])
-        id_map_list = list(sense_id_maps.get(key, {}).keys())
+        id_list = flat_ids_by_word.get(word, [])
 
         # Determine method from assignments (all should agree, use first)
         method_name = "keyword"
@@ -663,20 +665,21 @@ def _write_new_format(output, existing_assigns, senses_data, sense_id_maps):
         items = []
         for a in assigns:
             idx = a.get("sense_idx", 0)
-            if idx < len(id_map_list):
-                items.append({"sense": id_map_list[idx],
+            if idx < len(id_list):
+                items.append({"sense": id_list[idx],
                               "examples": a.get("examples", [])})
-            elif id_map_list:
+            elif id_list:
                 # Fallback to first sense
-                items.append({"sense": id_map_list[0],
+                items.append({"sense": id_list[0],
                               "examples": a.get("examples", [])})
 
         if items:
-            if key not in existing_assigns or not isinstance(existing_assigns.get(key), dict):
-                existing_assigns[key] = {}
-            existing_assigns[key][method_name] = items
+            if word not in existing_assigns or not isinstance(existing_assigns.get(word), dict):
+                existing_assigns[word] = {}
+            existing_assigns[word][method_name] = items
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(existing_assigns, f, ensure_ascii=False, indent=2)
 
 
@@ -703,7 +706,17 @@ def main():
                         help="Gemini: drop Spanish from examples (saves ~40%% input tokens)")
     parser.add_argument("--force", action="store_true",
                         help="Bypass priority checking — reclassify all words")
+    parser.add_argument("--sense-source", choices=["wiktionary", "spanishdict"],
+                        default="wiktionary",
+                        help="Sense menu source (default: wiktionary)")
     args = parser.parse_args()
+
+    # Resolve source-specific paths
+    SENSES_FILE = sense_menu_path(LAYERS, args.sense_source)
+    OUTPUT_FILE = sense_assignments_path(LAYERS, args.sense_source)
+
+    # Method prefix: "" for wiktionary, "spanishdict-" for spanishdict
+    method_prefix = "" if args.sense_source == "wiktionary" else args.sense_source + "-"
 
     # Default mode is gemini
     use_gemini = args.gemini or (not args.biencoder and not args.keyword_only)
@@ -743,63 +756,49 @@ def main():
         senses_data = json.load(f)
     print("  {:,} sense entries".format(len(senses_data)))
 
-    # Determine current method and its priority
+    # Determine current method and its priority (with source prefix)
     if use_gemini:
-        my_method = "gemini"
+        my_method = method_prefix + "gemini"
     elif use_biencoder:
-        my_method = "biencoder"
+        my_method = method_prefix + "biencoder"
     else:
-        my_method = "keyword"
+        my_method = method_prefix + "keyword"
     my_priority = METHOD_PRIORITY.get(my_method, 0)
 
-    # Build sense ID maps for new-format output
-    sense_id_maps = {}
-    for skey, senses_list in senses_data.items():
-        if isinstance(senses_list, list):
-            sense_id_maps[skey] = assign_sense_ids(senses_list)
+    # Flatten analysis-based sense menu into flat lists for classification.
+    # Menu format: {word: [{headword, senses: {id: {pos, translation}}}]}
+    # We produce two maps:
+    #   flat_senses_by_word: {word: [sense_dict, ...]}  — for classifiers
+    #   flat_ids_by_word:    {word: [id, ...]}           — for output conversion
+    flat_senses_by_word = {}
+    flat_ids_by_word = {}
+    for word, analyses in senses_data.items():
+        if not isinstance(analyses, list):
+            continue
+        flat_senses = []
+        flat_ids = []
+        for analysis in analyses:
+            senses_dict = analysis.get("senses", {})
+            if not isinstance(senses_dict, dict):
+                continue
+            for sid, sense in senses_dict.items():
+                flat_ids.append(sid)
+                flat_senses.append(sense)
+        if flat_senses:
+            flat_senses_by_word[word] = flat_senses
+            flat_ids_by_word[word] = flat_ids
 
-    # Build word_id -> word|lemma lookup for migrating old-format assignments
-    id_to_key = {}
-    for entry in inventory:
-        id_to_key[entry["id"]] = "{}|{}".format(entry["word"], entry["lemma"])
-
-    # Load existing assignments (with auto-migration from old format)
+    # Load existing assignments (surface-word-keyed, method-keyed format)
     existing_assigns = {}
     if OUTPUT_FILE.exists():
         with open(OUTPUT_FILE, encoding="utf-8") as f:
             raw_assigns = json.load(f)
         if raw_assigns:
             first_val = next(iter(raw_assigns.values()))
-            if isinstance(first_val, list):
-                # Old format (keyed by hex ID with sense_idx) — migrate
-                print("  Migrating old-format assignments to method-keyed format...")
-                backup_path = OUTPUT_FILE.with_suffix(".json.bak")
-                if not backup_path.exists():
-                    shutil.copy2(OUTPUT_FILE, backup_path)
-                    print("  Backed up old file to {}".format(backup_path.name))
-                migrated = 0
-                for wid, assigns in raw_assigns.items():
-                    key = id_to_key.get(wid)
-                    if not key:
-                        continue
-                    senses = senses_data.get(key, [])
-                    id_map_list = list(sense_id_maps.get(key, {}).keys())
-                    old_method = "biencoder"
-                    if assigns and isinstance(assigns[0], dict):
-                        old_method = assigns[0].get("method", "biencoder")
-                    items = []
-                    for a in assigns:
-                        idx = a.get("sense_idx", 0)
-                        if idx < len(id_map_list):
-                            items.append({"sense": id_map_list[idx],
-                                          "examples": a.get("examples", [])})
-                    if items:
-                        existing_assigns[key] = {old_method: items}
-                        migrated += 1
-                print("  Migrated {:,} entries".format(migrated))
-            else:
-                # Already new format
+            if isinstance(first_val, dict):
+                # Already surface-word + method-keyed format
                 existing_assigns = raw_assigns
+            # else: legacy format — ignore, will be regenerated
         print("  Loaded {:,} existing assignments".format(len(existing_assigns)))
 
     # Apply --limit (inventory is sorted by frequency rank)
@@ -811,7 +810,7 @@ def main():
     merge_map = {}
     if do_merge:
         print("\nSense merging...")
-        merge_map = load_or_compute_sense_merges(senses_data, inventory)
+        merge_map = load_or_compute_sense_merges(flat_senses_by_word, inventory, senses_file=SENSES_FILE)
 
     # Build a fingerprint of inputs so we can detect stale checkpoints.
     # If senses, examples, or merge config change, old checkpoints are invalid.
@@ -866,7 +865,7 @@ def main():
 
     # Build work items for multi-sense words
     print("\nPreparing work items...")
-    work_items = []  # (key, senses, examples, keep_indices)
+    work_items = []  # (word, senses, examples, keep_indices)
     single_sense_count = 0
     no_senses_count = 0
     no_examples_count = 0
@@ -874,39 +873,38 @@ def main():
     pos_resolved = 0
 
     for entry in inventory:
-        word_id = entry["id"]
-        key = "{}|{}".format(entry["word"], entry["lemma"])
-        senses = senses_data.get(key, [])
-        examples = examples_data.get(word_id, [])
+        word = entry["word"]
+        senses = flat_senses_by_word.get(word, [])
+        examples = examples_data.get(word, [])
 
         if not senses:
             no_senses_count += 1
             continue
 
         # Priority check: skip words with equal-or-higher priority assignments
-        if not args.force and key in existing_assigns:
-            existing_priority = best_method_priority(existing_assigns[key])
+        if not args.force and word in existing_assigns:
+            existing_priority = best_method_priority(existing_assigns[word])
             if existing_priority >= my_priority:
                 skipped_priority += 1
                 continue
 
         if not examples:
             no_examples_count += 1
-            if key not in done_keys:
-                output[key] = [{"sense_idx": 0, "examples": []}]
+            if word not in done_keys:
+                output[word] = [{"sense_idx": 0, "examples": []}]
             continue
 
         if len(senses) == 1:
             single_sense_count += 1
-            if key not in done_keys:
+            if word not in done_keys:
                 indices = list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples)))
-                output[key] = [{"sense_idx": 0, "examples": indices}]
+                output[word] = [{"sense_idx": 0, "examples": indices}]
             continue
 
-        if key in done_keys:
+        if word in done_keys:
             continue
 
-        keep_indices = merge_map.get(key, list(range(len(senses))))
+        keep_indices = merge_map.get(word, list(range(len(senses))))
 
         # POS pre-filtering: if senses split by POS, tag examples and assign
         # directly for words where POS fully disambiguates.
@@ -916,8 +914,7 @@ def main():
             # Every kept sense has a unique POS — POS alone disambiguates
             nlp = get_nlp()
             if nlp is not None:
-                word_lower = entry["word"].lower()
-                lemma_lower = entry["lemma"].lower()
+                word_lower = word.lower()
                 pos_map = {senses[i]["pos"]: i for i in keep_indices}
                 sense_example_indices = [[] for _ in senses]
                 for ei, ex in enumerate(examples):
@@ -930,7 +927,7 @@ def main():
                     for tok in doc:
                         tl = tok.text.lower()
                         ll = tok.lemma_.lower()
-                        if tl == word_lower or ll == lemma_lower or ll == word_lower:
+                        if tl == word_lower or ll == word_lower:
                             spacy_pos = {"AUX": "VERB", "SCONJ": "CCONJ"}.get(tok.pos_, tok.pos_)
                             if spacy_pos in pos_map:
                                 tagged_pos = spacy_pos
@@ -950,12 +947,12 @@ def main():
                         continue
                     assignments_list.append({"sense_idx": i, "examples": indices, "method": my_method})
                 if assignments_list:
-                    output[key] = assignments_list
+                    output[word] = assignments_list
                     pos_resolved += 1
                     continue
 
         if use_gemini or use_biencoder:
-            work_items.append((key, senses, examples, keep_indices))
+            work_items.append((word, senses, examples, keep_indices))
         else:
             # Keyword fallback — process inline
             sense_example_indices = [[] for _ in senses]
@@ -973,10 +970,10 @@ def main():
                     continue
                 if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
                     continue
-                assignments.append({"sense_idx": i, "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices, "method": "keyword"})
+                assignments.append({"sense_idx": i, "examples": indices[:MAX_EXAMPLES_PER_MEANING] if MAX_EXAMPLES_PER_MEANING else indices, "method": my_method})
             if not assignments:
-                assignments = [{"sense_idx": 0, "examples": list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples))), "method": "keyword"}]
-            output[key] = assignments
+                assignments = [{"sense_idx": 0, "examples": list(range(min(len(examples), MAX_EXAMPLES_PER_MEANING) if MAX_EXAMPLES_PER_MEANING else len(examples))), "method": my_method}]
+            output[word] = assignments
 
     if skipped_priority:
         print("  Skipped {:,} words (existing priority >= {})".format(
@@ -989,16 +986,16 @@ def main():
     # sense_assignments.json is always complete even after Ctrl+C.
     # Real cross-encoder results overwrite these as they complete.
     seeded = 0
-    for key, senses, examples, keep_indices in work_items:
-        if key not in done_keys:
+    for word, senses, examples, keep_indices in work_items:
+        if word not in done_keys:
             indices = list(range(
                 min(len(examples), MAX_EXAMPLES_PER_MEANING)
                 if MAX_EXAMPLES_PER_MEANING else len(examples)))
-            output[key] = [{"sense_idx": 0, "examples": indices}]
+            output[word] = [{"sense_idx": 0, "examples": indices}]
             seeded += 1
 
     # Write initial assignments so sense_assignments.json is usable immediately
-    _write_new_format(output, existing_assigns, senses_data, sense_id_maps)
+    _write_new_format(output, existing_assigns, flat_ids_by_word, OUTPUT_FILE)
     if seeded:
         print("  Seeded {:,} multi-sense words with first-sense fallback".format(seeded))
     print("  Wrote initial assignments ({:,} entries) to {}".format(
@@ -1013,15 +1010,16 @@ def main():
     if not work_items:
         print("\nNo work to do!")
     elif use_gemini:
-        classify_with_gemini(work_items, output, english_only=args.english_only)
+        classify_with_gemini(work_items, output, english_only=args.english_only,
+                             method_name=my_method)
     elif use_biencoder:
-        classify_with_biencoder(work_items, output)
+        classify_with_biencoder(work_items, output, method_name=my_method)
     else:
         print("\nKeyword classification done (instant)")
 
     # Write final output — convert internal format to method-keyed with sense IDs
     print("\nWriting {}...".format(OUTPUT_FILE))
-    _write_new_format(output, existing_assigns, senses_data, sense_id_maps)
+    _write_new_format(output, existing_assigns, flat_ids_by_word, OUTPUT_FILE)
 
     if partial_file.exists():
         partial_file.unlink()
