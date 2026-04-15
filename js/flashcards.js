@@ -742,6 +742,11 @@ function setupKeyboardShortcuts() {
                 selectMeaning(currentMeaningIndex + 1);
             }
         }
+        // Shift+Tab = next card (alternative to right arrow)
+        else if (e.key === 'Tab' && e.shiftKey) {
+            e.preventDefault();
+            nextCard();
+        }
         // Tab = cycle examples / MWE expressions
         else if (e.key === 'Tab') {
             e.preventDefault();
