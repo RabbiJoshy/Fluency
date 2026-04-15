@@ -89,12 +89,16 @@ function joinWithMaster(indexData, master) {
         if (!m) continue;
 
         // Build meanings array from master senses + artist sense_frequencies
-        const meanings = (m.senses || []).map((sense, i) => ({
-            pos: sense.pos,
-            translation: sense.translation,
-            frequency: String(idx.sense_frequencies?.[i] ?? 0),
-            examples: []  // Attached later from examples file
-        }));
+        const meanings = (m.senses || []).map((sense, i) => {
+            const meaning = {
+                pos: sense.pos,
+                translation: sense.translation,
+                frequency: String(idx.sense_frequencies?.[i] ?? 0),
+                examples: []  // Attached later from examples file
+            };
+            if (idx.unassigned) meaning.unassigned = true;
+            return meaning;
+        });
 
         // Build mwe_memberships from index entry (per-artist, not master)
         const mwe_memberships = (idx.mwe_memberships || []).map(mwe => ({

@@ -941,6 +941,8 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
         }
+        if any(mg.get("unassigned") for mg in entry.get("meanings", [])):
+            idx_entry["unassigned"] = True
         if entry.get("cognate_score") is not None:
             idx_entry["cognate_score"] = entry["cognate_score"]
         if entry.get("cognet_cognate"):
