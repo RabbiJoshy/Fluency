@@ -98,6 +98,41 @@ def main():
         if kept:
             examples_raw[word] = kept
 
+    # Orphan clitics: create synthetic entries for infinitives whose conjugated
+    # form isn't in the inventory. Transfers clitic examples as the infinitive's
+    # own examples so downstream steps (5c, 6) treat them as normal words.
+    routing_path = os.path.join(artist_dir, "data", "known_vocab", "word_routing.json")
+    if os.path.isfile(routing_path):
+        with open(routing_path, "r", encoding="utf-8") as f:
+            routing = json.load(f)
+        clitic_merge = routing.get("clitic_merge", {})
+        clitic_orphan_set = set(routing.get("clitic_orphans", []))
+        inv_words = {e["word"].lower() for e in inventory}
+        orphan_count = 0
+        for clitic_word, base_verb in clitic_merge.items():
+            if clitic_word not in clitic_orphan_set:
+                continue
+            if base_verb in inv_words:
+                # Another orphan already created this entry — just stack examples
+                examples_raw.setdefault(base_verb, []).extend(
+                    examples_raw.get(clitic_word, []))
+            else:
+                # Create synthetic inventory entry for the infinitive
+                clitic_count = 0
+                for entry in data:
+                    if entry["word"].lower() == clitic_word:
+                        clitic_count = entry.get("corpus_count", 0)
+                        break
+                inventory.append({
+                    "word": base_verb,
+                    "corpus_count": clitic_count,
+                })
+                inv_words.add(base_verb)
+                examples_raw[base_verb] = list(examples_raw.get(clitic_word, []))
+            orphan_count += 1
+        if orphan_count:
+            print(f"  Orphan clitics: {orphan_count} → synthetic infinitive entries")
+
     # Write layers
     inv_path = os.path.join(layers_dir, "word_inventory.json")
     ex_path = os.path.join(layers_dir, "examples_raw.json")

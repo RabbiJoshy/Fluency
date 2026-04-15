@@ -197,33 +197,17 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # Pre-process clitic merges: skip clitics from main deck, build separate
     # clitic data file (like MWEs). Base verb references clitic IDs; front-end
     # displays clitics as sub-entries.
-    # Orphan clitics (base not in inventory) create a synthetic entry for the
-    # infinitive, transferring their examples as the base verb's own examples.
+    # Note: orphan clitics (base not in inventory) are handled upstream in
+    # step 4a, which adds synthetic infinitive entries to the inventory and
+    # transfers examples. By the time we get here, the base entry should exist.
     clitic_merged_words = set()  # words to skip in entry loop
     clitic_data = {}  # clitic_word -> {base_verb, senses, examples, ...}
-    orphan_synthetic = 0
     if clitic_merge:
         inv_by_word = {e["word"].lower(): e for e in inventory}
         for clitic_word, base_verb in clitic_merge.items():
             clitic_entry = inv_by_word.get(clitic_word)
-            if not clitic_entry:
-                continue
             base_entry = inv_by_word.get(base_verb)
-            # Orphan clitic: create synthetic entry for the infinitive and
-            # transfer clitic's examples as the base verb's own examples.
-            if not base_entry and clitic_word in clitic_orphans:
-                if base_verb not in inv_by_word:
-                    inv_by_word[base_verb] = {"word": base_verb, "corpus_count": 0}
-                    inventory.append(inv_by_word[base_verb])
-                inv_by_word[base_verb]["corpus_count"] = (
-                    inv_by_word[base_verb].get("corpus_count", 0)
-                    + clitic_entry.get("corpus_count", 0))
-                examples_raw.setdefault(base_verb, []).extend(
-                    examples_raw.get(clitic_word, []))
-                clitic_merged_words.add(clitic_word.lower())
-                orphan_synthetic += 1
-                continue
-            if not base_entry:
+            if not clitic_entry or not base_entry:
                 continue
             # Add clitic's corpus count to base
             base_entry["corpus_count"] = base_entry.get("corpus_count", 0) + clitic_entry.get("corpus_count", 0)
@@ -287,8 +271,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             }
             base_entry.setdefault("variants", []).append(clitic_word)
             clitic_merged_words.add(clitic_word.lower())
-        print("  Clitic forms: %d skipped from deck (%d merged as sub-items, %d orphans → synthetic base)"
-              % (len(clitic_merged_words), len(clitic_merged_words) - orphan_synthetic, orphan_synthetic))
+        print("  Clitic forms: %d skipped from deck, data preserved in clitic layer"
+              % len(clitic_merged_words))
 
     # --- Assemble entries ---
     print("\nAssembling vocabulary...")
