@@ -856,6 +856,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         else:
             for meaning in entry_meanings:
                 pos = meaning.get("pos", "X")
+                if pos in ("X", "SENSE_CYCLE"):
+                    continue  # don't pollute master with fallback senses
                 translation = meaning.get("translation", "")
                 norm = normalize_translation(translation)
                 exists = any(s["pos"] == pos and normalize_translation(s["translation"]) == norm for s in m["senses"])
