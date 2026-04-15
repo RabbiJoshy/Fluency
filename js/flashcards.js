@@ -1427,10 +1427,36 @@ function updateCard() {
 
             const cycleHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
             const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
-            const unassignedStyle = currentMeaning && currentMeaning.unassigned ? 'border-color: transparent;' : '';
+
+            // Determine if this example is genuinely assigned to this sense
+            let exampleAssigned = false;
+            if (currentMeaning && !currentMeaning.unassigned) {
+                exampleAssigned = true;  // sense-assigned by bi-encoder/Gemini
+            }
+            // MWE: check if the expression appears in the example sentence
+            if (currentMeaning && currentMeaning.allMWEs && displayTargetSentence) {
+                const activeMwe = currentMeaning.allMWEs[currentMWEIndex % currentMeaning.allMWEs.length];
+                if (activeMwe && activeMwe.expression) {
+                    const escaped = activeMwe.expression.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const re = new RegExp(escaped, 'i');
+                    exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
+                }
+            }
+            // Clitic: check if the clitic form appears in the example sentence
+            if (currentMeaning && currentMeaning.allClitics && displayTargetSentence) {
+                const activeClitic = currentMeaning.allClitics[currentMWEIndex % currentMeaning.allClitics.length];
+                if (activeClitic && activeClitic.form) {
+                    const escaped = activeClitic.form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const re = new RegExp('(?<![\\p{L}])' + escaped + '(?![\\p{L}])', 'iu');
+                    exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
+                }
+            }
+            const sentenceStyle = exampleAssigned
+                ? 'border: 2px solid var(--accent-primary); box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.25);'
+                : 'border-color: transparent;';
 
             backHTML += `
-                <div class="sentence" style="text-align: center; ${cursorStyle} ${unassignedStyle}" ${cycleHandler}>
+                <div class="sentence" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
                     <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
                     <div class="translation">${displayEnglishSentence}</div>
                     ${songNameDisplay}
