@@ -390,7 +390,7 @@ async function loadVocabularyData(rangeString) {
         for (const item of filteredData) {
             const meanings = item.meanings.map(m => {
                 const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
-                return {
+                const meaning = {
                     pos: m.pos,
                     meaning: m.translation,
                     percentage: parseFloat(m.frequency),
@@ -398,6 +398,8 @@ async function loadVocabularyData(rangeString) {
                     englishSentence,
                     allExamples
                 };
+                if (m.unassigned) meaning.unassigned = true;
+                return meaning;
             });
 
             // Normalize percentages if they're missing or sum to 0
@@ -696,7 +698,7 @@ async function loadIncorrectWordsSet() {
 
             const meanings = item.meanings.map(m => {
                 const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
-                return {
+                const meaning = {
                     pos: m.pos,
                     meaning: m.translation,
                     percentage: parseFloat(m.frequency),
@@ -704,6 +706,8 @@ async function loadIncorrectWordsSet() {
                     englishSentence,
                     allExamples
                 };
+                if (m.unassigned) meaning.unassigned = true;
+                return meaning;
             });
 
             // Normalize percentages

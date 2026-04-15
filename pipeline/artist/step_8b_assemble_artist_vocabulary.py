@@ -494,6 +494,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "translation": translation,
                         "frequency": "1.00",
                         "examples": all_examples,
+                        "unassigned": True,
                     })
                 else:
                     # Multiple senses — distribute examples round-robin,
@@ -513,6 +514,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             "translation": translation,
                             "frequency": freq,
                             "examples": sense_examples,
+                            "unassigned": True,
                         })
             elif word_assignments and any(a.get("translation") for a in word_assignments):
                 total_assigned = sum(len(a.get("examples", [])) for a in word_assignments) or 1

@@ -1411,9 +1411,10 @@ function updateCard() {
 
             const cycleHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
             const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
+            const unassignedStyle = currentMeaning && currentMeaning.unassigned ? 'border-color: transparent;' : '';
 
             backHTML += `
-                <div class="sentence" style="text-align: center; ${cursorStyle}" ${cycleHandler}>
+                <div class="sentence" style="text-align: center; ${cursorStyle} ${unassignedStyle}" ${cycleHandler}>
                     <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
                     <div class="translation">${displayEnglishSentence}</div>
                     ${songNameDisplay}
