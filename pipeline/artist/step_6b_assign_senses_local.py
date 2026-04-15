@@ -101,6 +101,9 @@ def tokenize_english(text):
             and len(w) > 1}
 
 
+MIN_KEYWORD_OVERLAP = 1  # minimum content-word overlap to count as a match
+
+
 def classify_example_keyword(sentence_english, senses):
     sentence_words = tokenize_english(sentence_english)
     scores = []
@@ -108,6 +111,9 @@ def classify_example_keyword(sentence_english, senses):
         sense_words = tokenize_english(s["translation"])
         scores.append(len(sentence_words & sense_words) if sense_words else 0)
     best_idx = max(range(len(scores)), key=lambda i: scores[i])
+    best_score = scores[best_idx]
+    if best_score < MIN_KEYWORD_OVERLAP:
+        return None  # no confident match
     return best_idx
 
 
@@ -586,9 +592,10 @@ def main():
                 trans_info = translations.get(spanish, {})
                 eng = trans_info.get("english", "")
                 if not eng:
-                    sense_example_indices[0].append(ex_idx)
-                    continue
+                    continue  # no translation — skip (don't force onto first sense)
                 best_idx = classify_example_keyword(eng, word_senses)
+                if best_idx is None:
+                    continue  # no confident keyword match — skip
                 sense_example_indices[best_idx].append(ex_idx)
 
             total_classified = sum(len(idx) for idx in sense_example_indices)

@@ -1134,7 +1134,7 @@ function updateCard() {
     frontPOSEl.className = 'card-pos';
     if (card.isMultiMeaning && card.meanings && card.meanings.length > 0) {
         // For multi-meaning cards, show all unique POS
-        const allPOS = [...new Set(card.meanings.filter(m => m.pos !== 'MWE').map(m => m.pos))].join(', ');
+        const allPOS = [...new Set(card.meanings.filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE').map(m => m.pos))].join(', ');
         frontPOSEl.textContent = allPOS;
         // Apply color of first POS
         const firstPos = card.meanings[0].pos;
@@ -1232,6 +1232,7 @@ function updateCard() {
             const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
             const isClitic = m.pos === 'CLITIC';
+            const isSenseCycle = m.pos === 'SENSE_CYCLE';
             // For MWE pill, show the current expression/translation based on MWE index
             const mweIdx = (isMWE && isSelected) ? currentMWEIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
@@ -1261,6 +1262,21 @@ function updateCard() {
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.12); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${m.allClitics ? m.allClitics[cliticIdx].translation : ''}</span>
                     ${cliticCounter}
+                </div>
+                `;
+            } else if (isSenseCycle) {
+                // Sense cycle row: POS badge + cycling through sense translations
+                const senseIdx = isSelected ? currentMWEIndex % (m.allSenses ? m.allSenses.length : 1) : 0;
+                const senseMeaning = m.allSenses ? m.allSenses[senseIdx].translation : m.meaning;
+                const senseCount = m.allSenses ? m.allSenses.length : 0;
+                const senseCounter = senseCount > 1 ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous sense">‹</button><span style="opacity: 0.6; font-size: 10px;">${senseIdx + 1}/${senseCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next sense">›</button></span>` : '';
+                const cyclePos = m.cycle_pos || 'X';
+                const cyclePosClass = getPosColorClass(cyclePos);
+                backHTML += `
+                <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                    <span class="card-pos ${cyclePosClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${cyclePos}</span>
+                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; padding-left: 60px;">${senseMeaning}</span>
+                    ${senseCounter}
                 </div>
                 `;
             } else {

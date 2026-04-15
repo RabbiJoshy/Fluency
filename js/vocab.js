@@ -379,9 +379,12 @@ async function loadVocabularyData(rangeString) {
             const MAX_SENSES = 6;
             for (const item of filteredData) {
                 // Drop zero-frequency senses (unused by this artist/merge)
-                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) > 0);
-                // Drop senses below minimum threshold
-                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) >= MIN_SENSE_FREQ);
+                // but keep SENSE_CYCLE and unassigned rows (they have freq 0 by design)
+                item.meanings = item.meanings.filter(m =>
+                    parseFloat(m.frequency) > 0 || m.pos === 'SENSE_CYCLE' || m.unassigned);
+                // Drop senses below minimum threshold (same exception)
+                item.meanings = item.meanings.filter(m =>
+                    parseFloat(m.frequency) >= MIN_SENSE_FREQ || m.pos === 'SENSE_CYCLE' || m.unassigned);
                 // Hard cap: keep top N by frequency
                 if (item.meanings.length > MAX_SENSES) {
                     item.meanings.sort((a, b) => parseFloat(b.frequency) - parseFloat(a.frequency));
@@ -403,6 +406,8 @@ async function loadVocabularyData(rangeString) {
                     allExamples
                 };
                 if (m.unassigned) meaning.unassigned = true;
+                if (m.allSenses) meaning.allSenses = m.allSenses;
+                if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;
             });
 
@@ -711,6 +716,8 @@ async function loadIncorrectWordsSet() {
                     allExamples
                 };
                 if (m.unassigned) meaning.unassigned = true;
+                if (m.allSenses) meaning.allSenses = m.allSenses;
+                if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;
             });
 

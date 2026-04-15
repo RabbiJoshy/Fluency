@@ -18,6 +18,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 import argparse
 
@@ -26,6 +27,15 @@ from util_1a_artist_config import (add_artist_arg, load_artist_config, load_shar
                             artist_sense_menu_path, artist_sense_assignments_path,
                             artist_sense_assignments_lemma_path)
 from util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
+
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+PYTHON = os.path.join(os.path.dirname(os.path.dirname(SCRIPTS_DIR)), ".venv", "bin", "python3")
+if not os.path.exists(PYTHON):
+    PYTHON = sys.executable
+
+
+# Keyword-only threshold for unassigned flag (method priority at or below this = fallback)
+KEYWORD_PRIORITY_THRESHOLD = 15  # keyword and pos-keyword
 
 
 # ---------------------------------------------------------------------------
@@ -120,23 +130,41 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
     # Sense menu (definitions) + assignments (example→sense mappings)
-    # Both optional — assembly degrades gracefully without them:
-    #   menu only (no assignments): first sense per word, all examples flat
-    #   no menu and no assignments: POS=X, curated translation fallback
     raw_menu = load_layer(
         artist_sense_menu_path(layers_dir, sense_source, prefer_new=False),
         "sense_menu", required=False,
     )
     senses = normalize_artist_sense_menu(raw_menu) if raw_menu else {}
-    assignments = load_layer(
-        artist_sense_assignments_path(layers_dir, sense_source, prefer_new=False),
-        "sense_assignments", required=False,
-    ) or {}
-    lemma_assignments = load_layer(
-        artist_sense_assignments_lemma_path(layers_dir, sense_source, prefer_new=False),
-        "sense_assignments_lemma",
-        required=False,
-    ) or {}
+    assignments_path = artist_sense_assignments_path(layers_dir, sense_source, prefer_new=False)
+    assignments = load_layer(assignments_path, "sense_assignments", required=False) or {}
+    lemma_assignments_path = artist_sense_assignments_lemma_path(layers_dir, sense_source, prefer_new=False)
+    lemma_assignments = load_layer(lemma_assignments_path, "sense_assignments_lemma", required=False) or {}
+
+    # Auto-invoke: if menu exists but no assignments, run keyword assignment + lemma mapping
+    if senses and not assignments:
+        artist_dir = os.path.dirname(os.path.dirname(layers_dir))
+        print("\n  No sense assignments found — auto-invoking keyword assignment...")
+        kw_args = ["--artist-dir", artist_dir, "--keyword-only"]
+        if sense_source == "spanishdict":
+            kw_args.extend([
+                "--sense-menu-file", "sense_menu/spanishdict.json",
+                "--assignments-file", "sense_assignments/spanishdict.json",
+                "--keyword-method-name", "spanishdict-keyword",
+                "--auto-method-name", "spanishdict-auto",
+                "--menu-source-label", "spanishdict",
+            ])
+        cmd = [PYTHON, os.path.join(SCRIPTS_DIR, "step_6b_assign_senses_local.py")] + kw_args
+        result = subprocess.run(cmd)
+        if result.returncode != 0:
+            print("  WARNING: keyword assignment failed (exit code %d)" % result.returncode)
+        else:
+            # Run lemma mapping
+            lemma_args = ["--artist-dir", artist_dir, "--sense-source", sense_source]
+            cmd = [PYTHON, os.path.join(SCRIPTS_DIR, "step_7a_map_senses_to_lemmas.py")] + lemma_args
+            subprocess.run(cmd)
+            # Reload assignments
+            assignments = load_layer(assignments_path, "sense_assignments (auto)", required=False) or {}
+            lemma_assignments = load_layer(lemma_assignments_path, "sense_assignments_lemma (auto)", required=False) or {}
     # Shared layers at Data/Spanish/layers/ (project root from script location)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
@@ -434,10 +462,77 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "frequency": freq,
                         "examples": meaning_examples,
                     })
+
+                # If best method is keyword-level, add SENSE_CYCLE rows for
+                # senses that didn't get any keyword-matched examples.
+                if best_method and METHOD_PRIORITY.get(best_method, 0) <= KEYWORD_PRIORITY_THRESHOLD:
+                    assigned_indices = {a["sense_idx"] for a in word_assignments}
+                    remaining = [s for i, s in enumerate(word_senses) if i not in assigned_indices]
+                    if remaining:
+                        # Deduplicate and group by POS
+                        seen_rem = set()
+                        unique_remaining = []
+                        for s in remaining:
+                            key = (s.get("pos", ""), s.get("translation", ""))
+                            if key not in seen_rem:
+                                seen_rem.add(key)
+                                unique_remaining.append(s)
+                        from collections import defaultdict as _defaultdict
+                        pos_groups = _defaultdict(list)
+                        for s in unique_remaining:
+                            pos_groups[s.get("pos", "X")].append(s)
+                        # Unassigned examples (not tied to any keyword match)
+                        assigned_ex = set()
+                        for a in word_assignments:
+                            assigned_ex.update(a.get("examples", []))
+                        unassigned_ex = []
+                        for ex_idx in range(len(raw_examples)):
+                            if ex_idx not in assigned_ex and ex_idx < len(raw_examples):
+                                raw_ex = raw_examples[ex_idx]
+                                spanish = raw_ex.get("spanish", "")
+                                trans_info = translations.get(spanish, {})
+                                ex_dict = {
+                                    "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                                    "song_name": raw_ex.get("title", ""),
+                                    "spanish": spanish,
+                                    "english": trans_info.get("english", ""),
+                                    "translation_source": trans_info.get("source", ""),
+                                }
+                                ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                                if ts_entry:
+                                    ex_dict["timestamp_ms"] = ts_entry["ms"]
+                                unassigned_ex.append(ex_dict)
+                        pos_list = sorted(pos_groups.keys())
+                        for p_idx, pos_key in enumerate(pos_list):
+                            senses_for_pos = pos_groups[pos_key]
+                            cycle_ex = [ex for i, ex in enumerate(unassigned_ex)
+                                        if i % len(pos_list) == p_idx]
+                            if not cycle_ex and unassigned_ex:
+                                cycle_ex = [unassigned_ex[0]]
+                            if len(senses_for_pos) == 1:
+                                meanings.append({
+                                    "pos": pos_key,
+                                    "translation": senses_for_pos[0]["translation"],
+                                    "frequency": "0.00",
+                                    "examples": cycle_ex,
+                                    "unassigned": True,
+                                })
+                            else:
+                                meanings.append({
+                                    "pos": "SENSE_CYCLE",
+                                    "translation": senses_for_pos[0]["translation"],
+                                    "frequency": "0.00",
+                                    "examples": cycle_ex,
+                                    "unassigned": True,
+                                    "cycle_pos": pos_key,
+                                    "allSenses": [{"pos": s["pos"], "translation": s["translation"]}
+                                                  for s in senses_for_pos],
+                                })
+
             elif word_senses:
-                # No assignments — show all senses from the menu, POS-filtered
-                # to match the examples. Distribute examples evenly across
-                # matching senses (unassigned fallback).
+                # Senses exist but no assignments (or only keyword/auto).
+                # Show assigned senses as normal rows; remaining senses
+                # grouped by POS into SENSE_CYCLE rows.
                 curated_key = "%s|%s" % (word.lower(), word_lemma)
 
                 # Build resolved examples once
@@ -457,64 +552,64 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         ex_dict["timestamp_ms"] = ts_entry["ms"]
                     all_examples.append(ex_dict)
 
-                # Collect unique POS values from examples (via conj_reverse)
-                example_pos = set()
-                wl = word.lower()
-                if conj_reverse and wl in conj_reverse:
-                    for c in conj_reverse[wl]:
-                        example_pos.add("VERB")
-                # If word itself is in senses as a noun/adj/etc, allow those POS
-                for s in word_senses:
-                    example_pos.add(s.get("pos", "X"))
-
-                # Filter senses to those matching example POS (if we have POS info)
-                if example_pos:
-                    matching = [s for s in word_senses if s.get("pos") in example_pos]
-                else:
-                    matching = list(word_senses)
-                if not matching:
-                    matching = [word_senses[0]]
-
-                # Deduplicate by (pos, translation)
-                seen = set()
-                unique_senses = []
-                for s in matching:
-                    key = (s.get("pos", ""), s.get("translation", ""))
-                    if key not in seen:
-                        seen.add(key)
-                        unique_senses.append(s)
-
-                if len(unique_senses) == 1:
-                    # Single sense — all examples on it
-                    translation = unique_senses[0]["translation"]
+                if len(word_senses) == 1:
+                    # Single sense — all examples on it (auto-level, not unassigned)
+                    translation = word_senses[0]["translation"]
                     if curated_key in curated:
                         translation = curated[curated_key]
                     meanings.append({
-                        "pos": unique_senses[0]["pos"],
+                        "pos": word_senses[0]["pos"],
                         "translation": translation,
                         "frequency": "1.00",
                         "examples": all_examples,
-                        "unassigned": True,
                     })
                 else:
-                    # Multiple senses — distribute examples round-robin,
-                    # first sense gets all examples too (as primary)
-                    freq = "%.2f" % (1.0 / len(unique_senses))
-                    for s_idx, sense in enumerate(unique_senses):
-                        translation = sense["translation"]
-                        if curated_key in curated and s_idx == 0:
-                            translation = curated[curated_key]
-                        # Each sense gets a slice of examples (round-robin)
-                        sense_examples = [ex for i, ex in enumerate(all_examples)
-                                          if i % len(unique_senses) == s_idx]
-                        if not sense_examples and all_examples:
-                            sense_examples = [all_examples[0]]
-                        meanings.append({
-                            "pos": sense["pos"],
-                            "translation": translation,
-                            "frequency": freq,
-                            "examples": sense_examples,
-                            "unassigned": True,
+                    # Multiple senses, no confident assignment.
+                    # Group remaining senses by POS into SENSE_CYCLE rows.
+                    # Deduplicate senses by (pos, translation)
+                    seen = set()
+                    unique_senses = []
+                    for s in word_senses:
+                        key = (s.get("pos", ""), s.get("translation", ""))
+                        if key not in seen:
+                            seen.add(key)
+                            unique_senses.append(s)
+
+                    # Group by POS
+                    from collections import defaultdict as _defaultdict
+                    pos_groups = _defaultdict(list)
+                    for s in unique_senses:
+                        pos_groups[s.get("pos", "X")].append(s)
+
+                    # Distribute examples across POS groups (round-robin)
+                    pos_list = sorted(pos_groups.keys())
+                    for p_idx, pos_key in enumerate(pos_list):
+                        senses_for_pos = pos_groups[pos_key]
+                        cycle_examples = [ex for i, ex in enumerate(all_examples)
+                                          if i % len(pos_list) == p_idx]
+                        if not cycle_examples and all_examples:
+                            cycle_examples = [all_examples[0]]
+
+                        if len(senses_for_pos) == 1:
+                            # Single sense for this POS — normal row, but unassigned
+                            meanings.append({
+                                "pos": pos_key,
+                                "translation": senses_for_pos[0]["translation"],
+                                "frequency": "%.2f" % (1.0 / len(pos_list)),
+                                "examples": cycle_examples,
+                                "unassigned": True,
+                            })
+                        else:
+                            # Multiple senses for this POS — SENSE_CYCLE row
+                            meanings.append({
+                                "pos": "SENSE_CYCLE",
+                                "translation": senses_for_pos[0]["translation"],
+                                "frequency": "%.2f" % (1.0 / len(pos_list)),
+                                "examples": cycle_examples,
+                                "unassigned": True,
+                                "cycle_pos": pos_key,
+                                "allSenses": [{"pos": s["pos"], "translation": s["translation"]}
+                                              for s in senses_for_pos],
                         })
             elif word_assignments and any(a.get("translation") for a in word_assignments):
                 total_assigned = sum(len(a.get("examples", [])) for a in word_assignments) or 1
