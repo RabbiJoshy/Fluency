@@ -8,11 +8,13 @@ import time
 
 from util_5c_spanishdict import (
     SPANISHDICT_HEADWORD_CACHE,
+    SPANISHDICT_PHRASES_CACHE,
     SPANISHDICT_REDIRECTS,
     SPANISHDICT_SURFACE_CACHE,
     SPANISHDICT_STATUS,
     build_session,
     build_surface_entry,
+    extract_phrases,
     fetch_spanishdict_component,
     load_json,
     save_json,
@@ -22,7 +24,7 @@ from util_5c_spanishdict import (
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
-def load_excluded_words(artist_dir):
+def load_excluded_words(artist_dir, include_clitics=False):
     routing_path = artist_dir / "data" / "known_vocab" / "word_routing.json"
     routing = load_json(routing_path, {})
     exclude = routing.get("exclude", {}) if isinstance(routing, dict) else {}
@@ -31,12 +33,16 @@ def load_excluded_words(artist_dir):
         values = exclude.get(category, [])
         if isinstance(values, list):
             skipped.update(v for v in values if isinstance(v, str))
+    if not include_clitics:
+        clitic_merge = routing.get("clitic_merge", {})
+        if isinstance(clitic_merge, dict):
+            skipped.update(clitic_merge.keys())
     return skipped
 
 
-def load_artist_words(artist_dir, include_excluded=False):
+def load_artist_words(artist_dir, include_excluded=False, include_clitics=False):
     inventory = load_json(artist_dir / "data" / "layers" / "word_inventory.json", [])
-    excluded = set() if include_excluded else load_excluded_words(artist_dir)
+    excluded = set() if include_excluded else load_excluded_words(artist_dir, include_clitics=include_clitics)
     out = []
     for entry in inventory:
         word = (entry.get("word") or "").strip()
@@ -58,7 +64,7 @@ def load_inventory_words(inventory_path):
 def fetch_surface(query):
     session = build_session()
     component = fetch_spanishdict_component(session, query)
-    return query, build_surface_entry(query, component)
+    return query, build_surface_entry(query, component), extract_phrases(component)
 
 
 def fetch_headword(headword):
@@ -97,6 +103,8 @@ def main():
                         help="Refetch words already present in shared cache")
     parser.add_argument("--include-excluded", action="store_true",
                         help="Include step-4 excluded words from the artist inventory")
+    parser.add_argument("--include-clitics", action="store_true",
+                        help="Include clitic-merge words (skipped by default)")
     parser.add_argument("--workers", type=int, default=8,
                         help="Concurrent fetch workers (default: 8)")
     parser.add_argument("--save-every", type=int, default=100,
@@ -110,7 +118,8 @@ def main():
     artist_dir = Path(args.artist_dir).resolve() if args.artist_dir else None
     inventory_path = Path(args.inventory_file).resolve() if args.inventory_file else None
     if artist_dir is not None:
-        words, excluded = load_artist_words(artist_dir, include_excluded=args.include_excluded)
+        words, excluded = load_artist_words(artist_dir, include_excluded=args.include_excluded,
+                                              include_clitics=args.include_clitics)
     else:
         words = load_inventory_words(inventory_path)
         excluded = set()
@@ -122,6 +131,7 @@ def main():
 
     surface_cache = load_json(SPANISHDICT_SURFACE_CACHE, {})
     headword_cache = load_json(SPANISHDICT_HEADWORD_CACHE, {})
+    phrases_cache = load_json(SPANISHDICT_PHRASES_CACHE, {})
     redirects = load_json(SPANISHDICT_REDIRECTS, {})
     status = load_json(SPANISHDICT_STATUS, {"surface": {}, "headwords": {}, "artists": {}})
     surface_status = status.setdefault("surface", {})
@@ -164,12 +174,14 @@ def main():
         for future in concurrent.futures.as_completed(future_to_query):
             query = future_to_query[future]
             try:
-                resolved_query, entry = future.result()
+                resolved_query, entry, phrases = future.result()
                 entry["possible_results"] = [
                     r for r in entry.get("possible_results", [])
                     if should_keep_possible_result(resolved_query, r)
                 ]
                 surface_cache[resolved_query] = entry
+                if phrases:
+                    phrases_cache[resolved_query] = phrases
                 redirects[resolved_query] = entry.get("possible_results", [])
                 surface_status[resolved_query] = {
                     "status": "ok",
@@ -187,11 +199,13 @@ def main():
             processed += 1
             if processed % save_every == 0:
                 save_json(SPANISHDICT_SURFACE_CACHE, surface_cache)
+                save_json(SPANISHDICT_PHRASES_CACHE, phrases_cache)
                 save_json(SPANISHDICT_REDIRECTS, redirects)
                 save_json(SPANISHDICT_STATUS, status)
                 print("  Saved surface progress at %d/%d" % (processed, len(queries)))
 
     save_json(SPANISHDICT_SURFACE_CACHE, surface_cache)
+    save_json(SPANISHDICT_PHRASES_CACHE, phrases_cache)
     save_json(SPANISHDICT_REDIRECTS, redirects)
     save_json(SPANISHDICT_STATUS, status)
 

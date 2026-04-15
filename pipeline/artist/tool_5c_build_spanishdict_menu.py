@@ -21,7 +21,7 @@ from pipeline.util_5c_spanishdict import (
 )
 
 
-def load_excluded_words(artist_dir):
+def load_excluded_words(artist_dir, include_clitics=False):
     routing_path = artist_dir / "data" / "known_vocab" / "word_routing.json"
     routing = load_json(routing_path, {})
     exclude = routing.get("exclude", {}) if isinstance(routing, dict) else {}
@@ -30,6 +30,10 @@ def load_excluded_words(artist_dir):
         values = exclude.get(category, [])
         if isinstance(values, list):
             skipped.update(v for v in values if isinstance(v, str))
+    if not include_clitics:
+        clitic_merge = routing.get("clitic_merge", {})
+        if isinstance(clitic_merge, dict):
+            skipped.update(clitic_merge.keys())
     return skipped
 
 
@@ -108,6 +112,8 @@ def main():
                         help="Only process the first N eligible words")
     parser.add_argument("--include-excluded", action="store_true",
                         help="Include step-4 excluded words instead of skipping them")
+    parser.add_argument("--include-clitics", action="store_true",
+                        help="Include clitic-merge words (skipped by default)")
     parser.add_argument("--no-redirects", action="store_true",
                         help="Only use the direct surface-page dictionary analyses")
     parser.add_argument("--allow-incomplete-cache", action="store_true",
@@ -124,7 +130,7 @@ def main():
     surface_cache = load_json(SPANISHDICT_SURFACE_CACHE, {})
     headword_cache = load_json(SPANISHDICT_HEADWORD_CACHE, {})
     redirects = load_json(SPANISHDICT_REDIRECTS, {})
-    excluded_words = set() if args.include_excluded else load_excluded_words(artist_dir)
+    excluded_words = set() if args.include_excluded else load_excluded_words(artist_dir, include_clitics=args.include_clitics)
 
     requested_words = set(args.word or [])
     words = []

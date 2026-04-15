@@ -3,6 +3,7 @@
 
 import json
 import re
+import threading
 import time
 from collections import defaultdict
 from copy import deepcopy
@@ -18,6 +19,11 @@ SPANISHDICT_SURFACE_CACHE = SPANISHDICT_DIR / "surface_cache.json"
 SPANISHDICT_HEADWORD_CACHE = SPANISHDICT_DIR / "headword_cache.json"
 SPANISHDICT_REDIRECTS = SPANISHDICT_DIR / "redirects.json"
 SPANISHDICT_STATUS = SPANISHDICT_DIR / "status.json"
+SPANISHDICT_PHRASES_CACHE = SPANISHDICT_DIR / "phrases_cache.json"
+REQUEST_DELAY_SECONDS = 0.35
+
+_request_lock = threading.Lock()
+_last_request_at = 0.0
 
 _POS_MAP = {
     "noun": "NOUN",
@@ -111,6 +117,16 @@ def build_session():
     return session
 
 
+def throttle_request():
+    global _last_request_at
+    with _request_lock:
+        now = time.time()
+        wait = REQUEST_DELAY_SECONDS - (now - _last_request_at)
+        if wait > 0:
+            time.sleep(wait)
+        _last_request_at = time.time()
+
+
 def extract_component_data(html):
     match = re.search(r"SD_COMPONENT_DATA\s*=\s*(\{.*?\});", html, re.S)
     if not match:
@@ -123,6 +139,7 @@ def fetch_spanishdict_component(session, word):
     last_exc = None
     for attempt in range(5):
         try:
+            throttle_request()
             response = session.get(url, timeout=20)
             response.raise_for_status()
             return extract_component_data(response.text)
@@ -295,3 +312,15 @@ def build_surface_entry(query, component):
         "dictionary_analyses": build_dictionary_analyses(query, rows, possible_results),
         "possible_results": possible_results,
     }
+
+
+def extract_phrases(component):
+    """Extract phrase data from SpanishDict component (separate from senses)."""
+    raw = component.get("phrases")
+    if not raw or not isinstance(raw, list):
+        return []
+    return [
+        {"expression": p["source"], "translation": p.get("quickdef", "")}
+        for p in raw
+        if isinstance(p, dict) and p.get("source")
+    ]

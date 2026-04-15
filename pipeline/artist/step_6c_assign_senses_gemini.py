@@ -399,6 +399,8 @@ def main():
                         help="Method key for auto-assigned single-sense words")
     parser.add_argument("--menu-source-label", type=str, default="wiktionary",
                         help="Source label for reporting with --sense-menu-file")
+    parser.add_argument("--include-clitics", action="store_true",
+                        help="Include clitic-merge words (skipped by default)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -498,6 +500,11 @@ def main():
             skip_set.update(exclude.get(cat, []))
         if not args.all_gemini:
             skip_set.update(routing_data.get("biencoder", {}).get("shared", []))
+        # Skip merge-clitics (folded into base verb, don't need assignment)
+        if not args.include_clitics:
+            clitic_merge = routing_data.get("clitic_merge", {})
+            if isinstance(clitic_merge, dict):
+                skip_set.update(clitic_merge.keys())
         print("  Skip words (from step 4): %d" % len(skip_set))
 
     # Load master for flag lookups (fallback when skip_words.json absent)

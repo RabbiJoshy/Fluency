@@ -315,6 +315,8 @@ def main():
                         help="Method key to use for auto-assigned single-sense words")
     parser.add_argument("--menu-source-label", type=str, default="wiktionary",
                         help="Source label for reporting when using --sense-menu-file")
+    parser.add_argument("--include-clitics", action="store_true",
+                        help="Include clitic-merge words (skipped by default)")
     args = parser.parse_args()
 
     artist_dir = args.artist_dir
@@ -424,7 +426,12 @@ def main():
             routing_skip.update(cat_list)
         # Skip gemini-routed words (they get Gemini, not bi-encoder)
         routing_skip.update(routing.get("gemini", []))
-        print("  word_routing: skipping %d excluded + gemini words" % len(routing_skip))
+        # Skip merge-clitics (folded into base verb, don't need assignment)
+        if not args.include_clitics:
+            clitic_merge = routing.get("clitic_merge", {})
+            if isinstance(clitic_merge, dict):
+                routing_skip.update(clitic_merge.keys())
+        print("  word_routing: skipping %d excluded + gemini + clitic-merge words" % len(routing_skip))
 
     my_method = args.keyword_method_name if use_keyword else args.biencoder_method_name
     my_priority = METHOD_PRIORITY.get(my_method, 0)

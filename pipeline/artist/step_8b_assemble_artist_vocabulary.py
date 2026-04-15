@@ -120,13 +120,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
     # Sense menu (definitions) + assignments (example→sense mappings)
-    senses = normalize_artist_sense_menu(
-        load_layer(artist_sense_menu_path(layers_dir, sense_source, prefer_new=False), "sense_menu")
+    # Both optional — assembly degrades gracefully without them:
+    #   menu only (no assignments): first sense per word, all examples flat
+    #   no menu and no assignments: POS=X, curated translation fallback
+    raw_menu = load_layer(
+        artist_sense_menu_path(layers_dir, sense_source, prefer_new=False),
+        "sense_menu", required=False,
     )
+    senses = normalize_artist_sense_menu(raw_menu) if raw_menu else {}
     assignments = load_layer(
         artist_sense_assignments_path(layers_dir, sense_source, prefer_new=False),
-        "sense_assignments",
-    )
+        "sense_assignments", required=False,
+    ) or {}
     lemma_assignments = load_layer(
         artist_sense_assignments_lemma_path(layers_dir, sense_source, prefer_new=False),
         "sense_assignments_lemma",
@@ -234,13 +239,22 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         ]
                         resolved_items.append(resolved)
                     resolved_assigns[method] = resolved_items
-            # Get the best translation from senses
+            # Get the best translation from senses, fall back to base verb
             translation = ""
             if clitic_senses_raw:
                 first = (list(clitic_senses_raw.values())[0] if isinstance(clitic_senses_raw, dict)
                          else clitic_senses_raw[0] if clitic_senses_raw else None)
                 if first:
                     translation = first.get("translation", "")
+            if not translation:
+                base_analysis = resolve_analysis_for_assignments(
+                    senses, base_verb, assignments.get(base_verb, {}))
+                base_senses = base_analysis.get("senses")
+                if base_senses:
+                    first_base = (list(base_senses.values())[0] if isinstance(base_senses, dict)
+                                  else base_senses[0] if base_senses else None)
+                    if first_base:
+                        translation = first_base.get("translation", "")
             clitic_data[clitic_word] = {
                 "base_verb": base_verb,
                 "lemma": clitic_lemma,
