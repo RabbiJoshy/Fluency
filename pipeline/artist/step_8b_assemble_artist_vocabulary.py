@@ -435,11 +435,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "examples": meaning_examples,
                     })
             elif word_senses:
-                sense = word_senses[0]
-                translation = sense["translation"]
+                # No assignments — show all senses from the menu, POS-filtered
+                # to match the examples. Distribute examples evenly across
+                # matching senses (unassigned fallback).
                 curated_key = "%s|%s" % (word.lower(), word_lemma)
-                if curated_key in curated:
-                    translation = curated[curated_key]
+
+                # Build resolved examples once
                 all_examples = []
                 for raw_ex in raw_examples:
                     spanish = raw_ex.get("spanish", "")
@@ -455,12 +456,64 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     if ts_entry:
                         ex_dict["timestamp_ms"] = ts_entry["ms"]
                     all_examples.append(ex_dict)
-                meanings.append({
-                    "pos": sense["pos"],
-                    "translation": translation,
-                    "frequency": "1.00",
-                    "examples": all_examples,
-                })
+
+                # Collect unique POS values from examples (via conj_reverse)
+                example_pos = set()
+                wl = word.lower()
+                if conj_reverse and wl in conj_reverse:
+                    for c in conj_reverse[wl]:
+                        example_pos.add("VERB")
+                # If word itself is in senses as a noun/adj/etc, allow those POS
+                for s in word_senses:
+                    example_pos.add(s.get("pos", "X"))
+
+                # Filter senses to those matching example POS (if we have POS info)
+                if example_pos:
+                    matching = [s for s in word_senses if s.get("pos") in example_pos]
+                else:
+                    matching = list(word_senses)
+                if not matching:
+                    matching = [word_senses[0]]
+
+                # Deduplicate by (pos, translation)
+                seen = set()
+                unique_senses = []
+                for s in matching:
+                    key = (s.get("pos", ""), s.get("translation", ""))
+                    if key not in seen:
+                        seen.add(key)
+                        unique_senses.append(s)
+
+                if len(unique_senses) == 1:
+                    # Single sense — all examples on it
+                    translation = unique_senses[0]["translation"]
+                    if curated_key in curated:
+                        translation = curated[curated_key]
+                    meanings.append({
+                        "pos": unique_senses[0]["pos"],
+                        "translation": translation,
+                        "frequency": "1.00",
+                        "examples": all_examples,
+                    })
+                else:
+                    # Multiple senses — distribute examples round-robin,
+                    # first sense gets all examples too (as primary)
+                    freq = "%.2f" % (1.0 / len(unique_senses))
+                    for s_idx, sense in enumerate(unique_senses):
+                        translation = sense["translation"]
+                        if curated_key in curated and s_idx == 0:
+                            translation = curated[curated_key]
+                        # Each sense gets a slice of examples (round-robin)
+                        sense_examples = [ex for i, ex in enumerate(all_examples)
+                                          if i % len(unique_senses) == s_idx]
+                        if not sense_examples and all_examples:
+                            sense_examples = [all_examples[0]]
+                        meanings.append({
+                            "pos": sense["pos"],
+                            "translation": translation,
+                            "frequency": freq,
+                            "examples": sense_examples,
+                        })
             elif word_assignments and any(a.get("translation") for a in word_assignments):
                 total_assigned = sum(len(a.get("examples", [])) for a in word_assignments) or 1
                 for assignment in word_assignments:
