@@ -24,21 +24,36 @@ Spanish uses a **split format** for efficiency:
 
 ### Index Entry Schema (`vocabulary.index.json`)
 
+The artist index uses a **master-aligned** format. Sense definitions live in `vocabulary_master.json`; the index only carries per-artist statistics. `joinWithMaster()` in `vocab.js` reconstructs full entries at load time.
+
 ```json
 {
-  "word": "hacer",
-  "lemma": "hacer",
   "id": "a1b2c3",
-  "rank": 42,
-  "corpus_count": 1598,
+  "corpus_count": 142,
   "most_frequent_lemma_instance": true,
-  "meanings": [
-    { "pos": "VERB", "translation": "to do / to make", "frequency": "0.85" }
-  ],
-  "is_transparent_cognate": false,
-  "cognate_score": 0.0
+  "sense_frequencies": [0.8, 0.2],
+  "sense_methods": ["spanishdict-keyword", null],
+  "unassigned": true,
+  "cognate_score": 0.5,
+  "sense_cycles": [
+    {
+      "pos": "SENSE_CYCLE",
+      "cycle_pos": "NOUN",
+      "translation": "debt",
+      "allSenses": [{"pos": "NOUN", "translation": "debt"}, {"pos": "NOUN", "translation": "drug"}]
+    }
+  ]
 }
 ```
+
+- `sense_frequencies[i]` — fraction of examples assigned to master sense i
+- `sense_methods[i]` — assignment method for sense i (`"spanishdict-keyword"`, `"flash-lite-wiktionary"`, etc.), or `null` for strong/auto assignments and unassigned senses
+- `unassigned: true` — present if any sense has no real assignment (random bucket); controls border display in flashcards
+- `sense_cycles` — SENSE_CYCLE groups for unassigned senses; `allSenses` includes keyword-assigned senses of the same POS so the remainder cycler shows all interpretations
+
+In `joinWithMaster()`: if `sense_methods[i]` is non-null, the meaning gets `assignment_method` set (informational, no rendering effect). If `sense_methods[i]` is null and `idx.unassigned` is true, the meaning gets `unassigned: true` (no border). Strong/auto-assigned senses get neither flag (border shown).
+
+The normal-mode pipeline uses a simpler legacy index with `word`, `lemma`, `rank`, and `meanings` inline — not master-aligned.
 
 ### Examples Entry Schema (`vocabulary.examples.json`)
 

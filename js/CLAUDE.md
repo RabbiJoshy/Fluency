@@ -84,6 +84,17 @@ Assigns `displayRank` (1-based, continuous). Range buttons use `displayRank`, NO
 - Multiple lyric examples per card; tap to cycle
 - Google Sheets tab: `'Lyrics'`
 
+## Artist Index Format + joinWithMaster()
+
+Artist vocab files use a master-aligned split format. `joinWithMaster()` in `vocab.js` detects this via `sense_frequencies` on the first index entry and reconstructs full entries from the master vocab + per-artist statistics.
+
+Per-sense flags set by `joinWithMaster()`:
+- `meaning.assignment_method` — set if `idx.sense_methods[i]` is non-null (keyword/weak assignment). Informational only, no current rendering effect.
+- `meaning.unassigned = true` — set if `sense_methods[i]` is null **and** `idx.unassigned` is true (random bucket, no real assignment).
+- Neither flag — strong/auto assignment; meaning gets a border.
+
+**Example box border** (`flashcards.js`): `!meaning.unassigned` → solid accent border. `meaning.unassigned` → no border. The `assignment_method` field does not affect border display.
+
 ## Multi-Artist Merge
 
 `mergeArtistVocabularies()` in `vocab.js`: merges by hex ID, sums corpus_count, unions examples (tagged with `artist` slug), discards `--no-gemini` placeholders when Gemini analysis exists. After merge, recalculates meaning `frequency` from example counts (not stale Gemini line assignments).

@@ -189,6 +189,26 @@ Layer files track the method/source that produced each piece of data:
 - `senses_wiktionary.json` (normal mode): `source` field — `"wiktionary"` or `"jehle"`
 - `translation_scores.json`: Gemini judge scores (1-5) per sentence
 
+### assignment_method on meanings
+
+Keyword-level assignments (priority ≤ 15: `spanishdict-keyword`, `keyword-wiktionary`, etc.) get an `assignment_method` field on the assembled meaning and in `sense_methods[i]` in the index. This is informational — the front-end uses it for future differentiation but does not currently change rendering. Auto-assigned and strong-assigned (Gemini/bi-encoder) meanings do not carry `assignment_method`.
+
+### SENSE_CYCLE remainder behaviour
+
+When `best_method` is keyword-level, the assembler adds SENSE_CYCLE rows for senses that received no keyword-matched examples. These remainder rows include keyword-assigned senses of the **same POS** in their `allSenses` list, and append keyword-assigned examples at the end of the cycle pool. This means the remainder cycler shows all interpretations of the POS group, not just the unmatched ones. Gemini/bi-encoder assignments do not generate remainder rows — all examples are assumed classified.
+
+### SpanishDict cache coverage
+
+The SpanishDict **phrases cache** (`Data/Spanish/senses/spanishdict/phrases_cache.json`) was introduced after the initial scrape of Bad Bunny, Young Miko, and normal mode. Only Rosalía has full phrases coverage. Re-run `tool_5c_build_spanishdict_cache.py --force` for each to populate MWE phrases:
+
+```
+.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/Bad Bunny" --force
+.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/Young Miko" --force
+.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --inventory-file Data/Spanish/layers/word_inventory.json --force
+```
+
+After re-scraping, rebuild the SpanishDict sense menu with `tool_5c_build_spanishdict_menu.py --force` to pick up newly cached headword redirects and phrases.
+
 ## Adding a New Artist
 
 1. Create `Artists/NewArtist/artist.json` with `name`, `genius_query`, `vocabulary_file`
