@@ -391,11 +391,20 @@ def main():
         conj_reverse = {}
         print("  conjugation_reverse: (not found, skipping)")
 
-    # Clitic detection: skip verb+clitic forms, write separate clitic layer
-    print("\nDetecting clitics...")
-    clitic_map, verbs_with_refl = load_clitic_map(WIKTIONARY_RAW)
-    print(f"  Wiktionary: {len(clitic_map)} clitic forms,"
-          f" {len(verbs_with_refl)} verbs with reflexive senses")
+    # Clitic routing: read from word_routing.json (produced by step_4a_route_clitics.py)
+    routing_path = LAYERS / "word_routing.json"
+    clitic_merge_map = {}  # word -> base_form
+    clitic_keep_set = set()
+    if routing_path.exists():
+        with open(routing_path, encoding="utf-8") as f:
+            routing = json.load(f)
+        clitic_merge_map = routing.get("clitic_merge", {})
+        clitic_keep_set = set(routing.get("clitic_keep", []))
+        print(f"\n  word_routing: {len(clitic_merge_map)} clitic_merge, "
+              f"{len(clitic_keep_set)} clitic_keep")
+    else:
+        print("\n  word_routing.json not found — skipping clitic merge")
+        print("    (run step_4a_route_clitics.py to enable)")
 
     # Build lookup: surface word -> inventory entry (for clitic base verb lookup)
     inv_by_word = {e["word"].lower(): e for e in inventory}
@@ -415,19 +424,16 @@ def main():
             if lem not in assignment_lemmas_by_word[w]:
                 assignment_lemmas_by_word[w].append(lem)
 
-    # Clitic detection works on surface words
-    clitic_merged_words = set()  # surface words to skip in entry loop
-    clitic_data = {}             # surface_word -> clitic info dict
-    id_migration = {}            # old clitic hex -> base hex (for reversibility)
+    # Apply clitic merge routing
+    clitic_merged_words = set()
+    clitic_data = {}
+    id_migration = {}
 
-    for entry in inventory:
-        wl = entry["word"].lower()
-        if wl not in clitic_map:
+    for wl, base_form in clitic_merge_map.items():
+        entry = inv_by_word.get(wl)
+        if not entry:
             continue
-        base_verb, is_refl = clitic_map[wl]
-        if is_refl and base_verb in verbs_with_refl:
-            continue  # tier 3: keep separate
-        base_entry = inv_by_word.get(base_verb)
+        base_entry = inv_by_word.get(base_form)
         if not base_entry:
             continue
 
@@ -443,17 +449,15 @@ def main():
             if isinstance(raw, dict):
                 clitic_assigns_all.update(raw)
 
-        # Get senses for the clitic (try first lemma)
         first_lemma = clitic_lemmas[0] if clitic_lemmas else wl
         clitic_senses, _ = get_senses_for_lemma(
             senses_data, wl, first_lemma, is_analysis_menu)
         translation = clitic_senses[0]["translation"] if clitic_senses else ""
 
-        # Get examples (keyed by surface word or hex ID)
         clitic_exs = examples_raw.get(wl, examples_raw.get(entry.get("id", ""), []))
 
         clitic_data[wl] = {
-            "base_verb": base_verb,
+            "base_verb": base_form,
             "lemma": first_lemma,
             "corpus_count": entry.get("corpus_count", 0),
             "translation": translation,
@@ -464,7 +468,7 @@ def main():
         clitic_merged_words.add(wl)
 
     if clitic_data:
-        print(f"  {len(clitic_data)} clitic forms skipped from deck, data in clitic layer")
+        print(f"  {len(clitic_data)} clitic forms merged into base verbs")
 
     # Build vocabulary
     print("\nAssembling vocabulary...")
