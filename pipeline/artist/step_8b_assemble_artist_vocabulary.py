@@ -434,12 +434,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         key=lambda e: e.get("translation_quality", 3), reverse=True)
 
                     freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
-                    meanings.append({
+                    meaning = {
                         "pos": pos,
                         "translation": translation,
                         "frequency": freq,
                         "examples": meaning_examples,
-                    })
+                    }
+                    prio = METHOD_PRIORITY.get(best_method, 0) if best_method else 0
+                    if 0 < prio <= KEYWORD_PRIORITY_THRESHOLD:
+                        # Keyword-matched: record method for informational purposes.
+                        # Not marked unassigned — any real assignment gets a border.
+                        meaning["assignment_method"] = best_method
+                    meanings.append(meaning)
 
                 # If best method is keyword-level, add SENSE_CYCLE rows for
                 # senses that didn't get any keyword-matched examples.
@@ -480,6 +486,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                 if ts_entry:
                                     ex_dict["timestamp_ms"] = ts_entry["ms"]
                                 unassigned_ex.append(ex_dict)
+                        # Keyword-assigned meanings grouped by POS — used to
+                        # augment SENSE_CYCLE allSenses and append their examples.
+                        kw_by_pos = {}
+                        for mg in meanings:
+                            if mg.get("assignment_method") and mg.get("pos") not in ("SENSE_CYCLE", "X"):
+                                kw_by_pos.setdefault(mg["pos"], []).append(mg)
+
                         pos_list = sorted(pos_groups.keys())
                         for p_idx, pos_key in enumerate(pos_list):
                             senses_for_pos = pos_groups[pos_key]
@@ -487,7 +500,19 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                         if i % len(pos_list) == p_idx]
                             if not cycle_ex and unassigned_ex:
                                 cycle_ex = [unassigned_ex[0]]
-                            if len(senses_for_pos) == 1:
+
+                            # Append keyword-assigned examples for same POS at end
+                            kw_same_pos = kw_by_pos.get(pos_key, [])
+                            for kw_mg in kw_same_pos:
+                                cycle_ex = cycle_ex + kw_mg.get("examples", [])
+
+                            # Build allSenses: unassigned first, then keyword-assigned
+                            all_senses = [{"pos": s["pos"], "translation": s["translation"]}
+                                          for s in senses_for_pos]
+                            for kw_mg in kw_same_pos:
+                                all_senses.append({"pos": kw_mg["pos"], "translation": kw_mg["translation"]})
+
+                            if len(all_senses) == 1:
                                 meanings.append({
                                     "pos": pos_key,
                                     "translation": senses_for_pos[0]["translation"],
@@ -503,8 +528,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                     "examples": cycle_ex,
                                     "unassigned": True,
                                     "cycle_pos": pos_key,
-                                    "allSenses": [{"pos": s["pos"], "translation": s["translation"]}
-                                                  for s in senses_for_pos],
+                                    "allSenses": all_senses,
                                 })
 
             elif word_senses:
@@ -990,6 +1014,7 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             continue
 
         sense_freq = []
+        sense_methods = []
         sense_examples = []
         total_ex = 0
 
@@ -1002,6 +1027,7 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             exs = matching.get("examples", []) if matching else []
             sense_examples.append(exs)
             total_ex += len(exs)
+            sense_methods.append(matching.get("assignment_method") if matching else None)
 
         for exs in sense_examples:
             sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
@@ -1016,6 +1042,8 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
         }
+        if any(sense_methods):
+            idx_entry["sense_methods"] = sense_methods
         if any(mg.get("unassigned") for mg in entry.get("meanings", [])):
             idx_entry["unassigned"] = True
         if entry.get("cognate_score") is not None:
@@ -1044,13 +1072,12 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
                     "corpus_count": cinfo.get("corpus_count", 0),
                 })
                 clitic_examples.append(cinfo.get("examples", []))
-        # SENSE_CYCLE meanings (unassigned senses grouped by POS)
+        # SENSE_CYCLE meanings (unassigned senses grouped by POS).
+        # Single unassigned senses (NOUN, PRON, etc.) are already represented in the
+        # master sense list via sense_frequencies, so they are NOT duplicated here.
         sense_cycle_meanings = [mg for mg in entry.get("meanings", []) if mg.get("pos") == "SENSE_CYCLE"]
-        # Also include single unassigned senses (not SENSE_CYCLE but still unassigned)
-        unassigned_single = [mg for mg in entry.get("meanings", [])
-                             if mg.get("unassigned") and mg.get("pos") != "SENSE_CYCLE"]
         sense_cycle_examples = []
-        if sense_cycle_meanings or unassigned_single:
+        if sense_cycle_meanings:
             idx_entry["sense_cycles"] = []
             for mg in sense_cycle_meanings:
                 idx_entry["sense_cycles"].append({
@@ -1058,13 +1085,6 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
                     "cycle_pos": mg.get("cycle_pos", "X"),
                     "translation": mg.get("translation", ""),
                     "allSenses": mg.get("allSenses", []),
-                })
-                sense_cycle_examples.append(mg.get("examples", []))
-            for mg in unassigned_single:
-                idx_entry["sense_cycles"].append({
-                    "pos": mg["pos"],
-                    "translation": mg.get("translation", ""),
-                    "unassigned": True,
                 })
                 sense_cycle_examples.append(mg.get("examples", []))
         index.append(idx_entry)

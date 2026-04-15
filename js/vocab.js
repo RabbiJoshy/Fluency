@@ -89,6 +89,7 @@ function joinWithMaster(indexData, master) {
         if (!m) continue;
 
         // Build meanings array from master senses + artist sense_frequencies
+        const methods = idx.sense_methods || [];
         const meanings = (m.senses || []).map((sense, i) => {
             const meaning = {
                 pos: sense.pos,
@@ -96,7 +97,14 @@ function joinWithMaster(indexData, master) {
                 frequency: String(idx.sense_frequencies?.[i] ?? 0),
                 examples: []  // Attached later from examples file
             };
-            if (idx.unassigned) meaning.unassigned = true;
+            const method = methods[i];
+            if (method) {
+                // Has a specific assignment method — record it, gets border
+                meaning.assignment_method = method;
+            } else if (idx.unassigned) {
+                // No method + entry has unassigned senses = this sense is a random bucket
+                meaning.unassigned = true;
+            }
             return meaning;
         });
 

@@ -1436,7 +1436,7 @@ function updateCard() {
             // Determine if this example is genuinely assigned to this sense
             let exampleAssigned = false;
             if (currentMeaning && !currentMeaning.unassigned) {
-                exampleAssigned = true;  // sense-assigned by bi-encoder/Gemini
+                exampleAssigned = true;  // any real assignment (auto/keyword/Gemini)
             }
             // MWE: check if the expression appears in the example sentence
             if (currentMeaning && currentMeaning.allMWEs && displayTargetSentence) {
