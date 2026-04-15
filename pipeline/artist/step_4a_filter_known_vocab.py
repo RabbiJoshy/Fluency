@@ -109,6 +109,26 @@ _DERIVATION_RULES = [
 _CLITIC_PRONOUNS = ("nos", "les", "los", "las", "me", "te", "se", "lo", "la", "le")
 
 
+def strip_clitic_pronouns(word, clitic_list=None):
+    """Strip clitic pronouns from end of word and return accentless base form.
+
+    If clitic_list given (from Wiktionary links), strip those specific pronouns
+    in reverse order. Otherwise try all _CLITIC_PRONOUNS (up to 2).
+    """
+    remaining = word.lower()
+    if clitic_list:
+        for cl in reversed(clitic_list):
+            if remaining.endswith(cl) and len(remaining) > len(cl):
+                remaining = remaining[:-len(cl)]
+    else:
+        for _ in range(2):
+            for cl in _CLITIC_PRONOUNS:
+                if remaining.endswith(cl) and len(remaining) > len(cl):
+                    remaining = remaining[:-len(cl)]
+                    break
+    return _strip_acute(remaining)
+
+
 def _strip_acute(s):
     """Strip acute accents only (á→a), preserving ñ and ü."""
     return "".join(c for c in unicodedata.normalize("NFD", s) if c != "\u0301")
@@ -670,16 +690,23 @@ def main():
     #   Tier 3: reflexive where base verb HAS reflexive senses → keep separate
     #           (these get their own Wiktionary index entries via build_senses.py)
     # ===================================================================
-    clitic_merge = {}  # word -> base_verb (tier 1+2, will be merged)
+    clitic_merge = {}  # word -> base_form (tier 1+2, will be merged)
+    clitic_orphans = []  # words whose base is a synthetic infinitive (no inventory match)
     clitic_keep = set()  # tier 3, kept as separate entries
     for w in artist_words:
         if w not in wikt_clitic_map:
             continue
-        base, clitics, is_refl = wikt_clitic_map[w]
-        if is_refl and base in wikt_refl_verbs:
+        base_inf, clitics, is_refl = wikt_clitic_map[w]
+        if is_refl and base_inf in wikt_refl_verbs:
             clitic_keep.add(w)  # tier 3: meaning-shifting reflexive
+            continue
+        # Two-tier target: prefer conjugated form, fall back to infinitive
+        stripped = strip_clitic_pronouns(w, clitics)
+        if stripped in artist_words:
+            clitic_merge[w] = stripped
         else:
-            clitic_merge[w] = base  # tier 1+2: safe to merge
+            clitic_merge[w] = base_inf
+            clitic_orphans.append(w)
     # Programmatic gerund+clitic detection (catches forms not in Wiktionary)
     gerund_clitic_all = normal_words | conj_forms | wikt_spanish
     gerund_clitic_added = 0
@@ -688,16 +715,22 @@ def main():
             continue
         result = decompose_gerund_clitic(w, gerund_clitic_all)
         if result:
-            base, is_refl = result
-            if is_refl and base in wikt_refl_verbs:
+            base_inf, is_refl = result
+            if is_refl and base_inf in wikt_refl_verbs:
                 clitic_keep.add(w)
             else:
-                clitic_merge[w] = base
+                stripped = strip_clitic_pronouns(w)
+                if stripped in artist_words:
+                    clitic_merge[w] = stripped
+                else:
+                    clitic_merge[w] = base_inf
+                    clitic_orphans.append(w)
             gerund_clitic_added += 1
 
     if clitic_merge or clitic_keep:
         print("\n--- Clitic detection ---")
-        print("  Tier 1+2 (merge into base verb): %d" % len(clitic_merge))
+        print("  Tier 1+2 (merge into base verb): %d (%d to conjugated form, %d orphans to infinitive)"
+              % (len(clitic_merge), len(clitic_merge) - len(clitic_orphans), len(clitic_orphans)))
         print("  Tier 3 (keep separate, reflexive): %d" % len(clitic_keep))
         if gerund_clitic_added:
             print("  Gerund+clitic (programmatic): %d" % gerund_clitic_added)
@@ -930,7 +963,8 @@ def main():
             "shared": sorted(known_shared),
         },
         "gemini": sorted(remaining, key=lambda w: word_freq.get(w, 0), reverse=True),
-        "clitic_merge": clitic_merge,  # word -> base_verb (tier 1+2)
+        "clitic_merge": clitic_merge,  # word -> base_form (tier 1+2)
+        "clitic_orphans": sorted(clitic_orphans),  # orphans mapped to infinitive (synthetic entry)
         "clitic_keep": sorted(clitic_keep),  # tier 3 reflexive
         "stats": {
             "input_words": len(artist_words),

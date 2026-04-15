@@ -170,7 +170,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
     # Load word routing for clitic merge and flag categories
     routing_data = {}
-    clitic_merge = {}  # word -> base_verb
+    clitic_merge = {}  # word -> base_form
+    clitic_orphans = set()  # orphan clitics mapped to synthetic infinitive
     skip_english = set()
     skip_propn = set()
     skip_intj = set()
@@ -178,6 +179,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         with open(skip_words_path, "r", encoding="utf-8") as f:
             routing_data = json.load(f)
         clitic_merge = routing_data.get("clitic_merge", {})
+        clitic_orphans = set(routing_data.get("clitic_orphans", []))
         # Build flag sets from exclude categories
         exclude = routing_data.get("exclude", {})
         for w in exclude.get("english", []):
@@ -187,21 +189,41 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         for w in exclude.get("interjections", []):
             skip_intj.add(w.lower() if isinstance(w, str) else w)
         if clitic_merge:
-            print("  clitic_merge: %d words to fold into base verbs" % len(clitic_merge))
+            print("  clitic_merge: %d words (%d orphans → synthetic infinitive)" %
+                  (len(clitic_merge), len(clitic_orphans)))
         print("  routing flags: %d english, %d propn, %d intj" %
               (len(skip_english), len(skip_propn), len(skip_intj)))
 
     # Pre-process clitic merges: skip clitics from main deck, build separate
     # clitic data file (like MWEs). Base verb references clitic IDs; front-end
     # displays clitics as sub-entries.
+    # Orphan clitics (base not in inventory) create a synthetic entry for the
+    # infinitive, transferring their examples as the base verb's own examples.
     clitic_merged_words = set()  # words to skip in entry loop
     clitic_data = {}  # clitic_word -> {base_verb, senses, examples, ...}
+    orphan_synthetic = 0
     if clitic_merge:
         inv_by_word = {e["word"].lower(): e for e in inventory}
         for clitic_word, base_verb in clitic_merge.items():
             clitic_entry = inv_by_word.get(clitic_word)
+            if not clitic_entry:
+                continue
             base_entry = inv_by_word.get(base_verb)
-            if not clitic_entry or not base_entry:
+            # Orphan clitic: create synthetic entry for the infinitive and
+            # transfer clitic's examples as the base verb's own examples.
+            if not base_entry and clitic_word in clitic_orphans:
+                if base_verb not in inv_by_word:
+                    inv_by_word[base_verb] = {"word": base_verb, "corpus_count": 0}
+                    inventory.append(inv_by_word[base_verb])
+                inv_by_word[base_verb]["corpus_count"] = (
+                    inv_by_word[base_verb].get("corpus_count", 0)
+                    + clitic_entry.get("corpus_count", 0))
+                examples_raw.setdefault(base_verb, []).extend(
+                    examples_raw.get(clitic_word, []))
+                clitic_merged_words.add(clitic_word.lower())
+                orphan_synthetic += 1
+                continue
+            if not base_entry:
                 continue
             # Add clitic's corpus count to base
             base_entry["corpus_count"] = base_entry.get("corpus_count", 0) + clitic_entry.get("corpus_count", 0)
@@ -265,8 +287,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             }
             base_entry.setdefault("variants", []).append(clitic_word)
             clitic_merged_words.add(clitic_word.lower())
-        print("  Clitic forms: %d skipped from deck, data preserved in clitic layer"
-              % len(clitic_merged_words))
+        print("  Clitic forms: %d skipped from deck (%d merged as sub-items, %d orphans → synthetic base)"
+              % (len(clitic_merged_words), len(clitic_merged_words) - orphan_synthetic, orphan_synthetic))
 
     # --- Assemble entries ---
     print("\nAssembling vocabulary...")
