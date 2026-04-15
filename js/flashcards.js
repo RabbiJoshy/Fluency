@@ -12,32 +12,36 @@ let _conjugationLoading = false;
 
 function formatMorphMood(mood) {
     const moodMap = {
-        indicativo: '',
+        indicativo: '',        // indicative is default, omit
         subjuntivo: 'subj',
         imperativo: 'imp',
-        gerundio: 'gerund',
-        participio: 'participle',
-        'participio-pasado': 'past participle',
+        gerundio: 'ger',
+        participio: 'part',
+        participo: 'part',
+        'participio-pasado': 'past part',
         condicional: 'cond',
+        infinitivo: 'inf',
     };
     return moodMap[mood] || mood;
 }
 
 function formatMorphTense(tense) {
     const tenseMap = {
-        presente: 'present',
+        presente: 'pres',
         afirmativo: 'aff',
         negativo: 'neg',
-        futuro: 'future',
-        'futuro-perfecto': 'future perfect',
-        'pretérito-perfecto-simple': 'preterite',
-        'pretérito-imperfecto': 'imperfect',
-        'pretérito-imperfecto-1': 'imperfect',
-        'pretérito-imperfecto-2': 'imperfect',
-        'pretérito-perfecto': 'present perfect',
-        'pretérito-pluscuamperfecto-1': 'pluperfect',
-        'pretérito-pluscuamperfecto-2': 'pluperfect',
-        infinitivo: 'infinitive',
+        futuro: 'fut',
+        'futuro-perfecto': 'fut perf',
+        'pretérito-perfecto-simple': 'pret',
+        'pretérito-imperfecto': 'imperf',
+        'pretérito-imperfecto-1': 'imperf',
+        'pretérito-imperfecto-2': 'imperf',
+        'pretérito-perfecto': 'pres perf',
+        'pretérito-pluscuamperfecto-1': 'pluperf',
+        'pretérito-pluscuamperfecto-2': 'pluperf',
+        infinitivo: 'inf',
+        gerundio: 'ger',
+        participo: 'part',
     };
     return tenseMap[tense] || tense;
 }
@@ -1077,12 +1081,44 @@ function updateCard() {
 
     // Determine what to show on front and back based on flip direction
     let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
+    let flippedFrontMeanings = null; // structured front for EN→Target multi-meaning
 
     if (card.isMultiMeaning) {
         // Multi-meaning format
         if (isFlipped) {
-            // English → Target language
-            frontText = currentMeaning.meaning;
+            // English → Target language: build structured front with POS badges
+            const normalMeanings = card.meanings.filter(m =>
+                m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
+
+            // Pick meanings to show: those with frequency, else keyword-assigned, else top per POS
+            let frontMeanings = normalMeanings.filter(m => (m.percentage || 0) > 0);
+            if (frontMeanings.length === 0) {
+                frontMeanings = normalMeanings.filter(m => m.assignment_method === 'keyword');
+            }
+            if (frontMeanings.length === 0) {
+                // Fall back: one meaning per unique POS
+                const seenPOS = new Set();
+                for (const m of normalMeanings) {
+                    if (!seenPOS.has(m.pos)) {
+                        frontMeanings.push(m);
+                        seenPOS.add(m.pos);
+                    }
+                }
+            }
+            // Deduplicate by translation text
+            const seenText = new Set();
+            frontMeanings = frontMeanings.filter(m => {
+                const key = (m.meaning || '').toLowerCase();
+                if (seenText.has(key)) return false;
+                seenText.add(key);
+                return true;
+            });
+
+            const uniquePOS = new Set(frontMeanings.map(m => m.pos));
+            const multiPOS = uniquePOS.size > 1;
+
+            flippedFrontMeanings = { meanings: frontMeanings, multiPOS };
+            frontText = null; // will use structured display instead
             backWord = card.targetWord;
             backTranslation = currentMeaning.meaning;
             exampleSentence = currentMeaning.englishSentence;
@@ -1125,20 +1161,49 @@ function updateCard() {
     }
 
     const frontWordEl = document.getElementById('frontWord');
-    frontWordEl.textContent = frontText;
-    // Scale font down for long variant strings
-    if (variantDisplay && !isFlipped && variantDisplay.length > 16) {
-        frontWordEl.style.fontSize = Math.max(36, 64 - (variantDisplay.length - 12) * 2) + 'px';
+    const frontMeaningsEl = document.getElementById('frontMeanings');
+
+    if (flippedFrontMeanings) {
+        // EN→Target structured display: meanings with POS badges
+        frontWordEl.style.display = 'none';
+        const { meanings: fMeanings, multiPOS } = flippedFrontMeanings;
+        const fontSize = fMeanings.length > 2 ? 28 : (fMeanings.length > 1 ? 36 : 52);
+        let html = '';
+        for (const m of fMeanings) {
+            const posClass = getPosColorClass(m.pos);
+            const posBadge = multiPOS
+                ? `<span class="front-meaning-pos ${posClass}">${m.pos}</span>`
+                : '';
+            html += `<div class="front-meaning-row">
+                ${posBadge}
+                <span class="front-meaning-text" style="font-size: ${fontSize}px;">${m.meaning}</span>
+            </div>`;
+        }
+        frontMeaningsEl.innerHTML = html;
+        frontMeaningsEl.style.display = 'flex';
     } else {
-        frontWordEl.style.fontSize = '';
+        // Normal single-word/text display
+        frontMeaningsEl.innerHTML = '';
+        frontMeaningsEl.style.display = 'none';
+        frontWordEl.style.display = '';
+        frontWordEl.textContent = frontText;
+        // Scale font down for long variant strings
+        if (variantDisplay && !isFlipped && variantDisplay.length > 16) {
+            frontWordEl.style.fontSize = Math.max(36, 64 - (variantDisplay.length - 12) * 2) + 'px';
+        } else {
+            frontWordEl.style.fontSize = '';
+        }
     }
 
     // Display part of speech on front with color coding
     const frontPOSEl = document.getElementById('frontPOS');
     // Clear any existing POS color classes
     frontPOSEl.className = 'card-pos';
-    if (card.isMultiMeaning && card.meanings && card.meanings.length > 0) {
-        // For multi-meaning cards, show all unique POS
+    if (flippedFrontMeanings) {
+        // EN→Target: POS badges are inline with meanings, hide standalone POS pill
+        frontPOSEl.style.display = 'none';
+    } else if (card.isMultiMeaning && card.meanings && card.meanings.length > 0) {
+        // SP→EN: show all unique POS
         const allPOS = [...new Set(card.meanings.filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE').map(m => m.pos))].join(', ');
         frontPOSEl.textContent = allPOS;
         // Apply color of first POS
@@ -1155,21 +1220,33 @@ function updateCard() {
         frontPOSEl.style.display = 'none';
     }
 
-    const morphologyText = card.morphology
-        ? [...new Set((Array.isArray(card.morphology) ? card.morphology : [card.morphology]).map(formatMorphLabel))].join(' / ')
-        : '';
+    // Build compact multi-row morphology labels
+    const morphLabels = card.morphology
+        ? [...new Set((Array.isArray(card.morphology) ? card.morphology : [card.morphology]).map(formatMorphLabel))]
+        : [];
 
-    // Display lemma on front if different from target word.
-    // In English → Target mode, reuse this line for morphology instead.
+    // Display lemma on front if different from target word
     const frontLemmaEl = document.getElementById('frontLemma');
-    if (isFlipped && morphologyText) {
-        frontLemmaEl.textContent = morphologyText;
-        frontLemmaEl.style.display = 'block';
-    } else if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
+    if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
         frontLemmaEl.textContent = card.lemma;
         frontLemmaEl.style.display = 'block';
     } else {
+        frontLemmaEl.textContent = '';
         frontLemmaEl.style.display = 'none';
+    }
+
+    // Show morphology info on both sides (compact, multi-row)
+    const frontMorphEl = document.getElementById('frontMorph');
+    if (frontMorphEl) {
+        if (morphLabels.length > 0) {
+            frontMorphEl.innerHTML = morphLabels.map(l =>
+                `<span class="morph-tag">${l}</span>`
+            ).join('');
+            frontMorphEl.style.display = 'flex';
+        } else {
+            frontMorphEl.innerHTML = '';
+            frontMorphEl.style.display = 'none';
+        }
     }
 
     // Store ranking as data attribute on card for console access
@@ -1415,7 +1492,7 @@ function updateCard() {
                 exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${exIdx + 1}/${exampleCount}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
             }
             // Breakdown button removed — English translation is now clickable instead
-            const spotifySvg = `<svg width="28" height="28" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
+            const spotifySvg = `<svg width="40" height="40" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
             const spotifyBtn = spotifyTrackId
                 ? `<button type="button" class="spotify-btn link-btn" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="Play in Spotify" style="cursor:pointer; background:none; border:none; margin:0; padding:6px; position:relative; z-index:999;" onclick="event.stopPropagation(); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})" ontouchend="event.stopPropagation(); event.preventDefault(); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})">${spotifySvg}</button>`
                 : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
@@ -1502,9 +1579,9 @@ function updateCard() {
 
     // Reference links as icon buttons — real favicons via Google's proxy
     const linkIcons = {
-        'spanishDict': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="28" height="28" alt="SpanishDict" style="border-radius:4px">`,
-        'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=64" width="28" height="28" alt="Reverso" style="border-radius:4px">`,
-        'conjugation': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="24" height="24" alt="Conjugate" style="border-radius:4px"><span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>`
+        'spanishDict': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="40" height="40" alt="SpanishDict" style="border-radius:4px">`,
+        'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=64" width="40" height="40" alt="Reverso" style="border-radius:4px">`,
+        'conjugation': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="32" height="32" alt="Conjugate" style="border-radius:4px"><span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>`
     };
     const linkTitles = {
         'spanishDict': 'SpanishDict',
@@ -1532,7 +1609,7 @@ function updateCard() {
         // Replace external conjugation link with inline toggle when we have data
         if (key === 'conjugation' && conjEntry) {
             backHTML += `<button class="ref-icon-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
                 </svg>
                 <span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>

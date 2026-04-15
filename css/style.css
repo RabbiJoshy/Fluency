@@ -358,14 +358,16 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 14px;
-                position: absolute;
-                right: calc(50% + 290px);
+                gap: 24px;
+                position: fixed;
+                left: 0;
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 10;
-                opacity: 0.5;
+                opacity: 0.45;
                 transition: opacity 0.3s;
+                pointer-events: auto;
+                padding: 24px 10px;
             }
 
             .desktop-keyboard-guide:hover {
@@ -377,13 +379,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
         }
 
         .kb-row {
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 6px;
         }
 
         .kb-key {
@@ -394,30 +396,30 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-bottom-width: 2px;
             border-radius: 5px;
-            padding: 5px 10px;
+            padding: 6px 12px;
             font-family: var(--font-data);
-            font-size: 12px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.2;
-            min-width: 28px;
+            min-width: 32px;
             text-align: center;
             white-space: nowrap;
         }
 
         .kb-key.small {
-            padding: 3px 6px;
-            font-size: 11px;
-            min-width: 22px;
+            padding: 4px 8px;
+            font-size: 12px;
+            min-width: 26px;
         }
 
         .kb-key.arrow {
-            padding: 4px 8px;
-            font-size: 14px;
-            min-width: 32px;
+            padding: 5px 10px;
+            font-size: 16px;
+            min-width: 36px;
         }
 
         .kb-key.wide {
-            padding: 5px 18px;
+            padding: 6px 22px;
         }
 
         .kb-plus {
@@ -427,7 +429,7 @@
         }
 
         .kb-label {
-            font-size: 9px;
+            font-size: 10px;
             color: rgba(255, 255, 255, 0.5);
             min-width: 58px;
             text-align: right;
@@ -435,18 +437,20 @@
         }
 
         .kb-hint {
-            font-size: 9px;
+            font-size: 10px;
             color: rgba(255, 255, 255, 0.5);
         }
 
         .kb-hint.correct {
             color: var(--success);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 18px;
         }
 
         .kb-hint.incorrect {
             color: var(--error);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 18px;
         }
 
         .kb-arrows {
@@ -585,6 +589,59 @@
             margin-bottom: 10px;
             font-weight: 500;
             opacity: 0.85;
+        }
+
+        .card-meanings-front {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .front-meaning-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .front-meaning-text {
+            font-family: var(--font-emphasis);
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+
+        .front-meaning-pos {
+            font-family: var(--font-data);
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: white;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-morph {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 8px;
+            margin-bottom: 8px;
+        }
+
+        .morph-tag {
+            font-family: var(--font-data);
+            font-size: 11px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            padding: 2px 6px;
+            white-space: nowrap;
         }
 
         .card-pos {

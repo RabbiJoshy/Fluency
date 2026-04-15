@@ -550,6 +550,14 @@ async function loadVocabularyData(rangeString) {
                 }
             }
 
+            // Sort meanings by frequency (highest first), keeping MWE/CLITIC/SENSE_CYCLE at end
+            meanings.sort((a, b) => {
+                const aSpecial = (a.pos === 'MWE' || a.pos === 'CLITIC' || a.pos === 'SENSE_CYCLE') ? 1 : 0;
+                const bSpecial = (b.pos === 'MWE' || b.pos === 'CLITIC' || b.pos === 'SENSE_CYCLE') ? 1 : 0;
+                if (aSpecial !== bSpecial) return aSpecial - bSpecial;
+                return (b.percentage || 0) - (a.percentage || 0);
+            });
+
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
             const card = {
                 targetWord: item.word,
@@ -833,6 +841,14 @@ async function loadIncorrectWordsSet() {
                     allExamples: allMWEs[0].examples
                 });
             }
+
+            // Sort meanings by frequency (highest first), keeping MWE/CLITIC/SENSE_CYCLE at end
+            meanings.sort((a, b) => {
+                const aSpecial = (a.pos === 'MWE' || a.pos === 'CLITIC' || a.pos === 'SENSE_CYCLE') ? 1 : 0;
+                const bSpecial = (b.pos === 'MWE' || b.pos === 'CLITIC' || b.pos === 'SENSE_CYCLE') ? 1 : 0;
+                if (aSpecial !== bSpecial) return aSpecial - bSpecial;
+                return (b.percentage || 0) - (a.percentage || 0);
+            });
 
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
             const card = {
