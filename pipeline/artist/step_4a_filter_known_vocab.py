@@ -52,7 +52,7 @@ NORMAL_VOCAB_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "vocabulary.js
 CONJ_REVERSE_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
 ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
 WIKTIONARY_SENSES_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "sense_menu.json")
-WIKTIONARY_RAW_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "corpora", "wiktionary", "kaikki-spanish.jsonl.gz")
+WIKTIONARY_RAW_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "Senses", "wiktionary", "kaikki-spanish.jsonl.gz")
 EN_50K_PATH = os.path.join(PROJECT_ROOT, "Data", "English", "en_50k_wordlist.txt")
 
 # D-elision regexes: Caribbean d-drop in past participles and derivatives.
