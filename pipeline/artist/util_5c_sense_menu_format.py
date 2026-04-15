@@ -150,8 +150,27 @@ def assign_legacy_sense_ids(senses_list):
 
 
 def collect_surface_analyses_from_shared_menu(word, shared_menu):
-    """Collect all analyses for a surface word from shared sense_menu.json."""
+    """Collect all analyses for a surface word from shared sense_menu.json.
+
+    Handles both key formats:
+      - Old: "word|lemma" keys (normal-mode Wiktionary menu)
+      - New: plain "word" keys with analyses array (SpanishDict menu)
+    """
     analyses = []
+    # New format: plain word key → list of analyses
+    if word in shared_menu:
+        value = shared_menu[word]
+        if isinstance(value, list):
+            for analysis in value:
+                if isinstance(analysis, dict):
+                    headword = analysis.get("headword", word)
+                    senses = analysis.get("senses", {})
+                    if isinstance(senses, dict):
+                        senses = list(senses.values())
+                    analyses.append({"headword": headword, "senses": deepcopy(senses)})
+            if analyses:
+                return analyses
+    # Old format: "word|lemma" keys
     prefix = word + "|"
     for key, value in shared_menu.items():
         if not key.startswith(prefix):
