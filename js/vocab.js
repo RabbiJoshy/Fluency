@@ -115,6 +115,16 @@ function joinWithMaster(indexData, master) {
             examples: []
         }));
 
+        // Build sense_cycles from index entry (unassigned/cycling senses)
+        const sense_cycles = (idx.sense_cycles || []).map(sc => ({
+            pos: sc.pos,
+            translation: sc.translation || '',
+            cycle_pos: sc.cycle_pos || sc.pos,
+            allSenses: sc.allSenses || [],
+            unassigned: true,
+            examples: []
+        }));
+
         result.push({
             id: idx.id,
             word: m.word,
@@ -131,6 +141,7 @@ function joinWithMaster(indexData, master) {
             variants: idx.variants || null,
             mwe_memberships: mwe_memberships.length > 0 ? mwe_memberships : undefined,
             clitic_memberships: clitic_memberships.length > 0 ? clitic_memberships : undefined,
+            sense_cycles: sense_cycles.length > 0 ? sense_cycles : undefined,
             morphology: idx.morphology || null,
         });
     }
@@ -504,6 +515,28 @@ async function loadVocabularyData(rangeString) {
                     englishSentence: firstEx.english || '',
                     allExamples: allClitics[0].examples
                 });
+            }
+
+            // Synthesize SENSE_CYCLE meanings (unassigned senses grouped by POS)
+            if (item.sense_cycles && item.sense_cycles.length > 0) {
+                for (const sc of item.sense_cycles) {
+                    const scExamples = sc.examples || [];
+                    const firstEx = scExamples[0] || { spanish: '', english: '' };
+                    const meaning = {
+                        pos: sc.pos === 'SENSE_CYCLE' ? 'SENSE_CYCLE' : sc.pos,
+                        meaning: sc.translation || '',
+                        percentage: 0,
+                        unassigned: true,
+                        targetSentence: firstEx.spanish || firstEx.target || '',
+                        englishSentence: firstEx.english || '',
+                        allExamples: scExamples
+                    };
+                    if (sc.allSenses && sc.allSenses.length > 0) {
+                        meaning.allSenses = sc.allSenses;
+                        meaning.cycle_pos = sc.cycle_pos || sc.pos;
+                    }
+                    meanings.push(meaning);
+                }
             }
 
             const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
@@ -1080,6 +1113,11 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 if (ex.c && entry.clitic_memberships) {
                     entry.clitic_memberships.forEach((cl, i) => {
                         cl.examples = ex.c[i] || [];
+                    });
+                }
+                if (ex.s && entry.sense_cycles) {
+                    entry.sense_cycles.forEach((sc, i) => {
+                        sc.examples = ex.s[i] || [];
                     });
                 }
             }

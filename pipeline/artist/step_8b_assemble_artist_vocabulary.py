@@ -1064,6 +1064,29 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
                     "corpus_count": cinfo.get("corpus_count", 0),
                 })
                 clitic_examples.append(cinfo.get("examples", []))
+        # SENSE_CYCLE meanings (unassigned senses grouped by POS)
+        sense_cycle_meanings = [mg for mg in entry.get("meanings", []) if mg.get("pos") == "SENSE_CYCLE"]
+        # Also include single unassigned senses (not SENSE_CYCLE but still unassigned)
+        unassigned_single = [mg for mg in entry.get("meanings", [])
+                             if mg.get("unassigned") and mg.get("pos") != "SENSE_CYCLE"]
+        sense_cycle_examples = []
+        if sense_cycle_meanings or unassigned_single:
+            idx_entry["sense_cycles"] = []
+            for mg in sense_cycle_meanings:
+                idx_entry["sense_cycles"].append({
+                    "pos": "SENSE_CYCLE",
+                    "cycle_pos": mg.get("cycle_pos", "X"),
+                    "translation": mg.get("translation", ""),
+                    "allSenses": mg.get("allSenses", []),
+                })
+                sense_cycle_examples.append(mg.get("examples", []))
+            for mg in unassigned_single:
+                idx_entry["sense_cycles"].append({
+                    "pos": mg["pos"],
+                    "translation": mg.get("translation", ""),
+                    "unassigned": True,
+                })
+                sense_cycle_examples.append(mg.get("examples", []))
         index.append(idx_entry)
 
         ex_entry = {"m": sense_examples}
@@ -1071,6 +1094,8 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             ex_entry["w"] = mwe_examples
         if any(clitic_examples):
             ex_entry["c"] = clitic_examples
+        if any(sense_cycle_examples):
+            ex_entry["s"] = sense_cycle_examples
         examples[fid] = ex_entry
 
     os.makedirs(os.path.dirname(index_path), exist_ok=True)
