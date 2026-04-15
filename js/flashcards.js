@@ -1739,12 +1739,24 @@ function cycleMWEBackward(event) {
 
 function selectMeaning(index) {
     if (index === currentMeaningIndex) {
-        // Already selected — cycle if this is an MWE pill with multiple expressions
+        // Already selected — cycle if this is a cycling pill (MWE/clitic/sense cycle)
         const card = flashcards[currentIndex];
         const m = card && card.meanings[index];
         if (m && m.allMWEs && m.allMWEs.length > 1) {
             currentMWEIndex = (currentMWEIndex + 1) % m.allMWEs.length;
-            currentExampleIndex = 0; // Reset example cycling when switching MWE
+            currentExampleIndex = 0;
+            updateCard();
+            return;
+        }
+        if (m && m.allClitics && m.allClitics.length > 1) {
+            currentMWEIndex = (currentMWEIndex + 1) % m.allClitics.length;
+            currentExampleIndex = 0;
+            updateCard();
+            return;
+        }
+        if (m && m.allSenses && m.allSenses.length > 1) {
+            currentMWEIndex = (currentMWEIndex + 1) % m.allSenses.length;
+            currentExampleIndex = 0;
             updateCard();
             return;
         }

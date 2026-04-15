@@ -374,6 +374,11 @@ async function loadVocabularyData(rangeString) {
                             mwe.examples = ex.w[i] || [];
                         });
                     }
+                    if (ex && ex.s && item.sense_cycles) {
+                        item.sense_cycles.forEach((sc, i) => {
+                            sc.examples = ex.s[i] || [];
+                        });
+                    }
                 }
                 // MWE examples are pre-computed by the pipeline and stored in the "w"
                 // field of the examples file. No need to build a corpus pool here.
@@ -390,12 +395,10 @@ async function loadVocabularyData(rangeString) {
             const MAX_SENSES = 6;
             for (const item of filteredData) {
                 // Drop zero-frequency senses (unused by this artist/merge)
-                // but keep SENSE_CYCLE and unassigned rows (they have freq 0 by design)
-                item.meanings = item.meanings.filter(m =>
-                    parseFloat(m.frequency) > 0 || m.pos === 'SENSE_CYCLE' || m.unassigned);
-                // Drop senses below minimum threshold (same exception)
-                item.meanings = item.meanings.filter(m =>
-                    parseFloat(m.frequency) >= MIN_SENSE_FREQ || m.pos === 'SENSE_CYCLE' || m.unassigned);
+                // SENSE_CYCLE rows are synthesized separately and aren't in meanings yet
+                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) > 0);
+                // Drop senses below minimum threshold
+                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) >= MIN_SENSE_FREQ);
                 // Hard cap: keep top N by frequency
                 if (item.meanings.length > MAX_SENSES) {
                     item.meanings.sort((a, b) => parseFloat(b.frequency) - parseFloat(a.frequency));
@@ -724,6 +727,11 @@ async function loadIncorrectWordsSet() {
                     if (ex && ex.w && item.mwe_memberships) {
                         item.mwe_memberships.forEach((mwe, i) => {
                             mwe.examples = ex.w[i] || [];
+                        });
+                    }
+                    if (ex && ex.s && item.sense_cycles) {
+                        item.sense_cycles.forEach((sc, i) => {
+                            sc.examples = ex.s[i] || [];
                         });
                     }
                 }
