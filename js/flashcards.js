@@ -1392,7 +1392,18 @@ function updateCard() {
         backHTML += `</div>`;
 
         // Show current sentence
-        if (currentMeaning && currentMeaning.targetSentence) {
+        // For MWE/Clitic senses, suppress the sentence block entirely when the
+        // current expression has no matching examples — otherwise the card
+        // keeps showing whatever was rendered for the previous expression.
+        const isMWEOrCliticCycle = currentMeaning && (currentMeaning.allMWEs || currentMeaning.allClitics);
+        let cycleHasExamples = true;
+        if (isMWEOrCliticCycle) {
+            const cycleList = currentMeaning.allMWEs || currentMeaning.allClitics;
+            const cycleIdx = currentMWEIndex % cycleList.length;
+            cycleHasExamples = (cycleList[cycleIdx].examples || []).length > 0;
+        }
+
+        if (currentMeaning && currentMeaning.targetSentence && cycleHasExamples) {
             // For MWE senses, get examples from the current MWE expression's own array
             let activeExamples;
             let activeMweIdx = 0;
