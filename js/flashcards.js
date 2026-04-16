@@ -1308,9 +1308,9 @@ function updateCard() {
         backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
         card.meanings.forEach((m, idx) => {
             const isSelected = idx === currentMeaningIndex;
-            const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'var(--bg-tertiary)';
+            const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'rgba(15, 20, 28, 0.75)';
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
-            const borderStyle = isSelected ? 'border: 2px solid var(--accent-primary);' : '';
+            const borderStyle = isSelected ? 'border: 3px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
             const isClitic = m.pos === 'CLITIC';
@@ -1347,18 +1347,32 @@ function updateCard() {
                 </div>
                 `;
             } else if (isSenseCycle) {
-                // Sense cycle row: POS badge + cycling through sense translations
-                const senseIdx = isSelected ? currentMWEIndex % (m.allSenses ? m.allSenses.length : 1) : 0;
-                const senseMeaning = m.allSenses ? m.allSenses[senseIdx].translation : m.meaning;
-                const senseCount = m.allSenses ? m.allSenses.length : 0;
-                const senseCounter = senseCount > 1 ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous sense">‹</button><span style="opacity: 0.6; font-size: 10px;">${senseIdx + 1}/${senseCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next sense">›</button></span>` : '';
+                // Sense cycle row: POS badge + all senses pipe-separated (these are unassigned/remainder)
                 const cyclePos = m.cycle_pos || 'X';
                 const cyclePosClass = getPosColorClass(cyclePos);
+                const allTranslations = m.allSenses ? m.allSenses.map(s => s.translation) : [m.meaning];
+                const MAX_SENSE_CHARS = 120;
+                const joinedFull = allTranslations.join(' | ');
+                let joinedDisplay = joinedFull;
+                let isTruncated = false;
+                if (joinedFull.length > MAX_SENSE_CHARS) {
+                    // Truncate at a pipe boundary
+                    let truncated = '';
+                    for (let si = 0; si < allTranslations.length; si++) {
+                        const candidate = si === 0 ? allTranslations[si] : truncated + ' | ' + allTranslations[si];
+                        if (candidate.length > MAX_SENSE_CHARS) break;
+                        truncated = candidate;
+                    }
+                    joinedDisplay = truncated;
+                    isTruncated = true;
+                }
+                const ellipsisBtn = isTruncated
+                    ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
+                    : '';
                 backHTML += `
                 <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${cyclePos}</span>
-                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; padding-left: 60px;">${senseMeaning}</span>
-                    ${senseCounter}
+                    <span style="font-size: 13px; font-weight: 600; color: white; flex: 1; text-align: center; padding-left: 60px; line-height: 1.4;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
                 `;
             } else {
@@ -1485,6 +1499,18 @@ function updateCard() {
                     `<span style="${pillStyle}">$1</span>`);
             }
 
+            // Highlight the English translation in the English sentence for keyword-assigned senses
+            if (currentMeaning && currentMeaning.assignment_method === 'keyword' && currentMeaning.meaning && displayEnglishSentence) {
+                // Split on commas/semicolons to try each translation fragment
+                const fragments = currentMeaning.meaning.split(/[,;]/).map(f => f.trim()).filter(f => f.length > 2);
+                for (const frag of fragments) {
+                    const fragEscaped = frag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const fragRegex = new RegExp(`(?<![\\p{L}\\p{N}])(${fragEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
+                    displayEnglishSentence = displayEnglishSentence.replace(fragRegex,
+                        `<span style="${pillStyle}">$1</span>`);
+                }
+            }
+
             // Build example counter: shows count for current MWE's examples, not total MWEs
             let exampleCounter = '';
             if (hasMultipleExamples) {
@@ -1534,7 +1560,7 @@ function updateCard() {
                 }
             }
             const sentenceStyle = exampleAssigned
-                ? 'border: 2px solid var(--accent-primary); box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.25);'
+                ? 'border: 3px solid var(--accent-primary); box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.25);'
                 : 'border-color: transparent;';
 
             backHTML += `

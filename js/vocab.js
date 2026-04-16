@@ -550,11 +550,12 @@ async function loadVocabularyData(rangeString) {
                 }
             }
 
-            // Sort meanings by frequency (highest first), keeping MWE/CLITIC/SENSE_CYCLE at end
+            // Sort meanings: frequency senses first, then SENSE_CYCLE, CLITIC, MWE
+            const specialOrder = { 'SENSE_CYCLE': 1, 'CLITIC': 2, 'MWE': 3 };
             meanings.sort((a, b) => {
-                const aSpecial = (a.pos === 'MWE' || a.pos === 'CLITIC' || a.pos === 'SENSE_CYCLE') ? 1 : 0;
-                const bSpecial = (b.pos === 'MWE' || b.pos === 'CLITIC' || b.pos === 'SENSE_CYCLE') ? 1 : 0;
-                if (aSpecial !== bSpecial) return aSpecial - bSpecial;
+                const aOrder = specialOrder[a.pos] || 0;
+                const bOrder = specialOrder[b.pos] || 0;
+                if (aOrder !== bOrder) return aOrder - bOrder;
                 return (b.percentage || 0) - (a.percentage || 0);
             });
 
@@ -842,11 +843,12 @@ async function loadIncorrectWordsSet() {
                 });
             }
 
-            // Sort meanings by frequency (highest first), keeping MWE/CLITIC/SENSE_CYCLE at end
+            // Sort meanings: frequency senses first, then SENSE_CYCLE, CLITIC, MWE
+            const specialOrder2 = { 'SENSE_CYCLE': 1, 'CLITIC': 2, 'MWE': 3 };
             meanings.sort((a, b) => {
-                const aSpecial = (a.pos === 'MWE' || a.pos === 'CLITIC' || a.pos === 'SENSE_CYCLE') ? 1 : 0;
-                const bSpecial = (b.pos === 'MWE' || b.pos === 'CLITIC' || b.pos === 'SENSE_CYCLE') ? 1 : 0;
-                if (aSpecial !== bSpecial) return aSpecial - bSpecial;
+                const aOrder = specialOrder2[a.pos] || 0;
+                const bOrder = specialOrder2[b.pos] || 0;
+                if (aOrder !== bOrder) return aOrder - bOrder;
                 return (b.percentage || 0) - (a.percentage || 0);
             });
 

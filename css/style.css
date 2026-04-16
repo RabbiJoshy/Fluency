@@ -796,7 +796,7 @@
         }
 
         body.artist-mode .sentence {
-            background: rgba(15, 20, 28, 0.55);
+            background: rgba(15, 20, 28, 0.75);
         }
 
         @media (max-width: 767px) {
@@ -3670,7 +3670,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(30, 39, 50, 0.72);
+            background: rgba(30, 39, 50, 0.82);
             border-radius: 16px;
             z-index: 0;
         }
