@@ -44,6 +44,18 @@ below have enough complexity to warrant this treatment when the time comes.
 - **[now] Surface per-word "known lyrics %" in settings (S) [artist]**
   Show what percentage of an artist's lyrics the user can understand the whole line for based on known words.
 
+- **[idea] Find-word should open filter-excluded cards (M) [shared]**
+  Current search (top-bar magnifier) only jumps to words present in the currently-filtered
+  deck; words removed by cognate/lemma/mastered filters show a "not available for this ranking"
+  message and nothing happens. Make a click on any search result pull up a one-off "preview
+  card" for that word regardless of filters, not counted toward progress.
+  Preferred approach (option 1 from the 2026-04-16 discussion): extract a `buildSingleCard(item)`
+  helper from the inline card-building logic in `loadVocabularyData()` (`js/vocab.js`, ~L565 and
+  ~L859 — the normal and multi-artist paths both duplicate this logic). Then the search's
+  "off-deck" click can call the helper, shove the result into `flashcards = [card]`, swap to
+  card view, and flag the card so `saveWordProgress()` skips it. Non-trivial mostly because of
+  the extraction work across two codepaths.
+
 ---
 
 ## Data / Pipeline

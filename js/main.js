@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260416f';
-import './flashcards.js?v=20260416f';
+import './vocab.js?v=20260416i';
+import './flashcards.js?v=20260416i';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -95,6 +95,7 @@ loadConfig().then(async () => {
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
     document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
+    setupFindWord();
     document.getElementById('topBarUserName').addEventListener('click', () => {
         if (currentUser && !currentUser.isGuest && selectedLanguage) {
             // In flashcard mode, show set stats; on setup page, show total stats
@@ -236,4 +237,197 @@ function showArtistPicker(anchorBtn, artists) {
         }
     };
     setTimeout(() => document.addEventListener('click', closeHandler), 0);
+}
+
+// ===== Find-word: simple lookup of a word across the current language's vocab =====
+let _findWordIndex = null; // [{ targetWord, lemma, rank, displayRank, id, firstMeaning }]
+let _findWordIndexKey = null;
+
+function normalizeForSearch(s) {
+    return (s || '')
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+}
+
+function findWordCacheKey() {
+    const slugs = (window._selectedArtistSlugs || []).slice().sort().join(',');
+    // Filter toggles change displayRank; include them so the cache invalidates.
+    return [
+        selectedLanguage || '',
+        slugs,
+        useLemmaMode ? '1' : '0',
+        excludeCognates ? '1' : '0',
+        hideSingleOccurrence ? '1' : '0'
+    ].join('|');
+}
+
+async function buildFindWordIndex() {
+    if (!selectedLanguage) return [];
+    const key = findWordCacheKey();
+    if (_findWordIndex && _findWordIndexKey === key) return _findWordIndex;
+    const langConfig = config.languages[selectedLanguage];
+    if (!langConfig) return [];
+    let vocabularyData;
+    // Reuse the cached merged index in multi-artist mode when present
+    if (activeArtist && window._cachedMergedIndex) {
+        vocabularyData = window._cachedMergedIndex;
+    } else {
+        vocabularyData = await window.fetchAndJoinIndex(langConfig);
+    }
+    vocabularyData.forEach((item, idx) => { if (!item.rank) item.rank = idx + 1; });
+    // Build displayRank via the normal filter pipeline so ranks line up with the set buttons
+    const { vocab: filtered } = window.buildFilteredVocab(vocabularyData);
+    const byRank = new Map();
+    filtered.forEach(it => byRank.set(it.rank, it.displayRank));
+    const idx = vocabularyData.map(item => {
+        const meanings = item.meanings || [];
+        const firstMeaning = meanings.find(m => m && m.meaning && m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
+        return {
+            targetWord: item.word || item.targetWord || '',
+            lemma: item.lemma || '',
+            rank: item.rank,
+            displayRank: byRank.get(item.rank) || null,
+            id: item.id || window.getWordId(item),
+            firstMeaning: firstMeaning ? firstMeaning.meaning : ''
+        };
+    });
+    _findWordIndex = idx;
+    _findWordIndexKey = key;
+    return idx;
+}
+
+function renderFindResults(query) {
+    const resultsEl = document.getElementById('findWordResults');
+    const statusEl = document.getElementById('findWordStatus');
+    resultsEl.innerHTML = '';
+    const q = normalizeForSearch(query).trim();
+    if (!q) {
+        statusEl.textContent = _findWordIndex ? `${_findWordIndex.length.toLocaleString()} words loaded` : '';
+        return;
+    }
+    if (!_findWordIndex) { statusEl.textContent = 'Loading…'; return; }
+    const matches = [];
+    for (const entry of _findWordIndex) {
+        const w = normalizeForSearch(entry.targetWord);
+        const l = normalizeForSearch(entry.lemma);
+        const exact = w === q || l === q;
+        const starts = w.startsWith(q) || l.startsWith(q);
+        const contains = w.includes(q) || l.includes(q);
+        if (exact || starts || contains) {
+            matches.push({ entry, score: exact ? 0 : (starts ? 1 : 2) });
+        }
+        if (matches.length > 300) break;
+    }
+    matches.sort((a, b) => a.score - b.score || (a.entry.rank || 1e9) - (b.entry.rank || 1e9));
+    const top = matches.slice(0, 30);
+    if (top.length === 0) {
+        statusEl.textContent = 'No matches';
+        return;
+    }
+    statusEl.textContent = `${matches.length} match${matches.length === 1 ? '' : 'es'}${matches.length > top.length ? ` — showing top ${top.length}` : ''}`;
+    for (const { entry } of top) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'find-word-result';
+        const lemmaHTML = (entry.lemma && entry.lemma !== entry.targetWord)
+            ? `<span class="fw-lemma">${entry.lemma}</span>` : '';
+        const rankHTML = entry.displayRank ? `<span class="fw-rank">#${entry.displayRank}</span>` : '';
+        btn.innerHTML = `
+            <span class="fw-word">${entry.targetWord}</span>
+            ${lemmaHTML}
+            <span class="fw-meaning">${(entry.firstMeaning || '').replace(/</g, '&lt;')}</span>
+            ${rankHTML}`;
+        btn.addEventListener('click', () => jumpToFoundWord(entry));
+        resultsEl.appendChild(btn);
+    }
+}
+
+async function jumpToFoundWord(entry) {
+    const statusEl = document.getElementById('findWordStatus');
+    if (!entry.displayRank) {
+        statusEl.textContent = 'Word is excluded by current filters (cognate/lemma/mastered). Adjust filters and try again.';
+        return;
+    }
+    const gs = (typeof groupSize === 'number' && groupSize > 0) ? groupSize : 25;
+    const rangeStart = Math.floor((entry.displayRank - 1) / gs) * gs + 1;
+    const rangeEnd = rangeStart + gs;
+    const rangeStr = `${rangeStart}-${rangeEnd}`;
+    statusEl.textContent = `Loading set ${rangeStr}…`;
+    // Close the modal now; loadVocabularyData drives its own loading UI
+    document.getElementById('findWordModal').classList.add('hidden');
+    try {
+        await window.loadVocabularyData(rangeStr);
+    } catch (e) {
+        console.error('Find-word: loadVocabularyData failed', e);
+        return;
+    }
+    // loadVocabularyData schedules a ~800ms setTimeout before initializing the card view.
+    // Wait past that, then try to locate the card in the current deck.
+    setTimeout(() => {
+        const targetId = entry.id;
+        const targetWord = (entry.targetWord || '').toLowerCase();
+        const targetLemma = (entry.lemma || '').toLowerCase();
+        let found = -1;
+        for (let i = 0; i < (flashcards || []).length; i++) {
+            const c = flashcards[i];
+            if (targetId && (c.id === targetId || c.fullId === targetId)) { found = i; break; }
+            if (c.targetWord && c.targetWord.toLowerCase() === targetWord &&
+                (!targetLemma || (c.lemma || '').toLowerCase() === targetLemma)) {
+                found = i; break;
+            }
+        }
+        if (found >= 0) {
+            window.currentIndex = found;
+            if (window.updateCard) window.updateCard();
+        } else {
+            console.warn('Find-word: word loaded set but was filtered out of deck', entry);
+        }
+    }, 950);
+}
+
+function setupFindWord() {
+    const btn = document.getElementById('findWordBtn');
+    const modal = document.getElementById('findWordModal');
+    const closeBtn = document.getElementById('closeFindWordModal');
+    const input = document.getElementById('findWordInput');
+    if (!btn || !modal || !input) return;
+
+    btn.addEventListener('click', async () => {
+        modal.classList.remove('hidden');
+        input.value = '';
+        document.getElementById('findWordResults').innerHTML = '';
+        document.getElementById('findWordStatus').textContent = 'Loading vocabulary…';
+        setTimeout(() => input.focus(), 50);
+        try {
+            await buildFindWordIndex();
+            renderFindResults(input.value);
+        } catch (e) {
+            console.error('Find-word: failed to build index', e);
+            document.getElementById('findWordStatus').textContent = 'Could not load vocabulary.';
+        }
+    });
+
+    closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            modal.classList.add('hidden');
+        }
+    });
+
+    let debounce = null;
+    input.addEventListener('input', () => {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => renderFindResults(input.value), 80);
+    });
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const first = document.querySelector('#findWordResults .find-word-result');
+            if (first) first.click();
+        }
+    });
 }

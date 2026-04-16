@@ -63,6 +63,12 @@
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
                     <button id="estimateLevelTextBtn" class="top-bar-text-btn">Estimate Level</button>
                     <button id="modeSwitchBtn" class="top-bar-text-btn" style="display: none;"></button>
+                    <button class="gear-btn top-bar-find" id="findWordBtn" title="Find a word">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
                     <button class="gear-btn top-bar-gear" id="topBarGearBtn" title="Settings">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="3"></circle>
@@ -514,6 +520,7 @@
                     </div>
                     <div class="estimation-word-area">
                         <div class="estimation-word" id="estimationWord">palabra</div>
+                        <div class="estimation-lemma" id="estimationLemma"></div>
                         <div class="estimation-pos" id="estimationPOS">noun</div>
                         <div class="estimation-translation" id="estimationTranslation"></div>
                         <div class="estimation-reveal" id="estimationReveal" onclick="revealTranslation()">Show translation</div>
@@ -551,6 +558,28 @@
 
     <!-- Word Popup (floating, positioned by JS) -->
     <div id="wordPopup" class="word-popup hidden"></div>
+
+    <!-- Find Word Modal -->
+    <div id="findWordModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 520px;">
+            <div class="modal-header">
+                <h3>Find a word</h3>
+                <button class="modal-close" id="closeFindWordModal">✕</button>
+            </div>
+            <div class="find-word-body">
+                <input
+                    type="text"
+                    id="findWordInput"
+                    class="find-word-input"
+                    placeholder="Type a word or lemma…"
+                    autocomplete="off"
+                    spellcheck="false"
+                />
+                <div id="findWordStatus" class="find-word-status"></div>
+                <div id="findWordResults" class="find-word-results"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Stats Modal -->
     <div id="statsModal" class="modal hidden">
@@ -729,6 +758,6 @@
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260416f"></script>
+    <script type="module" src="js/main.js?v=20260416i"></script>
 </body>
 </html>

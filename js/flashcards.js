@@ -1350,16 +1350,53 @@ function updateCard() {
                 // Sense cycle row: POS badge + all senses pipe-separated (these are unassigned/remainder)
                 const cyclePos = m.cycle_pos || 'X';
                 const cyclePosClass = getPosColorClass(cyclePos);
-                const allTranslations = m.allSenses ? m.allSenses.map(s => s.translation) : [m.meaning];
+                const rawTranslations = m.allSenses ? m.allSenses.map(s => s.translation) : [m.meaning];
+                // Prettify the remainder bucket:
+                //   1. Split any semicolon-packed gloss into atomic translations
+                //      (Wiktionary often bundles synonyms: "to pull out; to remove; to extract").
+                //   2. Dedupe exact (case-insensitive) duplicates across senses while preserving order.
+                //   3. If every remaining entry starts with "to ", factor the prefix and comma-join.
+                //      Otherwise keep the pipe-joined display.
+                const splitPieces = [];
+                for (const t of rawTranslations) {
+                    if (typeof t !== 'string') continue;
+                    for (const piece of t.split(';')) {
+                        const trimmed = piece.trim();
+                        if (trimmed) splitPieces.push(trimmed);
+                    }
+                }
+                const dedupSeen = new Set();
+                const dedupedTranslations = [];
+                for (const p of splitPieces) {
+                    const key = p.toLowerCase();
+                    if (!dedupSeen.has(key)) { dedupSeen.add(key); dedupedTranslations.push(p); }
+                }
+                let allTranslations = dedupedTranslations.length ? dedupedTranslations : rawTranslations;
+                let joinSep = ' | ';
+                const allToInfinitive = allTranslations.length >= 2 &&
+                    allTranslations.every(t => typeof t === 'string' && /^to\s+\S/i.test(t.trim()));
+                if (allToInfinitive) {
+                    const stripped = allTranslations.map(t => t.trim().replace(/^to\s+/i, ''));
+                    // Dedupe again after stripping the prefix (e.g. "to get" + "to get" via semicolons)
+                    const seen2 = new Set();
+                    const unique = [];
+                    for (const s of stripped) {
+                        const key = s.toLowerCase();
+                        if (!seen2.has(key)) { seen2.add(key); unique.push(s); }
+                    }
+                    // First piece keeps "to "; subsequent pieces are bare, joined with ", "
+                    allTranslations = unique.map((s, i) => i === 0 ? 'to ' + s : s);
+                    joinSep = ', ';
+                }
+                const joinedFull = allTranslations.join(joinSep);
                 const MAX_SENSE_CHARS = 120;
-                const joinedFull = allTranslations.join(' | ');
                 let joinedDisplay = joinedFull;
                 let isTruncated = false;
                 if (joinedFull.length > MAX_SENSE_CHARS) {
-                    // Truncate at a pipe boundary
+                    // Truncate at a sense boundary
                     let truncated = '';
                     for (let si = 0; si < allTranslations.length; si++) {
-                        const candidate = si === 0 ? allTranslations[si] : truncated + ' | ' + allTranslations[si];
+                        const candidate = si === 0 ? allTranslations[si] : truncated + joinSep + allTranslations[si];
                         if (candidate.length > MAX_SENSE_CHARS) break;
                         truncated = candidate;
                     }

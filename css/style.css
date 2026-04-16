@@ -2718,7 +2718,17 @@
             font-size: 48px;
             font-weight: 700;
             color: var(--accent-primary);
+            margin-bottom: 6px;
+        }
+
+        .estimation-lemma {
+            text-align: center;
+            font-family: var(--font-emphasis);
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-muted);
             margin-bottom: 10px;
+            min-height: 20px;
         }
 
         .estimation-pos {
@@ -3202,7 +3212,8 @@
         /* Top bar (shared: How to start, Estimate Level, gear) */
         .top-bar-header {
             margin-bottom: 0 !important;
-            gap: 16px;
+            gap: 12px;
+            align-items: center;
         }
 
         .top-bar-user-name {
@@ -3215,7 +3226,8 @@
 
         .top-bar-text-btn {
             font-family: var(--font-emphasis);
-            font-size: 16px;
+            font-size: 14px;
+            line-height: 1.1;
             font-weight: 600;
             background: transparent;
             border: none;
@@ -3223,12 +3235,23 @@
             cursor: pointer;
             padding: 0;
             transition: color 0.2s ease;
+            /* Wrap to 2 lines to save horizontal space */
+            white-space: normal;
+            text-align: center;
+            max-width: 78px;
         }
 
         .top-bar-text-btn:hover {
             color: var(--accent-primary);
         }
 
+        /* Push the icon group (find + gear) to the right */
+        .top-bar-find {
+            margin-left: auto;
+        }
+        .top-bar-find + .top-bar-gear {
+            margin-left: 0;
+        }
         .top-bar-gear {
             margin-left: auto;
         }
@@ -3682,4 +3705,91 @@
 
         body.artist-mode .card-face > div[style*="position: absolute"] {
             z-index: 5;
+        }
+
+        /* Find-word modal */
+        .find-word-body {
+            padding: 16px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .find-word-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: var(--font-emphasis);
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+
+        .find-word-input:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .find-word-status {
+            color: var(--text-muted);
+            font-size: 13px;
+            min-height: 16px;
+        }
+
+        .find-word-results {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        .find-word-result {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: background 0.12s ease, border-color 0.12s ease;
+        }
+
+        .find-word-result:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .find-word-result .fw-word {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
+        }
+
+        .find-word-result .fw-lemma {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .find-word-result .fw-meaning {
+            color: var(--text-secondary);
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .find-word-result .fw-rank {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-family: var(--font-mono, monospace);
+            flex-shrink: 0;
         }

@@ -180,6 +180,18 @@ function showNextWord() {
 
     // Update UI
     document.getElementById('estimationWord').textContent = word.word;
+    const lemmaEl = document.getElementById('estimationLemma');
+    if (lemmaEl) {
+        const lemma = word.lemma || '';
+        // Only display the lemma when it adds information (differs from the surface form).
+        if (lemma && lemma !== word.word) {
+            lemmaEl.textContent = lemma;
+            lemmaEl.style.visibility = 'visible';
+        } else {
+            lemmaEl.textContent = '';
+            lemmaEl.style.visibility = 'hidden';
+        }
+    }
     let pos = '';
     if (word.meanings && word.meanings.length > 0) {
         pos = word.meanings[0].pos || '';
