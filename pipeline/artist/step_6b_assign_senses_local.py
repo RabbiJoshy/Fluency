@@ -55,7 +55,11 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from step_5c_build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
-from util_6a_pos_menu_filter import filter_senses_by_pos, filter_senses_by_precomputed_pos
+from util_6a_pos_menu_filter import (
+    filter_senses_by_pos,
+    filter_senses_by_precomputed_pos,
+    TRUSTED_FILTER_POS,
+)
 from util_5c_sense_menu_format import (
     normalize_artist_sense_menu, merge_analysis,
     collect_surface_analyses_from_shared_menu, flatten_analyses_with_ids,
@@ -599,7 +603,10 @@ def main():
             continue
 
         if use_keyword:
-            # Keyword fallback — process inline
+            # Keyword fallback — process inline with per-example POS filtering.
+            # For each example, restrict candidate senses to those matching the
+            # example's POS tag.  This prevents e.g. a NOUN-tagged "vuelo" from
+            # matching VERB senses like "volarse → to fly off".
             sense_example_indices = [[] for _ in word_senses]
             for ex_idx, ex in enumerate(examples):
                 spanish = ex.get("_original_spanish", ex.get("spanish", ""))
@@ -607,10 +614,26 @@ def main():
                 eng = trans_info.get("english", "")
                 if not eng:
                     continue  # no translation — skip (don't force onto first sense)
-                best_idx = classify_example_keyword(eng, word_senses)
-                if best_idx is None:
+
+                # Per-example POS filter: narrow candidates for this example
+                ex_pos = precomputed.get(ex_idx)
+                if ex_pos and ex_pos in TRUSTED_FILTER_POS:
+                    pos_candidates = [i for i in keep_indices
+                                      if word_senses[i].get("pos") == ex_pos]
+                    if not pos_candidates:
+                        # POS observed but no matching senses — fall back to
+                        # full keep_indices so keyword can still try
+                        pos_candidates = keep_indices
+                else:
+                    pos_candidates = keep_indices
+
+                candidate_senses = [word_senses[i] for i in pos_candidates]
+                local_idx = classify_example_keyword(eng, candidate_senses)
+                if local_idx is None:
                     continue  # no confident keyword match — skip
-                sense_example_indices[best_idx].append(ex_idx)
+                # Map back to original word_senses index
+                orig_idx = pos_candidates[local_idx]
+                sense_example_indices[orig_idx].append(ex_idx)
 
             total_classified = sum(len(idx) for idx in sense_example_indices)
             assignments = []

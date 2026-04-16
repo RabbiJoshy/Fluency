@@ -751,6 +751,17 @@ def main():
         examples_data = json.load(f)
     print("  {:,} entries with examples".format(len(examples_data)))
 
+    # Load precomputed POS tags (from tool_6a_tag_example_pos.py)
+    example_pos_file = LAYERS / "example_pos.json"
+    example_pos = {}
+    if example_pos_file.is_file():
+        with open(example_pos_file, encoding="utf-8") as f:
+            example_pos = json.load(f)
+        example_pos.pop("_example_ids", None)
+        print("  {:,} words with POS tags".format(len(example_pos)))
+    else:
+        print("  No precomputed POS tags (run tool_6a_tag_example_pos.py first)")
+
     print("Loading senses...")
     with open(SENSES_FILE, encoding="utf-8") as f:
         senses_data = json.load(f)
@@ -954,15 +965,35 @@ def main():
         if use_gemini or use_biencoder:
             work_items.append((word, senses, examples, keep_indices))
         else:
-            # Keyword fallback — process inline
+            # Keyword fallback — process inline with per-example POS filtering.
+            # Use precomputed POS tags to restrict candidate senses per example,
+            # so e.g. a NOUN-tagged example won't match VERB senses via loose
+            # keyword overlap.
+            _TRUSTED_KW_POS = {"VERB", "NOUN", "ADJ", "ADV", "INTJ"}
+            precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
+
             sense_example_indices = [[] for _ in senses]
             for ex_idx, ex in enumerate(examples):
                 eng = ex.get("english", "")
                 if not eng:
                     sense_example_indices[0].append(ex_idx)
                     continue
-                best_idx, _ = classify_example_keyword(eng, senses)
-                sense_example_indices[best_idx].append(ex_idx)
+
+                # Per-example POS filter: narrow candidates
+                ex_pos = precomputed.get(ex_idx)
+                if ex_pos and ex_pos in _TRUSTED_KW_POS:
+                    pos_candidates = [i for i in keep_indices
+                                      if senses[i].get("pos") == ex_pos]
+                    if not pos_candidates:
+                        pos_candidates = keep_indices
+                else:
+                    pos_candidates = keep_indices
+
+                candidate_senses = [senses[i] for i in pos_candidates]
+                local_idx, _ = classify_example_keyword(eng, candidate_senses)
+                orig_idx = pos_candidates[local_idx]
+                sense_example_indices[orig_idx].append(ex_idx)
+
             total_classified = sum(len(idx) for idx in sense_example_indices)
             assignments = []
             for i, indices in enumerate(sense_example_indices):

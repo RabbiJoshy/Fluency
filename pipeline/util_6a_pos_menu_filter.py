@@ -21,6 +21,7 @@ _SPACY_POS_MAP = {
 }
 
 _TRUSTED_FILTER_POS = {"VERB", "NOUN", "ADJ", "ADV", "INTJ"}
+TRUSTED_FILTER_POS = _TRUSTED_FILTER_POS  # public alias for per-example filtering
 
 _NLP = None
 _NLP_MODEL = None

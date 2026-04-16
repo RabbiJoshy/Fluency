@@ -93,6 +93,16 @@ below have enough complexity to warrant this treatment when the time comes.
   tune similarity threshold, reduce false positives on short words, add LLM flagging
   to normal mode pipeline.
 
+- **[idea] Separated reflexive clitic detection (L) [shared] [design doc]**
+  When a reflexive clitic is separated from its verb (e.g. "se vuelo", "me voy"), the
+  pipeline currently has no way to know the verb should be matched against reflexive
+  senses (volarse, irse) rather than the base form (volar, ir). Attached clitics are
+  already handled (morphologically visible). Separated clitics need dependency parsing
+  or heuristic co-occurrence detection to link the pronoun to its verb. Discovered via
+  the "vuelo" case in Bad Bunny — keyword fallback assigned "cogiendo vuelo" to volarse
+  sense "to fly off" (fixed by per-example POS filtering), but the underlying problem
+  remains for genuine separated-clitic verb uses.
+
 - **[idea] Sense dedup polish — English conjugation (S) [shared]**
   Generated 3rd-person translations say "he/she go" instead of "he/she goes".
   Would need English conjugation logic in `merge_to_master.py:choose_canonical_translation()`.

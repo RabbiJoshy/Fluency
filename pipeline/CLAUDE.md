@@ -55,6 +55,7 @@ Supporting tools/utils:
 - `tool_5c_enrich_sense_menu_metadata.py`
 - `tool_6a_classify_senses.py`
 - `tool_6a_refine_pos.py`
+- `tool_6a_tag_example_pos.py`
 - `util_6a_method_priority.py`
 - `util_6a_pos_menu_filter.py`
 
