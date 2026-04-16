@@ -38,10 +38,15 @@
     "combined_ppm": 8209.17
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "pa'",
-    "ppm": 7791.66
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pa'",
+    "target_word": "para",
+    "display_form": "pa'",
+    "target_lemma": "para",
+    "elided_ppm": 7791.66,
+    "combined_ppm": 7791.66,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",
@@ -138,10 +143,15 @@
     "also_in_elision_merge": false
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "to'",
-    "ppm": 2922.55
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to'",
+    "target_word": "todo",
+    "display_form": "to'",
+    "target_lemma": "todo",
+    "elided_ppm": 2922.55,
+    "combined_ppm": 2922.55,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",
@@ -654,10 +664,15 @@
     "also_in_elision_merge": true
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "na'",
-    "ppm": 726.57
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "na'",
+    "target_word": "nada",
+    "display_form": "na'",
+    "target_lemma": "nada",
+    "elided_ppm": 726.57,
+    "combined_ppm": 726.57,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",
@@ -4000,10 +4015,15 @@
     "also_in_elision_merge": false
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "verda'",
-    "ppm": 135.55
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "verda'",
+    "target_word": "verdad",
+    "display_form": "verda'",
+    "target_lemma": "verdad",
+    "elided_ppm": 135.55,
+    "combined_ppm": 135.55,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",
@@ -7910,11 +7930,15 @@
     "note": "atreve' = atreves, but this is a fragment"
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "die'",
-    "ppm": 65,
-    "note": "die' = diez"
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "die'",
+    "target_word": "diez",
+    "display_form": "die'",
+    "target_lemma": "diez",
+    "elided_ppm": 65,
+    "combined_ppm": 65,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",
@@ -9157,10 +9181,15 @@
     "combined_ppm": 48.8
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "lu'",
-    "ppm": 48.8
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "lu'",
+    "target_word": "luz",
+    "display_form": "lu'",
+    "target_lemma": "luz",
+    "elided_ppm": 48.8,
+    "combined_ppm": 48.8,
+    "note": "manual override (z-elision, future: handle s/z generically)"
   },
   {
     "action": "merge",
@@ -12150,11 +12179,15 @@
     "also_in_elision_merge": false
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "lao'",
-    "ppm": 33,
-    "note": "lao = lado (d-elision)"
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "lao'",
+    "target_word": "lado",
+    "display_form": "lao'",
+    "target_lemma": "lado",
+    "elided_ppm": 33,
+    "combined_ppm": 33,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "skip",
@@ -15306,10 +15339,15 @@
     "combined_ppm": 27.11
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "verdá'",
-    "ppm": 21.69
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "verdá'",
+    "target_word": "verdad",
+    "display_form": "verdá'",
+    "target_lemma": "verdad",
+    "elided_ppm": 21.69,
+    "combined_ppm": 21.69,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",
@@ -18466,10 +18504,15 @@
     "combined_ppm": 16.27
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "usté'",
-    "ppm": 16.27
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "usté'",
+    "target_word": "usted",
+    "display_form": "usté'",
+    "target_lemma": "usted",
+    "elided_ppm": 16.27,
+    "combined_ppm": 16.27,
+    "note": "manual override (non-s-elision)"
   },
   {
     "action": "merge",

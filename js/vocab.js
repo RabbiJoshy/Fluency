@@ -428,6 +428,7 @@ async function loadVocabularyData(rangeString) {
                     allExamples
                 };
                 if (m.unassigned) meaning.unassigned = true;
+                if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;
@@ -774,6 +775,7 @@ async function loadIncorrectWordsSet() {
                     allExamples
                 };
                 if (m.unassigned) meaning.unassigned = true;
+                if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;

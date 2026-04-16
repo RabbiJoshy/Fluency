@@ -154,6 +154,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                      "translation_scores", required=False) or {}
     lyrics_ts = load_layer(os.path.join(layers_dir, "lyrics_timestamps.json"), "lyrics_timestamps", required=False)
     ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
+    example_pos = load_layer(os.path.join(layers_dir, "example_pos.json"), "example_pos", required=False) or {}
 
     # MWEs: shared layer at Data/Spanish/layers/mwe_phrases.json (all sources with provenance)
     shared_mwes_path = os.path.join(project_root, "Data", "Spanish", "layers", "mwe_phrases.json")
@@ -407,6 +408,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         translation = curated[curated_key]
 
                     example_indices = assignment.get("examples", [])
+                    ex_method = assignment.get("method")
                     meaning_examples = []
                     for ex_idx in example_indices:
                         if ex_idx < len(raw_examples):
@@ -422,6 +424,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                 "english": english,
                                 "translation_source": source,
                             }
+                            # Stamp assignment method on each example so the
+                            # front-end can show per-example highlights/borders.
+                            if ex_method:
+                                ex_dict["assignment_method"] = ex_method
                             score_entry = translation_scores.get(spanish, {})
                             if isinstance(score_entry, dict) and "score" in score_entry:
                                 ex_dict["translation_quality"] = score_entry["score"]
@@ -447,89 +453,86 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         meaning["assignment_method"] = best_method
                     meanings.append(meaning)
 
-                # If best method is keyword-level, add SENSE_CYCLE rows for
-                # senses that didn't get any keyword-matched examples.
+                # If best method is keyword-level, add SENSE_CYCLE remainder
+                # rows for unassigned examples.  Trusted spaCy POS tags get
+                # their own POS-specific bucket.  Untrusted or missing tags
+                # all fall into one universal bucket listing every sense.
                 if best_method and METHOD_PRIORITY.get(best_method, 0) <= KEYWORD_PRIORITY_THRESHOLD:
-                    assigned_indices = {a["sense_idx"] for a in word_assignments}
-                    remaining = [s for i, s in enumerate(word_senses) if i not in assigned_indices]
-                    if remaining:
-                        # Deduplicate and group by POS
-                        seen_rem = set()
-                        unique_remaining = []
-                        for s in remaining:
-                            key = (s.get("pos", ""), s.get("translation", ""))
-                            if key not in seen_rem:
-                                seen_rem.add(key)
-                                unique_remaining.append(s)
-                        from collections import defaultdict as _defaultdict
-                        pos_groups = _defaultdict(list)
-                        for s in unique_remaining:
-                            pos_groups[s.get("pos", "X")].append(s)
-                        # Unassigned examples (not tied to any keyword match)
-                        assigned_ex = set()
-                        for a in word_assignments:
-                            assigned_ex.update(a.get("examples", []))
-                        unassigned_ex = []
-                        for ex_idx in range(len(raw_examples)):
-                            if ex_idx not in assigned_ex and ex_idx < len(raw_examples):
-                                raw_ex = raw_examples[ex_idx]
-                                spanish = raw_ex.get("spanish", "")
-                                trans_info = translations.get(spanish, {})
-                                ex_dict = {
-                                    "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
-                                    "song_name": raw_ex.get("title", ""),
-                                    "spanish": spanish,
-                                    "english": trans_info.get("english", ""),
-                                    "translation_source": trans_info.get("source", ""),
-                                }
-                                ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                                if ts_entry:
-                                    ex_dict["timestamp_ms"] = ts_entry["ms"]
-                                unassigned_ex.append(ex_dict)
-                        # Keyword-assigned meanings grouped by POS — used to
-                        # augment SENSE_CYCLE allSenses and append their examples.
-                        kw_by_pos = {}
-                        for mg in meanings:
-                            if mg.get("assignment_method") and mg.get("pos") not in ("SENSE_CYCLE", "X"):
-                                kw_by_pos.setdefault(mg["pos"], []).append(mg)
+                    # Collect unassigned example indices
+                    assigned_ex = set()
+                    for a in word_assignments:
+                        assigned_ex.update(a.get("examples", []))
 
-                        pos_list = sorted(pos_groups.keys())
-                        for p_idx, pos_key in enumerate(pos_list):
-                            senses_for_pos = pos_groups[pos_key]
-                            cycle_ex = [ex for i, ex in enumerate(unassigned_ex)
-                                        if i % len(pos_list) == p_idx]
-                            if not cycle_ex and unassigned_ex:
-                                cycle_ex = [unassigned_ex[0]]
+                    # Build unassigned example dicts, tagged with POS
+                    word_pos_data = example_pos.get(word, {})
+                    from collections import defaultdict as _defaultdict
+                    # POS tags we trust enough to POS-bucket the remainder by.
+                    # Everything else goes into a universal bucket.
+                    TRUSTED_FILTER_POS = {"VERB", "NOUN", "ADJ", "ADV", "INTJ"}
+                    UNIVERSAL_KEY = "_ALL"
+                    pos_to_unassigned = _defaultdict(list)
+                    for ex_idx in range(len(raw_examples)):
+                        if ex_idx in assigned_ex:
+                            continue
+                        raw_ex = raw_examples[ex_idx]
+                        spanish = raw_ex.get("spanish", "")
+                        trans_info = translations.get(spanish, {})
+                        ex_dict = {
+                            "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                            "song_name": raw_ex.get("title", ""),
+                            "spanish": spanish,
+                            "english": trans_info.get("english", ""),
+                            "translation_source": trans_info.get("source", ""),
+                        }
+                        ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                        if ts_entry:
+                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        ex_pos = word_pos_data.get(str(ex_idx))
+                        if ex_pos and ex_pos in TRUSTED_FILTER_POS:
+                            pos_to_unassigned[ex_pos].append(ex_dict)
+                        else:
+                            # Untrusted or missing POS → universal bucket
+                            pos_to_unassigned[UNIVERSAL_KEY].append(ex_dict)
 
-                            # Append keyword-assigned examples for same POS at end
-                            kw_same_pos = kw_by_pos.get(pos_key, [])
-                            for kw_mg in kw_same_pos:
-                                cycle_ex = cycle_ex + kw_mg.get("examples", [])
+                    # Build SENSE_CYCLE rows.  Deduplicate senses by
+                    # (pos, translation) for display.
+                    all_word_senses_deduped = {}
+                    for s in word_senses:
+                        key = (s.get("pos", ""), s.get("translation", ""))
+                        if key not in all_word_senses_deduped:
+                            all_word_senses_deduped[key] = s
 
-                            # Build allSenses: unassigned first, then keyword-assigned
-                            all_senses = [{"pos": s["pos"], "translation": s["translation"]}
-                                          for s in senses_for_pos]
-                            for kw_mg in kw_same_pos:
-                                all_senses.append({"pos": kw_mg["pos"], "translation": kw_mg["translation"]})
+                    for pos_key in sorted(pos_to_unassigned.keys()):
+                        cycle_ex = pos_to_unassigned[pos_key]
+                        if not cycle_ex:
+                            continue
+                        if pos_key == UNIVERSAL_KEY:
+                            # Universal bucket: list every sense the word has
+                            senses_for_pos = list(all_word_senses_deduped.values())
+                            cycle_pos_label = "ANY"
+                        else:
+                            # Trusted POS bucket: only senses matching that POS
+                            senses_for_pos = [s for (p, _t), s in all_word_senses_deduped.items()
+                                              if p == pos_key]
+                            if not senses_for_pos:
+                                senses_for_pos = list(all_word_senses_deduped.values())
+                            cycle_pos_label = pos_key
 
-                            if len(all_senses) == 1:
-                                meanings.append({
-                                    "pos": pos_key,
-                                    "translation": senses_for_pos[0]["translation"],
-                                    "frequency": "0.00",
-                                    "examples": cycle_ex,
-                                    "unassigned": True,
-                                })
-                            else:
-                                meanings.append({
-                                    "pos": "SENSE_CYCLE",
-                                    "translation": senses_for_pos[0]["translation"],
-                                    "frequency": "0.00",
-                                    "examples": cycle_ex,
-                                    "unassigned": True,
-                                    "cycle_pos": pos_key,
-                                    "allSenses": all_senses,
-                                })
+                        all_senses = [{"pos": s["pos"], "translation": s["translation"]}
+                                      for s in senses_for_pos]
+
+                        # Always use SENSE_CYCLE pos so the master update
+                        # (which skips SENSE_CYCLE) doesn't end up with a
+                        # duplicate of an already-assigned sense.
+                        meanings.append({
+                            "pos": "SENSE_CYCLE",
+                            "translation": senses_for_pos[0]["translation"],
+                            "frequency": "0.00",
+                            "examples": cycle_ex,
+                            "unassigned": True,
+                            "cycle_pos": cycle_pos_label,
+                            "allSenses": all_senses,
+                        })
 
             elif word_senses:
                 # Senses exist but no assignments (or only keyword/auto).
@@ -830,13 +833,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             new_master += 1
 
         m = master[fid]
-        # Propagate flags TO master for cross-artist benefit.
-        # Flags on entry are set from step 4 skip_words (current data),
-        # NOT pulled from stale master. is_transparent_cognate comes from
-        # the cognates layer, so still union that from master.
-        for flag in ("is_english", "is_interjection", "is_propernoun", "is_transparent_cognate"):
-            if entry.get(flag, False):
-                m[flag] = True
+        # Propagate flags TO master from current step-4 data.
+        # For step-4-derived flags (is_english, is_interjection, is_propernoun),
+        # overwrite the master — the current routing data is authoritative and
+        # stale True flags from previous builds must be cleared.
+        # is_transparent_cognate is union-only (comes from cognates layer, not step 4).
+        for flag in ("is_english", "is_interjection", "is_propernoun"):
+            m[flag] = entry.get(flag, False)
+        if entry.get("is_transparent_cognate", False):
+            m["is_transparent_cognate"] = True
         # Only pull is_transparent_cognate from master (not step-4 derived)
         if m.get("is_transparent_cognate", False):
             entry["is_transparent_cognate"] = True

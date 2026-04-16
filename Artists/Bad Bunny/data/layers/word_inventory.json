@@ -832,6 +832,16 @@
     "corpus_count": 83
   },
   {
+    "word": "corazón",
+    "corpus_count": 83,
+    "display_form": "cora'",
+    "variants": {
+      "corazón": 75,
+      "cora": 6,
+      "cora'": 2
+    }
+  },
+  {
     "word": "gente",
     "corpus_count": 82
   },
@@ -910,10 +920,6 @@
     "corpus_count": 76
   },
   {
-    "word": "corazón",
-    "corpus_count": 75
-  },
-  {
     "word": "disco",
     "corpus_count": 75
   },
@@ -937,6 +943,16 @@
   {
     "word": "algo",
     "corpus_count": 71
+  },
+  {
+    "word": "todas",
+    "corpus_count": 71,
+    "display_form": "toda'",
+    "variants": {
+      "toa'": 41,
+      "toda'": 17,
+      "todas": 13
+    }
   },
   {
     "word": "dé",
@@ -1577,11 +1593,6 @@
     "corpus_count": 41
   },
   {
-    "word": "toas",
-    "corpus_count": 41,
-    "display_form": "toa'"
-  },
-  {
     "word": "venir",
     "corpus_count": 41
   },
@@ -2185,15 +2196,6 @@
     "variants": {
       "mercedes": 19,
       "mercede'": 11
-    }
-  },
-  {
-    "word": "todas",
-    "corpus_count": 30,
-    "display_form": "toda'",
-    "variants": {
-      "toda'": 17,
-      "todas": 13
     }
   },
   {
@@ -6070,6 +6072,15 @@
     }
   },
   {
+    "word": "unos",
+    "corpus_count": 10,
+    "display_form": "uno'",
+    "variants": {
+      "unos": 6,
+      "uno'": 4
+    }
+  },
+  {
     "word": "revés",
     "corpus_count": 10,
     "display_form": "revé'",
@@ -7406,6 +7417,15 @@
     }
   },
   {
+    "word": "pierdas",
+    "corpus_count": 8,
+    "display_form": "pierda'",
+    "variants": {
+      "pierda'": 7,
+      "pierdas": 1
+    }
+  },
+  {
     "word": "roncas",
     "corpus_count": 8,
     "display_form": "ronca'",
@@ -8059,10 +8079,6 @@
   },
   {
     "word": "pentágono",
-    "corpus_count": 7
-  },
-  {
-    "word": "pierda'",
     "corpus_count": 7
   },
   {
@@ -8765,10 +8781,6 @@
     "corpus_count": 6
   },
   {
-    "word": "cora",
-    "corpus_count": 6
-  },
-  {
     "word": "corona",
     "corpus_count": 6
   },
@@ -8800,8 +8812,9 @@
     "corpus_count": 6
   },
   {
-    "word": "curva'",
-    "corpus_count": 6
+    "word": "curvas",
+    "corpus_count": 6,
+    "display_form": "curva'"
   },
   {
     "word": "curé",
@@ -9608,10 +9621,6 @@
   },
   {
     "word": "tócate",
-    "corpus_count": 6
-  },
-  {
-    "word": "unos",
     "corpus_count": 6
   },
   {
@@ -12673,8 +12682,9 @@
     "corpus_count": 4
   },
   {
-    "word": "militare'",
-    "corpus_count": 4
+    "word": "militares",
+    "corpus_count": 4,
+    "display_form": "militare'"
   },
   {
     "word": "mire",
@@ -13133,8 +13143,9 @@
     "display_form": "retire'"
   },
   {
-    "word": "revuelta'",
-    "corpus_count": 4
+    "word": "revueltas",
+    "corpus_count": 4,
+    "display_form": "revuelta'"
   },
   {
     "word": "rezando",
@@ -13389,8 +13400,9 @@
     "corpus_count": 4
   },
   {
-    "word": "tetota'",
-    "corpus_count": 4
+    "word": "tetotas",
+    "corpus_count": 4,
+    "display_form": "tetota'"
   },
   {
     "word": "texto",
@@ -13455,10 +13467,6 @@
   },
   {
     "word": "union",
-    "corpus_count": 4
-  },
-  {
-    "word": "uno'",
     "corpus_count": 4
   },
   {
@@ -13596,12 +13604,30 @@
     }
   },
   {
+    "word": "dejes",
+    "corpus_count": 4,
+    "display_form": "deje'",
+    "variants": {
+      "dejes": 3,
+      "deje'": 1
+    }
+  },
+  {
     "word": "deseos",
     "corpus_count": 4,
     "display_form": "deseo'",
     "variants": {
       "deseo'": 3,
       "deseos": 1
+    }
+  },
+  {
+    "word": "diferentes",
+    "corpus_count": 4,
+    "display_form": "diferente'",
+    "variants": {
+      "diferente'": 3,
+      "diferentes": 1
     }
   },
   {
@@ -14425,8 +14451,9 @@
     "corpus_count": 3
   },
   {
-    "word": "butaca'",
-    "corpus_count": 3
+    "word": "butacas",
+    "corpus_count": 3,
+    "display_form": "butaca'"
   },
   {
     "word": "búscame",
@@ -14465,8 +14492,9 @@
     "corpus_count": 3
   },
   {
-    "word": "caiga'",
-    "corpus_count": 3
+    "word": "caigas",
+    "corpus_count": 3,
+    "display_form": "caiga'"
   },
   {
     "word": "calderón",
@@ -14872,10 +14900,6 @@
     "corpus_count": 3
   },
   {
-    "word": "dejes",
-    "corpus_count": 3
-  },
-  {
     "word": "delante",
     "corpus_count": 3
   },
@@ -14917,10 +14941,6 @@
   },
   {
     "word": "dicho",
-    "corpus_count": 3
-  },
-  {
-    "word": "diferente'",
     "corpus_count": 3
   },
   {
@@ -15142,8 +15162,9 @@
     "corpus_count": 3
   },
   {
-    "word": "espejo'",
-    "corpus_count": 3
+    "word": "espejos",
+    "corpus_count": 3,
+    "display_form": "espejo'"
   },
   {
     "word": "espere",
@@ -17234,6 +17255,15 @@
     }
   },
   {
+    "word": "entiendas",
+    "corpus_count": 3,
+    "display_form": "entienda'",
+    "variants": {
+      "entienda'": 2,
+      "entiendas": 1
+    }
+  },
+  {
     "word": "entramos",
     "corpus_count": 3,
     "display_form": "entramo'",
@@ -17706,6 +17736,15 @@
     "variants": {
       "tracks": 2,
       "track'": 1
+    }
+  },
+  {
+    "word": "varios",
+    "corpus_count": 3,
+    "display_form": "vario'",
+    "variants": {
+      "vario'": 2,
+      "varios": 1
     }
   },
   {
@@ -18602,8 +18641,9 @@
     "corpus_count": 2
   },
   {
-    "word": "campeonato'",
-    "corpus_count": 2
+    "word": "campeonatos",
+    "corpus_count": 2,
+    "display_form": "campeonato'"
   },
   {
     "word": "cana",
@@ -19227,8 +19267,9 @@
     "corpus_count": 2
   },
   {
-    "word": "controlamo'",
-    "corpus_count": 2
+    "word": "controlamos",
+    "corpus_count": 2,
+    "display_form": "controlamo'"
   },
   {
     "word": "controlar",
@@ -19266,11 +19307,6 @@
   {
     "word": "copy",
     "corpus_count": 2
-  },
-  {
-    "word": "coras",
-    "corpus_count": 2,
-    "display_form": "cora'"
   },
   {
     "word": "coreografía",
@@ -19387,8 +19423,9 @@
     "corpus_count": 2
   },
   {
-    "word": "cuento'",
-    "corpus_count": 2
+    "word": "cuentos",
+    "corpus_count": 2,
+    "display_form": "cuento'"
   },
   {
     "word": "cuidamos",
@@ -19971,10 +20008,6 @@
   },
   {
     "word": "entienda",
-    "corpus_count": 2
-  },
-  {
-    "word": "entienda'",
     "corpus_count": 2
   },
   {
@@ -23247,8 +23280,9 @@
     "display_form": "sola'"
   },
   {
-    "word": "soldado'",
-    "corpus_count": 2
+    "word": "soldados",
+    "corpus_count": 2,
+    "display_form": "soldado'"
   },
   {
     "word": "soledad",
@@ -23744,8 +23778,9 @@
     "display_form": "trío'"
   },
   {
-    "word": "tumbamo'",
-    "corpus_count": 2
+    "word": "tumbamos",
+    "corpus_count": 2,
+    "display_form": "tumbamo'"
   },
   {
     "word": "tune",
@@ -23849,10 +23884,6 @@
     "corpus_count": 2
   },
   {
-    "word": "vario'",
-    "corpus_count": 2
-  },
-  {
     "word": "vaticano",
     "corpus_count": 2
   },
@@ -23901,8 +23932,9 @@
     "display_form": "venío'"
   },
   {
-    "word": "verdadero'",
-    "corpus_count": 2
+    "word": "verdaderos",
+    "corpus_count": 2,
+    "display_form": "verdadero'"
   },
   {
     "word": "verdá'",
@@ -24320,6 +24352,15 @@
     }
   },
   {
+    "word": "cachamos",
+    "corpus_count": 2,
+    "display_form": "cachamo'",
+    "variants": {
+      "cachamo'": 1,
+      "cachamos": 1
+    }
+  },
+  {
     "word": "caicos",
     "corpus_count": 2,
     "display_form": "caico'",
@@ -24549,6 +24590,15 @@
     "variants": {
       "equivoca'o": 1,
       "equivocado": 1
+    }
+  },
+  {
+    "word": "escapas",
+    "corpus_count": 2,
+    "display_form": "escapa'",
+    "variants": {
+      "escapa'": 1,
+      "escapas": 1
     }
   },
   {
@@ -25071,6 +25121,15 @@
     "variants": {
       "traicione'": 1,
       "traiciones": 1
+    }
+  },
+  {
+    "word": "trescientos",
+    "corpus_count": 2,
+    "display_form": "tresciento'",
+    "variants": {
+      "tresciento'": 1,
+      "trescientos": 1
     }
   },
   {
@@ -27806,8 +27865,9 @@
     "corpus_count": 1
   },
   {
-    "word": "bitche'",
-    "corpus_count": 1
+    "word": "bitches",
+    "corpus_count": 1,
+    "display_form": "bitche'"
   },
   {
     "word": "bitchy",
@@ -28153,8 +28213,9 @@
     "corpus_count": 1
   },
   {
-    "word": "brillamo'",
-    "corpus_count": 1
+    "word": "brillamos",
+    "corpus_count": 1,
+    "display_form": "brillamo'"
   },
   {
     "word": "brillas",
@@ -28473,14 +28534,6 @@
   },
   {
     "word": "cacen",
-    "corpus_count": 1
-  },
-  {
-    "word": "cachamo'",
-    "corpus_count": 1
-  },
-  {
-    "word": "cachamos",
     "corpus_count": 1
   },
   {
@@ -30048,8 +30101,9 @@
     "corpus_count": 1
   },
   {
-    "word": "comenzamo'",
-    "corpus_count": 1
+    "word": "comenzamos",
+    "corpus_count": 1,
+    "display_form": "comenzamo'"
   },
   {
     "word": "comenzó",
@@ -31583,10 +31637,6 @@
     "corpus_count": 1
   },
   {
-    "word": "deje'",
-    "corpus_count": 1
-  },
-  {
     "word": "delato",
     "corpus_count": 1
   },
@@ -31829,8 +31879,9 @@
     "corpus_count": 1
   },
   {
-    "word": "desayunamo'",
-    "corpus_count": 1
+    "word": "desayunamos",
+    "corpus_count": 1,
+    "display_form": "desayunamo'"
   },
   {
     "word": "desayunando",
@@ -32288,10 +32339,6 @@
   },
   {
     "word": "diferencio",
-    "corpus_count": 1
-  },
-  {
-    "word": "diferentes",
     "corpus_count": 1
   },
   {
@@ -33565,10 +33612,6 @@
     "corpus_count": 1
   },
   {
-    "word": "entiendas",
-    "corpus_count": 1
-  },
-  {
     "word": "entierro",
     "corpus_count": 1
   },
@@ -33794,14 +33837,6 @@
   },
   {
     "word": "escala",
-    "corpus_count": 1
-  },
-  {
-    "word": "escapa'",
-    "corpus_count": 1
-  },
-  {
-    "word": "escapas",
     "corpus_count": 1
   },
   {
@@ -34573,8 +34608,9 @@
     "corpus_count": 1
   },
   {
-    "word": "extensione'",
-    "corpus_count": 1
+    "word": "extensiones",
+    "corpus_count": 1,
+    "display_form": "extensione'"
   },
   {
     "word": "extenso",
@@ -35724,8 +35760,9 @@
     "corpus_count": 1
   },
   {
-    "word": "garra'",
-    "corpus_count": 1
+    "word": "garras",
+    "corpus_count": 1,
+    "display_form": "garra'"
   },
   {
     "word": "gaso",
@@ -36392,8 +36429,9 @@
     "display_form": "hackea'o"
   },
   {
-    "word": "hackeá'",
-    "corpus_count": 1
+    "word": "hackeás",
+    "corpus_count": 1,
+    "display_form": "hackeá'"
   },
   {
     "word": "had",
@@ -39908,8 +39946,9 @@
     "corpus_count": 1
   },
   {
-    "word": "metale'",
-    "corpus_count": 1
+    "word": "metales",
+    "corpus_count": 1,
+    "display_form": "metale'"
   },
   {
     "word": "metamorfosis",
@@ -41090,8 +41129,9 @@
     "corpus_count": 1
   },
   {
-    "word": "nosotra'",
-    "corpus_count": 1
+    "word": "nosotras",
+    "corpus_count": 1,
+    "display_form": "nosotra'"
   },
   {
     "word": "notando",
@@ -41428,8 +41468,9 @@
     "display_form": "opaca'o"
   },
   {
-    "word": "opcione'",
-    "corpus_count": 1
+    "word": "opciones",
+    "corpus_count": 1,
+    "display_form": "opcione'"
   },
   {
     "word": "operaciones",
@@ -42714,10 +42755,6 @@
     "word": "pieles",
     "corpus_count": 1,
     "display_form": "piele'"
-  },
-  {
-    "word": "pierdas",
-    "corpus_count": 1
   },
   {
     "word": "piezas",
@@ -44323,8 +44360,9 @@
     "corpus_count": 1
   },
   {
-    "word": "reflejo'",
-    "corpus_count": 1
+    "word": "reflejos",
+    "corpus_count": 1,
+    "display_form": "reflejo'"
   },
   {
     "word": "refresco",
@@ -46587,8 +46625,9 @@
     "display_form": "suelto'"
   },
   {
-    "word": "suena'",
-    "corpus_count": 1
+    "word": "suenas",
+    "corpus_count": 1,
+    "display_form": "suena'"
   },
   {
     "word": "suenen",
@@ -47845,14 +47884,6 @@
     "display_form": "trepe'"
   },
   {
-    "word": "tresciento'",
-    "corpus_count": 1
-  },
-  {
-    "word": "trescientos",
-    "corpus_count": 1
-  },
-  {
     "word": "trick",
     "corpus_count": 1
   },
@@ -48365,10 +48396,6 @@
   },
   {
     "word": "varias",
-    "corpus_count": 1
-  },
-  {
-    "word": "varios",
     "corpus_count": 1
   },
   {

@@ -89,11 +89,22 @@ Assigns `displayRank` (1-based, continuous). Range buttons use `displayRank`, NO
 Artist vocab files use a master-aligned split format. `joinWithMaster()` in `vocab.js` detects this via `sense_frequencies` on the first index entry and reconstructs full entries from the master vocab + per-artist statistics.
 
 Per-sense flags set by `joinWithMaster()`:
-- `meaning.assignment_method` — set if `idx.sense_methods[i]` is non-null (keyword/weak assignment). Informational only, no current rendering effect.
+- `meaning.assignment_method` — set if `idx.sense_methods[i]` is non-null (keyword/weak assignment). Used for sense pill display.
 - `meaning.unassigned = true` — set if `sense_methods[i]` is null **and** `idx.unassigned` is true (random bucket, no real assignment).
 - Neither flag — strong/auto assignment; meaning gets a border.
 
-**Example box border** (`flashcards.js`): `!meaning.unassigned` → solid accent border. `meaning.unassigned` → no border. The `assignment_method` field does not affect border display.
+**Per-example assignment method**: Each example object in the examples file carries its own `assignment_method` (e.g. `"spanishdict-keyword"`). This is the authoritative source for per-example UI decisions:
+- **Example box border** (`flashcards.js`): `example.assignment_method` present → solid accent border. For strong methods (Gemini/biencoder) without per-example stamps, falls back to `!meaning.unassigned`.
+- **English keyword highlight**: Only fires when `example.assignment_method` includes `'keyword'`. Highlights translation fragments ≥ 2 chars of `currentMeaning.meaning` in the English sentence.
+- **Sense row border**: `!m.unassigned` → solid accent border on selected row.
+
+**Copy-through in `buildFilteredVocab()`**: Meanings are rebuilt from scratch at the filter stage (two places, ~line 430 and ~line 776). Both paths must copy `assignment_method` through, otherwise it is silently dropped before it reaches the card. `joinWithMaster()` in `vocab.js` sets `assignment_method` from `idx.sense_methods[i]`; `buildFilteredVocab()` must preserve it.
+
+**`currentExample` scope**: `updateCard()` in `flashcards.js` uses a hoisted `currentExample` variable (set when `activeExamples.length > 0`) for per-example decisions like the English highlight and example-box border. These references live outside the `if (activeExamples.length > 0)` block, so they must not reference the inner `example` const directly.
+
+## Cache-busting for ES Modules
+
+`index.html` imports `js/main.js?v=YYYYMMDDx`. `main.js` imports `./flashcards.js?v=YYYYMMDDx` and `./vocab.js?v=YYYYMMDDx`. Bump every `v=…` tag whenever any JS module changes substantively — the ES module cache survives page reloads and service-worker resets, so only a URL change forces browsers to re-import. All three version tags should stay in sync.
 
 ## Multi-Artist Merge
 

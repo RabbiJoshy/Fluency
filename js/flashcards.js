@@ -1093,7 +1093,7 @@ function updateCard() {
             // Pick meanings to show: those with frequency, else keyword-assigned, else top per POS
             let frontMeanings = normalMeanings.filter(m => (m.percentage || 0) > 0);
             if (frontMeanings.length === 0) {
-                frontMeanings = normalMeanings.filter(m => m.assignment_method === 'keyword');
+                frontMeanings = normalMeanings.filter(m => m.assignment_method && m.assignment_method.includes('keyword'));
             }
             if (frontMeanings.length === 0) {
                 // Fall back: one meaning per unique POS
@@ -1310,7 +1310,7 @@ function updateCard() {
             const isSelected = idx === currentMeaningIndex;
             const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'rgba(15, 20, 28, 0.75)';
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
-            const borderStyle = isSelected ? 'border: 3px solid var(--accent-primary);' : '';
+            const borderStyle = (isSelected && !m.unassigned) ? 'border: 3px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
             const isClitic = m.pos === 'CLITIC';
@@ -1418,6 +1418,7 @@ function updateCard() {
             let displayTargetSentence = currentMeaning.targetSentence;
             let displayEnglishSentence = currentMeaning.englishSentence;
             let songName = null;
+            let currentExample = null;
 
             let spotifyUrl = null;
             let spotifyTrackId = null;
@@ -1425,6 +1426,7 @@ function updateCard() {
             if (activeExamples.length > 0) {
                 const exIdx = currentExampleIndex % activeExamples.length;
                 const example = activeExamples[exIdx];
+                currentExample = example;
                 const exTarget = example.target || example.spanish || '';
                 const exEnglish = example.english || '';
                 if (exTarget) {
@@ -1499,10 +1501,11 @@ function updateCard() {
                     `<span style="${pillStyle}">$1</span>`);
             }
 
-            // Highlight the English translation in the English sentence for keyword-assigned senses
-            if (currentMeaning && currentMeaning.assignment_method === 'keyword' && currentMeaning.meaning && displayEnglishSentence) {
+            // Highlight the English translation in the English sentence for keyword-assigned examples
+            const exampleMethod = currentExample && currentExample.assignment_method;
+            if (exampleMethod && exampleMethod.includes('keyword') && currentMeaning && currentMeaning.meaning && displayEnglishSentence) {
                 // Split on commas/semicolons to try each translation fragment
-                const fragments = currentMeaning.meaning.split(/[,;]/).map(f => f.trim()).filter(f => f.length > 2);
+                const fragments = currentMeaning.meaning.split(/[,;]/).map(f => f.trim()).filter(f => f.length > 1);
                 for (const frag of fragments) {
                     const fragEscaped = frag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     const fragRegex = new RegExp(`(?<![\\p{L}\\p{N}])(${fragEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
@@ -1536,10 +1539,14 @@ function updateCard() {
             const cycleHandler = hasMultipleExamples ? 'onclick="cycleExample(event)"' : '';
             const cursorStyle = hasMultipleExamples ? 'cursor: pointer;' : '';
 
-            // Determine if this example is genuinely assigned to this sense
+            // Determine if this example is genuinely assigned to this sense.
+            // Per-example assignment_method is authoritative when present;
+            // fall back to per-meaning for non-keyword methods (Gemini/biencoder).
             let exampleAssigned = false;
-            if (currentMeaning && !currentMeaning.unassigned) {
-                exampleAssigned = true;  // any real assignment (auto/keyword/Gemini)
+            if (currentExample && currentExample.assignment_method) {
+                exampleAssigned = true;  // this specific example was classified
+            } else if (currentMeaning && !currentMeaning.unassigned && !currentMeaning.assignment_method) {
+                exampleAssigned = true;  // strong method (Gemini/biencoder) — all examples assigned
             }
             // MWE: check if the expression appears in the example sentence
             if (currentMeaning && currentMeaning.allMWEs && displayTargetSentence) {

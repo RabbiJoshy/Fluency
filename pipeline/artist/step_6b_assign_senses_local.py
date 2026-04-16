@@ -100,8 +100,10 @@ _STOP_WORDS = {
 }
 
 
-def tokenize_english(text):
-    return {w for w in _WORD_RE.findall(text.lower()) if w not in _STOP_WORDS
+def tokenize_english(text, keep=frozenset()):
+    """Tokenize English text, removing stop words except those in *keep*."""
+    stops = _STOP_WORDS - keep
+    return {w for w in _WORD_RE.findall(text.lower()) if w not in stops
             and len(w) > 1}
 
 
@@ -109,10 +111,18 @@ MIN_KEYWORD_OVERLAP = 1  # minimum content-word overlap to count as a match
 
 
 def classify_example_keyword(sentence_english, senses):
-    sentence_words = tokenize_english(sentence_english)
+    # Collect all tokens that appear in any sense translation so they
+    # are exempt from stop-word filtering.  This lets function-word
+    # translations like "that" (que) or "but" (pero) survive.
+    sense_tokens = set()
+    for s in senses:
+        sense_tokens.update(_WORD_RE.findall(s["translation"].lower()))
+    keep = sense_tokens & _STOP_WORDS
+
+    sentence_words = tokenize_english(sentence_english, keep=keep)
     scores = []
     for s in senses:
-        sense_words = tokenize_english(s["translation"])
+        sense_words = tokenize_english(s["translation"], keep=keep)
         scores.append(len(sentence_words & sense_words) if sense_words else 0)
     best_idx = max(range(len(scores)), key=lambda i: scores[i])
     best_score = scores[best_idx]
@@ -643,9 +653,10 @@ def main():
                 if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
                     continue
                 assignments.append({"sense": id_list[i], "examples": indices})
-            if not assignments:
-                assignments = [{"sense": id_list[0], "examples": list(range(len(examples)))}]
-            output[word] = {args.keyword_method_name: assignments}
+            if assignments:
+                output[word] = {args.keyword_method_name: assignments}
+            # else: no keyword match — word gets no assignment, examples
+            # go to the remainder bucket in the builder.
         else:
             work_items.append((word, word_senses, examples, keep_indices, source, id_list))
 

@@ -48,6 +48,32 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## Data / Pipeline
 
+- **[soon] Wire multi-word elision split into tokenization (M) [artist]**
+  Config exists at `Artists/curations/multi_word_elisions.json` mapping contracted
+  surface forms to expanded Spanish (e.g. `"pal'" -> "para el"`). Step 2a
+  (count_words) needs to consume this config and do pre-tokenization substitution
+  so counts go to each expanded word. The original contracted form should stay
+  visible in example sentences (not replaced in display), and the `surface` field
+  on each expanded word should retain the original contracted form. After wiring,
+  add entries for common Caribbean two-word contractions beyond `pal'` / `pa'l`.
+
+- **[idea] Generic s/z elision handling (S) [artist]**
+  Currently `lu' -> luz` is a manual override in the elision mapping because the
+  automatic merger only handles s-elisions (word-final s replaced by `'`).
+  Generalise to also match z-elisions (`luz -> lu'`, `cruz -> cru'`, etc.) and any
+  other systematic patterns. Watch for false positives — not every `x'` is an
+  elision of `xz` or `xs`.
+
+- **[idea] Map remaining SpanishDict POS labels instead of dropping to X (S) [shared]**
+  `normalize_pos()` in `pipeline/util_5c_spanishdict.py` falls through to `"X"` for
+  any SpanishDict POS label it doesn't recognize. Currently X senses are mostly
+  morphological prefixes (des-, di-, neo-) which are legitimately noise, but there
+  may be useful categories getting lost too. Scan every distinct SpanishDict label
+  that produces X and decide per-label: add a proper mapping, fold into an existing
+  category, or leave as noise. See also `_ORTHOGONAL_POS` in
+  `pipeline/util_6a_pos_menu_filter.py` — if any new category is orthogonal to
+  grammar (like PHRASE/CONTRACTION), add it there.
+
 - **[soon] Move elision resolution before tokenization (M) [artist] [design doc]**
   Elision merging currently happens in step 5, after step 3 caps examples at 10.
   Should resolve elisions in a preprocessing pass on raw lyrics so step 3 counts

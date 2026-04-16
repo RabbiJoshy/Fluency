@@ -23,6 +23,12 @@ _SPACY_POS_MAP = {
 _TRUSTED_FILTER_POS = {"VERB", "NOUN", "ADJ", "ADV", "INTJ"}
 TRUSTED_FILTER_POS = _TRUSTED_FILTER_POS  # public alias for per-example filtering
 
+# POS labels that are orthogonal to grammatical categories — they are never
+# filtered out by observed-POS narrowing because senses of these types (e.g.
+# idiomatic phrases, contractions) can apply regardless of the surface word's
+# POS in context.
+_ORTHOGONAL_POS = {"PHRASE", "CONTRACTION"}
+
 _NLP = None
 _NLP_MODEL = None
 _NLP_FAILED = False
@@ -115,7 +121,11 @@ def filter_senses_by_pos(word, lemma, senses, examples):
             "reason": "untrusted_pos_family",
         }
 
-    filtered = [i for i, sense in enumerate(senses) if sense.get("pos") in trusted_observed]
+    # Keep senses whose POS was observed, and always keep orthogonal POS
+    # tags like PHRASE (they are not tied to a grammatical category).
+    filtered = [i for i, sense in enumerate(senses)
+                if sense.get("pos") in trusted_observed
+                or sense.get("pos") in _ORTHOGONAL_POS]
     if not filtered:
         return keep_indices, {
             "used": True,
@@ -155,7 +165,11 @@ def filter_senses_by_precomputed_pos(senses, example_pos):
             "reason": "untrusted_pos_family",
         }
 
-    filtered = [i for i, sense in enumerate(senses) if sense.get("pos") in trusted_observed]
+    # Keep senses whose POS was observed, and always keep orthogonal POS
+    # tags like PHRASE (they are not tied to a grammatical category).
+    filtered = [i for i, sense in enumerate(senses)
+                if sense.get("pos") in trusted_observed
+                or sense.get("pos") in _ORTHOGONAL_POS]
     if not filtered:
         return keep_indices, {
             "used": True,

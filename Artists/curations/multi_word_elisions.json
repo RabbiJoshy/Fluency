@@ -1,0 +1,8 @@
+{
+  "_format": "Contractions that should be split into multiple Spanish words before tokenization. Keys are the contracted surface forms, values are the expanded space-separated Spanish.",
+  "_note": "TODO: wire into step 2a (count_words) as pre-tokenization substitution. The original contracted form should still appear in example sentences; per-word counts should go to each expanded word; surface field on each split word should retain the original contracted form.",
+  "entries": {
+    "pal'": "para el",
+    "pa'l": "para el"
+  }
+}

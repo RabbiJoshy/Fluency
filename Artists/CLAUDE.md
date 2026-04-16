@@ -159,6 +159,18 @@ Artists/{Name}/
   data/lrclib_cache/             # Step 9 LRCLIB response cache
 ```
 
+## Shared Curations
+
+`Artists/curations/` holds config shared across all artists:
+
+| File | Purpose |
+|------|---------|
+| `elision_mapping.json` | Per-word elision merge rules. `action: merge` with `elision_pair`/`elided_only`/`same_word_dup` types routes elided forms to canonical targets. `action: skip` leaves a word unmerged. Manual overrides for non-s-elisions (e.g. `pa' → para`, `lu' → luz`) go here. |
+| `multi_word_elisions.json` | Contractions that should split into multiple Spanish words at tokenization (`pal' → para el`). **Not yet wired into step 2a** — see TODO. |
+| `extra_english.json` | English words (and English contractions like `goin'`, `fuckin'`) that leak into lyrics via code-switching. Step 4 uses this to route them to the `english` exclusion bucket. |
+| `interjections.json`, `proper_nouns.json`, `known_proper_nouns.json`, `not_proper_nouns.json` | Further routing overrides used by step 4. |
+| `conjugation_families.json`, `curated_mwes.json`, `skip_mwes.json` | MWE and conjugation curation. |
+
 ## Other Directories
 
 - `Artists/tools/` — audit utilities (`check_translations.py`, `split_lang_audit.py`, `scan_duplicates.py` — finds copied verses + reports artist line attribution via section tags)
@@ -191,21 +203,42 @@ Layer files track the method/source that produced each piece of data:
 - `senses_wiktionary.json` (normal mode): `source` field — `"wiktionary"` or `"jehle"`
 - `translation_scores.json`: Gemini judge scores (1-5) per sentence
 
-### assignment_method on meanings
+### assignment_method on meanings and examples
 
-Keyword-level assignments (priority ≤ 15: `spanishdict-keyword`, `keyword-wiktionary`, etc.) get an `assignment_method` field on the assembled meaning and in `sense_methods[i]` in the index. This is informational — the front-end uses it for future differentiation but does not currently change rendering. Auto-assigned and strong-assigned (Gemini/bi-encoder) meanings do not carry `assignment_method`.
+Keyword-level assignments (priority ≤ 15: `spanishdict-keyword`, `keyword-wiktionary`, etc.) propagate in two places:
+- **Per-example**: Each example dict in `*.examples.json` carries its own `assignment_method`. The builder stamps the method from `assignment.get("method")` on every example in an assignment. This is the authoritative signal for per-example UI decisions (border, English keyword highlight).
+- **Per-meaning**: Informational `assignment_method` field on the assembled meaning (only for keyword-level best methods, for UI fallback when examples lack the stamp).
+- **Per-sense in index**: `sense_methods[i]` on the index entry, used by front-end `joinWithMaster()` to reconstruct the per-sense flag. `null` entries in `sense_methods` plus `idx.unassigned = true` signal a random/remainder bucket.
 
 ### SENSE_CYCLE remainder behaviour
 
-When `best_method` is keyword-level, the assembler adds SENSE_CYCLE rows for senses that received no keyword-matched examples. These remainder rows include keyword-assigned senses of the **same POS** in their `allSenses` list, and append keyword-assigned examples at the end of the cycle pool. This means the remainder cycler shows all interpretations of the POS group, not just the unmatched ones. Gemini/bi-encoder assignments do not generate remainder rows — all examples are assumed classified.
+When `best_method` is keyword-level, the assembler creates SENSE_CYCLE remainder rows for **unassigned examples**, grouped by spaCy POS tag:
+- If an unassigned example's POS tag is in `TRUSTED_FILTER_POS` ({VERB, NOUN, ADJ, ADV, INTJ}), it goes into a POS-specific remainder bucket. `allSenses` lists every sense of that POS for the word.
+- If the POS tag is untrusted (PRON, CCONJ, DET, etc.) or missing, the example goes into a universal `ANY` bucket. `allSenses` lists every sense of the word across all POS.
+- Keyword-assigned examples are **never duplicated** into remainder rows — they stay on their assigned meaning.
+- Gemini/bi-encoder assignments do not generate remainder rows.
+- Remainders with zero examples are never emitted (avoids decorative empty rows).
 
-SENSE_CYCLE entries are **never written to the master vocabulary** — they are a per-artist display concern stored only in the index's `sense_cycles` field. The builder filters them out when updating master senses.
+SENSE_CYCLE entries always use `pos: "SENSE_CYCLE"` (with `cycle_pos` carrying the actual POS or `"ANY"` for the universal bucket) — this keeps them out of the master vocabulary. The builder filters SENSE_CYCLE/X senses when writing to master, which prevents single-sense remainders from colliding with assigned senses of the same translation.
 
 ### Surface form normalization
 
 Step 3 stamps a `surface` field on each example recording the original word form found in the lyrics (e.g. `"vece'"` for inventory key `"veces"`). Step 5 carries this through to `examples_raw.json`. Downstream consumers use it to:
 - **POS tagger** (tool_6a): substitutes the canonical word into the sentence before spaCy tagging, so spaCy sees proper Spanish.
 - **Sense assignment** (step_6b, step_6c): same substitution for bi-encoder embedding and Gemini prompts. Translation lookup uses the original (pre-substitution) Spanish as the key.
+
+Re-running step 3 backfills `surface` on all examples, then step 5's backfill (`if not prev_ex.get("surface") and new_by_id[eid].get("surface")`) propagates it to `examples_raw.json`. If the surface field is ever missing on tagged examples, re-run 3 + 5 together — do not patch per-word.
+
+### Orthogonal POS labels
+
+`pipeline/util_6a_pos_menu_filter.py` defines `_ORTHOGONAL_POS = {"PHRASE", "CONTRACTION"}`. These sense POS types are **never filtered out** by observed-POS narrowing — they apply regardless of the surface word's grammatical POS (an idiom or contraction can surface as any POS in context). Both filter paths (`filter_senses_by_pos` live tagging, `filter_senses_by_precomputed_pos`) keep orthogonal senses in the candidate pool.
+
+When adding new SpanishDict POS labels to `_POS_MAP` in `pipeline/util_5c_spanishdict.py`, decide per-label whether it represents a grammatical category (filterable) or an orthogonal category (survives filtering) and update `_ORTHOGONAL_POS` accordingly.
+
+### Keyword classifier (step_6b)
+
+- **Dynamic stop-word exemption**: `classify_example_keyword` collects every token present in any candidate sense translation and exempts those tokens from `_STOP_WORDS` for that word's classification. This lets function-word translations like `"that"` (que), `"but"` (pero), `"than"` (que) survive filtering and actually match against example English. For unrelated words, `"that"` stays as a stop word to avoid spurious matches.
+- **No fallback dump**: when no example matches any keyword, the word gets **no assignment at all**. Previously the classifier would dump all examples into sense 0 as a last resort; that made every SpanishDict entry look keyword-assigned even when it wasn't. Now the word falls through to the builder's remainder bucketing.
 
 ### SpanishDict cache coverage
 
