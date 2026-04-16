@@ -33,6 +33,17 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
+
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "geniURL + lyricsgenius community translation scrape",
+}
 from lyricsgenius import Genius
 from requests.exceptions import Timeout, HTTPError
 
@@ -117,6 +128,7 @@ def save_translations(translations, trans_dir):
     path = os.path.join(trans_dir, "translations.json")
     with open(path, "w", encoding="utf-8") as f:
         json.dump(translations, f, indent=2, ensure_ascii=False)
+    write_sidecar(path, make_meta("scrape_translations", STEP_VERSION))
 
 
 # ---------------------------------------------------------------------------

@@ -67,3 +67,6 @@ Artists/spotify_tracks.json
 *.cache.pkl
 .bench_sense_cache.json
 *.bak
+
+# Generated pipeline status snapshot — regenerate with scripts/pipeline_status.py
+PIPELINE_STATUS.txt

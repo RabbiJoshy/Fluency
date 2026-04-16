@@ -28,6 +28,17 @@ from util_1a_artist_config import (add_artist_arg, load_artist_config, load_shar
                             artist_sense_assignments_lemma_path,
                             artist_unassigned_routing_path)
 from util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
+
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "monolith + index + examples + master update + clitic layer",
+}
 from util_8a_assembly_helpers import split_count_proportionally
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -1123,13 +1134,16 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
     os.makedirs(os.path.dirname(index_path), exist_ok=True)
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index, f, ensure_ascii=False)
+    write_sidecar(index_path, make_meta("assemble_artist_vocabulary", STEP_VERSION))
     with open(examples_path, "w", encoding="utf-8") as f:
         json.dump(examples, f, ensure_ascii=False)
+    write_sidecar(examples_path, make_meta("assemble_artist_vocabulary", STEP_VERSION))
 
     # Write updated master
     os.makedirs(os.path.dirname(master_path), exist_ok=True)
     with open(master_path, "w", encoding="utf-8") as f:
         json.dump(master, f, ensure_ascii=False)
+    write_sidecar(master_path, make_meta("assemble_artist_vocabulary", STEP_VERSION, extra={"output": "master"}))
 
     idx_size = os.path.getsize(index_path)
     ex_size = os.path.getsize(examples_path)
@@ -1183,6 +1197,7 @@ def main():
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)
     with open(vocab_path, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)
+    write_sidecar(vocab_path, make_meta("assemble_artist_vocabulary", STEP_VERSION))
     print("  Monolith: %d entries -> %s" % (len(entries), vocab_path))
 
     # Write clitic layer file (MWE-style, keyed by hex ID)

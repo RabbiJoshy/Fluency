@@ -34,6 +34,15 @@ from collections import defaultdict
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_pipeline_meta import make_meta  # noqa: E402
+
+# Bump when routing categories, clitic detection, or output schema change.
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "clitic_merge + clitic_keep + exclude categories + gerund decomposition",
+}
+
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
@@ -228,6 +237,7 @@ def main():
         },
     }
 
+    output["_meta"] = make_meta("route_clitics", STEP_VERSION)
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)

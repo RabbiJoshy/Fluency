@@ -29,6 +29,17 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from util_1a_artist_config import SHARED_DIR
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "s-elision + d-elision merge with corpus_count summing",
+}
+
 PIPELINE_DIR = None  # Set from --artist-dir in main()
 IN_PATH = None
 OUT_PATH = None
@@ -300,6 +311,7 @@ def main():
     os.makedirs(os.path.dirname(str(OUT_PATH)), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(merged, f, ensure_ascii=False, indent=2)
+    write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION))
 
     print(f"Wrote {len(merged)} entries -> {OUT_PATH}")
     print(f"  Reduced by {len(data) - len(merged)} entries")

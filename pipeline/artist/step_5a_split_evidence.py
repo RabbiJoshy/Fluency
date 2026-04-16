@@ -26,6 +26,18 @@ import argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from util_1a_artist_config import add_artist_arg, load_artist_config
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+# Bump when split-evidence logic or output schema changes.
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "split merged evidence into word_inventory + examples_raw, clitic orphan handling",
+}
+
 
 def main():
     parser = argparse.ArgumentParser(description="Step 5: Split evidence into inventory + examples layers")
@@ -147,6 +159,8 @@ def main():
         json.dump(inventory, f, ensure_ascii=False, indent=2)
     with open(ex_path, "w", encoding="utf-8") as f:
         json.dump(examples_raw, f, ensure_ascii=False)
+    write_sidecar(inv_path, make_meta("split_evidence", STEP_VERSION))
+    write_sidecar(ex_path, make_meta("split_evidence", STEP_VERSION))
 
     words_with_examples = sum(1 for exs in examples_raw.values() if exs)
     total_examples = sum(len(exs) for exs in examples_raw.values())

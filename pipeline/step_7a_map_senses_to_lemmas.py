@@ -28,6 +28,12 @@ from util_5c_sense_menu_format import normalize_artist_sense_menu
 
 from util_5c_sense_paths import (sense_menu_path, sense_assignments_path,
                                   sense_assignments_lemma_path, discover_sources)
+from util_pipeline_meta import make_meta, write_sidecar
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "split surface-word assignments onto word|lemma keys, multi-source merge",
+}
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -77,6 +83,7 @@ def process_source(source):
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(remapped, f, ensure_ascii=False, indent=2)
+    write_sidecar(output_file, make_meta("map_senses_to_lemmas", STEP_VERSION, extra={"source": source}))
 
     print(f"  [{source}] {assignments_file.name} -> {output_file}")
     print(f"    input keys: {len(assignments)}, output keys: {len(remapped)}, "

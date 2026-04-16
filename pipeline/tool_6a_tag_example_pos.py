@@ -21,6 +21,15 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from pipeline.util_6a_pos_menu_filter import load_spacy, tag_examples
+from pipeline.util_pipeline_meta import make_meta
+
+# Bump when tagging logic or model family changes in a way that invalidates
+# previously tagged outputs.
+STEP_VERSION = 2
+STEP_VERSION_NOTES = {
+    1: "legacy es_core_news_* models",
+    2: "es_dep_news_trf transformer default",
+}
 
 LAYERS = Path(PROJECT_ROOT) / "Data" / "Spanish" / "layers"
 EXAMPLES_FILE = LAYERS / "examples_raw.json"
@@ -50,6 +59,7 @@ def main():
         with open(OUTPUT_FILE, encoding="utf-8") as f:
             prev_output = json.load(f)
         prev_ids = prev_output.pop("_example_ids", {})
+        prev_output.pop("_meta", None)
 
     # Determine which words need tagging
     words_to_tag = {}
@@ -87,7 +97,7 @@ def main():
         print("  Tagging %d words..." % len(words_to_tag))
 
     # Start from previous results (minus metadata)
-    output = {k: v for k, v in prev_output.items() if k != "_example_ids"}
+    output = {k: v for k, v in prev_output.items() if k not in ("_example_ids", "_meta")}
     new_tagged = 0
     new_examples = 0
     total_to_tag = len(words_to_tag)
@@ -109,11 +119,17 @@ def main():
     for word, examples in examples_data.items():
         id_index[word] = sorted(ex.get("id", "") for ex in examples)
     output["_example_ids"] = id_index
+    output["_meta"] = make_meta(
+        "tag_example_pos",
+        STEP_VERSION,
+        tool_versions={"spacy_model": nlp.meta.get("name", "unknown")},
+    )
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    total_words = sum(1 for k in output if k != "_example_ids")
+    reserved_keys = {"_example_ids", "_meta"}
+    total_words = sum(1 for k in output if k not in reserved_keys)
     print("Tagged %d new words (%d examples), %d total words in output" % (
         new_tagged, new_examples, total_words))
     print("Wrote %s" % OUTPUT_FILE)

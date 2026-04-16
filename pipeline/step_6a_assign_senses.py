@@ -36,12 +36,19 @@ import argparse
 import json
 import os
 import re
+import sys
 import time
 from collections import defaultdict
 from pathlib import Path
 
 from util_5c_sense_paths import sense_menu_path, sense_assignments_path
 from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority)
+from util_pipeline_meta import make_meta, write_sidecar
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "gemini/biencoder/keyword classifiers, method-priority merge, sense merging",
+}
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -681,6 +688,7 @@ def _write_new_format(output, existing_assigns, flat_ids_by_word, output_file):
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(existing_assigns, f, ensure_ascii=False, indent=2)
+    write_sidecar(output_file, make_meta("assign_senses", STEP_VERSION))
 
 
 # ---------------------------------------------------------------------------

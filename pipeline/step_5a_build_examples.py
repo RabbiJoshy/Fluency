@@ -31,6 +31,15 @@ from pathlib import Path
 from statistics import median
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+# Bump when example-selection logic, scoring, or corpus sources change.
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "tatoeba preferred + opensubs fill, easiness scoring, diversity sampling",
+}
+
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 TATOEBA_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "tatoeba" / "spa.txt"
 OPENSUBS_ES = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"
@@ -453,6 +462,7 @@ def main():
     print(f"\nWriting {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+    write_sidecar(OUTPUT_FILE, make_meta("build_examples", STEP_VERSION))
 
     # --- Results ---
     tat_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "tatoeba")

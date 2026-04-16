@@ -26,6 +26,17 @@ from util_7a_lemma_split import (
     split_word_assignments, merge_method_maps,
 )
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "lemma split + POS-routed unassigned bucket",
+}
+
 
 # spaCy POS tags we trust enough to route by. Everything else (PRON, CCONJ,
 # DET, PHRASE, etc.) falls into the "untrusted" bucket that gets routed to
@@ -202,8 +213,10 @@ def main():
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(remapped, f, ensure_ascii=False, indent=2)
+    write_sidecar(output_path, make_meta("map_senses_to_lemmas", STEP_VERSION))
     with open(routing_path, "w", encoding="utf-8") as f:
         json.dump(routing, f, ensure_ascii=False, indent=2)
+    write_sidecar(routing_path, make_meta("map_senses_to_lemmas", STEP_VERSION, extra={"output": "unassigned_routing"}))
 
     print("Wrote %s" % output_path)
     print("Wrote %s" % routing_path)

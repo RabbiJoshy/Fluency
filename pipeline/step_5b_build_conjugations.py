@@ -28,6 +28,14 @@ from collections import defaultdict
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "verbecc conjugations + jehle override + reverse lookup",
+}
+
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
 SENSES_FILE = LAYERS / "sense_menu.json"
@@ -314,10 +322,12 @@ def main():
     print(f"\nWriting {CONJUGATIONS_FILE}...")
     with open(CONJUGATIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(conjugations, f, ensure_ascii=False, indent=2)
+    write_sidecar(CONJUGATIONS_FILE, make_meta("build_conjugations", STEP_VERSION))
 
     print(f"Writing {REVERSE_FILE}...")
     with open(REVERSE_FILE, "w", encoding="utf-8") as f:
         json.dump(dict(reverse), f, ensure_ascii=False, indent=2)
+    write_sidecar(REVERSE_FILE, make_meta("build_conjugations", STEP_VERSION))
 
     # Report
     print(f"\n{'='*55}")

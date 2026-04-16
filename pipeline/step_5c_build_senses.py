@@ -44,6 +44,14 @@ from util_5c_sense_paths import sense_menu_path
 # Paths
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "wiktionary + spanishdict sense menus, cross-POS dedup, sense cap",
+}
+
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
@@ -769,6 +777,7 @@ def build_spanishdict_menu(vocab, output_file):
     print(f"\nWriting {output_file}...")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+    write_sidecar(output_file, make_meta("build_senses", STEP_VERSION, extra={"source": "spanishdict"}))
 
     # Report
     total = len(vocab)
@@ -994,6 +1003,7 @@ def main():
     print(f"\nWriting {output_file}...")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+    write_sidecar(output_file, make_meta("build_senses", STEP_VERSION, extra={"source": args.sense_source}))
 
     # Report
     total = len(vocab)

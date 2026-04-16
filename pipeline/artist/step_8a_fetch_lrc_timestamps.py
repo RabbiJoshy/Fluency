@@ -30,6 +30,17 @@ import urllib.error
 
 from util_1a_artist_config import add_artist_arg, load_artist_config
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "LRCLIB synced lyrics + best-line matching",
+}
+
 # Thread-safe throttle for API requests
 _fetch_lock = threading.Lock()
 _last_fetch_time = 0.0
@@ -324,6 +335,7 @@ def main():
     output_path = os.path.join(artist_dir, "data", "layers", "lyrics_timestamps.json")
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+    write_sidecar(output_path, make_meta("fetch_lrc_timestamps", STEP_VERSION))
 
     print("\nDone! %d/%d songs with LRC, %d/%d lines matched" % (
         stats["songs_with_lrc"], stats["songs_queried"],

@@ -19,6 +19,12 @@ from pipeline.util_5c_spanishdict import (
     SPANISHDICT_STATUS,
     load_json,
 )
+from pipeline.util_pipeline_meta import make_meta, write_sidecar
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "artist sense menu from shared spanishdict cache, flatten + normalize",
+}
 
 
 def load_excluded_words(artist_dir, include_clitics=False):
@@ -205,6 +211,7 @@ def main():
     with open(menu_path, "w", encoding="utf-8") as f:
         import json
         json.dump(existing_menu, f, ensure_ascii=False, indent=2)
+    write_sidecar(menu_path, make_meta("build_spanishdict_menu", STEP_VERSION))
 
     print("\nDone.")
     print("Built/updated words: %d" % built)

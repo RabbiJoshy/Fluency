@@ -23,6 +23,15 @@ from util_5c_spanishdict import (
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+# Bump when the scraper's extraction logic changes in a way that invalidates
+# previously cached entries. Entries tagged with an older step_version are
+# re-fetched on the next run (no --force needed).
+STEP_VERSION = 2
+STEP_VERSION_NOTES = {
+    1: "initial — surface + headword caches",
+    2: "adds phrases_cache extraction alongside surface fetch",
+}
+
 
 def load_excluded_words(artist_dir, include_clitics=False):
     routing_path = artist_dir / "data" / "known_vocab" / "word_routing.json"
@@ -142,13 +151,23 @@ def main():
     full_artist_run = artist_dir is not None and not requested_words and args.max_words is None
 
     queries = []
+    stale_version_count = 0
     for w in words:
         if args.force:
             queries.append(w)
             continue
-        if w in surface_cache:
+        entry_status = surface_status.get(w) or {}
+        entry_version = int(entry_status.get("step_version", 0) or 0)
+        if entry_version < STEP_VERSION:
+            # Cached under an older scraper version — re-fetch to pick up the
+            # fields that version didn't know about (e.g. phrases in v2).
+            queries.append(w)
+            if w in surface_cache:
+                stale_version_count += 1
             continue
-        if (surface_status.get(w) or {}).get("status") == "failed":
+        if entry_status.get("status") == "failed":
+            continue
+        if w in surface_cache:
             continue
         queries.append(w)
 
@@ -161,7 +180,9 @@ def main():
         print("Inventory words: %d" % len(words))
     if artist_dir is not None and excluded and not args.include_excluded:
         print("Skipped excluded words: %d" % len(excluded))
-    print("Surface queries to fetch: %d" % len(queries))
+    print("Surface queries to fetch: %d (of which %d are stale-version re-fetches)"
+          % (len(queries), stale_version_count))
+    print("Scraper step_version: %d" % STEP_VERSION)
     print("Workers: %d" % max(1, args.workers))
 
     processed = 0
@@ -186,6 +207,7 @@ def main():
                 surface_status[resolved_query] = {
                     "status": "ok",
                     "updated_at": _now(),
+                    "step_version": STEP_VERSION,
                 }
                 built += 1
             except Exception as exc:
@@ -193,6 +215,7 @@ def main():
                 surface_status[query] = {
                     "status": _status_for_error(exc),
                     "updated_at": _now(),
+                    "step_version": STEP_VERSION,
                     "error": str(exc)[:300],
                 }
                 print("  surface %s failed: %s" % (query, exc))
@@ -222,9 +245,14 @@ def main():
         if args.force:
             headwords.append(h)
             continue
-        if h in headword_cache:
+        entry_status = headword_status.get(h) or {}
+        entry_version = int(entry_status.get("step_version", 0) or 0)
+        if entry_version < STEP_VERSION:
+            headwords.append(h)
             continue
-        if (headword_status.get(h) or {}).get("status") == "failed":
+        if entry_status.get("status") == "failed":
+            continue
+        if h in headword_cache:
             continue
         headwords.append(h)
     print("Headwords to fetch: %d" % len(headwords))
@@ -242,6 +270,7 @@ def main():
                 headword_status[resolved_headword] = {
                     "status": "ok",
                     "updated_at": _now(),
+                    "step_version": STEP_VERSION,
                 }
                 built_headwords += 1
             except Exception as exc:
@@ -249,6 +278,7 @@ def main():
                 headword_status[headword] = {
                     "status": _status_for_error(exc),
                     "updated_at": _now(),
+                    "step_version": STEP_VERSION,
                     "error": str(exc)[:300],
                 }
                 print("  headword %s failed: %s" % (headword, exc))
@@ -263,6 +293,7 @@ def main():
         artist_status[_artist_key(artist_dir)] = {
             "status": "complete",
             "updated_at": _now(),
+            "step_version": STEP_VERSION,
             "include_excluded": bool(args.include_excluded),
             "word_count": len(words),
         }
@@ -270,6 +301,7 @@ def main():
         artist_status[_artist_key(artist_dir)] = {
             "status": "partial",
             "updated_at": _now(),
+            "step_version": STEP_VERSION,
             "include_excluded": bool(args.include_excluded),
             "word_count": len(words),
         }

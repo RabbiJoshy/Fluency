@@ -21,10 +21,20 @@ Output:
 
 import csv
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+# Bump when the inventory schema changes (e.g. new fields, different counting).
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "surface-first inventory with known_lemmas list, corpus_count from ppm",
+}
+
 CSV_SOURCE = PROJECT_ROOT / "Data" / "Spanish" / "SpanishRawWiki.csv"
 OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 
@@ -60,6 +70,7 @@ def main():
     print(f"Writing {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)
+    write_sidecar(OUTPUT_FILE, make_meta("build_inventory", STEP_VERSION))
 
     multi_lemma = sum(1 for e in entries if len(e["known_lemmas"]) > 1)
     print(f"\n  {len(entries)} surface words ({multi_lemma} with multiple lemmas)")

@@ -38,6 +38,18 @@ import re
 import sys
 import argparse
 import time
+
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta  # noqa: E402
+
+# Bump when routing categories, detection phases, or output schema change.
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "6 phases: junk → known_vocab → english → wiktionary → NER → freq+derivation",
+}
 import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -978,6 +990,7 @@ def main():
         },
     }
 
+    output["_meta"] = make_meta("filter_known_vocab", STEP_VERSION)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
     print("\nWrote %s" % output_path)

@@ -39,8 +39,22 @@ import json
 import math
 import os
 import re
+import sys
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Tuple
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+# Bump when counting logic, tokenization, or output schema changes in a way
+# that invalidates existing vocab_evidence.json files.
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "lingua English filter + MWE detection + max-examples-per-word",
+}
 
 try:
     from lingua import Language, LanguageDetectorBuilder
@@ -673,6 +687,7 @@ def main():
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out_list, f, ensure_ascii=False, indent=2)
+    write_sidecar(args.out, make_meta("count_words", STEP_VERSION))
 
     print(f"Wrote {len(out_list):,} words -> {args.out}")
     if lid_stats["lines_skipped"] > 0:

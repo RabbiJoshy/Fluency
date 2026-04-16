@@ -45,6 +45,12 @@ import argparse
 from util_5c_sense_paths import sense_menu_path, sense_assignments_lemma_path
 from util_6a_method_priority import METHOD_PRIORITY
 from util_8a_assembly_helpers import make_stable_id, split_count_proportionally
+from util_pipeline_meta import make_meta, write_sidecar
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "monolith + index + examples split, hex IDs, lemma-proportional counts",
+}
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -822,14 +828,17 @@ def main():
     print(f"\nWriting {monolith_path}...")
     with open(monolith_path, "w", encoding="utf-8") as f:
         json.dump(monolith, f, ensure_ascii=False, indent=2)
+    write_sidecar(monolith_path, make_meta("assemble_vocabulary", STEP_VERSION))
 
     print(f"Writing {index_path}...")
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index, f, ensure_ascii=False)
+    write_sidecar(index_path, make_meta("assemble_vocabulary", STEP_VERSION))
 
     print(f"Writing {examples_path}...")
     with open(examples_path, "w", encoding="utf-8") as f:
         json.dump(examples_out, f, ensure_ascii=False)
+    write_sidecar(examples_path, make_meta("assemble_vocabulary", STEP_VERSION))
 
     # Report
     print(f"\n{'='*55}")

@@ -22,6 +22,12 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from shared.flag_cognates import detect_cognates
 
 from util_5c_sense_paths import discover_sources, sense_menu_path
+from util_pipeline_meta import make_meta, write_sidecar
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "suffix score + CogNet voters merged across all sense menus",
+}
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LAYERS_DIR = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers")
@@ -69,6 +75,7 @@ def main():
 
     output_path = os.path.join(LAYERS_DIR, "cognates.json")
     detect_cognates(flat_menu, output_path)
+    write_sidecar(output_path, make_meta("flag_cognates", STEP_VERSION))
 
 
 if __name__ == "__main__":

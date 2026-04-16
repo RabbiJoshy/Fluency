@@ -25,6 +25,17 @@ import spacy
 
 from util_1a_artist_config import normalize_translation
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "merge artist monoliths into shared master, hex IDs, sense merge by (pos, translation)",
+}
+
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
@@ -534,6 +545,7 @@ def main():
     print("\nWriting master vocabulary to %s..." % MASTER_PATH)
     with open(MASTER_PATH, "w", encoding="utf-8") as f:
         json.dump(master, f, ensure_ascii=False, indent=None)
+    write_sidecar(MASTER_PATH, make_meta("merge_to_master", STEP_VERSION))
     master_size = os.path.getsize(MASTER_PATH)
     print("  %d entries, %s bytes" % (len(master), "{:,}".format(master_size)))
 

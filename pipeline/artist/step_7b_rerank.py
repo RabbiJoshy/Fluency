@@ -31,6 +31,12 @@ if PROJECT_ROOT not in sys.path:
 
 from pipeline.util_6a_method_priority import METHOD_PRIORITY
 from pipeline.artist.util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
+from pipeline.util_pipeline_meta import make_meta, write_sidecar
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "rerank by corpus_count + frequency tiebreakers + cognate penalty",
+}
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
 _ADLIB_RE = re.compile(r'\[[^\]]*\]|\([^\)]*\)')
@@ -368,6 +374,7 @@ def main():
     os.makedirs(layers_dir, exist_ok=True)
     with open(ranking_path, "w", encoding="utf-8") as f:
         json.dump(ranking_layer, f, ensure_ascii=False)
+    write_sidecar(ranking_path, make_meta("rerank", STEP_VERSION))
     print(f"\n  Ranking layer: {len(ranking_layer['order'])} entries -> {ranking_path}")
     print("Done!")
 

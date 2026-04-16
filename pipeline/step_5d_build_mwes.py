@@ -21,6 +21,7 @@ Output:
 import gzip
 import json
 import re
+import sys
 import time
 import unicodedata
 from collections import defaultdict
@@ -29,6 +30,13 @@ from pathlib import Path
 import ahocorasick
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+
+STEP_VERSION = 1
+STEP_VERSION_NOTES = {
+    1: "wiktionary MWE extraction + aho-corasick subs counting, 10/word cap",
+}
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 OPENSUBS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"
@@ -294,6 +302,7 @@ def main():
     print(f"\nWriting {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(dict(mwe_by_word), f, ensure_ascii=False, indent=2)
+    write_sidecar(OUTPUT_FILE, make_meta("build_mwes", STEP_VERSION))
 
     # Stats
     words_with_mwes = len(mwe_by_word)
