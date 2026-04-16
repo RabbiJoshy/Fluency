@@ -1614,9 +1614,9 @@
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "toa'",
-    "target_word": "toas",
+    "target_word": "todas",
     "display_form": "toa'",
-    "target_lemma": "too",
+    "target_lemma": "todo",
     "elided_ppm": 319.91,
     "combined_ppm": 319.91
   },
@@ -22747,9 +22747,9 @@
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "cora'",
-    "target_word": "coras",
+    "target_word": "corazón",
     "display_form": "cora'",
-    "target_lemma": "cora",
+    "target_lemma": "corazón",
     "elided_ppm": 10.84,
     "combined_ppm": 10.84
   },
@@ -32877,5 +32877,1068 @@
     "target_word": "nada",
     "display_form": "na",
     "target_lemma": "nada"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "acicalá'",
+    "target_word": "acicalás",
+    "display_form": "acicalá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "alocá'",
+    "target_word": "alocás",
+    "display_form": "alocá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "amiguita'",
+    "target_word": "amiguitas",
+    "display_form": "amiguita'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "aplique'",
+    "target_word": "apliques",
+    "display_form": "aplique'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bañá'",
+    "target_word": "bañás",
+    "display_form": "bañá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bendecía'",
+    "target_word": "bendecías",
+    "display_form": "bendecía'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bermuda'",
+    "target_word": "bermudas",
+    "display_form": "bermuda'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bocina'",
+    "target_word": "bocinas",
+    "display_form": "bocina'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bolsillo'",
+    "target_word": "bolsillos",
+    "display_form": "bolsillo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "butaca'",
+    "target_word": "butacas",
+    "display_form": "butaca'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "cachetito'",
+    "target_word": "cachetitos",
+    "display_form": "cachetito'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "caiga'",
+    "target_word": "caigas",
+    "display_form": "caiga'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "caloría'",
+    "target_word": "calorías",
+    "display_form": "caloría'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "cante'",
+    "target_word": "cantes",
+    "display_form": "cante'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "clavá'",
+    "target_word": "clavás",
+    "display_form": "clavá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "compartimo'",
+    "target_word": "compartimos",
+    "display_form": "compartimo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "controlamo'",
+    "target_word": "controlamos",
+    "display_form": "controlamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "copla'",
+    "target_word": "coplas",
+    "display_form": "copla'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "coroná'",
+    "target_word": "coronás",
+    "display_form": "coroná'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "cuento'",
+    "target_word": "cuentos",
+    "display_form": "cuento'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "curarno'",
+    "target_word": "curarnos",
+    "display_form": "curarno'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "curva'",
+    "target_word": "curvas",
+    "display_form": "curva'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "cámara'",
+    "target_word": "cámaras",
+    "display_form": "cámara'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "deje'",
+    "target_word": "dejes",
+    "display_form": "deje'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "dejá'",
+    "target_word": "dejás",
+    "display_form": "dejá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "demuestra'",
+    "target_word": "demuestras",
+    "display_form": "demuestra'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "despechá'",
+    "target_word": "despechás",
+    "display_form": "despechá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "despierta'",
+    "target_word": "despiertas",
+    "display_form": "despierta'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "diferente'",
+    "target_word": "diferentes",
+    "display_form": "diferente'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "distrae'",
+    "target_word": "distraes",
+    "display_form": "distrae'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "enamorá'",
+    "target_word": "enamorás",
+    "display_form": "enamorá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "envuelta'",
+    "target_word": "envueltas",
+    "display_form": "envuelta'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "espejo'",
+    "target_word": "espejos",
+    "display_form": "espejo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "extensione'",
+    "target_word": "extensiones",
+    "display_form": "extensione'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "extranjera'",
+    "target_word": "extranjeras",
+    "display_form": "extranjera'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "gafa'",
+    "target_word": "gafas",
+    "display_form": "gafa'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "garra'",
+    "target_word": "garras",
+    "display_form": "garra'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "gemela'",
+    "target_word": "gemelas",
+    "display_form": "gemela'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "gesto'",
+    "target_word": "gestos",
+    "display_form": "gesto'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "golpe'",
+    "target_word": "golpes",
+    "display_form": "golpe'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "hackeá'",
+    "target_word": "hackeás",
+    "display_form": "hackeá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "hería'",
+    "target_word": "herías",
+    "display_form": "hería'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "hookero'",
+    "target_word": "hookeros",
+    "display_form": "hookero'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "legua'",
+    "target_word": "leguas",
+    "display_form": "legua'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "llave'",
+    "target_word": "llaves",
+    "display_form": "llave'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "llevamo'",
+    "target_word": "llevamos",
+    "display_form": "llevamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "loquito'",
+    "target_word": "loquitos",
+    "display_form": "loquito'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "lágrima'",
+    "target_word": "lágrimas",
+    "display_form": "lágrima'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "madrugá'",
+    "target_word": "madrugás",
+    "display_form": "madrugá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "marciano'",
+    "target_word": "marcianos",
+    "display_form": "marciano'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "miedo'",
+    "target_word": "miedos",
+    "display_form": "miedo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "militare'",
+    "target_word": "militares",
+    "display_form": "militare'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "mirá'",
+    "target_word": "mirás",
+    "display_form": "mirá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "modelito'",
+    "target_word": "modelitos",
+    "display_form": "modelito'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "morenita'",
+    "target_word": "morenitas",
+    "display_form": "morenita'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "motele'",
+    "target_word": "moteles",
+    "display_form": "motele'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "nublá'",
+    "target_word": "nublás",
+    "display_form": "nublá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pantycito'",
+    "target_word": "pantycitos",
+    "display_form": "pantycito'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pegaíto'",
+    "target_word": "pegaítos",
+    "display_form": "pegaíto'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pegá'",
+    "target_word": "pegás",
+    "display_form": "pegá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pelirroja'",
+    "target_word": "pelirrojas",
+    "display_form": "pelirroja'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pequita'",
+    "target_word": "pequitas",
+    "display_form": "pequita'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "perdida'",
+    "target_word": "perdidas",
+    "display_form": "perdida'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pestaña'",
+    "target_word": "pestañas",
+    "display_form": "pestaña'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pierda'",
+    "target_word": "pierdas",
+    "display_form": "pierda'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "plástica'",
+    "target_word": "plásticas",
+    "display_form": "plástica'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "podrá'",
+    "target_word": "podrás",
+    "display_form": "podrá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "prendíamo'",
+    "target_word": "prendíamos",
+    "display_form": "prendíamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "rebelá'",
+    "target_word": "rebelás",
+    "display_form": "rebelá'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "revuelta'",
+    "target_word": "revueltas",
+    "display_form": "revuelta'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "risito'",
+    "target_word": "risitos",
+    "display_form": "risito'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "suyo'",
+    "target_word": "suyos",
+    "display_form": "suyo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "tarde'",
+    "target_word": "tardes",
+    "display_form": "tarde'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "tetota'",
+    "target_word": "tetotas",
+    "display_form": "tetota'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "tienda'",
+    "target_word": "tiendas",
+    "display_form": "tienda'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "tumbamo'",
+    "target_word": "tumbamos",
+    "display_form": "tumbamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "uno'",
+    "target_word": "unos",
+    "display_form": "uno'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "usa'",
+    "target_word": "usas",
+    "display_form": "usa'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "verdadero'",
+    "target_word": "verdaderos",
+    "display_form": "verdadero'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "viaje'",
+    "target_word": "viajes",
+    "display_form": "viaje'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "volvía'",
+    "target_word": "volvías",
+    "display_form": "volvía'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "vídeo'",
+    "target_word": "vídeos",
+    "display_form": "vídeo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "amanece'",
+    "target_word": "amaneces",
+    "display_form": "amanece'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bestie'",
+    "target_word": "besties",
+    "display_form": "bestie'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "bitche'",
+    "target_word": "bitches",
+    "display_form": "bitche'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "brillamo'",
+    "target_word": "brillamos",
+    "display_form": "brillamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "cachamo'",
+    "target_word": "cachamos",
+    "display_form": "cachamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "campeonato'",
+    "target_word": "campeonatos",
+    "display_form": "campeonato'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "comenzamo'",
+    "target_word": "comenzamos",
+    "display_form": "comenzamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "confia'",
+    "target_word": "confias",
+    "display_form": "confia'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "desayunamo'",
+    "target_word": "desayunamos",
+    "display_form": "desayunamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "descabronamo'",
+    "target_word": "descabronamos",
+    "display_form": "descabronamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "elevamo'",
+    "target_word": "elevamos",
+    "display_form": "elevamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "entienda'",
+    "target_word": "entiendas",
+    "display_form": "entienda'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "escapa'",
+    "target_word": "escapas",
+    "display_form": "escapa'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "firme'",
+    "target_word": "firmes",
+    "display_form": "firme'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "hijeputa'",
+    "target_word": "hijeputas",
+    "display_form": "hijeputa'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "homie'",
+    "target_word": "homies",
+    "display_form": "homie'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "jodemo'",
+    "target_word": "jodemos",
+    "display_form": "jodemo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "lea'",
+    "target_word": "leas",
+    "display_form": "lea'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "metale'",
+    "target_word": "metales",
+    "display_form": "metale'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "misma'",
+    "target_word": "mismas",
+    "display_form": "misma'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "mu'",
+    "target_word": "muy",
+    "display_form": "mu'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "nosotra'",
+    "target_word": "nosotras",
+    "display_form": "nosotra'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "olvidaba'",
+    "target_word": "olvidabas",
+    "display_form": "olvidaba'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "opcione'",
+    "target_word": "opciones",
+    "display_form": "opcione'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "oscura'",
+    "target_word": "oscuras",
+    "display_form": "oscura'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "palma'",
+    "target_word": "palmas",
+    "display_form": "palma'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "perla'",
+    "target_word": "perlas",
+    "display_form": "perla'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "picheamo'",
+    "target_word": "picheamos",
+    "display_form": "picheamo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "prefiere'",
+    "target_word": "prefieres",
+    "display_form": "prefiere'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "reflejo'",
+    "target_word": "reflejos",
+    "display_form": "reflejo'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "shortie'",
+    "target_word": "shorties",
+    "display_form": "shortie'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "soldado'",
+    "target_word": "soldados",
+    "display_form": "soldado'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "suena'",
+    "target_word": "suenas",
+    "display_form": "suena'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "tresciento'",
+    "target_word": "trescientos",
+    "display_form": "tresciento'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "vario'",
+    "target_word": "varios",
+    "display_form": "vario'",
+    "elided_ppm": 0,
+    "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "cora",
+    "target_word": "corazón",
+    "display_form": "cora",
+    "target_lemma": "corazón",
+    "elided_ppm": 0,
+    "combined_ppm": 0
   }
 ]

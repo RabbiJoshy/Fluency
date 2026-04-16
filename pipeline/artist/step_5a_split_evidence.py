@@ -83,17 +83,23 @@ def main():
         for prev_ex in prev_word_examples:
             eid = prev_ex.get("id", "")
             if eid in new_by_id:
+                # Backfill surface form from new data if missing
+                if not prev_ex.get("surface") and new_by_id[eid].get("surface"):
+                    prev_ex["surface"] = new_by_id[eid]["surface"]
                 kept.append(prev_ex)
                 seen_ids.add(eid)
 
         # Then: append new examples not seen before
         for ex in raw_examples:
             if ex["id"] not in seen_ids:
-                kept.append({
+                entry_dict = {
                     "id": ex["id"],
                     "spanish": ex["line"],
                     "title": ex.get("title", ""),
-                })
+                }
+                if ex.get("surface"):
+                    entry_dict["surface"] = ex["surface"]
+                kept.append(entry_dict)
 
         if kept:
             examples_raw[word] = kept

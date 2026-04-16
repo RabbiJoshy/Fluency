@@ -3,6 +3,9 @@
 
 Writes a transparent layer file so POS filtering can be inspected separately
 from sense classification.
+
+Incremental by default: skips words whose example IDs haven't changed since
+the last run. Use --force to retag everything.
 """
 
 import argparse
@@ -17,7 +20,12 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from pipeline.pos_menu_filter import load_spacy, tag_examples
+from pipeline.util_6a_pos_menu_filter import load_spacy, tag_examples
+
+
+def _example_ids(examples):
+    """Return a frozenset of example IDs for change detection."""
+    return frozenset(ex.get("id", "") for ex in examples)
 
 
 def main():
@@ -25,8 +33,12 @@ def main():
     add_artist_arg(parser)
     parser.add_argument(
         "--model",
-        default="es_core_news_md",
-        help="Preferred spaCy model (default: es_core_news_md)",
+        default="es_dep_news_trf",
+        help="Preferred spaCy model (default: es_dep_news_trf)",
+    )
+    parser.add_argument(
+        "--force", action="store_true",
+        help="Retag all words (ignore previous results)",
     )
     args = parser.parse_args()
 
@@ -34,6 +46,34 @@ def main():
     layers_dir = os.path.join(artist_dir, "data", "layers")
     examples_path = os.path.join(layers_dir, "examples_raw.json")
     output_path = os.path.join(layers_dir, "example_pos.json")
+
+    with open(examples_path, encoding="utf-8") as f:
+        examples_data = json.load(f)
+
+    # Load previous results for incremental mode
+    prev_output = {}
+    prev_ids = {}  # word -> frozenset of example IDs at last tagging
+    if not args.force and os.path.isfile(output_path):
+        with open(output_path, encoding="utf-8") as f:
+            prev_output = json.load(f)
+        # Reconstruct which example IDs each word had by checking the index keys
+        # We can't recover exact IDs, so we store a signature in metadata
+        prev_ids = prev_output.pop("_example_ids", {})
+
+    # Determine which words need tagging
+    words_to_tag = {}
+    skipped = 0
+    for word, examples in examples_data.items():
+        current_ids = sorted(ex.get("id", "") for ex in examples)
+        prev_id_list = prev_ids.get(word)
+        if not args.force and prev_id_list == current_ids and word in prev_output:
+            skipped += 1
+            continue
+        words_to_tag[word] = examples
+
+    if not words_to_tag:
+        print("All %d words up to date, nothing to tag." % len(examples_data))
+        return
 
     print("Loading spaCy...")
     preferred = [args.model]
@@ -50,28 +90,41 @@ def main():
         raise SystemExit(1)
     print("  Model: %s" % nlp.meta.get("name", "unknown"))
 
-    with open(examples_path, encoding="utf-8") as f:
-        examples_data = json.load(f)
+    if skipped:
+        print("  Skipped %d unchanged words, tagging %d" % (skipped, len(words_to_tag)))
+    else:
+        print("  Tagging %d words..." % len(words_to_tag))
 
-    output = {}
-    tagged_words = 0
-    tagged_examples = 0
-    total_words = len(examples_data)
-    print("Tagging %d words..." % total_words)
-    for idx, (word, examples) in enumerate(examples_data.items(), start=1):
+    # Start from previous results (minus metadata)
+    output = {k: v for k, v in prev_output.items() if k != "_example_ids"}
+    new_tagged = 0
+    new_examples = 0
+    total_to_tag = len(words_to_tag)
+    for idx, (word, examples) in enumerate(words_to_tag.items(), start=1):
         pos_map = tag_examples(nlp, word, word, examples)
         if pos_map:
-            output[word] = {str(idx): pos for idx, pos in sorted(pos_map.items())}
-            tagged_words += 1
-            tagged_examples += len(pos_map)
-        if idx % 500 == 0 or idx == total_words:
+            output[word] = {str(i): pos for i, pos in sorted(pos_map.items())}
+            new_tagged += 1
+            new_examples += len(pos_map)
+        elif word in output:
+            # Word no longer taggable — remove stale entry
+            del output[word]
+        if idx % 500 == 0 or idx == total_to_tag:
             print("  %d/%d words, %d tagged, %d examples" % (
-                idx, total_words, tagged_words, tagged_examples))
+                idx, total_to_tag, new_tagged, new_examples))
+
+    # Store example ID signatures for next incremental run
+    id_index = {}
+    for word, examples in examples_data.items():
+        id_index[word] = sorted(ex.get("id", "") for ex in examples)
+    output["_example_ids"] = id_index
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print("Tagged %d words, %d examples" % (tagged_words, tagged_examples))
+    total_words = sum(1 for k in output if k != "_example_ids")
+    print("Tagged %d new words (%d examples), %d total words in output" % (
+        new_tagged, new_examples, total_words))
     print("Wrote %s" % output_path)
 
 

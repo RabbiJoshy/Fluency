@@ -16,7 +16,7 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", message=".*urllib3.*")
 
-import argparse, gzip, json, os, sys, time
+import argparse, gzip, json, os, re, sys, time
 from copy import deepcopy
 from pathlib import Path
 
@@ -432,6 +432,7 @@ def main():
     if os.path.isfile(example_pos_path):
         with open(example_pos_path) as f:
             example_pos = json.load(f)
+        example_pos.pop("_example_ids", None)
         print("  example_pos: %d words" % len(example_pos))
     else:
         print("  example_pos: (not found, spaCy fallback)")
@@ -622,7 +623,12 @@ def main():
         examples = []
         for ex in raw_exs:
             spa = ex.get("spanish", "")
-            eng_obj = translations.get(spa)
+            # Normalize elided surface forms to canonical word for Gemini
+            surface = ex.get("surface")
+            if surface and surface.lower() != word.lower() and spa:
+                spa = re.sub(re.escape(surface), word, spa, count=1, flags=re.IGNORECASE)
+            original_spa = ex.get("spanish", "")  # original for translation lookup
+            eng_obj = translations.get(original_spa)
             eng = eng_obj.get("english", "") if isinstance(eng_obj, dict) else (eng_obj or "")
             examples.append({"spanish": spa, "english": eng,
                              "song": ex.get("title", ""), "id": ex.get("id", "")})

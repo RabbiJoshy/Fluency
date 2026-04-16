@@ -10,6 +10,7 @@ classification runs. The filter is conservative:
 - If all tagged examples point to one POS, only keep senses with that POS.
 """
 
+import re
 from collections import Counter
 
 _SPACY_POS_MAP = {
@@ -30,6 +31,7 @@ def load_spacy(preferred_models=None):
     """Load spaCy lazily. Returns None if no Spanish model is installed."""
     global _NLP, _NLP_MODEL, _NLP_FAILED
     preferred_models = preferred_models or [
+        "es_dep_news_trf",
         "es_core_news_md",
         "es_core_news_lg",
         "es_core_news_sm",
@@ -67,6 +69,10 @@ def tag_examples(nlp, word, lemma, examples):
     for ei, ex in enumerate(examples):
         text = ex.get("target", ex.get("spanish", ""))
         if text:
+            # Replace elided surface form with canonical word for better spaCy tagging
+            surface = ex.get("surface")
+            if surface and surface.lower() != word_lower:
+                text = re.sub(re.escape(surface), word, text, count=1, flags=re.IGNORECASE)
             texts.append(text)
             idx_map.append(ei)
 

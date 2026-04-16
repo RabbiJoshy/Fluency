@@ -37,7 +37,8 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
 | 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 6 phases: junk → known vocab → English → Wiktionary reclassify → NER → frequency. Also detects derivations (diminutives, gerund+clitics) and clitic forms (3-tier). Output grouped by treatment: `exclude`, `biencoder`, `gemini`, `clitic_merge`/`clitic_keep`. |
-| 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers |
+| 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers. Carries `surface` field from step 3 for elided forms. |
+| 6a | `pipeline/artist/tool_6a_tag_example_pos.py` | `example_pos.json` | Tag examples with spaCy POS (es_dep_news_trf). Incremental: skips unchanged words. `--force` to retag all. |
 | 6 | `pipeline/artist/assign_senses.py` | `sense_assignments.json` | Unified sense assignment. Dispatches to bi-encoder (biencoder-routed) then Gemini (gemini-routed, if API key set). Gap-fill reuses existing inline senses. Single output file. |
 | 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
 | 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
@@ -102,7 +103,8 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | Layer | Schema | Normal-Mode Parallel |
 |-------|--------|---------------------|
 | `word_inventory.json` | `[{word, corpus_count, display_form, variants}]` | `word_inventory.json` |
-| `examples_raw.json` | `{bare_word: [{id, spanish, title}]}` | `examples_raw.json` |
+| `examples_raw.json` | `{bare_word: [{id, spanish, title, surface?}]}` | `examples_raw.json` |
+| `example_pos.json` | `{bare_word: {"idx": "POS", ...}, _example_ids: {...}}` | (none) |
 | `example_translations.json` | `{spanish_text_line: {english, source}}` | (baked into examples in normal mode) |
 | `senses_gemini.json` | `{word\|lemma: [{pos, translation, source}]}` (old) | `senses_wiktionary.json` |
 | `senses_wiktionary.json` | `{word\|lemma: {sense_id: {pos, translation, source}}}` (new) | `senses_wiktionary.json` |
@@ -196,6 +198,14 @@ Keyword-level assignments (priority ≤ 15: `spanishdict-keyword`, `keyword-wikt
 ### SENSE_CYCLE remainder behaviour
 
 When `best_method` is keyword-level, the assembler adds SENSE_CYCLE rows for senses that received no keyword-matched examples. These remainder rows include keyword-assigned senses of the **same POS** in their `allSenses` list, and append keyword-assigned examples at the end of the cycle pool. This means the remainder cycler shows all interpretations of the POS group, not just the unmatched ones. Gemini/bi-encoder assignments do not generate remainder rows — all examples are assumed classified.
+
+SENSE_CYCLE entries are **never written to the master vocabulary** — they are a per-artist display concern stored only in the index's `sense_cycles` field. The builder filters them out when updating master senses.
+
+### Surface form normalization
+
+Step 3 stamps a `surface` field on each example recording the original word form found in the lyrics (e.g. `"vece'"` for inventory key `"veces"`). Step 5 carries this through to `examples_raw.json`. Downstream consumers use it to:
+- **POS tagger** (tool_6a): substitutes the canonical word into the sentence before spaCy tagging, so spaCy sees proper Spanish.
+- **Sense assignment** (step_6b, step_6c): same substitution for bi-encoder embedding and Gemini prompts. Translation lookup uses the original (pre-substitution) Spanish as the key.
 
 ### SpanishDict cache coverage
 

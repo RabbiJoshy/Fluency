@@ -189,6 +189,7 @@ def merge_evidence(data: list, targets: dict) -> list:
             for ex in examples:
                 key = _disambiguate_example(amb, word, ex.get("line", ""))
                 groups[key]["display_form"] = display
+                ex["surface"] = word
                 groups[key]["examples"].append(ex)
                 target_example_counts[key] += 1
             # Distribute the TOTAL corpus count proportionally based on
@@ -228,6 +229,8 @@ def merge_evidence(data: list, targets: dict) -> list:
                 if groups[key]["display_form"] is None:
                     groups[key]["display_form"] = word
 
+        for ex in examples:
+            ex["surface"] = word
         groups[key]["count"] += count
         groups[key]["examples"].extend(examples)
         # Track per-variant counts for merged forms

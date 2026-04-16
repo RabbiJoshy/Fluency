@@ -850,7 +850,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         entry_meanings = entry.get("meanings", [])
         if entry.get("_has_wikt_assignments"):
             new_senses_list = [{"pos": m_.get("pos", "X"), "translation": m_.get("translation", "")}
-                               for m_ in entry_meanings]
+                               for m_ in entry_meanings
+                               if m_.get("pos") not in ("SENSE_CYCLE", "X")]
             if new_senses_list:
                 old_count = len(m["senses"])
                 m["senses"] = new_senses_list

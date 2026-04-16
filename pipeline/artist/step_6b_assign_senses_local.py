@@ -181,8 +181,9 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
     for wi, item in enumerate(work_items):
         word, senses, examples, keep_indices, source = item[:5]
         for ei, ex in enumerate(examples):
-            spanish = ex.get("spanish", "")
-            trans_info = translations.get(spanish, {})
+            spanish = ex.get("spanish", "")  # normalized (canonical word)
+            original_spanish = ex.get("_original_spanish", spanish)  # for translation lookup
+            trans_info = translations.get(original_spanish, {})
             english = trans_info.get("english", "")
 
             if english and spanish:
@@ -373,6 +374,7 @@ def main():
     if example_pos_path.exists():
         with open(example_pos_path, encoding="utf-8") as f:
             example_pos = json.load(f)
+        example_pos.pop("_example_ids", None)
         print("  example_pos: %d words" % len(example_pos))
     else:
         print("  example_pos: (not found, spaCy fallback)")
@@ -471,6 +473,18 @@ def main():
             continue
 
         examples = examples_data.get(word, [])[:MAX_EXAMPLES_PER_WORD]
+
+        # Normalize elided surface forms to canonical word for better
+        # spaCy tagging and bi-encoder embedding. Keep original Spanish
+        # as _original_spanish for translation lookup.
+        for ex in examples:
+            surface = ex.get("surface")
+            if surface and surface.lower() != word.lower():
+                spanish = ex.get("spanish", "")
+                if spanish:
+                    ex["_original_spanish"] = spanish
+                    ex["spanish"] = re.sub(
+                        re.escape(surface), word, spanish, count=1, flags=re.IGNORECASE)
 
         # Skip words with equal or higher priority assignments
         if word in existing_assigns and not args.force:
@@ -588,7 +602,7 @@ def main():
             # Keyword fallback — process inline
             sense_example_indices = [[] for _ in word_senses]
             for ex_idx, ex in enumerate(examples):
-                spanish = ex.get("spanish", "")
+                spanish = ex.get("_original_spanish", ex.get("spanish", ""))
                 trans_info = translations.get(spanish, {})
                 eng = trans_info.get("english", "")
                 if not eng:
