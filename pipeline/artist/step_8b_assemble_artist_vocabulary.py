@@ -25,7 +25,8 @@ import argparse
 from util_1a_artist_config import (add_artist_arg, load_artist_config, load_shared_dict,
                             normalize_translation, METHOD_PRIORITY, best_method_priority,
                             artist_sense_menu_path, artist_sense_assignments_path,
-                            artist_sense_assignments_lemma_path)
+                            artist_sense_assignments_lemma_path,
+                            artist_unassigned_routing_path)
 from util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -117,6 +118,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     assignments = load_layer(assignments_path, "sense_assignments", required=False) or {}
     lemma_assignments_path = artist_sense_assignments_lemma_path(layers_dir, sense_source, prefer_new=False)
     lemma_assignments = load_layer(lemma_assignments_path, "sense_assignments_lemma", required=False) or {}
+    unassigned_routing_path = artist_unassigned_routing_path(layers_dir, sense_source)
+    unassigned_routing = load_layer(unassigned_routing_path, "unassigned_routing", required=False) or {}
 
     # Auto-invoke: if menu exists but no assignments, run keyword assignment + lemma mapping
     if senses and not assignments:
@@ -369,14 +372,29 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
         # Get raw examples for this word
         raw_examples = examples_raw.get(word, [])
+
+        # Apply POS-based unassigned-example routing from step 7a.
+        # For each group (analysis), attach the list of raw-example indices
+        # that step 7a routed to that lemma_key based on spaCy POS matching.
+        for g in grouped:
+            lemma_key = "%s|%s" % (word, g.get("lemma", word))
+            g["unassigned_ex_indices"] = unassigned_routing.get(lemma_key, [])
+
         if selected_assignments:
-            # Once we have explicit sense assignments, only emit analyses that
-            # actually own assigned examples. This avoids zero-frequency shadow
-            # cards from other analyses of the same surface form.
-            active_groups = [g for g in grouped if g["assignments"]]
+            # Emit a card if the group has either keyword assignments or
+            # routed unassigned examples. A group with only routed
+            # unassigned examples becomes a card with just a SENSE_CYCLE row.
+            active_groups = [g for g in grouped
+                             if g["assignments"] or g.get("unassigned_ex_indices")]
         else:
             active_groups = [g for g in grouped if g["word_senses"]]
+
         assigned_weights = [sum(len(a.get("examples", [])) for a in g["assignments"]) for g in active_groups]
+        # If a group has no keyword assignments but has routed unassigned
+        # examples, give it weight from those examples for corpus_count split.
+        for i, g in enumerate(active_groups):
+            if not assigned_weights[i] and g.get("unassigned_ex_indices"):
+                assigned_weights[i] = len(g["unassigned_ex_indices"])
         if any(assigned_weights):
             group_counts = split_count_proportionally(corpus_count, assigned_weights)
         else:
@@ -392,7 +410,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
             # Build meanings
             meanings = []
-            if word_senses and word_assignments:
+            # Groups enter this branch if they have keyword assignments OR if
+            # they received routed unassigned examples (POS-tag-based routing).
+            # A group with only routed examples produces a SENSE_CYCLE-only card.
+            if word_senses and (word_assignments or group.get("unassigned_ex_indices")):
                 total_assigned = sum(len(a.get("examples", [])) for a in word_assignments)
 
                 for assignment in word_assignments:
@@ -458,21 +479,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 # their own POS-specific bucket.  Untrusted or missing tags
                 # all fall into one universal bucket listing every sense.
                 if best_method and METHOD_PRIORITY.get(best_method, 0) <= KEYWORD_PRIORITY_THRESHOLD:
-                    # Collect unassigned example indices
-                    assigned_ex = set()
-                    for a in word_assignments:
-                        assigned_ex.update(a.get("examples", []))
-
-                    # Build unassigned example dicts, tagged with POS
+                    _routed_unassigned = group.get("unassigned_ex_indices") or []
                     word_pos_data = example_pos.get(word, {})
                     from collections import defaultdict as _defaultdict
-                    # POS tags we trust enough to POS-bucket the remainder by.
-                    # Everything else goes into a universal bucket.
                     TRUSTED_FILTER_POS = {"VERB", "NOUN", "ADJ", "ADV", "INTJ"}
                     UNIVERSAL_KEY = "_ALL"
                     pos_to_unassigned = _defaultdict(list)
-                    for ex_idx in range(len(raw_examples)):
-                        if ex_idx in assigned_ex:
+                    for ex_idx in _routed_unassigned:
+                        if ex_idx >= len(raw_examples):
                             continue
                         raw_ex = raw_examples[ex_idx]
                         spanish = raw_ex.get("spanish", "")
@@ -491,10 +505,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_pos and ex_pos in TRUSTED_FILTER_POS:
                             pos_to_unassigned[ex_pos].append(ex_dict)
                         else:
-                            # Untrusted or missing POS → universal bucket
                             pos_to_unassigned[UNIVERSAL_KEY].append(ex_dict)
 
-                    # Build SENSE_CYCLE rows.  Deduplicate senses by
+                    # Build SENSE_CYCLE rows from this group's own senses.
+                    # Unassigned examples for POS tags not covered by this
+                    # group's senses were routed elsewhere (see
+                    # route_unassigned_examples_to_groups).  Deduplicate by
                     # (pos, translation) for display.
                     all_word_senses_deduped = {}
                     for s in word_senses:

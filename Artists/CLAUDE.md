@@ -110,6 +110,8 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 | `senses_wiktionary.json` | `{word\|lemma: {sense_id: {pos, translation, source}}}` (new) | `senses_wiktionary.json` |
 | `sense_assignments_wiktionary.json` | `{word: {method: [{sense, examples}]}}` (new) | `sense_assignments.json` |
 | `sense_assignments.json` | `{word: [{sense_idx, examples, method}]}` (old) | `sense_assignments.json` (now uses unified format) |
+| `sense_assignments_lemma/<source>.json` | `{word\|lemma: {method: [{sense, examples}]}}` | (none) — step 7a output, keyword assignments split by lemma |
+| `unassigned_routing/<source>.json` | `{word\|lemma: [raw_example_idx, ...]}` | (none) — step 7a output, POS-based routing of examples with no keyword assignment |
 | `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) — consumed by builder for example quality sorting |
 | `cognates.json` | `{word\|lemma: true}` (legacy per-artist; shared layer preferred) | `cognates.json` |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (none) |
@@ -210,16 +212,32 @@ Keyword-level assignments (priority ≤ 15: `spanishdict-keyword`, `keyword-wikt
 - **Per-meaning**: Informational `assignment_method` field on the assembled meaning (only for keyword-level best methods, for UI fallback when examples lack the stamp).
 - **Per-sense in index**: `sense_methods[i]` on the index entry, used by front-end `joinWithMaster()` to reconstruct the per-sense flag. `null` entries in `sense_methods` plus `idx.unassigned = true` signal a random/remainder bucket.
 
-### SENSE_CYCLE remainder behaviour
+### Unassigned-example routing (step 7a)
 
-When `best_method` is keyword-level, the assembler creates SENSE_CYCLE remainder rows for **unassigned examples**, grouped by spaCy POS tag:
-- If an unassigned example's POS tag is in `TRUSTED_FILTER_POS` ({VERB, NOUN, ADJ, ADV, INTJ}), it goes into a POS-specific remainder bucket. `allSenses` lists every sense of that POS for the word.
-- If the POS tag is untrusted (PRON, CCONJ, DET, etc.) or missing, the example goes into a universal `ANY` bucket. `allSenses` lists every sense of the word across all POS.
-- Keyword-assigned examples are **never duplicated** into remainder rows — they stay on their assigned meaning.
+Step 7a does two things:
+1. Splits word-level sense assignments onto `word|lemma` keys using the sense IDs of each analysis (existing behaviour) — writes to `sense_assignments_lemma/<source>.json`.
+2. **Routes every unassigned raw example to one `word|lemma` key based on its spaCy POS tag** — writes to `unassigned_routing/<source>.json` as `{lemma_key: [raw_example_idx, ...]}`.
+
+Routing rules (`_route_unassigned_for_word` in `pipeline/artist/step_7a_map_senses_to_lemmas.py`):
+- If the example's POS is in `_TRUSTED_ROUTING_POS` ({VERB, NOUN, ADJ, ADV, INTJ}) and at least one analysis has senses of that POS, route to the analysis with the most senses of that POS (tiebreak: most existing assignments).
+- If the POS is untrusted (PRON, CCONJ, DET, PHRASE, CONTRACTION, …) or missing, or no analysis has a matching POS, route to the **primary analysis** — the one with the most keyword assignments (tiebreak: first analysis).
+
+This means `gana` (with 4 analyses: gana, ganas, ganar, ganarse) produces distinct cards per lemma. NOUN-tagged unassigned examples land on `gana|ganas` (most NOUN senses) instead of piling onto the ganar card.
+
+`example_pos.json` and `examples_raw.json` are optional inputs — if either is missing, step 7a skips routing or routes everything to the primary analysis.
+
+### SENSE_CYCLE remainder behaviour (step 8b)
+
+Step 8b reads `unassigned_routing/<source>.json` and attaches each group's routed indices as `group["unassigned_ex_indices"]`. A group becomes a card if it has **either** keyword assignments **or** routed unassigned examples — a group with only routed examples produces a SENSE_CYCLE-only card. No build-time POS routing happens here; 8b is pure assembly.
+
+When `best_method` is keyword-level, the builder turns routed unassigned examples into SENSE_CYCLE remainder rows, grouped by the example's spaCy POS tag:
+- Trusted POS ({VERB, NOUN, ADJ, ADV, INTJ}) → POS-specific bucket; `allSenses` lists every sense of that POS in the current group.
+- Untrusted or missing POS → universal `ANY` bucket; `allSenses` lists every sense in the group across all POS.
+- Keyword-assigned examples are never duplicated into remainder rows.
 - Gemini/bi-encoder assignments do not generate remainder rows.
-- Remainders with zero examples are never emitted (avoids decorative empty rows).
+- Remainders with zero examples are never emitted.
 
-SENSE_CYCLE entries always use `pos: "SENSE_CYCLE"` (with `cycle_pos` carrying the actual POS or `"ANY"` for the universal bucket) — this keeps them out of the master vocabulary. The builder filters SENSE_CYCLE/X senses when writing to master, which prevents single-sense remainders from colliding with assigned senses of the same translation.
+SENSE_CYCLE entries always use `pos: "SENSE_CYCLE"` (with `cycle_pos` carrying the actual POS or `"ANY"`) — this keeps them out of the master vocabulary. The builder filters SENSE_CYCLE/X senses when writing to master, which prevents single-sense remainders from colliding with assigned senses of the same translation.
 
 ### Surface form normalization
 

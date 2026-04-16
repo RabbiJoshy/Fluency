@@ -66,6 +66,17 @@ def artist_sense_assignments_lemma_path(layers_dir, source="wiktionary", prefer_
     return os.path.join(layers_dir, legacy_name)
 
 
+def artist_unassigned_routing_path(layers_dir, source="wiktionary"):
+    """Path to the per-lemma unassigned-example routing file written by step 7a
+    and consumed by step 8b. Maps ``word|lemma`` to a list of raw-example
+    indices that spaCy POS tagging suggests belong with that analysis, even
+    though the classifier made no sense-level assignment for them."""
+    ensure_artist_sense_dirs(layers_dir)
+    dir_path = os.path.join(layers_dir, "unassigned_routing")
+    os.makedirs(dir_path, exist_ok=True)
+    return os.path.join(dir_path, "%s.json" % source)
+
+
 def load_dotenv_from_project_root():
     """Load .env from the project root (Fluency/).
 
