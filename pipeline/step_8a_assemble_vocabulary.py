@@ -278,6 +278,12 @@ def main():
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards; unassigned examples dropped)")
+    parser.add_argument("--min-priority", type=int, default=0,
+                        help="Drop assignments whose method priority is below N. "
+                             "Their examples become orphans (eligible for remainders "
+                             "when --remainders is on). Default 0 (keep everything). "
+                             "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
+                             "50 (Gemini only).")
     args = parser.parse_args()
 
     # Load all layers
@@ -579,7 +585,8 @@ def main():
             # Each sense becomes one meaning; examples inside a meaning may
             # carry different methods (stamped per-example downstream).
             raw_assigns = assignments.get(key, {})
-            per_sense = resolve_best_per_example(raw_assigns) if isinstance(raw_assigns, dict) else {}
+            per_sense = (resolve_best_per_example(raw_assigns, min_priority=args.min_priority)
+                         if isinstance(raw_assigns, dict) else {})
 
             # Group per-sense examples by sense_idx. Multiple sids can resolve
             # to the same idx when foreign sense IDs (e.g. from a phrasebook

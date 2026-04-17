@@ -132,12 +132,17 @@ def dump_assignments(word_dict, path):
         json.dump(serialized, f, ensure_ascii=False, indent=2)
 
 
-def resolve_best_per_example(word_data):
+def resolve_best_per_example(word_data, min_priority=0):
     """Resolve per-example winners from a word's {method: [items]} dict.
 
     For each example index encountered, picks the highest-priority (method,
     sense) pairing that claimed it. Lower-priority conflicting claims are
     dropped; non-conflicting claims from different methods are all kept.
+
+    ``min_priority``: methods with priority strictly below this value are
+    ignored entirely — their claims don't participate in the resolution and
+    the examples they'd have covered become unclaimed (eligible for the
+    remainder/orphan pool in the builder). Default 0 keeps every method.
 
     Returns ``{sense_id: [{"ex_idx": int, "method": str}, ...]}`` with
     example lists sorted by ex_idx. The result groups per-sense so an
@@ -154,6 +159,8 @@ def resolve_best_per_example(word_data):
     best = {}
     for method, items in word_data.items():
         prio = METHOD_PRIORITY.get(method, 0)
+        if prio < min_priority:
+            continue
         for item in items or []:
             if not isinstance(item, dict):
                 continue

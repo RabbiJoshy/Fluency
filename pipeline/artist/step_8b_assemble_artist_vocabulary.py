@@ -138,7 +138,7 @@ def load_layer(path, name, required=True):
 
 def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                          sense_source="wiktionary", skip_words_path=None,
-                         emit_remainders=False):
+                         emit_remainders=False, min_priority=0):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -146,8 +146,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
     When ``emit_remainders`` is False (default), any generated SENSE_CYCLE /
     unassigned meaning rows are dropped from each entry before serialization.
-    This keeps the flashcard view clean; set to True to preserve the full
-    remainder-bucket experience.
+    Set to True to preserve the full remainder-bucket experience.
+
+    ``min_priority`` (default 0) drops assignments whose method priority is
+    below the threshold. Their examples become orphans and only appear if
+    ``emit_remainders`` is also True.
     """
     # Load all layers
     print("Loading layers...")
@@ -404,12 +407,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             for lemma_key, group in lemma_key_to_group.items():
                 raw_group_assignments = lemma_assignments.get(lemma_key, {})
                 if isinstance(raw_group_assignments, dict) and raw_group_assignments:
-                    per_sense = resolve_best_per_example(raw_group_assignments)
+                    per_sense = resolve_best_per_example(raw_group_assignments, min_priority=min_priority)
                     sid_meta = _collect_sid_meta(raw_group_assignments, per_sense)
                 elif isinstance(raw_group_assignments, list) and raw_group_assignments:
                     # Legacy flat-list fallback: treat as one pseudo-method.
                     as_dict = {"legacy": raw_group_assignments}
-                    per_sense = resolve_best_per_example(as_dict)
+                    per_sense = resolve_best_per_example(as_dict, min_priority=min_priority)
                     sid_meta = _collect_sid_meta(as_dict, per_sense)
                 else:
                     continue
@@ -425,11 +428,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     group["assignments"].append(entry)
         elif has_word_assignments and grouped:
             if isinstance(raw_assignments, dict):
-                per_sense = resolve_best_per_example(raw_assignments)
+                per_sense = resolve_best_per_example(raw_assignments, min_priority=min_priority)
                 sid_meta = _collect_sid_meta(raw_assignments, per_sense)
             else:
                 as_dict = {"legacy": raw_assignments}
-                per_sense = resolve_best_per_example(as_dict)
+                per_sense = resolve_best_per_example(as_dict, min_priority=min_priority)
                 sid_meta = _collect_sid_meta(as_dict, per_sense)
             for sid, ex_list in per_sense.items():
                 group = sid_to_group.get(sid)
@@ -450,7 +453,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             # there's no menu entry.
             fallback_assignments = []
             if isinstance(raw_assignments, dict) and raw_assignments:
-                per_sense = resolve_best_per_example(raw_assignments)
+                per_sense = resolve_best_per_example(raw_assignments, min_priority=min_priority)
                 sid_meta = _collect_sid_meta(raw_assignments, per_sense)
                 for sid, ex_list in per_sense.items():
                     entry = {"sense": sid, "examples": ex_list}
@@ -1326,6 +1329,12 @@ def main():
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards, but unassigned examples are dropped)")
+    parser.add_argument("--min-priority", type=int, default=0,
+                        help="Drop assignments whose method priority is below N. "
+                             "Dropped examples become orphans (eligible for remainders "
+                             "when --remainders is on). Default 0 (keep everything). "
+                             "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
+                             "50 (Gemini only).")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -1353,7 +1362,8 @@ def main():
         layers_dir, master, curated_path,
         sense_source=args.sense_source,
         skip_words_path=skip_words_path,
-        emit_remainders=args.remainders)
+        emit_remainders=args.remainders,
+        min_priority=args.min_priority)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)
