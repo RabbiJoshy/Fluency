@@ -15,7 +15,7 @@ Steps:
     5d. step_5d_build_mwes.py        — Extract MWE phrases from Wiktionary derived terms
     6.  step_6a_assign_senses.py     — Assign examples to senses
     7.  step_7a_map_senses_to_lemmas.py — Normalize assignments onto word|lemma keys
-    8.  step_7b_flag_cognates.py     — Flag transparent cognates (suffix rules)
+    8.  step_7c_flag_cognates.py     — Flag transparent cognates (suffix rules)
     9.  step_8a_assemble_vocabulary.py — Assemble final vocabulary from all layers
 """
 
@@ -44,18 +44,18 @@ STEPS = [
      "output": "Data/Spanish/layers/word_routing.json"},
     {"num": 5, "label": "Build sense inventory",
      "script": "step_5c_build_senses.py",
-     "output": "Data/Spanish/layers/sense_menu.json"},
+     "output": "Data/Spanish/layers/sense_menu/wiktionary.json"},
     {"num": 6, "label": "Extract MWE phrases from Wiktionary",
      "script": "step_5d_build_mwes.py",
      "output": "Data/Spanish/layers/mwe_phrases.json"},
     {"num": 7, "label": "Assign examples to senses",
      "script": "step_6a_assign_senses.py",
-     "output": "Data/Spanish/layers/sense_assignments.json"},
+     "output": "Data/Spanish/layers/sense_assignments/wiktionary.json"},
     {"num": 8, "label": "Normalize assignments onto word|lemma keys",
      "script": "step_7a_map_senses_to_lemmas.py",
-     "output": "Data/Spanish/layers/sense_assignments_lemma.json"},
+     "output": "Data/Spanish/layers/sense_assignments_lemma/wiktionary.json"},
     {"num": 9, "label": "Flag transparent cognates",
-     "script": "step_7b_flag_cognates.py",
+     "script": "step_7c_flag_cognates.py",
      "output": "Data/Spanish/layers/cognates.json"},
     {"num": 10, "label": "Assemble final vocabulary from layers",
      "script": "step_8a_assemble_vocabulary.py",
@@ -98,14 +98,28 @@ def main():
                         help="Start from this step (default: 1)")
     parser.add_argument("--to-step", type=int, default=10, choices=VALID_STEPS,
                         help="Stop after this step (default: 9)")
+    parser.add_argument("--skip-step", type=int, action="append", default=[],
+                        choices=VALID_STEPS,
+                        help="Skip this step number (repeatable)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print commands without running them")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="wiktionary",
                         help="Sense dictionary source (default: wiktionary)")
+    parser.add_argument("--keyword-only", action="store_true",
+                        help="Forward --keyword-only to step 6a (instant sense assignment)")
+    parser.add_argument("--no-gemini", action="store_true",
+                        help="Forward --no-gemini to step 6a (skip Gemini stage)")
+    parser.add_argument("--max-examples", type=int, default=None,
+                        help="Forward --max-examples to step 6c (examples per word sent to Gemini, default 10)")
+    parser.add_argument("--remainders", action="store_true",
+                        help="Forward --remainders to step 8a (emit SENSE_CYCLE buckets, default off)")
     args = parser.parse_args()
 
-    steps_to_run = [s for s in STEPS if args.from_step <= s["num"] <= args.to_step]
+    skip_set = set(args.skip_step)
+    steps_to_run = [s for s in STEPS
+                    if args.from_step <= s["num"] <= args.to_step
+                    and s["num"] not in skip_set]
 
     print("Spanish Normal-Mode Pipeline")
     print("=" * 60)
@@ -133,6 +147,7 @@ def main():
     total_start = time.time()
     # Steps that accept --sense-source
     source_aware_scripts = {
+        "step_5b_build_conjugations.py",
         "step_5c_build_senses.py",
         "step_6a_assign_senses.py",
         "step_8a_assemble_vocabulary.py",
@@ -142,6 +157,15 @@ def main():
         extra = []
         if step["script"] in source_aware_scripts:
             extra = ["--sense-source", args.sense_source]
+        if step["script"] == "step_6a_assign_senses.py":
+            if args.keyword_only:
+                extra.append("--keyword-only")
+            if args.no_gemini:
+                extra.append("--no-gemini")
+            if args.max_examples is not None:
+                extra.extend(["--max-examples", str(args.max_examples)])
+        if step["script"] == "step_8a_assemble_vocabulary.py" and args.remainders:
+            extra.append("--remainders")
         if not run_step(step, dry_run=args.dry_run, extra_args=extra):
             print("\nAborting — step %d failed." % step["num"])
             sys.exit(1)
