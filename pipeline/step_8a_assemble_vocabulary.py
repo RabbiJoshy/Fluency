@@ -369,15 +369,21 @@ def main():
     if curated_path.exists():
         with open(curated_path, encoding="utf-8") as f:
             raw_curated = json.load(f)
+        # Apply only entries whose mode matches the current --sense-source,
+        # or that explicitly target "all" (or legacy "shared"/"normal" that
+        # predate per-source scoping). mode="archive" and anything else is
+        # retained in the file but never applied.
+        active_modes = {args.sense_source, "all", "shared", "normal"}
         for k, v in raw_curated.items():
             if k.startswith("_"):
                 continue
             if isinstance(v, dict):
-                if v.get("mode") in ("shared", "normal"):
+                if v.get("mode") in active_modes:
                     curated[k] = v
             else:
                 curated[k] = {"translation": v, "pos": "X"}
-        print(f"  curated_translations: {len(curated)} overrides")
+        print(f"  curated_translations: {len(curated)} overrides "
+              f"(filtered by sense-source={args.sense_source!r})")
 
     mwe_path = LAYERS / "mwe_phrases.json"
     if mwe_path.exists():
