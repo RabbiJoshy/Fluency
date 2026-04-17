@@ -10,7 +10,8 @@ For multi-sense words: Flash Lite classifies examples to senses.
 For zero-sense words: Flash Lite gap-fill proposes new senses.
 
 Run from project root:
-    .venv/bin/python3 pipeline/artist/step_6c_assign_senses_gemini.py --artist-dir "Artists/Bad Bunny"
+    .venv/bin/python3 pipeline/step_6c_assign_senses_gemini.py                          # normal mode
+    .venv/bin/python3 pipeline/step_6c_assign_senses_gemini.py --artist-dir "Artists/Bad Bunny"
 """
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -20,16 +21,20 @@ import argparse, gzip, json, os, re, sys, time
 from copy import deepcopy
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+# Make artist-only helpers importable when running in artist mode.
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline" / "artist"))
 
 from step_5c_build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
-from util_1a_artist_config import (add_artist_arg, load_artist_config,
+from util_1a_artist_config import (load_artist_config,
                            artist_sense_menu_path, artist_sense_assignments_path,
-                           load_dotenv_from_project_root, assign_sense_ids,
-                           METHOD_PRIORITY, best_method_priority)
+                           load_dotenv_from_project_root)
+from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority,
+                                     assign_sense_ids)
+from util_6a_assignment_format import load_assignments, dump_assignments
+from util_7a_lemma_split import merge_method_maps
+from util_5c_sense_paths import sense_menu_path, sense_assignments_path
 from util_6a_pos_menu_filter import filter_senses_by_pos, filter_senses_by_precomputed_pos
 from util_5c_sense_menu_format import (
     normalize_artist_sense_menu, merge_analysis, get_analyses,
@@ -120,7 +125,10 @@ def build_combined_senses(word, lemma, en_senses, eswikt_index, translation_cach
 # ---------------------------------------------------------------------------
 BATCH_SIZE = 50
 GAP_FILL_BATCH_SIZE = 10
-MAX_EXAMPLES_PER_WORD = 10
+# Default per-word example cap. Override with --max-examples. When re-running
+# with a higher value, already-classified indices are preserved and only the
+# new ones are sent to Gemini.
+DEFAULT_MAX_EXAMPLES_PER_WORD = 10
 
 
 def classify_batch_gemini(words_data, api_key, gemini_model):
@@ -372,8 +380,10 @@ def normalize_assignment_methods(word_data, default_method):
 # ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate Wiktionary sense layers for an artist")
-    add_artist_arg(parser)
+        description="Generate Wiktionary sense layers via Gemini Flash Lite")
+    parser.add_argument("--artist-dir", default=None,
+                        help="Artist directory (e.g. Artists/Bad Bunny). "
+                             "Omit for normal mode (Data/Spanish).")
     parser.add_argument("--no-gemini", action="store_true",
                         help="Skip Gemini, use keyword classifier (free, lower accuracy)")
     parser.add_argument("--all-gemini", action="store_true",
@@ -401,11 +411,31 @@ def main():
                         help="Source label for reporting with --sense-menu-file")
     parser.add_argument("--include-clitics", action="store_true",
                         help="Include clitic-merge words (skipped by default)")
+    parser.add_argument("--skip-classification", action="store_true",
+                        help="Skip multi-sense classification; only run gap-fill.")
+    parser.add_argument("--skip-gap-fill", action="store_true",
+                        help="Skip gap-fill for zero-sense words; only run classification.")
+    parser.add_argument("--max-examples", type=int, default=DEFAULT_MAX_EXAMPLES_PER_WORD,
+                        help="Max examples per word to classify (default %d). "
+                             "Re-running with a larger value picks up where the "
+                             "previous run left off — already-classified example "
+                             "indices for the same method are skipped and only "
+                             "the new ones are sent to Gemini." %
+                             DEFAULT_MAX_EXAMPLES_PER_WORD)
     args = parser.parse_args()
+    if args.max_examples < 1:
+        print("ERROR: --max-examples must be >= 1")
+        sys.exit(1)
 
-    artist_dir = os.path.abspath(args.artist_dir)
-    config = load_artist_config(artist_dir)
-    layers_dir = os.path.join(artist_dir, "data", "layers")
+    is_artist = args.artist_dir is not None
+    if is_artist:
+        artist_dir = os.path.abspath(args.artist_dir)
+        config = load_artist_config(artist_dir)
+        layers_dir = os.path.join(artist_dir, "data", "layers")
+    else:
+        artist_dir = None
+        config = {}
+        layers_dir = str(PROJECT_ROOT / "Data" / "Spanish" / "layers")
 
     use_gemini = not args.no_gemini
     gemini_model = args.gemini_model
@@ -427,6 +457,15 @@ def main():
     with open(os.path.join(layers_dir, "examples_raw.json")) as f:
         examples_raw = json.load(f)
 
+    # Normal-mode schema uses `target` (Spanish) + inline `english`. Downstream
+    # code expects the artist schema (`spanish` + separate translations dict),
+    # so shim the examples in place.
+    if not is_artist:
+        for _exs in examples_raw.values():
+            for _ex in _exs:
+                if "spanish" not in _ex and "target" in _ex:
+                    _ex["spanish"] = _ex["target"]
+
     example_pos = {}
     example_pos_path = os.path.join(layers_dir, "example_pos.json")
     if os.path.isfile(example_pos_path):
@@ -438,8 +477,21 @@ def main():
         print("  example_pos: (not found, spaCy fallback)")
 
     translations_path = os.path.join(layers_dir, "example_translations.json")
-    with open(translations_path) as f:
-        translations = json.load(f)
+    if os.path.isfile(translations_path):
+        with open(translations_path) as f:
+            translations = json.load(f)
+    elif is_artist:
+        raise SystemExit("example_translations.json not found: %s" % translations_path)
+    else:
+        # Normal mode: translations live inline on each example record.
+        translations = {}
+        for _exs in examples_raw.values():
+            for _ex in _exs:
+                _spa = _ex.get("target") or _ex.get("spanish")
+                _eng = _ex.get("english")
+                if _spa and _eng:
+                    translations[_spa] = {"english": _eng}
+        print("  translations (inline from examples_raw): %d entries" % len(translations))
 
     if custom_menu_mode:
         custom_menu_path = Path(layers_dir) / args.sense_menu_file
@@ -460,23 +512,40 @@ def main():
         print("Loading English Wiktionary...")
         wikt_path = PROJECT_ROOT / "Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz"
         wikt_index, redirects = load_wiktionary(wikt_path)
-        shared_menu_path = PROJECT_ROOT / "Data/Spanish/layers/sense_menu.json"
+
+        # Shared Wiktionary menu. In artist mode this is the normal-mode menu
+        # used as a fallback base; in normal mode it's our own output menu.
+        if is_artist:
+            shared_menu_candidates = [
+                PROJECT_ROOT / "Data/Spanish/layers/sense_menu/wiktionary.json",
+            ]
+        else:
+            shared_menu_candidates = [sense_menu_path(layers_dir, "wiktionary")]
         shared_wikt_menu = {}
-        if shared_menu_path.exists():
-            with open(shared_menu_path) as f:
-                shared_wikt_menu = json.load(f)
+        for cand in shared_menu_candidates:
+            if Path(cand).exists():
+                with open(cand) as f:
+                    shared_wikt_menu = json.load(f)
+                break
 
-        dialect_tags = set(config.get("dialect_tags", DEFAULT_DIALECT_TAGS))
-        print("Loading Spanish Wiktionary (dialect: %s)..." % ", ".join(sorted(dialect_tags)))
-        eswikt_index = load_eswiktionary(ESWIKT_FILE, dialect_tags)
+        # Dialect supplement (eswiktionary) is artist-specific: normal mode
+        # already merges dialect senses into its menu at step 5c.
+        if is_artist:
+            dialect_tags = set(config.get("dialect_tags", DEFAULT_DIALECT_TAGS))
+            print("Loading Spanish Wiktionary (dialect: %s)..." % ", ".join(sorted(dialect_tags)))
+            eswikt_index = load_eswiktionary(ESWIKT_FILE, dialect_tags)
 
-        # Translation cache for Spanish glosses
-        cache_path = PROJECT_ROOT / "pipeline/artist/bench/.eswikt_translation_cache.json"
-        translation_cache = {}
-        if cache_path.exists():
-            with open(cache_path) as f:
-                translation_cache = json.load(f)
-        print("  %d cached Spanish→English translations" % len(translation_cache))
+            # Translation cache for Spanish glosses
+            cache_path = PROJECT_ROOT / "pipeline/artist/bench/.eswikt_translation_cache.json"
+            translation_cache = {}
+            if cache_path.exists():
+                with open(cache_path) as f:
+                    translation_cache = json.load(f)
+            print("  %d cached Spanish→English translations" % len(translation_cache))
+        else:
+            eswikt_index = {}
+            cache_path = None
+            translation_cache = {}
 
     # ---------------------------------------------------------------------------
     # Process each word
@@ -490,7 +559,10 @@ def main():
     no_examples = 0
 
     # Load word_routing.json for flag-based skipping (preferred, from step 4)
-    routing_path = os.path.join(artist_dir, "data", "known_vocab", "word_routing.json")
+    if is_artist:
+        routing_path = os.path.join(artist_dir, "data", "known_vocab", "word_routing.json")
+    else:
+        routing_path = os.path.join(layers_dir, "word_routing.json")
     skip_set = set()
     routing_data = {}
     if os.path.isfile(routing_path):
@@ -508,15 +580,17 @@ def main():
                 skip_set.update(clitic_merge.keys())
         print("  Skip words (from step 4): %d" % len(skip_set))
 
-    # Load master for flag lookups (fallback when skip_words.json absent)
-    artists_dir = os.path.dirname(artist_dir)
-    master_path = os.path.join(artists_dir, "vocabulary_master.json")
+    # Load master for flag lookups (fallback when skip_words.json absent).
+    # Master vocabulary is artist-mode only.
     master_flags = {}
-    if os.path.isfile(master_path):
-        with open(master_path) as f:
-            for mid, mv in json.load(f).items():
-                wl = "%s|%s" % (mv["word"], mv.get("lemma", mv["word"]))
-                master_flags[wl] = mv
+    if is_artist:
+        artists_dir = os.path.dirname(artist_dir)
+        master_path = os.path.join(artists_dir, "vocabulary_master.json")
+        if os.path.isfile(master_path):
+            with open(master_path) as f:
+                for mid, mv in json.load(f).items():
+                    wl = "%s|%s" % (mv["word"], mv.get("lemma", mv["word"]))
+                    master_flags[wl] = mv
 
     skipped_flags = 0
     skipped_short = 0
@@ -527,14 +601,15 @@ def main():
 
     # Load existing assignments for priority checking + gap-fill reuse
     existing_assigns = {}
-    assignments_path = (
-        artist_sense_assignments_path(layers_dir, "wiktionary")
-        if args.assignments_file == "sense_assignments/wiktionary.json"
-        else os.path.join(layers_dir, args.assignments_file)
-    )
+    if args.assignments_file == "sense_assignments/wiktionary.json":
+        if is_artist:
+            assignments_path = artist_sense_assignments_path(layers_dir, "wiktionary")
+        else:
+            assignments_path = str(sense_assignments_path(layers_dir, "wiktionary"))
+    else:
+        assignments_path = os.path.join(layers_dir, args.assignments_file)
     if os.path.isfile(assignments_path):
-        with open(assignments_path, "r", encoding="utf-8") as f:
-            existing_assigns = json.load(f)
+        existing_assigns = load_assignments(assignments_path)
 
     if args.method_name and use_gemini:
         my_method = args.method_name
@@ -557,7 +632,7 @@ def main():
     # For --normal-slang-only: load normal-mode senses
     normal_wl = set()
     if args.normal_slang_only:
-        normal_senses_path = PROJECT_ROOT / "Data/Spanish/layers/sense_menu.json"
+        normal_senses_path = PROJECT_ROOT / "Data/Spanish/layers/sense_menu/wiktionary.json"
         if normal_senses_path.exists():
             with open(normal_senses_path) as f:
                 normal_wl = set(json.load(f).keys())
@@ -611,17 +686,54 @@ def main():
                 skipped_not_slang += 1
                 continue
 
-        # Skip words with equal or higher priority assignments
+        # Skip words claimed by a STRICTLY higher-priority method. For the same
+        # method we used to also skip at word level; now that selection is
+        # example-level, equal priority is handled by the covered-index filter
+        # below instead.
         if word in existing_assigns and not args.force:
             existing_priority = best_method_priority(existing_assigns[word])
-            if existing_priority >= my_priority:
+            if existing_priority > my_priority:
                 skipped_priority += 1
                 continue
 
-        # Get examples with English translations
-        raw_exs = examples_raw.get(word, [])[:MAX_EXAMPLES_PER_WORD]
+        # Target window into the stable per-word examples list. Positional
+        # indices are preserved across re-runs by step_5a_split_evidence, so
+        # absolute indices are safe to store and re-use.
+        all_exs = examples_raw.get(word, [])
+        target_end = min(len(all_exs), args.max_examples)
+        if target_end == 0:
+            no_examples += 1
+            continue
+
+        # Which absolute indices is THIS method already responsible for?
+        # Only same-method coverage counts — we want incrementality inside
+        # gemini runs, but a prior biencoder assignment shouldn't block gemini
+        # from doing its own pass.
+        covered_abs = set()
+        if not args.force and word in existing_assigns:
+            for item in existing_assigns[word].get(my_method, []) or []:
+                for abs_i in item.get("examples", []) or []:
+                    if isinstance(abs_i, int):
+                        covered_abs.add(abs_i)
+            # Single-sense auto-assignment uses auto_method_name, not my_method.
+            # Treat those as covered too so re-runs don't re-auto-assign them.
+            for item in existing_assigns[word].get(args.auto_method_name, []) or []:
+                for abs_i in item.get("examples", []) or []:
+                    if isinstance(abs_i, int):
+                        covered_abs.add(abs_i)
+
+        # Build the (abs_idx, ex) list of NEW examples in the target window.
+        selected = [(abs_i, all_exs[abs_i]) for abs_i in range(target_end)
+                    if abs_i not in covered_abs]
+        if not selected:
+            # Target window fully covered by prior same-method work — nothing
+            # to do. Any existing assignment is preserved untouched.
+            skipped_priority += 1
+            continue
+
         examples = []
-        for ex in raw_exs:
+        abs_indices = []
+        for abs_i, ex in selected:
             spa = ex.get("spanish", "")
             # Normalize elided surface forms to canonical word for Gemini
             surface = ex.get("surface")
@@ -632,6 +744,7 @@ def main():
             eng = eng_obj.get("english", "") if isinstance(eng_obj, dict) else (eng_obj or "")
             examples.append({"spanish": spa, "english": eng,
                              "song": ex.get("title", ""), "id": ex.get("id", "")})
+            abs_indices.append(abs_i)
 
         if not examples:
             no_examples += 1
@@ -699,7 +812,7 @@ def main():
         if not combined:
             # No entry — queue for gap-fill for either Wiktionary or custom menu sources.
             if corpus_count > 1:
-                no_senses_queue.append((word, lemma, examples))
+                no_senses_queue.append((word, lemma, examples, abs_indices))
             continue
 
         keep_indices = list(range(len(combined)))
@@ -712,7 +825,7 @@ def main():
             pos_filtered_count += 1
 
         if len(keep_indices) == 1:
-            # Single sense: auto-assign all examples
+            # Single sense: auto-assign the NEW examples (absolute indices).
             single_sense += 1
             if len(combined) > 1:
                 pos_single_sense_count += 1
@@ -726,13 +839,15 @@ def main():
                 sid = list(id_map.keys())[0]
             assignments_out[word] = {args.auto_method_name: [{
                 "sense": sid,
-                "examples": list(range(len(examples))),
+                "examples": list(abs_indices),
             }]}
         else:
-            # Multi-sense: queue for classification
+            # Multi-sense: queue for classification. Pass abs_indices so the
+            # batch writer can translate Gemini's local-positional output back
+            # to absolute example indices in examples_raw[word].
             filtered_combined = [combined[i] for i in keep_indices]
             filtered_ids = [id_list[i] for i in keep_indices] if shared_analyses else None
-            multi_sense_queue.append((word, lemma, filtered_combined, examples, filtered_ids))
+            multi_sense_queue.append((word, lemma, filtered_combined, examples, filtered_ids, abs_indices))
             if not shared_analyses:
                 if not custom_menu_mode:
                     merge_analysis(senses_out, word, lemma, assign_analysis_sense_ids(lemma, filtered_combined))
@@ -757,6 +872,9 @@ def main():
     # ---------------------------------------------------------------------------
     # Classify multi-sense words
     # ---------------------------------------------------------------------------
+    if args.skip_classification:
+        print("\n  Skipping multi-sense classification (--skip-classification)")
+        multi_sense_queue = []
     if multi_sense_queue:
         print("\n" + "=" * 60)
         if use_gemini:
@@ -786,33 +904,38 @@ def main():
             for batch_start in range(0, len(multi_sense_queue), BATCH_SIZE):
                 batch = multi_sense_queue[batch_start:batch_start + BATCH_SIZE]
                 # Skip batches where all words are already done
-                batch = [(w, l, s, ex, ids) for w, l, s, ex, ids in batch if w not in done_words]
+                batch = [tup for tup in batch if tup[0] not in done_words]
                 if not batch:
                     continue
                 batch_data = [{"word": w, "lemma": l, "senses": s,
-                               "examples": ex[:20]}
-                              for w, l, s, ex, ids in batch]
-                batch_words = [w for w, _, _, _, _ in batch]
+                               "examples": ex}
+                              for w, l, s, ex, ids, abs_idx in batch]
+                batch_words = [tup[0] for tup in batch]
                 print("  Batch %d: %s" % (
                     batch_start // BATCH_SIZE + 1, batch_words[:5]))
 
                 results = classify_batch_gemini(batch_data, api_key, gemini_model)
 
-                for i, (word, lemma, senses, examples, explicit_ids) in enumerate(batch):
+                for i, (word, lemma, senses, examples, explicit_ids, abs_idx_list) in enumerate(batch):
                     id_list = explicit_ids or list(assign_analysis_sense_ids(lemma, senses).keys())
 
                     if results and i < len(results):
                         r = results[i]
                         raw_assigns = r.get("assignments", {})
-                        # Group examples by sense ID
+                        # Group examples by sense ID, translating Gemini's
+                        # 1-indexed local position back to the absolute index
+                        # in examples_raw[word].
                         sense_buckets = {}
                         for ex_key, sense_idx in raw_assigns.items():
                             idx = int(sense_idx) if str(sense_idx).lstrip("-").isdigit() else 0
                             if idx < 0 or idx >= len(id_list):
                                 idx = 0
                             sid = id_list[idx]
-                            sense_buckets.setdefault(sid, []).append(
-                                int(ex_key) - 1)  # 1-indexed → 0-indexed
+                            local_ex_idx = int(ex_key) - 1  # 1-indexed → 0-indexed local
+                            if not (0 <= local_ex_idx < len(abs_idx_list)):
+                                continue
+                            abs_ex_idx = abs_idx_list[local_ex_idx]
+                            sense_buckets.setdefault(sid, []).append(abs_ex_idx)
 
                         assignments = []
                         total = sum(len(v) for v in sense_buckets.values())
@@ -827,13 +950,13 @@ def main():
                             })
                         if not assignments:
                             assignments = [{"sense": id_list[0],
-                                            "examples": list(range(len(examples)))}]
+                                            "examples": list(abs_idx_list)}]
                         assignments_out[word] = {my_method: assignments}
                     else:
-                        # Fallback: assign all to first sense
+                        # Fallback: assign all to first sense (absolute indices)
                         assignments_out[word] = {my_method: [{
                             "sense": id_list[0] if id_list else "000",
-                            "examples": list(range(len(examples))),
+                            "examples": list(abs_idx_list),
                         }]}
                     done_words.add(word)
 
@@ -843,13 +966,15 @@ def main():
                                "done_words": sorted(done_words)}, f)
         else:
             # Keyword fallback
-            for word, lemma, senses, examples, explicit_ids in multi_sense_queue:
+            for word, lemma, senses, examples, explicit_ids, abs_idx_list in multi_sense_queue:
                 id_list = explicit_ids or list(assign_analysis_sense_ids(lemma, senses).keys())
                 assigns = classify_keyword(examples, senses)
                 sense_buckets = {}
                 for ei, si in enumerate(assigns):
                     sid = id_list[si] if si < len(id_list) else id_list[0]
-                    sense_buckets.setdefault(sid, []).append(ei)
+                    if not (0 <= ei < len(abs_idx_list)):
+                        continue
+                    sense_buckets.setdefault(sid, []).append(abs_idx_list[ei])
                 assignments = []
                 total = len(assigns)
                 for sid in sorted(sense_buckets):
@@ -863,7 +988,7 @@ def main():
                     })
                 if not assignments:
                     assignments = [{"sense": id_list[0],
-                                    "examples": list(range(len(examples)))}]
+                                    "examples": list(abs_idx_list)}]
                 assignments_out[word] = {my_method: assignments}
 
         elapsed = time.time() - t_start
@@ -872,6 +997,9 @@ def main():
     # ---------------------------------------------------------------------------
     # Gap-fill for words without any usable sense menu
     # ---------------------------------------------------------------------------
+    if args.skip_gap_fill:
+        print("\n  Skipping gap-fill (--skip-gap-fill)")
+        no_senses_queue = []
     if no_senses_queue and use_gemini:
         print("\n" + "=" * 60)
         print("GAP-FILL %d words without sense-menu entry" % len(no_senses_queue))
@@ -880,18 +1008,31 @@ def main():
         # Check existing assignments for reusable gap-fill senses
         reused = 0
         need_gemini = []
-        for word, lemma, examples in no_senses_queue:
+        for word, lemma, examples, abs_idx_list in no_senses_queue:
             existing = existing_assigns.get(word, {})
             gf = existing.get("gap-fill", [])
             # Reuse if the existing gap-fill has inline sense definitions
             if gf and isinstance(gf[0], dict) and "pos" in gf[0]:
-                # Reuse existing inline senses, reassign all examples
+                # Reuse existing inline senses and union NEW example indices
+                # onto the first entry (classifier has no way to route them to
+                # a specific sense without another API call — first entry is
+                # the conservative default).
+                existing_covered = set()
                 for entry in gf:
-                    entry["examples"] = list(range(len(examples)))
+                    existing_covered.update(
+                        int(i) for i in (entry.get("examples") or [])
+                        if isinstance(i, int)
+                    )
+                new_abs = [i for i in abs_idx_list if i not in existing_covered]
+                if new_abs:
+                    gf[0]["examples"] = sorted(
+                        set(int(i) for i in (gf[0].get("examples") or []) if isinstance(i, int))
+                        | set(new_abs)
+                    )
                 assignments_out[word] = {"gap-fill": gf}
                 reused += 1
             else:
-                need_gemini.append((word, lemma, examples))
+                need_gemini.append((word, lemma, examples, abs_idx_list))
 
         if reused:
             print("  Reused %d existing gap-fill senses" % reused)
@@ -900,15 +1041,15 @@ def main():
         proposed = 0
         for batch_start in range(0, len(need_gemini), GAP_FILL_BATCH_SIZE):
             batch = need_gemini[batch_start:batch_start + GAP_FILL_BATCH_SIZE]
-            batch_words = [w for w, _, _ in batch]
+            batch_words = [tup[0] for tup in batch]
             print("  Gap-fill batch %d: %s" % (
                 batch_start // GAP_FILL_BATCH_SIZE + 1, batch_words[:5]))
             batch_data = [{
                 "word": word,
                 "lemma": lemma,
                 "senses": [],
-                "examples": examples[:20],
-            } for word, lemma, examples in batch]
+                "examples": examples,
+            } for word, lemma, examples, abs_idx_list in batch]
             results = gap_fill_batch_gemini(batch_data, api_key, gemini_model)
             result_map = {}
             if isinstance(results, list):
@@ -916,7 +1057,7 @@ def main():
                     if isinstance(item, dict) and item.get("word"):
                         result_map[item["word"]] = item
 
-            for word, lemma, examples in batch:
+            for word, lemma, examples, abs_idx_list in batch:
                 result = result_map.get(word)
                 if result and result.get("proposed_sense"):
                     pos = result.get("proposed_pos", "NOUN")
@@ -930,7 +1071,7 @@ def main():
                         "pos": pos,
                         "translation": trans,
                         "lemma": result.get("proposed_lemma") or lemma,
-                        "examples": list(range(len(examples))),
+                        "examples": list(abs_idx_list),
                     }]}
                     proposed += 1
 
@@ -943,7 +1084,10 @@ def main():
     # Write layer files (merge with existing)
     # ---------------------------------------------------------------------------
     if not custom_menu_mode:
-        senses_path = artist_sense_menu_path(layers_dir, "wiktionary")
+        if is_artist:
+            senses_path = artist_sense_menu_path(layers_dir, "wiktionary")
+        else:
+            senses_path = str(sense_menu_path(layers_dir, "wiktionary"))
         existing_senses = {}
         if os.path.isfile(senses_path):
             with open(senses_path, "r", encoding="utf-8") as f:
@@ -955,22 +1099,30 @@ def main():
             json.dump(existing_senses, f, ensure_ascii=False, indent=2)
         print("\nWrote %s (%d entries, %d new)" % (senses_path, len(existing_senses), len(senses_out)))
 
-    # Merge assignments with existing file
+    # Merge assignments with existing file.
+    #
+    # Incremental mode (the default): new items for the SAME method are unioned
+    # with existing items via merge_method_maps — same sense ID wins its old
+    # example list merged with the new one; new sense IDs are appended. Other
+    # methods on the same word are preserved untouched.
+    #
+    # --force replaces the current method's entries wholesale (and still leaves
+    # other methods alone).
     existing_assigns = {}
     if os.path.isfile(assignments_path):
-        with open(assignments_path, "r", encoding="utf-8") as f:
-            existing_assigns = json.load(f)
+        existing_assigns = load_assignments(assignments_path)
     for word, methods in assignments_out.items():
         if word not in existing_assigns or not isinstance(existing_assigns[word], dict):
             existing_assigns[word] = {}
-        existing_assigns[word].update(
-            normalize_assignment_methods(
-                methods,
-                my_method,
-            )
-        )
-    with open(assignments_path, "w", encoding="utf-8") as f:
-        json.dump(existing_assigns, f, ensure_ascii=False, indent=2)
+        incoming = normalize_assignment_methods(methods, my_method)
+        if args.force:
+            # Drop only the methods we're re-writing; keep others.
+            for m in incoming.keys():
+                existing_assigns[word].pop(m, None)
+            existing_assigns[word].update(incoming)
+        else:
+            existing_assigns[word] = merge_method_maps(existing_assigns[word], incoming)
+    dump_assignments(existing_assigns, assignments_path)
     print("Wrote %s (%d entries, %d updated)" % (assignments_path, len(existing_assigns), len(assignments_out)))
 
     # Save translation cache updates

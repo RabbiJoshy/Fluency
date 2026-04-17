@@ -106,14 +106,19 @@ def main():
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="wiktionary",
                         help="Sense dictionary source (default: wiktionary)")
-    parser.add_argument("--keyword-only", action="store_true",
-                        help="Forward --keyword-only to step 6a (instant sense assignment)")
-    parser.add_argument("--no-gemini", action="store_true",
-                        help="Forward --no-gemini to step 6a (skip Gemini stage)")
+    parser.add_argument("--classifier", choices=["keyword", "biencoder", "gemini"],
+                        default="biencoder",
+                        help="Primary classifier for step 6a (default: biencoder).")
+    gf = parser.add_mutually_exclusive_group()
+    gf.add_argument("--gap-fill", dest="gap_fill", action="store_true", default=None,
+                    help="Run Gemini gap-fill on zero-sense words. "
+                         "Default: on for gemini, off otherwise.")
+    gf.add_argument("--no-gap-fill", dest="gap_fill", action="store_false",
+                    help="Skip gap-fill.")
     parser.add_argument("--max-examples", type=int, default=None,
-                        help="Forward --max-examples to step 6c (examples per word sent to Gemini, default 10)")
+                        help="Max examples per word sent to Gemini.")
     parser.add_argument("--remainders", action="store_true",
-                        help="Forward --remainders to step 8a (emit SENSE_CYCLE buckets, default off)")
+                        help="Emit SENSE_CYCLE remainder buckets in the final deck (default: off).")
     args = parser.parse_args()
 
     skip_set = set(args.skip_step)
@@ -158,10 +163,11 @@ def main():
         if step["script"] in source_aware_scripts:
             extra = ["--sense-source", args.sense_source]
         if step["script"] == "step_6a_assign_senses.py":
-            if args.keyword_only:
-                extra.append("--keyword-only")
-            if args.no_gemini:
-                extra.append("--no-gemini")
+            extra.extend(["--classifier", args.classifier])
+            if args.gap_fill is True:
+                extra.append("--gap-fill")
+            elif args.gap_fill is False:
+                extra.append("--no-gap-fill")
             if args.max_examples is not None:
                 extra.extend(["--max-examples", str(args.max_examples)])
         if step["script"] == "step_8a_assemble_vocabulary.py" and args.remainders:

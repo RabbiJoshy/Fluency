@@ -538,7 +538,9 @@ def main():
             print("  Dropped %d stale assignment items (sense IDs not in current menu)"
                   % stale_dropped)
 
-    # Load word routing to skip excluded/gemini-routed words
+    # Load word routing to skip excluded/clitic-merged words.
+    # The biencoder/gemini sub-buckets in word_routing.json are metadata
+    # only — the chosen classifier processes every learnable word.
     routing_skip = set()
     if routing_path.exists():
         with open(routing_path, encoding="utf-8") as f:
@@ -546,14 +548,12 @@ def main():
         # Skip excluded words (junk)
         for cat_list in routing.get("exclude", {}).values():
             routing_skip.update(cat_list)
-        # Skip gemini-routed words (they get Gemini, not bi-encoder)
-        routing_skip.update(routing.get("gemini", []))
         # Skip merge-clitics (folded into base verb, don't need assignment)
         if not args.include_clitics:
             clitic_merge = routing.get("clitic_merge", {})
             if isinstance(clitic_merge, dict):
                 routing_skip.update(clitic_merge.keys())
-        print("  word_routing: skipping %d excluded + gemini + clitic-merge words" % len(routing_skip))
+        print("  word_routing: skipping %d excluded + clitic-merge words" % len(routing_skip))
 
     my_method = args.keyword_method_name if use_keyword else args.biencoder_method_name
     my_priority = METHOD_PRIORITY.get(my_method, 0)

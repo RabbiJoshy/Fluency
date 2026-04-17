@@ -63,11 +63,13 @@ def _tag_pos_args(args, artist_dir):
     return _base_args(artist_dir)
 
 def _step_6_args(args, artist_dir):
-    a = _base_args(artist_dir)
-    if args.no_gemini:
-        a.append("--no-gemini")
-    if getattr(args, "keyword_only_senses", False):
-        a.append("--keyword-only")
+    a = _base_args(artist_dir) + ["--classifier", args.classifier]
+    if getattr(args, "gap_fill", None) is True:
+        a.append("--gap-fill")
+    elif getattr(args, "gap_fill", None) is False:
+        a.append("--no-gap-fill")
+    if getattr(args, "max_examples", None) is not None:
+        a.extend(["--max-examples", str(args.max_examples)])
     if getattr(args, "force", False):
         a.append("--force")
     return a
@@ -185,12 +187,18 @@ def main():
     parser.add_argument("--skip", type=str, nargs="*", default=[])
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--reset", action="store_true")
-    parser.add_argument("--no-gemini", action="store_true",
-                        help="Skip Gemini API calls in step 6. Uses only Genius translations + overrides.")
+    parser.add_argument("--classifier", choices=["keyword", "biencoder", "gemini"],
+                        default="biencoder",
+                        help="Primary classifier for step 6 (default: biencoder).")
+    gf = parser.add_mutually_exclusive_group()
+    gf.add_argument("--gap-fill", dest="gap_fill", action="store_true", default=None,
+                    help="Run Gemini gap-fill (default: on for gemini, off otherwise).")
+    gf.add_argument("--no-gap-fill", dest="gap_fill", action="store_false",
+                    help="Skip gap-fill.")
+    parser.add_argument("--max-examples", type=int, default=None,
+                        help="Per-word example cap sent to Gemini.")
     parser.add_argument("--words-only", action="store_true",
                         help="Step 6: run word analysis but skip sentence translation.")
-    parser.add_argument("--keyword-only-senses", action="store_true",
-                        help="Step 6b: use keyword overlap instead of bi-encoder for sense matching.")
     args = parser.parse_args()
 
     artist_dir = os.path.join(ARTISTS_DIR, args.artist)
@@ -208,7 +216,12 @@ def main():
     skip_set = set(args.skip)
     steps_to_run = [s for s in STEPS[start_idx:end_idx + 1] if str(s["num"]) not in skip_set]
 
-    needs_key = any(s["needs_api_key"] for s in steps_to_run) and not args.no_gemini
+    # Gemini key is needed when the primary classifier is gemini, or when
+    # gap-fill is enabled (explicitly or by default for gemini classifier).
+    gap_fill_default_on = (args.classifier == "gemini")
+    gap_fill_effective = args.gap_fill if args.gap_fill is not None else gap_fill_default_on
+    gemini_needed = (args.classifier == "gemini" or gap_fill_effective)
+    needs_key = any(s["needs_api_key"] for s in steps_to_run) and gemini_needed
     if needs_key and not args.api_key and not args.dry_run:
         print("ERROR: Steps %s require --api-key (or use --no-gemini)" %
               ", ".join(str(s["num"]) for s in steps_to_run if s["needs_api_key"]))

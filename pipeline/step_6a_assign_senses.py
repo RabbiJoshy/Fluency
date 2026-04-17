@@ -1,24 +1,37 @@
 #!/usr/bin/env python3
 """
-step_6a_assign_senses.py — Assign Spanish examples to word senses (normal mode).
+step_6a_assign_senses.py — Assign Spanish examples to word senses.
 
-Single entry point that dispatches to the same shared classifiers used by
-artist mode:
+Single entry point. One classifier runs per invocation. Every learnable word
+(not excluded, not folded into a clitic base) gets exactly one assignment
+from the chosen classifier. Optionally, zero-sense words get a Gemini
+gap-fill pass too.
 
-  - biencoder-routed words  → local bi-encoder (step_6b_assign_senses_local.py)
-  - gemini-routed words     → Gemini Flash Lite (step_6c_assign_senses_gemini.py)
+Flags:
+    --classifier {keyword, biencoder, gemini}   (required)
+        Picks the single classifier that runs over every learnable word.
+    --gap-fill / --no-gap-fill
+        Whether to also run Gemini gap-fill on zero-sense words.
+        Default: on for `gemini`, off for `keyword` and `biencoder`.
+    --sense-source {wiktionary, spanishdict}    (default: wiktionary)
+    --max-examples N
+        Per-word example cap sent to Gemini (default 10 in step_6c).
+    --force
+        Re-classify everything, ignoring existing assignments.
+    --gemini-model MODEL
+        Override the Gemini model (default: gemini-2.5-flash-lite).
 
-Without GEMINI_API_KEY, only the bi-encoder stage runs.
-All output merges into Data/Spanish/layers/sense_assignments/{source}.json.
+Output merges into Data/Spanish/layers/sense_assignments/{source}.json
+(or the artist equivalent if step_6c is called with --artist-dir —
+artist mode has its own dispatcher).
 
 Usage:
-    .venv/bin/python3 pipeline/step_6a_assign_senses.py
-    .venv/bin/python3 pipeline/step_6a_assign_senses.py --no-gemini
-    .venv/bin/python3 pipeline/step_6a_assign_senses.py --keyword-only
-    .venv/bin/python3 pipeline/step_6a_assign_senses.py --sense-source spanishdict
-
-The legacy monolithic implementation is preserved at legacy_6a_assign_senses.py
-for reference.
+    .venv/bin/python3 pipeline/step_6a_assign_senses.py --classifier keyword
+    .venv/bin/python3 pipeline/step_6a_assign_senses.py --classifier biencoder
+    .venv/bin/python3 pipeline/step_6a_assign_senses.py --classifier gemini
+    .venv/bin/python3 pipeline/step_6a_assign_senses.py --classifier gemini \
+        --sense-source spanishdict --max-examples 20
+    .venv/bin/python3 pipeline/step_6a_assign_senses.py --classifier biencoder --gap-fill
 """
 
 import argparse
@@ -34,7 +47,6 @@ if not os.path.exists(PYTHON):
 
 
 def run_step(label, script, args):
-    """Run a pipeline step, streaming output."""
     cmd = [PYTHON, os.path.join(SCRIPTS_DIR, script)] + args
     print("\n" + "=" * 60)
     print(label)
@@ -46,7 +58,6 @@ def run_step(label, script, args):
 
 
 def _load_dotenv():
-    """Load .env from project root so GEMINI_API_KEY propagates to children."""
     env_path = os.path.join(PROJECT_ROOT, ".env")
     if not os.path.exists(env_path):
         return
@@ -58,83 +69,120 @@ def _load_dotenv():
                 os.environ.setdefault(key.strip(), val.strip())
 
 
+def _spanishdict_args_local():
+    return [
+        "--sense-menu-file", "sense_menu/spanishdict.json",
+        "--assignments-file", "sense_assignments/spanishdict.json",
+        "--biencoder-method-name", "spanishdict-biencoder",
+        "--keyword-method-name", "spanishdict-keyword",
+        "--auto-method-name", "spanishdict-auto",
+        "--menu-source-label", "spanishdict",
+    ]
+
+
+def _spanishdict_args_gemini(gemini_model):
+    method = "spanishdict-flash-lite" if "flash-lite" in gemini_model else "spanishdict-flash"
+    return [
+        "--sense-menu-file", "sense_menu/spanishdict.json",
+        "--assignments-file", "sense_assignments/spanishdict.json",
+        "--method-name", method,
+        "--keyword-method-name", "spanishdict-keyword",
+        "--auto-method-name", "spanishdict-auto",
+        "--menu-source-label", "spanishdict",
+    ]
+
+
 def main():
     parser = argparse.ArgumentParser(
-        description="Step 6: Assign senses (bi-encoder + Gemini)")
+        description="Step 6: Assign senses (one classifier + optional Gemini gap-fill)")
 
-    parser.add_argument("--no-gemini", action="store_true",
-                        help="Skip Gemini stage (bi-encoder only, free)")
-    parser.add_argument("--keyword-only", action="store_true",
-                        help="Use keyword overlap instead of bi-encoder (instant)")
-    parser.add_argument("--force", action="store_true",
-                        help="Re-classify all words (ignore existing assignments)")
-    parser.add_argument("--all-gemini", action="store_true",
-                        help="Skip bi-encoder and promote biencoder-routed words "
-                             "into the Gemini stage for this run")
-    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
-                        help="Gemini model for the Gemini stage (default: gemini-2.5-flash-lite)")
+    parser.add_argument("--classifier", choices=["keyword", "biencoder", "gemini"],
+                        required=True,
+                        help="Primary classifier that runs on every learnable word.")
+    gf = parser.add_mutually_exclusive_group()
+    gf.add_argument("--gap-fill", dest="gap_fill", action="store_true", default=None,
+                    help="Run Gemini gap-fill on zero-sense words. "
+                         "Default: on for gemini, off for keyword/biencoder.")
+    gf.add_argument("--no-gap-fill", dest="gap_fill", action="store_false",
+                    help="Skip gap-fill (no Gemini gap-fill pass).")
     parser.add_argument("--sense-source", choices=["wiktionary", "spanishdict"],
                         default="wiktionary",
-                        help="Sense menu source to use for assignment (default: wiktionary)")
+                        help="Sense menu source (default: wiktionary)")
     parser.add_argument("--max-examples", type=int, default=None,
-                        help="Max examples per word sent to Gemini (step 6c default is 10). "
-                             "Re-running with a larger value picks up new examples only.")
+                        help="Max examples per word sent to Gemini (step 6c default 10).")
+    parser.add_argument("--force", action="store_true",
+                        help="Re-classify everything, ignoring existing assignments.")
+    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
+                        help="Gemini model (default: gemini-2.5-flash-lite)")
     args = parser.parse_args()
 
     _load_dotenv()
     has_api_key = bool(os.environ.get("GEMINI_API_KEY"))
 
-    # Stage 1: bi-encoder for biencoder-routed words
-    if args.all_gemini:
-        print("\n  Skipping bi-encoder stage (--all-gemini)")
-    else:
+    # Default gap-fill: on for gemini, off for keyword/biencoder.
+    gap_fill = args.gap_fill
+    if gap_fill is None:
+        gap_fill = (args.classifier == "gemini")
+
+    # Preflight: Gemini-using paths need an API key.
+    gemini_needed = args.classifier == "gemini" or gap_fill
+    if gemini_needed and not has_api_key:
+        if args.classifier == "gemini":
+            print("ERROR: --classifier gemini requires GEMINI_API_KEY in .env")
+            sys.exit(1)
+        if gap_fill:
+            print("WARNING: --gap-fill requires GEMINI_API_KEY; skipping gap-fill.")
+            gap_fill = False
+
+    # -----------------------------------------------------------------
+    # Primary classifier
+    # -----------------------------------------------------------------
+    if args.classifier in ("keyword", "biencoder"):
         bienc_args = []
         if args.sense_source == "spanishdict":
-            bienc_args.extend([
-                "--sense-menu-file", "sense_menu/spanishdict.json",
-                "--assignments-file", "sense_assignments/spanishdict.json",
-                "--biencoder-method-name", "spanishdict-biencoder",
-                "--keyword-method-name", "spanishdict-keyword",
-                "--auto-method-name", "spanishdict-auto",
-                "--menu-source-label", "spanishdict",
-            ])
-        if args.keyword_only:
+            bienc_args.extend(_spanishdict_args_local())
+        if args.classifier == "keyword":
             bienc_args.append("--keyword-only")
         if args.force:
             bienc_args.append("--force")
-        run_step("STAGE 1: Bi-encoder (biencoder-routed words)",
-                 "step_6b_assign_senses_local.py", bienc_args)
-
-    # Stage 2: Gemini for gemini-routed words
-    if args.no_gemini:
-        print("\n  Skipping Gemini stage (--no-gemini)")
-    elif not has_api_key:
-        print("\n  Skipping Gemini stage (no GEMINI_API_KEY set)")
+        label = "Classifier: %s" % args.classifier
+        run_step(label, "step_6b_assign_senses_local.py", bienc_args)
     else:
-        gemini_args = ["--new-only"]
+        # classifier == "gemini" — run step_6c classification, and optionally gap-fill
+        gemini_args = []
         if args.sense_source == "spanishdict":
-            gemini_args = [
-                "--sense-menu-file", "sense_menu/spanishdict.json",
-                "--assignments-file", "sense_assignments/spanishdict.json",
-                "--method-name", "spanishdict-flash-lite" if "flash-lite" in args.gemini_model else "spanishdict-flash",
-                "--keyword-method-name", "spanishdict-keyword",
-                "--auto-method-name", "spanishdict-auto",
-                "--menu-source-label", "spanishdict",
-            ]
-        if args.all_gemini:
-            gemini_args.append("--all-gemini")
+            gemini_args.extend(_spanishdict_args_gemini(args.gemini_model))
         if args.force:
             gemini_args.append("--force")
         if args.gemini_model:
             gemini_args.extend(["--gemini-model", args.gemini_model])
         if args.max_examples is not None:
             gemini_args.extend(["--max-examples", str(args.max_examples)])
-        run_step("STAGE 2: Gemini Flash Lite (gemini-routed words)",
+        if not gap_fill:
+            gemini_args.append("--skip-gap-fill")
+        label = "Classifier: gemini" + (" + gap-fill" if gap_fill else "")
+        run_step(label, "step_6c_assign_senses_gemini.py", gemini_args)
+
+    # -----------------------------------------------------------------
+    # Gap-fill pass (only needed when classifier != gemini; gemini path
+    # handles it inline above).
+    # -----------------------------------------------------------------
+    if gap_fill and args.classifier != "gemini":
+        gemini_args = ["--skip-classification"]
+        if args.sense_source == "spanishdict":
+            gemini_args.extend(_spanishdict_args_gemini(args.gemini_model))
+        if args.force:
+            gemini_args.append("--force")
+        if args.gemini_model:
+            gemini_args.extend(["--gemini-model", args.gemini_model])
+        if args.max_examples is not None:
+            gemini_args.extend(["--max-examples", str(args.max_examples)])
+        run_step("Gap-fill (Gemini, zero-sense words only)",
                  "step_6c_assign_senses_gemini.py", gemini_args)
 
     out_rel = os.path.join("sense_assignments",
                            "spanishdict.json" if args.sense_source == "spanishdict" else "wiktionary.json")
-    print("\n  Done. All assignments in: %s" %
+    print("\nDone. All assignments in: %s" %
           os.path.join("Data", "Spanish", "layers", out_rel))
 
 
