@@ -697,6 +697,40 @@ def main():
                     meanings_full.append({**meaning_lean, "examples": exs})
                     examples_by_meaning.append(exs)
 
+            # When a curated override is present, collapse meanings that now
+            # share the same (pos, translation) — otherwise we emit N copies
+            # of the curated label (one per sense assignment), differing only
+            # by the 'detail' text. Merge examples, sum frequencies.
+            if curated_entry and len(meanings_lean) > 1:
+                merged_lean = {}
+                merged_full = {}
+                merged_exs = {}
+                order = []
+                for m_lean, m_full, exs in zip(meanings_lean, meanings_full, examples_by_meaning):
+                    key2 = (m_lean.get("pos"), m_lean.get("translation"))
+                    if key2 not in merged_lean:
+                        order.append(key2)
+                        merged_lean[key2] = dict(m_lean)
+                        merged_full[key2] = {**m_full, "examples": list(exs)}
+                        merged_exs[key2] = list(exs)
+                    else:
+                        # Accumulate frequency; extend examples
+                        try:
+                            f1 = float(merged_lean[key2].get("frequency", 0))
+                            f2 = float(m_lean.get("frequency", 0))
+                            merged_lean[key2]["frequency"] = f"{f1 + f2:.2f}"
+                            merged_full[key2]["frequency"] = merged_lean[key2]["frequency"]
+                        except (TypeError, ValueError):
+                            pass
+                        merged_exs[key2].extend(exs)
+                        merged_full[key2]["examples"] = list(merged_exs[key2])
+                        # Keep the detail field from the most-frequent original
+                        # meaning (heuristic) — since all were curated to the
+                        # same translation, detail is the only differentiator.
+                meanings_lean = [merged_lean[k] for k in order]
+                meanings_full = [merged_full[k] for k in order]
+                examples_by_meaning = [merged_exs[k] for k in order]
+
             if not meanings_lean:
                 continue
 
