@@ -59,6 +59,9 @@ def _step_4_args(args, artist_dir):
 def _step_5_args(args, artist_dir):
     return _base_args(artist_dir)
 
+def _tag_pos_args(args, artist_dir):
+    return _base_args(artist_dir)
+
 def _step_6_args(args, artist_dir):
     a = _base_args(artist_dir)
     if args.no_gemini:
@@ -99,6 +102,10 @@ def build_steps(vocab_file):
          "script": "step_5a_split_evidence.py", "args_fn": _step_5_args,
          "input": "data/elision_merge/vocab_evidence_merged.json",
          "output": "data/layers/word_inventory.json", "needs_api_key": False},
+        {"num": "5b", "label": "Tag example POS (incremental, spaCy transformer)",
+         "script": "../tool_6a_tag_example_pos.py", "args_fn": _tag_pos_args,
+         "input": "data/layers/examples_raw.json",
+         "output": "data/layers/example_pos.json", "needs_api_key": False},
         {"num": 6, "label": "Assign senses (bi-encoder + Gemini)",
          "script": "step_6a_assign_senses.py", "args_fn": _step_6_args,
          "input": "data/layers/word_inventory.json",
