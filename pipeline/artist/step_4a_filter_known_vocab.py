@@ -1,105 +1,100 @@
 #!/usr/bin/env python3
 """
-Step 4: Classify artist vocabulary for sense-mapping method selection.
+Step 4: Route artist vocabulary to its sense-assignment bucket.
 
-All words appear in the artist deck — this step determines which method
-assigns senses to each word (bi-encoder vs Gemini). Runs in seven phases:
+Five phases, one source of truth for "known Spanish", no heuristic detectors:
 
-  Phase 1: Junk detection (interjections + proper nouns) on full set
-  Phase 2: Known vocabulary (normal-mode vocab + conjugation + elision)
-  Phase 2.5: Transparent-cognate skip (Sp Wikt ∩ en_50k with cognate voters)
-  Phase 3: English detection (50k wordlist - Spanish Wiktionary + lingua)
-  Phase 4: Wiktionary reclassification (English tiebreaker for known-vocab)
-  Phase 5: spaCy NER (slow, on remaining only)
-  Phase 6: Frequency threshold + residual clitic fallback
+  Phase 1: Curated drops        (noise ∪ extra_english ∪ drop_proper_nouns)
+                                + regex for 3+ repeated letters (jajajajaja)
+                                + Wiktionary all-PROPN (unambiguous names)
+  Phase 2: Known Spanish        (spanish_forms.json lookup); words also in
+                                en_50k or CogNet split off to exclude.cognate,
+                                rest go to biencoder by POS
+  Phase 3: Clitic + derivation  (strip clitic, check base in verb forms;
+                                or resolve diminutive/superlative)
+  Phase 4: English fallback     (en_50k for words not in spanish_forms)
+  Phase 5: Frequency floor
+           → everything else   → gemini
 
-The remaining words — mostly Caribbean/regional slang — go to Gemini
-in step 6. All other words get local sense assignment via
-step_6b_assign_senses_local.py.
+Principles:
+  - One canonical 'is this Spanish?' source: Data/Spanish/layers/spanish_forms.json
+    (built from Wiktionary form-of + verbecc + normal_vocab).
+  - Clitic detection is ONE rule: word ends in clitic pronoun AND base is a
+    known verb form. No POS guards, no preterite guards — the verb form set
+    is comprehensive enough that spurious matches can't happen.
+  - No spaCy, no cap-ratio heuristics, no regex interjection patterns. If a
+    name or ad-lib leaks through, add it to the curation file.
 
 Reads:  <artist-dir>/data/elision_merge/vocab_evidence_merged.json
-        Data/Spanish/vocabulary.json
-        Data/Spanish/layers/conjugation_reverse.json
-        Data/Spanish/layers/sense_menu.json
-        Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz
+        Data/Spanish/layers/spanish_forms.json
         Data/English/en_50k_wordlist.txt
+        shared/cognet_spa_eng.json
         Artists/curations/*.json
 Writes: <artist-dir>/data/known_vocab/word_routing.json
         <artist-dir>/data/known_vocab/word_routing_debug.json
 
-Usage (from project root):
-    .venv/bin/python3 pipeline/artist/step_4a_filter_known_vocab.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 pipeline/artist/step_4a_filter_known_vocab.py --artist-dir "Artists/Rosalía" --min-freq 2
-    .venv/bin/python3 pipeline/artist/step_4a_filter_known_vocab.py --artist-dir "Artists/Bad Bunny" --no-lingua
-    .venv/bin/python3 pipeline/artist/step_4a_filter_known_vocab.py --artist-dir "Artists/Bad Bunny" --no-nlp-detect
+Usage:
+    .venv/bin/python3 pipeline/artist/step_4a_filter_known_vocab.py \
+        --artist-dir "Artists/Bad Bunny"
 """
 
-import gzip
+import argparse
 import json
 import os
 import re
 import sys
-import argparse
 import time
+import unicodedata
 
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta  # noqa: E402
-from pipeline.util_4a_routing import (  # noqa: E402
-    classify_clitics,
-    load_wiktionary_clitic_data,
-    resolve_derivation,
-    strip_clitic_pronouns,
-)
+from pipeline.util_4a_routing import resolve_derivation  # noqa: E402
 
-# Bump when routing categories, detection phases, or output schema change.
-STEP_VERSION = 2
+sys.path.insert(0, _THIS_DIR)
+from util_1a_artist_config import add_artist_arg, load_shared_list, SHARED_DIR  # noqa: E402
+
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
-    1: "6 phases: junk → known_vocab → english → wiktionary → NER → freq+derivation",
-    2: "+ cognate Phase 2.5, Wiktionary safety-nets on propn/english, residual clitic fallback, disjoint-bucket assertion, debug dump",
+    1: "initial: 6 phases with heuristic detectors",
+    2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
+    3: "simplified: canonical spanish_forms.json; dropped spaCy/cap-ratio/regex-interj/suffix-rule; one clitic rule",
 }
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from util_1a_artist_config import add_artist_arg, load_shared_list, SHARED_DIR
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
 
-# Shared cognate scorer (suffix rules + CogNet + phonetic normalization)
-sys.path.insert(0, os.path.join(_PROJECT_ROOT, "shared"))
-from flag_cognates import cognate_score, normalize, split_english_glosses, _load_cognet  # noqa: E402
-
-# Paths relative to project root (derived from this file's location)
-SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
-ARTISTS_DIR = os.path.dirname(SCRIPTS_DIR)
-PROJECT_ROOT = os.path.dirname(ARTISTS_DIR)
-
-NORMAL_VOCAB_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "vocabulary.json")
-CONJ_REVERSE_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
+SPANISH_FORMS_PATH = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers", "spanish_forms.json")
+EN_50K_PATH = os.path.join(_PROJECT_ROOT, "Data", "English", "en_50k_wordlist.txt")
 ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
-WIKTIONARY_SENSES_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "sense_menu.json")
-WIKTIONARY_RAW_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "Senses", "wiktionary", "kaikki-spanish.jsonl.gz")
-EN_50K_PATH = os.path.join(PROJECT_ROOT, "Data", "English", "en_50k_wordlist.txt")
 
-# D-elision regexes: backup for when step 3 can't merge plural/feminine variants.
-# Step 3 is now responsible for merging -a'o/-a'a/-a'os/-a'as/-í'o/-í'a/-í'os/-í'as.
-# These stay here as a safety-net for when step 3 is bypassed.
-_D_ELISION_PATTERNS = [
-    (re.compile(r"^(.+)a'o$"), "ado"),
-    (re.compile(r"^(.+)a'a$"), "ada"),
-    (re.compile(r"^(.+)a'os$"), "ados"),
-    (re.compile(r"^(.+)a'as$"), "adas"),
-    (re.compile(r"^(.+)í'o$"), "ido"),
-    (re.compile(r"^(.+)í'a$"), "ida"),
-    (re.compile(r"^(.+)í'os$"), "idos"),
-    (re.compile(r"^(.+)í'as$"), "idas"),
-]
 
-# Clitic pronouns used by the residual fallback (Phase 6 sweep). Longest-first.
+# ---------------------------------------------------------------------------
+# Constants
+# ---------------------------------------------------------------------------
+
+# Longest-first so 'nos' is tried before 'se' for 'enseñarnos'.
 _CLITIC_PRONOUNS = ("nos", "les", "los", "las", "me", "te", "se", "lo", "la", "le")
+# Safety-net: any word with 3+ consecutive identical letters is noise
+# (jajajajajajaja, brrrrr, woooo, aaaahhhh).
+_REPEAT_RE = re.compile(r"(.)\1{2,}")
+
+
+# ---------------------------------------------------------------------------
+# Loaders
+# ---------------------------------------------------------------------------
+
+def load_spanish_forms(path):
+    """Return {word: set(pos)} from the canonical spanish_forms.json."""
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return {w: set(pos_str.split(",")) if pos_str else set() for w, pos_str in data.items()}
 
 
 def load_en_50k(path):
-    """Load the English 50k frequency wordlist (word count format)."""
     words = set()
     if not os.path.exists(path):
         return words
@@ -111,467 +106,34 @@ def load_en_50k(path):
     return words
 
 
-def load_normal_vocab(path):
-    """Load word forms from normal mode vocabulary."""
-    with open(path, "r", encoding="utf-8") as f:
-        vocab = json.load(f)
-    return set(entry["word"].lower() for entry in vocab)
-
-
-def load_conjugation_forms(path):
-    """Load all inflected forms from the conjugation reverse lookup."""
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return set(k.lower() for k in data.keys())
-
-
-def elision_canonical(word):
-    """Map common non-s-elision contractions to their standard forms.
-
-    Returns a set of candidate standard forms to check against wordlists.
-    S-elisions (lo' -> los) are already handled by step 3 merge. This
-    covers the remaining contractions that step 3 skips.
-    """
-    candidates = set()
-
-    # Apostrophe at end: try restoring common dropped endings
-    if word.endswith("'"):
-        stem = word[:-1]
-        candidates.add(stem)
-        candidates.add(stem + "s")
-        candidates.add(stem + "d")
-        candidates.add(stem + "z")
-        candidates.add(stem + "r")
-
-    # D-elision variants: backup for step 3 misses + feminine/plural forms
-    for pattern, suffix in _D_ELISION_PATTERNS:
-        m = pattern.match(word)
-        if m:
-            candidates.add(m.group(1) + suffix)
-
-    # Apostrophe in middle: common contractions
-    if "'" in word and not word.endswith("'"):
-        parts = word.split("'")
-        if len(parts) == 2:
-            prefix_expansions = {"pa": "para", "po": "por", "to": "todo"}
-            expanded = prefix_expansions.get(parts[0])
-            if expanded:
-                candidates.add(expanded)
-                candidates.add(parts[1])
-                suffix_expansions = {"l": "el"}
-                suffix_exp = suffix_expansions.get(parts[1])
-                if suffix_exp:
-                    candidates.add(suffix_exp)
-
-    # Common known mappings for very frequent forms
-    known = {
-        "pa'": "para", "pa": "para", "na'": "nada", "to'": "todo", "to": "todo",
-        "tá": "está", "tás": "estás", "toy": "estoy", "tamos": "estamos",
-        "vamo": "vamos", "vo'a": "voy", "pa'l": "para", "to'a": "toda",
-        "to'as": "todas", "to's": "todos", "toas": "todas", "tó": "todo",
-        "to'ito": "todito", "ma'i": "mami", "oí'te": "oíste", "de'o": "dedo",
-        "a'o": "ado", "dies'": "diez", "ná'": "nada", "pá'": "para", "tó'": "todo",
-    }
-    if word in known:
-        candidates.add(known[word])
-
-    return candidates
-
-
-def classify_english(words, threshold=0.90):
-    """Use lingua to classify words as high-confidence English."""
+def _maybe_load_shared(name):
     try:
-        from lingua import Language, LanguageDetectorBuilder
-    except ImportError:
-        print("  WARNING: lingua not installed, skipping English detection")
-        return set()
-
-    detector = LanguageDetectorBuilder.from_languages(
-        Language.SPANISH, Language.ENGLISH
-    ).build()
-
-    english = set()
-    for w in words:
-        confidences = detector.compute_language_confidence_values(w)
-        en_conf = next(
-            (c.value for c in confidences if c.language == Language.ENGLISH), 0
-        )
-        if en_conf >= threshold:
-            english.add(w)
-
-    return english
-
-
-# ---------------------------------------------------------------------------
-# NLP detection: Wiktionary POS interjections
-# ---------------------------------------------------------------------------
-
-def load_wiktionary_interjections(path):
-    """Words where EVERY sense in Wiktionary has pos=INTJ."""
-    if not os.path.exists(path):
-        return set()
-    with open(path, "r", encoding="utf-8") as f:
-        senses = json.load(f)
-    intj_words = set()
-    for wl_key, sense_list in senses.items():
-        if not sense_list:
-            continue
-        if isinstance(sense_list, dict):
-            entries = sense_list.values()
-        else:
-            entries = sense_list
-        poses = {s.get("pos", "") for s in entries}
-        if poses and poses <= {"INTJ"}:
-            word = wl_key.split("|")[0]
-            intj_words.add(word.lower())
-    return intj_words
-
-
-# ---------------------------------------------------------------------------
-# Cognate Phase 2.5 helpers
-# ---------------------------------------------------------------------------
-
-def load_wikt_english_glosses(path):
-    """Return {word: [english_gloss_string, ...]} from raw Wiktionary JSONL.
-
-    Skips `form-of` senses (plural of X, feminine of Y, inflection of Z) —
-    those glosses contain the base Spanish lemma as a token, which the
-    cognate scorer then happily matches against the inflected form at 1.0
-    (e.g. `chavos` → "plural of chavo" → match chavos↔chavo). Only real
-    English glosses should count.
-
-    Also skips obvious template-generated gloss strings as a belt-and-
-    suspenders filter.
-    """
-    glosses = {}
-    if not os.path.exists(path):
-        return glosses
-    form_prefixes = (
-        "plural of ", "feminine of ", "masculine of ",
-        "feminine plural of ", "feminine singular of ",
-        "masculine plural of ", "masculine singular of ",
-        "inflection of ", "form of ", "diminutive of ",
-        "superlative of ", "comparative of ",
-        "augmentative of ", "female equivalent of ",
-    )
-    with gzip.open(path, "rt", encoding="utf-8") as f:
-        for line in f:
-            entry = json.loads(line)
-            w = entry.get("word", "")
-            if not w:
-                continue
-            wl = w.lower()
-            for s in entry.get("senses", []):
-                tags = set(s.get("tags", []))
-                if "form-of" in tags:
-                    continue  # skip inflection glosses entirely
-                for g in (s.get("glosses") or []):
-                    if not g:
-                        continue
-                    g_lower = g.lower().strip()
-                    if any(g_lower.startswith(p) for p in form_prefixes):
-                        continue  # template-style glosses that leak Spanish lemmas
-                    glosses.setdefault(wl, []).append(g)
-    return glosses
-
-
-def _tokenize_gloss(gloss):
-    """Extract candidate English tokens/phrases from a gloss string.
-
-    Splits on /, comma, AND semicolon. The upstream split_english_glosses
-    only splits on / and comma, which drops the head sense of glosses like
-    "party; celebration, festivity" — the token `party;` fails .isalpha().
-    """
-    if not gloss:
-        return set()
-    g = gloss.replace(";", ",")
-    tokens = set()
-    for phrase in split_english_glosses(g):
-        tokens.add(phrase)
-        for tok in phrase.split():
-            tokens.add(tok)
-    return tokens
-
-
-def cognate_voters(word, wikt_glosses, cognet):
-    """Return a dict of voter names → True for every cognate signal that fires.
-
-    Voters (most to least confident):
-      identical_gloss — word appears verbatim in one of its own Sp Wikt English glosses
-      suffix_rule     — cognate_score() ≥ 0.9 on any gloss token
-      cognet          — normalize(word) is a key in the CogNet spa→eng map
-
-    Empty dict means "no cognate signal" (so the word is NOT transparent).
-    """
-    voters = {}
-    wn = normalize(word)
-
-    if cognet and wn in cognet:
-        voters["cognet"] = True
-
-    glosses = wikt_glosses.get(word, [])
-    if glosses:
-        gloss_tokens = set()
-        for g in glosses:
-            gloss_tokens |= _tokenize_gloss(g)
-
-        # identical_gloss: same normalized form appears in the glosses
-        if any(normalize(t) == wn for t in gloss_tokens):
-            voters["identical_gloss"] = True
-
-        # suffix_rule: cognate score ≥ 0.9 with any gloss token
-        best = 0.0
-        for t in gloss_tokens:
-            score = cognate_score(word, t)
-            if score > best:
-                best = score
-                if best >= 1.0:
-                    break
-        if best >= 0.9:
-            voters["suffix_rule"] = True
-            voters["_best_score"] = round(best, 3)
-
-    return voters
-
-
-# ---------------------------------------------------------------------------
-# NLP detection: regex interjection patterns
-# ---------------------------------------------------------------------------
-
-_INTERJECTION_PATTERNS = [
-    re.compile(r'^[wb]r+[aeiou]*$'),     # brr, brra, wrrr
-    re.compile(r'^pr+[aeiou]*$'),         # prr, prra, prru
-    re.compile(r'^sk[r]*t+$'),            # skrt, skrrt
-    re.compile(r'^[jh]a+[jh]?a*$'),      # ja, jaja, jajaja, ha, haha
-    re.compile(r'^[jh]e+[jh]?e*$'),      # je, jeje, he, hehe
-    re.compile(r'^[uoa]h+$'),            # uh, uhh, oh, ohh, ah, ahh
-    re.compile(r'^[eaio]h[aeiou]?h?$'),  # eh, eha, ah
-    re.compile(r'^sh+$'),                 # shh, shhh
-    re.compile(r'^[mh]m+$'),             # mm, mmm, hm, hmm
-    re.compile(r'^ya+h*$'),              # ya, yah, yaah
-    re.compile(r'^ye+[ah]*$'),           # yeh, yeah, yeaah
-    re.compile(r'^na+h*$'),              # na, nah, naah
-    re.compile(r'^w[oua]+h*$'),          # woo, wooh, wuh, wuuh, wouh
-    re.compile(r'^[dt]u+h+$'),           # duh, tuh
-    re.compile(r'^bo+$'),                # boo, booo
-    re.compile(r'^a+y+$'),              # ay, ayy, ayyy
-    re.compile(r'^r+a+h?$'),            # rra, rrra, rah
-    re.compile(r'^e+y+$'),              # ey, eyy, eyyy
-    re.compile(r'^hu+h?$'),             # hu, huh, huuh
-]
-
-_INTERJECTION_EXCEPTIONS = frozenset({
-    "ya", "na", "je", "he", "oh", "ah", "ay", "eh",
-    "bora", "monta", "bro", "pre", "pri", "pro", "bo", "ye",
-})
-
-
-def detect_interjections(words, known_interjections):
-    """Detect interjections using regex patterns + shared list."""
-    detected = set()
-    for w in words:
-        w_stripped = w.replace("'", "")
-        if w in known_interjections:
-            detected.add(w)
-            continue
-        if len(w_stripped) < 2 or len(w_stripped) > 15:
-            continue
-        if w_stripped in _INTERJECTION_EXCEPTIONS:
-            continue
-        if len(w_stripped) >= 3 and len(set(w_stripped)) == 1:
-            detected.add(w)
-            continue
-        if re.search(r'(.)\1\1', w_stripped):
-            detected.add(w)
-            continue
-        for pat in _INTERJECTION_PATTERNS:
-            if pat.match(w_stripped):
-                detected.add(w)
-                break
-    return detected
-
-
-# ---------------------------------------------------------------------------
-# NLP detection: proper nouns — capitalization ratio
-# ---------------------------------------------------------------------------
-
-def detect_propn_by_capitalization(words, word_entries, min_count=5, min_ratio=0.8):
-    """Words capitalized mid-line at a high ratio are likely proper nouns."""
-    cap_counts = {}
-    total_counts = {}
-
-    for w in words:
-        entry = word_entries.get(w)
-        if not entry:
-            continue
-        for ex in entry.get("examples", []):
-            line = ex.get("line", "")
-            line_words = line.split()
-            for i, token in enumerate(line_words):
-                clean = re.sub(r"[^\w'\-áéíóúñü]", "", token)
-                if not clean or len(clean) < 2:
-                    continue
-                lower = clean.lower()
-                if lower not in words:
-                    continue
-                total_counts[lower] = total_counts.get(lower, 0) + 1
-                if i > 0 and clean[0].isupper():
-                    cap_counts[lower] = cap_counts.get(lower, 0) + 1
-
-    detected = set()
-    for w, cc in cap_counts.items():
-        total = total_counts.get(w, 1)
-        if cc >= min_count and cc / total >= min_ratio:
-            detected.add(w)
-
-    return detected
-
-
-# ---------------------------------------------------------------------------
-# NLP detection: proper nouns — spaCy NER
-# ---------------------------------------------------------------------------
-
-def detect_propn_by_spacy(words, word_entries):
-    """spaCy NER on example lines. Returns words tagged PER/LOC/ORG."""
-    try:
-        import spacy
-    except ImportError:
-        print("  [WARN] spaCy not installed — skipping NER pass")
-        return set()
-    try:
-        nlp = spacy.load("es_core_news_lg")
-    except OSError:
-        print("  [WARN] es_core_news_lg not found — skipping NER pass")
-        return set()
-
-    print("  Running spaCy NER on %d words..." % len(words))
-    detected = set()
-    start = time.time()
-    for w in words:
-        entry = word_entries.get(w)
-        if not entry:
-            continue
-        line = w
-        for ex in entry.get("examples", []):
-            l = ex.get("line", "")
-            if len(l) > 10:
-                line = l
-                break
-        doc = nlp(line)
-        for ent in doc.ents:
-            if ent.text.lower() == w and ent.label_ in ("PER", "LOC", "ORG"):
-                detected.add(w)
-                break
-    print("  spaCy found %d entities in %.1fs" % (len(detected), time.time() - start))
-    return detected
-
-
-# ---------------------------------------------------------------------------
-# Curated proper-noun loader with conflict detection
-# ---------------------------------------------------------------------------
-
-def _maybe_load(name):
-    """load_shared_list that tolerates a missing file (returns [])."""
-    try:
-        return load_shared_list(name)
+        return frozenset(w.lower() for w in load_shared_list(name))
     except FileNotFoundError:
-        return []
+        return frozenset()
 
 
-def load_propn_curations():
-    """Load drop/allow proper-noun lists with back-compat for legacy filenames.
-
-    Preferred filenames:
-      drop_proper_nouns.json   — words to EXCLUDE from the deck (proper nouns)
-      allow_proper_nouns.json  — words detectors must NOT flag as proper nouns
-    Legacy (still supported):
-      known_proper_nouns.json  → drop
-      proper_nouns.json        → drop (merged)
-      not_proper_nouns.json    → allow
-
-    Logs any conflict (word present in both drop and allow lists).
-    """
-    drop = set()
-    for fn in ("drop_proper_nouns.json", "known_proper_nouns.json", "proper_nouns.json"):
-        for w in _maybe_load(fn):
-            drop.add(w.lower())
-
-    allow = set()
-    for fn in ("allow_proper_nouns.json", "not_proper_nouns.json"):
-        for w in _maybe_load(fn):
-            allow.add(w.lower())
-
-    conflicts = drop & allow
-    if conflicts:
-        print("  [WARN] %d conflicting entries in drop/allow propn lists — allow wins: %s"
-              % (len(conflicts), sorted(conflicts)[:20]))
-    # Allow wins (subtracted from drop to avoid confusion downstream)
-    drop -= allow
-    return drop, allow
+def _strip_acute(s):
+    return "".join(c for c in unicodedata.normalize("NFD", s) if c != "\u0301")
 
 
 # ---------------------------------------------------------------------------
-# Residual clitic fallback: second pass on gemini-bound words
+# Clitic detection — the one rule
 # ---------------------------------------------------------------------------
 
-_ACUTE_STRIP = str.maketrans({"á":"a","é":"e","í":"i","ó":"o","ú":"u","Á":"A","É":"E","Í":"I","Ó":"O","Ú":"U"})
+def strip_clitic(word, verb_forms):
+    """Return (base, clitic) if word is verb+clitic, else None.
 
-
-def residual_clitic_fallback(candidates, verb_form_set, word_pos):
-    """For each candidate word, try to strip trailing clitic pronouns and look
-    up the base in a VERB-form set. Returns {word: base} for hits.
-
-    Catches verb+clitic forms that Wiktionary's "combined with" entries miss
-    (ponme, llévame, perdóname, mirarte, hacerlo, córtala, …).
-
-    Two guards against false positives:
-      1. Base must be in `verb_form_set` (conjugation-table forms only).
-         Prevents matching nouns/adjectives that happen to end in a clitic-
-         shaped suffix (veranos→vera, llanos→lla, grillete→grille).
-      2. The candidate word itself must NOT have an exclusively-non-verb
-         POS in Wiktionary. Prevents ajenos (adj) → aje, fuete (noun) →
-         fue. Words absent from Wiktionary (likely slang) and words with
-         any verb POS in Wiktionary still proceed.
-
-    Base length must be >= 3 so "ponme" → "pon" still works.
+    Imperatives drop an accent when clitics attach (baja → bájame). Try the
+    accented and accent-stripped base against the verb-form set. Done.
     """
-    found = {}
-    for w in candidates:
-        if len(w) < 5:
-            continue
-        poses = word_pos.get(w, set())
-        # Guard 2: skip if Wikt knows this word and says it's definitely not a verb
-        if poses and "verb" not in poses:
-            continue
-        # Guard 3: Spanish preterite tú ends in -aste/-iste. Stripping "te"
-        # off these produces a plausible present-tense verb (disfrazaste →
-        # disfrazas, enganchaste → enganchas) but the original is a preterite,
-        # not a verb+clitic. Skip.
-        if w.endswith("aste") or w.endswith("iste"):
-            continue
-        base_lookups = []
-        remaining = w
-        for _ in range(2):  # up to two clitics (haciéndomelo)
-            matched = False
-            for cl in _CLITIC_PRONOUNS:
-                if remaining.endswith(cl) and len(remaining) > len(cl) + 2:
-                    stripped = remaining[:-len(cl)]
-                    if len(stripped) < 3:
-                        break
-                    base_lookups.append(stripped)
-                    base_lookups.append(stripped.translate(_ACUTE_STRIP))
-                    remaining = stripped
-                    matched = True
-                    break
-            if not matched:
-                break
-        if not base_lookups:
-            continue
-        for base in base_lookups:
-            if base in verb_form_set:
-                found[w] = base
-                break
-    return found
+    for clitic in _CLITIC_PRONOUNS:
+        if word.endswith(clitic) and len(word) > len(clitic) + 2:
+            base = word[:-len(clitic)]
+            for candidate in (base, _strip_acute(base)):
+                if candidate in verb_forms:
+                    return (candidate, clitic)
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -579,26 +141,10 @@ def residual_clitic_fallback(candidates, verb_form_set, word_pos):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Step 4: Classify artist vocabulary for sense-mapping routing"
-    )
+    parser = argparse.ArgumentParser(description="Step 4: Route artist vocabulary.")
     add_artist_arg(parser)
     parser.add_argument("--min-freq", type=int, default=2,
-        help="Minimum corpus frequency to keep (default: 2, i.e. cut hapax legomena)")
-    parser.add_argument("--lingua-threshold", type=float, default=0.90,
-        help="Confidence threshold for English classification (default: 0.90)")
-    parser.add_argument("--no-lingua", action="store_true",
-        help="Skip lingua English detection (faster, keeps some English words)")
-    parser.add_argument("--no-spacy", action="store_true",
-        help="Skip spaCy NER proper noun detection (faster)")
-    parser.add_argument("--no-nlp-detect", action="store_true",
-        help="Skip all NLP detection filters (old behavior)")
-    parser.add_argument("--no-cognate", action="store_true",
-        help="Skip Phase 2.5 cognate-skip layer (keeps cognates in the deck)")
-    parser.add_argument("--min-cap-count", type=int, default=5,
-        help="Min mid-line capitalized occurrences for proper noun detection (default: 5)")
-    parser.add_argument("--min-cap-ratio", type=float, default=0.8,
-        help="Min capitalization ratio for proper noun detection (default: 0.8)")
+                        help="Minimum corpus frequency to keep (default 2).")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -610,557 +156,346 @@ def main():
 
     start_time = time.time()
 
-    # Load artist vocabulary
-    print("Loading %s..." % input_path)
+    # ------------------------------------------------------------------
+    # Load artist data
+    # ------------------------------------------------------------------
+    print(f"Loading {input_path}")
     with open(input_path, "r", encoding="utf-8") as f:
         all_words = json.load(f)
-    word_freq = {entry["word"].lower(): entry.get("corpus_count", 0) for entry in all_words}
+    word_freq = {e["word"].lower(): e.get("corpus_count", 0) for e in all_words}
     artist_words = set(word_freq.keys())
-    print("  %d words loaded" % len(artist_words))
+    print(f"  {len(artist_words)} input words")
 
-    word_entries = {entry["word"].lower(): entry for entry in all_words}
+    # ------------------------------------------------------------------
+    # Load the ONE Spanish source of truth
+    # ------------------------------------------------------------------
+    if not os.path.isfile(SPANISH_FORMS_PATH):
+        print(f"\nERROR: {SPANISH_FORMS_PATH} not found.")
+        print("Run: .venv/bin/python3 pipeline/util_4a_build_spanish_forms.py")
+        sys.exit(1)
+    print(f"Loading {SPANISH_FORMS_PATH}")
+    spanish_forms = load_spanish_forms(SPANISH_FORMS_PATH)
+    verb_forms = {w for w, pos in spanish_forms.items() if "verb" in pos}
+    propn_only = {w for w, pos in spanish_forms.items() if pos == {"name"}}
+    print(f"  {len(spanish_forms)} Spanish forms ({len(verb_forms)} verb, {len(propn_only)} name-only)")
 
-    # Bucket tracking
-    known_normal_vocab = set()
-    known_conjugation = set()
-    known_elision = set()
-    known_shared = set()
-    english = set()
-    cognates = {}  # word -> voter dict (from Phase 2.5)
-    interjections_detected = set()
-    proper_nouns_detected = set()
-    low_frequency = set()
-    # debug trail: word -> dict of per-phase signals
-    debug_trail = {w: {} for w in artist_words}
-
-    remaining = set(artist_words)
-
-    # Pre-compute elision candidates
-    elision_candidates = {}
-    for w in remaining:
-        candidates = elision_canonical(w)
-        if candidates:
-            elision_candidates[w] = candidates
-
-    # ==================================================================
-    # Load all wordlists and detection resources
-    # ==================================================================
-    print("Loading wordlists and detection resources...")
-
-    if os.path.exists(NORMAL_VOCAB_PATH):
-        normal_words = load_normal_vocab(NORMAL_VOCAB_PATH)
-        print("  Normal vocab: %d word forms" % len(normal_words))
-    else:
-        normal_words = set()
-        print("  WARNING: %s not found" % NORMAL_VOCAB_PATH)
-
-    if os.path.exists(CONJ_REVERSE_PATH):
-        conj_forms = load_conjugation_forms(CONJ_REVERSE_PATH)
-        print("  Conjugation forms: %d" % len(conj_forms))
-    else:
-        conj_forms = set()
-        print("  WARNING: %s not found" % CONJ_REVERSE_PATH)
-
+    # Load en_50k for the English fallback phase
     en_50k = load_en_50k(EN_50K_PATH)
-    if en_50k:
-        print("  English 50k: %d words" % len(en_50k))
-    else:
-        print("  WARNING: %s not found" % EN_50K_PATH)
+    print(f"  en_50k: {len(en_50k)} words")
 
-    # Shared curated lists (shared bucket = keep in deck but bypass normal-vocab lookup)
-    interjections_curated = frozenset(w.lower() for w in load_shared_list("interjections.json"))
-    extra_english = frozenset(w.lower() for w in load_shared_list("extra_english.json"))
+    # Curations
+    noise = _maybe_load_shared("noise.json") | _maybe_load_shared("interjections.json")
+    extra_english = _maybe_load_shared("extra_english.json")
+    drop_propn = _maybe_load_shared("drop_proper_nouns.json") | _maybe_load_shared("known_proper_nouns.json")
+    allow_propn = _maybe_load_shared("allow_proper_nouns.json") | _maybe_load_shared("not_proper_nouns.json")
+    always_teach = _maybe_load_shared("always_teach.json")
+    always_skip_cognate = _maybe_load_shared("always_skip_cognate.json")
 
-    # Proper-noun curations (drop = exclude; allow = don't flag)
-    drop_propn, allow_propn = load_propn_curations()
+    # Resolve drop/allow conflicts: allow wins
+    conflicts = drop_propn & allow_propn
+    if conflicts:
+        print(f"  [WARN] drop/allow propn conflicts (allow wins): {sorted(conflicts)[:10]}")
+        drop_propn = drop_propn - allow_propn
 
-    # always_teach: words that LOOK like cognates but should stay learnable
-    always_teach = frozenset(w.lower() for w in _maybe_load("always_teach.json"))
+    print(f"  Curations: {len(noise)} noise, {len(extra_english)} extra_english, "
+          f"{len(drop_propn)} drop_propn, {len(allow_propn)} allow_propn, "
+          f"{len(always_teach)} always_teach")
 
-    # always_skip_cognate: words obviously transparent that voters miss
-    always_skip_cognate = frozenset(w.lower() for w in _maybe_load("always_skip_cognate.json"))
+    # ------------------------------------------------------------------
+    # Routing state
+    # ------------------------------------------------------------------
+    remaining = set(artist_words)
+    buckets = {
+        "english": set(),
+        "cognate": {},                # word -> {"voter": source}
+        "proper_nouns": set(),
+        "interjections": set(),       # bucket name kept for output compat
+        "low_frequency": set(),
+        "normal_vocab": set(),
+        "conjugation": set(),
+        "elision": set(),
+        "derivation": {},             # word -> base
+        "shared": set(),              # unused in simplified pipeline
+        "clitic_merge": {},           # word -> (base, clitic_pronoun)
+    }
+    trail = {w: {"freq": word_freq[w]} for w in artist_words}
 
-    # NOTE: extra_english routes to exclude.english (Phase 3a), not biencoder.shared.
-    # Only genuinely-Spanish curated lists belong in `shared_all`.
-    shared_all = frozenset()  # (reserved for future keep-in-deck curations)
-    print("  Curated: %d drop-propn, %d allow-propn, %d interjections, %d extra-english, "
-          "%d always-teach, %d always-skip-cognate" %
-          (len(drop_propn), len(allow_propn), len(interjections_curated), len(extra_english),
-           len(always_teach), len(always_skip_cognate)))
+    # ------------------------------------------------------------------
+    # Phase 1 — Curated drops + obvious-noise regex + Wikt all-PROPN
+    # ------------------------------------------------------------------
+    print("\n--- Phase 1: Curated drops ---")
 
-    # Wiktionary POS interjections (words where ALL senses = INTJ)
-    wikt_intj = set()
-    if not args.no_nlp_detect:
-        wikt_intj = load_wiktionary_interjections(WIKTIONARY_SENSES_PATH)
-        print("  Wiktionary all-INTJ: %d words" % len(wikt_intj))
-
-    # Raw Wiktionary: word set + proper-noun set + clitic map + reflexive verbs
-    print("  Loading raw Wiktionary...")
-    wikt_spanish, wikt_propn, wikt_clitic_map, wikt_refl_verbs = load_wiktionary_clitic_data(WIKTIONARY_RAW_PATH)
-    print("  Raw Wiktionary: %d word forms, %d all-PROPN, %d clitic forms, %d reflexive verbs" %
-          (len(wikt_spanish), len(wikt_propn), len(wikt_clitic_map), len(wikt_refl_verbs)))
-
-    # Wiktionary per-word POS (for safety-net checks)
-    wikt_pos = {}  # word -> set of POS
-    if os.path.exists(WIKTIONARY_RAW_PATH):
-        with gzip.open(WIKTIONARY_RAW_PATH, "rt", encoding="utf-8") as f:
-            for line in f:
-                e = json.loads(line)
-                w = e.get("word", "").lower()
-                if w:
-                    wikt_pos.setdefault(w, set()).add(e.get("pos", "") or "")
-
-    # Cognate-phase resources
-    wikt_glosses = {}
-    cognet = {}
-    if not args.no_cognate:
-        print("  Loading Wiktionary glosses (for cognate voters)...")
-        wikt_glosses = load_wikt_english_glosses(WIKTIONARY_RAW_PATH)
-        print("  Wiktionary gloss map: %d words" % len(wikt_glosses))
-        cognet = _load_cognet()
-        print("  CogNet: %d Sp→En entries" % len(cognet))
-
-    # ==================================================================
-    # Clitic detection (tier 1+2 merge, tier 3 keep, orphans)
-    # ==================================================================
-    gerund_clitic_all = normal_words | conj_forms | wikt_spanish
-    clitic_merge, clitic_orphans, clitic_keep, gerund_clitic_added = classify_clitics(
-        artist_words, wikt_clitic_map, wikt_refl_verbs, gerund_clitic_all,
-    )
-
-    if clitic_merge or clitic_keep:
-        print("\n--- Clitic detection ---")
-        print("  Tier 1+2 (merge into base verb): %d (%d to surface form, %d orphans to infinitive)"
-              % (len(clitic_merge), len(clitic_merge) - len(clitic_orphans), len(clitic_orphans)))
-        print("  Tier 3 (keep separate, reflexive): %d" % len(clitic_keep))
-        if gerund_clitic_added:
-            print("  Gerund+clitic (programmatic): %d" % gerund_clitic_added)
-
-    # P4.1 FIX: clitic buckets are exclusive — subtract from `remaining` so these
-    # words don't leak into english/propn/gemini downstream.
-    remaining -= set(clitic_merge.keys())
-    remaining -= clitic_keep
-    for w in clitic_merge:
-        debug_trail.setdefault(w, {})["clitic_merge"] = clitic_merge[w]
-    for w in clitic_keep:
-        debug_trail.setdefault(w, {})["clitic_keep"] = True
-
-    # ==================================================================
-    # Phase 1: JUNK DETECTION (interjections + proper nouns on full set)
-    # ==================================================================
-    print("\n--- Phase 1: Junk detection (full set) ---")
-
-    if not args.no_nlp_detect:
-        # 1a. Curated interjections
-        matched = remaining & interjections_curated
-        interjections_detected |= matched
-        remaining -= matched
-        for w in matched:
-            debug_trail[w]["interjection_source"] = "curated"
-        print("  Curated interjections: %d" % len(matched))
-
-        # 1b. Wiktionary all-INTJ
-        matched = remaining & wikt_intj
-        interjections_detected |= matched
-        remaining -= matched
-        for w in matched:
-            debug_trail[w]["interjection_source"] = "wikt_all_intj"
-        print("  Wiktionary all-INTJ: %d" % len(matched))
-
-        # 1c. Regex interjection patterns
-        regex_intj = detect_interjections(remaining, interjections_curated)
-        interjections_detected |= regex_intj
-        remaining -= regex_intj
-        for w in regex_intj:
-            debug_trail[w]["interjection_source"] = "regex"
-        print("  Interjection regex: %d" % len(regex_intj))
-
-        # 1d. Wiktionary all-PROPN
-        matched = (remaining & wikt_propn) - allow_propn
-        proper_nouns_detected |= matched
-        remaining -= matched
-        for w in matched:
-            debug_trail[w]["propn_source"] = "wikt_all_propn"
-        print("  Wiktionary all-PROPN: %d" % len(matched))
-
-        # 1e. Curated drop-propn
-        curated_propn = (drop_propn & remaining) - allow_propn - interjections_curated
-        proper_nouns_detected |= curated_propn
-        remaining -= curated_propn
-        for w in curated_propn:
-            debug_trail[w]["propn_source"] = "curated_drop"
-        print("  Curated drop proper nouns: %d" % len(curated_propn))
-
-        # 1f. Capitalization-ratio propns — WITH Wiktionary safety-net (P2.1)
-        cap_propn = detect_propn_by_capitalization(
-            remaining, word_entries, args.min_cap_count, args.min_cap_ratio)
-        # Safety-net: skip any cap-ratio hit that has a non-name POS in Wikt,
-        # unless it's already in the curated drop list (overrides the net).
-        wikt_safe = set()
-        for w in cap_propn:
-            if w in drop_propn:
-                continue  # curated drop wins
-            poses = wikt_pos.get(w, set())
-            if poses and poses - {"name"}:
-                wikt_safe.add(w)
-        cap_propn -= wikt_safe
-        cap_new = (cap_propn - allow_propn - interjections_curated) & remaining
-        proper_nouns_detected |= cap_new
-        remaining -= cap_new
-        for w in cap_new:
-            debug_trail[w]["propn_source"] = "cap_ratio"
-        print("  Capitalization proper nouns: %d (%d filtered by Wikt safety-net)" %
-              (len(cap_new), len(wikt_safe)))
-
-    print("  Total junk: %d interjections, %d proper nouns" %
-          (len(interjections_detected), len(proper_nouns_detected)))
-
-    # ==================================================================
-    # Phase 2: KNOWN VOCABULARY
-    # ==================================================================
-    print("\n--- Phase 2: Known vocabulary ---")
-
-    # 2a. Normal-mode vocab
-    matched = remaining & normal_words
-    known_normal_vocab |= matched
+    # 1a. Noise (ad-libs, single letters, interjections)
+    matched = (remaining & noise) - allow_propn
+    buckets["interjections"] |= matched
     remaining -= matched
     for w in matched:
-        debug_trail[w]["known_source"] = "normal_vocab"
-    print("  Normal-mode vocab: %d" % len(matched))
+        trail[w]["bucket"] = "interjections"
+        trail[w]["source"] = "curated_noise"
+    print(f"  Curated noise:        {len(matched)}")
 
-    # 2b. Conjugation reverse lookup
-    matched = remaining & conj_forms
-    known_conjugation |= matched
+    # 1b. Regex: words with 3+ repeated letters
+    matched = {w for w in remaining if _REPEAT_RE.search(w)}
+    buckets["interjections"] |= matched
     remaining -= matched
     for w in matched:
-        debug_trail[w]["known_source"] = "conjugation"
-    print("  Conjugation forms: %d" % len(matched))
+        trail[w]["bucket"] = "interjections"
+        trail[w]["source"] = "regex_repeat"
+    print(f"  Repeated-letter noise: {len(matched)}")
 
-    # 2c. Elision resolution against known wordlists + Wiktionary
-    all_known = normal_words | conj_forms | wikt_spanish
+    # 1c. Curated extra_english
+    matched = remaining & extra_english
+    buckets["english"] |= matched
+    remaining -= matched
+    for w in matched:
+        trail[w]["bucket"] = "english"
+        trail[w]["source"] = "curated_extra_english"
+    print(f"  Curated extra_english: {len(matched)}")
+
+    # 1d. Curated drop proper nouns
+    matched = (remaining & drop_propn) - allow_propn
+    buckets["proper_nouns"] |= matched
+    remaining -= matched
+    for w in matched:
+        trail[w]["bucket"] = "proper_nouns"
+        trail[w]["source"] = "curated_drop"
+    print(f"  Curated drop_propn:    {len(matched)}")
+
+    # 1e. Wiktionary all-PROPN (words whose ONLY POS is `name`)
+    matched = (remaining & propn_only) - allow_propn
+    buckets["proper_nouns"] |= matched
+    remaining -= matched
+    for w in matched:
+        trail[w]["bucket"] = "proper_nouns"
+        trail[w]["source"] = "wikt_all_propn"
+    print(f"  Wikt all-PROPN:        {len(matched)}")
+
+    # ------------------------------------------------------------------
+    # Phase 2 — Known Spanish, split into cognate (loanword, exclude) vs
+    # biencoder (learnable). A word is a cognate if it's Spanish AND either
+    # also in en_50k or in CogNet. always_teach.json overrides.
+    # ------------------------------------------------------------------
+    print("\n--- Phase 2: Known Spanish (cognate-aware) ---")
+    cog_count = 0
     for w in list(remaining):
-        if w in elision_candidates:
-            for candidate in elision_candidates[w]:
-                if candidate.lower() in all_known:
-                    known_elision.add(w)
-                    remaining.discard(w)
-                    debug_trail[w]["known_source"] = "elision:" + candidate.lower()
-                    break
+        pos = spanish_forms.get(w)
+        if pos is None:
+            continue
+        trail[w]["wikt_pos"] = sorted(pos)
 
-    # Load skip forms from step 3's elision mapping
+        # Cognate check (curation-only). en_50k is too polluted with Spanish
+        # loan-tokens (nada, para, todo, vida, noche all appear in it) to use
+        # as an automated voter. CogNet has similar noise. Users curate
+        # always_skip_cognate.json with the obvious loanwords (bikini, bolero,
+        # chalet, …). Parsimony > false-positive automated detection.
+        if w in always_skip_cognate and w not in always_teach:
+            buckets["cognate"][w] = {"voters": ["curated"]}
+            trail[w]["bucket"] = "cognate"
+            trail[w]["cognate_voters"] = ["curated"]
+            remaining.discard(w)
+            cog_count += 1
+            continue
+
+        # Not a cognate — route to biencoder by POS.
+        if "verb" in pos:
+            buckets["conjugation"].add(w)
+            trail[w]["bucket"] = "conjugation"
+        else:
+            buckets["normal_vocab"].add(w)
+            trail[w]["bucket"] = "normal_vocab"
+        trail[w]["source"] = "spanish_forms"
+        remaining.discard(w)
+    print(f"  Cognates:     {cog_count}")
+    print(f"  Normal vocab: {len(buckets['normal_vocab'])}  Conjugation: {len(buckets['conjugation'])}")
+
+    # ------------------------------------------------------------------
+    # Phase 3 — Clitic + derivation (on words NOT recognized by Phase 2)
+    # ------------------------------------------------------------------
+    print("\n--- Phase 3: Clitic + derivation ---")
+
+    # 3a. Clitic: one rule.
+    clitic_count = 0
+    for w in list(remaining):
+        result = strip_clitic(w, verb_forms)
+        if result is None:
+            continue
+        base, clitic = result
+        buckets["clitic_merge"][w] = base
+        trail[w]["bucket"] = "clitic_merge"
+        trail[w]["clitic_base"] = base
+        trail[w]["clitic_pronoun"] = clitic
+        remaining.discard(w)
+        clitic_count += 1
+    print(f"  Clitic merges: {clitic_count}")
+
+    # 3b. Derivation (diminutive / superlative) — reuse existing resolver
+    deriv_count = 0
+    known_forms_set = set(spanish_forms.keys())
+    for w in list(remaining):
+        base = resolve_derivation(w, known_forms_set)
+        if base:
+            buckets["derivation"][w] = base
+            trail[w]["bucket"] = "derivation"
+            trail[w]["derivation_base"] = base
+            remaining.discard(w)
+            deriv_count += 1
+    print(f"  Derivations:   {deriv_count}")
+
+    # 3c. Elision mapping skip forms — words step 3 chose to leave alone
     if os.path.exists(ELISION_MAPPING_PATH):
         with open(ELISION_MAPPING_PATH, "r", encoding="utf-8") as f:
             elision_mapping = json.load(f)
-        skip_forms = frozenset(
-            entry["word"] for entry in elision_mapping
-            if entry.get("action") == "skip"
-        )
-        for w in list(remaining):
-            if w in skip_forms:
-                known_elision.add(w)
-                remaining.discard(w)
-                debug_trail[w]["known_source"] = "elision:skip_form"
-
-    print("  Elisions: %d" % len(known_elision))
-
-    # 2d. Shared curated lists (non-propn keep-in-deck curations)
-    matched = remaining & shared_all
-    known_shared |= matched
-    remaining -= matched
-    for w in matched:
-        debug_trail[w]["known_source"] = "shared_curated"
-    print("  Shared curated: %d" % len(matched))
-
-    # 2e. Morphological derivations
-    known_derivation = {}
-    deriv_lookup = normal_words | conj_forms | wikt_spanish
-    for w in list(remaining):
-        if w in clitic_merge or w in clitic_keep:
-            continue
-        base = resolve_derivation(w, deriv_lookup)
-        if base:
-            known_derivation[w] = base
-            remaining.discard(w)
-            debug_trail[w]["known_source"] = "derivation:" + base
-    if known_derivation:
-        print("  Derivations: %d" % len(known_derivation))
-
-    # ==================================================================
-    # Phase 2.5: COGNATE SKIP (new)
-    # Catches transparent loanwords (bikini, bolero, bluetooth, casual)
-    # BEFORE English detection, so they get tagged correctly.
-    # ==================================================================
-    if not args.no_cognate:
-        print("\n--- Phase 2.5: Transparent cognate skip ---")
-        for w in list(remaining):
-            if w in always_teach:
-                continue  # override: user explicitly wants this learned
-            if w in always_skip_cognate:
-                cognates[w] = {"curated": True}
-                remaining.discard(w)
-                debug_trail[w]["cognate_voters"] = {"curated": True}
-                continue
-            # Only attempt voting if the word exists in Spanish Wiktionary
-            # (otherwise there's no Spanish sense to call it a cognate OF).
-            if w not in wikt_spanish:
-                continue
-            voters = cognate_voters(w, wikt_glosses, cognet)
-            # Require at least one strong voter. "cognet" alone is weak (noisy data);
-            # require identical_gloss OR suffix_rule, or cognet AND something else.
-            strong = voters.get("identical_gloss") or voters.get("suffix_rule")
-            if strong or (voters.get("cognet") and len(voters) >= 2):
-                cognates[w] = voters
-                remaining.discard(w)
-                debug_trail[w]["cognate_voters"] = voters
-        n_identical = sum(1 for v in cognates.values() if v.get("identical_gloss"))
-        n_suffix = sum(1 for v in cognates.values() if v.get("suffix_rule"))
-        n_cognet = sum(1 for v in cognates.values() if v.get("cognet"))
-        n_curated = sum(1 for v in cognates.values() if v.get("curated"))
-        print("  Cognates: %d (identical_gloss=%d, suffix_rule=%d, cognet=%d, curated=%d)" %
-              (len(cognates), n_identical, n_suffix, n_cognet, n_curated))
-
-    # ==================================================================
-    # Phase 3: ENGLISH DETECTION (with Wiktionary safety-net)
-    # ==================================================================
-    print("\n--- Phase 3: English detection ---")
-
-    # 3a-pre. Curated extra-English (English contractions, rap slang)
-    if extra_english:
-        matched = remaining & extra_english
-        english |= matched
+        skip_forms = {e["word"] for e in elision_mapping if e.get("action") == "skip"}
+        matched = remaining & skip_forms
+        buckets["elision"] |= matched
         remaining -= matched
         for w in matched:
-            debug_trail[w]["english_source"] = "curated_extra_english"
-        print("  Curated extra-English: %d" % len(matched))
+            trail[w]["bucket"] = "elision"
+            trail[w]["source"] = "elision_skip"
+        if matched:
+            print(f"  Elision skips: {len(matched)}")
 
-    # 3a. English 50k wordlist — subtract Spanish Wiktionary first (P3.1)
-    if en_50k:
-        candidates = remaining & en_50k
-        if wikt_spanish:
-            # Only flag as English if NOT in Spanish Wiktionary. Words in Sp Wikt
-            # that survived Phase 2.5 are genuinely Spanish (either non-cognate
-            # loanwords or core Spanish words that happen to share an English
-            # spelling — "real", "no", "si").
-            candidates -= wikt_spanish
-        english |= candidates
-        remaining -= candidates
-        for w in candidates:
-            debug_trail[w]["english_source"] = "en_50k_not_wikt"
-        print("  English 50k (non-Wikt): %d" % len(candidates))
-
-    # 3b. Lingua classifier on remaining
-    if not args.no_lingua:
-        print("  Running lingua (threshold=%.2f)..." % args.lingua_threshold)
-        lingua_english = classify_english(remaining, threshold=args.lingua_threshold)
-        # Lingua can have false positives on short Spanish words; keep the
-        # Wiktionary safety-net here too.
-        lingua_english -= wikt_spanish
-        english |= lingua_english
-        remaining -= lingua_english
-        for w in lingua_english:
-            debug_trail[w]["english_source"] = "lingua"
-        print("  Lingua English: %d" % len(lingua_english))
-    else:
-        print("  Skipping lingua (--no-lingua)")
-
-    # ==================================================================
-    # Phase 4: WIKTIONARY RECLASSIFICATION
-    # (Retroactively reclassify known-vocab words that look English-only.)
-    # ==================================================================
-    print("\n--- Phase 4: Wiktionary reclassification ---")
-    reclass_pool = known_normal_vocab | known_conjugation
-    reclass_english = set()
-    for w in reclass_pool:
-        if w in en_50k and w.lower() not in wikt_spanish:
-            reclass_english.add(w)
-    english |= reclass_english
-    known_normal_vocab -= reclass_english
-    known_conjugation -= reclass_english
-    for w in reclass_english:
-        debug_trail[w]["english_source"] = "reclass"
-    print("  Reclassified %d known-vocab → english (in en_50k, not in Wiktionary)" %
-          len(reclass_english))
-
-    # ==================================================================
-    # Phase 4.5: RESIDUAL CLITIC FALLBACK (moved earlier)
-    # Must run BEFORE spaCy NER so that verb+clitic forms (arrópame,
-    # atendértelo, actualícense) get moved to clitic_merge before spaCy
-    # can accidentally tag them as proper nouns.
-    # ==================================================================
-    print("\n--- Phase 4.5: Residual clitic fallback ---")
-    verb_forms = set(conj_forms)
-    for _w, _poses in wikt_pos.items():
-        if _poses and _poses <= {"verb"}:
-            verb_forms.add(_w)
-    fallback = residual_clitic_fallback(remaining, verb_forms, wikt_pos)
-    if fallback:
-        clitic_merge.update(fallback)
-        for w in fallback:
-            remaining.discard(w)
-            debug_trail[w]["clitic_merge"] = fallback[w]
-            debug_trail[w]["clitic_source"] = "residual_fallback"
-    print("  Residual clitic merge: %d" % len(fallback))
-
-    # ==================================================================
-    # Phase 5: spaCy NER — WITH Wiktionary safety-net (P2.1)
-    # ==================================================================
-    if not args.no_nlp_detect and not args.no_spacy:
-        print("\n--- Phase 5: spaCy NER ---")
-        spacy_propn = detect_propn_by_spacy(remaining, word_entries)
-        # Safety-net: skip NER hits that have a non-name POS in Wiktionary,
-        # unless curated drop list overrides.
-        wikt_safe = set()
-        for w in spacy_propn:
-            if w in drop_propn:
-                continue
-            poses = wikt_pos.get(w, set())
-            if poses and poses - {"name"}:
-                wikt_safe.add(w)
-        spacy_propn -= wikt_safe
-        spacy_propn -= allow_propn
-        spacy_new = spacy_propn & remaining
-        proper_nouns_detected |= spacy_new
-        remaining -= spacy_new
-        for w in spacy_new:
-            debug_trail[w]["propn_source"] = "spacy_ner"
-        print("  spaCy NER: %d additional proper nouns (%d filtered by Wikt safety-net)" %
-              (len(spacy_new), len(wikt_safe)))
-
-    # ==================================================================
-    # Phase 6: FREQUENCY THRESHOLD
-    # ==================================================================
-    print("\nApplying frequency threshold (min_freq=%d)..." % args.min_freq)
+    # ------------------------------------------------------------------
+    # Phase 4 — English fallback
+    #   en_50k for words NOT in spanish_forms (survived Phase 2 so they
+    #   aren't Spanish; obvious English that the wordlist covers).
+    # ------------------------------------------------------------------
+    print("\n--- Phase 4: English fallback ---")
+    en_count = 0
     for w in list(remaining):
-        if word_freq.get(w, 0) < args.min_freq:
-            low_frequency.add(w)
+        if w in en_50k and w not in spanish_forms:
+            buckets["english"].add(w)
+            trail[w]["bucket"] = "english"
+            trail[w]["source"] = "en_50k"
             remaining.discard(w)
-            debug_trail[w]["low_freq"] = True
-    print("  Removed %d words (freq < %d)" % (len(low_frequency), args.min_freq))
+            en_count += 1
+    print(f"  English (en_50k, not Spanish): {en_count}")
 
-    # ---------------------------------------------------------------
-    # Summary
-    # ---------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Phase 5 — Frequency floor; everything else → gemini
+    # ------------------------------------------------------------------
+    print("\n--- Phase 5: Frequency floor ---")
+    lo_count = 0
+    for w in list(remaining):
+        if word_freq[w] < args.min_freq:
+            buckets["low_frequency"].add(w)
+            trail[w]["bucket"] = "low_frequency"
+            trail[w]["source"] = f"freq<{args.min_freq}"
+            remaining.discard(w)
+            lo_count += 1
+    print(f"  Low frequency: {lo_count}")
+
+    gemini = sorted(remaining, key=lambda w: -word_freq[w])
+    for w in remaining:
+        trail[w]["bucket"] = "gemini"
+
     elapsed = time.time() - start_time
-    n_exclude = (len(english) + len(proper_nouns_detected) + len(interjections_detected)
-                 + len(low_frequency) + len(cognates))
-    n_biencoder = (len(known_normal_vocab) + len(known_conjugation) + len(known_elision)
-                   + len(known_derivation) + len(known_shared))
 
-    print("\n=== Word Routing Summary ===")
-    print("  Input words:          %d" % len(artist_words))
-    print("  ---")
-    print("  EXCLUDE (%d):" % n_exclude)
-    print("    English:            %d" % len(english))
-    print("    Cognate:            %d (transparent loanwords)" % len(cognates))
-    print("    Proper nouns:       %d" % len(proper_nouns_detected))
-    print("    Interjections:      %d" % len(interjections_detected))
-    print("    Low frequency:      %d (freq < %d)" % (len(low_frequency), args.min_freq))
-    print("  BIENCODER (%d):" % n_biencoder)
-    print("    Normal vocab:       %d" % len(known_normal_vocab))
-    print("    Conjugation:        %d" % len(known_conjugation))
-    print("    Elision:            %d" % len(known_elision))
-    print("    Derivation:         %d (diminutive + gerund+clitic)" % len(known_derivation))
-    print("    Shared curated:     %d" % len(known_shared))
-    print("  GEMINI (%d):          %s" % (len(remaining), "(Caribbean slang, regional vocab)"))
-    print("  CLITIC MERGE:         %d (+ %d tier 3 kept separate)" % (len(clitic_merge), len(clitic_keep)))
-    print("  ---")
-    print("  Time: %.1f seconds" % elapsed)
+    # ------------------------------------------------------------------
+    # Summary
+    # ------------------------------------------------------------------
+    n_exclude = (len(buckets["english"]) + len(buckets["cognate"]) +
+                 len(buckets["proper_nouns"]) + len(buckets["interjections"]) +
+                 len(buckets["low_frequency"]))
+    n_biencoder = (len(buckets["normal_vocab"]) + len(buckets["conjugation"]) +
+                   len(buckets["elision"]) + len(buckets["derivation"]))
+    print(f"\n=== Word Routing Summary ===")
+    print(f"  Input words: {len(artist_words)}")
+    print(f"  EXCLUDE ({n_exclude}):")
+    print(f"    English:       {len(buckets['english'])}")
+    print(f"    Cognate:       {len(buckets['cognate'])}")
+    print(f"    Proper nouns:  {len(buckets['proper_nouns'])}")
+    print(f"    Interjections: {len(buckets['interjections'])}")
+    print(f"    Low frequency: {len(buckets['low_frequency'])}")
+    print(f"  BIENCODER ({n_biencoder}):")
+    print(f"    Normal vocab:  {len(buckets['normal_vocab'])}")
+    print(f"    Conjugation:   {len(buckets['conjugation'])}")
+    print(f"    Elision:       {len(buckets['elision'])}")
+    print(f"    Derivation:    {len(buckets['derivation'])}")
+    print(f"  GEMINI ({len(gemini)})")
+    print(f"  CLITIC MERGE:   {len(buckets['clitic_merge'])}")
+    print(f"  Time: {elapsed:.1f}s")
 
-    # ---------------------------------------------------------------
-    # C1 — DISJOINT BUCKET ASSERTION
-    # Every input word must appear in exactly one bucket.
-    # ---------------------------------------------------------------
-    buckets = {
-        "english": english,
-        "cognate": set(cognates.keys()),
-        "proper_nouns": proper_nouns_detected,
-        "interjections": interjections_detected,
-        "low_frequency": low_frequency,
-        "normal_vocab": known_normal_vocab,
-        "conjugation": known_conjugation,
-        "elision": known_elision,
-        "derivation": set(known_derivation.keys()),
-        "shared": known_shared,
-        "gemini": remaining,
-        "clitic_merge": set(clitic_merge.keys()),
-        "clitic_keep": set(clitic_keep),
-    }
+    # ------------------------------------------------------------------
+    # Disjoint-bucket assertion
+    # ------------------------------------------------------------------
     seen = {}
     overlaps = []
-    for name, s in buckets.items():
+    flat = {
+        "english": buckets["english"],
+        "cognate": set(buckets["cognate"].keys()),
+        "proper_nouns": buckets["proper_nouns"],
+        "interjections": buckets["interjections"],
+        "low_frequency": buckets["low_frequency"],
+        "normal_vocab": buckets["normal_vocab"],
+        "conjugation": buckets["conjugation"],
+        "elision": buckets["elision"],
+        "derivation": set(buckets["derivation"].keys()),
+        "clitic_merge": set(buckets["clitic_merge"].keys()),
+        "gemini": set(remaining),
+    }
+    for name, s in flat.items():
         for w in s:
             if w in seen:
                 overlaps.append((w, seen[w], name))
             else:
                 seen[w] = name
-    covered = set(seen.keys())
-    missing = artist_words - covered
+    missing = artist_words - set(seen)
     if overlaps:
-        print("\n[ERROR] %d words appear in multiple buckets (first 20):" % len(overlaps))
-        for w, a, b in overlaps[:20]:
-            print("  %r: %s and %s" % (w, a, b))
+        print(f"\n[ERROR] {len(overlaps)} bucket overlaps, first 10:")
+        for w, a, b in overlaps[:10]:
+            print(f"  {w!r}: {a} and {b}")
     if missing:
-        print("\n[ERROR] %d input words missing from all buckets (first 20): %s" %
-              (len(missing), sorted(missing)[:20]))
+        print(f"\n[ERROR] {len(missing)} words in no bucket: {sorted(missing)[:10]}")
     if overlaps or missing:
-        raise SystemExit("Disjoint-bucket assertion failed; see errors above.")
-    print("\nDisjoint-bucket assertion OK (%d words fully partitioned)" % len(covered))
+        sys.exit("Disjoint-bucket assertion failed.")
+    print(f"\nDisjoint-bucket assertion OK ({len(seen)} words partitioned)")
 
-    # ---------------------------------------------------------------
+    # ------------------------------------------------------------------
     # Write main output
-    # ---------------------------------------------------------------
+    # ------------------------------------------------------------------
     output = {
         "exclude": {
-            "english": sorted(english),
-            "cognate": {w: cognates[w] for w in sorted(cognates)},
-            "proper_nouns": sorted(proper_nouns_detected),
-            "interjections": sorted(interjections_detected),
-            "low_frequency": sorted(low_frequency),
+            "english": sorted(buckets["english"]),
+            "cognate": {w: buckets["cognate"][w] for w in sorted(buckets["cognate"])},
+            "proper_nouns": sorted(buckets["proper_nouns"]),
+            "interjections": sorted(buckets["interjections"]),
+            "low_frequency": sorted(buckets["low_frequency"]),
         },
         "biencoder": {
-            "normal_vocab": sorted(known_normal_vocab),
-            "conjugation": sorted(known_conjugation),
-            "elision": sorted(known_elision),
-            "derivation": known_derivation,
-            "shared": sorted(known_shared),
+            "normal_vocab": sorted(buckets["normal_vocab"]),
+            "conjugation": sorted(buckets["conjugation"]),
+            "elision": sorted(buckets["elision"]),
+            "derivation": buckets["derivation"],
+            "shared": sorted(buckets["shared"]),
         },
-        "gemini": sorted(remaining, key=lambda w: word_freq.get(w, 0), reverse=True),
-        "clitic_merge": clitic_merge,
-        "clitic_orphans": sorted(clitic_orphans),
-        "clitic_keep": sorted(clitic_keep),
+        "gemini": gemini,
+        "clitic_merge": buckets["clitic_merge"],
+        "clitic_orphans": [],  # deprecated — kept for downstream compat
+        "clitic_keep": [],      # deprecated — tier-3 semantics moved to build phase
         "stats": {
             "input_words": len(artist_words),
             "exclude": n_exclude,
             "biencoder": n_biencoder,
-            "gemini": len(remaining),
-            "cognate": len(cognates),
-            "clitic_merge": len(clitic_merge),
-            "clitic_keep": len(clitic_keep),
+            "gemini": len(gemini),
+            "cognate": len(buckets["cognate"]),
+            "clitic_merge": len(buckets["clitic_merge"]),
+            "clitic_keep": 0,
             "min_freq": args.min_freq,
-            "lingua_threshold": args.lingua_threshold if not args.no_lingua else None,
         },
+        "_meta": make_meta("filter_known_vocab", STEP_VERSION),
     }
-    output["_meta"] = make_meta("filter_known_vocab", STEP_VERSION)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
-    print("Wrote %s" % output_path)
+    print(f"Wrote {output_path}")
 
-    # ---------------------------------------------------------------
-    # C4 — DEBUG DUMP
-    # Per-word detection trail (source + Wikt POS) for audit/grepping.
-    # ---------------------------------------------------------------
-    debug_out = {}
-    for w in sorted(artist_words):
-        trail = debug_trail.get(w, {})
-        trail["freq"] = word_freq.get(w, 0)
-        trail["wikt_pos"] = sorted(wikt_pos.get(w, set()))
-        trail["in_wikt"] = w in wikt_spanish
-        trail["in_en_50k"] = w in en_50k
-        trail["bucket"] = seen.get(w, "unknown")
-        debug_out[w] = trail
+    # Debug dump
+    for w in artist_words:
+        trail[w]["in_spanish_forms"] = w in spanish_forms
+        trail[w]["in_en_50k"] = w in en_50k
     with open(debug_path, "w", encoding="utf-8") as f:
-        json.dump(debug_out, f, indent=2, ensure_ascii=False)
-    print("Wrote %s" % debug_path)
+        json.dump({w: trail[w] for w in sorted(artist_words)}, f, indent=2, ensure_ascii=False)
+    print(f"Wrote {debug_path}")
 
 
 if __name__ == "__main__":
