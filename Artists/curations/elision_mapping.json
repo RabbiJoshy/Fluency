@@ -33711,5 +33711,68 @@
     "target_lemma": "corazón",
     "elided_ppm": 0,
     "combined_ppm": 0
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to'a",
+    "target_word": "toda",
+    "display_form": "to'a",
+    "target_lemma": "toda",
+    "note": "Caribbean s-drop of toda"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "de'o",
+    "target_word": "dedo",
+    "display_form": "de'o",
+    "target_lemma": "dedo",
+    "note": "Caribbean d-drop of dedo"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "ma'i",
+    "target_word": "mami",
+    "display_form": "ma'i",
+    "target_lemma": "mami",
+    "note": "Caribbean elision of mami"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "oí'te",
+    "target_word": "oíste",
+    "display_form": "oí'te",
+    "target_lemma": "oíste",
+    "note": "Caribbean elision of oíste"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "vi'a",
+    "target_word": "vida",
+    "display_form": "vi'a",
+    "target_lemma": "vida",
+    "note": "Caribbean d-drop of vida"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "ná'",
+    "target_word": "nada",
+    "display_form": "ná'",
+    "target_lemma": "nada",
+    "note": "PR/Cuban elision of nada"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "pa'lante",
+    "target_word": "adelante",
+    "display_form": "pa'lante",
+    "target_lemma": "adelante",
+    "note": "pa' adelante → pa'lante (forward)"
   }
 ]
