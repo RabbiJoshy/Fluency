@@ -34,6 +34,7 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
 
 STEP_VERSION = 1
 STEP_VERSION_NOTES = {
@@ -49,6 +50,34 @@ if not os.path.exists(PYTHON):
 
 # Keyword-only threshold for unassigned flag (method priority at or below this = fallback)
 KEYWORD_PRIORITY_THRESHOLD = 15  # keyword and pos-keyword
+
+
+def _collect_sid_meta(raw_assignments, per_sense):
+    """For each sense in ``per_sense``, pick inline metadata (pos/translation/
+    lemma/source/...) from the highest-priority item claiming that sense.
+
+    Per-example method resolution (``resolve_best_per_example``) returns only
+    ``{sid: [{ex_idx, method}]}``; the gap-fill branch downstream still needs
+    the original item's translation/pos/lemma fields for senses that aren't
+    in the menu, so we look them up here from the raw dict form.
+    """
+    sid_meta = {}
+    if not isinstance(raw_assignments, dict):
+        return sid_meta
+    for method, items in raw_assignments.items():
+        prio = METHOD_PRIORITY.get(method, 0)
+        for item in items or []:
+            if not isinstance(item, dict):
+                continue
+            sid = item.get("sense")
+            if not sid or sid not in per_sense:
+                continue
+            existing = sid_meta.get(sid)
+            if existing is None or prio > existing[0]:
+                meta = {k: v for k, v in item.items()
+                        if k not in ("sense", "examples", "method", "bucket")}
+                sid_meta[sid] = (prio, meta)
+    return {sid: meta for sid, (_, meta) in sid_meta.items()}
 
 
 # ---------------------------------------------------------------------------
@@ -126,9 +155,19 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     )
     senses = normalize_artist_sense_menu(raw_menu) if raw_menu else {}
     assignments_path = artist_sense_assignments_path(layers_dir, sense_source, prefer_new=False)
-    assignments = load_layer(assignments_path, "sense_assignments", required=False) or {}
+    if os.path.isfile(assignments_path):
+        assignments = load_assignments(assignments_path)
+        print("  sense_assignments: %d entries" % len(assignments))
+    else:
+        assignments = {}
+        print("  sense_assignments: (not found, skipping)")
     lemma_assignments_path = artist_sense_assignments_lemma_path(layers_dir, sense_source, prefer_new=False)
-    lemma_assignments = load_layer(lemma_assignments_path, "sense_assignments_lemma", required=False) or {}
+    if os.path.isfile(lemma_assignments_path):
+        lemma_assignments = load_assignments(lemma_assignments_path)
+        print("  sense_assignments_lemma: %d entries" % len(lemma_assignments))
+    else:
+        lemma_assignments = {}
+        print("  sense_assignments_lemma: (not found, skipping)")
     unassigned_routing_path = artist_unassigned_routing_path(layers_dir, sense_source)
     unassigned_routing = load_layer(unassigned_routing_path, "unassigned_routing", required=False) or {}
 
@@ -145,7 +184,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "--auto-method-name", "spanishdict-auto",
                 "--menu-source-label", "spanishdict",
             ])
-        cmd = [PYTHON, os.path.join(SCRIPTS_DIR, "step_6b_assign_senses_local.py")] + kw_args
+        cmd = [PYTHON, os.path.join(os.path.dirname(SCRIPTS_DIR), "step_6b_assign_senses_local.py")] + kw_args
         result = subprocess.run(cmd)
         if result.returncode != 0:
             print("  WARNING: keyword assignment failed (exit code %d)" % result.returncode)
@@ -155,8 +194,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             cmd = [PYTHON, os.path.join(SCRIPTS_DIR, "step_7a_map_senses_to_lemmas.py")] + lemma_args
             subprocess.run(cmd)
             # Reload assignments
-            assignments = load_layer(assignments_path, "sense_assignments (auto)", required=False) or {}
-            lemma_assignments = load_layer(lemma_assignments_path, "sense_assignments_lemma (auto)", required=False) or {}
+            assignments = load_assignments(assignments_path) if os.path.isfile(assignments_path) else {}
+            lemma_assignments = load_assignments(lemma_assignments_path) if os.path.isfile(lemma_assignments_path) else {}
+            print("  sense_assignments (auto): %d entries" % len(assignments))
+            print("  sense_assignments_lemma (auto): %d entries" % len(lemma_assignments))
     # Shared layers at Data/Spanish/layers/ (project root from script location)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     shared_cognates = os.path.join(project_root, "Data", "Spanish", "layers", "cognates.json")
@@ -290,7 +331,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "assignments": resolved_assigns,
                 "examples": resolved_examples,
             }
-            base_entry.setdefault("variants", []).append(clitic_word)
+            # variants may be a list (legacy) or a {variant: count} dict (new
+            # format from step_3a). Add the clitic surface as a key either way.
+            variants = base_entry.get("variants")
+            if isinstance(variants, dict):
+                variants.setdefault(clitic_word, 0)
+            elif isinstance(variants, list):
+                if clitic_word not in variants:
+                    variants.append(clitic_word)
+            else:
+                base_entry["variants"] = [clitic_word]
             clitic_merged_words.add(clitic_word.lower())
         print("  Clitic forms: %d skipped from deck, data preserved in clitic layer"
               % len(clitic_merged_words))
@@ -310,15 +360,22 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
         analyses = senses.get(word, [])
 
-        # Get sense assignments — handle both old (list) and new (dict-of-methods)
+        # Get sense assignments — handle both old (list) and new (dict-of-methods).
+        # Per-example resolution happens per-group below; here we only compute
+        # the word-level max priority, used as the SENSE_CYCLE gate (unchanged
+        # semantics vs. old `best_method <= threshold` test, since best_method
+        # was the max).
         raw_assignments = assignments.get(word, [])
-        best_method = None
         if isinstance(raw_assignments, dict) and raw_assignments:
-            best_method = max(raw_assignments.keys(),
-                              key=lambda m: METHOD_PRIORITY.get(m, -1))
-            selected_assignments = raw_assignments[best_method]
+            word_max_prio = max((METHOD_PRIORITY.get(m, 0) for m in raw_assignments.keys()),
+                                default=0)
+            has_word_assignments = True
+        elif isinstance(raw_assignments, list) and raw_assignments:
+            word_max_prio = 0
+            has_word_assignments = True
         else:
-            selected_assignments = raw_assignments or []
+            word_max_prio = 0
+            has_word_assignments = False
 
         # Group assignments by analysis (lemma) using sense IDs
         grouped = []
@@ -341,44 +398,65 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             for lemma_key, group in lemma_key_to_group.items():
                 raw_group_assignments = lemma_assignments.get(lemma_key, {})
                 if isinstance(raw_group_assignments, dict) and raw_group_assignments:
-                    group_method = max(raw_group_assignments.keys(),
-                                       key=lambda m: METHOD_PRIORITY.get(m, -1))
-                    group_items = raw_group_assignments[group_method]
-                elif isinstance(raw_group_assignments, list):
-                    group_method = "legacy"
-                    group_items = raw_group_assignments
+                    per_sense = resolve_best_per_example(raw_group_assignments)
+                    sid_meta = _collect_sid_meta(raw_group_assignments, per_sense)
+                elif isinstance(raw_group_assignments, list) and raw_group_assignments:
+                    # Legacy flat-list fallback: treat as one pseudo-method.
+                    as_dict = {"legacy": raw_group_assignments}
+                    per_sense = resolve_best_per_example(as_dict)
+                    sid_meta = _collect_sid_meta(as_dict, per_sense)
                 else:
                     continue
-                for a in group_items:
-                    sid = a.get("sense")
+                for sid, ex_list in per_sense.items():
                     if sid not in group["sense_by_id"]:
                         continue
-                    group["assignments"].append({
+                    entry = {
                         "sense_idx": list(group["sense_by_id"].keys()).index(sid),
-                        "examples": a.get("examples", []),
-                        "method": group_method,
+                        "examples": ex_list,  # [{"ex_idx", "method"}]
                         "sense": sid,
-                    })
-        elif selected_assignments and grouped:
-            for a in selected_assignments:
-                sid = a.get("sense")
+                    }
+                    entry.update(sid_meta.get(sid, {}))
+                    group["assignments"].append(entry)
+        elif has_word_assignments and grouped:
+            if isinstance(raw_assignments, dict):
+                per_sense = resolve_best_per_example(raw_assignments)
+                sid_meta = _collect_sid_meta(raw_assignments, per_sense)
+            else:
+                as_dict = {"legacy": raw_assignments}
+                per_sense = resolve_best_per_example(as_dict)
+                sid_meta = _collect_sid_meta(as_dict, per_sense)
+            for sid, ex_list in per_sense.items():
                 group = sid_to_group.get(sid)
                 if not group:
                     continue
-                group["assignments"].append({
+                entry = {
                     "sense_idx": list(group["sense_by_id"].keys()).index(sid),
-                    "examples": a.get("examples", []),
-                    "method": best_method,
+                    "examples": ex_list,
                     "sense": sid,
-                })
+                }
+                entry.update(sid_meta.get(sid, {}))
+                group["assignments"].append(entry)
         elif not grouped:
             fallback_analysis = resolve_analysis_for_assignments(senses, word, raw_assignments)
             word_senses_raw = fallback_analysis.get("senses")
+            # Build per-sense assignments preserving inline metadata (pos,
+            # translation, lemma, source) — used by the gap-fill branch when
+            # there's no menu entry.
+            fallback_assignments = []
+            if isinstance(raw_assignments, dict) and raw_assignments:
+                per_sense = resolve_best_per_example(raw_assignments)
+                sid_meta = _collect_sid_meta(raw_assignments, per_sense)
+                for sid, ex_list in per_sense.items():
+                    entry = {"sense": sid, "examples": ex_list}
+                    entry.update(sid_meta.get(sid, {}))
+                    fallback_assignments.append(entry)
+            elif isinstance(raw_assignments, list):
+                fallback_assignments = raw_assignments
             grouped = [{
                 "lemma": fallback_analysis.get("headword", fallback_analysis.get("lemma", word)),
                 "sense_by_id": word_senses_raw if isinstance(word_senses_raw, dict) else {},
                 "word_senses": list(word_senses_raw.values()) if isinstance(word_senses_raw, dict) else (word_senses_raw or []),
-                "assignments": selected_assignments if isinstance(selected_assignments, list) else [],
+                "assignments": fallback_assignments,
             }]
 
         # Get raw examples for this word
@@ -391,7 +469,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             lemma_key = "%s|%s" % (word, g.get("lemma", word))
             g["unassigned_ex_indices"] = unassigned_routing.get(lemma_key, [])
 
-        if selected_assignments:
+        if has_word_assignments:
             # Emit a card if the group has either keyword assignments or
             # routed unassigned examples. A group with only routed
             # unassigned examples becomes a card with just a SENSE_CYCLE row.
@@ -439,57 +517,79 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     if curated_key in curated and len(word_assignments) == 1:
                         translation = curated[curated_key]
 
-                    example_indices = assignment.get("examples", [])
-                    ex_method = assignment.get("method")
+                    ex_entries = assignment.get("examples", [])
                     meaning_examples = []
-                    for ex_idx in example_indices:
-                        if ex_idx < len(raw_examples):
-                            raw_ex = raw_examples[ex_idx]
-                            spanish = raw_ex.get("spanish", "")
-                            trans_info = translations.get(spanish, {})
-                            english = trans_info.get("english", "")
-                            source = trans_info.get("source", "")
-                            ex_dict = {
-                                "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
-                                "song_name": raw_ex.get("title", ""),
-                                "spanish": spanish,
-                                "english": english,
-                                "translation_source": source,
-                            }
-                            # Stamp assignment method on each example so the
-                            # front-end can show per-example highlights/borders.
-                            if ex_method:
-                                ex_dict["assignment_method"] = ex_method
-                            score_entry = translation_scores.get(spanish, {})
-                            if isinstance(score_entry, dict) and "score" in score_entry:
-                                ex_dict["translation_quality"] = score_entry["score"]
-                            ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                            if ts_entry:
-                                ex_dict["timestamp_ms"] = ts_entry["ms"]
-                            meaning_examples.append(ex_dict)
+                    methods_in_meaning = set()
+                    for entry in ex_entries:
+                        # Post-refactor: entries are {"ex_idx", "method"} dicts
+                        # so each example can carry its own per-example method.
+                        # Tolerate the legacy raw-int form for old data.
+                        if isinstance(entry, dict):
+                            ex_idx = entry.get("ex_idx")
+                            ex_method = entry.get("method")
+                        else:
+                            ex_idx = entry
+                            ex_method = None
+                        if ex_idx is None or ex_idx >= len(raw_examples):
+                            continue
+                        raw_ex = raw_examples[ex_idx]
+                        spanish = raw_ex.get("spanish", "")
+                        trans_info = translations.get(spanish, {})
+                        english = trans_info.get("english", "")
+                        source = trans_info.get("source", "")
+                        ex_dict = {
+                            "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                            "song_name": raw_ex.get("title", ""),
+                            "spanish": spanish,
+                            "english": english,
+                            "translation_source": source,
+                        }
+                        # Stamp assignment method on each example so the
+                        # front-end can show per-example highlights/borders.
+                        if ex_method:
+                            ex_dict["assignment_method"] = ex_method
+                            methods_in_meaning.add(ex_method)
+                        score_entry = translation_scores.get(spanish, {})
+                        if isinstance(score_entry, dict) and "score" in score_entry:
+                            ex_dict["translation_quality"] = score_entry["score"]
+                        ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                        if ts_entry:
+                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        meaning_examples.append(ex_dict)
 
                     meaning_examples.sort(
                         key=lambda e: e.get("translation_quality", 3), reverse=True)
 
-                    freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
+                    freq = "%.2f" % (len(ex_entries) / total_assigned) if total_assigned > 0 else "1.00"
                     meaning = {
                         "pos": pos,
                         "translation": translation,
                         "frequency": freq,
                         "examples": meaning_examples,
                     }
-                    prio = METHOD_PRIORITY.get(best_method, 0) if best_method else 0
-                    if 0 < prio <= KEYWORD_PRIORITY_THRESHOLD:
-                        # Keyword-matched: record method for informational purposes.
-                        # Not marked unassigned — any real assignment gets a border.
-                        meaning["assignment_method"] = best_method
+                    src = sense.get("source")
+                    if src:
+                        meaning["source"] = src
+                    # Meaning-level stamp: only when every contributing method
+                    # is keyword-tier (0 < prio <= KEYWORD_PRIORITY_THRESHOLD).
+                    # Non-keyword methods in the same meaning suppress the
+                    # low-trust caveat.
+                    if methods_in_meaning and all(
+                        0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
+                        for m in methods_in_meaning
+                    ):
+                        meaning["assignment_method"] = max(
+                            methods_in_meaning,
+                            key=lambda m: METHOD_PRIORITY.get(m, 0))
                     meanings.append(meaning)
 
-                # If best method is keyword-level, add SENSE_CYCLE remainder
-                # rows for unassigned examples.  Trusted spaCy POS tags get
-                # their own POS-specific bucket.  Untrusted or missing tags
-                # all fall into one universal bucket listing every sense.
-                if best_method and METHOD_PRIORITY.get(best_method, 0) <= KEYWORD_PRIORITY_THRESHOLD:
+                # If the word's highest-priority method is keyword-tier, add
+                # SENSE_CYCLE remainder rows for unassigned examples.  Trusted
+                # spaCy POS tags get their own POS-specific bucket.  Untrusted
+                # or missing tags all fall into one universal bucket listing
+                # every sense.  (Equivalent to the old `best_method <= threshold`
+                # check since best_method was the max-priority method.)
+                if 0 < word_max_prio <= KEYWORD_PRIORITY_THRESHOLD:
                     _routed_unassigned = group.get("unassigned_ex_indices") or []
                     word_pos_data = example_pos.get(word, {})
                     from collections import defaultdict as _defaultdict
@@ -589,12 +689,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     translation = word_senses[0]["translation"]
                     if curated_key in curated:
                         translation = curated[curated_key]
-                    meanings.append({
+                    single_meaning = {
                         "pos": word_senses[0]["pos"],
                         "translation": translation,
                         "frequency": "1.00",
                         "examples": all_examples,
-                    })
+                    }
+                    src = word_senses[0].get("source")
+                    if src:
+                        single_meaning["source"] = src
+                    meanings.append(single_meaning)
                 else:
                     # Multiple senses, no confident assignment.
                     # Group remaining senses by POS into SENSE_CYCLE rows.
@@ -624,13 +728,17 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
                         if len(senses_for_pos) == 1:
                             # Single sense for this POS — normal row, but unassigned
-                            meanings.append({
+                            single_row = {
                                 "pos": pos_key,
                                 "translation": senses_for_pos[0]["translation"],
                                 "frequency": "%.2f" % (1.0 / len(pos_list)),
                                 "examples": cycle_examples,
                                 "unassigned": True,
-                            })
+                            }
+                            src = senses_for_pos[0].get("source")
+                            if src:
+                                single_row["source"] = src
+                            meanings.append(single_row)
                         else:
                             # Multiple senses for this POS — SENSE_CYCLE row
                             meanings.append({
@@ -648,31 +756,53 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 for assignment in word_assignments:
                     pos = assignment.get("pos", "X")
                     translation = assignment.get("translation", "")
-                    example_indices = assignment.get("examples", [])
+                    ex_entries = assignment.get("examples", [])
                     meaning_examples = []
-                    for ex_idx in example_indices:
-                        if ex_idx < len(raw_examples):
-                            raw_ex = raw_examples[ex_idx]
-                            spanish = raw_ex.get("spanish", "")
-                            trans_info = translations.get(spanish, {})
-                            ex_dict = {
-                                "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
-                                "song_name": raw_ex.get("title", ""),
-                                "spanish": spanish,
-                                "english": trans_info.get("english", ""),
-                                "translation_source": trans_info.get("source", ""),
-                            }
-                            ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                            if ts_entry:
-                                ex_dict["timestamp_ms"] = ts_entry["ms"]
-                            meaning_examples.append(ex_dict)
-                    freq = "%.2f" % (len(example_indices) / total_assigned) if total_assigned > 0 else "1.00"
-                    meanings.append({
+                    methods_in_meaning = set()
+                    for entry in ex_entries:
+                        if isinstance(entry, dict):
+                            ex_idx = entry.get("ex_idx")
+                            ex_method = entry.get("method")
+                        else:
+                            ex_idx = entry
+                            ex_method = None
+                        if ex_idx is None or ex_idx >= len(raw_examples):
+                            continue
+                        raw_ex = raw_examples[ex_idx]
+                        spanish = raw_ex.get("spanish", "")
+                        trans_info = translations.get(spanish, {})
+                        ex_dict = {
+                            "song": raw_ex["id"].split(":")[0] if ":" in raw_ex["id"] else raw_ex["id"],
+                            "song_name": raw_ex.get("title", ""),
+                            "spanish": spanish,
+                            "english": trans_info.get("english", ""),
+                            "translation_source": trans_info.get("source", ""),
+                        }
+                        if ex_method:
+                            ex_dict["assignment_method"] = ex_method
+                            methods_in_meaning.add(ex_method)
+                        ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
+                        if ts_entry:
+                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        meaning_examples.append(ex_dict)
+                    freq = "%.2f" % (len(ex_entries) / total_assigned) if total_assigned > 0 else "1.00"
+                    meaning = {
                         "pos": pos,
                         "translation": translation,
                         "frequency": freq,
                         "examples": meaning_examples,
-                    })
+                    }
+                    src = assignment.get("source")
+                    if src:
+                        meaning["source"] = src
+                    if methods_in_meaning and all(
+                        0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
+                        for m in methods_in_meaning
+                    ):
+                        meaning["assignment_method"] = max(
+                            methods_in_meaning,
+                            key=lambda m: METHOD_PRIORITY.get(m, 0))
+                    meanings.append(meaning)
             else:
                 curated_key = "%s|%s" % (word.lower(), word_lemma)
                 translation = curated.get(curated_key, "")
@@ -881,9 +1011,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         # Otherwise union (for entries with only old Gemini data).
         entry_meanings = entry.get("meanings", [])
         if entry.get("_has_wikt_assignments"):
-            new_senses_list = [{"pos": m_.get("pos", "X"), "translation": m_.get("translation", "")}
-                               for m_ in entry_meanings
-                               if m_.get("pos") not in ("SENSE_CYCLE", "X")]
+            new_senses_list = []
+            for m_ in entry_meanings:
+                if m_.get("pos") in ("SENSE_CYCLE", "X"):
+                    continue
+                s_entry = {"pos": m_.get("pos", "X"), "translation": m_.get("translation", "")}
+                src = m_.get("source")
+                if src:
+                    s_entry["source"] = src
+                new_senses_list.append(s_entry)
             if new_senses_list:
                 old_count = len(m["senses"])
                 m["senses"] = new_senses_list
@@ -897,7 +1033,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 norm = normalize_translation(translation)
                 exists = any(s["pos"] == pos and normalize_translation(s["translation"]) == norm for s in m["senses"])
                 if not exists:
-                    m["senses"].append({"pos": pos, "translation": translation})
+                    s_entry = {"pos": pos, "translation": translation}
+                    src = meaning.get("source")
+                    if src:
+                        s_entry["source"] = src
+                    m["senses"].append(s_entry)
                     new_senses += 1
 
     print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))

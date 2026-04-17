@@ -213,10 +213,18 @@ def load_shared_dict(filename, modes=None):
     Returns:
         Plain ``{word: translation}`` dict with metadata keys stripped.
     """
-    path = os.path.join(PROJECT_SHARED_DIR, filename)
-    if not os.path.isfile(path):
-        # Fall back to Artists/curations/ location
-        path = os.path.join(SHARED_DIR, filename)
+    # Search order: shared/, shared/archive/, Artists/curations/.
+    # Missing file is treated as an empty dict so curation-optional loaders
+    # don't break the build when an artifact has been archived or not yet
+    # created.
+    candidates = [
+        os.path.join(PROJECT_SHARED_DIR, filename),
+        os.path.join(PROJECT_SHARED_DIR, "archive", filename),
+        os.path.join(SHARED_DIR, filename),
+    ]
+    path = next((p for p in candidates if os.path.isfile(p)), None)
+    if path is None:
+        return {}
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     result = {}

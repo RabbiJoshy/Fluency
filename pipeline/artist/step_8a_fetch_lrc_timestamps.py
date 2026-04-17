@@ -248,6 +248,8 @@ def main():
     add_artist_arg(parser)
     parser.add_argument("--force-refetch", action="store_true",
                         help="Re-fetch from LRCLIB even if cached")
+    parser.add_argument("--force", action="store_true",
+                        help="Re-run even if lyrics_timestamps.json is up to date")
     args = parser.parse_args()
 
     artist_dir = args.artist_dir
@@ -259,6 +261,14 @@ def main():
     if not os.path.exists(examples_path):
         print("ERROR: %s not found. Run steps 3-5b first." % examples_path)
         sys.exit(1)
+
+    # Freshness skip: if the output is newer than the input, nothing to do.
+    output_path = os.path.join(artist_dir, "data", "layers", "lyrics_timestamps.json")
+    if (not args.force and not args.force_refetch
+            and os.path.exists(output_path)
+            and os.path.getmtime(output_path) >= os.path.getmtime(examples_path)):
+        print("lyrics_timestamps.json is up to date — skipping. Use --force to re-run.")
+        return
 
     with open(examples_path, "r", encoding="utf-8") as f:
         examples_raw = json.load(f)
