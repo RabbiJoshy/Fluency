@@ -713,11 +713,16 @@ def main():
                     meanings_full.append({**meaning_lean, "examples": exs})
                     examples_by_meaning.append(exs)
 
-            # When a curated override is present, collapse meanings that now
-            # share the same (pos, translation) — otherwise we emit N copies
-            # of the curated label (one per sense assignment), differing only
-            # by the 'detail' text. Merge examples, sum frequencies.
-            if curated_entry and len(meanings_lean) > 1:
+            # Always collapse meaning rows that share (pos, translation).
+            # Duplicates can arise from:
+            #   - curated overrides (all rows stamped with the same label)
+            #   - sense-menu ID collisions where the same (pos, translation)
+            #     exists under different sense IDs (e.g. uno has PRON 'one'
+            #     under both '870' and '870f')
+            #   - any future scenario where different sense IDs coincide
+            # Merge examples, sum frequencies, preserve order of first
+            # appearance.
+            if len(meanings_lean) > 1:
                 merged_lean = {}
                 merged_full = {}
                 merged_exs = {}
