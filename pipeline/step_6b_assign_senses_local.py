@@ -498,10 +498,45 @@ def main():
                     master = json.load(f)
                 print("  vocabulary_master (fallback): %d entries" % len(master))
 
-    # Load existing assignments for priority checking
+    # Load existing assignments for priority checking.
+    # Drop entries whose sense IDs don't exist in the current menu — they're
+    # stale from a prior run where the menu had different sense IDs (e.g.
+    # before step_5c was rebuilt). Without this, a stale priority-10 keyword
+    # entry blocks re-classification because 10 >= 10.
     existing_assigns = {}
+    stale_dropped = 0
     if output_file.exists():
         existing_assigns = load_assignments(output_file)
+        # Build current valid-id index: {word: set(sense_ids)}
+        valid_ids_by_word = {}
+        for _w, _analyses in wiktionary_senses.items():
+            if not isinstance(_analyses, list):
+                continue
+            ids = set()
+            for _a in _analyses:
+                _senses = _a.get("senses", {}) if isinstance(_a, dict) else {}
+                if isinstance(_senses, dict):
+                    ids.update(_senses.keys())
+            if ids:
+                valid_ids_by_word[_w] = ids
+        for _w, _method_map in list(existing_assigns.items()):
+            if _w not in valid_ids_by_word:
+                continue  # no menu entry to validate against; leave untouched
+            valid_ids = valid_ids_by_word[_w]
+            for _method in list(_method_map.keys()):
+                fresh_items = [it for it in _method_map[_method]
+                               if it.get("sense") in valid_ids]
+                if len(fresh_items) != len(_method_map[_method]):
+                    stale_dropped += len(_method_map[_method]) - len(fresh_items)
+                    if fresh_items:
+                        _method_map[_method] = fresh_items
+                    else:
+                        del _method_map[_method]
+            if not _method_map:
+                del existing_assigns[_w]
+        if stale_dropped:
+            print("  Dropped %d stale assignment items (sense IDs not in current menu)"
+                  % stale_dropped)
 
     # Load word routing to skip excluded/gemini-routed words
     routing_skip = set()
