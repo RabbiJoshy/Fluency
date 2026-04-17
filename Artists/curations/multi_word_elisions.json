@@ -1,8 +1,35 @@
 {
-  "_format": "Contractions that should be split into multiple Spanish words before tokenization. Keys are the contracted surface forms, values are the expanded space-separated Spanish.",
-  "_note": "TODO: wire into step 2a (count_words) as pre-tokenization substitution. The original contracted form should still appear in example sentences; per-word counts should go to each expanded word; surface field on each split word should retain the original contracted form.",
+  "_format": "Contractions that should be split into multiple Spanish words before tokenization. Keys are the contracted surface forms; values are either space-separated strings or arrays.",
+  "_intent": "Step 2a (count_words) applies these substitutions at tokenize time. Each resulting token records source_surface=original contraction so the front-end can still display 'pa\u2019l' on lyric cards. Per-word counts go to each expanded word; the original contracted form disappears from the vocabulary.",
+  "_note": "Add regional/artist-specific multi-word contractions here rather than as individual mapping entries in elision_mapping.json (which is for single-word merges only).",
   "entries": {
+    "pa'l": "para el",
     "pal'": "para el",
-    "pa'l": "para el"
+    "pa'la": "para la",
+    "pa'los": "para los",
+    "pa'las": "para las",
+    "pa'un": "para un",
+    "pa'una": "para una",
+    "pa'trás": "para atrás",
+    "pa'tras": "para atrás",
+    "p'atrás": "para atrás",
+    "pa'tra'": "para atrás",
+    "pa'cá": "para acá",
+    "pa'ca": "para acá",
+    "pa'llá": "para allá",
+    "pa'lla": "para allá",
+    "pa'onde": "para donde",
+    "pa'ónde": "para donde",
+    "pa'dentro": "para dentro",
+    "pa'rriba": "para arriba",
+    "pa'bajo": "para abajo",
+    "pa'fuera": "para fuera",
+    "pa'ella": "para ella",
+    "pa'él": "para él",
+    "vo'a": "voy a",
+    "voy'a": "voy a",
+    "to'l": "todo el",
+    "to'la": "toda la",
+    "de'l": "de el"
   }
 }

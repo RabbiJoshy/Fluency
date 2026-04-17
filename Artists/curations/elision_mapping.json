@@ -2768,12 +2768,6 @@
     "combined_ppm": 200.62
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "goin'",
-    "ppm": 195.2
-  },
-  {
     "action": "merge",
     "merge_type": "elision_pair",
     "elided_word": "tiempo'",
@@ -4509,12 +4503,6 @@
       "trépatir"
     ],
     "also_in_elision_merge": false
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "gon'",
-    "ppm": 119.29
   },
   {
     "action": "merge",
@@ -6424,12 +6412,6 @@
     "also_in_elision_merge": false
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "fuckin'",
-    "ppm": 81.33
-  },
-  {
     "action": "merge",
     "merge_type": "elision_pair",
     "elided_word": "tirarno'",
@@ -6634,13 +6616,6 @@
     "combined_ppm": 81.33
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "pal'",
-    "ppm": 81,
-    "note": "pa'l = para el"
-  },
-  {
     "action": "merge",
     "merge_type": "same_word_dup",
     "word": "ama",
@@ -6822,12 +6797,6 @@
       "terminar"
     ],
     "also_in_elision_merge": true
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "yo'",
-    "ppm": 75.91
   },
   {
     "action": "merge",
@@ -7322,12 +7291,6 @@
       "vibrar"
     ],
     "also_in_elision_merge": true
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "feelin'",
-    "ppm": 65.07
   },
   {
     "action": "merge",
@@ -8868,24 +8831,6 @@
     "also_in_elision_merge": false
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "leggo'",
-    "ppm": 54.22
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "cryin'",
-    "ppm": 54.22
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "thinkin'",
-    "ppm": 54.22
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "podemo'",
@@ -9123,12 +9068,6 @@
     "target_lemma": "crecío",
     "elided_ppm": 48.8,
     "combined_ppm": 48.8
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "lil'",
-    "ppm": 48.8
   },
   {
     "action": "merge",
@@ -9847,12 +9786,6 @@
     "target_lemma": "millo",
     "elided_ppm": 43.38,
     "combined_ppm": 43.38
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "grabbin'",
-    "ppm": 43.38
   },
   {
     "action": "merge",
@@ -12190,13 +12123,6 @@
     "note": "manual override (non-s-elision)"
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "move'",
-    "ppm": 33,
-    "note": "English 'move'"
-  },
-  {
     "action": "merge",
     "merge_type": "same_word_dup",
     "word": "acuesta",
@@ -12988,12 +12914,6 @@
     "combined_ppm": 32.53
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "rollin'",
-    "ppm": 32.53
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "paragua'",
@@ -13002,12 +12922,6 @@
     "target_lemma": "paraguo",
     "elided_ppm": 32.53,
     "combined_ppm": 32.53
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "lovin'",
-    "ppm": 32.53
   },
   {
     "action": "merge",
@@ -13048,12 +12962,6 @@
     "target_lemma": "bellaqueo",
     "elided_ppm": 32.53,
     "combined_ppm": 32.53
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "signin'",
-    "ppm": 32.53
   },
   {
     "action": "merge",
@@ -15400,18 +15308,6 @@
     "combined_ppm": 21.69
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "sayin'",
-    "ppm": 21.69
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "chancin'",
-    "ppm": 21.69
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "aventura'",
@@ -15440,12 +15336,6 @@
     "target_lemma": "jevo",
     "elided_ppm": 21.69,
     "combined_ppm": 21.69
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "pourin'",
-    "ppm": 21.69
   },
   {
     "action": "merge",
@@ -15488,12 +15378,6 @@
     "combined_ppm": 21.69
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "callin'",
-    "ppm": 21.69
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "matarlo'",
@@ -15522,12 +15406,6 @@
     "target_lemma": "atrevir",
     "elided_ppm": 21.69,
     "combined_ppm": 21.69
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "rubbin'",
-    "ppm": 21.69
   },
   {
     "action": "merge",
@@ -15590,18 +15468,6 @@
     "combined_ppm": 21.69
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "wakin'",
-    "ppm": 21.69
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "fallin'",
-    "ppm": 21.69
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "creía'",
@@ -15610,12 +15476,6 @@
     "target_lemma": "creer",
     "elided_ppm": 21.69,
     "combined_ppm": 21.69
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "sippin'",
-    "ppm": 21.69
   },
   {
     "action": "merge",
@@ -15806,12 +15666,6 @@
     "target_lemma": "guardá",
     "elided_ppm": 21.69,
     "combined_ppm": 21.69
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "wit'",
-    "ppm": 21.69
   },
   {
     "action": "merge",
@@ -17890,12 +17744,6 @@
     "combined_ppm": 16.27
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "shinin'",
-    "ppm": 16.27
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "chinguemo'",
@@ -18064,12 +17912,6 @@
     "target_lemma": "tiradore",
     "elided_ppm": 16.27,
     "combined_ppm": 16.27
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "stuntin'",
-    "ppm": 16.27
   },
   {
     "action": "merge",
@@ -18436,12 +18278,6 @@
     "target_lemma": "escuchar",
     "elided_ppm": 16.27,
     "combined_ppm": 16.27
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "bakin'",
-    "ppm": 16.27
   },
   {
     "action": "merge",
@@ -23107,12 +22943,6 @@
     "combined_ppm": 10.84
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "drinkin'",
-    "ppm": 10.84
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "edade'",
@@ -23157,12 +22987,6 @@
     "target_lemma": "excusa",
     "elided_ppm": 10.84,
     "combined_ppm": 10.84
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "poppin'",
-    "ppm": 10.84
   },
   {
     "action": "merge",
@@ -23531,12 +23355,6 @@
     "combined_ppm": 10.84
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "makin'",
-    "ppm": 10.84
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "yankee'",
@@ -23675,12 +23493,6 @@
     "target_lemma": "sanguinario",
     "elided_ppm": 10.84,
     "combined_ppm": 10.84
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "clutchin'",
-    "ppm": 10.84
   },
   {
     "action": "merge",
@@ -23823,12 +23635,6 @@
     "combined_ppm": 10.84
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "gettin'",
-    "ppm": 10.84
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "pujol'",
@@ -23857,18 +23663,6 @@
     "target_lemma": "entramo",
     "elided_ppm": 10.84,
     "combined_ppm": 10.84
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "pullin'",
-    "ppm": 10.84
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "typin'",
-    "ppm": 10.84
   },
   {
     "action": "merge",
@@ -23939,12 +23733,6 @@
     "target_lemma": "refuerzo",
     "elided_ppm": 10.84,
     "combined_ppm": 10.84
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "drownin'",
-    "ppm": 10.84
   },
   {
     "action": "merge",
@@ -24467,12 +24255,6 @@
     "combined_ppm": 10.84
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "doin'",
-    "ppm": 10.84
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "recuerde'",
@@ -24793,12 +24575,6 @@
     "combined_ppm": 10.84
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "hustlin'",
-    "ppm": 10.84
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "fuego'",
@@ -24837,12 +24613,6 @@
     "target_lemma": "pote",
     "elided_ppm": 10.84,
     "combined_ppm": 10.84
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "somethin'",
-    "ppm": 10.84
   },
   {
     "action": "merge",
@@ -29211,12 +28981,6 @@
     "combined_ppm": 5.42
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "racin'",
-    "ppm": 5.42
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "tío'",
@@ -29487,12 +29251,6 @@
     "combined_ppm": 5.42
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "playin'",
-    "ppm": 5.42
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "net'",
@@ -29621,12 +29379,6 @@
     "target_lemma": null,
     "elided_ppm": 5.42,
     "combined_ppm": 5.42
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "rockin'",
-    "ppm": 5.42
   },
   {
     "action": "merge",
@@ -30549,12 +30301,6 @@
     "combined_ppm": 5.42
   },
   {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "mornin'",
-    "ppm": 5.42
-  },
-  {
     "action": "merge",
     "merge_type": "elided_only",
     "elided_word": "aferre'",
@@ -30743,12 +30489,6 @@
     "target_lemma": null,
     "elided_ppm": 5.42,
     "combined_ppm": 5.42
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "mothafuckin'",
-    "ppm": 5.42
   },
   {
     "action": "merge",
@@ -31049,12 +30789,6 @@
     "target_lemma": null,
     "elided_ppm": 5.42,
     "combined_ppm": 5.42
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "ballin'",
-    "ppm": 5.42
   },
   {
     "action": "merge",
@@ -32395,12 +32129,6 @@
     "target_lemma": "perder",
     "elided_ppm": 5.42,
     "combined_ppm": 5.42
-  },
-  {
-    "action": "skip",
-    "merge_type": "not_s_elision",
-    "word": "overthinkin'",
-    "ppm": 5.42
   },
   {
     "action": "merge",

@@ -1,5 +1,7 @@
 {
   "_format": "Shared curated list. entries = words, sources = which artist contributed each.",
+  "_intent": "EXCLUDE AS INTERJECTION — words silently dropped from the deck. Step 4a's Phase 1a routes these to exclude.interjections. Supplements the regex patterns and Wiktionary-all-INTJ detector. Single-letter entries cover tokenizer artifacts (stray initials, abbreviations) and behave like noise filtering.",
+  "_note": "Do not add words that have legitimate Spanish senses beyond their interjection use (e.g. 'hola', 'am\u00e9n', 'chao', 'caray' are interjections but also learnable). Let the regex+Wikt-all-INTJ detectors catch true interjections automatically.",
   "entries": [
     "aah",
     "ar",

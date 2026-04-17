@@ -1,5 +1,7 @@
 {
-  "_format": "Shared curated list. entries = words, sources = which artist contributed each.",
+  "_format": "Shared curated list. entries = words.",
+  "_intent": "ALLOW — prevents detectors (cap-ratio, spaCy NER, Wiktionary all-PROPN) from flagging these words as proper nouns. Use for common Spanish words that the detectors keep getting wrong (e.g. 'amor', 'baby', 'bandera').",
+  "_note": "Conflicts with drop_proper_nouns.json resolved at load time (allow wins).",
   "entries": [
     "all",
     "alto",
