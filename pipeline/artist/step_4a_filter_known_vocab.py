@@ -121,17 +121,28 @@ def _strip_acute(s):
 # Clitic detection — the one rule
 # ---------------------------------------------------------------------------
 
-def strip_clitic(word, verb_forms):
+def strip_clitic(word, verb_forms, conj_reverse=None):
     """Return (base, clitic) if word is verb+clitic, else None.
 
     Imperatives drop an accent when clitics attach (baja → bájame). Try the
-    accented and accent-stripped base against the verb-form set. Done.
+    accented and accent-stripped base against the verb-form set.
+
+    If ``conj_reverse`` (the verbecc form→lemma map) is provided, resolve the
+    stripped surface to its infinitive. This prevents párame → para (the
+    ambiguous imperative that also means "for") from displacing the proper
+    base verb párame → parar.
     """
     for clitic in _CLITIC_PRONOUNS:
         if word.endswith(clitic) and len(word) > len(clitic) + 2:
             base = word[:-len(clitic)]
             for candidate in (base, _strip_acute(base)):
                 if candidate in verb_forms:
+                    if conj_reverse:
+                        entries = conj_reverse.get(candidate, [])
+                        if entries:
+                            lemma = entries[0].get("lemma")
+                            if lemma:
+                                return (lemma, clitic)
                     return (candidate, clitic)
     return None
 
@@ -182,6 +193,16 @@ def main():
     # Load en_50k for the English fallback phase
     en_50k = load_en_50k(EN_50K_PATH)
     print(f"  en_50k: {len(en_50k)} words")
+
+    # Load verbecc form→lemma map for clitic base resolution. Without it,
+    # `párame` strips to `para` which is the ambiguous imperative/preposition;
+    # with it, resolves to infinitive `parar`.
+    conj_reverse_path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
+    conj_reverse = {}
+    if os.path.isfile(conj_reverse_path):
+        with open(conj_reverse_path, "r", encoding="utf-8") as f:
+            conj_reverse = json.load(f)
+        print(f"  conjugation_reverse: {len(conj_reverse)} forms")
 
     # Curations
     noise = _maybe_load_shared("noise.json") | _maybe_load_shared("interjections.json")
@@ -316,7 +337,7 @@ def main():
     # 3a. Clitic: one rule.
     clitic_count = 0
     for w in list(remaining):
-        result = strip_clitic(w, verb_forms)
+        result = strip_clitic(w, verb_forms, conj_reverse)
         if result is None:
             continue
         base, clitic = result
