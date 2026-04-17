@@ -665,8 +665,12 @@ def main():
         if word in skip_set:
             skipped_flags += 1
             continue
-        # Skip very short words and contractions
-        if len(word) <= 2 or "'" in word:
+        # Skip contractions (elision forms handled by step 3's merge).
+        # We no longer blanket-skip len<=2 — that was a legacy cost-saver
+        # that broke Gemini classification for core function words (de, no,
+        # y, en, me, lo, el, se, te, mi, tu, un, a). word_routing.exclude
+        # and the noise curation already handle genuine single-letter noise.
+        if "'" in word:
             skipped_short += 1
             continue
 
