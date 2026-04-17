@@ -43,13 +43,19 @@ from pathlib import Path
 import argparse
 
 from util_5c_sense_paths import sense_menu_path, sense_assignments_lemma_path
+from util_6a_assignment_format import load_assignments, resolve_best_per_example
+
+# Keyword-tier priority ceiling for meaning-level assignment_method stamping.
+# Mirrors pipeline/artist/step_8b_assemble_artist_vocabulary.py.
+KEYWORD_PRIORITY_THRESHOLD = 15
 from util_6a_method_priority import METHOD_PRIORITY
 from util_8a_assembly_helpers import make_stable_id, split_count_proportionally
 from util_pipeline_meta import make_meta, write_sidecar
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples split, hex IDs, lemma-proportional counts",
+    2: "group per-sense assignments by sense_idx so foreign-sid fallbacks don't duplicate meanings",
 }
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -334,8 +340,7 @@ def main():
         assignments_path = _sa_path(LAYERS, args.sense_source)
         assignments_label = "sense_assignments/%s" % args.sense_source
     if assignments_path.exists():
-        with open(assignments_path, encoding="utf-8") as f:
-            assignments = json.load(f)
+        assignments = load_assignments(assignments_path)
         print(f"  {assignments_label}: {len(assignments)} assigned entries")
     else:
         assignments = {}
@@ -353,9 +358,14 @@ def main():
                 assignments[k].update(methods)
         print(f"  sense_assignments_pos: {len(pos_assigns)} POS-refined entries merged")
 
-    # Load curated translation overrides (shared/ at project root)
+    # Load curated translation overrides (shared/ at project root, with
+    # archive fallback for files relocated during the refactor).
     curated = {}
     curated_path = PROJECT_ROOT / "shared" / "curated_translations.json"
+    if not curated_path.exists():
+        _archived = PROJECT_ROOT / "shared" / "archive" / "curated_translations.json"
+        if _archived.exists():
+            curated_path = _archived
     if curated_path.exists():
         with open(curated_path, encoding="utf-8") as f:
             raw_curated = json.load(f)
@@ -556,24 +566,30 @@ def main():
                 senses_data, wl, lemma, is_analysis_menu)
             id_list = list(sense_id_map.keys())
 
-            # Resolve assignments
+            # Resolve assignments: per-example highest-priority method wins.
+            # Each sense becomes one meaning; examples inside a meaning may
+            # carry different methods (stamped per-example downstream).
             raw_assigns = assignments.get(key, {})
-            word_assignments = []
-            if isinstance(raw_assigns, dict) and raw_assigns:
-                best_method = max(raw_assigns.keys(),
-                                  key=lambda m: METHOD_PRIORITY.get(m, -1))
-                for a in raw_assigns[best_method]:
-                    sid = a.get("sense")
-                    if sid and sid in sense_id_map:
-                        word_assignments.append({
-                            "sense_idx": id_list.index(sid),
-                            "examples": a.get("examples", []),
-                        })
-                    elif senses:
-                        word_assignments.append({
-                            "sense_idx": 0,
-                            "examples": a.get("examples", []),
-                        })
+            per_sense = resolve_best_per_example(raw_assigns) if isinstance(raw_assigns, dict) else {}
+
+            # Group per-sense examples by sense_idx. Multiple sids can resolve
+            # to the same idx when foreign sense IDs (e.g. from a phrasebook
+            # analysis folded into this lemma) fall back to sense_idx=0; without
+            # this merge we'd emit one duplicate meaning per such sid.
+            by_idx = {}  # sense_idx -> list of example entries
+            for sid, ex_list in per_sense.items():
+                if sid in sense_id_map:
+                    sense_idx = id_list.index(sid)
+                elif senses:
+                    sense_idx = 0
+                else:
+                    continue
+                by_idx.setdefault(sense_idx, []).extend(ex_list)
+
+            word_assignments = [
+                {"sense_idx": idx, "examples": exs}
+                for idx, exs in by_idx.items()
+            ]
 
             # Build meanings from senses + assignments
             meanings_full = []
@@ -599,15 +615,20 @@ def main():
             elif not word_assignments:
                 if curated_entry:
                     cleaned = curated_entry["translation"]
+                    pos = curated_entry.get("pos") or senses[0]["pos"]
                 else:
                     cleaned = clean_translation(senses[0]["translation"])
+                    pos = senses[0]["pos"]
                 meaning_lean = {
-                    "pos": senses[0]["pos"],
+                    "pos": pos,
                     "translation": cleaned,
                     "frequency": "1.00",
                 }
                 if cleaned != senses[0]["translation"]:
                     meaning_lean["detail"] = senses[0]["translation"]
+                src = senses[0].get("source")
+                if src:
+                    meaning_lean["source"] = src
                 meanings_lean.append(meaning_lean)
                 meanings_full.append({**meaning_lean, "examples": []})
                 examples_by_meaning.append([])
@@ -618,15 +639,35 @@ def main():
                     if sense_idx >= len(senses):
                         continue
                     sense = senses[sense_idx]
-                    exs = [word_examples[j] for j in a.get("examples", [])
-                           if j < len(word_examples)]
-                    freq = len(exs) / total_assigned if total_assigned > 0 else 0
+                    ex_list = a.get("examples", [])  # [{"ex_idx", "method"}]
+
+                    # Build per-example dicts with method stamps.
+                    exs = []
+                    methods_in_meaning = set()
+                    for entry in ex_list:
+                        ex_idx = entry.get("ex_idx")
+                        method = entry.get("method")
+                        if ex_idx is None or ex_idx >= len(word_examples):
+                            continue
+                        src = word_examples[ex_idx]
+                        if isinstance(src, dict):
+                            ex_copy = dict(src)
+                            if method:
+                                ex_copy["assignment_method"] = method
+                                methods_in_meaning.add(method)
+                            exs.append(ex_copy)
+                        else:
+                            exs.append(src)
+
+                    freq = len(ex_list) / total_assigned if total_assigned > 0 else 0
                     if curated_entry:
                         cleaned = curated_entry["translation"]
+                        pos = curated_entry.get("pos") or sense["pos"]
                     else:
                         cleaned = clean_translation(sense["translation"])
+                        pos = sense["pos"]
                     meaning_lean = {
-                        "pos": sense["pos"],
+                        "pos": pos,
                         "translation": cleaned,
                         "frequency": f"{freq:.2f}",
                     }
@@ -636,6 +677,22 @@ def main():
                     if detail and detail != cleaned:
                         meaning_lean["detail"] = detail
                         stats["cleaned"] += 1
+                    src = sense.get("source")
+                    if src:
+                        meaning_lean["source"] = src
+
+                    # Meaning-level stamp: only when every contributing method
+                    # is keyword-tier (0 < prio <= KEYWORD_PRIORITY_THRESHOLD).
+                    # Front-end uses this as a low-trust caveat for the whole
+                    # meaning; non-keyword methods suppress it.
+                    if methods_in_meaning and all(
+                        0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
+                        for m in methods_in_meaning
+                    ):
+                        stamp = max(methods_in_meaning,
+                                    key=lambda m: METHOD_PRIORITY.get(m, 0))
+                        meaning_lean["assignment_method"] = stamp
+
                     meanings_lean.append(meaning_lean)
                     meanings_full.append({**meaning_lean, "examples": exs})
                     examples_by_meaning.append(exs)
@@ -703,6 +760,11 @@ def main():
             })
             if morphology:
                 stats["with_morphology"] += 1
+
+    # Re-sort by corpus_count desc so lemma-split entries slot into their
+    # true frequency position (otherwise e.g. para|parar (323) would sit
+    # right after para|para (6145) because both inherited inventory order).
+    all_entries.sort(key=lambda e: -e["corpus_count"])
 
     # Compute most_frequent_lemma_instance: for each lemma, the word|lemma
     # entry with the highest corpus_count gets True
