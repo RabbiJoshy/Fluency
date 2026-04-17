@@ -982,6 +982,26 @@ def main():
           len(reclass_english))
 
     # ==================================================================
+    # Phase 4.5: RESIDUAL CLITIC FALLBACK (moved earlier)
+    # Must run BEFORE spaCy NER so that verb+clitic forms (arrópame,
+    # atendértelo, actualícense) get moved to clitic_merge before spaCy
+    # can accidentally tag them as proper nouns.
+    # ==================================================================
+    print("\n--- Phase 4.5: Residual clitic fallback ---")
+    verb_forms = set(conj_forms)
+    for _w, _poses in wikt_pos.items():
+        if _poses and _poses <= {"verb"}:
+            verb_forms.add(_w)
+    fallback = residual_clitic_fallback(remaining, verb_forms, wikt_pos)
+    if fallback:
+        clitic_merge.update(fallback)
+        for w in fallback:
+            remaining.discard(w)
+            debug_trail[w]["clitic_merge"] = fallback[w]
+            debug_trail[w]["clitic_source"] = "residual_fallback"
+    print("  Residual clitic merge: %d" % len(fallback))
+
+    # ==================================================================
     # Phase 5: spaCy NER — WITH Wiktionary safety-net (P2.1)
     # ==================================================================
     if not args.no_nlp_detect and not args.no_spacy:
@@ -1007,31 +1027,7 @@ def main():
               (len(spacy_new), len(wikt_safe)))
 
     # ==================================================================
-    # Phase 6a: RESIDUAL CLITIC FALLBACK (P4.2)
-    # For any remaining word ending in a clitic pronoun, try stripping and
-    # looking up the base in the VERB-form set. Moves hits to clitic_merge.
-    # (Verb-only lookup prevents false positives like veranos→vera.)
-    # ==================================================================
-    print("\n--- Phase 6a: Residual clitic fallback ---")
-    # Build verb-only base set: conjugation table + verb infinitives in Wikt.
-    # Don't include normal_words (contains nouns/adjs) or raw wikt_spanish.
-    verb_forms = set(conj_forms)
-    # Add Wikt entries whose POS is exclusively verb (safer than mixing in
-    # the full word set — we already have conj_forms for coverage).
-    for w, poses in wikt_pos.items():
-        if poses and poses <= {"verb"}:
-            verb_forms.add(w)
-    fallback = residual_clitic_fallback(remaining, verb_forms, wikt_pos)
-    if fallback:
-        clitic_merge.update(fallback)
-        for w in fallback:
-            remaining.discard(w)
-            debug_trail[w]["clitic_merge"] = fallback[w]
-            debug_trail[w]["clitic_source"] = "residual_fallback"
-    print("  Residual clitic merge: %d" % len(fallback))
-
-    # ==================================================================
-    # Phase 6b: FREQUENCY THRESHOLD
+    # Phase 6: FREQUENCY THRESHOLD
     # ==================================================================
     print("\nApplying frequency threshold (min_freq=%d)..." % args.min_freq)
     for w in list(remaining):
