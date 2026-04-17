@@ -80,7 +80,12 @@ from util_5c_sense_menu_format import (
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
+WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu" / "wiktionary.json"
+# Backward-compat fallback to the pre-refactor flat location.
+if not WIKTIONARY_SENSES_FILE.exists():
+    _legacy = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
+    if _legacy.exists():
+        WIKTIONARY_SENSES_FILE = _legacy
 WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 
 MIN_SENSE_FREQUENCY = 0.05
@@ -766,9 +771,21 @@ def main():
     elif use_keyword:
         print("\nKeyword classification done (instant)")
 
-    # Merge with existing assignments (add biencoder alongside other methods)
+    # Merge with existing assignments (add biencoder alongside other methods).
+    # With --force: first wipe this-method entries from existing so words
+    # that fail to classify in the new run lose their stale assignments.
     if output_file.exists():
         existing = load_assignments(output_file)
+        if args.force:
+            wiped = 0
+            for word, word_data in list(existing.items()):
+                if isinstance(word_data, dict) and my_method in word_data:
+                    del word_data[my_method]
+                    wiped += 1
+                    if not word_data:
+                        del existing[word]
+            if wiped:
+                print("  --force: wiped %d stale '%s' entries" % (wiped, my_method))
         for word, word_data in output.items():
             if isinstance(word_data, dict):
                 if word not in existing or not isinstance(existing[word], dict):

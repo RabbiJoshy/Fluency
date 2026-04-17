@@ -67,16 +67,46 @@ def first_analysis(menu, word):
     return {"senses": {}}
 
 
+def _senses_signature(senses):
+    """Content signature of a senses dict/list for identity-free deduping.
+
+    Two analyses with the same (pos, translation) set are considered equal
+    regardless of sense-id assignment. Used to prevent duplicate appends
+    across re-runs when ``identity`` is unknown.
+    """
+    if isinstance(senses, dict):
+        items = senses.values()
+    else:
+        items = senses or []
+    return frozenset(
+        (s.get("pos", ""), s.get("translation", ""))
+        for s in items if isinstance(s, dict)
+    )
+
+
 def merge_analysis(menu, word, identity, senses):
-    """Merge one word analysis into a normalized artist menu dict."""
+    """Merge one word analysis into a normalized artist menu dict.
+
+    If ``identity`` is provided, match by headword and update in place.
+    If ``identity`` is None, dedup by sense content (frozenset of
+    (pos, translation) pairs) to prevent cross-run duplicate appends.
+    """
     analyses = menu.setdefault(word, [])
-    for analysis in analyses:
-        existing_identity = analysis.get("headword", analysis.get("lemma"))
-        if identity and existing_identity == identity:
-            analysis["senses"] = deepcopy(senses)
-            if identity:
+    if identity:
+        for analysis in analyses:
+            existing_identity = analysis.get("headword", analysis.get("lemma"))
+            if existing_identity == identity:
+                analysis["senses"] = deepcopy(senses)
                 analysis.setdefault("headword", identity)
-            return
+                return
+    else:
+        new_sig = _senses_signature(senses)
+        for analysis in analyses:
+            if analysis.get("headword"):
+                continue
+            if _senses_signature(analysis.get("senses", {})) == new_sig:
+                # Same unidentified content already present — no-op.
+                return
     new_analysis = {"senses": deepcopy(senses)}
     if identity:
         new_analysis["headword"] = identity
