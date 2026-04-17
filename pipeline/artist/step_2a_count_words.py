@@ -51,9 +51,10 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
+    2: "+ multi-word elision split with surface preservation on examples",
 }
 
 try:
@@ -201,6 +202,53 @@ def tokenize(line: str) -> List[str]:
     return [m.group(0).lower() for m in WORD_RE.finditer(line)]
 
 
+# ====== Multi-word elision expansion ======
+# Contractions like ``pa'l`` fuse two Spanish words ("para el"). Splitting at
+# tokenize time routes each component to its own lemma while preserving the
+# original lyric surface on each resulting token (so the UI can display
+# "pa'l" as the source form on BOTH the `para` and `el` flashcards).
+
+_MULTI_WORD_ELISIONS: Dict[str, List[str]] = {}
+
+
+def load_multi_word_elisions(shared_dir: str) -> Dict[str, List[str]]:
+    """Load shared multi-word elision table: surface → [expanded tokens]."""
+    path = os.path.join(shared_dir, "multi_word_elisions.json")
+    if not os.path.isfile(path):
+        return {}
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    entries = data.get("entries", {})
+    out: Dict[str, List[str]] = {}
+    for surface, expansion in entries.items():
+        # values may be strings ("para el") or lists (["para","el"])
+        if isinstance(expansion, str):
+            toks = [t.lower() for t in expansion.split() if t]
+        elif isinstance(expansion, list):
+            toks = [str(t).lower() for t in expansion if t]
+        else:
+            continue
+        if toks:
+            out[surface.lower()] = toks
+    return out
+
+
+def expand_tokens(tokens: List[str], mwe_map: Dict[str, List[str]]) -> List[Tuple[str, str]]:
+    """Return [(normalized_token, source_surface), ...].
+
+    For tokens in ``mwe_map``, emit each expanded word tagged with the original
+    surface. Untouched tokens get ``source_surface == token``.
+    """
+    out: List[Tuple[str, str]] = []
+    for t in tokens:
+        if t in mwe_map:
+            for expanded in mwe_map[t]:
+                out.append((expanded, t))
+        else:
+            out.append((t, t))
+    return out
+
+
 def is_good_context_line(tokens: List[str]) -> bool:
     # conservative filtering
     if len(tokens) < 5:
@@ -280,6 +328,7 @@ def filter_excluded_songs(songs: List[Dict[str, Any]], artist_dir: str) -> List[
 def build_counts_and_candidates(
     songs: List[Dict[str, Any]],
     lid_detector=None,
+    mwe_map: Dict[str, List[str]] = None,
 ) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int]]:
     """
     Returns:
@@ -289,7 +338,9 @@ def build_counts_and_candidates(
     """
     counts: Counter = Counter()
     candidates: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-    lid_stats = {"lines_total": 0, "lines_skipped": 0, "lines_below_min_tokens": 0}
+    lid_stats = {"lines_total": 0, "lines_skipped": 0, "lines_below_min_tokens": 0,
+                 "multi_word_splits": 0}
+    mwe_map = mwe_map or {}
 
     # N-gram tracking for MWE detection (counted per unique line, not per word)
     _PHRASE_SPLIT_RE = re.compile(r'[,;:!?¡¿()"—\-]+')
@@ -311,32 +362,50 @@ def build_counts_and_candidates(
         if not clean:
             continue
 
-        lines: List[Tuple[int, str, List[str]]] = []
+        # Each line element: (line_no, line_text, expanded_tokens, word_surfaces)
+        # where expanded_tokens is List[(word, source_surface)] and
+        # word_surfaces: Dict[word, source_surface] (first occurrence wins).
+        lines: List[Tuple[int, str, List[Tuple[str, str]], Dict[str, str]]] = []
         for line_no, line_text in enumerate(clean.split("\n"), start=1):
             line_text = line_text.strip()
             if not line_text:
                 continue
             # Strip ad-libs/brackets for counting; keep original for examples
             count_text = strip_adlibs(line_text)
-            toks = tokenize(count_text) if count_text else []
-            if not toks:
+            raw_toks = tokenize(count_text) if count_text else []
+            if not raw_toks:
                 continue
+            # Apply multi-word elision splits (preserves surface on each token)
+            expanded = expand_tokens(raw_toks, mwe_map) if mwe_map else [(t, t) for t in raw_toks]
+            if mwe_map:
+                lid_stats["multi_word_splits"] += sum(
+                    1 for t in raw_toks if t in mwe_map
+                )
+            norm_toks = [w for w, _ in expanded]
             lid_stats["lines_total"] += 1
             if lid_detector is not None:
-                if len(toks) >= _MIN_TOKENS_FOR_LID:
+                if len(norm_toks) >= _MIN_TOKENS_FOR_LID:
                     if _is_english_line(lid_detector, line_text):
                         lid_stats["lines_skipped"] += 1
                         continue
                 else:
                     lid_stats["lines_below_min_tokens"] += 1
-            lines.append((line_no, line_text, toks))
-            counts.update(toks)
+            # word_surfaces: first surface seen for each normalized word on this line
+            word_surfaces: Dict[str, str] = {}
+            for w, surface in expanded:
+                if w not in word_surfaces:
+                    word_surfaces[w] = surface
+            lines.append((line_no, line_text, expanded, word_surfaces))
+            counts.update(norm_toks)
 
-            # Count n-grams once per unique line text (use cleaned text)
+            # Count n-grams once per unique line text (use cleaned text).
+            # N-gram detection uses EXPANDED tokens so MWE phrases align
+            # with the normalized vocabulary.
             if count_text not in seen_lines:
                 seen_lines.add(count_text)
                 for chunk in _PHRASE_SPLIT_RE.split(count_text):
-                    chunk_toks = tokenize(chunk)
+                    chunk_raw = tokenize(chunk)
+                    chunk_toks = [w for w, _ in expand_tokens(chunk_raw, mwe_map)] if mwe_map else chunk_raw
                     for t in chunk_toks:
                         ngram_unigrams[t] += 1
                     for n in range(2, 6):
@@ -345,54 +414,54 @@ def build_counts_and_candidates(
                             ngram_counts[n][ng] += 1
                             ngram_songs[ng].add(song_id)
 
-        # Top 3 distinct lines per word per song (for single-song words)
+        # Top 3 distinct lines per word per song (for single-song words).
         # Two lines are "the same" if their tokenized text matches after
         # stripping adlibs — catches chorus repetitions with minor variations.
         MAX_PER_WORD_PER_SONG = 3
-        # top_for_word[word] = list of (score, line_no, line_text, norm)
-        top_for_word = {}  # type: Dict[str, List[Tuple[int, int, str, str]]]
+        # top_for_word[word] = list of (score, line_no, line_text, norm, surface)
+        top_for_word = {}  # type: Dict[str, List[Tuple[int, int, str, str, str]]]
 
         # Pre-compute normalized forms once per line
-        line_norms = []  # type: List[str]
-        for _ln, lt, _tk in lines:
+        line_norms: List[str] = []
+        for _ln, lt, _exp, _ws in lines:
             line_norms.append(" ".join(tokenize(strip_adlibs(lt))))
 
-        for idx, (line_no, line_text, toks) in enumerate(lines):
-            if not is_good_context_line(toks):
+        for idx, (line_no, line_text, expanded, word_surfaces) in enumerate(lines):
+            norm_toks = [w for w, _ in expanded]
+            if not is_good_context_line(norm_toks):
                 continue
-            s = score_line(toks)
+            s = score_line(norm_toks)
             norm = line_norms[idx]
-            for w in set(toks):
+            for w in word_surfaces:
+                surface = word_surfaces[w]
                 entries = top_for_word.get(w)
                 if entries is None:
-                    top_for_word[w] = [(s, line_no, line_text, norm)]
+                    top_for_word[w] = [(s, line_no, line_text, norm, surface)]
                     continue
-                # Skip if this normalized text already present
-                if any(n == norm for _, _, _, n in entries):
-                    # Replace if higher score
-                    for i, (es, eln, elt, en) in enumerate(entries):
+                if any(n == norm for _, _, _, n, _ in entries):
+                    for i, (es, eln, elt, en, esf) in enumerate(entries):
                         if en == norm and s > es:
-                            entries[i] = (s, line_no, line_text, norm)
+                            entries[i] = (s, line_no, line_text, norm, surface)
                             break
                     continue
                 if len(entries) < MAX_PER_WORD_PER_SONG:
-                    entries.append((s, line_no, line_text, norm))
+                    entries.append((s, line_no, line_text, norm, surface))
                 else:
-                    # Replace worst if this scores higher
                     worst_i = min(range(len(entries)), key=lambda i: entries[i][0])
                     if s > entries[worst_i][0]:
-                        entries[worst_i] = (s, line_no, line_text, norm)
+                        entries[worst_i] = (s, line_no, line_text, norm, surface)
 
         # Fallback: words with no good-quality candidate still get their best line
-        for idx, (line_no, line_text, toks) in enumerate(lines):
-            s = score_line(toks)
+        for idx, (line_no, line_text, expanded, word_surfaces) in enumerate(lines):
+            norm_toks = [w for w, _ in expanded]
+            s = score_line(norm_toks)
             norm = line_norms[idx]
-            for w in set(toks):
+            for w, surface in word_surfaces.items():
                 if w not in top_for_word:
-                    top_for_word[w] = [(s, line_no, line_text, norm)]
+                    top_for_word[w] = [(s, line_no, line_text, norm, surface)]
 
         for w, entries in top_for_word.items():
-            for s, line_no, line_text, _norm in entries:
+            for s, line_no, line_text, _norm, surface in entries:
                 candidates[w].append({
                     "score": s,
                     "batch": batch_i,
@@ -400,6 +469,7 @@ def build_counts_and_candidates(
                     "line_no": line_no,
                     "line_text": line_text,
                     "song_title": title,
+                    "surface": surface,
                 })
 
     ngram_data = {
@@ -473,7 +543,7 @@ def select_examples(
         for d in chosen:
             d.pop("score", None)
             d.pop("batch", None)
-            # song_title kept — used by step 6 for source attribution
+            # song_title + surface kept — used by step 3/6 and the front-end
 
         selected[w] = chosen
 
@@ -493,11 +563,15 @@ def to_evidence_json(
     for word, c in items:
         ex_list = []
         for ex in selected_examples.get(word, []):
-            ex_list.append({
+            rec = {
                 "id": f"{ex.get('song_id')}:{ex.get('line_no')}",
                 "line": ex.get("line_text", "") or "",
-                "title": ex.get("song_title", "")  # ADD THIS LINE
-            })
+                "title": ex.get("song_title", ""),
+            }
+            surface = ex.get("surface")
+            if surface and surface != word:
+                rec["surface"] = surface
+            ex_list.append(rec)
         out.append({
             "word": word,
             "corpus_count": c,
@@ -680,7 +754,15 @@ def main():
             print("WARNING: lingua not installed — skipping English line detection. "
                   "Install with: pip install lingua-language-detector")
 
-    counts, candidates, lid_stats, ngram_data = build_counts_and_candidates(songs, lid_detector=lid_detector)
+    # Load multi-word elisions curation so pa'l → para + el at tokenize time
+    from util_1a_artist_config import SHARED_DIR
+    mwe_map = load_multi_word_elisions(SHARED_DIR)
+    if mwe_map:
+        print(f"Loaded {len(mwe_map)} multi-word elision entries from {SHARED_DIR}/multi_word_elisions.json")
+
+    counts, candidates, lid_stats, ngram_data = build_counts_and_candidates(
+        songs, lid_detector=lid_detector, mwe_map=mwe_map,
+    )
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
     out_list = to_evidence_json(counts, selected)
 
@@ -699,6 +781,9 @@ def main():
               f"{lid_stats['lines_below_min_tokens']:,}")
     elif lid_detector is not None:
         print("  Lingua: no English lines detected")
+
+    if lid_stats.get("multi_word_splits"):
+        print(f"  Multi-word elision splits: {lid_stats['multi_word_splits']:,} tokens expanded")
 
     # Load Wiktionary MWE expressions for filtering
     wikt_mwe_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
