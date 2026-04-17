@@ -26,38 +26,50 @@ Modes:
   --keyword-only Keyword overlap (instant, ~70% accuracy)
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/step_6b_assign_senses_local.py --artist-dir Artists/Rosalia
-    .venv/bin/python3 pipeline/artist/step_6b_assign_senses_local.py --artist-dir "Artists/Bad Bunny" --keyword-only
+    .venv/bin/python3 pipeline/step_6b_assign_senses_local.py                          # normal mode
+    .venv/bin/python3 pipeline/step_6b_assign_senses_local.py --artist-dir Artists/Rosalia
+    .venv/bin/python3 pipeline/step_6b_assign_senses_local.py --artist-dir "Artists/Bad Bunny" --keyword-only
 
-Inputs:
+Inputs (artist mode):
     {artist}/data/layers/word_inventory.json
-    {artist}/data/layers/examples_raw.json
+    {artist}/data/layers/examples_raw.json                    ({word: [{spanish, surface, ...}]})
     {artist}/data/layers/example_translations.json
-    {artist}/data/layers/senses_gemini.json
-    Data/Spanish/layers/sense_menu.json  (fallback)
+    {artist}/data/layers/senses_gemini.json                   (optional)
+    {artist}/data/layers/sense_menu/wiktionary.json           (primary)
+    Data/Spanish/layers/sense_menu/wiktionary.json            (shared fallback)
+
+Inputs (normal mode):
+    Data/Spanish/layers/word_inventory.json
+    Data/Spanish/layers/examples_raw.json                     ({word: [{target, english, ...}]})
+    Data/Spanish/layers/sense_menu/wiktionary.json
 
 Outputs:
-    {artist}/data/layers/sense_assignments.json
+    {layers}/sense_assignments/{source}.json                  (merged, method-keyed)
+    {layers}/sense_menu/{source}.json                         (if dialect senses appended)
 """
 
 import argparse
 import json
 import re
+import sys
 import time
 from collections import defaultdict
 from pathlib import Path
 
-from util_1a_artist_config import (add_artist_arg, load_artist_config, assign_sense_ids,
-                           artist_sense_menu_path, artist_sense_assignments_path,
-                           METHOD_PRIORITY, best_method_priority)
+# Make artist-only helpers importable when running in artist mode.
+sys.path.insert(0, str(Path(__file__).resolve().parent / "artist"))
+from util_1a_artist_config import (load_artist_config,
+                           artist_sense_menu_path, artist_sense_assignments_path)
+from util_6a_method_priority import METHOD_PRIORITY, best_method_priority
+from util_6a_assignment_format import load_assignments, dump_assignments
 
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from step_5c_build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
+from util_5c_sense_paths import sense_menu_path, sense_assignments_path
 from util_6a_pos_menu_filter import (
     filter_senses_by_pos,
     filter_senses_by_precomputed_pos,
+    sense_compatible_with_example_pos,
     TRUSTED_FILTER_POS,
 )
 from util_5c_sense_menu_format import (
@@ -67,9 +79,9 @@ from util_5c_sense_menu_format import (
 )
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 WIKTIONARY_SENSES_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu.json"
-WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "wiktionary" / "kaikki-spanish.jsonl.gz"
+WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 
 MIN_SENSE_FREQUENCY = 0.05
 MAX_EXAMPLES_PER_WORD = 10
@@ -308,8 +320,10 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Assign artist lyric examples to senses using local embeddings")
-    add_artist_arg(parser)
+        description="Assign example sentences to senses using local bi-encoder embeddings")
+    parser.add_argument("--artist-dir", default=None,
+                        help="Artist directory (e.g. Artists/Bad Bunny). "
+                             "Omit for normal mode (Data/Spanish).")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--biencoder", action="store_true", default=True,
                       help="Bi-encoder cosine similarity (default)")
@@ -341,17 +355,44 @@ def main():
     args = parser.parse_args()
 
     artist_dir = args.artist_dir
-    config = load_artist_config(artist_dir)
-    layers_dir = Path(artist_dir) / "data" / "layers"
+    is_artist = artist_dir is not None
+
+    if is_artist:
+        config = load_artist_config(artist_dir)
+        layers_dir = Path(artist_dir) / "data" / "layers"
+        mode_label = "Artist: %s" % config["name"]
+        routing_path = Path(artist_dir) / "data" / "known_vocab" / "word_routing.json"
+    else:
+        layers_dir = PROJECT_ROOT / "Data" / "Spanish" / "layers"
+        mode_label = "Normal mode (Data/Spanish)"
+        routing_path = layers_dir / "word_routing.json"
 
     use_keyword = args.keyword_only
     method = "keyword overlap" if use_keyword else "bi-encoder"
-    print("Artist sense matching (%s)" % method)
-    print("Artist: %s" % config["name"])
+    print("Sense matching (%s)" % method)
+    print(mode_label)
+
+    # Derive the source label from --menu-source-label (default "wiktionary").
+    source = args.menu_source_label
+    default_assignments_rel = "sense_assignments/%s.json" % source
 
     # Single unified assignments file (all methods merge into one)
-    output_file = Path(artist_sense_assignments_path(str(layers_dir), "wiktionary")) if args.assignments_file == "sense_assignments/wiktionary.json" else layers_dir / args.assignments_file
-    senses_output_file = Path(artist_sense_menu_path(str(layers_dir), "wiktionary"))
+    using_default_assignments = (
+        args.assignments_file == default_assignments_rel
+        or args.assignments_file == "sense_assignments/wiktionary.json"
+    )
+    if using_default_assignments:
+        if is_artist:
+            output_file = Path(artist_sense_assignments_path(str(layers_dir), source))
+        else:
+            output_file = sense_assignments_path(layers_dir, source)
+    else:
+        output_file = layers_dir / args.assignments_file
+
+    if is_artist:
+        senses_output_file = Path(artist_sense_menu_path(str(layers_dir), source))
+    else:
+        senses_output_file = sense_menu_path(layers_dir, source)
 
     # No early exit — priority checking handles skip logic per-word
 
@@ -365,23 +406,42 @@ def main():
         examples_data = json.load(f)
     print("  examples_raw: %d entries" % len(examples_data))
 
-    senses_path = layers_dir / "senses_gemini.json"
-    gemini_senses = {}
-    if senses_path.exists():
-        with open(senses_path, encoding="utf-8") as f:
-            gemini_senses = json.load(f)
-        print("  senses_gemini: %d entries" % len(gemini_senses))
-    else:
-        print("  senses_gemini: (not found)")
+    # Normal-mode schema uses `target` (Spanish) + inline `english`. Downstream
+    # code expects the artist schema (`spanish` + separate translations dict),
+    # so shim the examples in place.
+    if not is_artist:
+        for _exs in examples_data.values():
+            for _ex in _exs:
+                if "spanish" not in _ex and "target" in _ex:
+                    _ex["spanish"] = _ex["target"]
 
-    translations_path = layers_dir / "example_translations.json"
+    gemini_senses = {}
+    if is_artist:
+        senses_path = layers_dir / "senses_gemini.json"
+        if senses_path.exists():
+            with open(senses_path, encoding="utf-8") as f:
+                gemini_senses = json.load(f)
+            print("  senses_gemini: %d entries" % len(gemini_senses))
+        else:
+            print("  senses_gemini: (not found)")
+
     translations = {}
+    translations_path = layers_dir / "example_translations.json"
     if translations_path.exists():
         with open(translations_path, encoding="utf-8") as f:
             translations = json.load(f)
         print("  example_translations: %d entries" % len(translations))
-    else:
+    elif is_artist:
         print("  example_translations: (not found)")
+    else:
+        # Normal mode: translations live inline on each example record.
+        for _exs in examples_data.values():
+            for _ex in _exs:
+                _spa = _ex.get("target") or _ex.get("spanish")
+                _eng = _ex.get("english")
+                if _spa and _eng:
+                    translations[_spa] = {"english": _eng}
+        print("  translations (inline from examples_raw): %d entries" % len(translations))
 
     example_pos = {}
     example_pos_path = layers_dir / "example_pos.json"
@@ -424,21 +484,21 @@ def main():
                 _, eswikt_index = _pickle.load(f)
             print("  eswiktionary dialect senses: %d words" % len(eswikt_index))
 
-        master_path = PROJECT_ROOT / "Artists" / "vocabulary_master.json"
+        # Master vocabulary fallback only applies in artist mode.
         master = {}
-        if master_path.exists():
-            with open(master_path, encoding="utf-8") as f:
-                master = json.load(f)
-            print("  vocabulary_master (fallback): %d entries" % len(master))
+        if is_artist:
+            master_path = PROJECT_ROOT / "Artists" / "vocabulary_master.json"
+            if master_path.exists():
+                with open(master_path, encoding="utf-8") as f:
+                    master = json.load(f)
+                print("  vocabulary_master (fallback): %d entries" % len(master))
 
     # Load existing assignments for priority checking
     existing_assigns = {}
     if output_file.exists():
-        with open(output_file, encoding="utf-8") as f:
-            existing_assigns = json.load(f)
+        existing_assigns = load_assignments(output_file)
 
     # Load word routing to skip excluded/gemini-routed words
-    routing_path = Path(artist_dir) / "data" / "known_vocab" / "word_routing.json"
     routing_skip = set()
     if routing_path.exists():
         with open(routing_path, encoding="utf-8") as f:
@@ -597,6 +657,12 @@ def main():
         precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
         if precomputed:
             pos_keep_indices, pos_stats = filter_senses_by_precomputed_pos(word_senses, precomputed)
+        elif use_keyword:
+            # Keyword-only mode: skip live spaCy fallback. Loading the
+            # transformer model just for the ~1-2k words missing precomputed
+            # POS adds ~15s for marginal quality. Precomputed POS is populated
+            # by tool_6a_tag_example_pos.py — re-run that if you need coverage.
+            pos_keep_indices, pos_stats = list(range(len(word_senses))), {"used": False}
         else:
             pos_keep_indices, pos_stats = filter_senses_by_pos(word, lemma, word_senses, examples)
         if pos_stats.get("used") and pos_stats.get("reduced"):
@@ -625,11 +691,15 @@ def main():
                 if not eng:
                     continue  # no translation — skip (don't force onto first sense)
 
-                # Per-example POS filter: narrow candidates for this example
+                # Per-example POS filter: narrow candidates for this example.
+                # Trusted ex_pos (VERB/NOUN/ADJ/ADV/INTJ) narrows to exact POS.
+                # Untrusted ex_pos (ADP/DET/PRON/...) still rules out trusted
+                # mismatches (e.g. ADP-tagged example drops VERB senses).
                 ex_pos = precomputed.get(ex_idx)
-                if ex_pos and ex_pos in TRUSTED_FILTER_POS:
+                if ex_pos:
                     pos_candidates = [i for i in keep_indices
-                                      if word_senses[i].get("pos") == ex_pos]
+                                      if sense_compatible_with_example_pos(
+                                          word_senses[i].get("pos"), ex_pos)]
                     if not pos_candidates:
                         # POS observed but no matching senses — fall back to
                         # full keep_indices so keyword can still try
@@ -698,8 +768,7 @@ def main():
 
     # Merge with existing assignments (add biencoder alongside other methods)
     if output_file.exists():
-        with open(output_file, encoding="utf-8") as f:
-            existing = json.load(f)
+        existing = load_assignments(output_file)
         for word, word_data in output.items():
             if isinstance(word_data, dict):
                 if word not in existing or not isinstance(existing[word], dict):
@@ -710,8 +779,7 @@ def main():
         output = existing
 
     print("\nWriting %s..." % output_file)
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
+    dump_assignments(output, output_file)
 
     # Write/merge the senses layer
     if senses_output_file and normal_only_senses:
