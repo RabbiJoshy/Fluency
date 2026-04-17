@@ -234,11 +234,26 @@ def load_wiktionary_interjections(path):
 def load_wikt_english_glosses(path):
     """Return {word: [english_gloss_string, ...]} from raw Wiktionary JSONL.
 
-    Loads full per-sense glosses so the cognate voters can score each one.
+    Skips `form-of` senses (plural of X, feminine of Y, inflection of Z) —
+    those glosses contain the base Spanish lemma as a token, which the
+    cognate scorer then happily matches against the inflected form at 1.0
+    (e.g. `chavos` → "plural of chavo" → match chavos↔chavo). Only real
+    English glosses should count.
+
+    Also skips obvious template-generated gloss strings as a belt-and-
+    suspenders filter.
     """
     glosses = {}
     if not os.path.exists(path):
         return glosses
+    form_prefixes = (
+        "plural of ", "feminine of ", "masculine of ",
+        "feminine plural of ", "feminine singular of ",
+        "masculine plural of ", "masculine singular of ",
+        "inflection of ", "form of ", "diminutive of ",
+        "superlative of ", "comparative of ",
+        "augmentative of ", "female equivalent of ",
+    )
     with gzip.open(path, "rt", encoding="utf-8") as f:
         for line in f:
             entry = json.loads(line)
@@ -247,10 +262,35 @@ def load_wikt_english_glosses(path):
                 continue
             wl = w.lower()
             for s in entry.get("senses", []):
+                tags = set(s.get("tags", []))
+                if "form-of" in tags:
+                    continue  # skip inflection glosses entirely
                 for g in (s.get("glosses") or []):
-                    if g:
-                        glosses.setdefault(wl, []).append(g)
+                    if not g:
+                        continue
+                    g_lower = g.lower().strip()
+                    if any(g_lower.startswith(p) for p in form_prefixes):
+                        continue  # template-style glosses that leak Spanish lemmas
+                    glosses.setdefault(wl, []).append(g)
     return glosses
+
+
+def _tokenize_gloss(gloss):
+    """Extract candidate English tokens/phrases from a gloss string.
+
+    Splits on /, comma, AND semicolon. The upstream split_english_glosses
+    only splits on / and comma, which drops the head sense of glosses like
+    "party; celebration, festivity" — the token `party;` fails .isalpha().
+    """
+    if not gloss:
+        return set()
+    g = gloss.replace(";", ",")
+    tokens = set()
+    for phrase in split_english_glosses(g):
+        tokens.add(phrase)
+        for tok in phrase.split():
+            tokens.add(tok)
+    return tokens
 
 
 def cognate_voters(word, wikt_glosses, cognet):
@@ -271,13 +311,9 @@ def cognate_voters(word, wikt_glosses, cognet):
 
     glosses = wikt_glosses.get(word, [])
     if glosses:
-        # Collect all gloss tokens / phrases once
         gloss_tokens = set()
         for g in glosses:
-            for part in split_english_glosses(g):
-                gloss_tokens.add(part)
-                for tok in part.split():
-                    gloss_tokens.add(tok)
+            gloss_tokens |= _tokenize_gloss(g)
 
         # identical_gloss: same normalized form appears in the glosses
         if any(normalize(t) == wn for t in gloss_tokens):
@@ -481,26 +517,47 @@ def load_propn_curations():
 _ACUTE_STRIP = str.maketrans({"á":"a","é":"e","í":"i","ó":"o","ú":"u","Á":"A","É":"E","Í":"I","Ó":"O","Ú":"U"})
 
 
-def residual_clitic_fallback(candidates, known_word_set):
+def residual_clitic_fallback(candidates, verb_form_set, word_pos):
     """For each candidate word, try to strip trailing clitic pronouns and look
-    up the base in the known-word set. Returns {word: base} for hits.
+    up the base in a VERB-form set. Returns {word: base} for hits.
 
     Catches verb+clitic forms that Wiktionary's "combined with" entries miss
     (ponme, llévame, perdóname, mirarte, hacerlo, córtala, …).
+
+    Two guards against false positives:
+      1. Base must be in `verb_form_set` (conjugation-table forms only).
+         Prevents matching nouns/adjectives that happen to end in a clitic-
+         shaped suffix (veranos→vera, llanos→lla, grillete→grille).
+      2. The candidate word itself must NOT have an exclusively-non-verb
+         POS in Wiktionary. Prevents ajenos (adj) → aje, fuete (noun) →
+         fue. Words absent from Wiktionary (likely slang) and words with
+         any verb POS in Wiktionary still proceed.
+
+    Base length must be >= 3 so "ponme" → "pon" still works.
     """
     found = {}
     for w in candidates:
         if len(w) < 5:
             continue
+        poses = word_pos.get(w, set())
+        # Guard 2: skip if Wikt knows this word and says it's definitely not a verb
+        if poses and "verb" not in poses:
+            continue
+        # Guard 3: Spanish preterite tú ends in -aste/-iste. Stripping "te"
+        # off these produces a plausible present-tense verb (disfrazaste →
+        # disfrazas, enganchaste → enganchas) but the original is a preterite,
+        # not a verb+clitic. Skip.
+        if w.endswith("aste") or w.endswith("iste"):
+            continue
         base_lookups = []
-        # Up to two clitic pronouns (haciéndomelo)
         remaining = w
-        for _ in range(2):
+        for _ in range(2):  # up to two clitics (haciéndomelo)
             matched = False
             for cl in _CLITIC_PRONOUNS:
                 if remaining.endswith(cl) and len(remaining) > len(cl) + 2:
                     stripped = remaining[:-len(cl)]
-                    # Try with and without acute accents
+                    if len(stripped) < 3:
+                        break
                     base_lookups.append(stripped)
                     base_lookups.append(stripped.translate(_ACUTE_STRIP))
                     remaining = stripped
@@ -511,7 +568,7 @@ def residual_clitic_fallback(candidates, known_word_set):
         if not base_lookups:
             continue
         for base in base_lookups:
-            if base in known_word_set:
+            if base in verb_form_set:
                 found[w] = base
                 break
     return found
@@ -952,10 +1009,19 @@ def main():
     # ==================================================================
     # Phase 6a: RESIDUAL CLITIC FALLBACK (P4.2)
     # For any remaining word ending in a clitic pronoun, try stripping and
-    # looking up the base in the known-word set. Moves hits to clitic_merge.
+    # looking up the base in the VERB-form set. Moves hits to clitic_merge.
+    # (Verb-only lookup prevents false positives like veranos→vera.)
     # ==================================================================
     print("\n--- Phase 6a: Residual clitic fallback ---")
-    fallback = residual_clitic_fallback(remaining, all_known | artist_words)
+    # Build verb-only base set: conjugation table + verb infinitives in Wikt.
+    # Don't include normal_words (contains nouns/adjs) or raw wikt_spanish.
+    verb_forms = set(conj_forms)
+    # Add Wikt entries whose POS is exclusively verb (safer than mixing in
+    # the full word set — we already have conj_forms for coverage).
+    for w, poses in wikt_pos.items():
+        if poses and poses <= {"verb"}:
+            verb_forms.add(w)
+    fallback = residual_clitic_fallback(remaining, verb_forms, wikt_pos)
     if fallback:
         clitic_merge.update(fallback)
         for w in fallback:
