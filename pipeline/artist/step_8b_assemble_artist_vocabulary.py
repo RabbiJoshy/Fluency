@@ -137,11 +137,17 @@ def load_layer(path, name, required=True):
 # ---------------------------------------------------------------------------
 
 def assemble_from_layers(layers_dir, master, curated_translations_path=None,
-                         sense_source="wiktionary", skip_words_path=None):
+                         sense_source="wiktionary", skip_words_path=None,
+                         emit_remainders=False):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
     master has been updated with new words/senses.
+
+    When ``emit_remainders`` is False (default), any generated SENSE_CYCLE /
+    unassigned meaning rows are dropped from each entry before serialization.
+    This keeps the flashcard view clean; set to True to preserve the full
+    remainder-bucket experience.
     """
     # Load all layers
     print("Loading layers...")
@@ -878,6 +884,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 if cognate_obj.get("gemini"):
                     entry["is_transparent_cognate"] = True
 
+            # Remainder-bucket toggle: drop SENSE_CYCLE / unassigned meaning
+            # rows unless explicitly enabled. Keeps cards clean by default.
+            if not emit_remainders and entry.get("meanings"):
+                entry["meanings"] = [
+                    m for m in entry["meanings"]
+                    if m.get("pos") != "SENSE_CYCLE" and not m.get("unassigned")
+                ]
+                if not entry["meanings"]:
+                    # Word had nothing BUT remainder rows — no useful card to
+                    # build, skip the whole entry.
+                    continue
+
             entries.append(entry)
 
     # --- Build MWE examples cache from lyrics ---
@@ -1305,6 +1323,9 @@ def main():
     parser.add_argument("--sense-source", choices=["gemini", "wiktionary", "wiktionary-gemini", "spanishdict"],
                         default="wiktionary",
                         help="Which sense layers to use (default: wiktionary)")
+    parser.add_argument("--remainders", action="store_true",
+                        help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
+                             "(default: off — cleaner cards, but unassigned examples are dropped)")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -1331,7 +1352,8 @@ def main():
     entries, master, clitic_data = assemble_from_layers(
         layers_dir, master, curated_path,
         sense_source=args.sense_source,
-        skip_words_path=skip_words_path)
+        skip_words_path=skip_words_path,
+        emit_remainders=args.remainders)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)

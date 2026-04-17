@@ -275,6 +275,9 @@ def main():
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="wiktionary",
                         help="Sense source to assemble from (default: wiktionary)")
+    parser.add_argument("--remainders", action="store_true",
+                        help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
+                             "(default: off — cleaner cards; unassigned examples dropped)")
     args = parser.parse_args()
 
     # Load all layers
@@ -782,6 +785,28 @@ def main():
                 cognate_obj = {"score": cognate_obj}
             elif cognate_obj is True:
                 cognate_obj = {"score": 1.0}
+
+            # Remainder-bucket toggle: drop SENSE_CYCLE / unassigned meaning
+            # rows unless explicitly enabled. Normal-mode builder doesn't
+            # currently emit these, but the filter is safe and consistent
+            # with the artist builder — future remainder logic here will
+            # pick up the toggle automatically.
+            if not args.remainders:
+                def _keep(m):
+                    return m.get("pos") != "SENSE_CYCLE" and not m.get("unassigned")
+                filtered_full = []
+                filtered_lean = []
+                filtered_exs = []
+                for m_full, m_lean, exs in zip(meanings_full, meanings_lean, examples_by_meaning):
+                    if _keep(m_lean):
+                        filtered_full.append(m_full)
+                        filtered_lean.append(m_lean)
+                        filtered_exs.append(exs)
+                meanings_full = filtered_full
+                meanings_lean = filtered_lean
+                examples_by_meaning = filtered_exs
+                if not meanings_lean:
+                    continue
 
             # Collect the entry (sort and compute most_frequent later)
             all_entries.append({
