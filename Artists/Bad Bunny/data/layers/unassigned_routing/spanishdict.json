@@ -519,11 +519,6 @@
     8,
     9
   ],
-  "na'|na": [
-    0,
-    2,
-    4
-  ],
   "están|estar": [
     1,
     6,
@@ -1716,16 +1711,6 @@
   "traje|traer": [
     1
   ],
-  "verda'|verdad": [
-    0,
-    1,
-    3,
-    4,
-    5,
-    6,
-    8,
-    9
-  ],
   "metes|meter": [
     0,
     1,
@@ -2881,7 +2866,9 @@
     7
   ],
   "oíste|oír": [
-    5
+    5,
+    8,
+    9
   ],
   "palo|palo": [
     0,
@@ -3555,14 +3542,6 @@
     1,
     3
   ],
-  "de'o|de": [
-    0,
-    1,
-    2,
-    4,
-    5,
-    6
-  ],
   "dejé|dejar": [
     0,
     1,
@@ -3778,6 +3757,10 @@
     2,
     4,
     6
+  ],
+  "diez|diez": [
+    8,
+    9
   ],
   "doble|doble": [
     5
@@ -3997,7 +3980,8 @@
     1,
     2,
     3,
-    4
+    4,
+    6
   ],
   "cierto|cierto": [
     2,
@@ -4065,6 +4049,9 @@
   ],
   "estilo|estilo": [
     0
+  ],
+  "estrés|estrés": [
+    7
   ],
   "falla|fallar": [
     0,
@@ -4380,12 +4367,6 @@
     3,
     5
   ],
-  "lao'|la": [
-    0,
-    1,
-    2,
-    3
-  ],
   "llamada|llamada": [
     2
   ],
@@ -4468,6 +4449,9 @@
   ],
   "pon|poner": [
     2
+  ],
+  "quemar|quemar": [
+    4
   ],
   "rencor|rencor": [
     0
@@ -5062,7 +5046,8 @@
   ],
   "misiones|misión": [
     1,
-    2
+    2,
+    3
   ],
   "mitad|mitad": [
     0,
@@ -5116,9 +5101,6 @@
   "prefiere|preferir": [
     0,
     2
-  ],
-  "prendí'a|prender": [
-    1
   ],
   "progreso|progreso": [
     0
@@ -5513,6 +5495,9 @@
   ],
   "llevamos|llevar": [
     1
+  ],
+  "lápiz|lápiz": [
+    3
   ],
   "mandó|mandar": [
     1
@@ -6054,9 +6039,6 @@
   "pegado|pegado": [
     1
   ],
-  "pega'os|pegar": [
-    1
-  ],
   "perdía|perderse": [
     0
   ],
@@ -6101,6 +6083,9 @@
   ],
   "rancho|rancho": [
     0
+  ],
+  "realidad|realidad": [
+    1
   ],
   "respetar|respetar": [
     0
@@ -6229,6 +6214,33 @@
     0
   ],
   "veras|vera": [
+    1
+  ],
+  "ansiedad|ansiedad": [
+    1
+  ],
+  "cenar|cenar": [
+    1
+  ],
+  "claros|claro": [
+    1
+  ],
+  "escondidos|escondido": [
+    1
+  ],
+  "gritos|grito": [
+    1
+  ],
+  "pecados|pecar": [
+    1
+  ],
+  "presos|preso": [
+    1
+  ],
+  "propios|propio": [
+    1
+  ],
+  "rodillas|rodilla": [
     1
   ]
 }
