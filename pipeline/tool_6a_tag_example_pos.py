@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Tag normal-mode examples with spaCy POS for the target word.
+"""Tag examples with spaCy POS for the target word.
 
 Writes a transparent layer file so POS filtering can be inspected separately
-from sense classification.  Mirror of artist/tool_6a_tag_example_pos.py but
-reads from the normal-mode examples and inventory.
+from sense classification. Runs in both normal and artist modes:
+
+    # Normal mode (default)
+    .venv/bin/python3 pipeline/tool_6a_tag_example_pos.py
+
+    # Artist mode
+    .venv/bin/python3 pipeline/tool_6a_tag_example_pos.py --artist-dir "Artists/Bad Bunny"
 
 Incremental by default: skips words whose example IDs haven't changed since
-the last run.  Use --force to retag everything.
+the last run. Use --force to retag everything.
 """
 
 import argparse
@@ -31,13 +36,25 @@ STEP_VERSION_NOTES = {
     2: "es_dep_news_trf transformer default",
 }
 
-LAYERS = Path(PROJECT_ROOT) / "Data" / "Spanish" / "layers"
-EXAMPLES_FILE = LAYERS / "examples_raw.json"
-OUTPUT_FILE = LAYERS / "example_pos.json"
+NORMAL_LAYERS = Path(PROJECT_ROOT) / "Data" / "Spanish" / "layers"
+
+
+def resolve_paths(artist_dir):
+    """Return (examples_path, output_path) for either mode."""
+    if artist_dir:
+        layers = Path(os.path.abspath(artist_dir)) / "data" / "layers"
+    else:
+        layers = NORMAL_LAYERS
+    return layers / "examples_raw.json", layers / "example_pos.json"
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Tag normal-mode examples with POS")
+    parser = argparse.ArgumentParser(description="Tag examples with POS (normal or artist mode)")
+    parser.add_argument(
+        "--artist-dir",
+        default=None,
+        help="Path to Artists/{Name} directory. Omit for normal-mode Data/Spanish/layers.",
+    )
     parser.add_argument(
         "--model",
         default="es_dep_news_trf",
@@ -49,14 +66,16 @@ def main():
     )
     args = parser.parse_args()
 
-    with open(EXAMPLES_FILE, encoding="utf-8") as f:
+    examples_path, output_path = resolve_paths(args.artist_dir)
+
+    with open(examples_path, encoding="utf-8") as f:
         examples_data = json.load(f)
 
     # Load previous results for incremental mode
     prev_output = {}
     prev_ids = {}
-    if not args.force and OUTPUT_FILE.is_file():
-        with open(OUTPUT_FILE, encoding="utf-8") as f:
+    if not args.force and output_path.is_file():
+        with open(output_path, encoding="utf-8") as f:
             prev_output = json.load(f)
         prev_ids = prev_output.pop("_example_ids", {})
         prev_output.pop("_meta", None)
@@ -78,12 +97,9 @@ def main():
 
     print("Loading spaCy...")
     preferred = [args.model]
-    if args.model != "es_core_news_lg":
-        preferred.append("es_core_news_lg")
-    if args.model != "es_core_news_md":
-        preferred.append("es_core_news_md")
-    if args.model != "es_core_news_sm":
-        preferred.append("es_core_news_sm")
+    for fallback in ("es_core_news_lg", "es_core_news_md", "es_core_news_sm"):
+        if fallback != args.model:
+            preferred.append(fallback)
     nlp = load_spacy(preferred_models=preferred)
     if nlp is None:
         print("ERROR: No Spanish spaCy model found.")
@@ -125,14 +141,14 @@ def main():
         tool_versions={"spacy_model": nlp.meta.get("name", "unknown")},
     )
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
     reserved_keys = {"_example_ids", "_meta"}
     total_words = sum(1 for k in output if k not in reserved_keys)
     print("Tagged %d new words (%d examples), %d total words in output" % (
         new_tagged, new_examples, total_words))
-    print("Wrote %s" % OUTPUT_FILE)
+    print("Wrote %s" % output_path)
 
 
 if __name__ == "__main__":

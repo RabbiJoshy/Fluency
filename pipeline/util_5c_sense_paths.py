@@ -22,8 +22,11 @@ def sense_assignments_lemma_path(layers_dir, source="wiktionary"):
 
 
 def discover_sources(layers_dir, subdir="sense_assignments"):
-    """Return list of available source names by scanning a subdirectory."""
+    """Return list of available source names by scanning a subdirectory.
+
+    Ignores `.meta.json` sidecars written by util_pipeline_meta.
+    """
     d = Path(layers_dir) / subdir
     if not d.is_dir():
         return []
-    return sorted(p.stem for p in d.glob("*.json"))
+    return sorted(p.stem for p in d.glob("*.json") if not p.name.endswith(".meta.json"))

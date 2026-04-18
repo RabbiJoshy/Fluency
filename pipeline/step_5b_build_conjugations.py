@@ -12,7 +12,7 @@ Run from the project root (Fluency/).
 
 Inputs:
     Data/Spanish/layers/word_inventory.json
-    Data/Spanish/layers/sense_menu.json        (to identify verb entries)
+    Data/Spanish/layers/sense_menu/{source}.json  (preferred, to identify verb entries)
     Data/Spanish/corpora/jehle/jehle_verb_database.csv (optional, for translations)
 
 Outputs:
@@ -20,15 +20,18 @@ Outputs:
     Data/Spanish/layers/conjugation_reverse.json   — form→lemma lookup for pipeline
 """
 
+import argparse
 import csv
 import json
 import sys
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
+from typing import Optional
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_5c_sense_paths import sense_menu_path  # noqa: E402
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 STEP_VERSION = 1
@@ -38,7 +41,6 @@ STEP_VERSION_NOTES = {
 
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 INVENTORY_FILE = LAYERS / "word_inventory.json"
-SENSES_FILE = LAYERS / "sense_menu.json"
 JEHLE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "jehle" / "jehle_verb_database.csv"
 CONJUGATIONS_FILE = LAYERS / "conjugations.json"
 REVERSE_FILE = LAYERS / "conjugation_reverse.json"
@@ -86,6 +88,61 @@ def strip_accents(s: str) -> str:
         c for c in unicodedata.normalize("NFD", s)
         if unicodedata.category(c) != "Mn"
     )
+
+
+def resolve_senses_file(source: str) -> Optional[Path]:
+    """Return the best available sense-menu path for this source."""
+    source_path = sense_menu_path(LAYERS, source)
+    if source_path.exists():
+        return source_path
+
+    legacy_path = LAYERS / "sense_menu.json"
+    if legacy_path.exists():
+        return legacy_path
+
+    return None
+
+
+def extract_verb_lemmas_from_inventory() -> set[str]:
+    """Heuristic fallback when no sense menu exists yet."""
+    print("Sense menu not found; inferring verb lemmas from word inventory...")
+    with open(INVENTORY_FILE, encoding="utf-8") as f:
+        inventory = json.load(f)
+
+    verb_lemmas = set()
+    for entry in inventory:
+        known_lemmas = entry.get("known_lemmas")
+        if known_lemmas is None:
+            known_lemmas = [entry.get("lemma") or entry.get("word", "")]
+
+        for lemma in known_lemmas:
+            lemma = (lemma or "").strip().lower()
+            if lemma.endswith(("ar", "er", "ir", "ír")):
+                verb_lemmas.add(lemma)
+
+    print(f"  Inferred {len(verb_lemmas)} candidate verb infinitives from inventory")
+    return verb_lemmas
+
+
+def extract_verb_lemmas_from_senses(senses_file: Path) -> set[str]:
+    """Collect unique verb infinitives from sense-menu analyses."""
+    rel_path = senses_file.relative_to(PROJECT_ROOT)
+    print(f"Loading senses from {rel_path}...")
+    with open(senses_file, encoding="utf-8") as f:
+        senses_data = json.load(f)
+
+    verb_lemmas = set()
+    for groups in senses_data.values():
+        for group in groups:
+            senses = group.get("senses", {})
+            if not any(s.get("pos") == "VERB" for s in senses.values()):
+                continue
+            headword = (group.get("headword") or "").lower()
+            if headword.endswith(("ar", "er", "ir", "ír")):
+                verb_lemmas.add(headword)
+
+    print(f"  Found {len(verb_lemmas)} unique verb infinitives")
+    return verb_lemmas
 
 
 def load_jehle_translations(path: Path) -> dict:
@@ -253,28 +310,17 @@ def backfill_reverse_from_conjugation_entry(verb: str, entry: dict) -> list:
 
 
 def main():
-    # Load inventory to find verb lemmas
-    print("Loading word inventory...")
-    with open(INVENTORY_FILE, encoding="utf-8") as f:
-        inventory = json.load(f)
+    parser = argparse.ArgumentParser(description="Build Spanish conjugation tables")
+    parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
+                        default="wiktionary",
+                        help="Sense dictionary source to inspect for verb entries")
+    args = parser.parse_args()
 
-    # Load senses to identify verbs
-    print("Loading senses...")
-    with open(SENSES_FILE, encoding="utf-8") as f:
-        senses_data = json.load(f)
-
-    # Collect unique verb infinitives
-    verb_lemmas = set()
-    for entry in inventory:
-        key = f"{entry['word']}|{entry['lemma']}"
-        senses = senses_data.get(key, [])
-        has_verb = any(s["pos"] == "VERB" for s in senses)
-        if has_verb:
-            lemma = entry["lemma"].lower()
-            if lemma.endswith(("ar", "er", "ir", "ír")):
-                verb_lemmas.add(lemma)
-
-    print(f"  Found {len(verb_lemmas)} unique verb infinitives")
+    senses_file = resolve_senses_file(args.sense_source)
+    if senses_file is not None:
+        verb_lemmas = extract_verb_lemmas_from_senses(senses_file)
+    else:
+        verb_lemmas = extract_verb_lemmas_from_inventory()
 
     # Load Jehle translations
     print("Loading Jehle translations...")

@@ -38,7 +38,7 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
 | 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 6 phases: junk → known vocab → English → Wiktionary reclassify → NER → frequency. Also detects derivations (diminutives, gerund+clitics) and clitic forms (3-tier). Output grouped by treatment: `exclude`, `biencoder`, `gemini`, `clitic_merge`/`clitic_keep`. |
 | 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers. Carries `surface` field from step 3 for elided forms. |
-| 6a | `pipeline/artist/tool_6a_tag_example_pos.py` | `example_pos.json` | Tag examples with spaCy POS (es_dep_news_trf). Incremental: skips unchanged words. `--force` to retag all. |
+| 6a | `pipeline/tool_6a_tag_example_pos.py --artist-dir ...` | `example_pos.json` | Tag examples with spaCy POS (es_dep_news_trf). Shared tool (normal + artist modes). Incremental: skips unchanged words. `--force` to retag all. |
 | 6 | `pipeline/artist/assign_senses.py` | `sense_assignments.json` | Unified sense assignment. Dispatches to bi-encoder (biencoder-routed) then Gemini (gemini-routed, if API key set). Gap-fill reuses existing inline senses. Single output file. |
 | 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
 | 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
@@ -268,7 +268,7 @@ The SpanishDict **phrases cache** (`Data/Spanish/senses/spanishdict/phrases_cach
 .venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --inventory-file Data/Spanish/layers/word_inventory.json --force
 ```
 
-After re-scraping, rebuild the SpanishDict sense menu with `tool_5c_build_spanishdict_menu.py --force` to pick up newly cached headword redirects and phrases.
+After re-scraping, rebuild the SpanishDict sense menu with `step_5c_build_senses.py --sense-source spanishdict --artist-dir "Artists/Name" --force` (or omit `--artist-dir` for normal mode) to pick up newly cached headword redirects and phrases.
 
 ## Adding a New Artist
 

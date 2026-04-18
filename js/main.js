@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260416i';
-import './flashcards.js?v=20260416i';
+import './vocab.js?v=20260416l';
+import './flashcards.js?v=20260416l';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -358,7 +358,7 @@ async function jumpToFoundWord(entry) {
     // Close the modal now; loadVocabularyData drives its own loading UI
     document.getElementById('findWordModal').classList.add('hidden');
     try {
-        await window.loadVocabularyData(rangeStr);
+        await window.loadVocabularyData(rangeStr, { includeWordId: entry.id });
     } catch (e) {
         console.error('Find-word: loadVocabularyData failed', e);
         return;

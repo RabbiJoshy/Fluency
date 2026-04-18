@@ -60,6 +60,41 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## Data / Pipeline
 
+- **[soon] Better handling of SpanishDict phrasebook analyses (M) [normal/artist]**
+  Implemented a patch on 2026-04-16 that routes phrase-only self-analyses (e.g.
+  the `headword=está` PHRASE analysis) into the inventory's `known_lemmas[0]`
+  so `está` shows as `está|estar` instead of a dead `está|está`. Works for
+  está / estoy / vamos / vete / dame / sé etc. but it has rough edges:
+  - The phrasebook senses (`he's`, `she's`, `it's`, ...) get **dropped** from
+    the card because `get_senses_for_lemma` in `step_8a_assemble_vocabulary.py`
+    only returns senses whose headword matches the lemma. Those pedagogically
+    useful glosses aren't surfaced anywhere. Ideally the conjugation-specific
+    phrase glosses should be shown on the `está|estar` card alongside the base
+    verb senses — maybe as a separate "conjugation notes" section or attached
+    to the relevant verb sense via the sense ID mapping.
+  - Ambiguous forms (e.g. `sé` = saber 1sg *or* ser imperative 2sg) still
+    produce two entries (`sé|saber` + `sé|ser`) because the classifier genuinely
+    picks both analyses' senses. Known_lemmas from step_5b's conjugation reverse
+    lookup misses secondary readings like this. Consider enriching the reverse
+    lookup or doing a post-merge when two word|lemma entries both exist and
+    one of them came purely from classifier assignments (not the inventory).
+  - Only wired into normal-mode `step_7a_map_senses_to_lemmas.py`. The artist
+    variant (`pipeline/artist/step_7a_map_senses_to_lemmas.py`) still calls
+    `split_word_assignments` without passing `known_lemmas`. Add the same
+    inventory load there when we want the fix in artist mode.
+  - Root-cause fix would be at menu-build time: rewrite the phrase analysis's
+    headword during `build_spanishdict_menu` so the sense_menu on disk is
+    already consistent, instead of patching at step_7a. Keep that as a bigger
+    refactor if we ever want to simplify.
+  - Mixed-POS self-analyses still slip through: surface forms like `ve`,
+    `escucha`, `vaya`, `pon`, `saca`, `toca`, `limpia` have a single self-
+    analysis whose senses mix NOUN + PHRASE (e.g. `ve` = the letter V + the
+    phrase gloss). The NOUN half legitimately lives under `ve|ve`, so
+    `_is_phrase_only_self_analysis` correctly skips them, but the PHRASE
+    senses inside the same analysis are still misattributed. Splitting
+    *within* one analysis by POS would require menu-layer surgery and is
+    covered by the root-cause refactor bullet above.
+
 - **[soon] Wire multi-word elision split into tokenization (M) [artist]**
   Config exists at `Artists/curations/multi_word_elisions.json` mapping contracted
   surface forms to expanded Spanish (e.g. `"pal'" -> "para el"`). Step 2a

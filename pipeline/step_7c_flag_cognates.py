@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Step 7b: Flag transparent cognates → cognates.json layer.
+Step 7c: Flag transparent cognates → cognates.json layer.
 
 Shared layer used by both normal and artist pipelines.
 All voters written to one file: score (suffix/similarity), CogNet, Gemini.
@@ -9,7 +9,7 @@ Auto-discovers sense menus from sense_menu/ subdirectory. Cognates are
 source-agnostic — reads from all available menus and merges.
 
 Usage (from project root):
-    python3 pipeline/step_7b_flag_cognates.py
+    python3 pipeline/step_7c_flag_cognates.py
 """
 
 import json

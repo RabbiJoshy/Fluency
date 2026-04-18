@@ -30,7 +30,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from pipeline.util_6a_method_priority import METHOD_PRIORITY
-from pipeline.artist.util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
+from pipeline.util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 from pipeline.util_pipeline_meta import make_meta, write_sidecar
 
 STEP_VERSION = 1

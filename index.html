@@ -54,6 +54,74 @@
         </button>
     </div>
 
+    <!-- Desktop: keyboard shortcut guide (left side, viewport-fixed) -->
+    <div class="desktop-keyboard-guide" id="desktopKeyboardGuide">
+        <button class="kb-collapse-btn" id="kbCollapseBtn" title="Hide shortcuts" aria-label="Hide shortcuts">
+            <svg class="kb-icon-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <svg class="kb-icon-keyboard" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2" ry="2"></rect>
+                <line x1="6" y1="10" x2="6" y2="10"></line>
+                <line x1="10" y1="10" x2="10" y2="10"></line>
+                <line x1="14" y1="10" x2="14" y2="10"></line>
+                <line x1="18" y1="10" x2="18" y2="10"></line>
+                <line x1="7" y1="14" x2="17" y2="14"></line>
+            </svg>
+        </button>
+        <div class="kb-content">
+            <div class="kb-section">
+                <div class="kb-row">
+                    <kbd class="kb-key" title="Correct">Enter</kbd>
+                    <span class="kb-hint correct">✓</span>
+                </div>
+                <div class="kb-row">
+                    <kbd class="kb-key" title="Incorrect">X</kbd>
+                    <span class="kb-hint incorrect">✗</span>
+                </div>
+            </div>
+            <div class="kb-section kb-arrows">
+                <div class="kb-arrow-row">
+                    <kbd class="kb-key arrow">↑</kbd>
+                </div>
+                <div class="kb-arrow-row">
+                    <kbd class="kb-key arrow">←</kbd>
+                    <kbd class="kb-key arrow">↓</kbd>
+                    <kbd class="kb-key arrow">→</kbd>
+                </div>
+                <div class="kb-arrow-labels">
+                    <span class="kb-hint">prev</span>
+                    <span class="kb-hint">meaning</span>
+                    <span class="kb-hint">next</span>
+                </div>
+            </div>
+            <div class="kb-section">
+                <kbd class="kb-key wide" title="Flip card">Space</kbd>
+                <span class="kb-hint">flip</span>
+            </div>
+            <div class="kb-section">
+                <kbd class="kb-key wide" title="Cycle examples / expressions">Tab</kbd>
+                <span class="kb-hint">cycle</span>
+            </div>
+            <div class="kb-section">
+                <kbd class="kb-key" title="Back to menu">Esc</kbd>
+                <span class="kb-hint">menu</span>
+            </div>
+            <div class="kb-section">
+                <button id="cardMetaBtn" class="kb-key kb-info-btn" title="Show card metadata" aria-label="Show card metadata">i</button>
+                <span class="kb-hint">info</span>
+            </div>
+        </div>
+    </div>
+    <!-- Card metadata popover -->
+    <div id="cardMetaPopover" class="card-meta-popover" role="dialog" aria-hidden="true" hidden>
+        <div class="card-meta-header">
+            <span class="card-meta-title" id="cardMetaTitle">Card info</span>
+            <button class="card-meta-close" id="cardMetaClose" aria-label="Close">×</button>
+        </div>
+        <div class="card-meta-body" id="cardMetaBody"></div>
+    </div>
+
     <div class="container">
         <div class="file-upload" id="setupPanel"
             <!-- Top bar: How to start, Estimate Level, gear (shared by both modes) -->
@@ -264,46 +332,6 @@
                                 </div>
                             </div>
                             <div class="card-details" id="backContent"></div>
-                        </div>
-                    </div>
-                    <!-- Desktop: keyboard shortcut guide (left side) -->
-                    <div class="desktop-keyboard-guide">
-                        <div class="kb-section">
-                            <div class="kb-row">
-                                <kbd class="kb-key" title="Correct">Enter</kbd>
-                                <span class="kb-hint correct">✓</span>
-                            </div>
-                            <div class="kb-row">
-                                <kbd class="kb-key" title="Incorrect">X</kbd>
-                                <span class="kb-hint incorrect">✗</span>
-                            </div>
-                        </div>
-                        <div class="kb-section kb-arrows">
-                            <div class="kb-arrow-row">
-                                <kbd class="kb-key arrow">↑</kbd>
-                            </div>
-                            <div class="kb-arrow-row">
-                                <kbd class="kb-key arrow">←</kbd>
-                                <kbd class="kb-key arrow">↓</kbd>
-                                <kbd class="kb-key arrow">→</kbd>
-                            </div>
-                            <div class="kb-arrow-labels">
-                                <span class="kb-hint">prev</span>
-                                <span class="kb-hint">meaning</span>
-                                <span class="kb-hint">next</span>
-                            </div>
-                        </div>
-                        <div class="kb-section">
-                            <kbd class="kb-key wide" title="Flip card">Space</kbd>
-                            <span class="kb-hint">flip</span>
-                        </div>
-                        <div class="kb-section">
-                            <kbd class="kb-key wide" title="Cycle examples / expressions">Tab</kbd>
-                            <span class="kb-hint">cycle</span>
-                        </div>
-                        <div class="kb-section">
-                            <kbd class="kb-key" title="Back to menu">Esc</kbd>
-                            <span class="kb-hint">menu</span>
                         </div>
                     </div>
                     <!-- Hidden: keep IDs for pressAnswerBtn animation -->
@@ -707,7 +735,9 @@
                             <line x1="21" y1="12" x2="9" y2="12"></line>
                         </svg>
                     </span>
-                </div>
+                </div>.venv/bin/python3 pipeline/step_8a_assemble_vocabulary.py \
+    --sense-source spanishdict \
+    --min-priority 50
             </div>
             <!-- Artists tab content -->
             <div class="settings-tab-content" id="artistsTabContent">
@@ -758,6 +788,6 @@
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260416i"></script>
+    <script type="module" src="js/main.js?v=20260416l"></script>
 </body>
 </html>

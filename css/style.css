@@ -354,38 +354,113 @@
         }
 
         @media (min-width: 768px) {
-            .desktop-keyboard-guide {
+            /* Shortcuts only apply while a card is open, so reveal the guide
+               only when #appContent is visible. The base rule above keeps it
+               hidden on the setup / set-chooser view. */
+            body:has(#appContent:not(.hidden)) .desktop-keyboard-guide {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 24px;
+                gap: 28px;
                 position: fixed;
                 left: 0;
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 10;
-                opacity: 0.45;
+                opacity: 0.5;
                 transition: opacity 0.3s;
                 pointer-events: auto;
-                padding: 24px 10px;
+                padding: 28px 10px;
             }
 
             .desktop-keyboard-guide:hover {
-                opacity: 0.9;
+                opacity: 0.95;
             }
+
+            .desktop-keyboard-guide.collapsed {
+                gap: 0;
+                padding: 0;
+                /* Sit flush with the viewport edge so the collapsed icon mirrors
+                   the right-hand toolbar's positioning (which is offset inward
+                   from the card, not the viewport — using left: 20px here
+                   matches the right toolbar's right: 20px visually). */
+                left: 20px;
+            }
+        }
+
+        /* Collapse toggle — shows chevron when expanded, keyboard icon when collapsed */
+        .kb-collapse-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.2s, color 0.2s, width 0.2s, height 0.2s;
+        }
+        .kb-collapse-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+        }
+        .kb-collapse-btn .kb-icon-keyboard { display: none; }
+        .kb-collapse-btn .kb-icon-chevron { display: block; }
+        /* Collapsed state: mirror the right-hand toolbar's circular icon style
+           (see .desktop-nav-btn-outside .nav-icon — 48x48, 50% radius,
+           rgba(255,255,255,0.08) background). */
+        .desktop-keyboard-guide.collapsed .kb-collapse-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .desktop-keyboard-guide.collapsed .kb-collapse-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+        .desktop-keyboard-guide.collapsed .kb-collapse-btn .kb-icon-chevron { display: none; }
+        .desktop-keyboard-guide.collapsed .kb-collapse-btn .kb-icon-keyboard {
+            display: block;
+            width: 28px;
+            height: 28px;
+        }
+        .desktop-keyboard-guide.collapsed .kb-content { display: none; }
+
+        .kb-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
         }
 
         .kb-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
+        /* kb-row: keys centered; hints (tick/cross) absolutely positioned so they
+           don't push the key off the vertical centerline shared with other keys. */
         .kb-row {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
+            position: relative;
+        }
+        .kb-row .kb-hint.correct,
+        .kb-row .kb-hint.incorrect {
+            position: absolute;
+            left: calc(100% + 4px);
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .kb-key {
@@ -395,31 +470,31 @@
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-bottom-width: 2px;
-            border-radius: 5px;
-            padding: 6px 12px;
+            border-radius: 6px;
+            padding: 8px 14px;
             font-family: var(--font-data);
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.2;
-            min-width: 32px;
+            min-width: 38px;
             text-align: center;
             white-space: nowrap;
         }
 
         .kb-key.small {
-            padding: 4px 8px;
-            font-size: 12px;
-            min-width: 26px;
+            padding: 5px 10px;
+            font-size: 13px;
+            min-width: 30px;
         }
 
         .kb-key.arrow {
-            padding: 5px 10px;
-            font-size: 16px;
-            min-width: 36px;
+            padding: 7px 12px;
+            font-size: 19px;
+            min-width: 42px;
         }
 
         .kb-key.wide {
-            padding: 6px 22px;
+            padding: 8px 26px;
         }
 
         .kb-plus {
@@ -429,16 +504,135 @@
         }
 
         .kb-label {
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(255, 255, 255, 0.5);
-            min-width: 58px;
+            min-width: 62px;
             text-align: right;
             margin-right: 4px;
         }
 
         .kb-hint {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* Info button (matches .kb-key look but is clickable) */
+        .kb-info-btn {
+            cursor: pointer;
+            font-family: var(--font-data);
+            font-weight: 700;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .kb-info-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        /* Card metadata popover */
+        .card-meta-popover {
+            position: fixed;
+            left: 70px;
+            bottom: 24px;
+            width: 380px;
+            max-width: calc(100vw - 90px);
+            max-height: 70vh;
+            overflow-y: auto;
+            background: rgba(20, 22, 28, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+            z-index: 40;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-data);
+            font-size: 12px;
+            padding: 0;
+        }
+        .card-meta-popover[hidden] { display: none; }
+
+        .card-meta-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-meta-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-data);
+        }
+        .card-meta-close {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .card-meta-close:hover { color: #fff; }
+
+        .card-meta-body { padding: 8px 12px 12px; }
+        .card-meta-section { margin-top: 10px; }
+        .card-meta-section:first-child { margin-top: 0; }
+        .card-meta-section h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: rgba(255, 255, 255, 0.55);
+            margin: 0 0 6px 0;
+            font-weight: 600;
+        }
+        .card-meta-kv {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 4px 8px;
+            font-size: 11px;
+        }
+        .card-meta-kv dt { color: rgba(255, 255, 255, 0.5); }
+        .card-meta-kv dd { margin: 0; color: rgba(255, 255, 255, 0.9); word-break: break-word; }
+        .card-meta-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card-meta-list li {
+            padding: 5px 0;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+        }
+        .card-meta-list li:first-child { border-top: none; }
+        .card-meta-tag {
+            display: inline-block;
+            padding: 1px 6px;
+            margin-right: 4px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             font-size: 10px;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .card-meta-tag.method { background: rgba(100, 180, 255, 0.15); border-color: rgba(100, 180, 255, 0.3); }
+        .card-meta-tag.source { background: rgba(180, 140, 255, 0.15); border-color: rgba(180, 140, 255, 0.3); }
+        .card-meta-tag.flag { background: rgba(255, 180, 100, 0.15); border-color: rgba(255, 180, 100, 0.3); }
+        .card-meta-ex {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 11px;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card-meta-current {
+            color: rgba(255, 220, 120, 0.9);
+            font-weight: 600;
+        }
+        .card-meta-empty {
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+            font-size: 11px;
         }
 
         .kb-hint.correct {

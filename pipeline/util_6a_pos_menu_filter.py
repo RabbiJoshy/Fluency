@@ -29,6 +29,49 @@ TRUSTED_FILTER_POS = _TRUSTED_FILTER_POS  # public alias for per-example filteri
 # POS in context.
 _ORTHOGONAL_POS = {"PHRASE", "CONTRACTION"}
 
+
+def sense_compatible_with_observed(sense_pos, observed):
+    """Decide whether a sense (by POS tag) is compatible with observed example POSes.
+
+    Design principle: trust spaCy to reliably tag POS values in
+    ``_TRUSTED_FILTER_POS`` (VERB/NOUN/ADJ/ADV/INTJ). Absence of a trusted POS
+    in observed evidence is itself evidence the sense isn't applicable here.
+    Untrusted POSes (ADP/DET/PRON/CCONJ/SCONJ/...) can be mis-tagged among
+    themselves, so we only rule them out when no untrusted POS was observed
+    at all.
+    """
+    if sense_pos in _ORTHOGONAL_POS:
+        return True
+    if sense_pos in observed:
+        return True
+    if sense_pos in _TRUSTED_FILTER_POS:
+        # spaCy would reliably tag this POS; it wasn't observed → drop.
+        return False
+    # sense_pos is untrusted (or unknown). Keep only if we observed at least
+    # one untrusted POS — otherwise every example was trusted-tagged and we
+    # can rule out untrusted readings too.
+    return bool(observed - _TRUSTED_FILTER_POS)
+
+
+def sense_compatible_with_example_pos(sense_pos, ex_pos):
+    """Per-example compatibility: is a sense allowed for an example tagged ex_pos?
+
+    - If ex_pos is trusted, we trust it fully: keep only senses matching
+      ex_pos exactly (plus orthogonal POSes).
+    - If ex_pos is untrusted, we use it only to rule out trusted-POS senses:
+      keep senses matching ex_pos, orthogonal POSes, and any untrusted-POS
+      senses (since spaCy may confuse among the untrusted family).
+    """
+    if sense_pos in _ORTHOGONAL_POS:
+        return True
+    if sense_pos == ex_pos:
+        return True
+    if ex_pos in _TRUSTED_FILTER_POS:
+        # Trust ex_pos — drop anything else.
+        return False
+    # ex_pos untrusted: only drop trusted mismatches.
+    return sense_pos not in _TRUSTED_FILTER_POS
+
 _NLP = None
 _NLP_MODEL = None
 _NLP_FAILED = False
@@ -110,22 +153,8 @@ def filter_senses_by_pos(word, lemma, senses, examples):
     if not observed:
         return keep_indices, {"used": False, "tagged_examples": len(pos_tags)}
 
-    trusted_observed = observed & _TRUSTED_FILTER_POS
-    trusted_menu = {sense.get("pos") for sense in senses if sense.get("pos") in _TRUSTED_FILTER_POS}
-    if not trusted_observed or not trusted_menu:
-        return keep_indices, {
-            "used": True,
-            "tagged_examples": len(pos_tags),
-            "observed_pos": sorted(observed),
-            "reduced": False,
-            "reason": "untrusted_pos_family",
-        }
-
-    # Keep senses whose POS was observed, and always keep orthogonal POS
-    # tags like PHRASE (they are not tied to a grammatical category).
     filtered = [i for i, sense in enumerate(senses)
-                if sense.get("pos") in trusted_observed
-                or sense.get("pos") in _ORTHOGONAL_POS]
+                if sense_compatible_with_observed(sense.get("pos"), observed)]
     if not filtered:
         return keep_indices, {
             "used": True,
@@ -154,22 +183,8 @@ def filter_senses_by_precomputed_pos(senses, example_pos):
     if not observed:
         return keep_indices, {"used": False, "tagged_examples": len(example_pos)}
 
-    trusted_observed = observed & _TRUSTED_FILTER_POS
-    trusted_menu = {sense.get("pos") for sense in senses if sense.get("pos") in _TRUSTED_FILTER_POS}
-    if not trusted_observed or not trusted_menu:
-        return keep_indices, {
-            "used": True,
-            "tagged_examples": len(example_pos),
-            "observed_pos": sorted(observed),
-            "reduced": False,
-            "reason": "untrusted_pos_family",
-        }
-
-    # Keep senses whose POS was observed, and always keep orthogonal POS
-    # tags like PHRASE (they are not tied to a grammatical category).
     filtered = [i for i, sense in enumerate(senses)
-                if sense.get("pos") in trusted_observed
-                or sense.get("pos") in _ORTHOGONAL_POS]
+                if sense_compatible_with_observed(sense.get("pos"), observed)]
     if not filtered:
         return keep_indices, {
             "used": True,

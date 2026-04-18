@@ -45,9 +45,11 @@ Current main steps:
 - `step_5b_build_conjugations.py`
 - `step_5c_build_senses.py`
 - `step_5d_build_mwes.py`
-- `step_6a_assign_senses.py`
+- `step_6a_assign_senses.py` (thin dispatcher; calls shared `step_6b` + `step_6c`)
+- `step_6b_assign_senses_local.py` (shared; bi-encoder / keyword classifier)
+- `step_6c_assign_senses_gemini.py` (shared; Gemini Flash Lite classifier + gap-fill)
 - `step_7a_map_senses_to_lemmas.py`
-- `step_7b_flag_cognates.py`
+- `step_7c_flag_cognates.py`
 - `step_8a_assemble_vocabulary.py`
 
 Supporting tools/utils:
@@ -56,6 +58,9 @@ Supporting tools/utils:
 - `tool_6a_classify_senses.py`
 - `tool_6a_refine_pos.py`
 - `tool_6a_tag_example_pos.py`
+- `legacy_6a_assign_senses.py` (pre-split monolithic normal-mode classifier, kept for reference)
+- `util_4a_routing.py` (shared clitic + derivation helpers; used by both 4a scripts)
+- `util_5c_sense_menu_format.py` (shared analysis/sense-menu helpers; used by both modes)
 - `util_6a_method_priority.py`
 - `util_6a_pos_menu_filter.py`
 
@@ -73,21 +78,26 @@ Current main steps:
 - `artist/step_3a_merge_elisions.py`
 - `artist/step_4a_filter_known_vocab.py`
 - `artist/step_5a_split_evidence.py`
-- `artist/step_6a_assign_senses.py`
+- `artist/step_6a_assign_senses.py` (thin dispatcher; calls shared `step_6b` + `step_6c`)
 - `artist/step_7a_map_senses_to_lemmas.py`
 - `artist/step_7b_rerank.py`
 - `artist/step_8a_fetch_lrc_timestamps.py`
 - `artist/step_8b_assemble_artist_vocabulary.py`
 
+Shared step 6 classifiers (live in `pipeline/`, called by both normal and artist dispatchers):
+
+- `step_6b_assign_senses_local.py` (bi-encoder / keyword; `--artist-dir` optional)
+- `step_6c_assign_senses_gemini.py` (Gemini Flash Lite + gap-fill; `--artist-dir` optional)
+
 SpanishDict sidecar:
 
-- `artist/tool_5c_build_spanishdict_menu.py`
+- `step_5c_build_senses.py --sense-source spanishdict [--artist-dir PATH]` (shared; replaces old artist tool)
 - `artist/tool_6b_assign_spanishdict_senses.py`
 
 Key artist helpers:
 
 - `artist/util_1a_artist_config.py`
-- `artist/util_5c_sense_menu_format.py`
+- `util_5c_sense_menu_format.py` (shared; used by both modes)
 
 ## Practical Rule
 

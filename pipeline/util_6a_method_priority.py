@@ -54,10 +54,19 @@ def best_method_priority(word_assignments):
     """Return the highest method priority for a word's existing assignments.
 
     word_assignments: the value from sense_assignments.json for one word.
-    Can be a dict of {method: [assignments]} (new format) or a list (old format).
+    Supports:
+      - {method: [assignments]}          (in-memory dict form)
+      - [{"method": ..., ...}, ...]      (on-disk flat-list form)
+      - []                               (empty)
     """
     if isinstance(word_assignments, dict):
         return max((METHOD_PRIORITY.get(m, 0) for m in word_assignments), default=0)
+    if isinstance(word_assignments, list):
+        return max(
+            (METHOD_PRIORITY.get(e.get("method"), 0)
+             for e in word_assignments if isinstance(e, dict)),
+            default=0,
+        )
     return 0
 
 

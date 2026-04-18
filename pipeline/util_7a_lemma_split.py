@@ -44,14 +44,52 @@ def merge_method_maps(existing, incoming):
     return out
 
 
-def analysis_key(word, analysis):
-    """Build a word|lemma key from a word and an analysis dict."""
+def _is_phrase_only_self_analysis(word, analysis):
+    """True if analysis's headword equals the surface word AND all its senses are PHRASE.
+
+    SpanishDict publishes a "phrasebook" analysis for common conjugated forms
+    (e.g. ``está`` with senses "he's", "she's" all tagged POS=PHRASE) alongside
+    the real verb analysis (headword=``estar``). The phrasebook headword is the
+    surface form itself, which is not a true lemma.
+    """
+    headword = (analysis.get("headword") or "").strip().lower()
+    if not headword or headword != word.lower():
+        return False
+    senses = analysis.get("senses", {})
+    if not isinstance(senses, dict) or not senses:
+        return False
+    return all(
+        isinstance(s, dict) and s.get("pos") == "PHRASE"
+        for s in senses.values()
+    )
+
+
+def analysis_key(word, analysis, known_lemmas=None):
+    """Build a word|lemma key from a word and an analysis dict.
+
+    If the analysis is a phrasebook self-analysis (headword == surface word,
+    all senses POS=PHRASE) and the inventory's ``known_lemmas`` contain a real
+    lemma distinct from the surface word, the phrase senses are routed under
+    that lemma instead (so e.g. ``está`` phrase senses merge into ``está|estar``
+    rather than creating a dead ``está|está`` entry).
+    """
     headword = analysis.get("headword")
-    lemma = headword if isinstance(headword, str) and headword.strip() else word
-    return "%s|%s" % (word, lemma)
+    default_lemma = headword if isinstance(headword, str) and headword.strip() else word
+
+    if known_lemmas:
+        lemmas_lower = {kl.lower() for kl in known_lemmas if isinstance(kl, str) and kl.strip()}
+        if (default_lemma.lower() not in lemmas_lower
+                and _is_phrase_only_self_analysis(word, analysis)):
+            # Use the first real lemma from the inventory (corpus-derived,
+            # so it reflects how this surface word is actually used).
+            for kl in known_lemmas:
+                if isinstance(kl, str) and kl.strip():
+                    return "%s|%s" % (word, kl)
+
+    return "%s|%s" % (word, default_lemma)
 
 
-def split_word_assignments(word, analyses, raw_value):
+def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
     """Split a surface-word assignment into per-analysis (word|lemma) keys.
 
     Uses sense IDs to determine which analysis owns each assignment item.
@@ -61,6 +99,10 @@ def split_word_assignments(word, analyses, raw_value):
         word: surface word string
         analyses: list of analysis dicts, each with {headword, senses: {id: ...}}
         raw_value: raw assignment value (dict or list)
+        known_lemmas: optional list of corpus-derived lemmas for the surface
+            word (from word_inventory.json). When provided, phrasebook
+            self-analyses are folded into the first known lemma instead of
+            creating a ``word|word`` entry.
 
     Returns:
         dict mapping word|lemma keys to method-keyed assignments
@@ -89,9 +131,11 @@ def split_word_assignments(word, analyses, raw_value):
     for a in analyses:
         sense_map = a.get("senses", {})
         sense_ids = set(sense_map.keys()) if isinstance(sense_map, dict) else set()
-        analysis_maps.append((analysis_key(word, a), sense_ids))
+        analysis_maps.append((analysis_key(word, a, known_lemmas=known_lemmas), sense_ids))
 
-    # Split assignments by sense ID ownership
+    # Split assignments by sense ID ownership. Multiple analyses can resolve
+    # to the same key (e.g. a phrasebook analysis folded into its verb lemma's
+    # key), so merge rather than overwrite on collision.
     split = {}
     for target_key, sense_ids in analysis_maps:
         target_methods = {}
@@ -107,7 +151,10 @@ def split_word_assignments(word, analyses, raw_value):
             if kept:
                 target_methods[method] = kept
         if target_methods:
-            split[target_key] = target_methods
+            if target_key in split:
+                split[target_key] = merge_method_maps(split[target_key], target_methods)
+            else:
+                split[target_key] = target_methods
 
     if split:
         return split

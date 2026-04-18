@@ -28,14 +28,15 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-# Import shared sense menu utilities
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "artist"))
-from util_5c_sense_menu_format import assign_analysis_sense_ids, flatten_analyses_with_ids
+from util_5c_sense_menu_format import (
+    assign_analysis_sense_ids, flatten_analyses_with_ids, normalize_artist_sense_menu,
+)
 
-# SpanishDict imports (shared caches at pipeline level, menu builder in artist/)
-from util_5c_spanishdict import (SPANISHDICT_SURFACE_CACHE,
-                                 SPANISHDICT_HEADWORD_CACHE, load_json)
-from tool_5c_build_spanishdict_menu import build_menu_analyses
+# SpanishDict helpers (shared cache paths + menu assembly, both modes)
+from util_5c_spanishdict import (
+    SPANISHDICT_SURFACE_CACHE, SPANISHDICT_HEADWORD_CACHE, SPANISHDICT_STATUS,
+    build_menu_analyses, load_json,
+)
 
 # Per-source path helpers
 from util_5c_sense_paths import sense_menu_path
@@ -739,8 +740,50 @@ def _deprioritize_letter_senses(senses: list) -> list:
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
-def build_spanishdict_menu(vocab, output_file):
-    """Build sense menu from SpanishDict shared caches."""
+def _load_artist_excluded_words(artist_dir: Path, include_clitics: bool = False):
+    """Read an artist's word_routing.json and return the set of words to skip.
+
+    Matches the behaviour of the old artist/tool_5c_build_spanishdict_menu.py:
+    skip the four exclude buckets and (by default) clitic_merge targets.
+    """
+    routing_path = artist_dir / "data" / "known_vocab" / "word_routing.json"
+    routing = load_json(routing_path, {})
+    exclude = routing.get("exclude", {}) if isinstance(routing, dict) else {}
+    skipped = set()
+    for category in ("english", "proper_nouns", "interjections", "low_frequency"):
+        values = exclude.get(category, [])
+        if isinstance(values, list):
+            skipped.update(v for v in values if isinstance(v, str))
+    if not include_clitics:
+        clitic_merge = routing.get("clitic_merge", {})
+        if isinstance(clitic_merge, dict):
+            skipped.update(clitic_merge.keys())
+    return skipped
+
+
+def _artist_cache_state(artist_dir: Path):
+    status = load_json(SPANISHDICT_STATUS, {"artists": {}})
+    artist_key = str(Path(artist_dir).resolve())
+    return (status.get("artists") or {}).get(artist_key) or {}
+
+
+def build_spanishdict_menu(
+    vocab,
+    output_file,
+    existing_menu=None,
+    excluded_words=None,
+    word_filter=None,
+    max_words=None,
+    force=False,
+    include_redirects=True,
+):
+    """Build sense menu from SpanishDict shared caches.
+
+    Normal-mode default: full rebuild from the inventory.
+    Artist mode: pass `existing_menu` (incremental merge), `excluded_words` (skip
+    routing exclusions), `word_filter` (subset by --word), `max_words`, and
+    `force` (overwrite already-built words).
+    """
     surface_cache = load_json(SPANISHDICT_SURFACE_CACHE, {})
     headword_cache = load_json(SPANISHDICT_HEADWORD_CACHE, {})
     print(f"  SpanishDict surface cache: {len(surface_cache)} entries")
@@ -751,24 +794,49 @@ def build_spanishdict_menu(vocab, output_file):
         print(f"  Expected at: {SPANISHDICT_SURFACE_CACHE}")
         sys.exit(1)
 
-    output = {}
+    output = dict(existing_menu) if existing_menu else {}
+    excluded_words = excluded_words or set()
+    word_filter = set(word_filter) if word_filter else None
+
+    eligible = []
+    skipped_excluded = 0
+    skipped_existing = 0
+    skipped_uncached = 0
+    for entry in vocab:
+        word = (entry.get("word") or "").strip()
+        if not word:
+            continue
+        if word_filter is not None and word not in word_filter:
+            continue
+        if word in excluded_words:
+            skipped_excluded += 1
+            continue
+        if not force and word in output:
+            skipped_existing += 1
+            continue
+        if word not in surface_cache:
+            skipped_uncached += 1
+            continue
+        eligible.append(word)
+    if max_words is not None:
+        eligible = eligible[:max_words]
+
     matched = 0
     unmatched = 0
     total_senses = 0
     multi_analysis = 0
-
-    for entry in vocab:
-        word = entry["word"]
-        analyses = build_menu_analyses(word, surface_cache, headword_cache)
+    for word in eligible:
+        analyses = build_menu_analyses(
+            word, surface_cache, headword_cache,
+            include_redirects=include_redirects,
+        )
         if not analyses:
             unmatched += 1
             continue
-
         _, _, normalized = flatten_analyses_with_ids(analyses)
         output[word] = normalized
         matched += 1
-        n_senses = sum(len(a.get("senses", {})) for a in normalized)
-        total_senses += n_senses
+        total_senses += sum(len(a.get("senses", {})) for a in normalized)
         if len(normalized) >= 2:
             multi_analysis += 1
 
@@ -785,10 +853,18 @@ def build_spanishdict_menu(vocab, output_file):
     print("SPANISHDICT SENSE MENU RESULTS")
     print(f"{'='*55}")
     print(f"Total vocabulary:    {total:>6}")
-    print(f"Matched:             {matched:>6}  ({100*matched/total:.1f}%)")
-    print(f"Unmatched:           {unmatched:>6}  ({100*unmatched/total:.1f}%)")
+    print(f"Processed:           {len(eligible):>6}")
+    print(f"Matched:             {matched:>6}")
+    print(f"Unmatched:           {unmatched:>6}")
+    if skipped_excluded:
+        print(f"Skipped (excluded):  {skipped_excluded:>6}")
+    if skipped_existing:
+        print(f"Skipped (existing):  {skipped_existing:>6}")
+    if skipped_uncached:
+        print(f"Skipped (uncached):  {skipped_uncached:>6}")
     print(f"With 2+ analyses:    {multi_analysis:>6}  (homographs)")
-    print(f"Total senses:        {total_senses:>6}")
+    print(f"Total senses added:  {total_senses:>6}")
+    print(f"Total menu entries:  {len(output):>6}")
     print()
 
     # Sample output
@@ -811,9 +887,71 @@ def main():
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="wiktionary",
                         help="Sense dictionary source (default: wiktionary)")
+    parser.add_argument("--artist-dir", default=None,
+                        help="Build menu for an artist (spanishdict only). "
+                             "Omit for normal-mode Data/Spanish/layers.")
+    # Artist-flow flags (no-ops in normal mode)
+    parser.add_argument("--force", action="store_true",
+                        help="Rebuild entries already present in the menu")
+    parser.add_argument("--word", action="append", default=[],
+                        help="Only process a specific surface word (repeatable)")
+    parser.add_argument("--max-words", type=int, default=None,
+                        help="Only process the first N eligible words")
+    parser.add_argument("--include-excluded", action="store_true",
+                        help="Artist mode: include step-4 excluded words instead of skipping")
+    parser.add_argument("--include-clitics", action="store_true",
+                        help="Artist mode: include clitic_merge words (skipped by default)")
+    parser.add_argument("--no-redirects", action="store_true",
+                        help="Only use the direct surface-page dictionary analyses")
+    parser.add_argument("--allow-incomplete-cache", action="store_true",
+                        help="Artist mode: allow building from a partial shared cache")
     args = parser.parse_args()
 
-    # Load word inventory
+    # Artist-mode SpanishDict branch
+    if args.artist_dir:
+        if args.sense_source != "spanishdict":
+            print("ERROR: --artist-dir is only supported with --sense-source spanishdict "
+                  "(Wiktionary menus are shared across artists).")
+            sys.exit(2)
+
+        artist_dir = Path(args.artist_dir).resolve()
+        inventory_path = artist_dir / "data" / "layers" / "word_inventory.json"
+        layers_dir = artist_dir / "data" / "layers"
+        output_file = Path(sense_menu_path(layers_dir, "spanishdict"))
+
+        print("Loading artist word inventory...")
+        vocab = load_json(inventory_path, [])
+        print(f"  {len(vocab)} entries ({inventory_path})")
+
+        excluded = set() if args.include_excluded else _load_artist_excluded_words(
+            artist_dir, include_clitics=args.include_clitics,
+        )
+        existing = normalize_artist_sense_menu(load_json(output_file, {}))
+
+        is_full_build = not args.word and args.max_words is None
+        if is_full_build and not args.allow_incomplete_cache:
+            cache_state = _artist_cache_state(artist_dir)
+            if cache_state.get("status") != "complete":
+                print("ERROR: SpanishDict cache is not complete for this artist.")
+                print("Run the shared cache phase first, e.g.:")
+                print(f"  .venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py "
+                      f"--artist-dir \"{artist_dir}\"")
+                sys.exit(1)
+
+        print("\nBuilding SpanishDict sense menu (artist mode)...")
+        build_spanishdict_menu(
+            vocab,
+            output_file,
+            existing_menu=existing,
+            excluded_words=excluded,
+            word_filter=args.word or None,
+            max_words=args.max_words,
+            force=args.force,
+            include_redirects=not args.no_redirects,
+        )
+        return
+
+    # Load normal-mode word inventory
     print("Loading word inventory...")
     with open(INVENTORY_FILE, encoding="utf-8") as f:
         vocab = json.load(f)
@@ -822,7 +960,13 @@ def main():
     if args.sense_source == "spanishdict":
         print("\nBuilding sense menu from SpanishDict...")
         output_file = sense_menu_path(LAYERS_DIR, "spanishdict")
-        build_spanishdict_menu(vocab, output_file)
+        build_spanishdict_menu(
+            vocab, output_file,
+            force=args.force,
+            word_filter=args.word or None,
+            max_words=args.max_words,
+            include_redirects=not args.no_redirects,
+        )
         return
 
     if not WIKT_FILE.exists():

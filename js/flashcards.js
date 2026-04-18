@@ -1772,6 +1772,11 @@ function updateCard() {
     if (!isFlipped) {
         speakWord(card.targetWord);
     }
+
+    // Keep the debug metadata popover in sync with the visible card.
+    if (typeof window.refreshCardMetaPopoverIfOpen === 'function') {
+        window.refreshCardMetaPopoverIfOpen();
+    }
 }
 
 function flipCard() {
@@ -2615,3 +2620,164 @@ window.hideWordPopup = hideWordPopup;
 window.navigateToCard = navigateToCard;
 window.navigateToVocabCard = navigateToVocabCard;
 window.navigateBack = navigateBack;
+
+// ---------------------------------------------------------------------------
+// Card metadata popover (debug info — per-sense source + per-example method)
+// ---------------------------------------------------------------------------
+
+function _escapeHtml(s) {
+    if (s == null) return '';
+    return String(s).replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+}
+
+function _renderCardMetaBody(card) {
+    if (!card) return '<div class="card-meta-empty">No card selected.</div>';
+    const lines = [];
+    const id = card.fullId || card.id || '';
+    lines.push('<div class="card-meta-section">');
+    lines.push('<dl class="card-meta-kv">');
+    lines.push(`<dt>word</dt><dd>${_escapeHtml(card.targetWord || card.word || '')}</dd>`);
+    if (card.lemma && card.lemma !== (card.targetWord || card.word)) {
+        lines.push(`<dt>lemma</dt><dd>${_escapeHtml(card.lemma)}</dd>`);
+    }
+    if (id) lines.push(`<dt>id</dt><dd>${_escapeHtml(id)}</dd>`);
+    if (card.rank) lines.push(`<dt>rank</dt><dd>${_escapeHtml(card.rank)}</dd>`);
+    if (card.corpusCount != null) lines.push(`<dt>corpus</dt><dd>${_escapeHtml(card.corpusCount)}</dd>`);
+    lines.push('</dl></div>');
+
+    const meanings = card.meanings || [];
+    lines.push('<div class="card-meta-section"><h4>Meanings</h4>');
+    if (!meanings.length) {
+        lines.push('<div class="card-meta-empty">No meanings.</div>');
+    } else {
+        lines.push('<ul class="card-meta-list">');
+        meanings.forEach((m, i) => {
+            const isCurrent = (typeof currentMeaningIndex === 'number' && i === currentMeaningIndex);
+            const tags = [];
+            if (m.source) tags.push(`<span class="card-meta-tag source">src: ${_escapeHtml(m.source)}</span>`);
+            if (m.assignment_method) tags.push(`<span class="card-meta-tag method">m: ${_escapeHtml(m.assignment_method)}</span>`);
+            if (m.unassigned) tags.push('<span class="card-meta-tag flag">unassigned</span>');
+            if (m.pos === 'SENSE_CYCLE') tags.push('<span class="card-meta-tag flag">SENSE_CYCLE</span>');
+            const pctText = (typeof m.percentage === 'number') ? (m.percentage * 100).toFixed(0) + '%' : '';
+            const label = `${_escapeHtml(m.pos || '?')} · ${_escapeHtml(m.meaning || m.translation || '')}${pctText ? ' · ' + pctText : ''}`;
+            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${label}<div>${tags.join(' ') || '<span class="card-meta-empty">no tags</span>'}</div></li>`);
+        });
+        lines.push('</ul>');
+    }
+    lines.push('</div>');
+
+    // Per-example methods for the currently displayed meaning.
+    const curMeaning = meanings[currentMeaningIndex] || meanings[0];
+    const exs = (curMeaning && curMeaning.allExamples) || [];
+    lines.push('<div class="card-meta-section"><h4>Examples (current meaning)</h4>');
+    if (!exs.length) {
+        lines.push('<div class="card-meta-empty">No examples.</div>');
+    } else {
+        lines.push('<ul class="card-meta-list">');
+        exs.forEach((ex, i) => {
+            const isCurrent = (typeof currentExampleIndex === 'number' && i === (currentExampleIndex % exs.length));
+            const method = ex.assignment_method ? `<span class="card-meta-tag method">m: ${_escapeHtml(ex.assignment_method)}</span>` : '<span class="card-meta-empty">no method</span>';
+            const tsrc = ex.translation_source ? `<span class="card-meta-tag source">t: ${_escapeHtml(ex.translation_source)}</span>` : '';
+            const spanish = ex.spanish || ex.targetSentence || ex.original || '';
+            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${method} ${tsrc}<div class="card-meta-ex">${_escapeHtml(spanish)}</div></li>`);
+        });
+        lines.push('</ul>');
+    }
+    lines.push('</div>');
+
+    return lines.join('');
+}
+
+function showCardMetaPopover() {
+    const pop = document.getElementById('cardMetaPopover');
+    const body = document.getElementById('cardMetaBody');
+    const title = document.getElementById('cardMetaTitle');
+    if (!pop || !body) return;
+    const card = (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
+    if (title) title.textContent = card ? `${card.targetWord || card.word || 'Card'} — info` : 'Card info';
+    body.innerHTML = _renderCardMetaBody(card);
+    pop.hidden = false;
+    pop.setAttribute('aria-hidden', 'false');
+}
+
+function hideCardMetaPopover() {
+    const pop = document.getElementById('cardMetaPopover');
+    if (!pop) return;
+    pop.hidden = true;
+    pop.setAttribute('aria-hidden', 'true');
+}
+
+function toggleCardMetaPopover() {
+    const pop = document.getElementById('cardMetaPopover');
+    if (!pop) return;
+    if (pop.hidden) showCardMetaPopover();
+    else hideCardMetaPopover();
+}
+
+function refreshCardMetaPopoverIfOpen() {
+    const pop = document.getElementById('cardMetaPopover');
+    if (!pop || pop.hidden) return;
+    showCardMetaPopover();
+}
+window.refreshCardMetaPopoverIfOpen = refreshCardMetaPopoverIfOpen;
+
+// Wire up the button + outside-click dismiss + refresh on card change.
+(function _initCardMetaPopover() {
+    function attach() {
+        const btn = document.getElementById('cardMetaBtn');
+        const pop = document.getElementById('cardMetaPopover');
+        const closeBtn = document.getElementById('cardMetaClose');
+        if (!btn || !pop) return;
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCardMetaPopover();
+        });
+        if (closeBtn) closeBtn.addEventListener('click', hideCardMetaPopover);
+        document.addEventListener('click', (e) => {
+            if (pop.hidden) return;
+            if (pop.contains(e.target) || btn.contains(e.target)) return;
+            hideCardMetaPopover();
+        });
+        // Refresh contents when the popover is open and the card changes.
+        // (Driven by refreshCardMetaPopoverIfOpen() calls inside updateCard.)
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', attach, { once: true });
+    } else {
+        attach();
+    }
+})();
+
+window.toggleCardMetaPopover = toggleCardMetaPopover;
+window.showCardMetaPopover = showCardMetaPopover;
+window.hideCardMetaPopover = hideCardMetaPopover;
+
+// Keyboard-shortcut guide: collapse/expand with localStorage persistence.
+(function _initKbGuideCollapse() {
+    const LS_KEY = 'fluency.kbGuideCollapsed';
+    function attach() {
+        const guide = document.getElementById('desktopKeyboardGuide');
+        const btn = document.getElementById('kbCollapseBtn');
+        if (!guide || !btn) return;
+        const setCollapsed = (collapsed) => {
+            guide.classList.toggle('collapsed', collapsed);
+            btn.title = collapsed ? 'Show shortcuts' : 'Hide shortcuts';
+            btn.setAttribute('aria-label', btn.title);
+            try { localStorage.setItem(LS_KEY, collapsed ? '1' : '0'); } catch (e) {}
+        };
+        let initial = false;
+        try { initial = localStorage.getItem(LS_KEY) === '1'; } catch (e) {}
+        setCollapsed(initial);
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setCollapsed(!guide.classList.contains('collapsed'));
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', attach, { once: true });
+    } else {
+        attach();
+    }
+})();

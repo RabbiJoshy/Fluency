@@ -2245,7 +2245,10 @@
         "examples": [
           0,
           1,
-          2
+          2,
+          3,
+          4,
+          5
         ]
       }
     ]
@@ -2362,7 +2365,14 @@
         "examples": [
           0,
           1,
-          2
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
         ]
       }
     ]
@@ -3426,7 +3436,8 @@
           5,
           6,
           7,
-          8
+          8,
+          9
         ]
       }
     ]
@@ -4447,7 +4458,13 @@
         "examples": [
           0,
           1,
-          2
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
         ]
       }
     ]
@@ -5008,7 +5025,9 @@
         "examples": [
           2,
           3,
-          4
+          4,
+          5,
+          6
         ]
       },
       {
@@ -5954,6 +5973,7 @@
         "examples": [
           0,
           1,
+          2,
           3,
           4,
           5,
@@ -9664,7 +9684,8 @@
         "examples": [
           0,
           1,
-          2
+          2,
+          3
         ]
       }
     ]
@@ -13385,6 +13406,12 @@
         "sense": "419",
         "examples": [
           0
+        ]
+      },
+      {
+        "sense": "4a5",
+        "examples": [
+          2
         ]
       }
     ]
@@ -19941,6 +19968,12 @@
         "examples": [
           0
         ]
+      },
+      {
+        "sense": "9cb",
+        "examples": [
+          1
+        ]
       }
     ]
   },
@@ -20140,6 +20173,12 @@
         "sense": "22f",
         "examples": [
           0
+        ]
+      },
+      {
+        "sense": "039",
+        "examples": [
+          1
         ]
       }
     ]
@@ -23599,7 +23638,8 @@
       {
         "sense": "a37",
         "examples": [
-          0
+          0,
+          1
         ]
       }
     ]
@@ -26048,9 +26088,6 @@
     "gap-fill": [
       {
         "sense": "05d",
-        "pos": "NOUN",
-        "translation": "dimples",
-        "lemma": "hoyuelo",
         "examples": [
           0
         ]
@@ -26061,9 +26098,6 @@
     "gap-fill": [
       {
         "sense": "0b3",
-        "pos": "ADVERB",
-        "translation": "recklessly, wildly",
-        "lemma": "algarete",
         "examples": [
           0
         ]
@@ -26074,9 +26108,6 @@
     "gap-fill": [
       {
         "sense": "50b",
-        "pos": "NOUN",
-        "translation": "sweetie, darling (term of endearment)",
-        "lemma": "bizcochito",
         "examples": [
           0
         ]
@@ -26087,9 +26118,6 @@
     "gap-fill": [
       {
         "sense": "f40",
-        "pos": "INTERJECTION",
-        "translation": "a vocalization, often used in music or as an exclamation",
-        "lemma": "lelele",
         "examples": [
           0
         ]
@@ -26100,9 +26128,6 @@
     "gap-fill": [
       {
         "sense": "4f4",
-        "pos": "VERB",
-        "translation": "to give it to you",
-        "lemma": "dártelo",
         "examples": [
           0
         ]
@@ -26113,9 +26138,6 @@
     "gap-fill": [
       {
         "sense": "5bb",
-        "pos": "NOUN",
-        "translation": "code of silence, especially in organized crime",
-        "lemma": "omertá",
         "examples": [
           0
         ]
@@ -26126,9 +26148,6 @@
     "gap-fill": [
       {
         "sense": "f39",
-        "pos": "VERB",
-        "translation": "to pimp (someone)",
-        "lemma": "pimpear",
         "examples": [
           0
         ]
@@ -26139,9 +26158,6 @@
     "gap-fill": [
       {
         "sense": "3ea",
-        "pos": "ADJECTIVE",
-        "translation": "tagged (marked or identified)",
-        "lemma": "taggear",
         "examples": [
           0
         ]
@@ -26152,9 +26168,6 @@
     "gap-fill": [
       {
         "sense": "526",
-        "pos": "NOUN",
-        "translation": "trickery, cunning, or street smarts",
-        "lemma": "tigueraje",
         "examples": [
           0
         ]
@@ -26165,9 +26178,6 @@
     "gap-fill": [
       {
         "sense": "563",
-        "pos": "NOUN",
-        "translation": "a street-smart, cunning, or resourceful person",
-        "lemma": "tíguere",
         "examples": [
           0
         ]
@@ -26634,9 +26644,6 @@
     "gap-fill": [
       {
         "sense": "cad",
-        "pos": "VERB",
-        "translation": "to relieve or ease pain or suffering",
-        "lemma": "aliviar",
         "examples": [
           0
         ]
@@ -26647,9 +26654,6 @@
     "gap-fill": [
       {
         "sense": "b76",
-        "pos": "VERB",
-        "translation": "to dare",
-        "lemma": "atrever",
         "examples": [
           0
         ]
@@ -26660,9 +26664,6 @@
     "gap-fill": [
       {
         "sense": "586",
-        "pos": "VERB",
-        "translation": "to crash or smash",
-        "lemma": "estrellar",
         "examples": [
           0
         ]
@@ -26673,9 +26674,6 @@
     "gap-fill": [
       {
         "sense": "b87",
-        "pos": "VERB",
-        "translation": "to remember",
-        "lemma": "acordar",
         "examples": [
           0
         ]
@@ -26686,9 +26684,6 @@
     "gap-fill": [
       {
         "sense": "e4b",
-        "pos": "NOUN",
-        "translation": "headlight",
-        "lemma": "far",
         "examples": [
           0
         ]
@@ -26699,9 +26694,6 @@
     "gap-fill": [
       {
         "sense": "869",
-        "pos": "VERB",
-        "translation": "to force or oblige",
-        "lemma": "obligar",
         "examples": [
           0
         ]
@@ -26712,9 +26704,6 @@
     "gap-fill": [
       {
         "sense": "8aa",
-        "pos": "VERB",
-        "translation": "to make a mistake or be wrong",
-        "lemma": "equivocar",
         "examples": [
           0,
           1
@@ -26726,9 +26715,6 @@
     "gap-fill": [
       {
         "sense": "f07",
-        "pos": "VERB",
-        "translation": "to get even or take revenge",
-        "lemma": "desquitar",
         "examples": [
           0
         ]
@@ -26739,9 +26725,6 @@
     "gap-fill": [
       {
         "sense": "e5f",
-        "pos": "VERB",
-        "translation": "to tattoo",
-        "lemma": "tatuar",
         "examples": [
           0
         ]
@@ -26752,11 +26735,1999 @@
     "gap-fill": [
       {
         "sense": "da8",
-        "pos": "VERB",
-        "translation": "to punish",
-        "lemma": "castigar",
         "examples": [
           0
+        ]
+      }
+    ]
+  },
+  "el": {
+    "spanishdict-auto": [
+      {
+        "sense": "e0b",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "tú": {
+    "spanishdict-auto": [
+      {
+        "sense": "be4",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "tu": {
+    "spanishdict-auto": [
+      {
+        "sense": "ef2",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "dinero": {
+    "spanishdict-auto": [
+      {
+        "sense": "72c",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  "bebé": {
+    "spanishdict-auto": [
+      {
+        "sense": "4be",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "ex": {
+    "spanishdict-auto": [
+      {
+        "sense": "263",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "san": {
+    "spanishdict-auto": [
+      {
+        "sense": "958",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "de": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "bcd",
+        "examples": [
+          0,
+          3,
+          4,
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "sense": "cc8",
+        "examples": [
+          1,
+          2,
+          6,
+          9
+        ]
+      }
+    ]
+  },
+  "la": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "04f",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "2b1",
+        "examples": [
+          5
+        ]
+      }
+    ]
+  },
+  "no": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "002",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "me": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c9f",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "en": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d65",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "e96",
+        "examples": [
+          5
+        ]
+      }
+    ]
+  },
+  "yo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "999",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "lo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "34b",
+        "examples": [
+          1
+        ]
+      },
+      {
+        "sense": "ac0",
+        "examples": [
+          8
+        ]
+      },
+      {
+        "sense": "b09",
+        "examples": [
+          2,
+          4,
+          6,
+          7
+        ]
+      },
+      {
+        "sense": "dc2",
+        "examples": [
+          0,
+          3,
+          9
+        ]
+      },
+      {
+        "sense": "fd0",
+        "examples": [
+          5
+        ]
+      }
+    ]
+  },
+  "te": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "64f",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "es": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "654",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "mi": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "7aa",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "un": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5ad",
+        "examples": [
+          6
+        ]
+      },
+      {
+        "sense": "c31",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "se": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d97",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "si": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "98f",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "ti": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "19c",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "mí": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "100",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "al": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0d0",
+        "examples": [
+          7
+        ]
+      },
+      {
+        "sense": "150",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "mira": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "181",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "ni": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "df0",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "dios": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "321",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "sé": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b20",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "le": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5b0",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "su": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "066",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "da": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "662",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "va": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "3e7",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "sí": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0ac",
+        "examples": [
+          1
+        ]
+      },
+      {
+        "sense": "e54",
+        "examples": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ]
+  },
+  "él": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "3ab",
+        "examples": [
+          2
+        ]
+      },
+      {
+        "sense": "441",
+        "examples": [
+          0,
+          3,
+          4,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "8ba",
+        "examples": [
+          1,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  "rá": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "803",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "flor": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "75e",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "pa": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "24f",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  "sale": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5e4",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  "rulin": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d94",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "tírame": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "cec",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "ir": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "3e7",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    ]
+  },
+  "ve": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "337",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "di": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "12a",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "diamantes": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "6c3",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "cógela": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c01",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "prima": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "bad",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "señor": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "65f",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "fama": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5a9",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "fe": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "920",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  "remedio": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "3b7",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "santo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "795",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "tv": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "433",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "vi": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "40a",
+        "examples": [
+          1
+        ]
+      },
+      {
+        "sense": "74d",
+        "examples": [
+          2,
+          3
+        ]
+      },
+      {
+        "sense": "c6e",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "acelero": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "20c",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "cuello": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b74",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "dale": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c6e",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "quito": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "03a",
+        "examples": [
+          0
+        ]
+      },
+      {
+        "sense": "3ef",
+        "examples": [
+          1
+        ]
+      }
+    ]
+  },
+  "so": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "af5",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "rosas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "1fb",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "alfa": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "519",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "cheque": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "9fd",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "domingo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "4e3",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "eterna": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "56a",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "fortuna": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "00a",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "habana": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0a7",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "haré": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "347",
+        "examples": [
+          0
+        ]
+      },
+      {
+        "sense": "bf6",
+        "examples": [
+          1
+        ]
+      }
+    ]
+  },
+  "manden": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "4a0",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "nacer": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5d5",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "piensas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "357",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "ponte": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "4bc",
+        "examples": [
+          0
+        ]
+      },
+      {
+        "sense": "be9",
+        "examples": [
+          1
+        ]
+      }
+    ]
+  },
+  "quince": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "f21",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "taba": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c57",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "todito": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "9e3",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "té": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "62e",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "és": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "654",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "bolso": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "bf5",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "chica": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "38a",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "china": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d57",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "choqué": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "9fa",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "clavé": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "799",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "dé": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "662",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "late": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "6e2",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "rango": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "df2",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "teteo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "537",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "vip": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "fba",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "aires": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5b1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "baja": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "9cd",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "blanca": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "278",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "campo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "aa0",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "caro": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0fc",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "cristal": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c76",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "decirte": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "375",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "fumo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "46c",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "gasolina": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "910",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "jet": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "84e",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "juega": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c27",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "julio": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "701",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "leo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c54",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "mamacita": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "fa8",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "manito": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "daa",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "maría": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "001",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "matando": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a08",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "navidad": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "24c",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "okay": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "fb9",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "original": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b21",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "parís": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "785",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "pensarte": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "357",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "pica": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b1b",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "plaza": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "039",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "puente": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a15",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "red": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "175",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "reyes": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "e0a",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "rota": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b03",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "vine": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b14",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "visa": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "727",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "baby": {
+    "gap-fill": [
+      {
+        "sense": "bdc",
+        "pos": "NOUN",
+        "translation": "Term of endearment for a romantic partner or a child.",
+        "lemma": "baby",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  "chi": {
+    "gap-fill": [
+      {
+        "sense": "d2d",
+        "pos": "INTJ",
+        "translation": "An exclamation or sound, often used playfully or to express excitement.",
+        "lemma": "chi",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "can": {
+    "gap-fill": [
+      {
+        "sense": "794",
+        "pos": "AUX",
+        "translation": "Modal verb indicating ability or possibility (used in English within Spanish text).",
+        "lemma": "can",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "go": {
+    "gap-fill": [
+      {
+        "sense": "d2e",
+        "pos": "VERB",
+        "translation": "Verb meaning to move or travel (used in English within Spanish text).",
+        "lemma": "go",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "tas": {
+    "gap-fill": [
+      {
+        "sense": "a73",
+        "pos": "VERB",
+        "translation": "Contraction of 'estás' (you are), informal.",
+        "lemma": "estar",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "like": {
+    "gap-fill": [
+      {
+        "sense": "98a",
+        "pos": "VERB",
+        "translation": "Verb meaning to find agreeable or enjoyable (used in English within Spanish text).",
+        "lemma": "like",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "rumba": {
+    "gap-fill": [
+      {
+        "sense": "120",
+        "pos": "NOUN",
+        "translation": "A type of lively Cuban dance and music; a party or festive gathering.",
+        "lemma": "rumba",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "up": {
+    "gap-fill": [
+      {
+        "sense": "d6a",
+        "pos": "ADV",
+        "translation": "Adverb or preposition indicating direction or position (used in English within Spanish text).",
+        "lemma": "up",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "ea": {
+    "gap-fill": [
+      {
+        "sense": "8e5",
+        "pos": "INTJ",
+        "translation": "Interjection used to encourage, greet, or express agreement.",
+        "lemma": "ea",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "g": {
+    "gap-fill": [
+      {
+        "sense": "055",
+        "pos": "NOUN",
+        "translation": "Slang term for a gangster, a tough or respected person.",
+        "lemma": "g",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "hola": {
+    "gap-fill": [
+      {
+        "sense": "ed1",
+        "pos": "INTERJECTION",
+        "translation": "A common greeting, like 'hello' or 'hi'.",
+        "lemma": "hola",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "nana": {
+    "gap-fill": [
+      {
+        "sense": "c3e",
+        "pos": "NOUN",
+        "translation": "A gentle song sung to a child to help them sleep; a lullaby.",
+        "lemma": "nana",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "simón": {
+    "gap-fill": [
+      {
+        "sense": "c48",
+        "pos": "PROPER_NOUN",
+        "translation": "A proper name, often used in contexts like song titles or personal names.",
+        "lemma": "Simón",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "caracol": {
+    "gap-fill": [
+      {
+        "sense": "fe7",
+        "pos": "NOUN",
+        "translation": "A type of snail, often used metaphorically or as a surname/stage name.",
+        "lemma": "caracol",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "che": {
+    "gap-fill": [
+      {
+        "sense": "6a0",
+        "pos": "INTERJECTION",
+        "translation": "An interjection used to get attention, similar to 'hey' or 'psst'.",
+        "lemma": "che",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "diva": {
+    "gap-fill": [
+      {
+        "sense": "41b",
+        "pos": "NOUN",
+        "translation": "A celebrated female singer or performer, often with a glamorous or demanding persona.",
+        "lemma": "diva",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "flow": {
+    "gap-fill": [
+      {
+        "sense": "dfb",
+        "pos": "NOUN",
+        "translation": "A person's style, manner, or rhythm, especially in music or performance.",
+        "lemma": "flow",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "hoodie": {
+    "gap-fill": [
+      {
+        "sense": "85f",
+        "pos": "NOUN",
+        "translation": "A hooded sweatshirt; a casual garment with a hood.",
+        "lemma": "hoodie",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "incito": {
+    "gap-fill": [
+      {
+        "sense": "fa9",
+        "pos": "VERB",
+        "translation": "I encourage, urge, or incite (first-person singular present indicative of 'incitar').",
+        "lemma": "incitar",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "avenida": {
+    "gap-fill": [
+      {
+        "sense": "a9e",
+        "pos": "NOUN",
+        "translation": "A wide street in a city or town, often lined with trees; an avenue.",
+        "lemma": "avenida",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "brava": {
+    "gap-fill": [
+      {
+        "sense": "73e",
+        "pos": "ADJ",
+        "translation": "used in the alphabet to represent the letter B",
+        "lemma": "bravo",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "et": {
+    "gap-fill": [
+      {
+        "sense": "49d",
+        "pos": "CONJ",
+        "translation": "conjunction meaning 'and'",
+        "lemma": "et",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "flash": {
+    "gap-fill": [
+      {
+        "sense": "787",
+        "pos": "NOUN",
+        "translation": "a sudden brief burst of light",
+        "lemma": "flash",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "hey": {
+    "gap-fill": [
+      {
+        "sense": "35a",
+        "pos": "INTJ",
+        "translation": "used to get someone's attention",
+        "lemma": "hey",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "japón": {
+    "gap-fill": [
+      {
+        "sense": "98a",
+        "pos": "PROPN",
+        "translation": "Japan (country)",
+        "lemma": "Japón",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "lady": {
+    "gap-fill": [
+      {
+        "sense": "e1f",
+        "pos": "NOUN",
+        "translation": "a title of respect for a woman, often used with a name",
+        "lemma": "lady",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "mai": {
+    "gap-fill": [
+      {
+        "sense": "b40",
+        "pos": "ADV",
+        "translation": "never (archaic or poetic)",
+        "lemma": "mai",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "man": {
+    "gap-fill": [
+      {
+        "sense": "9ce",
+        "pos": "INTJ",
+        "translation": "used to express surprise or emphasis",
+        "lemma": "man",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "piercing": {
+    "gap-fill": [
+      {
+        "sense": "22a",
+        "pos": "NOUN",
+        "translation": "a piece of jewelry worn in a piercing",
+        "lemma": "piercing",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "saliva": {
+    "gap-fill": [
+      {
+        "sense": "3ee",
+        "pos": "NOUN",
+        "translation": "saliva (bodily fluid)",
+        "lemma": "saliva",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "tar": {
+    "gap-fill": [
+      {
+        "sense": "24b",
+        "pos": "VERB",
+        "translation": "to be near",
+        "lemma": "estar",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "males": {
+    "gap-fill": [
+      {
+        "sense": "070",
+        "pos": "NOUN",
+        "translation": "evils, harms",
+        "lemma": "mal",
+        "examples": [
+          0,
+          1
         ]
       }
     ]

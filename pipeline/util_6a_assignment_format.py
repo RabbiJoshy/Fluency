@@ -159,7 +159,14 @@ def resolve_best_per_example(word_data, min_priority=0):
     best = {}
     for method, items in word_data.items():
         prio = METHOD_PRIORITY.get(method, 0)
-        if prio < min_priority:
+        # Auto-assignments (single-sense words) are exempt from the
+        # min-priority filter: they're "trivially correct" (only one
+        # sense exists) rather than "low-quality classification", so
+        # filtering them out produces empty cards for no good reason.
+        # A real classifier's claim still wins over an auto claim at
+        # per-example resolution because prio=0 < any real priority.
+        is_auto = method.endswith("-auto")
+        if prio < min_priority and not is_auto:
             continue
         for item in items or []:
             if not isinstance(item, dict):

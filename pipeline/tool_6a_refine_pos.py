@@ -26,7 +26,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from util_6a_method_priority import assign_sense_ids
-from artist.util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
+from util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 

@@ -808,7 +808,7 @@
       }
     ],
     "id": "c37554",
-    "base_id": "09308e"
+    "base_id": "4dc3cf"
   },
   "c39c43": {
     "base_verb": "acostar",
@@ -961,13 +961,13 @@
       }
     ],
     "id": "c39c43",
-    "base_id": "09308e"
+    "base_id": "4dc3cf"
   },
-  "47863c": {
+  "0c608e": {
     "base_verb": "acuerda",
-    "lemma": "acuérdate",
+    "lemma": "acordar",
     "corpus_count": 6,
-    "translation": "remember",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -1119,14 +1119,14 @@
         "easiness": 31
       }
     ],
-    "id": "47863c",
-    "base_id": "ba9387"
+    "id": "0c608e",
+    "base_id": "790cbe"
   },
-  "43c826": {
+  "6979c5": {
     "base_verb": "acostar",
-    "lemma": "acuéstate",
+    "lemma": "acostar",
     "corpus_count": 5,
-    "translation": "go to bed",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -1278,14 +1278,14 @@
         "easiness": 37
       }
     ],
-    "id": "43c826",
-    "base_id": "09308e"
+    "id": "6979c5",
+    "base_id": "4dc3cf"
   },
-  "df2ea8": {
+  "397dbb": {
     "base_verb": "acerca",
-    "lemma": "acércate",
+    "lemma": "acercar",
     "corpus_count": 14,
-    "translation": "approach",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -1442,8 +1442,8 @@
         "easiness": 27
       }
     ],
-    "id": "df2ea8",
-    "base_id": "053b5b"
+    "id": "397dbb",
+    "base_id": "f011df"
   },
   "a01351": {
     "base_verb": "admitir",
@@ -3807,11 +3807,11 @@
     "id": "87eefb",
     "base_id": "ffcb23"
   },
-  "d3bd62": {
+  "99e374": {
     "base_verb": "asegura",
-    "lemma": "asegúrate",
+    "lemma": "asegurar",
     "corpus_count": 26,
-    "translation": "make sure",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -3963,7 +3963,7 @@
         "easiness": 136
       }
     ],
-    "id": "d3bd62",
+    "id": "99e374",
     "base_id": "3e7896"
   },
   "2d61e9": {
@@ -4874,11 +4874,11 @@
     "id": "309e10",
     "base_id": "8a5ab2"
   },
-  "bfb8b1": {
+  "8eb38d": {
     "base_verb": "avisa",
-    "lemma": "avísame",
+    "lemma": "avisar",
     "corpus_count": 11,
-    "translation": "let me know",
+    "translation": "to let know",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -5035,7 +5035,7 @@
         "easiness": 47
       }
     ],
-    "id": "bfb8b1",
+    "id": "8eb38d",
     "base_id": "e11ad1"
   },
   "2194e4": {
@@ -6479,11 +6479,11 @@
     "id": "bd37cc",
     "base_id": "6a53a3"
   },
-  "aa8749": {
+  "75cb16": {
     "base_verb": "ayuda",
-    "lemma": "ayúdame",
+    "lemma": "ayudar",
     "corpus_count": 73,
-    "translation": "help me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -6635,14 +6635,14 @@
         "easiness": 69
       }
     ],
-    "id": "aa8749",
+    "id": "75cb16",
     "base_id": "3a1d36"
   },
-  "258079": {
+  "7a5d13": {
     "base_verb": "ayuda",
-    "lemma": "ayúdanos",
+    "lemma": "ayudar",
     "corpus_count": 5,
-    "translation": "help us",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -6794,7 +6794,7 @@
         "easiness": 32
       }
     ],
-    "id": "258079",
+    "id": "7a5d13",
     "base_id": "3a1d36"
   },
   "5baa33": {
@@ -6956,11 +6956,11 @@
     "id": "5baa33",
     "base_id": "334427"
   },
-  "283fe8": {
+  "a29f0d": {
     "base_verb": "ayuden",
-    "lemma": "ayúdenme",
+    "lemma": "ayudar",
     "corpus_count": 32,
-    "translation": "help me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -7112,7 +7112,7 @@
         "easiness": 54
       }
     ],
-    "id": "283fe8",
+    "id": "a29f0d",
     "base_id": "38ff1f"
   },
   "b7ad28": {
@@ -8965,11 +8965,11 @@
     "id": "8725b5",
     "base_id": "9629d7"
   },
-  "04960a": {
+  "08fbd9": {
     "base_verb": "besa",
-    "lemma": "bésame",
+    "lemma": "besar",
     "corpus_count": 10,
-    "translation": "kiss me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -9121,7 +9121,7 @@
         "easiness": 34
       }
     ],
-    "id": "04960a",
+    "id": "08fbd9",
     "base_id": "e4f1d4"
   },
   "50e25a": {
@@ -10490,11 +10490,11 @@
     "id": "f085db",
     "base_id": "d538db"
   },
-  "b33446": {
+  "c349b5": {
     "base_verb": "come",
-    "lemma": "comete",
+    "lemma": "cometer",
     "corpus_count": 8,
-    "translation": "make",
+    "translation": "to commit",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -10656,7 +10656,7 @@
         "easiness": 332
       }
     ],
-    "id": "b33446",
+    "id": "c349b5",
     "base_id": "c4418e"
   },
   "9a0d2d": {
@@ -13429,11 +13429,11 @@
     "id": "d70feb",
     "base_id": "90ef2c"
   },
-  "4ec3d8": {
+  "8fa6fc": {
     "base_verb": "contesta",
-    "lemma": "contéstame",
+    "lemma": "contestar",
     "corpus_count": 7,
-    "translation": "answer me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -13585,8 +13585,8 @@
         "easiness": 75
       }
     ],
-    "id": "4ec3d8",
-    "base_id": "0cbb61"
+    "id": "8fa6fc",
+    "base_id": "3593d7"
   },
   "71356b": {
     "base_verb": "convertir",
@@ -14685,11 +14685,11 @@
     "id": "40fb26",
     "base_id": "a49b4a"
   },
-  "f322e1": {
+  "3665ee": {
     "base_verb": "crea",
-    "lemma": "créame",
+    "lemma": "creer",
     "corpus_count": 11,
-    "translation": "believe me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -14841,14 +14841,14 @@
         "easiness": 18
       }
     ],
-    "id": "f322e1",
-    "base_id": "174ac0"
+    "id": "3665ee",
+    "base_id": "ef2dcd"
   },
-  "69bccf": {
+  "36c917": {
     "base_verb": "cree",
-    "lemma": "créeme",
+    "lemma": "creer",
     "corpus_count": 42,
-    "translation": "believe me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -15000,7 +15000,7 @@
         "easiness": 10
       }
     ],
-    "id": "69bccf",
+    "id": "36c917",
     "base_id": "4557ac"
   },
   "dfd3c6": {
@@ -15331,11 +15331,11 @@
     "id": "fd2cbb",
     "base_id": "4a9f35"
   },
-  "77d104": {
+  "f650cf": {
     "base_verb": "cuenta",
-    "lemma": "cuéntale",
+    "lemma": "contar",
     "corpus_count": 5,
-    "translation": "tell him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -15492,14 +15492,14 @@
         "easiness": 33
       }
     ],
-    "id": "77d104",
+    "id": "f650cf",
     "base_id": "6bf897"
   },
-  "1b9112": {
+  "7024d1": {
     "base_verb": "cuenta",
-    "lemma": "cuéntame",
+    "lemma": "contar",
     "corpus_count": 22,
-    "translation": "tell me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -15651,14 +15651,14 @@
         "easiness": 127
       }
     ],
-    "id": "1b9112",
+    "id": "7024d1",
     "base_id": "6bf897"
   },
-  "f8619a": {
+  "56b111": {
     "base_verb": "cuenta",
-    "lemma": "cuéntanos",
+    "lemma": "contar",
     "corpus_count": 5,
-    "translation": "tell us",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -15810,7 +15810,7 @@
         "easiness": 80
       }
     ],
-    "id": "f8619a",
+    "id": "56b111",
     "base_id": "6bf897"
   },
   "7e3845": {
@@ -15977,11 +15977,11 @@
     "id": "7e3845",
     "base_id": "0ebaf4"
   },
-  "5d2959": {
+  "39c6b1": {
     "base_verb": "cuida",
-    "lemma": "cuídate",
+    "lemma": "cuidar",
     "corpus_count": 30,
-    "translation": "take care",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -16138,14 +16138,14 @@
         "easiness": 96
       }
     ],
-    "id": "5d2959",
+    "id": "39c6b1",
     "base_id": "2fad99"
   },
-  "3079ba": {
+  "54dfc5": {
     "base_verb": "calla",
-    "lemma": "cállate",
+    "lemma": "callar",
     "corpus_count": 167,
-    "translation": "shut up",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -16302,14 +16302,14 @@
         "easiness": 215
       }
     ],
-    "id": "3079ba",
+    "id": "54dfc5",
     "base_id": "8d1982"
   },
-  "ec0467": {
+  "def926": {
     "base_verb": "calma",
-    "lemma": "cálmate",
+    "lemma": "calmar",
     "corpus_count": 75,
-    "translation": "calm down",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -16461,7 +16461,7 @@
         "easiness": 40
       }
     ],
-    "id": "ec0467",
+    "id": "def926",
     "base_id": "19ace6"
   },
   "8ac5a4": {
@@ -16768,11 +16768,11 @@
     "id": "e0a22a",
     "base_id": "695915"
   },
-  "41af29": {
+  "fa990a": {
     "base_verb": "dar",
-    "lemma": "darles",
+    "lemma": "dar",
     "corpus_count": 28,
-    "translation": "give them",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -16924,7 +16924,7 @@
         "easiness": 41
       }
     ],
-    "id": "41af29",
+    "id": "fa990a",
     "base_id": "695915"
   },
   "71cf59": {
@@ -18418,11 +18418,11 @@
     "id": "745965",
     "base_id": "2159c9"
   },
-  "8f6c9e": {
+  "6c3ad9": {
     "base_verb": "decir",
-    "lemma": "decírmelo",
+    "lemma": "decir",
     "corpus_count": 13,
-    "translation": "tell me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -18574,7 +18574,7 @@
         "easiness": 36
       }
     ],
-    "id": "8f6c9e",
+    "id": "6c3ad9",
     "base_id": "2159c9"
   },
   "c5ff21": {
@@ -20377,11 +20377,11 @@
     "id": "2563d5",
     "base_id": "cb971a"
   },
-  "79871e": {
+  "495044": {
     "base_verb": "de",
-    "lemma": "deme",
+    "lemma": "dar",
     "corpus_count": 29,
-    "translation": "give me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -20533,7 +20533,7 @@
         "easiness": 96
       }
     ],
-    "id": "79871e",
+    "id": "495044",
     "base_id": "cb971a"
   },
   "f868b4": {
@@ -23690,13 +23690,13 @@
       }
     ],
     "id": "1d6a05",
-    "base_id": "a2031c"
+    "base_id": "db562c"
   },
-  "709e84": {
+  "f7f6fb": {
     "base_verb": "di",
-    "lemma": "diles",
+    "lemma": "decir",
     "corpus_count": 37,
-    "translation": "tell them",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -23848,8 +23848,8 @@
         "easiness": 18
       }
     ],
-    "id": "709e84",
-    "base_id": "a2031c"
+    "id": "f7f6fb",
+    "base_id": "db562c"
   },
   "365170": {
     "base_verb": "di",
@@ -24008,13 +24008,13 @@
       }
     ],
     "id": "365170",
-    "base_id": "a2031c"
+    "base_id": "db562c"
   },
-  "a49c83": {
+  "08a153": {
     "base_verb": "di",
-    "lemma": "dime",
+    "lemma": "decir",
     "corpus_count": 229,
-    "translation": "tell me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -24166,14 +24166,14 @@
         "easiness": 32
       }
     ],
-    "id": "a49c83",
-    "base_id": "a2031c"
+    "id": "08a153",
+    "base_id": "db562c"
   },
-  "8de127": {
+  "96e7a4": {
     "base_verb": "di",
-    "lemma": "dinos",
+    "lemma": "decir",
     "corpus_count": 14,
-    "translation": "tell us",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -24325,8 +24325,8 @@
         "easiness": 50
       }
     ],
-    "id": "8de127",
-    "base_id": "a2031c"
+    "id": "96e7a4",
+    "base_id": "db562c"
   },
   "6fefa2": {
     "base_verb": "discutir",
@@ -24492,11 +24492,11 @@
     "id": "6fefa2",
     "base_id": "0bbfdd"
   },
-  "cb7e3f": {
+  "f7e9a5": {
     "base_verb": "disculpa",
-    "lemma": "discúlpame",
+    "lemma": "disculpar",
     "corpus_count": 26,
-    "translation": "forgive me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -24648,7 +24648,7 @@
         "easiness": 24
       }
     ],
-    "id": "cb7e3f",
+    "id": "f7e9a5",
     "base_id": "f085c1"
   },
   "6182d0": {
@@ -24789,7 +24789,7 @@
       }
     ],
     "id": "6182d0",
-    "base_id": "e5019c"
+    "base_id": "d68992"
   },
   "d7d3c5": {
     "base_verb": "disculpen",
@@ -25418,11 +25418,11 @@
     "id": "67329b",
     "base_id": "4d2177"
   },
-  "b6918f": {
+  "ee0c14": {
     "base_verb": "divierte",
-    "lemma": "diviértete",
+    "lemma": "divertir",
     "corpus_count": 10,
-    "translation": "have fun",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -25579,14 +25579,14 @@
         "easiness": 27
       }
     ],
-    "id": "b6918f",
-    "base_id": "f586b1"
+    "id": "ee0c14",
+    "base_id": "7b428b"
   },
-  "af441d": {
+  "c29b95": {
     "base_verb": "duerme",
-    "lemma": "duérmete",
+    "lemma": "dormir",
     "corpus_count": 5,
-    "translation": "go to sleep",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -25738,14 +25738,14 @@
         "easiness": 93
       }
     ],
-    "id": "af441d",
+    "id": "c29b95",
     "base_id": "0d0940"
   },
-  "e9e3f7": {
+  "b94ac8": {
     "base_verb": "dando",
-    "lemma": "dándole",
+    "lemma": "dar",
     "corpus_count": 7,
-    "translation": "giving him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -25907,7 +25907,7 @@
         "easiness": 96
       }
     ],
-    "id": "e9e3f7",
+    "id": "b94ac8",
     "base_id": "fdd582"
   },
   "3f955d": {
@@ -26074,11 +26074,11 @@
     "id": "3f955d",
     "base_id": "265482"
   },
-  "1181bf": {
+  "6e0331": {
     "base_verb": "deja",
-    "lemma": "déjale",
+    "lemma": "dejar",
     "corpus_count": 6,
-    "translation": "let him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -26235,14 +26235,14 @@
         "easiness": 27
       }
     ],
-    "id": "1181bf",
+    "id": "6e0331",
     "base_id": "265482"
   },
-  "c976a8": {
+  "462b94": {
     "base_verb": "deja",
-    "lemma": "déjalo",
+    "lemma": "dejar",
     "corpus_count": 63,
-    "translation": "let him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -26399,7 +26399,7 @@
         "easiness": 24
       }
     ],
-    "id": "c976a8",
+    "id": "462b94",
     "base_id": "265482"
   },
   "704b0c": {
@@ -26566,11 +26566,11 @@
     "id": "704b0c",
     "base_id": "265482"
   },
-  "c890f6": {
+  "e138b7": {
     "base_verb": "deja",
-    "lemma": "déjame",
+    "lemma": "dejar",
     "corpus_count": 276,
-    "translation": "let me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -26732,14 +26732,14 @@
         "easiness": 57
       }
     ],
-    "id": "c890f6",
+    "id": "e138b7",
     "base_id": "265482"
   },
-  "1f8b77": {
+  "4d126b": {
     "base_verb": "deja",
-    "lemma": "déjanos",
+    "lemma": "dejar",
     "corpus_count": 11,
-    "translation": "leave us",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -26896,7 +26896,7 @@
         "easiness": 87
       }
     ],
-    "id": "1f8b77",
+    "id": "4d126b",
     "base_id": "265482"
   },
   "29c9af": {
@@ -27197,7 +27197,7 @@
       }
     ],
     "id": "e035b3",
-    "base_id": "621139"
+    "base_id": "6c9a06"
   },
   "2fa15e": {
     "base_verb": "deje",
@@ -27356,13 +27356,13 @@
       }
     ],
     "id": "2fa15e",
-    "base_id": "621139"
+    "base_id": "6c9a06"
   },
-  "aa8b7c": {
+  "e709de": {
     "base_verb": "deje",
-    "lemma": "déjeme",
+    "lemma": "dejar",
     "corpus_count": 61,
-    "translation": "let me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -27519,8 +27519,8 @@
         "easiness": 39
       }
     ],
-    "id": "aa8b7c",
-    "base_id": "621139"
+    "id": "e709de",
+    "base_id": "6c9a06"
   },
   "ce02f3": {
     "base_verb": "dejen",
@@ -27936,7 +27936,7 @@
       }
     ],
     "id": "a68e00",
-    "base_id": "621139"
+    "base_id": "6c9a06"
   },
   "02c83a": {
     "base_verb": "demos",
@@ -28069,11 +28069,11 @@
     "id": "02c83a",
     "base_id": "b4a033"
   },
-  "a893f5": {
+  "b07976": {
     "base_verb": "diga",
-    "lemma": "dígale",
+    "lemma": "decir",
     "corpus_count": 32,
-    "translation": "tell him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -28230,7 +28230,7 @@
         "easiness": 9
       }
     ],
-    "id": "a893f5",
+    "id": "b07976",
     "base_id": "36550a"
   },
   "ba7e1b": {
@@ -28392,11 +28392,11 @@
     "id": "ba7e1b",
     "base_id": "36550a"
   },
-  "abf0fc": {
+  "20f499": {
     "base_verb": "diga",
-    "lemma": "dígame",
+    "lemma": "decir",
     "corpus_count": 53,
-    "translation": "sure",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -28558,7 +28558,7 @@
         "easiness": 96
       }
     ],
-    "id": "abf0fc",
+    "id": "20f499",
     "base_id": "36550a"
   },
   "2e4e8c": {
@@ -28740,11 +28740,11 @@
     "id": "2e4e8c",
     "base_id": "36550a"
   },
-  "53a7a3": {
+  "1efc11": {
     "base_verb": "digan",
-    "lemma": "díganle",
+    "lemma": "decir",
     "corpus_count": 5,
-    "translation": "tell him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -28901,7 +28901,7 @@
         "easiness": 23
       }
     ],
-    "id": "53a7a3",
+    "id": "1efc11",
     "base_id": "195e87"
   },
   "6d7c41": {
@@ -29199,11 +29199,11 @@
     "id": "faf73e",
     "base_id": "2159c9"
   },
-  "7fbc69": {
+  "c2722a": {
     "base_verb": "di",
-    "lemma": "dímelo",
+    "lemma": "decir",
     "corpus_count": 29,
-    "translation": "say so",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -29365,8 +29365,8 @@
         "easiness": 15
       }
     ],
-    "id": "7fbc69",
-    "base_id": "a2031c"
+    "id": "c2722a",
+    "base_id": "db562c"
   },
   "965f25": {
     "base_verb": "decir",
@@ -31916,11 +31916,11 @@
     "id": "8f4c15",
     "base_id": "ed5c0c"
   },
-  "aebf35": {
+  "9ddc96": {
     "base_verb": "enseñar",
-    "lemma": "enséñame",
+    "lemma": "enseñar",
     "corpus_count": 6,
-    "translation": "teach me",
+    "translation": "to teach",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -32077,7 +32077,7 @@
         "easiness": 643
       }
     ],
-    "id": "aebf35",
+    "id": "9ddc96",
     "base_id": "ed5c0c"
   },
   "beac4c": {
@@ -32406,7 +32406,7 @@
       }
     ],
     "id": "be1e24",
-    "base_id": "7e6fb8"
+    "base_id": "2b2f63"
   },
   "c88f95": {
     "base_verb": "esconder",
@@ -33218,11 +33218,11 @@
     "id": "9f82fa",
     "base_id": "cb20b4"
   },
-  "f10778": {
+  "d41eb0": {
     "base_verb": "escucha",
-    "lemma": "escúchame",
+    "lemma": "escuchar",
     "corpus_count": 89,
-    "translation": "listen to me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -33374,8 +33374,8 @@
         "easiness": 7
       }
     ],
-    "id": "f10778",
-    "base_id": "e88754"
+    "id": "d41eb0",
+    "base_id": "586537"
   },
   "54a71d": {
     "base_verb": "escuche",
@@ -33539,7 +33539,7 @@
       }
     ],
     "id": "54a71d",
-    "base_id": "67ea3f"
+    "base_id": "033f4a"
   },
   "c83489": {
     "base_verb": "escuchen",
@@ -33703,13 +33703,13 @@
       }
     ],
     "id": "c83489",
-    "base_id": "1cf818"
+    "base_id": "aba6d1"
   },
-  "fc1b5d": {
+  "cc2184": {
     "base_verb": "esperando",
-    "lemma": "esperándote",
+    "lemma": "esperar",
     "corpus_count": 8,
-    "translation": "waiting for you",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -33861,14 +33861,14 @@
         "easiness": 22
       }
     ],
-    "id": "fc1b5d",
+    "id": "cc2184",
     "base_id": "296e68"
   },
-  "ce63c0": {
+  "87812a": {
     "base_verb": "espera",
-    "lemma": "espérame",
+    "lemma": "esperar",
     "corpus_count": 16,
-    "translation": "wait for me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -34020,14 +34020,14 @@
         "easiness": 19
       }
     ],
-    "id": "ce63c0",
-    "base_id": "996fcf"
+    "id": "87812a",
+    "base_id": "a3ae12"
   },
-  "68d55d": {
+  "53b643": {
     "base_verb": "esperen",
-    "lemma": "espérenme",
+    "lemma": "esperar",
     "corpus_count": 6,
-    "translation": "wait for me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -34130,7 +34130,7 @@
         "easiness": 9424
       }
     ],
-    "id": "68d55d",
+    "id": "53b643",
     "base_id": "c337dd"
   },
   "1510ab": {
@@ -39327,11 +39327,11 @@
     "id": "a76d64",
     "base_id": "346b5b"
   },
-  "f28c2f": {
+  "123c2a": {
     "base_verb": "hagamos",
-    "lemma": "hagámoslo",
+    "lemma": "hacer",
     "corpus_count": 25,
-    "translation": "let's do it",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -39483,8 +39483,8 @@
         "easiness": 19
       }
     ],
-    "id": "f28c2f",
-    "base_id": "68d64f"
+    "id": "123c2a",
+    "base_id": "1e6a27"
   },
   "e38449": {
     "base_verb": "haz",
@@ -39655,11 +39655,11 @@
     "id": "e38449",
     "base_id": "268ad9"
   },
-  "822b43": {
+  "6c9926": {
     "base_verb": "haz",
-    "lemma": "hazlo",
+    "lemma": "hacer",
     "corpus_count": 123,
-    "translation": "do it",
+    "translation": "to do",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -39821,14 +39821,14 @@
         "easiness": 43
       }
     ],
-    "id": "822b43",
+    "id": "6c9926",
     "base_id": "268ad9"
   },
-  "820dab": {
+  "e8a12c": {
     "base_verb": "haz",
-    "lemma": "hazme",
+    "lemma": "hacer",
     "corpus_count": 33,
-    "translation": "make me",
+    "translation": "to do",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -39980,7 +39980,7 @@
         "easiness": 46
       }
     ],
-    "id": "820dab",
+    "id": "e8a12c",
     "base_id": "268ad9"
   },
   "a94cf2": {
@@ -40132,11 +40132,11 @@
     "id": "a94cf2",
     "base_id": "268ad9"
   },
-  "550f62": {
+  "7232d5": {
     "base_verb": "habla",
-    "lemma": "háblame",
+    "lemma": "hablar",
     "corpus_count": 20,
-    "translation": "tell me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -40293,14 +40293,14 @@
         "easiness": 10
       }
     ],
-    "id": "550f62",
+    "id": "7232d5",
     "base_id": "49344d"
   },
-  "2b61e0": {
+  "e0e14f": {
     "base_verb": "haga",
-    "lemma": "hágalo",
+    "lemma": "hacer",
     "corpus_count": 16,
-    "translation": "do it",
+    "translation": "to do",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -40462,14 +40462,14 @@
         "easiness": 24
       }
     ],
-    "id": "2b61e0",
+    "id": "e0e14f",
     "base_id": "bc3819"
   },
-  "26315c": {
+  "57f0c7": {
     "base_verb": "hagan",
-    "lemma": "háganlo",
+    "lemma": "hacer",
     "corpus_count": 8,
-    "translation": "do it",
+    "translation": "to do",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -40609,7 +40609,7 @@
         "easiness": 35
       }
     ],
-    "id": "26315c",
+    "id": "57f0c7",
     "base_id": "eb6495"
   },
   "e18baa": {
@@ -40935,11 +40935,11 @@
     "id": "200a8d",
     "base_id": "67d7b6"
   },
-  "f34a8f": {
+  "4adf25": {
     "base_verb": "imagina",
-    "lemma": "imagínate",
+    "lemma": "imaginar",
     "corpus_count": 10,
-    "translation": "can you believe that",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -41101,7 +41101,7 @@
         "easiness": 16
       }
     ],
-    "id": "f34a8f",
+    "id": "4adf25",
     "base_id": "9525f5"
   },
   "1787ea": {
@@ -41403,11 +41403,11 @@
     "id": "a55e25",
     "base_id": "301eae"
   },
-  "eae478": {
+  "384ff3": {
     "base_verb": "intentando",
-    "lemma": "intentándolo",
+    "lemma": "intentar",
     "corpus_count": 5,
-    "translation": "trying",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -41559,14 +41559,14 @@
         "easiness": 48
       }
     ],
-    "id": "eae478",
+    "id": "384ff3",
     "base_id": "ae0fbc"
   },
-  "a19896": {
+  "323d17": {
     "base_verb": "intenta",
-    "lemma": "inténtalo",
+    "lemma": "intentar",
     "corpus_count": 12,
-    "translation": "try",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -41718,7 +41718,7 @@
         "easiness": 13
       }
     ],
-    "id": "a19896",
+    "id": "323d17",
     "base_id": "382ad9"
   },
   "b0b5c0": {
@@ -42661,11 +42661,11 @@
     "id": "95a88e",
     "base_id": "bb4a0c"
   },
-  "ba33f3": {
+  "eee6a2": {
     "base_verb": "jode",
-    "lemma": "jódete",
+    "lemma": "joder",
     "corpus_count": 15,
-    "translation": "tough",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -42817,7 +42817,7 @@
         "easiness": 19
       }
     ],
-    "id": "ba33f3",
+    "id": "eee6a2",
     "base_id": "bb4a0c"
   },
   "c78f97": {
@@ -43444,11 +43444,11 @@
     "id": "82e9b6",
     "base_id": "c4cf70"
   },
-  "bb3847": {
+  "b40c99": {
     "base_verb": "levanta",
-    "lemma": "levántate",
+    "lemma": "levantar",
     "corpus_count": 59,
-    "translation": "stand up",
+    "translation": "to raise",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -43587,7 +43587,7 @@
         "easiness": 12
       }
     ],
-    "id": "bb3847",
+    "id": "b40c99",
     "base_id": "8b0bc7"
   },
   "481e33": {
@@ -45674,13 +45674,13 @@
       }
     ],
     "id": "007b4b",
-    "base_id": "123675"
+    "base_id": "b28e58"
   },
-  "44a704": {
+  "07deda": {
     "base_verb": "llama",
-    "lemma": "llámalo",
+    "lemma": "llamar",
     "corpus_count": 6,
-    "translation": "call him",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -45832,14 +45832,14 @@
         "easiness": 32
       }
     ],
-    "id": "44a704",
-    "base_id": "123675"
+    "id": "07deda",
+    "base_id": "b28e58"
   },
-  "c6fa05": {
+  "07d00d": {
     "base_verb": "llama",
-    "lemma": "llámame",
+    "lemma": "llamar",
     "corpus_count": 49,
-    "translation": "call me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -45991,14 +45991,14 @@
         "easiness": 96
       }
     ],
-    "id": "c6fa05",
-    "base_id": "123675"
+    "id": "07d00d",
+    "base_id": "b28e58"
   },
-  "0ce390": {
+  "6b8727": {
     "base_verb": "llame",
-    "lemma": "llámeme",
+    "lemma": "llamar",
     "corpus_count": 10,
-    "translation": "call me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -46150,8 +46150,8 @@
         "easiness": 85
       }
     ],
-    "id": "0ce390",
-    "base_id": "c5c08d"
+    "id": "6b8727",
+    "base_id": "bd7162"
   },
   "4e4491": {
     "base_verb": "lleva",
@@ -46435,11 +46435,11 @@
     "id": "3ccce0",
     "base_id": "3095f4"
   },
-  "1c4feb": {
+  "1e534b": {
     "base_verb": "lleva",
-    "lemma": "llévame",
+    "lemma": "llevar",
     "corpus_count": 22,
-    "translation": "take me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -46591,7 +46591,7 @@
         "easiness": 11
       }
     ],
-    "id": "1c4feb",
+    "id": "1e534b",
     "base_id": "3095f4"
   },
   "8ff1df": {
@@ -47243,7 +47243,7 @@
       }
     ],
     "id": "cc21e7",
-    "base_id": "6097a2"
+    "base_id": "d68e1f"
   },
   "6c4141": {
     "base_verb": "llevar",
@@ -47556,11 +47556,11 @@
     "id": "1544f8",
     "base_id": "1009f6"
   },
-  "be7d3e": {
+  "1c70d7": {
     "base_verb": "larga",
-    "lemma": "lárgate",
+    "lemma": "largar",
     "corpus_count": 36,
-    "translation": "get out",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -47722,8 +47722,8 @@
         "easiness": 11
       }
     ],
-    "id": "be7d3e",
-    "base_id": "9ed275"
+    "id": "1c70d7",
+    "base_id": "f98186"
   },
   "41fc1d": {
     "base_verb": "manejar",
@@ -52936,7 +52936,7 @@
       }
     ],
     "id": "40710b",
-    "base_id": "910b2a"
+    "base_id": "d7429c"
   },
   "835c17": {
     "base_verb": "mudar",
@@ -53095,7 +53095,7 @@
       }
     ],
     "id": "835c17",
-    "base_id": "910b2a"
+    "base_id": "d7429c"
   },
   "16e722": {
     "base_verb": "muere",
@@ -53256,11 +53256,11 @@
     "id": "16e722",
     "base_id": "3a794e"
   },
-  "024752": {
+  "795b73": {
     "base_verb": "muestra",
-    "lemma": "muéstrame",
+    "lemma": "mostrar",
     "corpus_count": 21,
-    "translation": "show me",
+    "translation": "to show",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -53412,7 +53412,7 @@
         "easiness": 210
       }
     ],
-    "id": "024752",
+    "id": "795b73",
     "base_id": "3b7576"
   },
   "18b4de": {
@@ -53572,7 +53572,7 @@
       }
     ],
     "id": "18b4de",
-    "base_id": "a2a5d9"
+    "base_id": "7ea1ea"
   },
   "2731d6": {
     "base_verb": "marcha",
@@ -53900,7 +53900,7 @@
       }
     ],
     "id": "e74beb",
-    "base_id": "870029"
+    "base_id": "ff655b"
   },
   "5c9737": {
     "base_verb": "mata",
@@ -54064,7 +54064,7 @@
       }
     ],
     "id": "5c9737",
-    "base_id": "870029"
+    "base_id": "ff655b"
   },
   "7fa36b": {
     "base_verb": "mata",
@@ -54223,13 +54223,13 @@
       }
     ],
     "id": "7fa36b",
-    "base_id": "870029"
+    "base_id": "ff655b"
   },
-  "85c170": {
+  "9a7760": {
     "base_verb": "mata",
-    "lemma": "mátame",
+    "lemma": "matar",
     "corpus_count": 10,
-    "translation": "kill me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -54381,8 +54381,8 @@
         "easiness": 42
       }
     ],
-    "id": "85c170",
-    "base_id": "870029"
+    "id": "9a7760",
+    "base_id": "ff655b"
   },
   "6ba680": {
     "base_verb": "maten",
@@ -54848,7 +54848,7 @@
       }
     ],
     "id": "04c9b1",
-    "base_id": "fd30f9"
+    "base_id": "18a4c3"
   },
   "2f55ad": {
     "base_verb": "mira",
@@ -55007,13 +55007,13 @@
       }
     ],
     "id": "2f55ad",
-    "base_id": "fd30f9"
+    "base_id": "18a4c3"
   },
-  "cc1fb6": {
+  "7d6059": {
     "base_verb": "mira",
-    "lemma": "mírame",
+    "lemma": "mirar",
     "corpus_count": 61,
-    "translation": "look at me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -55165,8 +55165,8 @@
         "easiness": 13
       }
     ],
-    "id": "cc1fb6",
-    "base_id": "fd30f9"
+    "id": "7d6059",
+    "base_id": "18a4c3"
   },
   "5c82d0": {
     "base_verb": "mira",
@@ -55325,7 +55325,7 @@
       }
     ],
     "id": "5c82d0",
-    "base_id": "fd30f9"
+    "base_id": "18a4c3"
   },
   "508498": {
     "base_verb": "mire",
@@ -56114,7 +56114,7 @@
       }
     ],
     "id": "28e272",
-    "base_id": "5d8c9f"
+    "base_id": "649edf"
   },
   "e924fa": {
     "base_verb": "ofrecer",
@@ -56757,11 +56757,11 @@
     "id": "1a0982",
     "base_id": "06f03a"
   },
-  "e0fbc1": {
+  "5144ec": {
     "base_verb": "olvida",
-    "lemma": "olvídalo",
+    "lemma": "olvidar",
     "corpus_count": 70,
-    "translation": "forget it",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -56923,7 +56923,7 @@
         "easiness": 32
       }
     ],
-    "id": "e0fbc1",
+    "id": "5144ec",
     "base_id": "15ad98"
   },
   "590470": {
@@ -61085,11 +61085,11 @@
     "id": "d7d7af",
     "base_id": "7da956"
   },
-  "abd7c9": {
+  "c3d892": {
     "base_verb": "perdona",
-    "lemma": "perdóname",
+    "lemma": "perdonar",
     "corpus_count": 40,
-    "translation": "forgive me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -61241,14 +61241,14 @@
         "easiness": 6
       }
     ],
-    "id": "abd7c9",
-    "base_id": "dd9808"
+    "id": "c3d892",
+    "base_id": "1d1ba5"
   },
-  "80e0d0": {
+  "c6f959": {
     "base_verb": "perdone",
-    "lemma": "perdóneme",
+    "lemma": "perdonar",
     "corpus_count": 14,
-    "translation": "forgive me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -61400,14 +61400,14 @@
         "easiness": 25
       }
     ],
-    "id": "80e0d0",
-    "base_id": "70ca0c"
+    "id": "c6f959",
+    "base_id": "5ec3ce"
   },
-  "07060e": {
+  "a9d7e8": {
     "base_verb": "permita",
-    "lemma": "permítame",
+    "lemma": "permitir",
     "corpus_count": 23,
-    "translation": "allow me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -61564,7 +61564,7 @@
         "easiness": 11
       }
     ],
-    "id": "07060e",
+    "id": "a9d7e8",
     "base_id": "b1aea7"
   },
   "874882": {
@@ -61731,11 +61731,11 @@
     "id": "874882",
     "base_id": "9c0ed3"
   },
-  "31ec5b": {
+  "414bf9": {
     "base_verb": "permite",
-    "lemma": "permíteme",
+    "lemma": "permitir",
     "corpus_count": 12,
-    "translation": "let me",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -61892,14 +61892,14 @@
         "easiness": 97
       }
     ],
-    "id": "31ec5b",
+    "id": "414bf9",
     "base_id": "3f1356"
   },
-  "507fdf": {
+  "c2a79b": {
     "base_verb": "piensa",
-    "lemma": "piénsalo",
+    "lemma": "pensar",
     "corpus_count": 18,
-    "translation": "think about it",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -62051,8 +62051,8 @@
         "easiness": 16
       }
     ],
-    "id": "507fdf",
-    "base_id": "a1331f"
+    "id": "c2a79b",
+    "base_id": "d4a0b2"
   },
   "c7a60a": {
     "base_verb": "pierde",
@@ -63450,7 +63450,7 @@
       }
     ],
     "id": "b5027a",
-    "base_id": "4d9785"
+    "base_id": "b7371f"
   },
   "003af9": {
     "base_verb": "pon",
@@ -63614,7 +63614,7 @@
       }
     ],
     "id": "003af9",
-    "base_id": "4d9785"
+    "base_id": "b7371f"
   },
   "91df2a": {
     "base_verb": "pon",
@@ -63783,13 +63783,13 @@
       }
     ],
     "id": "91df2a",
-    "base_id": "4d9785"
+    "base_id": "b7371f"
   },
-  "3d37aa": {
+  "ae6310": {
     "base_verb": "pon",
-    "lemma": "ponme",
+    "lemma": "poner",
     "corpus_count": 9,
-    "translation": "I'll have",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -63951,8 +63951,8 @@
         "easiness": 19
       }
     ],
-    "id": "3d37aa",
-    "base_id": "4d9785"
+    "id": "ae6310",
+    "base_id": "b7371f"
   },
   "589e67": {
     "base_verb": "pon",
@@ -64096,7 +64096,7 @@
       }
     ],
     "id": "589e67",
-    "base_id": "4d9785"
+    "base_id": "b7371f"
   },
   "41fba5": {
     "base_verb": "preguntar",
@@ -65143,13 +65143,34 @@
     "id": "8c9cf2",
     "base_id": "a316c7"
   },
-  "8e9ef3": {
+  "3a7070": {
     "base_verb": "prepara",
-    "lemma": "prepárate",
+    "lemma": "preparar",
     "corpus_count": 19,
-    "translation": "get ready",
+    "translation": "to prepare",
     "assignments": {
       "spanishdict-keyword": [
+        {
+          "sense": "823",
+          "examples": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18,
+            19
+          ]
+        },
         {
           "sense": "35b",
           "examples": [
@@ -65288,7 +65309,7 @@
         "easiness": 20
       }
     ],
-    "id": "8e9ef3",
+    "id": "3a7070",
     "base_id": "969fdd"
   },
   "dc8b54": {
@@ -66096,11 +66117,11 @@
     "id": "775e08",
     "base_id": "3f0bb2"
   },
-  "2215e9": {
+  "91c24d": {
     "base_verb": "promete",
-    "lemma": "prométeme",
+    "lemma": "prometer",
     "corpus_count": 13,
-    "translation": "promise me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -66252,7 +66273,7 @@
         "easiness": 24
       }
     ],
-    "id": "2215e9",
+    "id": "91c24d",
     "base_id": "94ee74"
   },
   "e4bf8d": {
@@ -67055,13 +67076,28 @@
     "id": "8f43b7",
     "base_id": "8ed34d"
   },
-  "4c31ec": {
+  "6da937": {
     "base_verb": "para",
-    "lemma": "párate",
+    "lemma": "parar",
     "corpus_count": 13,
-    "translation": "stand up",
+    "translation": "to stop",
     "assignments": {
       "spanishdict-keyword": [
+        {
+          "sense": "c57",
+          "examples": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            18,
+            19
+          ]
+        },
         {
           "sense": "140",
           "examples": [
@@ -67206,7 +67242,7 @@
         "easiness": 171
       }
     ],
-    "id": "4c31ec",
+    "id": "6da937",
     "base_id": "d5e934"
   },
   "73088b": {
@@ -67371,7 +67407,7 @@
       }
     ],
     "id": "73088b",
-    "base_id": "2fcc0a"
+    "base_id": "f331d0"
   },
   "3dd33d": {
     "base_verb": "pega",
@@ -67535,7 +67571,7 @@
       }
     ],
     "id": "3dd33d",
-    "base_id": "cf172c"
+    "base_id": "d8b7d8"
   },
   "55563c": {
     "base_verb": "pega",
@@ -67704,13 +67740,13 @@
       }
     ],
     "id": "55563c",
-    "base_id": "cf172c"
+    "base_id": "d8b7d8"
   },
-  "a4061b": {
+  "7fdad8": {
     "base_verb": "pide",
-    "lemma": "pídele",
+    "lemma": "pedir",
     "corpus_count": 5,
-    "translation": "ask him for",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -67867,7 +67903,7 @@
         "easiness": 31
       }
     ],
-    "id": "a4061b",
+    "id": "7fdad8",
     "base_id": "67f238"
   },
   "a00715": {
@@ -68966,11 +69002,11 @@
     "id": "cbbfeb",
     "base_id": "465276"
   },
-  "4be1c4": {
+  "c61227": {
     "base_verb": "queda",
-    "lemma": "quédate",
+    "lemma": "quedar",
     "corpus_count": 131,
-    "translation": "stay",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -69122,7 +69158,7 @@
         "easiness": 96
       }
     ],
-    "id": "4be1c4",
+    "id": "c61227",
     "base_id": "3c3e9b"
   },
   "6d4816": {
@@ -69282,7 +69318,7 @@
       }
     ],
     "id": "6d4816",
-    "base_id": "a26388"
+    "base_id": "932900"
   },
   "f82ecc": {
     "base_verb": "quita",
@@ -69441,13 +69477,13 @@
       }
     ],
     "id": "f82ecc",
-    "base_id": "a26388"
+    "base_id": "932900"
   },
-  "a866df": {
+  "72f373": {
     "base_verb": "quita",
-    "lemma": "quítate",
+    "lemma": "quitar",
     "corpus_count": 37,
-    "translation": "take off",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -69599,8 +69635,8 @@
         "easiness": 5
       }
     ],
-    "id": "a866df",
-    "base_id": "a26388"
+    "id": "72f373",
+    "base_id": "932900"
   },
   "0a9d0b": {
     "base_verb": "recordar",
@@ -70246,11 +70282,11 @@
     "id": "74ddc0",
     "base_id": "ad1efe"
   },
-  "f67c5c": {
+  "64232a": {
     "base_verb": "responde",
-    "lemma": "respóndeme",
+    "lemma": "responder",
     "corpus_count": 7,
-    "translation": "answer me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -70402,7 +70438,7 @@
         "easiness": 323
       }
     ],
-    "id": "f67c5c",
+    "id": "64232a",
     "base_id": "3d3d8e"
   },
   "b1b4f9": {
@@ -75358,7 +75394,7 @@
       }
     ],
     "id": "52f240",
-    "base_id": "a5444b"
+    "base_id": "1fe9e6"
   },
   "e382ed": {
     "base_verb": "suelta",
@@ -75500,15 +75536,39 @@
       }
     ],
     "id": "e382ed",
-    "base_id": "a5444b"
+    "base_id": "1fe9e6"
   },
-  "59b006": {
+  "90d2cc": {
     "base_verb": "suelta",
-    "lemma": "suéltame",
+    "lemma": "soltar",
     "corpus_count": 30,
-    "translation": "let me go",
+    "translation": "to let go of",
     "assignments": {
       "spanishdict-keyword": [
+        {
+          "sense": "7f5",
+          "examples": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
         {
           "sense": "da7",
           "examples": [
@@ -75639,8 +75699,8 @@
         "easiness": 40
       }
     ],
-    "id": "59b006",
-    "base_id": "a5444b"
+    "id": "90d2cc",
+    "base_id": "1fe9e6"
   },
   "1b2e1d": {
     "base_verb": "suelte",
@@ -75814,7 +75874,7 @@
       }
     ],
     "id": "1b2e1d",
-    "base_id": "fc25ec"
+    "base_id": "3451f3"
   },
   "473254": {
     "base_verb": "suelten",
@@ -76154,13 +76214,26 @@
     "id": "a8f3b6",
     "base_id": "bf373f"
   },
-  "e818c2": {
+  "02d63d": {
     "base_verb": "saca",
-    "lemma": "sácalo",
+    "lemma": "sacar",
     "corpus_count": 11,
-    "translation": "take it out",
+    "translation": "to take out",
     "assignments": {
       "spanishdict-keyword": [
+        {
+          "sense": "32e",
+          "examples": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            12,
+            15,
+            16
+          ]
+        },
         {
           "sense": "e42",
           "examples": [
@@ -76307,7 +76380,7 @@
         "easiness": 30
       }
     ],
-    "id": "e818c2",
+    "id": "02d63d",
     "base_id": "bf373f"
   },
   "b8c530": {
@@ -76636,7 +76709,7 @@
       }
     ],
     "id": "ae84ef",
-    "base_id": "599559"
+    "base_id": "b8ce02"
   },
   "d6d6a2": {
     "base_verb": "saquen",
@@ -76981,11 +77054,11 @@
     "id": "c99791",
     "base_id": "cc872a"
   },
-  "0a50e4": {
+  "827e44": {
     "base_verb": "siga",
-    "lemma": "sígame",
+    "lemma": "seguir",
     "corpus_count": 10,
-    "translation": "follow me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -77137,14 +77210,14 @@
         "easiness": 58
       }
     ],
-    "id": "0a50e4",
+    "id": "827e44",
     "base_id": "155ff9"
   },
-  "45468f": {
+  "2b8c50": {
     "base_verb": "sigan",
-    "lemma": "síganme",
+    "lemma": "seguir",
     "corpus_count": 16,
-    "translation": "follow me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -77296,14 +77369,14 @@
         "easiness": 39
       }
     ],
-    "id": "45468f",
+    "id": "2b8c50",
     "base_id": "41b177"
   },
-  "94fd61": {
+  "3501d8": {
     "base_verb": "sigue",
-    "lemma": "sígueme",
+    "lemma": "seguir",
     "corpus_count": 16,
-    "translation": "follow me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -77455,7 +77528,7 @@
         "easiness": 16
       }
     ],
-    "id": "94fd61",
+    "id": "3501d8",
     "base_id": "16217c"
   },
   "be4d06": {
@@ -77597,7 +77670,7 @@
       }
     ],
     "id": "be4d06",
-    "base_id": "ffd7be"
+    "base_id": "d5ea53"
   },
   "c0cf41": {
     "base_verb": "tener",
@@ -80163,7 +80236,7 @@
       }
     ],
     "id": "bfabeb",
-    "base_id": "d7b4a9"
+    "base_id": "61a03e"
   },
   "1618c3": {
     "base_verb": "traer",
@@ -81288,11 +81361,11 @@
     "id": "9589ba",
     "base_id": "1108d4"
   },
-  "839e9b": {
+  "cf0b06": {
     "base_verb": "trae",
-    "lemma": "tráeme",
+    "lemma": "traer",
     "corpus_count": 18,
-    "translation": "bring me",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -81444,7 +81517,7 @@
         "easiness": 219
       }
     ],
-    "id": "839e9b",
+    "id": "cf0b06",
     "base_id": "1108d4"
   },
   "616bb0": {
@@ -81578,11 +81651,11 @@
     "id": "616bb0",
     "base_id": "d75187"
   },
-  "1530b0": {
+  "7a4be2": {
     "base_verb": "toma",
-    "lemma": "tómala",
+    "lemma": "tomar",
     "corpus_count": 9,
-    "translation": "take it",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -81739,14 +81812,14 @@
         "easiness": 58
       }
     ],
-    "id": "1530b0",
-    "base_id": "d7b4a9"
+    "id": "7a4be2",
+    "base_id": "61a03e"
   },
-  "6db4fe": {
+  "beb608": {
     "base_verb": "toma",
-    "lemma": "tómalo",
+    "lemma": "tomar",
     "corpus_count": 26,
-    "translation": "take it",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -81898,8 +81971,8 @@
         "easiness": 24
       }
     ],
-    "id": "6db4fe",
-    "base_id": "d7b4a9"
+    "id": "beb608",
+    "base_id": "61a03e"
   },
   "cb1d01": {
     "base_verb": "toma",
@@ -82198,7 +82271,7 @@
       }
     ],
     "id": "cb1d01",
-    "base_id": "d7b4a9"
+    "base_id": "61a03e"
   },
   "8fe3a6": {
     "base_verb": "unir",
@@ -82984,7 +83057,7 @@
       }
     ],
     "id": "622bee",
-    "base_id": "f61755"
+    "base_id": "9d1497"
   },
   "5abcd5": {
     "base_verb": "ve",
@@ -83143,7 +83216,7 @@
       }
     ],
     "id": "5abcd5",
-    "base_id": "f61755"
+    "base_id": "9d1497"
   },
   "0be705": {
     "base_verb": "ve",
@@ -83442,7 +83515,7 @@
       }
     ],
     "id": "0be705",
-    "base_id": "f61755"
+    "base_id": "9d1497"
   },
   "e103ab": {
     "base_verb": "vender",
@@ -85161,11 +85234,11 @@
     "id": "7aec9b",
     "base_id": "7fc2fb"
   },
-  "152722": {
+  "d33a34": {
     "base_verb": "ve",
-    "lemma": "vete",
+    "lemma": "ir",
     "corpus_count": 286,
-    "translation": "go away",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -85322,8 +85395,8 @@
         "easiness": 57
       }
     ],
-    "id": "152722",
-    "base_id": "f61755"
+    "id": "d33a34",
+    "base_id": "9d1497"
   },
   "91d54b": {
     "base_verb": "visitar",
@@ -85633,11 +85706,11 @@
     "id": "23ebc7",
     "base_id": "7ba0b3"
   },
-  "1f2757": {
+  "3493b6": {
     "base_verb": "ir",
-    "lemma": "vámonos",
+    "lemma": "ir",
     "corpus_count": 158,
-    "translation": "let's go",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -85789,16 +85862,39 @@
         "easiness": 668
       }
     ],
-    "id": "1f2757",
+    "id": "3493b6",
     "base_id": "be037b"
   },
-  "490c00": {
+  "5bce3c": {
     "base_verb": "viste",
-    "lemma": "vístete",
+    "lemma": "vestir",
     "corpus_count": 7,
-    "translation": "get dressed",
+    "translation": "to wear",
     "assignments": {
       "spanishdict-keyword": [
+        {
+          "sense": "ecd",
+          "examples": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
         {
           "sense": "d51",
           "examples": [
@@ -85930,8 +86026,8 @@
         "easiness": 169
       }
     ],
-    "id": "490c00",
-    "base_id": "e841ba"
+    "id": "5bce3c",
+    "base_id": "ea8ccf"
   },
   "9a125f": {
     "base_verb": "abre",
@@ -86195,11 +86291,11 @@
     "id": "525185",
     "base_id": "703760"
   },
-  "c27a24": {
+  "fcffad": {
     "base_verb": "echa",
-    "lemma": "échale",
+    "lemma": "echar",
     "corpus_count": 5,
-    "translation": "throw him out",
+    "translation": "",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -86351,7 +86447,7 @@
         "easiness": 149
       }
     ],
-    "id": "c27a24",
+    "id": "fcffad",
     "base_id": "b072b4"
   },
   "49d202": {
@@ -86495,11 +86591,11 @@
     "id": "49d202",
     "base_id": "b072b4"
   },
-  "33cae1": {
+  "fb11e1": {
     "base_verb": "une",
-    "lemma": "únete",
+    "lemma": "unir",
     "corpus_count": 5,
-    "translation": "join",
+    "translation": "",
     "assignments": {
       "keyword": [
         {
@@ -86651,7 +86747,7 @@
         "easiness": 122
       }
     ],
-    "id": "33cae1",
+    "id": "fb11e1",
     "base_id": "377450"
   }
 }

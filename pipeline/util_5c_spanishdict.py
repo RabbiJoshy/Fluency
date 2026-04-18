@@ -99,6 +99,77 @@ def load_json(path, default):
     return default
 
 
+# ---------------------------------------------------------------------------
+# Menu assembly — previously lived in pipeline/artist/tool_5c_build_spanishdict_menu.py.
+# Moved here so both normal-mode step_5c_build_senses.py and the artist flow share
+# one implementation.
+# ---------------------------------------------------------------------------
+
+def normalize_cached_analyses(analyses):
+    """Coerce SpanishDict cache analysis blocks into {headword, senses:[...]} dicts."""
+    out = []
+    for analysis in analyses or []:
+        senses = analysis.get("senses") or []
+        if isinstance(senses, dict):
+            senses = list(senses.values())
+        out.append({
+            "headword": analysis.get("headword"),
+            "senses": [deepcopy(s) for s in senses if isinstance(s, dict)],
+        })
+    return out
+
+
+def analysis_signature(analysis):
+    """Canonical signature of an analysis for dedup (headword + sorted sense triples)."""
+    senses = analysis.get("senses") or []
+    if isinstance(senses, dict):
+        senses = senses.values()
+    normalized = []
+    for sense in senses:
+        normalized.append((
+            sense.get("pos", ""),
+            sense.get("translation", ""),
+            sense.get("context", ""),
+        ))
+    normalized.sort()
+    return (
+        analysis.get("headword"),
+        tuple(normalized),
+    )
+
+
+def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True):
+    """Build the analyses list for one surface word from the shared SpanishDict cache.
+
+    Starts from the surface page's own dictionary_analyses, then optionally extends
+    with headword redirects ("possible_results") — dedup'd by signature.
+    """
+    surface_entry = surface_cache.get(surface) or {}
+    analyses = normalize_cached_analyses(surface_entry.get("dictionary_analyses") or [])
+    seen_headwords = {a.get("headword") for a in analyses if a.get("headword")}
+    seen_signatures = {analysis_signature(a) for a in analyses}
+
+    if include_redirects:
+        for result in surface_entry.get("possible_results") or []:
+            headword = (result.get("headword") or "").strip()
+            if not headword or headword in seen_headwords:
+                continue
+            headword_entry = headword_cache.get(headword) or {}
+            headword_analyses = normalize_cached_analyses(headword_entry.get("dictionary_analyses") or [])
+            for analysis in headword_analyses:
+                if not analysis.get("headword"):
+                    analysis["headword"] = headword
+                analysis["surface_relation"] = result.get("heuristic", "")
+                analysis["surface_from"] = surface
+                sig = analysis_signature(analysis)
+                if sig in seen_signatures:
+                    continue
+                analyses.append(analysis)
+                seen_headwords.add(analysis.get("headword"))
+                seen_signatures.add(sig)
+    return analyses
+
+
 def save_json(path, data):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)

@@ -92931,5 +92931,13 @@
     "únicos": [
       "5318195:63"
     ]
+  },
+  "_meta": {
+    "step_name": "tag_example_pos",
+    "step_version": 2,
+    "generated_at": 1776384831,
+    "tool_versions": {
+      "spacy_model": "dep_news_trf"
+    }
   }
 }

@@ -97,6 +97,7 @@ function joinWithMaster(indexData, master) {
                 frequency: String(idx.sense_frequencies?.[i] ?? 0),
                 examples: []  // Attached later from examples file
             };
+            if (sense.source) meaning.source = sense.source;
             const method = methods[i];
             if (method) {
                 // Has a specific assignment method — record it, gets border
@@ -253,7 +254,8 @@ function buildFilteredVocab(vocabData) {
     return { vocab: result, counts };
 }
 
-async function loadVocabularyData(rangeString) {
+async function loadVocabularyData(rangeString, opts = {}) {
+    const includeWordId = opts.includeWordId || null;
     // Completely clear all previous data and state
     flashcards = [];
     currentIndex = 0;
@@ -332,6 +334,12 @@ async function loadVocabularyData(rangeString) {
             const estimatedIds = activeArtist ? await buildEstimatedKnownIds(estimate) : null;
 
             filteredData = filteredData.filter(item => {
+                // Never filter out a word the caller explicitly asked to include
+                // (e.g. find-word jump target that the user already mastered).
+                const itemId = getWordId(item);
+                if (includeWordId && (itemId === includeWordId || item.id === includeWordId)) {
+                    return true;
+                }
                 // Level estimate filter: rank-based for normal mode, ID-based for artist mode
                 if (activeArtist) {
                     if (item.id && estimatedIds.has(item.id)) return false;
@@ -339,7 +347,7 @@ async function loadVocabularyData(rangeString) {
                     if (item.rank <= estimate) return false;
                 }
                 // Cross-mode progress check: known in either mode → skip
-                return !isWordKnown(getWordId(item));
+                return !isWordKnown(itemId);
             });
             excludedMastered = beforeMastered - filteredData.length;
             if (excludedMastered > 0) {
@@ -429,6 +437,7 @@ async function loadVocabularyData(rangeString) {
                 };
                 if (m.unassigned) meaning.unassigned = true;
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
+                if (m.source) meaning.source = m.source;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;
@@ -776,6 +785,7 @@ async function loadIncorrectWordsSet() {
                 };
                 if (m.unassigned) meaning.unassigned = true;
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
+                if (m.source) meaning.source = m.source;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;

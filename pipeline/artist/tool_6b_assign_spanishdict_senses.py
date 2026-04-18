@@ -27,7 +27,7 @@ def main():
 
     cmd = [
         PYTHON,
-        os.path.join(SCRIPTS_DIR, "step_6b_assign_senses_local.py"),
+        os.path.join(os.path.dirname(SCRIPTS_DIR), "step_6b_assign_senses_local.py"),
         "--artist-dir", args.artist_dir,
         "--sense-menu-file", "sense_menu/spanishdict.json",
         "--assignments-file", "sense_assignments/spanishdict.json",
