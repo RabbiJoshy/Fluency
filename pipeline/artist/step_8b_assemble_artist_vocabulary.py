@@ -579,6 +579,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     src = sense.get("source")
                     if src:
                         meaning["source"] = src
+                    # Preserve the sub-sense context from the menu (e.g.
+                    # SpanishDict's "to move fast" for correr→to run). The
+                    # front end renders this as a subtitle/tag under the
+                    # translation for richer disambiguation.
+                    ctx = sense.get("context")
+                    if ctx:
+                        meaning["context"] = ctx
                     # Meaning-level stamp: only when every contributing method
                     # is keyword-tier (0 < prio <= KEYWORD_PRIORITY_THRESHOLD).
                     # Non-keyword methods in the same meaning suppress the

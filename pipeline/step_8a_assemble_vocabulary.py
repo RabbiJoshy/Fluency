@@ -758,26 +758,12 @@ def main():
                 meanings_full = [merged_full[k] for k in order]
                 examples_by_meaning = [merged_exs[k] for k in order]
 
-            # Context disambiguation pass: after dedup, find (pos, translation)
-            # pairs that still have multiple rows (differing only in context).
-            # Surface the context on those rows' translation text so the user
-            # can tell them apart. Rows whose (pos, translation) is unique
-            # keep their clean translation and drop the context field.
-            if meanings_lean:
-                from collections import Counter as _Counter
-                pt_counts = _Counter((m.get("pos"), m.get("translation"))
-                                     for m in meanings_lean)
-                for m_lean, m_full in zip(meanings_lean, meanings_full):
-                    ctx = m_lean.get("context")
-                    pair = (m_lean.get("pos"), m_lean.get("translation"))
-                    if ctx and pt_counts[pair] > 1:
-                        # Disambiguate: append context parenthetically
-                        m_lean["translation"] = "%s (%s)" % (m_lean["translation"], ctx)
-                        m_full["translation"] = m_lean["translation"]
-                    # Drop the internal context field either way — its work
-                    # is done and the front end doesn't read it.
-                    m_lean.pop("context", None)
-                    m_full.pop("context", None)
+            # Context is preserved as its own field on each meaning row
+            # when available from the source menu (SpanishDict sub-sense
+            # label like "to move fast" for correr→to run). The front end
+            # renders it as a subtitle/tag under the translation; dedup
+            # already keyed on (pos, translation, context) so rows with
+            # distinct contexts remain as separate meanings.
 
             if not meanings_lean:
                 continue
