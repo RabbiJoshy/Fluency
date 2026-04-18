@@ -10,8 +10,8 @@ Output: <artist-dir>/data/input/translations/translations.json
 Progress: <artist-dir>/data/input/translations/done_song_ids.json
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/step_1b_scrape_translations.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 pipeline/artist/step_1b_scrape_translations.py --artist-dir "Artists/Bad Bunny" --workers 8
+    .venv/bin/python3 pipeline/artist/step_1b_scrape_translations.py --artist-dir "Artists/spanish/Bad Bunny"
+    .venv/bin/python3 pipeline/artist/step_1b_scrape_translations.py --artist-dir "Artists/spanish/Bad Bunny" --workers 8
 """
 
 TOKEN = "wYDvwsp9iGyueotPy1BLIbIMfinPKcoxxJZogRDXQjbn13VDBkBZudwAUA8gJnhq"

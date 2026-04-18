@@ -1,6 +1,8 @@
-# Research: Playlist Pipeline
+# Research: Playlist Scraping Tooling
 
-Proof-of-concept for running the vocabulary pipeline on a Spotify playlist (mixed artists) instead of a single artist. Everything here is self-contained and does not touch the main artist pipeline.
+Generic tooling for building a playlist-based "artist" (mixed real artists, treated as a single corpus). The numbered scripts in this folder (`1_fetch_playlist.py` … `5_google_translate.py`) are playlist-specific and live outside the main pipeline. The resulting data directory should be placed under `Artists/{lang}/{Name}/` once scraped, and then fed into the main pipeline via `--artist-dir Artists/{lang}/{Name}`.
+
+As of 2026-04-18 the original PoC playlist moved to `Artists/french/TestPlaylist/` — the paths in the examples below point there.
 
 ## Pipeline Steps
 
@@ -8,30 +10,30 @@ Proof-of-concept for running the vocabulary pipeline on a Spotify playlist (mixe
 # 1. Fetch playlist track list from Spotify (needs browser OAuth)
 .venv/bin/python3 research/1_fetch_playlist.py \
   --playlist "https://open.spotify.com/playlist/..." \
-  --out research/TestPlaylist/tracks.json
+  --out Artists/french/TestPlaylist/tracks.json
 
 # 2. Download lyrics from Genius (parallel, ~1.2 songs/sec, resumable)
 .venv/bin/python3 research/2_download_lyrics.py \
-  --tracks research/TestPlaylist/tracks.json \
-  --out-dir research/TestPlaylist/lyrics
+  --tracks Artists/french/TestPlaylist/tracks.json \
+  --out-dir Artists/french/TestPlaylist/lyrics
 
 # 3. Filter by language using lingua (instant, moves files into subdirs)
 .venv/bin/python3 research/3_filter_language.py \
-  --input-dir research/TestPlaylist/lyrics
+  --input-dir Artists/french/TestPlaylist/lyrics
 
 # 4. Fetch Genius community English translations via geniURL (~1.2s/song)
 .venv/bin/python3 research/4_fetch_translations.py \
-  --input-dir research/TestPlaylist/lyrics/french
+  --input-dir Artists/french/TestPlaylist/lyrics/french
 
 # 5. Google Translate remaining songs without Genius translations (parallel)
 .venv/bin/python3 research/5_google_translate.py \
-  --input-dir research/TestPlaylist/lyrics/french
+  --input-dir Artists/french/TestPlaylist/lyrics/french
 
 # 6. Feed into main pipeline step 3+ (not yet run)
 .venv/bin/python3 pipeline/artist/3_count_words.py \
-  --artist-dir research/TestPlaylist \
-  --batch_glob "research/TestPlaylist/lyrics/french/*.json" \
-  --out research/TestPlaylist/vocab_evidence.json
+  --artist-dir Artists/french/TestPlaylist \
+  --batch_glob "Artists/french/TestPlaylist/lyrics/french/*.json" \
+  --out Artists/french/TestPlaylist/vocab_evidence.json
 ```
 
 ## Current State (TestPlaylist)

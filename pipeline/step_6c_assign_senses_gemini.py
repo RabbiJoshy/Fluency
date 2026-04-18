@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate Wiktionary-based sense layers for an artist.
 
-Produces two layer files in Artists/{Name}/data/layers/:
+Produces two layer files in Artists/{lang}/{Name}/data/layers/:
   - senses_wiktionary_gemini.json      (word|lemma -> [{pos, translation, source}])
   - sense_assignments_wiktionary_gemini.json  (word -> [{sense_idx, examples, method}])
 
@@ -11,7 +11,7 @@ For zero-sense words: Flash Lite gap-fill proposes new senses.
 
 Run from project root:
     .venv/bin/python3 pipeline/step_6c_assign_senses_gemini.py                          # normal mode
-    .venv/bin/python3 pipeline/step_6c_assign_senses_gemini.py --artist-dir "Artists/Bad Bunny"
+    .venv/bin/python3 pipeline/step_6c_assign_senses_gemini.py --artist-dir "Artists/spanish/Bad Bunny"
 """
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -382,7 +382,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate Wiktionary sense layers via Gemini Flash Lite")
     parser.add_argument("--artist-dir", default=None,
-                        help="Artist directory (e.g. Artists/Bad Bunny). "
+                        help="Artist directory (e.g. Artists/spanish/Bad Bunny). "
                              "Omit for normal mode (Data/Spanish).")
     parser.add_argument("--no-gemini", action="store_true",
                         help="Skip Gemini, use keyword classifier (free, lower accuracy)")

@@ -251,7 +251,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Refine sense assignments using spaCy POS tagging")
     parser.add_argument("--artist-dir", type=str, default=None,
-                        help="Artist directory (e.g. Artists/Bad Bunny)")
+                        help="Artist directory (e.g. Artists/spanish/Bad Bunny)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Report corrections without writing")
     args = parser.parse_args()

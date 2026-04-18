@@ -35,7 +35,7 @@ Writes: <artist-dir>/data/known_vocab/word_routing.json
 
 Usage:
     .venv/bin/python3 pipeline/artist/step_4a_filter_known_vocab.py \
-        --artist-dir "Artists/Bad Bunny"
+        --artist-dir "Artists/spanish/Bad Bunny"
 """
 
 import argparse

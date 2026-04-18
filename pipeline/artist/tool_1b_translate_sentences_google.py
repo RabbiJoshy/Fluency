@@ -6,9 +6,9 @@ rest via Google Translate, and writes sentence_translations.json in the same
 format that 6_llm_analyze.py expects.
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/tool_1b_translate_sentences_google.py --artist-dir "Artists/Young Miko"
-    .venv/bin/python3 pipeline/artist/tool_1b_translate_sentences_google.py --artist-dir "Artists/Rosalía"
-    .venv/bin/python3 pipeline/artist/tool_1b_translate_sentences_google.py --artist-dir "Artists/Young Miko" --dry-run
+    .venv/bin/python3 pipeline/artist/tool_1b_translate_sentences_google.py --artist-dir "Artists/spanish/Young Miko"
+    .venv/bin/python3 pipeline/artist/tool_1b_translate_sentences_google.py --artist-dir "Artists/spanish/Rosalía"
+    .venv/bin/python3 pipeline/artist/tool_1b_translate_sentences_google.py --artist-dir "Artists/spanish/Young Miko" --dry-run
 """
 
 import argparse

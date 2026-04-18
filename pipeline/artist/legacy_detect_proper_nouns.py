@@ -23,8 +23,8 @@ Reads:  <artist-dir>/data/word_counts/vocab_evidence.json
 Writes: <artist-dir>/data/proper_nouns/detected_proper_nouns.json
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/legacy_detect_proper_nouns.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 pipeline/artist/legacy_detect_proper_nouns.py --artist-dir "Artists/Rosalía" --no-spacy
+    .venv/bin/python3 pipeline/artist/legacy_detect_proper_nouns.py --artist-dir "Artists/spanish/Bad Bunny"
+    .venv/bin/python3 pipeline/artist/legacy_detect_proper_nouns.py --artist-dir "Artists/spanish/Rosalía" --no-spacy
 """
 
 import json

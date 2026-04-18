@@ -10,11 +10,11 @@ Uses threading for parallelism and batches lines per song to minimize API calls.
 
 Usage:
     .venv/bin/python3 research/5_google_translate.py \
-        --input-dir research/TestPlaylist/lyrics/french
+        --input-dir Artists/french/TestPlaylist/lyrics/french
 
     # Adjust parallelism:
     .venv/bin/python3 research/5_google_translate.py \
-        --input-dir research/TestPlaylist/lyrics/french \
+        --input-dir Artists/french/TestPlaylist/lyrics/french \
         --workers 8
 """
 

@@ -5,9 +5,9 @@ Reads example_translations.json, batches Spanish+English pairs to Gemini for
 quality scoring, then re-translates lines that score below a threshold.
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/tool_1b_judge_translations.py --artist-dir "Artists/Young Miko"
-    .venv/bin/python3 pipeline/artist/tool_1b_judge_translations.py --artist-dir "Artists/Young Miko" --judge-only
-    .venv/bin/python3 pipeline/artist/tool_1b_judge_translations.py --artist-dir "Artists/Young Miko" --threshold 3
+    .venv/bin/python3 pipeline/artist/tool_1b_judge_translations.py --artist-dir "Artists/spanish/Young Miko"
+    .venv/bin/python3 pipeline/artist/tool_1b_judge_translations.py --artist-dir "Artists/spanish/Young Miko" --judge-only
+    .venv/bin/python3 pipeline/artist/tool_1b_judge_translations.py --artist-dir "Artists/spanish/Young Miko" --threshold 3
 """
 
 import argparse

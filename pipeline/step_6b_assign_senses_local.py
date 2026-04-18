@@ -28,7 +28,7 @@ Modes:
 Usage (from project root):
     .venv/bin/python3 pipeline/step_6b_assign_senses_local.py                          # normal mode
     .venv/bin/python3 pipeline/step_6b_assign_senses_local.py --artist-dir Artists/Rosalia
-    .venv/bin/python3 pipeline/step_6b_assign_senses_local.py --artist-dir "Artists/Bad Bunny" --keyword-only
+    .venv/bin/python3 pipeline/step_6b_assign_senses_local.py --artist-dir "Artists/spanish/Bad Bunny" --keyword-only
 
 Inputs (artist mode):
     {artist}/data/layers/word_inventory.json
@@ -327,7 +327,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Assign example sentences to senses using local bi-encoder embeddings")
     parser.add_argument("--artist-dir", default=None,
-                        help="Artist directory (e.g. Artists/Bad Bunny). "
+                        help="Artist directory (e.g. Artists/spanish/Bad Bunny). "
                              "Omit for normal mode (Data/Spanish).")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--biencoder", action="store_true", default=True,

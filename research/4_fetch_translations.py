@@ -10,7 +10,7 @@ geniURL rate limit: ~25 requests per 30s, so we throttle to 1.2s between calls.
 
 Usage:
     .venv/bin/python3 research/4_fetch_translations.py \
-        --input-dir research/TestPlaylist/lyrics/french
+        --input-dir Artists/french/TestPlaylist/lyrics/french
 """
 
 import argparse

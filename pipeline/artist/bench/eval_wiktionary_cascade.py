@@ -12,8 +12,8 @@ Compares sense classification accuracy across translation sources:
   - Spanish only (no translation, baseline)
 
 Usage:
-    .venv/bin/python3 pipeline/artist/bench/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 pipeline/artist/bench/eval_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --skip-google
+    .venv/bin/python3 pipeline/artist/bench/eval_wiktionary_cascade.py --artist-dir "Artists/spanish/Bad Bunny"
+    .venv/bin/python3 pipeline/artist/bench/eval_wiktionary_cascade.py --artist-dir "Artists/spanish/Bad Bunny" --skip-google
 """
 
 import argparse

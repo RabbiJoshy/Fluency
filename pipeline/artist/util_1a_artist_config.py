@@ -24,7 +24,7 @@ def add_artist_arg(parser):
     """Add the --artist-dir argument to any argparse parser."""
     parser.add_argument(
         "--artist-dir", required=True,
-        help="Path to artist data directory (e.g. Artists/Bad Bunny)",
+        help="Path to artist data directory (e.g. Artists/spanish/Bad Bunny)",
     )
 
 

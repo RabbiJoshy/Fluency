@@ -212,7 +212,7 @@ def main():
         print("ERROR: Set GEMINI_API_KEY env var")
         sys.exit(1)
 
-    with open(PROJECT_ROOT / "Artists/Bad Bunny/BadBunnyvocabulary.json") as f:
+    with open(PROJECT_ROOT / "Artists/spanish/Bad Bunny/BadBunnyvocabulary.json") as f:
         entry_by_word = {e["word"]: e for e in json.load(f)}
 
     print("Loading English Wiktionary...")

@@ -11,13 +11,13 @@ Parallel: uses a thread pool (default 5 workers) for speed.
 
 Usage:
     .venv/bin/python3 research/2_download_lyrics.py \
-        --tracks research/TestPlaylist/tracks.json \
-        --out-dir research/TestPlaylist/lyrics
+        --tracks Artists/french/TestPlaylist/tracks.json \
+        --out-dir Artists/french/TestPlaylist/lyrics
 
     # Adjust parallelism:
     .venv/bin/python3 research/2_download_lyrics.py \
-        --tracks research/TestPlaylist/tracks.json \
-        --out-dir research/TestPlaylist/lyrics \
+        --tracks Artists/french/TestPlaylist/tracks.json \
+        --out-dir Artists/french/TestPlaylist/lyrics \
         --workers 8
 """
 

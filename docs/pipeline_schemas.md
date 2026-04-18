@@ -5,7 +5,7 @@ Per-step inputs / outputs / upstream-deps. One section per stable step id used b
 with the `STEPS` list in that file.
 
 Conventions
-- **Artist paths** are relative to `Artists/{Name}/` unless noted.
+- **Artist paths** are relative to `Artists/{lang}/{Name}/` unless noted.
 - **Normal paths** are relative to `Data/Spanish/`.
 - "Shared" means one script with `--artist-dir` selecting the mode (both
   modes use the same implementation).
@@ -18,7 +18,7 @@ Conventions
 
 ### `1a_lyrics` — download lyrics (artist only)
 - **Script**: `pipeline/artist/step_1a_download_lyrics.py`
-- **Inputs**: `Artists/{Name}/artist.json` (`name`, `genius_query`), Genius API
+- **Inputs**: `Artists/{lang}/{Name}/artist.json` (`name`, `genius_query`), Genius API
 - **Outputs**: `data/input/batches/*.json` (raw lyrics + community translations)
 - **Depends on**: —
 
@@ -212,7 +212,7 @@ Conventions
 ### `8b_artist_assemble` — artist-mode assembly
 - **Script**: `pipeline/artist/step_8b_assemble_artist_vocabulary.py`
 - **Inputs**: artist layers + `Artists/vocabulary_master.json`
-- **Outputs**: `Artists/{Name}/{Name}vocabulary.json` (monolith),
+- **Outputs**: `Artists/{lang}/{Name}/{Name}vocabulary.json` (monolith),
   `{Name}vocabulary.index.json`, `{Name}vocabulary.examples.json`,
   `data/layers/clitic_forms.json`, `data/layers/archive/clitic_id_migration.json`
 - **Depends on**: `7a_lemma_assignments`, `7b_rerank`, `8a_lrc`

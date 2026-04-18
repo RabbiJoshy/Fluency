@@ -10,8 +10,8 @@ Output layer: data/layers/lyrics_timestamps.json
 Cache dir:    data/lrclib_cache/  (raw API responses)
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/step_8a_fetch_lrc_timestamps.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 pipeline/artist/step_8a_fetch_lrc_timestamps.py --artist-dir "Artists/Bad Bunny" --force-refetch
+    .venv/bin/python3 pipeline/artist/step_8a_fetch_lrc_timestamps.py --artist-dir "Artists/spanish/Bad Bunny"
+    .venv/bin/python3 pipeline/artist/step_8a_fetch_lrc_timestamps.py --artist-dir "Artists/spanish/Bad Bunny" --force-refetch
 """
 
 import argparse

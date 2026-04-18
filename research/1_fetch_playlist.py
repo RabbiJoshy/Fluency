@@ -7,7 +7,7 @@ Outputs a tracks.json file that can be inspected/edited before downloading lyric
 Usage:
     .venv/bin/python3 research/1_fetch_playlist.py \
         --playlist "https://open.spotify.com/playlist/0ubVKl2OeeqSa5C0I3zbq7" \
-        --out research/TestPlaylist/tracks.json
+        --out Artists/french/TestPlaylist/tracks.json
 """
 
 import argparse
@@ -115,7 +115,7 @@ def get_user_token():
 def main():
     parser = argparse.ArgumentParser(description="Fetch Spotify playlist track list")
     parser.add_argument("--playlist", required=True, help="Spotify playlist URL")
-    parser.add_argument("--out", required=True, help="Output JSON path (e.g. research/TestPlaylist/tracks.json)")
+    parser.add_argument("--out", required=True, help="Output JSON path (e.g. Artists/french/TestPlaylist/tracks.json)")
     args = parser.parse_args()
 
     playlist_id = args.playlist.split("/playlist/")[1].split("?")[0]

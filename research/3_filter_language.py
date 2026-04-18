@@ -8,13 +8,13 @@ lyrics/spanish/, lyrics/english/).
 
 Usage:
     .venv/bin/python3 research/3_filter_language.py \
-        --input-dir research/TestPlaylist/lyrics
+        --input-dir Artists/french/TestPlaylist/lyrics
 
     # Then feed a specific language into the pipeline:
     .venv/bin/python3 Artists/scripts/3_count_words.py \
-        --artist-dir research/TestPlaylist \
-        --batch_glob "research/TestPlaylist/lyrics/french/*.json" \
-        --out research/TestPlaylist/vocab_evidence.json
+        --artist-dir Artists/french/TestPlaylist \
+        --batch_glob "Artists/french/TestPlaylist/lyrics/french/*.json" \
+        --out Artists/french/TestPlaylist/vocab_evidence.json
 """
 
 import argparse

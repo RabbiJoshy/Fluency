@@ -529,7 +529,7 @@ Per new artist total: ~$0.07. Bi-encoder runs first (free), Gemini only for word
 - `pipeline/artist/bench/bench_wsd.py` — WSD model benchmark (NLI, bi-encoder, ConSeC) on 28 words, Gemini ground truth
 - `pipeline/artist/bench/eval_wiktionary_cascade.py` — original eval (translation source comparison)
 
-Run cascade test: `.venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"`
+Run cascade test: `.venv/bin/python3 pipeline/artist/bench/bench_test_wiktionary_cascade.py --artist-dir "Artists/spanish/Bad Bunny"`
 Run classifier bench: `.venv/bin/python3 pipeline/artist/bench/bench_nli.py --gemini`
 Run gap-fill bench: `.venv/bin/python3 pipeline/artist/bench/bench_gapfill.py`
 Run divergence bench: `.venv/bin/python3 pipeline/artist/bench/bench_divergence.py`

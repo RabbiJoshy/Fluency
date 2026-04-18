@@ -69,7 +69,7 @@ def main():
                       help="NLI model name")
     args = parser.parse_args()
 
-    with open(PROJECT_ROOT / "Artists/Bad Bunny/BadBunnyvocabulary.json") as f:
+    with open(PROJECT_ROOT / "Artists/spanish/Bad Bunny/BadBunnyvocabulary.json") as f:
         entry_by_word = {e["word"]: e for e in json.load(f)}
 
     # Cache cleaned senses so subsequent runs skip Wiktionary load

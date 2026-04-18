@@ -16,7 +16,7 @@ Both pipelines (normal mode and artist mode) use a layered architecture where ea
 Each step reads its inputs, produces a layer file, and is independently re-runnable. Re-run any step, then `--from-step build` to reassemble.
 
 **Normal mode layers:** `Data/Spanish/layers/`
-**Artist mode layers:** `Artists/{Name}/data/layers/`
+**Artist mode layers:** `Artists/{lang}/{Name}/data/layers/`
 
 Schemas parallel each other where applicable (e.g., both have `word_inventory.json`, `examples_raw.json`, `sense_assignments.json`).
 

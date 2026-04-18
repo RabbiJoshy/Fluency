@@ -31,15 +31,17 @@ Fluency/
 │       ├── assign_senses.py         # Step 6: unified sense assignment (bi-encoder + Gemini)
 │       ├── 6_llm_analyze.py         # ... (numbered steps + utilities)
 │       └── _artist_config.py        # Shared helper for artist scripts
-├── research/                    # Playlist pipeline PoC — see research/CLAUDE.md
+├── research/                    # Playlist-scraping tooling (Spotify → lyrics → lang split)
 ├── manifest.json / service-worker.js
 ├── Data/                        # Vocabulary JSON files — see Data/CLAUDE.md
 │   └── Spanish/
 │       ├── layers/                # Pipeline layer files — see layers/CLAUDE.md
 │       └── corpora/               # Tatoeba, OpenSubtitles, Wiktionary, Jehle
 └── Artists/                     # Per-artist data + curations — see Artists/CLAUDE.md
-    ├── curations/                 # Shared curated lists (proper nouns, interjections, etc.)
-    └── vocabulary_master.json     # Shared master vocab (all word|lemma entries + senses)
+    ├── curations/                 # Shared curated lists (Spanish-flavoured today; split by language when needed)
+    ├── vocabulary_master.json     # Shared master vocab for Spanish (all word|lemma entries + senses)
+    ├── spanish/                   # Artists/spanish/{Name}/ — Bad Bunny, Rosalía, Young Miko
+    └── french/                    # Artists/french/{Name}/ — TestPlaylist (keyword-only first pass)
 ```
 
 ## Common Tasks — Start Here
@@ -57,7 +59,7 @@ Fluency/
 | CSS changes | `css/style.css` (single file) |
 | Pipeline word analysis | `pipeline/artist/step_6a_assign_senses.py` (one-classifier dispatcher; see `pipeline/CLAUDE.md`) |
 | Pipeline reranking | `pipeline/artist/step_7b_rerank.py` |
-| Add/exclude songs | `Artists/{Name}/data/input/duplicate_songs.json`, `Artists/tools/scan_duplicates.py` |
+| Add/exclude songs | `Artists/{lang}/{Name}/data/input/duplicate_songs.json`, `Artists/tools/scan_duplicates.py` |
 | Word filter pipeline | `pipeline/artist/step_4a_filter_known_vocab.py` (parsimonious design: 5 phases, uses canonical `spanish_forms.json` for known-word lookup). Output: `word_routing.json` with `exclude`/`biencoder`/`gemini`/`clitic_merge` buckets. |
 | Clitic bundling | `pipeline/step_5c_build_senses.py` → `load_wiktionary()` + `pipeline/artist/step_4a_filter_known_vocab.py` (simple rule: word ends in clitic pronoun AND base is in verb-form set; resolves to infinitive via `conjugation_reverse.json`). Builders write `clitic_forms.json`. |
 | Sense assignment | `pipeline/step_6a_assign_senses.py` (normal) or `pipeline/artist/step_6a_assign_senses.py` (artist). Flags: `--classifier {keyword,biencoder,gemini}` + `--gap-fill/--no-gap-fill` (default: on for gemini, off otherwise). One classifier per invocation. Output: `sense_assignments/{source}.json` in `{word: {method: [{sense, examples}]}}` form. |
@@ -65,8 +67,8 @@ Fluency/
 | Builder filters | `--remainders` (SENSE_CYCLE buckets, default off) and `--min-priority N` (drop low-priority claims, default 0) on both `step_8a` and `step_8b`. Orthogonal: combine to get sparsest/full/clean/catch-all decks. |
 | Context disambiguation | `step_8a` dedupes on `(pos, translation, context)`; when multiple rows share `(pos, translation)` but differ in context, the context is rendered parenthetically on the translation (e.g. `uno → PRON one (numeral or indefinite)` vs `PRON one (impersonal use)`). |
 | Curated overrides | `shared/archive/curated_translations.json` — each entry has a `mode` field: `wiktionary` / `spanishdict` / `all` apply per sense-source; `archive` retains but never applies. The `a → ADP: to, at` override is the only active entry today (all other legacy entries archived). |
-| Artist config | `config/artists.json` + `Artists/{Name}/artist.json` |
-| Curated translation fixes | `shared/curated_translations.json` (unified), `Artists/{Name}/data/llm_analysis/curated_translations.json` (artist-specific) |
+| Artist config | `config/artists.json` + `Artists/{lang}/{Name}/artist.json` |
+| Curated translation fixes | `shared/curated_translations.json` (unified), `Artists/{lang}/{Name}/data/llm_analysis/curated_translations.json` (artist-specific) |
 | Homograph disambiguation | `pipeline/build_inventory.py` → `compute_homograph_ratios()`, overrides in `Data/Spanish/layers/homograph_overrides.json` |
 | Sense matching / embeddings | `pipeline/match_senses.py` → classify + merge + filter |
 | Conjugation tables / verb data | `pipeline/build_conjugations.py`, front-end in `js/flashcards.js` → `buildConjugationTableHTML()` |

@@ -47,7 +47,7 @@ What's the best way to translate ~10k Spanish lyric lines per artist to English,
 
 ## Benchmark approach
 
-Take 20 diverse lyric lines from `Artists/Young Miko/data/layers/examples_raw.json` — mix of clean Spanish, slang, and Spanglish. Run each candidate and compare quality. Time the local models. Calculate cost per 10k lines.
+Take 20 diverse lyric lines from `Artists/spanish/Young Miko/data/layers/examples_raw.json` — mix of clean Spanish, slang, and Spanglish. Run each candidate and compare quality. Time the local models. Calculate cost per 10k lines.
 
 ## Output expected
 

@@ -6,7 +6,7 @@ Intermediate data layers produced by pipeline steps. Each layer captures one asp
 
 **Always add new layers rather than overwriting existing ones.** When trying a new method (e.g. a different cognate detection approach), create a new layer file (e.g. `cognates_experimental.json`) alongside the existing one. This preserves provenance so Josh can compare methods and validate which works best. The build script chooses which layers to consume — unused layers stay in the directory as references.
 
-This also applies to the artist pipeline layers in `Artists/{Name}/data/layers/`.
+This also applies to the artist pipeline layers in `Artists/{lang}/{Name}/data/layers/`.
 
 ## Layer Files
 
@@ -25,7 +25,7 @@ This also applies to the artist pipeline layers in `Artists/{Name}/data/layers/`
 
 ## Artist Pipeline Layers
 
-Artist layers live at `Artists/{Name}/data/layers/` and follow the same pattern:
+Artist layers live at `Artists/{lang}/{Name}/data/layers/` and follow the same pattern:
 
 | File | Key format | Value | Producer |
 |------|-----------|-------|----------|

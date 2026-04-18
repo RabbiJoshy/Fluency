@@ -729,7 +729,7 @@ def main():
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--artist-dir", required=True, help="Path to artist data directory")
-    ap.add_argument("--batch_glob", required=True, help='e.g. "Artists/Bad Bunny/data/input/batches/batch_*.json"')
+    ap.add_argument("--batch_glob", required=True, help='e.g. "Artists/spanish/Bad Bunny/data/input/batches/batch_*.json"')
     ap.add_argument("--out", required=True, help="Output JSON path")
     ap.add_argument("--mwe-out", default=None, help="MWE output JSON path (default: same dir as --out)")
     ap.add_argument("--max_examples", type=int, default=10, help="Maximum examples per word")

@@ -2,13 +2,34 @@
 
 All scripts run from the **project root** (`Fluency/`), not from inside `Artists/`.
 
+## Directory Layout
+
+Artists live under a language subdirectory: `Artists/{lang}/{Name}/`.
+
+```
+Artists/
+├── spanish/
+│   ├── Bad Bunny/
+│   ├── Rosalía/
+│   └── Young Miko/
+├── french/
+│   └── TestPlaylist/            # Playlist-built French deck (keyword-only first pass)
+├── curations/                   # Shared curated lists (Spanish-flavoured today)
+├── tools/                       # Audit utilities
+├── vocabulary_master.json       # Shared Spanish master vocab
+├── vocabulary_master.json.meta.json
+└── CLAUDE.md (this file)
+```
+
+The orchestrator (`run_artist_pipeline.py`) walks `Artists/*/*/artist.json` and resolves `--artist "Bad Bunny"` → `Artists/spanish/Bad Bunny/`. Names must be unique across languages.
+
 ## Quick Start
 
 ```bash
-.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny"
-.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Rosalia" --from-step 6 --words-only
-.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Anuel" --no-gemini
-.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Bad Bunny" --from-step build  # re-assemble only
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny"
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Rosalía" --from-step 6 --words-only
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "TestPlaylist" --classifier keyword --no-gap-fill
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny" --from-step build  # re-assemble only
 ```
 
 ## Architecture: Layered Pipeline
@@ -87,18 +108,18 @@ google:  10   (raw Google Translate)
 .venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Name" --from-step 2 --to-step 5 --skip 2b --no-gemini
 
 # Bi-encoder on all words with Wiktionary senses (free)
-.venv/bin/python3 pipeline/artist/match_artist_senses.py --artist-dir "Artists/Name"
+.venv/bin/python3 pipeline/artist/match_artist_senses.py --artist-dir "Artists/{lang}/{Name}"
 
 # Gemini on remaining non-normal words (~$0.05)
-.venv/bin/python3 pipeline/artist/build_wiktionary_senses.py --artist-dir "Artists/Name" --new-only
+.venv/bin/python3 pipeline/artist/build_wiktionary_senses.py --artist-dir "Artists/{lang}/{Name}" --new-only
 
 # Build final output
-.venv/bin/python3 pipeline/artist/build_artist_vocabulary.py --artist-dir "Artists/Name"
+.venv/bin/python3 pipeline/artist/build_artist_vocabulary.py --artist-dir "Artists/{lang}/{Name}"
 ```
 
 ## Layer Files
 
-All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode where applicable.
+All layers live in `Artists/{lang}/{Name}/data/layers/`. Schemas parallel normal mode where applicable.
 
 | Layer | Schema | Normal-Mode Parallel |
 |-------|--------|---------------------|
@@ -128,12 +149,13 @@ All layers live in `Artists/{Name}/data/layers/`. Schemas parallel normal mode w
 - Senses accumulate across artists — a new artist's Gemini run can discover new senses
 - The **builder** handles master integration (ID assignment, sense merging, flag union)
 - `--no-gemini` runs pull existing senses from the master instead of producing placeholders
-- Migration/rebuild: `Artists/pipeline/artist/merge_to_master.py`
+- Migration/rebuild: `pipeline/artist/tool_8c_merge_to_master.py`
+- **Spanish-only today.** Hex IDs are `md5(word|lemma)`, so cross-language collisions are possible (French "son" vs Spanish "son"). When a second language needs a master, split to `Artists/{lang}/vocabulary_master.json` and update `config/artists.json` `masterPath` per artist.
 
 ## Key Files Per Artist
 
 ```
-Artists/{Name}/
+Artists/{lang}/{Name}/
   artist.json                    # {"name", "genius_query", "vocabulary_file"}
   {Name}vocabulary.json          # Monolith (debugging only, built by builder)
   {Name}vocabulary.index.json    # Compact index for front end (built by builder)
@@ -263,16 +285,16 @@ When adding new SpanishDict POS labels to `_POS_MAP` in `pipeline/util_5c_spanis
 The SpanishDict **phrases cache** (`Data/Spanish/senses/spanishdict/phrases_cache.json`) was introduced after the initial scrape of Bad Bunny, Young Miko, and normal mode. Only Rosalía has full phrases coverage. Re-run `tool_5c_build_spanishdict_cache.py --force` for each to populate MWE phrases:
 
 ```
-.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/Bad Bunny" --force
-.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/Young Miko" --force
+.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/spanish/Bad Bunny" --force
+.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/spanish/Young Miko" --force
 .venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --inventory-file Data/Spanish/layers/word_inventory.json --force
 ```
 
-After re-scraping, rebuild the SpanishDict sense menu with `step_5c_build_senses.py --sense-source spanishdict --artist-dir "Artists/Name" --force` (or omit `--artist-dir` for normal mode) to pick up newly cached headword redirects and phrases.
+After re-scraping, rebuild the SpanishDict sense menu with `step_5c_build_senses.py --sense-source spanishdict --artist-dir "Artists/{lang}/{Name}" --force` (or omit `--artist-dir` for normal mode) to pick up newly cached headword redirects and phrases.
 
 ## Adding a New Artist
 
-1. Create `Artists/NewArtist/artist.json` with `name`, `genius_query`, `vocabulary_file`
+1. Create `Artists/{lang}/{Name}/artist.json` with `name`, `genius_query`, `vocabulary_file`
 2. Run step 1 to download lyrics
 3. Curate `duplicate_songs.json` (see `DEDUP_INSTRUCTIONS.md`)
 4. Copy reusable curated data from existing artist (conjugation_families, skip_mwes, etc.)

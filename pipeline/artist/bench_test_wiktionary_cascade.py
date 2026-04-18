@@ -14,9 +14,9 @@ Classifier options:
   --keyword-only     Keyword overlap (instant, lowest accuracy)
 
 Usage (from project root):
-    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --cross-encoder
-    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny"
-    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/Bad Bunny" --keyword-only
+    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/spanish/Bad Bunny" --cross-encoder
+    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/spanish/Bad Bunny"
+    .venv/bin/python3 pipeline/artist/test_wiktionary_cascade.py --artist-dir "Artists/spanish/Bad Bunny" --keyword-only
 """
 
 import argparse
