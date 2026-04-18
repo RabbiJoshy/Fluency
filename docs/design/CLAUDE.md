@@ -20,10 +20,16 @@ Every design doc has YAML frontmatter:
 ---
 title: Short descriptive title
 status: prompt | research | decided | implemented
+language: spanish | french | cross-lang
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---
 ```
+
+`language`:
+- `spanish` — specific to Spanish data, vocabulary, or behaviour (most existing docs)
+- `french` — specific to French data, vocabulary, or behaviour
+- `cross-lang` — architecture / algorithm / UI that's language-agnostic
 
 ## How to use these docs
 
@@ -35,19 +41,21 @@ updated: YYYY-MM-DD
 
 ## Current docs
 
-| Doc | Status | Topic |
-|-----|--------|-------|
-| `wsd_benchmark_results.md` | implemented | Word sense disambiguation — all approaches tried, Gemini chosen |
-| `example_selection_design.md` | implemented | Example sentence scoring and selection |
-| `new_artist_filter_design.md` | implemented | Known vocab filter chain (94% Gemini reduction) |
-| `master_vocabulary_architecture.md` | implemented | Shared master vocab: ID scheme, sense accumulation, merge logic |
-| `layered_pipeline_architecture.md` | implemented | Both pipelines use independent layer files + builder assembly |
-| `sense_dedup_mapping.md` | implemented | Sense dedup via normalization + spaCy morphology |
-| `translation_quality_normal_mode.md` | implemented | Wiktionary translation fixes for common words |
-| `conjugation_pos_filtering.md` | implemented | Remove non-VERB senses from confirmed verb forms |
-| `level_estimation.md` | implemented | Adaptive staircase algorithm for level estimation |
-| `homograph_disambiguation.md` | implemented | Homograph lemma disambiguation — spaCy + manual overrides |
-| `verse_filtering.md` | decided | Per-artist verse filtering — decided against |
-| `alternative_translation_sources.md` | decided | Lyrics translation sources — Genius + Gemini chosen |
-| `artist_sense_pipeline.md` | implemented | Artist sense pipeline: Wiktionary senses + Flash Lite classifier + method priority |
-| `prompts/translation_services.md` | prompt | Research: best translation API/model for Spanish lyrics → English |
+| Doc | Status | Lang | Topic |
+|-----|--------|------|-------|
+| `wsd_benchmark_results.md` | implemented | spanish | Word sense disambiguation — all approaches tried, Gemini chosen |
+| `example_selection_design.md` | implemented | spanish | Example sentence scoring and selection |
+| `new_artist_filter_design.md` | implemented | spanish | Known vocab filter chain (94% Gemini reduction) |
+| `master_vocabulary_architecture.md` | implemented | cross-lang | Shared master vocab: ID scheme, sense accumulation, merge logic |
+| `layered_pipeline_architecture.md` | implemented | cross-lang | Both pipelines use independent layer files + builder assembly |
+| `sense_dedup_mapping.md` | implemented | cross-lang | Sense dedup via normalization + spaCy morphology |
+| `translation_quality_normal_mode.md` | implemented | spanish | Wiktionary translation fixes for common words |
+| `conjugation_pos_filtering.md` | implemented | spanish | Remove non-VERB senses from confirmed verb forms |
+| `level_estimation.md` | implemented | cross-lang | Adaptive staircase algorithm for level estimation |
+| `homograph_disambiguation.md` | implemented | spanish | Homograph lemma disambiguation — spaCy + manual overrides |
+| `verse_filtering.md` | decided | cross-lang | Per-artist verse filtering — decided against |
+| `alternative_translation_sources.md` | decided | spanish | Lyrics translation sources — Genius + Gemini chosen |
+| `artist_sense_pipeline.md` | implemented | spanish | Artist sense pipeline: Wiktionary senses + Flash Lite classifier + method priority |
+| `prompts/translation_services.md` | prompt | spanish | Research: best translation API/model for Spanish lyrics → English |
+| `prompts/elision_resolution_refactor.md` | prompt | spanish | Move Spanish elision resolution before tokenization |
+| `prompts/french_dict_equivalent.md` | prompt | french | Whether to supplement or replace the enwiktionary French slice (Wiktionnaire dump, Le Robert scrape, paid APIs) |

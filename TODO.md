@@ -19,25 +19,27 @@ below have enough complexity to warrant this treatment when the time comes.
 **Priority:** `now` = next up | `soon` = near-term | `idea` = someday/maybe
 **Size:** `S` = hours | `M` = half-day | `L` = multi-session
 **Mode:** `artist` = artist mode only | `normal` = normal mode only | `shared` = both
+**Language:** `spanish` | `french` | `cross-lang` (orthogonal to mode — a `[shared] [cross-lang]` item affects both modes in every language; a `[artist] [spanish]` item is Spanish artist-mode only)
 
 ---
 
 ## UI / Front-End
 
-- **[idea] Conjugation table UI polish (S) [shared]**
+- **[idea] Conjugation table UI polish (S) [shared] [spanish]**
   Conjugation data layer is done (`conjugations.json` + `conjugation_reverse.json`).
-  Front-end renders the table on card back but the UI needs improvement.
+  Front-end renders the table on card back but the UI needs improvement. French
+  conjugations not in the pipeline yet — this item is Spanish only until they are.
 
-- **[idea] Album-specific mode (M) [artist]**
+- **[idea] Album-specific mode (M) [artist] [cross-lang]**
   Let users choose specific albums. Options range from light (filter example lyrics to chosen
   albums, keep full corpus count) to heavy (album-only deck with album-specific corpus count).
   Long-term extension: user provides their own song list and gets a custom deck. Probably far
   out — depends on the pipeline being easy to run for arbitrary input.
 
-- **[now] Surface per-word "known lyrics %" in settings (S) [artist]**
+- **[now] Surface per-word "known lyrics %" in settings (S) [artist] [cross-lang]**
   Show what percentage of an artist's lyrics the user can understand the whole line for based on known words.
 
-- **[idea] Find-word should open filter-excluded cards (M) [shared]**
+- **[idea] Find-word should open filter-excluded cards (M) [shared] [cross-lang]**
   Current search (top-bar magnifier) only jumps to words present in the currently-filtered
   deck; words removed by cognate/lemma/mastered filters show a "not available for this ranking"
   message and nothing happens. Make a click on any search result pull up a one-off "preview
@@ -53,7 +55,7 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## Data / Pipeline
 
-- **[soon] Better handling of SpanishDict phrasebook analyses (M) [normal/artist]**
+- **[soon] Better handling of SpanishDict phrasebook analyses (M) [normal/artist] [spanish]**
   Implemented a patch on 2026-04-16 that routes phrase-only self-analyses (e.g.
   the `headword=está` PHRASE analysis) into the inventory's `known_lemmas[0]`
   so `está` shows as `está|estar` instead of a dead `está|está`. Works for
@@ -88,7 +90,7 @@ below have enough complexity to warrant this treatment when the time comes.
     *within* one analysis by POS would require menu-layer surgery and is
     covered by the root-cause refactor bullet above.
 
-- **[I think this is done] Wire multi-word elision split into tokenization (M) [artist]**
+- **[I think this is done] Wire multi-word elision split into tokenization (M) [artist] [spanish]**
   Config exists at `Artists/curations/multi_word_elisions.json` mapping contracted
   surface forms to expanded Spanish (e.g. `"pal'" -> "para el"`). Step 2a
   (count_words) needs to consume this config and do pre-tokenization substitution
@@ -97,14 +99,14 @@ below have enough complexity to warrant this treatment when the time comes.
   on each expanded word should retain the original contracted form. After wiring,
   add entries for common Caribbean two-word contractions beyond `pal'` / `pa'l`.
 
-- **[this might be done] Generic s/z elision handling (S) [artist]**
+- **[this might be done] Generic s/z elision handling (S) [artist] [spanish]**
   Currently `lu' -> luz` is a manual override in the elision mapping because the
   automatic merger only handles s-elisions (word-final s replaced by `'`).
   Generalise to also match z-elisions (`luz -> lu'`, `cruz -> cru'`, etc.) and any
   other systematic patterns. Watch for false positives — not every `x'` is an
   elision of `xz` or `xs`.
 
-- **[dumb] Map remaining SpanishDict POS labels instead of dropping to X (S) [shared]**
+- **[dumb] Map remaining SpanishDict POS labels instead of dropping to X (S) [shared] [spanish]**
   `normalize_pos()` in `pipeline/util_5c_spanishdict.py` falls through to `"X"` for
   any SpanishDict POS label it doesn't recognize. Currently X senses are mostly
   morphological prefixes (des-, di-, neo-) which are legitimately noise, but there
@@ -114,14 +116,14 @@ below have enough complexity to warrant this treatment when the time comes.
   `pipeline/util_6a_pos_menu_filter.py` — if any new category is orthogonal to
   grammar (like PHRASE/CONTRACTION), add it there.
 
-- **[soon] Move elision resolution before tokenization (M) [artist] [design doc]**
+- **[soon] Move elision resolution before tokenization (M) [artist] [spanish] [design doc]**
   Elision merging currently happens in step 5, after step 3 caps examples at 10.
   Should resolve elisions in a preprocessing pass on raw lyrics so step 3 counts
   canonical forms directly. Eliminates step 5, gives exact counts, and lets
   ambiguous elisions (ve'→vez/ves) disambiguate on every occurrence.
   See [`elision_resolution_refactor.md`](docs/design/prompts/elision_resolution_refactor.md).
 
-- **[soon] Find better English frequency list (S) [artist]**
+- **[soon] Find better English frequency list (S) [artist] [cross-lang]**
   English 50k wordlist filter is implemented in step 4 (catches 85 words for Bad Bunny,
   ~3 false positives). Current source is hermitdave/FrequencyWords OpenSubtitles-derived
   list — contains foreign words that leaked into English subtitle files (gare, pali, vou).
@@ -129,7 +131,7 @@ below have enough complexity to warrant this treatment when the time comes.
   common English words an English speaker would recognise. Currently at
   `Data/English/en_50k_wordlist.txt`.
 
-- **[soon] Homograph lemma filtering — minor lemma flag (L) [shared] [design doc]**
+- **[soon] Homograph lemma filtering — minor lemma flag (L) [shared] [cross-lang] [design doc]**
   When a surface form maps to multiple lemmas (e.g. "como" → como|como + como|comer),
   flag the less common lemma pairing so it can be filtered or deprioritized. Currently
   como|comer shows as a top-frequency word when it's actually rare. Inverse of
@@ -137,12 +139,13 @@ below have enough complexity to warrant this treatment when the time comes.
   the best *lemma* per form). Could use POS-tagged corpus frequency or conjugation
   reverse lookup to determine which lemma dominates.
 
-- **[idea] Artist sense pipeline: Wiktionary-sourced senses (L) [artist] [design doc]**
+- **[idea] Artist sense pipeline: Wiktionary-sourced senses (L) [artist] [cross-lang] [design doc]**
   Switch artist mode from "Gemini invents senses" to "pick from Wiktionary senses + classify."
   Would eliminate sense proliferation and cross-artist inconsistency. MWEs cover most idiomatic
   gaps. Gemini fallback only for words Wiktionary doesn't have. See `docs/design/artist_sense_pipeline.md`.
+  (Already the default for French — artist_sense_pipeline.md describes the Spanish version.)
 
-- **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared]**
+- **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared] [spanish]**
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would
   give better granularity for ordering. Change `SAMPLE_STRIDE` to 1 and re-run:
   ```bash
@@ -154,12 +157,12 @@ below have enough complexity to warrant this treatment when the time comes.
   ```
   Estimated ~5 minutes for the full 105M lines. Tatoeba adds negligible signal over full OpenSubs.
 
-- **[idea] Improve cognate flagger (M) [shared]**
+- **[idea] Improve cognate flagger (M) [shared] [cross-lang]**
   Converged into `shared/flag_cognates.py`. Could improve: add more suffix rules,
   tune similarity threshold, reduce false positives on short words, add LLM flagging
   to normal mode pipeline.
 
-- **[idea] Separated reflexive clitic detection (L) [shared] [design doc]**
+- **[idea] Separated reflexive clitic detection (L) [shared] [spanish] [design doc]**
   When a reflexive clitic is separated from its verb (e.g. "se vuelo", "me voy"), the
   pipeline currently has no way to know the verb should be matched against reflexive
   senses (volarse, irse) rather than the base form (volar, ir). Attached clitics are
@@ -169,20 +172,56 @@ below have enough complexity to warrant this treatment when the time comes.
   sense "to fly off" (fixed by per-example POS filtering), but the underlying problem
   remains for genuine separated-clitic verb uses.
 
-- **[idea] Sense dedup polish — English conjugation (S) [shared]**
+- **[idea] Sense dedup polish — English conjugation (S) [shared] [cross-lang]**
   Generated 3rd-person translations say "he/she go" instead of "he/she goes".
   Would need English conjugation logic in `merge_to_master.py:choose_canonical_translation()`.
 
-- **[idea] Auto-populate album dictionaries from Genius (M) [artist]**
+- **[idea] Auto-populate album dictionaries from Genius (M) [artist] [cross-lang]**
   Scrape Genius album pages to auto-assign songs to albums. Currently manually curated.
   Not urgent — only 2 artists and their dictionaries are complete.
 
-- **[idea] Multi-language generalization (L) [shared] [design doc]**
+- **[idea] Multi-language generalization (L) [shared] [cross-lang] [design doc]**
   Generalize `build_examples.py` to accept language as argument.
   Download Tatoeba pairs for Italian, Swedish, etc.
   Generate per-language frequency ranks and vocabulary.json.
   Spanish/Swedish/Italian/Dutch/Polish vocabs already exist in Data/ but only Spanish has
   the full pipeline.
+
+---
+
+## French
+
+Items specific to French vocabulary, pipeline, or dictionary sources.
+
+- **[idea] SpanishDict-equivalent for French (L) [artist] [french] [design doc]**
+  After the 2026-04-18 Wiktionary enrichment, the French sense menu has
+  `context` / `register` / `example` fields parsed out of Kaikki, plus a
+  Wiktionary-phrase tier (c'est / j'ai / qu'il stay as their own cards). The
+  enwiktionary French slice has coverage gaps though — missing conjugations
+  (e.g. `a` as avoir 3sg), thin on colloquial/regional French, and `context`
+  is whatever Wiktionary editors happened to write rather than a curated
+  sub-sense label. Staged plan:
+  (1) ship the enrichment and see if real French use surfaces friction;
+  (2) if coverage gaps hurt, add the Kaikki French-Wiktionnaire (`fr-extract`)
+      as a supplement layer — mirrors the Spanish `eswiktionary` dialect
+      supplement, ~1 day, free;
+  (3) if we want true SpanishDict parity, scrape Le Robert into
+      `pipeline/util_5c_lerobert.py` mirroring `util_5c_spanishdict.py`
+      (1–2 weeks; best-quality free French sense data).
+  Paid APIs (Oxford £50/mo, Lexicala enterprise) surveyed but not recommended.
+  See [`prompts/french_dict_equivalent.md`](docs/design/prompts/french_dict_equivalent.md).
+
+- **[idea] French conjugation layer (M) [shared] [french]**
+  French pipeline has no `conjugation_reverse.json` today — so step_5c's
+  conjugation-based POS filter (which prunes non-VERB senses from confirmed
+  verb forms in Spanish) is a no-op for French. French conjugator candidates:
+  `verbecc` supports French; `spacy-lefff` gives UD-style lemmas from spaCy.
+  Would also enable the card-back conjugation table for French.
+
+- **[idea] Broader French test corpus (S) [artist] [french]**
+  TestPlaylist is one playlist. Once a real French artist is picked (Aya
+  Nakamura, Angèle, …), rerun the pipeline on their catalog to see what the
+  first-pass output actually looks like at scale.
 
 ---
 
