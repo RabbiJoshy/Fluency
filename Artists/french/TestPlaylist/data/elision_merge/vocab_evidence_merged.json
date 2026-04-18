@@ -70,80 +70,6 @@
     }
   },
   {
-    "word": "est",
-    "corpus_count": 293,
-    "examples": [
-      {
-        "id": "4083905:13",
-        "line": "C'est pas vraiment le fait que vous mentez",
-        "title": "La fessée",
-        "surface": "c'est"
-      },
-      {
-        "id": "3285585:7",
-        "line": "Puis, là, c'est trop parti en couille, y'a d'abord eu la pluie",
-        "title": "La loi de Murphy",
-        "surface": "c'est"
-      },
-      {
-        "id": "2871456:23",
-        "line": "J'ai arrêté de me battre, ça y est, c'est fini",
-        "title": "Mort / Fine",
-        "surface": "c'est"
-      },
-      {
-        "id": "4414385:4",
-        "line": "Est-ce que c'est moi qui, vraiment moi qui chantais ?",
-        "title": "Nue",
-        "surface": "c'est"
-      },
-      {
-        "id": "4931888:7",
-        "line": "T'inquiète pas pour ça, car tout ça c'est quoi",
-        "title": "Que du love",
-        "surface": "c'est"
-      },
-      {
-        "id": "3912738:5",
-        "line": "Le spleen n'est plus à la mode, c'est pas compliqué d'être heureux",
-        "title": "Tout oublier",
-        "surface": "c'est"
-      },
-      {
-        "id": "4931886:6",
-        "line": "Je pense à toi, je sais c'est bête (hé, hé)",
-        "title": "Tu me regardes",
-        "surface": "c'est"
-      },
-      {
-        "id": "3910844:1",
-        "line": "Le truc c'est qu'elle est plus jolie, et ça, ça fout la haine",
-        "title": "Victime des réseaux",
-        "surface": "c'est"
-      },
-      {
-        "id": "4931877:22",
-        "line": "Et c'est arrivé sans le voir venir",
-        "title": "Perdus",
-        "surface": "c'est"
-      },
-      {
-        "id": "2849509:6",
-        "line": "Tu sais c'est pas si compliqué",
-        "title": "Recto Verso",
-        "surface": "c'est"
-      }
-    ],
-    "display_form": "c'est",
-    "variants": {
-      "c'est": 144,
-      "est": 127,
-      "n'est": 14,
-      "s'est": 6,
-      "qu'est": 2
-    }
-  },
-  {
     "word": "je",
     "corpus_count": 272,
     "examples": [
@@ -488,7 +414,7 @@
   },
   {
     "word": "en",
-    "corpus_count": 168,
+    "corpus_count": 161,
     "examples": [
       {
         "id": "478839:6",
@@ -554,81 +480,7 @@
     "variants": {
       "en": 113,
       "t'en": 35,
-      "j'en": 13,
-      "s'en": 5,
-      "d'en": 1,
-      "m'en": 1
-    }
-  },
-  {
-    "word": "on",
-    "corpus_count": 160,
-    "examples": [
-      {
-        "id": "3959326:19",
-        "line": "On n’a pas hanté, si ?",
-        "title": "Mojo",
-        "surface": "on"
-      },
-      {
-        "id": "3492914:21",
-        "line": "On glisse sur la planche, oh, oh",
-        "title": "La proue",
-        "surface": "on"
-      },
-      {
-        "id": "4783721:60",
-        "line": "O.K, la suite, on la connaît",
-        "title": "Laisse-moi t'aimer",
-        "surface": "on"
-      },
-      {
-        "id": "4695000:15",
-        "line": "On envoie des nudes toute la noche (pour vibrer)",
-        "title": "Nudes",
-        "surface": "on"
-      },
-      {
-        "id": "5187243:4",
-        "line": "On se blesserait même avec zéro mot, pourtant aucun mur sur cette terre",
-        "title": "Trop beau",
-        "surface": "on"
-      },
-      {
-        "id": "8705844:4",
-        "line": "On se blesserait même avec zéro mot, pourtant aucun mur sur cette terre",
-        "title": "Trop beau - Version acoustique",
-        "surface": "on"
-      },
-      {
-        "id": "3570505:7",
-        "line": "Et on en reparlera si tu dis la vérité",
-        "title": "Vérité",
-        "surface": "on"
-      },
-      {
-        "id": "5462359:8",
-        "line": "On se rapproche de tout c'qui nous sépare",
-        "title": "Étrange Mélange",
-        "surface": "on"
-      },
-      {
-        "id": "7333830:16",
-        "line": "\"On est plus ennemis qu'amants\" : c'est c'qu'on s'est dit fréquemment",
-        "title": "Des heures",
-        "surface": "on"
-      },
-      {
-        "id": "5163433:33",
-        "line": "On ne s'embrasse pas, c'est trop peu",
-        "title": "Le visage de la nuit",
-        "surface": "on"
-      }
-    ],
-    "variants": {
-      "on": 147,
-      "qu'on": 11,
-      "l'on": 2
+      "j'en": 13
     }
   },
   {
@@ -699,76 +551,6 @@
     "variants": {
       "les": 158,
       "j'les": 1
-    }
-  },
-  {
-    "word": "que",
-    "corpus_count": 159,
-    "examples": [
-      {
-        "id": "4824143:2",
-        "line": "Que la nuit fière s'en fout",
-        "title": "je sais pas danser",
-        "surface": "que"
-      },
-      {
-        "id": "2307519:12",
-        "line": "Que mon reflet dans ta rétine me dédessine, me dédessine",
-        "title": "Bouche à lèvres",
-        "surface": "que"
-      },
-      {
-        "id": "3074559:3",
-        "line": "On lui dit que la vie est belle et que la vérité peut attendre",
-        "title": "Chacun Pour Soi",
-        "surface": "que"
-      },
-      {
-        "id": "4882118:15",
-        "line": "Elles me disent que j'ai la poisse",
-        "title": "Dilemme",
-        "surface": "que"
-      },
-      {
-        "id": "3841471:13",
-        "line": "Tout le monde te trouve génial alors que t'as rien fait",
-        "title": "Flou",
-        "surface": "que"
-      },
-      {
-        "id": "4086545:11",
-        "line": "Pas sûr que ça s'estompe avec le temps",
-        "title": "Gare du Nord",
-        "surface": "que"
-      },
-      {
-        "id": "4931887:24",
-        "line": "Même si je sais que rien n'y fait",
-        "title": "J'entends",
-        "surface": "que"
-      },
-      {
-        "id": "3841490:15",
-        "line": "Et prend un rôle, c'est là que tu agis",
-        "title": "Jalousie",
-        "surface": "que"
-      },
-      {
-        "id": "3486219:9",
-        "line": "J'ai vu que t'as vu, tu réponds pas",
-        "title": "Je veux tes yeux",
-        "surface": "que"
-      },
-      {
-        "id": "4739991:3",
-        "line": "La Rua Madureira, la rue que tu habitais",
-        "title": "La Rua Madureira",
-        "surface": "que"
-      }
-    ],
-    "variants": {
-      "que": 152,
-      "c'que": 7
     }
   },
   {
@@ -843,6 +625,72 @@
     }
   },
   {
+    "word": "que",
+    "corpus_count": 152,
+    "examples": [
+      {
+        "id": "4824143:2",
+        "line": "Que la nuit fière s'en fout",
+        "title": "je sais pas danser",
+        "surface": "que"
+      },
+      {
+        "id": "2307519:12",
+        "line": "Que mon reflet dans ta rétine me dédessine, me dédessine",
+        "title": "Bouche à lèvres",
+        "surface": "que"
+      },
+      {
+        "id": "3074559:3",
+        "line": "On lui dit que la vie est belle et que la vérité peut attendre",
+        "title": "Chacun Pour Soi",
+        "surface": "que"
+      },
+      {
+        "id": "4882118:15",
+        "line": "Elles me disent que j'ai la poisse",
+        "title": "Dilemme",
+        "surface": "que"
+      },
+      {
+        "id": "3841471:13",
+        "line": "Tout le monde te trouve génial alors que t'as rien fait",
+        "title": "Flou",
+        "surface": "que"
+      },
+      {
+        "id": "4086545:11",
+        "line": "Pas sûr que ça s'estompe avec le temps",
+        "title": "Gare du Nord",
+        "surface": "que"
+      },
+      {
+        "id": "4931887:24",
+        "line": "Même si je sais que rien n'y fait",
+        "title": "J'entends",
+        "surface": "que"
+      },
+      {
+        "id": "3841490:15",
+        "line": "Et prend un rôle, c'est là que tu agis",
+        "title": "Jalousie",
+        "surface": "que"
+      },
+      {
+        "id": "3486219:9",
+        "line": "J'ai vu que t'as vu, tu réponds pas",
+        "title": "Je veux tes yeux",
+        "surface": "que"
+      },
+      {
+        "id": "4739991:3",
+        "line": "La Rua Madureira, la rue que tu habitais",
+        "title": "La Rua Madureira",
+        "surface": "que"
+      }
+    ]
+  },
+  {
     "word": "tu",
     "corpus_count": 150,
     "examples": [
@@ -909,76 +757,205 @@
     ]
   },
   {
-    "word": "a",
-    "corpus_count": 118,
+    "word": "on",
+    "corpus_count": 147,
     "examples": [
       {
-        "id": "3911964:5",
-        "line": "Ça nous dépasse tout cet amour, c'est si heureux",
-        "title": "Nombreux",
-        "surface": "a"
+        "id": "3959326:19",
+        "line": "On n’a pas hanté, si ?",
+        "title": "Mojo",
+        "surface": "on"
       },
       {
-        "id": "4931877:53",
-        "line": "Ça me manque les jours tendres du début",
-        "title": "Perdus",
-        "surface": "a"
+        "id": "3492914:21",
+        "line": "On glisse sur la planche, oh, oh",
+        "title": "La proue",
+        "surface": "on"
+      },
+      {
+        "id": "4783721:60",
+        "line": "O.K, la suite, on la connaît",
+        "title": "Laisse-moi t'aimer",
+        "surface": "on"
+      },
+      {
+        "id": "4695000:15",
+        "line": "On envoie des nudes toute la noche (pour vibrer)",
+        "title": "Nudes",
+        "surface": "on"
+      },
+      {
+        "id": "5187243:4",
+        "line": "On se blesserait même avec zéro mot, pourtant aucun mur sur cette terre",
+        "title": "Trop beau",
+        "surface": "on"
+      },
+      {
+        "id": "8705844:4",
+        "line": "On se blesserait même avec zéro mot, pourtant aucun mur sur cette terre",
+        "title": "Trop beau - Version acoustique",
+        "surface": "on"
+      },
+      {
+        "id": "3570505:7",
+        "line": "Et on en reparlera si tu dis la vérité",
+        "title": "Vérité",
+        "surface": "on"
+      },
+      {
+        "id": "5462359:8",
+        "line": "On se rapproche de tout c'qui nous sépare",
+        "title": "Étrange Mélange",
+        "surface": "on"
+      },
+      {
+        "id": "7333830:16",
+        "line": "\"On est plus ennemis qu'amants\" : c'est c'qu'on s'est dit fréquemment",
+        "title": "Des heures",
+        "surface": "on"
+      },
+      {
+        "id": "5163433:33",
+        "line": "On ne s'embrasse pas, c'est trop peu",
+        "title": "Le visage de la nuit",
+        "surface": "on"
+      }
+    ]
+  },
+  {
+    "word": "c'est",
+    "corpus_count": 144,
+    "examples": [
+      {
+        "id": "4083905:13",
+        "line": "C'est pas vraiment le fait que vous mentez",
+        "title": "La fessée",
+        "surface": "c'est"
+      },
+      {
+        "id": "3285585:7",
+        "line": "Puis, là, c'est trop parti en couille, y'a d'abord eu la pluie",
+        "title": "La loi de Murphy",
+        "surface": "c'est"
+      },
+      {
+        "id": "2871456:23",
+        "line": "J'ai arrêté de me battre, ça y est, c'est fini",
+        "title": "Mort / Fine",
+        "surface": "c'est"
+      },
+      {
+        "id": "4414385:4",
+        "line": "Est-ce que c'est moi qui, vraiment moi qui chantais ?",
+        "title": "Nue",
+        "surface": "c'est"
       },
       {
         "id": "4931888:7",
         "line": "T'inquiète pas pour ça, car tout ça c'est quoi",
         "title": "Que du love",
-        "surface": "a"
+        "surface": "c'est"
       },
       {
-        "id": "3912738:14",
-        "line": "Et si tout l'monde t'a délaissé, ça s'est passé après les soldes",
+        "id": "3912738:5",
+        "line": "Le spleen n'est plus à la mode, c'est pas compliqué d'être heureux",
         "title": "Tout oublier",
-        "surface": "a"
+        "surface": "c'est"
       },
       {
-        "id": "5187243:30",
-        "line": "Parce que c'est comme de la drogue, on a d'quoi planer",
-        "title": "Trop beau",
-        "surface": "a"
+        "id": "4931886:6",
+        "line": "Je pense à toi, je sais c'est bête (hé, hé)",
+        "title": "Tu me regardes",
+        "surface": "c'est"
       },
       {
         "id": "3910844:1",
         "line": "Le truc c'est qu'elle est plus jolie, et ça, ça fout la haine",
         "title": "Victime des réseaux",
-        "surface": "a"
+        "surface": "c'est"
       },
       {
-        "id": "10396391:29",
-        "line": "Et ça, tous les hommes le savent",
-        "title": "Gisèle",
-        "surface": "a"
+        "id": "4931877:22",
+        "line": "Et c'est arrivé sans le voir venir",
+        "title": "Perdus",
+        "surface": "c'est"
       },
       {
-        "id": "478839:6",
-        "line": "En fait, elle s’amuse qu’a moitié",
-        "title": "Hémisphère",
-        "surface": "a"
+        "id": "2849509:6",
+        "line": "Tu sais c'est pas si compliqué",
+        "title": "Recto Verso",
+        "surface": "c'est"
+      }
+    ]
+  },
+  {
+    "word": "est",
+    "corpus_count": 129,
+    "examples": [
+      {
+        "id": "3293950:25",
+        "line": "La lune est un fruit un peu rance",
+        "title": "Ceux qui rêvent",
+        "surface": "est"
       },
       {
-        "id": "4931887:43",
-        "line": "J'ai essayé d'en parler à mon frère mais ça m'a déprimé",
-        "title": "J'entends",
-        "surface": "a"
+        "id": "3271116:4",
+        "line": "Que ce n’est pas sage",
+        "title": "Erreur 404",
+        "surface": "est"
       },
       {
-        "id": "3910811:8",
-        "line": "C'est les matins comme ça qui m'font pleurer",
-        "title": "Les matins",
-        "surface": "a"
+        "id": "3758526:12",
+        "line": "Ciel ! Qu'on est bien là au septième",
+        "title": "Arc-en-ciel",
+        "surface": "est"
+      },
+      {
+        "id": "3914077:3",
+        "line": "J'ai vu qu'le rap est à la mode et qu'il marche mieux quand il est sale",
+        "title": "Balance ton quoi",
+        "surface": "est"
+      },
+      {
+        "id": "3074559:3",
+        "line": "On lui dit que la vie est belle et que la vérité peut attendre",
+        "title": "Chacun Pour Soi",
+        "surface": "est"
+      },
+      {
+        "id": "4565762:5",
+        "line": "Si c’est ça la finalité, la fin du parcours",
+        "title": "Défait",
+        "surface": "est"
+      },
+      {
+        "id": "3841490:31",
+        "line": "Qu'elle est seulement moi, j'ai peur que tu l'aimes",
+        "title": "Jalousie",
+        "surface": "est"
+      },
+      {
+        "id": "4083905:6",
+        "line": "Me faire une p'tite idée de c'qui est osé",
+        "title": "La fessée",
+        "surface": "est"
+      },
+      {
+        "id": "4294732:15",
+        "line": "Reste avec moi, la vie est belle",
+        "title": "La vie est belle",
+        "surface": "est"
+      },
+      {
+        "id": "2871456:23",
+        "line": "J'ai arrêté de me battre, ça y est, c'est fini",
+        "title": "Mort / Fine",
+        "surface": "est"
       }
     ],
     "variants": {
-      "a": 96,
-      "m'a": 13,
-      "l'a": 5,
-      "n'a": 3,
-      "t'a": 1
+      "est": 127,
+      "qu'est": 2
     }
   },
   {
@@ -1046,79 +1023,6 @@
         "surface": "des"
       }
     ]
-  },
-  {
-    "word": "ai",
-    "corpus_count": 112,
-    "examples": [
-      {
-        "id": "3486219:9",
-        "line": "J'ai vu que t'as vu, tu réponds pas",
-        "title": "Je veux tes yeux",
-        "surface": "j'ai"
-      },
-      {
-        "id": "4240436:50",
-        "line": "J'suis tombée cent fois et j'ai su me relever",
-        "title": "Rien à prouver",
-        "surface": "j'ai"
-      },
-      {
-        "id": "4824143:12",
-        "line": "J'ai fait le même cauchemar",
-        "title": "je sais pas danser",
-        "surface": "j'ai"
-      },
-      {
-        "id": "3403616:1",
-        "line": "J'ai regardé dans ton téléphone",
-        "title": "Larme à gauche",
-        "surface": "j'ai"
-      },
-      {
-        "id": "4882118:15",
-        "line": "Elles me disent que j'ai la poisse",
-        "title": "Dilemme",
-        "surface": "j'ai"
-      },
-      {
-        "id": "3908643:11",
-        "line": "Sortir c'est pour les nuls, t'façon j'ai pas la thune",
-        "title": "Flemme",
-        "surface": "j'ai"
-      },
-      {
-        "id": "3841471:31",
-        "line": "Perdre la tête en enfer, j'ai peur de perdre la tête en enfer",
-        "title": "Flou",
-        "surface": "j'ai"
-      },
-      {
-        "id": "4931885:1",
-        "line": "J'ai pas vu venir la nuit ni les ombres qui passent",
-        "title": "Insomnies",
-        "surface": "j'ai"
-      },
-      {
-        "id": "3841490:31",
-        "line": "Qu'elle est seulement moi, j'ai peur que tu l'aimes",
-        "title": "Jalousie",
-        "surface": "j'ai"
-      },
-      {
-        "id": "3910811:3",
-        "line": "J'ai les yeux si rouges et bombés par la nuit, ou par les pleurs",
-        "title": "Les matins",
-        "surface": "j'ai"
-      }
-    ],
-    "display_form": "j'ai",
-    "variants": {
-      "j'ai": 92,
-      "ai": 13,
-      "t'ai": 4,
-      "l'ai": 3
-    }
   },
   {
     "word": "moi",
@@ -1257,145 +1161,139 @@
     }
   },
   {
-    "word": "un",
-    "corpus_count": 94,
+    "word": "a",
+    "corpus_count": 96,
     "examples": [
       {
-        "id": "4083905:29",
-        "line": "Si c'est pas vraiment un problème d'honnêteté",
-        "title": "La fessée",
-        "surface": "un"
+        "id": "3911964:5",
+        "line": "Ça nous dépasse tout cet amour, c'est si heureux",
+        "title": "Nombreux",
+        "surface": "a"
       },
       {
-        "id": "4240436:16",
-        "line": "Combien m'ont tendu la main, pas un proche",
-        "title": "Rien à prouver",
-        "surface": "un"
+        "id": "4931877:53",
+        "line": "Ça me manque les jours tendres du début",
+        "title": "Perdus",
+        "surface": "a"
       },
       {
-        "id": "2873324:2",
-        "line": "Proche de l'équateur à un point précis",
-        "title": "Canopée",
-        "surface": "un"
-      },
-      {
-        "id": "4931888:11",
-        "line": "Oseras-tu un jour m'aimer ?",
+        "id": "4931888:7",
+        "line": "T'inquiète pas pour ça, car tout ça c'est quoi",
         "title": "Que du love",
-        "surface": "un"
+        "surface": "a"
       },
       {
-        "id": "2849509:28",
-        "line": "Avec un peu d'intimité",
-        "title": "Recto Verso",
-        "surface": "un"
+        "id": "3912738:14",
+        "line": "Et si tout l'monde t'a délaissé, ça s'est passé après les soldes",
+        "title": "Tout oublier",
+        "surface": "a"
       },
       {
-        "id": "3293950:25",
-        "line": "La lune est un fruit un peu rance",
-        "title": "Ceux qui rêvent",
-        "surface": "un"
+        "id": "5187243:30",
+        "line": "Parce que c'est comme de la drogue, on a d'quoi planer",
+        "title": "Trop beau",
+        "surface": "a"
       },
       {
-        "id": "4739991:15",
-        "line": "Sur la première page d’un journal brésilien",
-        "title": "La Rua Madureira",
-        "surface": "un"
+        "id": "3910844:1",
+        "line": "Le truc c'est qu'elle est plus jolie, et ça, ça fout la haine",
+        "title": "Victime des réseaux",
+        "surface": "a"
       },
       {
-        "id": "3285585:9",
-        "line": "Un mec me demande son chemin, gentiment je le dépanne",
-        "title": "La loi de Murphy",
-        "surface": "un"
+        "id": "10396391:29",
+        "line": "Et ça, tous les hommes le savent",
+        "title": "Gisèle",
+        "surface": "a"
       },
       {
-        "id": "7977788:32",
-        "line": "Mais un court-circuit fait renaître la nuit",
-        "title": "On Bai.",
-        "surface": "un"
+        "id": "478839:6",
+        "line": "En fait, elle s’amuse qu’a moitié",
+        "title": "Hémisphère",
+        "surface": "a"
       },
       {
-        "id": "7145447:20",
-        "line": "Un fond de tristesse qui va me die (Qui va me die)",
-        "title": "Pause",
-        "surface": "un"
+        "id": "4931887:43",
+        "line": "J'ai essayé d'en parler à mon frère mais ça m'a déprimé",
+        "title": "J'entends",
+        "surface": "a"
+      },
+      {
+        "id": "3910811:8",
+        "line": "C'est les matins comme ça qui m'font pleurer",
+        "title": "Les matins",
+        "surface": "a"
       }
-    ],
-    "variants": {
-      "un": 74,
-      "qu'un": 8,
-      "d'un": 6,
-      "l'un": 6
-    }
+    ]
   },
   {
-    "word": "qui",
-    "corpus_count": 91,
+    "word": "j'ai",
+    "corpus_count": 93,
     "examples": [
       {
-        "id": "3293950:27",
-        "line": "Ceux qui rêvent ont bien de la chance",
-        "title": "Ceux qui rêvent",
-        "surface": "qui"
+        "id": "3486219:9",
+        "line": "J'ai vu que t'as vu, tu réponds pas",
+        "title": "Je veux tes yeux",
+        "surface": "j'ai"
       },
       {
-        "id": "2871456:2",
-        "line": "Je me rappelais de tes bisous qui sentaient les champs",
-        "title": "Mort / Fine",
-        "surface": "qui"
+        "id": "4240436:50",
+        "line": "J'suis tombée cent fois et j'ai su me relever",
+        "title": "Rien à prouver",
+        "surface": "j'ai"
       },
       {
-        "id": "4739991:10",
-        "line": "Dans le taxi qui nous conduisait à l'aéroport",
-        "title": "La Rua Madureira",
-        "surface": "qui"
+        "id": "4824143:12",
+        "line": "J'ai fait le même cauchemar",
+        "title": "je sais pas danser",
+        "surface": "j'ai"
       },
       {
-        "id": "4134227:6",
-        "line": "Le cœur à l'air et les yeux qui dévorent",
-        "title": "Les bruits de la ville (feat. Yelle)",
-        "surface": "qui"
+        "id": "3403616:1",
+        "line": "J'ai regardé dans ton téléphone",
+        "title": "Larme à gauche",
+        "surface": "j'ai"
       },
       {
-        "id": "2849521:13",
-        "line": "Laisse-moi voir ce qui reste à voir",
-        "title": "Toi Et Moi",
-        "surface": "qui"
+        "id": "4882118:15",
+        "line": "Elles me disent que j'ai la poisse",
+        "title": "Dilemme",
+        "surface": "j'ai"
       },
       {
-        "id": "3959326:37",
-        "line": "Deux souffles qui se cherchent",
-        "title": "Mojo",
-        "surface": "qui"
+        "id": "3908643:11",
+        "line": "Sortir c'est pour les nuls, t'façon j'ai pas la thune",
+        "title": "Flemme",
+        "surface": "j'ai"
       },
       {
-        "id": "3275068:33",
-        "line": "Qui s'affichent derrière l'écran",
-        "title": "Filme moi",
-        "surface": "qui"
-      },
-      {
-        "id": "5163433:27",
-        "line": "Et l'imprimé qui s'évapore",
-        "title": "Le visage de la nuit",
-        "surface": "qui"
-      },
-      {
-        "id": "3758526:3",
-        "line": "Qui te mènera jusqu'au septième",
-        "title": "Arc-en-ciel",
-        "surface": "qui"
+        "id": "3841471:31",
+        "line": "Perdre la tête en enfer, j'ai peur de perdre la tête en enfer",
+        "title": "Flou",
+        "surface": "j'ai"
       },
       {
         "id": "4931885:1",
         "line": "J'ai pas vu venir la nuit ni les ombres qui passent",
         "title": "Insomnies",
-        "surface": "qui"
+        "surface": "j'ai"
+      },
+      {
+        "id": "3841490:31",
+        "line": "Qu'elle est seulement moi, j'ai peur que tu l'aimes",
+        "title": "Jalousie",
+        "surface": "j'ai"
+      },
+      {
+        "id": "3910811:3",
+        "line": "J'ai les yeux si rouges et bombés par la nuit, ou par les pleurs",
+        "title": "Les matins",
+        "surface": "j'ai"
       }
     ],
     "variants": {
-      "qui": 80,
-      "c'qui": 11
+      "j'ai": 92,
+      "qu'j'ai": 1
     }
   },
   {
@@ -1663,6 +1561,142 @@
     ]
   },
   {
+    "word": "qui",
+    "corpus_count": 80,
+    "examples": [
+      {
+        "id": "3293950:27",
+        "line": "Ceux qui rêvent ont bien de la chance",
+        "title": "Ceux qui rêvent",
+        "surface": "qui"
+      },
+      {
+        "id": "2871456:2",
+        "line": "Je me rappelais de tes bisous qui sentaient les champs",
+        "title": "Mort / Fine",
+        "surface": "qui"
+      },
+      {
+        "id": "4739991:10",
+        "line": "Dans le taxi qui nous conduisait à l'aéroport",
+        "title": "La Rua Madureira",
+        "surface": "qui"
+      },
+      {
+        "id": "4134227:6",
+        "line": "Le cœur à l'air et les yeux qui dévorent",
+        "title": "Les bruits de la ville (feat. Yelle)",
+        "surface": "qui"
+      },
+      {
+        "id": "2849521:13",
+        "line": "Laisse-moi voir ce qui reste à voir",
+        "title": "Toi Et Moi",
+        "surface": "qui"
+      },
+      {
+        "id": "3959326:37",
+        "line": "Deux souffles qui se cherchent",
+        "title": "Mojo",
+        "surface": "qui"
+      },
+      {
+        "id": "3275068:33",
+        "line": "Qui s'affichent derrière l'écran",
+        "title": "Filme moi",
+        "surface": "qui"
+      },
+      {
+        "id": "5163433:27",
+        "line": "Et l'imprimé qui s'évapore",
+        "title": "Le visage de la nuit",
+        "surface": "qui"
+      },
+      {
+        "id": "3758526:3",
+        "line": "Qui te mènera jusqu'au septième",
+        "title": "Arc-en-ciel",
+        "surface": "qui"
+      },
+      {
+        "id": "4931885:1",
+        "line": "J'ai pas vu venir la nuit ni les ombres qui passent",
+        "title": "Insomnies",
+        "surface": "qui"
+      }
+    ]
+  },
+  {
+    "word": "un",
+    "corpus_count": 80,
+    "examples": [
+      {
+        "id": "4083905:29",
+        "line": "Si c'est pas vraiment un problème d'honnêteté",
+        "title": "La fessée",
+        "surface": "un"
+      },
+      {
+        "id": "4240436:16",
+        "line": "Combien m'ont tendu la main, pas un proche",
+        "title": "Rien à prouver",
+        "surface": "un"
+      },
+      {
+        "id": "2873324:2",
+        "line": "Proche de l'équateur à un point précis",
+        "title": "Canopée",
+        "surface": "un"
+      },
+      {
+        "id": "4931888:11",
+        "line": "Oseras-tu un jour m'aimer ?",
+        "title": "Que du love",
+        "surface": "un"
+      },
+      {
+        "id": "2849509:28",
+        "line": "Avec un peu d'intimité",
+        "title": "Recto Verso",
+        "surface": "un"
+      },
+      {
+        "id": "3293950:25",
+        "line": "La lune est un fruit un peu rance",
+        "title": "Ceux qui rêvent",
+        "surface": "un"
+      },
+      {
+        "id": "4739991:15",
+        "line": "Sur la première page d’un journal brésilien",
+        "title": "La Rua Madureira",
+        "surface": "un"
+      },
+      {
+        "id": "3285585:9",
+        "line": "Un mec me demande son chemin, gentiment je le dépanne",
+        "title": "La loi de Murphy",
+        "surface": "un"
+      },
+      {
+        "id": "7977788:32",
+        "line": "Mais un court-circuit fait renaître la nuit",
+        "title": "On Bai.",
+        "surface": "un"
+      },
+      {
+        "id": "7145447:20",
+        "line": "Un fond de tristesse qui va me die (Qui va me die)",
+        "title": "Pause",
+        "surface": "un"
+      }
+    ],
+    "variants": {
+      "un": 74,
+      "d'un": 6
+    }
+  },
+  {
     "word": "ne",
     "corpus_count": 75,
     "examples": [
@@ -1795,77 +1829,6 @@
     ]
   },
   {
-    "word": "elle",
-    "corpus_count": 73,
-    "examples": [
-      {
-        "id": "2468504:6",
-        "line": "Elle seule domine",
-        "title": "Agitations tropicales",
-        "surface": "elle"
-      },
-      {
-        "id": "478839:6",
-        "line": "En fait, elle s’amuse qu’a moitié",
-        "title": "Hémisphère",
-        "surface": "elle"
-      },
-      {
-        "id": "3910844:15",
-        "line": "Quand elle s'regarde, elle s'dit: \"t'façon moi j'suis mieux qu'elle\"",
-        "title": "Victime des réseaux",
-        "surface": "elle"
-      },
-      {
-        "id": "3908646:11",
-        "line": "Mais peut-être qu'un jour, elle verra tout l'amour que tu pourrais lui donner",
-        "title": "Ta reine",
-        "surface": "elle"
-      },
-      {
-        "id": "4931889:11",
-        "line": "Mais peut-être qu'un jour, elle verra tout l'amour que tu pourrais lui donner",
-        "title": "Ta reine - Version orchestrale",
-        "surface": "elle"
-      },
-      {
-        "id": "7333830:8",
-        "line": "Quand j'dis qu'j'suis fou d'elle, j'suis fou d'elle, elle m'répond : \"Et alors ?\"",
-        "title": "Des heures",
-        "surface": "elle"
-      },
-      {
-        "id": "4931887:10",
-        "line": "Elle m'empêche de rêver, aide-moi",
-        "title": "J'entends",
-        "surface": "elle"
-      },
-      {
-        "id": "3100061:27",
-        "line": "Elle s'étonne de voir le cœur de la bête",
-        "title": "Danse",
-        "surface": "elle"
-      },
-      {
-        "id": "3841490:10",
-        "line": "Elle te veut, je crois, ça se voit",
-        "title": "Jalousie",
-        "surface": "elle"
-      },
-      {
-        "id": "3403616:23",
-        "line": "Elle t'emmènera au septième ciel, là où chaque étoile brille",
-        "title": "Larme à gauche",
-        "surface": "elle"
-      }
-    ],
-    "variants": {
-      "elle": 49,
-      "qu'elle": 22,
-      "d'elle": 2
-    }
-  },
-  {
     "word": "bien",
     "corpus_count": 72,
     "examples": [
@@ -1968,77 +1931,6 @@
     ]
   },
   {
-    "word": "au",
-    "corpus_count": 66,
-    "examples": [
-      {
-        "id": "478839:12",
-        "line": "Mais c’était au fond sa facon d’être ici",
-        "title": "Hémisphère",
-        "surface": "au"
-      },
-      {
-        "id": "2873324:4",
-        "line": "Au cœur de la forêt à cet interstice",
-        "title": "Canopée",
-        "surface": "au"
-      },
-      {
-        "id": "2307519:16",
-        "line": "Mais qu’il est fourbe ce corps à corps, il m’a pincé jusqu’au sang",
-        "title": "Bouche à lèvres",
-        "surface": "au"
-      },
-      {
-        "id": "4931884:12",
-        "line": "C'est faux, peut-être, mais au plus je ris",
-        "title": "Oui ou non",
-        "surface": "au"
-      },
-      {
-        "id": "3275068:15",
-        "line": "Laisse au montage",
-        "title": "Filme moi",
-        "surface": "au"
-      },
-      {
-        "id": "2316778:6",
-        "line": "Dire au confort provisoire",
-        "title": "Sur Une Chanson En Français",
-        "surface": "au"
-      },
-      {
-        "id": "3758526:12",
-        "line": "Ciel ! Qu'on est bien là au septième",
-        "title": "Arc-en-ciel",
-        "surface": "au"
-      },
-      {
-        "id": "3403616:23",
-        "line": "Elle t'emmènera au septième ciel, là où chaque étoile brille",
-        "title": "Larme à gauche",
-        "surface": "au"
-      },
-      {
-        "id": "3413303:21",
-        "line": "Au-dessus de ton épaule pourvu qu'elles y trouvent une tête",
-        "title": "Seul sur ton tandem",
-        "surface": "au"
-      },
-      {
-        "id": "4931886:46",
-        "line": "Même si au fond de moi, j'hésite",
-        "title": "Tu me regardes",
-        "surface": "au"
-      }
-    ],
-    "variants": {
-      "au": 58,
-      "jusqu'au": 6,
-      "qu'au": 2
-    }
-  },
-  {
     "word": "pour",
     "corpus_count": 63,
     "examples": [
@@ -2103,77 +1995,6 @@
         "surface": "pour"
       }
     ]
-  },
-  {
-    "word": "une",
-    "corpus_count": 63,
-    "examples": [
-      {
-        "id": "3492913:13",
-        "line": "Et qu'un jour avec toi sur une île plus paisible",
-        "title": "Transatlantique",
-        "surface": "une"
-      },
-      {
-        "id": "5187243:18",
-        "line": "Tant qu'il nous reste une seconde de souv'nir dans le crâne",
-        "title": "Trop beau",
-        "surface": "une"
-      },
-      {
-        "id": "8705844:10",
-        "line": "Tant qu'il nous reste une seconde de souv'nir dans le crâne",
-        "title": "Trop beau - Version acoustique",
-        "surface": "une"
-      },
-      {
-        "id": "3492914:27",
-        "line": "Une dernière envie oh oh",
-        "title": "La proue",
-        "surface": "une"
-      },
-      {
-        "id": "2316778:2",
-        "line": "Pour une habituée des libertés inconformes",
-        "title": "Sur Une Chanson En Français",
-        "surface": "une"
-      },
-      {
-        "id": "3908643:1",
-        "line": "Une soirée pluvieuse",
-        "title": "Flemme",
-        "surface": "une"
-      },
-      {
-        "id": "5163433:3",
-        "line": "Sur une plage",
-        "title": "Le visage de la nuit",
-        "surface": "une"
-      },
-      {
-        "id": "3570505:1",
-        "line": "Une envie partagée",
-        "title": "Vérité",
-        "surface": "une"
-      },
-      {
-        "id": "3914077:13",
-        "line": "Les gens me disent à demi-mot, \"Pour une fille belle t'es pas si bête",
-        "title": "Balance ton quoi",
-        "surface": "une"
-      },
-      {
-        "id": "4083905:6",
-        "line": "Me faire une p'tite idée de c'qui est osé",
-        "title": "La fessée",
-        "surface": "une"
-      }
-    ],
-    "variants": {
-      "une": 54,
-      "d'une": 6,
-      "qu'une": 3
-    }
   },
   {
     "word": "si",
@@ -2304,6 +2125,142 @@
         "line": "La musique est là pour tout terminer",
         "title": "Séduction",
         "surface": "tout"
+      }
+    ]
+  },
+  {
+    "word": "une",
+    "corpus_count": 60,
+    "examples": [
+      {
+        "id": "3492913:13",
+        "line": "Et qu'un jour avec toi sur une île plus paisible",
+        "title": "Transatlantique",
+        "surface": "une"
+      },
+      {
+        "id": "5187243:18",
+        "line": "Tant qu'il nous reste une seconde de souv'nir dans le crâne",
+        "title": "Trop beau",
+        "surface": "une"
+      },
+      {
+        "id": "8705844:10",
+        "line": "Tant qu'il nous reste une seconde de souv'nir dans le crâne",
+        "title": "Trop beau - Version acoustique",
+        "surface": "une"
+      },
+      {
+        "id": "3492914:27",
+        "line": "Une dernière envie oh oh",
+        "title": "La proue",
+        "surface": "une"
+      },
+      {
+        "id": "2316778:2",
+        "line": "Pour une habituée des libertés inconformes",
+        "title": "Sur Une Chanson En Français",
+        "surface": "une"
+      },
+      {
+        "id": "3908643:1",
+        "line": "Une soirée pluvieuse",
+        "title": "Flemme",
+        "surface": "une"
+      },
+      {
+        "id": "5163433:3",
+        "line": "Sur une plage",
+        "title": "Le visage de la nuit",
+        "surface": "une"
+      },
+      {
+        "id": "3570505:1",
+        "line": "Une envie partagée",
+        "title": "Vérité",
+        "surface": "une"
+      },
+      {
+        "id": "3914077:13",
+        "line": "Les gens me disent à demi-mot, \"Pour une fille belle t'es pas si bête",
+        "title": "Balance ton quoi",
+        "surface": "une"
+      },
+      {
+        "id": "4083905:6",
+        "line": "Me faire une p'tite idée de c'qui est osé",
+        "title": "La fessée",
+        "surface": "une"
+      }
+    ],
+    "variants": {
+      "une": 54,
+      "d'une": 6
+    }
+  },
+  {
+    "word": "au",
+    "corpus_count": 58,
+    "examples": [
+      {
+        "id": "478839:12",
+        "line": "Mais c’était au fond sa facon d’être ici",
+        "title": "Hémisphère",
+        "surface": "au"
+      },
+      {
+        "id": "2873324:4",
+        "line": "Au cœur de la forêt à cet interstice",
+        "title": "Canopée",
+        "surface": "au"
+      },
+      {
+        "id": "2307519:16",
+        "line": "Mais qu’il est fourbe ce corps à corps, il m’a pincé jusqu’au sang",
+        "title": "Bouche à lèvres",
+        "surface": "au"
+      },
+      {
+        "id": "4931884:12",
+        "line": "C'est faux, peut-être, mais au plus je ris",
+        "title": "Oui ou non",
+        "surface": "au"
+      },
+      {
+        "id": "3275068:15",
+        "line": "Laisse au montage",
+        "title": "Filme moi",
+        "surface": "au"
+      },
+      {
+        "id": "2316778:6",
+        "line": "Dire au confort provisoire",
+        "title": "Sur Une Chanson En Français",
+        "surface": "au"
+      },
+      {
+        "id": "3758526:12",
+        "line": "Ciel ! Qu'on est bien là au septième",
+        "title": "Arc-en-ciel",
+        "surface": "au"
+      },
+      {
+        "id": "3403616:23",
+        "line": "Elle t'emmènera au septième ciel, là où chaque étoile brille",
+        "title": "Larme à gauche",
+        "surface": "au"
+      },
+      {
+        "id": "3413303:21",
+        "line": "Au-dessus de ton épaule pourvu qu'elles y trouvent une tête",
+        "title": "Seul sur ton tandem",
+        "surface": "au"
+      },
+      {
+        "id": "4931886:46",
+        "line": "Même si au fond de moi, j'hésite",
+        "title": "Tu me regardes",
+        "surface": "au"
       }
     ]
   },
@@ -2570,6 +2527,76 @@
         "surface": "oh"
       }
     ]
+  },
+  {
+    "word": "elle",
+    "corpus_count": 51,
+    "examples": [
+      {
+        "id": "2468504:6",
+        "line": "Elle seule domine",
+        "title": "Agitations tropicales",
+        "surface": "elle"
+      },
+      {
+        "id": "478839:6",
+        "line": "En fait, elle s’amuse qu’a moitié",
+        "title": "Hémisphère",
+        "surface": "elle"
+      },
+      {
+        "id": "3910844:15",
+        "line": "Quand elle s'regarde, elle s'dit: \"t'façon moi j'suis mieux qu'elle\"",
+        "title": "Victime des réseaux",
+        "surface": "elle"
+      },
+      {
+        "id": "3908646:11",
+        "line": "Mais peut-être qu'un jour, elle verra tout l'amour que tu pourrais lui donner",
+        "title": "Ta reine",
+        "surface": "elle"
+      },
+      {
+        "id": "4931889:11",
+        "line": "Mais peut-être qu'un jour, elle verra tout l'amour que tu pourrais lui donner",
+        "title": "Ta reine - Version orchestrale",
+        "surface": "elle"
+      },
+      {
+        "id": "7333830:8",
+        "line": "Quand j'dis qu'j'suis fou d'elle, j'suis fou d'elle, elle m'répond : \"Et alors ?\"",
+        "title": "Des heures",
+        "surface": "elle"
+      },
+      {
+        "id": "4931887:10",
+        "line": "Elle m'empêche de rêver, aide-moi",
+        "title": "J'entends",
+        "surface": "elle"
+      },
+      {
+        "id": "3100061:27",
+        "line": "Elle s'étonne de voir le cœur de la bête",
+        "title": "Danse",
+        "surface": "elle"
+      },
+      {
+        "id": "3841490:10",
+        "line": "Elle te veut, je crois, ça se voit",
+        "title": "Jalousie",
+        "surface": "elle"
+      },
+      {
+        "id": "3403616:23",
+        "line": "Elle t'emmènera au septième ciel, là où chaque étoile brille",
+        "title": "Larme à gauche",
+        "surface": "elle"
+      }
+    ],
+    "variants": {
+      "elle": 49,
+      "d'elle": 2
+    }
   },
   {
     "word": "t",
@@ -3061,77 +3088,6 @@
         "surface": "va"
       }
     ]
-  },
-  {
-    "word": "il",
-    "corpus_count": 46,
-    "examples": [
-      {
-        "id": "2307519:16",
-        "line": "Mais qu’il est fourbe ce corps à corps, il m’a pincé jusqu’au sang",
-        "title": "Bouche à lèvres",
-        "surface": "il"
-      },
-      {
-        "id": "3790711:1",
-        "line": "Tout le monde, il veut seulement la thune",
-        "title": "La thune",
-        "surface": "il"
-      },
-      {
-        "id": "7977788:15",
-        "line": "Peut-être faut-il que je me range",
-        "title": "On Bai.",
-        "surface": "il"
-      },
-      {
-        "id": "2284462:4",
-        "line": "Que de nos chagrins il s'en fait des manteaux",
-        "title": "Quelqu'un m'a dit",
-        "surface": "il"
-      },
-      {
-        "id": "2871456:15",
-        "line": "Mais tôt ou tard, il revient bien",
-        "title": "Mort / Fine",
-        "surface": "il"
-      },
-      {
-        "id": "4931889:4",
-        "line": "Il lui faudra du temps, c'est sûr, pour oublier tous ces préjugés",
-        "title": "Ta reine - Version orchestrale",
-        "surface": "il"
-      },
-      {
-        "id": "3293950:16",
-        "line": "Qu’il est cosmique cet ennui",
-        "title": "Ceux qui rêvent",
-        "surface": "il"
-      },
-      {
-        "id": "4565762:32",
-        "line": "Il suffirait de le tendre",
-        "title": "Défait",
-        "surface": "il"
-      },
-      {
-        "id": "3914077:3",
-        "line": "J'ai vu qu'le rap est à la mode et qu'il marche mieux quand il est sale",
-        "title": "Balance ton quoi",
-        "surface": "il"
-      },
-      {
-        "id": "4931887:9",
-        "line": "L'œil se ferme mais pas l'oreille",
-        "title": "J'entends",
-        "surface": "il"
-      }
-    ],
-    "variants": {
-      "il": 29,
-      "qu'il": 11,
-      "s'il": 6
-    }
   },
   {
     "word": "pleurer",
@@ -4644,6 +4600,72 @@
     ]
   },
   {
+    "word": "il",
+    "corpus_count": 29,
+    "examples": [
+      {
+        "id": "2307519:16",
+        "line": "Mais qu’il est fourbe ce corps à corps, il m’a pincé jusqu’au sang",
+        "title": "Bouche à lèvres",
+        "surface": "il"
+      },
+      {
+        "id": "3790711:1",
+        "line": "Tout le monde, il veut seulement la thune",
+        "title": "La thune",
+        "surface": "il"
+      },
+      {
+        "id": "7977788:15",
+        "line": "Peut-être faut-il que je me range",
+        "title": "On Bai.",
+        "surface": "il"
+      },
+      {
+        "id": "2284462:4",
+        "line": "Que de nos chagrins il s'en fait des manteaux",
+        "title": "Quelqu'un m'a dit",
+        "surface": "il"
+      },
+      {
+        "id": "2871456:15",
+        "line": "Mais tôt ou tard, il revient bien",
+        "title": "Mort / Fine",
+        "surface": "il"
+      },
+      {
+        "id": "4931889:4",
+        "line": "Il lui faudra du temps, c'est sûr, pour oublier tous ces préjugés",
+        "title": "Ta reine - Version orchestrale",
+        "surface": "il"
+      },
+      {
+        "id": "3293950:16",
+        "line": "Qu’il est cosmique cet ennui",
+        "title": "Ceux qui rêvent",
+        "surface": "il"
+      },
+      {
+        "id": "4565762:32",
+        "line": "Il suffirait de le tendre",
+        "title": "Défait",
+        "surface": "il"
+      },
+      {
+        "id": "3914077:3",
+        "line": "J'ai vu qu'le rap est à la mode et qu'il marche mieux quand il est sale",
+        "title": "Balance ton quoi",
+        "surface": "il"
+      },
+      {
+        "id": "4931887:9",
+        "line": "L'œil se ferme mais pas l'oreille",
+        "title": "J'entends",
+        "surface": "il"
+      }
+    ]
+  },
+  {
     "word": "ou",
     "corpus_count": 29,
     "examples": [
@@ -4708,76 +4730,6 @@
         "surface": "ou"
       }
     ]
-  },
-  {
-    "word": "suis",
-    "corpus_count": 29,
-    "examples": [
-      {
-        "id": "4739990:12",
-        "line": "Je suis la fleur dans leur cerveau",
-        "title": "Le temps est bon",
-        "surface": "suis"
-      },
-      {
-        "id": "3285585:32",
-        "line": "Que je me suis dit qu'il était temps",
-        "title": "La loi de Murphy",
-        "surface": "suis"
-      },
-      {
-        "id": "4240436:52",
-        "line": "Devant le miroir je me suis retrouvée",
-        "title": "Rien à prouver",
-        "surface": "suis"
-      },
-      {
-        "id": "4414385:7",
-        "line": "Suis-je seulement celle",
-        "title": "Nue",
-        "surface": "suis"
-      },
-      {
-        "id": "4931884:47",
-        "line": "Quand tu m'écris que je suis belle, et finalement, c'est des mensonges",
-        "title": "Oui ou non",
-        "surface": "suis"
-      },
-      {
-        "id": "4739991:4",
-        "line": "Je n’oublierai pas pourtant je n'y suis jamais allé",
-        "title": "La Rua Madureira",
-        "surface": "suis"
-      },
-      {
-        "id": "2274575:6",
-        "line": "Qu'avec toi je suis capable",
-        "title": "Plage isolée (soleil levant)",
-        "surface": "suis"
-      },
-      {
-        "id": "3914077:2",
-        "line": "2018, j'sais pas c'qui t'faut mais je suis plus qu'un animal",
-        "title": "Balance ton quoi",
-        "surface": "suis"
-      },
-      {
-        "id": "4931886:5",
-        "line": "Mais chaque fois qu'je suis seule",
-        "title": "Tu me regardes",
-        "surface": "suis"
-      },
-      {
-        "id": "4882118:53",
-        "line": "Tant pis si tu ne suis pas la cadence",
-        "title": "Dilemme",
-        "surface": "suis"
-      }
-    ],
-    "variants": {
-      "suis": 17,
-      "j'suis": 12
-    }
   },
   {
     "word": "c",
@@ -5154,78 +5106,6 @@
         "surface": "o"
       }
     ]
-  },
-  {
-    "word": "y",
-    "corpus_count": 25,
-    "examples": [
-      {
-        "id": "4086545:20",
-        "line": "Y en n'a pas un seul pour te comprendre",
-        "title": "Gare du Nord",
-        "surface": "y"
-      },
-      {
-        "id": "2871456:23",
-        "line": "J'ai arrêté de me battre, ça y est, c'est fini",
-        "title": "Mort / Fine",
-        "surface": "y"
-      },
-      {
-        "id": "5163433:28",
-        "line": "On y croit à peine",
-        "title": "Le visage de la nuit",
-        "surface": "y"
-      },
-      {
-        "id": "4565762:4",
-        "line": "Bientôt y’aura que des cendres",
-        "title": "Défait",
-        "surface": "y"
-      },
-      {
-        "id": "3914077:25",
-        "line": "Y a plus d'respect dans la rue, tu sais très bien quand t'abuses",
-        "title": "Balance ton quoi",
-        "surface": "y"
-      },
-      {
-        "id": "3570505:23",
-        "line": "Y a comme un manque de cohérence",
-        "title": "Vérité",
-        "surface": "y"
-      },
-      {
-        "id": "7145447:1",
-        "line": "Je n'veux pas y faire face",
-        "title": "Pause",
-        "surface": "y"
-      },
-      {
-        "id": "4931887:20",
-        "line": "On préfère pas trop y penser",
-        "title": "J'entends",
-        "surface": "y"
-      },
-      {
-        "id": "4739991:16",
-        "line": "J'essayais de lire et je n’y comprenais rien",
-        "title": "La Rua Madureira",
-        "surface": "y"
-      },
-      {
-        "id": "3413303:21",
-        "line": "Au-dessus de ton épaule pourvu qu'elles y trouvent une tête",
-        "title": "Seul sur ton tandem",
-        "surface": "y"
-      }
-    ],
-    "variants": {
-      "y": 13,
-      "j'y": 5,
-      "n'y": 5,
-      "m'y": 2
-    }
   },
   {
     "word": "hmm",
@@ -5616,6 +5496,30 @@
     ]
   },
   {
+    "word": "qu'elle",
+    "corpus_count": 22,
+    "examples": [
+      {
+        "id": "3910844:1",
+        "line": "Le truc c'est qu'elle est plus jolie, et ça, ça fout la haine",
+        "title": "Victime des réseaux",
+        "surface": "qu'elle"
+      },
+      {
+        "id": "3841490:9",
+        "line": "Jalousie me dit qu'elle est belle, qu'elle est b-",
+        "title": "Jalousie",
+        "surface": "qu'elle"
+      },
+      {
+        "id": "3403616:14",
+        "line": "Qui lui disent qu'elle est belle",
+        "title": "Larme à gauche",
+        "surface": "qu'elle"
+      }
+    ]
+  },
+  {
     "word": "filme",
     "corpus_count": 21,
     "examples": [
@@ -5884,6 +5788,77 @@
         "surface": "vous"
       }
     ]
+  },
+  {
+    "word": "ai",
+    "corpus_count": 20,
+    "examples": [
+      {
+        "id": "3271116:5",
+        "line": "Mais j’en ai envie",
+        "title": "Erreur 404",
+        "surface": "ai"
+      },
+      {
+        "id": "3841471:17",
+        "line": "Et j'en ai peur, la suite on verra",
+        "title": "Flou",
+        "surface": "ai"
+      },
+      {
+        "id": "3293950:32",
+        "line": "Quant à moi, j’ai des insomnies",
+        "title": "Ceux qui rêvent",
+        "surface": "ai"
+      },
+      {
+        "id": "4083905:45",
+        "line": "Jam-ai-can, boy",
+        "title": "La fessée",
+        "surface": "ai"
+      },
+      {
+        "id": "4294732:21",
+        "line": "J’ai des invites en VIP mais tout ce que je sais belle est la vie",
+        "title": "La vie est belle",
+        "surface": "ai"
+      },
+      {
+        "id": "4739991:6",
+        "line": "Où je t’ai connue, où nous avons dû nous séparer",
+        "title": "La Rua Madureira",
+        "surface": "ai"
+      },
+      {
+        "id": "4931886:7",
+        "line": "J'y ai pensé en boucle, je te veux (je te veux)",
+        "title": "Tu me regardes",
+        "surface": "ai"
+      },
+      {
+        "id": "3570505:11",
+        "line": "Je t'ai trouvée dans la foi",
+        "title": "Vérité",
+        "surface": "t'ai"
+      },
+      {
+        "id": "2284462:19",
+        "line": "\"Il vous aime, c'est secret, lui dites pas que je vous l'ai dit\"",
+        "title": "Quelqu'un m'a dit",
+        "surface": "l'ai"
+      },
+      {
+        "id": "3100061:49",
+        "line": "Je l'ai peut-être un peu plus brusquée qu'eux",
+        "title": "Danse",
+        "surface": "l'ai"
+      }
+    ],
+    "variants": {
+      "ai": 13,
+      "t'ai": 4,
+      "l'ai": 3
+    }
   },
   {
     "word": "corps",
@@ -6510,6 +6485,72 @@
     ]
   },
   {
+    "word": "suis",
+    "corpus_count": 17,
+    "examples": [
+      {
+        "id": "4739990:12",
+        "line": "Je suis la fleur dans leur cerveau",
+        "title": "Le temps est bon",
+        "surface": "suis"
+      },
+      {
+        "id": "3285585:32",
+        "line": "Que je me suis dit qu'il était temps",
+        "title": "La loi de Murphy",
+        "surface": "suis"
+      },
+      {
+        "id": "4240436:52",
+        "line": "Devant le miroir je me suis retrouvée",
+        "title": "Rien à prouver",
+        "surface": "suis"
+      },
+      {
+        "id": "4414385:7",
+        "line": "Suis-je seulement celle",
+        "title": "Nue",
+        "surface": "suis"
+      },
+      {
+        "id": "4931884:47",
+        "line": "Quand tu m'écris que je suis belle, et finalement, c'est des mensonges",
+        "title": "Oui ou non",
+        "surface": "suis"
+      },
+      {
+        "id": "4739991:4",
+        "line": "Je n’oublierai pas pourtant je n'y suis jamais allé",
+        "title": "La Rua Madureira",
+        "surface": "suis"
+      },
+      {
+        "id": "2274575:6",
+        "line": "Qu'avec toi je suis capable",
+        "title": "Plage isolée (soleil levant)",
+        "surface": "suis"
+      },
+      {
+        "id": "3914077:2",
+        "line": "2018, j'sais pas c'qui t'faut mais je suis plus qu'un animal",
+        "title": "Balance ton quoi",
+        "surface": "suis"
+      },
+      {
+        "id": "4931886:5",
+        "line": "Mais chaque fois qu'je suis seule",
+        "title": "Tu me regardes",
+        "surface": "suis"
+      },
+      {
+        "id": "4882118:53",
+        "line": "Tant pis si tu ne suis pas la cadence",
+        "title": "Dilemme",
+        "surface": "suis"
+      }
+    ]
+  },
+  {
     "word": "ma",
     "corpus_count": 16,
     "examples": [
@@ -6822,58 +6863,6 @@
     ]
   },
   {
-    "word": "aux",
-    "corpus_count": 16,
-    "examples": [
-      {
-        "id": "2922984:1",
-        "line": "Rendez-vous aux rêves",
-        "title": "Hanoï café",
-        "surface": "aux"
-      },
-      {
-        "id": "2873324:22",
-        "line": "D'une jungle aux lianes exubérantes",
-        "title": "Canopée",
-        "surface": "aux"
-      },
-      {
-        "id": "3908646:12",
-        "line": "Moi, je crois aux histoires qui peuvent parfois bien se terminer",
-        "title": "Ta reine",
-        "surface": "aux"
-      },
-      {
-        "id": "4931889:12",
-        "line": "Moi, je crois aux histoires qui peuvent parfois bien se terminer",
-        "title": "Ta reine - Version orchestrale",
-        "surface": "aux"
-      },
-      {
-        "id": "5462359:57",
-        "line": "C’est la dérive aux larmes",
-        "title": "Étrange Mélange",
-        "surface": "aux"
-      },
-      {
-        "id": "3100061:4",
-        "line": "Je fais la cour aux femmes",
-        "title": "Danse",
-        "surface": "aux"
-      },
-      {
-        "id": "3074559:2",
-        "line": "Qu'aux illusions qu'il peut comprendre",
-        "title": "Chacun Pour Soi",
-        "surface": "qu'aux"
-      }
-    ],
-    "variants": {
-      "aux": 15,
-      "qu'aux": 1
-    }
-  },
-  {
     "word": "était",
     "corpus_count": 16,
     "examples": [
@@ -6931,6 +6920,48 @@
       "c'était": 8,
       "était": 8
     }
+  },
+  {
+    "word": "aux",
+    "corpus_count": 15,
+    "examples": [
+      {
+        "id": "2922984:1",
+        "line": "Rendez-vous aux rêves",
+        "title": "Hanoï café",
+        "surface": "aux"
+      },
+      {
+        "id": "2873324:22",
+        "line": "D'une jungle aux lianes exubérantes",
+        "title": "Canopée",
+        "surface": "aux"
+      },
+      {
+        "id": "3908646:12",
+        "line": "Moi, je crois aux histoires qui peuvent parfois bien se terminer",
+        "title": "Ta reine",
+        "surface": "aux"
+      },
+      {
+        "id": "4931889:12",
+        "line": "Moi, je crois aux histoires qui peuvent parfois bien se terminer",
+        "title": "Ta reine - Version orchestrale",
+        "surface": "aux"
+      },
+      {
+        "id": "5462359:57",
+        "line": "C’est la dérive aux larmes",
+        "title": "Étrange Mélange",
+        "surface": "aux"
+      },
+      {
+        "id": "3100061:4",
+        "line": "Je fais la cour aux femmes",
+        "title": "Danse",
+        "surface": "aux"
+      }
+    ]
   },
   {
     "word": "grand",
@@ -7180,6 +7211,42 @@
     ]
   },
   {
+    "word": "n'est",
+    "corpus_count": 14,
+    "examples": [
+      {
+        "id": "3912738:5",
+        "line": "Le spleen n'est plus à la mode, c'est pas compliqué d'être heureux",
+        "title": "Tout oublier",
+        "surface": "n'est"
+      },
+      {
+        "id": "3074559:5",
+        "line": "Rien n'est lisible, dans ce silence",
+        "title": "Chacun Pour Soi",
+        "surface": "n'est"
+      },
+      {
+        "id": "5187243:17",
+        "line": "Garde le sourire, plus rien n'est grave",
+        "title": "Trop beau",
+        "surface": "n'est"
+      },
+      {
+        "id": "8705844:9",
+        "line": "Garde le sourire, plus rien n'est grave",
+        "title": "Trop beau - Version acoustique",
+        "surface": "n'est"
+      },
+      {
+        "id": "4882118:3",
+        "line": "Ce n'est pas un drame",
+        "title": "Dilemme",
+        "surface": "n'est"
+      }
+    ]
+  },
+  {
     "word": "peu",
     "corpus_count": 14,
     "examples": [
@@ -7271,6 +7338,76 @@
     "variants": {
       "pense": 12,
       "j'pense": 2
+    }
+  },
+  {
+    "word": "qu'on",
+    "corpus_count": 14,
+    "examples": [
+      {
+        "id": "3074559:15",
+        "line": "D'un paysage qu'on ne peut comprendre",
+        "title": "Chacun Pour Soi",
+        "surface": "qu'on"
+      },
+      {
+        "id": "3758526:12",
+        "line": "Ciel ! Qu'on est bien là au septième",
+        "title": "Arc-en-ciel",
+        "surface": "qu'on"
+      },
+      {
+        "id": "2871456:14",
+        "line": "Je voulais juste qu'on me foute la paix",
+        "title": "Mort / Fine",
+        "surface": "qu'on"
+      },
+      {
+        "id": "2849521:22",
+        "line": "Jusqu'à ce qu'on voit le monde",
+        "title": "Toi Et Moi",
+        "surface": "qu'on"
+      },
+      {
+        "id": "4931877:26",
+        "line": "Les gens, les autres, et nous, qu'est-ce qu'on va devenir ?",
+        "title": "Perdus",
+        "surface": "qu'on"
+      },
+      {
+        "id": "4783721:33",
+        "line": "J'veux pas partir et qu'on se quitte",
+        "title": "Laisse-moi t'aimer",
+        "surface": "qu'on"
+      },
+      {
+        "id": "4931887:23",
+        "line": "Qu'on le laissera exister",
+        "title": "J'entends",
+        "surface": "qu'on"
+      },
+      {
+        "id": "7333830:16",
+        "line": "\"On est plus ennemis qu'amants\" : c'est c'qu'on s'est dit fréquemment",
+        "title": "Des heures",
+        "surface": "c'qu'on"
+      },
+      {
+        "id": "4083905:10",
+        "line": "Avec tout c'qu'on m'a raconté",
+        "title": "La fessée",
+        "surface": "c'qu'on"
+      },
+      {
+        "id": "5187243:27",
+        "line": "Est-c'qu'on peut rev'nir en janvier?",
+        "title": "Trop beau",
+        "surface": "c'qu'on"
+      }
+    ],
+    "variants": {
+      "qu'on": 11,
+      "c'qu'on": 3
     }
   },
   {
@@ -7418,6 +7555,48 @@
         "line": "Jalousie me dit qu'elle est belle, qu'elle est b-",
         "title": "Jalousie",
         "surface": "jalousie"
+      }
+    ]
+  },
+  {
+    "word": "m'a",
+    "corpus_count": 13,
+    "examples": [
+      {
+        "id": "3285585:10",
+        "line": "En fait, c'était qu'un plan drague, ce con m'a fait rater mon tram",
+        "title": "La loi de Murphy",
+        "surface": "m'a"
+      },
+      {
+        "id": "2284462:5",
+        "line": "Pourtant quelqu'un m'a dit que tu m'aimais encore",
+        "title": "Quelqu'un m'a dit",
+        "surface": "m'a"
+      },
+      {
+        "id": "4083905:10",
+        "line": "Avec tout c'qu'on m'a raconté",
+        "title": "La fessée",
+        "surface": "m'a"
+      },
+      {
+        "id": "4931887:43",
+        "line": "J'ai essayé d'en parler à mon frère mais ça m'a déprimé",
+        "title": "J'entends",
+        "surface": "m'a"
+      },
+      {
+        "id": "4931885:2",
+        "line": "On m'a dit que celle-ci porte conseil",
+        "title": "Insomnies",
+        "surface": "m'a"
+      },
+      {
+        "id": "4882118:10",
+        "line": "Tout ce qui m'entoure m'a rendu méchante",
+        "title": "Dilemme",
+        "surface": "m'a"
       }
     ]
   },
@@ -7626,6 +7805,72 @@
     ]
   },
   {
+    "word": "y",
+    "corpus_count": 13,
+    "examples": [
+      {
+        "id": "4086545:20",
+        "line": "Y en n'a pas un seul pour te comprendre",
+        "title": "Gare du Nord",
+        "surface": "y"
+      },
+      {
+        "id": "2871456:23",
+        "line": "J'ai arrêté de me battre, ça y est, c'est fini",
+        "title": "Mort / Fine",
+        "surface": "y"
+      },
+      {
+        "id": "5163433:28",
+        "line": "On y croit à peine",
+        "title": "Le visage de la nuit",
+        "surface": "y"
+      },
+      {
+        "id": "4565762:4",
+        "line": "Bientôt y’aura que des cendres",
+        "title": "Défait",
+        "surface": "y"
+      },
+      {
+        "id": "3914077:25",
+        "line": "Y a plus d'respect dans la rue, tu sais très bien quand t'abuses",
+        "title": "Balance ton quoi",
+        "surface": "y"
+      },
+      {
+        "id": "3570505:23",
+        "line": "Y a comme un manque de cohérence",
+        "title": "Vérité",
+        "surface": "y"
+      },
+      {
+        "id": "7145447:1",
+        "line": "Je n'veux pas y faire face",
+        "title": "Pause",
+        "surface": "y"
+      },
+      {
+        "id": "4931887:20",
+        "line": "On préfère pas trop y penser",
+        "title": "J'entends",
+        "surface": "y"
+      },
+      {
+        "id": "4739991:16",
+        "line": "J'essayais de lire et je n’y comprenais rien",
+        "title": "La Rua Madureira",
+        "surface": "y"
+      },
+      {
+        "id": "3413303:21",
+        "line": "Au-dessus de ton épaule pourvu qu'elles y trouvent une tête",
+        "title": "Seul sur ton tandem",
+        "surface": "y"
+      }
+    ]
+  },
+  {
     "word": "autres",
     "corpus_count": 13,
     "examples": [
@@ -7687,6 +7932,58 @@
     "variants": {
       "autres": 12,
       "d'autres": 1
+    }
+  },
+  {
+    "word": "j'suis",
+    "corpus_count": 13,
+    "examples": [
+      {
+        "id": "3908643:18",
+        "line": "J'suis dans un mauvais mood, je répondrai plus tard",
+        "title": "Flemme",
+        "surface": "j'suis"
+      },
+      {
+        "id": "7333830:8",
+        "line": "Quand j'dis qu'j'suis fou d'elle, j'suis fou d'elle, elle m'répond : \"Et alors ?\"",
+        "title": "Des heures",
+        "surface": "j'suis"
+      },
+      {
+        "id": "3910844:15",
+        "line": "Quand elle s'regarde, elle s'dit: \"t'façon moi j'suis mieux qu'elle\"",
+        "title": "Victime des réseaux",
+        "surface": "j'suis"
+      },
+      {
+        "id": "4240436:50",
+        "line": "J'suis tombée cent fois et j'ai su me relever",
+        "title": "Rien à prouver",
+        "surface": "j'suis"
+      },
+      {
+        "id": "4783721:31",
+        "line": "J'suis pas rentrée, le jour se lève",
+        "title": "Laisse-moi t'aimer",
+        "surface": "j'suis"
+      },
+      {
+        "id": "4931885:15",
+        "line": "Ce soir, j'suis pas là, j'suis partie, j'me balade",
+        "title": "Insomnies",
+        "surface": "j'suis"
+      },
+      {
+        "id": "3590067:13",
+        "line": "J'suis une femme qui d'habitude n'aime pas les femmes, mais ta beauté est ineffable",
+        "title": "Séduction",
+        "surface": "j'suis"
+      }
+    ],
+    "variants": {
+      "j'suis": 12,
+      "qu'j'suis": 1
     }
   },
   {
@@ -8371,56 +8668,46 @@
     }
   },
   {
-    "word": "es",
-    "corpus_count": 12,
+    "word": "c'qui",
+    "corpus_count": 11,
     "examples": [
       {
-        "id": "4294732:2",
-        "line": "Tu es ma vie, ma vie est belle",
-        "title": "La vie est belle",
-        "surface": "es"
+        "id": "3908646:8",
+        "line": "Toi, les rois, tu t'en fous, c'est pas c'qui t'plaît",
+        "title": "Ta reine",
+        "surface": "c'qui"
       },
       {
-        "id": "5462359:38",
-        "line": "Es-tu encore en vie ?",
+        "id": "4931889:8",
+        "line": "Toi, les rois, tu t'en fous, c'est pas c'qui t'plaît",
+        "title": "Ta reine - Version orchestrale",
+        "surface": "c'qui"
+      },
+      {
+        "id": "4083905:6",
+        "line": "Me faire une p'tite idée de c'qui est osé",
+        "title": "La fessée",
+        "surface": "c'qui"
+      },
+      {
+        "id": "4931877:21",
+        "line": "Sans prendre la mesure de c'qui m'arrivait",
+        "title": "Perdus",
+        "surface": "c'qui"
+      },
+      {
+        "id": "5462359:8",
+        "line": "On se rapproche de tout c'qui nous sépare",
         "title": "Étrange Mélange",
-        "surface": "es"
+        "surface": "c'qui"
       },
       {
-        "id": "4783721:22",
-        "line": "Toi, tu es mon roi",
-        "title": "Laisse-moi t'aimer",
-        "surface": "es"
-      },
-      {
-        "id": "4882118:36",
-        "line": "Lous es-tu sereine ou fais-tu juste la guerre ?",
-        "title": "Dilemme",
-        "surface": "es"
-      },
-      {
-        "id": "4739991:11",
-        "line": "Tu t'es retournée pour me sourire avant de monter",
-        "title": "La Rua Madureira",
-        "surface": "t'es"
-      },
-      {
-        "id": "3914077:13",
-        "line": "Les gens me disent à demi-mot, \"Pour une fille belle t'es pas si bête",
+        "id": "3914077:2",
+        "line": "2018, j'sais pas c'qui t'faut mais je suis plus qu'un animal",
         "title": "Balance ton quoi",
-        "surface": "t'es"
-      },
-      {
-        "id": "3790711:26",
-        "line": "T'es tellement seul avec ton argent",
-        "title": "La thune",
-        "surface": "t'es"
+        "surface": "c'qui"
       }
-    ],
-    "variants": {
-      "es": 7,
-      "t'es": 5
-    }
+    ]
   },
   {
     "word": "car",
@@ -8573,6 +8860,54 @@
     ]
   },
   {
+    "word": "qu'il",
+    "corpus_count": 11,
+    "examples": [
+      {
+        "id": "3074559:2",
+        "line": "Qu'aux illusions qu'il peut comprendre",
+        "title": "Chacun Pour Soi",
+        "surface": "qu'il"
+      },
+      {
+        "id": "3285585:32",
+        "line": "Que je me suis dit qu'il était temps",
+        "title": "La loi de Murphy",
+        "surface": "qu'il"
+      },
+      {
+        "id": "3914077:3",
+        "line": "J'ai vu qu'le rap est à la mode et qu'il marche mieux quand il est sale",
+        "title": "Balance ton quoi",
+        "surface": "qu'il"
+      },
+      {
+        "id": "8705844:10",
+        "line": "Tant qu'il nous reste une seconde de souv'nir dans le crâne",
+        "title": "Trop beau - Version acoustique",
+        "surface": "qu'il"
+      },
+      {
+        "id": "5187243:18",
+        "line": "Tant qu'il nous reste une seconde de souv'nir dans le crâne",
+        "title": "Trop beau",
+        "surface": "qu'il"
+      },
+      {
+        "id": "4931887:40",
+        "line": "J'aimerais tant qu'il s'arrête (j'aimerais tant qu'il s'arrête)",
+        "title": "J'entends",
+        "surface": "qu'il"
+      },
+      {
+        "id": "4882118:33",
+        "line": "Je reste la même et ce, quoi qu'il advienne",
+        "title": "Dilemme",
+        "surface": "qu'il"
+      }
+    ]
+  },
+  {
     "word": "seul",
     "corpus_count": 11,
     "examples": [
@@ -8689,119 +9024,6 @@
     "variants": {
       "j'mens": 9,
       "mens": 2
-    }
-  },
-  {
-    "word": "avoir",
-    "corpus_count": 11,
-    "examples": [
-      {
-        "id": "3271116:7",
-        "line": "Laisse-moi rire, tu croyais m’avoir",
-        "title": "Erreur 404",
-        "surface": "avoir"
-      },
-      {
-        "id": "3275068:2",
-        "line": "Avoir un souvenir",
-        "title": "Filme moi",
-        "surface": "avoir"
-      },
-      {
-        "id": "4931877:19",
-        "line": "J'vais avoir l'habitude mais ces derniers mois",
-        "title": "Perdus",
-        "surface": "avoir"
-      },
-      {
-        "id": "3100061:33",
-        "line": "J'dois avoir la bite dans la tête quand tu me murmures dans l'oreille",
-        "title": "Danse",
-        "surface": "avoir"
-      },
-      {
-        "id": "2849509:14",
-        "line": "D'avoir à s'éviter dans la glace",
-        "title": "Recto Verso",
-        "surface": "d'avoir"
-      },
-      {
-        "id": "3486219:22",
-        "line": "Je préfère l'illusion de t'avoir, j'ai espoir",
-        "title": "Je veux tes yeux",
-        "surface": "t'avoir"
-      }
-    ],
-    "variants": {
-      "avoir": 8,
-      "d'avoir": 2,
-      "t'avoir": 1
-    }
-  },
-  {
-    "word": "as",
-    "corpus_count": 11,
-    "examples": [
-      {
-        "id": "4931888:19",
-        "line": "T'as trop bu ce soir, tu veux rentrer tard, t'évites mon regard",
-        "title": "Que du love",
-        "surface": "t'as"
-      },
-      {
-        "id": "4931884:28",
-        "line": "T'as pris le temps d'venir mais pas de rester",
-        "title": "Oui ou non",
-        "surface": "t'as"
-      },
-      {
-        "id": "3486219:9",
-        "line": "J'ai vu que t'as vu, tu réponds pas",
-        "title": "Je veux tes yeux",
-        "surface": "t'as"
-      },
-      {
-        "id": "4134227:57",
-        "line": "T'as sorti les voiles",
-        "title": "Les bruits de la ville (feat. Yelle)",
-        "surface": "t'as"
-      },
-      {
-        "id": "3914077:6",
-        "line": "Même si tu parles mal des filles, je sais qu'au fond, t'as compris",
-        "title": "Balance ton quoi",
-        "surface": "t'as"
-      },
-      {
-        "id": "3841471:13",
-        "line": "Tout le monde te trouve génial alors que t'as rien fait",
-        "title": "Flou",
-        "surface": "t'as"
-      },
-      {
-        "id": "8705844:6",
-        "line": "Tu m'as même comparé à Lucifer, maint'nant, tu bois et tu veux bien de moi",
-        "title": "Trop beau - Version acoustique",
-        "surface": "m'as"
-      },
-      {
-        "id": "5187243:6",
-        "line": "Tu m'as même comparé à Lucifer Nan, mais j'hallucine hein, je sais déjà c'que la distance entraîne",
-        "title": "Trop beau",
-        "surface": "m'as"
-      },
-      {
-        "id": "5462359:42",
-        "line": "As-tu encore envie ?",
-        "title": "Étrange Mélange",
-        "surface": "as"
-      }
-    ],
-    "display_form": "t'as",
-    "variants": {
-      "t'as": 8,
-      "m'as": 2,
-      "as": 1
     }
   },
   {
@@ -9133,53 +9355,6 @@
         "surface": "tranquille"
       }
     ]
-  },
-  {
-    "word": "ont",
-    "corpus_count": 10,
-    "examples": [
-      {
-        "id": "2873324:23",
-        "line": "Les arbres millénaires nous ont adoptés",
-        "title": "Canopée",
-        "surface": "ont"
-      },
-      {
-        "id": "3293950:27",
-        "line": "Ceux qui rêvent ont bien de la chance",
-        "title": "Ceux qui rêvent",
-        "surface": "ont"
-      },
-      {
-        "id": "3841471:6",
-        "line": "Même mes amis ils ont changé",
-        "title": "Flou",
-        "surface": "ont"
-      },
-      {
-        "id": "5187243:25",
-        "line": "Les dieux ont pas honte",
-        "title": "Trop beau",
-        "surface": "ont"
-      },
-      {
-        "id": "4240436:16",
-        "line": "Combien m'ont tendu la main, pas un proche",
-        "title": "Rien à prouver",
-        "surface": "m'ont"
-      },
-      {
-        "id": "3959326:2",
-        "line": "Nos yeux n'ont pas d’alibi",
-        "title": "Mojo",
-        "surface": "n'ont"
-      }
-    ],
-    "variants": {
-      "ont": 8,
-      "m'ont": 1,
-      "n'ont": 1
-    }
   },
   {
     "word": "dors",
@@ -9828,6 +10003,46 @@
     ]
   },
   {
+    "word": "avoir",
+    "corpus_count": 9,
+    "examples": [
+      {
+        "id": "3271116:7",
+        "line": "Laisse-moi rire, tu croyais m’avoir",
+        "title": "Erreur 404",
+        "surface": "avoir"
+      },
+      {
+        "id": "3275068:2",
+        "line": "Avoir un souvenir",
+        "title": "Filme moi",
+        "surface": "avoir"
+      },
+      {
+        "id": "4931877:19",
+        "line": "J'vais avoir l'habitude mais ces derniers mois",
+        "title": "Perdus",
+        "surface": "avoir"
+      },
+      {
+        "id": "3100061:33",
+        "line": "J'dois avoir la bite dans la tête quand tu me murmures dans l'oreille",
+        "title": "Danse",
+        "surface": "avoir"
+      },
+      {
+        "id": "3486219:22",
+        "line": "Je préfère l'illusion de t'avoir, j'ai espoir",
+        "title": "Je veux tes yeux",
+        "surface": "t'avoir"
+      }
+    ],
+    "variants": {
+      "avoir": 8,
+      "t'avoir": 1
+    }
+  },
+  {
     "word": "dis",
     "corpus_count": 9,
     "examples": [
@@ -9917,6 +10132,46 @@
     "variants": {
       "faut": 8,
       "t'faut": 1
+    }
+  },
+  {
+    "word": "ont",
+    "corpus_count": 9,
+    "examples": [
+      {
+        "id": "2873324:23",
+        "line": "Les arbres millénaires nous ont adoptés",
+        "title": "Canopée",
+        "surface": "ont"
+      },
+      {
+        "id": "3293950:27",
+        "line": "Ceux qui rêvent ont bien de la chance",
+        "title": "Ceux qui rêvent",
+        "surface": "ont"
+      },
+      {
+        "id": "3841471:6",
+        "line": "Même mes amis ils ont changé",
+        "title": "Flou",
+        "surface": "ont"
+      },
+      {
+        "id": "5187243:25",
+        "line": "Les dieux ont pas honte",
+        "title": "Trop beau",
+        "surface": "ont"
+      },
+      {
+        "id": "4240436:16",
+        "line": "Combien m'ont tendu la main, pas un proche",
+        "title": "Rien à prouver",
+        "surface": "m'ont"
+      }
+    ],
+    "variants": {
+      "ont": 8,
+      "m'ont": 1
     }
   },
   {
@@ -10477,6 +10732,42 @@
     ]
   },
   {
+    "word": "qu'un",
+    "corpus_count": 8,
+    "examples": [
+      {
+        "id": "3492913:13",
+        "line": "Et qu'un jour avec toi sur une île plus paisible",
+        "title": "Transatlantique",
+        "surface": "qu'un"
+      },
+      {
+        "id": "3285585:10",
+        "line": "En fait, c'était qu'un plan drague, ce con m'a fait rater mon tram",
+        "title": "La loi de Murphy",
+        "surface": "qu'un"
+      },
+      {
+        "id": "4931889:11",
+        "line": "Mais peut-être qu'un jour, elle verra tout l'amour que tu pourrais lui donner",
+        "title": "Ta reine - Version orchestrale",
+        "surface": "qu'un"
+      },
+      {
+        "id": "3908646:11",
+        "line": "Mais peut-être qu'un jour, elle verra tout l'amour que tu pourrais lui donner",
+        "title": "Ta reine",
+        "surface": "qu'un"
+      },
+      {
+        "id": "3914077:2",
+        "line": "2018, j'sais pas c'qui t'faut mais je suis plus qu'un animal",
+        "title": "Balance ton quoi",
+        "surface": "qu'un"
+      }
+    ]
+  },
+  {
     "word": "quelqu'un",
     "corpus_count": 8,
     "examples": [
@@ -10557,6 +10848,48 @@
         "line": "O.K, la suite, on la connaît",
         "title": "Laisse-moi t'aimer",
         "surface": "suite"
+      }
+    ]
+  },
+  {
+    "word": "t'as",
+    "corpus_count": 8,
+    "examples": [
+      {
+        "id": "4931888:19",
+        "line": "T'as trop bu ce soir, tu veux rentrer tard, t'évites mon regard",
+        "title": "Que du love",
+        "surface": "t'as"
+      },
+      {
+        "id": "4931884:28",
+        "line": "T'as pris le temps d'venir mais pas de rester",
+        "title": "Oui ou non",
+        "surface": "t'as"
+      },
+      {
+        "id": "3486219:9",
+        "line": "J'ai vu que t'as vu, tu réponds pas",
+        "title": "Je veux tes yeux",
+        "surface": "t'as"
+      },
+      {
+        "id": "4134227:57",
+        "line": "T'as sorti les voiles",
+        "title": "Les bruits de la ville (feat. Yelle)",
+        "surface": "t'as"
+      },
+      {
+        "id": "3914077:6",
+        "line": "Même si tu parles mal des filles, je sais qu'au fond, t'as compris",
+        "title": "Balance ton quoi",
+        "surface": "t'as"
+      },
+      {
+        "id": "3841471:13",
+        "line": "Tout le monde te trouve génial alors que t'as rien fait",
+        "title": "Flou",
+        "surface": "t'as"
       }
     ]
   },
@@ -10705,46 +11038,6 @@
     ]
   },
   {
-    "word": "ils",
-    "corpus_count": 8,
-    "examples": [
-      {
-        "id": "2871456:6",
-        "line": "Ils te diront que ça ira mieux",
-        "title": "Mort / Fine",
-        "surface": "ils"
-      },
-      {
-        "id": "3911964:20",
-        "line": "Ils pourraient être les plus drôles",
-        "title": "Nombreux",
-        "surface": "ils"
-      },
-      {
-        "id": "3841471:6",
-        "line": "Même mes amis ils ont changé",
-        "title": "Flou",
-        "surface": "ils"
-      },
-      {
-        "id": "4882118:2",
-        "line": "Au plus ils me font de la peine",
-        "title": "Dilemme",
-        "surface": "ils"
-      },
-      {
-        "id": "2849521:27",
-        "line": "Et qu'ils se suivent ici et là",
-        "title": "Toi Et Moi",
-        "surface": "qu'ils"
-      }
-    ],
-    "variants": {
-      "ils": 7,
-      "qu'ils": 1
-    }
-  },
-  {
     "word": "été",
     "corpus_count": 8,
     "examples": [
@@ -10824,6 +11117,42 @@
       "n": 6,
       "j'n": 2
     }
+  },
+  {
+    "word": "c'que",
+    "corpus_count": 7,
+    "examples": [
+      {
+        "id": "4931884:46",
+        "line": "Pourquoi j'me mens à moi-même en croyant c'que tu m'racontes ?",
+        "title": "Oui ou non",
+        "surface": "c'que"
+      },
+      {
+        "id": "3790711:11",
+        "line": "Tu penses à c'que vont penser les gens",
+        "title": "La thune",
+        "surface": "c'que"
+      },
+      {
+        "id": "8705844:7",
+        "line": "Nan, mais j'hallucine, je sais déjà c'que la distance entraîne",
+        "title": "Trop beau - Version acoustique",
+        "surface": "c'que"
+      },
+      {
+        "id": "7145447:3",
+        "line": "Jusqu'à c'que je m'efface",
+        "title": "Pause",
+        "surface": "c'que"
+      },
+      {
+        "id": "5187243:15",
+        "line": "Je sais déjà c'que la distance entraîne",
+        "title": "Trop beau",
+        "surface": "c'que"
+      }
+    ]
   },
   {
     "word": "cachée",
@@ -10946,6 +11275,36 @@
     ]
   },
   {
+    "word": "es",
+    "corpus_count": 7,
+    "examples": [
+      {
+        "id": "4294732:2",
+        "line": "Tu es ma vie, ma vie est belle",
+        "title": "La vie est belle",
+        "surface": "es"
+      },
+      {
+        "id": "5462359:38",
+        "line": "Es-tu encore en vie ?",
+        "title": "Étrange Mélange",
+        "surface": "es"
+      },
+      {
+        "id": "4783721:22",
+        "line": "Toi, tu es mon roi",
+        "title": "Laisse-moi t'aimer",
+        "surface": "es"
+      },
+      {
+        "id": "4882118:36",
+        "line": "Lous es-tu sereine ou fais-tu juste la guerre ?",
+        "title": "Dilemme",
+        "surface": "es"
+      }
+    ]
+  },
+  {
     "word": "fort",
     "corpus_count": 7,
     "examples": [
@@ -11002,6 +11361,36 @@
         "line": "Était-ce un cauchemar? Oh non, c'était bien hier?",
         "title": "Les matins",
         "surface": "hier"
+      }
+    ]
+  },
+  {
+    "word": "ils",
+    "corpus_count": 7,
+    "examples": [
+      {
+        "id": "2871456:6",
+        "line": "Ils te diront que ça ira mieux",
+        "title": "Mort / Fine",
+        "surface": "ils"
+      },
+      {
+        "id": "3911964:20",
+        "line": "Ils pourraient être les plus drôles",
+        "title": "Nombreux",
+        "surface": "ils"
+      },
+      {
+        "id": "3841471:6",
+        "line": "Même mes amis ils ont changé",
+        "title": "Flou",
+        "surface": "ils"
+      },
+      {
+        "id": "4882118:2",
+        "line": "Au plus ils me font de la peine",
+        "title": "Dilemme",
+        "surface": "ils"
       }
     ]
   },
@@ -11610,35 +11999,6 @@
     }
   },
   {
-    "word": "ici",
-    "corpus_count": 7,
-    "examples": [
-      {
-        "id": "3910844:11",
-        "line": "Qui sort heureux d'ici?",
-        "title": "Victime des réseaux",
-        "surface": "d'ici"
-      },
-      {
-        "id": "478839:12",
-        "line": "Mais c’était au fond sa facon d’être ici",
-        "title": "Hémisphère",
-        "surface": "ici"
-      },
-      {
-        "id": "2849521:27",
-        "line": "Et qu'ils se suivent ici et là",
-        "title": "Toi Et Moi",
-        "surface": "ici"
-      }
-    ],
-    "display_form": "d'ici",
-    "variants": {
-      "d'ici": 4,
-      "ici": 3
-    }
-  },
-  {
     "word": "font",
     "corpus_count": 7,
     "examples": [
@@ -12129,6 +12489,24 @@
     ]
   },
   {
+    "word": "jusqu'au",
+    "corpus_count": 6,
+    "examples": [
+      {
+        "id": "3758526:3",
+        "line": "Qui te mènera jusqu'au septième",
+        "title": "Arc-en-ciel",
+        "surface": "jusqu'au"
+      },
+      {
+        "id": "3910811:19",
+        "line": "Oui, je dormirai jusqu'au prochain matin",
+        "title": "Les matins",
+        "surface": "jusqu'au"
+      }
+    ]
+  },
+  {
     "word": "envers",
     "corpus_count": 6,
     "examples": [
@@ -12140,6 +12518,24 @@
       }
     ],
     "display_form": "l'envers"
+  },
+  {
+    "word": "l'un",
+    "corpus_count": 6,
+    "examples": [
+      {
+        "id": "2849521:24",
+        "line": "L'un contre l'autre",
+        "title": "Toi Et Moi",
+        "surface": "l'un"
+      },
+      {
+        "id": "4931877:4",
+        "line": "Loin de nous, où ni l'un ni l'autre n'ira",
+        "title": "Perdus",
+        "surface": "l'un"
+      }
+    ]
   },
   {
     "word": "minuit",
@@ -12431,6 +12827,30 @@
     ]
   },
   {
+    "word": "s'est",
+    "corpus_count": 6,
+    "examples": [
+      {
+        "id": "7333830:16",
+        "line": "\"On est plus ennemis qu'amants\" : c'est c'qu'on s'est dit fréquemment",
+        "title": "Des heures",
+        "surface": "s'est"
+      },
+      {
+        "id": "3912738:14",
+        "line": "Et si tout l'monde t'a délaissé, ça s'est passé après les soldes",
+        "title": "Tout oublier",
+        "surface": "s'est"
+      },
+      {
+        "id": "3100061:16",
+        "line": "La musique s'est arrêtée, les aiguilles se figent et je sens, je te sens",
+        "title": "Danse",
+        "surface": "s'est"
+      }
+    ]
+  },
+  {
     "word": "estompe",
     "corpus_count": 6,
     "examples": [
@@ -12442,6 +12862,18 @@
       }
     ],
     "display_form": "s'estompe"
+  },
+  {
+    "word": "s'il",
+    "corpus_count": 6,
+    "examples": [
+      {
+        "id": "7145447:17",
+        "line": "Pose sur mon épaule tes larmes s'il te plaît",
+        "title": "Pause",
+        "surface": "s'il"
+      }
+    ]
   },
   {
     "word": "sa",
@@ -12982,6 +13414,48 @@
     "display_form": "j'l'entends"
   },
   {
+    "word": "j'y",
+    "corpus_count": 5,
+    "examples": [
+      {
+        "id": "4931877:24",
+        "line": "Même si j'y perds ma liberté",
+        "title": "Perdus",
+        "surface": "j'y"
+      },
+      {
+        "id": "3910811:16",
+        "line": "Un de perdu, dix de trouvés, non, mais j'y crois pas",
+        "title": "Les matins",
+        "surface": "j'y"
+      },
+      {
+        "id": "4931886:7",
+        "line": "J'y ai pensé en boucle, je te veux (je te veux)",
+        "title": "Tu me regardes",
+        "surface": "j'y"
+      }
+    ]
+  },
+  {
+    "word": "l'a",
+    "corpus_count": 5,
+    "examples": [
+      {
+        "id": "2284462:21",
+        "line": "Me l'a-t-on vraiment dit que tu m'aimais encore",
+        "title": "Quelqu'un m'a dit",
+        "surface": "l'a"
+      },
+      {
+        "id": "4931877:6",
+        "line": "Ni l'un ni l'autre ne l'a",
+        "title": "Perdus",
+        "surface": "l'a"
+      }
+    ]
+  },
+  {
     "word": "air",
     "corpus_count": 5,
     "examples": [
@@ -13093,6 +13567,24 @@
         "line": "Malgré la lumière, on ne voit plus que nous",
         "title": "Danse",
         "surface": "lumi"
+      }
+    ]
+  },
+  {
+    "word": "n'y",
+    "corpus_count": 5,
+    "examples": [
+      {
+        "id": "4739991:4",
+        "line": "Je n’oublierai pas pourtant je n'y suis jamais allé",
+        "title": "La Rua Madureira",
+        "surface": "n'y"
+      },
+      {
+        "id": "4931887:24",
+        "line": "Même si je sais que rien n'y fait",
+        "title": "J'entends",
+        "surface": "n'y"
       }
     ]
   },
@@ -13355,6 +13847,30 @@
     ]
   },
   {
+    "word": "s'en",
+    "corpus_count": 5,
+    "examples": [
+      {
+        "id": "4824143:2",
+        "line": "Que la nuit fière s'en fout",
+        "title": "je sais pas danser",
+        "surface": "s'en"
+      },
+      {
+        "id": "2284462:4",
+        "line": "Que de nos chagrins il s'en fait des manteaux",
+        "title": "Quelqu'un m'a dit",
+        "surface": "s'en"
+      },
+      {
+        "id": "4783721:40",
+        "line": "On s'en fout des autres",
+        "title": "Laisse-moi t'aimer",
+        "surface": "s'en"
+      }
+    ]
+  },
+  {
     "word": "sait",
     "corpus_count": 5,
     "examples": [
@@ -13447,6 +13963,30 @@
         "line": "Qui sort heureux d'ici?",
         "title": "Victime des réseaux",
         "surface": "sort"
+      }
+    ]
+  },
+  {
+    "word": "t'es",
+    "corpus_count": 5,
+    "examples": [
+      {
+        "id": "4739991:11",
+        "line": "Tu t'es retournée pour me sourire avant de monter",
+        "title": "La Rua Madureira",
+        "surface": "t'es"
+      },
+      {
+        "id": "3914077:13",
+        "line": "Les gens me disent à demi-mot, \"Pour une fille belle t'es pas si bête",
+        "title": "Balance ton quoi",
+        "surface": "t'es"
+      },
+      {
+        "id": "3790711:26",
+        "line": "T'es tellement seul avec ton argent",
+        "title": "La thune",
+        "surface": "t'es"
       }
     ]
   },
@@ -14003,6 +14543,18 @@
         "line": "Laisse-moi rire, tu croyais m’avoir",
         "title": "Erreur 404",
         "surface": "croyais"
+      }
+    ]
+  },
+  {
+    "word": "d'ici",
+    "corpus_count": 4,
+    "examples": [
+      {
+        "id": "3910844:11",
+        "line": "Qui sort heureux d'ici?",
+        "title": "Victime des réseaux",
+        "surface": "d'ici"
       }
     ]
   },
@@ -15480,31 +16032,6 @@
     ]
   },
   {
-    "word": "qu'on",
-    "corpus_count": 3,
-    "examples": [
-      {
-        "id": "7333830:16",
-        "line": "\"On est plus ennemis qu'amants\" : c'est c'qu'on s'est dit fréquemment",
-        "title": "Des heures",
-        "surface": "c'qu'on"
-      },
-      {
-        "id": "4083905:10",
-        "line": "Avec tout c'qu'on m'a raconté",
-        "title": "La fessée",
-        "surface": "c'qu'on"
-      },
-      {
-        "id": "5187243:27",
-        "line": "Est-c'qu'on peut rev'nir en janvier?",
-        "title": "Trop beau",
-        "surface": "c'qu'on"
-      }
-    ],
-    "display_form": "c'qu'on"
-  },
-  {
     "word": "caméras",
     "corpus_count": 3,
     "examples": [
@@ -16123,6 +16650,24 @@
     ]
   },
   {
+    "word": "ici",
+    "corpus_count": 3,
+    "examples": [
+      {
+        "id": "478839:12",
+        "line": "Mais c’était au fond sa facon d’être ici",
+        "title": "Hémisphère",
+        "surface": "ici"
+      },
+      {
+        "id": "2849521:27",
+        "line": "Et qu'ils se suivent ici et là",
+        "title": "Toi Et Moi",
+        "surface": "ici"
+      }
+    ]
+  },
+  {
     "word": "importa",
     "corpus_count": 3,
     "examples": [
@@ -16284,6 +16829,30 @@
         "line": "Oh Gisèle, Gisèle, quelle misère",
         "title": "Gisèle",
         "surface": "mis"
+      }
+    ]
+  },
+  {
+    "word": "n'a",
+    "corpus_count": 3,
+    "examples": [
+      {
+        "id": "3074559:14",
+        "line": "Lui n'a de choix que le réel",
+        "title": "Chacun Pour Soi",
+        "surface": "n'a"
+      },
+      {
+        "id": "4086545:20",
+        "line": "Y en n'a pas un seul pour te comprendre",
+        "title": "Gare du Nord",
+        "surface": "n'a"
+      },
+      {
+        "id": "4240436:24",
+        "line": "Tout l’monde était là mais personne n'a rien dit",
+        "title": "Rien à prouver",
+        "surface": "n'a"
       }
     ]
   },
@@ -16602,6 +17171,30 @@
         "line": "L'âme en peine à pédaler pour deux",
         "title": "Seul sur ton tandem",
         "surface": "pédaler"
+      }
+    ]
+  },
+  {
+    "word": "qu'une",
+    "corpus_count": 3,
+    "examples": [
+      {
+        "id": "3911964:17",
+        "line": "Quand tu m'embrasses, j'ai qu'une envie, c'est d'être à toi",
+        "title": "Nombreux",
+        "surface": "qu'une"
+      },
+      {
+        "id": "4783721:75",
+        "line": "Rien qu'une dernière fois pour la peine",
+        "title": "Laisse-moi t'aimer",
+        "surface": "qu'une"
+      },
+      {
+        "id": "3100061:55",
+        "line": "Entre nous, y'avait qu'une barrière",
+        "title": "Danse",
+        "surface": "qu'une"
       }
     ]
   },
@@ -17146,51 +17739,6 @@
     }
   },
   {
-    "word": "avons",
-    "corpus_count": 3,
-    "examples": [
-      {
-        "id": "4739991:7",
-        "line": "Pour si peu de temps, et nous avons marché sous la pluie",
-        "title": "La Rua Madureira",
-        "surface": "avons"
-      },
-      {
-        "id": "7977788:46",
-        "line": "N'avons nous pas écoulé là des secondes supendent qui virent",
-        "title": "On Bai.",
-        "surface": "n'avons"
-      }
-    ],
-    "variants": {
-      "avons": 2,
-      "n'avons": 1
-    }
-  },
-  {
-    "word": "habitude",
-    "corpus_count": 3,
-    "examples": [
-      {
-        "id": "3590067:13",
-        "line": "J'suis une femme qui d'habitude n'aime pas les femmes, mais ta beauté est ineffable",
-        "title": "Séduction",
-        "surface": "d'habitude"
-      },
-      {
-        "id": "4931877:19",
-        "line": "J'vais avoir l'habitude mais ces derniers mois",
-        "title": "Perdus",
-        "surface": "l'habitude"
-      }
-    ],
-    "display_form": "d'habitude",
-    "variants": {
-      "d'habitude": 2,
-      "l'habitude": 1
-    }
-  },
-  {
     "word": "emm",
     "corpus_count": 3,
     "examples": [
@@ -17525,6 +18073,18 @@
         "line": "Et prendre le premier avion comme dans un f‌ilm de merde",
         "title": "Trop beau",
         "surface": "avion"
+      }
+    ]
+  },
+  {
+    "word": "avons",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "4739991:7",
+        "line": "Pour si peu de temps, et nous avons marché sous la pluie",
+        "title": "La Rua Madureira",
+        "surface": "avons"
       }
     ]
   },
@@ -18059,6 +18619,30 @@
         "line": "Bouger leur cul le temps d'un verre",
         "title": "La thune",
         "surface": "cul"
+      }
+    ]
+  },
+  {
+    "word": "d'avoir",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "2849509:14",
+        "line": "D'avoir à s'éviter dans la glace",
+        "title": "Recto Verso",
+        "surface": "d'avoir"
+      }
+    ]
+  },
+  {
+    "word": "d'habitude",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "3590067:13",
+        "line": "J'suis une femme qui d'habitude n'aime pas les femmes, mais ta beauté est ineffable",
+        "title": "Séduction",
+        "surface": "d'habitude"
       }
     ]
   },
@@ -19148,6 +19732,18 @@
     "display_form": "l'océan"
   },
   {
+    "word": "l'on",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "3590067:11",
+        "line": "Oups mes lèvres sont pleines du gâteau que l'on a partagé",
+        "title": "Séduction",
+        "surface": "l'on"
+      }
+    ]
+  },
+  {
     "word": "lances",
     "corpus_count": 2,
     "examples": [
@@ -19292,6 +19888,24 @@
     ]
   },
   {
+    "word": "m'as",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "8705844:6",
+        "line": "Tu m'as même comparé à Lucifer, maint'nant, tu bois et tu veux bien de moi",
+        "title": "Trop beau - Version acoustique",
+        "surface": "m'as"
+      },
+      {
+        "id": "5187243:6",
+        "line": "Tu m'as même comparé à Lucifer Nan, mais j'hallucine hein, je sais déjà c'que la distance entraîne",
+        "title": "Trop beau",
+        "surface": "m'as"
+      }
+    ]
+  },
+  {
     "word": "offre",
     "corpus_count": 2,
     "examples": [
@@ -19303,6 +19917,18 @@
       }
     ],
     "display_form": "m'offre"
+  },
+  {
+    "word": "m'y",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "2849521:10",
+        "line": "Et je sens bien que je m'y prends mal",
+        "title": "Toi Et Moi",
+        "surface": "m'y"
+      }
+    ]
   },
   {
     "word": "madureira",
@@ -20317,6 +20943,18 @@
         "line": "Dis, tu fais quoi pour pas périr ?",
         "title": "Pause",
         "surface": "périr"
+      }
+    ]
+  },
+  {
+    "word": "qu'au",
+    "corpus_count": 2,
+    "examples": [
+      {
+        "id": "3914077:6",
+        "line": "Même si tu parles mal des filles, je sais qu'au fond, t'as compris",
+        "title": "Balance ton quoi",
+        "surface": "qu'au"
       }
     ]
   },
@@ -21466,69 +22104,26 @@
     }
   },
   {
-    "word": "elles",
+    "word": "qu'ils",
     "corpus_count": 2,
     "examples": [
       {
-        "id": "4882118:15",
-        "line": "Elles me disent que j'ai la poisse",
-        "title": "Dilemme",
-        "surface": "elles"
+        "id": "10396391:30",
+        "line": "Ton joli cul c'est tout c'qu'ils veulent",
+        "title": "Gisèle",
+        "surface": "c'qu'ils"
       },
       {
-        "id": "3413303:21",
-        "line": "Au-dessus de ton épaule pourvu qu'elles y trouvent une tête",
-        "title": "Seul sur ton tandem",
-        "surface": "qu'elles"
+        "id": "2849521:27",
+        "line": "Et qu'ils se suivent ici et là",
+        "title": "Toi Et Moi",
+        "surface": "qu'ils"
       }
     ],
+    "display_form": "c'qu'ils",
     "variants": {
-      "elles": 1,
-      "qu'elles": 1
-    }
-  },
-  {
-    "word": "eux",
-    "corpus_count": 2,
-    "examples": [
-      {
-        "id": "4739990:21",
-        "line": "Je suis à eux de l'âme jusqu'à la peau",
-        "title": "Le temps est bon",
-        "surface": "eux"
-      },
-      {
-        "id": "3100061:49",
-        "line": "Je l'ai peut-être un peu plus brusquée qu'eux",
-        "title": "Danse",
-        "surface": "qu'eux"
-      }
-    ],
-    "variants": {
-      "eux": 1,
-      "qu'eux": 1
-    }
-  },
-  {
-    "word": "importe",
-    "corpus_count": 2,
-    "examples": [
-      {
-        "id": "478839:5",
-        "line": "Qu’importe seule ou accompagnée",
-        "title": "Hémisphère",
-        "surface": "importe"
-      },
-      {
-        "id": "7977788:4",
-        "line": "J'appelle n'importe quoi",
-        "title": "On Bai.",
-        "surface": "n'importe"
-      }
-    ],
-    "variants": {
-      "importe": 1,
-      "n'importe": 1
+      "c'qu'ils": 1,
+      "qu'ils": 1
     }
   },
   {
@@ -22117,6 +22712,18 @@
     ]
   },
   {
+    "word": "as",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "5462359:42",
+        "line": "As-tu encore envie ?",
+        "title": "Étrange Mélange",
+        "surface": "as"
+      }
+    ]
+  },
+  {
     "word": "assez",
     "corpus_count": 1,
     "examples": [
@@ -22523,19 +23130,6 @@
         "surface": "bébé"
       }
     ]
-  },
-  {
-    "word": "qu'ils",
-    "corpus_count": 1,
-    "examples": [
-      {
-        "id": "10396391:30",
-        "line": "Ton joli cul c'est tout c'qu'ils veulent",
-        "title": "Gisèle",
-        "surface": "c'qu'ils"
-      }
-    ],
-    "display_form": "c'qu'ils"
   },
   {
     "word": "cacao",
@@ -23450,7 +24044,7 @@
     ]
   },
   {
-    "word": "abord",
+    "word": "d'abord",
     "corpus_count": 1,
     "examples": [
       {
@@ -23459,8 +24053,7 @@
         "title": "La loi de Murphy",
         "surface": "d'abord"
       }
-    ],
-    "display_form": "d'abord"
+    ]
   },
   {
     "word": "actualité",
@@ -23500,6 +24093,18 @@
       }
     ],
     "display_form": "d'atomes"
+  },
+  {
+    "word": "d'en",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "4931887:43",
+        "line": "J'ai essayé d'en parler à mon frère mais ça m'a déprimé",
+        "title": "J'entends",
+        "surface": "d'en"
+      }
+    ]
   },
   {
     "word": "intimité",
@@ -24442,6 +25047,18 @@
     ]
   },
   {
+    "word": "elles",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "4882118:15",
+        "line": "Elles me disent que j'ai la poisse",
+        "title": "Dilemme",
+        "surface": "elles"
+      }
+    ]
+  },
+  {
     "word": "embrase",
     "corpus_count": 1,
     "examples": [
@@ -24630,6 +25247,18 @@
         "line": "Puis, là, c'est trop parti en couille, y'a d'abord eu la pluie",
         "title": "La loi de Murphy",
         "surface": "eu"
+      }
+    ]
+  },
+  {
+    "word": "eux",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "4739990:21",
+        "line": "Je suis à eux de l'âme jusqu'à la peau",
+        "title": "Le temps est bon",
+        "surface": "eux"
       }
     ]
   },
@@ -25462,6 +26091,18 @@
     ]
   },
   {
+    "word": "importe",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "478839:5",
+        "line": "Qu’importe seule ou accompagnée",
+        "title": "Hémisphère",
+        "surface": "importe"
+      }
+    ]
+  },
+  {
     "word": "improbable",
     "corpus_count": 1,
     "examples": [
@@ -26142,6 +26783,19 @@
     "display_form": "l'cacher"
   },
   {
+    "word": "habitude",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "4931877:19",
+        "line": "J'vais avoir l'habitude mais ces derniers mois",
+        "title": "Perdus",
+        "surface": "l'habitude"
+      }
+    ],
+    "display_form": "l'habitude"
+  },
+  {
     "word": "homme",
     "corpus_count": 1,
     "examples": [
@@ -26594,6 +27248,18 @@
       }
     ],
     "display_form": "m'embrasses"
+  },
+  {
+    "word": "m'en",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "5163433:15",
+        "line": "Je m'en moque",
+        "title": "Le visage de la nuit",
+        "surface": "m'en"
+      }
+    ]
   },
   {
     "word": "enchante",
@@ -27106,6 +27772,42 @@
         "line": "Pas un rond pour acheter le succès mérité",
         "title": "Rien à prouver",
         "surface": "mérité"
+      }
+    ]
+  },
+  {
+    "word": "n'avons",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "7977788:46",
+        "line": "N'avons nous pas écoulé là des secondes supendent qui virent",
+        "title": "On Bai.",
+        "surface": "n'avons"
+      }
+    ]
+  },
+  {
+    "word": "n'importe",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "7977788:4",
+        "line": "J'appelle n'importe quoi",
+        "title": "On Bai.",
+        "surface": "n'importe"
+      }
+    ]
+  },
+  {
+    "word": "n'ont",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "3959326:2",
+        "line": "Nos yeux n'ont pas d’alibi",
+        "title": "Mojo",
+        "surface": "n'ont"
       }
     ]
   },
@@ -28238,30 +28940,40 @@
     ]
   },
   {
-    "word": "j'ai",
+    "word": "qu'aux",
     "corpus_count": 1,
     "examples": [
       {
-        "id": "4931887:51",
-        "line": "Je sens qu'j'ai peur",
-        "title": "J'entends",
-        "surface": "qu'j'ai"
+        "id": "3074559:2",
+        "line": "Qu'aux illusions qu'il peut comprendre",
+        "title": "Chacun Pour Soi",
+        "surface": "qu'aux"
       }
-    ],
-    "display_form": "qu'j'ai"
+    ]
   },
   {
-    "word": "j'suis",
+    "word": "qu'elles",
     "corpus_count": 1,
     "examples": [
       {
-        "id": "7333830:8",
-        "line": "Quand j'dis qu'j'suis fou d'elle, j'suis fou d'elle, elle m'répond : \"Et alors ?\"",
-        "title": "Des heures",
-        "surface": "qu'j'suis"
+        "id": "3413303:21",
+        "line": "Au-dessus de ton épaule pourvu qu'elles y trouvent une tête",
+        "title": "Seul sur ton tandem",
+        "surface": "qu'elles"
       }
-    ],
-    "display_form": "qu'j'suis"
+    ]
+  },
+  {
+    "word": "qu'eux",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "3100061:49",
+        "line": "Je l'ai peut-être un peu plus brusquée qu'eux",
+        "title": "Danse",
+        "surface": "qu'eux"
+      }
+    ]
   },
   {
     "word": "quant",
@@ -30001,6 +30713,18 @@
         "line": "Nombreux sont ceux qui sévissent",
         "title": "Nombreux",
         "surface": "sévissent"
+      }
+    ]
+  },
+  {
+    "word": "t'a",
+    "corpus_count": 1,
+    "examples": [
+      {
+        "id": "3912738:14",
+        "line": "Et si tout l'monde t'a délaissé, ça s'est passé après les soldes",
+        "title": "Tout oublier",
+        "surface": "t'a"
       }
     ]
   },

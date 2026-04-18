@@ -64,11 +64,14 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
     3: "+ --language flag, French proclitic splitter (l'/j'/d'/qu' etc.)",
+    4: "french: consult Wiktionary phrase/contraction index; promote known apos "
+       "forms (c'est, j'ai, qu'il, n'est, s'il, …) to own entries instead of "
+       "stripping them into a verb form",
 }
 
 # ---------------------------------------------------------------------------
@@ -105,6 +108,96 @@ def french_strip_proclitic(word):
     if not tail or all(ch in _FRENCH_APOS for ch in tail):
         return None
     return tail
+
+
+# ---------------------------------------------------------------------------
+# French apostrophized phrase/contraction index (Wiktionary-driven tiering).
+#
+# Wiktionary gives dedicated entries to stable apostrophized chunks like
+# `c'est` (it is), `j'ai` (I have), `qu'il`, `s'il`, `n'est`, `m'a`, …. Those
+# deserve their own cards — the old "strip everything" rule was merging
+# `c'est` into `est`, which is why the sense menu for a 293-count verb form
+# was showing "[ADJ] east". We consult this index before stripping: if a form
+# is here, it survives as its own entry; otherwise we fall through to the
+# original proclitic splitter (the right call for `l'amour`, `j'aime`, …).
+# ---------------------------------------------------------------------------
+
+# POS tags we accept as "this apostrophized form is a real lexical unit".
+# `contraction` covers c'est/n'est/m'a/qu'il/s'il/…; `phrase` covers j'ai,
+# s'il vous plaît, je m'appelle, etc.; the function-word POS tags catch
+# `d'`/`qu'` apocopic forms that Wiktionary classifies as adverb/preposition.
+_FRENCH_APOS_PHRASE_POS = frozenset((
+    "phrase", "contraction", "proverb",
+    "adv", "prep", "intj", "conj", "pron",
+))
+
+# Cache pickle schema version for the French apos-phrase index.
+_APOS_CACHE_VERSION = 1
+_FRENCH_APOS_NORM_RE = re.compile(r"\u2019")
+
+
+def _normalize_apos(word):
+    """Normalize curly apostrophes to straight so the index keys join cleanly."""
+    return _FRENCH_APOS_NORM_RE.sub("'", word.lower())
+
+
+def load_french_apos_phrases(kaikki_path):
+    """Scan the French kaikki dump for apostrophized phrase/contraction entries.
+
+    Returns ``{normalized_word: (pos, cleaned_gloss_line)}``. The gloss is
+    the first sense's gloss verbatim (for diagnostic printing); step_5c
+    does its own proper cleaning when it builds the sense menu, so this is
+    not the learner-facing text.
+
+    Pickle-cached alongside the kaikki file so subsequent runs are instant.
+    """
+    import gzip
+    import pickle
+    cache_path = Path(str(kaikki_path) + ".apos_phrases.cache.pkl")
+    if cache_path.exists() and cache_path.stat().st_mtime >= Path(kaikki_path).stat().st_mtime:
+        try:
+            with open(cache_path, "rb") as f:
+                data = pickle.load(f)
+            if isinstance(data, tuple) and len(data) == 2 and data[0] == _APOS_CACHE_VERSION:
+                return data[1]
+        except (EOFError, pickle.UnpicklingError, ValueError):
+            pass  # Rebuild below.
+
+    if not os.path.exists(kaikki_path):
+        print(f"  (no French kaikki file at {kaikki_path}; skipping phrase tier)")
+        return {}
+
+    print(f"  Scanning French kaikki for apostrophized phrase entries ({kaikki_path.name})...")
+    index = {}
+    with gzip.open(kaikki_path, "rt", encoding="utf-8") as f:
+        for line in f:
+            try:
+                item = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            word = (item.get("word") or "").lower()
+            pos = item.get("pos") or ""
+            if not word or pos not in _FRENCH_APOS_PHRASE_POS:
+                continue
+            if "'" not in word and "\u2019" not in word:
+                continue
+            senses = item.get("senses") or []
+            gloss = ""
+            for s in senses:
+                glosses = s.get("glosses") or []
+                if glosses:
+                    gloss = glosses[0][:120]
+                    break
+            key = _normalize_apos(word)
+            # First-seen wins. Multiple POS entries for the same apostrophized
+            # word (e.g. `il y a` as prep and as verb) all resolve to the same
+            # cue for step_3a; the richer sense menu lookup happens in step_5c.
+            index.setdefault(key, (pos, gloss))
+
+    with open(cache_path, "wb") as f:
+        pickle.dump((_APOS_CACHE_VERSION, index), f)
+    print(f"    {len(index)} apostrophized phrase/contraction entries indexed")
+    return index
 
 PIPELINE_DIR = None
 IN_PATH = None
@@ -383,32 +476,57 @@ def merge_evidence(data, targets, known_vocab):
     return out, stats
 
 
-def merge_evidence_french(data):
-    """French elision handling: strip leading proclitics (l'/j'/qu'/etc.)
-    from the surface token and merge counts/examples onto the bare word.
+def merge_evidence_french(data, apos_phrase_index=None):
+    """French elision handling.
 
-    Much simpler than Spanish: no external mapping file, no known-vocab
-    dependency, no ambiguity. Every transformation is driven by the
-    apostrophe in the surface token itself.
+    Tiering:
+      Tier A — `apos_phrase_index` says this apostrophized form has a
+               dedicated Wiktionary entry (c'est, j'ai, qu'il, n'est, s'il,
+               m'a, t'as, jusqu'au, …). Keep as its own entry; the sense
+               menu built in step_5c will use the phrase/contraction gloss.
+      Tier B — `french_strip_proclitic` recognises a proclitic + tail
+               (l'amour, j'aime, l'autre, d'un). Strip the proclitic, merge
+               counts/examples into the bare tail (original Tier B behaviour).
+      Tier C — unchanged: non-apostrophe tokens fall through as-is.
+
+    ``apos_phrase_index`` is the dict returned by ``load_french_apos_phrases``.
+    Passing ``None`` disables Tier A and falls back to the pre-tier-4 strip-
+    everything behaviour (useful for tests).
     """
     groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
                                   "variants": {}})
-    stats = {"proclitic_split": 0, "unmerged": 0}
+    stats = {"apos_phrase_kept": 0, "proclitic_split": 0, "unmerged": 0}
+    apos_phrase_index = apos_phrase_index or {}
+    phrase_hits = []  # (word, pos, gloss, count) for reporting
 
     for entry in data:
         word = entry["word"]
         count = entry.get("corpus_count", 0)
         examples = entry.get("examples", [])
 
-        tail = french_strip_proclitic(word)
-        if tail is not None:
-            key = tail
-            display = word  # keep the original l'amour as display
-            source = "proclitic_split"
-        else:
+        # Tier A: Wiktionary knows this apostrophized form as a lexical unit.
+        # Preserve it as its own entry — the sense menu step will pull the
+        # `contraction`/`phrase` gloss, and the learner gets "it is" on the
+        # card for c'est instead of "east" (est|adj) via the old merge.
+        apos_hit = None
+        if ("'" in word) or ("\u2019" in word):
+            apos_hit = apos_phrase_index.get(_normalize_apos(word))
+
+        if apos_hit is not None:
             key = word
             display = word
-            source = "unmerged"
+            source = "apos_phrase_kept"
+            phrase_hits.append((word, apos_hit[0], apos_hit[1], count))
+        else:
+            tail = french_strip_proclitic(word)
+            if tail is not None:
+                key = tail
+                display = word  # keep the original l'amour as display
+                source = "proclitic_split"
+            else:
+                key = word
+                display = word
+                source = "unmerged"
         stats[source] = stats.get(source, 0) + 1
 
         if groups[key]["display_form"] is None:
@@ -470,19 +588,25 @@ def main():
 
     # French: simpler flow, no Spanish-specific loading.
     if args.language == "french":
-        print(f"Language: french (proclitic splitter)")
-        merged, stats = merge_evidence_french(data)
+        print(f"Language: french (apos-phrase tier + proclitic splitter)")
+        french_kaikki_path = Path(
+            os.path.join(_PROJECT_ROOT, "Data", "French", "Senses",
+                         "wiktionary", "kaikki-french.jsonl.gz")
+        )
+        apos_index = load_french_apos_phrases(french_kaikki_path)
+        merged, stats = merge_evidence_french(data, apos_phrase_index=apos_index)
 
         os.makedirs(os.path.dirname(str(OUT_PATH)), exist_ok=True)
         with open(OUT_PATH, "w", encoding="utf-8") as f:
             json.dump(merged, f, ensure_ascii=False, indent=2)
         write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION,
-                                          extra={"language": "french"}))
+                                          extra={"language": "french",
+                                                 "apos_phrase_index_size": len(apos_index)}))
 
         print(f"\nWrote {len(merged)} entries -> {OUT_PATH}")
         print(f"  Reduced by {len(data) - len(merged)} entries")
         print(f"  Merge sources:")
-        for k in ("proclitic_split", "unmerged"):
+        for k in ("apos_phrase_kept", "proclitic_split", "unmerged"):
             print(f"    {k}: {stats.get(k, 0)}")
         print("\n=== Top 20 merged entries ===")
         for e in merged[:20]:

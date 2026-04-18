@@ -232,7 +232,10 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
     print("  %d examples to embed (%d bilingual, %d Spanish-only)" % (
         len(example_texts), bilingual_count, spanish_only_count))
 
-    # Collect all sense texts (raw "pos: translation" — best for bi-encoder)
+    # Collect all sense texts (raw "pos: translation" — best for bi-encoder).
+    # When a sense has a context disambiguator ("of clothing") we append it
+    # so homographs embed with distinct semantics rather than collapsing on
+    # identical translations.
     sense_texts = []
     sense_map = []  # (work_idx, original_sense_idx)
     for wi, item in enumerate(work_items):
@@ -240,7 +243,11 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
         for ki in keep_indices:
             s = senses[ki]
             label = _POS_LABELS.get(s["pos"], s["pos"])
-            sense_texts.append("%s: %s" % (label, s["translation"]))
+            text = "%s: %s" % (label, s["translation"])
+            ctx = s.get("context")
+            if ctx:
+                text += " (%s)" % ctx
+            sense_texts.append(text)
             sense_map.append((wi, ki))
     print("  %d sense texts to embed" % len(sense_texts))
 

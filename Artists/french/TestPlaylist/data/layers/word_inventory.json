@@ -8,18 +8,6 @@
     }
   },
   {
-    "word": "est",
-    "corpus_count": 293,
-    "display_form": "c'est",
-    "variants": {
-      "c'est": 144,
-      "est": 127,
-      "n'est": 14,
-      "s'est": 6,
-      "qu'est": 2
-    }
-  },
-  {
     "word": "je",
     "corpus_count": 272,
     "variants": {
@@ -54,23 +42,11 @@
   },
   {
     "word": "en",
-    "corpus_count": 168,
+    "corpus_count": 161,
     "variants": {
       "en": 113,
       "t'en": 35,
-      "j'en": 13,
-      "s'en": 5,
-      "d'en": 1,
-      "m'en": 1
-    }
-  },
-  {
-    "word": "on",
-    "corpus_count": 160,
-    "variants": {
-      "on": 147,
-      "qu'on": 11,
-      "l'on": 2
+      "j'en": 13
     }
   },
   {
@@ -79,14 +55,6 @@
     "variants": {
       "les": 158,
       "j'les": 1
-    }
-  },
-  {
-    "word": "que",
-    "corpus_count": 159,
-    "variants": {
-      "que": 152,
-      "c'que": 7
     }
   },
   {
@@ -99,34 +67,32 @@
     }
   },
   {
+    "word": "que",
+    "corpus_count": 152
+  },
+  {
     "word": "tu",
     "corpus_count": 150
   },
   {
-    "word": "a",
-    "corpus_count": 118,
+    "word": "on",
+    "corpus_count": 147
+  },
+  {
+    "word": "c'est",
+    "corpus_count": 144
+  },
+  {
+    "word": "est",
+    "corpus_count": 129,
     "variants": {
-      "a": 96,
-      "m'a": 13,
-      "l'a": 5,
-      "n'a": 3,
-      "t'a": 1
+      "est": 127,
+      "qu'est": 2
     }
   },
   {
     "word": "des",
     "corpus_count": 113
-  },
-  {
-    "word": "ai",
-    "corpus_count": 112,
-    "display_form": "j'ai",
-    "variants": {
-      "j'ai": 92,
-      "ai": 13,
-      "t'ai": 4,
-      "l'ai": 3
-    }
   },
   {
     "word": "moi",
@@ -141,21 +107,15 @@
     }
   },
   {
-    "word": "un",
-    "corpus_count": 94,
-    "variants": {
-      "un": 74,
-      "qu'un": 8,
-      "d'un": 6,
-      "l'un": 6
-    }
+    "word": "a",
+    "corpus_count": 96
   },
   {
-    "word": "qui",
-    "corpus_count": 91,
+    "word": "j'ai",
+    "corpus_count": 93,
     "variants": {
-      "qui": 80,
-      "c'qui": 11
+      "j'ai": 92,
+      "qu'j'ai": 1
     }
   },
   {
@@ -175,21 +135,24 @@
     "corpus_count": 82
   },
   {
+    "word": "qui",
+    "corpus_count": 80
+  },
+  {
+    "word": "un",
+    "corpus_count": 80,
+    "variants": {
+      "un": 74,
+      "d'un": 6
+    }
+  },
+  {
     "word": "ne",
     "corpus_count": 75
   },
   {
     "word": "se",
     "corpus_count": 75
-  },
-  {
-    "word": "elle",
-    "corpus_count": 73,
-    "variants": {
-      "elle": 49,
-      "qu'elle": 22,
-      "d'elle": 2
-    }
   },
   {
     "word": "bien",
@@ -200,26 +163,8 @@
     "corpus_count": 68
   },
   {
-    "word": "au",
-    "corpus_count": 66,
-    "variants": {
-      "au": 58,
-      "jusqu'au": 6,
-      "qu'au": 2
-    }
-  },
-  {
     "word": "pour",
     "corpus_count": 63
-  },
-  {
-    "word": "une",
-    "corpus_count": 63,
-    "variants": {
-      "une": 54,
-      "d'une": 6,
-      "qu'une": 3
-    }
   },
   {
     "word": "si",
@@ -228,6 +173,18 @@
   {
     "word": "tout",
     "corpus_count": 60
+  },
+  {
+    "word": "une",
+    "corpus_count": 60,
+    "variants": {
+      "une": 54,
+      "d'une": 6
+    }
+  },
+  {
+    "word": "au",
+    "corpus_count": 58
   },
   {
     "word": "mais",
@@ -248,6 +205,14 @@
   {
     "word": "oh",
     "corpus_count": 51
+  },
+  {
+    "word": "elle",
+    "corpus_count": 51,
+    "variants": {
+      "elle": 49,
+      "d'elle": 2
+    }
   },
   {
     "word": "t",
@@ -285,15 +250,6 @@
   {
     "word": "va",
     "corpus_count": 46
-  },
-  {
-    "word": "il",
-    "corpus_count": 46,
-    "variants": {
-      "il": 29,
-      "qu'il": 11,
-      "s'il": 6
-    }
   },
   {
     "word": "pleurer",
@@ -416,16 +372,12 @@
     "corpus_count": 29
   },
   {
-    "word": "ou",
+    "word": "il",
     "corpus_count": 29
   },
   {
-    "word": "suis",
-    "corpus_count": 29,
-    "variants": {
-      "suis": 17,
-      "j'suis": 12
-    }
+    "word": "ou",
+    "corpus_count": 29
   },
   {
     "word": "c",
@@ -454,16 +406,6 @@
   {
     "word": "o",
     "corpus_count": 26
-  },
-  {
-    "word": "y",
-    "corpus_count": 25,
-    "variants": {
-      "y": 13,
-      "j'y": 5,
-      "n'y": 5,
-      "m'y": 2
-    }
   },
   {
     "word": "hmm",
@@ -502,6 +444,10 @@
     "corpus_count": 22
   },
   {
+    "word": "qu'elle",
+    "corpus_count": 22
+  },
+  {
     "word": "filme",
     "corpus_count": 21
   },
@@ -532,6 +478,15 @@
   {
     "word": "vous",
     "corpus_count": 20
+  },
+  {
+    "word": "ai",
+    "corpus_count": 20,
+    "variants": {
+      "ai": 13,
+      "t'ai": 4,
+      "l'ai": 3
+    }
   },
   {
     "word": "corps",
@@ -586,6 +541,10 @@
     "corpus_count": 17
   },
   {
+    "word": "suis",
+    "corpus_count": 17
+  },
+  {
     "word": "ma",
     "corpus_count": 16
   },
@@ -614,14 +573,6 @@
     "corpus_count": 16
   },
   {
-    "word": "aux",
-    "corpus_count": 16,
-    "variants": {
-      "aux": 15,
-      "qu'aux": 1
-    }
-  },
-  {
     "word": "était",
     "corpus_count": 16,
     "display_form": "c'était",
@@ -629,6 +580,10 @@
       "c'était": 8,
       "était": 8
     }
+  },
+  {
+    "word": "aux",
+    "corpus_count": 15
   },
   {
     "word": "grand",
@@ -662,6 +617,10 @@
     "corpus_count": 14
   },
   {
+    "word": "n'est",
+    "corpus_count": 14
+  },
+  {
     "word": "peu",
     "corpus_count": 14
   },
@@ -671,6 +630,14 @@
     "variants": {
       "pense": 12,
       "j'pense": 2
+    }
+  },
+  {
+    "word": "qu'on",
+    "corpus_count": 14,
+    "variants": {
+      "qu'on": 11,
+      "c'qu'on": 3
     }
   },
   {
@@ -691,6 +658,10 @@
   },
   {
     "word": "jalousie",
+    "corpus_count": 13
+  },
+  {
+    "word": "m'a",
     "corpus_count": 13
   },
   {
@@ -718,11 +689,23 @@
     "corpus_count": 13
   },
   {
+    "word": "y",
+    "corpus_count": 13
+  },
+  {
     "word": "autres",
     "corpus_count": 13,
     "variants": {
       "autres": 12,
       "d'autres": 1
+    }
+  },
+  {
+    "word": "j'suis",
+    "corpus_count": 13,
+    "variants": {
+      "j'suis": 12,
+      "qu'j'suis": 1
     }
   },
   {
@@ -849,12 +832,8 @@
     }
   },
   {
-    "word": "es",
-    "corpus_count": 12,
-    "variants": {
-      "es": 7,
-      "t'es": 5
-    }
+    "word": "c'qui",
+    "corpus_count": 11
   },
   {
     "word": "car",
@@ -870,6 +849,10 @@
   },
   {
     "word": "qu",
+    "corpus_count": 11
+  },
+  {
+    "word": "qu'il",
     "corpus_count": 11
   },
   {
@@ -891,25 +874,6 @@
     "variants": {
       "j'mens": 9,
       "mens": 2
-    }
-  },
-  {
-    "word": "avoir",
-    "corpus_count": 11,
-    "variants": {
-      "avoir": 8,
-      "d'avoir": 2,
-      "t'avoir": 1
-    }
-  },
-  {
-    "word": "as",
-    "corpus_count": 11,
-    "display_form": "t'as",
-    "variants": {
-      "t'as": 8,
-      "m'as": 2,
-      "as": 1
     }
   },
   {
@@ -955,15 +919,6 @@
   {
     "word": "tranquille",
     "corpus_count": 10
-  },
-  {
-    "word": "ont",
-    "corpus_count": 10,
-    "variants": {
-      "ont": 8,
-      "m'ont": 1,
-      "n'ont": 1
-    }
   },
   {
     "word": "dors",
@@ -1076,6 +1031,14 @@
     "corpus_count": 9
   },
   {
+    "word": "avoir",
+    "corpus_count": 9,
+    "variants": {
+      "avoir": 8,
+      "t'avoir": 1
+    }
+  },
+  {
     "word": "dis",
     "corpus_count": 9,
     "variants": {
@@ -1089,6 +1052,14 @@
     "variants": {
       "faut": 8,
       "t'faut": 1
+    }
+  },
+  {
+    "word": "ont",
+    "corpus_count": 9,
+    "variants": {
+      "ont": 8,
+      "m'ont": 1
     }
   },
   {
@@ -1199,6 +1170,10 @@
     "corpus_count": 8
   },
   {
+    "word": "qu'un",
+    "corpus_count": 8
+  },
+  {
     "word": "quelqu'un",
     "corpus_count": 8
   },
@@ -1216,6 +1191,10 @@
   },
   {
     "word": "suite",
+    "corpus_count": 8
+  },
+  {
+    "word": "t'as",
     "corpus_count": 8
   },
   {
@@ -1243,14 +1222,6 @@
     "corpus_count": 8
   },
   {
-    "word": "ils",
-    "corpus_count": 8,
-    "variants": {
-      "ils": 7,
-      "qu'ils": 1
-    }
-  },
-  {
     "word": "été",
     "corpus_count": 8,
     "display_form": "l'été",
@@ -1266,6 +1237,10 @@
       "n": 6,
       "j'n": 2
     }
+  },
+  {
+    "word": "c'que",
+    "corpus_count": 7
   },
   {
     "word": "cachée",
@@ -1288,6 +1263,10 @@
     "corpus_count": 7
   },
   {
+    "word": "es",
+    "corpus_count": 7
+  },
+  {
     "word": "fort",
     "corpus_count": 7
   },
@@ -1297,6 +1276,10 @@
   },
   {
     "word": "hier",
+    "corpus_count": 7
+  },
+  {
+    "word": "ils",
     "corpus_count": 7
   },
   {
@@ -1397,15 +1380,6 @@
     "variants": {
       "amour": 4,
       "l'amour": 3
-    }
-  },
-  {
-    "word": "ici",
-    "corpus_count": 7,
-    "display_form": "d'ici",
-    "variants": {
-      "d'ici": 4,
-      "ici": 3
     }
   },
   {
@@ -1519,9 +1493,17 @@
     "corpus_count": 6
   },
   {
+    "word": "jusqu'au",
+    "corpus_count": 6
+  },
+  {
     "word": "envers",
     "corpus_count": 6,
     "display_form": "l'envers"
+  },
+  {
+    "word": "l'un",
+    "corpus_count": 6
   },
   {
     "word": "minuit",
@@ -1581,9 +1563,17 @@
     "corpus_count": 6
   },
   {
+    "word": "s'est",
+    "corpus_count": 6
+  },
+  {
     "word": "estompe",
     "corpus_count": 6,
     "display_form": "s'estompe"
+  },
+  {
+    "word": "s'il",
+    "corpus_count": 6
   },
   {
     "word": "sa",
@@ -1692,6 +1682,14 @@
     "display_form": "j'l'entends"
   },
   {
+    "word": "j'y",
+    "corpus_count": 5
+  },
+  {
+    "word": "l'a",
+    "corpus_count": 5
+  },
+  {
     "word": "air",
     "corpus_count": 5,
     "display_form": "l'air"
@@ -1710,6 +1708,10 @@
   },
   {
     "word": "lumi",
+    "corpus_count": 5
+  },
+  {
+    "word": "n'y",
     "corpus_count": 5
   },
   {
@@ -1753,6 +1755,10 @@
     "corpus_count": 5
   },
   {
+    "word": "s'en",
+    "corpus_count": 5
+  },
+  {
     "word": "sait",
     "corpus_count": 5
   },
@@ -1766,6 +1772,10 @@
   },
   {
     "word": "sort",
+    "corpus_count": 5
+  },
+  {
+    "word": "t'es",
     "corpus_count": 5
   },
   {
@@ -1902,6 +1912,10 @@
   },
   {
     "word": "croyais",
+    "corpus_count": 4
+  },
+  {
+    "word": "d'ici",
     "corpus_count": 4
   },
   {
@@ -2270,11 +2284,6 @@
     "corpus_count": 3
   },
   {
-    "word": "qu'on",
-    "corpus_count": 3,
-    "display_form": "c'qu'on"
-  },
-  {
     "word": "caméras",
     "corpus_count": 3
   },
@@ -2423,6 +2432,10 @@
     "corpus_count": 3
   },
   {
+    "word": "ici",
+    "corpus_count": 3
+  },
+  {
     "word": "importa",
     "corpus_count": 3
   },
@@ -2467,6 +2480,10 @@
   },
   {
     "word": "mis",
+    "corpus_count": 3
+  },
+  {
+    "word": "n'a",
     "corpus_count": 3
   },
   {
@@ -2543,6 +2560,10 @@
   },
   {
     "word": "pédaler",
+    "corpus_count": 3
+  },
+  {
+    "word": "qu'une",
     "corpus_count": 3
   },
   {
@@ -2684,23 +2705,6 @@
     }
   },
   {
-    "word": "avons",
-    "corpus_count": 3,
-    "variants": {
-      "avons": 2,
-      "n'avons": 1
-    }
-  },
-  {
-    "word": "habitude",
-    "corpus_count": 3,
-    "display_form": "d'habitude",
-    "variants": {
-      "d'habitude": 2,
-      "l'habitude": 1
-    }
-  },
-  {
     "word": "emm",
     "corpus_count": 3,
     "variants": {
@@ -2796,6 +2800,10 @@
   },
   {
     "word": "avion",
+    "corpus_count": 2
+  },
+  {
+    "word": "avons",
     "corpus_count": 2
   },
   {
@@ -2948,6 +2956,14 @@
   },
   {
     "word": "cul",
+    "corpus_count": 2
+  },
+  {
+    "word": "d'avoir",
+    "corpus_count": 2
+  },
+  {
+    "word": "d'habitude",
     "corpus_count": 2
   },
   {
@@ -3266,6 +3282,10 @@
     "display_form": "l'océan"
   },
   {
+    "word": "l'on",
+    "corpus_count": 2
+  },
+  {
     "word": "lances",
     "corpus_count": 2
   },
@@ -3306,9 +3326,17 @@
     "corpus_count": 2
   },
   {
+    "word": "m'as",
+    "corpus_count": 2
+  },
+  {
     "word": "offre",
     "corpus_count": 2,
     "display_form": "m'offre"
+  },
+  {
+    "word": "m'y",
+    "corpus_count": 2
   },
   {
     "word": "madureira",
@@ -3590,6 +3618,10 @@
   },
   {
     "word": "périr",
+    "corpus_count": 2
+  },
+  {
+    "word": "qu'au",
     "corpus_count": 2
   },
   {
@@ -3942,27 +3974,12 @@
     }
   },
   {
-    "word": "elles",
+    "word": "qu'ils",
     "corpus_count": 2,
+    "display_form": "c'qu'ils",
     "variants": {
-      "elles": 1,
-      "qu'elles": 1
-    }
-  },
-  {
-    "word": "eux",
-    "corpus_count": 2,
-    "variants": {
-      "eux": 1,
-      "qu'eux": 1
-    }
-  },
-  {
-    "word": "importe",
-    "corpus_count": 2,
-    "variants": {
-      "importe": 1,
-      "n'importe": 1
+      "c'qu'ils": 1,
+      "qu'ils": 1
     }
   },
   {
@@ -4165,6 +4182,10 @@
     "corpus_count": 1
   },
   {
+    "word": "as",
+    "corpus_count": 1
+  },
+  {
     "word": "assez",
     "corpus_count": 1
   },
@@ -4299,11 +4320,6 @@
   {
     "word": "bébé",
     "corpus_count": 1
-  },
-  {
-    "word": "qu'ils",
-    "corpus_count": 1,
-    "display_form": "c'qu'ils"
   },
   {
     "word": "cacao",
@@ -4610,9 +4626,8 @@
     "corpus_count": 1
   },
   {
-    "word": "abord",
-    "corpus_count": 1,
-    "display_form": "d'abord"
+    "word": "d'abord",
+    "corpus_count": 1
   },
   {
     "word": "actualité",
@@ -4628,6 +4643,10 @@
     "word": "atomes",
     "corpus_count": 1,
     "display_form": "d'atomes"
+  },
+  {
+    "word": "d'en",
+    "corpus_count": 1
   },
   {
     "word": "intimité",
@@ -4946,6 +4965,10 @@
     "corpus_count": 1
   },
   {
+    "word": "elles",
+    "corpus_count": 1
+  },
+  {
     "word": "embrase",
     "corpus_count": 1
   },
@@ -5007,6 +5030,10 @@
   },
   {
     "word": "eu",
+    "corpus_count": 1
+  },
+  {
+    "word": "eux",
     "corpus_count": 1
   },
   {
@@ -5286,6 +5313,10 @@
     "corpus_count": 1
   },
   {
+    "word": "importe",
+    "corpus_count": 1
+  },
+  {
     "word": "improbable",
     "corpus_count": 1
   },
@@ -5526,6 +5557,11 @@
     "display_form": "l'cacher"
   },
   {
+    "word": "habitude",
+    "corpus_count": 1,
+    "display_form": "l'habitude"
+  },
+  {
     "word": "homme",
     "corpus_count": 1,
     "display_form": "l'homme"
@@ -5682,6 +5718,10 @@
     "word": "embrasses",
     "corpus_count": 1,
     "display_form": "m'embrasses"
+  },
+  {
+    "word": "m'en",
+    "corpus_count": 1
   },
   {
     "word": "enchante",
@@ -5859,6 +5899,18 @@
   },
   {
     "word": "mérité",
+    "corpus_count": 1
+  },
+  {
+    "word": "n'avons",
+    "corpus_count": 1
+  },
+  {
+    "word": "n'importe",
+    "corpus_count": 1
+  },
+  {
+    "word": "n'ont",
     "corpus_count": 1
   },
   {
@@ -6238,14 +6290,16 @@
     "corpus_count": 1
   },
   {
-    "word": "j'ai",
-    "corpus_count": 1,
-    "display_form": "qu'j'ai"
+    "word": "qu'aux",
+    "corpus_count": 1
   },
   {
-    "word": "j'suis",
-    "corpus_count": 1,
-    "display_form": "qu'j'suis"
+    "word": "qu'elles",
+    "corpus_count": 1
+  },
+  {
+    "word": "qu'eux",
+    "corpus_count": 1
   },
   {
     "word": "quant",
@@ -6834,6 +6888,10 @@
   },
   {
     "word": "sévissent",
+    "corpus_count": 1
+  },
+  {
+    "word": "t'a",
     "corpus_count": 1
   },
   {

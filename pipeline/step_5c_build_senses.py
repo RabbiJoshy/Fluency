@@ -48,10 +48,16 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "wiktionary + spanishdict sense menus, cross-POS dedup, sense cap",
+    2: "wiktionary: preserve raw_gloss/topics/qualifier/examples; derive context; "
+       "follow form-of redirects alongside bare-form senses; comma form-of pattern; "
+       "allow single-char glosses (je → I)",
 }
+
+# Bumped whenever the shape of the pickled load_wiktionary cache changes.
+CACHE_SCHEMA_VERSION = 4
 
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
@@ -106,6 +112,108 @@ SKIP_TAGS = {
     "archaic", "obsolete", "rare", "historical", "dated",
     "abbreviation", "ellipsis",
 }
+
+# Kaikki's `tags` field mixes inflection markers with real semantic tags. We
+# strip inflection markers when building the per-sense `register` list so the
+# output only surfaces tags that help a learner (transitive/reflexive/slang/…).
+INFLECTION_TAGS = frozenset({
+    "form-of", "plural", "singular", "masculine", "feminine",
+    "first-person", "second-person", "third-person",
+    "subjunctive", "indicative", "present", "imperfect", "past",
+    "historic", "future", "participle", "imperative", "conditional",
+    "gerund", "infinitive", "object-first-person", "object-second-person",
+    "object-third-person", "object-singular", "object-plural",
+    "object-masculine", "object-feminine", "preterite",
+    "accusative", "dative", "nominative", "genitive", "vocative",
+    "with-voseo", "by-personal-gender", "invariable", "letter",
+    "lowercase", "uppercase", "countable", "uncountable",
+})
+
+# A "context" disambiguator looks like "of clothing", "of food", "when used
+# with à". We build it by peeling the leading parenthetical off `raw_gloss`,
+# dropping any token already surfaced as a register/domain tag. The remainder
+# is what distinguishes senses within a POS (cf. SpanishDict's `context`).
+_LEADING_PAREN_RE = re.compile(r"^\s*\(([^)]+)\)\s*(.*)$", re.DOTALL)
+
+
+def _context_from_raw_gloss(raw_gloss: str, tags: set, topics: list) -> str:
+    """Return a short SpanishDict-style context string or ''.
+
+    `raw_gloss` is Kaikki's full gloss including the leading parenthetical, e.g.
+      "(transitive, of clothing) to put on"
+    We strip terms already covered by `tags`/`topics` so the context carries
+    only the novel disambiguator ("of clothing", not "transitive").
+    """
+    if not raw_gloss:
+        return ""
+    m = _LEADING_PAREN_RE.match(raw_gloss)
+    if not m:
+        return ""
+    paren = m.group(1).strip()
+    if not paren:
+        return ""
+    # Split by comma/semicolon, drop tokens already in tags/topics.
+    known = {t.lower() for t in tags} | {t.lower() for t in topics}
+    parts = [p.strip() for p in re.split(r"[,;]", paren) if p.strip()]
+    kept = [p for p in parts if p.lower() not in known and not _is_region_tag(p)]
+    return "; ".join(kept)
+
+
+# Region tags Kaikki surfaces in `tags` look like "Quebec", "Louisiana", etc.
+_REGION_RE = re.compile(
+    r"^(Quebec|France|Belgium|Louisiana|Canada|North-America|Mexico|"
+    r"El-Salvador|Argentina|Spain|Cuba|Colombia|Chile|Peru|Puerto-Rico)$"
+)
+
+
+def _is_region_tag(s: str) -> bool:
+    return bool(_REGION_RE.match(s))
+
+
+def _first_example_with_english(sense: dict) -> dict:
+    """Pick the first Wiktionary example that has an English translation."""
+    for ex in sense.get("examples", []):
+        eng = (ex.get("english") or "").strip()
+        target = (ex.get("text") or "").strip()
+        if eng and target:
+            return {"target": target, "english": eng}
+    return None
+
+
+def _append_redirect(redirects: dict, word: str, base: str) -> None:
+    """Store form-of redirects as an ordered deduped list per word.
+
+    A Wiktionary form like `suis` is the 1st-person of both `être` and
+    `suivre`. The old behaviour (``redirects[word] = base``) silently kept
+    only whichever Kaikki emitted last, which meant the menu lost `être`'s
+    "to be" senses for `suis`. Keeping a list lets ``follow_redirects``
+    collect from every base while preserving insertion order.
+    """
+    existing = redirects.get(word)
+    if existing is None:
+        redirects[word] = base
+        return
+    if isinstance(existing, str):
+        if existing == base:
+            return
+        redirects[word] = [existing, base]
+        return
+    # list
+    if base in existing:
+        return
+    existing.append(base)
+
+
+def _iter_redirect_targets(value):
+    """Yield redirect targets whether the stored value is a string or list."""
+    if value is None:
+        return
+    if isinstance(value, str):
+        yield value
+    else:
+        for v in value:
+            if v:
+                yield v
 
 # Regex to extract useful translation from alt-of glosses like:
 # "contraction of a + el, literally "at the, to the"" → "at the, to the"
@@ -192,6 +300,10 @@ _FORM_OF_PATTERNS = [
     re.compile(r'\bof\s+.{1,30}?;\s*(.+)'),
     # "female equivalent of amigo, friend" → friend
     re.compile(r'equivalent of\s+\w+,\s*(.+)'),
+    # "plural of œil, eyes" → eyes  (French morphology uses comma here)
+    # Constrained to lowercase head-word + a short trailing phrase to avoid
+    # swallowing grammatical descriptions like "first-person singular of ...".
+    re.compile(r'\bof\s+[\w\u00c0-\u024f]{1,20}?,\s*([a-z\u00c0-\u024f][\w\s,\u00c0-\u024f\'-]{1,60})$'),
 ]
 
 
@@ -221,11 +333,19 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
     cache_path = Path(str(path) + ".cache.pkl")
     if use_cache and cache_path.exists():
         if cache_path.stat().st_mtime >= path.stat().st_mtime:
-            print(f"Loading Wiktionary from cache ({cache_path.name})...")
-            with open(cache_path, "rb") as f:
-                data = pickle.load(f)
-            print(f"  {len(data[0])} unique lookup keys, {len(data[1])} form-of redirects")
-            return data
+            try:
+                with open(cache_path, "rb") as f:
+                    data = pickle.load(f)
+                # Cache format: (schema_version, index, redirects). Older pickles
+                # used (index, redirects); we fall through to rebuild on mismatch.
+                if (isinstance(data, tuple) and len(data) == 3
+                        and data[0] == CACHE_SCHEMA_VERSION):
+                    print(f"Loading Wiktionary from cache ({cache_path.name})...")
+                    print(f"  {len(data[1])} unique lookup keys, {len(data[2])} form-of redirects")
+                    return data[1], data[2]
+                print(f"  Cache schema mismatch ({cache_path.name}) — rebuilding")
+            except (EOFError, pickle.UnpicklingError, ValueError) as exc:
+                print(f"  Cache unreadable ({exc}) — rebuilding")
 
     print(f"Loading Wiktionary from {path}...")
     index = defaultdict(list)
@@ -249,11 +369,14 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
             real_senses = []
             for s in senses:
                 tags = set(s.get("tags", []))
+                raw_tags = set(tags)  # original, for context extraction
 
                 glosses = s.get("glosses", [])
                 if not glosses:
                     continue
                 gloss = glosses[0]
+                raw_glosses_list = s.get("raw_glosses", []) or []
+                raw_gloss = raw_glosses_list[0] if raw_glosses_list else gloss
 
                 # Handle alt-of first (before SKIP_TAGS) so we can rescue
                 # useful glosses like 'contraction of a + el, literally "at the, to the"'
@@ -268,6 +391,12 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
                     if extracted:
                         gloss = extracted
                         # Clear skip tags so this sense survives
+                        tags = tags - SKIP_TAGS
+                    elif "contraction" in tags:
+                        # alt-of contractions (n'est, s'il, qu'il) carry structural
+                        # info in the gloss itself ("contraction of ne + est (…)").
+                        # Keep the gloss verbatim — clean_translation will trim it —
+                        # so these apostrophized phrase-cards aren't sense-menu-empty.
                         tags = tags - SKIP_TAGS
                     else:
                         # Pure alt-of with no extractable translation, skip
@@ -291,13 +420,42 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
                         # Pure inflection reference (e.g. "feminine singular of bueno"), skip
                         continue
 
-                if len(gloss) < 2:
+                # Allow single-char glosses ("I", "y", "à"). Kaikki occasionally
+                # emits empty glosses for stubs; those we do skip.
+                if not gloss:
                     continue
 
-                real_senses.append({
+                topics = list(s.get("topics", []) or [])
+                qualifier = (s.get("qualifier") or "").strip()
+                example = _first_example_with_english(s)
+
+                # Register = semantic tags only. form-of is a morphology marker,
+                # not a learner-facing register, so strip it too.
+                register = sorted(
+                    t for t in tags
+                    if t not in INFLECTION_TAGS and t != "form-of"
+                )
+
+                # Context: peel the leading parenthetical off raw_gloss, minus
+                # whatever tags/topics already cover. Fall back to qualifier
+                # (Kaikki's free-text modifier) or the first topic.
+                context = _context_from_raw_gloss(raw_gloss, raw_tags, topics)
+                if not context and qualifier:
+                    context = qualifier
+                if not context and topics:
+                    context = topics[0]
+
+                sense_out = {
                     "gloss": gloss,
                     "tags": sorted(tags - {"form-of"}) if tags else [],
-                })
+                }
+                if context:
+                    sense_out["context"] = context
+                if register:
+                    sense_out["register"] = register
+                if example:
+                    sense_out["example"] = example
+                real_senses.append(sense_out)
 
             if not real_senses:
                 # Build redirect for form-of entries: amiga → amigo, peor → malo
@@ -314,10 +472,14 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
                             else:
                                 continue
                         if base and base != word:
-                            redirects[word] = base
+                            # Multi-base support: Kaikki emits separate entries
+                            # for form-of ambiguity (suis → être / suivre), and
+                            # we want to collect senses from BOTH bases rather
+                            # than silently picking whichever Kaikki lists last.
+                            _append_redirect(redirects, word, base)
                             norm = strip_accents(word)
                             if norm != word:
-                                redirects[norm] = base
+                                _append_redirect(redirects, norm, base)
                             # Track reflexive form-of for post-processing
                             stags = set(s.get("tags", []))
                             links = s.get("links", [])
@@ -375,7 +537,7 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
         import pickle
         print(f"  Caching to {cache_path.name}...")
         with open(cache_path, "wb") as f:
-            pickle.dump(result, f)
+            pickle.dump((CACHE_SCHEMA_VERSION, result[0], result[1]), f)
 
     return result
 
@@ -397,25 +559,33 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
         """Expand a list of lookup forms by following redirect chains.
 
         Follows form-of redirects up to max_hops until an indexed entry is
-        found or the chain dead-ends. Avoids cycles.
+        found or the chain dead-ends. Avoids cycles. Supports multi-base
+        redirects: a form like `suis` can fan out to both `être` and
+        `suivre` — we enqueue all of them and chase each.
         """
         seen = set(forms)
         queue = list(forms)
         for f in queue:
-            target = redirects.get(f)
-            if target and target not in seen:
+            for target in _iter_redirect_targets(redirects.get(f)):
+                if target in seen:
+                    continue
                 seen.add(target)
                 queue.append(target)
-                # Follow chain from target
+                # Follow chain from this particular target
+                current = target
                 for _ in range(max_hops - 1):
-                    if target in index:
-                        break  # reached an indexed entry, stop
-                    next_target = redirects.get(target)
-                    if not next_target or next_target in seen:
+                    if current in index:
+                        break  # reached an indexed entry, stop this chain
+                    next_targets = list(_iter_redirect_targets(redirects.get(current)))
+                    if not next_targets:
                         break
-                    seen.add(next_target)
-                    queue.append(next_target)
-                    target = next_target
+                    # Pick the first unseen hop; if all seen, we're done.
+                    nxt = next((t for t in next_targets if t not in seen), None)
+                    if not nxt:
+                        break
+                    seen.add(nxt)
+                    queue.append(nxt)
+                    current = nxt
         return queue
 
     # Build groups of forms: primary (lemma), secondary (word if different)
@@ -438,7 +608,10 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
         if any(e.get("_reflexive_of") for e in word_entries):
             word_has_own_entry = True
 
-    # Collect candidates from all groups
+    # Collect candidates from all groups. We deliberately do NOT stop at the
+    # first form-with-entries within a group: French bare forms like `est`
+    # have adj/noun entries (east) AND a form-of redirect to `être`, and we
+    # want the verb senses merged in rather than masked by the bare entry.
     all_candidates = []
     for i, group in enumerate(groups):
         # Skip lemma group (i=0) if word has reflexive-of entry
@@ -448,7 +621,6 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
             candidates = wikt_index.get(form)
             if candidates:
                 all_candidates.extend(candidates)
-                break  # found for this group, move to next
 
     if not all_candidates:
         return []
@@ -474,11 +646,18 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
                 continue
             seen.add(norm_key)
 
-            results.append({
+            result = {
                 "pos": pos,
                 "translation": gloss,
                 "source": "wiktionary",
-            })
+            }
+            if sense.get("context"):
+                result["context"] = sense["context"]
+            if sense.get("register"):
+                result["register"] = list(sense["register"])
+            if sense.get("example"):
+                result["example"] = dict(sense["example"])
+            results.append(result)
             count_for_pos += 1
 
     return results

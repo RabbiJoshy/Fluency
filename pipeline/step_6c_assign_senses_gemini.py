@@ -43,6 +43,32 @@ from util_5c_sense_menu_format import (
 )
 load_dotenv_from_project_root()
 
+
+def _format_sense_line(idx, label, sense):
+    """Format one candidate sense for a Gemini prompt.
+
+    Adds `context` inline (in parentheses after the translation), and tacks
+    a Wiktionary example onto a follow-up line when one is present. Both
+    fields are optional — the formatter degrades gracefully to the old
+    `"  idx. [POS] translation"` shape when the sense only carries the
+    required keys.
+    """
+    base = "  %d. %s[%s] %s" % (idx, label, sense["pos"], sense["translation"])
+    ctx = sense.get("context")
+    if ctx:
+        # Short contexts inline; keep the line compact enough to batch.
+        base += " (%s)" % ctx[:80]
+    register = sense.get("register") or []
+    if register:
+        base += " [%s]" % ",".join(register[:3])
+    ex = sense.get("example") or {}
+    target = (ex.get("target") or "").strip()
+    english = (ex.get("english") or "").strip()
+    if target and english:
+        base += "\n     e.g. %s → %s" % (target[:80], english[:80])
+    return base
+
+
 # ---------------------------------------------------------------------------
 # Spanish Wiktionary dialect supplement (inlined from bench_gapfill)
 # ---------------------------------------------------------------------------
@@ -161,8 +187,7 @@ def classify_batch_gemini(words_data, api_key, gemini_model):
         prompt_parts.append("Senses:")
         for si, s in enumerate(wd["senses"]):
             label = "[ES] " if s.get("is_spanish") else ""
-            prompt_parts.append("  %d. %s[%s] %s" % (si, label, s["pos"],
-                                                      s["translation"]))
+            prompt_parts.append(_format_sense_line(si, label, s))
         prompt_parts.append("Examples:")
         for ei, ex in enumerate(wd["examples"]):
             spa = ex.get("spanish", "")
@@ -291,8 +316,7 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
             prompt_parts.append("Candidate senses:")
             for si, s in enumerate(wd["senses"], start=1):
                 label = "[ES] " if s.get("is_spanish") else ""
-                prompt_parts.append("  %d. %s[%s] %s" % (
-                    si, label, s["pos"], s["translation"]))
+                prompt_parts.append(_format_sense_line(si, label, s))
         else:
             prompt_parts.append("Candidate senses: (none)")
         prompt_parts.append("Examples:")
