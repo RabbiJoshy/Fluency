@@ -774,7 +774,7 @@
                meaning count / translation length changes between cards. */
             justify-content: flex-start;
             padding-top: 20px;
-            padding-bottom: 8px;
+            padding-bottom: 2px;
         }
 
         /* Back layout: header / scroll / tray / sentence / links.
