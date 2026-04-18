@@ -696,6 +696,13 @@ def main():
                     src = sense.get("source")
                     if src:
                         meaning_lean["source"] = src
+                    # Preserve the SpanishDict context field for later
+                    # disambiguation: if two senses share (pos, translation)
+                    # but have different contexts, we'll expose the context
+                    # on those meaning rows.
+                    ctx = sense.get("context")
+                    if ctx:
+                        meaning_lean["context"] = ctx
 
                     # Meaning-level stamp: only when every contributing method
                     # is keyword-tier (0 < prio <= KEYWORD_PRIORITY_THRESHOLD).
@@ -713,22 +720,21 @@ def main():
                     meanings_full.append({**meaning_lean, "examples": exs})
                     examples_by_meaning.append(exs)
 
-            # Always collapse meaning rows that share (pos, translation).
-            # Duplicates can arise from:
-            #   - curated overrides (all rows stamped with the same label)
-            #   - sense-menu ID collisions where the same (pos, translation)
-            #     exists under different sense IDs (e.g. uno has PRON 'one'
-            #     under both '870' and '870f')
-            #   - any future scenario where different sense IDs coincide
-            # Merge examples, sum frequencies, preserve order of first
-            # appearance.
+            # Always collapse meaning rows that share (pos, translation, context).
+            # Context preserves distinctions SpanishDict makes between senses
+            # with the same surface translation (e.g. 'uno' as numeral vs
+            # impersonal). Rows with same pos+translation AND matching/empty
+            # context collapse; rows with same pos+translation but differing
+            # contexts stay separate. After dedup, context is surfaced on
+            # the visible translation ONLY when it's needed to disambiguate
+            # (i.e. another meaning shares this pos+translation).
             if len(meanings_lean) > 1:
                 merged_lean = {}
                 merged_full = {}
                 merged_exs = {}
                 order = []
                 for m_lean, m_full, exs in zip(meanings_lean, meanings_full, examples_by_meaning):
-                    key2 = (m_lean.get("pos"), m_lean.get("translation"))
+                    key2 = (m_lean.get("pos"), m_lean.get("translation"), m_lean.get("context") or "")
                     if key2 not in merged_lean:
                         order.append(key2)
                         merged_lean[key2] = dict(m_lean)
@@ -751,6 +757,27 @@ def main():
                 meanings_lean = [merged_lean[k] for k in order]
                 meanings_full = [merged_full[k] for k in order]
                 examples_by_meaning = [merged_exs[k] for k in order]
+
+            # Context disambiguation pass: after dedup, find (pos, translation)
+            # pairs that still have multiple rows (differing only in context).
+            # Surface the context on those rows' translation text so the user
+            # can tell them apart. Rows whose (pos, translation) is unique
+            # keep their clean translation and drop the context field.
+            if meanings_lean:
+                from collections import Counter as _Counter
+                pt_counts = _Counter((m.get("pos"), m.get("translation"))
+                                     for m in meanings_lean)
+                for m_lean, m_full in zip(meanings_lean, meanings_full):
+                    ctx = m_lean.get("context")
+                    pair = (m_lean.get("pos"), m_lean.get("translation"))
+                    if ctx and pt_counts[pair] > 1:
+                        # Disambiguate: append context parenthetically
+                        m_lean["translation"] = "%s (%s)" % (m_lean["translation"], ctx)
+                        m_full["translation"] = m_lean["translation"]
+                    # Drop the internal context field either way — its work
+                    # is done and the front end doesn't read it.
+                    m_lean.pop("context", None)
+                    m_full.pop("context", None)
 
             if not meanings_lean:
                 continue
