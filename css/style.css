@@ -4359,21 +4359,46 @@
             text-align: center;
         }
 
-        /* Sentence + translation block matches the real card. */
-        .about-demo-card-inner .sentence {
-            font-size: 15px;
-            padding: 12px 14px;
+        /* Example box — target sentence + English translation together inside
+           a single accent-bordered box. Replaces the old split layout (Spanish
+           in a box, English loose below it) so the two stay visually bound
+           and read as a pair. */
+        .about-demo-card-inner .about-demo-example {
             margin-top: 10px;
+            padding: 12px 14px;
+            background: rgba(var(--accent-primary-rgb), 0.1);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .about-demo-card-inner .about-demo-example-target {
+            font-family: var(--font-reading);
+            font-style: italic;
+            font-size: 15px;
+            color: #fff;
             line-height: 1.4;
         }
 
-        .about-demo-card-inner .translation {
+        .about-demo-card-inner .about-demo-example-english {
+            font-family: var(--font-reading);
             font-size: 13px;
-            color: white;
+            color: var(--text-secondary);
             font-weight: 500;
-            margin-top: 8px;
             line-height: 1.4;
-            text-align: center;
+        }
+
+        /* Pill highlight for the target word inside the example sentence.
+           Matches the real app's pill style (flashcards.js:1562). */
+        .about-demo-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 4px;
         }
 
         /* Spotify row at the bottom of the artist-mode back face.

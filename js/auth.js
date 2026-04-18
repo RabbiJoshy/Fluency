@@ -761,13 +761,17 @@ const _ABOUT_DEMO_DECKS = {
             pos: 'NOUN',
             rank: 58,
             song: 'ME PORTO BONITO · Bad Bunny',
+            // Hand-curated sense examples — the demo cards are few enough that
+            // we can hold this to a higher bar than the pipeline's automatic
+            // assignments. Each example should unambiguously read as the sense
+            // it's attached to.
             meanings: [
                 { pos: 'NOUN', translation: 'fire',
                   target: 'La calle está en fuego, la calle tiene fuego',
                   english: 'The street is on fire, the street has fire' },
                 { pos: 'NOUN', translation: 'passion',
-                  target: 'Donde había fuego, ceniza queda',
-                  english: 'Where there was fire, ashes remain' },
+                  target: 'Contigo siento un fuego que no se apaga',
+                  english: "With you I feel a passion that doesn't fade" },
             ],
         },
     ],
@@ -812,8 +816,10 @@ function _buildAboutDemoCard(mode) {
                         <div class="about-demo-back-word"></div>
                     </div>
                     <div class="meanings-scroll"></div>
-                    <div class="sentence"></div>
-                    <div class="translation"></div>
+                    <div class="about-demo-example">
+                        <div class="about-demo-example-target"></div>
+                        <div class="about-demo-example-english"></div>
+                    </div>
                     <div class="about-demo-spotify-row">
                         <span class="about-demo-song-back"></span>
                         <span class="about-demo-spotify-mark">
@@ -861,6 +867,26 @@ function _sleep(ms) {
     return new Promise(r => setTimeout(r, ms));
 }
 
+// Wrap any occurrence of `word` in the example sentence with a highlight span.
+// Matches the real flashcard app's behaviour in updateCard() — word-boundary
+// regex using unicode property escapes so it handles Spanish letters cleanly,
+// case-insensitive so "Fuego" at sentence start still catches. Escapes HTML
+// up-front so the raw sentence can't inject markup.
+function _highlightTargetWord(sentence, word) {
+    if (!sentence) return '';
+    const escaped = sentence
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    if (!word) return escaped;
+    const wordEsc = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    try {
+        const re = new RegExp(`(?<![\\p{L}\\p{N}])(${wordEsc})(?![\\p{L}\\p{N}])`, 'giu');
+        return escaped.replace(re, '<span class="about-demo-highlight">$1</span>');
+    } catch (_) {
+        // Older browsers without \p{...} support — just return the escaped text.
+        return escaped;
+    }
+}
+
 async function _runAboutDemo(container, mode) {
     const deck = _ABOUT_DEMO_DECKS[mode] || _ABOUT_DEMO_DECKS.normal;
     const card = container.querySelector('.card');
@@ -869,8 +895,8 @@ async function _runAboutDemo(container, mode) {
     const rankEl = container.querySelector('.card-ranking');
     const backWordEl = container.querySelector('.about-demo-back-word');
     const meaningsEl = container.querySelector('.meanings-scroll');
-    const sentenceEl = container.querySelector('.sentence');
-    const translationEl = container.querySelector('.translation');
+    const exampleTargetEl = container.querySelector('.about-demo-example-target');
+    const exampleEnglishEl = container.querySelector('.about-demo-example-english');
     const spotifyRowEl = container.querySelector('.about-demo-spotify-row');
     const songBackEl = container.querySelector('.about-demo-song-back');
 
@@ -914,8 +940,11 @@ async function _runAboutDemo(container, mode) {
                 if (!stillMounted()) return;
                 const m = entry.meanings[i];
                 meaningsEl.innerHTML = _renderDemoMeaningRows(entry.meanings, i);
-                sentenceEl.textContent = m.target;
-                translationEl.textContent = m.english;
+                // Target sentence is HTML (with the target word wrapped in a
+                // highlight span); the helper escapes the rest first so raw
+                // data can't inject markup.
+                exampleTargetEl.innerHTML = _highlightTargetWord(m.target, entry.word);
+                exampleEnglishEl.textContent = m.english;
                 // Dwell long enough to actually read the example sentence. A
                 // single-sense entry sits longer since there's nothing else
                 // to cycle to.

@@ -14,7 +14,7 @@ Learn Spanish from the ground up, ordered by how common each word actually is ac
 
 ![Artist mode — a lyric card with the translated line](demo://artist)
 
-Pick an artist — Bad Bunny, say — and the app builds you a deck of every Spanish word they use across their entire discography, ranked by how often they use it. Each flashcard shows the actual song lyric the word came from, with the line translated underneath.
+Pick an artist — Bad Bunny, say — and the app builds you a deck of every Spanish word they use across their entire discography, ranked by how often they use it. Each flashcard shows the actual song lyric the word came from, with the line translated underneath. Tap the lyric and it plays in your own Spotify at that exact moment — so you hear the word in context on the original track.
 
 Because language follows a power law, knowing the top-ranked words covers most of what you hear: learn a few hundred words and you're already recognising the majority of the catalog.
 
