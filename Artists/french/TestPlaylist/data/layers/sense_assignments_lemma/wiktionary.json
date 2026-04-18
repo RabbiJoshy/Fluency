@@ -114,19 +114,7 @@
     ]
   },
   "danse|danse": {
-    "wiktionary-auto": [
-      {
-        "sense": "196",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ],
-    "keyword": [
+    "pos-auto": [
       {
         "sense": "196",
         "examples": [
@@ -136,6 +124,8 @@
       {
         "sense": "a37",
         "examples": [
+          0,
+          1,
           2,
           4
         ]
@@ -162,23 +152,6 @@
     ]
   },
   "une|une": {
-    "wiktionary-auto": [
-      {
-        "sense": "6b0",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "51d",
@@ -231,23 +204,6 @@
     ]
   },
   "t|t": {
-    "wiktionary-auto": [
-      {
-        "sense": "5da",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "0c8",
@@ -309,23 +265,6 @@
     ]
   },
   "va|va": {
-    "wiktionary-auto": [
-      {
-        "sense": "097",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "08d",
@@ -367,30 +306,16 @@
     ]
   },
   "fait|fait": {
-    "wiktionary-auto": [
+    "pos-auto": [
       {
         "sense": "09e",
         "examples": [
-          0,
           1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
+          3
         ]
       }
     ],
     "keyword": [
-      {
-        "sense": "09e",
-        "examples": [
-          3
-        ]
-      },
       {
         "sense": "57f",
         "examples": [
@@ -565,23 +490,6 @@
     ]
   },
   "c|c": {
-    "wiktionary-auto": [
-      {
-        "sense": "0cc",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "5e4",
@@ -725,20 +633,6 @@
     ]
   },
   "ma|ma": {
-    "wiktionary-auto": [
-      {
-        "sense": "d28",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "719",
@@ -834,14 +728,6 @@
     ]
   },
   "perdus|perdus": {
-    "wiktionary-auto": [
-      {
-        "sense": "e5f",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "e5f",
@@ -977,18 +863,6 @@
     ]
   },
   "aime|aime": {
-    "wiktionary-auto": [
-      {
-        "sense": "30a",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "407",
@@ -1132,16 +1006,6 @@
     ]
   },
   "tue|tue": {
-    "wiktionary-auto": [
-      {
-        "sense": "e06",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "e06",
@@ -1215,16 +1079,7 @@
     ]
   },
   "mélange|mélange": {
-    "wiktionary-auto": [
-      {
-        "sense": "48e",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ],
-    "keyword": [
+    "pos-auto": [
       {
         "sense": "48e",
         "examples": [
@@ -1315,20 +1170,6 @@
     ]
   },
   "cette|cette": {
-    "wiktionary-auto": [
-      {
-        "sense": "580",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "6ae",
@@ -1345,20 +1186,6 @@
     ]
   },
   "fois|fois": {
-    "wiktionary-auto": [
-      {
-        "sense": "ffa",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "ffa",
@@ -1459,17 +1286,6 @@
     ]
   },
   "verra|verra": {
-    "wiktionary-auto": [
-      {
-        "sense": "eaa",
-        "examples": [
-          0,
-          1,
-          2,
-          3
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "50b",
@@ -1517,17 +1333,6 @@
     ]
   },
   "crois|crois": {
-    "wiktionary-auto": [
-      {
-        "sense": "723",
-        "examples": [
-          0,
-          1,
-          2,
-          3
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "63e",
@@ -1630,17 +1435,6 @@
     ]
   },
   "été|été": {
-    "wiktionary-auto": [
-      {
-        "sense": "250",
-        "examples": [
-          0,
-          1,
-          2,
-          3
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "250",
@@ -1719,11 +1513,10 @@
     ]
   },
   "partis|partis": {
-    "wiktionary-auto": [
+    "pos-auto": [
       {
         "sense": "c96",
         "examples": [
-          0,
           1
         ]
       }
@@ -1778,14 +1571,6 @@
     ]
   },
   "vis|vis": {
-    "wiktionary-auto": [
-      {
-        "sense": "0c5",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "c37",
@@ -1945,14 +1730,6 @@
     ]
   },
   "montre|montre": {
-    "wiktionary-auto": [
-      {
-        "sense": "3ff",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "685",
@@ -2282,14 +2059,6 @@
     ]
   },
   "joué|joué": {
-    "wiktionary-auto": [
-      {
-        "sense": "85e",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "6dc",
@@ -2400,15 +2169,6 @@
     ]
   },
   "pars|pars": {
-    "wiktionary-auto": [
-      {
-        "sense": "d1c",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "550",
@@ -2452,15 +2212,6 @@
     ]
   },
   "seconde|seconde": {
-    "wiktionary-auto": [
-      {
-        "sense": "84b",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "84b",
@@ -2821,16 +2572,6 @@
     ]
   },
   "mis|mis": {
-    "wiktionary-auto": [
-      {
-        "sense": "118",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "0a0",
@@ -2847,14 +2588,6 @@
     ]
   },
   "ose|ose": {
-    "wiktionary-auto": [
-      {
-        "sense": "48a",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "8d6",
@@ -2877,15 +2610,6 @@
     ]
   },
   "parle|parle": {
-    "wiktionary-auto": [
-      {
-        "sense": "bc0",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "7d9",
@@ -3002,15 +2726,6 @@
     ]
   },
   "verras|verras": {
-    "wiktionary-auto": [
-      {
-        "sense": "a14",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "138",
@@ -3508,14 +3223,6 @@
     ]
   },
   "jures|jures": {
-    "wiktionary-auto": [
-      {
-        "sense": "90b",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "37e",
@@ -3558,14 +3265,6 @@
     ]
   },
   "lié|lié": {
-    "wiktionary-auto": [
-      {
-        "sense": "07d",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "20a",
@@ -3793,15 +3492,6 @@
     ]
   },
   "perdu|perdu": {
-    "wiktionary-auto": [
-      {
-        "sense": "cac",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "85a",
@@ -4663,14 +4353,6 @@
     ]
   },
   "change|change": {
-    "wiktionary-auto": [
-      {
-        "sense": "3b9",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "859",
@@ -4871,14 +4553,6 @@
     ]
   },
   "croit|croit": {
-    "wiktionary-auto": [
-      {
-        "sense": "5d5",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "34a",
@@ -5169,14 +4843,6 @@
     ]
   },
   "déprimé|déprimé": {
-    "wiktionary-auto": [
-      {
-        "sense": "b1b",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "0e6",
@@ -5207,14 +4873,6 @@
     ]
   },
   "développées|développées": {
-    "wiktionary-auto": [
-      {
-        "sense": "f69",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "dfa",
@@ -5385,14 +5043,6 @@
     ]
   },
   "fatiguée|fatiguée": {
-    "wiktionary-auto": [
-      {
-        "sense": "5d1",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "235",
@@ -5473,14 +5123,6 @@
     ]
   },
   "frustrée|frustrée": {
-    "wiktionary-auto": [
-      {
-        "sense": "c46",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "2ad",
@@ -5571,14 +5213,6 @@
     ]
   },
   "hanté|hanté": {
-    "wiktionary-auto": [
-      {
-        "sense": "dd4",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "543",
@@ -5879,14 +5513,6 @@
     ]
   },
   "jure|jure": {
-    "wiktionary-auto": [
-      {
-        "sense": "335",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "2f2",
@@ -6107,14 +5733,6 @@
     ]
   },
   "lit|lit": {
-    "wiktionary-auto": [
-      {
-        "sense": "f3c",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "f3c",
@@ -6495,14 +6113,6 @@
     ]
   },
   "obligé|obligé": {
-    "wiktionary-auto": [
-      {
-        "sense": "2d1",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "fea",
@@ -6533,14 +6143,6 @@
     ]
   },
   "orange|orange": {
-    "wiktionary-auto": [
-      {
-        "sense": "d8d",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "13d",
@@ -6571,14 +6173,6 @@
     ]
   },
   "p'tit|p'tit": {
-    "wiktionary-auto": [
-      {
-        "sense": "f21",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "055",
@@ -6589,14 +6183,6 @@
     ]
   },
   "p'tite|p'tite": {
-    "wiktionary-auto": [
-      {
-        "sense": "4ef",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "bfb",
@@ -6737,14 +6323,6 @@
     ]
   },
   "plonge|plonge": {
-    "wiktionary-auto": [
-      {
-        "sense": "4fd",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "39b",
@@ -6950,14 +6528,6 @@
     ]
   },
   "recule|recule": {
-    "wiktionary-auto": [
-      {
-        "sense": "8fe",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "9da",
@@ -7188,14 +6758,6 @@
     ]
   },
   "élance|élance": {
-    "wiktionary-auto": [
-      {
-        "sense": "561",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "98b",
@@ -7566,14 +7128,6 @@
     ]
   },
   "tente|tente": {
-    "wiktionary-auto": [
-      {
-        "sense": "ac7",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "20b",
@@ -7834,14 +7388,6 @@
     ]
   },
   "échecs|échecs": {
-    "wiktionary-auto": [
-      {
-        "sense": "570",
-        "examples": [
-          0
-        ]
-      }
-    ],
     "keyword": [
       {
         "sense": "570",
@@ -7885,6 +7431,530 @@
     "wiktionary-auto": [
       {
         "sense": "eb9",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "je|je": {
+    "wiktionary-auto": [
+      {
+        "sense": "2b9",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "yeux|yeux": {
+    "wiktionary-auto": [
+      {
+        "sense": "2e7",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "qu'elle|qu'elle": {
+    "wiktionary-auto": [
+      {
+        "sense": "dc4",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "aux|aux": {
+    "wiktionary-auto": [
+      {
+        "sense": "e25",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "n'est|n'est": {
+    "wiktionary-auto": [
+      {
+        "sense": "ee3",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "pis|pis": {
+    "wiktionary-auto": [
+      {
+        "sense": "82c",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "c'qui|c'qui": {
+    "wiktionary-auto": [
+      {
+        "sense": "bbb",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "qu'il|qu'il": {
+    "wiktionary-auto": [
+      {
+        "sense": "2ea",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  "che|che": {
+    "wiktionary-auto": [
+      {
+        "sense": "814",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "qu'un|qu'un": {
+    "wiktionary-auto": [
+      {
+        "sense": "466",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "t'as|t'as": {
+    "wiktionary-auto": [
+      {
+        "sense": "fef",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "c'que|c'que": {
+    "wiktionary-auto": [
+      {
+        "sense": "185",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "finis|finis": {
+    "wiktionary-auto": [
+      {
+        "sense": "7f1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "jusqu'au|jusqu'au": {
+    "wiktionary-auto": [
+      {
+        "sense": "995",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "raccourci|raccourci": {
+    "wiktionary-auto": [
+      {
+        "sense": "960",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "s'est|s'est": {
+    "wiktionary-auto": [
+      {
+        "sense": "9e7",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "s'il|s'il": {
+    "wiktionary-auto": [
+      {
+        "sense": "035",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "l'a|l'a": {
+    "wiktionary-auto": [
+      {
+        "sense": "acf",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "s'en|s'en": {
+    "wiktionary-auto": [
+      {
+        "sense": "14f",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "t'es|t'es": {
+    "wiktionary-auto": [
+      {
+        "sense": "75d",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "vu|vu": {
+    "wiktionary-auto": [
+      {
+        "sense": "9df",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  "n'a|n'a": {
+    "wiktionary-auto": [
+      {
+        "sense": "07c",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "qu'une|qu'une": {
+    "wiktionary-auto": [
+      {
+        "sense": "0ce",
+        "examples": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "ris|ris": {
+    "wiktionary-auto": [
+      {
+        "sense": "e5c",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "d'avoir|d'avoir": {
+    "wiktionary-auto": [
+      {
+        "sense": "779",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "fut|fut": {
+    "wiktionary-auto": [
+      {
+        "sense": "419",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "souris|souris": {
+    "wiktionary-auto": [
+      {
+        "sense": "539",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "m'as|m'as": {
+    "wiktionary-auto": [
+      {
+        "sense": "71a",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "qu'au|qu'au": {
+    "wiktionary-auto": [
+      {
+        "sense": "4da",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "as|as": {
+    "wiktionary-auto": [
+      {
+        "sense": "7f1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "ché|ché": {
+    "wiktionary-auto": [
+      {
+        "sense": "a1b",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "d'en|d'en": {
+    "wiktionary-auto": [
+      {
+        "sense": "a19",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "désarme|désarme": {
+    "wiktionary-auto": [
+      {
+        "sense": "5c1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "folle|folle": {
+    "wiktionary-auto": [
+      {
+        "sense": "020",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "guide|guide": {
+    "wiktionary-auto": [
+      {
+        "sense": "dc9",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "m'en|m'en": {
+    "wiktionary-auto": [
+      {
+        "sense": "a61",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "n'avons|n'avons": {
+    "wiktionary-auto": [
+      {
+        "sense": "7ac",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "n'importe|n'importe": {
+    "wiktionary-auto": [
+      {
+        "sense": "eb1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "n'ont|n'ont": {
+    "wiktionary-auto": [
+      {
+        "sense": "b5a",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "passions|passions": {
+    "wiktionary-auto": [
+      {
+        "sense": "58a",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "qu'aux|qu'aux": {
+    "wiktionary-auto": [
+      {
+        "sense": "c42",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "qu'elles|qu'elles": {
+    "wiktionary-auto": [
+      {
+        "sense": "c49",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "qu'eux|qu'eux": {
+    "wiktionary-auto": [
+      {
+        "sense": "591",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "t'a|t'a": {
+    "wiktionary-auto": [
+      {
+        "sense": "bb4",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "vue|vue": {
+    "wiktionary-auto": [
+      {
+        "sense": "c5c",
         "examples": [
           0
         ]
@@ -7992,30 +8062,6 @@
       }
     ]
   },
-  "on|on": {
-    "keyword": [
-      {
-        "sense": "5f2",
-        "examples": [
-          6
-        ]
-      },
-      {
-        "sense": "27f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "les|les": {
     "keyword": [
       {
@@ -8069,27 +8115,45 @@
       }
     ]
   },
-  "a|a": {
+  "on|on": {
     "keyword": [
       {
-        "sense": "121",
+        "sense": "5f2",
         "examples": [
-          8
+          6
         ]
       },
       {
-        "sense": "65e",
+        "sense": "27f",
         "examples": [
+          0,
           1,
+          2,
           3,
           4,
-          5
+          5,
+          7,
+          8,
+          9
         ]
-      },
+      }
+    ]
+  },
+  "c'est|c'est": {
+    "keyword": [
       {
-        "sense": "776",
+        "sense": "1c0",
         "examples": [
-          7
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
         ]
       }
     ]
@@ -8122,28 +8186,27 @@
       }
     ]
   },
-  "un|un": {
+  "a|a": {
     "keyword": [
       {
-        "sense": "82d",
+        "sense": "121",
         "examples": [
-          1,
-          3
-        ]
-      }
-    ]
-  },
-  "qui|qui": {
-    "keyword": [
-      {
-        "sense": "4fc",
-        "examples": [
-          1,
-          2,
-          3,
-          6,
-          7,
           8
+        ]
+      },
+      {
+        "sense": "65e",
+        "examples": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "sense": "776",
+        "examples": [
+          7
         ]
       }
     ]
@@ -8207,6 +8270,32 @@
       }
     ]
   },
+  "qui|qui": {
+    "keyword": [
+      {
+        "sense": "4fc",
+        "examples": [
+          1,
+          2,
+          3,
+          6,
+          7,
+          8
+        ]
+      }
+    ]
+  },
+  "un|un": {
+    "keyword": [
+      {
+        "sense": "82d",
+        "examples": [
+          1,
+          3
+        ]
+      }
+    ]
+  },
   "ne|ne": {
     "keyword": [
       {
@@ -8234,29 +8323,12 @@
           1,
           6
         ]
-      }
-    ]
-  },
-  "elle|elle": {
-    "keyword": [
-      {
-        "sense": "b7c",
-        "examples": [
-          0,
-          1,
-          2,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
       },
       {
-        "sense": "690",
+        "sense": "7bc",
         "examples": [
-          3,
-          4
+          5,
+          8
         ]
       }
     ]
@@ -8326,6 +8398,15 @@
     ]
   },
   "tout|tout": {
+    "pos-auto": [
+      {
+        "sense": "99e",
+        "examples": [
+          2,
+          9
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "c91",
@@ -8340,8 +8421,7 @@
       {
         "sense": "99e",
         "examples": [
-          1,
-          2
+          1
         ]
       }
     ]
@@ -8367,15 +8447,26 @@
       }
     ]
   },
-  "belle|belle": {
+  "elle|elle": {
     "keyword": [
       {
-        "sense": "037",
+        "sense": "b7c",
         "examples": [
+          0,
           1,
           2,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "690",
+        "examples": [
           3,
-          5
+          4
         ]
       }
     ]
@@ -8444,26 +8535,6 @@
         "sense": "7c3",
         "examples": [
           1
-        ]
-      }
-    ]
-  },
-  "il|il": {
-    "keyword": [
-      {
-        "sense": "d01",
-        "examples": [
-          0,
-          1,
-          4
-        ]
-      },
-      {
-        "sense": "8f2",
-        "examples": [
-          5,
-          7,
-          8
         ]
       }
     ]
@@ -8652,6 +8723,26 @@
       }
     ]
   },
+  "il|il": {
+    "keyword": [
+      {
+        "sense": "d01",
+        "examples": [
+          0,
+          1,
+          4
+        ]
+      },
+      {
+        "sense": "8f2",
+        "examples": [
+          5,
+          7,
+          8
+        ]
+      }
+    ]
+  },
   "ou|ou": {
     "keyword": [
       {
@@ -8667,16 +8758,6 @@
           7,
           8,
           9
-        ]
-      }
-    ]
-  },
-  "suis|suis": {
-    "keyword": [
-      {
-        "sense": "e26",
-        "examples": [
-          4
         ]
       }
     ]
@@ -8746,33 +8827,6 @@
       }
     ]
   },
-  "y|y": {
-    "keyword": [
-      {
-        "sense": "2ce",
-        "examples": [
-          0,
-          3,
-          5,
-          9
-        ]
-      },
-      {
-        "sense": "40b",
-        "examples": [
-          6,
-          7,
-          8
-        ]
-      },
-      {
-        "sense": "18f",
-        "examples": [
-          4
-        ]
-      }
-    ]
-  },
   "l'|l'": {
     "keyword": [
       {
@@ -8837,17 +8891,25 @@
     ]
   },
   "mal|mal": {
+    "pos-auto": [
+      {
+        "sense": "363",
+        "examples": [
+          0,
+          1,
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "55e",
         "examples": [
           4
-        ]
-      },
-      {
-        "sense": "363",
-        "examples": [
-          5
         ]
       }
     ]
@@ -9015,6 +9077,16 @@
       }
     ]
   },
+  "part|part": {
+    "keyword": [
+      {
+        "sense": "179",
+        "examples": [
+          3
+        ]
+      }
+    ]
+  },
   "fais|fais": {
     "keyword": [
       {
@@ -9045,6 +9117,21 @@
           3,
           6
         ]
+      },
+      {
+        "sense": "d2b",
+        "examples": [
+          4
+        ]
+      },
+      {
+        "sense": "ee9",
+        "examples": [
+          0,
+          1,
+          2,
+          5
+        ]
       }
     ]
   },
@@ -9067,9 +9154,24 @@
   "reste|reste": {
     "keyword": [
       {
-        "sense": "7c8",
+        "sense": "1bf",
         "examples": [
-          1
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  "suis|suis": {
+    "keyword": [
+      {
+        "sense": "b6d",
+        "examples": [
+          4
         ]
       }
     ]
@@ -9121,6 +9223,14 @@
     ]
   },
   "entre|entre": {
+    "pos-auto": [
+      {
+        "sense": "be7",
+        "examples": [
+          1
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "e3e",
@@ -9132,6 +9242,18 @@
           5,
           6,
           7
+        ]
+      }
+    ]
+  },
+  "m'a|m'a": {
+    "keyword": [
+      {
+        "sense": "bcb",
+        "examples": [
+          0,
+          3,
+          5
         ]
       }
     ]
@@ -9154,6 +9276,33 @@
       }
     ]
   },
+  "y|y": {
+    "keyword": [
+      {
+        "sense": "2ce",
+        "examples": [
+          0,
+          3,
+          5,
+          9
+        ]
+      },
+      {
+        "sense": "40b",
+        "examples": [
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "sense": "18f",
+        "examples": [
+          4
+        ]
+      }
+    ]
+  },
   "autres|autres": {
     "keyword": [
       {
@@ -9161,6 +9310,20 @@
         "examples": [
           7,
           8
+        ]
+      }
+    ]
+  },
+  "sens|sens": {
+    "keyword": [
+      {
+        "sense": "a7f",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
         ]
       }
     ]
@@ -9229,20 +9392,25 @@
     ]
   },
   "son|son": {
+    "pos-auto": [
+      {
+        "sense": "471",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "386",
         "examples": [
           7
-        ]
-      },
-      {
-        "sense": "471",
-        "examples": [
-          1,
-          2,
-          5,
-          6
         ]
       }
     ]
@@ -9474,10 +9642,13 @@
   "faut|faut": {
     "keyword": [
       {
-        "sense": "c9e",
+        "sense": "df9",
         "examples": [
+          0,
+          2,
           3,
-          4
+          4,
+          5
         ]
       }
     ]
@@ -9758,6 +9929,14 @@
     ]
   },
   "petit|petit": {
+    "pos-auto": [
+      {
+        "sense": "539",
+        "examples": [
+          2
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "d77",
@@ -9831,7 +10010,13 @@
     ]
   },
   "avant|avant": {
-    "keyword": [
+    "pos-auto": [
+      {
+        "sense": "66b",
+        "examples": [
+          5
+        ]
+      },
       {
         "sense": "845",
         "examples": [
@@ -9996,8 +10181,25 @@
       }
     ]
   },
-  "sourire|sourire": {
+  "estompe|estompe": {
     "keyword": [
+      {
+        "sense": "ff4",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "sourire|sourire": {
+    "pos-auto": [
+      {
+        "sense": "326",
+        "examples": [
+          1,
+          2
+        ]
+      },
       {
         "sense": "f17",
         "examples": [
@@ -10117,9 +10319,9 @@
   "ferme|ferme": {
     "keyword": [
       {
-        "sense": "950",
+        "sense": "b59",
         "examples": [
-          1
+          0
         ]
       }
     ]
@@ -10131,6 +10333,12 @@
         "examples": [
           1,
           2
+        ]
+      },
+      {
+        "sense": "a69",
+        "examples": [
+          0
         ]
       }
     ]
@@ -10183,7 +10391,7 @@
   "pensées|pensées": {
     "keyword": [
       {
-        "sense": "d71",
+        "sense": "2a6",
         "examples": [
           1
         ]
@@ -10224,6 +10432,16 @@
       }
     ]
   },
+  "quitté|quitté": {
+    "keyword": [
+      {
+        "sense": "b18",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "sait|sait": {
     "keyword": [
       {
@@ -10255,7 +10473,7 @@
   "sort|sort": {
     "keyword": [
       {
-        "sense": "a78",
+        "sense": "8d3",
         "examples": [
           0
         ]
@@ -10263,13 +10481,15 @@
     ]
   },
   "tendre|tendre": {
-    "keyword": [
+    "pos-auto": [
       {
         "sense": "be6",
         "examples": [
           0
         ]
-      },
+      }
+    ],
+    "keyword": [
       {
         "sense": "751",
         "examples": [
@@ -10316,9 +10536,14 @@
       {
         "sense": "45a",
         "examples": [
-          0,
-          1,
           2
+        ]
+      },
+      {
+        "sense": "ac9",
+        "examples": [
+          0,
+          1
         ]
       }
     ]
@@ -10408,6 +10633,17 @@
       }
     ]
   },
+  "garde|garde": {
+    "keyword": [
+      {
+        "sense": "7ce",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
   "hasard|hasard": {
     "keyword": [
       {
@@ -10431,6 +10667,16 @@
         "sense": "120",
         "examples": [
           3
+        ]
+      }
+    ]
+  },
+  "joue|joue": {
+    "keyword": [
+      {
+        "sense": "c2f",
+        "examples": [
+          0
         ]
       }
     ]
@@ -10637,9 +10883,20 @@
   "trouvée|trouvée": {
     "keyword": [
       {
-        "sense": "545",
+        "sense": "fe7",
         "examples": [
           0
+        ]
+      }
+    ]
+  },
+  "bois|bois": {
+    "pos-auto": [
+      {
+        "sense": "3f6",
+        "examples": [
+          1,
+          2
         ]
       }
     ]
@@ -10689,7 +10946,7 @@
   "trouve|trouve": {
     "keyword": [
       {
-        "sense": "cd7",
+        "sense": "c6e",
         "examples": [
           1
         ]
@@ -10714,15 +10971,12 @@
         "examples": [
           1
         ]
-      }
-    ]
-  },
-  "allez|allez": {
-    "keyword": [
+      },
       {
-        "sense": "3ea",
+        "sense": "cb8",
         "examples": [
-          0
+          0,
+          2
         ]
       }
     ]
@@ -10797,13 +11051,7 @@
   "compris|compris": {
     "keyword": [
       {
-        "sense": "1b3",
-        "examples": [
-          0
-        ]
-      },
-      {
-        "sense": "ba1",
+        "sense": "dc7",
         "examples": [
           1
         ]
@@ -10834,10 +11082,9 @@
   "donne|donne": {
     "keyword": [
       {
-        "sense": "e7e",
+        "sense": "553",
         "examples": [
-          0,
-          1
+          0
         ]
       }
     ]
@@ -10900,6 +11147,16 @@
       }
     ]
   },
+  "glisse|glisse": {
+    "keyword": [
+      {
+        "sense": "106",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "importa|importa": {
     "keyword": [
       {
@@ -10946,20 +11203,10 @@
       }
     ]
   },
-  "partagé|partagé": {
-    "keyword": [
-      {
-        "sense": "8a6",
-        "examples": [
-          1
-        ]
-      }
-    ]
-  },
   "passé|passé": {
     "keyword": [
       {
-        "sense": "94f",
+        "sense": "431",
         "examples": [
           2
         ]
@@ -11000,6 +11247,16 @@
     "keyword": [
       {
         "sense": "2fa",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "pose|pose": {
+    "keyword": [
+      {
+        "sense": "a6b",
         "examples": [
           0
         ]
@@ -11149,6 +11406,16 @@
       }
     ]
   },
+  "vont|vont": {
+    "keyword": [
+      {
+        "sense": "7ff",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "vrai|vrai": {
     "keyword": [
       {
@@ -11162,9 +11429,22 @@
   "écoute|écoute": {
     "keyword": [
       {
-        "sense": "c7f",
+        "sense": "9ae",
         "examples": [
+          0,
+          1,
           2
+        ]
+      }
+    ]
+  },
+  "avance|avance": {
+    "keyword": [
+      {
+        "sense": "ae7",
+        "examples": [
+          0,
+          1
         ]
       }
     ]
@@ -11406,6 +11686,16 @@
       }
     ]
   },
+  "d'habitude|d'habitude": {
+    "keyword": [
+      {
+        "sense": "63e",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "devenir|devenir": {
     "keyword": [
       {
@@ -11626,6 +11916,16 @@
       }
     ]
   },
+  "entame|entame": {
+    "keyword": [
+      {
+        "sense": "4b2",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "hallucine|hallucine": {
     "keyword": [
       {
@@ -11673,6 +11973,16 @@
       }
     ]
   },
+  "offre|offre": {
+    "keyword": [
+      {
+        "sense": "a5a",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "mauvais|mauvais": {
     "keyword": [
       {
@@ -11699,6 +12009,22 @@
     "keyword": [
       {
         "sense": "daf",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "moque|moque": {
+    "keyword": [
+      {
+        "sense": "b76",
+        "examples": [
+          1
+        ]
+      },
+      {
+        "sense": "a70",
         "examples": [
           0
         ]
@@ -11790,10 +12116,9 @@
   "passe|passe": {
     "keyword": [
       {
-        "sense": "ed6",
+        "sense": "91e",
         "examples": [
-          0,
-          1
+          0
         ]
       }
     ]
@@ -11871,6 +12196,16 @@
       }
     ]
   },
+  "poussée|poussée": {
+    "keyword": [
+      {
+        "sense": "32d",
+        "examples": [
+          1
+        ]
+      }
+    ]
+  },
   "prenons|prenons": {
     "keyword": [
       {
@@ -11882,7 +12217,7 @@
     ]
   },
   "proche|proche": {
-    "keyword": [
+    "pos-auto": [
       {
         "sense": "9a0",
         "examples": [
@@ -11966,10 +12301,21 @@
       }
     ]
   },
+  "risque|risque": {
+    "keyword": [
+      {
+        "sense": "c42",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
   "roule|roule": {
     "keyword": [
       {
-        "sense": "413",
+        "sense": "ff3",
         "examples": [
           0
         ]
@@ -12000,7 +12346,7 @@
   "allume|allume": {
     "keyword": [
       {
-        "sense": "745",
+        "sense": "843",
         "examples": [
           0
         ]
@@ -12200,22 +12546,13 @@
       }
     ]
   },
-  "éclairé|éclairé": {
-    "keyword": [
-      {
-        "sense": "9df",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
   "écrit|écrit": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "61a",
+        "sense": "c66",
         "examples": [
-          0
+          0,
+          1
         ]
       }
     ]
@@ -12230,31 +12567,10 @@
       }
     ]
   },
-  "elles|elles": {
-    "keyword": [
-      {
-        "sense": "056",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
   "rejoindre|rejoindre": {
     "keyword": [
       {
         "sense": "d0d",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "abandonnée|abandonnée": {
-    "keyword": [
-      {
-        "sense": "f23",
         "examples": [
           0
         ]
@@ -12431,6 +12747,16 @@
       }
     ]
   },
+  "cavale|cavale": {
+    "keyword": [
+      {
+        "sense": "c05",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "cesse|cesse": {
     "keyword": [
       {
@@ -12522,9 +12848,9 @@
     ]
   },
   "claque|claque": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "ba6",
+        "sense": "a51",
         "examples": [
           0
         ]
@@ -12565,6 +12891,16 @@
     "keyword": [
       {
         "sense": "99b",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "connue|connue": {
+    "keyword": [
+      {
+        "sense": "a38",
         "examples": [
           0
         ]
@@ -12645,6 +12981,16 @@
     "keyword": [
       {
         "sense": "2f6",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "d'abord|d'abord": {
+    "keyword": [
+      {
+        "sense": "880",
         "examples": [
           0
         ]
@@ -12852,9 +13198,9 @@
     ]
   },
   "déhanche|déhanche": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "589",
+        "sense": "b7a",
         "examples": [
           0
         ]
@@ -12871,20 +13217,20 @@
       }
     ]
   },
-  "dépose|dépose": {
+  "désolée|désolée": {
     "keyword": [
       {
-        "sense": "76e",
+        "sense": "184",
         "examples": [
           0
         ]
       }
     ]
   },
-  "désolée|désolée": {
+  "elles|elles": {
     "keyword": [
       {
-        "sense": "184",
+        "sense": "056",
         "examples": [
           0
         ]
@@ -13001,6 +13347,16 @@
       }
     ]
   },
+  "fixe|fixe": {
+    "keyword": [
+      {
+        "sense": "0d1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "fleur|fleur": {
     "keyword": [
       {
@@ -13034,7 +13390,7 @@
   "fouille|fouille": {
     "keyword": [
       {
-        "sense": "b6e",
+        "sense": "ec1",
         "examples": [
           0
         ]
@@ -13065,6 +13421,16 @@
     "keyword": [
       {
         "sense": "05d",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "glaces|glaces": {
+    "keyword": [
+      {
+        "sense": "c9d",
         "examples": [
           0
         ]
@@ -13111,10 +13477,10 @@
       }
     ]
   },
-  "isolés|isolés": {
+  "appelle|appelle": {
     "keyword": [
       {
-        "sense": "3eb",
+        "sense": "c54",
         "examples": [
           0
         ]
@@ -13262,9 +13628,9 @@
     ]
   },
   "enchante|enchante": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "96f",
+        "sense": "bae",
         "examples": [
           0
         ]
@@ -13304,7 +13670,7 @@
   "marque|marque": {
     "keyword": [
       {
-        "sense": "0f8",
+        "sense": "919",
         "examples": [
           0
         ]
@@ -13424,7 +13790,7 @@
   "occupée|occupée": {
     "keyword": [
       {
-        "sense": "e26",
+        "sense": "d08",
         "examples": [
           0
         ]
@@ -13471,10 +13837,10 @@
       }
     ]
   },
-  "partagée|partagée": {
+  "parti|parti": {
     "keyword": [
       {
-        "sense": "2ab",
+        "sense": "01a",
         "examples": [
           0
         ]
@@ -13581,6 +13947,16 @@
       }
     ]
   },
+  "poches|poches": {
+    "keyword": [
+      {
+        "sense": "aaf",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "point|point": {
     "keyword": [
       {
@@ -13594,7 +13970,7 @@
   "polies|polies": {
     "keyword": [
       {
-        "sense": "858",
+        "sense": "bf7",
         "examples": [
           0
         ]
@@ -13645,6 +14021,26 @@
     "keyword": [
       {
         "sense": "6f1",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "quitte|quitte": {
+    "keyword": [
+      {
+        "sense": "c8b",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "range|range": {
+    "keyword": [
+      {
+        "sense": "35c",
         "examples": [
           0
         ]
@@ -13751,16 +14147,6 @@
       }
     ]
   },
-  "rentrée|rentrée": {
-    "keyword": [
-      {
-        "sense": "40d",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
   "ressemble|ressemble": {
     "keyword": [
       {
@@ -13821,6 +14207,16 @@
       }
     ]
   },
+  "roules|roules": {
+    "keyword": [
+      {
+        "sense": "639",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "route|route": {
     "keyword": [
       {
@@ -13842,9 +14238,9 @@
     ]
   },
   "embrasse|embrasse": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "d7a",
+        "sense": "ed2",
         "examples": [
           0
         ]
@@ -14001,20 +14397,20 @@
       }
     ]
   },
-  "soldes|soldes": {
+  "solides|solides": {
     "keyword": [
       {
-        "sense": "7b1",
+        "sense": "95f",
         "examples": [
           0
         ]
       }
     ]
   },
-  "solides|solides": {
+  "sonne|sonne": {
     "keyword": [
       {
-        "sense": "95f",
+        "sense": "ef6",
         "examples": [
           0
         ]
@@ -14121,6 +14517,26 @@
       }
     ]
   },
+  "tendu|tendu": {
+    "keyword": [
+      {
+        "sense": "3c9",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "tombée|tombée": {
+    "keyword": [
+      {
+        "sense": "6dd",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
   "tour|tour": {
     "keyword": [
       {
@@ -14154,7 +14570,7 @@
   "trouvés|trouvés": {
     "keyword": [
       {
-        "sense": "336",
+        "sense": "548",
         "examples": [
           0
         ]
@@ -14271,16 +14687,6 @@
       }
     ]
   },
-  "écorchés|écorchés": {
-    "keyword": [
-      {
-        "sense": "eeb",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
   "écoutent|écoutent": {
     "keyword": [
       {
@@ -14292,9 +14698,9 @@
     ]
   },
   "écrite|écrite": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "79d",
+        "sense": "965",
         "examples": [
           0
         ]
@@ -14335,885 +14741,6 @@
     "keyword": [
       {
         "sense": "47d",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "je|je": {
-    "wiktionary-auto": [
-      {
-        "sense": "2b9",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "c'est|c'est": {
-    "keyword": [
-      {
-        "sense": "1c0",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "yeux|yeux": {
-    "wiktionary-auto": [
-      {
-        "sense": "2e7",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "qu'elle|qu'elle": {
-    "wiktionary-auto": [
-      {
-        "sense": "dc4",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "part|part": {
-    "keyword": [
-      {
-        "sense": "179",
-        "examples": [
-          3
-        ]
-      }
-    ]
-  },
-  "aux|aux": {
-    "wiktionary-auto": [
-      {
-        "sense": "e25",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    ]
-  },
-  "n'est|n'est": {
-    "wiktionary-auto": [
-      {
-        "sense": "ee3",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ]
-  },
-  "m'a|m'a": {
-    "keyword": [
-      {
-        "sense": "bcb",
-        "examples": [
-          0,
-          3,
-          5
-        ]
-      }
-    ]
-  },
-  "pis|pis": {
-    "wiktionary-auto": [
-      {
-        "sense": "82c",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "sens|sens": {
-    "keyword": [
-      {
-        "sense": "a7f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ]
-  },
-  "c'qui|c'qui": {
-    "wiktionary-auto": [
-      {
-        "sense": "bbb",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    ]
-  },
-  "qu'il|qu'il": {
-    "wiktionary-auto": [
-      {
-        "sense": "2ea",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      }
-    ]
-  },
-  "che|che": {
-    "wiktionary-auto": [
-      {
-        "sense": "814",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "qu'un|qu'un": {
-    "wiktionary-auto": [
-      {
-        "sense": "466",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ]
-  },
-  "t'as|t'as": {
-    "wiktionary-auto": [
-      {
-        "sense": "fef",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    ]
-  },
-  "c'que|c'que": {
-    "wiktionary-auto": [
-      {
-        "sense": "185",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ]
-  },
-  "finis|finis": {
-    "wiktionary-auto": [
-      {
-        "sense": "7f1",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "jusqu'au|jusqu'au": {
-    "wiktionary-auto": [
-      {
-        "sense": "995",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "raccourci|raccourci": {
-    "wiktionary-auto": [
-      {
-        "sense": "960",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "s'est|s'est": {
-    "wiktionary-auto": [
-      {
-        "sense": "9e7",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "estompe|estompe": {
-    "keyword": [
-      {
-        "sense": "ff4",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "s'il|s'il": {
-    "wiktionary-auto": [
-      {
-        "sense": "035",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "l'a|l'a": {
-    "wiktionary-auto": [
-      {
-        "sense": "acf",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "quitté|quitté": {
-    "keyword": [
-      {
-        "sense": "b18",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "s'en|s'en": {
-    "wiktionary-auto": [
-      {
-        "sense": "14f",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "t'es|t'es": {
-    "wiktionary-auto": [
-      {
-        "sense": "75d",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "vu|vu": {
-    "wiktionary-auto": [
-      {
-        "sense": "9df",
-        "examples": [
-          0,
-          1,
-          2,
-          3
-        ]
-      }
-    ]
-  },
-  "garde|garde": {
-    "keyword": [
-      {
-        "sense": "7ce",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "joue|joue": {
-    "keyword": [
-      {
-        "sense": "c2f",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "bois|bois": {
-    "keyword": [
-      {
-        "sense": "3f6",
-        "examples": [
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "glisse|glisse": {
-    "keyword": [
-      {
-        "sense": "106",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "n'a|n'a": {
-    "wiktionary-auto": [
-      {
-        "sense": "07c",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "pose|pose": {
-    "keyword": [
-      {
-        "sense": "a6b",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "qu'une|qu'une": {
-    "wiktionary-auto": [
-      {
-        "sense": "0ce",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "ris|ris": {
-    "wiktionary-auto": [
-      {
-        "sense": "e5c",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "vont|vont": {
-    "keyword": [
-      {
-        "sense": "7ff",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "avance|avance": {
-    "keyword": [
-      {
-        "sense": "ae7",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "d'avoir|d'avoir": {
-    "wiktionary-auto": [
-      {
-        "sense": "779",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "d'habitude|d'habitude": {
-    "keyword": [
-      {
-        "sense": "63e",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "fut|fut": {
-    "wiktionary-auto": [
-      {
-        "sense": "419",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "entame|entame": {
-    "keyword": [
-      {
-        "sense": "4b2",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "souris|souris": {
-    "wiktionary-auto": [
-      {
-        "sense": "539",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "m'as|m'as": {
-    "wiktionary-auto": [
-      {
-        "sense": "71a",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "offre|offre": {
-    "keyword": [
-      {
-        "sense": "a5a",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "moque|moque": {
-    "keyword": [
-      {
-        "sense": "b76",
-        "examples": [
-          1
-        ]
-      },
-      {
-        "sense": "a70",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "poussée|poussée": {
-    "keyword": [
-      {
-        "sense": "32d",
-        "examples": [
-          1
-        ]
-      }
-    ]
-  },
-  "qu'au|qu'au": {
-    "wiktionary-auto": [
-      {
-        "sense": "4da",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "risque|risque": {
-    "keyword": [
-      {
-        "sense": "c42",
-        "examples": [
-          0,
-          1
-        ]
-      }
-    ]
-  },
-  "as|as": {
-    "wiktionary-auto": [
-      {
-        "sense": "7f1",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "cavale|cavale": {
-    "keyword": [
-      {
-        "sense": "c05",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "ché|ché": {
-    "wiktionary-auto": [
-      {
-        "sense": "a1b",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "connue|connue": {
-    "keyword": [
-      {
-        "sense": "a38",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "d'abord|d'abord": {
-    "keyword": [
-      {
-        "sense": "880",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "d'en|d'en": {
-    "wiktionary-auto": [
-      {
-        "sense": "a19",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "désarme|désarme": {
-    "wiktionary-auto": [
-      {
-        "sense": "5c1",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "fixe|fixe": {
-    "keyword": [
-      {
-        "sense": "0d1",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "folle|folle": {
-    "wiktionary-auto": [
-      {
-        "sense": "020",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "glaces|glaces": {
-    "keyword": [
-      {
-        "sense": "c9d",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "guide|guide": {
-    "wiktionary-auto": [
-      {
-        "sense": "dc9",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "appelle|appelle": {
-    "keyword": [
-      {
-        "sense": "c54",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "m'en|m'en": {
-    "wiktionary-auto": [
-      {
-        "sense": "a61",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "n'avons|n'avons": {
-    "wiktionary-auto": [
-      {
-        "sense": "7ac",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "n'importe|n'importe": {
-    "wiktionary-auto": [
-      {
-        "sense": "eb1",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "n'ont|n'ont": {
-    "wiktionary-auto": [
-      {
-        "sense": "b5a",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "parti|parti": {
-    "keyword": [
-      {
-        "sense": "01a",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "passions|passions": {
-    "wiktionary-auto": [
-      {
-        "sense": "58a",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "poches|poches": {
-    "keyword": [
-      {
-        "sense": "aaf",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "qu'aux|qu'aux": {
-    "wiktionary-auto": [
-      {
-        "sense": "c42",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "qu'elles|qu'elles": {
-    "wiktionary-auto": [
-      {
-        "sense": "c49",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "qu'eux|qu'eux": {
-    "wiktionary-auto": [
-      {
-        "sense": "591",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "quitte|quitte": {
-    "keyword": [
-      {
-        "sense": "c8b",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "range|range": {
-    "keyword": [
-      {
-        "sense": "35c",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "roules|roules": {
-    "keyword": [
-      {
-        "sense": "639",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "sonne|sonne": {
-    "keyword": [
-      {
-        "sense": "ef6",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "t'a|t'a": {
-    "wiktionary-auto": [
-      {
-        "sense": "bb4",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "tendu|tendu": {
-    "keyword": [
-      {
-        "sense": "3c9",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "tombée|tombée": {
-    "keyword": [
-      {
-        "sense": "6dd",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "vue|vue": {
-    "wiktionary-auto": [
-      {
-        "sense": "c5c",
         "examples": [
           0
         ]

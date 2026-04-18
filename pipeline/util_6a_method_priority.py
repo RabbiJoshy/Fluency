@@ -26,6 +26,14 @@ METHOD_PRIORITY = {
     "pos-biencoder": 35,              # POS-refined bi-encoder
     "biencoder": 30,                  # Bi-encoder cosine similarity
     "spanishdict-biencoder": 30,      # Bi-encoder cosine similarity on SpanishDict menu
+    # pos-auto: per-example POS filter narrowed the menu to exactly one
+    # sense, so we assign directly without running a classifier. Priority
+    # sits above keyword (lexical overlap is weaker signal than a trusted
+    # POS tag) and below biencoder (a real classifier on ambiguous POS is
+    # still richer signal than a single-candidate default). Stamp written
+    # by step_6b (keyword + biencoder branches) and step_6c (Gemini
+    # pre-filter).
+    "pos-auto": 25,
     "pos-keyword-wiktionary": 15,     # POS-refined keyword
     "pos-keyword": 15,                # POS-refined keyword
     "keyword-wiktionary": 10,         # Keyword overlap (with Wiktionary senses)

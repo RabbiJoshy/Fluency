@@ -35,7 +35,10 @@ from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority,
 from util_6a_assignment_format import load_assignments, dump_assignments
 from util_7a_lemma_split import merge_method_maps
 from util_5c_sense_paths import sense_menu_path, sense_assignments_path
-from util_6a_pos_menu_filter import filter_senses_by_pos, filter_senses_by_precomputed_pos
+from util_6a_pos_menu_filter import (
+    filter_senses_by_pos, filter_senses_by_precomputed_pos,
+    sense_compatible_with_example_pos,
+)
 from util_5c_sense_menu_format import (
     normalize_artist_sense_menu, merge_analysis, get_analyses,
     collect_surface_analyses_from_shared_menu, flatten_analyses_with_ids,
@@ -870,15 +873,57 @@ def main():
                 "examples": list(abs_indices),
             }]}
         else:
-            # Multi-sense: queue for classification. Pass abs_indices so the
-            # batch writer can translate Gemini's local-positional output back
-            # to absolute example indices in examples_raw[word].
+            # Multi-sense at the word level. Before batching to Gemini, run a
+            # per-example pos-auto pre-filter: examples whose trusted POS tag
+            # narrows candidates to exactly 1 sense get assigned inline and
+            # never see the API. Only ambiguous-POS examples are sent.
+            #
+            # Cost saving: across every language with a POS tagger and
+            # polysemous menus, a large fraction of examples resolve on POS
+            # alone — those used to burn prompt tokens re-confirming a
+            # single candidate.
             filtered_combined = [combined[i] for i in keep_indices]
             filtered_ids = [id_list[i] for i in keep_indices] if shared_analyses else None
-            multi_sense_queue.append((word, lemma, filtered_combined, examples, filtered_ids, abs_indices))
-            if not shared_analyses:
-                if not custom_menu_mode:
-                    merge_analysis(senses_out, word, lemma, assign_analysis_sense_ids(lemma, filtered_combined))
+            if not shared_analyses and not custom_menu_mode:
+                id_map = assign_analysis_sense_ids(lemma, filtered_combined)
+                merge_analysis(senses_out, word, lemma, id_map)
+                local_id_list = list(id_map.keys())
+            else:
+                local_id_list = filtered_ids or [id_list[i] for i in keep_indices]
+
+            pos_auto_by_sense = {}  # local keep-index -> [abs_ex_idx]
+            classify_local_indices = []  # positions within examples/abs_indices
+            for local_pos, ex in enumerate(examples):
+                abs_ex_idx = abs_indices[local_pos]
+                ex_pos = precomputed.get(abs_ex_idx)
+                if ex_pos:
+                    pos_candidates = [k for k in range(len(keep_indices))
+                                      if sense_compatible_with_example_pos(
+                                          filtered_combined[k].get("pos"), ex_pos)]
+                    if not pos_candidates:
+                        pos_candidates = list(range(len(keep_indices)))
+                else:
+                    pos_candidates = list(range(len(keep_indices)))
+
+                if len(pos_candidates) == 1:
+                    pos_auto_by_sense.setdefault(pos_candidates[0], []).append(abs_ex_idx)
+                else:
+                    classify_local_indices.append(local_pos)
+
+            if pos_auto_by_sense:
+                assignments_out.setdefault(word, {})["pos-auto"] = [
+                    {"sense": local_id_list[k], "examples": eis}
+                    for k, eis in pos_auto_by_sense.items()
+                ]
+                pos_single_sense_count += 1
+
+            # If pos-auto handled every example, nothing left for Gemini.
+            if classify_local_indices:
+                classify_examples = [examples[i] for i in classify_local_indices]
+                classify_abs = [abs_indices[i] for i in classify_local_indices]
+                multi_sense_queue.append((word, lemma, filtered_combined,
+                                          classify_examples, filtered_ids,
+                                          classify_abs))
 
     print("  Skipped (english/propn/intj): %d" % skipped_flags)
     print("  Skipped (short/contraction): %d" % skipped_short)
@@ -1139,10 +1184,25 @@ def main():
     existing_assigns = {}
     if os.path.isfile(assignments_path):
         existing_assigns = load_assignments(assignments_path)
+    stale_auto_wiped = 0
     for word, methods in assignments_out.items():
         if word not in existing_assigns or not isinstance(existing_assigns[word], dict):
             existing_assigns[word] = {}
         incoming = normalize_assignment_methods(methods, my_method)
+        # Stale-auto cleanup: if the new write has any non-auto method
+        # (priority > 0), drop any existing priority-0 auto entries. Those
+        # blanket claims were valid only when the menu had a single sense;
+        # a word now earning pos-auto / Gemini / gap-fill stamps is
+        # multi-sense by construction and the old blanket would stealthily
+        # outvote unassigned examples in the resolver.
+        incoming_has_non_auto = any(
+            METHOD_PRIORITY.get(m, 0) > 0 for m in incoming
+        )
+        if incoming_has_non_auto:
+            for m in list(existing_assigns[word].keys()):
+                if METHOD_PRIORITY.get(m, 0) == 0:
+                    existing_assigns[word].pop(m, None)
+                    stale_auto_wiped += 1
         if args.force:
             # Drop only the methods we're re-writing; keep others.
             for m in incoming.keys():
@@ -1150,6 +1210,9 @@ def main():
             existing_assigns[word].update(incoming)
         else:
             existing_assigns[word] = merge_method_maps(existing_assigns[word], incoming)
+    if stale_auto_wiped:
+        print("  Dropped %d stale priority-0 auto entries (menu now multi-sense)"
+              % stale_auto_wiped)
     dump_assignments(existing_assigns, assignments_path)
     print("Wrote %s (%d entries, %d updated)" % (assignments_path, len(existing_assigns), len(assignments_out)))
 

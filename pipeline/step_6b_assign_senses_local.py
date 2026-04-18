@@ -211,7 +211,13 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
 
     for wi, item in enumerate(work_items):
         word, senses, examples, keep_indices, source = item[:5]
+        # Optional 7th element: pre-computed indices to actually classify.
+        # If present, pos-auto has already claimed the excluded examples —
+        # embedding them would waste compute on known-answer cases.
+        classify_indices = item[6] if len(item) > 6 else None
         for ei, ex in enumerate(examples):
+            if classify_indices is not None and ei not in classify_indices:
+                continue
             spanish = ex.get("spanish", "")  # normalized (canonical word)
             original_spanish = ex.get("_original_spanish", spanish)  # for translation lookup
             trans_info = translations.get(original_spanish, {})
@@ -284,6 +290,7 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
     for wi, item in enumerate(work_items):
         word, senses, examples, keep_indices, source = item[:5]
         id_list = item[5] if len(item) > 5 else None
+        classify_indices = item[6] if len(item) > 6 else None
 
         sense_example_indices = [[] for _ in senses]
 
@@ -300,9 +307,14 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
                 best_sense_idx = sn_indices[best_col]
                 sense_example_indices[best_sense_idx].append(ei)
 
-        # Any examples that didn't get embedded (no text at all) go to first sense
+        # Any examples in classify_indices that didn't get embedded (no text
+        # at all) go to the first sense. We skip examples already claimed by
+        # pos-auto — those were explicitly excluded from classify_indices and
+        # have their own assignment.
         embedded_indices = set(ei for ei, _ in ex_pairs)
-        for ei in range(len(examples)):
+        expected_indices = (set(classify_indices) if classify_indices is not None
+                            else set(range(len(examples))))
+        for ei in expected_indices:
             if ei not in embedded_indices:
                 sense_example_indices[keep_indices[0] if keep_indices else 0].append(ei)
 
@@ -318,9 +330,13 @@ def classify_with_biencoder(work_items, output, translations, model_name=None):
                     continue
             sid = id_list[i] if i < len(id_list) else id_list[0]
             assignments.append({"sense": sid, "examples": indices})
-        if not assignments:
+        # Only install a fallback blanket-claim when there's nothing else —
+        # specifically, neither pos-auto (already in output[word]) nor any
+        # biencoder result. Without this guard we'd stomp on pos-auto.
+        if not assignments and not output.get(word):
             assignments = [{"sense": id_list[0], "examples": list(range(len(examples)))}]
-        output[word] = {"biencoder": assignments}
+        if assignments:
+            output.setdefault(word, {})["biencoder"] = assignments
 
     elapsed = time.time() - t0
     print("  Done in %.1fs" % elapsed)
@@ -730,14 +746,17 @@ def main():
             # For each example, restrict candidate senses to those matching the
             # example's POS tag.  This prevents e.g. a NOUN-tagged "vuelo" from
             # matching VERB senses like "volarse → to fly off".
+            #
+            # pos-auto short-circuit: when per-example POS narrows the menu to
+            # exactly 1 compatible sense, we assign directly instead of calling
+            # the keyword classifier. The keyword classifier has no English
+            # stemming (``dances`` ≠ ``dance``) and silently returns None on a
+            # miss, which used to cede the example to stale auto-blanket
+            # claims. A trusted POS tag is a stronger signal than a zero
+            # lexical overlap, so we commit.
             sense_example_indices = [[] for _ in word_senses]
+            pos_auto_indices = [[] for _ in word_senses]
             for ex_idx, ex in enumerate(examples):
-                spanish = ex.get("_original_spanish", ex.get("spanish", ""))
-                trans_info = translations.get(spanish, {})
-                eng = trans_info.get("english", "")
-                if not eng:
-                    continue  # no translation — skip (don't force onto first sense)
-
                 # Per-example POS filter: narrow candidates for this example.
                 # Trusted ex_pos (VERB/NOUN/ADJ/ADV/INTJ) narrows to exact POS.
                 # Untrusted ex_pos (ADP/DET/PRON/...) still rules out trusted
@@ -753,6 +772,17 @@ def main():
                         pos_candidates = keep_indices
                 else:
                     pos_candidates = keep_indices
+
+                # pos-auto: trusted single-candidate case — assign directly.
+                if len(pos_candidates) == 1:
+                    pos_auto_indices[pos_candidates[0]].append(ex_idx)
+                    continue
+
+                spanish = ex.get("_original_spanish", ex.get("spanish", ""))
+                trans_info = translations.get(spanish, {})
+                eng = trans_info.get("english", "")
+                if not eng:
+                    continue  # no translation — skip (don't force onto first sense)
 
                 candidate_senses = [word_senses[i] for i in pos_candidates]
                 local_idx = classify_example_keyword(eng, candidate_senses)
@@ -770,12 +800,47 @@ def main():
                 if total_classified >= 5 and len(indices) / total_classified < MIN_SENSE_FREQUENCY:
                     continue
                 assignments.append({"sense": id_list[i], "examples": indices})
+            pos_auto_assignments = [
+                {"sense": id_list[i], "examples": indices}
+                for i, indices in enumerate(pos_auto_indices) if indices
+            ]
+            word_methods = {}
+            if pos_auto_assignments:
+                word_methods["pos-auto"] = pos_auto_assignments
             if assignments:
-                output[word] = {args.keyword_method_name: assignments}
-            # else: no keyword match — word gets no assignment, examples
-            # go to the remainder bucket in the builder.
+                word_methods[args.keyword_method_name] = assignments
+            if word_methods:
+                output[word] = word_methods
+            # else: no per-example POS-auto or keyword match — word gets no
+            # assignment, examples fall to the remainder bucket in the builder.
         else:
-            work_items.append((word, word_senses, examples, keep_indices, source, id_list))
+            # Biencoder branch: apply the same per-example pos-auto
+            # short-circuit before queueing. Single-POS-candidate examples
+            # skip embedding entirely and get stamped ``pos-auto`` now;
+            # only ambiguous-POS examples go through the encoder below.
+            pos_auto_by_sense = {}  # sense_idx -> [example_idx]
+            classify_indices = []
+            for ex_idx in range(len(examples)):
+                ex_pos = precomputed.get(ex_idx)
+                if ex_pos:
+                    pos_candidates = [i for i in keep_indices
+                                      if sense_compatible_with_example_pos(
+                                          word_senses[i].get("pos"), ex_pos)]
+                    if not pos_candidates:
+                        pos_candidates = keep_indices
+                else:
+                    pos_candidates = keep_indices
+                if len(pos_candidates) == 1:
+                    pos_auto_by_sense.setdefault(pos_candidates[0], []).append(ex_idx)
+                else:
+                    classify_indices.append(ex_idx)
+            if pos_auto_by_sense:
+                output[word] = {"pos-auto": [
+                    {"sense": id_list[sidx], "examples": eis}
+                    for sidx, eis in pos_auto_by_sense.items()
+                ]}
+            work_items.append((word, word_senses, examples, keep_indices,
+                               source, id_list, classify_indices))
 
     if skipped_routing:
         print("  Skipped (excluded/gemini-routed): %d" % skipped_routing)
@@ -828,13 +893,32 @@ def main():
                         del existing[word]
             if wiped:
                 print("  --force: wiped %d stale '%s' entries" % (wiped, my_method))
+        stale_auto_wiped = 0
         for word, word_data in output.items():
             if isinstance(word_data, dict):
                 if word not in existing or not isinstance(existing[word], dict):
                     existing[word] = {}
+                # Stale-auto cleanup: if the new write has any non-auto method
+                # (priority > 0), drop any existing priority-0 auto entries.
+                # Those blanket claims were correct only when the menu had a
+                # single sense; a word that now earns a real classifier (or
+                # pos-auto) stamp is multi-sense by construction and the old
+                # auto blanket would silently outvote unassigned examples via
+                # the build-time resolver.
+                incoming_has_non_auto = any(
+                    METHOD_PRIORITY.get(m, 0) > 0 for m in word_data
+                )
+                if incoming_has_non_auto:
+                    for m in list(existing[word].keys()):
+                        if METHOD_PRIORITY.get(m, 0) == 0:
+                            existing[word].pop(m, None)
+                            stale_auto_wiped += 1
                 existing[word].update(word_data)
             else:
                 existing[word] = word_data
+        if stale_auto_wiped:
+            print("  Dropped %d stale priority-0 auto entries (menu now multi-sense)"
+                  % stale_auto_wiped)
         output = existing
 
     print("\nWriting %s..." % output_file)

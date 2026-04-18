@@ -1,4 +1,80 @@
 {
+  "une|une": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "t|t": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9
+  ],
+  "va|va": [
+    7,
+    8
+  ],
+  "fait|fait": [
+    0,
+    2,
+    4,
+    6,
+    7,
+    8,
+    9
+  ],
+  "c|c": [
+    0,
+    1,
+    3,
+    4,
+    6,
+    7,
+    8
+  ],
+  "ma|ma": [
+    1
+  ],
+  "aime|aime": [
+    4
+  ],
+  "tue|tue": [
+    1,
+    2
+  ],
+  "fois|fois": [
+    0,
+    2,
+    6
+  ],
+  "verra|verra": [
+    2
+  ],
+  "crois|crois": [
+    2
+  ],
+  "été|été": [
+    3
+  ],
+  "partis|partis": [
+    0
+  ],
+  "pu|pu": [
+    0
+  ],
+  "mis|mis": [
+    2
+  ],
+  "parle|parle": [
+    0
+  ],
   "la|la": [
     0,
     7,
@@ -38,12 +114,6 @@
     3,
     4
   ],
-  "a|a": [
-    0,
-    2,
-    6,
-    9
-  ],
   "des|des": [
     1,
     2,
@@ -58,20 +128,10 @@
     6,
     9
   ],
-  "un|un": [
+  "a|a": [
     0,
     2,
-    4,
-    5,
     6,
-    7,
-    8,
-    9
-  ],
-  "qui|qui": [
-    0,
-    4,
-    5,
     9
   ],
   "dans|dans": [
@@ -83,10 +143,24 @@
   "toi|toi": [
     0
   ],
-  "ne|ne": [
+  "qui|qui": [
+    0,
     4,
     5,
+    9
+  ],
+  "un|un": [
+    0,
+    2,
+    4,
+    5,
+    6,
+    7,
     8,
+    9
+  ],
+  "ne|ne": [
+    4,
     9
   ],
   "bien|bien": [
@@ -110,18 +184,12 @@
   ],
   "tout|tout": [
     4,
-    6,
-    9
+    6
   ],
   "ce|ce": [
     4,
     7,
     9
-  ],
-  "belle|belle": [
-    0,
-    4,
-    6
   ],
   "vie|vie": [
     0,
@@ -129,12 +197,6 @@
   ],
   "veux|veux": [
     2
-  ],
-  "il|il": [
-    2,
-    3,
-    6,
-    9
   ],
   "du|du": [
     0,
@@ -173,15 +235,10 @@
   "temps|temps": [
     6
   ],
-  "suis|suis": [
-    0,
-    1,
+  "il|il": [
     2,
     3,
-    5,
     6,
-    7,
-    8,
     9
   ],
   "trop|trop": [
@@ -195,10 +252,6 @@
   ],
   "jamais|jamais": [
     3
-  ],
-  "y|y": [
-    1,
-    2
   ],
   "l'|l'": [
     0,
@@ -216,13 +269,7 @@
     6
   ],
   "mal|mal": [
-    0,
-    1,
-    2,
-    3,
-    6,
-    7,
-    8
+    2
   ],
   "par|par": [
     2,
@@ -262,19 +309,18 @@
     3,
     9
   ],
+  "part|part": [
+    0,
+    1,
+    2,
+    4
+  ],
   "fais|fais": [
     0,
     3,
     4,
     6,
     7
-  ],
-  "laisse|laisse": [
-    0,
-    1,
-    2,
-    4,
-    5
   ],
   "peine|peine": [
     0,
@@ -284,12 +330,18 @@
     6
   ],
   "reste|reste": [
+    3
+  ],
+  "suis|suis": [
     0,
+    1,
     2,
     3,
-    4,
     5,
-    6
+    6,
+    7,
+    8,
+    9
   ],
   "grand|grand": [
     0,
@@ -301,8 +353,14 @@
     1,
     4
   ],
-  "entre|entre": [
-    1
+  "m'a|m'a": [
+    1,
+    2,
+    4
+  ],
+  "y|y": [
+    1,
+    2
   ],
   "autres|autres": [
     0,
@@ -318,11 +376,6 @@
   ],
   "juste|juste": [
     3
-  ],
-  "son|son": [
-    0,
-    3,
-    4
   ],
   "regarde|regarde": [
     2
@@ -353,10 +406,7 @@
     0
   ],
   "faut|faut": [
-    0,
-    1,
-    2,
-    5
+    1
   ],
   "fa|fa": [
     1
@@ -408,8 +458,7 @@
   ],
   "petit|petit": [
     0,
-    1,
-    2
+    1
   ],
   "pourraient|pourraient": [
     0,
@@ -421,9 +470,6 @@
   ],
   "veut|veut": [
     0
-  ],
-  "avant|avant": [
-    5
   ],
   "leur|leur": [
     1
@@ -441,10 +487,6 @@
   ],
   "pouvoir|pouvoir": [
     3
-  ],
-  "sourire|sourire": [
-    1,
-    2
   ],
   "décide|décide": [
     0
@@ -472,12 +514,9 @@
     1
   ],
   "ferme|ferme": [
-    0,
+    1,
     2,
     3
-  ],
-  "grave|grave": [
-    0
   ],
   "air|air": [
     0
@@ -489,6 +528,8 @@
     2
   ],
   "pensées|pensées": [
+    0,
+    2,
     3
   ],
   "plage|plage": [
@@ -496,6 +537,9 @@
   ],
   "pourrait|pourrait": [
     0
+  ],
+  "quitté|quitté": [
+    1
   ],
   "sel|sel": [
     0
@@ -530,6 +574,9 @@
   "savoir|savoir": [
     1
   ],
+  "bois|bois": [
+    0
+  ],
   "entendre|entendre": [
     0
   ],
@@ -540,24 +587,26 @@
   "trouve|trouve": [
     0
   ],
-  "manque|manque": [
-    0,
-    2
-  ],
   "blanches|blanches": [
     1
   ],
   "chez|chez": [
     0
   ],
+  "compris|compris": [
+    0
+  ],
+  "donne|donne": [
+    1
+  ],
   "femmes|femmes": [
+    1
+  ],
+  "glisse|glisse": [
     1
   ],
   "noires|noires": [
     1
-  ],
-  "partagé|partagé": [
-    0
   ],
   "passé|passé": [
     0,
@@ -592,10 +641,6 @@
   "vrai|vrai": [
     1
   ],
-  "écoute|écoute": [
-    0,
-    1
-  ],
   "venir|venir": [
     0,
     2
@@ -627,39 +672,19 @@
   "parcours|parcours": [
     1
   ],
+  "passe|passe": [
+    1
+  ],
+  "poussée|poussée": [
+    0
+  ],
   "roule|roule": [
     1
   ],
   "réalité|réalité": [
     0
   ],
-  "écrit|écrit": [
-    1
-  ],
   "rejoindre|rejoindre": [
     1
-  ],
-  "part|part": [
-    0,
-    1,
-    2,
-    4
-  ],
-  "m'a|m'a": [
-    1,
-    2,
-    4
-  ],
-  "quitté|quitté": [
-    1
-  ],
-  "bois|bois": [
-    0
-  ],
-  "glisse|glisse": [
-    1
-  ],
-  "poussée|poussée": [
-    0
   ]
 }
