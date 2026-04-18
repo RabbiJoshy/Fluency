@@ -1418,44 +1418,41 @@ function updateCard() {
                 const ellipsisBtn = isTruncated
                     ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
                     : '';
+                const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;';
                 target.push(`
-                <div class="meaning-row meaning-row-cycle" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
-                    <span class="card-pos ${cyclePosClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${cyclePos}</span>
-                    <span style="font-size: 13px; font-weight: 600; color: white; flex: 1; text-align: center; padding-left: 60px; line-height: 1.4;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
+                <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                    <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start;">${cyclePos}</span>
+                    <span style="font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
+                    <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${cyclePos}</span>
                 </div>
                 `);
             } else {
-                // Regular meaning row: POS pill absolute-left, translation centered
+                // Regular meaning row: POS pill in left grid column, translation centered in middle column.
+                // A visibility:hidden mirror of the pill sits in col 3 so col widths auto-size together;
+                // this keeps the body symmetrically centred without hard-coding a side-column width.
                 const pctVal = Math.round(m.percentage * 100);
-                const posPill = pctVal >= 100
-                    ? `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos}</span>`
-                    : `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos} <span style="opacity: 0.6;">|</span> ${pctVal}%</span>`;
+                const posPillInner = pctVal >= 100
+                    ? `${m.pos}`
+                    : `${m.pos} <span style="opacity: 0.6;">|</span> ${pctVal}%`;
+                const pillStyleBase = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;';
+                const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start;">${posPillInner}</span>`;
+                const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
                 // Inline context: rendered on the same line as the translation
-                // in a smaller, dimmer typeface. Short contexts show in full.
-                // Long ones (> CTX_MAX chars) get truncated at a word boundary
-                // with a clickable "…" that expands the rest in place.
+                // in a smaller, dimmer typeface. Always full; a post-render
+                // overflow check marks the row `.is-clamped` when the 3-line
+                // clamp actually hides content, so it becomes tap-to-expand.
                 let contextInline = '';
                 if (m.context) {
-                    const ctx = String(m.context);
-                    const safeFull = ctx.replace(/"/g, '&quot;');
-                    const CTX_MAX = 50;
-                    if (ctx.length <= CTX_MAX) {
-                        contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
-                    } else {
-                        // Word-boundary truncation so we don't cut mid-word
-                        let cut = CTX_MAX;
-                        while (cut > 20 && ctx[cut] !== ' ') cut--;
-                        if (cut <= 20) cut = CTX_MAX; // no convenient boundary; hard cut
-                        const safeShort = ctx.slice(0, cut).trimEnd().replace(/"/g, '&quot;');
-                        contextInline = ` <span class="meaning-context">· <span class="ctx-short">${safeShort}</span><span class="ctx-full" style="display:none">${safeFull}</span><span class="ctx-expand" role="button" tabindex="0" title="Show full usage note" onclick="event.stopPropagation(); const p = this.parentElement; const s = p.querySelector('.ctx-short'); const f = p.querySelector('.ctx-full'); if (s.style.display !== 'none') { s.style.display = 'none'; f.style.display = 'inline'; this.style.display = 'none'; }">…</span></span>`;
-                    }
+                    const safeFull = String(m.context).replace(/"/g, '&quot;');
+                    contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                 }
                 target.push(`
-                <div class="meaning-row meaning-row-regular" style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
                     ${posPill}
-                    <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: calc(100% - 90px);">
+                    <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
                         <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
                     </div>
+                    ${posPillMirror}
                 </div>
                 `);
             }
@@ -1753,6 +1750,45 @@ function updateCard() {
     }
 
     document.getElementById('backContent').innerHTML = backHTML;
+
+    // Post-render layout pass:
+    //   1. Flag meaning rows whose translation+context actually overflows the
+    //      3-line clamp so the span becomes tap-to-expand. We only flag what
+    //      measures as clipped, not everything past an arbitrary char count.
+    //   2. When the scroll region holds more than 3 rows, cap its max-height
+    //      to the sum of the first 3 row heights so it scrolls rather than
+    //      stealing vertical space from the example sentence below. Fewer
+    //      rows -> no cap, the region keeps its current flex-fill behaviour.
+    // Run synchronously — scrollHeight triggers reflow so the numbers are
+    // valid without waiting for the next frame. We intentionally avoid
+    // requestAnimationFrame here because rAF is paused in background tabs
+    // and hidden iframes, which would leave the clamp state stale.
+    {
+        const backEl = document.getElementById('backContent');
+        if (backEl) {
+            backEl.querySelectorAll('.meaning-row-translation').forEach(el => {
+                if (el.scrollHeight > el.clientHeight + 1) {
+                    el.classList.add('is-clamped');
+                    el.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        el.classList.remove('is-clamped');
+                        el.classList.add('is-expanded');
+                    }, { once: true });
+                }
+            });
+            const scroll = backEl.querySelector('.meanings-scroll');
+            if (scroll) {
+                const rows = scroll.querySelectorAll('.meaning-row');
+                if (rows.length > 3) {
+                    let cap = 0;
+                    for (let i = 0; i < 3; i++) cap += rows[i].offsetHeight + 8;
+                    scroll.style.maxHeight = cap + 'px';
+                } else {
+                    scroll.style.maxHeight = '';
+                }
+            }
+        }
+    }
 
     // Toggle back button for nav stack
     const navBackBtn = document.getElementById('navBackBtn');
