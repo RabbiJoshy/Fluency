@@ -1,6 +1,6 @@
 ## The problem with most vocabulary apps
 
-They teach by theme — *colours*, *at the airport*, *in the kitchen* — and drill you on lists of words you have no reason to care about yet. You learn *la cuchara* and forget it before you ever hear it in the wild.
+They teach by theme — *colours*, *at the airport*, *in the kitchen* — and drill you on lists of words you have no reason to care about yet. You learn *la cuchara* (spoon) and forget it before you ever hear it in the wild.
 
 This app takes the opposite approach: every word you study comes from material you already care about. Spotify lyrics, film subtitles, frequency-ranked sentences from real corpora. The word *why* is paired with the sentence *you* are going to meet it in.
 
@@ -25,6 +25,9 @@ Because language follows a power law, knowing the top-ranked words covers most o
 - **Cognate detection** — transparent cognates like *información → information* are flagged as free vocabulary and can be excluded, so your study time goes to words that actually need memorising.
 - **Frontend** — vanilla JS, no framework, no build step. Data loads as static JSON and a service worker caches it for offline use as a PWA.
 
+<!--
 ## Why it's a portfolio piece
 
 The interesting engineering isn't the flashcard UI — it's everything behind it. Turning raw song lyrics into a ranked, lemmatised, sense-disambiguated vocabulary deck is a compact end-to-end data problem: scraping, cleaning, normalisation, corpus work, LLM-assisted classification, and delivery as static JSON. The app in front is there to prove the data is actually useful.
+-->
+

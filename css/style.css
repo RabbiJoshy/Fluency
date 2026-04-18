@@ -3916,6 +3916,32 @@
             border-color: var(--accent-primary);
         }
 
+        /* Authenticated-user variant: close button becomes a pill-shaped
+           "Back to the app" button, matching the bottom CTA. Toggled by
+           _updateAboutCloseButton() in auth.js based on session state. */
+        .about-close-floating.about-close-as-pill {
+            width: auto;
+            height: auto;
+            border-radius: 999px;
+            padding: 9px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: var(--font-emphasis);
+            line-height: 1;
+            letter-spacing: 0.2px;
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border-color: var(--accent-primary);
+        }
+
+        .about-close-floating.about-close-as-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(var(--accent-primary-rgb), 0.4);
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border-color: var(--accent-primary);
+        }
+
         .about-project-body {
             padding: 44px 48px 80px;
             color: var(--text-secondary);
@@ -4350,20 +4376,38 @@
             text-align: center;
         }
 
-        /* Song subtitle on the front face (artist mode only in practice,
-           but scoped by the JS setting textContent to '' for normal mode). */
-        .about-demo-song {
+        /* Spotify row at the bottom of the artist-mode back face.
+           Song/artist text on the left, Spotify-green logo on the right.
+           Hidden on normal-mode cards (JS sets display: none). */
+        .about-demo-spotify-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .about-demo-song-back {
             font-family: var(--font-data);
             font-size: 11px;
             color: var(--text-muted);
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            margin-top: 14px;
             opacity: 0.85;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+            text-align: left;
         }
 
-        .about-demo-song:empty {
-            display: none;
+        .about-demo-spotify-logo {
+            width: 18px;
+            height: 18px;
+            fill: #1DB954;
+            flex-shrink: 0;
         }
 
         /* -------- Side-by-side "Two modes" layout ------------------------- */

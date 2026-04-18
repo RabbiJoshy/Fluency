@@ -536,8 +536,21 @@ function renderMarkdown(md) {
     };
     const flushAll = () => { flushList(); flushPara(); };
 
+    // Simple HTML-comment skip so sections can be temporarily hidden in
+    // about.md without deleting them. Single-line `<!-- ... -->` is dropped;
+    // multi-line blocks starting with `<!--` consume lines until one ends
+    // with `-->`.
+    let inComment = false;
     for (const raw of lines) {
         const line = raw.trim();
+        if (inComment) {
+            if (line.endsWith('-->')) inComment = false;
+            continue;
+        }
+        if (line.startsWith('<!--')) {
+            if (!line.endsWith('-->')) inComment = true;
+            continue;
+        }
         if (!line) { flushAll(); continue; }
         if (line.startsWith('### ')) { flushAll(); html.push('<h3>' + inline(line.slice(4)) + '</h3>'); }
         else if (line.startsWith('## ')) { flushAll(); html.push('<h2>' + inline(line.slice(3)) + '</h2>'); }
@@ -566,6 +579,26 @@ function _setAboutURLParam(open) {
             history.replaceState(null, '', clean);
         }
     } catch (_) { /* older browsers: no-op */ }
+}
+
+// Swap the top-right close affordance based on auth state. For already-
+// authenticated users it becomes a pill-shaped "Back to the app" button
+// (same action as the bottom CTA — visible while scrolling). For
+// unauthenticated users the plain ✕ stays, because the bottom CTAs push
+// them to pick Guest/Login and a "Back to the app" affordance makes no
+// sense before they've chosen.
+function _updateAboutCloseButton() {
+    const btn = document.getElementById('closeAboutProjectModal');
+    if (!btn) return;
+    if (currentUser) {
+        btn.textContent = '← Back to the app';
+        btn.classList.add('about-close-as-pill');
+        btn.setAttribute('aria-label', 'Back to the app');
+    } else {
+        btn.textContent = '✕';
+        btn.classList.remove('about-close-as-pill');
+        btn.setAttribute('aria-label', 'Close');
+    }
 }
 
 // Append CTAs to the rendered About body so a first-time visitor has a direct
@@ -616,6 +649,7 @@ async function openAboutProjectModal() {
         layoutAboutTwoModes(body);
         mountAboutDemos(body);
         _appendAboutCTAs(body);
+        _updateAboutCloseButton();
         return;
     }
     try {
@@ -627,6 +661,7 @@ async function openAboutProjectModal() {
         layoutAboutTwoModes(body);
         mountAboutDemos(body);
         _appendAboutCTAs(body);
+        _updateAboutCloseButton();
     } catch (e) {
         console.error('About modal: failed to load markdown', e);
         body.innerHTML = '<p style="color: var(--text-muted);">Could not load project description.</p>';
@@ -729,13 +764,25 @@ function _buildAboutDemoCard(mode) {
     // Rows are populated and a selected index is rotated by _runAboutDemo.
     const wrap = document.createElement('div');
     wrap.className = 'about-demo-card-inner';
+    // Spotify logo as an inline SVG — tiny source-of-truth copy of the
+    // iconic green-circle-with-soundwaves mark. Used only on artist-mode
+    // cards to indicate lyric data comes from Spotify/Genius.
+    const spotifyLogo =
+        '<svg class="about-demo-spotify-logo" viewBox="0 0 24 24" aria-hidden="true">'
+        + '<path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34'
+        + 'c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539'
+        + '-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3'
+        + 'c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6'
+        + '-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36'
+        + 'C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381'
+        + ' 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>'
+        + '</svg>';
     wrap.innerHTML = `
         <div class="card">
             <div class="card-face card-front">
                 <div class="card-word"></div>
                 <div class="card-pos"></div>
                 <div class="card-ranking"></div>
-                <div class="about-demo-song"></div>
             </div>
             <div class="card-face card-back">
                 <div class="card-details">
@@ -745,6 +792,10 @@ function _buildAboutDemoCard(mode) {
                     <div class="meanings-scroll"></div>
                     <div class="sentence"></div>
                     <div class="translation"></div>
+                    <div class="about-demo-spotify-row">
+                        <span class="about-demo-song-back"></span>
+                        ${spotifyLogo}
+                    </div>
                 </div>
             </div>
         </div>
@@ -791,11 +842,12 @@ async function _runAboutDemo(container, mode) {
     const wordEl = container.querySelector('.card-word');
     const posEl = container.querySelector('.card-pos');
     const rankEl = container.querySelector('.card-ranking');
-    const songEl = container.querySelector('.about-demo-song');
     const backWordEl = container.querySelector('.about-demo-back-word');
     const meaningsEl = container.querySelector('.meanings-scroll');
     const sentenceEl = container.querySelector('.sentence');
     const translationEl = container.querySelector('.translation');
+    const spotifyRowEl = container.querySelector('.about-demo-spotify-row');
+    const songBackEl = container.querySelector('.about-demo-song-back');
 
     const stillMounted = () => container.isConnected
         && !document.getElementById('aboutProjectModal').classList.contains('hidden');
@@ -816,15 +868,22 @@ async function _runAboutDemo(container, mode) {
             wordEl.textContent = entry.word;
             setFrontPos(entry.pos);
             rankEl.textContent = entry.rank ? '#' + entry.rank : '';
-            songEl.textContent = entry.song || '';
             backWordEl.textContent = entry.word;
+            // Spotify row on the back — only artist-mode entries carry a
+            // `song` field; for normal-mode cards hide the row entirely.
+            if (entry.song && songBackEl && spotifyRowEl) {
+                songBackEl.textContent = entry.song;
+                spotifyRowEl.style.display = '';
+            } else if (spotifyRowEl) {
+                spotifyRowEl.style.display = 'none';
+            }
 
-            await _sleep(2800);
+            await _sleep(4000);
             if (!stillMounted()) return;
 
             // -------- Flip and cycle through senses --------
             card.classList.add('flipped');
-            await _sleep(900); // matches .card transition: transform 0.6s, plus some settle time
+            await _sleep(1100); // matches .card transition + settle
 
             for (let i = 0; i < entry.meanings.length; i++) {
                 if (!stillMounted()) return;
@@ -833,15 +892,15 @@ async function _runAboutDemo(container, mode) {
                 sentenceEl.textContent = m.target;
                 translationEl.textContent = m.english;
                 // Dwell long enough to actually read the example sentence. A
-                // single-sense entry sits a bit longer since there's nothing
-                // else to cycle to.
-                const dwell = entry.meanings.length === 1 ? 4200 : 3000;
+                // single-sense entry sits longer since there's nothing else
+                // to cycle to.
+                const dwell = entry.meanings.length === 1 ? 5500 : 4500;
                 await _sleep(dwell);
             }
 
             if (!stillMounted()) return;
             card.classList.remove('flipped');
-            await _sleep(1100);
+            await _sleep(1500);
         }
     }
 }
