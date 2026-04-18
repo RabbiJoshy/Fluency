@@ -1294,7 +1294,7 @@ function updateCard() {
     }
 
     let backHTML = `
-        <div style="text-align: center; margin-bottom: 20px;">
+        <div class="back-header" style="text-align: center; margin-bottom: 12px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold;">${wordDisplay}</div>
             </div>
@@ -1305,7 +1305,12 @@ function updateCard() {
     // For multi-meaning cards, show all meanings on the back
     if (card.isMultiMeaning) {
 
-        backHTML += `<div style="width: 100%; margin-bottom: 15px;">`;
+        // Two accumulators:
+        //   - scrollRows: regular meanings + SENSE_CYCLE (these scroll)
+        //   - trayRows: MWE + CLITIC (always visible, pinned below the
+        //     scroll area so the user doesn't have to hunt for them)
+        const scrollRows = [];
+        const trayRows = [];
         card.meanings.forEach((m, idx) => {
             const isSelected = idx === currentMeaningIndex;
             const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'rgba(15, 20, 28, 0.75)';
@@ -1315,6 +1320,9 @@ function updateCard() {
             const isMWE = m.pos === 'MWE';
             const isClitic = m.pos === 'CLITIC';
             const isSenseCycle = m.pos === 'SENSE_CYCLE';
+            // Route this row to the pinned tray (MWE/CLITIC) or the scroll
+            // region (regular + SENSE_CYCLE).
+            const target = (isMWE || isClitic) ? trayRows : scrollRows;
             // For MWE pill, show the current expression/translation based on MWE index
             const mweIdx = (isMWE && isSelected) ? currentMWEIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
@@ -1330,22 +1338,22 @@ function updateCard() {
             const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
             if (isMWE) {
                 // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
-                backHTML += `
-                <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                target.push(`
+                <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${displayMeaning}</span>
                     ${mweCounter}
                 </div>
-                `;
+                `);
             } else if (isClitic) {
                 // Clitic row: form in a light pill, translation centered, cycling counter
-                backHTML += `
-                <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                target.push(`
+                <div class="meaning-row meaning-row-clitic" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.12); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${m.allClitics ? m.allClitics[cliticIdx].translation : ''}</span>
                     ${cliticCounter}
                 </div>
-                `;
+                `);
             } else if (isSenseCycle) {
                 // Sense cycle row: POS badge + all senses pipe-separated (these are unassigned/remainder)
                 const cyclePos = m.cycle_pos || 'X';
@@ -1406,36 +1414,54 @@ function updateCard() {
                 const ellipsisBtn = isTruncated
                     ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
                     : '';
-                backHTML += `
-                <div style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                target.push(`
+                <div class="meaning-row meaning-row-cycle" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${cyclePos}</span>
                     <span style="font-size: 13px; font-weight: 600; color: white; flex: 1; text-align: center; padding-left: 60px; line-height: 1.4;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
-                `;
+                `);
             } else {
                 // Regular meaning row: POS pill absolute-left, translation centered
                 const pctVal = Math.round(m.percentage * 100);
                 const posPill = pctVal >= 100
                     ? `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos}</span>`
                     : `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos} <span style="opacity: 0.6;">|</span> ${pctVal}%</span>`;
-                // Render SpanishDict sub-sense context as a subtitle under
-                // the translation when present (e.g. correr → "to run"
-                // with context "to move fast").
-                const contextSubtitle = m.context
-                    ? `<span style="font-size: 11px; font-weight: 400; color: ${textColor}; opacity: 0.65; margin-top: 2px; text-align: center;">${m.context}</span>`
-                    : '';
-                backHTML += `
-                <div style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                // Inline context: rendered on the same line as the translation
+                // in a smaller, dimmer typeface. Short contexts show in full.
+                // Long ones (> CTX_MAX chars) get truncated at a word boundary
+                // with a clickable "…" that expands the rest in place.
+                let contextInline = '';
+                if (m.context) {
+                    const ctx = String(m.context);
+                    const safeFull = ctx.replace(/"/g, '&quot;');
+                    const CTX_MAX = 50;
+                    if (ctx.length <= CTX_MAX) {
+                        contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
+                    } else {
+                        // Word-boundary truncation so we don't cut mid-word
+                        let cut = CTX_MAX;
+                        while (cut > 20 && ctx[cut] !== ' ') cut--;
+                        if (cut <= 20) cut = CTX_MAX; // no convenient boundary; hard cut
+                        const safeShort = ctx.slice(0, cut).trimEnd().replace(/"/g, '&quot;');
+                        contextInline = ` <span class="meaning-context">· <span class="ctx-short">${safeShort}</span><span class="ctx-full" style="display:none">${safeFull}</span><span class="ctx-expand" role="button" tabindex="0" title="Show full usage note" onclick="event.stopPropagation(); const p = this.parentElement; const s = p.querySelector('.ctx-short'); const f = p.querySelector('.ctx-full'); if (s.style.display !== 'none') { s.style.display = 'none'; f.style.display = 'inline'; this.style.display = 'none'; }">…</span></span>`;
+                    }
+                }
+                target.push(`
+                <div class="meaning-row meaning-row-regular" style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
                     ${posPill}
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <span style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}</span>
-                        ${contextSubtitle}
+                    <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: calc(100% - 90px);">
+                        <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
                     </div>
                 </div>
-                `;
+                `);
             }
         });
-        backHTML += `</div>`;
+        // Emit the scroll region first, then the pinned tray underneath
+        // (MWE/CLITIC rows that stay visible when the user scrolls).
+        backHTML += `<div class="meanings-scroll">${scrollRows.join('')}</div>`;
+        if (trayRows.length > 0) {
+            backHTML += `<div class="meanings-tray">${trayRows.join('')}</div>`;
+        }
 
         // Show current sentence
         // For MWE/Clitic senses, suppress the sentence block entirely when the

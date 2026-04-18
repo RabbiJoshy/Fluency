@@ -161,7 +161,11 @@
 
         .card {
             width: 100%;
-            height: auto;
+            /* Fixed mobile height so the card shell doesn't grow/shrink
+               between cards. Content shifts that used to come from
+               min-height→max-height auto-sizing are now contained inside
+               the scrollable meanings region. */
+            height: calc(100vh - 100px);
             min-height: 460px;
             max-height: calc(100vh - 100px);
             position: relative;
@@ -764,6 +768,94 @@
             transform: rotateY(180deg);
             padding-left: 15px;
             padding-right: 15px;
+            /* Override .card-face's justify-content: center so the back's
+               content anchors to the top and the scrollable meanings region
+               takes the middle. Prevents the whole layout from shifting as
+               meaning count / translation length changes between cards. */
+            justify-content: flex-start;
+            padding-top: 20px;
+            padding-bottom: 15px;
+        }
+
+        /* Back layout: header / scroll / tray / sentence / links.
+           Each is a direct flex-column child of .card-back. */
+        .card-back > .back-header {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .card-back > .meanings-scroll {
+            flex: 1 1 auto;
+            min-height: 0;           /* required for overflow in a flex child */
+            width: 100%;
+            overflow-y: auto;
+            /* subtle fade to hint scroll affordance (optional) */
+            mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
+            -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
+            padding-bottom: 8px;
+        }
+
+        /* Pinned tray for MWE / CLITIC rows — always visible, separated
+           from the scroll region by a soft divider. */
+        .card-back > .meanings-tray {
+            flex: 0 0 auto;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+        }
+
+        /* Override .sentence defaults so it sits inline with the flex
+           layout without fighting other siblings. */
+        .card-back > .sentence {
+            flex: 0 0 auto;
+            width: 100%;
+            margin-top: 0;
+        }
+
+        /* The global .links-section uses margin-top: auto to pin itself to
+           the bottom of a flex container. In the new layout we size
+           siblings explicitly, so override. */
+        .card-back > .links-section {
+            flex: 0 0 auto;
+            margin-top: 8px;
+        }
+
+        /* Regular-row translation: let the row grow naturally with the
+           translation, but clamp at 3 lines with an ellipsis so very long
+           glosses don't push everything else around. */
+        .meaning-row-translation {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        /* Inline context: smaller, dimmer, flows on the same line as the
+           translation. A leading "·" separates it from the translation. If
+           the context is long we truncate at a word boundary and show a
+           clickable "…" that expands the full text. */
+        .meaning-context {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.6;
+            font-style: italic;
+        }
+
+        .meaning-context .ctx-expand {
+            cursor: pointer;
+            margin-left: 1px;
+            padding: 0 2px;
+            opacity: 0.9;
+        }
+
+        .meaning-context .ctx-expand:hover {
+            opacity: 1;
         }
 
         .card-word {
