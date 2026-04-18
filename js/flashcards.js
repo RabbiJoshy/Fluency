@@ -1187,9 +1187,13 @@ function updateCard() {
         frontMeaningsEl.style.display = 'none';
         frontWordEl.style.display = '';
         frontWordEl.textContent = frontText;
-        // Scale font down for long variant strings
-        if (variantDisplay && !isFlipped && variantDisplay.length > 16) {
-            frontWordEl.style.fontSize = Math.max(36, 64 - (variantDisplay.length - 12) * 2) + 'px';
+        // Auto-shrink the word font for long strings so they don't overflow
+        // or wrap awkwardly. Applies to any long displayed text (variant
+        // display OR plain long words like "encantadísimo"), not just
+        // variant strings. word-break in CSS is the final safety net.
+        const displayedLen = (frontText || '').length;
+        if (!isFlipped && displayedLen > 13) {
+            frontWordEl.style.fontSize = Math.max(32, 64 - (displayedLen - 12) * 2.2) + 'px';
         } else {
             frontWordEl.style.fontSize = '';
         }

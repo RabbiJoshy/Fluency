@@ -865,6 +865,14 @@
             margin-bottom: 8px;
             color: white;
             text-align: center;
+            /* Long words (e.g. "encantadísimo") used to spill off the right
+               edge of the card because the default white-space didn't break
+               them and card-face clips. Allow breaks and cap width so long
+               words wrap inside the card. */
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            line-height: 1.1;
         }
 
         .card-lemma {
@@ -2715,10 +2723,15 @@
         /* Conjugation table */
         .conjugation-panel {
             position: absolute;
-            top: -40px;
-            bottom: -40px;
-            left: -5px;
-            right: -5px;
+            /* Was top/bottom: -40px (extended past the card); .card-face
+               has overflow: hidden so the close button at the panel top
+               got clipped into the invisible region and couldn't be
+               clicked. Pin the panel inside the card so it fully covers
+               it instead of spilling past the top/bottom edges. */
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 20px;
             background: var(--bg-card);
             border-radius: 16px;
