@@ -581,6 +581,26 @@ function _setAboutURLParam(open) {
     } catch (_) { /* older browsers: no-op */ }
 }
 
+// Append the footnote section at the bottom of the About body. Paired with
+// the ¹ superscript next to the Spotify logo in the artist demo card so
+// visitors understand the current breadth ("just three artists right now")
+// and where it's going ("any Spotify playlist, eventually").
+function _appendAboutFootnotes(body) {
+    const existing = body.querySelector('.about-footnotes');
+    if (existing) existing.remove();
+
+    const notes = document.createElement('aside');
+    notes.className = 'about-footnotes';
+    notes.innerHTML =
+        '<p id="about-footnote-1">'
+        + '<sup class="about-footnote-number">1</sup> '
+        + 'Right now three Spanish artists (Bad Bunny, Rosalía, Young Miko) and one French playlist are built in. '
+        + 'The pipeline itself runs on any Spotify playlist — '
+        + 'the goal is to let anyone paste in a playlist URL and generate a full vocabulary deck from its lyrics.'
+        + '</p>';
+    body.appendChild(notes);
+}
+
 // Swap the top-right close affordance based on auth state. For already-
 // authenticated users it becomes a pill-shaped "Back to the app" button
 // (same action as the bottom CTA — visible while scrolling). For
@@ -648,6 +668,7 @@ async function openAboutProjectModal() {
         body.innerHTML = _aboutMarkdownCache;
         layoutAboutTwoModes(body);
         mountAboutDemos(body);
+        _appendAboutFootnotes(body);
         _appendAboutCTAs(body);
         _updateAboutCloseButton();
         return;
@@ -660,6 +681,7 @@ async function openAboutProjectModal() {
         body.innerHTML = _aboutMarkdownCache;
         layoutAboutTwoModes(body);
         mountAboutDemos(body);
+        _appendAboutFootnotes(body);
         _appendAboutCTAs(body);
         _updateAboutCloseButton();
     } catch (e) {
@@ -794,7 +816,10 @@ function _buildAboutDemoCard(mode) {
                     <div class="translation"></div>
                     <div class="about-demo-spotify-row">
                         <span class="about-demo-song-back"></span>
-                        ${spotifyLogo}
+                        <span class="about-demo-spotify-mark">
+                            ${spotifyLogo}
+                            <sup class="about-demo-footnote-ref" role="link" tabindex="0" aria-label="Read footnote 1">1</sup>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -913,6 +938,23 @@ function mountAboutDemos(root) {
         const mode = el.dataset.mode;
         const inner = _buildAboutDemoCard(mode);
         el.appendChild(inner);
+
+        // Wire the ¹ superscript next to the Spotify logo so clicking (or
+        // pressing Enter on) it scrolls to the matching footnote. The modal
+        // body owns its own scroll, so href="#..." anchors don't work — do
+        // it explicitly with scrollIntoView.
+        const ref = inner.querySelector('.about-demo-footnote-ref');
+        if (ref) {
+            const jumpToFootnote = (e) => {
+                if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+                e.preventDefault();
+                const note = root.querySelector('#about-footnote-1');
+                if (note) note.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            };
+            ref.addEventListener('click', jumpToFootnote);
+            ref.addEventListener('keydown', jumpToFootnote);
+        }
+
         _runAboutDemo(inner, mode);
     });
 }

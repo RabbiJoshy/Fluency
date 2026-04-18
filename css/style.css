@@ -4403,11 +4403,62 @@
             text-align: left;
         }
 
+        .about-demo-spotify-mark {
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 1px;
+            flex-shrink: 0;
+        }
+
         .about-demo-spotify-logo {
             width: 18px;
             height: 18px;
             fill: #1DB954;
             flex-shrink: 0;
+        }
+
+        .about-demo-footnote-ref {
+            font-family: var(--font-data);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: none;
+            line-height: 1;
+            padding: 0 2px;
+            border-radius: 2px;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .about-demo-footnote-ref:hover,
+        .about-demo-footnote-ref:focus-visible {
+            color: var(--accent-primary);
+            background: rgba(var(--accent-primary-rgb), 0.15);
+            outline: none;
+        }
+
+        /* Footnote section at the bottom of the About body. Small, muted,
+           sets itself off with a top rule so it reads as end-matter
+           distinct from the main copy and the CTAs below it. */
+        .about-footnotes {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-family: var(--font-reading);
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 760px;
+        }
+
+        .about-footnotes p {
+            margin: 0 0 10px;
+        }
+
+        .about-footnote-number {
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-right: 2px;
         }
 
         /* -------- Side-by-side "Two modes" layout ------------------------- */
