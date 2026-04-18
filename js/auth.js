@@ -990,15 +990,17 @@ function mountAboutDemos(root) {
 
 // Rewire the two mode-section <h3>s so they sit side by side on desktop.
 // The Markdown source stays linear (easier to edit); we detect the
-// "Normal mode" / "Artist mode" pair after rendering and wrap each h3 +
-// its following siblings (up to the next h2 or h3) into a column.
+// "Normal mode" / "Lyrics mode" pair after rendering and wrap each h3 +
+// its following siblings (up to the next h2 or h3) into a column. The
+// "artist" alternative is matched for backward compatibility with any
+// older about.md copy.
 function layoutAboutTwoModes(root) {
     if (root.querySelector('.about-modes-row')) return;  // already laid out
 
     const h3s = Array.from(root.querySelectorAll('h3'));
     const normal = h3s.find(h => /^normal mode\b/i.test(h.textContent.trim()));
-    const artist = h3s.find(h => /^artist mode\b/i.test(h.textContent.trim()));
-    if (!normal || !artist) return;
+    const lyrics = h3s.find(h => /^(?:lyrics|artist) mode\b/i.test(h.textContent.trim()));
+    if (!normal || !lyrics) return;
 
     // Drop a comment placeholder at the "Normal mode" h3's position BEFORE
     // we start detaching its siblings, so we have a stable anchor to swap
@@ -1015,7 +1017,7 @@ function layoutAboutTwoModes(root) {
         }
         return out;
     };
-    const sections = [collectSection(normal), collectSection(artist)];
+    const sections = [collectSection(normal), collectSection(lyrics)];
 
     const row = document.createElement('div');
     row.className = 'about-modes-row';

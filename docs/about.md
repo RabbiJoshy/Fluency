@@ -4,15 +4,15 @@ They teach by theme — *colours*, *at the airport*, *in the kitchen* — and dr
 
 This app takes the opposite approach: every word you study comes from material you already care about. Spotify lyrics, film subtitles, frequency-ranked sentences from real corpora. The word *why* is paired with the sentence *you* are going to meet it in.
 
-### Normal mode
+### Normal mode [subtitles]
 
 ![Normal mode — a flashcard flipping and cycling through senses](demo://normal)
 
 Learn Spanish from the ground up, ordered by how common each word actually is across millions of sentences scraped from OpenSubtitles, Tatoeba and Wiktionary. Every flashcard is paired with real example sentences at your current level — so you don't get a rare word hidden inside an even rarer sentence.
 
-### Artist mode
+### Lyrics mode
 
-![Artist mode — a lyric card with the translated line](demo://artist)
+![Lyrics mode — a lyric card with the translated line](demo://artist)
 
 Pick an artist — Bad Bunny, say — and the app builds you a deck of every Spanish word they use across their entire discography, ranked by how often they use it. Each flashcard shows the actual song lyric the word came from, with the line translated underneath. Tap the lyric and it plays in your own Spotify at that exact moment — so you hear the word in context on the original track.
 
