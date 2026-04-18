@@ -581,10 +581,11 @@ function _setAboutURLParam(open) {
     } catch (_) { /* older browsers: no-op */ }
 }
 
-// Append the footnote section at the bottom of the About body. Paired with
-// the ¹ superscript next to the Spotify logo in the artist demo card so
-// visitors understand the current breadth ("just three artists right now")
-// and where it's going ("any Spotify playlist, eventually").
+// Append the footnote + data-sources section at the bottom of the About
+// body. The ¹ footnote is paired with the superscript next to the Spotify
+// logo on the artist demo card. The sources line credits the external
+// datasets the pipeline depends on — short, reads as end-matter, same
+// muted styling as the footnote above it.
 function _appendAboutFootnotes(body) {
     const existing = body.querySelector('.about-footnotes');
     if (existing) existing.remove();
@@ -597,6 +598,11 @@ function _appendAboutFootnotes(body) {
         + 'Right now three Spanish artists (Bad Bunny, Rosalía, Young Miko) and one French playlist are built in. '
         + 'The pipeline itself runs on any Spotify playlist — '
         + 'the goal is to let anyone paste in a playlist URL and generate a full vocabulary deck from its lyrics.'
+        + '</p>'
+        + '<p class="about-references">'
+        + '<strong>Sources:</strong> lyrics from Genius, synced timestamps via LRCLIB and Spotify, '
+        + 'word senses from Wiktionary and SpanishDict, frequency corpora from OpenSubtitles and Tatoeba, '
+        + 'Spanish conjugations from Jehle, cognate detection via CogNet.'
         + '</p>';
     body.appendChild(notes);
 }
