@@ -1418,10 +1418,19 @@ function updateCard() {
                 const posPill = pctVal >= 100
                     ? `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos}</span>`
                     : `<span class="card-pos ${posColorClass}" style="font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">${m.pos} <span style="opacity: 0.6;">|</span> ${pctVal}%</span>`;
+                // Render SpanishDict sub-sense context as a subtitle under
+                // the translation when present (e.g. correr → "to run"
+                // with context "to move fast").
+                const contextSubtitle = m.context
+                    ? `<span style="font-size: 11px; font-weight: 400; color: ${textColor}; opacity: 0.65; margin-top: 2px; text-align: center;">${m.context}</span>`
+                    : '';
                 backHTML += `
                 <div style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
                     ${posPill}
-                    <span style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <span style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}</span>
+                        ${contextSubtitle}
+                    </div>
                 </div>
                 `;
             }

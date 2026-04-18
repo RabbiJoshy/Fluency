@@ -98,6 +98,7 @@ function joinWithMaster(indexData, master) {
                 examples: []  // Attached later from examples file
             };
             if (sense.source) meaning.source = sense.source;
+            if (sense.context) meaning.context = sense.context;
             const method = methods[i];
             if (method) {
                 // Has a specific assignment method — record it, gets border
@@ -438,6 +439,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.unassigned) meaning.unassigned = true;
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.source) meaning.source = m.source;
+                if (m.context) meaning.context = m.context;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;
@@ -786,6 +788,7 @@ async function loadIncorrectWordsSet() {
                 if (m.unassigned) meaning.unassigned = true;
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.source) meaning.source = m.source;
+                if (m.context) meaning.context = m.context;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 return meaning;
