@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260417e';
-import './flashcards.js?v=20260417e';
+import './vocab.js?v=20260418h';
+import './flashcards.js?v=20260418h';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -93,8 +93,10 @@ loadConfig().then(async () => {
 
     // Wire shared top bar buttons (How to start, Estimate Level, mode switch, gear)
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
-    document.getElementById('estimateLevelTextBtn').addEventListener('click', () => openEstimationModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
+    // Level-estimate CTA (shown when user has no progress yet, in the slot
+    // where the personal coverage bar will live once they do).
+    document.getElementById('levelEstimateCTABtn').addEventListener('click', () => openEstimationModal());
     setupFindWord();
     document.getElementById('topBarUserName').addEventListener('click', () => {
         if (currentUser && !currentUser.isGuest && selectedLanguage) {
@@ -124,6 +126,15 @@ loadConfig().then(async () => {
     // Set user name in top bar immediately (don't wait for progress load)
     const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';
     document.getElementById('topBarUserName').textContent = userName;
+
+    // Shareable landing URL: ?about=1 opens the About modal on top of whatever
+    // state the app lands in. If the visitor has no session, they see the
+    // landing layered over the auth modal and can pick an auth path from the
+    // CTAs at the bottom of the About content. If they DO have a session,
+    // they see the landing over the app and can dismiss back to it.
+    if (new URLSearchParams(window.location.search).has('about')) {
+        window.openAboutProjectModal && window.openAboutProjectModal();
+    }
 
     // Start loading progress from Google Sheets (loads cache synchronously, then fetches)
     let progressPromise = Promise.resolve(false);

@@ -16,16 +16,67 @@ async function loadSecrets() {
     }
 }
 
-// Check authentication on page load
+// Detect whether this page load is a reload (F5 / Cmd-R) versus a fresh
+// navigation (link click, mode switch to ?artist=..., new tab). Uses the
+// modern Navigation Timing API with a fallback to the deprecated
+// performance.navigation interface for older browsers.
+function _isPageReload() {
+    try {
+        const nav = performance.getEntriesByType('navigation')[0];
+        if (nav && nav.type) return nav.type === 'reload';
+    } catch (_) {}
+    if (performance && performance.navigation) {
+        return performance.navigation.type === 1;  // TYPE_RELOAD
+    }
+    return false;
+}
+
+// Check authentication on page load.
+//
+// Named users persist in localStorage — survive across browser sessions.
+// Guest users persist in sessionStorage but ONLY across same-tab
+// navigations (mode switch, artist switch). A user-initiated reload
+// explicitly drops the guest session, so refreshing always surfaces the
+// landing — useful for Josh's testing and for any visitor who wants to
+// see the landing again without closing the tab.
+//
+// Summary of cases:
+//   - refresh (F5/Cmd-R)   → clear guest session → landing
+//   - mode/artist switch   → keep guest session → app, no landing
+//   - new tab at app URL   → no session → landing
+//   - new tab at ?about=1  → no session → landing + About on top
+//   - named user, any case → logged in (localStorage)
 function checkAuthentication() {
+    // User-initiated refresh should drop guest mode so the landing reappears.
+    if (_isPageReload()) {
+        sessionStorage.removeItem('flashcardGuestSession');
+    }
+
     const savedUser = localStorage.getItem('flashcardUser');
     if (savedUser) {
-        currentUser = JSON.parse(savedUser);
+        try {
+            const parsed = JSON.parse(savedUser);
+            if (parsed && parsed.isGuest) {
+                localStorage.removeItem('flashcardUser');  // legacy cleanup
+            } else if (parsed) {
+                currentUser = parsed;
+                showUserInfo();
+                hideAuthModal();
+                return;
+            }
+        } catch (e) {
+            localStorage.removeItem('flashcardUser');
+        }
+    }
+    // Tab-scoped guest session: survives same-tab navigations (mode/artist
+    // switches) but was just cleared above if this load is a reload.
+    if (sessionStorage.getItem('flashcardGuestSession') === '1') {
+        currentUser = { isGuest: true };
         showUserInfo();
         hideAuthModal();
-    } else {
-        showAuthModal();
+        return;
     }
+    showAuthModal();
 }
 
 // Show authentication modal
@@ -47,10 +98,19 @@ function hideAuthModal() {
 function showUserInfo() {
 }
 
-// Guest mode handler
+// Guest mode handler.
+//
+// Writes a sessionStorage marker so guest state survives same-tab
+// navigations (mode switch → ?artist=..., artist swap, etc.) but NOT a
+// user-initiated refresh. The refresh distinction is enforced in
+// checkAuthentication() via the Navigation Timing API — so refreshing
+// always surfaces the landing, while clicking "Normal mode" from the top
+// bar keeps you in the app as guest.
+//
+// Progress is still never persisted for guests.
 function enterGuestMode() {
     currentUser = { isGuest: true };
-    localStorage.setItem('flashcardUser', JSON.stringify(currentUser));
+    sessionStorage.setItem('flashcardGuestSession', '1');
     showUserInfo();
     hideAuthModal();
     updateIncorrectButtonVisibility();
@@ -90,32 +150,38 @@ async function submitLogin() {
     await loadUserProgressFromSheet();
 }
 
-// Logout handler
+// Logout handler. Guests skip the confirm (nothing to lose); named users get
+// the prompt since they might have unsaved progress in flight.
 function logout() {
-    if (confirm('Are you sure you want to logout? Unsaved progress will be lost.')) {
-        if (currentUser?.initials) {
-            localStorage.removeItem(`progress_cache_${currentUser.initials}`);
-        }
-        localStorage.removeItem('flashcardUser');
-        currentUser = null;
-        progressData = {};
-        document.getElementById('userInfo').classList.add('hidden');
-
-        // Reset app state
-        flashcards = [];
-        currentIndex = 0;
-        stats = {
-            studied: new Set(),
-            correct: 0,
-            incorrect: 0,
-            total: 0,
-            cardStats: {}
-        };
-
-        // Hide app content and show auth modal
-        document.getElementById('appContent').classList.add('hidden');
-        showAuthModal();
+    const isGuest = currentUser?.isGuest;
+    if (!isGuest && !confirm('Are you sure you want to logout? Unsaved progress will be lost.')) {
+        return;
     }
+
+    if (currentUser?.initials) {
+        localStorage.removeItem(`progress_cache_${currentUser.initials}`);
+    }
+    localStorage.removeItem('flashcardUser');
+    // Clean the legacy sessionStorage guest marker too, in case it's lingering.
+    sessionStorage.removeItem('flashcardGuestSession');
+    currentUser = null;
+    progressData = {};
+    document.getElementById('userInfo').classList.add('hidden');
+
+    // Reset app state
+    flashcards = [];
+    currentIndex = 0;
+    stats = {
+        studied: new Set(),
+        correct: 0,
+        incorrect: 0,
+        total: 0,
+        cardStats: {}
+    };
+
+    // Hide app content and show auth modal
+    document.getElementById('appContent').classList.add('hidden');
+    showAuthModal();
 }
 
 // ========== ID MIGRATION (one-time) ==========
@@ -350,11 +416,8 @@ async function saveWordProgress(card, isCorrect) {
     const language = selectedLanguage;
     const timestamp = new Date().toISOString();
 
-    if (!currentUser || currentUser.isGuest) {
-        // For guest mode, save to LocalStorage
-        saveToLocalStorage(wordId, isCorrect);
-        return;
-    }
+    // Guest sessions are ephemeral — nothing to persist.
+    if (!currentUser || currentUser.isGuest) return;
 
     // Update local progress data
     if (!progressData[wordId]) {
@@ -405,27 +468,435 @@ async function saveWordProgress(card, isCorrect) {
         }
     } catch (error) {
         console.error('Failed to save progress to Google Sheets:', error);
-        // Fallback to LocalStorage
-        saveToLocalStorage(wordId, isCorrect);
+        // In-memory progressData was already updated above; the card counts
+        // stay correct for this session. A transient network blip means the
+        // write just misses the sheet — not catastrophic for a single card.
     }
 }
 
-// LocalStorage fallback for guest mode
-function saveToLocalStorage(wordId, isCorrect) {
-    const key = 'flashcard_progress_guest';
-    let guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
+// Minimal Markdown → HTML renderer. Handles headings (##/###), paragraphs,
+// unordered lists, bold/italic, inline code, links, and images. Enough for
+// the About copy at docs/about.md without a runtime dependency.
+function renderMarkdown(md) {
+    const escape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-    if (!guestProgress[wordId]) {
-        guestProgress[wordId] = { correct: 0, wrong: 0 };
+    // Media extensions that render as <video autoplay loop muted> instead of <img>.
+    // Drop a recording at the referenced path and it becomes a looping silent demo
+    // clip inside the About modal.
+    const VIDEO_EXT_RE = /\.(webm|mp4|mov|ogv|m4v)$/i;
+
+    const inline = (s) => {
+        let out = escape(s);
+        out = out.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
+            // demo://<mode> — mount point for a live animated card demo. The mode
+            // ("normal" or "artist") picks which card variant to render. alt text
+            // becomes the accessible label for screen readers.
+            if (src.startsWith('demo://')) {
+                const mode = src.slice('demo://'.length).replace(/[^a-zA-Z0-9_-]/g, '');
+                return '<div class="about-demo-card" data-mode="' + mode + '"'
+                    + ' role="img" aria-label="' + alt + '"></div>';
+            }
+            if (VIDEO_EXT_RE.test(src)) {
+                return '<figure class="about-figure about-figure-video">'
+                    + '<video src="' + src + '" autoplay loop muted playsinline preload="metadata"'
+                    + ' onerror="this.parentElement.classList.add(\'about-figure-missing\')">'
+                    + '</video>'
+                    + '<figcaption>' + alt + '</figcaption>'
+                    + '</figure>';
+            }
+            return '<figure class="about-figure">'
+                + '<img src="' + src + '" alt="' + alt + '" loading="lazy"'
+                + ' onerror="this.parentElement.classList.add(\'about-figure-missing\')" />'
+                + '<figcaption>' + alt + '</figcaption>'
+                + '</figure>';
+        });
+        out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
+            '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        out = out.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+        out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+        return out;
+    };
+
+    const lines = md.split('\n');
+    const html = [];
+    let list = [];
+    let para = [];
+    const flushList = () => {
+        if (list.length) {
+            html.push('<ul>' + list.map(l => '<li>' + inline(l) + '</li>').join('') + '</ul>');
+            list = [];
+        }
+    };
+    const flushPara = () => {
+        if (para.length) {
+            html.push('<p>' + inline(para.join(' ')) + '</p>');
+            para = [];
+        }
+    };
+    const flushAll = () => { flushList(); flushPara(); };
+
+    for (const raw of lines) {
+        const line = raw.trim();
+        if (!line) { flushAll(); continue; }
+        if (line.startsWith('### ')) { flushAll(); html.push('<h3>' + inline(line.slice(4)) + '</h3>'); }
+        else if (line.startsWith('## ')) { flushAll(); html.push('<h2>' + inline(line.slice(3)) + '</h2>'); }
+        else if (line.startsWith('# ')) { flushAll(); html.push('<h1>' + inline(line.slice(2)) + '</h1>'); }
+        else if (line.startsWith('- ') || line.startsWith('* ')) { flushPara(); list.push(line.slice(2)); }
+        else { flushList(); para.push(line); }
     }
+    flushAll();
+    return html.join('\n');
+}
 
-    if (isCorrect) {
-        guestProgress[wordId].correct++;
+// Keep the `?about=1` URL param in sync with the About modal's open state so
+// the landing page is shareable (send `?about=1` to a recruiter; they see the
+// landing cold) AND refreshing while viewing it stays on the landing.
+function _setAboutURLParam(open) {
+    try {
+        const url = new URL(window.location);
+        const has = url.searchParams.has('about');
+        if (open && !has) {
+            url.searchParams.set('about', '1');
+            history.replaceState(null, '', url.toString());
+        } else if (!open && has) {
+            url.searchParams.delete('about');
+            const qs = url.searchParams.toString();
+            const clean = url.pathname + (qs ? '?' + qs : '') + url.hash;
+            history.replaceState(null, '', clean);
+        }
+    } catch (_) { /* older browsers: no-op */ }
+}
+
+// Append CTAs to the rendered About body so a first-time visitor has a direct
+// path into the app from the landing. If the user is already authenticated,
+// collapse the pair into a single "Back to the app" button.
+function _appendAboutCTAs(body) {
+    const existing = body.querySelector('.about-ctas');
+    if (existing) existing.remove();
+
+    const cta = document.createElement('div');
+    cta.className = 'about-ctas';
+
+    if (currentUser) {
+        const name = currentUser.isGuest ? 'Guest' : (currentUser.initials || 'Back');
+        cta.innerHTML =
+            '<button type="button" class="about-cta-btn primary" id="aboutCTABack">'
+            + 'Back to the app' + (currentUser.isGuest ? '' : ' (' + name + ')') + '</button>';
+        body.appendChild(cta);
+        document.getElementById('aboutCTABack').addEventListener('click', hideAboutProjectModal);
     } else {
-        guestProgress[wordId].wrong++;
+        cta.innerHTML =
+            '<div class="about-ctas-label">Ready to try it?</div>'
+            + '<div class="about-ctas-buttons">'
+            +   '<button type="button" class="about-cta-btn secondary" id="aboutCTAGuest">Try it as Guest</button>'
+            +   '<button type="button" class="about-cta-btn primary" id="aboutCTALogin">Log in with your name</button>'
+            + '</div>';
+        body.appendChild(cta);
+        document.getElementById('aboutCTAGuest').addEventListener('click', () => {
+            hideAboutProjectModal();
+            enterGuestMode();
+        });
+        document.getElementById('aboutCTALogin').addEventListener('click', () => {
+            hideAboutProjectModal();
+            // Auth modal is already visible underneath; surface the login form.
+            if (typeof showLoginForm === 'function') showLoginForm();
+        });
+    }
+}
+
+let _aboutMarkdownCache = null;
+async function openAboutProjectModal() {
+    const modal = document.getElementById('aboutProjectModal');
+    const body = document.getElementById('aboutProjectBody');
+    modal.classList.remove('hidden');
+    _setAboutURLParam(true);
+    if (_aboutMarkdownCache) {
+        body.innerHTML = _aboutMarkdownCache;
+        layoutAboutTwoModes(body);
+        mountAboutDemos(body);
+        _appendAboutCTAs(body);
+        return;
+    }
+    try {
+        const resp = await fetch('docs/about.md');
+        if (!resp.ok) throw new Error('Failed to load about.md');
+        const md = await resp.text();
+        _aboutMarkdownCache = renderMarkdown(md);
+        body.innerHTML = _aboutMarkdownCache;
+        layoutAboutTwoModes(body);
+        mountAboutDemos(body);
+        _appendAboutCTAs(body);
+    } catch (e) {
+        console.error('About modal: failed to load markdown', e);
+        body.innerHTML = '<p style="color: var(--text-muted);">Could not load project description.</p>';
+    }
+}
+
+function hideAboutProjectModal() {
+    const modal = document.getElementById('aboutProjectModal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (_) {} });
+    _setAboutURLParam(false);
+}
+
+// ----- About-modal card demos --------------------------------------------------
+//
+// Live animated cards inserted into the About modal wherever `demo://<mode>`
+// appears in the Markdown. Reuses the app's .card / .card-face / .flipped CSS so
+// the demo is visually identical to the real flashcard — we just drive it with
+// a tiny sequential animation instead of user input. Each demo runs in its own
+// async loop that exits when its container leaves the DOM (modal closes).
+
+// Demo data mirrors the real vocab entry shape from Data/Spanish/vocabulary.json:
+//   { word, lemma, pos, rank, meanings: [{ pos, translation, target, english }] }
+// The content is copy-pasted from actual entries so the demo shows what real
+// cards say, not made-up examples. Rendering uses the same classes the main
+// app's updateCard() produces (.card-word, .card-pos, .meaning-row.meaning-row-regular,
+// .meanings-scroll, .sentence, .translation) so the look is 1:1 with the real card.
+const _ABOUT_DEMO_DECKS = {
+    normal: [
+        {
+            word: 'pasar',
+            pos: 'VERB',
+            rank: 47,
+            meanings: [
+                { pos: 'VERB', translation: 'to spend',
+                  target: 'Él va a pasar el fin de semana con su tío.',
+                  english: "He's going to spend the weekend with his uncle." },
+                { pos: 'VERB', translation: 'to happen',
+                  target: '¿Puede volver a pasar algo así?',
+                  english: 'Could something like this happen again?' },
+                { pos: 'VERB', translation: 'to pass',
+                  target: 'Voy a tener que pasar de eso.',
+                  english: "I'm going to have to pass on that." },
+            ],
+        },
+        {
+            word: 'decir',
+            pos: 'VERB',
+            rank: 36,
+            meanings: [
+                { pos: 'VERB', translation: 'to say',
+                  target: 'Cuando estés enfadado, cuenta hasta diez antes de decir nada.',
+                  english: 'When angry, count to ten before saying anything.' },
+                { pos: 'VERB', translation: 'to tell',
+                  target: 'Hay algo que te necesito decir antes de que te vayas.',
+                  english: 'There is something I need to tell you before you leave.' },
+            ],
+        },
+    ],
+    artist: [
+        {
+            word: 'corazón',
+            pos: 'NOUN',
+            rank: 24,
+            song: 'CALLAÍTA · Bad Bunny',
+            meanings: [
+                { pos: 'NOUN', translation: 'heart',
+                  target: 'Tú eres la dueña de mi corazón',
+                  english: "You're the owner of my heart" },
+            ],
+        },
+        {
+            word: 'fuego',
+            pos: 'NOUN',
+            rank: 58,
+            song: 'ME PORTO BONITO · Bad Bunny',
+            meanings: [
+                { pos: 'NOUN', translation: 'fire',
+                  target: 'La calle está en fuego, la calle tiene fuego',
+                  english: 'The street is on fire, the street has fire' },
+                { pos: 'NOUN', translation: 'passion',
+                  target: 'Donde había fuego, ceniza queda',
+                  english: 'Where there was fire, ashes remain' },
+            ],
+        },
+    ],
+};
+
+function _buildAboutDemoCard(mode) {
+    // DOM structure mirrors what updateCard() in flashcards.js produces:
+    //   .card
+    //     .card-face.card-front  — card-word, card-pos, card-ranking, song (artist only)
+    //     .card-face.card-back
+    //       .card-details
+    //         .back-header        — big word repeated at the top of the back
+    //         .meanings-scroll    — list of .meaning-row.meaning-row-regular
+    //         .sentence           — accent-bordered example box
+    //         .translation        — english line below
+    // Rows are populated and a selected index is rotated by _runAboutDemo.
+    const wrap = document.createElement('div');
+    wrap.className = 'about-demo-card-inner';
+    wrap.innerHTML = `
+        <div class="card">
+            <div class="card-face card-front">
+                <div class="card-word"></div>
+                <div class="card-pos"></div>
+                <div class="card-ranking"></div>
+                <div class="about-demo-song"></div>
+            </div>
+            <div class="card-face card-back">
+                <div class="card-details">
+                    <div class="back-header">
+                        <div class="about-demo-back-word"></div>
+                    </div>
+                    <div class="meanings-scroll"></div>
+                    <div class="sentence"></div>
+                    <div class="translation"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    return wrap;
+}
+
+// Build the inner HTML of .meanings-scroll — one .meaning-row.meaning-row-regular
+// per sense, with the selected one carrying .is-selected. Matches the inline
+// structure produced by updateCard() at pipeline/flashcards.js:1453.
+function _renderDemoMeaningRows(meanings, selectedIdx) {
+    return meanings.map((m, idx) => {
+        const selected = idx === selectedIdx ? ' is-selected' : '';
+        const posClass = _posColorClass(m.pos);
+        return `
+            <div class="meaning-row meaning-row-regular${selected}">
+                <span class="card-pos meaning-row-pos-pill ${posClass}">${m.pos}</span>
+                <div class="meaning-row-body">
+                    <span class="meaning-row-translation">${m.translation}</span>
+                </div>
+            </div>`;
+    }).join('');
+}
+
+const _POS_CLASS_MAP = {
+    VERB: 'pos-verb', NOUN: 'pos-noun', ADJ: 'pos-adj', ADV: 'pos-adv',
+    PREP: 'pos-prep', ADP: 'pos-prep', CONJ: 'pos-conj', CCONJ: 'pos-conj',
+    SCONJ: 'pos-conj', PRON: 'pos-pron', DET: 'pos-det', INT: 'pos-int',
+    INTJ: 'pos-int', NUM: 'pos-num', MWE: 'pos-mwe',
+};
+
+function _posColorClass(pos) {
+    const key = (pos || '').trim().toUpperCase().split(/[\s·]+/)[0];
+    return _POS_CLASS_MAP[key] || '';
+}
+
+function _sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+}
+
+async function _runAboutDemo(container, mode) {
+    const deck = _ABOUT_DEMO_DECKS[mode] || _ABOUT_DEMO_DECKS.normal;
+    const card = container.querySelector('.card');
+    const wordEl = container.querySelector('.card-word');
+    const posEl = container.querySelector('.card-pos');
+    const rankEl = container.querySelector('.card-ranking');
+    const songEl = container.querySelector('.about-demo-song');
+    const backWordEl = container.querySelector('.about-demo-back-word');
+    const meaningsEl = container.querySelector('.meanings-scroll');
+    const sentenceEl = container.querySelector('.sentence');
+    const translationEl = container.querySelector('.translation');
+
+    const stillMounted = () => container.isConnected
+        && !document.getElementById('aboutProjectModal').classList.contains('hidden');
+
+    const setFrontPos = (pos) => {
+        posEl.className = 'card-pos';
+        const cls = _posColorClass(pos);
+        if (cls) posEl.classList.add(cls);
+        posEl.textContent = pos;
+    };
+
+    while (stillMounted()) {
+        for (const entry of deck) {
+            if (!stillMounted()) return;
+
+            // -------- Front face --------
+            card.classList.remove('flipped');
+            wordEl.textContent = entry.word;
+            setFrontPos(entry.pos);
+            rankEl.textContent = entry.rank ? '#' + entry.rank : '';
+            songEl.textContent = entry.song || '';
+            backWordEl.textContent = entry.word;
+
+            await _sleep(2800);
+            if (!stillMounted()) return;
+
+            // -------- Flip and cycle through senses --------
+            card.classList.add('flipped');
+            await _sleep(900); // matches .card transition: transform 0.6s, plus some settle time
+
+            for (let i = 0; i < entry.meanings.length; i++) {
+                if (!stillMounted()) return;
+                const m = entry.meanings[i];
+                meaningsEl.innerHTML = _renderDemoMeaningRows(entry.meanings, i);
+                sentenceEl.textContent = m.target;
+                translationEl.textContent = m.english;
+                // Dwell long enough to actually read the example sentence. A
+                // single-sense entry sits a bit longer since there's nothing
+                // else to cycle to.
+                const dwell = entry.meanings.length === 1 ? 4200 : 3000;
+                await _sleep(dwell);
+            }
+
+            if (!stillMounted()) return;
+            card.classList.remove('flipped');
+            await _sleep(1100);
+        }
+    }
+}
+
+function mountAboutDemos(root) {
+    const placeholders = root.querySelectorAll('.about-demo-card[data-mode]');
+    placeholders.forEach(el => {
+        if (el.dataset.mounted === '1') return;
+        el.dataset.mounted = '1';
+        const mode = el.dataset.mode;
+        const inner = _buildAboutDemoCard(mode);
+        el.appendChild(inner);
+        _runAboutDemo(inner, mode);
+    });
+}
+
+// Rewire the two mode-section <h3>s so they sit side by side on desktop.
+// The Markdown source stays linear (easier to edit); we detect the
+// "Normal mode" / "Artist mode" pair after rendering and wrap each h3 +
+// its following siblings (up to the next h2 or h3) into a column.
+function layoutAboutTwoModes(root) {
+    if (root.querySelector('.about-modes-row')) return;  // already laid out
+
+    const h3s = Array.from(root.querySelectorAll('h3'));
+    const normal = h3s.find(h => /^normal mode\b/i.test(h.textContent.trim()));
+    const artist = h3s.find(h => /^artist mode\b/i.test(h.textContent.trim()));
+    if (!normal || !artist) return;
+
+    // Drop a comment placeholder at the "Normal mode" h3's position BEFORE
+    // we start detaching its siblings, so we have a stable anchor to swap
+    // the finished row into afterwards.
+    const anchor = document.createComment('about-modes-anchor');
+    normal.parentNode.insertBefore(anchor, normal);
+
+    const collectSection = (h3) => {
+        const out = [h3];
+        let el = h3.nextElementSibling;
+        while (el && el.tagName !== 'H3' && el.tagName !== 'H2') {
+            out.push(el);
+            el = el.nextElementSibling;
+        }
+        return out;
+    };
+    const sections = [collectSection(normal), collectSection(artist)];
+
+    const row = document.createElement('div');
+    row.className = 'about-modes-row';
+    for (const section of sections) {
+        const col = document.createElement('div');
+        col.className = 'about-modes-column';
+        for (const child of section) col.appendChild(child);
+        row.appendChild(col);
     }
 
-    localStorage.setItem(key, JSON.stringify(guestProgress));
+    anchor.parentNode.replaceChild(row, anchor);
 }
 
 // Setup authentication modal event listeners
@@ -435,6 +906,28 @@ function setupAuthEventListeners() {
 
     // Login mode button
     document.getElementById('loginModeBtn').addEventListener('click', showLoginForm);
+
+    // Login info button: toggle the no-password explanation
+    const loginInfoBtn = document.getElementById('loginInfoBtn');
+    const loginInfoNote = document.getElementById('loginInfoNote');
+    if (loginInfoBtn && loginInfoNote) {
+        loginInfoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            loginInfoNote.classList.toggle('hidden');
+        });
+    }
+
+    // About this project button. Fullscreen modal; only close paths are the ×
+    // button and Escape. hideAboutProjectModal also strips ?about=1 from the
+    // URL so refreshing after dismissing lands you in the app, not the modal.
+    const aboutModal = document.getElementById('aboutProjectModal');
+    document.getElementById('aboutProjectBtn').addEventListener('click', openAboutProjectModal);
+    document.getElementById('closeAboutProjectModal').addEventListener('click', hideAboutProjectModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !aboutModal.classList.contains('hidden')) {
+            hideAboutProjectModal();
+        }
+    });
 
     // Cancel login button
     document.getElementById('cancelLoginBtn').addEventListener('click', hideLoginForm);
@@ -470,6 +963,17 @@ function setupAuthEventListeners() {
         hideSettingsModal();
         logout();
     });
+
+    // Settings → Account → "About this project" row. Dismisses settings and
+    // opens the landing page modal so signed-in users can revisit the
+    // explainer after using the app for a bit.
+    const aboutSettingsRow = document.getElementById('aboutProjectSettingsRow');
+    if (aboutSettingsRow) {
+        aboutSettingsRow.addEventListener('click', function() {
+            hideSettingsModal();
+            openAboutProjectModal();
+        });
+    }
 
     // Gear button opens settings modal
     document.getElementById('gearBtn').addEventListener('click', function() {
@@ -521,11 +1025,12 @@ window.hideAuthModal = hideAuthModal;
 window.showUserInfo = showUserInfo;
 window.enterGuestMode = enterGuestMode;
 window.showLoginForm = showLoginForm;
+window.openAboutProjectModal = openAboutProjectModal;
+window.hideAboutProjectModal = hideAboutProjectModal;
 window.hideLoginForm = hideLoginForm;
 window.submitLogin = submitLogin;
 window.logout = logout;
 window.loadUserProgressFromSheet = loadUserProgressFromSheet;
 window.saveLevelEstimateToSheet = saveLevelEstimateToSheet;
 window.saveWordProgress = saveWordProgress;
-window.saveToLocalStorage = saveToLocalStorage;
 window.setupAuthEventListeners = setupAuthEventListeners;

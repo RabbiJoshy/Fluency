@@ -1344,7 +1344,7 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 25px;
-            color: var(--accent-primary);
+            color: var(--text-primary);
             text-align: center;
         }
 
@@ -1409,7 +1409,8 @@
         .type-prompt {
             font-size: 20px;
             margin-bottom: 20px;
-            color: var(--accent-primary);
+            color: var(--text-primary);
+            font-weight: 700;
             text-align: center;
         }
 
@@ -1450,7 +1451,7 @@
         }
 
         .stats h3 {
-            color: var(--accent-primary);
+            color: var(--text-primary);
             margin-bottom: 15px;
         }
 
@@ -1822,7 +1823,8 @@
 
         .lang-tab.active {
             background: var(--bg-card);
-            color: var(--accent-primary);
+            color: var(--text-primary);
+            font-weight: 700;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
@@ -1864,7 +1866,7 @@
             font-family: var(--font-emphasis);
             font-size: 24px;
             font-weight: 700;
-            color: var(--accent-primary);
+            color: var(--text-primary);
         }
 
         .cefr-description {
@@ -2389,7 +2391,7 @@
         }
 
         .step-info-tooltip-inner strong {
-            color: var(--accent-primary);
+            color: var(--text-primary);
         }
 
         .step-header-with-help {
@@ -2469,9 +2471,10 @@
 
         .modal-header h3 {
             font-family: var(--font-emphasis);
-            color: var(--accent-primary);
+            color: var(--text-primary);
             margin: 0;
             font-size: 24px;
+            font-weight: 700;
         }
 
         .modal-close {
@@ -2863,9 +2866,9 @@
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            color: var(--accent-primary);
+            color: var(--text-primary);
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -2937,7 +2940,8 @@
             padding: 4px 10px;
             border-radius: 4px;
             font-family: var(--font-data);
-            color: var(--accent-primary);
+            color: var(--text-primary);
+            font-weight: 700;
             font-size: 14px;
             margin-bottom: 8px;
         }
@@ -3016,7 +3020,7 @@
             font-family: var(--font-emphasis);
             font-size: 48px;
             font-weight: 700;
-            color: var(--accent-primary);
+            color: var(--text-primary);
             margin-bottom: 6px;
         }
 
@@ -3122,7 +3126,7 @@
             font-family: var(--font-emphasis);
             font-size: 42px;
             font-weight: 700;
-            color: var(--accent-primary);
+            color: var(--text-primary);
             margin-bottom: 10px;
         }
 
@@ -3162,7 +3166,8 @@
         }
 
         .settings-tab.active {
-            color: var(--accent-primary);
+            color: var(--text-primary);
+            font-weight: 700;
             border-bottom-color: var(--accent-primary);
         }
 
@@ -3187,8 +3192,8 @@
             border-radius: 8px;
             padding: 10px 14px;
             margin-bottom: 4px;
-            color: var(--accent-primary);
-            font-weight: 600;
+            color: var(--text-primary);
+            font-weight: 700;
         }
 
         .artist-switch-row {
@@ -3516,8 +3521,8 @@
         }
 
         .top-bar-user-name {
-            color: var(--accent-primary);
-            font-weight: 600;
+            color: var(--text-primary);
+            font-weight: 700;
             font-size: 16px;
             font-family: var(--font-emphasis);
             cursor: pointer;
@@ -3792,6 +3797,614 @@
             border-color: var(--accent-secondary);
         }
 
+        /* Login row + info button */
+        .auth-btn-row {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        .auth-btn-row .auth-btn {
+            flex: 1;
+        }
+
+        .auth-info-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            font-family: var(--font-emphasis);
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: all 0.2s;
+            z-index: 2;
+        }
+
+        .auth-info-btn:hover {
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            background: var(--bg-card);
+        }
+
+        .auth-info-note {
+            padding: 12px 14px;
+            margin-top: -5px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .auth-info-note.hidden {
+            display: none;
+        }
+
+        /* About this project link */
+        .auth-about-link {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-reading);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px;
+            margin-top: 4px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+
+        .auth-about-link:hover {
+            color: var(--accent-primary);
+        }
+
+        /* About This Project modal — full-screen takeover. No persistent
+           header bar (vertical space is premium); close button floats over
+           the content in the top-right corner. */
+        .about-project-modal {
+            max-width: none;
+            width: 100vw;
+            height: 100vh;
+            max-height: 100vh;
+            border-radius: 0;
+            padding: 0;
+            border: none;
+            background: var(--bg-primary, var(--bg-card));
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .about-close-floating {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 20px;
+            line-height: 1;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .about-close-floating:hover {
+            background: var(--bg-card-hover, var(--bg-tertiary));
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .about-project-body {
+            padding: 44px 48px 80px;
+            color: var(--text-secondary);
+            font-family: var(--font-reading);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-y: auto;
+            max-height: none;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            flex: 1;
+        }
+
+        /* About-modal title treatments. Using var(--accent-primary) for
+           headings is unreadable in dark-blue themes (e.g. Bad Bunny theme),
+           so we render titles in var(--text-primary) with a subtle accent
+           underline instead of a coloured fill. */
+        .about-project-modal .modal-header h3 {
+            color: var(--text-primary);
+        }
+
+        .about-project-body h2 {
+            font-family: var(--font-emphasis);
+            color: var(--text-primary);
+            font-size: 26px;
+            font-weight: 700;
+            margin: 36px 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-primary);
+            display: inline-block;
+            letter-spacing: -0.3px;
+        }
+
+        .about-project-body h2:first-child {
+            margin-top: 0;
+        }
+
+        .about-project-body h3 {
+            font-family: var(--font-emphasis);
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 600;
+            margin: 22px 0 8px;
+            letter-spacing: -0.1px;
+        }
+
+        .about-project-body p {
+            margin: 0 0 14px;
+        }
+
+        .about-project-body ul {
+            margin: 0 0 14px;
+            padding-left: 22px;
+        }
+
+        .about-project-body li {
+            margin-bottom: 8px;
+        }
+
+        .about-project-body strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .about-project-body em {
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        .about-project-body a {
+            color: var(--accent-primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .about-project-body code {
+            font-family: var(--font-data);
+            font-size: 13px;
+            background: var(--bg-tertiary);
+            padding: 1px 6px;
+            border-radius: 4px;
+            color: var(--text-primary);
+        }
+
+        .about-figure {
+            margin: 28px 0;
+        }
+
+        .about-project-body .about-figure img,
+        .about-project-body .about-figure video {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+        }
+
+        .about-project-body .about-figure video {
+            /* Auto-looping silent demo clips — give them a sensible aspect ratio
+               so they don't pop in/out as the file loads. */
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        /* figcaption only shown on the placeholder (when the file is missing). */
+        .about-figure figcaption {
+            display: none;
+        }
+
+        /* Dashed placeholder box when the media file doesn't exist yet.
+           The figcaption becomes the visible label so Josh knows what to drop in. */
+        .about-figure.about-figure-missing {
+            min-height: 220px;
+            border: 2px dashed var(--border-color);
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .about-figure.about-figure-missing img,
+        .about-figure.about-figure-missing video {
+            display: none;
+        }
+
+        .about-figure.about-figure-missing figcaption {
+            display: block;
+            color: var(--text-muted);
+            font-family: var(--font-data);
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .about-figure.about-figure-missing figcaption::before {
+            content: "Image: ";
+            color: var(--text-muted);
+        }
+
+        /* Override the label for video placeholders. */
+        .about-figure.about-figure-video.about-figure-missing figcaption::before {
+            content: "Video: ";
+        }
+
+        .about-loading {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* -------- About-modal CTAs (appended to the About body) ----------- */
+        /* Shown at the bottom of the About copy so first-time visitors have a
+           clear path into the app from the landing. For already-authenticated
+           users (e.g. arrived via Settings → "About this project"), this
+           collapses to a single "Back to the app" button. */
+        .about-ctas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-top: 48px;
+            padding: 32px 24px;
+            background: rgba(var(--accent-primary-rgb), 0.06);
+            border: 1px solid rgba(var(--accent-primary-rgb), 0.25);
+            border-radius: 12px;
+        }
+
+        .about-ctas-label {
+            font-family: var(--font-emphasis);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .about-ctas-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .about-cta-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: var(--font-emphasis);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 180px;
+            border: 1.5px solid var(--border-color);
+        }
+
+        .about-cta-btn.primary {
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border-color: var(--accent-primary);
+        }
+
+        .about-cta-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(var(--accent-primary-rgb), 0.4);
+        }
+
+        .about-cta-btn.secondary {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .about-cta-btn.secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+        }
+
+        /* Level-estimate CTA — fills the slot where the personal coverage
+           bar will live once the user has progress. Shown only when no
+           progress yet AND no prior level estimate for the current
+           language. Compact pill-ish card: blurb left, action button right. */
+        .level-estimate-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 16px 0 4px;
+            padding: 14px 18px;
+            background: rgba(var(--accent-primary-rgb), 0.08);
+            border: 1px solid rgba(var(--accent-primary-rgb), 0.35);
+            border-radius: 10px;
+            font-family: var(--font-reading);
+        }
+
+        .level-estimate-cta-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .level-estimate-cta-title {
+            font-family: var(--font-emphasis);
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .level-estimate-cta-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .level-estimate-cta-btn {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            font-family: var(--font-emphasis);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .level-estimate-cta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(var(--accent-primary-rgb), 0.4);
+        }
+
+        /* -------- About-modal card demos ---------------------------------- */
+        /* Live animated flashcards embedded inline in the About copy. Reuses
+           the main app's real class names (.card-word, .card-pos, .sentence,
+           .translation, .pos-verb, etc.) so the demo inherits actual
+           flashcard typography. Scoped rules below only override SIZE so
+           real-card styles fit a 320×440 demo footprint. */
+
+        .about-demo-card {
+            /* <div> placeholder the Markdown renderer drops in; JS mounts an
+               .about-demo-card-inner child that holds the real .card. */
+            margin: 18px auto 32px;
+            max-width: 100%;
+        }
+
+        .about-demo-card-inner {
+            width: 340px;
+            max-width: 100%;
+            height: 480px;
+            margin: 0 auto;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        /* Override the main-app .card sizing (which targets full viewport). */
+        .about-demo-card-inner .card {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            max-height: none;
+            position: relative;
+        }
+
+        .about-demo-card-inner .card-front {
+            justify-content: center;
+            padding: 28px 20px;
+        }
+
+        .about-demo-card-inner .card-back {
+            justify-content: flex-start;
+            padding: 22px 18px 20px;
+        }
+
+        /* -------- Size overrides for the real card typography ------------- */
+        /* The real card-word is 64px built for a viewport-filling card; scale
+           to suit the demo. Colours / fonts inherit from the base rules so
+           the look stays authentic. */
+
+        .about-demo-card-inner .card-word {
+            font-size: 48px;
+            margin-bottom: 14px;
+        }
+
+        .about-demo-card-inner .card-pos {
+            font-size: 11px;
+            padding: 5px 12px;
+            margin-bottom: 12px;
+        }
+
+        .about-demo-card-inner .card-ranking {
+            font-size: 14px;
+        }
+
+        .about-demo-card-inner .card-details {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            text-align: center;
+        }
+
+        /* Back header — the big repeated word at the top of the back face.
+           Matches the inline markup produced by updateCard() at line 1300. */
+        .about-demo-card-inner .back-header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .about-demo-back-word {
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+            font-family: var(--font-emphasis);
+        }
+
+        /* Meanings list — one .meaning-row per sense. Matches the look of
+           updateCard()-generated rows at line 1453: POS pill positioned
+           absolutely on the left, translation centred in the row. */
+        .about-demo-card-inner .meanings-scroll {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        .about-demo-card-inner .meaning-row-regular {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 14px;
+            background: rgba(15, 20, 28, 0.75);
+            border-radius: 8px;
+            min-height: 40px;
+            border: 1px solid transparent;
+            transition: background 0.25s, border-color 0.25s;
+        }
+
+        .about-demo-card-inner .meaning-row-regular.is-selected {
+            background: rgba(var(--accent-primary-rgb), 0.5);
+            border: 2px solid var(--accent-primary);
+            padding: 8px 13px;  /* compensate for the thicker border */
+        }
+
+        .about-demo-card-inner .meaning-row-pos-pill {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            padding: 3px 9px;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .about-demo-card-inner .meaning-row-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: calc(100% - 80px);
+        }
+
+        .about-demo-card-inner .meaning-row-translation {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Sentence + translation block matches the real card. */
+        .about-demo-card-inner .sentence {
+            font-size: 15px;
+            padding: 12px 14px;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .about-demo-card-inner .translation {
+            font-size: 13px;
+            color: white;
+            font-weight: 500;
+            margin-top: 8px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Song subtitle on the front face (artist mode only in practice,
+           but scoped by the JS setting textContent to '' for normal mode). */
+        .about-demo-song {
+            font-family: var(--font-data);
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-top: 14px;
+            opacity: 0.85;
+        }
+
+        .about-demo-song:empty {
+            display: none;
+        }
+
+        /* -------- Side-by-side "Two modes" layout ------------------------- */
+        /* Optimised for desktop (Josh's explicit direction). On narrow
+           viewports it collapses to a single column. */
+
+        .about-modes-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin: 12px 0 32px;
+        }
+
+        @media (min-width: 900px) {
+            .about-modes-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px;
+            }
+        }
+
+        .about-modes-column {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .about-modes-column > h3 {
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+
+        /* Card sits directly under the h3 inside its column. Text paragraphs
+           follow below so the cards appear above the fold on desktop. */
+        .about-modes-column .about-demo-card {
+            margin: 0 0 18px;
+        }
+
+        .about-modes-column p {
+            margin: 0 0 12px;
+        }
+
         /* User Display */
         .user-info {
             position: fixed;
@@ -3811,8 +4424,8 @@
         }
 
         .user-badge {
-            color: var(--accent-primary);
-            font-weight: 600;
+            color: var(--text-primary);
+            font-weight: 700;
             letter-spacing: 1px;
             font-size: 20px;
         }

@@ -129,7 +129,6 @@
                 <div class="step-header top-bar-header">
                     <span id="topBarUserName" class="top-bar-user-name"></span>
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
-                    <button id="estimateLevelTextBtn" class="top-bar-text-btn">Estimate Level</button>
                     <button id="modeSwitchBtn" class="top-bar-text-btn" style="display: none;"></button>
                     <button class="gear-btn top-bar-find" id="findWordBtn" title="Find a word">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -162,6 +161,18 @@
             <div class="data-loading-indicator" id="dataLoadingIndicator">
                 <div class="spinner"></div>
                 <span>Loading your progress...</span>
+            </div>
+
+            <!-- Level Estimate CTA — shown in place of the progress bar when
+                 the user has no coverage and hasn't estimated their level yet.
+                 Once they've started making progress, or estimated, this
+                 hides and the coverage bar takes over the same slot. -->
+            <div id="levelEstimateCTA" class="level-estimate-cta" style="display: none;">
+                <div class="level-estimate-cta-content">
+                    <div class="level-estimate-cta-title">Not sure where to start?</div>
+                    <div class="level-estimate-cta-desc">Take a quick adaptive test (~30 words) to find your CEFR level.</div>
+                </div>
+                <button class="level-estimate-cta-btn" id="levelEstimateCTABtn" type="button">Estimate my level</button>
             </div>
 
             <!-- Personal Progress Bar (standalone, shown after language selection) -->
@@ -355,18 +366,28 @@
                     Choose how you'd like to use the app
                 </p>
 
-                <button class="auth-btn login-btn" id="loginModeBtn">
-                    <div class="auth-btn-content">
-                        <span class="auth-btn-title">Login with Name</span>
-                        <span class="auth-btn-desc">Track progress across devices</span>
-                    </div>
-                </button>
+                <div class="auth-btn-row">
+                    <button class="auth-btn login-btn" id="loginModeBtn">
+                        <div class="auth-btn-content">
+                            <span class="auth-btn-title">Login with Name</span>
+                            <span class="auth-btn-desc">Track progress across devices</span>
+                        </div>
+                    </button>
+                    <button class="auth-info-btn" id="loginInfoBtn" type="button" aria-label="Why no password?" title="Why no password?">i</button>
+                </div>
+                <div id="loginInfoNote" class="auth-info-note hidden">
+                    Names are used instead of passwords. Progress is saved under whatever name you enter — pick something personal enough that nobody else would type it by accident. No email, no password, no account. The user base is small enough today that this is fine; passwords will come if that ever changes.
+                </div>
 
                 <button class="auth-btn guest-btn" id="guestModeBtn">
                     <div class="auth-btn-content">
                         <span class="auth-btn-title">Guest Mode</span>
                         <span class="auth-btn-desc">Practice locally, no data saved</span>
                     </div>
+                </button>
+
+                <button class="auth-about-link" id="aboutProjectBtn" type="button">
+                    About this project
                 </button>
 
                 <div id="loginForm" class="login-form hidden">
@@ -386,6 +407,16 @@
                         <button class="auth-cancel-btn" id="cancelLoginBtn">Back</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About This Project Modal -->
+    <div id="aboutProjectModal" class="modal hidden">
+        <div class="modal-content fullscreen-modal about-project-modal">
+            <button class="modal-close about-close-floating" id="closeAboutProjectModal" aria-label="Close">✕</button>
+            <div id="aboutProjectBody" class="about-project-body">
+                <div class="about-loading">Loading…</div>
             </div>
         </div>
     </div>
@@ -716,7 +747,17 @@
             <div class="settings-tab-content active" id="accountTabContent">
                 <div class="stat-row">
                     <span>Logged in as</span>
-                    <span id="accountUserBadge" style="color: var(--accent-primary);">GUEST</span>
+                    <span id="accountUserBadge" style="font-weight: 700;">GUEST</span>
+                </div>
+                <div class="stat-row" style="cursor: pointer;" id="aboutProjectSettingsRow">
+                    <span>About this project</span>
+                    <span style="color: var(--text-muted);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </span>
                 </div>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="clearLevelEstimateRow">
                     <span>Level estimate: <span id="levelEstimateDisplay" style="color: var(--accent-primary);"></span></span>
@@ -788,6 +829,6 @@
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260417e"></script>
+    <script type="module" src="js/main.js?v=20260418h"></script>
 </body>
 </html>

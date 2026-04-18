@@ -122,6 +122,21 @@ async function updateExclusionBars() {
     updatePersonalCoverage(afterCognate);
 }
 
+// Show the "Estimate your level" CTA in the same slot where the coverage bar
+// lives — only when the user has no progress yet AND no prior level estimate
+// for the current language. Hidden as soon as either exists (coverage bar
+// takes over in that case).
+function _toggleLevelEstimateCTA(hasCoverage) {
+    const cta = document.getElementById('levelEstimateCTA');
+    if (!cta) return;
+    if (hasCoverage) { cta.style.display = 'none'; return; }
+    const hasEstimate = typeof levelEstimates === 'object'
+        && levelEstimates
+        && levelEstimates[selectedLanguage]
+        && levelEstimates[selectedLanguage] > 0;
+    cta.style.display = (!hasEstimate && selectedLanguage) ? 'flex' : 'none';
+}
+
 // Personal coverage bar: what % of the lyrics the user has covered,
 // weighted by word frequency (corpus_count). A common word contributes
 // more to coverage than a rare one, matching the "% lyrics coverage" logic.
@@ -133,6 +148,7 @@ function updatePersonalCoverage(filteredVocab) {
 
     if (!progressData || !filteredVocab || filteredVocab.length === 0) {
         wrapper.style.display = 'none';
+        _toggleLevelEstimateCTA(false);
         return;
     }
 
@@ -158,12 +174,14 @@ function updatePersonalCoverage(filteredVocab) {
 
     if (coveredCount === 0) {
         wrapper.style.display = 'none';
+        _toggleLevelEstimateCTA(false);
         return;
     }
 
     const coveragePct = (coveredFreq / totalFreq) * 100;
 
     // Animate the bar
+    _toggleLevelEstimateCTA(true);
     wrapper.style.display = 'block';
     wrapper.classList.remove('visible');
     fill.style.transition = 'none';
