@@ -219,7 +219,7 @@ def main():
     parser = argparse.ArgumentParser(description="Step 7: Rerank vocabulary")
     add_artist_arg(parser)
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
-                        default="wiktionary",
+                        default="spanishdict",
                         help="Which sense source to use for assignments and sense menu")
     parser.add_argument("--skip-split", action="store_true",
                         help="(Deprecated, ignored — builder handles splits)")

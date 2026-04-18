@@ -885,8 +885,8 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="Build sense menu from Wiktionary or SpanishDict")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
-                        default="wiktionary",
-                        help="Sense dictionary source (default: wiktionary)")
+                        default="spanishdict",
+                        help="Sense dictionary source (default: spanishdict)")
     parser.add_argument("--artist-dir", default=None,
                         help="Build menu for an artist (spanishdict only). "
                              "Omit for normal-mode Data/Spanish/layers.")

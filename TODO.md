@@ -28,13 +28,6 @@ below have enough complexity to warrant this treatment when the time comes.
   Conjugation data layer is done (`conjugations.json` + `conjugation_reverse.json`).
   Front-end renders the table on card back but the UI needs improvement.
 
-- **[soon] Cross-mode progress + estimation (M) [shared] [design doc]**
-  Two related tasks: (1) Use base Spanish frequency list for level estimation in artist
-  mode (less genre bias). (2) Share/migrate progress between normal and artist modes.
-  Both blocked on the same plumbing — fullId prefixes differ (`es0` vs `es1`) but hex IDs
-  are shared. Needs design: how to map general-rank result to artist deck position,
-  mark-as-known sync direction, on-demand vs automatic.
-
 - **[idea] Album-specific mode (M) [artist]**
   Let users choose specific albums. Options range from light (filter example lyrics to chosen
   albums, keep full corpus count) to heavy (album-only deck with album-specific corpus count).
@@ -95,7 +88,7 @@ below have enough complexity to warrant this treatment when the time comes.
     *within* one analysis by POS would require menu-layer surgery and is
     covered by the root-cause refactor bullet above.
 
-- **[soon] Wire multi-word elision split into tokenization (M) [artist]**
+- **[I think this is done] Wire multi-word elision split into tokenization (M) [artist]**
   Config exists at `Artists/curations/multi_word_elisions.json` mapping contracted
   surface forms to expanded Spanish (e.g. `"pal'" -> "para el"`). Step 2a
   (count_words) needs to consume this config and do pre-tokenization substitution
@@ -104,14 +97,14 @@ below have enough complexity to warrant this treatment when the time comes.
   on each expanded word should retain the original contracted form. After wiring,
   add entries for common Caribbean two-word contractions beyond `pal'` / `pa'l`.
 
-- **[idea] Generic s/z elision handling (S) [artist]**
+- **[this might be done] Generic s/z elision handling (S) [artist]**
   Currently `lu' -> luz` is a manual override in the elision mapping because the
   automatic merger only handles s-elisions (word-final s replaced by `'`).
   Generalise to also match z-elisions (`luz -> lu'`, `cruz -> cru'`, etc.) and any
   other systematic patterns. Watch for false positives — not every `x'` is an
   elision of `xz` or `xs`.
 
-- **[idea] Map remaining SpanishDict POS labels instead of dropping to X (S) [shared]**
+- **[dumb] Map remaining SpanishDict POS labels instead of dropping to X (S) [shared]**
   `normalize_pos()` in `pipeline/util_5c_spanishdict.py` falls through to `"X"` for
   any SpanishDict POS label it doesn't recognize. Currently X senses are mostly
   morphological prefixes (des-, di-, neo-) which are legitimately noise, but there

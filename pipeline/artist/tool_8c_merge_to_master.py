@@ -6,7 +6,7 @@ Usage (from project root):
     .venv/bin/python3 pipeline/artist/merge_to_master.py
 
 Reads every artist's monolith vocabulary file, computes 6-char hex IDs, merges
-senses by exact (pos, translation) match, and writes:
+senses by exact (pos, translation, context) match, and writes:
   - Artists/vocabulary_master.json           (shared master)
   - Per-artist .index.json and .examples.json (new split format)
   - Per-artist monolith .json                 (denormalized, for debugging)
@@ -31,9 +31,10 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "merge artist monoliths into shared master, hex IDs, sense merge by (pos, translation)",
+    2: "sense merge key includes context; context + source preserved on master senses",
 }
 
 # ---------------------------------------------------------------------------
@@ -270,15 +271,24 @@ def build_master(artists):
             if entry.get("display_form") and not m.get("display_form"):
                 m["display_form"] = entry["display_form"]
 
-            # Merge senses by normalized (pos, translation) match
+            # Merge senses by normalized (pos, translation, context) match.
+            # Context is part of the key so SpanishDict sub-sense
+            # disambiguations (e.g. uno PRON "one" numeral vs impersonal)
+            # stay as separate master senses instead of collapsing.
             for meaning in entry.get("meanings", []):
                 pos = meaning.get("pos", "X")
                 translation = meaning.get("translation", "")
+                context = meaning.get("context", "") or ""
+                source = meaning.get("source")
                 norm = normalize_translation(translation)
+                norm_ctx = context.strip().lower()
                 # Check if a matching sense already exists
                 existing_sense = None
                 for s in m["senses"]:
-                    if s["pos"] == pos and normalize_translation(s["translation"]) == norm:
+                    s_ctx = (s.get("context") or "").strip().lower()
+                    if (s["pos"] == pos
+                        and normalize_translation(s["translation"]) == norm
+                        and s_ctx == norm_ctx):
                         existing_sense = s
                         break
                 if existing_sense:
@@ -290,8 +300,19 @@ def build_master(artists):
                         stats.setdefault("merge_details", []).append(
                             (word, new_id, pos, existing_sense["translation"], translation)
                         )
+                    # Fill in context/source if a later artist supplied them
+                    # and an earlier one didn't.
+                    if context and not existing_sense.get("context"):
+                        existing_sense["context"] = context
+                    if source and not existing_sense.get("source"):
+                        existing_sense["source"] = source
                 else:
-                    m["senses"].append({"pos": pos, "translation": translation})
+                    new_sense = {"pos": pos, "translation": translation}
+                    if context:
+                        new_sense["context"] = context
+                    if source:
+                        new_sense["source"] = source
+                    m["senses"].append(new_sense)
                     stats["new_senses_added"] += 1
 
             # MWE memberships no longer stored in master (handled by build step)
@@ -348,13 +369,22 @@ def write_artist_files(master, artist_data):
         total_examples = 0
 
         for sense in m["senses"]:
-            # Find matching meaning in artist's entry (normalized match)
+            # Find matching meaning in artist's entry (normalized match on
+            # pos + translation + context so disambiguated senses don't
+            # steal each other's examples / frequencies).
             norm_sense = normalize_translation(sense["translation"])
+            sense_ctx = (sense.get("context") or "").strip().lower()
             matching_meaning = None
             for meaning in entry.get("meanings", []):
-                if meaning.get("pos") == sense["pos"] and normalize_translation(meaning.get("translation", "")) == norm_sense:
-                    matching_meaning = meaning
-                    break
+                if meaning.get("pos") != sense["pos"]:
+                    continue
+                if normalize_translation(meaning.get("translation", "")) != norm_sense:
+                    continue
+                m_ctx = (meaning.get("context") or "").strip().lower()
+                if m_ctx != sense_ctx:
+                    continue
+                matching_meaning = meaning
+                break
             if matching_meaning and matching_meaning.get("examples"):
                 exs = matching_meaning["examples"]
                 sense_examples.append(exs)
@@ -424,6 +454,12 @@ def write_artist_files(master, artist_data):
                 "frequency": "%.2f" % idx_entry["sense_frequencies"][i] if i < len(idx_entry["sense_frequencies"]) else "0.00",
                 "examples": ex["m"][i] if i < len(ex["m"]) else [],
             }
+            # Carry context + source through the round-trip so subsequent
+            # merges don't silently strip them.
+            if sense.get("context"):
+                meaning["context"] = sense["context"]
+            if sense.get("source"):
+                meaning["source"] = sense["source"]
             meanings.append(meaning)
 
         # MWE memberships from index entry

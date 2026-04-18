@@ -114,7 +114,7 @@ Flags on `step_6a_assign_senses.py` (normal) and `artist/step_6a_assign_senses.p
 
 - `--classifier {keyword, biencoder, gemini}` — required
 - `--gap-fill / --no-gap-fill` — default: on for gemini, off for keyword/biencoder
-- `--sense-source {wiktionary, spanishdict}` — default wiktionary
+- `--sense-source {wiktionary, spanishdict}` — default spanishdict (SpanishDict is the primary source for Spanish; wiktionary stays supported for future non-Spanish languages)
 - `--max-examples N` — per-word example cap sent to Gemini (default 10)
 - `--force` — re-classify everything
 - `--gemini-model MODEL` — default gemini-2.5-flash-lite

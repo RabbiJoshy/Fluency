@@ -104,8 +104,8 @@ def main():
     parser.add_argument("--dry-run", action="store_true",
                         help="Print commands without running them")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
-                        default="wiktionary",
-                        help="Sense dictionary source (default: wiktionary)")
+                        default="spanishdict",
+                        help="Sense dictionary source (default: spanishdict)")
     parser.add_argument("--classifier", choices=["keyword", "biencoder", "gemini"],
                         default="biencoder",
                         help="Primary classifier for step 6a (default: biencoder).")

@@ -273,8 +273,8 @@ def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
 def main():
     parser = argparse.ArgumentParser(description="Assemble final vocabulary from layers")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
-                        default="wiktionary",
-                        help="Sense source to assemble from (default: wiktionary)")
+                        default="spanishdict",
+                        help="Sense source to assemble from (default: spanishdict)")
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards; unassigned examples dropped)")

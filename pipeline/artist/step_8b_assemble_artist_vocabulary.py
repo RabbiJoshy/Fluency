@@ -1331,8 +1331,8 @@ def main():
     parser.add_argument("--master-path", type=str, default=None,
                         help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
     parser.add_argument("--sense-source", choices=["gemini", "wiktionary", "wiktionary-gemini", "spanishdict"],
-                        default="wiktionary",
-                        help="Which sense layers to use (default: wiktionary)")
+                        default="spanishdict",
+                        help="Which sense layers to use (default: spanishdict)")
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards, but unassigned examples are dropped)")

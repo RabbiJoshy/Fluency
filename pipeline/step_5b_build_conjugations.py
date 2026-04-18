@@ -312,7 +312,7 @@ def backfill_reverse_from_conjugation_entry(verb: str, entry: dict) -> list:
 def main():
     parser = argparse.ArgumentParser(description="Build Spanish conjugation tables")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
-                        default="wiktionary",
+                        default="spanishdict",
                         help="Sense dictionary source to inspect for verb entries")
     args = parser.parse_args()
 

@@ -13,7 +13,7 @@ Flags:
     --gap-fill / --no-gap-fill
         Whether to also run Gemini gap-fill on zero-sense words.
         Default: on for `gemini`, off for `keyword` and `biencoder`.
-    --sense-source {wiktionary, spanishdict}    (default: wiktionary)
+    --sense-source {wiktionary, spanishdict}    (default: spanishdict)
     --max-examples N
         Per-word example cap sent to Gemini (default 10 in step_6c).
     --force
@@ -106,8 +106,8 @@ def main():
     gf.add_argument("--no-gap-fill", dest="gap_fill", action="store_false",
                     help="Skip gap-fill (no Gemini gap-fill pass).")
     parser.add_argument("--sense-source", choices=["wiktionary", "spanishdict"],
-                        default="wiktionary",
-                        help="Sense menu source (default: wiktionary)")
+                        default="spanishdict",
+                        help="Sense menu source (default: spanishdict)")
     parser.add_argument("--max-examples", type=int, default=None,
                         help="Max examples per word sent to Gemini (step 6c default 10).")
     parser.add_argument("--force", action="store_true",

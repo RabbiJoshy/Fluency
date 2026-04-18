@@ -9,7 +9,7 @@ gap-fill pass runs on zero-sense words.
 Flags:
     --classifier {keyword, biencoder, gemini}  (required)
     --gap-fill / --no-gap-fill                 (default: on for gemini, off otherwise)
-    --sense-source {wiktionary, spanishdict}   (default: wiktionary)
+    --sense-source {wiktionary, spanishdict}   (default: spanishdict)
     --max-examples N                           (Gemini per-word cap, default 10)
     --force                                    (re-classify everything)
     --gemini-model MODEL                       (default: gemini-2.5-flash-lite)
@@ -82,7 +82,7 @@ def main():
     gf.add_argument("--no-gap-fill", dest="gap_fill", action="store_false",
                     help="Skip gap-fill.")
     parser.add_argument("--sense-source", choices=["wiktionary", "spanishdict"],
-                        default="wiktionary")
+                        default="spanishdict")
     parser.add_argument("--max-examples", type=int, default=None)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite")
