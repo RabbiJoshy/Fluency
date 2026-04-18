@@ -817,19 +817,23 @@
         }
 
         /* Override .sentence defaults so it sits inline with the flex
-           layout without fighting other siblings. */
+           layout without fighting other siblings. Also trim the 15px
+           top margin baked into .sentence so the example box hugs the
+           meanings tray above it. */
         #backContent > .sentence {
             flex: 0 0 auto;
             width: 100%;
-            margin-top: 0;
+            margin-top: 6px;
         }
 
         /* The global .links-section uses margin-top: auto to pin itself to
            the bottom of a flex container. In the new layout we size
-           siblings explicitly, so override. */
+           siblings explicitly, so override. Also tighten the global
+           padding-top (15px) so the links hug the example box. */
         #backContent > .links-section {
             flex: 0 0 auto;
-            margin-top: 8px;
+            margin-top: 6px;
+            padding-top: 8px;
         }
 
         /* Regular-row translation: let the row grow naturally with the
@@ -1100,13 +1104,13 @@
 
         .sentence {
             margin-top: 15px;
-            padding: 15px;
+            padding: 11px 14px;
             background: rgba(var(--accent-primary-rgb), 0.08);
             border: 1px solid var(--accent-primary);
             border-radius: 8px;
             font-family: var(--font-reading);
             font-style: italic;
-            font-size: 22px;
+            font-size: 20px;
             overflow-wrap: break-word;
             word-wrap: break-word;
             text-align: center;
@@ -1119,15 +1123,15 @@
 
         @media (max-width: 767px) {
             .sentence {
-                font-size: 20px;
-                padding: 12px;
+                font-size: 18px;
+                padding: 9px 12px;
             }
         }
 
         .translation {
-            margin-top: 8px;
+            margin-top: 6px;
             color: white;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
         }
 
