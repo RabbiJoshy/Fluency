@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Step 3: Normalize elision variants in vocab_evidence.json before LLM analysis.
+Step 3: Normalize elision variants in vocab_evidence.json before sense assignment.
+
+Language-aware (`--language {spanish,french}`, default `spanish`).
+
+### Spanish (`--language spanish`, default)
 
 Three merge families handled here (all preserve `surface` on each example so
 the front-end can render the original lyric form):
@@ -24,11 +28,22 @@ the front-end can render the original lyric form):
 Also ambiguous: `ve'` splits per-example into `vez` (noun) vs `ves` (verb)
 using the preceding-word disambiguator.
 
+### French (`--language french`)
+
+Splits leading apostrophe clitics that the step-2 tokenizer keeps glued to
+the next word (French writes `l'amour` as one orthographic token). The
+clitic is dropped; its counts and examples merge into the bare base word.
+The original surface form is preserved on each example.
+
+Handled proclitics: `l' j' d' qu' n' m' s' t' c' jusqu' puisqu' lorsqu'`
+(plus their capitalized and curly-apostrophe variants).
+
 Input:  data/word_counts/vocab_evidence.json
 Output: data/elision_merge/vocab_evidence_merged.json
 
 Usage:
-  .venv/bin/python3 pipeline/artist/step_3a_merge_elisions.py --artist-dir "Artists/Bad Bunny"
+  .venv/bin/python3 pipeline/artist/step_3a_merge_elisions.py --artist-dir "Artists/spanish/Bad Bunny"
+  .venv/bin/python3 pipeline/artist/step_3a_merge_elisions.py --artist-dir "Artists/french/TestPlaylist" --language french
 """
 
 import json
@@ -49,11 +64,47 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
+    3: "+ --language flag, French proclitic splitter (l'/j'/d'/qu' etc.)",
 }
+
+# ---------------------------------------------------------------------------
+# French proclitics the step-2 tokenizer glues onto the following word.
+# Listed longest-first so `jusqu'` is matched before `qu'`.
+# ---------------------------------------------------------------------------
+FRENCH_PROCLITICS = (
+    "puisqu", "lorsqu", "jusqu",
+    "qu", "l", "d", "j", "n", "m", "s", "t", "c",
+)
+_FRENCH_APOS = "'\u2019"  # straight + curly
+_FRENCH_PROCLITIC_RE = re.compile(
+    r"^(" + "|".join(FRENCH_PROCLITICS) + r")[" + _FRENCH_APOS + r"](.+)$",
+    re.IGNORECASE,
+)
+
+
+def french_strip_proclitic(word):
+    """If `word` starts with a French proclitic + apostrophe, return the
+    stripped tail; else None.
+
+    Examples:
+      l'amour      -> amour
+      j'aime       -> aime
+      qu'il        -> il
+      jusqu'à      -> à
+      L'Amour      -> amour (lowercased)
+    """
+    m = _FRENCH_PROCLITIC_RE.match(word)
+    if not m:
+        return None
+    tail = m.group(2).lower().strip()
+    # Guard: don't split if tail is empty or just an apostrophe (malformed).
+    if not tail or all(ch in _FRENCH_APOS for ch in tail):
+        return None
+    return tail
 
 PIPELINE_DIR = None
 IN_PATH = None
@@ -332,11 +383,79 @@ def merge_evidence(data, targets, known_vocab):
     return out, stats
 
 
+def merge_evidence_french(data):
+    """French elision handling: strip leading proclitics (l'/j'/qu'/etc.)
+    from the surface token and merge counts/examples onto the bare word.
+
+    Much simpler than Spanish: no external mapping file, no known-vocab
+    dependency, no ambiguity. Every transformation is driven by the
+    apostrophe in the surface token itself.
+    """
+    groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
+                                  "variants": {}})
+    stats = {"proclitic_split": 0, "unmerged": 0}
+
+    for entry in data:
+        word = entry["word"]
+        count = entry.get("corpus_count", 0)
+        examples = entry.get("examples", [])
+
+        tail = french_strip_proclitic(word)
+        if tail is not None:
+            key = tail
+            display = word  # keep the original l'amour as display
+            source = "proclitic_split"
+        else:
+            key = word
+            display = word
+            source = "unmerged"
+        stats[source] = stats.get(source, 0) + 1
+
+        if groups[key]["display_form"] is None:
+            groups[key]["display_form"] = display
+
+        for ex in examples:
+            ex["surface"] = ex.get("surface", word)
+
+        groups[key]["count"] += count
+        groups[key]["examples"].extend(examples)
+        groups[key]["variants"][word] = groups[key]["variants"].get(word, 0) + count
+
+    # Build output (dedup by song — matches Spanish behaviour)
+    out = []
+    for word, g in groups.items():
+        seen_songs = set()
+        deduped = []
+        for ex in g["examples"]:
+            song_id = ex["id"].split(":")[0] if "id" in ex else None
+            if song_id and song_id in seen_songs:
+                continue
+            if song_id:
+                seen_songs.add(song_id)
+            deduped.append(ex)
+
+        entry = {
+            "word": word,
+            "corpus_count": g["count"],
+            "examples": deduped[:MAX_EXAMPLES],
+        }
+        if g["display_form"] and g["display_form"] != word:
+            entry["display_form"] = g["display_form"]
+        if len(g["variants"]) >= 2:
+            entry["variants"] = g["variants"]
+        out.append(entry)
+
+    out.sort(key=lambda e: -e["corpus_count"])
+    return out, stats
+
+
 def main():
     global PIPELINE_DIR, IN_PATH, OUT_PATH, MAPPING_PATH
 
     parser = argparse.ArgumentParser(description="Step 3: Merge elisions and normalize variants")
     parser.add_argument("--artist-dir", required=True, help="Path to artist data directory")
+    parser.add_argument("--language", choices=("spanish", "french"), default="spanish",
+                        help="Language-specific normalization (default: spanish)")
     args = parser.parse_args()
 
     PIPELINE_DIR = os.path.abspath(args.artist_dir)
@@ -349,6 +468,30 @@ def main():
         data = json.load(f)
     print(f"  {len(data)} entries")
 
+    # French: simpler flow, no Spanish-specific loading.
+    if args.language == "french":
+        print(f"Language: french (proclitic splitter)")
+        merged, stats = merge_evidence_french(data)
+
+        os.makedirs(os.path.dirname(str(OUT_PATH)), exist_ok=True)
+        with open(OUT_PATH, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, indent=2)
+        write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION,
+                                          extra={"language": "french"}))
+
+        print(f"\nWrote {len(merged)} entries -> {OUT_PATH}")
+        print(f"  Reduced by {len(data) - len(merged)} entries")
+        print(f"  Merge sources:")
+        for k in ("proclitic_split", "unmerged"):
+            print(f"    {k}: {stats.get(k, 0)}")
+        print("\n=== Top 20 merged entries ===")
+        for e in merged[:20]:
+            df = e.get("display_form", "")
+            display = f" (display: {df})" if df else ""
+            print(f"  {e['word']}{display} — {e['corpus_count']} occurrences, {len(e['examples'])} examples")
+        return
+
+    # Spanish (default)
     print(f"Loading merge mapping from {MAPPING_PATH} ...")
     targets = load_merge_targets(MAPPING_PATH)
     print(f"  {len(targets)} words have merge targets")

@@ -1,0 +1,7242 @@
+[
+  {
+    "word": "la",
+    "corpus_count": 408,
+    "variants": {
+      "la": 406,
+      "j'la": 2
+    }
+  },
+  {
+    "word": "est",
+    "corpus_count": 293,
+    "display_form": "c'est",
+    "variants": {
+      "c'est": 144,
+      "est": 127,
+      "n'est": 14,
+      "s'est": 6,
+      "qu'est": 2
+    }
+  },
+  {
+    "word": "je",
+    "corpus_count": 272,
+    "variants": {
+      "je": 270,
+      "qu'je": 2
+    }
+  },
+  {
+    "word": "le",
+    "corpus_count": 224,
+    "variants": {
+      "le": 222,
+      "m'le": 1,
+      "qu'le": 1
+    }
+  },
+  {
+    "word": "et",
+    "corpus_count": 195
+  },
+  {
+    "word": "pas",
+    "corpus_count": 192,
+    "variants": {
+      "pas": 191,
+      "n'pas": 1
+    }
+  },
+  {
+    "word": "de",
+    "corpus_count": 189
+  },
+  {
+    "word": "en",
+    "corpus_count": 168,
+    "variants": {
+      "en": 113,
+      "t'en": 35,
+      "j'en": 13,
+      "s'en": 5,
+      "d'en": 1,
+      "m'en": 1
+    }
+  },
+  {
+    "word": "on",
+    "corpus_count": 160,
+    "variants": {
+      "on": 147,
+      "qu'on": 11,
+      "l'on": 2
+    }
+  },
+  {
+    "word": "les",
+    "corpus_count": 159,
+    "variants": {
+      "les": 158,
+      "j'les": 1
+    }
+  },
+  {
+    "word": "que",
+    "corpus_count": 159,
+    "variants": {
+      "que": 152,
+      "c'que": 7
+    }
+  },
+  {
+    "word": "me",
+    "corpus_count": 156,
+    "variants": {
+      "me": 143,
+      "j'me": 9,
+      "d'me": 4
+    }
+  },
+  {
+    "word": "tu",
+    "corpus_count": 150
+  },
+  {
+    "word": "a",
+    "corpus_count": 118,
+    "variants": {
+      "a": 96,
+      "m'a": 13,
+      "l'a": 5,
+      "n'a": 3,
+      "t'a": 1
+    }
+  },
+  {
+    "word": "des",
+    "corpus_count": 113
+  },
+  {
+    "word": "ai",
+    "corpus_count": 112,
+    "display_form": "j'ai",
+    "variants": {
+      "j'ai": 92,
+      "ai": 13,
+      "t'ai": 4,
+      "l'ai": 3
+    }
+  },
+  {
+    "word": "moi",
+    "corpus_count": 100
+  },
+  {
+    "word": "te",
+    "corpus_count": 97,
+    "variants": {
+      "te": 95,
+      "j'te": 2
+    }
+  },
+  {
+    "word": "un",
+    "corpus_count": 94,
+    "variants": {
+      "un": 74,
+      "qu'un": 8,
+      "d'un": 6,
+      "l'un": 6
+    }
+  },
+  {
+    "word": "qui",
+    "corpus_count": 91,
+    "variants": {
+      "qui": 80,
+      "c'qui": 11
+    }
+  },
+  {
+    "word": "dans",
+    "corpus_count": 90
+  },
+  {
+    "word": "l",
+    "corpus_count": 88
+  },
+  {
+    "word": "plus",
+    "corpus_count": 85
+  },
+  {
+    "word": "toi",
+    "corpus_count": 82
+  },
+  {
+    "word": "ne",
+    "corpus_count": 75
+  },
+  {
+    "word": "se",
+    "corpus_count": 75
+  },
+  {
+    "word": "elle",
+    "corpus_count": 73,
+    "variants": {
+      "elle": 49,
+      "qu'elle": 22,
+      "d'elle": 2
+    }
+  },
+  {
+    "word": "bien",
+    "corpus_count": 72
+  },
+  {
+    "word": "danse",
+    "corpus_count": 68
+  },
+  {
+    "word": "au",
+    "corpus_count": 66,
+    "variants": {
+      "au": 58,
+      "jusqu'au": 6,
+      "qu'au": 2
+    }
+  },
+  {
+    "word": "pour",
+    "corpus_count": 63
+  },
+  {
+    "word": "une",
+    "corpus_count": 63,
+    "variants": {
+      "une": 54,
+      "d'une": 6,
+      "qu'une": 3
+    }
+  },
+  {
+    "word": "si",
+    "corpus_count": 61
+  },
+  {
+    "word": "tout",
+    "corpus_count": 60
+  },
+  {
+    "word": "mais",
+    "corpus_count": 57
+  },
+  {
+    "word": "na",
+    "corpus_count": 56
+  },
+  {
+    "word": "ce",
+    "corpus_count": 53
+  },
+  {
+    "word": "belle",
+    "corpus_count": 51
+  },
+  {
+    "word": "oh",
+    "corpus_count": 51
+  },
+  {
+    "word": "t",
+    "corpus_count": 50
+  },
+  {
+    "word": "vie",
+    "corpus_count": 50
+  },
+  {
+    "word": "veux",
+    "corpus_count": 50,
+    "variants": {
+      "veux": 41,
+      "n'veux": 6,
+      "j'veux": 3
+    }
+  },
+  {
+    "word": "sur",
+    "corpus_count": 48
+  },
+  {
+    "word": "ah",
+    "corpus_count": 47
+  },
+  {
+    "word": "ton",
+    "corpus_count": 47
+  },
+  {
+    "word": "mes",
+    "corpus_count": 46
+  },
+  {
+    "word": "va",
+    "corpus_count": 46
+  },
+  {
+    "word": "il",
+    "corpus_count": 46,
+    "variants": {
+      "il": 29,
+      "qu'il": 11,
+      "s'il": 6
+    }
+  },
+  {
+    "word": "pleurer",
+    "corpus_count": 45
+  },
+  {
+    "word": "ta",
+    "corpus_count": 44
+  },
+  {
+    "word": "fait",
+    "corpus_count": 43
+  },
+  {
+    "word": "tes",
+    "corpus_count": 42
+  },
+  {
+    "word": "avec",
+    "corpus_count": 42,
+    "variants": {
+      "avec": 40,
+      "qu'avec": 2
+    }
+  },
+  {
+    "word": "du",
+    "corpus_count": 41
+  },
+  {
+    "word": "encore",
+    "corpus_count": 40
+  },
+  {
+    "word": "ya",
+    "corpus_count": 40
+  },
+  {
+    "word": "nous",
+    "corpus_count": 39
+  },
+  {
+    "word": "mojo",
+    "corpus_count": 38
+  },
+  {
+    "word": "m",
+    "corpus_count": 37
+  },
+  {
+    "word": "tre",
+    "corpus_count": 37
+  },
+  {
+    "word": "rien",
+    "corpus_count": 36
+  },
+  {
+    "word": "faire",
+    "corpus_count": 35
+  },
+  {
+    "word": "r",
+    "corpus_count": 34
+  },
+  {
+    "word": "viens",
+    "corpus_count": 34
+  },
+  {
+    "word": "mon",
+    "corpus_count": 34,
+    "variants": {
+      "mon": 33,
+      "qu'mon": 1
+    }
+  },
+  {
+    "word": "re",
+    "corpus_count": 33
+  },
+  {
+    "word": "s",
+    "corpus_count": 33
+  },
+  {
+    "word": "temps",
+    "corpus_count": 33
+  },
+  {
+    "word": "sais",
+    "corpus_count": 33,
+    "variants": {
+      "sais": 32,
+      "j'sais": 1
+    }
+  },
+  {
+    "word": "quand",
+    "corpus_count": 31
+  },
+  {
+    "word": "dit",
+    "corpus_count": 31,
+    "variants": {
+      "dit": 30,
+      "s'dit": 1
+    }
+  },
+  {
+    "word": "loin",
+    "corpus_count": 30
+  },
+  {
+    "word": "yeux",
+    "corpus_count": 30
+  },
+  {
+    "word": "deux",
+    "corpus_count": 29
+  },
+  {
+    "word": "ou",
+    "corpus_count": 29
+  },
+  {
+    "word": "suis",
+    "corpus_count": 29,
+    "variants": {
+      "suis": 17,
+      "j'suis": 12
+    }
+  },
+  {
+    "word": "c",
+    "corpus_count": 28
+  },
+  {
+    "word": "nos",
+    "corpus_count": 28
+  },
+  {
+    "word": "trop",
+    "corpus_count": 28
+  },
+  {
+    "word": "quoi",
+    "corpus_count": 27,
+    "variants": {
+      "quoi": 26,
+      "d'quoi": 1
+    }
+  },
+  {
+    "word": "jamais",
+    "corpus_count": 26
+  },
+  {
+    "word": "o",
+    "corpus_count": 26
+  },
+  {
+    "word": "y",
+    "corpus_count": 25,
+    "variants": {
+      "y": 13,
+      "j'y": 5,
+      "n'y": 5,
+      "m'y": 2
+    }
+  },
+  {
+    "word": "hmm",
+    "corpus_count": 24
+  },
+  {
+    "word": "l'",
+    "corpus_count": 24
+  },
+  {
+    "word": "peut",
+    "corpus_count": 24,
+    "variants": {
+      "peut": 23,
+      "n'peut": 1
+    }
+  },
+  {
+    "word": "ciel",
+    "corpus_count": 22
+  },
+  {
+    "word": "gens",
+    "corpus_count": 22
+  },
+  {
+    "word": "mal",
+    "corpus_count": 22
+  },
+  {
+    "word": "non",
+    "corpus_count": 22
+  },
+  {
+    "word": "par",
+    "corpus_count": 22
+  },
+  {
+    "word": "filme",
+    "corpus_count": 21
+  },
+  {
+    "word": "ons",
+    "corpus_count": 21
+  },
+  {
+    "word": "oui",
+    "corpus_count": 21
+  },
+  {
+    "word": "bon",
+    "corpus_count": 20
+  },
+  {
+    "word": "défait",
+    "corpus_count": 20
+  },
+  {
+    "word": "jour",
+    "corpus_count": 20
+  },
+  {
+    "word": "tous",
+    "corpus_count": 20
+  },
+  {
+    "word": "vous",
+    "corpus_count": 20
+  },
+  {
+    "word": "corps",
+    "corpus_count": 19
+  },
+  {
+    "word": "lui",
+    "corpus_count": 19
+  },
+  {
+    "word": "seule",
+    "corpus_count": 19
+  },
+  {
+    "word": "tant",
+    "corpus_count": 19
+  },
+  {
+    "word": "comme",
+    "corpus_count": 18
+  },
+  {
+    "word": "déj",
+    "corpus_count": 18
+  },
+  {
+    "word": "gar",
+    "corpus_count": 18
+  },
+  {
+    "word": "part",
+    "corpus_count": 18
+  },
+  {
+    "word": "sans",
+    "corpus_count": 18
+  },
+  {
+    "word": "fais",
+    "corpus_count": 17
+  },
+  {
+    "word": "laisse",
+    "corpus_count": 17
+  },
+  {
+    "word": "peine",
+    "corpus_count": 17
+  },
+  {
+    "word": "reste",
+    "corpus_count": 17
+  },
+  {
+    "word": "ma",
+    "corpus_count": 16
+  },
+  {
+    "word": "nudes",
+    "corpus_count": 16
+  },
+  {
+    "word": "pourtant",
+    "corpus_count": 16
+  },
+  {
+    "word": "seulement",
+    "corpus_count": 16
+  },
+  {
+    "word": "soir",
+    "corpus_count": 16
+  },
+  {
+    "word": "ur",
+    "corpus_count": 16
+  },
+  {
+    "word": "voir",
+    "corpus_count": 16
+  },
+  {
+    "word": "aux",
+    "corpus_count": 16,
+    "variants": {
+      "aux": 15,
+      "qu'aux": 1
+    }
+  },
+  {
+    "word": "était",
+    "corpus_count": 16,
+    "display_form": "c'était",
+    "variants": {
+      "c'était": 8,
+      "était": 8
+    }
+  },
+  {
+    "word": "grand",
+    "corpus_count": 15
+  },
+  {
+    "word": "vais",
+    "corpus_count": 15,
+    "display_form": "j'vais"
+  },
+  {
+    "word": "perdus",
+    "corpus_count": 15
+  },
+  {
+    "word": "sont",
+    "corpus_count": 15
+  },
+  {
+    "word": "arr",
+    "corpus_count": 15,
+    "variants": {
+      "arr": 6,
+      "t'arr": 5,
+      "s'arr": 3,
+      "m'arr": 1
+    }
+  },
+  {
+    "word": "fond",
+    "corpus_count": 14
+  },
+  {
+    "word": "peu",
+    "corpus_count": 14
+  },
+  {
+    "word": "pense",
+    "corpus_count": 14,
+    "variants": {
+      "pense": 12,
+      "j'pense": 2
+    }
+  },
+  {
+    "word": "endroit",
+    "corpus_count": 14,
+    "variants": {
+      "endroit": 8,
+      "l'endroit": 6
+    }
+  },
+  {
+    "word": "d",
+    "corpus_count": 13
+  },
+  {
+    "word": "entre",
+    "corpus_count": 13
+  },
+  {
+    "word": "jalousie",
+    "corpus_count": 13
+  },
+  {
+    "word": "nuit",
+    "corpus_count": 13
+  },
+  {
+    "word": "peur",
+    "corpus_count": 13
+  },
+  {
+    "word": "pis",
+    "corpus_count": 13
+  },
+  {
+    "word": "sous",
+    "corpus_count": 13
+  },
+  {
+    "word": "vers",
+    "corpus_count": 13
+  },
+  {
+    "word": "ves",
+    "corpus_count": 13
+  },
+  {
+    "word": "autres",
+    "corpus_count": 13,
+    "variants": {
+      "autres": 12,
+      "d'autres": 1
+    }
+  },
+  {
+    "word": "sens",
+    "corpus_count": 13,
+    "variants": {
+      "sens": 12,
+      "t'sens": 1
+    }
+  },
+  {
+    "word": "vois",
+    "corpus_count": 13,
+    "variants": {
+      "vois": 10,
+      "j'vois": 3
+    }
+  },
+  {
+    "word": "aller",
+    "corpus_count": 13,
+    "variants": {
+      "aller": 9,
+      "d'aller": 4
+    }
+  },
+  {
+    "word": "aime",
+    "corpus_count": 13,
+    "display_form": "j'aime",
+    "variants": {
+      "j'aime": 9,
+      "n'aime": 2,
+      "aime": 1,
+      "t'aime": 1
+    }
+  },
+  {
+    "word": "aimer",
+    "corpus_count": 13,
+    "display_form": "m'aimer",
+    "variants": {
+      "m'aimer": 8,
+      "l'aimer": 2,
+      "t'aimer": 2,
+      "s'aimer": 1
+    }
+  },
+  {
+    "word": "ais",
+    "corpus_count": 12
+  },
+  {
+    "word": "brille",
+    "corpus_count": 12
+  },
+  {
+    "word": "ceux",
+    "corpus_count": 12
+  },
+  {
+    "word": "dessine",
+    "corpus_count": 12
+  },
+  {
+    "word": "enfer",
+    "corpus_count": 12
+  },
+  {
+    "word": "fran",
+    "corpus_count": 12
+  },
+  {
+    "word": "juste",
+    "corpus_count": 12
+  },
+  {
+    "word": "pin",
+    "corpus_count": 12
+  },
+  {
+    "word": "prouver",
+    "corpus_count": 12
+  },
+  {
+    "word": "puis",
+    "corpus_count": 12
+  },
+  {
+    "word": "son",
+    "corpus_count": 12
+  },
+  {
+    "word": "sortir",
+    "corpus_count": 12
+  },
+  {
+    "word": "ve",
+    "corpus_count": 12
+  },
+  {
+    "word": "regarde",
+    "corpus_count": 12,
+    "variants": {
+      "regarde": 11,
+      "s'regarde": 1
+    }
+  },
+  {
+    "word": "oseille",
+    "corpus_count": 12,
+    "display_form": "l'oseille",
+    "variants": {
+      "l'oseille": 10,
+      "oseille": 2
+    }
+  },
+  {
+    "word": "monde",
+    "corpus_count": 12,
+    "variants": {
+      "monde": 10,
+      "l'monde": 2
+    }
+  },
+  {
+    "word": "es",
+    "corpus_count": 12,
+    "variants": {
+      "es": 7,
+      "t'es": 5
+    }
+  },
+  {
+    "word": "car",
+    "corpus_count": 11
+  },
+  {
+    "word": "compliqué",
+    "corpus_count": 11
+  },
+  {
+    "word": "ni",
+    "corpus_count": 11
+  },
+  {
+    "word": "qu",
+    "corpus_count": 11
+  },
+  {
+    "word": "seul",
+    "corpus_count": 11
+  },
+  {
+    "word": "tue",
+    "corpus_count": 11
+  },
+  {
+    "word": "té",
+    "corpus_count": 11
+  },
+  {
+    "word": "mens",
+    "corpus_count": 11,
+    "display_form": "j'mens",
+    "variants": {
+      "j'mens": 9,
+      "mens": 2
+    }
+  },
+  {
+    "word": "avoir",
+    "corpus_count": 11,
+    "variants": {
+      "avoir": 8,
+      "d'avoir": 2,
+      "t'avoir": 1
+    }
+  },
+  {
+    "word": "as",
+    "corpus_count": 11,
+    "display_form": "t'as",
+    "variants": {
+      "t'as": 8,
+      "m'as": 2,
+      "as": 1
+    }
+  },
+  {
+    "word": "chaque",
+    "corpus_count": 10
+  },
+  {
+    "word": "d'",
+    "corpus_count": 10
+  },
+  {
+    "word": "dire",
+    "corpus_count": 10
+  },
+  {
+    "word": "face",
+    "corpus_count": 10
+  },
+  {
+    "word": "heures",
+    "corpus_count": 10
+  },
+  {
+    "word": "insomnie",
+    "corpus_count": 10
+  },
+  {
+    "word": "mélange",
+    "corpus_count": 10
+  },
+  {
+    "word": "notre",
+    "corpus_count": 10
+  },
+  {
+    "word": "ouh",
+    "corpus_count": 10
+  },
+  {
+    "word": "préf",
+    "corpus_count": 10
+  },
+  {
+    "word": "tranquille",
+    "corpus_count": 10
+  },
+  {
+    "word": "ont",
+    "corpus_count": 10,
+    "variants": {
+      "ont": 8,
+      "m'ont": 1,
+      "n'ont": 1
+    }
+  },
+  {
+    "word": "dors",
+    "corpus_count": 10,
+    "variants": {
+      "dors": 7,
+      "n'dors": 3
+    }
+  },
+  {
+    "word": "pla",
+    "corpus_count": 10,
+    "display_form": "t'pla",
+    "variants": {
+      "t'pla": 6,
+      "pla": 4
+    }
+  },
+  {
+    "word": "balance",
+    "corpus_count": 9
+  },
+  {
+    "word": "brésil",
+    "corpus_count": 9
+  },
+  {
+    "word": "cette",
+    "corpus_count": 9
+  },
+  {
+    "word": "che",
+    "corpus_count": 9
+  },
+  {
+    "word": "fois",
+    "corpus_count": 9
+  },
+  {
+    "word": "heureux",
+    "corpus_count": 9
+  },
+  {
+    "word": "hey",
+    "corpus_count": 9
+  },
+  {
+    "word": "aimerais",
+    "corpus_count": 9,
+    "display_form": "j'aimerais"
+  },
+  {
+    "word": "joues",
+    "corpus_count": 9
+  },
+  {
+    "word": "love",
+    "corpus_count": 9
+  },
+  {
+    "word": "mode",
+    "corpus_count": 9
+  },
+  {
+    "word": "musique",
+    "corpus_count": 9
+  },
+  {
+    "word": "photo",
+    "corpus_count": 9
+  },
+  {
+    "word": "probl",
+    "corpus_count": 9
+  },
+  {
+    "word": "recto",
+    "corpus_count": 9
+  },
+  {
+    "word": "rose",
+    "corpus_count": 9
+  },
+  {
+    "word": "septi",
+    "corpus_count": 9
+  },
+  {
+    "word": "ses",
+    "corpus_count": 9
+  },
+  {
+    "word": "soleil",
+    "corpus_count": 9
+  },
+  {
+    "word": "souvent",
+    "corpus_count": 9
+  },
+  {
+    "word": "verra",
+    "corpus_count": 9
+  },
+  {
+    "word": "verso",
+    "corpus_count": 9
+  },
+  {
+    "word": "voit",
+    "corpus_count": 9
+  },
+  {
+    "word": "dis",
+    "corpus_count": 9,
+    "variants": {
+      "dis": 8,
+      "j'dis": 1
+    }
+  },
+  {
+    "word": "faut",
+    "corpus_count": 9,
+    "variants": {
+      "faut": 8,
+      "t'faut": 1
+    }
+  },
+  {
+    "word": "fa",
+    "corpus_count": 9,
+    "display_form": "t'fa",
+    "variants": {
+      "t'fa": 7,
+      "fa": 2
+    }
+  },
+  {
+    "word": "voulais",
+    "corpus_count": 9,
+    "variants": {
+      "voulais": 7,
+      "j'voulais": 2
+    }
+  },
+  {
+    "word": "bleu",
+    "corpus_count": 8
+  },
+  {
+    "word": "bonheur",
+    "corpus_count": 8
+  },
+  {
+    "word": "cauchemar",
+    "corpus_count": 8
+  },
+  {
+    "word": "chanson",
+    "corpus_count": 8
+  },
+  {
+    "word": "cherche",
+    "corpus_count": 8
+  },
+  {
+    "word": "crois",
+    "corpus_count": 8
+  },
+  {
+    "word": "envie",
+    "corpus_count": 8
+  },
+  {
+    "word": "envoie",
+    "corpus_count": 8
+  },
+  {
+    "word": "f",
+    "corpus_count": 8
+  },
+  {
+    "word": "failles",
+    "corpus_count": 8
+  },
+  {
+    "word": "fessée",
+    "corpus_count": 8
+  },
+  {
+    "word": "flemme",
+    "corpus_count": 8
+  },
+  {
+    "word": "histoire",
+    "corpus_count": 8
+  },
+  {
+    "word": "autre",
+    "corpus_count": 8,
+    "display_form": "l'autre"
+  },
+  {
+    "word": "laissez",
+    "corpus_count": 8
+  },
+  {
+    "word": "aimais",
+    "corpus_count": 8,
+    "display_form": "m'aimais"
+  },
+  {
+    "word": "main",
+    "corpus_count": 8
+  },
+  {
+    "word": "matin",
+    "corpus_count": 8
+  },
+  {
+    "word": "noir",
+    "corpus_count": 8
+  },
+  {
+    "word": "nombreux",
+    "corpus_count": 8
+  },
+  {
+    "word": "nue",
+    "corpus_count": 8
+  },
+  {
+    "word": "parler",
+    "corpus_count": 8
+  },
+  {
+    "word": "quelqu'un",
+    "corpus_count": 8
+  },
+  {
+    "word": "regardes",
+    "corpus_count": 8
+  },
+  {
+    "word": "rendez",
+    "corpus_count": 8
+  },
+  {
+    "word": "spleen",
+    "corpus_count": 8
+  },
+  {
+    "word": "suite",
+    "corpus_count": 8
+  },
+  {
+    "word": "tendresse",
+    "corpus_count": 8
+  },
+  {
+    "word": "thune",
+    "corpus_count": 8
+  },
+  {
+    "word": "vent",
+    "corpus_count": 8
+  },
+  {
+    "word": "voil",
+    "corpus_count": 8
+  },
+  {
+    "word": "vraiment",
+    "corpus_count": 8
+  },
+  {
+    "word": "étrange",
+    "corpus_count": 8
+  },
+  {
+    "word": "ils",
+    "corpus_count": 8,
+    "variants": {
+      "ils": 7,
+      "qu'ils": 1
+    }
+  },
+  {
+    "word": "été",
+    "corpus_count": 8,
+    "display_form": "l'été",
+    "variants": {
+      "l'été": 7,
+      "été": 1
+    }
+  },
+  {
+    "word": "n",
+    "corpus_count": 8,
+    "variants": {
+      "n": 6,
+      "j'n": 2
+    }
+  },
+  {
+    "word": "cachée",
+    "corpus_count": 7
+  },
+  {
+    "word": "café",
+    "corpus_count": 7
+  },
+  {
+    "word": "ces",
+    "corpus_count": 7
+  },
+  {
+    "word": "chacun",
+    "corpus_count": 7
+  },
+  {
+    "word": "eh",
+    "corpus_count": 7
+  },
+  {
+    "word": "fort",
+    "corpus_count": 7
+  },
+  {
+    "word": "hano",
+    "corpus_count": 7
+  },
+  {
+    "word": "hier",
+    "corpus_count": 7
+  },
+  {
+    "word": "jusqu'",
+    "corpus_count": 7
+  },
+  {
+    "word": "mieux",
+    "corpus_count": 7
+  },
+  {
+    "word": "nes",
+    "corpus_count": 7
+  },
+  {
+    "word": "partis",
+    "corpus_count": 7
+  },
+  {
+    "word": "peau",
+    "corpus_count": 7
+  },
+  {
+    "word": "petit",
+    "corpus_count": 7
+  },
+  {
+    "word": "pourquoi",
+    "corpus_count": 7
+  },
+  {
+    "word": "pourraient",
+    "corpus_count": 7
+  },
+  {
+    "word": "premier",
+    "corpus_count": 7
+  },
+  {
+    "word": "pu",
+    "corpus_count": 7
+  },
+  {
+    "word": "regard",
+    "corpus_count": 7
+  },
+  {
+    "word": "soi",
+    "corpus_count": 7
+  },
+  {
+    "word": "su",
+    "corpus_count": 7
+  },
+  {
+    "word": "tard",
+    "corpus_count": 7
+  },
+  {
+    "word": "veut",
+    "corpus_count": 7
+  },
+  {
+    "word": "vis",
+    "corpus_count": 7
+  },
+  {
+    "word": "voyage",
+    "corpus_count": 7
+  },
+  {
+    "word": "avant",
+    "corpus_count": 7,
+    "variants": {
+      "avant": 6,
+      "qu'avant": 1
+    }
+  },
+  {
+    "word": "leur",
+    "corpus_count": 7,
+    "variants": {
+      "leur": 6,
+      "d'leur": 1
+    }
+  },
+  {
+    "word": "écran",
+    "corpus_count": 7,
+    "variants": {
+      "écran": 5,
+      "l'écran": 2
+    }
+  },
+  {
+    "word": "amour",
+    "corpus_count": 7,
+    "variants": {
+      "amour": 4,
+      "l'amour": 3
+    }
+  },
+  {
+    "word": "ici",
+    "corpus_count": 7,
+    "display_form": "d'ici",
+    "variants": {
+      "d'ici": 4,
+      "ici": 3
+    }
+  },
+  {
+    "word": "font",
+    "corpus_count": 7,
+    "display_form": "m'font",
+    "variants": {
+      "m'font": 4,
+      "font": 3
+    }
+  },
+  {
+    "word": "ira",
+    "corpus_count": 7,
+    "display_form": "n'ira",
+    "variants": {
+      "n'ira": 4,
+      "ira": 3
+    }
+  },
+  {
+    "word": "apr",
+    "corpus_count": 6
+  },
+  {
+    "word": "b",
+    "corpus_count": 6
+  },
+  {
+    "word": "beauté",
+    "corpus_count": 6
+  },
+  {
+    "word": "beaux",
+    "corpus_count": 6
+  },
+  {
+    "word": "calme",
+    "corpus_count": 6
+  },
+  {
+    "word": "cantine",
+    "corpus_count": 6
+  },
+  {
+    "word": "cartes",
+    "corpus_count": 6
+  },
+  {
+    "word": "cet",
+    "corpus_count": 6
+  },
+  {
+    "word": "cha",
+    "corpus_count": 6
+  },
+  {
+    "word": "diable",
+    "corpus_count": 6
+  },
+  {
+    "word": "dilemmes",
+    "corpus_count": 6
+  },
+  {
+    "word": "dira",
+    "corpus_count": 6
+  },
+  {
+    "word": "donné",
+    "corpus_count": 6
+  },
+  {
+    "word": "décor",
+    "corpus_count": 6
+  },
+  {
+    "word": "faux",
+    "corpus_count": 6
+  },
+  {
+    "word": "filles",
+    "corpus_count": 6
+  },
+  {
+    "word": "finis",
+    "corpus_count": 6
+  },
+  {
+    "word": "fous",
+    "corpus_count": 6
+  },
+  {
+    "word": "fuir",
+    "corpus_count": 6
+  },
+  {
+    "word": "ge",
+    "corpus_count": 6
+  },
+  {
+    "word": "grande",
+    "corpus_count": 6
+  },
+  {
+    "word": "idylle",
+    "corpus_count": 6
+  },
+  {
+    "word": "imbécile",
+    "corpus_count": 6
+  },
+  {
+    "word": "envers",
+    "corpus_count": 6,
+    "display_form": "l'envers"
+  },
+  {
+    "word": "minuit",
+    "corpus_count": 6
+  },
+  {
+    "word": "montre",
+    "corpus_count": 6
+  },
+  {
+    "word": "montrer",
+    "corpus_count": 6
+  },
+  {
+    "word": "mots",
+    "corpus_count": 6
+  },
+  {
+    "word": "aurait",
+    "corpus_count": 6,
+    "display_form": "n'aurait"
+  },
+  {
+    "word": "nuls",
+    "corpus_count": 6
+  },
+  {
+    "word": "oseras",
+    "corpus_count": 6
+  },
+  {
+    "word": "ouais",
+    "corpus_count": 6
+  },
+  {
+    "word": "parce",
+    "corpus_count": 6
+  },
+  {
+    "word": "pouvoir",
+    "corpus_count": 6
+  },
+  {
+    "word": "pr",
+    "corpus_count": 6
+  },
+  {
+    "word": "raccourci",
+    "corpus_count": 6
+  },
+  {
+    "word": "roi",
+    "corpus_count": 6
+  },
+  {
+    "word": "rois",
+    "corpus_count": 6
+  },
+  {
+    "word": "estompe",
+    "corpus_count": 6,
+    "display_form": "s'estompe"
+  },
+  {
+    "word": "sa",
+    "corpus_count": 6
+  },
+  {
+    "word": "semblant",
+    "corpus_count": 6
+  },
+  {
+    "word": "sourire",
+    "corpus_count": 6
+  },
+  {
+    "word": "uvre",
+    "corpus_count": 6
+  },
+  {
+    "word": "étoile",
+    "corpus_count": 6
+  },
+  {
+    "word": "décide",
+    "corpus_count": 6,
+    "variants": {
+      "décide": 5,
+      "m'décide": 1
+    }
+  },
+  {
+    "word": "oublier",
+    "corpus_count": 6,
+    "variants": {
+      "oublier": 3,
+      "t'oublier": 3
+    }
+  },
+  {
+    "word": "alors",
+    "corpus_count": 5
+  },
+  {
+    "word": "attendre",
+    "corpus_count": 5
+  },
+  {
+    "word": "bas",
+    "corpus_count": 5
+  },
+  {
+    "word": "bouger",
+    "corpus_count": 5
+  },
+  {
+    "word": "chambre",
+    "corpus_count": 5
+  },
+  {
+    "word": "chance",
+    "corpus_count": 5
+  },
+  {
+    "word": "chose",
+    "corpus_count": 5
+  },
+  {
+    "word": "comprendre",
+    "corpus_count": 5
+  },
+  {
+    "word": "art",
+    "corpus_count": 5,
+    "display_form": "d'art"
+  },
+  {
+    "word": "derni",
+    "corpus_count": 5
+  },
+  {
+    "word": "deuil",
+    "corpus_count": 5
+  },
+  {
+    "word": "disent",
+    "corpus_count": 5
+  },
+  {
+    "word": "dort",
+    "corpus_count": 5
+  },
+  {
+    "word": "ferme",
+    "corpus_count": 5
+  },
+  {
+    "word": "fout",
+    "corpus_count": 5
+  },
+  {
+    "word": "grave",
+    "corpus_count": 5
+  },
+  {
+    "word": "l'entends",
+    "corpus_count": 5,
+    "display_form": "j'l'entends"
+  },
+  {
+    "word": "air",
+    "corpus_count": 5,
+    "display_form": "l'air"
+  },
+  {
+    "word": "laisser",
+    "corpus_count": 5
+  },
+  {
+    "word": "larme",
+    "corpus_count": 5
+  },
+  {
+    "word": "larmes",
+    "corpus_count": 5
+  },
+  {
+    "word": "lumi",
+    "corpus_count": 5
+  },
+  {
+    "word": "ner",
+    "corpus_count": 5
+  },
+  {
+    "word": "nom",
+    "corpus_count": 5
+  },
+  {
+    "word": "pensées",
+    "corpus_count": 5
+  },
+  {
+    "word": "plage",
+    "corpus_count": 5
+  },
+  {
+    "word": "pluie",
+    "corpus_count": 5
+  },
+  {
+    "word": "pourrait",
+    "corpus_count": 5
+  },
+  {
+    "word": "premi",
+    "corpus_count": 5
+  },
+  {
+    "word": "quitté",
+    "corpus_count": 5
+  },
+  {
+    "word": "res",
+    "corpus_count": 5
+  },
+  {
+    "word": "rire",
+    "corpus_count": 5
+  },
+  {
+    "word": "sait",
+    "corpus_count": 5
+  },
+  {
+    "word": "sel",
+    "corpus_count": 5
+  },
+  {
+    "word": "sera",
+    "corpus_count": 5
+  },
+  {
+    "word": "sort",
+    "corpus_count": 5
+  },
+  {
+    "word": "tendre",
+    "corpus_count": 5
+  },
+  {
+    "word": "toute",
+    "corpus_count": 5
+  },
+  {
+    "word": "trouver",
+    "corpus_count": 5
+  },
+  {
+    "word": "tée",
+    "corpus_count": 5
+  },
+  {
+    "word": "vas",
+    "corpus_count": 5
+  },
+  {
+    "word": "ver",
+    "corpus_count": 5
+  },
+  {
+    "word": "ville",
+    "corpus_count": 5
+  },
+  {
+    "word": "vivre",
+    "corpus_count": 5
+  },
+  {
+    "word": "vres",
+    "corpus_count": 5
+  },
+  {
+    "word": "vu",
+    "corpus_count": 5
+  },
+  {
+    "word": "histoires",
+    "corpus_count": 5,
+    "variants": {
+      "histoires": 4,
+      "d'histoires": 1
+    }
+  },
+  {
+    "word": "oreille",
+    "corpus_count": 5,
+    "display_form": "l'oreille",
+    "variants": {
+      "l'oreille": 4,
+      "oreille": 1
+    }
+  },
+  {
+    "word": "sourires",
+    "corpus_count": 5,
+    "variants": {
+      "sourires": 4,
+      "d'sourires": 1
+    }
+  },
+  {
+    "word": "aide",
+    "corpus_count": 5,
+    "variants": {
+      "aide": 3,
+      "d'aide": 2
+    }
+  },
+  {
+    "word": "aurais",
+    "corpus_count": 5,
+    "display_form": "j'aurais",
+    "variants": {
+      "j'aurais": 3,
+      "aurais": 1,
+      "l'aurais": 1
+    }
+  },
+  {
+    "word": "étais",
+    "corpus_count": 5,
+    "variants": {
+      "étais": 3,
+      "j'étais": 1,
+      "t'étais": 1
+    }
+  },
+  {
+    "word": "afin",
+    "corpus_count": 4
+  },
+  {
+    "word": "agitations",
+    "corpus_count": 4
+  },
+  {
+    "word": "aiguilles",
+    "corpus_count": 4
+  },
+  {
+    "word": "allé",
+    "corpus_count": 4
+  },
+  {
+    "word": "anges",
+    "corpus_count": 4
+  },
+  {
+    "word": "besoin",
+    "corpus_count": 4
+  },
+  {
+    "word": "bizarres",
+    "corpus_count": 4
+  },
+  {
+    "word": "celle",
+    "corpus_count": 4
+  },
+  {
+    "word": "coco",
+    "corpus_count": 4
+  },
+  {
+    "word": "cr",
+    "corpus_count": 4
+  },
+  {
+    "word": "croyais",
+    "corpus_count": 4
+  },
+  {
+    "word": "dernier",
+    "corpus_count": 4
+  },
+  {
+    "word": "descend",
+    "corpus_count": 4
+  },
+  {
+    "word": "devant",
+    "corpus_count": 4
+  },
+  {
+    "word": "donc",
+    "corpus_count": 4
+  },
+  {
+    "word": "dr",
+    "corpus_count": 4
+  },
+  {
+    "word": "enfouie",
+    "corpus_count": 4
+  },
+  {
+    "word": "envahir",
+    "corpus_count": 4
+  },
+  {
+    "word": "figent",
+    "corpus_count": 4
+  },
+  {
+    "word": "foi",
+    "corpus_count": 4
+  },
+  {
+    "word": "garde",
+    "corpus_count": 4
+  },
+  {
+    "word": "haine",
+    "corpus_count": 4
+  },
+  {
+    "word": "hasard",
+    "corpus_count": 4
+  },
+  {
+    "word": "idéaux",
+    "corpus_count": 4
+  },
+  {
+    "word": "inir",
+    "corpus_count": 4
+  },
+  {
+    "word": "isolée",
+    "corpus_count": 4
+  },
+  {
+    "word": "j",
+    "corpus_count": 4
+  },
+  {
+    "word": "joli",
+    "corpus_count": 4
+  },
+  {
+    "word": "joue",
+    "corpus_count": 4
+  },
+  {
+    "word": "joué",
+    "corpus_count": 4
+  },
+  {
+    "word": "aurai",
+    "corpus_count": 4,
+    "display_form": "l'aurai"
+  },
+  {
+    "word": "longtemps",
+    "corpus_count": 4
+  },
+  {
+    "word": "enlaces",
+    "corpus_count": 4,
+    "display_form": "m'enlaces"
+  },
+  {
+    "word": "malgré",
+    "corpus_count": 4
+  },
+  {
+    "word": "matins",
+    "corpus_count": 4
+  },
+  {
+    "word": "mer",
+    "corpus_count": 4
+  },
+  {
+    "word": "miroir",
+    "corpus_count": 4
+  },
+  {
+    "word": "mois",
+    "corpus_count": 4
+  },
+  {
+    "word": "mot",
+    "corpus_count": 4
+  },
+  {
+    "word": "mourir",
+    "corpus_count": 4
+  },
+  {
+    "word": "nan",
+    "corpus_count": 4
+  },
+  {
+    "word": "ombres",
+    "corpus_count": 4
+  },
+  {
+    "word": "paisible",
+    "corpus_count": 4
+  },
+  {
+    "word": "parfum",
+    "corpus_count": 4
+  },
+  {
+    "word": "pars",
+    "corpus_count": 4
+  },
+  {
+    "word": "penser",
+    "corpus_count": 4
+  },
+  {
+    "word": "pensé",
+    "corpus_count": 4
+  },
+  {
+    "word": "perdre",
+    "corpus_count": 4
+  },
+  {
+    "word": "peux",
+    "corpus_count": 4
+  },
+  {
+    "word": "prendre",
+    "corpus_count": 4
+  },
+  {
+    "word": "pris",
+    "corpus_count": 4
+  },
+  {
+    "word": "profonde",
+    "corpus_count": 4
+  },
+  {
+    "word": "quelque",
+    "corpus_count": 4
+  },
+  {
+    "word": "quelques",
+    "corpus_count": 4
+  },
+  {
+    "word": "retrouves",
+    "corpus_count": 4
+  },
+  {
+    "word": "rue",
+    "corpus_count": 4
+  },
+  {
+    "word": "ennuie",
+    "corpus_count": 4,
+    "display_form": "s'ennuie"
+  },
+  {
+    "word": "met",
+    "corpus_count": 4,
+    "display_form": "s'met"
+  },
+  {
+    "word": "salive",
+    "corpus_count": 4
+  },
+  {
+    "word": "savoir",
+    "corpus_count": 4
+  },
+  {
+    "word": "seconde",
+    "corpus_count": 4
+  },
+  {
+    "word": "sentir",
+    "corpus_count": 4
+  },
+  {
+    "word": "sommeil",
+    "corpus_count": 4
+  },
+  {
+    "word": "souv'nir",
+    "corpus_count": 4
+  },
+  {
+    "word": "stupéfiants",
+    "corpus_count": 4
+  },
+  {
+    "word": "suivent",
+    "corpus_count": 4
+  },
+  {
+    "word": "tr",
+    "corpus_count": 4
+  },
+  {
+    "word": "tropicales",
+    "corpus_count": 4
+  },
+  {
+    "word": "trouvée",
+    "corpus_count": 4
+  },
+  {
+    "word": "télé",
+    "corpus_count": 4
+  },
+  {
+    "word": "visage",
+    "corpus_count": 4
+  },
+  {
+    "word": "yeah",
+    "corpus_count": 4
+  },
+  {
+    "word": "zéro",
+    "corpus_count": 4
+  },
+  {
+    "word": "épaule",
+    "corpus_count": 4
+  },
+  {
+    "word": "bois",
+    "corpus_count": 4,
+    "variants": {
+      "bois": 3,
+      "n'bois": 1
+    }
+  },
+  {
+    "word": "entends",
+    "corpus_count": 4,
+    "display_form": "j'entends",
+    "variants": {
+      "j'entends": 3,
+      "entends": 1
+    }
+  },
+  {
+    "word": "emp",
+    "corpus_count": 4,
+    "display_form": "m'emp",
+    "variants": {
+      "m'emp": 3,
+      "s'emp": 1
+    }
+  },
+  {
+    "word": "oublierai",
+    "corpus_count": 4,
+    "display_form": "n'oublierai",
+    "variants": {
+      "n'oublierai": 3,
+      "oublierai": 1
+    }
+  },
+  {
+    "word": "entendre",
+    "corpus_count": 4,
+    "display_form": "s'entendre",
+    "variants": {
+      "s'entendre": 3,
+      "entendre": 1
+    }
+  },
+  {
+    "word": "sent",
+    "corpus_count": 4,
+    "variants": {
+      "sent": 3,
+      "s'sent": 1
+    }
+  },
+  {
+    "word": "trouve",
+    "corpus_count": 4,
+    "variants": {
+      "trouve": 3,
+      "s'trouve": 1
+    }
+  },
+  {
+    "word": "dois",
+    "corpus_count": 4,
+    "variants": {
+      "dois": 2,
+      "j'dois": 2
+    }
+  },
+  {
+    "word": "manque",
+    "corpus_count": 4,
+    "display_form": "m'manque",
+    "variants": {
+      "m'manque": 2,
+      "manque": 2
+    }
+  },
+  {
+    "word": "allez",
+    "corpus_count": 3
+  },
+  {
+    "word": "appareils",
+    "corpus_count": 3
+  },
+  {
+    "word": "arc",
+    "corpus_count": 3
+  },
+  {
+    "word": "balade",
+    "corpus_count": 3
+  },
+  {
+    "word": "bat",
+    "corpus_count": 3
+  },
+  {
+    "word": "bijoux",
+    "corpus_count": 3
+  },
+  {
+    "word": "blanches",
+    "corpus_count": 3
+  },
+  {
+    "word": "but",
+    "corpus_count": 3
+  },
+  {
+    "word": "qu'on",
+    "corpus_count": 3,
+    "display_form": "c'qu'on"
+  },
+  {
+    "word": "caméras",
+    "corpus_count": 3
+  },
+  {
+    "word": "carrera",
+    "corpus_count": 3
+  },
+  {
+    "word": "champagne",
+    "corpus_count": 3
+  },
+  {
+    "word": "chanel",
+    "corpus_count": 3
+  },
+  {
+    "word": "chanter",
+    "corpus_count": 3
+  },
+  {
+    "word": "cherchent",
+    "corpus_count": 3
+  },
+  {
+    "word": "cheveux",
+    "corpus_count": 3
+  },
+  {
+    "word": "chez",
+    "corpus_count": 3
+  },
+  {
+    "word": "compris",
+    "corpus_count": 3
+  },
+  {
+    "word": "contre",
+    "corpus_count": 3
+  },
+  {
+    "word": "couilles",
+    "corpus_count": 3
+  },
+  {
+    "word": "dansent",
+    "corpus_count": 3
+  },
+  {
+    "word": "demain",
+    "corpus_count": 3
+  },
+  {
+    "word": "devoir",
+    "corpus_count": 3
+  },
+  {
+    "word": "distance",
+    "corpus_count": 3
+  },
+  {
+    "word": "donne",
+    "corpus_count": 3
+  },
+  {
+    "word": "doute",
+    "corpus_count": 3
+  },
+  {
+    "word": "début",
+    "corpus_count": 3
+  },
+  {
+    "word": "déchire",
+    "corpus_count": 3
+  },
+  {
+    "word": "démaquillé",
+    "corpus_count": 3
+  },
+  {
+    "word": "dévorent",
+    "corpus_count": 3
+  },
+  {
+    "word": "enlevé",
+    "corpus_count": 3
+  },
+  {
+    "word": "entra",
+    "corpus_count": 3
+  },
+  {
+    "word": "fant",
+    "corpus_count": 3
+  },
+  {
+    "word": "femmes",
+    "corpus_count": 3
+  },
+  {
+    "word": "ferrari",
+    "corpus_count": 3
+  },
+  {
+    "word": "fille",
+    "corpus_count": 3
+  },
+  {
+    "word": "fin",
+    "corpus_count": 3
+  },
+  {
+    "word": "fou",
+    "corpus_count": 3
+  },
+  {
+    "word": "fr",
+    "corpus_count": 3
+  },
+  {
+    "word": "g",
+    "corpus_count": 3
+  },
+  {
+    "word": "glisse",
+    "corpus_count": 3
+  },
+  {
+    "word": "go",
+    "corpus_count": 3
+  },
+  {
+    "word": "gogo",
+    "corpus_count": 3
+  },
+  {
+    "word": "hanches",
+    "corpus_count": 3
+  },
+  {
+    "word": "haut",
+    "corpus_count": 3
+  },
+  {
+    "word": "hors",
+    "corpus_count": 3
+  },
+  {
+    "word": "importa",
+    "corpus_count": 3
+  },
+  {
+    "word": "insomnies",
+    "corpus_count": 3
+  },
+  {
+    "word": "attends",
+    "corpus_count": 3,
+    "display_form": "j'attends"
+  },
+  {
+    "word": "avoue",
+    "corpus_count": 3,
+    "display_form": "j'avoue"
+  },
+  {
+    "word": "jaunes",
+    "corpus_count": 3
+  },
+  {
+    "word": "objectif",
+    "corpus_count": 3,
+    "display_form": "l'objectif"
+  },
+  {
+    "word": "lignes",
+    "corpus_count": 3
+  },
+  {
+    "word": "maintenant",
+    "corpus_count": 3
+  },
+  {
+    "word": "mirages",
+    "corpus_count": 3
+  },
+  {
+    "word": "miroirs",
+    "corpus_count": 3
+  },
+  {
+    "word": "mis",
+    "corpus_count": 3
+  },
+  {
+    "word": "noires",
+    "corpus_count": 3
+  },
+  {
+    "word": "ose",
+    "corpus_count": 3
+  },
+  {
+    "word": "parfois",
+    "corpus_count": 3
+  },
+  {
+    "word": "parle",
+    "corpus_count": 3
+  },
+  {
+    "word": "parles",
+    "corpus_count": 3
+  },
+  {
+    "word": "partagé",
+    "corpus_count": 3
+  },
+  {
+    "word": "passé",
+    "corpus_count": 3
+  },
+  {
+    "word": "pendant",
+    "corpus_count": 3
+  },
+  {
+    "word": "penses",
+    "corpus_count": 3
+  },
+  {
+    "word": "pierre",
+    "corpus_count": 3
+  },
+  {
+    "word": "plais",
+    "corpus_count": 3
+  },
+  {
+    "word": "pleine",
+    "corpus_count": 3
+  },
+  {
+    "word": "pose",
+    "corpus_count": 3
+  },
+  {
+    "word": "pourrais",
+    "corpus_count": 3
+  },
+  {
+    "word": "pourvu",
+    "corpus_count": 3
+  },
+  {
+    "word": "prends",
+    "corpus_count": 3
+  },
+  {
+    "word": "presque",
+    "corpus_count": 3
+  },
+  {
+    "word": "pute",
+    "corpus_count": 3
+  },
+  {
+    "word": "pédaler",
+    "corpus_count": 3
+  },
+  {
+    "word": "quien",
+    "corpus_count": 3
+  },
+  {
+    "word": "raison",
+    "corpus_count": 3
+  },
+  {
+    "word": "rapproche",
+    "corpus_count": 3
+  },
+  {
+    "word": "retrouver",
+    "corpus_count": 3
+  },
+  {
+    "word": "ris",
+    "corpus_count": 3
+  },
+  {
+    "word": "rougir",
+    "corpus_count": 3
+  },
+  {
+    "word": "émouvoir",
+    "corpus_count": 3,
+    "display_form": "s'émouvoir"
+  },
+  {
+    "word": "sculptée",
+    "corpus_count": 3
+  },
+  {
+    "word": "seins",
+    "corpus_count": 3
+  },
+  {
+    "word": "sentiments",
+    "corpus_count": 3
+  },
+  {
+    "word": "silence",
+    "corpus_count": 3
+  },
+  {
+    "word": "soudain",
+    "corpus_count": 3
+  },
+  {
+    "word": "sécher",
+    "corpus_count": 3
+  },
+  {
+    "word": "séduisent",
+    "corpus_count": 3
+  },
+  {
+    "word": "appelaient",
+    "corpus_count": 3,
+    "display_form": "t'appelaient"
+  },
+  {
+    "word": "tenir",
+    "corpus_count": 3
+  },
+  {
+    "word": "terminer",
+    "corpus_count": 3
+  },
+  {
+    "word": "timide",
+    "corpus_count": 3
+  },
+  {
+    "word": "toujours",
+    "corpus_count": 3
+  },
+  {
+    "word": "tra",
+    "corpus_count": 3
+  },
+  {
+    "word": "uh",
+    "corpus_count": 3
+  },
+  {
+    "word": "veine",
+    "corpus_count": 3
+  },
+  {
+    "word": "verras",
+    "corpus_count": 3
+  },
+  {
+    "word": "vide",
+    "corpus_count": 3
+  },
+  {
+    "word": "viendrais",
+    "corpus_count": 3
+  },
+  {
+    "word": "vient",
+    "corpus_count": 3
+  },
+  {
+    "word": "vont",
+    "corpus_count": 3
+  },
+  {
+    "word": "voulu",
+    "corpus_count": 3
+  },
+  {
+    "word": "vrai",
+    "corpus_count": 3
+  },
+  {
+    "word": "y'a",
+    "corpus_count": 3
+  },
+  {
+    "word": "écoute",
+    "corpus_count": 3
+  },
+  {
+    "word": "énergies",
+    "corpus_count": 3
+  },
+  {
+    "word": "avance",
+    "corpus_count": 3,
+    "variants": {
+      "avance": 2,
+      "j'avance": 1
+    }
+  },
+  {
+    "word": "avons",
+    "corpus_count": 3,
+    "variants": {
+      "avons": 2,
+      "n'avons": 1
+    }
+  },
+  {
+    "word": "habitude",
+    "corpus_count": 3,
+    "display_form": "d'habitude",
+    "variants": {
+      "d'habitude": 2,
+      "l'habitude": 1
+    }
+  },
+  {
+    "word": "emm",
+    "corpus_count": 3,
+    "variants": {
+      "emm": 2,
+      "t'emm": 1
+    }
+  },
+  {
+    "word": "enfin",
+    "corpus_count": 3,
+    "variants": {
+      "enfin": 2,
+      "qu'enfin": 1
+    }
+  },
+  {
+    "word": "idée",
+    "corpus_count": 3,
+    "variants": {
+      "idée": 2,
+      "l'idée": 1
+    }
+  },
+  {
+    "word": "avais",
+    "corpus_count": 3,
+    "display_form": "j'avais",
+    "variants": {
+      "j'avais": 2,
+      "avais": 1
+    }
+  },
+  {
+    "word": "écouter",
+    "corpus_count": 3,
+    "display_form": "m'écouter",
+    "variants": {
+      "m'écouter": 2,
+      "écouter": 1
+    }
+  },
+  {
+    "word": "venir",
+    "corpus_count": 3,
+    "variants": {
+      "venir": 2,
+      "d'venir": 1
+    }
+  },
+  {
+    "word": "aimé",
+    "corpus_count": 2
+  },
+  {
+    "word": "amer",
+    "corpus_count": 2
+  },
+  {
+    "word": "amours",
+    "corpus_count": 2
+  },
+  {
+    "word": "arbres",
+    "corpus_count": 2
+  },
+  {
+    "word": "arrivé",
+    "corpus_count": 2
+  },
+  {
+    "word": "assoiffés",
+    "corpus_count": 2
+  },
+  {
+    "word": "astrales",
+    "corpus_count": 2
+  },
+  {
+    "word": "aucun",
+    "corpus_count": 2
+  },
+  {
+    "word": "aussi",
+    "corpus_count": 2
+  },
+  {
+    "word": "auxquelles",
+    "corpus_count": 2
+  },
+  {
+    "word": "avancer",
+    "corpus_count": 2
+  },
+  {
+    "word": "avion",
+    "corpus_count": 2
+  },
+  {
+    "word": "babines",
+    "corpus_count": 2
+  },
+  {
+    "word": "bah",
+    "corpus_count": 2
+  },
+  {
+    "word": "bander",
+    "corpus_count": 2
+  },
+  {
+    "word": "banque",
+    "corpus_count": 2
+  },
+  {
+    "word": "bient",
+    "corpus_count": 2
+  },
+  {
+    "word": "bite",
+    "corpus_count": 2
+  },
+  {
+    "word": "blanc",
+    "corpus_count": 2
+  },
+  {
+    "word": "blanche",
+    "corpus_count": 2
+  },
+  {
+    "word": "blesserait",
+    "corpus_count": 2
+  },
+  {
+    "word": "bloque",
+    "corpus_count": 2
+  },
+  {
+    "word": "bond",
+    "corpus_count": 2
+  },
+  {
+    "word": "boucle",
+    "corpus_count": 2
+  },
+  {
+    "word": "bouge",
+    "corpus_count": 2
+  },
+  {
+    "word": "bout",
+    "corpus_count": 2
+  },
+  {
+    "word": "bruxelles",
+    "corpus_count": 2
+  },
+  {
+    "word": "calibré",
+    "corpus_count": 2
+  },
+  {
+    "word": "cas",
+    "corpus_count": 2
+  },
+  {
+    "word": "cent",
+    "corpus_count": 2
+  },
+  {
+    "word": "chaloupée",
+    "corpus_count": 2
+  },
+  {
+    "word": "chantais",
+    "corpus_count": 2
+  },
+  {
+    "word": "chaud",
+    "corpus_count": 2
+  },
+  {
+    "word": "chemin",
+    "corpus_count": 2
+  },
+  {
+    "word": "chemins",
+    "corpus_count": 2
+  },
+  {
+    "word": "cigarettes",
+    "corpus_count": 2
+  },
+  {
+    "word": "comparé",
+    "corpus_count": 2
+  },
+  {
+    "word": "con",
+    "corpus_count": 2
+  },
+  {
+    "word": "conduisait",
+    "corpus_count": 2
+  },
+  {
+    "word": "confort",
+    "corpus_count": 2
+  },
+  {
+    "word": "corcovado",
+    "corpus_count": 2
+  },
+  {
+    "word": "couleur",
+    "corpus_count": 2
+  },
+  {
+    "word": "coup",
+    "corpus_count": 2
+  },
+  {
+    "word": "courtisanes",
+    "corpus_count": 2
+  },
+  {
+    "word": "cri",
+    "corpus_count": 2
+  },
+  {
+    "word": "croient",
+    "corpus_count": 2
+  },
+  {
+    "word": "croire",
+    "corpus_count": 2
+  },
+  {
+    "word": "croulez",
+    "corpus_count": 2
+  },
+  {
+    "word": "créatures",
+    "corpus_count": 2
+  },
+  {
+    "word": "cul",
+    "corpus_count": 2
+  },
+  {
+    "word": "honn",
+    "corpus_count": 2,
+    "display_form": "d'honn"
+  },
+  {
+    "word": "oiseau",
+    "corpus_count": 2,
+    "display_form": "d'oiseau"
+  },
+  {
+    "word": "danser",
+    "corpus_count": 2
+  },
+  {
+    "word": "derri",
+    "corpus_count": 2
+  },
+  {
+    "word": "dettes",
+    "corpus_count": 2
+  },
+  {
+    "word": "devenir",
+    "corpus_count": 2
+  },
+  {
+    "word": "devient",
+    "corpus_count": 2
+  },
+  {
+    "word": "dirait",
+    "corpus_count": 2
+  },
+  {
+    "word": "disque",
+    "corpus_count": 2
+  },
+  {
+    "word": "doigts",
+    "corpus_count": 2
+  },
+  {
+    "word": "dominique",
+    "corpus_count": 2
+  },
+  {
+    "word": "donner",
+    "corpus_count": 2
+  },
+  {
+    "word": "dont",
+    "corpus_count": 2
+  },
+  {
+    "word": "dormirai",
+    "corpus_count": 2
+  },
+  {
+    "word": "dos",
+    "corpus_count": 2
+  },
+  {
+    "word": "droit",
+    "corpus_count": 2
+  },
+  {
+    "word": "découvrir",
+    "corpus_count": 2
+  },
+  {
+    "word": "dédessine",
+    "corpus_count": 2
+  },
+  {
+    "word": "délire",
+    "corpus_count": 2
+  },
+  {
+    "word": "démons",
+    "corpus_count": 2
+  },
+  {
+    "word": "dépasse",
+    "corpus_count": 2
+  },
+  {
+    "word": "dépla",
+    "corpus_count": 2
+  },
+  {
+    "word": "dérailler",
+    "corpus_count": 2
+  },
+  {
+    "word": "déviation",
+    "corpus_count": 2
+  },
+  {
+    "word": "dévoilé",
+    "corpus_count": 2
+  },
+  {
+    "word": "encha",
+    "corpus_count": 2
+  },
+  {
+    "word": "enfants",
+    "corpus_count": 2
+  },
+  {
+    "word": "ennui",
+    "corpus_count": 2
+  },
+  {
+    "word": "ensemble",
+    "corpus_count": 2
+  },
+  {
+    "word": "esprit",
+    "corpus_count": 2
+  },
+  {
+    "word": "essayé",
+    "corpus_count": 2
+  },
+  {
+    "word": "exubérance",
+    "corpus_count": 2
+  },
+  {
+    "word": "facon",
+    "corpus_count": 2
+  },
+  {
+    "word": "faiblir",
+    "corpus_count": 2
+  },
+  {
+    "word": "faisant",
+    "corpus_count": 2
+  },
+  {
+    "word": "fame",
+    "corpus_count": 2
+  },
+  {
+    "word": "fatigue",
+    "corpus_count": 2
+  },
+  {
+    "word": "faudra",
+    "corpus_count": 2
+  },
+  {
+    "word": "femme",
+    "corpus_count": 2
+  },
+  {
+    "word": "ferment",
+    "corpus_count": 2
+  },
+  {
+    "word": "fessier",
+    "corpus_count": 2
+  },
+  {
+    "word": "fi",
+    "corpus_count": 2
+  },
+  {
+    "word": "filer",
+    "corpus_count": 2
+  },
+  {
+    "word": "finir",
+    "corpus_count": 2
+  },
+  {
+    "word": "for",
+    "corpus_count": 2
+  },
+  {
+    "word": "fs",
+    "corpus_count": 2
+  },
+  {
+    "word": "fut",
+    "corpus_count": 2
+  },
+  {
+    "word": "gare",
+    "corpus_count": 2
+  },
+  {
+    "word": "genre",
+    "corpus_count": 2
+  },
+  {
+    "word": "gis",
+    "corpus_count": 2
+  },
+  {
+    "word": "glace",
+    "corpus_count": 2
+  },
+  {
+    "word": "glisser",
+    "corpus_count": 2
+  },
+  {
+    "word": "guerre",
+    "corpus_count": 2
+  },
+  {
+    "word": "génial",
+    "corpus_count": 2
+  },
+  {
+    "word": "h",
+    "corpus_count": 2
+  },
+  {
+    "word": "halo",
+    "corpus_count": 2
+  },
+  {
+    "word": "hésitante",
+    "corpus_count": 2
+  },
+  {
+    "word": "idéale",
+    "corpus_count": 2
+  },
+  {
+    "word": "ilm",
+    "corpus_count": 2
+  },
+  {
+    "word": "impériale",
+    "corpus_count": 2
+  },
+  {
+    "word": "indécise",
+    "corpus_count": 2
+  },
+  {
+    "word": "ineffable",
+    "corpus_count": 2
+  },
+  {
+    "word": "insta'",
+    "corpus_count": 2
+  },
+  {
+    "word": "instant",
+    "corpus_count": 2
+  },
+  {
+    "word": "inventée",
+    "corpus_count": 2
+  },
+  {
+    "word": "assume",
+    "corpus_count": 2,
+    "display_form": "j'assume"
+  },
+  {
+    "word": "entame",
+    "corpus_count": 2,
+    "display_form": "j'entame"
+  },
+  {
+    "word": "hallucine",
+    "corpus_count": 2,
+    "display_form": "j'hallucine"
+  },
+  {
+    "word": "passerai",
+    "corpus_count": 2,
+    "display_form": "j'passerai"
+  },
+  {
+    "word": "s'rai",
+    "corpus_count": 2,
+    "display_form": "j's'rai"
+  },
+  {
+    "word": "souris",
+    "corpus_count": 2,
+    "display_form": "j'souris"
+  },
+  {
+    "word": "jolie",
+    "corpus_count": 2
+  },
+  {
+    "word": "jures",
+    "corpus_count": 2
+  },
+  {
+    "word": "aéroport",
+    "corpus_count": 2,
+    "display_form": "l'aéroport"
+  },
+  {
+    "word": "eau",
+    "corpus_count": 2,
+    "display_form": "l'eau"
+  },
+  {
+    "word": "océan",
+    "corpus_count": 2,
+    "display_form": "l'océan"
+  },
+  {
+    "word": "lances",
+    "corpus_count": 2
+  },
+  {
+    "word": "langue",
+    "corpus_count": 2
+  },
+  {
+    "word": "ler",
+    "corpus_count": 2
+  },
+  {
+    "word": "liberté",
+    "corpus_count": 2
+  },
+  {
+    "word": "lié",
+    "corpus_count": 2
+  },
+  {
+    "word": "loi",
+    "corpus_count": 2
+  },
+  {
+    "word": "lointaine",
+    "corpus_count": 2
+  },
+  {
+    "word": "long",
+    "corpus_count": 2
+  },
+  {
+    "word": "lous",
+    "corpus_count": 2
+  },
+  {
+    "word": "lucifer",
+    "corpus_count": 2
+  },
+  {
+    "word": "offre",
+    "corpus_count": 2,
+    "display_form": "m'offre"
+  },
+  {
+    "word": "madureira",
+    "corpus_count": 2
+  },
+  {
+    "word": "mai",
+    "corpus_count": 2
+  },
+  {
+    "word": "maint'nant",
+    "corpus_count": 2
+  },
+  {
+    "word": "maison",
+    "corpus_count": 2
+  },
+  {
+    "word": "maman",
+    "corpus_count": 2
+  },
+  {
+    "word": "manteaux",
+    "corpus_count": 2
+  },
+  {
+    "word": "mauvais",
+    "corpus_count": 2
+  },
+  {
+    "word": "mensonges",
+    "corpus_count": 2
+  },
+  {
+    "word": "ment",
+    "corpus_count": 2
+  },
+  {
+    "word": "mentez",
+    "corpus_count": 2
+  },
+  {
+    "word": "mentir",
+    "corpus_count": 2
+  },
+  {
+    "word": "merde",
+    "corpus_count": 2
+  },
+  {
+    "word": "mi",
+    "corpus_count": 2
+  },
+  {
+    "word": "moitié",
+    "corpus_count": 2
+  },
+  {
+    "word": "moment",
+    "corpus_count": 2
+  },
+  {
+    "word": "monter",
+    "corpus_count": 2
+  },
+  {
+    "word": "moque",
+    "corpus_count": 2
+  },
+  {
+    "word": "mur",
+    "corpus_count": 2
+  },
+  {
+    "word": "murmures",
+    "corpus_count": 2
+  },
+  {
+    "word": "mémoire",
+    "corpus_count": 2
+  },
+  {
+    "word": "mémorable",
+    "corpus_count": 2
+  },
+  {
+    "word": "mérités",
+    "corpus_count": 2
+  },
+  {
+    "word": "existe",
+    "corpus_count": 2,
+    "display_form": "n'existe"
+  },
+  {
+    "word": "t'ont",
+    "corpus_count": 2,
+    "display_form": "n't'ont"
+  },
+  {
+    "word": "nage",
+    "corpus_count": 2
+  },
+  {
+    "word": "nanana",
+    "corpus_count": 2
+  },
+  {
+    "word": "nent",
+    "corpus_count": 2
+  },
+  {
+    "word": "nera",
+    "corpus_count": 2
+  },
+  {
+    "word": "noche",
+    "corpus_count": 2
+  },
+  {
+    "word": "nord",
+    "corpus_count": 2
+  },
+  {
+    "word": "normal",
+    "corpus_count": 2
+  },
+  {
+    "word": "obéir",
+    "corpus_count": 2
+  },
+  {
+    "word": "occulté",
+    "corpus_count": 2
+  },
+  {
+    "word": "only",
+    "corpus_count": 2
+  },
+  {
+    "word": "onnée",
+    "corpus_count": 2
+  },
+  {
+    "word": "ooh",
+    "corpus_count": 2
+  },
+  {
+    "word": "oups",
+    "corpus_count": 2
+  },
+  {
+    "word": "parcours",
+    "corpus_count": 2
+  },
+  {
+    "word": "paris",
+    "corpus_count": 2
+  },
+  {
+    "word": "parmi",
+    "corpus_count": 2
+  },
+  {
+    "word": "partager",
+    "corpus_count": 2
+  },
+  {
+    "word": "partie",
+    "corpus_count": 2
+  },
+  {
+    "word": "partir",
+    "corpus_count": 2
+  },
+  {
+    "word": "passe",
+    "corpus_count": 2
+  },
+  {
+    "word": "passée",
+    "corpus_count": 2
+  },
+  {
+    "word": "peins",
+    "corpus_count": 2
+  },
+  {
+    "word": "perdu",
+    "corpus_count": 2
+  },
+  {
+    "word": "personnalité",
+    "corpus_count": 2
+  },
+  {
+    "word": "personne",
+    "corpus_count": 2
+  },
+  {
+    "word": "peuvent",
+    "corpus_count": 2
+  },
+  {
+    "word": "phéromones",
+    "corpus_count": 2
+  },
+  {
+    "word": "pied",
+    "corpus_count": 2
+  },
+  {
+    "word": "pieds",
+    "corpus_count": 2
+  },
+  {
+    "word": "plaire",
+    "corpus_count": 2
+  },
+  {
+    "word": "plantés",
+    "corpus_count": 2
+  },
+  {
+    "word": "plein",
+    "corpus_count": 2
+  },
+  {
+    "word": "pleines",
+    "corpus_count": 2
+  },
+  {
+    "word": "polie",
+    "corpus_count": 2
+  },
+  {
+    "word": "porte",
+    "corpus_count": 2
+  },
+  {
+    "word": "portrait",
+    "corpus_count": 2
+  },
+  {
+    "word": "poussée",
+    "corpus_count": 2
+  },
+  {
+    "word": "prend",
+    "corpus_count": 2
+  },
+  {
+    "word": "prenons",
+    "corpus_count": 2
+  },
+  {
+    "word": "prise",
+    "corpus_count": 2
+  },
+  {
+    "word": "proche",
+    "corpus_count": 2
+  },
+  {
+    "word": "provisoire",
+    "corpus_count": 2
+  },
+  {
+    "word": "précis",
+    "corpus_count": 2
+  },
+  {
+    "word": "précisément",
+    "corpus_count": 2
+  },
+  {
+    "word": "préjugés",
+    "corpus_count": 2
+  },
+  {
+    "word": "périr",
+    "corpus_count": 2
+  },
+  {
+    "word": "c'était",
+    "corpus_count": 2,
+    "display_form": "qu'c'était"
+  },
+  {
+    "word": "r'garde",
+    "corpus_count": 2
+  },
+  {
+    "word": "racine",
+    "corpus_count": 2
+  },
+  {
+    "word": "radio",
+    "corpus_count": 2
+  },
+  {
+    "word": "rentrer",
+    "corpus_count": 2
+  },
+  {
+    "word": "repartir",
+    "corpus_count": 2
+  },
+  {
+    "word": "retournée",
+    "corpus_count": 2
+  },
+  {
+    "word": "retrouvée",
+    "corpus_count": 2
+  },
+  {
+    "word": "reviens",
+    "corpus_count": 2
+  },
+  {
+    "word": "revois",
+    "corpus_count": 2
+  },
+  {
+    "word": "risque",
+    "corpus_count": 2
+  },
+  {
+    "word": "rome",
+    "corpus_count": 2
+  },
+  {
+    "word": "roule",
+    "corpus_count": 2
+  },
+  {
+    "word": "roulez",
+    "corpus_count": 2
+  },
+  {
+    "word": "rua",
+    "corpus_count": 2
+  },
+  {
+    "word": "ruisseau",
+    "corpus_count": 2
+  },
+  {
+    "word": "réalité",
+    "corpus_count": 2
+  },
+  {
+    "word": "réveil",
+    "corpus_count": 2
+  },
+  {
+    "word": "affichent",
+    "corpus_count": 2,
+    "display_form": "s'affichent"
+  },
+  {
+    "word": "allume",
+    "corpus_count": 2,
+    "display_form": "s'allume"
+  },
+  {
+    "word": "envole",
+    "corpus_count": 2,
+    "display_form": "s'envole"
+  },
+  {
+    "word": "éviter",
+    "corpus_count": 2,
+    "display_form": "s'éviter"
+  },
+  {
+    "word": "sable",
+    "corpus_count": 2
+  },
+  {
+    "word": "salaud",
+    "corpus_count": 2
+  },
+  {
+    "word": "semaines",
+    "corpus_count": 2
+  },
+  {
+    "word": "seras",
+    "corpus_count": 2
+  },
+  {
+    "word": "seuls",
+    "corpus_count": 2
+  },
+  {
+    "word": "silhouette",
+    "corpus_count": 2
+  },
+  {
+    "word": "solitaire",
+    "corpus_count": 2
+  },
+  {
+    "word": "sorti",
+    "corpus_count": 2
+  },
+  {
+    "word": "souffler",
+    "corpus_count": 2
+  },
+  {
+    "word": "souffles",
+    "corpus_count": 2
+  },
+  {
+    "word": "souillée",
+    "corpus_count": 2
+  },
+  {
+    "word": "soul",
+    "corpus_count": 2
+  },
+  {
+    "word": "soupirants",
+    "corpus_count": 2
+  },
+  {
+    "word": "souviens",
+    "corpus_count": 2
+  },
+  {
+    "word": "spatiale",
+    "corpus_count": 2
+  },
+  {
+    "word": "sse",
+    "corpus_count": 2
+  },
+  {
+    "word": "sucre",
+    "corpus_count": 2
+  },
+  {
+    "word": "sucré",
+    "corpus_count": 2
+  },
+  {
+    "word": "symphonie",
+    "corpus_count": 2
+  },
+  {
+    "word": "sépare",
+    "corpus_count": 2
+  },
+  {
+    "word": "affoles",
+    "corpus_count": 2,
+    "display_form": "t'affoles"
+  },
+  {
+    "word": "aiment",
+    "corpus_count": 2,
+    "display_form": "t'aiment"
+  },
+  {
+    "word": "arrivais",
+    "corpus_count": 2,
+    "display_form": "t'arrivais"
+  },
+  {
+    "word": "inqui",
+    "corpus_count": 2,
+    "display_form": "t'inqui"
+  },
+  {
+    "word": "talatata",
+    "corpus_count": 2
+  },
+  {
+    "word": "taxi",
+    "corpus_count": 2
+  },
+  {
+    "word": "teau",
+    "corpus_count": 2
+  },
+  {
+    "word": "terre",
+    "corpus_count": 2
+  },
+  {
+    "word": "teté",
+    "corpus_count": 2
+  },
+  {
+    "word": "titrée",
+    "corpus_count": 2
+  },
+  {
+    "word": "torrentielle",
+    "corpus_count": 2
+  },
+  {
+    "word": "tort",
+    "corpus_count": 2
+  },
+  {
+    "word": "tournant",
+    "corpus_count": 2
+  },
+  {
+    "word": "toutes",
+    "corpus_count": 2
+  },
+  {
+    "word": "transe",
+    "corpus_count": 2
+  },
+  {
+    "word": "troublant",
+    "corpus_count": 2
+  },
+  {
+    "word": "truc",
+    "corpus_count": 2
+  },
+  {
+    "word": "urs",
+    "corpus_count": 2
+  },
+  {
+    "word": "vagues",
+    "corpus_count": 2
+  },
+  {
+    "word": "valent",
+    "corpus_count": 2
+  },
+  {
+    "word": "valsait",
+    "corpus_count": 2
+  },
+  {
+    "word": "version",
+    "corpus_count": 2
+  },
+  {
+    "word": "vidéocam",
+    "corpus_count": 2
+  },
+  {
+    "word": "vies",
+    "corpus_count": 2
+  },
+  {
+    "word": "violence",
+    "corpus_count": 2
+  },
+  {
+    "word": "votre",
+    "corpus_count": 2
+  },
+  {
+    "word": "voudrais",
+    "corpus_count": 2
+  },
+  {
+    "word": "vouloir",
+    "corpus_count": 2
+  },
+  {
+    "word": "vérité",
+    "corpus_count": 2
+  },
+  {
+    "word": "woah",
+    "corpus_count": 2
+  },
+  {
+    "word": "wouaho",
+    "corpus_count": 2
+  },
+  {
+    "word": "éclairé",
+    "corpus_count": 2
+  },
+  {
+    "word": "éclate",
+    "corpus_count": 2
+  },
+  {
+    "word": "écrit",
+    "corpus_count": 2
+  },
+  {
+    "word": "élégance",
+    "corpus_count": 2
+  },
+  {
+    "word": "épousant",
+    "corpus_count": 2
+  },
+  {
+    "word": "équipage",
+    "corpus_count": 2
+  },
+  {
+    "word": "étouffer",
+    "corpus_count": 2
+  },
+  {
+    "word": "évidemment",
+    "corpus_count": 2
+  },
+  {
+    "word": "amants",
+    "corpus_count": 2,
+    "variants": {
+      "amants": 1,
+      "qu'amants": 1
+    }
+  },
+  {
+    "word": "années",
+    "corpus_count": 2,
+    "variants": {
+      "années": 1,
+      "d'années": 1
+    }
+  },
+  {
+    "word": "elles",
+    "corpus_count": 2,
+    "variants": {
+      "elles": 1,
+      "qu'elles": 1
+    }
+  },
+  {
+    "word": "eux",
+    "corpus_count": 2,
+    "variants": {
+      "eux": 1,
+      "qu'eux": 1
+    }
+  },
+  {
+    "word": "importe",
+    "corpus_count": 2,
+    "variants": {
+      "importe": 1,
+      "n'importe": 1
+    }
+  },
+  {
+    "word": "écris",
+    "corpus_count": 2,
+    "display_form": "j'écris",
+    "variants": {
+      "j'écris": 1,
+      "m'écris": 1
+    }
+  },
+  {
+    "word": "rejoindre",
+    "corpus_count": 2,
+    "display_form": "m'rejoindre",
+    "variants": {
+      "m'rejoindre": 1,
+      "rejoindre": 1
+    }
+  },
+  {
+    "word": "répond",
+    "corpus_count": 2,
+    "display_form": "m'répond",
+    "variants": {
+      "m'répond": 1,
+      "répond": 1
+    }
+  },
+  {
+    "word": "abandonnée",
+    "corpus_count": 1
+  },
+  {
+    "word": "absolument",
+    "corpus_count": 1
+  },
+  {
+    "word": "absorbée",
+    "corpus_count": 1
+  },
+  {
+    "word": "accidentel",
+    "corpus_count": 1
+  },
+  {
+    "word": "accompagnée",
+    "corpus_count": 1
+  },
+  {
+    "word": "acheter",
+    "corpus_count": 1
+  },
+  {
+    "word": "addictif",
+    "corpus_count": 1
+  },
+  {
+    "word": "adn",
+    "corpus_count": 1
+  },
+  {
+    "word": "adoptés",
+    "corpus_count": 1
+  },
+  {
+    "word": "adorable",
+    "corpus_count": 1
+  },
+  {
+    "word": "advienne",
+    "corpus_count": 1
+  },
+  {
+    "word": "affairées",
+    "corpus_count": 1
+  },
+  {
+    "word": "africa",
+    "corpus_count": 1
+  },
+  {
+    "word": "agace",
+    "corpus_count": 1
+  },
+  {
+    "word": "agir",
+    "corpus_count": 1
+  },
+  {
+    "word": "agis",
+    "corpus_count": 1
+  },
+  {
+    "word": "aigrie",
+    "corpus_count": 1
+  },
+  {
+    "word": "aimants",
+    "corpus_count": 1
+  },
+  {
+    "word": "ainsi",
+    "corpus_count": 1
+  },
+  {
+    "word": "airelle",
+    "corpus_count": 1
+  },
+  {
+    "word": "aires",
+    "corpus_count": 1
+  },
+  {
+    "word": "album",
+    "corpus_count": 1
+  },
+  {
+    "word": "alchimie",
+    "corpus_count": 1
+  },
+  {
+    "word": "alibi",
+    "corpus_count": 1
+  },
+  {
+    "word": "allongé",
+    "corpus_count": 1
+  },
+  {
+    "word": "amazonie",
+    "corpus_count": 1
+  },
+  {
+    "word": "ambiance",
+    "corpus_count": 1
+  },
+  {
+    "word": "amis",
+    "corpus_count": 1
+  },
+  {
+    "word": "amor",
+    "corpus_count": 1
+  },
+  {
+    "word": "amuse",
+    "corpus_count": 1
+  },
+  {
+    "word": "an",
+    "corpus_count": 1
+  },
+  {
+    "word": "anesthésier",
+    "corpus_count": 1
+  },
+  {
+    "word": "ange",
+    "corpus_count": 1
+  },
+  {
+    "word": "animal",
+    "corpus_count": 1
+  },
+  {
+    "word": "ans",
+    "corpus_count": 1
+  },
+  {
+    "word": "aquarelle",
+    "corpus_count": 1
+  },
+  {
+    "word": "arbre",
+    "corpus_count": 1
+  },
+  {
+    "word": "arcs",
+    "corpus_count": 1
+  },
+  {
+    "word": "argent",
+    "corpus_count": 1
+  },
+  {
+    "word": "armée",
+    "corpus_count": 1
+  },
+  {
+    "word": "armées",
+    "corpus_count": 1
+  },
+  {
+    "word": "arrogant",
+    "corpus_count": 1
+  },
+  {
+    "word": "artiste",
+    "corpus_count": 1
+  },
+  {
+    "word": "assez",
+    "corpus_count": 1
+  },
+  {
+    "word": "athl",
+    "corpus_count": 1
+  },
+  {
+    "word": "audace",
+    "corpus_count": 1
+  },
+  {
+    "word": "aura",
+    "corpus_count": 1
+  },
+  {
+    "word": "autobiographiques",
+    "corpus_count": 1
+  },
+  {
+    "word": "automatique",
+    "corpus_count": 1
+  },
+  {
+    "word": "avenir",
+    "corpus_count": 1
+  },
+  {
+    "word": "avouée",
+    "corpus_count": 1
+  },
+  {
+    "word": "baigne",
+    "corpus_count": 1
+  },
+  {
+    "word": "bain",
+    "corpus_count": 1
+  },
+  {
+    "word": "barri",
+    "corpus_count": 1
+  },
+  {
+    "word": "bars",
+    "corpus_count": 1
+  },
+  {
+    "word": "basket",
+    "corpus_count": 1
+  },
+  {
+    "word": "bataille",
+    "corpus_count": 1
+  },
+  {
+    "word": "bateau",
+    "corpus_count": 1
+  },
+  {
+    "word": "battre",
+    "corpus_count": 1
+  },
+  {
+    "word": "beau",
+    "corpus_count": 1
+  },
+  {
+    "word": "beautés",
+    "corpus_count": 1
+  },
+  {
+    "word": "belles",
+    "corpus_count": 1
+  },
+  {
+    "word": "bilan",
+    "corpus_count": 1
+  },
+  {
+    "word": "bisous",
+    "corpus_count": 1
+  },
+  {
+    "word": "blague",
+    "corpus_count": 1
+  },
+  {
+    "word": "bombés",
+    "corpus_count": 1
+  },
+  {
+    "word": "bouteilles",
+    "corpus_count": 1
+  },
+  {
+    "word": "boy",
+    "corpus_count": 1
+  },
+  {
+    "word": "bref",
+    "corpus_count": 1
+  },
+  {
+    "word": "bres",
+    "corpus_count": 1
+  },
+  {
+    "word": "briller",
+    "corpus_count": 1
+  },
+  {
+    "word": "bruit",
+    "corpus_count": 1
+  },
+  {
+    "word": "brusquée",
+    "corpus_count": 1
+  },
+  {
+    "word": "brésilien",
+    "corpus_count": 1
+  },
+  {
+    "word": "bu",
+    "corpus_count": 1
+  },
+  {
+    "word": "buenos",
+    "corpus_count": 1
+  },
+  {
+    "word": "bébé",
+    "corpus_count": 1
+  },
+  {
+    "word": "qu'ils",
+    "corpus_count": 1,
+    "display_form": "c'qu'ils"
+  },
+  {
+    "word": "cacao",
+    "corpus_count": 1
+  },
+  {
+    "word": "cachais",
+    "corpus_count": 1
+  },
+  {
+    "word": "cadence",
+    "corpus_count": 1
+  },
+  {
+    "word": "cage",
+    "corpus_count": 1
+  },
+  {
+    "word": "campe",
+    "corpus_count": 1
+  },
+  {
+    "word": "can",
+    "corpus_count": 1
+  },
+  {
+    "word": "canapé",
+    "corpus_count": 1
+  },
+  {
+    "word": "cap",
+    "corpus_count": 1
+  },
+  {
+    "word": "capable",
+    "corpus_count": 1
+  },
+  {
+    "word": "capot",
+    "corpus_count": 1
+  },
+  {
+    "word": "caramel",
+    "corpus_count": 1
+  },
+  {
+    "word": "cartable",
+    "corpus_count": 1
+  },
+  {
+    "word": "cavale",
+    "corpus_count": 1
+  },
+  {
+    "word": "celui",
+    "corpus_count": 1
+  },
+  {
+    "word": "cendres",
+    "corpus_count": 1
+  },
+  {
+    "word": "cerveau",
+    "corpus_count": 1
+  },
+  {
+    "word": "cesse",
+    "corpus_count": 1
+  },
+  {
+    "word": "ch",
+    "corpus_count": 1
+  },
+  {
+    "word": "chagrins",
+    "corpus_count": 1
+  },
+  {
+    "word": "champs",
+    "corpus_count": 1
+  },
+  {
+    "word": "change",
+    "corpus_count": 1
+  },
+  {
+    "word": "changera",
+    "corpus_count": 1
+  },
+  {
+    "word": "changé",
+    "corpus_count": 1
+  },
+  {
+    "word": "chantant",
+    "corpus_count": 1
+  },
+  {
+    "word": "chante",
+    "corpus_count": 1
+  },
+  {
+    "word": "chanterons",
+    "corpus_count": 1
+  },
+  {
+    "word": "chanté",
+    "corpus_count": 1
+  },
+  {
+    "word": "chargée",
+    "corpus_count": 1
+  },
+  {
+    "word": "charmante",
+    "corpus_count": 1
+  },
+  {
+    "word": "cher",
+    "corpus_count": 1
+  },
+  {
+    "word": "chienne",
+    "corpus_count": 1
+  },
+  {
+    "word": "choix",
+    "corpus_count": 1
+  },
+  {
+    "word": "choses",
+    "corpus_count": 1
+  },
+  {
+    "word": "chuchote",
+    "corpus_count": 1
+  },
+  {
+    "word": "ché",
+    "corpus_count": 1
+  },
+  {
+    "word": "ci",
+    "corpus_count": 1
+  },
+  {
+    "word": "cigarette",
+    "corpus_count": 1
+  },
+  {
+    "word": "cinq",
+    "corpus_count": 1
+  },
+  {
+    "word": "cinématographique",
+    "corpus_count": 1
+  },
+  {
+    "word": "circuit",
+    "corpus_count": 1
+  },
+  {
+    "word": "claires",
+    "corpus_count": 1
+  },
+  {
+    "word": "claque",
+    "corpus_count": 1
+  },
+  {
+    "word": "clip",
+    "corpus_count": 1
+  },
+  {
+    "word": "close",
+    "corpus_count": 1
+  },
+  {
+    "word": "coeur",
+    "corpus_count": 1
+  },
+  {
+    "word": "cohérence",
+    "corpus_count": 1
+  },
+  {
+    "word": "coin",
+    "corpus_count": 1
+  },
+  {
+    "word": "coincée",
+    "corpus_count": 1
+  },
+  {
+    "word": "coller",
+    "corpus_count": 1
+  },
+  {
+    "word": "combat",
+    "corpus_count": 1
+  },
+  {
+    "word": "combien",
+    "corpus_count": 1
+  },
+  {
+    "word": "comment",
+    "corpus_count": 1
+  },
+  {
+    "word": "comprenais",
+    "corpus_count": 1
+  },
+  {
+    "word": "concerts",
+    "corpus_count": 1
+  },
+  {
+    "word": "confondent",
+    "corpus_count": 1
+  },
+  {
+    "word": "conna",
+    "corpus_count": 1
+  },
+  {
+    "word": "connue",
+    "corpus_count": 1
+  },
+  {
+    "word": "conseil",
+    "corpus_count": 1
+  },
+  {
+    "word": "conservé",
+    "corpus_count": 1
+  },
+  {
+    "word": "contr",
+    "corpus_count": 1
+  },
+  {
+    "word": "contraire",
+    "corpus_count": 1
+  },
+  {
+    "word": "coquillage",
+    "corpus_count": 1
+  },
+  {
+    "word": "coquilles",
+    "corpus_count": 1
+  },
+  {
+    "word": "cosmique",
+    "corpus_count": 1
+  },
+  {
+    "word": "cou",
+    "corpus_count": 1
+  },
+  {
+    "word": "coucher",
+    "corpus_count": 1
+  },
+  {
+    "word": "couille",
+    "corpus_count": 1
+  },
+  {
+    "word": "cour",
+    "corpus_count": 1
+  },
+  {
+    "word": "courir",
+    "corpus_count": 1
+  },
+  {
+    "word": "court",
+    "corpus_count": 1
+  },
+  {
+    "word": "couvert",
+    "corpus_count": 1
+  },
+  {
+    "word": "crocs",
+    "corpus_count": 1
+  },
+  {
+    "word": "croit",
+    "corpus_count": 1
+  },
+  {
+    "word": "croyant",
+    "corpus_count": 1
+  },
+  {
+    "word": "crédit",
+    "corpus_count": 1
+  },
+  {
+    "word": "cyprine",
+    "corpus_count": 1
+  },
+  {
+    "word": "abord",
+    "corpus_count": 1,
+    "display_form": "d'abord"
+  },
+  {
+    "word": "actualité",
+    "corpus_count": 1,
+    "display_form": "d'actualité"
+  },
+  {
+    "word": "angele",
+    "corpus_count": 1,
+    "display_form": "d'angele"
+  },
+  {
+    "word": "atomes",
+    "corpus_count": 1,
+    "display_form": "d'atomes"
+  },
+  {
+    "word": "intimité",
+    "corpus_count": 1,
+    "display_form": "d'intimité"
+  },
+  {
+    "word": "méditer",
+    "corpus_count": 1,
+    "display_form": "d'méditer"
+  },
+  {
+    "word": "or",
+    "corpus_count": 1,
+    "display_form": "d'or"
+  },
+  {
+    "word": "respect",
+    "corpus_count": 1,
+    "display_form": "d'respect"
+  },
+  {
+    "word": "da",
+    "corpus_count": 1
+  },
+  {
+    "word": "dames",
+    "corpus_count": 1
+  },
+  {
+    "word": "debut",
+    "corpus_count": 1
+  },
+  {
+    "word": "dehors",
+    "corpus_count": 1
+  },
+  {
+    "word": "demandais",
+    "corpus_count": 1
+  },
+  {
+    "word": "demande",
+    "corpus_count": 1
+  },
+  {
+    "word": "demi",
+    "corpus_count": 1
+  },
+  {
+    "word": "derniers",
+    "corpus_count": 1
+  },
+  {
+    "word": "descendre",
+    "corpus_count": 1
+  },
+  {
+    "word": "descente",
+    "corpus_count": 1
+  },
+  {
+    "word": "dessines",
+    "corpus_count": 1
+  },
+  {
+    "word": "dessus",
+    "corpus_count": 1
+  },
+  {
+    "word": "destin",
+    "corpus_count": 1
+  },
+  {
+    "word": "destins",
+    "corpus_count": 1
+  },
+  {
+    "word": "devance",
+    "corpus_count": 1
+  },
+  {
+    "word": "devine",
+    "corpus_count": 1
+  },
+  {
+    "word": "devraient",
+    "corpus_count": 1
+  },
+  {
+    "word": "die",
+    "corpus_count": 1
+  },
+  {
+    "word": "dieux",
+    "corpus_count": 1
+  },
+  {
+    "word": "direction",
+    "corpus_count": 1
+  },
+  {
+    "word": "diront",
+    "corpus_count": 1
+  },
+  {
+    "word": "dispara",
+    "corpus_count": 1
+  },
+  {
+    "word": "disparais",
+    "corpus_count": 1
+  },
+  {
+    "word": "dissimule",
+    "corpus_count": 1
+  },
+  {
+    "word": "distraites",
+    "corpus_count": 1
+  },
+  {
+    "word": "dites",
+    "corpus_count": 1
+  },
+  {
+    "word": "dix",
+    "corpus_count": 1
+  },
+  {
+    "word": "dm",
+    "corpus_count": 1
+  },
+  {
+    "word": "doigtes",
+    "corpus_count": 1
+  },
+  {
+    "word": "dolce",
+    "corpus_count": 1
+  },
+  {
+    "word": "dolziger",
+    "corpus_count": 1
+  },
+  {
+    "word": "domine",
+    "corpus_count": 1
+  },
+  {
+    "word": "dormais",
+    "corpus_count": 1
+  },
+  {
+    "word": "dormir",
+    "corpus_count": 1
+  },
+  {
+    "word": "douce",
+    "corpus_count": 1
+  },
+  {
+    "word": "douleur",
+    "corpus_count": 1
+  },
+  {
+    "word": "doutes",
+    "corpus_count": 1
+  },
+  {
+    "word": "doux",
+    "corpus_count": 1
+  },
+  {
+    "word": "drague",
+    "corpus_count": 1
+  },
+  {
+    "word": "dramatique",
+    "corpus_count": 1
+  },
+  {
+    "word": "drame",
+    "corpus_count": 1
+  },
+  {
+    "word": "drames",
+    "corpus_count": 1
+  },
+  {
+    "word": "draps",
+    "corpus_count": 1
+  },
+  {
+    "word": "drogue",
+    "corpus_count": 1
+  },
+  {
+    "word": "durer",
+    "corpus_count": 1
+  },
+  {
+    "word": "décadence",
+    "corpus_count": 1
+  },
+  {
+    "word": "décembre",
+    "corpus_count": 1
+  },
+  {
+    "word": "décha",
+    "corpus_count": 1
+  },
+  {
+    "word": "dédiées",
+    "corpus_count": 1
+  },
+  {
+    "word": "défais",
+    "corpus_count": 1
+  },
+  {
+    "word": "défendues",
+    "corpus_count": 1
+  },
+  {
+    "word": "défile",
+    "corpus_count": 1
+  },
+  {
+    "word": "déforme",
+    "corpus_count": 1
+  },
+  {
+    "word": "déhanche",
+    "corpus_count": 1
+  },
+  {
+    "word": "délaissé",
+    "corpus_count": 1
+  },
+  {
+    "word": "démarche",
+    "corpus_count": 1
+  },
+  {
+    "word": "dépanne",
+    "corpus_count": 1
+  },
+  {
+    "word": "dépendants",
+    "corpus_count": 1
+  },
+  {
+    "word": "déplacé",
+    "corpus_count": 1
+  },
+  {
+    "word": "dépose",
+    "corpus_count": 1
+  },
+  {
+    "word": "dépossédée",
+    "corpus_count": 1
+  },
+  {
+    "word": "déposé",
+    "corpus_count": 1
+  },
+  {
+    "word": "déprimé",
+    "corpus_count": 1
+  },
+  {
+    "word": "dérailles",
+    "corpus_count": 1
+  },
+  {
+    "word": "dérange",
+    "corpus_count": 1
+  },
+  {
+    "word": "dérive",
+    "corpus_count": 1
+  },
+  {
+    "word": "dés",
+    "corpus_count": 1
+  },
+  {
+    "word": "désarme",
+    "corpus_count": 1
+  },
+  {
+    "word": "désolée",
+    "corpus_count": 1
+  },
+  {
+    "word": "détestes",
+    "corpus_count": 1
+  },
+  {
+    "word": "développées",
+    "corpus_count": 1
+  },
+  {
+    "word": "dévoilée",
+    "corpus_count": 1
+  },
+  {
+    "word": "dévorés",
+    "corpus_count": 1
+  },
+  {
+    "word": "effet",
+    "corpus_count": 1
+  },
+  {
+    "word": "embrase",
+    "corpus_count": 1
+  },
+  {
+    "word": "engloutit",
+    "corpus_count": 1
+  },
+  {
+    "word": "enivrée",
+    "corpus_count": 1
+  },
+  {
+    "word": "enlacés",
+    "corpus_count": 1
+  },
+  {
+    "word": "ennemis",
+    "corpus_count": 1
+  },
+  {
+    "word": "ensembles",
+    "corpus_count": 1
+  },
+  {
+    "word": "ensoleillé",
+    "corpus_count": 1
+  },
+  {
+    "word": "envier",
+    "corpus_count": 1
+  },
+  {
+    "word": "envo",
+    "corpus_count": 1
+  },
+  {
+    "word": "envol",
+    "corpus_count": 1
+  },
+  {
+    "word": "escapade",
+    "corpus_count": 1
+  },
+  {
+    "word": "espoir",
+    "corpus_count": 1
+  },
+  {
+    "word": "espérance",
+    "corpus_count": 1
+  },
+  {
+    "word": "essentiel",
+    "corpus_count": 1
+  },
+  {
+    "word": "esthétiques",
+    "corpus_count": 1
+  },
+  {
+    "word": "eu",
+    "corpus_count": 1
+  },
+  {
+    "word": "existentiel",
+    "corpus_count": 1
+  },
+  {
+    "word": "exister",
+    "corpus_count": 1
+  },
+  {
+    "word": "express",
+    "corpus_count": 1
+  },
+  {
+    "word": "extrait",
+    "corpus_count": 1
+  },
+  {
+    "word": "exubérantes",
+    "corpus_count": 1
+  },
+  {
+    "word": "fable",
+    "corpus_count": 1
+  },
+  {
+    "word": "facile",
+    "corpus_count": 1
+  },
+  {
+    "word": "faisait",
+    "corpus_count": 1
+  },
+  {
+    "word": "falloir",
+    "corpus_count": 1
+  },
+  {
+    "word": "fantaisie",
+    "corpus_count": 1
+  },
+  {
+    "word": "fatiguée",
+    "corpus_count": 1
+  },
+  {
+    "word": "faute",
+    "corpus_count": 1
+  },
+  {
+    "word": "feel",
+    "corpus_count": 1
+  },
+  {
+    "word": "ferais",
+    "corpus_count": 1
+  },
+  {
+    "word": "fermés",
+    "corpus_count": 1
+  },
+  {
+    "word": "fier",
+    "corpus_count": 1
+  },
+  {
+    "word": "film",
+    "corpus_count": 1
+  },
+  {
+    "word": "filmer",
+    "corpus_count": 1
+  },
+  {
+    "word": "finalement",
+    "corpus_count": 1
+  },
+  {
+    "word": "finalité",
+    "corpus_count": 1
+  },
+  {
+    "word": "fini",
+    "corpus_count": 1
+  },
+  {
+    "word": "fixe",
+    "corpus_count": 1
+  },
+  {
+    "word": "flanché",
+    "corpus_count": 1
+  },
+  {
+    "word": "fleur",
+    "corpus_count": 1
+  },
+  {
+    "word": "fleurs",
+    "corpus_count": 1
+  },
+  {
+    "word": "folle",
+    "corpus_count": 1
+  },
+  {
+    "word": "force",
+    "corpus_count": 1
+  },
+  {
+    "word": "foudroyé",
+    "corpus_count": 1
+  },
+  {
+    "word": "fouille",
+    "corpus_count": 1
+  },
+  {
+    "word": "fourbe",
+    "corpus_count": 1
+  },
+  {
+    "word": "foute",
+    "corpus_count": 1
+  },
+  {
+    "word": "foutue",
+    "corpus_count": 1
+  },
+  {
+    "word": "frais",
+    "corpus_count": 1
+  },
+  {
+    "word": "franchis",
+    "corpus_count": 1
+  },
+  {
+    "word": "freine",
+    "corpus_count": 1
+  },
+  {
+    "word": "fruit",
+    "corpus_count": 1
+  },
+  {
+    "word": "frustrant",
+    "corpus_count": 1
+  },
+  {
+    "word": "frustrée",
+    "corpus_count": 1
+  },
+  {
+    "word": "fréquemment",
+    "corpus_count": 1
+  },
+  {
+    "word": "fuis",
+    "corpus_count": 1
+  },
+  {
+    "word": "fumée",
+    "corpus_count": 1
+  },
+  {
+    "word": "futurs",
+    "corpus_count": 1
+  },
+  {
+    "word": "gardé",
+    "corpus_count": 1
+  },
+  {
+    "word": "genoux",
+    "corpus_count": 1
+  },
+  {
+    "word": "gentiment",
+    "corpus_count": 1
+  },
+  {
+    "word": "ges",
+    "corpus_count": 1
+  },
+  {
+    "word": "glaces",
+    "corpus_count": 1
+  },
+  {
+    "word": "glissé",
+    "corpus_count": 1
+  },
+  {
+    "word": "grain",
+    "corpus_count": 1
+  },
+  {
+    "word": "grands",
+    "corpus_count": 1
+  },
+  {
+    "word": "gre",
+    "corpus_count": 1
+  },
+  {
+    "word": "guide",
+    "corpus_count": 1
+  },
+  {
+    "word": "habillais",
+    "corpus_count": 1
+  },
+  {
+    "word": "habitais",
+    "corpus_count": 1
+  },
+  {
+    "word": "habituée",
+    "corpus_count": 1
+  },
+  {
+    "word": "hante",
+    "corpus_count": 1
+  },
+  {
+    "word": "hanté",
+    "corpus_count": 1
+  },
+  {
+    "word": "happy",
+    "corpus_count": 1
+  },
+  {
+    "word": "hargne",
+    "corpus_count": 1
+  },
+  {
+    "word": "hein",
+    "corpus_count": 1
+  },
+  {
+    "word": "heureuse",
+    "corpus_count": 1
+  },
+  {
+    "word": "hommes",
+    "corpus_count": 1
+  },
+  {
+    "word": "honte",
+    "corpus_count": 1
+  },
+  {
+    "word": "hérésies",
+    "corpus_count": 1
+  },
+  {
+    "word": "idées",
+    "corpus_count": 1
+  },
+  {
+    "word": "ignorer",
+    "corpus_count": 1
+  },
+  {
+    "word": "illusions",
+    "corpus_count": 1
+  },
+  {
+    "word": "images",
+    "corpus_count": 1
+  },
+  {
+    "word": "impatient",
+    "corpus_count": 1
+  },
+  {
+    "word": "improbable",
+    "corpus_count": 1
+  },
+  {
+    "word": "impudiques",
+    "corpus_count": 1
+  },
+  {
+    "word": "incompatible",
+    "corpus_count": 1
+  },
+  {
+    "word": "inconformes",
+    "corpus_count": 1
+  },
+  {
+    "word": "inconnus",
+    "corpus_count": 1
+  },
+  {
+    "word": "infinies",
+    "corpus_count": 1
+  },
+  {
+    "word": "ingénue",
+    "corpus_count": 1
+  },
+  {
+    "word": "innocence",
+    "corpus_count": 1
+  },
+  {
+    "word": "insane",
+    "corpus_count": 1
+  },
+  {
+    "word": "intensément",
+    "corpus_count": 1
+  },
+  {
+    "word": "interstice",
+    "corpus_count": 1
+  },
+  {
+    "word": "introduction",
+    "corpus_count": 1
+  },
+  {
+    "word": "invites",
+    "corpus_count": 1
+  },
+  {
+    "word": "inévitablement",
+    "corpus_count": 1
+  },
+  {
+    "word": "irons",
+    "corpus_count": 1
+  },
+  {
+    "word": "isolés",
+    "corpus_count": 1
+  },
+  {
+    "word": "italienne",
+    "corpus_count": 1
+  },
+  {
+    "word": "appelle",
+    "corpus_count": 1,
+    "display_form": "j'appelle"
+  },
+  {
+    "word": "attendrai",
+    "corpus_count": 1,
+    "display_form": "j'attendrai"
+  },
+  {
+    "word": "essayais",
+    "corpus_count": 1,
+    "display_form": "j'essayais"
+  },
+  {
+    "word": "habite",
+    "corpus_count": 1,
+    "display_form": "j'habite"
+  },
+  {
+    "word": "hésite",
+    "corpus_count": 1,
+    "display_form": "j'hésite"
+  },
+  {
+    "word": "imagine",
+    "corpus_count": 1,
+    "display_form": "j'imagine"
+  },
+  {
+    "word": "l'ai",
+    "corpus_count": 1,
+    "display_form": "j'l'ai"
+  },
+  {
+    "word": "l'avais",
+    "corpus_count": 1,
+    "display_form": "j'l'avais"
+  },
+  {
+    "word": "repensais",
+    "corpus_count": 1,
+    "display_form": "j'repensais"
+  },
+  {
+    "word": "jalousies",
+    "corpus_count": 1
+  },
+  {
+    "word": "jam",
+    "corpus_count": 1
+  },
+  {
+    "word": "janvier",
+    "corpus_count": 1
+  },
+  {
+    "word": "jean",
+    "corpus_count": 1
+  },
+  {
+    "word": "joindre",
+    "corpus_count": 1
+  },
+  {
+    "word": "jolies",
+    "corpus_count": 1
+  },
+  {
+    "word": "jonchés",
+    "corpus_count": 1
+  },
+  {
+    "word": "jouais",
+    "corpus_count": 1
+  },
+  {
+    "word": "jouer",
+    "corpus_count": 1
+  },
+  {
+    "word": "journal",
+    "corpus_count": 1
+  },
+  {
+    "word": "journée",
+    "corpus_count": 1
+  },
+  {
+    "word": "jours",
+    "corpus_count": 1
+  },
+  {
+    "word": "jungle",
+    "corpus_count": 1
+  },
+  {
+    "word": "jure",
+    "corpus_count": 1
+  },
+  {
+    "word": "jusqu",
+    "corpus_count": 1
+  },
+  {
+    "word": "jusque",
+    "corpus_count": 1
+  },
+  {
+    "word": "k",
+    "corpus_count": 1
+  },
+  {
+    "word": "katy",
+    "corpus_count": 1
+  },
+  {
+    "word": "abri",
+    "corpus_count": 1,
+    "display_form": "l'abri"
+  },
+  {
+    "word": "affiche",
+    "corpus_count": 1,
+    "display_form": "l'affiche"
+  },
+  {
+    "word": "aimes",
+    "corpus_count": 1,
+    "display_form": "l'aimes"
+  },
+  {
+    "word": "altitude",
+    "corpus_count": 1,
+    "display_form": "l'altitude"
+  },
+  {
+    "word": "aper",
+    "corpus_count": 1,
+    "display_form": "l'aper"
+  },
+  {
+    "word": "armoire",
+    "corpus_count": 1,
+    "display_form": "l'armoire"
+  },
+  {
+    "word": "arri",
+    "corpus_count": 1,
+    "display_form": "l'arri"
+  },
+  {
+    "word": "aurore",
+    "corpus_count": 1,
+    "display_form": "l'aurore"
+  },
+  {
+    "word": "austérité",
+    "corpus_count": 1,
+    "display_form": "l'austérité"
+  },
+  {
+    "word": "avalanche",
+    "corpus_count": 1,
+    "display_form": "l'avalanche"
+  },
+  {
+    "word": "cacher",
+    "corpus_count": 1,
+    "display_form": "l'cacher"
+  },
+  {
+    "word": "homme",
+    "corpus_count": 1,
+    "display_form": "l'homme"
+  },
+  {
+    "word": "illusion",
+    "corpus_count": 1,
+    "display_form": "l'illusion"
+  },
+  {
+    "word": "imagines",
+    "corpus_count": 1,
+    "display_form": "l'imagines"
+  },
+  {
+    "word": "imprimé",
+    "corpus_count": 1,
+    "display_form": "l'imprimé"
+  },
+  {
+    "word": "écume",
+    "corpus_count": 1,
+    "display_form": "l'écume"
+  },
+  {
+    "word": "équateur",
+    "corpus_count": 1,
+    "display_form": "l'équateur"
+  },
+  {
+    "word": "laide",
+    "corpus_count": 1
+  },
+  {
+    "word": "laissant",
+    "corpus_count": 1
+  },
+  {
+    "word": "laissera",
+    "corpus_count": 1
+  },
+  {
+    "word": "lascivité",
+    "corpus_count": 1
+  },
+  {
+    "word": "latent",
+    "corpus_count": 1
+  },
+  {
+    "word": "latitude",
+    "corpus_count": 1
+  },
+  {
+    "word": "latitudes",
+    "corpus_count": 1
+  },
+  {
+    "word": "lavé",
+    "corpus_count": 1
+  },
+  {
+    "word": "lavée",
+    "corpus_count": 1
+  },
+  {
+    "word": "leche",
+    "corpus_count": 1
+  },
+  {
+    "word": "lequel",
+    "corpus_count": 1
+  },
+  {
+    "word": "lianes",
+    "corpus_count": 1
+  },
+  {
+    "word": "libertine",
+    "corpus_count": 1
+  },
+  {
+    "word": "libertés",
+    "corpus_count": 1
+  },
+  {
+    "word": "libre",
+    "corpus_count": 1
+  },
+  {
+    "word": "lire",
+    "corpus_count": 1
+  },
+  {
+    "word": "lisible",
+    "corpus_count": 1
+  },
+  {
+    "word": "lit",
+    "corpus_count": 1
+  },
+  {
+    "word": "litanies",
+    "corpus_count": 1
+  },
+  {
+    "word": "liés",
+    "corpus_count": 1
+  },
+  {
+    "word": "loca",
+    "corpus_count": 1
+  },
+  {
+    "word": "longitude",
+    "corpus_count": 1
+  },
+  {
+    "word": "lors",
+    "corpus_count": 1
+  },
+  {
+    "word": "lundi",
+    "corpus_count": 1
+  },
+  {
+    "word": "lune",
+    "corpus_count": 1
+  },
+  {
+    "word": "luxuriante",
+    "corpus_count": 1
+  },
+  {
+    "word": "lé",
+    "corpus_count": 1
+  },
+  {
+    "word": "abandonner",
+    "corpus_count": 1,
+    "display_form": "m'abandonner"
+  },
+  {
+    "word": "arrivait",
+    "corpus_count": 1,
+    "display_form": "m'arrivait"
+  },
+  {
+    "word": "efface",
+    "corpus_count": 1,
+    "display_form": "m'efface"
+  },
+  {
+    "word": "embrasses",
+    "corpus_count": 1,
+    "display_form": "m'embrasses"
+  },
+  {
+    "word": "enchante",
+    "corpus_count": 1,
+    "display_form": "m'enchante"
+  },
+  {
+    "word": "enfuir",
+    "corpus_count": 1,
+    "display_form": "m'enfuir"
+  },
+  {
+    "word": "enjambes",
+    "corpus_count": 1,
+    "display_form": "m'enjambes"
+  },
+  {
+    "word": "entoure",
+    "corpus_count": 1,
+    "display_form": "m'entoure"
+  },
+  {
+    "word": "envenimer",
+    "corpus_count": 1,
+    "display_form": "m'envenimer"
+  },
+  {
+    "word": "exiler",
+    "corpus_count": 1,
+    "display_form": "m'exiler"
+  },
+  {
+    "word": "expliquer",
+    "corpus_count": 1,
+    "display_form": "m'expliquer"
+  },
+  {
+    "word": "racontes",
+    "corpus_count": 1,
+    "display_form": "m'racontes"
+  },
+  {
+    "word": "rappelles",
+    "corpus_count": 1,
+    "display_form": "m'rappelles"
+  },
+  {
+    "word": "voyais",
+    "corpus_count": 1,
+    "display_form": "m'voyais"
+  },
+  {
+    "word": "maladie",
+    "corpus_count": 1
+  },
+  {
+    "word": "maladroit",
+    "corpus_count": 1
+  },
+  {
+    "word": "maladroite",
+    "corpus_count": 1
+  },
+  {
+    "word": "maléfices",
+    "corpus_count": 1
+  },
+  {
+    "word": "mama",
+    "corpus_count": 1
+  },
+  {
+    "word": "marche",
+    "corpus_count": 1
+  },
+  {
+    "word": "marché",
+    "corpus_count": 1
+  },
+  {
+    "word": "marque",
+    "corpus_count": 1
+  },
+  {
+    "word": "martyre",
+    "corpus_count": 1
+  },
+  {
+    "word": "mat",
+    "corpus_count": 1
+  },
+  {
+    "word": "mat'",
+    "corpus_count": 1
+  },
+  {
+    "word": "matelots",
+    "corpus_count": 1
+  },
+  {
+    "word": "mec",
+    "corpus_count": 1
+  },
+  {
+    "word": "mecs",
+    "corpus_count": 1
+  },
+  {
+    "word": "messieurs",
+    "corpus_count": 1
+  },
+  {
+    "word": "mesure",
+    "corpus_count": 1
+  },
+  {
+    "word": "michtos",
+    "corpus_count": 1
+  },
+  {
+    "word": "mien",
+    "corpus_count": 1
+  },
+  {
+    "word": "mienne",
+    "corpus_count": 1
+  },
+  {
+    "word": "millénaires",
+    "corpus_count": 1
+  },
+  {
+    "word": "moite",
+    "corpus_count": 1
+  },
+  {
+    "word": "monarque",
+    "corpus_count": 1
+  },
+  {
+    "word": "montage",
+    "corpus_count": 1
+  },
+  {
+    "word": "montée",
+    "corpus_count": 1
+  },
+  {
+    "word": "mood",
+    "corpus_count": 1
+  },
+  {
+    "word": "mous",
+    "corpus_count": 1
+  },
+  {
+    "word": "mutine",
+    "corpus_count": 1
+  },
+  {
+    "word": "mécaniques",
+    "corpus_count": 1
+  },
+  {
+    "word": "méchante",
+    "corpus_count": 1
+  },
+  {
+    "word": "médicament",
+    "corpus_count": 1
+  },
+  {
+    "word": "mémé",
+    "corpus_count": 1
+  },
+  {
+    "word": "mérité",
+    "corpus_count": 1
+  },
+  {
+    "word": "napalm",
+    "corpus_count": 1
+  },
+  {
+    "word": "naufragés",
+    "corpus_count": 1
+  },
+  {
+    "word": "nerai",
+    "corpus_count": 1
+  },
+  {
+    "word": "nez",
+    "corpus_count": 1
+  },
+  {
+    "word": "nid",
+    "corpus_count": 1
+  },
+  {
+    "word": "nobody's",
+    "corpus_count": 1
+  },
+  {
+    "word": "noie",
+    "corpus_count": 1
+  },
+  {
+    "word": "nombril",
+    "corpus_count": 1
+  },
+  {
+    "word": "noms",
+    "corpus_count": 1
+  },
+  {
+    "word": "norme",
+    "corpus_count": 1
+  },
+  {
+    "word": "nouveau",
+    "corpus_count": 1
+  },
+  {
+    "word": "novembre",
+    "corpus_count": 1
+  },
+  {
+    "word": "nuance",
+    "corpus_count": 1
+  },
+  {
+    "word": "nuits",
+    "corpus_count": 1
+  },
+  {
+    "word": "néant",
+    "corpus_count": 1
+  },
+  {
+    "word": "obligé",
+    "corpus_count": 1
+  },
+  {
+    "word": "obscures",
+    "corpus_count": 1
+  },
+  {
+    "word": "occupée",
+    "corpus_count": 1
+  },
+  {
+    "word": "ois",
+    "corpus_count": 1
+  },
+  {
+    "word": "ombragé",
+    "corpus_count": 1
+  },
+  {
+    "word": "orange",
+    "corpus_count": 1
+  },
+  {
+    "word": "organique",
+    "corpus_count": 1
+  },
+  {
+    "word": "oserais",
+    "corpus_count": 1
+  },
+  {
+    "word": "osé",
+    "corpus_count": 1
+  },
+  {
+    "word": "ouvrirai",
+    "corpus_count": 1
+  },
+  {
+    "word": "p",
+    "corpus_count": 1
+  },
+  {
+    "word": "p'tit",
+    "corpus_count": 1
+  },
+  {
+    "word": "p'tite",
+    "corpus_count": 1
+  },
+  {
+    "word": "pacifique",
+    "corpus_count": 1
+  },
+  {
+    "word": "page",
+    "corpus_count": 1
+  },
+  {
+    "word": "paix",
+    "corpus_count": 1
+  },
+  {
+    "word": "papiers",
+    "corpus_count": 1
+  },
+  {
+    "word": "para",
+    "corpus_count": 1
+  },
+  {
+    "word": "parano",
+    "corpus_count": 1
+  },
+  {
+    "word": "pardonner",
+    "corpus_count": 1
+  },
+  {
+    "word": "pardonnée",
+    "corpus_count": 1
+  },
+  {
+    "word": "parents",
+    "corpus_count": 1
+  },
+  {
+    "word": "parlant",
+    "corpus_count": 1
+  },
+  {
+    "word": "partagée",
+    "corpus_count": 1
+  },
+  {
+    "word": "parte",
+    "corpus_count": 1
+  },
+  {
+    "word": "parti",
+    "corpus_count": 1
+  },
+  {
+    "word": "partout",
+    "corpus_count": 1
+  },
+  {
+    "word": "party",
+    "corpus_count": 1
+  },
+  {
+    "word": "passent",
+    "corpus_count": 1
+  },
+  {
+    "word": "passer",
+    "corpus_count": 1
+  },
+  {
+    "word": "passionné",
+    "corpus_count": 1
+  },
+  {
+    "word": "passions",
+    "corpus_count": 1
+  },
+  {
+    "word": "passés",
+    "corpus_count": 1
+  },
+  {
+    "word": "past",
+    "corpus_count": 1
+  },
+  {
+    "word": "paysage",
+    "corpus_count": 1
+  },
+  {
+    "word": "pellicule",
+    "corpus_count": 1
+  },
+  {
+    "word": "pente",
+    "corpus_count": 1
+  },
+  {
+    "word": "pentes",
+    "corpus_count": 1
+  },
+  {
+    "word": "perce",
+    "corpus_count": 1
+  },
+  {
+    "word": "perceptible",
+    "corpus_count": 1
+  },
+  {
+    "word": "perd",
+    "corpus_count": 1
+  },
+  {
+    "word": "perdent",
+    "corpus_count": 1
+  },
+  {
+    "word": "perds",
+    "corpus_count": 1
+  },
+  {
+    "word": "perdues",
+    "corpus_count": 1
+  },
+  {
+    "word": "perry",
+    "corpus_count": 1
+  },
+  {
+    "word": "perte",
+    "corpus_count": 1
+  },
+  {
+    "word": "pi",
+    "corpus_count": 1
+  },
+  {
+    "word": "pierres",
+    "corpus_count": 1
+  },
+  {
+    "word": "pincé",
+    "corpus_count": 1
+  },
+  {
+    "word": "pitié",
+    "corpus_count": 1
+  },
+  {
+    "word": "plan",
+    "corpus_count": 1
+  },
+  {
+    "word": "planche",
+    "corpus_count": 1
+  },
+  {
+    "word": "planer",
+    "corpus_count": 1
+  },
+  {
+    "word": "pleureuse",
+    "corpus_count": 1
+  },
+  {
+    "word": "pleurs",
+    "corpus_count": 1
+  },
+  {
+    "word": "pli",
+    "corpus_count": 1
+  },
+  {
+    "word": "plonge",
+    "corpus_count": 1
+  },
+  {
+    "word": "plupart",
+    "corpus_count": 1
+  },
+  {
+    "word": "plut",
+    "corpus_count": 1
+  },
+  {
+    "word": "pluvieuse",
+    "corpus_count": 1
+  },
+  {
+    "word": "poches",
+    "corpus_count": 1
+  },
+  {
+    "word": "point",
+    "corpus_count": 1
+  },
+  {
+    "word": "poisse",
+    "corpus_count": 1
+  },
+  {
+    "word": "polies",
+    "corpus_count": 1
+  },
+  {
+    "word": "pont",
+    "corpus_count": 1
+  },
+  {
+    "word": "portée",
+    "corpus_count": 1
+  },
+  {
+    "word": "poubelle",
+    "corpus_count": 1
+  },
+  {
+    "word": "premiers",
+    "corpus_count": 1
+  },
+  {
+    "word": "pressée",
+    "corpus_count": 1
+  },
+  {
+    "word": "prochain",
+    "corpus_count": 1
+  },
+  {
+    "word": "prof",
+    "corpus_count": 1
+  },
+  {
+    "word": "profite",
+    "corpus_count": 1
+  },
+  {
+    "word": "précieux",
+    "corpus_count": 1
+  },
+  {
+    "word": "préféré",
+    "corpus_count": 1
+  },
+  {
+    "word": "présent",
+    "corpus_count": 1
+  },
+  {
+    "word": "prétende",
+    "corpus_count": 1
+  },
+  {
+    "word": "pudeur",
+    "corpus_count": 1
+  },
+  {
+    "word": "pénombre",
+    "corpus_count": 1
+  },
+  {
+    "word": "qu'",
+    "corpus_count": 1
+  },
+  {
+    "word": "j'ai",
+    "corpus_count": 1,
+    "display_form": "qu'j'ai"
+  },
+  {
+    "word": "j'suis",
+    "corpus_count": 1,
+    "display_form": "qu'j'suis"
+  },
+  {
+    "word": "quant",
+    "corpus_count": 1
+  },
+  {
+    "word": "quatre",
+    "corpus_count": 1
+  },
+  {
+    "word": "quel",
+    "corpus_count": 1
+  },
+  {
+    "word": "quelle",
+    "corpus_count": 1
+  },
+  {
+    "word": "querettes",
+    "corpus_count": 1
+  },
+  {
+    "word": "quitte",
+    "corpus_count": 1
+  },
+  {
+    "word": "raconterait",
+    "corpus_count": 1
+  },
+  {
+    "word": "raconté",
+    "corpus_count": 1
+  },
+  {
+    "word": "rage",
+    "corpus_count": 1
+  },
+  {
+    "word": "rallument",
+    "corpus_count": 1
+  },
+  {
+    "word": "rance",
+    "corpus_count": 1
+  },
+  {
+    "word": "rancoeur",
+    "corpus_count": 1
+  },
+  {
+    "word": "range",
+    "corpus_count": 1
+  },
+  {
+    "word": "rap",
+    "corpus_count": 1
+  },
+  {
+    "word": "rappelais",
+    "corpus_count": 1
+  },
+  {
+    "word": "rare",
+    "corpus_count": 1
+  },
+  {
+    "word": "rater",
+    "corpus_count": 1
+  },
+  {
+    "word": "raves",
+    "corpus_count": 1
+  },
+  {
+    "word": "really",
+    "corpus_count": 1
+  },
+  {
+    "word": "reconnais",
+    "corpus_count": 1
+  },
+  {
+    "word": "recourir",
+    "corpus_count": 1
+  },
+  {
+    "word": "recule",
+    "corpus_count": 1
+  },
+  {
+    "word": "redonne",
+    "corpus_count": 1
+  },
+  {
+    "word": "reflet",
+    "corpus_count": 1
+  },
+  {
+    "word": "regards",
+    "corpus_count": 1
+  },
+  {
+    "word": "regardé",
+    "corpus_count": 1
+  },
+  {
+    "word": "reine",
+    "corpus_count": 1
+  },
+  {
+    "word": "rejoins",
+    "corpus_count": 1
+  },
+  {
+    "word": "rel",
+    "corpus_count": 1
+  },
+  {
+    "word": "relever",
+    "corpus_count": 1
+  },
+  {
+    "word": "reluque",
+    "corpus_count": 1
+  },
+  {
+    "word": "rena",
+    "corpus_count": 1
+  },
+  {
+    "word": "rencontrent",
+    "corpus_count": 1
+  },
+  {
+    "word": "rend",
+    "corpus_count": 1
+  },
+  {
+    "word": "rendu",
+    "corpus_count": 1
+  },
+  {
+    "word": "rentre",
+    "corpus_count": 1
+  },
+  {
+    "word": "rentrent",
+    "corpus_count": 1
+  },
+  {
+    "word": "rentrée",
+    "corpus_count": 1
+  },
+  {
+    "word": "rep",
+    "corpus_count": 1
+  },
+  {
+    "word": "reparlera",
+    "corpus_count": 1
+  },
+  {
+    "word": "repense",
+    "corpus_count": 1
+  },
+  {
+    "word": "ressemble",
+    "corpus_count": 1
+  },
+  {
+    "word": "rester",
+    "corpus_count": 1
+  },
+  {
+    "word": "retourner",
+    "corpus_count": 1
+  },
+  {
+    "word": "retrouvé",
+    "corpus_count": 1
+  },
+  {
+    "word": "rev'nir",
+    "corpus_count": 1
+  },
+  {
+    "word": "revient",
+    "corpus_count": 1
+  },
+  {
+    "word": "revoit",
+    "corpus_count": 1
+  },
+  {
+    "word": "riches",
+    "corpus_count": 1
+  },
+  {
+    "word": "rires",
+    "corpus_count": 1
+  },
+  {
+    "word": "rives",
+    "corpus_count": 1
+  },
+  {
+    "word": "romantisme",
+    "corpus_count": 1
+  },
+  {
+    "word": "rond",
+    "corpus_count": 1
+  },
+  {
+    "word": "roue",
+    "corpus_count": 1
+  },
+  {
+    "word": "rouges",
+    "corpus_count": 1
+  },
+  {
+    "word": "rougit",
+    "corpus_count": 1
+  },
+  {
+    "word": "roules",
+    "corpus_count": 1
+  },
+  {
+    "word": "route",
+    "corpus_count": 1
+  },
+  {
+    "word": "ruelles",
+    "corpus_count": 1
+  },
+  {
+    "word": "réel",
+    "corpus_count": 1
+  },
+  {
+    "word": "répondent",
+    "corpus_count": 1
+  },
+  {
+    "word": "répondrai",
+    "corpus_count": 1
+  },
+  {
+    "word": "réponds",
+    "corpus_count": 1
+  },
+  {
+    "word": "résister",
+    "corpus_count": 1
+  },
+  {
+    "word": "rétine",
+    "corpus_count": 1
+  },
+  {
+    "word": "rétro",
+    "corpus_count": 1
+  },
+  {
+    "word": "réu",
+    "corpus_count": 1
+  },
+  {
+    "word": "réveiller",
+    "corpus_count": 1
+  },
+  {
+    "word": "aimantent",
+    "corpus_count": 1,
+    "display_form": "s'aimantent"
+  },
+  {
+    "word": "approche",
+    "corpus_count": 1,
+    "display_form": "s'approche"
+  },
+  {
+    "word": "embrasse",
+    "corpus_count": 1,
+    "display_form": "s'embrasse"
+  },
+  {
+    "word": "embrouillent",
+    "corpus_count": 1,
+    "display_form": "s'embrouillent"
+  },
+  {
+    "word": "enfuit",
+    "corpus_count": 1,
+    "display_form": "s'enfuit"
+  },
+  {
+    "word": "entrem",
+    "corpus_count": 1,
+    "display_form": "s'entrem"
+  },
+  {
+    "word": "retenir",
+    "corpus_count": 1,
+    "display_form": "s'retenir"
+  },
+  {
+    "word": "retrouve",
+    "corpus_count": 1,
+    "display_form": "s'retrouve"
+  },
+  {
+    "word": "égraine",
+    "corpus_count": 1,
+    "display_form": "s'égraine"
+  },
+  {
+    "word": "élance",
+    "corpus_count": 1,
+    "display_form": "s'élance"
+  },
+  {
+    "word": "épouser",
+    "corpus_count": 1,
+    "display_form": "s'épouser"
+  },
+  {
+    "word": "étonne",
+    "corpus_count": 1,
+    "display_form": "s'étonne"
+  },
+  {
+    "word": "évapore",
+    "corpus_count": 1,
+    "display_form": "s'évapore"
+  },
+  {
+    "word": "sacré",
+    "corpus_count": 1
+  },
+  {
+    "word": "sage",
+    "corpus_count": 1
+  },
+  {
+    "word": "sale",
+    "corpus_count": 1
+  },
+  {
+    "word": "salle",
+    "corpus_count": 1
+  },
+  {
+    "word": "samedi",
+    "corpus_count": 1
+  },
+  {
+    "word": "sang",
+    "corpus_count": 1
+  },
+  {
+    "word": "saurais",
+    "corpus_count": 1
+  },
+  {
+    "word": "savent",
+    "corpus_count": 1
+  },
+  {
+    "word": "sc",
+    "corpus_count": 1
+  },
+  {
+    "word": "sciant",
+    "corpus_count": 1
+  },
+  {
+    "word": "science",
+    "corpus_count": 1
+  },
+  {
+    "word": "secondes",
+    "corpus_count": 1
+  },
+  {
+    "word": "secret",
+    "corpus_count": 1
+  },
+  {
+    "word": "sein",
+    "corpus_count": 1
+  },
+  {
+    "word": "semaine",
+    "corpus_count": 1
+  },
+  {
+    "word": "semble",
+    "corpus_count": 1
+  },
+  {
+    "word": "semblent",
+    "corpus_count": 1
+  },
+  {
+    "word": "semées",
+    "corpus_count": 1
+  },
+  {
+    "word": "sensation",
+    "corpus_count": 1
+  },
+  {
+    "word": "sensible",
+    "corpus_count": 1
+  },
+  {
+    "word": "sentaient",
+    "corpus_count": 1
+  },
+  {
+    "word": "serait",
+    "corpus_count": 1
+  },
+  {
+    "word": "sereine",
+    "corpus_count": 1
+  },
+  {
+    "word": "serre",
+    "corpus_count": 1
+  },
+  {
+    "word": "sert",
+    "corpus_count": 1
+  },
+  {
+    "word": "silencieux",
+    "corpus_count": 1
+  },
+  {
+    "word": "simple",
+    "corpus_count": 1
+  },
+  {
+    "word": "single",
+    "corpus_count": 1
+  },
+  {
+    "word": "sinon",
+    "corpus_count": 1
+  },
+  {
+    "word": "soirée",
+    "corpus_count": 1
+  },
+  {
+    "word": "sois",
+    "corpus_count": 1
+  },
+  {
+    "word": "soldat",
+    "corpus_count": 1
+  },
+  {
+    "word": "soldes",
+    "corpus_count": 1
+  },
+  {
+    "word": "solides",
+    "corpus_count": 1
+  },
+  {
+    "word": "somnif",
+    "corpus_count": 1
+  },
+  {
+    "word": "sonne",
+    "corpus_count": 1
+  },
+  {
+    "word": "sophage",
+    "corpus_count": 1
+  },
+  {
+    "word": "sors",
+    "corpus_count": 1
+  },
+  {
+    "word": "sortes",
+    "corpus_count": 1
+  },
+  {
+    "word": "soupirs",
+    "corpus_count": 1
+  },
+  {
+    "word": "source",
+    "corpus_count": 1
+  },
+  {
+    "word": "sourde",
+    "corpus_count": 1
+  },
+  {
+    "word": "souvenir",
+    "corpus_count": 1
+  },
+  {
+    "word": "souvenirs",
+    "corpus_count": 1
+  },
+  {
+    "word": "souviendra",
+    "corpus_count": 1
+  },
+  {
+    "word": "spirale",
+    "corpus_count": 1
+  },
+  {
+    "word": "stories",
+    "corpus_count": 1
+  },
+  {
+    "word": "str",
+    "corpus_count": 1
+  },
+  {
+    "word": "strass",
+    "corpus_count": 1
+  },
+  {
+    "word": "subversif",
+    "corpus_count": 1
+  },
+  {
+    "word": "succ",
+    "corpus_count": 1
+  },
+  {
+    "word": "sucette",
+    "corpus_count": 1
+  },
+  {
+    "word": "sucrée",
+    "corpus_count": 1
+  },
+  {
+    "word": "suffirait",
+    "corpus_count": 1
+  },
+  {
+    "word": "supendent",
+    "corpus_count": 1
+  },
+  {
+    "word": "superficialité",
+    "corpus_count": 1
+  },
+  {
+    "word": "superficiel",
+    "corpus_count": 1
+  },
+  {
+    "word": "symbiose",
+    "corpus_count": 1
+  },
+  {
+    "word": "sé",
+    "corpus_count": 1
+  },
+  {
+    "word": "séduire",
+    "corpus_count": 1
+  },
+  {
+    "word": "séparent",
+    "corpus_count": 1
+  },
+  {
+    "word": "séparer",
+    "corpus_count": 1
+  },
+  {
+    "word": "sévissent",
+    "corpus_count": 1
+  },
+  {
+    "word": "abuses",
+    "corpus_count": 1,
+    "display_form": "t'abuses"
+  },
+  {
+    "word": "admirer",
+    "corpus_count": 1,
+    "display_form": "t'admirer"
+  },
+  {
+    "word": "am",
+    "corpus_count": 1,
+    "display_form": "t'am"
+  },
+  {
+    "word": "avait",
+    "corpus_count": 1,
+    "display_form": "t'avait"
+  },
+  {
+    "word": "invente",
+    "corpus_count": 1,
+    "display_form": "t'invente"
+  },
+  {
+    "word": "étaient",
+    "corpus_count": 1,
+    "display_form": "t'étaient"
+  },
+  {
+    "word": "évites",
+    "corpus_count": 1,
+    "display_form": "t'évites"
+  },
+  {
+    "word": "tandem",
+    "corpus_count": 1
+  },
+  {
+    "word": "technique",
+    "corpus_count": 1
+  },
+  {
+    "word": "teint",
+    "corpus_count": 1
+  },
+  {
+    "word": "tellement",
+    "corpus_count": 1
+  },
+  {
+    "word": "tendres",
+    "corpus_count": 1
+  },
+  {
+    "word": "tends",
+    "corpus_count": 1
+  },
+  {
+    "word": "tendu",
+    "corpus_count": 1
+  },
+  {
+    "word": "tentant",
+    "corpus_count": 1
+  },
+  {
+    "word": "tente",
+    "corpus_count": 1
+  },
+  {
+    "word": "tenue",
+    "corpus_count": 1
+  },
+  {
+    "word": "terrasse",
+    "corpus_count": 1
+  },
+  {
+    "word": "thérémine",
+    "corpus_count": 1
+  },
+  {
+    "word": "tivement",
+    "corpus_count": 1
+  },
+  {
+    "word": "tombe",
+    "corpus_count": 1
+  },
+  {
+    "word": "tombé",
+    "corpus_count": 1
+  },
+  {
+    "word": "tombée",
+    "corpus_count": 1
+  },
+  {
+    "word": "torpeur",
+    "corpus_count": 1
+  },
+  {
+    "word": "tour",
+    "corpus_count": 1
+  },
+  {
+    "word": "tourment",
+    "corpus_count": 1
+  },
+  {
+    "word": "tourne",
+    "corpus_count": 1
+  },
+  {
+    "word": "tram",
+    "corpus_count": 1
+  },
+  {
+    "word": "tremble",
+    "corpus_count": 1
+  },
+  {
+    "word": "triste",
+    "corpus_count": 1
+  },
+  {
+    "word": "tristes",
+    "corpus_count": 1
+  },
+  {
+    "word": "tristesse",
+    "corpus_count": 1
+  },
+  {
+    "word": "tristesses",
+    "corpus_count": 1
+  },
+  {
+    "word": "trois",
+    "corpus_count": 1
+  },
+  {
+    "word": "troisi",
+    "corpus_count": 1
+  },
+  {
+    "word": "trouvent",
+    "corpus_count": 1
+  },
+  {
+    "word": "trouvés",
+    "corpus_count": 1
+  },
+  {
+    "word": "turquoise",
+    "corpus_count": 1
+  },
+  {
+    "word": "téléphone",
+    "corpus_count": 1
+  },
+  {
+    "word": "tén",
+    "corpus_count": 1
+  },
+  {
+    "word": "tés",
+    "corpus_count": 1
+  },
+  {
+    "word": "usés",
+    "corpus_count": 1
+  },
+  {
+    "word": "uvrées",
+    "corpus_count": 1
+  },
+  {
+    "word": "vacille",
+    "corpus_count": 1
+  },
+  {
+    "word": "vague",
+    "corpus_count": 1
+  },
+  {
+    "word": "vain",
+    "corpus_count": 1
+  },
+  {
+    "word": "valse",
+    "corpus_count": 1
+  },
+  {
+    "word": "veille",
+    "corpus_count": 1
+  },
+  {
+    "word": "ventre",
+    "corpus_count": 1
+  },
+  {
+    "word": "verdoyante",
+    "corpus_count": 1
+  },
+  {
+    "word": "verie",
+    "corpus_count": 1
+  },
+  {
+    "word": "verre",
+    "corpus_count": 1
+  },
+  {
+    "word": "verres",
+    "corpus_count": 1
+  },
+  {
+    "word": "versions",
+    "corpus_count": 1
+  },
+  {
+    "word": "veste",
+    "corpus_count": 1
+  },
+  {
+    "word": "veulent",
+    "corpus_count": 1
+  },
+  {
+    "word": "vida",
+    "corpus_count": 1
+  },
+  {
+    "word": "vides",
+    "corpus_count": 1
+  },
+  {
+    "word": "viendra",
+    "corpus_count": 1
+  },
+  {
+    "word": "viennent",
+    "corpus_count": 1
+  },
+  {
+    "word": "vieux",
+    "corpus_count": 1
+  },
+  {
+    "word": "vin",
+    "corpus_count": 1
+  },
+  {
+    "word": "vip",
+    "corpus_count": 1
+  },
+  {
+    "word": "virent",
+    "corpus_count": 1
+  },
+  {
+    "word": "virtuel",
+    "corpus_count": 1
+  },
+  {
+    "word": "vita",
+    "corpus_count": 1
+  },
+  {
+    "word": "vite",
+    "corpus_count": 1
+  },
+  {
+    "word": "vitesse",
+    "corpus_count": 1
+  },
+  {
+    "word": "vivions",
+    "corpus_count": 1
+  },
+  {
+    "word": "voile",
+    "corpus_count": 1
+  },
+  {
+    "word": "voiles",
+    "corpus_count": 1
+  },
+  {
+    "word": "voix",
+    "corpus_count": 1
+  },
+  {
+    "word": "volte",
+    "corpus_count": 1
+  },
+  {
+    "word": "volume",
+    "corpus_count": 1
+  },
+  {
+    "word": "vue",
+    "corpus_count": 1
+  },
+  {
+    "word": "wah",
+    "corpus_count": 1
+  },
+  {
+    "word": "x",
+    "corpus_count": 1
+  },
+  {
+    "word": "y'avait",
+    "corpus_count": 1
+  },
+  {
+    "word": "ye",
+    "corpus_count": 1
+  },
+  {
+    "word": "you",
+    "corpus_count": 1
+  },
+  {
+    "word": "échec",
+    "corpus_count": 1
+  },
+  {
+    "word": "échecs",
+    "corpus_count": 1
+  },
+  {
+    "word": "échos",
+    "corpus_count": 1
+  },
+  {
+    "word": "éclabousser",
+    "corpus_count": 1
+  },
+  {
+    "word": "écolier",
+    "corpus_count": 1
+  },
+  {
+    "word": "écorchés",
+    "corpus_count": 1
+  },
+  {
+    "word": "écoulé",
+    "corpus_count": 1
+  },
+  {
+    "word": "écoutent",
+    "corpus_count": 1
+  },
+  {
+    "word": "écrite",
+    "corpus_count": 1
+  },
+  {
+    "word": "éminence",
+    "corpus_count": 1
+  },
+  {
+    "word": "émotionnels",
+    "corpus_count": 1
+  },
+  {
+    "word": "épaules",
+    "corpus_count": 1
+  },
+  {
+    "word": "éponger",
+    "corpus_count": 1
+  },
+  {
+    "word": "éteinte",
+    "corpus_count": 1
+  },
+  {
+    "word": "étend",
+    "corpus_count": 1
+  },
+  {
+    "word": "étoiles",
+    "corpus_count": 1
+  },
+  {
+    "word": "étourdissante",
+    "corpus_count": 1
+  },
+  {
+    "word": "étés",
+    "corpus_count": 1
+  },
+  {
+    "word": "évite",
+    "corpus_count": 1
+  }
+]

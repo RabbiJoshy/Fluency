@@ -8,7 +8,7 @@ from sense classification. Runs in both normal and artist modes:
     .venv/bin/python3 pipeline/tool_6a_tag_example_pos.py
 
     # Artist mode
-    .venv/bin/python3 pipeline/tool_6a_tag_example_pos.py --artist-dir "Artists/Bad Bunny"
+    .venv/bin/python3 pipeline/tool_6a_tag_example_pos.py --artist-dir "Artists/spanish/Bad Bunny"
 
 Incremental by default: skips words whose example IDs haven't changed since
 the last run. Use --force to retag everything.
@@ -53,7 +53,7 @@ def main():
     parser.add_argument(
         "--artist-dir",
         default=None,
-        help="Path to Artists/{Name} directory. Omit for normal-mode Data/Spanish/layers.",
+        help="Path to Artists/{lang}/{Name} directory. Omit for normal-mode Data/Spanish/layers.",
     )
     parser.add_argument(
         "--model",
@@ -97,13 +97,20 @@ def main():
 
     print("Loading spaCy...")
     preferred = [args.model]
-    for fallback in ("es_core_news_lg", "es_core_news_md", "es_core_news_sm"):
+    # Language-appropriate fallback chain: infer from the model prefix.
+    # es_* -> Spanish fallbacks; fr_* -> French fallbacks; anything else -> no fallbacks.
+    lang_prefix = args.model.split("_", 1)[0] if "_" in args.model else ""
+    _FALLBACK_CHAINS = {
+        "es": ("es_core_news_lg", "es_core_news_md", "es_core_news_sm"),
+        "fr": ("fr_core_news_lg", "fr_core_news_md", "fr_core_news_sm"),
+    }
+    for fallback in _FALLBACK_CHAINS.get(lang_prefix, ()):
         if fallback != args.model:
             preferred.append(fallback)
     nlp = load_spacy(preferred_models=preferred)
     if nlp is None:
-        print("ERROR: No Spanish spaCy model found.")
-        print("Install with: .venv/bin/python3 -m spacy download es_core_news_sm")
+        print("ERROR: No spaCy model found for chain: %s" % ", ".join(preferred))
+        print("Install with: .venv/bin/python3 -m spacy download %s" % args.model)
         raise SystemExit(1)
     print("  Model: %s" % nlp.meta.get("name", "unknown"))
 

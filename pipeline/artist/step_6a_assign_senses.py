@@ -16,7 +16,7 @@ Flags:
 
 Usage:
     .venv/bin/python3 pipeline/artist/step_6a_assign_senses.py \
-        --artist-dir "Artists/Bad Bunny" --classifier gemini
+        --artist-dir "Artists/spanish/Bad Bunny" --classifier gemini
 """
 
 import argparse
@@ -109,6 +109,19 @@ def main():
         bienc_args = ["--artist-dir", artist_dir]
         if args.sense_source == "spanishdict":
             bienc_args.extend(_spanishdict_args_local())
+        elif args.sense_source == "wiktionary":
+            # If the artist has a per-language Wiktionary menu on disk
+            # (e.g. French from kaikki-french via step_5c), point step_6b
+            # at it so it skips loading raw kaikki-spanish + the normal-mode
+            # Spanish shared menu. If the artist menu is absent, we fall
+            # through to step_6b's Spanish-default behaviour (unchanged).
+            _artist_wikt_menu = os.path.join(
+                artist_dir, "data", "layers", "sense_menu", "wiktionary.json"
+            )
+            if os.path.exists(_artist_wikt_menu):
+                bienc_args.extend([
+                    "--sense-menu-file", "sense_menu/wiktionary.json",
+                ])
         if args.classifier == "keyword":
             bienc_args.append("--keyword-only")
         if args.force:

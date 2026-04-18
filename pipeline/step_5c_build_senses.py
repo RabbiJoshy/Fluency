@@ -59,6 +59,26 @@ CONJ_REVERSE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_
 CONJ_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugations.json"
 LAYERS_DIR = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 
+# Per-language defaults for --language {spanish,french}. Any of these paths
+# can be missing (the kaikki file is the only one that strictly matters) —
+# downstream loaders print warnings and degrade gracefully.
+_LANGUAGE_PATHS = {
+    "spanish": {
+        "inventory": INVENTORY_FILE,
+        "wiktionary": WIKT_FILE,
+        "conj_reverse": CONJ_REVERSE_FILE,
+        "conj": CONJ_FILE,
+        "layers": LAYERS_DIR,
+    },
+    "french": {
+        "inventory": PROJECT_ROOT / "Data" / "French" / "layers" / "word_inventory.json",
+        "wiktionary": PROJECT_ROOT / "Data" / "French" / "Senses" / "wiktionary" / "kaikki-french.jsonl.gz",
+        "conj_reverse": PROJECT_ROOT / "Data" / "French" / "layers" / "conjugation_reverse.json",
+        "conj": PROJECT_ROOT / "Data" / "French" / "layers" / "conjugations.json",
+        "layers": PROJECT_ROOT / "Data" / "French" / "layers",
+    },
+}
+
 # ---------------------------------------------------------------------------
 # POS mapping: Wiktionary pos -> project UPOS-style tags
 # ---------------------------------------------------------------------------
@@ -883,13 +903,23 @@ def build_spanishdict_menu(
 
 def main():
     import argparse
+    global INVENTORY_FILE, WIKT_FILE, CONJ_REVERSE_FILE, CONJ_FILE, LAYERS_DIR
+
     parser = argparse.ArgumentParser(description="Build sense menu from Wiktionary or SpanishDict")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="spanishdict",
                         help="Sense dictionary source (default: spanishdict)")
+    parser.add_argument("--language", choices=tuple(_LANGUAGE_PATHS.keys()),
+                        default="spanish",
+                        help="Target language; selects kaikki file + layer paths "
+                             "(default: spanish). SpanishDict source is Spanish-only.")
+    parser.add_argument("--wiktionary-file", default=None,
+                        help="Override the kaikki JSONL path (default: per-language).")
     parser.add_argument("--artist-dir", default=None,
-                        help="Build menu for an artist (spanishdict only). "
-                             "Omit for normal-mode Data/Spanish/layers.")
+                        help="Build menu for an artist. spanishdict: reads artist inventory "
+                             "and writes to artist layers. wiktionary: reads artist inventory, "
+                             "writes to artist layers (normal-mode wiktionary flow w/ swapped paths). "
+                             "Omit for normal-mode Data/{Lang}/layers.")
     # Artist-flow flags (no-ops in normal mode)
     parser.add_argument("--force", action="store_true",
                         help="Rebuild entries already present in the menu")
@@ -907,11 +937,38 @@ def main():
                         help="Artist mode: allow building from a partial shared cache")
     args = parser.parse_args()
 
+    # ---------------------------------------------------------------
+    # Resolve paths based on --language / --artist-dir / explicit overrides.
+    # Everything downstream reads the module-level constants, so we rebind
+    # them here (global) before any work happens. The normal-mode wiktionary
+    # flow then Just Works™ with whatever language we pointed it at.
+    # ---------------------------------------------------------------
+    lang_paths = _LANGUAGE_PATHS[args.language]
+    WIKT_FILE = Path(args.wiktionary_file) if args.wiktionary_file else lang_paths["wiktionary"]
+    CONJ_REVERSE_FILE = lang_paths["conj_reverse"]
+    CONJ_FILE = lang_paths["conj"]
+    # Normal-mode inventory + layers defaults; artist mode overrides below.
+    INVENTORY_FILE = lang_paths["inventory"]
+    LAYERS_DIR = lang_paths["layers"]
+
+    # Artist mode + wiktionary: rebind INVENTORY_FILE / LAYERS_DIR to the
+    # artist's layer dir, then fall through to the normal wiktionary flow.
+    # (SpanishDict artist mode is handled in its own dedicated branch below.)
+    if args.artist_dir and args.sense_source == "wiktionary":
+        artist_dir = Path(args.artist_dir).resolve()
+        INVENTORY_FILE = artist_dir / "data" / "layers" / "word_inventory.json"
+        LAYERS_DIR = artist_dir / "data" / "layers"
+        print(f"Artist-mode Wiktionary build ({args.language}):")
+        print(f"  inventory: {INVENTORY_FILE}")
+        print(f"  wiktionary: {WIKT_FILE}")
+        print(f"  output dir: {LAYERS_DIR}")
+        # Clear artist_dir so the spanishdict artist branch below doesn't fire.
+        args.artist_dir = None
+
     # Artist-mode SpanishDict branch
     if args.artist_dir:
         if args.sense_source != "spanishdict":
-            print("ERROR: --artist-dir is only supported with --sense-source spanishdict "
-                  "(Wiktionary menus are shared across artists).")
+            print("ERROR: --artist-dir is only supported with --sense-source spanishdict or wiktionary.")
             sys.exit(2)
 
         artist_dir = Path(args.artist_dir).resolve()
@@ -971,9 +1028,11 @@ def main():
 
     if not WIKT_FILE.exists():
         print(f"ERROR: Wiktionary file not found: {WIKT_FILE}")
+        # Generic hint based on the file we were trying to load.
+        lang_title = args.language.capitalize()
         print("Download it with:")
-        print('  curl -L -o Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz \\')
-        print('    "https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz"')
+        print(f'  curl -L -o "{WIKT_FILE}" \\')
+        print(f'    "https://kaikki.org/dictionary/{lang_title}/kaikki.org-dictionary-{lang_title}.jsonl.gz"')
         sys.exit(1)
 
     # Load Wiktionary

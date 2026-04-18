@@ -1,0 +1,12657 @@
+{
+  "la": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "est": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "je": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "le": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "et": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "pas": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "NOUN",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "de": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "en": {
+    "0": "ADP",
+    "1": "PRON",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "on": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "les": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "que": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "PRON",
+    "8": "CCONJ",
+    "9": "PRON"
+  },
+  "me": {
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "tu": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "a": {
+    "3": "VERB",
+    "4": "VERB",
+    "7": "ADP",
+    "8": "VERB"
+  },
+  "des": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "DET",
+    "3": "DET",
+    "4": "ADP",
+    "5": "DET",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "DET",
+    "9": "DET"
+  },
+  "ai": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "moi": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "te": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "7": "PRON",
+    "8": "PRON"
+  },
+  "un": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "qui": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "dans": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "plus": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "toi": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "ne": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "se": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "elle": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "bien": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "danse": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "NOUN",
+    "4": "VERB"
+  },
+  "au": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "pour": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "une": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "si": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "PRON",
+    "5": "ADV",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "tout": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "PRON",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADV",
+    "6": "ADJ",
+    "7": "ADJ",
+    "8": "ADJ",
+    "9": "PRON"
+  },
+  "mais": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "ce": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "DET",
+    "4": "PRON",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET"
+  },
+  "belle": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ",
+    "6": "ADJ"
+  },
+  "oh": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ",
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "INTJ",
+    "7": "INTJ",
+    "8": "INTJ",
+    "9": "INTJ"
+  },
+  "vie": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
+  },
+  "veux": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "sur": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "ah": {
+    "0": "NOUN",
+    "2": "INTJ",
+    "3": "INTJ"
+  },
+  "ton": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "mes": {
+    "0": "DET",
+    "1": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "va": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "il": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON"
+  },
+  "pleurer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ta": {
+    "0": "DET",
+    "1": "INTJ",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "fait": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "VERB",
+    "3": "NOUN",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "tes": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "avec": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "du": {
+    "0": "DET",
+    "1": "DET",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "DET",
+    "7": "DET",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "encore": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "nous": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "rien": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "ADV",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "faire": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "viens": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "mon": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "temps": {
+    "0": "NOUN",
+    "1": "ADJ",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "sais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "quand": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "dit": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "loin": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "yeux": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "deux": {
+    "0": "NUM",
+    "1": "PRON",
+    "2": "NUM",
+    "3": "NUM",
+    "4": "NUM",
+    "5": "NUM",
+    "6": "NUM",
+    "7": "NUM",
+    "8": "NUM"
+  },
+  "ou": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "suis": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "nos": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "trop": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "quoi": {
+    "0": "ADV",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON"
+  },
+  "jamais": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "o": {
+    "6": "NOUN"
+  },
+  "y": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "hmm": {
+    "0": "INTJ"
+  },
+  "l'": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "PRON"
+  },
+  "peut": {
+    "2": "ADV",
+    "3": "VERB",
+    "6": "VERB"
+  },
+  "ciel": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "7": "NOUN"
+  },
+  "gens": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "mal": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "NOUN",
+    "3": "ADV",
+    "4": "NOUN",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV"
+  },
+  "non": {
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "par": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "filme": {
+    "0": "VERB"
+  },
+  "oui": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "bon": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ"
+  },
+  "défait": {
+    "0": "VERB"
+  },
+  "jour": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "tous": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ",
+    "6": "ADJ",
+    "7": "ADJ",
+    "8": "ADJ",
+    "9": "ADJ"
+  },
+  "vous": {
+    "1": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON"
+  },
+  "corps": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "lui": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "seule": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ",
+    "6": "ADJ"
+  },
+  "tant": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "comme": {
+    "0": "ADP",
+    "1": "CCONJ",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "part": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "VERB",
+    "4": "NOUN"
+  },
+  "sans": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP"
+  },
+  "fais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "laisse": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "NOUN",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "NOUN"
+  },
+  "peine": {
+    "0": "ADV",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "ADV",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "reste": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "ma": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET"
+  },
+  "nudes": {
+    "0": "NOUN"
+  },
+  "pourtant": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "seulement": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV"
+  },
+  "soir": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "voir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "aux": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP"
+  },
+  "était": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "grand": {
+    "0": "ADJ",
+    "2": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ",
+    "6": "ADJ"
+  },
+  "vais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "perdus": {
+    "0": "NOUN"
+  },
+  "sont": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "fond": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "peu": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "pense": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "endroit": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "entre": {
+    "0": "ADP",
+    "1": "VERB",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP"
+  },
+  "nuit": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "peur": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "pis": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "sous": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP"
+  },
+  "vers": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP"
+  },
+  "autres": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "NOUN",
+    "5": "PRON",
+    "6": "NOUN",
+    "7": "ADJ",
+    "8": "ADJ"
+  },
+  "sens": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "vois": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "aller": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "aime": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "aimer": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "brille": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ceux": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "dessine": {
+    "0": "VERB"
+  },
+  "enfer": {
+    "1": "NOUN"
+  },
+  "juste": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV"
+  },
+  "pin": {
+    "0": "NOUN"
+  },
+  "prouver": {
+    "0": "VERB"
+  },
+  "puis": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ"
+  },
+  "son": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "NOUN"
+  },
+  "sortir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "regarde": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "oseille": {
+    "0": "NOUN"
+  },
+  "monde": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "es": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "car": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ"
+  },
+  "compliqué": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "ni": {
+    "0": "CCONJ",
+    "1": "CCONJ"
+  },
+  "seul": {
+    "0": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ"
+  },
+  "tue": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "VERB"
+  },
+  "mens": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "avoir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "as": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "chaque": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET"
+  },
+  "d'": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP"
+  },
+  "dire": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "face": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "heures": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "insomnie": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mélange": {
+    "0": "VERB",
+    "1": "NOUN"
+  },
+  "notre": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET"
+  },
+  "ouh": {
+    "0": "NOUN",
+    "1": "ADV"
+  },
+  "tranquille": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "NOUN"
+  },
+  "ont": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "dors": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "balance": {
+    "0": "VERB"
+  },
+  "cette": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET"
+  },
+  "fois": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
+  },
+  "heureux": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "hey": {
+    "0": "INTJ",
+    "4": "INTJ"
+  },
+  "aimerais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "joues": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mode": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "musique": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "photo": {
+    "0": "ADJ",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "recto": {
+    "0": "NOUN"
+  },
+  "rose": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "ses": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET"
+  },
+  "soleil": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "souvent": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "verra": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "verso": {
+    "0": "NOUN"
+  },
+  "voit": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "dis": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "faut": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "voulais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "bleu": {
+    "0": "ADJ"
+  },
+  "bonheur": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "cauchemar": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "chanson": {
+    "0": "NOUN"
+  },
+  "cherche": {
+    "0": "VERB"
+  },
+  "crois": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "envie": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN"
+  },
+  "envoie": {
+    "0": "VERB"
+  },
+  "failles": {
+    "0": "NOUN"
+  },
+  "fessée": {
+    "0": "NOUN"
+  },
+  "flemme": {
+    "0": "NOUN"
+  },
+  "histoire": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "autre": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "PRON",
+    "3": "PRON"
+  },
+  "laissez": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "aimais": {
+    "0": "VERB"
+  },
+  "main": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "matin": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "noir": {
+    "0": "NOUN",
+    "1": "ADJ",
+    "2": "NOUN"
+  },
+  "nombreux": {
+    "0": "ADJ"
+  },
+  "nue": {
+    "0": "ADJ"
+  },
+  "parler": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "regardes": {
+    "0": "VERB"
+  },
+  "rendez": {
+    "0": "NOUN"
+  },
+  "spleen": {
+    "0": "NOUN"
+  },
+  "suite": {
+    "0": "ADV",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "tendresse": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "thune": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vent": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "3": "NOUN"
+  },
+  "vraiment": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "étrange": {
+    "0": "ADJ"
+  },
+  "ils": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON"
+  },
+  "été": {
+    "0": "PRON",
+    "1": "NOUN",
+    "2": "PRON",
+    "3": "VERB"
+  },
+  "cachée": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "café": {
+    "0": "NOUN"
+  },
+  "ces": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET"
+  },
+  "chacun": {
+    "0": "PRON"
+  },
+  "eh": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ"
+  },
+  "fort": {
+    "0": "ADV",
+    "1": "ADJ",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "hier": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "jusqu'": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP"
+  },
+  "mieux": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "partis": {
+    "0": "VERB",
+    "1": "ADJ"
+  },
+  "peau": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "petit": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "PRON",
+    "3": "ADJ"
+  },
+  "pourquoi": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "pourraient": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "premier": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ",
+    "5": "ADJ"
+  },
+  "pu": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "regard": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "soi": {
+    "0": "PRON"
+  },
+  "su": {
+    "0": "VERB",
+    "2": "VERB"
+  },
+  "tard": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "veut": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vis": {
+    "0": "VERB"
+  },
+  "voyage": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "avant": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADV"
+  },
+  "leur": {
+    "0": "DET",
+    "1": "DET",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON"
+  },
+  "écran": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "amour": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "ici": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "font": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "ira": {
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "beauté": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "beaux": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "calme": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cantine": {
+    "0": "NOUN"
+  },
+  "cartes": {
+    "0": "NOUN"
+  },
+  "cet": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET"
+  },
+  "diable": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "dilemmes": {
+    "0": "NOUN"
+  },
+  "dira": {
+    "0": "VERB"
+  },
+  "donné": {
+    "0": "VERB"
+  },
+  "décor": {
+    "0": "NOUN"
+  },
+  "faux": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "filles": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "finis": {
+    "0": "VERB"
+  },
+  "fous": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "fuir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "grande": {
+    "0": "ADJ"
+  },
+  "idylle": {
+    "0": "NOUN"
+  },
+  "imbécile": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "envers": {
+    "0": "ADP"
+  },
+  "minuit": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "montre": {
+    "0": "VERB"
+  },
+  "montrer": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "mots": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "aurait": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "nuls": {
+    "0": "NOUN"
+  },
+  "oseras": {
+    "0": "VERB"
+  },
+  "ouais": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "parce": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ"
+  },
+  "pouvoir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "raccourci": {
+    "0": "VERB"
+  },
+  "roi": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "ADJ"
+  },
+  "rois": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "estompe": {
+    "0": "VERB"
+  },
+  "sa": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET"
+  },
+  "semblant": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "sourire": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "étoile": {
+    "0": "NOUN"
+  },
+  "décide": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "oublier": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "alors": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "attendre": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "bas": {
+    "1": "ADV",
+    "2": "NOUN"
+  },
+  "bouger": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "chambre": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "chance": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "chose": {
+    "0": "NOUN",
+    "2": "NOUN"
+  },
+  "comprendre": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "art": {
+    "0": "NOUN"
+  },
+  "deuil": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "disent": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "dort": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ferme": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "fout": {
+    "0": "VERB",
+    "1": "ADJ",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "grave": {
+    "0": "VERB",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "air": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "laisser": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "larme": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "larmes": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "nom": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "pensées": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "plage": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pluie": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "pourrait": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "quitté": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rire": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sait": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sel": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "sera": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "sort": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tendre": {
+    "0": "ADJ",
+    "1": "VERB"
+  },
+  "toute": {
+    "0": "ADJ",
+    "1": "DET"
+  },
+  "trouver": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "ville": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vivre": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "vu": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "histoires": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "oreille": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "sourires": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "aide": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "NOUN"
+  },
+  "aurais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "étais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "afin": {
+    "0": "ADV"
+  },
+  "agitations": {
+    "0": "NOUN"
+  },
+  "aiguilles": {
+    "0": "NOUN"
+  },
+  "allé": {
+    "0": "VERB"
+  },
+  "anges": {
+    "0": "NOUN"
+  },
+  "besoin": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "bizarres": {
+    "0": "ADJ"
+  },
+  "celle": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "croyais": {
+    "0": "VERB"
+  },
+  "dernier": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "descend": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "devant": {
+    "0": "ADP",
+    "1": "ADP"
+  },
+  "donc": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "enfouie": {
+    "0": "VERB"
+  },
+  "envahir": {
+    "0": "VERB"
+  },
+  "figent": {
+    "0": "VERB"
+  },
+  "foi": {
+    "0": "NOUN"
+  },
+  "garde": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "haine": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "hasard": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "idéaux": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "isolée": {
+    "0": "VERB"
+  },
+  "joli": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "joue": {
+    "0": "VERB"
+  },
+  "joué": {
+    "0": "VERB"
+  },
+  "aurai": {
+    "0": "VERB"
+  },
+  "longtemps": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "enlaces": {
+    "0": "VERB"
+  },
+  "malgré": {
+    "0": "ADP"
+  },
+  "matins": {
+    "0": "NOUN"
+  },
+  "mer": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "miroir": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mois": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "mot": {
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "mourir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "nan": {
+    "1": "INTJ",
+    "3": "ADV"
+  },
+  "ombres": {
+    "0": "NOUN"
+  },
+  "paisible": {
+    "0": "ADJ"
+  },
+  "parfum": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "pars": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "penser": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pensé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "perdre": {
+    "0": "VERB"
+  },
+  "peux": {
+    "0": "VERB"
+  },
+  "prendre": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "pris": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "profonde": {
+    "0": "ADJ"
+  },
+  "quelque": {
+    "0": "DET"
+  },
+  "quelques": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET"
+  },
+  "retrouves": {
+    "0": "VERB"
+  },
+  "rue": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "ennuie": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "met": {
+    "0": "VERB"
+  },
+  "salive": {
+    "0": "NOUN"
+  },
+  "savoir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "seconde": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sentir": {
+    "0": "VERB"
+  },
+  "sommeil": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "stupéfiants": {
+    "0": "ADJ"
+  },
+  "suivent": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tropicales": {
+    "0": "ADJ"
+  },
+  "trouvée": {
+    "0": "VERB"
+  },
+  "télé": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "visage": {
+    "0": "NOUN"
+  },
+  "zéro": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "épaule": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "bois": {
+    "0": "NOUN",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "entends": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "oublierai": {
+    "0": "VERB"
+  },
+  "entendre": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sent": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "trouve": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dois": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "manque": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "VERB"
+  },
+  "allez": {
+    "0": "VERB"
+  },
+  "appareils": {
+    "0": "NOUN"
+  },
+  "balade": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bat": {
+    "0": "VERB"
+  },
+  "bijoux": {
+    "0": "NOUN"
+  },
+  "blanches": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "but": {
+    "0": "NOUN"
+  },
+  "caméras": {
+    "0": "NOUN"
+  },
+  "carrera": {
+    "0": "NOUN"
+  },
+  "champagne": {
+    "0": "NOUN"
+  },
+  "chanter": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cherchent": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cheveux": {
+    "0": "NOUN"
+  },
+  "chez": {
+    "0": "ADP",
+    "1": "ADP"
+  },
+  "compris": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "contre": {
+    "0": "ADP",
+    "1": "ADP"
+  },
+  "couilles": {
+    "0": "NOUN"
+  },
+  "dansent": {
+    "0": "VERB"
+  },
+  "demain": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "devoir": {
+    "0": "VERB"
+  },
+  "distance": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "donne": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "doute": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "début": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "déchire": {
+    "0": "VERB"
+  },
+  "démaquillé": {
+    "0": "VERB"
+  },
+  "dévorent": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "enlevé": {
+    "0": "VERB"
+  },
+  "femmes": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ferrari": {
+    "0": "NOUN"
+  },
+  "fille": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "fin": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "fou": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "glisse": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "gogo": {
+    "0": "NOUN"
+  },
+  "hanches": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "haut": {
+    "0": "NOUN",
+    "1": "ADV"
+  },
+  "hors": {
+    "0": "ADP"
+  },
+  "importa": {
+    "0": "VERB"
+  },
+  "insomnies": {
+    "0": "NOUN"
+  },
+  "attends": {
+    "0": "VERB"
+  },
+  "avoue": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "jaunes": {
+    "0": "ADJ"
+  },
+  "objectif": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lignes": {
+    "0": "NOUN"
+  },
+  "maintenant": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "mirages": {
+    "0": "NOUN"
+  },
+  "miroirs": {
+    "0": "NOUN"
+  },
+  "mis": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "noires": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "ose": {
+    "0": "VERB"
+  },
+  "parfois": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "parle": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "parles": {
+    "0": "VERB"
+  },
+  "partagé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "passé": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "ADP"
+  },
+  "pendant": {
+    "0": "ADP"
+  },
+  "penses": {
+    "0": "VERB"
+  },
+  "pierre": {
+    "0": "NOUN"
+  },
+  "plais": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pleine": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "pose": {
+    "0": "VERB"
+  },
+  "pourrais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "pourvu": {
+    "0": "VERB",
+    "1": "ADV"
+  },
+  "prends": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "presque": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "pute": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pédaler": {
+    "0": "VERB"
+  },
+  "quien": {
+    "0": "PRON"
+  },
+  "raison": {
+    "0": "NOUN"
+  },
+  "rapproche": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "retrouver": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ris": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rougir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "émouvoir": {
+    "0": "VERB"
+  },
+  "sculptée": {
+    "0": "VERB"
+  },
+  "seins": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sentiments": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "silence": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "soudain": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "sécher": {
+    "0": "VERB"
+  },
+  "séduisent": {
+    "0": "VERB"
+  },
+  "appelaient": {
+    "0": "VERB"
+  },
+  "tenir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "terminer": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "timide": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "toujours": {
+    "0": "ADV"
+  },
+  "uh": {
+    "0": "NOUN"
+  },
+  "veine": {
+    "0": "NOUN"
+  },
+  "verras": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vide": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "viendrais": {
+    "0": "VERB"
+  },
+  "vient": {
+    "0": "VERB",
+    "2": "VERB"
+  },
+  "vont": {
+    "0": "VERB"
+  },
+  "voulu": {
+    "0": "VERB"
+  },
+  "vrai": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "écoute": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "énergies": {
+    "0": "NOUN"
+  },
+  "avance": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "avons": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "habitude": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "enfin": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "idée": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "avais": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "écouter": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "venir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "aimé": {
+    "0": "VERB"
+  },
+  "amer": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "amours": {
+    "0": "NOUN"
+  },
+  "arbres": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "arrivé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "assoiffés": {
+    "0": "ADJ"
+  },
+  "astrales": {
+    "0": "ADJ"
+  },
+  "aucun": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "aussi": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "auxquelles": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "avancer": {
+    "0": "VERB"
+  },
+  "avion": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "babines": {
+    "0": "NOUN"
+  },
+  "bah": {
+    "0": "ADV"
+  },
+  "bander": {
+    "0": "VERB"
+  },
+  "banque": {
+    "0": "NOUN"
+  },
+  "bite": {
+    "0": "NOUN"
+  },
+  "blanc": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "blanche": {
+    "0": "ADJ"
+  },
+  "blesserait": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bloque": {
+    "0": "VERB"
+  },
+  "bond": {
+    "0": "NOUN"
+  },
+  "boucle": {
+    "0": "NOUN"
+  },
+  "bouge": {
+    "0": "VERB"
+  },
+  "bout": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cas": {
+    "0": "NOUN"
+  },
+  "cent": {
+    "0": "NUM",
+    "1": "NUM"
+  },
+  "chaloupée": {
+    "0": "ADJ"
+  },
+  "chantais": {
+    "0": "VERB"
+  },
+  "chaud": {
+    "0": "ADJ"
+  },
+  "chemin": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "chemins": {
+    "0": "NOUN"
+  },
+  "cigarettes": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "comparé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "con": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "conduisait": {
+    "0": "VERB"
+  },
+  "confort": {
+    "0": "NOUN"
+  },
+  "couleur": {
+    "0": "NOUN"
+  },
+  "coup": {
+    "0": "NOUN"
+  },
+  "courtisanes": {
+    "0": "NOUN"
+  },
+  "cri": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "croient": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "croire": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "croulez": {
+    "0": "VERB"
+  },
+  "créatures": {
+    "0": "NOUN"
+  },
+  "cul": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "oiseau": {
+    "0": "NOUN"
+  },
+  "danser": {
+    "0": "VERB"
+  },
+  "dettes": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "devenir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "devient": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dirait": {
+    "0": "VERB"
+  },
+  "disque": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "doigts": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "donner": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dont": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "dormirai": {
+    "0": "VERB"
+  },
+  "dos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "droit": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "découvrir": {
+    "0": "VERB"
+  },
+  "dédessine": {
+    "0": "VERB"
+  },
+  "délire": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "démons": {
+    "0": "NOUN"
+  },
+  "dépasse": {
+    "0": "VERB"
+  },
+  "dérailler": {
+    "0": "VERB"
+  },
+  "déviation": {
+    "0": "NOUN"
+  },
+  "dévoilé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "enfants": {
+    "0": "NOUN"
+  },
+  "ennui": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ensemble": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "esprit": {
+    "0": "NOUN"
+  },
+  "essayé": {
+    "0": "VERB"
+  },
+  "exubérance": {
+    "0": "NOUN"
+  },
+  "facon": {
+    "0": "NOUN"
+  },
+  "faiblir": {
+    "0": "VERB"
+  },
+  "faisant": {
+    "0": "VERB"
+  },
+  "fame": {
+    "0": "NOUN"
+  },
+  "fatigue": {
+    "0": "VERB"
+  },
+  "faudra": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "femme": {
+    "0": "NOUN"
+  },
+  "ferment": {
+    "0": "VERB"
+  },
+  "fessier": {
+    "0": "NOUN"
+  },
+  "filer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "finir": {
+    "0": "VERB"
+  },
+  "fut": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "gare": {
+    "0": "NOUN"
+  },
+  "genre": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "glace": {
+    "0": "NOUN"
+  },
+  "glisser": {
+    "0": "VERB"
+  },
+  "guerre": {
+    "0": "NOUN"
+  },
+  "génial": {
+    "0": "ADJ"
+  },
+  "halo": {
+    "0": "NOUN"
+  },
+  "hésitante": {
+    "0": "ADJ"
+  },
+  "idéale": {
+    "0": "ADJ"
+  },
+  "impériale": {
+    "0": "ADJ"
+  },
+  "indécise": {
+    "0": "ADJ"
+  },
+  "ineffable": {
+    "0": "ADJ"
+  },
+  "instant": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "inventée": {
+    "0": "VERB"
+  },
+  "assume": {
+    "0": "VERB"
+  },
+  "entame": {
+    "0": "VERB"
+  },
+  "hallucine": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "passerai": {
+    "0": "VERB"
+  },
+  "souris": {
+    "0": "VERB"
+  },
+  "jolie": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "jures": {
+    "0": "VERB"
+  },
+  "aéroport": {
+    "0": "NOUN"
+  },
+  "eau": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "océan": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lances": {
+    "0": "VERB"
+  },
+  "langue": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "liberté": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "lié": {
+    "0": "VERB"
+  },
+  "lointaine": {
+    "0": "ADJ"
+  },
+  "long": {
+    "0": "NOUN"
+  },
+  "lous": {
+    "0": "VERB"
+  },
+  "offre": {
+    "0": "VERB"
+  },
+  "mai": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "maison": {
+    "0": "NOUN"
+  },
+  "maman": {
+    "1": "NOUN"
+  },
+  "manteaux": {
+    "0": "NOUN"
+  },
+  "mauvais": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "mensonges": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "mentez": {
+    "0": "VERB"
+  },
+  "mentir": {
+    "0": "VERB"
+  },
+  "merde": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "moitié": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "moment": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "monter": {
+    "0": "VERB"
+  },
+  "moque": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "mur": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "murmures": {
+    "0": "VERB"
+  },
+  "mémoire": {
+    "0": "NOUN"
+  },
+  "mémorable": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "mérités": {
+    "0": "ADJ"
+  },
+  "existe": {
+    "0": "VERB"
+  },
+  "nage": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "nanana": {
+    "0": "NOUN"
+  },
+  "noche": {
+    "0": "NOUN"
+  },
+  "normal": {
+    "0": "ADJ"
+  },
+  "obéir": {
+    "0": "VERB"
+  },
+  "occulté": {
+    "0": "VERB"
+  },
+  "ooh": {
+    "0": "NOUN"
+  },
+  "oups": {
+    "0": "INTJ"
+  },
+  "parcours": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "parmi": {
+    "0": "ADP",
+    "1": "ADP"
+  },
+  "partager": {
+    "0": "VERB"
+  },
+  "partie": {
+    "0": "NOUN",
+    "1": "VERB"
+  },
+  "partir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "passe": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "passée": {
+    "0": "VERB"
+  },
+  "peins": {
+    "0": "VERB"
+  },
+  "perdu": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "personnalité": {
+    "0": "NOUN"
+  },
+  "personne": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "peuvent": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "phéromones": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pied": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pieds": {
+    "0": "NOUN"
+  },
+  "plaire": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "plantés": {
+    "0": "VERB"
+  },
+  "plein": {
+    "0": "ADJ"
+  },
+  "pleines": {
+    "0": "ADJ"
+  },
+  "polie": {
+    "0": "ADJ"
+  },
+  "porte": {
+    "0": "NOUN",
+    "1": "VERB"
+  },
+  "portrait": {
+    "0": "NOUN"
+  },
+  "poussée": {
+    "0": "VERB",
+    "1": "ADJ"
+  },
+  "prend": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "prenons": {
+    "0": "VERB"
+  },
+  "prise": {
+    "0": "NOUN"
+  },
+  "proche": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "provisoire": {
+    "0": "ADJ"
+  },
+  "précis": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "précisément": {
+    "0": "ADV"
+  },
+  "préjugés": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "périr": {
+    "0": "VERB"
+  },
+  "r'garde": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "racine": {
+    "0": "NOUN"
+  },
+  "radio": {
+    "0": "NOUN"
+  },
+  "rentrer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "repartir": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "retournée": {
+    "0": "VERB"
+  },
+  "retrouvée": {
+    "0": "VERB"
+  },
+  "reviens": {
+    "0": "VERB"
+  },
+  "revois": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "risque": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "roule": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "roulez": {
+    "0": "VERB"
+  },
+  "ruisseau": {
+    "0": "NOUN"
+  },
+  "réalité": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "réveil": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "affichent": {
+    "0": "VERB"
+  },
+  "allume": {
+    "0": "VERB"
+  },
+  "envole": {
+    "0": "VERB"
+  },
+  "éviter": {
+    "0": "VERB"
+  },
+  "sable": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "salaud": {
+    "0": "NOUN"
+  },
+  "semaines": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "seras": {
+    "0": "VERB"
+  },
+  "seuls": {
+    "0": "ADJ"
+  },
+  "silhouette": {
+    "0": "NOUN"
+  },
+  "solitaire": {
+    "0": "ADJ"
+  },
+  "sorti": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "souffler": {
+    "0": "VERB"
+  },
+  "souffles": {
+    "0": "NOUN"
+  },
+  "souillée": {
+    "0": "VERB"
+  },
+  "soupirants": {
+    "0": "NOUN"
+  },
+  "souviens": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "spatiale": {
+    "0": "ADJ"
+  },
+  "sucre": {
+    "0": "NOUN"
+  },
+  "sucré": {
+    "0": "ADJ"
+  },
+  "symphonie": {
+    "0": "NOUN"
+  },
+  "sépare": {
+    "0": "VERB"
+  },
+  "affoles": {
+    "0": "VERB"
+  },
+  "aiment": {
+    "0": "VERB"
+  },
+  "arrivais": {
+    "0": "VERB"
+  },
+  "taxi": {
+    "0": "NOUN"
+  },
+  "terre": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "torrentielle": {
+    "0": "ADJ"
+  },
+  "tort": {
+    "0": "NOUN"
+  },
+  "tournant": {
+    "0": "NOUN"
+  },
+  "toutes": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "transe": {
+    "0": "NOUN"
+  },
+  "troublant": {
+    "0": "ADJ"
+  },
+  "truc": {
+    "0": "NOUN"
+  },
+  "vagues": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "valent": {
+    "0": "VERB"
+  },
+  "valsait": {
+    "0": "VERB"
+  },
+  "version": {
+    "0": "NOUN"
+  },
+  "vidéocam": {
+    "0": "NOUN"
+  },
+  "vies": {
+    "0": "NOUN"
+  },
+  "violence": {
+    "0": "NOUN"
+  },
+  "votre": {
+    "0": "DET"
+  },
+  "voudrais": {
+    "0": "VERB"
+  },
+  "vouloir": {
+    "0": "VERB"
+  },
+  "vérité": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "woah": {
+    "0": "NOUN"
+  },
+  "éclairé": {
+    "0": "VERB"
+  },
+  "éclate": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "écrit": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "élégance": {
+    "0": "NOUN"
+  },
+  "épousant": {
+    "0": "VERB"
+  },
+  "équipage": {
+    "0": "NOUN"
+  },
+  "étouffer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "évidemment": {
+    "0": "ADV"
+  },
+  "amants": {
+    "0": "NOUN",
+    "1": "ADJ"
+  },
+  "années": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "elles": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "eux": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "importe": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "écris": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rejoindre": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "répond": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "abandonnée": {
+    "0": "VERB"
+  },
+  "absolument": {
+    "0": "ADV"
+  },
+  "absorbée": {
+    "0": "VERB"
+  },
+  "accidentel": {
+    "0": "ADJ"
+  },
+  "accompagnée": {
+    "0": "VERB"
+  },
+  "acheter": {
+    "0": "VERB"
+  },
+  "addictif": {
+    "0": "ADJ"
+  },
+  "adn": {
+    "0": "NOUN"
+  },
+  "adoptés": {
+    "0": "VERB"
+  },
+  "adorable": {
+    "0": "ADJ"
+  },
+  "advienne": {
+    "0": "VERB"
+  },
+  "affairées": {
+    "0": "ADJ"
+  },
+  "agace": {
+    "0": "VERB"
+  },
+  "agir": {
+    "0": "VERB"
+  },
+  "agis": {
+    "0": "VERB"
+  },
+  "aigrie": {
+    "0": "ADJ"
+  },
+  "aimants": {
+    "0": "NOUN"
+  },
+  "ainsi": {
+    "0": "ADV"
+  },
+  "album": {
+    "0": "NOUN"
+  },
+  "alchimie": {
+    "0": "NOUN"
+  },
+  "alibi": {
+    "0": "NOUN"
+  },
+  "allongé": {
+    "0": "VERB"
+  },
+  "ambiance": {
+    "0": "NOUN"
+  },
+  "amis": {
+    "0": "NOUN"
+  },
+  "amuse": {
+    "0": "VERB"
+  },
+  "an": {
+    "0": "NOUN"
+  },
+  "anesthésier": {
+    "0": "VERB"
+  },
+  "ange": {
+    "0": "NOUN"
+  },
+  "animal": {
+    "0": "NOUN"
+  },
+  "ans": {
+    "0": "NOUN"
+  },
+  "aquarelle": {
+    "0": "NOUN"
+  },
+  "arbre": {
+    "0": "NOUN"
+  },
+  "argent": {
+    "0": "NOUN"
+  },
+  "armée": {
+    "0": "NOUN"
+  },
+  "armées": {
+    "0": "NOUN"
+  },
+  "arrogant": {
+    "0": "ADJ"
+  },
+  "artiste": {
+    "0": "NOUN"
+  },
+  "assez": {
+    "0": "ADV"
+  },
+  "audace": {
+    "0": "NOUN"
+  },
+  "aura": {
+    "0": "VERB"
+  },
+  "autobiographiques": {
+    "0": "ADJ"
+  },
+  "automatique": {
+    "0": "ADJ"
+  },
+  "avenir": {
+    "0": "NOUN"
+  },
+  "avouée": {
+    "0": "VERB"
+  },
+  "baigne": {
+    "0": "VERB"
+  },
+  "bain": {
+    "0": "NOUN"
+  },
+  "bars": {
+    "0": "NOUN"
+  },
+  "basket": {
+    "0": "NOUN"
+  },
+  "bataille": {
+    "0": "NOUN"
+  },
+  "bateau": {
+    "0": "NOUN"
+  },
+  "battre": {
+    "0": "VERB"
+  },
+  "beau": {
+    "0": "ADJ"
+  },
+  "beautés": {
+    "0": "NOUN"
+  },
+  "belles": {
+    "0": "ADJ"
+  },
+  "bilan": {
+    "0": "NOUN"
+  },
+  "bisous": {
+    "0": "NOUN"
+  },
+  "blague": {
+    "0": "NOUN"
+  },
+  "bombés": {
+    "0": "ADJ"
+  },
+  "bouteilles": {
+    "0": "NOUN"
+  },
+  "bref": {
+    "0": "ADJ"
+  },
+  "briller": {
+    "0": "VERB"
+  },
+  "bruit": {
+    "0": "NOUN"
+  },
+  "brusquée": {
+    "0": "VERB"
+  },
+  "brésilien": {
+    "0": "ADJ"
+  },
+  "bu": {
+    "0": "VERB"
+  },
+  "bébé": {
+    "0": "NOUN"
+  },
+  "cacao": {
+    "0": "NOUN"
+  },
+  "cachais": {
+    "0": "VERB"
+  },
+  "cadence": {
+    "0": "NOUN"
+  },
+  "cage": {
+    "0": "NOUN"
+  },
+  "campe": {
+    "0": "VERB"
+  },
+  "canapé": {
+    "0": "NOUN"
+  },
+  "cap": {
+    "0": "NOUN"
+  },
+  "capable": {
+    "0": "ADJ"
+  },
+  "capot": {
+    "0": "NOUN"
+  },
+  "caramel": {
+    "0": "ADJ"
+  },
+  "cartable": {
+    "0": "NOUN"
+  },
+  "cavale": {
+    "0": "VERB"
+  },
+  "celui": {
+    "0": "PRON"
+  },
+  "cendres": {
+    "0": "NOUN"
+  },
+  "cerveau": {
+    "0": "NOUN"
+  },
+  "cesse": {
+    "0": "VERB"
+  },
+  "chagrins": {
+    "0": "NOUN"
+  },
+  "champs": {
+    "0": "NOUN"
+  },
+  "change": {
+    "0": "VERB"
+  },
+  "changera": {
+    "0": "VERB"
+  },
+  "changé": {
+    "0": "VERB"
+  },
+  "chantant": {
+    "0": "VERB"
+  },
+  "chante": {
+    "0": "VERB"
+  },
+  "chanterons": {
+    "0": "VERB"
+  },
+  "chanté": {
+    "0": "VERB"
+  },
+  "chargée": {
+    "0": "ADJ"
+  },
+  "charmante": {
+    "0": "ADJ"
+  },
+  "chienne": {
+    "0": "NOUN"
+  },
+  "choix": {
+    "0": "NOUN"
+  },
+  "choses": {
+    "0": "NOUN"
+  },
+  "chuchote": {
+    "0": "VERB"
+  },
+  "cigarette": {
+    "0": "NOUN"
+  },
+  "cinq": {
+    "0": "PRON"
+  },
+  "cinématographique": {
+    "0": "ADJ"
+  },
+  "claires": {
+    "0": "ADJ"
+  },
+  "claque": {
+    "0": "VERB"
+  },
+  "clip": {
+    "0": "NOUN"
+  },
+  "close": {
+    "0": "ADJ"
+  },
+  "coeur": {
+    "0": "NOUN"
+  },
+  "cohérence": {
+    "0": "NOUN"
+  },
+  "coin": {
+    "0": "NOUN"
+  },
+  "coincée": {
+    "0": "VERB"
+  },
+  "coller": {
+    "0": "VERB"
+  },
+  "combat": {
+    "0": "NOUN"
+  },
+  "combien": {
+    "0": "ADV"
+  },
+  "comment": {
+    "0": "ADV"
+  },
+  "comprenais": {
+    "0": "VERB"
+  },
+  "concerts": {
+    "0": "NOUN"
+  },
+  "confondent": {
+    "0": "VERB"
+  },
+  "connue": {
+    "0": "VERB"
+  },
+  "conseil": {
+    "0": "NOUN"
+  },
+  "conservé": {
+    "0": "VERB"
+  },
+  "contraire": {
+    "0": "NOUN"
+  },
+  "coquillage": {
+    "0": "NOUN"
+  },
+  "coquilles": {
+    "0": "NOUN"
+  },
+  "cosmique": {
+    "0": "ADJ"
+  },
+  "cou": {
+    "0": "NOUN"
+  },
+  "coucher": {
+    "0": "VERB"
+  },
+  "couille": {
+    "0": "NOUN"
+  },
+  "cour": {
+    "0": "NOUN"
+  },
+  "courir": {
+    "0": "VERB"
+  },
+  "couvert": {
+    "0": "ADJ"
+  },
+  "crocs": {
+    "0": "NOUN"
+  },
+  "croit": {
+    "0": "VERB"
+  },
+  "croyant": {
+    "0": "VERB"
+  },
+  "crédit": {
+    "0": "NOUN"
+  },
+  "cyprine": {
+    "0": "NOUN"
+  },
+  "abord": {
+    "0": "NOUN"
+  },
+  "actualité": {
+    "0": "NOUN"
+  },
+  "atomes": {
+    "0": "NOUN"
+  },
+  "intimité": {
+    "0": "NOUN"
+  },
+  "méditer": {
+    "0": "VERB"
+  },
+  "respect": {
+    "0": "NOUN"
+  },
+  "dames": {
+    "0": "NOUN"
+  },
+  "debut": {
+    "0": "NOUN"
+  },
+  "dehors": {
+    "0": "ADV"
+  },
+  "demandais": {
+    "0": "VERB"
+  },
+  "demande": {
+    "0": "VERB"
+  },
+  "derniers": {
+    "0": "ADJ"
+  },
+  "descendre": {
+    "0": "VERB"
+  },
+  "descente": {
+    "0": "NOUN"
+  },
+  "dessines": {
+    "0": "VERB"
+  },
+  "dessus": {
+    "0": "NOUN"
+  },
+  "destin": {
+    "0": "NOUN"
+  },
+  "destins": {
+    "0": "NOUN"
+  },
+  "devance": {
+    "0": "VERB"
+  },
+  "devine": {
+    "0": "VERB"
+  },
+  "devraient": {
+    "0": "VERB"
+  },
+  "die": {
+    "0": "VERB"
+  },
+  "dieux": {
+    "0": "NOUN"
+  },
+  "direction": {
+    "0": "NOUN"
+  },
+  "diront": {
+    "0": "VERB"
+  },
+  "disparais": {
+    "0": "VERB"
+  },
+  "dissimule": {
+    "0": "VERB"
+  },
+  "distraites": {
+    "0": "ADJ"
+  },
+  "dites": {
+    "0": "VERB"
+  },
+  "dix": {
+    "0": "PRON"
+  },
+  "dm": {
+    "0": "NOUN"
+  },
+  "doigtes": {
+    "0": "VERB"
+  },
+  "domine": {
+    "0": "VERB"
+  },
+  "dormais": {
+    "0": "VERB"
+  },
+  "dormir": {
+    "0": "VERB"
+  },
+  "douce": {
+    "0": "ADJ"
+  },
+  "douleur": {
+    "0": "NOUN"
+  },
+  "doutes": {
+    "0": "NOUN"
+  },
+  "doux": {
+    "0": "ADJ"
+  },
+  "drague": {
+    "0": "NOUN"
+  },
+  "dramatique": {
+    "0": "ADJ"
+  },
+  "drame": {
+    "0": "NOUN"
+  },
+  "drames": {
+    "0": "NOUN"
+  },
+  "draps": {
+    "0": "NOUN"
+  },
+  "drogue": {
+    "0": "NOUN"
+  },
+  "durer": {
+    "0": "VERB"
+  },
+  "décadence": {
+    "0": "NOUN"
+  },
+  "décembre": {
+    "0": "NOUN"
+  },
+  "dédiées": {
+    "0": "VERB"
+  },
+  "défais": {
+    "0": "VERB"
+  },
+  "défendues": {
+    "0": "VERB"
+  },
+  "défile": {
+    "0": "VERB"
+  },
+  "déforme": {
+    "0": "VERB"
+  },
+  "déhanche": {
+    "0": "VERB"
+  },
+  "délaissé": {
+    "0": "VERB"
+  },
+  "démarche": {
+    "0": "NOUN"
+  },
+  "dépanne": {
+    "0": "VERB"
+  },
+  "dépendants": {
+    "0": "ADJ"
+  },
+  "déplacé": {
+    "0": "ADJ"
+  },
+  "dépose": {
+    "0": "VERB"
+  },
+  "dépossédée": {
+    "0": "VERB"
+  },
+  "déposé": {
+    "0": "VERB"
+  },
+  "déprimé": {
+    "0": "VERB"
+  },
+  "dérailles": {
+    "0": "NOUN"
+  },
+  "dérange": {
+    "0": "VERB"
+  },
+  "dérive": {
+    "0": "NOUN"
+  },
+  "désarme": {
+    "0": "VERB"
+  },
+  "désolée": {
+    "0": "ADJ"
+  },
+  "détestes": {
+    "0": "VERB"
+  },
+  "développées": {
+    "0": "VERB"
+  },
+  "dévoilée": {
+    "0": "VERB"
+  },
+  "dévorés": {
+    "0": "VERB"
+  },
+  "effet": {
+    "0": "NOUN"
+  },
+  "embrase": {
+    "0": "VERB"
+  },
+  "engloutit": {
+    "0": "VERB"
+  },
+  "enivrée": {
+    "0": "VERB"
+  },
+  "enlacés": {
+    "0": "VERB"
+  },
+  "ennemis": {
+    "0": "ADJ"
+  },
+  "ensembles": {
+    "0": "NOUN"
+  },
+  "ensoleillé": {
+    "0": "ADJ"
+  },
+  "envier": {
+    "0": "VERB"
+  },
+  "envol": {
+    "0": "NOUN"
+  },
+  "escapade": {
+    "0": "NOUN"
+  },
+  "espoir": {
+    "0": "NOUN"
+  },
+  "espérance": {
+    "0": "NOUN"
+  },
+  "essentiel": {
+    "0": "ADJ"
+  },
+  "esthétiques": {
+    "0": "ADJ"
+  },
+  "eu": {
+    "0": "VERB"
+  },
+  "existentiel": {
+    "0": "ADJ"
+  },
+  "exister": {
+    "0": "VERB"
+  },
+  "express": {
+    "0": "ADJ"
+  },
+  "extrait": {
+    "0": "NOUN"
+  },
+  "exubérantes": {
+    "0": "ADJ"
+  },
+  "fable": {
+    "0": "NOUN"
+  },
+  "facile": {
+    "0": "ADJ"
+  },
+  "faisait": {
+    "0": "VERB"
+  },
+  "falloir": {
+    "0": "VERB"
+  },
+  "fantaisie": {
+    "0": "NOUN"
+  },
+  "fatiguée": {
+    "0": "ADJ"
+  },
+  "faute": {
+    "0": "NOUN"
+  },
+  "ferais": {
+    "0": "VERB"
+  },
+  "fermés": {
+    "0": "ADJ"
+  },
+  "fier": {
+    "0": "ADJ"
+  },
+  "film": {
+    "0": "NOUN"
+  },
+  "filmer": {
+    "0": "VERB"
+  },
+  "finalement": {
+    "0": "ADV"
+  },
+  "finalité": {
+    "0": "NOUN"
+  },
+  "fini": {
+    "0": "ADJ"
+  },
+  "fixe": {
+    "0": "VERB"
+  },
+  "flanché": {
+    "0": "VERB"
+  },
+  "fleur": {
+    "0": "NOUN"
+  },
+  "fleurs": {
+    "0": "NOUN"
+  },
+  "folle": {
+    "0": "ADJ"
+  },
+  "force": {
+    "0": "NOUN"
+  },
+  "foudroyé": {
+    "0": "VERB"
+  },
+  "fouille": {
+    "0": "VERB"
+  },
+  "fourbe": {
+    "0": "ADJ"
+  },
+  "foute": {
+    "0": "VERB"
+  },
+  "foutue": {
+    "0": "ADJ"
+  },
+  "frais": {
+    "0": "ADJ"
+  },
+  "franchis": {
+    "0": "VERB"
+  },
+  "freine": {
+    "0": "VERB"
+  },
+  "fruit": {
+    "0": "NOUN"
+  },
+  "frustrant": {
+    "0": "ADJ"
+  },
+  "frustrée": {
+    "0": "VERB"
+  },
+  "fréquemment": {
+    "0": "ADV"
+  },
+  "fuis": {
+    "0": "VERB"
+  },
+  "fumée": {
+    "0": "NOUN"
+  },
+  "futurs": {
+    "0": "NOUN"
+  },
+  "gardé": {
+    "0": "VERB"
+  },
+  "genoux": {
+    "0": "NOUN"
+  },
+  "gentiment": {
+    "0": "ADV"
+  },
+  "glaces": {
+    "0": "NOUN"
+  },
+  "glissé": {
+    "0": "VERB"
+  },
+  "grain": {
+    "0": "NOUN"
+  },
+  "grands": {
+    "0": "ADJ"
+  },
+  "guide": {
+    "0": "VERB"
+  },
+  "habillais": {
+    "0": "VERB"
+  },
+  "habitais": {
+    "0": "VERB"
+  },
+  "habituée": {
+    "0": "NOUN"
+  },
+  "hante": {
+    "0": "VERB"
+  },
+  "hanté": {
+    "0": "VERB"
+  },
+  "hargne": {
+    "0": "NOUN"
+  },
+  "hein": {
+    "0": "ADV"
+  },
+  "heureuse": {
+    "0": "ADJ"
+  },
+  "hommes": {
+    "0": "NOUN"
+  },
+  "honte": {
+    "0": "NOUN"
+  },
+  "hérésies": {
+    "0": "NOUN"
+  },
+  "idées": {
+    "0": "NOUN"
+  },
+  "ignorer": {
+    "0": "VERB"
+  },
+  "illusions": {
+    "0": "NOUN"
+  },
+  "images": {
+    "0": "NOUN"
+  },
+  "impatient": {
+    "0": "ADJ"
+  },
+  "improbable": {
+    "0": "ADJ"
+  },
+  "impudiques": {
+    "0": "ADJ"
+  },
+  "incompatible": {
+    "0": "ADJ"
+  },
+  "inconformes": {
+    "0": "ADJ"
+  },
+  "inconnus": {
+    "0": "ADJ"
+  },
+  "infinies": {
+    "0": "ADJ"
+  },
+  "ingénue": {
+    "0": "ADJ"
+  },
+  "innocence": {
+    "0": "NOUN"
+  },
+  "intensément": {
+    "0": "ADV"
+  },
+  "interstice": {
+    "0": "NOUN"
+  },
+  "introduction": {
+    "0": "NOUN"
+  },
+  "invites": {
+    "0": "NOUN"
+  },
+  "inévitablement": {
+    "0": "ADV"
+  },
+  "irons": {
+    "0": "VERB"
+  },
+  "isolés": {
+    "0": "VERB"
+  },
+  "italienne": {
+    "0": "ADJ"
+  },
+  "appelle": {
+    "0": "VERB"
+  },
+  "attendrai": {
+    "0": "VERB"
+  },
+  "essayais": {
+    "0": "VERB"
+  },
+  "habite": {
+    "0": "VERB"
+  },
+  "hésite": {
+    "0": "VERB"
+  },
+  "imagine": {
+    "0": "VERB"
+  },
+  "repensais": {
+    "0": "VERB"
+  },
+  "jalousies": {
+    "0": "NOUN"
+  },
+  "janvier": {
+    "0": "NOUN"
+  },
+  "jean": {
+    "0": "NOUN"
+  },
+  "joindre": {
+    "0": "VERB"
+  },
+  "jolies": {
+    "0": "ADJ"
+  },
+  "jonchés": {
+    "0": "VERB"
+  },
+  "jouais": {
+    "0": "VERB"
+  },
+  "journal": {
+    "0": "NOUN"
+  },
+  "journée": {
+    "0": "NOUN"
+  },
+  "jours": {
+    "0": "NOUN"
+  },
+  "jungle": {
+    "0": "NOUN"
+  },
+  "jure": {
+    "0": "VERB"
+  },
+  "jusque": {
+    "0": "ADP"
+  },
+  "abri": {
+    "0": "NOUN"
+  },
+  "affiche": {
+    "0": "NOUN"
+  },
+  "aimes": {
+    "0": "VERB"
+  },
+  "altitude": {
+    "0": "NOUN"
+  },
+  "armoire": {
+    "0": "NOUN"
+  },
+  "aurore": {
+    "0": "NOUN"
+  },
+  "austérité": {
+    "0": "NOUN"
+  },
+  "avalanche": {
+    "0": "NOUN"
+  },
+  "cacher": {
+    "0": "VERB"
+  },
+  "homme": {
+    "0": "NOUN"
+  },
+  "illusion": {
+    "0": "NOUN"
+  },
+  "imagines": {
+    "0": "VERB"
+  },
+  "imprimé": {
+    "0": "VERB"
+  },
+  "écume": {
+    "0": "NOUN"
+  },
+  "équateur": {
+    "0": "NOUN"
+  },
+  "laide": {
+    "0": "ADJ"
+  },
+  "laissant": {
+    "0": "VERB"
+  },
+  "laissera": {
+    "0": "VERB"
+  },
+  "lascivité": {
+    "0": "NOUN"
+  },
+  "latent": {
+    "0": "ADJ"
+  },
+  "latitude": {
+    "0": "NOUN"
+  },
+  "latitudes": {
+    "0": "NOUN"
+  },
+  "lavé": {
+    "0": "VERB"
+  },
+  "lavée": {
+    "0": "VERB"
+  },
+  "leche": {
+    "0": "NOUN"
+  },
+  "lequel": {
+    "0": "PRON"
+  },
+  "lianes": {
+    "0": "NOUN"
+  },
+  "libertine": {
+    "0": "ADJ"
+  },
+  "libertés": {
+    "0": "NOUN"
+  },
+  "libre": {
+    "0": "ADJ"
+  },
+  "lire": {
+    "0": "VERB"
+  },
+  "lisible": {
+    "0": "ADJ"
+  },
+  "lit": {
+    "0": "NOUN"
+  },
+  "litanies": {
+    "0": "NOUN"
+  },
+  "liés": {
+    "0": "VERB"
+  },
+  "longitude": {
+    "0": "NOUN"
+  },
+  "lors": {
+    "0": "ADV"
+  },
+  "lundi": {
+    "0": "NOUN"
+  },
+  "lune": {
+    "0": "NOUN"
+  },
+  "luxuriante": {
+    "0": "ADJ"
+  },
+  "abandonner": {
+    "0": "VERB"
+  },
+  "arrivait": {
+    "0": "VERB"
+  },
+  "efface": {
+    "0": "VERB"
+  },
+  "embrasses": {
+    "0": "VERB"
+  },
+  "enchante": {
+    "0": "VERB"
+  },
+  "enfuir": {
+    "0": "VERB"
+  },
+  "enjambes": {
+    "0": "VERB"
+  },
+  "entoure": {
+    "0": "VERB"
+  },
+  "envenimer": {
+    "0": "VERB"
+  },
+  "exiler": {
+    "0": "VERB"
+  },
+  "expliquer": {
+    "0": "VERB"
+  },
+  "racontes": {
+    "0": "VERB"
+  },
+  "rappelles": {
+    "0": "VERB"
+  },
+  "voyais": {
+    "0": "VERB"
+  },
+  "maladie": {
+    "0": "NOUN"
+  },
+  "maladroit": {
+    "0": "ADJ"
+  },
+  "maladroite": {
+    "0": "ADJ"
+  },
+  "maléfices": {
+    "0": "NOUN"
+  },
+  "marche": {
+    "0": "VERB"
+  },
+  "marché": {
+    "0": "VERB"
+  },
+  "marque": {
+    "0": "VERB"
+  },
+  "martyre": {
+    "0": "NOUN"
+  },
+  "mat": {
+    "0": "NOUN"
+  },
+  "matelots": {
+    "0": "NOUN"
+  },
+  "mec": {
+    "0": "NOUN"
+  },
+  "mecs": {
+    "0": "NOUN"
+  },
+  "messieurs": {
+    "0": "NOUN"
+  },
+  "mesure": {
+    "0": "NOUN"
+  },
+  "michtos": {
+    "0": "NOUN"
+  },
+  "mien": {
+    "0": "PRON"
+  },
+  "mienne": {
+    "0": "PRON"
+  },
+  "millénaires": {
+    "0": "ADJ"
+  },
+  "moite": {
+    "0": "ADJ"
+  },
+  "monarque": {
+    "0": "NOUN"
+  },
+  "montage": {
+    "0": "NOUN"
+  },
+  "montée": {
+    "0": "NOUN"
+  },
+  "mood": {
+    "0": "NOUN"
+  },
+  "mous": {
+    "0": "ADJ"
+  },
+  "mutine": {
+    "0": "ADJ"
+  },
+  "mécaniques": {
+    "0": "ADJ"
+  },
+  "méchante": {
+    "0": "ADJ"
+  },
+  "médicament": {
+    "0": "NOUN"
+  },
+  "mémé": {
+    "0": "NOUN"
+  },
+  "mérité": {
+    "0": "VERB"
+  },
+  "naufragés": {
+    "0": "NOUN"
+  },
+  "nez": {
+    "0": "NOUN"
+  },
+  "nid": {
+    "0": "NOUN"
+  },
+  "noie": {
+    "0": "VERB"
+  },
+  "nombril": {
+    "0": "NOUN"
+  },
+  "noms": {
+    "0": "NOUN"
+  },
+  "norme": {
+    "0": "NOUN"
+  },
+  "nouveau": {
+    "0": "ADJ"
+  },
+  "novembre": {
+    "0": "NOUN"
+  },
+  "nuance": {
+    "0": "NOUN"
+  },
+  "nuits": {
+    "0": "NOUN"
+  },
+  "néant": {
+    "0": "NOUN"
+  },
+  "obligé": {
+    "0": "VERB"
+  },
+  "obscures": {
+    "0": "ADJ"
+  },
+  "occupée": {
+    "0": "VERB"
+  },
+  "ombragé": {
+    "0": "VERB"
+  },
+  "orange": {
+    "0": "ADJ"
+  },
+  "organique": {
+    "0": "ADJ"
+  },
+  "oserais": {
+    "0": "VERB"
+  },
+  "osé": {
+    "0": "VERB"
+  },
+  "ouvrirai": {
+    "0": "VERB"
+  },
+  "page": {
+    "0": "NOUN"
+  },
+  "paix": {
+    "0": "NOUN"
+  },
+  "papiers": {
+    "0": "NOUN"
+  },
+  "parano": {
+    "0": "NOUN"
+  },
+  "pardonner": {
+    "0": "VERB"
+  },
+  "pardonnée": {
+    "0": "VERB"
+  },
+  "parents": {
+    "0": "NOUN"
+  },
+  "parlant": {
+    "0": "VERB"
+  },
+  "partagée": {
+    "0": "VERB"
+  },
+  "parte": {
+    "0": "VERB"
+  },
+  "parti": {
+    "0": "VERB"
+  },
+  "partout": {
+    "0": "ADV"
+  },
+  "passent": {
+    "0": "VERB"
+  },
+  "passer": {
+    "0": "VERB"
+  },
+  "passionné": {
+    "0": "ADJ"
+  },
+  "passions": {
+    "0": "NOUN"
+  },
+  "passés": {
+    "0": "NOUN"
+  },
+  "paysage": {
+    "0": "NOUN"
+  },
+  "pellicule": {
+    "0": "NOUN"
+  },
+  "pente": {
+    "0": "NOUN"
+  },
+  "pentes": {
+    "0": "NOUN"
+  },
+  "perce": {
+    "0": "VERB"
+  },
+  "perd": {
+    "0": "VERB"
+  },
+  "perdent": {
+    "0": "VERB"
+  },
+  "perds": {
+    "0": "VERB"
+  },
+  "perdues": {
+    "0": "VERB"
+  },
+  "perte": {
+    "0": "NOUN"
+  },
+  "pierres": {
+    "0": "NOUN"
+  },
+  "pincé": {
+    "0": "VERB"
+  },
+  "pitié": {
+    "0": "NOUN"
+  },
+  "plan": {
+    "0": "NOUN"
+  },
+  "planche": {
+    "0": "NOUN"
+  },
+  "planer": {
+    "0": "VERB"
+  },
+  "pleureuse": {
+    "0": "NOUN"
+  },
+  "pleurs": {
+    "0": "NOUN"
+  },
+  "pli": {
+    "0": "NOUN"
+  },
+  "plonge": {
+    "0": "VERB"
+  },
+  "plupart": {
+    "0": "NOUN"
+  },
+  "pluvieuse": {
+    "0": "ADJ"
+  },
+  "poches": {
+    "0": "NOUN"
+  },
+  "point": {
+    "0": "NOUN"
+  },
+  "poisse": {
+    "0": "NOUN"
+  },
+  "polies": {
+    "0": "VERB"
+  },
+  "portée": {
+    "0": "NOUN"
+  },
+  "poubelle": {
+    "0": "NOUN"
+  },
+  "premiers": {
+    "0": "ADJ"
+  },
+  "pressée": {
+    "0": "VERB"
+  },
+  "prochain": {
+    "0": "ADJ"
+  },
+  "profite": {
+    "0": "VERB"
+  },
+  "précieux": {
+    "0": "ADJ"
+  },
+  "préféré": {
+    "0": "VERB"
+  },
+  "présent": {
+    "0": "ADJ"
+  },
+  "prétende": {
+    "0": "VERB"
+  },
+  "pudeur": {
+    "0": "NOUN"
+  },
+  "pénombre": {
+    "0": "NOUN"
+  },
+  "qu'": {
+    "0": "CCONJ"
+  },
+  "quant": {
+    "0": "ADV"
+  },
+  "quatre": {
+    "0": "NUM"
+  },
+  "quel": {
+    "0": "DET"
+  },
+  "quelle": {
+    "0": "DET"
+  },
+  "quitte": {
+    "0": "VERB"
+  },
+  "raconterait": {
+    "0": "VERB"
+  },
+  "raconté": {
+    "0": "VERB"
+  },
+  "rage": {
+    "0": "NOUN"
+  },
+  "rallument": {
+    "0": "VERB"
+  },
+  "rance": {
+    "0": "ADJ"
+  },
+  "rancoeur": {
+    "0": "NOUN"
+  },
+  "range": {
+    "0": "VERB"
+  },
+  "rap": {
+    "0": "NOUN"
+  },
+  "rappelais": {
+    "0": "VERB"
+  },
+  "rare": {
+    "0": "ADJ"
+  },
+  "rater": {
+    "0": "VERB"
+  },
+  "raves": {
+    "0": "NOUN"
+  },
+  "reconnais": {
+    "0": "VERB"
+  },
+  "recourir": {
+    "0": "VERB"
+  },
+  "recule": {
+    "0": "VERB"
+  },
+  "redonne": {
+    "0": "VERB"
+  },
+  "reflet": {
+    "0": "NOUN"
+  },
+  "regards": {
+    "0": "NOUN"
+  },
+  "regardé": {
+    "0": "VERB"
+  },
+  "reine": {
+    "0": "NOUN"
+  },
+  "rejoins": {
+    "0": "VERB"
+  },
+  "relever": {
+    "0": "VERB"
+  },
+  "reluque": {
+    "0": "VERB"
+  },
+  "rencontrent": {
+    "0": "VERB"
+  },
+  "rend": {
+    "0": "VERB"
+  },
+  "rendu": {
+    "0": "VERB"
+  },
+  "rentre": {
+    "0": "VERB"
+  },
+  "rentrent": {
+    "0": "VERB"
+  },
+  "rentrée": {
+    "0": "VERB"
+  },
+  "reparlera": {
+    "0": "VERB"
+  },
+  "repense": {
+    "0": "VERB"
+  },
+  "ressemble": {
+    "0": "VERB"
+  },
+  "rester": {
+    "0": "VERB"
+  },
+  "retourner": {
+    "0": "VERB"
+  },
+  "retrouvé": {
+    "0": "VERB"
+  },
+  "revient": {
+    "0": "VERB"
+  },
+  "revoit": {
+    "0": "VERB"
+  },
+  "riches": {
+    "0": "ADJ"
+  },
+  "rires": {
+    "0": "NOUN"
+  },
+  "rives": {
+    "0": "NOUN"
+  },
+  "romantisme": {
+    "0": "NOUN"
+  },
+  "rond": {
+    "0": "NOUN"
+  },
+  "roue": {
+    "0": "NOUN"
+  },
+  "rouges": {
+    "0": "ADJ"
+  },
+  "rougit": {
+    "0": "VERB"
+  },
+  "roules": {
+    "0": "VERB"
+  },
+  "route": {
+    "0": "NOUN"
+  },
+  "ruelles": {
+    "0": "NOUN"
+  },
+  "réel": {
+    "0": "ADJ"
+  },
+  "répondent": {
+    "0": "VERB"
+  },
+  "répondrai": {
+    "0": "VERB"
+  },
+  "réponds": {
+    "0": "VERB"
+  },
+  "résister": {
+    "0": "VERB"
+  },
+  "rétine": {
+    "0": "NOUN"
+  },
+  "rétro": {
+    "0": "NOUN"
+  },
+  "réveiller": {
+    "0": "VERB"
+  },
+  "aimantent": {
+    "0": "VERB"
+  },
+  "approche": {
+    "0": "NOUN"
+  },
+  "embrasse": {
+    "0": "VERB"
+  },
+  "embrouillent": {
+    "0": "VERB"
+  },
+  "enfuit": {
+    "0": "VERB"
+  },
+  "retenir": {
+    "0": "VERB"
+  },
+  "retrouve": {
+    "0": "VERB"
+  },
+  "égraine": {
+    "0": "VERB"
+  },
+  "élance": {
+    "0": "VERB"
+  },
+  "épouser": {
+    "0": "VERB"
+  },
+  "étonne": {
+    "0": "VERB"
+  },
+  "évapore": {
+    "0": "VERB"
+  },
+  "sacré": {
+    "0": "ADJ"
+  },
+  "sage": {
+    "0": "ADJ"
+  },
+  "sale": {
+    "0": "ADJ"
+  },
+  "salle": {
+    "0": "NOUN"
+  },
+  "samedi": {
+    "0": "NOUN"
+  },
+  "sang": {
+    "0": "NOUN"
+  },
+  "saurais": {
+    "0": "VERB"
+  },
+  "savent": {
+    "0": "VERB"
+  },
+  "sciant": {
+    "0": "VERB"
+  },
+  "science": {
+    "0": "NOUN"
+  },
+  "secondes": {
+    "0": "NOUN"
+  },
+  "secret": {
+    "0": "ADJ"
+  },
+  "sein": {
+    "0": "NOUN"
+  },
+  "semaine": {
+    "0": "NOUN"
+  },
+  "semble": {
+    "0": "VERB"
+  },
+  "semblent": {
+    "0": "VERB"
+  },
+  "semées": {
+    "0": "NOUN"
+  },
+  "sensation": {
+    "0": "NOUN"
+  },
+  "sensible": {
+    "0": "ADJ"
+  },
+  "sentaient": {
+    "0": "VERB"
+  },
+  "serait": {
+    "0": "VERB"
+  },
+  "sereine": {
+    "0": "ADJ"
+  },
+  "serre": {
+    "0": "VERB"
+  },
+  "sert": {
+    "0": "VERB"
+  },
+  "silencieux": {
+    "0": "ADJ"
+  },
+  "simple": {
+    "0": "ADJ"
+  },
+  "single": {
+    "0": "NOUN"
+  },
+  "sinon": {
+    "0": "ADV"
+  },
+  "soirée": {
+    "0": "NOUN"
+  },
+  "sois": {
+    "0": "VERB"
+  },
+  "soldat": {
+    "0": "NOUN"
+  },
+  "soldes": {
+    "0": "NOUN"
+  },
+  "solides": {
+    "0": "ADJ"
+  },
+  "sonne": {
+    "0": "VERB"
+  },
+  "sors": {
+    "0": "VERB"
+  },
+  "sortes": {
+    "0": "VERB"
+  },
+  "soupirs": {
+    "0": "NOUN"
+  },
+  "source": {
+    "0": "NOUN"
+  },
+  "sourde": {
+    "0": "ADJ"
+  },
+  "souvenir": {
+    "0": "NOUN"
+  },
+  "souvenirs": {
+    "0": "NOUN"
+  },
+  "souviendra": {
+    "0": "VERB"
+  },
+  "spirale": {
+    "0": "NOUN"
+  },
+  "stories": {
+    "0": "NOUN"
+  },
+  "strass": {
+    "0": "NOUN"
+  },
+  "subversif": {
+    "0": "ADJ"
+  },
+  "sucette": {
+    "0": "NOUN"
+  },
+  "sucrée": {
+    "0": "ADJ"
+  },
+  "suffirait": {
+    "0": "VERB"
+  },
+  "supendent": {
+    "0": "VERB"
+  },
+  "superficialité": {
+    "0": "NOUN"
+  },
+  "superficiel": {
+    "0": "ADJ"
+  },
+  "symbiose": {
+    "0": "NOUN"
+  },
+  "séduire": {
+    "0": "VERB"
+  },
+  "séparent": {
+    "0": "VERB"
+  },
+  "séparer": {
+    "0": "VERB"
+  },
+  "sévissent": {
+    "0": "VERB"
+  },
+  "abuses": {
+    "0": "NOUN"
+  },
+  "admirer": {
+    "0": "VERB"
+  },
+  "avait": {
+    "0": "VERB"
+  },
+  "invente": {
+    "0": "VERB"
+  },
+  "étaient": {
+    "0": "VERB"
+  },
+  "évites": {
+    "0": "VERB"
+  },
+  "tandem": {
+    "0": "NOUN"
+  },
+  "technique": {
+    "0": "NOUN"
+  },
+  "teint": {
+    "0": "NOUN"
+  },
+  "tellement": {
+    "0": "ADV"
+  },
+  "tendres": {
+    "0": "ADJ"
+  },
+  "tends": {
+    "0": "VERB"
+  },
+  "tendu": {
+    "0": "VERB"
+  },
+  "tentant": {
+    "0": "ADJ"
+  },
+  "tente": {
+    "0": "VERB"
+  },
+  "tenue": {
+    "0": "NOUN"
+  },
+  "terrasse": {
+    "0": "NOUN"
+  },
+  "thérémine": {
+    "0": "ADJ"
+  },
+  "tombe": {
+    "0": "VERB"
+  },
+  "tombé": {
+    "0": "VERB"
+  },
+  "tombée": {
+    "0": "VERB"
+  },
+  "torpeur": {
+    "0": "NOUN"
+  },
+  "tour": {
+    "0": "NOUN"
+  },
+  "tourment": {
+    "0": "NOUN"
+  },
+  "tourne": {
+    "0": "VERB"
+  },
+  "tram": {
+    "0": "NOUN"
+  },
+  "tremble": {
+    "0": "VERB"
+  },
+  "triste": {
+    "0": "ADJ"
+  },
+  "tristes": {
+    "0": "NOUN"
+  },
+  "tristesse": {
+    "0": "NOUN"
+  },
+  "tristesses": {
+    "0": "NOUN"
+  },
+  "trois": {
+    "0": "NUM"
+  },
+  "trouvent": {
+    "0": "VERB"
+  },
+  "trouvés": {
+    "0": "VERB"
+  },
+  "turquoise": {
+    "0": "ADJ"
+  },
+  "téléphone": {
+    "0": "NOUN"
+  },
+  "usés": {
+    "0": "VERB"
+  },
+  "vacille": {
+    "0": "VERB"
+  },
+  "vague": {
+    "0": "NOUN"
+  },
+  "vain": {
+    "0": "ADJ"
+  },
+  "valse": {
+    "0": "NOUN"
+  },
+  "veille": {
+    "0": "NOUN"
+  },
+  "ventre": {
+    "0": "NOUN"
+  },
+  "verdoyante": {
+    "0": "ADJ"
+  },
+  "verre": {
+    "0": "NOUN"
+  },
+  "verres": {
+    "0": "NOUN"
+  },
+  "versions": {
+    "0": "NOUN"
+  },
+  "veste": {
+    "0": "NOUN"
+  },
+  "veulent": {
+    "0": "VERB"
+  },
+  "vides": {
+    "0": "ADJ"
+  },
+  "viendra": {
+    "0": "VERB"
+  },
+  "viennent": {
+    "0": "VERB"
+  },
+  "vieux": {
+    "0": "ADJ"
+  },
+  "vin": {
+    "0": "NOUN"
+  },
+  "vip": {
+    "0": "NOUN"
+  },
+  "virent": {
+    "0": "VERB"
+  },
+  "virtuel": {
+    "0": "NOUN"
+  },
+  "vite": {
+    "0": "ADV"
+  },
+  "vitesse": {
+    "0": "NOUN"
+  },
+  "vivions": {
+    "0": "VERB"
+  },
+  "voile": {
+    "0": "NOUN"
+  },
+  "voiles": {
+    "0": "NOUN"
+  },
+  "voix": {
+    "0": "NOUN"
+  },
+  "volte": {
+    "0": "NOUN"
+  },
+  "volume": {
+    "0": "NOUN"
+  },
+  "vue": {
+    "0": "VERB"
+  },
+  "échec": {
+    "0": "NOUN"
+  },
+  "échecs": {
+    "0": "NOUN"
+  },
+  "échos": {
+    "0": "NOUN"
+  },
+  "éclabousser": {
+    "0": "VERB"
+  },
+  "écolier": {
+    "0": "NOUN"
+  },
+  "écorchés": {
+    "0": "VERB"
+  },
+  "écoulé": {
+    "0": "VERB"
+  },
+  "écoutent": {
+    "0": "VERB"
+  },
+  "écrite": {
+    "0": "VERB"
+  },
+  "éminence": {
+    "0": "NOUN"
+  },
+  "émotionnels": {
+    "0": "ADJ"
+  },
+  "épaules": {
+    "0": "NOUN"
+  },
+  "éponger": {
+    "0": "VERB"
+  },
+  "éteinte": {
+    "0": "VERB"
+  },
+  "étend": {
+    "0": "VERB"
+  },
+  "étoiles": {
+    "0": "NOUN"
+  },
+  "étourdissante": {
+    "0": "ADJ"
+  },
+  "étés": {
+    "0": "NOUN"
+  },
+  "évite": {
+    "0": "VERB"
+  },
+  "_example_ids": {
+    "la": [
+      "2307519:3",
+      "2873324:4",
+      "3074559:3",
+      "3100061:27",
+      "3293950:27",
+      "3758526:19",
+      "3914077:3",
+      "4565762:5",
+      "4882118:15",
+      "7333830:9"
+    ],
+    "est": [
+      "2849509:6",
+      "2871456:23",
+      "3285585:7",
+      "3910844:1",
+      "3912738:5",
+      "4083905:13",
+      "4414385:4",
+      "4931877:22",
+      "4931886:6",
+      "4931888:7"
+    ],
+    "je": [
+      "2871456:2",
+      "3285585:9",
+      "3486219:35",
+      "3841490:10",
+      "3908643:12",
+      "4294732:5",
+      "4739990:12",
+      "4783721:14",
+      "4931885:38",
+      "4931887:24"
+    ],
+    "le": [
+      "10396391:10",
+      "2284462:3",
+      "2922984:3",
+      "3492914:6",
+      "3790711:1",
+      "3841471:13",
+      "4083905:13",
+      "4086545:11",
+      "4240436:51",
+      "4739991:2"
+    ],
+    "et": [
+      "2849521:9",
+      "3413303:1",
+      "3910811:3",
+      "3912738:14",
+      "4134227:41",
+      "4931884:47",
+      "5187243:8",
+      "7145447:24",
+      "7977788:43",
+      "8705844:6"
+    ],
+    "pas": [
+      "3570505:8",
+      "3590067:18",
+      "3908646:8",
+      "3910844:8",
+      "3911964:16",
+      "478839:17",
+      "4931886:21",
+      "4931888:7",
+      "4931889:8",
+      "5163433:33"
+    ],
+    "de": [
+      "2274575:19",
+      "2316778:3",
+      "2468504:12",
+      "2849509:1",
+      "3271116:1",
+      "3492913:7",
+      "4414385:6",
+      "4695000:18",
+      "4931877:21",
+      "5462359:8"
+    ],
+    "en": [
+      "3285585:7",
+      "3413303:12",
+      "3570505:35",
+      "3590067:19",
+      "3841471:31",
+      "3959326:9",
+      "4086545:17",
+      "478839:6",
+      "4931886:7",
+      "7145447:23"
+    ],
+    "on": [
+      "3492914:21",
+      "3570505:7",
+      "3959326:19",
+      "4695000:15",
+      "4783721:60",
+      "5163433:33",
+      "5187243:4",
+      "5462359:8",
+      "7333830:16",
+      "8705844:4"
+    ],
+    "les": [
+      "10396391:1",
+      "3100061:16",
+      "3275068:16",
+      "3403616:9",
+      "3790711:39",
+      "3908643:11",
+      "3910811:3",
+      "3914077:13",
+      "4565762:13",
+      "4931885:1"
+    ],
+    "que": [
+      "2307519:12",
+      "3074559:3",
+      "3486219:9",
+      "3841471:13",
+      "3841490:15",
+      "4086545:11",
+      "4739991:3",
+      "4824143:2",
+      "4882118:15",
+      "4931887:24"
+    ],
+    "me": [
+      "2274575:11",
+      "3275068:31",
+      "3403616:23",
+      "3590067:19",
+      "3758526:3",
+      "4240436:52",
+      "4739990:21",
+      "4824143:6",
+      "7145447:2",
+      "7977788:7"
+    ],
+    "tu": [
+      "2284462:5",
+      "2849521:12",
+      "3413303:24",
+      "3492913:11",
+      "3908646:11",
+      "3911964:11",
+      "4134227:31",
+      "4294732:3",
+      "4931884:46",
+      "4931889:11"
+    ],
+    "a": [
+      "10396391:29",
+      "3910811:8",
+      "3910844:1",
+      "3911964:5",
+      "3912738:14",
+      "478839:6",
+      "4931877:53",
+      "4931887:43",
+      "4931888:7",
+      "5187243:30"
+    ],
+    "des": [
+      "2316778:2",
+      "2468504:2",
+      "2873324:20",
+      "2922984:10",
+      "3100061:48",
+      "3492914:6",
+      "4695000:3",
+      "4882118:22",
+      "4931884:47",
+      "7333830:10"
+    ],
+    "ai": [
+      "3403616:1",
+      "3486219:9",
+      "3841471:31",
+      "3841490:31",
+      "3908643:11",
+      "3910811:3",
+      "4240436:50",
+      "4824143:12",
+      "4882118:15",
+      "4931885:1"
+    ],
+    "moi": [
+      "2307519:10",
+      "3271116:7",
+      "3293950:5",
+      "3790711:16",
+      "3908643:12",
+      "3908646:12",
+      "4414385:4",
+      "4931885:18",
+      "4931889:12",
+      "8705844:6"
+    ],
+    "te": [
+      "2307519:3",
+      "2849521:15",
+      "3275068:6",
+      "3492913:11",
+      "3758526:3",
+      "3914077:10",
+      "3959326:5",
+      "4134227:13",
+      "4783721:18",
+      "7977788:41"
+    ],
+    "un": [
+      "2849509:28",
+      "2873324:2",
+      "3285585:9",
+      "3293950:25",
+      "4083905:29",
+      "4240436:16",
+      "4739991:15",
+      "4931888:11",
+      "7145447:20",
+      "7977788:32"
+    ],
+    "qui": [
+      "2849521:13",
+      "2871456:2",
+      "3275068:33",
+      "3293950:27",
+      "3758526:3",
+      "3959326:37",
+      "4134227:6",
+      "4739991:10",
+      "4931885:1",
+      "5163433:27"
+    ],
+    "dans": [
+      "10396391:10",
+      "2274575:18",
+      "2284462:17",
+      "2849509:14",
+      "2873324:20",
+      "3100061:33",
+      "3285585:13",
+      "4739990:12",
+      "4739991:10",
+      "5462359:3"
+    ],
+    "l": [
+      "2468504:12",
+      "2922984:3",
+      "3403616:23",
+      "3590067:11",
+      "4086545:9",
+      "4294732:19",
+      "4565762:13",
+      "4783721:31",
+      "5163433:20",
+      "7145447:24"
+    ],
+    "plus": [
+      "2284462:17",
+      "3413303:4",
+      "3492913:13",
+      "3492914:6",
+      "3910844:1",
+      "3911964:20",
+      "3912738:5",
+      "4931884:12",
+      "4931887:31",
+      "7333830:16"
+    ],
+    "toi": [
+      "2274575:6",
+      "3486219:31",
+      "3570505:25",
+      "3908646:8",
+      "4414385:14",
+      "4931877:3",
+      "4931886:6",
+      "4931889:8",
+      "5462359:56",
+      "7977788:20"
+    ],
+    "ne": [
+      "10396391:1",
+      "3074559:15",
+      "3100061:15",
+      "3486219:31",
+      "3911964:11",
+      "4086545:17",
+      "4565762:15",
+      "4882118:4",
+      "5187243:5",
+      "8705844:5"
+    ],
+    "se": [
+      "2284462:8",
+      "2316778:1",
+      "2922984:3",
+      "3074559:10",
+      "3413303:4",
+      "3841490:10",
+      "4134227:41",
+      "4695000:3",
+      "4783721:31",
+      "4931887:9"
+    ],
+    "elle": [
+      "2468504:6",
+      "3100061:27",
+      "3403616:23",
+      "3841490:10",
+      "3908646:11",
+      "3910844:15",
+      "478839:6",
+      "4931887:10",
+      "4931889:11",
+      "7333830:8"
+    ],
+    "bien": [
+      "2849521:10",
+      "2871456:11",
+      "3403616:16",
+      "3790711:15",
+      "3841471:37",
+      "3908646:12",
+      "3910811:2",
+      "3914077:25",
+      "4931889:12",
+      "8705844:6"
+    ],
+    "danse": [
+      "3293950:21",
+      "3492914:8",
+      "4134227:27",
+      "4882118:54",
+      "7977788:18"
+    ],
+    "au": [
+      "2307519:16",
+      "2316778:6",
+      "2873324:4",
+      "3275068:15",
+      "3403616:23",
+      "3413303:21",
+      "3758526:12",
+      "478839:12",
+      "4931884:12",
+      "4931886:46"
+    ],
+    "pour": [
+      "2316778:2",
+      "3492913:11",
+      "3590067:30",
+      "3790711:8",
+      "3908643:11",
+      "3912738:2",
+      "4240436:15",
+      "4739990:11",
+      "4931877:54",
+      "4931888:7"
+    ],
+    "une": [
+      "2316778:2",
+      "3492913:13",
+      "3492914:27",
+      "3570505:1",
+      "3908643:1",
+      "3914077:13",
+      "4083905:6",
+      "5163433:3",
+      "5187243:18",
+      "8705844:10"
+    ],
+    "si": [
+      "2849509:6",
+      "3100061:24",
+      "3570505:35",
+      "3841471:18",
+      "3910844:8",
+      "3914077:6",
+      "3959326:19",
+      "4083905:29",
+      "4565762:5",
+      "4931886:46"
+    ],
+    "tout": [
+      "3074559:10",
+      "3590067:31",
+      "3790711:1",
+      "3911964:5",
+      "4086545:17",
+      "4294732:5",
+      "4695000:13",
+      "4931888:7",
+      "5163433:36",
+      "5462359:8"
+    ],
+    "mais": [
+      "2849521:28",
+      "3271116:5",
+      "3908646:11",
+      "4083905:27",
+      "4294732:21",
+      "478839:12",
+      "4931887:9",
+      "4931889:11",
+      "5187243:35",
+      "7145447:23"
+    ],
+    "na": [
+      "2873324:12",
+      "4882118:20"
+    ],
+    "ce": [
+      "2307519:16",
+      "3271116:4",
+      "3285585:10",
+      "3910811:1",
+      "3912738:10",
+      "4414385:4",
+      "4783721:73",
+      "4931877:26",
+      "4931884:10",
+      "4931885:15"
+    ],
+    "belle": [
+      "3074559:3",
+      "3403616:14",
+      "3492914:31",
+      "3841490:9",
+      "3914077:13",
+      "4294732:15",
+      "4931884:47"
+    ],
+    "oh": [
+      "10396391:9",
+      "3100061:70",
+      "3841471:38",
+      "3841490:22",
+      "3908643:36",
+      "3910811:2",
+      "4134227:47",
+      "4414385:43",
+      "4931885:11",
+      "7333830:11"
+    ],
+    "t": [
+      "2284462:10",
+      "2307519:3",
+      "2871456:15",
+      "2873324:4",
+      "3959326:9",
+      "4565762:4",
+      "4739991:6",
+      "4783721:60",
+      "5462359:3",
+      "7333830:10"
+    ],
+    "vie": [
+      "3074559:3",
+      "3293950:26",
+      "4240436:41",
+      "4294732:15",
+      "4414385:23",
+      "4695000:19",
+      "4882118:7",
+      "5462359:38",
+      "7977788:14"
+    ],
+    "veux": [
+      "2849521:15",
+      "3486219:35",
+      "3911964:2",
+      "3912738:2",
+      "4783721:21",
+      "4882118:38",
+      "4931884:10",
+      "4931886:7",
+      "4931888:19",
+      "8705844:6"
+    ],
+    "sur": [
+      "2274575:12",
+      "3413303:45",
+      "3492913:13",
+      "3758526:5",
+      "4695000:18",
+      "4739991:15",
+      "5163433:5",
+      "5187243:4",
+      "7145447:17",
+      "8705844:4"
+    ],
+    "ah": [
+      "2922984:29",
+      "3275068:11",
+      "3293950:10",
+      "4695000:32"
+    ],
+    "ton": [
+      "10396391:30",
+      "2274575:12",
+      "2871456:3",
+      "2922984:5",
+      "3413303:21",
+      "3492914:29",
+      "3590067:7",
+      "3790711:26",
+      "4134227:41",
+      "4739991:14"
+    ],
+    "mes": [
+      "2307519:31",
+      "3590067:11",
+      "3841471:6",
+      "3911964:11",
+      "3914077:12",
+      "3959326:3",
+      "4083905:7",
+      "4240436:43",
+      "4414385:12",
+      "4739990:11"
+    ],
+    "va": [
+      "3413303:25",
+      "3790711:16",
+      "3841471:18",
+      "3959326:9",
+      "4240436:41",
+      "4565762:34",
+      "4783721:43",
+      "4931877:26",
+      "5163433:36",
+      "7145447:20"
+    ],
+    "il": [
+      "2284462:4",
+      "2307519:16",
+      "2871456:15",
+      "3293950:16",
+      "3790711:1",
+      "3914077:3",
+      "4565762:32",
+      "4931887:9",
+      "4931889:4",
+      "7977788:15"
+    ],
+    "pleurer": [
+      "3403616:9",
+      "3910811:8"
+    ],
+    "ta": [
+      "2307519:12",
+      "2871456:20",
+      "2873324:5",
+      "3275068:29",
+      "3486219:6",
+      "3492913:7",
+      "3570505:16",
+      "3590067:3",
+      "4086545:2",
+      "5462359:22"
+    ],
+    "fait": [
+      "2274575:11",
+      "2284462:4",
+      "2849521:1",
+      "3275068:6",
+      "3285585:10",
+      "478839:6",
+      "4824143:12",
+      "4931887:24",
+      "5187243:19",
+      "8705844:11"
+    ],
+    "tes": [
+      "2274575:11",
+      "2849509:1",
+      "2871456:2",
+      "3100061:32",
+      "3486219:35",
+      "3841490:14",
+      "3911964:30",
+      "4931884:23",
+      "7145447:17",
+      "7333830:9"
+    ],
+    "avec": [
+      "2849509:28",
+      "3492913:13",
+      "3908643:12",
+      "4083905:16",
+      "4086545:11",
+      "478839:15",
+      "4931886:24",
+      "5187243:4",
+      "7333830:15",
+      "7977788:20"
+    ],
+    "du": [
+      "10396391:16",
+      "2849509:17",
+      "3908646:4",
+      "4086545:3",
+      "4565762:5",
+      "4739991:2",
+      "4931877:53",
+      "4931885:4",
+      "4931888:8",
+      "4931889:4"
+    ],
+    "encore": [
+      "10396391:18",
+      "2284462:5",
+      "2307519:32",
+      "3492913:11",
+      "3570505:3",
+      "3908646:22",
+      "4134227:41",
+      "4931886:43",
+      "4931889:18",
+      "5462359:38"
+    ],
+    "ya": [
+      "2274575:28"
+    ],
+    "nous": [
+      "2284462:8",
+      "2873324:18",
+      "3100061:15",
+      "3492914:22",
+      "3758526:21",
+      "3911964:5",
+      "4739991:7",
+      "4931877:4",
+      "5462359:8",
+      "7977788:46"
+    ],
+    "mojo": [
+      "3959326:9"
+    ],
+    "m": [
+      "2849509:26",
+      "3271116:7",
+      "3758526:3",
+      "3790711:8",
+      "3908643:12",
+      "3910844:8",
+      "3914077:6",
+      "4824143:12",
+      "4931887:24",
+      "4931888:21"
+    ],
+    "tre": [
+      "2316778:10",
+      "2849521:25",
+      "3486219:20",
+      "3570505:3",
+      "3590067:18",
+      "3908646:11",
+      "3912738:5",
+      "478839:12",
+      "4931889:11",
+      "5163433:36"
+    ],
+    "rien": [
+      "2871456:13",
+      "3413303:1",
+      "3841471:13",
+      "4086545:17",
+      "4240436:24",
+      "4565762:11",
+      "4783721:75",
+      "4931885:4",
+      "4931887:24",
+      "7145447:4"
+    ],
+    "faire": [
+      "3100061:11",
+      "3413303:41",
+      "3910844:4",
+      "3914077:10",
+      "4083905:6",
+      "4240436:3",
+      "4565762:13",
+      "4931884:6",
+      "4931887:6",
+      "7145447:24"
+    ],
+    "r": [
+      "2873324:17",
+      "2922984:1",
+      "3293950:27",
+      "3841490:15",
+      "3908646:4",
+      "3910811:4",
+      "4083905:11",
+      "4086545:11",
+      "4931887:7",
+      "5462359:17"
+    ],
+    "viens": [
+      "3492913:27",
+      "3590067:20",
+      "4414385:14",
+      "4783721:41",
+      "7977788:19"
+    ],
+    "mon": [
+      "3285585:10",
+      "3293950:14",
+      "3492914:20",
+      "3758526:8",
+      "3910811:11",
+      "4414385:6",
+      "4695000:3",
+      "4739990:7",
+      "4931886:24",
+      "4931888:19"
+    ],
+    "re": [
+      "10396391:9",
+      "2274575:22",
+      "2468504:5",
+      "3275068:33",
+      "3486219:21",
+      "4824143:2",
+      "4882118:31",
+      "4931877:54",
+      "4931885:20",
+      "5163433:14"
+    ],
+    "s": [
+      "3293950:14",
+      "3790711:32",
+      "3910811:11",
+      "3910844:16",
+      "3911964:9",
+      "3912738:14",
+      "3914077:12",
+      "4240436:15",
+      "4294732:22",
+      "478839:6"
+    ],
+    "temps": [
+      "2284462:3",
+      "2871456:19",
+      "3275068:30",
+      "3285585:32",
+      "3492914:4",
+      "3570505:8",
+      "3790711:5",
+      "3959326:5",
+      "4739990:1",
+      "4739991:7"
+    ],
+    "sais": [
+      "2849509:6",
+      "2849521:17",
+      "3911964:11",
+      "4294732:5",
+      "4824143:17",
+      "4882118:54",
+      "4931886:6",
+      "5163433:22",
+      "5187243:15",
+      "8705844:7"
+    ],
+    "quand": [
+      "2849521:3",
+      "3100061:33",
+      "3285585:31",
+      "3841490:14",
+      "3910844:15",
+      "4134227:42",
+      "4931884:47",
+      "4931886:9",
+      "7145447:23",
+      "7333830:8"
+    ],
+    "dit": [
+      "2284462:1",
+      "3074559:3",
+      "3285585:32",
+      "3841490:9",
+      "3910844:15",
+      "4240436:24",
+      "4783721:39",
+      "4931885:2",
+      "7333830:16"
+    ],
+    "loin": [
+      "2873324:20",
+      "4134227:17",
+      "4882118:22",
+      "4931877:4",
+      "5187243:20",
+      "8705844:12"
+    ],
+    "yeux": [
+      "3100061:24",
+      "3486219:35",
+      "3758526:1",
+      "3910811:3",
+      "3911964:11",
+      "3959326:2",
+      "4134227:6",
+      "4414385:12",
+      "4783721:14",
+      "4931885:5"
+    ],
+    "deux": [
+      "2274575:15",
+      "2873324:20",
+      "3100061:24",
+      "3413303:5",
+      "3486219:4",
+      "3959326:37",
+      "4931886:41",
+      "5187243:19",
+      "8705844:11"
+    ],
+    "ou": [
+      "2871456:15",
+      "2873324:12",
+      "3841471:19",
+      "3910811:3",
+      "4414385:20",
+      "4565762:13",
+      "478839:5",
+      "4882118:36",
+      "4931884:15",
+      "4931886:12"
+    ],
+    "suis": [
+      "2274575:6",
+      "3285585:32",
+      "3914077:2",
+      "4240436:52",
+      "4414385:7",
+      "4739990:12",
+      "4739991:4",
+      "4882118:53",
+      "4931884:47",
+      "4931886:5"
+    ],
+    "c": [
+      "2274575:15",
+      "2873324:4",
+      "3590067:16",
+      "4083905:24",
+      "4294732:19",
+      "4695000:4",
+      "4739990:7",
+      "478839:12",
+      "5462359:57",
+      "7145447:27"
+    ],
+    "nos": [
+      "2274575:15",
+      "2284462:1",
+      "2849521:3",
+      "3486219:34",
+      "3590067:18",
+      "3841490:14",
+      "3911964:16",
+      "5187243:5",
+      "5462359:52",
+      "8705844:5"
+    ],
+    "trop": [
+      "3275068:17",
+      "3285585:7",
+      "3758526:19",
+      "3910844:14",
+      "3912738:9",
+      "4931885:34",
+      "4931887:20",
+      "4931888:19",
+      "5163433:33",
+      "7977788:47"
+    ],
+    "quoi": [
+      "3790711:7",
+      "3914077:15",
+      "4294732:19",
+      "4882118:33",
+      "4931885:36",
+      "4931888:7",
+      "5187243:30",
+      "7145447:10",
+      "7977788:4"
+    ],
+    "jamais": [
+      "2274575:27",
+      "3100061:24",
+      "3413303:1",
+      "3570505:3",
+      "4739991:4",
+      "4931887:38",
+      "5187243:8",
+      "7145447:9",
+      "7333830:15",
+      "8705844:13"
+    ],
+    "o": [
+      "10396391:18",
+      "2922984:3",
+      "3403616:23",
+      "3959326:7",
+      "4739991:6",
+      "4783721:60",
+      "4931877:4"
+    ],
+    "y": [
+      "2871456:23",
+      "3413303:21",
+      "3570505:23",
+      "3914077:25",
+      "4086545:20",
+      "4565762:4",
+      "4739991:16",
+      "4931887:20",
+      "5163433:28",
+      "7145447:1"
+    ],
+    "hmm": [
+      "3914077:10"
+    ],
+    "l'": [
+      "3100061:7",
+      "3413303:3",
+      "4086545:10",
+      "4739990:21",
+      "4931887:9",
+      "5187243:20",
+      "8705844:12"
+    ],
+    "peut": [
+      "2316778:10",
+      "3074559:16",
+      "3486219:20",
+      "3570505:3",
+      "3590067:18",
+      "3841471:19",
+      "3908646:11",
+      "4565762:11",
+      "4931884:12",
+      "4931889:11"
+    ],
+    "ciel": [
+      "3403616:23",
+      "3758526:8",
+      "3908643:6",
+      "4294732:3",
+      "4739990:2",
+      "4739991:2",
+      "5163433:7",
+      "7977788:47"
+    ],
+    "gens": [
+      "2307519:19",
+      "2871456:20",
+      "3492913:5",
+      "3790711:39",
+      "3841471:12",
+      "3914077:13",
+      "4882118:22",
+      "4931877:26"
+    ],
+    "mal": [
+      "2849521:10",
+      "3413303:7",
+      "3910844:3",
+      "3914077:6",
+      "4414385:2",
+      "4739991:14",
+      "4931885:38",
+      "4931886:11",
+      "7145447:24"
+    ],
+    "non": [
+      "3403616:12",
+      "3910811:2",
+      "4931884:15"
+    ],
+    "par": [
+      "10396391:7",
+      "2274575:17",
+      "2307519:19",
+      "3570505:8",
+      "3590067:8",
+      "3910811:3",
+      "4134227:23",
+      "4565762:48",
+      "5163433:6",
+      "5462359:55"
+    ],
+    "filme": [
+      "3275068:9"
+    ],
+    "ons": [
+      "3100061:48",
+      "3403616:9",
+      "5462359:14"
+    ],
+    "oui": [
+      "3910811:19",
+      "4931884:15",
+      "7977788:22"
+    ],
+    "bon": [
+      "3271116:8",
+      "3790711:9",
+      "3910811:17",
+      "4414385:20",
+      "4739990:1",
+      "7333830:15"
+    ],
+    "défait": [
+      "4565762:19"
+    ],
+    "jour": [
+      "3486219:20",
+      "3492913:13",
+      "3908646:11",
+      "4783721:31",
+      "4931885:9",
+      "4931888:11",
+      "4931889:11"
+    ],
+    "tous": [
+      "10396391:15",
+      "2849509:1",
+      "2871456:11",
+      "3570505:8",
+      "3841471:33",
+      "3908646:4",
+      "4083905:24",
+      "4783721:43",
+      "4931889:4",
+      "5462359:9"
+    ],
+    "vous": [
+      "2284462:19",
+      "2316778:9",
+      "2922984:1",
+      "3271116:1",
+      "3413303:1",
+      "4083905:13"
+    ],
+    "corps": [
+      "2307519:16",
+      "3590067:7",
+      "4294732:16",
+      "4695000:3",
+      "4931885:12",
+      "5187243:19",
+      "8705844:11"
+    ],
+    "lui": [
+      "2284462:19",
+      "2316778:7",
+      "3074559:3",
+      "3403616:14",
+      "3841490:5",
+      "3908646:11",
+      "3912738:1",
+      "4783721:73",
+      "4931889:11",
+      "7977788:45"
+    ],
+    "seule": [
+      "10396391:16",
+      "2468504:6",
+      "3841490:30",
+      "478839:5",
+      "4882118:38",
+      "4931886:5",
+      "7977788:8"
+    ],
+    "tant": [
+      "3959326:1",
+      "4739991:14",
+      "4882118:53",
+      "4931887:40",
+      "5187243:18",
+      "8705844:10"
+    ],
+    "comme": [
+      "2871456:3",
+      "3275068:20",
+      "3570505:23",
+      "3590067:19",
+      "3959326:3",
+      "4739990:8",
+      "4931885:12",
+      "4931887:6",
+      "5187243:30",
+      "7333830:19"
+    ],
+    "déj": [
+      "4240436:45",
+      "4931885:5",
+      "4931886:22",
+      "4931888:12",
+      "5187243:15",
+      "5462359:7",
+      "8705844:7"
+    ],
+    "gar": [
+      "3100061:48",
+      "3403616:9",
+      "7977788:45"
+    ],
+    "part": [
+      "2274575:11",
+      "4240436:3",
+      "4565762:47",
+      "4882118:16",
+      "7145447:27"
+    ],
+    "sans": [
+      "2871456:10",
+      "3486219:6",
+      "3790711:28",
+      "3912738:1",
+      "4134227:9",
+      "4931877:21",
+      "4931886:8"
+    ],
+    "fais": [
+      "2849509:4",
+      "3100061:4",
+      "3275068:19",
+      "3758526:19",
+      "3790711:30",
+      "4882118:4",
+      "5462359:17",
+      "7145447:10"
+    ],
+    "laisse": [
+      "2849521:13",
+      "3100061:11",
+      "3271116:7",
+      "3275068:15",
+      "3285585:11",
+      "4882118:8",
+      "7977788:20"
+    ],
+    "peine": [
+      "3293950:1",
+      "3413303:12",
+      "4565762:15",
+      "4783721:75",
+      "478839:11",
+      "4882118:2",
+      "5163433:28"
+    ],
+    "reste": [
+      "2849521:13",
+      "3908643:12",
+      "4294732:15",
+      "4882118:33",
+      "5187243:18",
+      "5462359:22",
+      "8705844:10"
+    ],
+    "ma": [
+      "3492914:3",
+      "3590067:4",
+      "4086545:9",
+      "4240436:41",
+      "4294732:5",
+      "4931877:24",
+      "4931886:3"
+    ],
+    "nudes": [
+      "4695000:15"
+    ],
+    "pourtant": [
+      "2284462:5",
+      "3413303:7",
+      "4739991:4",
+      "4931887:39",
+      "5187243:4",
+      "8705844:4"
+    ],
+    "seulement": [
+      "3486219:3",
+      "3790711:1",
+      "3841471:19",
+      "3841490:31",
+      "4414385:7",
+      "4931885:3"
+    ],
+    "soir": [
+      "10396391:18",
+      "2316778:5",
+      "2849521:14",
+      "3590067:19",
+      "4414385:3",
+      "4931885:15",
+      "4931888:19",
+      "7977788:1"
+    ],
+    "ur": [
+      "2873324:4",
+      "3100061:27",
+      "3590067:16",
+      "3959326:6",
+      "4083905:24",
+      "4134227:41",
+      "4695000:4",
+      "4739990:7",
+      "4931886:24",
+      "7145447:27"
+    ],
+    "voir": [
+      "2307519:19",
+      "2849521:13",
+      "3100061:27",
+      "3413303:22",
+      "3492913:27",
+      "4931877:22",
+      "4931886:21"
+    ],
+    "aux": [
+      "2873324:22",
+      "2922984:1",
+      "3074559:2",
+      "3100061:4",
+      "3908646:12",
+      "4931889:12",
+      "5462359:57"
+    ],
+    "était": [
+      "2284462:17",
+      "3285585:10",
+      "3910811:2",
+      "4240436:23",
+      "4783721:36",
+      "478839:12",
+      "4931884:22",
+      "4931885:20"
+    ],
+    "grand": [
+      "2284462:1",
+      "2849521:14",
+      "2871456:12",
+      "3841490:4",
+      "4240436:23",
+      "4739990:7",
+      "4783721:18"
+    ],
+    "vais": [
+      "3570505:16",
+      "4931877:19",
+      "4931884:20",
+      "4931886:26",
+      "7977788:7"
+    ],
+    "perdus": [
+      "4931877:10"
+    ],
+    "sont": [
+      "3100061:48",
+      "3293950:1",
+      "3590067:11",
+      "3908643:6",
+      "3911964:28",
+      "3914077:12"
+    ],
+    "arr": [
+      "2871456:23",
+      "3100061:16",
+      "3275068:30",
+      "3413303:1",
+      "3959326:5",
+      "4931887:40",
+      "7977788:41"
+    ],
+    "fond": [
+      "3293950:14",
+      "3570505:22",
+      "3790711:29",
+      "3914077:6",
+      "478839:12",
+      "4931886:46",
+      "5163433:8",
+      "7145447:20"
+    ],
+    "peu": [
+      "2849509:28",
+      "3100061:49",
+      "3275068:3",
+      "3293950:25",
+      "3413303:42",
+      "3841471:23",
+      "4083905:25",
+      "4739991:7",
+      "5163433:33",
+      "7977788:47"
+    ],
+    "pense": [
+      "4931885:34",
+      "4931886:6",
+      "4931887:15"
+    ],
+    "endroit": [
+      "2849509:17",
+      "4565762:18"
+    ],
+    "d": [
+      "2307519:10",
+      "3293950:2",
+      "3570505:21",
+      "3910811:11",
+      "3959326:2",
+      "4294732:16",
+      "4565762:13",
+      "4739991:15",
+      "478839:12"
+    ],
+    "entre": [
+      "3100061:55",
+      "3492914:14",
+      "3590067:21",
+      "3758526:17",
+      "3841490:5",
+      "4134227:8",
+      "4565762:13",
+      "478839:11"
+    ],
+    "jalousie": [
+      "3841490:9"
+    ],
+    "nuit": [
+      "2284462:17",
+      "3271116:1",
+      "3910811:3",
+      "4783721:36",
+      "4824143:2",
+      "4931885:1",
+      "7977788:32"
+    ],
+    "peur": [
+      "3841471:17",
+      "3841490:31",
+      "4931886:23",
+      "4931887:2"
+    ],
+    "pis": [
+      "3959326:1",
+      "4882118:53"
+    ],
+    "sous": [
+      "2849521:12",
+      "3100061:28",
+      "3271116:2",
+      "3413303:2",
+      "3758526:11",
+      "3908643:6",
+      "4739991:7",
+      "5163433:19"
+    ],
+    "vers": [
+      "2468504:2",
+      "2849521:14",
+      "3758526:8",
+      "4414385:14"
+    ],
+    "ves": [
+      "2922984:1",
+      "4931884:23",
+      "5462359:17"
+    ],
+    "autres": [
+      "10396391:4",
+      "2871456:5",
+      "3100061:48",
+      "3293950:28",
+      "3908646:22",
+      "4739991:14",
+      "4783721:40",
+      "4931877:26",
+      "4931889:18"
+    ],
+    "sens": [
+      "10396391:33",
+      "2849521:10",
+      "3100061:16",
+      "3841471:23",
+      "4931887:51"
+    ],
+    "vois": [
+      "2284462:20",
+      "3275068:31",
+      "3492913:11",
+      "4294732:9",
+      "4414385:10",
+      "4931885:12",
+      "4931886:9"
+    ],
+    "aller": [
+      "3100061:69",
+      "3910844:6",
+      "3914077:10",
+      "4783721:8",
+      "7977788:20"
+    ],
+    "aime": [
+      "2284462:19",
+      "3590067:13",
+      "3790711:15",
+      "4882118:22",
+      "5163433:12"
+    ],
+    "aimer": [
+      "3910844:4",
+      "4931877:54",
+      "4931884:14",
+      "4931886:11",
+      "4931888:11"
+    ],
+    "ais": [
+      "2316778:12"
+    ],
+    "brille": [
+      "3403616:23",
+      "3492914:17"
+    ],
+    "ceux": [
+      "3293950:27",
+      "3911964:28",
+      "4931886:44"
+    ],
+    "dessine": [
+      "2307519:3"
+    ],
+    "enfer": [
+      "3570505:16",
+      "3841471:31"
+    ],
+    "fran": [
+      "2316778:12"
+    ],
+    "juste": [
+      "2849521:4",
+      "2871456:14",
+      "3100061:69",
+      "3492913:19",
+      "4882118:36",
+      "4931886:3",
+      "5163433:9",
+      "5462359:4"
+    ],
+    "pin": [
+      "2307519:2"
+    ],
+    "prouver": [
+      "4240436:2"
+    ],
+    "puis": [
+      "3285585:7",
+      "3293950:21",
+      "3413303:45",
+      "3790711:9",
+      "3910844:3",
+      "4783721:45",
+      "7977788:18"
+    ],
+    "son": [
+      "2316778:3",
+      "2468504:8",
+      "3285585:9",
+      "3486219:11",
+      "3492914:31",
+      "3912738:1",
+      "4134227:12",
+      "7333830:17"
+    ],
+    "sortir": [
+      "2316778:5",
+      "3908643:11",
+      "4824143:5",
+      "7977788:8"
+    ],
+    "ve": [
+      "2873324:5",
+      "2922984:3",
+      "3910811:4",
+      "4134227:41",
+      "4783721:31",
+      "4931887:7",
+      "7145447:22"
+    ],
+    "regarde": [
+      "3492913:27",
+      "3910844:15",
+      "4414385:10",
+      "4783721:13",
+      "4931884:9"
+    ],
+    "oseille": [
+      "4240436:9"
+    ],
+    "monde": [
+      "2849521:22",
+      "3790711:1",
+      "3841471:13",
+      "3912738:14",
+      "4240436:24",
+      "4882118:14",
+      "7977788:43"
+    ],
+    "es": [
+      "3790711:26",
+      "3914077:13",
+      "4294732:2",
+      "4739991:11",
+      "4783721:22",
+      "4882118:36",
+      "5462359:38"
+    ],
+    "car": [
+      "10396391:34",
+      "3413303:4",
+      "3486219:35",
+      "3590067:34",
+      "3841490:6",
+      "3910844:8",
+      "3911964:2",
+      "4931887:22",
+      "4931888:7"
+    ],
+    "compliqué": [
+      "2849509:6",
+      "3912738:5",
+      "4565762:11",
+      "7333830:14"
+    ],
+    "ni": [
+      "4931877:4",
+      "4931885:1"
+    ],
+    "qu": [
+      "2307519:16",
+      "3293950:16",
+      "4294732:9",
+      "4565762:27",
+      "478839:6",
+      "5462359:7"
+    ],
+    "seul": [
+      "10396391:32",
+      "2871456:3",
+      "3790711:26",
+      "3841471:23",
+      "4086545:20",
+      "4134227:20"
+    ],
+    "tue": [
+      "3413303:38",
+      "4931877:15",
+      "4931887:18"
+    ],
+    "té": [
+      "2871456:23",
+      "3959326:36",
+      "4414385:13"
+    ],
+    "mens": [
+      "3486219:12",
+      "3570505:16",
+      "4931884:46"
+    ],
+    "avoir": [
+      "2849509:14",
+      "3100061:33",
+      "3271116:7",
+      "3275068:2",
+      "3486219:22",
+      "4931877:19"
+    ],
+    "as": [
+      "3486219:9",
+      "3841471:13",
+      "3914077:6",
+      "4134227:57",
+      "4931884:28",
+      "4931888:19",
+      "5187243:6",
+      "5462359:42",
+      "8705844:6"
+    ],
+    "chaque": [
+      "3403616:23",
+      "4294732:7",
+      "4783721:61",
+      "4882118:57",
+      "4931886:5"
+    ],
+    "d'": [
+      "2873324:5",
+      "3911964:17",
+      "3912738:5",
+      "4134227:29",
+      "4931886:40"
+    ],
+    "dire": [
+      "2316778:6",
+      "3403616:12",
+      "3492913:19",
+      "4931884:25",
+      "7145447:4",
+      "7977788:45"
+    ],
+    "face": [
+      "2849509:2",
+      "3590067:27",
+      "3910811:11",
+      "5462359:53",
+      "7145447:1"
+    ],
+    "heures": [
+      "3293950:6",
+      "3910811:18",
+      "4931885:4",
+      "7333830:10"
+    ],
+    "insomnie": [
+      "3293950:18",
+      "4931885:11"
+    ],
+    "mélange": [
+      "4134227:41",
+      "5462359:11"
+    ],
+    "notre": [
+      "2274575:22",
+      "4931877:14",
+      "5187243:8",
+      "8705844:13"
+    ],
+    "ouh": [
+      "3911964:16",
+      "4695000:31"
+    ],
+    "préf": [
+      "3486219:21",
+      "4414385:21",
+      "4783721:8",
+      "4824143:4",
+      "4931887:20",
+      "7145447:2"
+    ],
+    "tranquille": [
+      "3908643:15",
+      "4565762:18",
+      "7977788:12"
+    ],
+    "ont": [
+      "2873324:23",
+      "3293950:27",
+      "3841471:6",
+      "3959326:2",
+      "4240436:16",
+      "5187243:25"
+    ],
+    "dors": [
+      "3293950:10",
+      "7145447:27"
+    ],
+    "pla": [
+      "3908646:8",
+      "3911964:16",
+      "4931889:8",
+      "7145447:17"
+    ],
+    "balance": [
+      "3914077:5"
+    ],
+    "brésil": [
+      "3492913:12"
+    ],
+    "cette": [
+      "2274575:16",
+      "3403616:4",
+      "4134227:31",
+      "4414385:23",
+      "4931885:4",
+      "5187243:4",
+      "8705844:4"
+    ],
+    "che": [
+      "3590067:6",
+      "4086545:9",
+      "4931887:10"
+    ],
+    "fois": [
+      "4134227:31",
+      "4240436:50",
+      "4294732:18",
+      "4783721:75",
+      "4931877:54",
+      "4931885:20",
+      "4931886:5"
+    ],
+    "heureux": [
+      "3910844:11",
+      "3911964:5",
+      "3912738:5"
+    ],
+    "hey": [
+      "3100061:1",
+      "3590067:44",
+      "4565762:25",
+      "5187243:2",
+      "8705844:2"
+    ],
+    "aimerais": [
+      "3275068:30",
+      "4931886:11",
+      "4931887:40"
+    ],
+    "joues": [
+      "3492914:17",
+      "4414385:13"
+    ],
+    "love": [
+      "3100061:30",
+      "4931888:8"
+    ],
+    "mode": [
+      "3912738:5",
+      "3914077:3"
+    ],
+    "musique": [
+      "3100061:16",
+      "3590067:31",
+      "4083905:25",
+      "4931885:4",
+      "7977788:17"
+    ],
+    "photo": [
+      "10396391:2",
+      "3486219:3",
+      "3790711:6",
+      "4414385:6"
+    ],
+    "probl": [
+      "3914077:15",
+      "4083905:15",
+      "4882118:19"
+    ],
+    "recto": [
+      "2849509:2"
+    ],
+    "rose": [
+      "4414385:13",
+      "5163433:7"
+    ],
+    "septi": [
+      "3403616:23",
+      "3758526:3"
+    ],
+    "ses": [
+      "3285585:1",
+      "3413303:2",
+      "3908646:4",
+      "4134227:8",
+      "4783721:14",
+      "4931885:8"
+    ],
+    "soleil": [
+      "2922984:3",
+      "3492914:17",
+      "3758526:13"
+    ],
+    "souvent": [
+      "2307519:3",
+      "3413303:2",
+      "4414385:9",
+      "4931887:22"
+    ],
+    "verra": [
+      "3486219:20",
+      "3841471:17",
+      "3908646:11",
+      "4931889:11"
+    ],
+    "verso": [
+      "2849509:2"
+    ],
+    "voit": [
+      "2849521:22",
+      "3100061:15",
+      "3841490:10",
+      "4565762:33"
+    ],
+    "dis": [
+      "3570505:7",
+      "3758526:14",
+      "4931884:10",
+      "4931885:18",
+      "7145447:10",
+      "7333830:8"
+    ],
+    "faut": [
+      "2849509:5",
+      "3914077:2",
+      "4882118:8",
+      "4931884:25",
+      "7145447:18",
+      "7977788:15"
+    ],
+    "fa": [
+      "3590067:8",
+      "3908643:11",
+      "3910844:15"
+    ],
+    "voulais": [
+      "2871456:14",
+      "3911964:30",
+      "4931884:16",
+      "4931886:21",
+      "5462359:4"
+    ],
+    "bleu": [
+      "4739990:2"
+    ],
+    "bonheur": [
+      "2284462:10",
+      "3912738:2",
+      "478839:11"
+    ],
+    "cauchemar": [
+      "3910811:1",
+      "4824143:12",
+      "4931887:15"
+    ],
+    "chanson": [
+      "2316778:12"
+    ],
+    "cherche": [
+      "4565762:18"
+    ],
+    "crois": [
+      "3841490:10",
+      "3908646:12",
+      "3910811:16",
+      "4931889:12"
+    ],
+    "envie": [
+      "3271116:5",
+      "3492914:27",
+      "3570505:1",
+      "3590067:22",
+      "3910844:14",
+      "3911964:17",
+      "4294732:19",
+      "5462359:42"
+    ],
+    "envoie": [
+      "4695000:15"
+    ],
+    "f": [
+      "3413303:4",
+      "4882118:4",
+      "5187243:8",
+      "8705844:25"
+    ],
+    "failles": [
+      "4824143:7"
+    ],
+    "fessée": [
+      "4083905:37"
+    ],
+    "flemme": [
+      "3908643:12"
+    ],
+    "histoire": [
+      "2873324:17",
+      "5187243:8",
+      "8705844:13"
+    ],
+    "autre": [
+      "2849521:24",
+      "3413303:24",
+      "4783721:39",
+      "4931877:4"
+    ],
+    "laissez": [
+      "2316778:3",
+      "3908643:15",
+      "4882118:31"
+    ],
+    "aimais": [
+      "2284462:5"
+    ],
+    "main": [
+      "2284462:10",
+      "4240436:16",
+      "4931888:12"
+    ],
+    "matin": [
+      "3910811:19",
+      "4134227:21",
+      "4240436:48",
+      "4783721:20",
+      "4931885:4"
+    ],
+    "noir": [
+      "3271116:6",
+      "4414385:12",
+      "4824143:4"
+    ],
+    "nombreux": [
+      "3911964:28"
+    ],
+    "nue": [
+      "4414385:14"
+    ],
+    "parler": [
+      "2871456:5",
+      "3100061:11",
+      "3590067:5",
+      "3790711:16",
+      "4931887:43",
+      "7977788:26"
+    ],
+    "quelqu'un": [
+      "2284462:5",
+      "7977788:26"
+    ],
+    "regardes": [
+      "4931886:1"
+    ],
+    "rendez": [
+      "2922984:1",
+      "3271116:1"
+    ],
+    "spleen": [
+      "3912738:5"
+    ],
+    "suite": [
+      "3486219:21",
+      "3841471:17",
+      "4783721:60"
+    ],
+    "tendresse": [
+      "2468504:24",
+      "3100061:28",
+      "5187243:8",
+      "8705844:13"
+    ],
+    "thune": [
+      "3790711:1",
+      "3908643:11"
+    ],
+    "vent": [
+      "2871456:10",
+      "3293950:27",
+      "4695000:8",
+      "4739990:8"
+    ],
+    "voil": [
+      "3413303:9",
+      "5163433:1",
+      "7145447:27"
+    ],
+    "vraiment": [
+      "2284462:21",
+      "3275068:31",
+      "4083905:13",
+      "4414385:4"
+    ],
+    "étrange": [
+      "5462359:11"
+    ],
+    "ils": [
+      "2849521:27",
+      "2871456:6",
+      "3841471:6",
+      "3911964:20",
+      "4882118:2"
+    ],
+    "été": [
+      "2274575:19",
+      "3590067:24",
+      "4695000:13",
+      "4783721:36"
+    ],
+    "n": [
+      "2849521:25",
+      "3271116:4",
+      "3959326:19",
+      "4739991:4",
+      "4882118:55",
+      "5462359:37"
+    ],
+    "cachée": [
+      "2849509:2",
+      "3100061:28",
+      "5187243:20",
+      "8705844:12"
+    ],
+    "café": [
+      "2922984:2"
+    ],
+    "ces": [
+      "10396391:15",
+      "3790711:30",
+      "4083905:24",
+      "4931877:19",
+      "4931885:34",
+      "4931889:4"
+    ],
+    "chacun": [
+      "3074559:10"
+    ],
+    "eh": [
+      "3910811:30",
+      "4931877:2",
+      "7145447:27"
+    ],
+    "fort": [
+      "3413303:4",
+      "4565762:33",
+      "4931877:15",
+      "4931884:11"
+    ],
+    "hano": [
+      "2922984:2"
+    ],
+    "hier": [
+      "3910811:2",
+      "4931884:22"
+    ],
+    "jusqu'": [
+      "10396391:16",
+      "2274575:19",
+      "2849521:22",
+      "4739990:21",
+      "4931885:31",
+      "7145447:24"
+    ],
+    "mieux": [
+      "2871456:6",
+      "3413303:45",
+      "3910844:15",
+      "3911964:4",
+      "3914077:3"
+    ],
+    "nes": [
+      "4882118:22"
+    ],
+    "partis": [
+      "3413303:7",
+      "5462359:40"
+    ],
+    "peau": [
+      "3486219:6",
+      "3492913:7",
+      "3590067:3",
+      "4739990:21"
+    ],
+    "petit": [
+      "4134227:21",
+      "4240436:48",
+      "4414385:20",
+      "4783721:73"
+    ],
+    "pourquoi": [
+      "3590067:22",
+      "3841490:5",
+      "3910844:4",
+      "4931884:46"
+    ],
+    "pourraient": [
+      "3911964:20",
+      "5187243:19",
+      "8705844:11"
+    ],
+    "premier": [
+      "2307519:1",
+      "3285585:1",
+      "3910811:11",
+      "4783721:38",
+      "5187243:34",
+      "8705844:25"
+    ],
+    "pu": [
+      "3403616:7",
+      "5187243:8",
+      "8705844:13"
+    ],
+    "regard": [
+      "10396391:4",
+      "3910811:11",
+      "4294732:7",
+      "4931888:19"
+    ],
+    "soi": [
+      "3074559:10"
+    ],
+    "su": [
+      "4240436:50",
+      "4565762:27",
+      "5462359:14"
+    ],
+    "tard": [
+      "2284462:17",
+      "2871456:15",
+      "3908643:18",
+      "4783721:45",
+      "4931888:19"
+    ],
+    "veut": [
+      "3790711:1",
+      "3841490:10"
+    ],
+    "vis": [
+      "10396391:1"
+    ],
+    "voyage": [
+      "3100061:36",
+      "3271116:8",
+      "3758526:2"
+    ],
+    "avant": [
+      "2307519:10",
+      "3758526:18",
+      "3910811:17",
+      "4739991:11",
+      "4931887:2",
+      "7333830:14"
+    ],
+    "leur": [
+      "2307519:1",
+      "3790711:8",
+      "3910844:8",
+      "4565762:15",
+      "4739990:12"
+    ],
+    "écran": [
+      "3271116:6",
+      "3275068:33",
+      "3285585:34"
+    ],
+    "amour": [
+      "3413303:2",
+      "3908646:11",
+      "3911964:5",
+      "4294732:8",
+      "4931889:11",
+      "5462359:53"
+    ],
+    "ici": [
+      "2849521:27",
+      "3910844:11",
+      "478839:12"
+    ],
+    "font": [
+      "3910811:8",
+      "4882118:2",
+      "4931886:23"
+    ],
+    "ira": [
+      "2871456:6",
+      "4565762:47",
+      "4931877:4"
+    ],
+    "apr": [
+      "3590067:23",
+      "3910844:16",
+      "3912738:14",
+      "4083905:16",
+      "4783721:45"
+    ],
+    "b": [
+      "3100061:27",
+      "3841490:9",
+      "3914077:13",
+      "4931886:6"
+    ],
+    "beauté": [
+      "2871456:20",
+      "2873324:6",
+      "3590067:13",
+      "5163433:21",
+      "5462359:56"
+    ],
+    "beaux": [
+      "3486219:35",
+      "3911964:10",
+      "3914077:12"
+    ],
+    "calme": [
+      "5187243:8",
+      "8705844:13"
+    ],
+    "cantine": [
+      "2307519:3"
+    ],
+    "cartes": [
+      "4931888:12"
+    ],
+    "cet": [
+      "2873324:4",
+      "3100061:61",
+      "3285585:34",
+      "3293950:16",
+      "3911964:5"
+    ],
+    "cha": [
+      "4882118:22"
+    ],
+    "diable": [
+      "4882118:14",
+      "5462359:56"
+    ],
+    "dilemmes": [
+      "4882118:19"
+    ],
+    "dira": [
+      "4086545:9"
+    ],
+    "donné": [
+      "4931888:12"
+    ],
+    "décor": [
+      "2849509:17"
+    ],
+    "faux": [
+      "3570505:8",
+      "4931884:12"
+    ],
+    "filles": [
+      "3492914:6",
+      "3908643:6",
+      "3914077:6"
+    ],
+    "finis": [
+      "2307519:19"
+    ],
+    "fous": [
+      "3908646:8",
+      "4931889:8"
+    ],
+    "fuir": [
+      "2316778:9",
+      "478839:7",
+      "7145447:2"
+    ],
+    "ge": [
+      "4086545:10"
+    ],
+    "grande": [
+      "4086545:9"
+    ],
+    "idylle": [
+      "3492913:12"
+    ],
+    "imbécile": [
+      "3271116:8",
+      "3590067:34"
+    ],
+    "envers": [
+      "2849509:17"
+    ],
+    "minuit": [
+      "2316778:1",
+      "3293950:21"
+    ],
+    "montre": [
+      "2849509:17"
+    ],
+    "montrer": [
+      "3790711:8",
+      "3910844:8",
+      "4783721:18"
+    ],
+    "mots": [
+      "2849521:9",
+      "3492914:14",
+      "3758526:14",
+      "3914077:12"
+    ],
+    "aurait": [
+      "5187243:8",
+      "8705844:13"
+    ],
+    "nuls": [
+      "3908643:11"
+    ],
+    "oseras": [
+      "4931888:11"
+    ],
+    "ouais": [
+      "3914077:11",
+      "4240436:66"
+    ],
+    "parce": [
+      "10396391:32",
+      "3403616:43",
+      "3914077:12",
+      "5163433:36",
+      "5187243:30"
+    ],
+    "pouvoir": [
+      "2871456:10",
+      "3413303:41",
+      "4931886:11",
+      "4931887:7"
+    ],
+    "pr": [
+      "3911964:9",
+      "4134227:27",
+      "4294732:22"
+    ],
+    "raccourci": [
+      "3413303:9"
+    ],
+    "roi": [
+      "4783721:22",
+      "4882118:14",
+      "4931886:24"
+    ],
+    "rois": [
+      "3908646:8",
+      "4931889:8"
+    ],
+    "estompe": [
+      "4086545:11"
+    ],
+    "sa": [
+      "2468504:23",
+      "3074559:16",
+      "478839:7"
+    ],
+    "semblant": [
+      "2849509:4",
+      "3100061:60",
+      "3910844:4"
+    ],
+    "sourire": [
+      "4739991:11",
+      "5187243:17",
+      "8705844:9"
+    ],
+    "uvre": [
+      "3590067:7"
+    ],
+    "étoile": [
+      "3403616:23"
+    ],
+    "décide": [
+      "3074559:10",
+      "7977788:8"
+    ],
+    "oublier": [
+      "3908646:4",
+      "4931884:20",
+      "4931889:4",
+      "7145447:5"
+    ],
+    "alors": [
+      "3841471:13",
+      "5163433:14",
+      "7333830:8",
+      "7977788:8"
+    ],
+    "attendre": [
+      "3074559:3",
+      "4565762:10",
+      "4931885:7"
+    ],
+    "bas": [
+      "2849521:21",
+      "3492913:27",
+      "3959326:36"
+    ],
+    "bouger": [
+      "3590067:9",
+      "3790711:4"
+    ],
+    "chambre": [
+      "4086545:2",
+      "4931888:21"
+    ],
+    "chance": [
+      "3293950:27",
+      "4134227:1"
+    ],
+    "chose": [
+      "2284462:1",
+      "3841490:4",
+      "4565762:6"
+    ],
+    "comprendre": [
+      "3074559:2",
+      "4086545:20",
+      "4565762:11"
+    ],
+    "art": [
+      "3590067:7"
+    ],
+    "derni": [
+      "3492914:27",
+      "4783721:75",
+      "4931885:20",
+      "7145447:22"
+    ],
+    "deuil": [
+      "4931887:6",
+      "5187243:19",
+      "8705844:11"
+    ],
+    "disent": [
+      "3403616:14",
+      "3914077:13",
+      "4882118:15"
+    ],
+    "dort": [
+      "4931885:11",
+      "7977788:43"
+    ],
+    "ferme": [
+      "3758526:1",
+      "4931885:5",
+      "4931887:9",
+      "7977788:27"
+    ],
+    "fout": [
+      "3910844:1",
+      "4783721:40",
+      "4824143:2",
+      "7333830:9"
+    ],
+    "grave": [
+      "2274575:12",
+      "5187243:17",
+      "8705844:9"
+    ],
+    "l'entends": [
+      "4931887:15"
+    ],
+    "air": [
+      "4134227:6",
+      "4414385:8",
+      "4783721:8",
+      "7145447:23"
+    ],
+    "laisser": [
+      "3570505:8",
+      "4565762:13"
+    ],
+    "larme": [
+      "5187243:20",
+      "7145447:22",
+      "8705844:12"
+    ],
+    "larmes": [
+      "4931885:17",
+      "5462359:57",
+      "7145447:17"
+    ],
+    "lumi": [
+      "3100061:15",
+      "7977788:30"
+    ],
+    "ner": [
+      "3413303:18",
+      "5187243:2",
+      "8705844:2"
+    ],
+    "nom": [
+      "2274575:12",
+      "3841490:7",
+      "4739991:14"
+    ],
+    "pensées": [
+      "2274575:11",
+      "3590067:4",
+      "4083905:7",
+      "4931885:8"
+    ],
+    "plage": [
+      "2274575:1",
+      "5163433:3"
+    ],
+    "pluie": [
+      "3271116:2",
+      "3285585:7",
+      "3758526:11",
+      "4739991:7"
+    ],
+    "pourrait": [
+      "4565762:30",
+      "5187243:5",
+      "8705844:5"
+    ],
+    "premi": [
+      "2274575:22",
+      "4739991:15",
+      "4931877:54",
+      "5187243:33",
+      "8705844:24"
+    ],
+    "quitté": [
+      "3570505:10",
+      "4240436:48"
+    ],
+    "res": [
+      "3841471:33",
+      "4414385:21",
+      "5187243:33",
+      "7977788:30",
+      "8705844:24"
+    ],
+    "rire": [
+      "3271116:7",
+      "3275068:6"
+    ],
+    "sait": [
+      "4565762:27",
+      "5462359:7"
+    ],
+    "sel": [
+      "3492914:9",
+      "3758526:14",
+      "4695000:18",
+      "5163433:6"
+    ],
+    "sera": [
+      "2849509:27",
+      "2849521:25",
+      "3911964:14",
+      "4783721:45"
+    ],
+    "sort": [
+      "3492913:7",
+      "3910844:11"
+    ],
+    "tendre": [
+      "4565762:32",
+      "4739990:10"
+    ],
+    "toute": [
+      "4134227:26",
+      "4695000:15"
+    ],
+    "trouver": [
+      "3570505:10",
+      "3912738:1"
+    ],
+    "tée": [
+      "3100061:16",
+      "3293950:5"
+    ],
+    "vas": [
+      "10396391:15",
+      "3413303:19",
+      "4824143:11"
+    ],
+    "ver": [
+      "4083905:11",
+      "4931887:7"
+    ],
+    "ville": [
+      "4931885:11",
+      "7977788:43"
+    ],
+    "vivre": [
+      "3758526:11",
+      "4240436:43",
+      "4882118:9",
+      "5462359:4"
+    ],
+    "vres": [
+      "3492914:20",
+      "3590067:11",
+      "4294732:17"
+    ],
+    "vu": [
+      "2871456:20",
+      "3486219:9",
+      "3914077:3",
+      "4931885:1"
+    ],
+    "histoires": [
+      "3486219:23",
+      "3908646:12",
+      "4931889:12"
+    ],
+    "oreille": [
+      "3100061:33",
+      "3758526:19",
+      "4931887:9"
+    ],
+    "sourires": [
+      "3570505:8",
+      "7145447:23"
+    ],
+    "aide": [
+      "3914077:14",
+      "4931886:9",
+      "4931887:10"
+    ],
+    "aurais": [
+      "2871456:11",
+      "3285585:13",
+      "3590067:33",
+      "3910811:4"
+    ],
+    "étais": [
+      "2873324:6",
+      "3910811:17",
+      "4931884:23",
+      "5462359:3"
+    ],
+    "afin": [
+      "3570505:10"
+    ],
+    "agitations": [
+      "2468504:9"
+    ],
+    "aiguilles": [
+      "3100061:16"
+    ],
+    "allé": [
+      "4739991:4"
+    ],
+    "anges": [
+      "5462359:13"
+    ],
+    "besoin": [
+      "3492913:19",
+      "4931886:9"
+    ],
+    "bizarres": [
+      "5462359:17"
+    ],
+    "celle": [
+      "4414385:7",
+      "4931884:23",
+      "4931885:2"
+    ],
+    "coco": [
+      "10396391:4",
+      "4695000:18"
+    ],
+    "cr": [
+      "5187243:18",
+      "8705844:10"
+    ],
+    "croyais": [
+      "3271116:7"
+    ],
+    "dernier": [
+      "3271116:1",
+      "3492914:31",
+      "5462359:19"
+    ],
+    "descend": [
+      "4783721:5",
+      "4931877:12"
+    ],
+    "devant": [
+      "3486219:31",
+      "4240436:51"
+    ],
+    "donc": [
+      "3413303:42",
+      "3758526:17",
+      "4882118:57"
+    ],
+    "dr": [
+      "2873324:14",
+      "3911964:20",
+      "3914077:14"
+    ],
+    "enfouie": [
+      "3570505:12"
+    ],
+    "envahir": [
+      "3570505:8"
+    ],
+    "figent": [
+      "3100061:16"
+    ],
+    "foi": [
+      "3570505:11"
+    ],
+    "garde": [
+      "5187243:17",
+      "8705844:9"
+    ],
+    "haine": [
+      "3910844:1",
+      "4882118:34"
+    ],
+    "hasard": [
+      "4134227:15",
+      "4565762:48"
+    ],
+    "idéaux": [
+      "2849509:1",
+      "2873324:16"
+    ],
+    "inir": [
+      "5187243:8"
+    ],
+    "isolée": [
+      "2274575:1"
+    ],
+    "j": [
+      "3271116:5",
+      "3293950:32",
+      "4294732:21",
+      "5462359:54"
+    ],
+    "joli": [
+      "10396391:30",
+      "3100061:36",
+      "3841490:7",
+      "7977788:45"
+    ],
+    "joue": [
+      "3912738:9"
+    ],
+    "joué": [
+      "3912738:9"
+    ],
+    "aurai": [
+      "3912738:10"
+    ],
+    "longtemps": [
+      "4086545:7",
+      "5187243:5",
+      "8705844:5"
+    ],
+    "enlaces": [
+      "4783721:20"
+    ],
+    "malgré": [
+      "3100061:15"
+    ],
+    "matins": [
+      "3910811:8"
+    ],
+    "mer": [
+      "3492914:10",
+      "3590067:8",
+      "5163433:31"
+    ],
+    "miroir": [
+      "3492913:1",
+      "4240436:51"
+    ],
+    "mois": [
+      "3841471:19",
+      "4783721:67",
+      "4931877:19",
+      "7977788:1"
+    ],
+    "mot": [
+      "3914077:13",
+      "4882118:57",
+      "5187243:4",
+      "8705844:4"
+    ],
+    "mourir": [
+      "5187243:19",
+      "8705844:11"
+    ],
+    "nan": [
+      "3100061:67",
+      "4083905:8",
+      "5187243:6",
+      "8705844:7"
+    ],
+    "ombres": [
+      "4931885:1"
+    ],
+    "paisible": [
+      "3492913:13"
+    ],
+    "parfum": [
+      "2468504:8",
+      "2871456:3",
+      "3570505:21",
+      "4294732:16"
+    ],
+    "pars": [
+      "5187243:20",
+      "8705844:12"
+    ],
+    "penser": [
+      "3790711:39",
+      "4931887:20"
+    ],
+    "pensé": [
+      "3590067:24",
+      "4931886:7"
+    ],
+    "perdre": [
+      "3841471:31"
+    ],
+    "peux": [
+      "4931887:18"
+    ],
+    "prendre": [
+      "4783721:8",
+      "4931877:21",
+      "5187243:34",
+      "8705844:25"
+    ],
+    "pris": [
+      "4134227:56",
+      "4240436:49",
+      "4931884:28",
+      "4931886:24"
+    ],
+    "profonde": [
+      "3570505:12"
+    ],
+    "quelque": [
+      "4565762:47"
+    ],
+    "quelques": [
+      "3841471:19",
+      "3910811:18",
+      "4931885:17"
+    ],
+    "retrouves": [
+      "4086545:17"
+    ],
+    "rue": [
+      "3914077:25",
+      "4240436:22",
+      "4739991:3"
+    ],
+    "ennuie": [
+      "3413303:22",
+      "4931877:15"
+    ],
+    "met": [
+      "7977788:23"
+    ],
+    "salive": [
+      "5462359:13"
+    ],
+    "savoir": [
+      "4783721:38",
+      "4931884:10",
+      "4931886:22"
+    ],
+    "seconde": [
+      "5187243:18",
+      "8705844:10"
+    ],
+    "sentir": [
+      "3486219:6"
+    ],
+    "sommeil": [
+      "3758526:20",
+      "4931885:7",
+      "4931887:31"
+    ],
+    "souv'nir": [
+      "5187243:18",
+      "8705844:10"
+    ],
+    "stupéfiants": [
+      "4086545:2"
+    ],
+    "suivent": [
+      "2849521:27",
+      "3911964:11"
+    ],
+    "tr": [
+      "3790711:32",
+      "3914077:12"
+    ],
+    "tropicales": [
+      "2468504:9"
+    ],
+    "trouvée": [
+      "3570505:11"
+    ],
+    "télé": [
+      "3570505:4",
+      "3908643:3",
+      "3914077:19"
+    ],
+    "visage": [
+      "2922984:5"
+    ],
+    "yeah": [
+      "3100061:2",
+      "4240436:70",
+      "4695000:1"
+    ],
+    "zéro": [
+      "5187243:4",
+      "8705844:4"
+    ],
+    "épaule": [
+      "3413303:21",
+      "7145447:17"
+    ],
+    "bois": [
+      "2873324:11",
+      "7145447:27",
+      "8705844:6"
+    ],
+    "entends": [
+      "4134227:28",
+      "4931887:52",
+      "7977788:17"
+    ],
+    "emp": [
+      "3590067:6",
+      "4931887:10"
+    ],
+    "oublierai": [
+      "4739991:24"
+    ],
+    "entendre": [
+      "4565762:27",
+      "4931877:14"
+    ],
+    "sent": [
+      "10396391:32",
+      "3590067:19",
+      "3910844:3"
+    ],
+    "trouve": [
+      "3413303:42",
+      "3841471:13"
+    ],
+    "dois": [
+      "3100061:60",
+      "3293950:17"
+    ],
+    "manque": [
+      "3570505:23",
+      "3908643:19",
+      "4931877:53"
+    ],
+    "allez": [
+      "4414385:10"
+    ],
+    "appareils": [
+      "10396391:2"
+    ],
+    "arc": [
+      "3758526:8"
+    ],
+    "balade": [
+      "4134227:15",
+      "4931885:15"
+    ],
+    "bat": [
+      "4294732:14"
+    ],
+    "bijoux": [
+      "4414385:11"
+    ],
+    "blanches": [
+      "3293950:1",
+      "5163433:5"
+    ],
+    "but": [
+      "4931877:14"
+    ],
+    "qu'on": [
+      "4083905:10",
+      "5187243:27",
+      "7333830:16"
+    ],
+    "caméras": [
+      "10396391:1"
+    ],
+    "carrera": [
+      "10396391:7"
+    ],
+    "champagne": [
+      "10396391:8"
+    ],
+    "chanel": [
+      "10396391:4"
+    ],
+    "chanter": [
+      "2873324:14",
+      "4783721:43"
+    ],
+    "cherchent": [
+      "3413303:41",
+      "3959326:37"
+    ],
+    "cheveux": [
+      "4695000:8"
+    ],
+    "chez": [
+      "2849521:21",
+      "4783721:62"
+    ],
+    "compris": [
+      "3914077:6",
+      "3959326:22"
+    ],
+    "contre": [
+      "2849521:24",
+      "3590067:3"
+    ],
+    "couilles": [
+      "4294732:14"
+    ],
+    "dansent": [
+      "3911964:9"
+    ],
+    "demain": [
+      "4783721:44",
+      "4931885:5",
+      "7977788:6"
+    ],
+    "devoir": [
+      "4931884:20"
+    ],
+    "distance": [
+      "5187243:15",
+      "8705844:7"
+    ],
+    "donne": [
+      "3910844:14",
+      "4931884:13"
+    ],
+    "doute": [
+      "3841490:14",
+      "4931886:8"
+    ],
+    "début": [
+      "4931877:53",
+      "5187243:33",
+      "8705844:24"
+    ],
+    "déchire": [
+      "4931877:18"
+    ],
+    "démaquillé": [
+      "4414385:12"
+    ],
+    "dévorent": [
+      "4134227:6",
+      "4783721:14"
+    ],
+    "enlevé": [
+      "4414385:11"
+    ],
+    "entra": [
+      "5187243:15",
+      "8705844:7"
+    ],
+    "fant": [
+      "3413303:18"
+    ],
+    "femmes": [
+      "3100061:4",
+      "3590067:13"
+    ],
+    "ferrari": [
+      "10396391:7"
+    ],
+    "fille": [
+      "3403616:4",
+      "3914077:13"
+    ],
+    "fin": [
+      "2274575:19",
+      "4565762:5",
+      "5163433:1"
+    ],
+    "fou": [
+      "3841471:38",
+      "7333830:8"
+    ],
+    "fr": [
+      "3914077:14",
+      "4240436:23",
+      "4931887:43"
+    ],
+    "g": [
+      "2871456:19",
+      "3590067:11"
+    ],
+    "glisse": [
+      "2284462:3",
+      "3492914:21"
+    ],
+    "go": [
+      "2307519:31",
+      "3910811:1",
+      "4294732:16"
+    ],
+    "gogo": [
+      "10396391:8"
+    ],
+    "hanches": [
+      "3492914:23",
+      "3590067:17",
+      "4695000:3"
+    ],
+    "haut": [
+      "3758526:11",
+      "4240436:45"
+    ],
+    "hors": [
+      "2316778:3",
+      "2873324:12"
+    ],
+    "importa": [
+      "4294732:12"
+    ],
+    "insomnies": [
+      "3293950:28"
+    ],
+    "attends": [
+      "4695000:10"
+    ],
+    "avoue": [
+      "3790711:29",
+      "4414385:2"
+    ],
+    "jaunes": [
+      "10396391:7"
+    ],
+    "objectif": [
+      "2316778:1",
+      "3275068:7"
+    ],
+    "lignes": [
+      "4134227:8"
+    ],
+    "maintenant": [
+      "5187243:20",
+      "8705844:29"
+    ],
+    "mirages": [
+      "2922984:10"
+    ],
+    "miroirs": [
+      "10396391:3"
+    ],
+    "mis": [
+      "10396391:9",
+      "2871456:11",
+      "4931884:2"
+    ],
+    "noires": [
+      "4931885:8",
+      "5462359:55"
+    ],
+    "ose": [
+      "3403616:12"
+    ],
+    "parfois": [
+      "3908646:12",
+      "4931886:21",
+      "4931889:12"
+    ],
+    "parle": [
+      "2849509:1",
+      "4931887:55"
+    ],
+    "parles": [
+      "3914077:6"
+    ],
+    "partagé": [
+      "3590067:11",
+      "4565762:13"
+    ],
+    "passé": [
+      "2316778:1",
+      "3293950:21",
+      "3912738:14"
+    ],
+    "pendant": [
+      "7333830:10"
+    ],
+    "penses": [
+      "3790711:39"
+    ],
+    "pierre": [
+      "3590067:7"
+    ],
+    "plais": [
+      "4783721:39",
+      "4931886:25"
+    ],
+    "pleine": [
+      "3911964:14",
+      "4931885:9"
+    ],
+    "pose": [
+      "7145447:17"
+    ],
+    "pourrais": [
+      "3486219:31",
+      "3908646:11",
+      "4931889:11"
+    ],
+    "pourvu": [
+      "3413303:1",
+      "4134227:31"
+    ],
+    "prends": [
+      "2849521:10",
+      "3758526:7"
+    ],
+    "presque": [
+      "3100061:32",
+      "7977788:31"
+    ],
+    "pute": [
+      "4086545:3",
+      "4240436:22"
+    ],
+    "pédaler": [
+      "3413303:12"
+    ],
+    "quien": [
+      "4294732:12"
+    ],
+    "raison": [
+      "3403616:16"
+    ],
+    "rapproche": [
+      "3100061:56",
+      "5462359:8"
+    ],
+    "retrouver": [
+      "4240436:51",
+      "4565762:48"
+    ],
+    "ris": [
+      "3492913:11",
+      "4931884:12"
+    ],
+    "rougir": [
+      "2849509:5",
+      "3486219:32"
+    ],
+    "émouvoir": [
+      "2316778:10"
+    ],
+    "sculptée": [
+      "3590067:7"
+    ],
+    "seins": [
+      "3100061:32",
+      "3590067:21"
+    ],
+    "sentiments": [
+      "2849509:5",
+      "3790711:28"
+    ],
+    "silence": [
+      "3074559:5",
+      "4931887:6"
+    ],
+    "soudain": [
+      "4783721:66",
+      "7977788:17"
+    ],
+    "sécher": [
+      "7145447:18"
+    ],
+    "séduisent": [
+      "3911964:8"
+    ],
+    "appelaient": [
+      "4134227:8"
+    ],
+    "tenir": [
+      "4882118:8",
+      "5187243:5",
+      "8705844:5"
+    ],
+    "terminer": [
+      "3590067:31",
+      "3908646:12",
+      "4931889:12"
+    ],
+    "timide": [
+      "4134227:4",
+      "4783721:65"
+    ],
+    "toujours": [
+      "7145447:22"
+    ],
+    "tra": [
+      "3413303:18"
+    ],
+    "uh": [
+      "4931877:1"
+    ],
+    "veine": [
+      "3413303:8"
+    ],
+    "verras": [
+      "3413303:25",
+      "4134227:1"
+    ],
+    "vide": [
+      "4240436:13",
+      "4931885:8"
+    ],
+    "viendrais": [
+      "7145447:18"
+    ],
+    "vient": [
+      "3492914:16",
+      "4083905:25",
+      "7977788:26"
+    ],
+    "vont": [
+      "3790711:39"
+    ],
+    "voulu": [
+      "4931877:12"
+    ],
+    "vrai": [
+      "3841471:12",
+      "3910844:8"
+    ],
+    "y'a": [
+      "3100061:28",
+      "3285585:7",
+      "7977788:31"
+    ],
+    "écoute": [
+      "2871456:5",
+      "2873324:14",
+      "3758526:23"
+    ],
+    "énergies": [
+      "3100061:11"
+    ],
+    "avance": [
+      "2468504:15",
+      "4882118:52"
+    ],
+    "avons": [
+      "4739991:7",
+      "7977788:46"
+    ],
+    "habitude": [
+      "3590067:13",
+      "4931877:19"
+    ],
+    "emm": [
+      "2849521:14",
+      "3403616:23"
+    ],
+    "enfin": [
+      "3486219:11",
+      "3758526:20",
+      "7977788:45"
+    ],
+    "idée": [
+      "4083905:6",
+      "4565762:13"
+    ],
+    "avais": [
+      "2871456:3",
+      "4083905:8",
+      "4931887:2"
+    ],
+    "écouter": [
+      "2849521:15",
+      "4565762:27"
+    ],
+    "venir": [
+      "4931877:22",
+      "4931884:28",
+      "4931885:1"
+    ],
+    "aimé": [
+      "3910811:4"
+    ],
+    "amer": [
+      "2307519:31",
+      "3910811:1"
+    ],
+    "amours": [
+      "3959326:35"
+    ],
+    "arbres": [
+      "2873324:23",
+      "3492913:8"
+    ],
+    "arrivé": [
+      "4565762:15",
+      "4931877:22"
+    ],
+    "assoiffés": [
+      "3959326:35"
+    ],
+    "astrales": [
+      "2468504:10"
+    ],
+    "aucun": [
+      "5187243:4",
+      "8705844:4"
+    ],
+    "aussi": [
+      "4240436:23",
+      "4565762:33"
+    ],
+    "auxquelles": [
+      "3908646:22",
+      "4931889:18"
+    ],
+    "avancer": [
+      "3413303:45"
+    ],
+    "avion": [
+      "5187243:34",
+      "8705844:25"
+    ],
+    "babines": [
+      "2307519:31"
+    ],
+    "bah": [
+      "4240436:66"
+    ],
+    "bander": [
+      "3790711:2"
+    ],
+    "banque": [
+      "3285585:11"
+    ],
+    "bient": [
+      "3413303:4",
+      "4565762:4"
+    ],
+    "bite": [
+      "3100061:33"
+    ],
+    "blanc": [
+      "5163433:8",
+      "7977788:12"
+    ],
+    "blanche": [
+      "4931885:8"
+    ],
+    "blesserait": [
+      "5187243:4",
+      "8705844:4"
+    ],
+    "bloque": [
+      "3100061:32"
+    ],
+    "bond": [
+      "4134227:13"
+    ],
+    "boucle": [
+      "4931886:7"
+    ],
+    "bouge": [
+      "3100061:32"
+    ],
+    "bout": [
+      "3413303:25",
+      "3590067:3"
+    ],
+    "bruxelles": [
+      "3908643:19"
+    ],
+    "calibré": [
+      "2849509:10"
+    ],
+    "cas": [
+      "4931885:34"
+    ],
+    "cent": [
+      "4240436:50",
+      "478839:17"
+    ],
+    "chaloupée": [
+      "3590067:9"
+    ],
+    "chantais": [
+      "4414385:4"
+    ],
+    "chaud": [
+      "3758526:13"
+    ],
+    "chemin": [
+      "3285585:9",
+      "3758526:7"
+    ],
+    "chemins": [
+      "5462359:9"
+    ],
+    "cigarettes": [
+      "5187243:2",
+      "8705844:2"
+    ],
+    "comparé": [
+      "5187243:6",
+      "8705844:6"
+    ],
+    "con": [
+      "3285585:10",
+      "4783721:73"
+    ],
+    "conduisait": [
+      "4739991:10"
+    ],
+    "confort": [
+      "2316778:6"
+    ],
+    "corcovado": [
+      "4739991:2"
+    ],
+    "couleur": [
+      "4739991:2"
+    ],
+    "coup": [
+      "4134227:17"
+    ],
+    "courtisanes": [
+      "2468504:11"
+    ],
+    "cri": [
+      "5187243:5",
+      "8705844:5"
+    ],
+    "croient": [
+      "3908646:22",
+      "4931889:18"
+    ],
+    "croire": [
+      "4414385:2",
+      "4824143:11"
+    ],
+    "croulez": [
+      "3413303:2"
+    ],
+    "créatures": [
+      "2468504:10"
+    ],
+    "cul": [
+      "10396391:30",
+      "3790711:5"
+    ],
+    "honn": [
+      "4083905:15"
+    ],
+    "oiseau": [
+      "2873324:14"
+    ],
+    "danser": [
+      "4824143:17"
+    ],
+    "derri": [
+      "3275068:33"
+    ],
+    "dettes": [
+      "3413303:2",
+      "4240436:43"
+    ],
+    "devenir": [
+      "4931877:26",
+      "7333830:17"
+    ],
+    "devient": [
+      "3100061:50",
+      "4882118:16"
+    ],
+    "dirait": [
+      "3100061:32"
+    ],
+    "disque": [
+      "4240436:25",
+      "4414385:6"
+    ],
+    "doigts": [
+      "3492914:14",
+      "4695000:19"
+    ],
+    "dominique": [
+      "3910844:7"
+    ],
+    "donner": [
+      "3908646:11",
+      "4931889:11"
+    ],
+    "dont": [
+      "3790711:16",
+      "4414385:8"
+    ],
+    "dormirai": [
+      "3910811:18"
+    ],
+    "dos": [
+      "3413303:22",
+      "3492914:29"
+    ],
+    "droit": [
+      "3758526:9",
+      "5163433:19"
+    ],
+    "découvrir": [
+      "4824143:6"
+    ],
+    "dédessine": [
+      "2307519:12"
+    ],
+    "délire": [
+      "5187243:35",
+      "8705844:25"
+    ],
+    "démons": [
+      "3590067:44"
+    ],
+    "dépasse": [
+      "3911964:5"
+    ],
+    "dépla": [
+      "2316778:7"
+    ],
+    "dérailler": [
+      "3413303:19"
+    ],
+    "déviation": [
+      "3959326:36"
+    ],
+    "dévoilé": [
+      "2307519:1",
+      "3285585:1"
+    ],
+    "encha": [
+      "5187243:2",
+      "8705844:2"
+    ],
+    "enfants": [
+      "2873324:12"
+    ],
+    "ennui": [
+      "3293950:16",
+      "4294732:19"
+    ],
+    "ensemble": [
+      "2873324:18",
+      "4931888:20"
+    ],
+    "esprit": [
+      "4134227:19"
+    ],
+    "essayé": [
+      "4931887:43"
+    ],
+    "exubérance": [
+      "2468504:16"
+    ],
+    "facon": [
+      "478839:12"
+    ],
+    "faiblir": [
+      "7145447:9"
+    ],
+    "faisant": [
+      "3590067:9"
+    ],
+    "fame": [
+      "3790711:3"
+    ],
+    "fatigue": [
+      "4931885:7"
+    ],
+    "faudra": [
+      "3908646:4",
+      "4931889:4"
+    ],
+    "femme": [
+      "3590067:13"
+    ],
+    "ferment": [
+      "4134227:42"
+    ],
+    "fessier": [
+      "3590067:9"
+    ],
+    "fi": [
+      "2468504:5",
+      "4824143:2"
+    ],
+    "filer": [
+      "3413303:22",
+      "3758526:18"
+    ],
+    "finir": [
+      "8705844:13"
+    ],
+    "for": [
+      "2873324:4"
+    ],
+    "fs": [
+      "2873324:12"
+    ],
+    "fut": [
+      "3285585:31",
+      "4931884:25"
+    ],
+    "gare": [
+      "4086545:3"
+    ],
+    "genre": [
+      "3590067:25",
+      "4931884:27"
+    ],
+    "gis": [
+      "10396391:9"
+    ],
+    "glace": [
+      "2849509:14"
+    ],
+    "glisser": [
+      "4565762:28"
+    ],
+    "guerre": [
+      "4882118:36"
+    ],
+    "génial": [
+      "3841471:13"
+    ],
+    "h": [
+      "3959326:22",
+      "4695000:4"
+    ],
+    "halo": [
+      "3492914:31"
+    ],
+    "hésitante": [
+      "478839:9"
+    ],
+    "idéale": [
+      "2468504:12"
+    ],
+    "ilm": [
+      "5187243:34",
+      "8705844:25"
+    ],
+    "impériale": [
+      "2468504:16"
+    ],
+    "indécise": [
+      "478839:9"
+    ],
+    "ineffable": [
+      "3590067:13"
+    ],
+    "insta'": [
+      "3790711:6",
+      "5462359:3"
+    ],
+    "instant": [
+      "3100061:61",
+      "5462359:4"
+    ],
+    "inventée": [
+      "4083905:17"
+    ],
+    "assume": [
+      "4931885:34"
+    ],
+    "entame": [
+      "3590067:30"
+    ],
+    "hallucine": [
+      "5187243:6",
+      "8705844:7"
+    ],
+    "passerai": [
+      "3914077:11"
+    ],
+    "s'rai": [
+      "3914077:19"
+    ],
+    "souris": [
+      "4931884:11"
+    ],
+    "jolie": [
+      "3492914:6",
+      "3910844:1"
+    ],
+    "jures": [
+      "10396391:7"
+    ],
+    "aéroport": [
+      "4739991:10"
+    ],
+    "eau": [
+      "3492913:8",
+      "4695000:19"
+    ],
+    "océan": [
+      "3492913:3",
+      "5163433:5"
+    ],
+    "lances": [
+      "4134227:13"
+    ],
+    "langue": [
+      "3590067:21",
+      "4695000:18"
+    ],
+    "ler": [
+      "2871456:10",
+      "3841490:5"
+    ],
+    "liberté": [
+      "3074559:16",
+      "4931877:24"
+    ],
+    "lié": [
+      "3590067:16"
+    ],
+    "loi": [
+      "2873324:12"
+    ],
+    "lointaine": [
+      "478839:9"
+    ],
+    "long": [
+      "4739991:2"
+    ],
+    "lous": [
+      "4882118:36"
+    ],
+    "lucifer": [
+      "5187243:6",
+      "8705844:6"
+    ],
+    "offre": [
+      "4931885:8"
+    ],
+    "madureira": [
+      "4739991:3"
+    ],
+    "mai": [
+      "4783721:67",
+      "7977788:1"
+    ],
+    "maint'nant": [
+      "8705844:6"
+    ],
+    "maison": [
+      "4240436:25"
+    ],
+    "maman": [
+      "2871456:12",
+      "4240436:23"
+    ],
+    "manteaux": [
+      "2284462:4"
+    ],
+    "mauvais": [
+      "3908643:18",
+      "3910811:4"
+    ],
+    "mensonges": [
+      "478839:15",
+      "4931884:47"
+    ],
+    "ment": [
+      "3910844:7"
+    ],
+    "mentez": [
+      "4083905:13"
+    ],
+    "mentir": [
+      "7145447:6"
+    ],
+    "merde": [
+      "5187243:34",
+      "8705844:25"
+    ],
+    "mi": [
+      "7333830:9"
+    ],
+    "moitié": [
+      "3570505:6",
+      "478839:6"
+    ],
+    "moment": [
+      "4565762:9",
+      "7333830:15"
+    ],
+    "monter": [
+      "4739991:11"
+    ],
+    "moque": [
+      "2284462:8",
+      "5163433:15"
+    ],
+    "mur": [
+      "5187243:4",
+      "8705844:4"
+    ],
+    "murmures": [
+      "3100061:33"
+    ],
+    "mémoire": [
+      "3492914:3"
+    ],
+    "mémorable": [
+      "2274575:14",
+      "2873324:17"
+    ],
+    "mérités": [
+      "3959326:35"
+    ],
+    "existe": [
+      "3912738:2"
+    ],
+    "t'ont": [
+      "3590067:44"
+    ],
+    "nage": [
+      "3492913:4",
+      "4882118:59"
+    ],
+    "nanana": [
+      "4240436:66"
+    ],
+    "nent": [
+      "5462359:9"
+    ],
+    "nera": [
+      "3403616:23",
+      "3758526:3"
+    ],
+    "noche": [
+      "4695000:15"
+    ],
+    "nord": [
+      "4086545:3"
+    ],
+    "normal": [
+      "2849521:11"
+    ],
+    "obéir": [
+      "7145447:13"
+    ],
+    "occulté": [
+      "4931885:9"
+    ],
+    "only": [
+      "4931888:6"
+    ],
+    "onnée": [
+      "3590067:8"
+    ],
+    "ooh": [
+      "3841490:20"
+    ],
+    "oups": [
+      "3590067:11"
+    ],
+    "parcours": [
+      "3492913:3",
+      "4565762:5"
+    ],
+    "paris": [
+      "3908643:19"
+    ],
+    "parmi": [
+      "2274575:24",
+      "4739991:14"
+    ],
+    "partager": [
+      "2873324:16"
+    ],
+    "partie": [
+      "3790711:30",
+      "4931885:15"
+    ],
+    "partir": [
+      "4565762:9",
+      "4783721:33"
+    ],
+    "passe": [
+      "3285585:11",
+      "3293950:6"
+    ],
+    "passée": [
+      "3910811:11"
+    ],
+    "peins": [
+      "2307519:10"
+    ],
+    "perdu": [
+      "3910811:16",
+      "5462359:3"
+    ],
+    "personnalité": [
+      "4083905:17"
+    ],
+    "personne": [
+      "4240436:24",
+      "7977788:5"
+    ],
+    "peuvent": [
+      "3908646:12",
+      "4931889:12"
+    ],
+    "phéromones": [
+      "5187243:5",
+      "8705844:5"
+    ],
+    "pied": [
+      "3413303:41",
+      "4882118:54"
+    ],
+    "pieds": [
+      "2873324:13"
+    ],
+    "plaire": [
+      "3912738:2",
+      "4565762:15"
+    ],
+    "plantés": [
+      "2873324:13"
+    ],
+    "plein": [
+      "4931885:9"
+    ],
+    "pleines": [
+      "3590067:11"
+    ],
+    "polie": [
+      "3914077:19"
+    ],
+    "porte": [
+      "3285585:13",
+      "4931885:2"
+    ],
+    "portrait": [
+      "2316778:7"
+    ],
+    "poussée": [
+      "3285585:13",
+      "3590067:30"
+    ],
+    "prend": [
+      "3841490:15",
+      "4783721:73"
+    ],
+    "prenons": [
+      "2873324:11"
+    ],
+    "prise": [
+      "7333830:10"
+    ],
+    "proche": [
+      "2873324:2",
+      "4240436:16"
+    ],
+    "provisoire": [
+      "2316778:6"
+    ],
+    "précis": [
+      "2873324:2",
+      "3100061:61"
+    ],
+    "précisément": [
+      "2849509:10"
+    ],
+    "préjugés": [
+      "3908646:4",
+      "4931889:4"
+    ],
+    "périr": [
+      "7145447:10"
+    ],
+    "c'était": [
+      "4931885:18"
+    ],
+    "r'garde": [
+      "5187243:2",
+      "8705844:2"
+    ],
+    "racine": [
+      "2873324:11"
+    ],
+    "radio": [
+      "3914077:11"
+    ],
+    "rentrer": [
+      "10396391:16",
+      "4931888:19"
+    ],
+    "repartir": [
+      "5187243:33",
+      "8705844:24"
+    ],
+    "retournée": [
+      "4739991:11"
+    ],
+    "retrouvée": [
+      "4240436:52"
+    ],
+    "reviens": [
+      "5462359:37"
+    ],
+    "revois": [
+      "5187243:33",
+      "8705844:24"
+    ],
+    "risque": [
+      "5187243:5",
+      "8705844:5"
+    ],
+    "rome": [
+      "5462359:9"
+    ],
+    "roule": [
+      "3841490:14",
+      "4695000:3"
+    ],
+    "roulez": [
+      "3413303:1"
+    ],
+    "rua": [
+      "4739991:3"
+    ],
+    "ruisseau": [
+      "2873324:13"
+    ],
+    "réalité": [
+      "2849509:7",
+      "4240436:47"
+    ],
+    "réveil": [
+      "3910811:1",
+      "4240436:47"
+    ],
+    "affichent": [
+      "3275068:33"
+    ],
+    "allume": [
+      "3908643:19"
+    ],
+    "envole": [
+      "4134227:19"
+    ],
+    "éviter": [
+      "2849509:14"
+    ],
+    "sable": [
+      "2274575:4",
+      "3492914:13"
+    ],
+    "salaud": [
+      "2284462:3"
+    ],
+    "semaines": [
+      "5187243:33",
+      "8705844:24"
+    ],
+    "seras": [
+      "4086545:3"
+    ],
+    "seuls": [
+      "4083905:16"
+    ],
+    "silhouette": [
+      "3590067:9"
+    ],
+    "solitaire": [
+      "3910811:11"
+    ],
+    "sorti": [
+      "2307519:1",
+      "4134227:57"
+    ],
+    "souffler": [
+      "2849521:15"
+    ],
+    "souffles": [
+      "3959326:37"
+    ],
+    "souillée": [
+      "3590067:44"
+    ],
+    "soul": [
+      "4134227:41"
+    ],
+    "soupirants": [
+      "2468504:12"
+    ],
+    "souviens": [
+      "2274575:16",
+      "2284462:17"
+    ],
+    "spatiale": [
+      "2468504:14"
+    ],
+    "sse": [
+      "4240436:18"
+    ],
+    "sucre": [
+      "3758526:14"
+    ],
+    "sucré": [
+      "3590067:9"
+    ],
+    "symphonie": [
+      "2468504:14"
+    ],
+    "sépare": [
+      "5462359:8"
+    ],
+    "affoles": [
+      "4134227:17"
+    ],
+    "aiment": [
+      "3841471:12"
+    ],
+    "arrivais": [
+      "4134227:4"
+    ],
+    "inqui": [
+      "4931888:7"
+    ],
+    "talatata": [
+      "5462359:1"
+    ],
+    "taxi": [
+      "4739991:10"
+    ],
+    "teau": [
+      "3590067:11"
+    ],
+    "terre": [
+      "5187243:4",
+      "8705844:4"
+    ],
+    "teté": [
+      "4083905:15"
+    ],
+    "titrée": [
+      "2849521:12"
+    ],
+    "torrentielle": [
+      "3758526:11"
+    ],
+    "tort": [
+      "4931884:13"
+    ],
+    "tournant": [
+      "4695000:21"
+    ],
+    "toutes": [
+      "3275068:16",
+      "4783721:5"
+    ],
+    "transe": [
+      "2468504:11"
+    ],
+    "troublant": [
+      "2849509:13"
+    ],
+    "truc": [
+      "3910844:1"
+    ],
+    "urs": [
+      "2274575:15",
+      "3758526:23"
+    ],
+    "vagues": [
+      "2274575:20",
+      "3492914:26"
+    ],
+    "valent": [
+      "2284462:1"
+    ],
+    "valsait": [
+      "478839:11"
+    ],
+    "version": [
+      "2849521:12"
+    ],
+    "vidéocam": [
+      "3275068:29"
+    ],
+    "vies": [
+      "2284462:1"
+    ],
+    "violence": [
+      "3074559:20"
+    ],
+    "votre": [
+      "4083905:16"
+    ],
+    "voudrais": [
+      "2849521:12"
+    ],
+    "vouloir": [
+      "4931884:14"
+    ],
+    "vérité": [
+      "3074559:3",
+      "3570505:7"
+    ],
+    "woah": [
+      "3908643:36"
+    ],
+    "wouaho": [
+      "5462359:1"
+    ],
+    "éclairé": [
+      "4931885:9"
+    ],
+    "éclate": [
+      "3492913:1",
+      "3492914:23"
+    ],
+    "écrit": [
+      "3285585:34",
+      "4739991:14"
+    ],
+    "élégance": [
+      "2468504:12"
+    ],
+    "épousant": [
+      "2468504:16"
+    ],
+    "équipage": [
+      "2468504:15"
+    ],
+    "étouffer": [
+      "5187243:5",
+      "8705844:5"
+    ],
+    "évidemment": [
+      "2849509:13"
+    ],
+    "amants": [
+      "4739990:11",
+      "7333830:16"
+    ],
+    "années": [
+      "2871456:19",
+      "4565762:25"
+    ],
+    "elles": [
+      "3413303:21",
+      "4882118:15"
+    ],
+    "eux": [
+      "3100061:49",
+      "4739990:21"
+    ],
+    "importe": [
+      "478839:5",
+      "7977788:4"
+    ],
+    "écris": [
+      "2274575:4",
+      "4931884:47"
+    ],
+    "rejoindre": [
+      "3590067:20",
+      "4134227:12"
+    ],
+    "répond": [
+      "7333830:8",
+      "7977788:5"
+    ],
+    "abandonnée": [
+      "3590067:19"
+    ],
+    "absolument": [
+      "7977788:8"
+    ],
+    "absorbée": [
+      "4294732:9"
+    ],
+    "accidentel": [
+      "3758526:7"
+    ],
+    "accompagnée": [
+      "478839:5"
+    ],
+    "acheter": [
+      "4240436:15"
+    ],
+    "addictif": [
+      "3275068:8"
+    ],
+    "adn": [
+      "5462359:21"
+    ],
+    "adoptés": [
+      "2873324:23"
+    ],
+    "adorable": [
+      "2274575:10"
+    ],
+    "advienne": [
+      "4882118:33"
+    ],
+    "affairées": [
+      "4134227:29"
+    ],
+    "africa": [
+      "4240436:27"
+    ],
+    "agace": [
+      "7977788:14"
+    ],
+    "agir": [
+      "4565762:13"
+    ],
+    "agis": [
+      "3841490:15"
+    ],
+    "aigrie": [
+      "4240436:17"
+    ],
+    "aimants": [
+      "3959326:3"
+    ],
+    "ainsi": [
+      "4240436:41"
+    ],
+    "airelle": [
+      "4294732:16"
+    ],
+    "aires": [
+      "478839:1"
+    ],
+    "album": [
+      "2307519:1"
+    ],
+    "alchimie": [
+      "3959326:5"
+    ],
+    "alibi": [
+      "3959326:2"
+    ],
+    "allongé": [
+      "3100061:24"
+    ],
+    "amazonie": [
+      "2873324:18"
+    ],
+    "ambiance": [
+      "3908643:3"
+    ],
+    "amis": [
+      "3841471:6"
+    ],
+    "amor": [
+      "7333830:9"
+    ],
+    "amuse": [
+      "478839:6"
+    ],
+    "an": [
+      "7977788:47"
+    ],
+    "anesthésier": [
+      "3293950:18"
+    ],
+    "ange": [
+      "5462359:56"
+    ],
+    "animal": [
+      "3914077:2"
+    ],
+    "ans": [
+      "4783721:35"
+    ],
+    "aquarelle": [
+      "3758526:17"
+    ],
+    "arbre": [
+      "2274575:12"
+    ],
+    "arcs": [
+      "4294732:3"
+    ],
+    "argent": [
+      "3790711:26"
+    ],
+    "armée": [
+      "4134227:29"
+    ],
+    "armées": [
+      "3413303:22"
+    ],
+    "arrogant": [
+      "3959326:6"
+    ],
+    "artiste": [
+      "4240436:17"
+    ],
+    "assez": [
+      "3590067:30"
+    ],
+    "athl": [
+      "3413303:42"
+    ],
+    "audace": [
+      "2316778:3"
+    ],
+    "aura": [
+      "4565762:4"
+    ],
+    "autobiographiques": [
+      "3275068:18"
+    ],
+    "automatique": [
+      "3285585:13"
+    ],
+    "avenir": [
+      "4565762:33"
+    ],
+    "avouée": [
+      "3570505:6"
+    ],
+    "baigne": [
+      "4882118:31"
+    ],
+    "bain": [
+      "3590067:20"
+    ],
+    "barri": [
+      "3100061:55"
+    ],
+    "bars": [
+      "4783721:43"
+    ],
+    "basket": [
+      "3590067:34"
+    ],
+    "bataille": [
+      "4134227:58"
+    ],
+    "bateau": [
+      "3492914:8"
+    ],
+    "battre": [
+      "2871456:23"
+    ],
+    "beau": [
+      "3100061:50"
+    ],
+    "beautés": [
+      "2468504:18"
+    ],
+    "belles": [
+      "3908643:6"
+    ],
+    "bilan": [
+      "7977788:6"
+    ],
+    "bisous": [
+      "2871456:2"
+    ],
+    "blague": [
+      "4882118:16"
+    ],
+    "bombés": [
+      "3910811:3"
+    ],
+    "bouteilles": [
+      "4783721:5"
+    ],
+    "boy": [
+      "4083905:45"
+    ],
+    "bref": [
+      "4931884:25"
+    ],
+    "bres": [
+      "3293950:5"
+    ],
+    "briller": [
+      "2316778:3"
+    ],
+    "bruit": [
+      "5163433:8"
+    ],
+    "brusquée": [
+      "3100061:49"
+    ],
+    "brésilien": [
+      "4739991:15"
+    ],
+    "bu": [
+      "4931888:19"
+    ],
+    "buenos": [
+      "478839:1"
+    ],
+    "bébé": [
+      "3100061:70"
+    ],
+    "qu'ils": [
+      "10396391:30"
+    ],
+    "cacao": [
+      "4695000:18"
+    ],
+    "cachais": [
+      "4931886:8"
+    ],
+    "cadence": [
+      "4882118:53"
+    ],
+    "cage": [
+      "2871456:11"
+    ],
+    "campe": [
+      "3841490:14"
+    ],
+    "can": [
+      "4083905:45"
+    ],
+    "canapé": [
+      "3908643:3"
+    ],
+    "cap": [
+      "3492914:6"
+    ],
+    "capable": [
+      "2274575:6"
+    ],
+    "capot": [
+      "3492914:10"
+    ],
+    "caramel": [
+      "4294732:17"
+    ],
+    "cartable": [
+      "2274575:18"
+    ],
+    "cavale": [
+      "3492914:29"
+    ],
+    "celui": [
+      "4931887:6"
+    ],
+    "cendres": [
+      "4565762:4"
+    ],
+    "cerveau": [
+      "4739990:12"
+    ],
+    "cesse": [
+      "7977788:29"
+    ],
+    "ch": [
+      "3758526:23"
+    ],
+    "chagrins": [
+      "2284462:4"
+    ],
+    "champs": [
+      "2871456:2"
+    ],
+    "change": [
+      "4414385:9"
+    ],
+    "changera": [
+      "3911964:30"
+    ],
+    "changé": [
+      "3841471:6"
+    ],
+    "chantant": [
+      "3413303:38"
+    ],
+    "chante": [
+      "4882118:12"
+    ],
+    "chanterons": [
+      "3758526:24"
+    ],
+    "chanté": [
+      "4931886:22"
+    ],
+    "chargée": [
+      "7977788:7"
+    ],
+    "charmante": [
+      "3403616:4"
+    ],
+    "cher": [
+      "3590067:5"
+    ],
+    "chienne": [
+      "4882118:7"
+    ],
+    "choix": [
+      "3074559:14"
+    ],
+    "choses": [
+      "4565762:13"
+    ],
+    "chuchote": [
+      "4240436:47"
+    ],
+    "ché": [
+      "2871456:19"
+    ],
+    "ci": [
+      "4931885:2"
+    ],
+    "cigarette": [
+      "7977788:12"
+    ],
+    "cinq": [
+      "10396391:16"
+    ],
+    "cinématographique": [
+      "3275068:4"
+    ],
+    "circuit": [
+      "7977788:32"
+    ],
+    "claires": [
+      "3293950:1"
+    ],
+    "claque": [
+      "3492914:10"
+    ],
+    "clip": [
+      "3285585:1"
+    ],
+    "close": [
+      "4240436:25"
+    ],
+    "coeur": [
+      "3492914:28"
+    ],
+    "cohérence": [
+      "3570505:23"
+    ],
+    "coin": [
+      "4240436:22"
+    ],
+    "coincée": [
+      "3285585:13"
+    ],
+    "coller": [
+      "3590067:21"
+    ],
+    "combat": [
+      "3911964:28"
+    ],
+    "combien": [
+      "4240436:16"
+    ],
+    "comment": [
+      "4414385:21"
+    ],
+    "comprenais": [
+      "4739991:16"
+    ],
+    "concerts": [
+      "3285585:1"
+    ],
+    "confondent": [
+      "2849521:26"
+    ],
+    "conna": [
+      "4783721:60"
+    ],
+    "connue": [
+      "4739991:6"
+    ],
+    "conseil": [
+      "4931885:2"
+    ],
+    "conservé": [
+      "4083905:24"
+    ],
+    "contr": [
+      "2871456:10"
+    ],
+    "contraire": [
+      "3912738:1"
+    ],
+    "coquillage": [
+      "2274575:10"
+    ],
+    "coquilles": [
+      "5163433:5"
+    ],
+    "cosmique": [
+      "3293950:16"
+    ],
+    "cou": [
+      "3492914:20"
+    ],
+    "coucher": [
+      "7977788:7"
+    ],
+    "couille": [
+      "3285585:7"
+    ],
+    "cour": [
+      "3100061:4"
+    ],
+    "courir": [
+      "3492913:19"
+    ],
+    "court": [
+      "7977788:32"
+    ],
+    "couvert": [
+      "3908643:6"
+    ],
+    "crocs": [
+      "3100061:28"
+    ],
+    "croit": [
+      "5163433:28"
+    ],
+    "croyant": [
+      "4931884:46"
+    ],
+    "crédit": [
+      "4240436:43"
+    ],
+    "cyprine": [
+      "2307519:31"
+    ],
+    "abord": [
+      "3285585:7"
+    ],
+    "actualité": [
+      "2849509:26"
+    ],
+    "angele": [
+      "3285585:1"
+    ],
+    "atomes": [
+      "5163433:35"
+    ],
+    "intimité": [
+      "2849509:28"
+    ],
+    "méditer": [
+      "4931887:42"
+    ],
+    "or": [
+      "3492913:9"
+    ],
+    "respect": [
+      "3914077:25"
+    ],
+    "da": [
+      "4083905:1"
+    ],
+    "dames": [
+      "7977788:27"
+    ],
+    "debut": [
+      "478839:1"
+    ],
+    "dehors": [
+      "4931884:2"
+    ],
+    "demandais": [
+      "2871456:13"
+    ],
+    "demande": [
+      "3285585:9"
+    ],
+    "demi": [
+      "3914077:13"
+    ],
+    "derniers": [
+      "4931877:19"
+    ],
+    "descendre": [
+      "4565762:8"
+    ],
+    "descente": [
+      "3413303:25"
+    ],
+    "dessines": [
+      "4294732:3"
+    ],
+    "dessus": [
+      "3413303:21"
+    ],
+    "destin": [
+      "2284462:8"
+    ],
+    "destins": [
+      "5462359:52"
+    ],
+    "devance": [
+      "4882118:52"
+    ],
+    "devine": [
+      "2468504:22"
+    ],
+    "devraient": [
+      "3590067:18"
+    ],
+    "die": [
+      "7145447:20"
+    ],
+    "dieux": [
+      "5187243:25"
+    ],
+    "direction": [
+      "3758526:9"
+    ],
+    "diront": [
+      "2871456:6"
+    ],
+    "dispara": [
+      "5163433:36"
+    ],
+    "disparais": [
+      "4783721:66"
+    ],
+    "dissimule": [
+      "5163433:20"
+    ],
+    "distraites": [
+      "3413303:40"
+    ],
+    "dites": [
+      "2284462:19"
+    ],
+    "dix": [
+      "3910811:16"
+    ],
+    "dm": [
+      "5462359:19"
+    ],
+    "doigtes": [
+      "10396391:18"
+    ],
+    "dolce": [
+      "5462359:35"
+    ],
+    "dolziger": [
+      "2307519:1"
+    ],
+    "domine": [
+      "2468504:6"
+    ],
+    "dormais": [
+      "4931885:3"
+    ],
+    "dormir": [
+      "3100061:23"
+    ],
+    "douce": [
+      "2849509:27"
+    ],
+    "douleur": [
+      "3590067:6"
+    ],
+    "doutes": [
+      "7333830:9"
+    ],
+    "doux": [
+      "3910811:1"
+    ],
+    "drague": [
+      "3285585:10"
+    ],
+    "dramatique": [
+      "3275068:3"
+    ],
+    "drame": [
+      "4882118:3"
+    ],
+    "drames": [
+      "5462359:58"
+    ],
+    "draps": [
+      "3910811:4"
+    ],
+    "drogue": [
+      "5187243:30"
+    ],
+    "durer": [
+      "3841471:18"
+    ],
+    "décadence": [
+      "2468504:19"
+    ],
+    "décembre": [
+      "478839:1"
+    ],
+    "décha": [
+      "5163433:31"
+    ],
+    "dédiées": [
+      "4931884:6"
+    ],
+    "défais": [
+      "4565762:14"
+    ],
+    "défendues": [
+      "5163433:14"
+    ],
+    "défile": [
+      "7977788:14"
+    ],
+    "déforme": [
+      "2316778:1"
+    ],
+    "déhanche": [
+      "4695000:3"
+    ],
+    "délaissé": [
+      "3912738:14"
+    ],
+    "démarche": [
+      "3590067:27"
+    ],
+    "dépanne": [
+      "3285585:9"
+    ],
+    "dépendants": [
+      "3590067:2"
+    ],
+    "déplacé": [
+      "3841490:6"
+    ],
+    "dépose": [
+      "5163433:5"
+    ],
+    "dépossédée": [
+      "3959326:6"
+    ],
+    "déposé": [
+      "4134227:23"
+    ],
+    "déprimé": [
+      "4931887:43"
+    ],
+    "dérailles": [
+      "4134227:47"
+    ],
+    "dérange": [
+      "4882118:55"
+    ],
+    "dérive": [
+      "5462359:57"
+    ],
+    "dés": [
+      "3590067:18"
+    ],
+    "désarme": [
+      "7145447:24"
+    ],
+    "désolée": [
+      "7977788:7"
+    ],
+    "détestes": [
+      "5462359:20"
+    ],
+    "développées": [
+      "3590067:17"
+    ],
+    "dévoilée": [
+      "3570505:3"
+    ],
+    "dévorés": [
+      "5462359:55"
+    ],
+    "effet": [
+      "4565762:16"
+    ],
+    "embrase": [
+      "3492913:8"
+    ],
+    "engloutit": [
+      "3492913:5"
+    ],
+    "enivrée": [
+      "3590067:27"
+    ],
+    "enlacés": [
+      "2274575:15"
+    ],
+    "ennemis": [
+      "7333830:16"
+    ],
+    "ensembles": [
+      "3074559:8"
+    ],
+    "ensoleillé": [
+      "4695000:4"
+    ],
+    "envier": [
+      "3413303:3"
+    ],
+    "envo": [
+      "3293950:5"
+    ],
+    "envol": [
+      "4240436:49"
+    ],
+    "escapade": [
+      "2274575:22"
+    ],
+    "espoir": [
+      "3486219:22"
+    ],
+    "espérance": [
+      "3570505:21"
+    ],
+    "essentiel": [
+      "3758526:1"
+    ],
+    "esthétiques": [
+      "3275068:17"
+    ],
+    "eu": [
+      "3285585:7"
+    ],
+    "existentiel": [
+      "3758526:2"
+    ],
+    "exister": [
+      "4931887:23"
+    ],
+    "express": [
+      "4931884:27"
+    ],
+    "extrait": [
+      "2307519:1"
+    ],
+    "exubérantes": [
+      "2873324:22"
+    ],
+    "fable": [
+      "2274575:16"
+    ],
+    "facile": [
+      "3912738:1"
+    ],
+    "faisait": [
+      "4783721:36"
+    ],
+    "falloir": [
+      "7977788:29"
+    ],
+    "fantaisie": [
+      "2873324:1"
+    ],
+    "fatiguée": [
+      "4783721:32"
+    ],
+    "faute": [
+      "3570505:6"
+    ],
+    "feel": [
+      "3959326:53"
+    ],
+    "ferais": [
+      "4240436:22"
+    ],
+    "fermés": [
+      "3100061:24"
+    ],
+    "fier": [
+      "7145447:22"
+    ],
+    "film": [
+      "3275068:19"
+    ],
+    "filmer": [
+      "4083905:7"
+    ],
+    "finalement": [
+      "4931884:47"
+    ],
+    "finalité": [
+      "4565762:5"
+    ],
+    "fini": [
+      "2871456:23"
+    ],
+    "fixe": [
+      "3275068:7"
+    ],
+    "flanché": [
+      "4931877:20"
+    ],
+    "fleur": [
+      "4739990:12"
+    ],
+    "fleurs": [
+      "4695000:18"
+    ],
+    "folle": [
+      "3486219:34"
+    ],
+    "force": [
+      "4083905:11"
+    ],
+    "foudroyé": [
+      "3959326:6"
+    ],
+    "fouille": [
+      "3492914:3"
+    ],
+    "fourbe": [
+      "2307519:16"
+    ],
+    "foute": [
+      "2871456:14"
+    ],
+    "foutue": [
+      "2849509:8"
+    ],
+    "frais": [
+      "4882118:55"
+    ],
+    "franchis": [
+      "3413303:24"
+    ],
+    "freine": [
+      "4882118:30"
+    ],
+    "fruit": [
+      "3293950:25"
+    ],
+    "frustrant": [
+      "3841490:6"
+    ],
+    "frustrée": [
+      "4931887:42"
+    ],
+    "fréquemment": [
+      "7333830:16"
+    ],
+    "fuis": [
+      "4783721:14"
+    ],
+    "fumée": [
+      "3492913:7"
+    ],
+    "futurs": [
+      "2849521:26"
+    ],
+    "gardé": [
+      "3590067:34"
+    ],
+    "genoux": [
+      "5163433:4"
+    ],
+    "gentiment": [
+      "3285585:9"
+    ],
+    "ges": [
+      "3100061:19"
+    ],
+    "glaces": [
+      "4695000:19"
+    ],
+    "glissé": [
+      "4565762:6"
+    ],
+    "grain": [
+      "5163433:21"
+    ],
+    "grands": [
+      "3074559:8"
+    ],
+    "gre": [
+      "4882118:55"
+    ],
+    "guide": [
+      "3758526:8"
+    ],
+    "habillais": [
+      "4739991:23"
+    ],
+    "habitais": [
+      "4739991:3"
+    ],
+    "habituée": [
+      "2316778:2"
+    ],
+    "hante": [
+      "4882118:9"
+    ],
+    "hanté": [
+      "3959326:19"
+    ],
+    "happy": [
+      "3910844:22"
+    ],
+    "hargne": [
+      "7145447:24"
+    ],
+    "hein": [
+      "5187243:6"
+    ],
+    "heureuse": [
+      "2307519:10"
+    ],
+    "hommes": [
+      "10396391:29"
+    ],
+    "honte": [
+      "5187243:25"
+    ],
+    "hérésies": [
+      "5163433:13"
+    ],
+    "idées": [
+      "5462359:55"
+    ],
+    "ignorer": [
+      "10396391:15"
+    ],
+    "illusions": [
+      "3074559:2"
+    ],
+    "images": [
+      "3275068:16"
+    ],
+    "impatient": [
+      "3100061:60"
+    ],
+    "improbable": [
+      "2873324:1"
+    ],
+    "impudiques": [
+      "2468504:2"
+    ],
+    "incompatible": [
+      "3074559:6"
+    ],
+    "inconformes": [
+      "2316778:2"
+    ],
+    "inconnus": [
+      "4739991:14"
+    ],
+    "infinies": [
+      "3293950:6"
+    ],
+    "ingénue": [
+      "2468504:5"
+    ],
+    "innocence": [
+      "4134227:26"
+    ],
+    "insane": [
+      "3959326:53"
+    ],
+    "intensément": [
+      "4783721:13"
+    ],
+    "interstice": [
+      "2873324:4"
+    ],
+    "introduction": [
+      "4294732:1"
+    ],
+    "invites": [
+      "4294732:21"
+    ],
+    "inévitablement": [
+      "3959326:3"
+    ],
+    "irons": [
+      "3758526:21"
+    ],
+    "isolés": [
+      "7333830:19"
+    ],
+    "italienne": [
+      "4414385:19"
+    ],
+    "appelle": [
+      "7977788:4"
+    ],
+    "attendrai": [
+      "2849521:20"
+    ],
+    "essayais": [
+      "4739991:16"
+    ],
+    "habite": [
+      "4414385:23"
+    ],
+    "hésite": [
+      "4931886:46"
+    ],
+    "imagine": [
+      "3590067:2"
+    ],
+    "l'ai": [
+      "3570505:4"
+    ],
+    "l'avais": [
+      "4931886:22"
+    ],
+    "repensais": [
+      "3100061:1"
+    ],
+    "jalousies": [
+      "3911964:16"
+    ],
+    "jam": [
+      "4083905:45"
+    ],
+    "janvier": [
+      "5187243:27"
+    ],
+    "jean": [
+      "3590067:33"
+    ],
+    "joindre": [
+      "3413303:4"
+    ],
+    "jolies": [
+      "4294732:17"
+    ],
+    "jonchés": [
+      "3492913:9"
+    ],
+    "jouais": [
+      "4931886:24"
+    ],
+    "jouer": [
+      "3790711:15"
+    ],
+    "journal": [
+      "4739991:15"
+    ],
+    "journée": [
+      "7977788:7"
+    ],
+    "jours": [
+      "4931877:53"
+    ],
+    "jungle": [
+      "2873324:22"
+    ],
+    "jure": [
+      "10396391:40"
+    ],
+    "jusqu": [
+      "2307519:16"
+    ],
+    "jusque": [
+      "3908643:3"
+    ],
+    "k": [
+      "4783721:60"
+    ],
+    "katy": [
+      "4240436:27"
+    ],
+    "abri": [
+      "2274575:18"
+    ],
+    "affiche": [
+      "4240436:45"
+    ],
+    "aimes": [
+      "3841490:31"
+    ],
+    "altitude": [
+      "4931877:3"
+    ],
+    "aper": [
+      "4783721:10"
+    ],
+    "armoire": [
+      "2871456:12"
+    ],
+    "arri": [
+      "4882118:31"
+    ],
+    "aurore": [
+      "4931885:31"
+    ],
+    "austérité": [
+      "2849509:27"
+    ],
+    "avalanche": [
+      "4134227:28"
+    ],
+    "cacher": [
+      "4931886:26"
+    ],
+    "homme": [
+      "3100061:28"
+    ],
+    "illusion": [
+      "3486219:22"
+    ],
+    "imagines": [
+      "3275068:20"
+    ],
+    "imprimé": [
+      "5163433:27"
+    ],
+    "écume": [
+      "5163433:5"
+    ],
+    "équateur": [
+      "2873324:2"
+    ],
+    "laide": [
+      "3914077:14"
+    ],
+    "laissant": [
+      "3100061:69"
+    ],
+    "laissera": [
+      "4931887:23"
+    ],
+    "lascivité": [
+      "2468504:23"
+    ],
+    "latent": [
+      "3486219:11"
+    ],
+    "latitude": [
+      "2873324:3"
+    ],
+    "latitudes": [
+      "2468504:2"
+    ],
+    "lavé": [
+      "4134227:26"
+    ],
+    "lavée": [
+      "4931884:2"
+    ],
+    "leche": [
+      "4695000:18"
+    ],
+    "lequel": [
+      "4783721:38"
+    ],
+    "lianes": [
+      "2873324:22"
+    ],
+    "libertine": [
+      "2468504:24"
+    ],
+    "libertés": [
+      "2316778:2"
+    ],
+    "libre": [
+      "5163433:12"
+    ],
+    "lire": [
+      "4739991:16"
+    ],
+    "lisible": [
+      "3074559:5"
+    ],
+    "lit": [
+      "3293950:14"
+    ],
+    "litanies": [
+      "5163433:14"
+    ],
+    "liés": [
+      "4931884:22"
+    ],
+    "loca": [
+      "5462359:39"
+    ],
+    "longitude": [
+      "2873324:3"
+    ],
+    "lors": [
+      "3285585:1"
+    ],
+    "lundi": [
+      "7977788:1"
+    ],
+    "lune": [
+      "3293950:25"
+    ],
+    "luxuriante": [
+      "2873324:21"
+    ],
+    "lé": [
+      "4695000:4"
+    ],
+    "abandonner": [
+      "3590067:25"
+    ],
+    "arrivait": [
+      "4931877:21"
+    ],
+    "efface": [
+      "7145447:3"
+    ],
+    "embrasses": [
+      "3911964:17"
+    ],
+    "enchante": [
+      "3100061:23"
+    ],
+    "enfuir": [
+      "3486219:31"
+    ],
+    "enjambes": [
+      "3100061:24"
+    ],
+    "entoure": [
+      "4882118:10"
+    ],
+    "envenimer": [
+      "4083905:9"
+    ],
+    "exiler": [
+      "7333830:17"
+    ],
+    "expliquer": [
+      "7333830:14"
+    ],
+    "racontes": [
+      "4931884:46"
+    ],
+    "rappelles": [
+      "5462359:54"
+    ],
+    "voyais": [
+      "4240436:45"
+    ],
+    "maladie": [
+      "3293950:26"
+    ],
+    "maladroit": [
+      "4783721:65"
+    ],
+    "maladroite": [
+      "3590067:34"
+    ],
+    "maléfices": [
+      "2873324:20"
+    ],
+    "mama": [
+      "4240436:27"
+    ],
+    "marche": [
+      "3914077:3"
+    ],
+    "marché": [
+      "4739991:7"
+    ],
+    "marque": [
+      "2274575:20"
+    ],
+    "martyre": [
+      "3413303:38"
+    ],
+    "mat": [
+      "3271116:2"
+    ],
+    "mat'": [
+      "10396391:16"
+    ],
+    "matelots": [
+      "3492914:16"
+    ],
+    "mec": [
+      "3285585:9"
+    ],
+    "mecs": [
+      "10396391:15"
+    ],
+    "messieurs": [
+      "7977788:27"
+    ],
+    "mesure": [
+      "4931877:21"
+    ],
+    "michtos": [
+      "3790711:28"
+    ],
+    "mien": [
+      "2849521:25"
+    ],
+    "mienne": [
+      "3590067:3"
+    ],
+    "millénaires": [
+      "2873324:23"
+    ],
+    "moite": [
+      "2873324:21"
+    ],
+    "monarque": [
+      "2468504:5"
+    ],
+    "montage": [
+      "3275068:15"
+    ],
+    "montée": [
+      "3413303:25"
+    ],
+    "mood": [
+      "3908643:18"
+    ],
+    "mous": [
+      "3100061:48"
+    ],
+    "mutine": [
+      "2468504:23"
+    ],
+    "mécaniques": [
+      "2468504:18"
+    ],
+    "méchante": [
+      "4882118:10"
+    ],
+    "médicament": [
+      "7333830:17"
+    ],
+    "mémé": [
+      "3285585:11"
+    ],
+    "mérité": [
+      "4240436:15"
+    ],
+    "napalm": [
+      "3492913:9"
+    ],
+    "naufragés": [
+      "7333830:19"
+    ],
+    "nerai": [
+      "3758526:6"
+    ],
+    "nez": [
+      "4931884:2"
+    ],
+    "nid": [
+      "4240436:48"
+    ],
+    "nobody's": [
+      "3910844:22"
+    ],
+    "noie": [
+      "4882118:59"
+    ],
+    "nombril": [
+      "3492914:9"
+    ],
+    "noms": [
+      "4739991:14"
+    ],
+    "norme": [
+      "2316778:3"
+    ],
+    "nouveau": [
+      "4931887:6"
+    ],
+    "novembre": [
+      "2307519:1"
+    ],
+    "nuance": [
+      "3841490:4"
+    ],
+    "nuits": [
+      "3293950:1"
+    ],
+    "néant": [
+      "3492913:4"
+    ],
+    "obligé": [
+      "3790711:6"
+    ],
+    "obscures": [
+      "3590067:4"
+    ],
+    "occupée": [
+      "7977788:7"
+    ],
+    "ois": [
+      "4783721:10"
+    ],
+    "ombragé": [
+      "5163433:19"
+    ],
+    "orange": [
+      "4414385:6"
+    ],
+    "organique": [
+      "2468504:20"
+    ],
+    "oserais": [
+      "7977788:45"
+    ],
+    "osé": [
+      "4083905:6"
+    ],
+    "ouvrirai": [
+      "3100061:24"
+    ],
+    "p": [
+      "3413303:22"
+    ],
+    "p'tit": [
+      "3590067:3"
+    ],
+    "p'tite": [
+      "4083905:6"
+    ],
+    "pacifique": [
+      "2468504:4"
+    ],
+    "page": [
+      "4739991:15"
+    ],
+    "paix": [
+      "2871456:14"
+    ],
+    "papiers": [
+      "4083905:24"
+    ],
+    "para": [
+      "2284462:10"
+    ],
+    "parano": [
+      "3841490:4"
+    ],
+    "pardonner": [
+      "2468504:19"
+    ],
+    "pardonnée": [
+      "3570505:6"
+    ],
+    "parents": [
+      "3914077:14"
+    ],
+    "parlant": [
+      "4931887:22"
+    ],
+    "partagée": [
+      "3570505:1"
+    ],
+    "parte": [
+      "4931887:2"
+    ],
+    "parti": [
+      "3285585:7"
+    ],
+    "partout": [
+      "3413303:42"
+    ],
+    "party": [
+      "5462359:36"
+    ],
+    "passent": [
+      "4931885:1"
+    ],
+    "passer": [
+      "3285585:11"
+    ],
+    "passionné": [
+      "4294732:8"
+    ],
+    "passions": [
+      "3100061:61"
+    ],
+    "passés": [
+      "2849521:3"
+    ],
+    "past": [
+      "4695000:19"
+    ],
+    "paysage": [
+      "3074559:15"
+    ],
+    "pellicule": [
+      "3492914:2"
+    ],
+    "pente": [
+      "3413303:24"
+    ],
+    "pentes": [
+      "3911964:14"
+    ],
+    "perce": [
+      "4882118:57"
+    ],
+    "perceptible": [
+      "5163433:9"
+    ],
+    "perd": [
+      "4931877:3"
+    ],
+    "perdent": [
+      "3911964:28"
+    ],
+    "perds": [
+      "4931877:24"
+    ],
+    "perdues": [
+      "2871456:19"
+    ],
+    "perry": [
+      "4240436:27"
+    ],
+    "perte": [
+      "4240436:18"
+    ],
+    "pi": [
+      "3100061:19"
+    ],
+    "pierres": [
+      "2274575:24"
+    ],
+    "pincé": [
+      "2307519:16"
+    ],
+    "pitié": [
+      "4134227:9"
+    ],
+    "plan": [
+      "3285585:10"
+    ],
+    "planche": [
+      "3492914:21"
+    ],
+    "planer": [
+      "5187243:30"
+    ],
+    "pleureuse": [
+      "4414385:19"
+    ],
+    "pleurs": [
+      "3910811:3"
+    ],
+    "pli": [
+      "5163433:19"
+    ],
+    "plonge": [
+      "4882118:57"
+    ],
+    "plupart": [
+      "3100061:48"
+    ],
+    "plut": [
+      "3841490:6"
+    ],
+    "pluvieuse": [
+      "3908643:1"
+    ],
+    "poches": [
+      "4240436:14"
+    ],
+    "point": [
+      "2873324:2"
+    ],
+    "poisse": [
+      "4882118:15"
+    ],
+    "polies": [
+      "5163433:6"
+    ],
+    "pont": [
+      "4294732:30"
+    ],
+    "portée": [
+      "2284462:10"
+    ],
+    "poubelle": [
+      "7333830:9"
+    ],
+    "premiers": [
+      "3486219:34"
+    ],
+    "pressée": [
+      "4134227:12"
+    ],
+    "prochain": [
+      "3910811:19"
+    ],
+    "prof": [
+      "5163433:14"
+    ],
+    "profite": [
+      "3285585:11"
+    ],
+    "précieux": [
+      "3911964:7"
+    ],
+    "préféré": [
+      "3590067:33"
+    ],
+    "présent": [
+      "7977788:5"
+    ],
+    "prétende": [
+      "4565762:33"
+    ],
+    "pudeur": [
+      "478839:7"
+    ],
+    "pénombre": [
+      "4882118:59"
+    ],
+    "qu'": [
+      "4882118:31"
+    ],
+    "j'ai": [
+      "4931887:51"
+    ],
+    "j'suis": [
+      "7333830:8"
+    ],
+    "quant": [
+      "3293950:32"
+    ],
+    "quatre": [
+      "4931885:4"
+    ],
+    "quel": [
+      "4882118:54"
+    ],
+    "quelle": [
+      "10396391:9"
+    ],
+    "querettes": [
+      "3413303:22"
+    ],
+    "quitte": [
+      "4783721:33"
+    ],
+    "raconterait": [
+      "4783721:35"
+    ],
+    "raconté": [
+      "4083905:10"
+    ],
+    "rage": [
+      "7145447:23"
+    ],
+    "rallument": [
+      "7977788:30"
+    ],
+    "rance": [
+      "3293950:25"
+    ],
+    "rancoeur": [
+      "478839:15"
+    ],
+    "range": [
+      "7977788:15"
+    ],
+    "rap": [
+      "3914077:3"
+    ],
+    "rappelais": [
+      "2871456:2"
+    ],
+    "rare": [
+      "4931887:31"
+    ],
+    "rater": [
+      "3285585:10"
+    ],
+    "raves": [
+      "5462359:36"
+    ],
+    "really": [
+      "3910844:22"
+    ],
+    "reconnais": [
+      "2849521:7"
+    ],
+    "recourir": [
+      "3293950:17"
+    ],
+    "recule": [
+      "3492914:4"
+    ],
+    "redonne": [
+      "2307519:10"
+    ],
+    "reflet": [
+      "2307519:12"
+    ],
+    "regards": [
+      "4294732:24"
+    ],
+    "regardé": [
+      "3403616:1"
+    ],
+    "reine": [
+      "4931886:24"
+    ],
+    "rejoins": [
+      "3758526:5"
+    ],
+    "rel": [
+      "7145447:22"
+    ],
+    "relever": [
+      "4240436:50"
+    ],
+    "reluque": [
+      "478839:15"
+    ],
+    "rena": [
+      "7977788:32"
+    ],
+    "rencontrent": [
+      "2274575:27"
+    ],
+    "rend": [
+      "4931887:31"
+    ],
+    "rendu": [
+      "4882118:10"
+    ],
+    "rentre": [
+      "4931888:20"
+    ],
+    "rentrent": [
+      "3590067:4"
+    ],
+    "rentrée": [
+      "4783721:31"
+    ],
+    "rep": [
+      "3841471:33"
+    ],
+    "reparlera": [
+      "3570505:7"
+    ],
+    "repense": [
+      "4783721:67"
+    ],
+    "ressemble": [
+      "3074559:6"
+    ],
+    "rester": [
+      "4931884:28"
+    ],
+    "retourner": [
+      "4134227:27"
+    ],
+    "retrouvé": [
+      "4134227:24"
+    ],
+    "rev'nir": [
+      "5187243:27"
+    ],
+    "revient": [
+      "2871456:15"
+    ],
+    "revoit": [
+      "4783721:61"
+    ],
+    "riches": [
+      "3911964:24"
+    ],
+    "rires": [
+      "5462359:58"
+    ],
+    "rives": [
+      "3492913:9"
+    ],
+    "romantisme": [
+      "4931884:27"
+    ],
+    "rond": [
+      "4240436:15"
+    ],
+    "roue": [
+      "3413303:5"
+    ],
+    "rouges": [
+      "3910811:3"
+    ],
+    "rougit": [
+      "3492914:17"
+    ],
+    "roules": [
+      "3413303:38"
+    ],
+    "route": [
+      "3911964:14"
+    ],
+    "ruelles": [
+      "478839:17"
+    ],
+    "réel": [
+      "3074559:14"
+    ],
+    "répondent": [
+      "2849521:3"
+    ],
+    "répondrai": [
+      "3908643:18"
+    ],
+    "réponds": [
+      "3486219:9"
+    ],
+    "résister": [
+      "3590067:6"
+    ],
+    "rétine": [
+      "2307519:12"
+    ],
+    "rétro": [
+      "3492914:28"
+    ],
+    "réu": [
+      "7977788:6"
+    ],
+    "réveiller": [
+      "4083905:25"
+    ],
+    "aimantent": [
+      "5163433:35"
+    ],
+    "approche": [
+      "5163433:30"
+    ],
+    "embrasse": [
+      "5163433:33"
+    ],
+    "embrouillent": [
+      "3492914:1"
+    ],
+    "enfuit": [
+      "3492914:25"
+    ],
+    "entrem": [
+      "3841490:5"
+    ],
+    "retenir": [
+      "3590067:22"
+    ],
+    "retrouve": [
+      "2849521:4"
+    ],
+    "égraine": [
+      "3492914:13"
+    ],
+    "élance": [
+      "4134227:29"
+    ],
+    "épouser": [
+      "3590067:18"
+    ],
+    "étonne": [
+      "3100061:27"
+    ],
+    "évapore": [
+      "5163433:27"
+    ],
+    "sacré": [
+      "3492914:22"
+    ],
+    "sage": [
+      "3271116:4"
+    ],
+    "sale": [
+      "3914077:3"
+    ],
+    "salle": [
+      "3590067:20"
+    ],
+    "samedi": [
+      "3590067:23"
+    ],
+    "sang": [
+      "2307519:16"
+    ],
+    "saurais": [
+      "3486219:32"
+    ],
+    "savent": [
+      "10396391:29"
+    ],
+    "sc": [
+      "4882118:30"
+    ],
+    "sciant": [
+      "3100061:56"
+    ],
+    "science": [
+      "3293950:17"
+    ],
+    "secondes": [
+      "7977788:46"
+    ],
+    "secret": [
+      "2284462:19"
+    ],
+    "sein": [
+      "5163433:19"
+    ],
+    "semaine": [
+      "4783721:61"
+    ],
+    "semble": [
+      "3912738:1"
+    ],
+    "semblent": [
+      "4565762:25"
+    ],
+    "semées": [
+      "3293950:2"
+    ],
+    "sensation": [
+      "2274575:14"
+    ],
+    "sensible": [
+      "3074559:20"
+    ],
+    "sentaient": [
+      "2871456:2"
+    ],
+    "serait": [
+      "4931886:3"
+    ],
+    "sereine": [
+      "4882118:36"
+    ],
+    "serre": [
+      "5163433:34"
+    ],
+    "sert": [
+      "3790711:7"
+    ],
+    "silencieux": [
+      "5163433:7"
+    ],
+    "simple": [
+      "2849509:7"
+    ],
+    "single": [
+      "3285585:1"
+    ],
+    "sinon": [
+      "3790711:7"
+    ],
+    "soirée": [
+      "3908643:1"
+    ],
+    "sois": [
+      "5163433:12"
+    ],
+    "soldat": [
+      "4414385:20"
+    ],
+    "soldes": [
+      "3912738:14"
+    ],
+    "solides": [
+      "4134227:9"
+    ],
+    "somnif": [
+      "2871456:3"
+    ],
+    "sonne": [
+      "3486219:11"
+    ],
+    "sophage": [
+      "3100061:7"
+    ],
+    "sors": [
+      "3758526:20"
+    ],
+    "sortes": [
+      "4134227:31"
+    ],
+    "soupirs": [
+      "3486219:34"
+    ],
+    "source": [
+      "4882118:31"
+    ],
+    "sourde": [
+      "3758526:19"
+    ],
+    "souvenir": [
+      "3275068:2"
+    ],
+    "souvenirs": [
+      "3492914:2"
+    ],
+    "souviendra": [
+      "4783721:44"
+    ],
+    "spirale": [
+      "4134227:56"
+    ],
+    "stories": [
+      "4931884:6"
+    ],
+    "str": [
+      "2307519:1"
+    ],
+    "strass": [
+      "3293950:4"
+    ],
+    "subversif": [
+      "3275068:21"
+    ],
+    "succ": [
+      "4240436:15"
+    ],
+    "sucette": [
+      "7145447:27"
+    ],
+    "sucrée": [
+      "3492914:20"
+    ],
+    "suffirait": [
+      "4565762:32"
+    ],
+    "supendent": [
+      "7977788:46"
+    ],
+    "superficialité": [
+      "2849509:8"
+    ],
+    "superficiel": [
+      "3790711:32"
+    ],
+    "symbiose": [
+      "5163433:34"
+    ],
+    "sé": [
+      "4240436:27"
+    ],
+    "séduire": [
+      "3590067:30"
+    ],
+    "séparent": [
+      "5462359:52"
+    ],
+    "séparer": [
+      "4739991:6"
+    ],
+    "sévissent": [
+      "3911964:27"
+    ],
+    "abuses": [
+      "3914077:25"
+    ],
+    "admirer": [
+      "3403616:7"
+    ],
+    "am": [
+      "3758526:6"
+    ],
+    "avait": [
+      "4134227:24"
+    ],
+    "invente": [
+      "3486219:23"
+    ],
+    "étaient": [
+      "4931884:6"
+    ],
+    "évites": [
+      "4931888:19"
+    ],
+    "tandem": [
+      "3413303:45"
+    ],
+    "technique": [
+      "3590067:30"
+    ],
+    "teint": [
+      "4695000:4"
+    ],
+    "tellement": [
+      "3790711:26"
+    ],
+    "tendres": [
+      "4931877:53"
+    ],
+    "tends": [
+      "3100061:19"
+    ],
+    "tendu": [
+      "4240436:16"
+    ],
+    "tentant": [
+      "3910844:8"
+    ],
+    "tente": [
+      "478839:7"
+    ],
+    "tenue": [
+      "2873324:5"
+    ],
+    "terrasse": [
+      "7977788:12"
+    ],
+    "thérémine": [
+      "2468504:8"
+    ],
+    "tivement": [
+      "3959326:22"
+    ],
+    "tombe": [
+      "3413303:5"
+    ],
+    "tombé": [
+      "3413303:24"
+    ],
+    "tombée": [
+      "4240436:50"
+    ],
+    "torpeur": [
+      "2873324:21"
+    ],
+    "tour": [
+      "3285585:31"
+    ],
+    "tourment": [
+      "4695000:10"
+    ],
+    "tourne": [
+      "3413303:5"
+    ],
+    "tram": [
+      "3285585:10"
+    ],
+    "tremble": [
+      "3486219:12"
+    ],
+    "triste": [
+      "4882118:12"
+    ],
+    "tristes": [
+      "3293950:4"
+    ],
+    "tristesse": [
+      "7145447:20"
+    ],
+    "tristesses": [
+      "2284462:26"
+    ],
+    "trois": [
+      "4783721:35"
+    ],
+    "troisi": [
+      "2307519:1"
+    ],
+    "trouvent": [
+      "3413303:21"
+    ],
+    "trouvés": [
+      "3910811:16"
+    ],
+    "turquoise": [
+      "2274575:24"
+    ],
+    "téléphone": [
+      "3403616:1"
+    ],
+    "tén": [
+      "3293950:5"
+    ],
+    "tés": [
+      "3100061:23"
+    ],
+    "usés": [
+      "3910811:4"
+    ],
+    "uvrées": [
+      "3590067:18"
+    ],
+    "vacille": [
+      "3492914:28"
+    ],
+    "vague": [
+      "4134227:23"
+    ],
+    "vain": [
+      "478839:7"
+    ],
+    "valse": [
+      "5163433:35"
+    ],
+    "veille": [
+      "4294732:8"
+    ],
+    "ventre": [
+      "4240436:13"
+    ],
+    "verdoyante": [
+      "2873324:5"
+    ],
+    "verie": [
+      "2873324:17"
+    ],
+    "verre": [
+      "3790711:5"
+    ],
+    "verres": [
+      "3910811:18"
+    ],
+    "versions": [
+      "2274575:1"
+    ],
+    "veste": [
+      "5462359:22"
+    ],
+    "veulent": [
+      "10396391:30"
+    ],
+    "vida": [
+      "5462359:39"
+    ],
+    "vides": [
+      "4565762:25"
+    ],
+    "viendra": [
+      "3413303:4"
+    ],
+    "viennent": [
+      "2849521:9"
+    ],
+    "vieux": [
+      "3590067:33"
+    ],
+    "vin": [
+      "7977788:12"
+    ],
+    "vip": [
+      "4294732:21"
+    ],
+    "virent": [
+      "7977788:46"
+    ],
+    "virtuel": [
+      "10396391:10"
+    ],
+    "vita": [
+      "5462359:35"
+    ],
+    "vite": [
+      "7977788:47"
+    ],
+    "vitesse": [
+      "4240436:18"
+    ],
+    "vivions": [
+      "2873324:18"
+    ],
+    "voile": [
+      "3293950:4"
+    ],
+    "voiles": [
+      "4134227:57"
+    ],
+    "voix": [
+      "3590067:5"
+    ],
+    "volte": [
+      "5462359:53"
+    ],
+    "volume": [
+      "7977788:31"
+    ],
+    "vue": [
+      "3570505:4"
+    ],
+    "wah": [
+      "3100061:35"
+    ],
+    "x": [
+      "3486219:37"
+    ],
+    "y'avait": [
+      "3100061:55"
+    ],
+    "ye": [
+      "4695000:1"
+    ],
+    "you": [
+      "3959326:53"
+    ],
+    "échec": [
+      "3271116:2"
+    ],
+    "échecs": [
+      "4931886:23"
+    ],
+    "échos": [
+      "3492914:26"
+    ],
+    "éclabousser": [
+      "2468504:3"
+    ],
+    "écolier": [
+      "2274575:17"
+    ],
+    "écorchés": [
+      "5163433:4"
+    ],
+    "écoulé": [
+      "7977788:46"
+    ],
+    "écoutent": [
+      "2873324:30"
+    ],
+    "écrite": [
+      "2274575:17"
+    ],
+    "éminence": [
+      "2468504:3"
+    ],
+    "émotionnels": [
+      "4294732:24"
+    ],
+    "épaules": [
+      "3841490:14"
+    ],
+    "éponger": [
+      "4240436:43"
+    ],
+    "éteinte": [
+      "7977788:43"
+    ],
+    "étend": [
+      "3293950:14"
+    ],
+    "étoiles": [
+      "3293950:2"
+    ],
+    "étourdissante": [
+      "2873324:6"
+    ],
+    "étés": [
+      "3492914:1"
+    ],
+    "évite": [
+      "4931886:44"
+    ]
+  },
+  "_meta": {
+    "step_name": "tag_example_pos",
+    "step_version": 2,
+    "generated_at": 1776532754,
+    "tool_versions": {
+      "spacy_model": "dep_news_trf"
+    }
+  }
+}
