@@ -1308,10 +1308,15 @@ function updateCard() {
         }
     }
 
+    // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
+    // on narrow viewports) so the header grows by a reasonable amount
+    // rather than adding a full line of whitespace each wrap. Single-line
+    // cards are unaffected — line-height only matters when there are two
+    // or more rendered lines.
     let backHTML = `
-        <div class="back-header" style="text-align: center; margin-bottom: 12px;">
+        <div class="back-header" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold;">${wordDisplay}</div>
+                <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
             </div>
             ${homographChipHTML}
         </div>

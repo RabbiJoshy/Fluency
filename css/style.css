@@ -3296,7 +3296,13 @@
 
         .flip-back-area {
             display: inline-block;
-            padding: 20px 40px;
+            /* Vertical padding kept small so single-line words don't carve
+               out a fat top block that dwarfs the content below. Wrapping
+               content (long word + lemma on narrow screens) still breathes
+               because line-height on the inner word div takes over once a
+               second line exists. Horizontal padding stays generous so the
+               click target remains finger-friendly. */
+            padding: 8px 40px;
             border: 2px solid rgba(255, 255, 255, 0);
             border-radius: 12px;
             cursor: pointer;
