@@ -1328,7 +1328,7 @@ function updateCard() {
         const trayRows = [];
         card.meanings.forEach((m, idx) => {
             const isSelected = idx === currentMeaningIndex;
-            const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.5)' : 'rgba(15, 20, 28, 0.75)';
+            const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.6)' : 'rgba(15, 20, 28, 0.82)';
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
             const borderStyle = (isSelected && !m.unassigned) ? 'border: 3px solid var(--accent-primary);' : '';
             const posColorClass = getPosColorClass(m.pos);
@@ -1355,7 +1355,7 @@ function updateCard() {
                 // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
                 target.push(`
                 <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.15); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
+                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${displayMeaning}</span>
                     ${mweCounter}
                 </div>
@@ -1364,7 +1364,7 @@ function updateCard() {
                 // Clitic row: form in a light pill, translation centered, cycling counter
                 target.push(`
                 <div class="meaning-row meaning-row-clitic" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.12); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
+                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${m.allClitics ? m.allClitics[cliticIdx].translation : ''}</span>
                     ${cliticCounter}
                 </div>
@@ -1567,7 +1567,7 @@ function updateCard() {
             displayEnglishSentence = truncateText(displayEnglishSentence, 20);
 
             // Highlight words in the target sentence with a colored pill + white text
-            const pillStyle = 'background: rgba(255,255,255,0.15); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
+            const pillStyle = 'background: rgba(255,255,255,0.22); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
             if (currentMeaning.allMWEs) {
                 // MWE sense: highlight the current MWE expression
                 const expr = currentMeaning.allMWEs[activeMweIdx].expression;

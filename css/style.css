@@ -1005,17 +1005,17 @@
         }
 
         /* Part of Speech Colors */
-        .pos-noun { background: rgba(74, 158, 255, 0.35); border-color: rgba(74, 158, 255, 0.5); color: #8fc2ff; }
-        .pos-verb { background: rgba(0, 212, 170, 0.35); border-color: rgba(0, 212, 170, 0.5); color: #66e4cc; }
-        .pos-adj { background: rgba(245, 166, 35, 0.35); border-color: rgba(245, 166, 35, 0.5); color: #f9c96e; }
-        .pos-adv { background: rgba(168, 85, 247, 0.35); border-color: rgba(168, 85, 247, 0.5); color: #c9a0f9; }
-        .pos-prep { background: rgba(236, 72, 153, 0.35); border-color: rgba(236, 72, 153, 0.5); color: #f291be; }
-        .pos-conj { background: rgba(20, 184, 166, 0.35); border-color: rgba(20, 184, 166, 0.5); color: #6dd4c8; }
-        .pos-pron { background: rgba(99, 102, 241, 0.35); border-color: rgba(99, 102, 241, 0.5); color: #9b9df6; }
-        .pos-det { background: rgba(244, 63, 94, 0.35); border-color: rgba(244, 63, 94, 0.5); color: #f88da5; }
-        .pos-int { background: rgba(234, 179, 8, 0.35); border-color: rgba(234, 179, 8, 0.5); color: #f2d166; }
-        .pos-num { background: rgba(6, 182, 212, 0.35); border-color: rgba(6, 182, 212, 0.5); color: #66d4e6; }
-        .pos-mwe { background: rgba(251, 191, 36, 0.35); border-color: rgba(251, 191, 36, 0.5); color: #fcd57a; }
+        .pos-noun { background: rgba(74, 158, 255, 0.45); border-color: rgba(74, 158, 255, 0.6); color: #8fc2ff; }
+        .pos-verb { background: rgba(0, 212, 170, 0.45); border-color: rgba(0, 212, 170, 0.6); color: #66e4cc; }
+        .pos-adj { background: rgba(245, 166, 35, 0.45); border-color: rgba(245, 166, 35, 0.6); color: #f9c96e; }
+        .pos-adv { background: rgba(168, 85, 247, 0.45); border-color: rgba(168, 85, 247, 0.6); color: #c9a0f9; }
+        .pos-prep { background: rgba(236, 72, 153, 0.45); border-color: rgba(236, 72, 153, 0.6); color: #f291be; }
+        .pos-conj { background: rgba(20, 184, 166, 0.45); border-color: rgba(20, 184, 166, 0.6); color: #6dd4c8; }
+        .pos-pron { background: rgba(99, 102, 241, 0.45); border-color: rgba(99, 102, 241, 0.6); color: #9b9df6; }
+        .pos-det { background: rgba(244, 63, 94, 0.45); border-color: rgba(244, 63, 94, 0.6); color: #f88da5; }
+        .pos-int { background: rgba(234, 179, 8, 0.45); border-color: rgba(234, 179, 8, 0.6); color: #f2d166; }
+        .pos-num { background: rgba(6, 182, 212, 0.45); border-color: rgba(6, 182, 212, 0.6); color: #66d4e6; }
+        .pos-mwe { background: rgba(251, 191, 36, 0.45); border-color: rgba(251, 191, 36, 0.6); color: #fcd57a; }
 
         .card-ranking {
             font-family: var(--font-reading);
@@ -1129,7 +1129,7 @@
         .sentence {
             margin-top: 15px;
             padding: 7px 11px;
-            background: rgba(var(--accent-primary-rgb), 0.08);
+            background: rgba(var(--accent-primary-rgb), 0.14);
             border: 1px solid var(--accent-primary);
             border-radius: 8px;
             font-family: var(--font-reading);
@@ -1142,7 +1142,7 @@
         }
 
         body.artist-mode .sentence {
-            background: rgba(15, 20, 28, 0.75);
+            background: rgba(15, 20, 28, 0.85);
         }
 
         @media (max-width: 767px) {
@@ -4786,7 +4786,10 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(30, 39, 50, 0.82);
+            /* Higher alpha = more opaque overlay = artist album artwork
+               shows through less. Keeps it as an atmospheric cue without
+               competing with the text. */
+            background: rgba(30, 39, 50, 0.9);
             border-radius: 16px;
             z-index: 0;
         }
