@@ -1052,13 +1052,24 @@ async function goBackToSetup() {
  * Build "variant1 | variant2" display string from card.variants,
  * sorted by count descending (most frequent first).
  * Returns null if no variants (single-form word).
+ *
+ * Low-count variants (count < MIN_VARIANT_COUNT) are suppressed: they're
+ * usually colloquial one-offs ("m'le" on the `le` card, "qu'le" on `le`,
+ * phonetic slips on subtitled corpora) that add visual noise without
+ * teaching value. The primary form always stays regardless of count.
  */
+const MIN_VARIANT_COUNT = 2;
 function buildVariantDisplay(card) {
     if (!card.variants) return null;
     const entries = Object.entries(card.variants);
     if (entries.length < 2) return null;
     entries.sort((a, b) => b[1] - a[1]);
-    return entries.map(e => e[0]).join(' | ');
+    // Keep the primary (highest-count) form unconditionally; drop lower
+    // entries that fall under the min-count threshold.
+    const [primary, ...rest] = entries;
+    const kept = [primary, ...rest.filter(([, c]) => c >= MIN_VARIANT_COUNT)];
+    if (kept.length < 2) return null;
+    return kept.map(e => e[0]).join(' | ');
 }
 
 function updateCard() {

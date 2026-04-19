@@ -64,7 +64,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 4
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
@@ -72,6 +72,9 @@ STEP_VERSION_NOTES = {
     4: "french: consult Wiktionary phrase/contraction index; promote known apos "
        "forms (c'est, j'ai, qu'il, n'est, s'il, …) to own entries instead of "
        "stripping them into a verb form",
+    5: "french: Tier C — split colloquial proclitic+function-word forms "
+       "(m'le, qu'le, j'suis, j'me) into two words instead of dumping counts "
+       "onto the tail. Counts and examples flow to both halves.",
 }
 
 # ---------------------------------------------------------------------------
@@ -87,6 +90,38 @@ _FRENCH_PROCLITIC_RE = re.compile(
     r"^(" + "|".join(FRENCH_PROCLITICS) + r")[" + _FRENCH_APOS + r"](.+)$",
     re.IGNORECASE,
 )
+
+# Proclitic → standard expansion. `l'` is omitted (gender-ambiguous le/la;
+# Tier B handles the content-word case correctly and the function-word case
+# is vanishingly rare). `jusqu'/lorsqu'/puisqu'` expand to their bare forms
+# but those are rarely followed by function-word tails in the data; we keep
+# them here for completeness.
+_FRENCH_PROCLITIC_EXPANSION = {
+    "j": "je", "m": "me", "t": "te", "s": "se", "n": "ne",
+    "d": "de", "c": "ce", "qu": "que",
+    "jusqu": "jusque", "lorsqu": "lorsque", "puisqu": "puisque",
+}
+
+# French function words. When an apostrophized form's tail is one of these,
+# the form is colloquial shorthand for `proclitic + function-word` rather
+# than `proclitic + content-word` (e.g. `m'le` = me le, `qu'le` = que le,
+# `j'suis` = je suis). Distributing counts to both halves preserves real
+# data and surfaces the line on both cards.
+#
+# Limit to short, high-frequency function words: pronouns, articles,
+# conjugated être/avoir. Keeping the set tight prevents accidental splits
+# of colloquial content-word contractions (which should stay Tier B).
+_FRENCH_FUNCTION_WORD_TAILS = frozenset({
+    # pronouns / articles
+    "je", "me", "te", "se", "le", "la", "les", "lui", "leur", "en", "y",
+    "ce", "que", "qui",
+    # être (to be) — present tense
+    "suis", "es", "est", "sommes", "etes", "sont",
+    # avoir (to have) — present tense
+    "ai", "as", "a", "avons", "avez", "ont",
+    # very short imperfect forms that frequently fuse
+    "etais", "etait",
+})
 
 
 def french_strip_proclitic(word):
@@ -108,6 +143,35 @@ def french_strip_proclitic(word):
     if not tail or all(ch in _FRENCH_APOS for ch in tail):
         return None
     return tail
+
+
+def french_split_to_function_words(word):
+    """Tier C: colloquial `proclitic + function-word` forms.
+
+    Returns ``(expanded_proclitic, tail)`` when ``word`` looks like
+    `X'Y` with Y a French function word (m'le, qu'le, j'suis, j'me,
+    s'est, t'en, j'ai, …), else None.
+
+    Caller uses the result to distribute counts to BOTH halves instead
+    of dumping them on the tail via Tier B. Tail function words get
+    extra evidence; the proclitic's expanded form (je/me/que/…) gets
+    counted and picks up the example too. `l'` is excluded here because
+    its expansion is ambiguous (le vs la) and its common content-word
+    case (`l'amour`) is handled correctly by Tier B already.
+    """
+    m = _FRENCH_PROCLITIC_RE.match(word)
+    if not m:
+        return None
+    proclitic = m.group(1).lower()
+    tail = m.group(2).lower().strip()
+    if not tail or all(ch in _FRENCH_APOS for ch in tail):
+        return None
+    expanded = _FRENCH_PROCLITIC_EXPANSION.get(proclitic)
+    if not expanded:
+        return None
+    if tail not in _FRENCH_FUNCTION_WORD_TAILS:
+        return None
+    return expanded, tail
 
 
 # ---------------------------------------------------------------------------
@@ -479,65 +543,88 @@ def merge_evidence(data, targets, known_vocab):
 def merge_evidence_french(data, apos_phrase_index=None):
     """French elision handling.
 
-    Tiering:
+    Tiering (checked in order; first match wins):
       Tier A — `apos_phrase_index` says this apostrophized form has a
                dedicated Wiktionary entry (c'est, j'ai, qu'il, n'est, s'il,
                m'a, t'as, jusqu'au, …). Keep as its own entry; the sense
                menu built in step_5c will use the phrase/contraction gloss.
-      Tier B — `french_strip_proclitic` recognises a proclitic + tail
-               (l'amour, j'aime, l'autre, d'un). Strip the proclitic, merge
-               counts/examples into the bare tail (original Tier B behaviour).
-      Tier C — unchanged: non-apostrophe tokens fall through as-is.
+      Tier C — `french_split_to_function_words` recognises a colloquial
+               `proclitic + function-word` fusion (m'le=me+le, qu'le=que+le,
+               j'suis=je+suis, j'me=je+me, t'en=te+en). Counts and examples
+               flow to BOTH halves; no standalone m'le entry survives. This
+               rescues rap-heavy corpora where these forms would otherwise
+               dump counts onto a single article/pronoun and surface as
+               noisy count-1 variant chips.
+      Tier B — `french_strip_proclitic` recognises a proclitic + content-word
+               tail (l'amour, j'aime, l'autre, d'un). Strip the proclitic,
+               merge counts/examples into the bare tail (original behaviour).
+      Tier D — non-apostrophe tokens fall through as-is.
 
     ``apos_phrase_index`` is the dict returned by ``load_french_apos_phrases``.
-    Passing ``None`` disables Tier A and falls back to the pre-tier-4 strip-
-    everything behaviour (useful for tests).
+    Passing ``None`` disables Tier A and falls back to pre-tier-4 behaviour
+    (useful for tests).
     """
     groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
                                   "variants": {}})
-    stats = {"apos_phrase_kept": 0, "proclitic_split": 0, "unmerged": 0}
+    stats = {"apos_phrase_kept": 0, "function_word_split": 0,
+             "proclitic_split": 0, "unmerged": 0}
     apos_phrase_index = apos_phrase_index or {}
     phrase_hits = []  # (word, pos, gloss, count) for reporting
+    split_hits = []   # (word, expanded, tail, count) for reporting
+
+    def _add_to_group(key, display, examples, count, source_word):
+        """Accumulate count/examples/variant under a group key."""
+        if groups[key]["display_form"] is None:
+            groups[key]["display_form"] = display
+        for ex in examples:
+            ex["surface"] = ex.get("surface", source_word)
+        groups[key]["count"] += count
+        groups[key]["examples"].extend(examples)
+        groups[key]["variants"][source_word] = (
+            groups[key]["variants"].get(source_word, 0) + count
+        )
 
     for entry in data:
         word = entry["word"]
         count = entry.get("corpus_count", 0)
         examples = entry.get("examples", [])
 
+        is_apos = ("'" in word) or ("\u2019" in word)
+
         # Tier A: Wiktionary knows this apostrophized form as a lexical unit.
-        # Preserve it as its own entry — the sense menu step will pull the
-        # `contraction`/`phrase` gloss, and the learner gets "it is" on the
-        # card for c'est instead of "east" (est|adj) via the old merge.
-        apos_hit = None
-        if ("'" in word) or ("\u2019" in word):
-            apos_hit = apos_phrase_index.get(_normalize_apos(word))
-
+        apos_hit = apos_phrase_index.get(_normalize_apos(word)) if is_apos else None
         if apos_hit is not None:
-            key = word
-            display = word
             source = "apos_phrase_kept"
+            stats[source] = stats.get(source, 0) + 1
             phrase_hits.append((word, apos_hit[0], apos_hit[1], count))
-        else:
-            tail = french_strip_proclitic(word)
-            if tail is not None:
-                key = tail
-                display = word  # keep the original l'amour as display
-                source = "proclitic_split"
-            else:
-                key = word
-                display = word
-                source = "unmerged"
-        stats[source] = stats.get(source, 0) + 1
+            _add_to_group(word, word, examples, count, word)
+            continue
 
-        if groups[key]["display_form"] is None:
-            groups[key]["display_form"] = display
+        # Tier C: proclitic + function-word. Split into two words.
+        split = french_split_to_function_words(word) if is_apos else None
+        if split is not None:
+            expanded, tail = split
+            source = "function_word_split"
+            stats[source] = stats.get(source, 0) + 1
+            split_hits.append((word, expanded, tail, count))
+            # Same count to both halves — the corpus line counts as one
+            # instance of each word, just fused orthographically. Examples
+            # are shared (a copy per half keeps surface/id intact for each).
+            _add_to_group(expanded, expanded, examples, count, word)
+            _add_to_group(tail, tail, list(examples), count, word)
+            continue
 
-        for ex in examples:
-            ex["surface"] = ex.get("surface", word)
+        # Tier B: proclitic + content-word. Strip proclitic, merge onto tail.
+        tail = french_strip_proclitic(word) if is_apos else None
+        if tail is not None:
+            source = "proclitic_split"
+            stats[source] = stats.get(source, 0) + 1
+            _add_to_group(tail, word, examples, count, word)
+            continue
 
-        groups[key]["count"] += count
-        groups[key]["examples"].extend(examples)
-        groups[key]["variants"][word] = groups[key]["variants"].get(word, 0) + count
+        # Tier D: plain word, no apostrophe machinery applies.
+        stats["unmerged"] = stats.get("unmerged", 0) + 1
+        _add_to_group(word, word, examples, count, word)
 
     # Build output (dedup by song — matches Spanish behaviour)
     out = []
@@ -606,7 +693,8 @@ def main():
         print(f"\nWrote {len(merged)} entries -> {OUT_PATH}")
         print(f"  Reduced by {len(data) - len(merged)} entries")
         print(f"  Merge sources:")
-        for k in ("apos_phrase_kept", "proclitic_split", "unmerged"):
+        for k in ("apos_phrase_kept", "function_word_split",
+                  "proclitic_split", "unmerged"):
             print(f"    {k}: {stats.get(k, 0)}")
         print("\n=== Top 20 merged entries ===")
         for e in merged[:20]:

@@ -156,60 +156,6 @@
       }
     }
   ],
-  "pas": [
-    {
-      "headword": "pas",
-      "senses": {
-        "435": {
-          "pos": "NOUN",
-          "translation": "step, pace, footstep",
-          "source": "wiktionary",
-          "example": {
-            "target": "Des pas qu'on gravait dans la neige sont partis avec le printemps.",
-            "english": "Steps we etched in the snow are gone with the [arrival of] spring."
-          }
-        },
-        "b9d": {
-          "pos": "NOUN",
-          "translation": "strait, pass",
-          "source": "wiktionary",
-          "context": "geography",
-          "example": {
-            "target": "Pas de Calais",
-            "english": "Strait of Dover"
-          }
-        },
-        "60a": {
-          "pos": "NOUN",
-          "translation": "thread, pitch",
-          "source": "wiktionary",
-          "detail": "thread, pitch (of a screw or nut)"
-        },
-        "880": {
-          "pos": "ADV",
-          "translation": "The most common adverb of negation in French, typically translating into English as not, don't",
-          "source": "wiktionary",
-          "example": {
-            "target": "Je ne sais pas.",
-            "english": "I don't know"
-          },
-          "detail": "The most common adverb of negation in French, typically translating into English as not, don't, doesn't, etc."
-        },
-        "8da": {
-          "pos": "ADV",
-          "translation": "used as an intensifier in underlying rhetorical questions, mostly with voilà",
-          "source": "wiktionary",
-          "register": [
-            "colloquial"
-          ],
-          "example": {
-            "target": "Et v'là t-y pas qu'elle m'en colle une !",
-            "english": "And I tell you, she slapped me just like that!"
-          }
-        }
-      }
-    }
-  ],
   "de": [
     {
       "headword": "de",
@@ -288,6 +234,60 @@
           "translation": "diced slice",
           "source": "wiktionary",
           "detail": "diced slice (of meat)"
+        }
+      }
+    }
+  ],
+  "pas": [
+    {
+      "headword": "pas",
+      "senses": {
+        "435": {
+          "pos": "NOUN",
+          "translation": "step, pace, footstep",
+          "source": "wiktionary",
+          "example": {
+            "target": "Des pas qu'on gravait dans la neige sont partis avec le printemps.",
+            "english": "Steps we etched in the snow are gone with the [arrival of] spring."
+          }
+        },
+        "b9d": {
+          "pos": "NOUN",
+          "translation": "strait, pass",
+          "source": "wiktionary",
+          "context": "geography",
+          "example": {
+            "target": "Pas de Calais",
+            "english": "Strait of Dover"
+          }
+        },
+        "60a": {
+          "pos": "NOUN",
+          "translation": "thread, pitch",
+          "source": "wiktionary",
+          "detail": "thread, pitch (of a screw or nut)"
+        },
+        "880": {
+          "pos": "ADV",
+          "translation": "The most common adverb of negation in French, typically translating into English as not, don't",
+          "source": "wiktionary",
+          "example": {
+            "target": "Je ne sais pas.",
+            "english": "I don't know"
+          },
+          "detail": "The most common adverb of negation in French, typically translating into English as not, don't, doesn't, etc."
+        },
+        "8da": {
+          "pos": "ADV",
+          "translation": "used as an intensifier in underlying rhetorical questions, mostly with voilà",
+          "source": "wiktionary",
+          "register": [
+            "colloquial"
+          ],
+          "example": {
+            "target": "Et v'là t-y pas qu'elle m'en colle une !",
+            "english": "And I tell you, she slapped me just like that!"
+          }
         }
       }
     }
@@ -626,6 +626,40 @@
       }
     }
   ],
+  "te": [
+    {
+      "headword": "te",
+      "senses": {
+        "64f": {
+          "pos": "PRON",
+          "translation": "you",
+          "source": "wiktionary",
+          "context": "direct object",
+          "register": [
+            "direct-object"
+          ],
+          "example": {
+            "target": "Il te cite souvent.",
+            "english": "He often quotes you."
+          }
+        },
+        "087": {
+          "pos": "PRON",
+          "translation": "yourself",
+          "source": "wiktionary",
+          "context": "reflexive pronoun",
+          "register": [
+            "pronoun",
+            "reflexive"
+          ],
+          "example": {
+            "target": "Tu te souviens d'elle.",
+            "english": "You remember her."
+          }
+        }
+      }
+    }
+  ],
   "est": [
     {
       "headword": "est",
@@ -725,40 +759,6 @@
           "pos": "NOUN",
           "translation": "the ego; the me",
           "source": "wiktionary"
-        }
-      }
-    }
-  ],
-  "te": [
-    {
-      "headword": "te",
-      "senses": {
-        "64f": {
-          "pos": "PRON",
-          "translation": "you",
-          "source": "wiktionary",
-          "context": "direct object",
-          "register": [
-            "direct-object"
-          ],
-          "example": {
-            "target": "Il te cite souvent.",
-            "english": "He often quotes you."
-          }
-        },
-        "087": {
-          "pos": "PRON",
-          "translation": "yourself",
-          "source": "wiktionary",
-          "context": "reflexive pronoun",
-          "register": [
-            "pronoun",
-            "reflexive"
-          ],
-          "example": {
-            "target": "Tu te souviens d'elle.",
-            "english": "You remember her."
-          }
         }
       }
     }

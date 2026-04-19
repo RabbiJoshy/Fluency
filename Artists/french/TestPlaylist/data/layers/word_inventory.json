@@ -9,10 +9,15 @@
   },
   {
     "word": "je",
-    "corpus_count": 272,
+    "corpus_count": 299,
     "variants": {
       "je": 270,
-      "qu'je": 2
+      "j'en": 13,
+      "j'me": 9,
+      "j'la": 2,
+      "j'te": 2,
+      "qu'je": 2,
+      "j'les": 1
     }
   },
   {
@@ -29,16 +34,21 @@
     "corpus_count": 195
   },
   {
+    "word": "de",
+    "corpus_count": 194,
+    "variants": {
+      "de": 189,
+      "d'me": 4,
+      "d'leur": 1
+    }
+  },
+  {
     "word": "pas",
     "corpus_count": 192,
     "variants": {
       "pas": 191,
       "n'pas": 1
     }
-  },
-  {
-    "word": "de",
-    "corpus_count": 189
   },
   {
     "word": "en",
@@ -59,16 +69,24 @@
   },
   {
     "word": "me",
-    "corpus_count": 156,
+    "corpus_count": 158,
     "variants": {
       "me": 143,
       "j'me": 9,
-      "d'me": 4
+      "d'me": 4,
+      "m'le": 1,
+      "m'ont": 1
     }
   },
   {
     "word": "que",
-    "corpus_count": 152
+    "corpus_count": 157,
+    "variants": {
+      "que": 152,
+      "qu'est": 2,
+      "qu'je": 2,
+      "qu'le": 1
+    }
   },
   {
     "word": "tu",
@@ -81,6 +99,16 @@
   {
     "word": "c'est",
     "corpus_count": 144
+  },
+  {
+    "word": "te",
+    "corpus_count": 136,
+    "variants": {
+      "te": 95,
+      "t'en": 35,
+      "t'ai": 4,
+      "j'te": 2
+    }
   },
   {
     "word": "est",
@@ -97,14 +125,6 @@
   {
     "word": "moi",
     "corpus_count": 100
-  },
-  {
-    "word": "te",
-    "corpus_count": 97,
-    "variants": {
-      "te": 95,
-      "j'te": 2
-    }
   },
   {
     "word": "a",
