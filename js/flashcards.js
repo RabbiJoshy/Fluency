@@ -1431,7 +1431,7 @@ function updateCard() {
                     : '';
                 const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;';
                 target.push(`
-                <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 6px 12px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 36px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start;">${cyclePos}</span>
                     <span style="font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${cyclePos}</span>
@@ -1458,7 +1458,7 @@ function updateCard() {
                     contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                 }
                 target.push(`
-                <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 6px 12px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 36px;" onclick="selectMeaning(${idx})">
                     ${posPill}
                     <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
                         <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>

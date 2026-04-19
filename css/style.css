@@ -794,11 +794,20 @@
             width: 100%;
         }
 
+        /* `flex: 0 1 auto` lets the scroll region take its natural height
+           instead of greedily filling the card. With `margin-top: auto`
+           here and on `.links-section`, the two auto margins split the
+           remaining slack evenly — centring the meanings+tray+sentence
+           block vertically on sparse cards (one-sense words like `bueno`
+           used to leave a huge gap between the sense row and the example
+           box). When content fills the card, the auto margins collapse
+           and the existing scroll-cap / overflow-y behaviour takes over. */
         #backContent > .meanings-scroll {
-            flex: 1 1 auto;
+            flex: 0 1 auto;
             min-height: 0;           /* required for overflow in a flex child */
             width: 100%;
             overflow-y: auto;
+            margin-top: auto;
             /* subtle fade to hint scroll affordance (optional) */
             mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
             -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
@@ -806,14 +815,15 @@
         }
 
         /* Pinned tray for MWE / CLITIC rows — always visible, separated
-           from the scroll region by a soft divider. */
+           from the scroll region by a soft divider. Gap kept tight so the
+           tray reads as part of the same block, not a separate section. */
         #backContent > .meanings-tray {
             flex: 0 0 auto;
             width: 100%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 10px;
-            margin-top: 4px;
-            margin-bottom: 8px;
+            padding-top: 4px;
+            margin-top: 2px;
+            margin-bottom: 4px;
         }
 
         /* Override .sentence defaults so it sits inline with the flex
@@ -1104,7 +1114,7 @@
 
         .sentence {
             margin-top: 15px;
-            padding: 11px 14px;
+            padding: 7px 11px;
             background: rgba(var(--accent-primary-rgb), 0.08);
             border: 1px solid var(--accent-primary);
             border-radius: 8px;
@@ -1124,7 +1134,7 @@
         @media (max-width: 767px) {
             .sentence {
                 font-size: 18px;
-                padding: 9px 12px;
+                padding: 6px 10px;
             }
         }
 
@@ -1187,7 +1197,6 @@
         .links-section {
             margin-top: auto;
             padding-top: 15px;
-            border-top: 1px solid var(--border-color);
             width: 100%;
             display: flex;
             justify-content: center;
