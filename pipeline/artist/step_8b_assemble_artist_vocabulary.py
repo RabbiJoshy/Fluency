@@ -220,9 +220,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     ts_map = lyrics_ts.get("timestamps", {}) if lyrics_ts else {}
     example_pos = load_layer(os.path.join(layers_dir, "example_pos.json"), "example_pos", required=False) or {}
 
-    # MWEs: shared layer at Data/Spanish/layers/mwe_phrases.json (all sources with provenance)
+    # MWEs: shared layer at Data/Spanish/layers/mwe_phrases.json (all sources with provenance).
+    # Keyed by word string (lowercase), e.g. {"que": [{expression, translation, source, ...}]}.
     shared_mwes_path = os.path.join(project_root, "Data", "Spanish", "layers", "mwe_phrases.json")
-    mwe_by_id = load_layer(shared_mwes_path, "mwe_phrases (shared)", required=False) or {}
+    mwe_by_word = load_layer(shared_mwes_path, "mwe_phrases (shared)", required=False) or {}
 
     # Load curated translations (artist-specific first, then shared as fallback)
     curated = {}
@@ -966,6 +967,38 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # --- Master vocabulary integration ---
     assign_ids_from_master(entries, master)
 
+    # Ensure each clitic has its own stub master entry so the clitic-layer
+    # writer (below) can map clitic_word → master ID. Without this, only
+    # clitics that happened to be in master from an earlier run are emitted;
+    # any clitic detected fresh in this run gets dropped.
+    if clitic_data:
+        used_ids = set(master.keys())
+        wl_existing = {(m["word"].lower(), m["lemma"].lower()) for m in master.values()}
+        for clitic_word in clitic_data:
+            key = (clitic_word.lower(), clitic_word.lower())
+            if key in wl_existing:
+                continue
+            h = hashlib.md5((clitic_word + "|" + clitic_word).encode("utf-8")).hexdigest()
+            cid = h[:6]
+            if cid in used_ids:
+                for start in range(0, len(h) - 5):
+                    cand = h[start:start + 6]
+                    if cand not in used_ids:
+                        cid = cand
+                        break
+            master[cid] = {
+                "word": clitic_word,
+                "lemma": clitic_word,
+                "senses": [{"pos": "X", "translation": ""}],
+                "is_english": False,
+                "is_interjection": False,
+                "is_propernoun": False,
+                "is_transparent_cognate": False,
+                "display_form": None,
+            }
+            used_ids.add(cid)
+            wl_existing.add(key)
+
     # Record merged clitic IDs on base verb master entries
     if clitic_data:
         wl_to_id = {}
@@ -1073,12 +1106,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # --- MWE annotation from shared layer (after IDs are assigned) ---
     MAX_MWES_PER_ENTRY = 10
     MAX_TRANSLATION_LEN = 100
-    if mwe_by_id:
+    if mwe_by_word:
         mwe_examples_cache = {}
         mwe_count = 0
         for entry in entries:
-            fid = entry["id"]
-            word_mwes = mwe_by_id.get(fid, [])
+            word_key = entry.get("word", "").lower()
+            word_mwes = mwe_by_word.get(word_key, [])
             if not word_mwes:
                 continue
 
