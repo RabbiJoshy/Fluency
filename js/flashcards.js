@@ -1511,6 +1511,52 @@ function updateCard() {
                 activeExamples = sortExamplesByRelevance(activeExamples);
             }
 
+            // For MWE / Clitic rows, examples whose sentence doesn't actually
+            // display the expression are useless for this row — they used to
+            // render in the box without the accent border, which read as a
+            // visual artefact rather than a teaching moment. Filter them out
+            // so the cycle only steps through sentences that actually show
+            // the expression; when that leaves nothing, the whole sentence
+            // block is suppressed further down (the row simply waits until
+            // the user moves to an expression whose examples carry it).
+            // Regular senses and SENSE_CYCLE remainder rows are unchanged:
+            // they keep their non-bordered fallback sentences per the
+            // existing sense-cycle behaviour.
+            if (currentMeaning.allMWEs) {
+                const expr = currentMeaning.allMWEs[activeMweIdx].expression;
+                if (expr) {
+                    const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const re = new RegExp(escaped, 'i');
+                    activeExamples = activeExamples.filter(ex => {
+                        const target = ex.target || ex.spanish || '';
+                        return re.test(target);
+                    });
+                }
+            } else if (currentMeaning.allClitics) {
+                const cliticForm = currentMeaning.allClitics[activeMweIdx].form;
+                if (cliticForm) {
+                    const escaped = cliticForm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    try {
+                        const re = new RegExp('(?<![\\p{L}])' + escaped + '(?![\\p{L}])', 'iu');
+                        activeExamples = activeExamples.filter(ex => {
+                            const target = ex.target || ex.spanish || '';
+                            return re.test(target);
+                        });
+                    } catch (_) {
+                        // Older browsers without \p{...} support — skip filter
+                    }
+                }
+            }
+
+            // Nothing left to show? Skip emitting the sentence box below.
+            // Same effect as `cycleHasExamples=false`: the row sits in the
+            // tray with its expression pill + translation only, until the
+            // user advances to an expression with matching evidence.
+            // We still complete the variable computation here because
+            // nothing in it is expensive or has side-effects — the only
+            // suppression point is the `backHTML +=` at the bottom.
+            const suppressSentenceBlock = isMWEOrCliticCycle && activeExamples.length === 0;
+
             const hasMultipleExamples = activeExamples.length > 1;
             const exampleCount = activeExamples.length;
 
@@ -1670,13 +1716,21 @@ function updateCard() {
                 ? 'border: 3px solid var(--accent-primary); box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.25);'
                 : 'border-color: transparent;';
 
-            backHTML += `
-                <div class="sentence" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
-                    <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
-                    <div class="translation">${displayEnglishSentence}</div>
-                    ${songNameDisplay}
-                </div>
-            `;
+            // Only emit the sentence block if we have something worth
+            // showing. For MWE / Clitic cycles where the filter left us
+            // with zero examples that actually contain the expression,
+            // suppressSentenceBlock is true and we skip entirely — the
+            // row waits in the tray until the user moves to an expression
+            // whose evidence carries a matching sentence.
+            if (!suppressSentenceBlock) {
+                backHTML += `
+                    <div class="sentence" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
+                        <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
+                        <div class="translation">${displayEnglishSentence}</div>
+                        ${songNameDisplay}
+                    </div>
+                `;
+            }
         }
     } else {
         // Legacy format
