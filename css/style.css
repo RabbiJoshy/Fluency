@@ -810,13 +810,16 @@
             width: 100%;
             overflow-y: auto;
             margin-top: auto;
-            /* subtle fade to hint scroll affordance (optional) */
-            mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
-            -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
             /* No bottom padding: the row's own margin-bottom (6px) is
                the only gap between the last sense and whatever follows
                (tray's divider line, or the example sentence). Matches
-               the sense-to-sense gap exactly. */
+               the sense-to-sense gap exactly.
+               No mask-image fade either — the previous bottom-18px
+               fade was a scroll affordance hint, but when decks are
+               short (bueno, danse) and the last row sits near the
+               scroll's bottom edge, the fade ate into the bottom of
+               the row and read as a "halo" artefact. Native scrollbar
+               is the clearer affordance when overflow actually happens. */
             padding-bottom: 0;
         }
 
