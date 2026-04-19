@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260418w';
-import './flashcards.js?v=20260418w';
+import './vocab.js?v=20260418x';
+import './flashcards.js?v=20260418x';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -183,8 +183,8 @@ async function setupModeSwitchButton() {
     if (!btn) return;
 
     if (activeArtist) {
-        // In artist mode → offer switch to normal
-        btn.textContent = 'Normal Mode';
+        // In artist mode → offer switch to standard
+        btn.textContent = 'Standard Mode';
         btn.style.display = '';
         btn.addEventListener('click', () => {
             window.location.href = window.location.pathname;

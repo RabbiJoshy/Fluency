@@ -55,6 +55,20 @@ below have enough complexity to warrant this treatment when the time comes.
 
 ## Data / Pipeline
 
+- **[idea] Finish "Normal mode" → "Standard mode" rename (S) [shared] [cross-lang]**
+  User-facing UI strings were renamed on 2026-04-18: About-page heading
+  ("Standard mode (subtitles)"), top-bar toggle ("Standard Mode"), and
+  About-page demo alt text. Everything else still uses "normal": internal
+  identifiers (`activeArtist === null` means standard mode), code comments
+  ("normal mode" in 20+ places), design-doc filenames
+  (`translation_quality_normal_mode.md`), TODO `[normal]` mode tag,
+  CLAUDE.md references, pipeline step labels ("Normal Mode" header in
+  `pipeline/CLAUDE.md`), `run_normal_pipeline.py` entry point,
+  `_step_defs_normal_mode` / `normal_only` flags, `spanish_normal_vocab`
+  references, `normal_vocab` variables, `--normal-only` CLI flag. Worth
+  a sweep in one commit when there's time; not urgent because the user
+  never sees these.
+
 - **[soon] Better handling of SpanishDict phrasebook analyses (M) [normal/artist] [spanish]**
   Implemented a patch on 2026-04-16 that routes phrase-only self-analyses (e.g.
   the `headword=está` PHRASE analysis) into the inventory's `known_lemmas[0]`

@@ -607,24 +607,17 @@ function _appendAboutFootnotes(body) {
     body.appendChild(notes);
 }
 
-// Swap the top-right close affordance based on auth state. For already-
-// authenticated users it becomes a pill-shaped "Back to the app" button
-// (same action as the bottom CTA — visible while scrolling). For
-// unauthenticated users the plain ✕ stays, because the bottom CTAs push
-// them to pick Guest/Login and a "Back to the app" affordance makes no
-// sense before they've chosen.
+// The About modal is often entered from an external link, so the
+// top-right affordance needs to let visitors bail out early without
+// reading the whole page. A pill-shaped "Back to app" is the same
+// action as the bottom CTA and visible while scrolling. Applied for
+// both authenticated and unauthenticated visitors.
 function _updateAboutCloseButton() {
     const btn = document.getElementById('closeAboutProjectModal');
     if (!btn) return;
-    if (currentUser) {
-        btn.textContent = '← Back to the app';
-        btn.classList.add('about-close-as-pill');
-        btn.setAttribute('aria-label', 'Back to the app');
-    } else {
-        btn.textContent = '✕';
-        btn.classList.remove('about-close-as-pill');
-        btn.setAttribute('aria-label', 'Close');
-    }
+    btn.textContent = '← Back to app';
+    btn.classList.add('about-close-as-pill');
+    btn.setAttribute('aria-label', 'Back to app');
 }
 
 // Append CTAs to the rendered About body so a first-time visitor has a direct
