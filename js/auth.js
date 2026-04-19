@@ -711,12 +711,18 @@ function hideAboutProjectModal() {
 // cards say, not made-up examples. Rendering uses the same classes the main
 // app's updateCard() produces (.card-word, .card-pos, .meaning-row.meaning-row-regular,
 // .meanings-scroll, .sentence, .translation) so the look is 1:1 with the real card.
+// `rank` and `corpusCount` mirror what real flashcards carry. Ranks are the
+// position within the word's host deck (Spanish normal vocab / Bad Bunny
+// artist vocab), so they look the same as the "Rank: X · Frequency: Y" line
+// on a live card. Tweak as needed — the only hard requirement is that the
+// numbers look plausible together.
 const _ABOUT_DEMO_DECKS = {
     normal: [
         {
             word: 'pasar',
             pos: 'VERB',
-            rank: 47,
+            rank: 311,
+            corpusCount: 313,
             meanings: [
                 { pos: 'VERB', translation: 'to spend',
                   target: 'Él va a pasar el fin de semana con su tío.',
@@ -732,7 +738,8 @@ const _ABOUT_DEMO_DECKS = {
         {
             word: 'decir',
             pos: 'VERB',
-            rank: 36,
+            rank: 80,
+            corpusCount: 1519,
             meanings: [
                 { pos: 'VERB', translation: 'to say',
                   target: 'Cuando estés enfadado, cuenta hasta diez antes de decir nada.',
@@ -747,7 +754,8 @@ const _ABOUT_DEMO_DECKS = {
         {
             word: 'corazón',
             pos: 'NOUN',
-            rank: 24,
+            rank: 192,
+            corpusCount: 83,
             song: 'CALLAÍTA · Bad Bunny',
             meanings: [
                 { pos: 'NOUN', translation: 'heart',
@@ -758,7 +766,8 @@ const _ABOUT_DEMO_DECKS = {
         {
             word: 'fuego',
             pos: 'NOUN',
-            rank: 58,
+            rank: 203,
+            corpusCount: 80,
             song: 'ME PORTO BONITO · Bad Bunny',
             // Hand-curated sense examples — the demo cards are few enough that
             // we can hold this to a higher bar than the pipeline's automatic
@@ -917,7 +926,15 @@ async function _runAboutDemo(container, mode) {
             card.classList.remove('flipped');
             wordEl.textContent = entry.word;
             setFrontPos(entry.pos);
-            rankEl.textContent = entry.rank ? '#' + entry.rank : '';
+            // Mirror the live flashcard: "Rank: X · Frequency: Y" when both
+            // are present; falls back to just the rank otherwise.
+            if (entry.rank && entry.corpusCount) {
+                rankEl.textContent = `Rank: ${entry.rank} · Frequency: ${entry.corpusCount}`;
+            } else if (entry.rank) {
+                rankEl.textContent = `Rank: ${entry.rank}`;
+            } else {
+                rankEl.textContent = '';
+            }
             backWordEl.textContent = entry.word;
             // Spotify row on the back — only artist-mode entries carry a
             // `song` field; for normal-mode cards hide the row entirely.
@@ -997,11 +1014,14 @@ function layoutAboutTwoModes(root) {
     if (root.querySelector('.about-modes-row')) return;  // already laid out
 
     const h3s = Array.from(root.querySelectorAll('h3'));
-    const normal = h3s.find(h => /^normal mode\b/i.test(h.textContent.trim()));
+    // Match "Standard mode" (new label) or "Normal mode" (legacy copy if the
+    // Markdown hasn't been updated yet). Keeping both prevents a broken
+    // side-by-side layout if the about.md heading drifts again.
+    const normal = h3s.find(h => /^(?:standard|normal) mode\b/i.test(h.textContent.trim()));
     const lyrics = h3s.find(h => /^(?:lyrics|artist) mode\b/i.test(h.textContent.trim()));
     if (!normal || !lyrics) return;
 
-    // Drop a comment placeholder at the "Normal mode" h3's position BEFORE
+    // Drop a comment placeholder at the Standard-mode h3's position BEFORE
     // we start detaching its siblings, so we have a stable anchor to swap
     // the finished row into afterwards.
     const anchor = document.createComment('about-modes-anchor');
