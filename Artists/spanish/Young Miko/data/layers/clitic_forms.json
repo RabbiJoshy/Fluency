@@ -1,1 +1,300 @@
-{}
+{
+  "c28635": {
+    "base_verb": "roncar",
+    "lemma": "roncarte",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10220932",
+        "song_name": "ay mami",
+        "spanish": "No es por roncarte, pero el día que yo falte",
+        "english": "It's not to snore you, but the day I'm gone",
+        "timestamp_ms": 110010
+      }
+    ],
+    "id": "c28635",
+    "base_id": "8f244f"
+  },
+  "53d283": {
+    "base_verb": "trepa",
+    "lemma": "trepar",
+    "corpus_count": 6,
+    "translation": "to climb",
+    "assignments": {
+      "spanishdict-flash-lite": [
+        {
+          "sense": "b98",
+          "examples": [
+            0,
+            1
+          ]
+        },
+        {
+          "sense": "b9b",
+          "examples": [
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "10220921",
+        "song_name": "rookie of the year",
+        "spanish": "Respectfully, trépate, me lo merezco (Mmm)",
+        "english": "Respectfully, climb up, I deserve it (Mmm)",
+        "timestamp_ms": 98020
+      },
+      {
+        "song": "11752402",
+        "song_name": "WASSUP",
+        "spanish": "Ey, trépate en el tubo, yo tengo la propina",
+        "english": "Hey, climb on the tube, I have the tip",
+        "timestamp_ms": 36360
+      },
+      {
+        "song": "9110676",
+        "song_name": "COLMILLO",
+        "spanish": "Hágale pues, trépate como chiringa",
+        "english": "So do it, climb like a chiringa",
+        "timestamp_ms": 136270
+      },
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Trépate encima, gymnastic",
+        "english": "Climb on top, gymnastic",
+        "timestamp_ms": 49400
+      },
+      {
+        "song": "12591722",
+        "song_name": "Ni le cabe",
+        "spanish": "Trépate pa' que lo aplique'",
+        "english": "Climb up so I can apply it",
+        "timestamp_ms": 67460
+      }
+    ],
+    "id": "53d283"
+  },
+  "1f4da8": {
+    "base_verb": "prende",
+    "lemma": "préndeme",
+    "corpus_count": 1,
+    "translation": "to light",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8693529",
+        "song_name": "Déjanos Pasar",
+        "spanish": "Préndeme en fuego mami, dime Charmander",
+        "english": "Set me on fire mommy, tell me Charmander",
+        "timestamp_ms": 57710
+      }
+    ],
+    "id": "1f4da8"
+  },
+  "79d3e3": {
+    "base_verb": "ponte",
+    "lemma": "pónteme",
+    "corpus_count": 1,
+    "translation": "to put",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Con esta ruleta pónteme al revé'",
+        "english": "",
+        "timestamp_ms": 10710
+      }
+    ],
+    "id": "79d3e3"
+  },
+  "8e1802": {
+    "base_verb": "brinca",
+    "lemma": "brincar",
+    "corpus_count": 8,
+    "translation": "to jump",
+    "assignments": {
+      "spanishdict-flash-lite": [
+        {
+          "sense": "8dd",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Brinca, brinca, brinca, bríncame",
+        "english": "Jump, jump, jump, jump me",
+        "timestamp_ms": 31690
+      }
+    ],
+    "id": "8e1802"
+  },
+  "6de69e": {
+    "base_verb": "suban",
+    "lemma": "súbanle",
+    "corpus_count": 1,
+    "translation": "to go up",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11690948",
+        "song_name": "EN LA CITY",
+        "spanish": "Súbanle volumen, que la música revienta, ja",
+        "english": "Turn up the volume, the music explodes, ha",
+        "timestamp_ms": 22200
+      }
+    ],
+    "id": "6de69e"
+  },
+  "c11c55": {
+    "base_verb": "choca",
+    "lemma": "chócame",
+    "corpus_count": 1,
+    "translation": "to crash",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9402498",
+        "song_name": "DISPO",
+        "spanish": "Chó-Chó-Chócame (Je), yo me pierdo en tu piel",
+        "english": "Chó-Chó-Chócame (Heh), I get lost in your skin",
+        "timestamp_ms": 114590
+      }
+    ],
+    "id": "c11c55"
+  },
+  "65a70e": {
+    "base_verb": "baja",
+    "lemma": "bájale",
+    "corpus_count": 1,
+    "translation": "drop",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9237320",
+        "song_name": "mañana",
+        "spanish": "Vamo' a pichear y bájale a esta bella crisis, yeah",
+        "english": "Let's go play and lower this beautiful crisis, yeah",
+        "timestamp_ms": 101280
+      }
+    ],
+    "id": "65a70e",
+    "base_id": "9629d7"
+  },
+  "6aae92": {
+    "base_verb": "mueve",
+    "lemma": "muéveme",
+    "corpus_count": 6,
+    "translation": "to move",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "Muéveme un poquito, vente conmigo",
+        "english": "Move me a little, come with me",
+        "timestamp_ms": 30150
+      }
+    ],
+    "id": "6aae92",
+    "base_id": "a2a5d9"
+  },
+  "12fe56": {
+    "base_verb": "rompe",
+    "lemma": "rómpela",
+    "corpus_count": 5,
+    "translation": "to break",
+    "assignments": {
+      "gap-fill": [
+        {
+          "sense": "b61",
+          "examples": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8874493",
+        "song_name": "Lisa",
+        "spanish": "Mué-Muévelo, Lisa, rómpela, Patricia (Enrola to')",
+        "english": "Move-Move it, Lisa, break it, Patricia (Enroll to')",
+        "timestamp_ms": 120830
+      },
+      {
+        "song": "8406201",
+        "song_name": "La Mini",
+        "spanish": "La mini rómpela, la .9 escóndela, ah",
+        "english": "The mini break it, the .9 hide it, ah",
+        "timestamp_ms": 66990
+      }
+    ],
+    "id": "12fe56"
+  },
+  "dc0493": {
+    "base_verb": "bajo",
+    "lemma": "bajola",
+    "corpus_count": 1,
+    "translation": "to go down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8783598",
+        "song_name": "Big Booty",
+        "spanish": "'Tábamo en bajola y se fue conmigo a la suite",
+        "english": "'We were in a suitcase and he went with me to the suite",
+        "timestamp_ms": 66280
+      }
+    ],
+    "id": "dc0493",
+    "base_id": "65aada"
+  },
+  "9803c6": {
+    "base_verb": "ponte",
+    "lemma": "ponteme",
+    "corpus_count": 1,
+    "translation": "to put",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "Mami, ven y ponteme agresiva",
+        "english": "Mommy, come and be aggressive for me",
+        "timestamp_ms": 77140
+      }
+    ],
+    "id": "9803c6"
+  },
+  "edf4ef": {
+    "base_verb": "vira",
+    "lemma": "vírate",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9110676",
+        "song_name": "COLMILLO",
+        "spanish": "Vírate, señora",
+        "english": "Get ready, lady",
+        "timestamp_ms": 247580
+      }
+    ],
+    "id": "edf4ef",
+    "base_id": "79da71"
+  }
+}
