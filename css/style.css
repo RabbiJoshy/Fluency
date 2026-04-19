@@ -796,12 +796,14 @@
 
         /* `flex: 0 1 auto` lets the scroll region take its natural height
            instead of greedily filling the card. With `margin-top: auto`
-           here and on `.links-section`, the two auto margins split the
-           remaining slack evenly — centring the meanings+tray+sentence
-           block vertically on sparse cards (one-sense words like `bueno`
-           used to leave a huge gap between the sense row and the example
-           box). When content fills the card, the auto margins collapse
-           and the existing scroll-cap / overflow-y behaviour takes over. */
+           here and `margin-bottom: auto` on the LAST child of the block
+           (`.links-section`), the two competing auto margins split the
+           remaining slack evenly — centring the whole (meanings + tray +
+           sentence + links) group vertically on sparse cards. One-sense
+           words like `bueno` used to bottom-stack; now the group floats
+           to the mid-card gap. When content fills the card, the auto
+           margins collapse and the existing scroll-cap / overflow-y
+           behaviour takes over unchanged. */
         #backContent > .meanings-scroll {
             flex: 0 1 auto;
             min-height: 0;           /* required for overflow in a flex child */
@@ -811,38 +813,50 @@
             /* subtle fade to hint scroll affordance (optional) */
             mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
             -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 18px), transparent);
-            padding-bottom: 8px;
+            /* No bottom padding: the row's own margin-bottom (6px) is
+               the only gap between the last sense and whatever follows
+               (tray's divider line, or the example sentence). Matches
+               the sense-to-sense gap exactly. */
+            padding-bottom: 0;
         }
 
-        /* Pinned tray for MWE / CLITIC rows — always visible, separated
-           from the scroll region by a soft divider. Gap kept tight so the
-           tray reads as part of the same block, not a separate section. */
+        /* Pinned tray for MWE / CLITIC rows. The border-top IS the divider
+           line. For the line to cut through the mid-point of the gap
+           between the last sense and first MWE, the space on either side
+           of the line must match:
+             above line = last-sense margin-bottom (6px, set inline)
+             below line = tray padding-top (6px, here)
+           Tray margins stay at 0 so the only gap to the sentence below is
+           the last MWE's own margin-bottom (6px), matching sense→sentence. */
         #backContent > .meanings-tray {
             flex: 0 0 auto;
             width: 100%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 4px;
-            margin-top: 2px;
-            margin-bottom: 4px;
+            padding-top: 6px;
+            margin-top: 0;
+            margin-bottom: 0;
         }
 
-        /* Override .sentence defaults so it sits inline with the flex
-           layout without fighting other siblings. Also trim the 15px
-           top margin baked into .sentence so the example box hugs the
-           meanings tray above it. */
+        /* Zero top margin on the sentence so the only gap between the
+           last sense/MWE and the example box is the row's own
+           margin-bottom (6px) — matching sense-to-sense spacing, as
+           requested. */
         #backContent > .sentence {
             flex: 0 0 auto;
             width: 100%;
-            margin-top: 6px;
+            margin-top: 0;
         }
 
-        /* The global .links-section uses margin-top: auto to pin itself to
-           the bottom of a flex container. In the new layout we size
-           siblings explicitly, so override. Also tighten the global
-           padding-top (15px) so the links hug the example box. */
+        /* `margin-bottom: auto` pairs with `.meanings-scroll`'s
+           `margin-top: auto` to centre the whole (meanings + tray +
+           sentence + links) block vertically in the space below the
+           header. Explicit margin-top: 4px sits inside the block
+           itself — it's the gap between the example sentence and the
+           links row, not a grow-to-fill hack. */
         #backContent > .links-section {
             flex: 0 0 auto;
             margin-top: 4px;
+            margin-bottom: auto;
             padding-top: 4px;
         }
 
