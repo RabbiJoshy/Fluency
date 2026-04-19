@@ -50,7 +50,12 @@ from util_6a_assignment_format import load_assignments, resolve_best_per_example
 KEYWORD_PRIORITY_THRESHOLD = 15
 from util_6a_method_priority import METHOD_PRIORITY
 from util_8a_assembly_helpers import make_stable_id, split_count_proportionally
+from util_pipeline_config import get_default_min_priority
 from util_pipeline_meta import make_meta, write_sidecar
+
+# Normal mode only ships Spanish today. If another language gets a normal-mode
+# pipeline later, either pass `--language` or promote this to an argparse arg.
+NORMAL_MODE_LANGUAGE = "spanish"
 
 STEP_VERSION = 2
 STEP_VERSION_NOTES = {
@@ -278,13 +283,22 @@ def main():
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards; unassigned examples dropped)")
-    parser.add_argument("--min-priority", type=int, default=0,
+    default_min_priority = get_default_min_priority(NORMAL_MODE_LANGUAGE, fallback=0)
+    parser.add_argument("--min-priority", type=int, default=None,
                         help="Drop assignments whose method priority is below N. "
                              "Their examples become orphans (eligible for remainders "
-                             "when --remainders is on). Default 0 (keep everything). "
+                             "when --remainders is on). Default from "
+                             "config/config.json languages.%s.pipelineDefaults.minPriority "
+                             "(%d today); falls back to 0 when unset. "
                              "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
-                             "50 (Gemini only).")
+                             "50 (Gemini only)." % (NORMAL_MODE_LANGUAGE, default_min_priority))
     args = parser.parse_args()
+    if args.min_priority is None:
+        args.min_priority = default_min_priority
+        print("min-priority: %d (from config/config.json: languages.%s.pipelineDefaults)"
+              % (args.min_priority, NORMAL_MODE_LANGUAGE))
+    else:
+        print("min-priority: %d (from --min-priority flag)" % args.min_priority)
 
     # Load all layers
     print("Loading layers...")

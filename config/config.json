@@ -9,6 +9,10 @@
       "ppmDataPath": "Data/Spanish/SpanishRawWiki.csv",
       "exampleTargetField": "example_spanish",
       "exampleEnglishField": "example_english",
+      "pipelineDefaults": {
+        "minPriority": 50,
+        "_comment": "Gemini flash-lite covers every Spanish word, so keyword-tier claims (priority 10) are dropped by default. Other languages without Gemini coverage should omit this key — missing config falls back to 0 in both step_8a and step_8b."
+      },
       "colorTheme": {
         "primary": "#C8102E",
         "secondary": "#FFCC00"

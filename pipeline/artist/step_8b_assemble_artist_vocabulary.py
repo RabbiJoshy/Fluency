@@ -35,6 +35,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
+from pipeline.util_pipeline_config import get_default_min_priority  # noqa: E402
 
 STEP_VERSION = 1
 STEP_VERSION_NOTES = {
@@ -1369,10 +1370,12 @@ def main():
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards, but unassigned examples are dropped)")
-    parser.add_argument("--min-priority", type=int, default=0,
+    parser.add_argument("--min-priority", type=int, default=None,
                         help="Drop assignments whose method priority is below N. "
                              "Dropped examples become orphans (eligible for remainders "
-                             "when --remainders is on). Default 0 (keep everything). "
+                             "when --remainders is on). Default comes from "
+                             "config/config.json languages.<lang>.pipelineDefaults.minPriority "
+                             "(Spanish: 50; unset languages: 0 = keep everything). "
                              "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
                              "50 (Gemini only).")
     args = parser.parse_args()
@@ -1380,6 +1383,16 @@ def main():
     artist_dir = os.path.abspath(args.artist_dir)
     config = load_artist_config(artist_dir)
     vocab_path = os.path.join(artist_dir, config["vocabulary_file"])
+
+    # Resolve --min-priority default from language config (artist.json → language).
+    # Spanish defaults to 50 (Gemini coverage); missing/unset languages default to 0.
+    language = (config.get("language") or "spanish").lower()
+    if args.min_priority is None:
+        args.min_priority = get_default_min_priority(language, fallback=0)
+        print("min-priority: %d (from config/config.json: languages.%s.pipelineDefaults)"
+              % (args.min_priority, language))
+    else:
+        print("min-priority: %d (from --min-priority flag)" % args.min_priority)
 
     artists_dir = os.path.dirname(artist_dir)
     master_path = args.master_path or os.path.join(artists_dir, "vocabulary_master.json")

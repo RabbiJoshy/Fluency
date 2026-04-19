@@ -198,6 +198,17 @@ cleanly. `dump_assignments` writes the new form.
   (they're "trivially correct" single-sense defaults). Useful values:
   15 (skip keyword-tier), 30 (biencoder+), 50 (Gemini only).
 
+  **Default is language-specific**, resolved from
+  `config/config.json` → `languages.<lang>.pipelineDefaults.minPriority`
+  via `pipeline/util_pipeline_config.py`. Spanish opts in to 50 (Gemini
+  flash-lite covers every word, so keyword-tier noise like
+  `para|parir` is dropped by default). Any language without the
+  `pipelineDefaults.minPriority` key falls back to 0 — keyword claims
+  show by default until the language opts in. `step_8a` hardcodes
+  `language="spanish"`; `step_8b` reads `artist.json.language`
+  (default `"spanish"`). The resolved value is printed at start-up
+  alongside the source (config vs. explicit flag).
+
 The two flags are orthogonal:
 
 - `--min-priority 50 --remainders` → Gemini-only claims + catch-all
