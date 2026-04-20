@@ -2904,15 +2904,61 @@ window.peekHomograph = peekHomograph;
 // ---------------------------------------------------------------------------
 const CONJ_PRONOUNS_FULL = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', 'ellos / ellas'];
 
+// Tense → mood mapping. Tenses we currently ship are just the first six;
+// the Imperativo + compound entries are scaffolded so future data slots in
+// without a renderer change. Unknown tenses fall under "Otras".
+const CONJ_MOOD_GROUPS = {
+    'Indicativo': {
+        tenses: ['Presente', 'Pretérito', 'Imperfecto', 'Futuro', 'Condicional'],
+        accent: 'rgba(74, 158, 255, 0.6)',   // blue
+    },
+    'Subjuntivo': {
+        tenses: ['Subj. Presente', 'Subj. Imperfecto', 'Subj. Futuro'],
+        accent: 'rgba(168, 85, 247, 0.6)',   // purple
+    },
+    'Imperativo': {
+        tenses: ['Imperativo', 'Imp. Negativo'],
+        accent: 'rgba(236, 72, 153, 0.6)',   // pink
+    },
+};
+const CONJ_MOOD_ORDER = ['Indicativo', 'Subjuntivo', 'Imperativo'];
+
+// Split a form into (stem, ending) using longest-common-prefix vs the
+// infinitive's STEM (infinitive minus the -ar/-er/-ir ending). For regular
+// verbs this gives the expected pattern ("habl|o", "habl|as", "habl|a"...).
+// For stem-changing irregulars the shared prefix stops earlier, so more
+// of the word lands in the accent-colored "ending" span — which surfaces
+// the stem change (e.g. "t|engo" from "tener", showing only the "t" as
+// the preserved stem).
+//
+// Using the full infinitive as the reference was wrong: the "a" in the
+// middle of "hablar" matched the "a" ending of "habla", stealing it into
+// the stem.
+function splitStemEnding(form, infinitive) {
+    if (!form) return { stem: '', ending: '' };
+    const src = (infinitive || '').toLowerCase();
+    const dst = form.toLowerCase();
+    // Spanish infinitives always end in -ar / -er / -ir. Strip those two
+    // chars to get the stem reference; fall back to the full infinitive if
+    // it's shorter than 2 chars (defensive — shouldn't happen in practice).
+    const stemLen = src.length >= 2 ? src.length - 2 : src.length;
+    let i = 0;
+    while (i < stemLen && i < dst.length && src[i] === dst[i]) i++;
+    return { stem: form.slice(0, i), ending: form.slice(i) };
+}
+
 function buildConjugationTableHTML(conjEntry, targetWord) {
     const tenses = conjEntry.tenses || {};
     const tenseNames = Object.keys(tenses);
     if (tenseNames.length === 0) return '';
 
     const targetLower = targetWord.toLowerCase();
+    // Prefer an explicit infinitive on the conj entry; fall back to
+    // targetWord (the card's verb infinitive in normal cases).
+    const infinitive = (conjEntry.infinitive || targetWord || '').toLowerCase();
 
-    // Find which tense contains the target word (default to Presente)
-    let defaultTense = 'Presente';
+    // Pick the tense containing targetWord as the default; Presente otherwise.
+    let defaultTense = tenses['Presente'] ? 'Presente' : tenseNames[0];
     for (const [tenseName, forms] of Object.entries(tenses)) {
         if (forms.some(f => f.toLowerCase() === targetLower)) {
             defaultTense = tenseName;
@@ -2920,48 +2966,98 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
         }
     }
 
-    // Build tense toggle buttons
-    const tenseButtons = tenseNames.map(t => {
-        const active = t === defaultTense ? ' conj-tense-active' : '';
-        return `<button class="conj-tense-btn${active}" onclick="switchConjTense('${t}')">${t}</button>`;
+    // Group tenses by mood (Indicativo / Subjuntivo / Imperativo / Otras).
+    // Tenses not covered by the known groups slot under "Otras" so the UI
+    // never drops data on the floor.
+    const grouped = [];
+    const seen = new Set();
+    for (const moodName of CONJ_MOOD_ORDER) {
+        const cfg = CONJ_MOOD_GROUPS[moodName];
+        const present = cfg.tenses.filter(t => tenses[t]);
+        if (!present.length) continue;
+        grouped.push({ mood: moodName, accent: cfg.accent, tenses: present });
+        present.forEach(t => seen.add(t));
+    }
+    const orphanTenses = tenseNames.filter(t => !seen.has(t));
+    if (orphanTenses.length) {
+        grouped.push({ mood: 'Otras', accent: 'rgba(255,255,255,0.3)', tenses: orphanTenses });
+    }
+
+    // Tense toggle, grouped by mood. Display label strips the "Subj." prefix
+    // since the mood label already provides that context.
+    const tenseToggleHTML = grouped.map(g => {
+        const btns = g.tenses.map(t => {
+            const active = t === defaultTense ? ' conj-tense-active' : '';
+            const display = t.replace(/^Subj\.\s*/, '').replace(/^Imp\.\s*/, '');
+            return `<button class="conj-tense-btn${active}" data-tense="${t}" onclick="switchConjTense('${t}')">${display}</button>`;
+        }).join('');
+        return `
+            <div class="conj-mood-group" style="--mood-accent: ${g.accent};">
+                <div class="conj-mood-label">${g.mood}</div>
+                <div class="conj-tense-toggle">${btns}</div>
+            </div>`;
     }).join('');
 
-    // Build a table per tense (only default is visible)
+    // Per-tense table. Each form is split stem/ending so the pattern pops.
     let tenseTables = '';
     for (const [tenseName, forms] of Object.entries(tenses)) {
         const hidden = tenseName !== defaultTense ? ' style="display:none"' : '';
         let rows = '';
         for (let i = 0; i < forms.length; i++) {
-            const isActive = forms[i].toLowerCase() === targetLower;
+            const form = forms[i];
+            const isActive = form.toLowerCase() === targetLower;
             const cls = isActive ? ' conj-active' : '';
-            rows += `<tr class="${cls}">
-                <td class="conj-pronoun">${CONJ_PRONOUNS_FULL[i]}</td>
-                <td class="conj-form">${forms[i]}</td>
-            </tr>`;
+            const { stem, ending } = splitStemEnding(form, infinitive);
+            // Stem is muted; ending is accent-colored — makes regular
+            // patterns rhyme and irregular stems stand out.
+            const formHTML = stem
+                ? `<span class="conj-stem">${stem}</span><span class="conj-ending">${ending}</span>`
+                : `<span class="conj-ending conj-ending-full">${ending}</span>`;
+            rows += `<tr class="${cls}"><td class="conj-pronoun">${CONJ_PRONOUNS_FULL[i]}</td><td class="conj-form">${formHTML}</td></tr>`;
         }
         tenseTables += `<table class="conj-table" data-tense="${tenseName}"${hidden}>${rows}</table>`;
     }
 
-    // Gerund and participle at the bottom
-    let extras = '';
-    if (conjEntry.gerund) {
-        const gActive = conjEntry.gerund.toLowerCase() === targetLower ? ' conj-active' : '';
-        extras += `<div class="conj-extra-row${gActive}"><span class="conj-extra-label">Gerundio</span><span class="conj-extra-form">${conjEntry.gerund}</span></div>`;
-    }
-    if (conjEntry.past_participle) {
-        const pActive = conjEntry.past_participle.toLowerCase() === targetLower ? ' conj-active' : '';
-        extras += `<div class="conj-extra-row${pActive}"><span class="conj-extra-label">Participio</span><span class="conj-extra-form">${conjEntry.past_participle}</span></div>`;
-    }
+    // --- Header block ---
+    // Infinitive + translation on top; -ar/-er/-ir type badge on the right;
+    // non-finite forms (gerund + past participle) pinned underneath so
+    // they're visible regardless of which tense is currently showing.
+    const infEnd = infinitive.slice(-2).toUpperCase();
+    const typeBadge = ['AR', 'ER', 'IR'].includes(infEnd)
+        ? `<span class="conj-type-badge">-${infEnd}</span>`
+        : '';
+    const translation = conjEntry.translation || '';
+    const gerActive = conjEntry.gerund && conjEntry.gerund.toLowerCase() === targetLower ? ' is-active' : '';
+    const ppActive = conjEntry.past_participle && conjEntry.past_participle.toLowerCase() === targetLower ? ' is-active' : '';
+    const nonFiniteHTML = (conjEntry.gerund || conjEntry.past_participle) ? `
+        <div class="conj-nonfinite">
+            ${conjEntry.gerund ? `<div class="conj-nf-item${gerActive}">
+                <span class="conj-nf-label">gerundio</span>
+                <span class="conj-nf-form">${conjEntry.gerund}</span>
+            </div>` : ''}
+            ${conjEntry.past_participle ? `<div class="conj-nf-item${ppActive}">
+                <span class="conj-nf-label">participio</span>
+                <span class="conj-nf-form">${conjEntry.past_participle}</span>
+            </div>` : ''}
+        </div>` : '';
 
     return `
         <div id="conjugationTable" class="conjugation-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <span style="font-size: 16px; font-weight: 700; color: var(--text-primary);">${conjEntry.translation || targetWord}</span>
-                <button onclick="toggleConjugationTable()" style="background: none; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; padding: 4px 8px; line-height: 1;">&times;</button>
+            <div class="conj-header">
+                <div class="conj-header-row">
+                    <div class="conj-title">
+                        <span class="conj-infinitive">${infinitive}</span>
+                        ${translation ? `<span class="conj-translation">${translation}</span>` : ''}
+                    </div>
+                    ${typeBadge}
+                    <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
+                </div>
+                ${nonFiniteHTML}
             </div>
-            <div class="conj-tense-toggle">${tenseButtons}</div>
-            ${tenseTables}
-            ${extras ? `<div class="conj-extras-bottom">${extras}</div>` : ''}
+            ${tenseToggleHTML}
+            <div class="conj-tables-wrap">
+                ${tenseTables}
+            </div>
         </div>
     `;
 }
@@ -2969,13 +3065,14 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
 function switchConjTense(tenseName) {
     const panel = document.getElementById('conjugationTable');
     if (!panel) return;
-    // Hide all tense tables, show the selected one
+    // Match tables + buttons by data-tense (button text now has the
+    // "Subj."/"Imp." prefix stripped for display under the mood label, so
+    // text-based matching no longer works).
     panel.querySelectorAll('.conj-table').forEach(t => {
         t.style.display = t.dataset.tense === tenseName ? '' : 'none';
     });
-    // Update active button
     panel.querySelectorAll('.conj-tense-btn').forEach(b => {
-        b.classList.toggle('conj-tense-active', b.textContent === tenseName);
+        b.classList.toggle('conj-tense-active', b.dataset.tense === tenseName);
     });
 }
 

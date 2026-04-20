@@ -51,6 +51,26 @@ below have enough complexity to warrant this treatment when the time comes.
   card view, and flag the card so `saveWordProgress()` skips it. Non-trivial mostly because of
   the extraction work across two codepaths.
 
+- **[idea] Synonym + antonym viewer (M) [shared] [spanish]**
+  SpanishDict has a separate thesaurus endpoint at `/thesaurus/<word>` that returns rich
+  structured synonym + antonym data in `thesaurusProps`. The relationship enum is clean:
+  positive value = synonym (2 = strong, 1 = weak/related), negative = antonym (-2 / -1).
+  For `bonito`: strong synonyms `lindo / guapo / hermoso / bello / precioso`,
+  strong antonyms `horrible / feo`. Plan:
+  - New scraper `pipeline/tool_5c_scrape_spanishdict_thesaurus.py` — same shape as
+    `tool_5c_scrape_spanishdict_phrases.py`. ~10k words × 0.35s = ~1 h one-off, free.
+    Writes `Data/Spanish/senses/spanishdict/thesaurus_cache.json` (gitignored).
+  - New builder (or extension to tool_5d/5e): 4-way join on `senses` + `senseLinks` +
+    `linkedWords` + headword to produce per-headword `{word, pos, strength}` lists.
+    Partition by sign. Write to `Data/Spanish/layers/synonyms.json` keyed by word ID.
+  - `step_8a` / `step_8b` attach `synonyms` + `antonyms` fields to each entry, same
+    pattern as `morphology` / `cognate_obj`.
+  - Front-end: add a button next to the conjugation button. Panel similar to conjugation
+    table — synonyms in one column (strong bigger, related smaller), antonyms in another.
+    Bonus: tap a synonym to jump to that word's card via the existing search mechanism.
+  Unlike the conjugation button (verbs only), this applies to every POS, so it'd light
+  up on most cards.
+
 - **[idea] Unify PHRASE POS tag with MWE rows (M) [shared] [cross-lang]**
   Today there are two row shapes for phrase-like entries on cards: regular rows with
   `pos = "PHRASE"` (38 in Spanish vocab today, sourced from sense data) and MWE rows

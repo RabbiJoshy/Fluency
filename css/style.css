@@ -2893,7 +2893,7 @@
             border: none;
         }
 
-        /* Conjugation table */
+        /* Conjugation panel — slides in over the card face. */
         .conjugation-panel {
             position: absolute;
             /* Was top/bottom: -40px (extended past the card); .card-face
@@ -2905,112 +2905,213 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 20px;
+            padding: 16px 18px 20px;
             background: var(--bg-card);
             border-radius: 16px;
             overflow-y: auto;
-            overflow-x: auto;
+            overflow-x: hidden;
             z-index: 10;
             transform: translateX(calc(100% + 30px));
             transition: transform 0.25s ease;
             box-shadow: 0 10px 40px rgba(0,0,0,0.4);
             visibility: hidden;
         }
-
         .conjugation-panel.visible {
             transform: translateX(0);
             visibility: visible;
         }
 
+        /* ---- Header: infinitive · translation · type badge · close ---- */
+        .conj-header {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .conj-header-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .conj-title {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex: 1;
+            min-width: 0;
+            flex-wrap: wrap;
+        }
+        .conj-infinitive {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
+        }
+        .conj-translation {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        .conj-type-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(var(--accent-primary-rgb), 0.22);
+            color: var(--accent-primary);
+            border: 1px solid rgba(var(--accent-primary-rgb), 0.35);
+            flex-shrink: 0;
+        }
+        .conj-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+            padding: 0 4px;
+            line-height: 1;
+            flex-shrink: 0;
+            align-self: center;
+        }
+        .conj-close-btn:hover { color: var(--text-primary); }
+
+        /* Non-finite forms pinned in the header — always visible regardless
+           of the active tense. */
+        .conj-nonfinite {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .conj-nf-item {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.04);
+        }
+        .conj-nf-item.is-active {
+            background: rgba(var(--accent-primary-rgb), 0.18);
+            box-shadow: inset 0 0 0 1px rgba(var(--accent-primary-rgb), 0.45);
+        }
+        .conj-nf-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .conj-nf-form {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .conj-nf-item.is-active .conj-nf-form {
+            color: white;
+        }
+
+        /* ---- Mood group (tense picker) ----
+           Each mood gets an accent color via --mood-accent, set inline on
+           the group wrapper. Indicative=blue, Subjunctive=purple,
+           Imperative=pink. */
+        .conj-mood-group {
+            margin-bottom: 10px;
+        }
+        .conj-mood-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--mood-accent, var(--text-muted));
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
         .conj-tense-toggle {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 16px;
+            gap: 5px;
         }
-
         .conj-tense-btn {
-            background: var(--bg-tertiary);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 6px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 5px;
             color: var(--text-muted);
             font-size: 11px;
-            padding: 5px 10px;
+            padding: 4px 9px;
             cursor: pointer;
             transition: all 0.15s;
+            font-family: var(--font-data);
         }
-
+        .conj-tense-btn:hover {
+            background: rgba(255,255,255,0.08);
+            color: var(--text-primary);
+        }
         .conj-tense-btn.conj-tense-active {
-            background: rgba(var(--accent-primary-rgb), 0.3);
-            border-color: var(--accent-primary);
+            /* Active tense picks up the mood's accent colour — pill feels
+               connected to its mood group instead of the generic yellow
+               accent. */
+            background: color-mix(in srgb, var(--mood-accent) 35%, transparent);
+            border-color: var(--mood-accent);
             color: white;
             font-weight: 600;
         }
 
+        /* ---- Conjugation table ---- */
+        .conj-tables-wrap {
+            margin-top: 8px;
+        }
         .conj-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 15px;
             color: var(--text-primary);
         }
-
         .conj-table tr {
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
+        .conj-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.015);
+        }
         .conj-table tr.conj-active {
-            background: rgba(255,255,255,0.1);
-            border-radius: 6px;
+            background: rgba(var(--accent-primary-rgb), 0.14);
+            box-shadow: inset 0 0 0 1px rgba(var(--accent-primary-rgb), 0.45);
         }
-
-        .conj-table tr.conj-active .conj-form {
-            font-weight: 700;
+        .conj-table tr.conj-active .conj-stem,
+        .conj-table tr.conj-active .conj-ending {
             color: white;
+            font-weight: 700;
         }
 
         .conj-pronoun {
-            padding: 8px 12px 8px 4px;
+            padding: 7px 10px 7px 4px;
             color: var(--text-muted);
-            font-size: 13px;
-            width: 90px;
+            font-size: 12px;
+            font-family: var(--font-data);
+            width: 80px;
+            white-space: nowrap;
         }
-
         .conj-form {
-            padding: 8px 4px;
+            padding: 7px 4px;
             font-size: 16px;
+            font-family: var(--font-emphasis);
         }
-
-        .conj-extras-bottom {
-            margin-top: 16px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .conj-extra-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 4px;
-            font-size: 14px;
-        }
-
-        .conj-extra-row.conj-active {
-            background: rgba(255,255,255,0.1);
-            border-radius: 6px;
-        }
-
-        .conj-extra-row.conj-active .conj-extra-form {
-            font-weight: 700;
-            color: white;
-        }
-
-        .conj-extra-label {
+        /* Stem: muted. Ending: accent-coloured + bold. For regular verbs
+           every ending in a tense shares the same colour + shape so the
+           pattern pops visually. For irregulars, the common prefix is
+           shorter so more of the word lights up — signalling "this is
+           where the irregular happens". */
+        .conj-stem {
             color: var(--text-muted);
-            font-size: 13px;
+            opacity: 0.7;
         }
-
-        .conj-extra-form {
-            color: var(--text-primary);
-            font-size: 16px;
+        .conj-ending {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+        .conj-ending-full {
+            /* Fully irregular form (no shared prefix with infinitive) — still
+               coloured but slightly dimmer so the table doesn't scream. */
+            opacity: 0.95;
         }
 
         /* Back button on card (nav stack) */
