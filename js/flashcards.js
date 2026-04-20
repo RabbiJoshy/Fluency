@@ -1447,10 +1447,15 @@ function updateCard() {
                 // A visibility:hidden mirror of the pill sits in col 3 so col widths auto-size together;
                 // this keeps the body symmetrically centred without hard-coding a side-column width.
                 const pctVal = Math.round(m.percentage * 100);
+                // Stacked pill: POS name on top, percentage below it (no
+                // pipe separator). At 100% frequency the percentage is
+                // redundant, so the pill collapses to just the POS name —
+                // matches the prior behaviour for single-meaning cards.
                 const posPillInner = pctVal >= 100
-                    ? `${m.pos}`
-                    : `${m.pos} <span style="opacity: 0.6;">|</span> ${pctVal}%`;
-                const pillStyleBase = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;';
+                    ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
+                    : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
+                      + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
+                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1;';
                 const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start;">${posPillInner}</span>`;
                 const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
                 // Inline context: rendered on the same line as the translation
