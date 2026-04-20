@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>POS pill — side-by-side preview</title>
+<style>
+  :root {
+    --accent-primary: #ffcc00;
+    --accent-primary-rgb: 255, 204, 0;
+    --text-primary: #ffffff;
+    --bg-card: #1a1e27;
+    --bg-card-alt: #22262f;
+    --font-data: system-ui, -apple-system, sans-serif;
+    --font-reading: Georgia, serif;
+  }
+  body {
+    background: #0f1319;
+    color: white;
+    font-family: var(--font-data);
+    margin: 0;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  h1 { text-align: center; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 8px; }
+  p.tagline { text-align: center; color: #8a92a3; font-size: 14px; margin-top: 0; margin-bottom: 32px; }
+
+  .cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 900px; margin: 0 auto; }
+  .col { background: var(--bg-card); border: 1px solid #2a3040; border-radius: 16px; padding: 24px; }
+  .col h2 { margin: 0 0 4px; font-size: 15px; letter-spacing: 0.4px; color: #c8d0e0; }
+  .col .subtitle { font-size: 12px; color: #6a7389; margin-bottom: 20px; }
+
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+
+  /* Shared card row styles — same as real flashcards.
+     Horizontal padding dropped 12 → 4 so the pill sits closer to the
+     row edge and the translation block gets more horizontal real
+     estate. Vertical padding unchanged. */
+  .row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 6px 4px;
+    background: rgba(15, 20, 28, 0.82);
+    border-radius: 8px;
+    min-height: 36px;
+  }
+  .row.selected {
+    background: rgba(var(--accent-primary-rgb), 0.6);
+    border: 3px solid var(--accent-primary);
+    /* border adds 3px; subtract from row padding so the border doesn't
+       shift the pill position relative to unselected rows. */
+    padding: 3px 1px;
+  }
+
+  .pill {
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: var(--font-data);
+    white-space: nowrap;
+    line-height: 1.15;
+    justify-self: start;
+  }
+  .pill.mirror { justify-self: end; visibility: hidden; pointer-events: none; }
+
+  /* POS colours */
+  .pos-noun { background: rgba(74, 158, 255, 0.45); border: 1px solid rgba(74, 158, 255, 0.6); color: #8fc2ff; }
+  .pos-verb { background: rgba(0, 212, 170, 0.45); border: 1px solid rgba(0, 212, 170, 0.6); color: #66e4cc; }
+  .pos-adj  { background: rgba(245, 166, 35, 0.45); border: 1px solid rgba(245, 166, 35, 0.6); color: #f9c96e; }
+  .pos-adv  { background: rgba(168, 85, 247, 0.45); border: 1px solid rgba(168, 85, 247, 0.6); color: #c9a0f9; }
+  .pos-prep { background: rgba(236, 72, 153, 0.45); border: 1px solid rgba(236, 72, 153, 0.6); color: #f291be; }
+  .pos-pron { background: rgba(99, 102, 241, 0.45); border: 1px solid rgba(99, 102, 241, 0.6); color: #9b9df6; }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 8px;
+  }
+  .translation {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+  }
+  .ctx {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    margin-left: 4px;
+  }
+
+  /* Variant A: text + | + %  (current) */
+  .pill-inline .sep { opacity: 0.55; margin: 0 4px; }
+
+  /* Variant B: stacked text over %  (proposed) */
+  .pill-stack {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    line-height: 1;
+    padding: 3px 8px;
+  }
+  .pill-stack .pos-name { font-size: 10px; font-weight: 700; letter-spacing: 0.4px; }
+  .pill-stack .pos-pct  { font-size: 8.5px; font-weight: 500; opacity: 0.78; }
+
+  .note {
+    margin-top: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--font-reading);
+    color: #8a92a3;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .note strong { color: #c8d0e0; font-family: var(--font-data); font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>POS pill — side-by-side</h1>
+<p class="tagline">Same card rows, same data. Left: current (text, pipe, percentage on one line). Right: stacked (text over percentage, no separator).</p>
+
+<div class="cmp">
+  <!-- Current -->
+  <div class="col">
+    <h2>Current — text | %</h2>
+    <div class="subtitle">One line. Pipe separates POS from percentage.</div>
+    <div class="rows">
+      <div class="row selected">
+        <span class="pill pill-inline pos-verb">VERB <span class="sep">|</span> 76%</span>
+        <div class="body"><span class="translation">to have</span></div>
+        <span class="pill pill-inline pos-verb mirror">VERB <span class="sep">|</span> 76%</span>
+      </div>
+      <div class="row">
+        <span class="pill pill-inline pos-noun">NOUN <span class="sep">|</span> 12%</span>
+        <div class="body"><span class="translation">gold</span></div>
+        <span class="pill pill-inline pos-noun mirror">NOUN <span class="sep">|</span> 12%</span>
+      </div>
+      <div class="row">
+        <span class="pill pill-inline pos-adj">ADJ <span class="sep">|</span> 8%</span>
+        <div class="body"><span class="translation">golden <span class="ctx">· of colour</span></span></div>
+        <span class="pill pill-inline pos-adj mirror">ADJ <span class="sep">|</span> 8%</span>
+      </div>
+      <div class="row">
+        <span class="pill pill-inline pos-adv">ADV <span class="sep">|</span> 4%</span>
+        <div class="body"><span class="translation">intensely</span></div>
+        <span class="pill pill-inline pos-adv mirror">ADV <span class="sep">|</span> 4%</span>
+      </div>
+      <div class="row">
+        <span class="pill pill-inline pos-pron">PRON <span class="sep">|</span> 100%</span>
+        <div class="body"><span class="translation">one</span></div>
+        <span class="pill pill-inline pos-pron mirror">PRON <span class="sep">|</span> 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proposed -->
+  <div class="col">
+    <h2>Proposed — text over %</h2>
+    <div class="subtitle">Two-line pill. No pipe.</div>
+    <div class="rows">
+      <div class="row selected">
+        <span class="pill pill-stack pos-verb"><span class="pos-name">VERB</span><span class="pos-pct">76%</span></span>
+        <div class="body"><span class="translation">to have</span></div>
+        <span class="pill pill-stack pos-verb mirror"><span class="pos-name">VERB</span><span class="pos-pct">76%</span></span>
+      </div>
+      <div class="row">
+        <span class="pill pill-stack pos-noun"><span class="pos-name">NOUN</span><span class="pos-pct">12%</span></span>
+        <div class="body"><span class="translation">gold</span></div>
+        <span class="pill pill-stack pos-noun mirror"><span class="pos-name">NOUN</span><span class="pos-pct">12%</span></span>
+      </div>
+      <div class="row">
+        <span class="pill pill-stack pos-adj"><span class="pos-name">ADJ</span><span class="pos-pct">8%</span></span>
+        <div class="body"><span class="translation">golden <span class="ctx">· of colour</span></span></div>
+        <span class="pill pill-stack pos-adj mirror"><span class="pos-name">ADJ</span><span class="pos-pct">8%</span></span>
+      </div>
+      <div class="row">
+        <span class="pill pill-stack pos-adv"><span class="pos-name">ADV</span><span class="pos-pct">4%</span></span>
+        <div class="body"><span class="translation">intensely</span></div>
+        <span class="pill pill-stack pos-adv mirror"><span class="pos-name">ADV</span><span class="pos-pct">4%</span></span>
+      </div>
+      <div class="row">
+        <!-- At 100% the stacked version collapses to just the POS name, same
+             as the current pill's 100%-collapse behaviour. Keeps the pill
+             compact when the row is the only meaning on the card. -->
+        <span class="pill pill-stack pos-pron"><span class="pos-name">PRON</span></span>
+        <div class="body"><span class="translation">one</span></div>
+        <span class="pill pill-stack pos-pron mirror"><span class="pos-name">PRON</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="note">
+<strong>Notes.</strong> Same row height constraints (<code>min-height: 36px</code>) on both sides — the stacked pill fits within the existing row because its two tiny lines still sit inside the 36px row. The mirror pill on the right of every row stays the same so the translation text keeps its symmetric centring. At 100% frequency the stacked pill collapses to just the POS name (matches current behaviour for 100% rows). No other row styling changes.
+</p>
+
+</body>
+</html>
