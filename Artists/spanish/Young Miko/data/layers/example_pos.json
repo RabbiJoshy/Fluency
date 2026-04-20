@@ -309,11 +309,12 @@
     "0": "INTJ",
     "1": "INTJ",
     "2": "CCONJ",
-    "3": "INTJ",
-    "4": "CCONJ",
-    "6": "INTJ",
-    "8": "INTJ",
-    "9": "INTJ"
+    "4": "INTJ",
+    "5": "INTJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "ADV",
+    "9": "CCONJ"
   },
   "una": {
     "0": "DET",
@@ -334,6 +335,7 @@
     "3": "CCONJ",
     "4": "CCONJ",
     "5": "CCONJ",
+    "6": "CCONJ",
     "7": "CCONJ",
     "8": "CCONJ",
     "9": "CCONJ"
@@ -355,11 +357,11 @@
     "1": "CCONJ",
     "2": "CCONJ",
     "3": "CCONJ",
-    "4": "CCONJ",
+    "4": "VERB",
     "5": "CCONJ",
     "6": "CCONJ",
     "7": "CCONJ",
-    "8": "VERB",
+    "8": "CCONJ",
     "9": "CCONJ"
   },
   "sé": {
@@ -378,24 +380,25 @@
     "0": "ADV",
     "1": "ADV",
     "2": "INTJ",
-    "3": "INTJ",
-    "4": "ADV",
+    "3": "ADV",
+    "4": "INTJ",
     "5": "ADV",
-    "6": "INTJ",
+    "6": "ADV",
     "7": "ADV",
     "8": "INTJ",
-    "9": "ADV"
+    "9": "INTJ"
   },
   "ah": {
     "0": "INTJ",
     "1": "INTJ",
+    "2": "INTJ",
     "3": "INTJ",
-    "4": "INTJ",
-    "5": "ADV",
-    "6": "INTJ",
+    "4": "ADV",
+    "5": "INTJ",
+    "6": "ADV",
     "7": "ADV",
     "8": "ADV",
-    "9": "ADV"
+    "9": "ADJ"
   },
   "ya": {
     "0": "ADV",
@@ -412,10 +415,8 @@
   "mami": {
     "1": "INTJ",
     "2": "INTJ",
-    "3": "INTJ",
-    "4": "INTJ",
-    "5": "INTJ",
-    "6": "NOUN",
+    "5": "NOUN",
+    "6": "INTJ",
     "7": "INTJ",
     "8": "INTJ",
     "9": "INTJ"
@@ -429,7 +430,7 @@
     "5": "DET",
     "6": "DET",
     "7": "DET",
-    "8": "DET",
+    "8": "PRON",
     "9": "DET"
   },
   "cuando": {
@@ -463,16 +464,18 @@
     "3": "PRON",
     "4": "PRON",
     "5": "PRON",
-    "6": "PRON",
-    "7": "DET",
+    "6": "DET",
+    "7": "PRON",
     "8": "PRON",
     "9": "PRON"
   },
   "oh": {
     "0": "INTJ",
     "1": "INTJ",
+    "2": "INTJ",
     "3": "INTJ",
     "4": "INTJ",
+    "5": "INTJ",
     "6": "INTJ",
     "7": "INTJ",
     "8": "INTJ",
@@ -481,12 +484,12 @@
   "ese": {
     "0": "DET",
     "1": "DET",
-    "2": "DET",
-    "3": "PRON",
+    "2": "PRON",
+    "3": "DET",
     "4": "DET",
     "5": "DET",
     "6": "DET",
-    "7": "PRON",
+    "7": "DET",
     "8": "DET",
     "9": "DET"
   },
@@ -567,12 +570,12 @@
     "1": "PRON",
     "2": "PRON",
     "3": "PRON",
-    "4": "PRON",
-    "5": "ADV",
+    "4": "ADV",
+    "5": "PRON",
     "6": "PRON",
-    "7": "PRON",
+    "7": "CCONJ",
     "8": "PRON",
-    "9": "CCONJ"
+    "9": "PRON"
   },
   "ahora": {
     "0": "ADV",
@@ -659,8 +662,10 @@
     "9": "PRON"
   },
   "uh": {
+    "0": "INTJ",
     "1": "INTJ",
     "2": "INTJ",
+    "3": "INTJ",
     "4": "INTJ",
     "5": "INTJ",
     "6": "INTJ",
@@ -686,10 +691,9 @@
     "2": "CCONJ",
     "3": "CCONJ",
     "4": "CCONJ",
-    "5": "CCONJ",
     "6": "CCONJ",
-    "8": "CCONJ",
-    "9": "CCONJ"
+    "7": "CCONJ",
+    "8": "CCONJ"
   },
   "su": {
     "0": "DET",
@@ -706,7 +710,7 @@
   "esa": {
     "0": "DET",
     "1": "DET",
-    "2": "PRON",
+    "2": "DET",
     "3": "DET",
     "4": "DET",
     "5": "DET",
@@ -751,9 +755,6 @@
     "8": "VERB",
     "9": "VERB"
   },
-  "miko": {
-    "8": "NOUN"
-  },
   "son": {
     "0": "VERB",
     "1": "VERB",
@@ -768,15 +769,15 @@
   },
   "ni": {
     "0": "CCONJ",
-    "1": "ADV",
+    "1": "CCONJ",
     "2": "ADV",
-    "3": "CCONJ",
+    "3": "ADV",
     "4": "ADV",
     "5": "ADV",
-    "6": "ADV",
-    "7": "ADV",
-    "8": "CCONJ",
-    "9": "ADV"
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "ADV",
+    "9": "CCONJ"
   },
   "solo": {
     "0": "ADV",
@@ -794,9 +795,8 @@
     "0": "INTJ",
     "1": "INTJ",
     "3": "INTJ",
-    "5": "ADV",
-    "6": "INTJ",
-    "7": "NOUN"
+    "5": "INTJ",
+    "6": "NOUN"
   },
   "va": {
     "0": "VERB",
@@ -848,14 +848,14 @@
   },
   "otra": {
     "0": "PRON",
-    "1": "DET",
+    "1": "PRON",
     "2": "DET",
     "3": "PRON",
     "4": "DET",
-    "5": "PRON",
-    "6": "DET",
+    "5": "DET",
+    "6": "PRON",
     "7": "DET",
-    "8": "PRON",
+    "8": "DET",
     "9": "PRON"
   },
   "ti": {
@@ -888,6 +888,14 @@
     "7": "NOUN"
   },
   "vez": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
     "8": "NOUN",
     "9": "NOUN"
   },
@@ -921,11 +929,11 @@
     "2": "DET",
     "3": "DET",
     "4": "PRON",
-    "5": "VERB",
+    "5": "DET",
     "6": "DET",
-    "7": "DET",
+    "7": "PRON",
     "8": "DET",
-    "9": "PRON"
+    "9": "DET"
   },
   "dame": {
     "0": "VERB",
@@ -936,7 +944,8 @@
     "5": "VERB",
     "6": "VERB",
     "7": "VERB",
-    "8": "VERB"
+    "8": "VERB",
+    "9": "VERB"
   },
   "par": {
     "0": "NOUN",
@@ -1016,10 +1025,10 @@
     "2": "PRON",
     "3": "CCONJ",
     "4": "PRON",
-    "6": "PRON",
-    "7": "CCONJ",
-    "8": "PRON",
-    "9": "CCONJ"
+    "5": "PRON",
+    "6": "CCONJ",
+    "7": "PRON",
+    "8": "CCONJ"
   },
   "para": {
     "0": "ADP",
@@ -1031,7 +1040,7 @@
     "6": "ADP",
     "7": "ADP",
     "8": "ADP",
-    "9": "VERB"
+    "9": "ADP"
   },
   "conmigo": {
     "0": "PRON",
@@ -1132,12 +1141,13 @@
   "mala": {
     "0": "ADJ",
     "1": "ADJ",
+    "2": "ADJ",
     "3": "ADJ",
     "4": "ADJ",
-    "5": "ADJ",
+    "6": "ADJ",
     "7": "ADJ",
     "8": "ADJ",
-    "9": "ADJ"
+    "9": "INTJ"
   },
   "nunca": {
     "0": "ADV",
@@ -1173,7 +1183,7 @@
     "6": "PRON",
     "7": "PRON",
     "8": "PRON",
-    "9": "ADV"
+    "9": "NOUN"
   },
   "da": {
     "0": "VERB",
@@ -1232,8 +1242,7 @@
     "5": "ADJ",
     "6": "ADJ",
     "7": "ADJ",
-    "8": "ADJ",
-    "9": "ADJ"
+    "8": "ADJ"
   },
   "este": {
     "0": "DET",
@@ -1251,11 +1260,11 @@
     "0": "NOUN",
     "1": "NOUN",
     "2": "NOUN",
-    "3": "NOUN",
+    "4": "NOUN",
     "5": "NOUN",
     "6": "NOUN",
-    "7": "NOUN",
-    "8": "INTJ",
+    "7": "INTJ",
+    "8": "NOUN",
     "9": "NOUN"
   },
   "sabe": {
@@ -1275,7 +1284,9 @@
     "1": "ADV",
     "2": "ADV",
     "3": "ADV",
+    "4": "ADV",
     "5": "ADV",
+    "6": "ADV",
     "7": "ADV",
     "8": "ADV",
     "9": "ADV"
@@ -1300,7 +1311,7 @@
     "4": "NOUN",
     "5": "NOUN",
     "6": "NOUN",
-    "7": "NOUN",
+    "8": "NOUN",
     "9": "NOUN"
   },
   "veo": {
@@ -1323,8 +1334,7 @@
     "5": "PRON",
     "6": "PRON",
     "7": "PRON",
-    "8": "PRON",
-    "9": "PRON"
+    "8": "PRON"
   },
   "gustan": {
     "0": "VERB",
@@ -1339,8 +1349,8 @@
     "9": "VERB"
   },
   "bitch": {
-    "5": "NOUN",
-    "9": "NOUN"
+    "3": "NOUN",
+    "7": "NOUN"
   },
   "my": {
     "0": "ADJ",
@@ -1349,8 +1359,7 @@
     "3": "DET",
     "5": "DET",
     "7": "ADJ",
-    "8": "DET",
-    "9": "ADJ"
+    "8": "ADJ"
   },
   "salgo": {
     "0": "VERB",
@@ -1405,8 +1414,7 @@
   },
   "bad": {
     "0": "ADJ",
-    "5": "NOUN",
-    "7": "ADJ"
+    "5": "NOUN"
   },
   "bebé": {
     "0": "NOUN",
@@ -1444,8 +1452,7 @@
     "9": "VERB"
   },
   "prr": {
-    "4": "NOUN",
-    "8": "NOUN"
+    "4": "NOUN"
   },
   "tus": {
     "0": "DET",
@@ -1679,19 +1686,20 @@
     "5": "VERB",
     "6": "VERB",
     "7": "VERB",
+    "8": "VERB",
     "9": "VERB"
   },
   "todo": {
     "0": "DET",
-    "1": "PRON",
-    "2": "PRON",
-    "3": "PRON",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
     "4": "DET",
     "5": "DET",
-    "6": "PRON",
-    "7": "PRON",
-    "8": "PRON",
-    "9": "DET"
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "PRON"
   },
   "disco": {
     "0": "NOUN",
@@ -1749,7 +1757,7 @@
     "4": "ADJ",
     "5": "ADV",
     "6": "ADV",
-    "7": "ADV",
+    "7": "ADJ",
     "8": "ADJ",
     "9": "ADJ"
   },
@@ -1776,13 +1784,14 @@
   "ven": {
     "0": "VERB",
     "1": "ADV",
+    "2": "VERB",
     "3": "VERB",
     "4": "VERB",
-    "5": "VERB",
+    "5": "INTJ",
     "6": "VERB",
-    "7": "INTJ",
+    "7": "VERB",
     "8": "VERB",
-    "9": "VERB"
+    "9": "ADV"
   },
   "verte": {
     "0": "VERB",
@@ -1804,6 +1813,8 @@
     "4": "NUM",
     "5": "NUM",
     "6": "NUM",
+    "7": "NUM",
+    "8": "NUM",
     "9": "NUM"
   },
   "abajo": {
@@ -1813,7 +1824,8 @@
     "3": "ADV",
     "4": "ADV",
     "5": "ADV",
-    "6": "ADV"
+    "6": "ADV",
+    "7": "ADV"
   },
   "ahí": {
     "0": "ADV",
@@ -1836,8 +1848,8 @@
     "5": "PRON",
     "6": "PRON",
     "7": "PRON",
-    "8": "PRON",
-    "9": "ADV"
+    "8": "ADV",
+    "9": "PRON"
   },
   "dejo": {
     "0": "VERB",
@@ -1878,9 +1890,10 @@
     "2": "ADV",
     "3": "INTJ",
     "5": "INTJ",
-    "7": "INTJ",
+    "6": "INTJ",
+    "7": "ADV",
     "8": "ADV",
-    "9": "ADV"
+    "9": "INTJ"
   },
   "pide": {
     "0": "VERB",
@@ -1912,8 +1925,7 @@
     "3": "ADJ",
     "4": "ADJ",
     "6": "ADJ",
-    "7": "ADJ",
-    "8": "ADJ"
+    "7": "ADJ"
   },
   "saben": {
     "0": "VERB",
@@ -1929,12 +1941,12 @@
     "0": "INTJ",
     "1": "VERB",
     "2": "INTJ",
-    "3": "VERB",
+    "3": "INTJ",
     "4": "INTJ",
-    "5": "INTJ",
-    "6": "ADV",
-    "8": "INTJ",
-    "9": "PRON"
+    "5": "ADV",
+    "7": "INTJ",
+    "8": "PRON",
+    "9": "NOUN"
   },
   "todos": {
     "8": "PRON",
@@ -1951,7 +1963,8 @@
     "8": "ADV"
   },
   "besties": {
-    "0": "NOUN"
+    "0": "NOUN",
+    "2": "NOUN"
   },
   "fuck": {
     "5": "NOUN"
@@ -1978,13 +1991,15 @@
     "8": "VERB"
   },
   "mm": {
-    "3": "ADV"
+    "1": "ADV"
   },
   "mmm": {
+    "0": "INTJ",
     "1": "INTJ",
     "2": "INTJ",
+    "3": "NOUN",
     "4": "INTJ",
-    "5": "NOUN",
+    "5": "INTJ",
     "6": "INTJ",
     "7": "INTJ",
     "8": "INTJ",
@@ -2142,8 +2157,8 @@
     "4": "ADJ",
     "5": "NOUN",
     "6": "ADJ",
-    "7": "ADJ",
-    "8": "NOUN"
+    "7": "NOUN",
+    "9": "NOUN"
   },
   "doy": {
     "0": "VERB",
@@ -2191,7 +2206,7 @@
     "6": "VERB",
     "7": "VERB",
     "8": "NOUN",
-    "9": "NOUN"
+    "9": "VERB"
   },
   "tás": {
     "1": "INTJ",
@@ -2212,8 +2227,7 @@
     "5": "NOUN",
     "6": "NOUN",
     "7": "NOUN",
-    "8": "NOUN",
-    "9": "NOUN"
+    "8": "NOUN"
   },
   "darle": {
     "0": "VERB",
@@ -2327,8 +2341,14 @@
     "8": "PRON"
   },
   "atrás": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
     "5": "ADV",
     "6": "ADV",
+    "7": "ADV",
     "8": "ADV",
     "9": "ADV"
   },
@@ -2354,10 +2374,11 @@
     "0": "VERB",
     "1": "VERB",
     "2": "VERB",
+    "4": "VERB",
     "5": "VERB",
     "6": "VERB",
     "7": "VERB",
-    "8": "VERB"
+    "9": "VERB"
   },
   "ay": {
     "0": "INTJ",
@@ -2377,7 +2398,8 @@
     "3": "NOUN",
     "4": "NOUN",
     "5": "NOUN",
-    "6": "NOUN"
+    "6": "NOUN",
+    "7": "NOUN"
   },
   "cuarto": {
     "0": "NOUN",
@@ -2429,7 +2451,8 @@
   },
   "it": {
     "4": "ADJ",
-    "6": "ADJ"
+    "6": "ADJ",
+    "9": "NOUN"
   },
   "mucho": {
     "0": "ADV",
@@ -2441,7 +2464,7 @@
     "6": "DET",
     "7": "DET",
     "8": "ADV",
-    "9": "ADV"
+    "9": "DET"
   },
   "mundo": {
     "0": "NOUN",
@@ -2462,7 +2485,13 @@
   "pones": {
     "0": "VERB",
     "1": "VERB",
-    "2": "VERB"
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
   },
   "contacto": {
     "0": "NOUN",
@@ -2473,10 +2502,10 @@
     "0": "INTJ",
     "1": "INTJ",
     "2": "INTJ",
-    "4": "NOUN",
-    "6": "ADV",
-    "7": "INTJ",
-    "8": "INTJ"
+    "3": "NOUN",
+    "4": "ADV",
+    "5": "INTJ",
+    "6": "INTJ"
   },
   "joda": {
     "0": "VERB",
@@ -2567,9 +2596,9 @@
     "8": "VERB"
   },
   "woh": {
+    "0": "INTJ",
     "1": "INTJ",
-    "4": "INTJ",
-    "8": "INTJ"
+    "2": "INTJ"
   },
   "esos": {
     "5": "DET",
@@ -2735,8 +2764,15 @@
     "2": "PRON"
   },
   "lado": {
-    "8": "NOUN",
-    "9": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
   },
   "cosas": {
     "5": "NOUN",
@@ -2892,7 +2928,7 @@
     "1": "ADV",
     "2": "INTJ",
     "3": "INTJ",
-    "5": "ADV"
+    "4": "ADV"
   },
   "ellos": {
     "3": "PRON"
@@ -3299,7 +3335,7 @@
   },
   "jet": {
     "2": "NOUN",
-    "5": "NOUN"
+    "4": "NOUN"
   },
   "nadie": {
     "0": "PRON",
@@ -3516,7 +3552,8 @@
     "3": "VERB",
     "4": "ADV",
     "5": "ADV",
-    "6": "VERB"
+    "6": "VERB",
+    "7": "ADV"
   },
   "gistro": {
     "0": "NOUN",
@@ -3666,7 +3703,8 @@
     "5": "DET"
   },
   "pa'trás": {
-    "3": "NOUN"
+    "1": "NOUN",
+    "2": "NOUN"
   },
   "dios": {
     "3": "INTJ",
@@ -4134,7 +4172,8 @@
     "1": "ADP",
     "3": "ADP",
     "4": "ADP",
-    "5": "ADV"
+    "5": "ADV",
+    "6": "ADP"
   },
   "pasó": {
     "0": "VERB",
@@ -4217,7 +4256,10 @@
     "2": "NOUN",
     "3": "NOUN",
     "4": "NOUN",
-    "5": "NOUN"
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "NOUN",
+    "8": "NOUN"
   },
   "verme": {
     "0": "VERB",
@@ -4276,7 +4318,8 @@
     "3": "ADV",
     "4": "ADV",
     "5": "ADV",
-    "6": "ADV"
+    "6": "ADV",
+    "7": "ADV"
   },
   "adentro": {
     "0": "ADV",
@@ -4913,7 +4956,10 @@
     "0": "NOUN",
     "1": "NOUN",
     "2": "NOUN",
-    "3": "NOUN"
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN"
   },
   "manifiesto": {
     "0": "VERB"
@@ -5026,7 +5072,9 @@
     "5": "VERB"
   },
   "shorties": {
-    "0": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
   },
   "significa": {
     "0": "VERB",
@@ -5160,11 +5208,11 @@
     "3": "ADV"
   },
   "am": {
-    "1": "NOUN",
-    "2": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN"
   },
   "amo": {
-    "1": "VERB"
+    "0": "VERB"
   },
   "avión": {
     "0": "NOUN"
@@ -6334,8 +6382,16 @@
     "0": "ADJ"
   },
   "todas": {
-    "0": "PRON",
-    "2": "PRON"
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "PRON",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
   },
   "vemos": {
     "3": "VERB"
@@ -6659,7 +6715,8 @@
   "dedo": {
     "0": "NOUN",
     "1": "NOUN",
-    "2": "NOUN"
+    "2": "NOUN",
+    "3": "NOUN"
   },
   "demostré": {
     "0": "VERB"
@@ -6876,7 +6933,7 @@
     "0": "INTJ"
   },
   "key": {
-    "1": "NOUN"
+    "0": "NOUN"
   },
   "kiss": {
     "0": "NOUN"
@@ -7856,7 +7913,7 @@
     "0": "VERB"
   },
   "d": {
-    "1": "NOUN"
+    "0": "NOUN"
   },
   "dash": {
     "0": "NOUN",
@@ -9037,7 +9094,15 @@
   },
   "toda": {
     "0": "DET",
-    "1": "PRON"
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "PRON",
+    "9": "PRON"
   },
   "todita": {
     "0": "ADJ"
@@ -9397,7 +9462,8 @@
     "0": "NOUN"
   },
   "amiguitas": {
-    "0": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN"
   },
   "amén": {
     "0": "INTJ"
@@ -10405,7 +10471,8 @@
     "0": "VERB"
   },
   "cuentos": {
-    "0": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN"
   },
   "cuerda": {
     "0": "NOUN"
@@ -10507,7 +10574,8 @@
     "0": "VERB"
   },
   "dejes": {
-    "0": "VERB"
+    "0": "VERB",
+    "1": "VERB"
   },
   "delante": {
     "0": "ADV"
@@ -11878,7 +11946,8 @@
     "0": "VERB"
   },
   "mismas": {
-    "0": "DET"
+    "0": "DET",
+    "1": "DET"
   },
   "mistake": {
     "0": "NOUN"
@@ -11926,7 +11995,8 @@
     "0": "NOUN"
   },
   "moteles": {
-    "0": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN"
   },
   "mother": {
     "0": "NOUN"
@@ -13255,7 +13325,8 @@
     "0": "VERB"
   },
   "tardes": {
-    "0": "VERB"
+    "0": "VERB",
+    "1": "VERB"
   },
   "tari": {
     "0": "ADJ"
@@ -13312,7 +13383,9 @@
     "0": "NOUN"
   },
   "tiendas": {
-    "0": "NOUN"
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
   },
   "tienta": {
     "0": "VERB"
@@ -13489,7 +13562,8 @@
     "0": "NOUN"
   },
   "unos": {
-    "0": "DET"
+    "0": "DET",
+    "1": "DET"
   },
   "update": {
     "0": "NOUN"
@@ -13498,7 +13572,9 @@
     "0": "ADJ"
   },
   "usas": {
-    "0": "VERB"
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
   },
   "uso": {
     "0": "VERB"
@@ -13561,7 +13637,8 @@
     "0": "ADJ"
   },
   "verdaderos": {
-    "0": "ADJ"
+    "0": "ADJ",
+    "1": "ADJ"
   },
   "verle": {
     "0": "VERB"
@@ -13725,6 +13802,1282 @@
   "úsame": {
     "0": "VERB"
   },
+  "vamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "tienes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "sabes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "eres": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "vas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "quieres": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "hacemos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "estamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "ganas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN",
+    "6": "NOUN",
+    "7": "VERB",
+    "8": "NOUN",
+    "9": "NOUN"
+  },
+  "cojones": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "salvajes": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "babies": {
+    "0": "NOUN",
+    "2": "NOUN",
+    "4": "NOUN",
+    "7": "NOUN",
+    "9": "NOUN"
+  },
+  "pacas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "salimos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "piensas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "vayas": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "bajes": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pasamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "revés": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "tiras": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "bocinas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "despiertas": {
+    "0": "ADJ"
+  },
+  "empezamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "hicimos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "hookeros": {
+    "0": "NOUN"
+  },
+  "panties": {
+    "0": "NOUN"
+  },
+  "billetes": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN"
+  },
+  "compartimos": {
+    "0": "VERB"
+  },
+  "cotizado": {
+    "0": "ADJ"
+  },
+  "envueltas": {
+    "0": "ADJ"
+  },
+  "extranjeras": {
+    "0": "NOUN",
+    "1": "ADJ"
+  },
+  "fallado": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "semanas": {
+    "0": "NOUN"
+  },
+  "vernos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hombres": {
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "apretado": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "arrebatado": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "besitos": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "conoces": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cristales": {
+    "0": "NOUN"
+  },
+  "cámaras": {
+    "0": "NOUN"
+  },
+  "dosis": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "finas": {
+    "0": "ADJ"
+  },
+  "fuimos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "hables": {
+    "0": "VERB"
+  },
+  "metíos": {
+    "0": "NOUN",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "mojaítas": {
+    "0": "NOUN",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "notado": {
+    "0": "VERB"
+  },
+  "pegaítos": {
+    "1": "NOUN"
+  },
+  "prendemos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "terminamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "venas": {
+    "0": "NOUN"
+  },
+  "vieras": {
+    "0": "VERB"
+  },
+  "menos": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "amigos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "bailamos": {
+    "0": "VERB"
+  },
+  "bañás": {
+    "0": "VERB"
+  },
+  "bolsillos": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "corazones": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "crecías": {
+    "0": "NOUN"
+  },
+  "cuidado": {
+    "0": "INTJ",
+    "1": "NOUN",
+    "2": "INTJ"
+  },
+  "dejás": {
+    "0": "INTJ"
+  },
+  "fumamos": {
+    "0": "VERB"
+  },
+  "malas": {
+    "0": "ADJ"
+  },
+  "mamis": {
+    "0": "NOUN"
+  },
+  "miedos": {
+    "0": "NOUN"
+  },
+  "mujeres": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "nenas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "obligado": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ"
+  },
+  "pantycitos": {
+    "0": "NOUN"
+  },
+  "pasas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "perdidas": {
+    "0": "ADJ"
+  },
+  "prendíamos": {
+    "0": "VERB"
+  },
+  "problemas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "tatuajes": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "threesomes": {
+    "0": "NOUN"
+  },
+  "viajes": {
+    "0": "NOUN"
+  },
+  "decías": {
+    "0": "VERB"
+  },
+  "tamos": {
+    "1": "NOUN"
+  },
+  "vuelves": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "amaneces": {
+    "0": "VERB"
+  },
+  "apliques": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "arrebatados": {
+    "0": "ADJ"
+  },
+  "bajas": {
+    "0": "VERB"
+  },
+  "besado": {
+    "0": "VERB"
+  },
+  "buscas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cachetitos": {
+    "0": "NOUN"
+  },
+  "callado": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "calorías": {
+    "0": "NOUN"
+  },
+  "cerrado": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "chingas": {
+    "0": "NOUN",
+    "1": "VERB"
+  },
+  "cuartos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cubanas": {
+    "0": "NOUN"
+  },
+  "debes": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dejamos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "demasiados": {
+    "0": "PRON"
+  },
+  "descabronamos": {
+    "0": "VERB"
+  },
+  "diablos": {
+    "0": "INTJ",
+    "1": "NOUN"
+  },
+  "dimos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dudas": {
+    "0": "NOUN"
+  },
+  "enredás": {
+    "0": "ADJ"
+  },
+  "entonces": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "estabas": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "favoritas": {
+    "0": "ADJ"
+  },
+  "gemelas": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "gozarnos": {
+    "0": "VERB"
+  },
+  "guardias": {
+    "0": "NOUN"
+  },
+  "guayamos": {
+    "0": "VERB"
+  },
+  "hablas": {
+    "0": "VERB"
+  },
+  "hijeputas": {
+    "0": "NOUN"
+  },
+  "lados": {
+    "0": "NOUN"
+  },
+  "llenos": {
+    "0": "ADJ"
+  },
+  "llevamos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "lágrimas": {
+    "0": "NOUN"
+  },
+  "marcas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "modelitos": {
+    "0": "NOUN"
+  },
+  "morenitas": {
+    "0": "NOUN"
+  },
+  "mías": {
+    "0": "ADJ"
+  },
+  "naturales": {
+    "0": "ADJ"
+  },
+  "nublás": {
+    "0": "ADJ"
+  },
+  "olvidabas": {
+    "0": "VERB"
+  },
+  "oscuras": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "ovarios": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "adelante": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "palmas": {
+    "0": "NOUN"
+  },
+  "partes": {
+    "0": "VERB"
+  },
+  "pegado": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "pegás": {
+    "0": "VERB"
+  },
+  "peleamos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pelirrojas": {
+    "0": "ADJ"
+  },
+  "pequitas": {
+    "0": "NOUN"
+  },
+  "perdías": {
+    "0": "VERB"
+  },
+  "perros": {
+    "0": "NOUN"
+  },
+  "picheamos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pides": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pienses": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "piernas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pillamos": {
+    "0": "VERB"
+  },
+  "plásticas": {
+    "0": "ADJ"
+  },
+  "prendías": {
+    "0": "NOUN",
+    "1": "VERB"
+  },
+  "quedamos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quemado": {
+    "0": "VERB"
+  },
+  "risitos": {
+    "0": "NOUN"
+  },
+  "satélites": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "subimos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sábanas": {
+    "0": "NOUN"
+  },
+  "temas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "tickes": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "tocas": {
+    "0": "VERB"
+  },
+  "tuyas": {
+    "0": "PRON"
+  },
+  "videos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "viernes": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "voces": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vueltas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vuelvas": {
+    "0": "VERB"
+  },
+  "vídeos": {
+    "0": "NOUN"
+  },
+  "bailas": {
+    "0": "VERB"
+  },
+  "negras": {
+    "1": "ADJ"
+  },
+  "ovejas": {
+    "1": "NOUN"
+  },
+  "abiertos": {
+    "0": "ADJ"
+  },
+  "achinado": {
+    "0": "ADJ"
+  },
+  "activos": {
+    "0": "ADJ"
+  },
+  "afeitado": {
+    "0": "ADJ"
+  },
+  "agarren": {
+    "0": "VERB"
+  },
+  "amarras": {
+    "0": "NOUN"
+  },
+  "amarrado": {
+    "0": "ADJ"
+  },
+  "anillos": {
+    "0": "NOUN"
+  },
+  "arcoíris": {
+    "0": "NOUN"
+  },
+  "arrebataos": {
+    "0": "VERB"
+  },
+  "artistas": {
+    "0": "NOUN"
+  },
+  "asfixiado": {
+    "0": "ADJ"
+  },
+  "bajamos": {
+    "0": "VERB"
+  },
+  "balas": {
+    "0": "NOUN"
+  },
+  "bandoleras": {
+    "0": "ADJ"
+  },
+  "bebesotas": {
+    "0": "NOUN"
+  },
+  "besamos": {
+    "0": "VERB"
+  },
+  "bitchies": {
+    "0": "NOUN"
+  },
+  "blancos": {
+    "0": "ADJ"
+  },
+  "botas": {
+    "0": "NOUN"
+  },
+  "botado": {
+    "0": "VERB"
+  },
+  "cadenas": {
+    "0": "NOUN"
+  },
+  "caes": {
+    "0": "VERB"
+  },
+  "calentado": {
+    "0": "VERB"
+  },
+  "callas": {
+    "0": "VERB"
+  },
+  "cambiado": {
+    "0": "VERB"
+  },
+  "cambios": {
+    "0": "NOUN"
+  },
+  "caminado": {
+    "0": "NOUN"
+  },
+  "cansás": {
+    "0": "VERB"
+  },
+  "cantos": {
+    "0": "NOUN"
+  },
+  "caras": {
+    "0": "NOUN"
+  },
+  "cerramos": {
+    "0": "VERB"
+  },
+  "chingamos": {
+    "0": "VERB"
+  },
+  "cienes": {
+    "0": "NOUN"
+  },
+  "comernos": {
+    "0": "VERB"
+  },
+  "comunicamos": {
+    "0": "VERB"
+  },
+  "conectamos": {
+    "0": "VERB"
+  },
+  "consecuencias": {
+    "0": "NOUN"
+  },
+  "consejos": {
+    "0": "NOUN"
+  },
+  "contactos": {
+    "0": "NOUN"
+  },
+  "contamos": {
+    "0": "VERB"
+  },
+  "conversaciones": {
+    "0": "NOUN"
+  },
+  "copas": {
+    "0": "NOUN"
+  },
+  "corremos": {
+    "0": "VERB"
+  },
+  "cortas": {
+    "0": "ADJ"
+  },
+  "creas": {
+    "0": "VERB"
+  },
+  "creías": {
+    "0": "VERB"
+  },
+  "cruzado": {
+    "0": "VERB"
+  },
+  "cumples": {
+    "0": "NOUN"
+  },
+  "cuántas": {
+    "0": "PRON"
+  },
+  "dejado": {
+    "0": "VERB"
+  },
+  "desenfocado": {
+    "0": "ADJ"
+  },
+  "despistado": {
+    "0": "ADJ"
+  },
+  "duramos": {
+    "0": "VERB"
+  },
+  "elevás": {
+    "0": "VERB"
+  },
+  "enamorás": {
+    "0": "NOUN"
+  },
+  "encendíos": {
+    "0": "INTJ"
+  },
+  "enchulado": {
+    "0": "ADJ"
+  },
+  "encontramos": {
+    "0": "VERB"
+  },
+  "enrolamos": {
+    "0": "VERB"
+  },
+  "entramos": {
+    "0": "VERB"
+  },
+  "enviado": {
+    "0": "ADJ"
+  },
+  "enviciás": {
+    "0": "NOUN"
+  },
+  "envidiosas": {
+    "0": "ADJ"
+  },
+  "equivocado": {
+    "0": "ADJ"
+  },
+  "eras": {
+    "0": "VERB"
+  },
+  "escapas": {
+    "0": "VERB"
+  },
+  "escribes": {
+    "0": "VERB"
+  },
+  "esposas": {
+    "0": "NOUN"
+  },
+  "estemos": {
+    "0": "VERB"
+  },
+  "excusas": {
+    "0": "NOUN"
+  },
+  "expertos": {
+    "0": "NOUN"
+  },
+  "expliques": {
+    "0": "VERB"
+  },
+  "extensiones": {
+    "0": "NOUN"
+  },
+  "fanáticos": {
+    "0": "NOUN"
+  },
+  "favores": {
+    "0": "NOUN"
+  },
+  "fieles": {
+    "0": "ADJ"
+  },
+  "filas": {
+    "0": "NOUN"
+  },
+  "flores": {
+    "0": "NOUN"
+  },
+  "fotitos": {
+    "0": "NOUN"
+  },
+  "francés": {
+    "0": "NOUN"
+  },
+  "garras": {
+    "0": "NOUN"
+  },
+  "gastamos": {
+    "0": "VERB"
+  },
+  "gestos": {
+    "0": "NOUN"
+  },
+  "girar": {
+    "0": "NOUN"
+  },
+  "gordos": {
+    "0": "ADJ"
+  },
+  "gracias": {
+    "0": "NOUN"
+  },
+  "gratis": {
+    "0": "ADV"
+  },
+  "grites": {
+    "0": "VERB"
+  },
+  "génesis": {
+    "0": "NOUN"
+  },
+  "hablado": {
+    "0": "VERB"
+  },
+  "hablamos": {
+    "0": "VERB"
+  },
+  "hacerles": {
+    "0": "VERB"
+  },
+  "hackeás": {
+    "0": "ADJ"
+  },
+  "hadas": {
+    "0": "NOUN"
+  },
+  "haters": {
+    "0": "NOUN"
+  },
+  "hemos": {
+    "0": "VERB"
+  },
+  "hipnotizados": {
+    "0": "ADJ"
+  },
+  "homies": {
+    "0": "NOUN"
+  },
+  "iguales": {
+    "0": "ADJ"
+  },
+  "impuestos": {
+    "0": "NOUN"
+  },
+  "indisciplinado": {
+    "0": "ADJ"
+  },
+  "jodes": {
+    "0": "VERB"
+  },
+  "juegos": {
+    "0": "NOUN"
+  },
+  "jueves": {
+    "0": "NOUN"
+  },
+  "jurado": {
+    "0": "NOUN"
+  },
+  "laquiado": {
+    "0": "ADJ"
+  },
+  "listas": {
+    "0": "NOUN"
+  },
+  "llantas": {
+    "0": "NOUN"
+  },
+  "llegado": {
+    "0": "VERB"
+  },
+  "llenamos": {
+    "0": "VERB"
+  },
+  "locas": {
+    "0": "ADJ"
+  },
+  "locos": {
+    "0": "NOUN"
+  },
+  "luzcas": {
+    "0": "VERB"
+  },
+  "madrugás": {
+    "0": "VERB"
+  },
+  "maleantes": {
+    "0": "NOUN"
+  },
+  "malpensado": {
+    "0": "NOUN"
+  },
+  "mandas": {
+    "0": "VERB"
+  },
+  "mojes": {
+    "0": "VERB"
+  },
+  "máscaras": {
+    "0": "NOUN"
+  },
+  "nenes": {
+    "0": "NOUN"
+  },
+  "ningunas": {
+    "0": "PRON"
+  },
+  "nosotras": {
+    "0": "PRON"
+  },
+  "notas": {
+    "0": "NOUN"
+  },
+  "nuestros": {
+    "0": "DET"
+  },
+  "opciones": {
+    "0": "NOUN"
+  },
+  "otras": {
+    "0": "PRON"
+  },
+  "palestinos": {
+    "0": "NOUN"
+  },
+  "papeles": {
+    "0": "NOUN"
+  },
+  "pareces": {
+    "0": "VERB"
+  },
+  "parqueado": {
+    "0": "ADJ"
+  },
+  "pasado": {
+    "0": "VERB"
+  },
+  "pastillas": {
+    "0": "NOUN"
+  },
+  "patás": {
+    "0": "NOUN"
+  },
+  "pelados": {
+    "0": "ADJ"
+  },
+  "pendejos": {
+    "0": "NOUN"
+  },
+  "pepas": {
+    "0": "NOUN"
+  },
+  "perfumado": {
+    "0": "ADJ"
+  },
+  "pesos": {
+    "0": "NOUN"
+  },
+  "pezones": {
+    "0": "NOUN"
+  },
+  "picado": {
+    "0": "ADJ"
+  },
+  "pidas": {
+    "0": "VERB"
+  },
+  "pierdas": {
+    "0": "VERB"
+  },
+  "pocos": {
+    "0": "PRON"
+  },
+  "poderes": {
+    "0": "NOUN"
+  },
+  "ponernos": {
+    "0": "VERB"
+  },
+  "pongas": {
+    "0": "VERB"
+  },
+  "portado": {
+    "0": "VERB"
+  },
+  "prefieres": {
+    "0": "VERB"
+  },
+  "premios": {
+    "0": "NOUN"
+  },
+  "probado": {
+    "0": "ADJ"
+  },
+  "quedas": {
+    "0": "VERB"
+  },
+  "redes": {
+    "0": "NOUN"
+  },
+  "reemplazar": {
+    "0": "VERB"
+  },
+  "respondan": {
+    "0": "VERB"
+  },
+  "ricas": {
+    "0": "ADJ"
+  },
+  "rindas": {
+    "0": "VERB"
+  },
+  "rocas": {
+    "0": "NOUN"
+  },
+  "rolas": {
+    "0": "NOUN"
+  },
+  "roncas": {
+    "0": "ADJ"
+  },
+  "rotos": {
+    "0": "ADJ"
+  },
+  "sabores": {
+    "0": "NOUN"
+  },
+  "sacas": {
+    "0": "VERB"
+  },
+  "salgas": {
+    "0": "VERB"
+  },
+  "sapos": {
+    "0": "NOUN"
+  },
+  "sentado": {
+    "0": "ADJ"
+  },
+  "sientas": {
+    "0": "VERB"
+  },
+  "solteras": {
+    "0": "ADJ"
+  },
+  "soportar": {
+    "0": "VERB"
+  },
+  "sucierías": {
+    "0": "NOUN"
+  },
+  "sueltas": {
+    "0": "VERB"
+  },
+  "tantos": {
+    "0": "DET"
+  },
+  "tazos": {
+    "0": "NOUN"
+  },
+  "teléfonos": {
+    "0": "NOUN"
+  },
+  "terminas": {
+    "0": "VERB"
+  },
+  "testigos": {
+    "0": "NOUN"
+  },
+  "tetotas": {
+    "0": "NOUN"
+  },
+  "tirado": {
+    "0": "ADJ"
+  },
+  "tomas": {
+    "0": "VERB"
+  },
+  "trescientos": {
+    "0": "NUM"
+  },
+  "trofeos": {
+    "0": "NOUN"
+  },
+  "tumbamos": {
+    "0": "VERB"
+  },
+  "vacaciones": {
+    "0": "NOUN"
+  },
+  "veas": {
+    "0": "VERB"
+  },
+  "veamos": {
+    "0": "VERB"
+  },
+  "venías": {
+    "0": "VERB"
+  },
+  "viejos": {
+    "0": "NOUN"
+  },
+  "vinimos": {
+    "0": "VERB"
+  },
+  "vistes": {
+    "0": "VERB"
+  },
+  "vives": {
+    "0": "VERB"
+  },
+  "yales": {
+    "0": "NOUN"
+  },
+  "íntimos": {
+    "0": "ADJ"
+  },
+  "derrumba": {
+    "0": "VERB"
+  },
+  "excusar": {
+    "0": "VERB"
+  },
+  "chequea": {
+    "0": "VERB"
+  },
+  "superar": {
+    "0": "VERB"
+  },
+  "enviar": {
+    "0": "VERB"
+  },
+  "cucar": {
+    "0": "VERB"
+  },
+  "loo": {
+    "1": "ADJ"
+  },
+  "mezclar": {
+    "0": "VERB"
+  },
+  "bendecir": {
+    "0": "VERB"
+  },
   "_example_ids": {
     "que": [
       "10220921:14",
@@ -13762,29 +15115,29 @@
       "9614105:10",
       "9923845:16"
     ],
-    "no": [
-      "11581491:2",
-      "11660627:5",
-      "11888474:13",
-      "12570920:2",
-      "12570921:44",
-      "12570922:10",
-      "12570923:7",
-      "12582445:18",
-      "12582446:4",
-      "12591719:46"
-    ],
     "y": [
-      "10084300:15",
-      "10220933:11",
-      "10220937:41",
-      "10220940:24",
-      "10220944:12",
-      "12591720:4",
-      "12591721:12",
+      "11581491:15",
+      "11660627:18",
+      "11888474:5",
+      "12570921:23",
+      "12570922:4",
+      "12570923:2",
+      "12582445:21",
+      "12582446:28",
+      "12591719:9",
+      "12591720:4"
+    ],
+    "no": [
+      "10084300:5",
+      "10220933:2",
+      "10220937:16",
+      "10220940:3",
+      "10220944:16",
+      "12570920:2",
+      "12591721:2",
       "8617423:1",
-      "9185102:4",
-      "9428284:5"
+      "9185102:28",
+      "9428284:23"
     ],
     "el": [
       "10220946:5",
@@ -13793,16 +15146,16 @@
       "12556569:17",
       "12591722:1",
       "12591723:1",
+      "12591724:8",
       "7598030:6",
       "7750717:5",
-      "7930766:51",
-      "8224310:10"
+      "7930766:28"
     ],
     "en": [
       "12003129:2",
-      "12591724:15",
       "12822972:7",
       "13209653:6",
+      "8224310:15",
       "8224314:9",
       "8422401:61",
       "8602168:67",
@@ -13894,6 +15247,18 @@
       "8621461:18",
       "9428284:15"
     ],
+    "para": [
+      "10051011:4",
+      "10055523:2",
+      "10220930:20",
+      "10220932:36",
+      "11581491:18",
+      "11660627:5",
+      "11888474:4",
+      "12570921:27",
+      "9614105:12",
+      "9923845:13"
+    ],
     "si": [
       "10051011:3",
       "10055523:12",
@@ -13942,18 +15307,6 @@
       "8721872:46",
       "8827239:13"
     ],
-    "los": [
-      "12289314:23",
-      "8219794:63",
-      "8783598:7",
-      "8970064:34",
-      "8981516:10",
-      "9077520:19",
-      "9110676:15",
-      "9216707:11",
-      "9347157:42",
-      "9402498:40"
-    ],
     "con": [
       "10116729:32",
       "10874271:30",
@@ -13966,17 +15319,17 @@
       "8693529:20",
       "9211494:36"
     ],
-    "pa'": [
-      "10051011:4",
-      "10055523:2",
-      "10220930:20",
-      "10220932:36",
-      "11581491:18",
-      "11660627:5",
-      "11888474:4",
-      "12570921:27",
-      "9614105:12",
-      "9923845:13"
+    "los": [
+      "12289314:23",
+      "8219794:63",
+      "8783598:7",
+      "8970064:34",
+      "8981516:10",
+      "9077520:19",
+      "9110676:15",
+      "9216707:11",
+      "9347157:42",
+      "9402498:40"
     ],
     "le": [
       "10220946:38",
@@ -14030,273 +15383,273 @@
       "10084300:1",
       "10116729:34",
       "7750717:5",
+      "8224312:19",
       "8259338:16",
       "8406201:10",
       "8580461:11",
       "8602168:33",
-      "8721872:18",
       "8827239:13",
       "9211494:36"
     ],
-    "pero": [
-      "10220921:13",
+    "ey": [
+      "10220921:45",
       "10220934:36",
+      "11373471:45",
+      "11690948:46",
+      "11752402:15",
+      "12003129:38",
+      "12458903:15",
+      "8224313:5",
+      "8464254:36",
+      "8783598:33"
+    ],
+    "pero": [
       "10220937:38",
       "10529783:36",
-      "11752402:25",
       "13170926:8",
       "7134347:41",
       "8219794:23",
       "8224311:7",
-      "8783598:55"
-    ],
-    "ey": [
-      "11373471:45",
-      "11690948:46",
-      "12003129:38",
-      "12458903:15",
-      "8224312:4",
-      "8224313:5",
-      "8464254:36",
-      "8874493:9",
-      "8970064:34",
-      "9614105:12"
+      "8721872:9",
+      "8874493:13",
+      "8970064:17",
+      "9077520:22"
     ],
     "una": [
       "10055523:31",
       "10220930:8",
-      "10220932:13",
       "10220935:19",
       "10874271:30",
       "8209111:16",
       "8981516:22",
       "9110676:14",
       "9216707:25",
-      "9402498:32"
-    ],
-    "e": [
-      "10220933:2",
-      "11660627:4",
-      "12289314:29",
-      "12570921:45",
-      "12570922:33",
-      "12570923:21",
-      "12582446:10",
-      "12591719:9",
-      "9185102:30",
-      "9428284:5"
+      "9402498:32",
+      "9614105:44"
     ],
     "quiero": [
       "10220928:2",
-      "10220937:38",
-      "10220944:12",
+      "10220932:37",
       "10396585:6",
       "11581491:7",
       "12570920:10",
+      "12570921:11",
+      "12570923:2",
       "12582445:24",
-      "8617423:21",
-      "9077520:30",
+      "12582446:28",
       "9923845:48"
     ],
     "como": [
       "10220946:16",
+      "11660627:17",
       "11690948:29",
-      "12556569:21",
+      "12570922:22",
       "12582444:7",
+      "12591719:19",
       "12591721:20",
-      "12591724:16",
-      "7598030:24",
-      "7750717:20",
-      "8224313:23",
+      "8617423:19",
+      "9185102:41",
       "9347157:17"
-    ],
-    "sé": [
-      "10084300:34",
-      "11888474:1",
-      "12570920:7",
-      "8086635:27",
-      "8156995:13",
-      "8224310:9",
-      "8224311:7",
-      "8464254:27",
-      "8621461:17",
-      "9788043:26"
     ],
     "yeah": [
       "10051011:31",
+      "10220933:45",
+      "10220937:5",
       "10220940:15",
+      "12591724:18",
       "13209653:9",
+      "8086635:53",
+      "8224310:19",
       "8259338:30",
-      "8406201:33",
-      "8580461:22",
-      "8602168:20",
-      "8693529:1",
-      "8721872:24",
-      "9237320:22"
+      "8602168:20"
     ],
-    "ah": [
-      "12289314:30",
-      "7930766:51",
-      "8224312:11",
-      "8224314:7",
-      "8361727:25",
-      "8503396:37",
-      "8618160:53",
-      "8827239:38",
-      "9211494:5",
-      "9555844:31"
+    "sé": [
+      "10084300:34",
+      "10220944:34",
+      "11888474:1",
+      "12570920:7",
+      "8156995:13",
+      "8224311:7",
+      "8464254:27",
+      "8618160:11",
+      "8621461:17",
+      "9788043:26"
     ],
     "ya": [
-      "10116729:24",
-      "10220921:9",
-      "10220935:5",
       "12003129:4",
+      "12289314:25",
       "12591720:13",
       "12591722:4",
       "12591723:4",
       "12822972:1",
       "6924324:25",
+      "7598030:18",
+      "7750717:6",
       "8422401:29"
     ],
     "mami": [
+      "10220935:9",
       "10529783:36",
       "11752402:5",
+      "12289314:28",
+      "12556569:31",
       "8043163:34",
-      "8209111:16",
-      "8970064:35",
-      "8981516:6",
-      "9077520:35",
-      "9110676:42",
-      "9216707:46",
-      "9347157:38"
+      "8224312:18",
+      "8580461:23",
+      "8693529:17",
+      "8721872:46"
     ],
     "tu": [
-      "10220928:27",
-      "10220930:28",
-      "11581491:19",
+      "10116729:25",
       "12458903:40",
-      "12570920:13",
       "13170926:18",
       "7134347:43",
+      "8406201:22",
+      "8981516:12",
+      "9211494:23",
       "9237320:2",
-      "9402498:31",
-      "9614105:8"
+      "9428284:15",
+      "9555844:30"
     ],
     "cuando": [
       "10055523:2",
+      "10220928:39",
       "10220932:15",
-      "10396585:12",
       "11373471:51",
-      "11660627:34",
-      "11888474:19",
-      "12570921:11",
-      "12570922:36",
-      "12582446:2",
-      "12591721:8"
+      "8209111:4",
+      "8503396:29",
+      "9077520:6",
+      "9110676:65",
+      "9216707:29",
+      "9614105:19"
     ],
     "tiene": [
-      "10220946:6",
+      "10220930:2",
+      "11581491:1",
+      "11888474:28",
       "12570923:21",
       "12591719:18",
-      "7598030:6",
-      "8086635:42",
-      "8224310:12",
       "8224314:21",
+      "8361727:55",
       "8783598:7",
-      "9185102:5",
-      "9555844:15"
+      "8827239:7",
+      "9347157:42"
+    ],
+    "e": [
+      "11660627:4",
+      "12570921:45",
+      "12570922:33",
+      "12582446:10",
+      "7930766:8",
+      "8219794:1",
+      "8970064:8",
+      "9185102:30",
+      "9402498:41",
+      "9428284:5"
     ],
     "qué": [
+      "10220921:33",
       "10220933:21",
       "10220934:20",
+      "10396585:1",
       "12582444:17",
       "12582445:8",
       "12591722:3",
-      "12591724:38",
-      "8043163:3",
-      "8156995:4",
+      "8224310:11",
       "8422401:44",
-      "9788043:38"
-    ],
-    "oh": [
-      "10220944:43",
-      "12556569:7",
-      "8464254:29",
-      "8503396:39",
-      "8580461:23",
-      "8602168:4",
-      "8621461:8",
-      "8827239:54",
-      "9110676:85",
-      "9347157:20"
+      "9237320:2"
     ],
     "ese": [
-      "10220935:9",
       "12003129:10",
-      "12458903:23",
       "12591720:24",
       "12822972:52",
-      "7930766:15",
+      "8043163:41",
+      "8086635:30",
       "8259338:26",
       "8406201:19",
       "8721872:30",
-      "9428284:5"
+      "9555844:12",
+      "9788043:20"
+    ],
+    "ah": [
+      "12556569:17",
+      "7930766:51",
+      "8224312:11",
+      "8224314:7",
+      "8361727:25",
+      "8503396:37",
+      "8580461:50",
+      "8618160:53",
+      "8827239:38",
+      "9211494:5"
     ],
     "mí": [
       "10051011:7",
       "10084300:20",
-      "10220937:23",
+      "10220934:44",
       "10874271:29",
-      "12591723:25",
+      "11752402:20",
+      "12458903:23",
       "13209653:10",
-      "8219794:25",
+      "8156995:43",
       "8224313:28",
-      "8617423:10",
       "9923845:19"
     ],
     "tengo": [
       "10116729:45",
-      "10220940:31",
       "10874271:31",
-      "11690948:17",
-      "11752402:15",
+      "12570920:13",
       "7134347:54",
-      "8224312:16",
-      "8618160:27",
+      "8219794:13",
+      "8464254:40",
+      "8602168:19",
+      "8783598:23",
       "8874493:4",
-      "9211494:21"
+      "9110676:18"
+    ],
+    "todo": [
+      "10055523:35",
+      "10220930:8",
+      "10220932:43",
+      "11660627:20",
+      "11888474:20",
+      "12570920:14",
+      "12570921:41",
+      "12570922:17",
+      "8219794:50",
+      "8970064:5"
     ],
     "estoy": [
-      "10055523:3",
       "10220928:2",
       "10220930:32",
       "10220933:2",
       "10220935:5",
-      "10220937:17",
       "10396585:19",
+      "11373471:40",
       "12570923:9",
       "12591719:51",
+      "8693529:41",
       "9347157:8"
     ],
     "más": [
       "10051011:31",
       "10220937:29",
-      "12003129:6",
+      "10396585:20",
+      "11690948:13",
       "12582444:15",
       "12582445:21",
-      "12822972:24",
+      "12591722:38",
       "13170926:9",
-      "8503396:14",
-      "8618160:24",
+      "8156995:17",
       "9555844:24"
     ],
     "quiere": [
       "10220928:5",
       "10220932:19",
+      "12570921:25",
+      "12570923:35",
       "6924324:27",
       "7750717:41",
-      "8361727:3",
-      "8783598:36",
       "8874493:32",
       "8981516:2",
       "9216707:21",
@@ -14310,20 +15663,20 @@
       "8043163:32",
       "8156995:26",
       "8259338:31",
-      "8621461:19",
+      "8464254:17",
       "9185102:54",
       "9555844:36"
     ],
     "cómo": [
       "10220921:34",
-      "10220934:56",
       "11373471:44",
       "11581491:7",
       "11888474:3",
-      "12570921:11",
       "12582446:27",
       "12591719:27",
+      "8621461:7",
       "8970064:2",
+      "9347157:40",
       "9614105:43"
     ],
     "ahora": [
@@ -14333,20 +15686,20 @@
       "10529783:33",
       "11690948:2",
       "12570922:11",
-      "8219794:25",
       "8602168:28",
+      "8621461:8",
       "8693529:14",
       "9923845:13"
     ],
     "vamos": [
       "10220930:18",
       "10220932:28",
-      "10529783:37",
+      "10220944:20",
+      "11690948:10",
       "11888474:5",
       "12570921:48",
       "12570922:16",
       "12582445:8",
-      "12591719:36",
       "8422401:5",
       "9237320:22"
     ],
@@ -14376,7 +15729,6 @@
     ],
     "culo": [
       "12458903:23",
-      "12570923:16",
       "12582444:13",
       "12591723:1",
       "8406201:19",
@@ -14384,14 +15736,15 @@
       "8970064:35",
       "9110676:69",
       "9216707:55",
-      "9428284:5"
+      "9428284:5",
+      "9614105:51"
     ],
     "aquí": [
       "10220928:2",
+      "11581491:1",
       "12591724:53",
       "8224312:18",
       "8224313:13",
-      "8464254:4",
       "8503396:50",
       "8693529:12",
       "9077520:28",
@@ -14410,167 +15763,143 @@
       "9347157:13",
       "9402498:3"
     ],
+    "voy": [
+      "10055523:12",
+      "10220933:9",
+      "10220946:11",
+      "10396585:4",
+      "10529783:32",
+      "11752402:39",
+      "12556569:3",
+      "12582446:8",
+      "12591721:38",
+      "7598030:43"
+    ],
     "eso": [
       "10220921:6",
-      "11752402:36",
       "12289314:34",
+      "12591719:18",
+      "12591720:13",
       "7134347:50",
-      "7598030:26",
       "8086635:41",
       "8209111:3",
       "8224311:7",
       "8783598:7",
-      "9614105:27"
-    ],
-    "uh": [
-      "10220946:34",
-      "12556569:28",
-      "12591723:2",
-      "7598030:44",
-      "8156995:26",
-      "8224312:23",
-      "8259338:18",
-      "8422401:53",
-      "8618160:38",
-      "8621461:6"
+      "9185102:15"
     ],
     "gusta": [
       "10051011:22",
       "10084300:18",
-      "10220933:45",
       "12003129:27",
       "12570923:42",
-      "12582446:33",
-      "12591721:6",
+      "12591723:2",
+      "8043163:15",
+      "8086635:37",
+      "8224312:5",
       "8224314:25",
-      "9185102:12",
       "9237320:18"
-    ],
-    "o": [
-      "10220946:6",
-      "10396585:18",
-      "11581491:2",
-      "12591720:19",
-      "12591724:46",
-      "12822972:61",
-      "8224311:9",
-      "8464254:21",
-      "8602168:7",
-      "8693529:18"
     ],
     "su": [
       "10084300:5",
-      "12289314:3",
+      "12822972:44",
+      "7598030:39",
       "7750717:5",
       "7930766:12",
-      "8361727:26",
-      "8406201:13",
+      "8259338:31",
       "8580461:11",
-      "8827239:23",
+      "8693529:23",
       "8981516:35",
       "9555844:48"
     ],
-    "esa": [
-      "10055523:34",
-      "10116729:23",
-      "10220932:25",
-      "11581491:17",
-      "11752402:20",
-      "12570920:10",
-      "12591722:28",
-      "8970064:31",
-      "9347157:23",
-      "9402498:2"
-    ],
     "bien": [
-      "10396585:13",
       "12458903:19",
-      "12570922:23",
-      "12570923:42",
-      "12591719:8",
-      "8043163:15",
+      "12591722:8",
+      "8406201:11",
+      "8422401:52",
+      "8464254:10",
       "8721872:21",
       "9110676:58",
+      "9402498:38",
       "9614105:54",
       "9923845:12"
     ],
     "dime": [
-      "10055523:8",
       "10116729:25",
       "10220934:20",
+      "10220935:1",
       "10220937:13",
       "11373471:50",
-      "8086635:57",
+      "12591724:17",
       "8617423:10",
+      "8621461:54",
       "9077520:27",
-      "9211494:42",
-      "9237320:4"
+      "9211494:42"
     ],
     "hay": [
       "10220921:14",
-      "10220928:36",
-      "10220935:30",
       "10220940:15",
+      "10220946:21",
       "12556569:10",
       "12570920:2",
-      "7134347:58",
+      "8361727:53",
+      "8602168:19",
       "8618160:26",
-      "8874493:27",
+      "8827239:11",
       "9788043:46"
     ],
-    "to'": [
-      "10220930:8",
-      "10220940:19",
-      "10220946:22",
-      "11660627:20",
-      "11690948:17",
-      "11888474:20",
-      "12556569:47",
-      "12570920:11",
-      "12591722:2",
-      "12591724:47"
-    ],
     "miko": [
+      "10116729:55",
       "10220933:23",
       "11660627:34",
-      "13209653:34",
       "6924324:56",
-      "8043163:31",
-      "8086635:53",
+      "7134347:67",
       "8224310:15",
-      "8464254:21",
+      "8618160:73",
       "9216707:76",
+      "9347157:17",
       "9428284:53"
     ],
+    "o": [
+      "10220928:31",
+      "10220935:29",
+      "10220946:6",
+      "12591719:8",
+      "12591720:19",
+      "12591724:46",
+      "12822972:61",
+      "8224311:9",
+      "8259338:16",
+      "8464254:21"
+    ],
     "son": [
+      "10220940:29",
+      "11752402:22",
       "12591723:23",
       "7750717:6",
+      "8043163:32",
       "8224312:20",
       "8224313:33",
       "8361727:25",
-      "8406201:7",
-      "8580461:1",
       "8602168:55",
-      "8693529:14",
-      "9211494:46"
+      "8874493:25"
     ],
     "ni": [
-      "10084300:17",
-      "10220921:9",
       "10220944:7",
-      "12591720:25",
-      "7134347:41",
+      "12570923:44",
+      "13209653:18",
       "7930766:24",
-      "8219794:11",
       "8224310:16",
-      "9110676:72",
+      "8406201:22",
+      "8503396:9",
+      "8618160:35",
+      "9211494:40",
       "9788043:2"
     ],
     "solo": [
-      "10220934:10",
-      "11373471:37",
       "12289314:24",
+      "12570920:2",
       "7598030:8",
+      "8086635:15",
       "8156995:14",
       "8209111:5",
       "8617423:30",
@@ -14585,194 +15914,193 @@
       "12570921:11",
       "12582444:15",
       "12582446:13",
-      "8259338:49",
+      "12591721:38",
       "8422401:50",
       "9402498:33",
       "9428284:14"
     ],
     "va": [
       "10116729:48",
-      "10220944:1",
-      "11581491:8",
-      "12591720:13",
+      "10220934:19",
+      "12556569:45",
       "8209111:7",
       "8224311:8",
-      "8224314:52",
+      "8224314:11",
       "9077520:26",
+      "9110676:89",
       "9216707:34",
       "9614105:48"
     ],
+    "nada": [
+      "10220928:35",
+      "10220930:17",
+      "10220933:27",
+      "7750717:14",
+      "7930766:23",
+      "8086635:38",
+      "8224314:30",
+      "8602168:36",
+      "8618160:53",
+      "8970064:8"
+    ],
     "al": [
+      "10220937:9",
       "10220940:11",
-      "10220946:28",
-      "11690948:10",
+      "12003129:5",
       "12570922:25",
       "12582445:13",
-      "12591722:9",
-      "12591723:2",
-      "12591724:47",
+      "12591720:15",
+      "8219794:11",
+      "8580461:20",
       "9185102:15",
       "9428284:5"
-    ],
-    "voy": [
-      "10529783:32",
-      "12003129:26",
-      "12458903:8",
-      "12556569:3",
-      "12591721:38",
-      "8224310:54",
-      "8621461:15",
-      "8970064:11",
-      "9788043:17",
-      "9923845:44"
     ],
     "del": [
       "10051011:25",
       "10220944:8",
+      "11581491:11",
       "11888474:13",
-      "8224314:48",
-      "8422401:74",
-      "8503396:5",
+      "12003129:4",
+      "12458903:49",
+      "12591723:4",
+      "8224313:13",
       "8602168:67",
-      "8618160:15",
-      "8693529:6",
       "8874493:32"
     ],
     "otra": [
       "10116729:50",
-      "10220934:57",
-      "10396585:6",
-      "11373471:3",
-      "11581491:34",
+      "11690948:30",
+      "12556569:10",
       "6924324:17",
       "7750717:41",
       "8156995:16",
-      "9077520:23",
-      "9237320:1"
+      "8503396:24",
+      "8970064:16",
+      "9237320:1",
+      "9923845:7"
     ],
     "ti": [
-      "11752402:27",
-      "12582444:17",
+      "12591722:18",
+      "12591724:49",
       "6924324:19",
       "8086635:37",
       "8361727:31",
-      "8464254:9",
       "8617423:6",
+      "8621461:21",
       "8783598:6",
-      "9110676:6",
-      "9555844:60"
+      "9555844:60",
+      "9788043:17"
     ],
     "ver": [
+      "10220934:21",
+      "10220946:28",
+      "11373471:43",
       "12458903:16",
       "13170926:20",
       "7134347:7",
-      "8209111:11",
-      "8219794:35",
-      "8783598:56",
-      "8970064:2",
+      "8224314:19",
+      "8693529:24",
       "8981516:35",
-      "9211494:42",
-      "9614105:27"
-    ],
-    "pa'l": [
-      "10055523:31",
-      "10220928:22",
-      "10220930:18",
-      "10220932:42",
-      "12570922:16",
-      "12591719:24",
-      "12591721:45",
-      "13209653:17",
-      "8224311:6",
-      "9347157:39"
+      "9211494:42"
     ],
     "vez": [
       "10220934:57",
       "10220946:14",
       "10529783:37",
-      "11581491:34",
       "11690948:5",
+      "8156995:14",
       "8602168:17",
-      "8621461:9",
-      "9216707:78",
+      "8981516:2",
       "9237320:1",
-      "9347157:7"
+      "9347157:7",
+      "9923845:7"
     ],
     "desde": [
-      "10220940:29",
-      "10220946:38",
-      "12570921:48",
-      "12591723:8",
+      "10220921:7",
+      "12582444:7",
       "12822972:4",
+      "13209653:8",
       "7598030:44",
+      "8219794:9",
       "8224311:3",
+      "8783598:50",
       "8981516:34",
-      "9428284:14",
       "9923845:14"
     ],
     "hoy": [
-      "11690948:27",
-      "12003129:5",
+      "10055523:8",
+      "10220928:6",
+      "10396585:34",
       "12289314:35",
-      "12591720:15",
-      "12591722:6",
-      "12591724:49",
-      "12822972:35",
-      "8361727:7",
+      "12570921:46",
+      "12570922:25",
+      "12591719:55",
+      "8464254:6",
       "8580461:15",
-      "9788043:17"
+      "9614105:48"
     ],
     "esta": [
       "10084300:7",
       "10220921:52",
       "10874271:34",
-      "12582445:25",
+      "11752402:19",
+      "7134347:50",
       "8043163:3",
-      "8224314:27",
       "8422401:5",
-      "8621461:19",
       "8721872:46",
-      "9402498:7"
+      "8970064:25",
+      "9237320:22"
+    ],
+    "oh": [
+      "10220932:38",
+      "10529783:12",
+      "11581491:21",
+      "12556569:7",
+      "8224310:11",
+      "8503396:39",
+      "8621461:8",
+      "9110676:85",
+      "9347157:20",
+      "9788043:20"
     ],
     "dame": [
-      "10220932:52",
-      "10220933:8",
+      "10220930:15",
       "10220937:8",
+      "10220940:14",
       "10220944:20",
       "13209653:20",
       "8086635:23",
       "8259338:5",
       "8617423:26",
       "8721872:33",
-      "8970064:23"
+      "9428284:19"
     ],
     "par": [
-      "11373471:47",
       "11660627:21",
+      "12003129:7",
       "12570923:24",
+      "12591723:8",
       "7598030:41",
-      "8580461:9",
+      "8209111:25",
+      "8224314:9",
       "8602168:67",
-      "8693529:2",
       "8874493:15",
-      "9185102:37",
-      "9211494:21"
+      "9185102:37"
     ],
     "están": [
-      "10396585:21",
       "11660627:21",
       "11752402:20",
-      "12570923:8",
+      "12591724:19",
       "7750717:7",
       "8043163:37",
-      "8503396:50",
+      "8693529:1",
       "8783598:13",
-      "9555844:2",
-      "9614105:42"
+      "9077520:21",
+      "9211494:5",
+      "9555844:2"
     ],
     "estás": [
       "10055523:7",
-      "10220928:4",
       "10220935:12",
       "10396585:16",
       "11660627:32",
@@ -14780,114 +16108,103 @@
       "12570923:6",
       "8693529:25",
       "9077520:27",
+      "9216707:33",
       "9428284:10"
     ],
     "tienes": [
+      "10055523:32",
+      "10084300:34",
       "10220930:19",
       "10220944:15",
       "12458903:36",
       "12570920:16",
       "12591719:82",
-      "12591724:38",
-      "8086635:39",
-      "8406201:27",
-      "8422401:51",
-      "9077520:23"
+      "8970064:5",
+      "9077520:23",
+      "9614105:38"
     ],
     "hasta": [
-      "12556569:17",
-      "12570922:16",
+      "11690948:41",
       "12582446:12",
       "12591721:6",
-      "7134347:9",
+      "12822972:25",
+      "8361727:54",
       "8406201:73",
+      "8422401:9",
       "8464254:42",
       "8618160:25",
-      "8981516:33",
       "9216707:56"
     ],
     "dos": [
-      "10396585:5",
       "11373471:4",
       "11752402:21",
-      "12591719:4",
+      "12003129:6",
       "12591724:8",
       "7750717:31",
-      "8224310:19",
+      "8043163:28",
+      "8219794:17",
       "8224314:23",
       "9347157:8",
       "9788043:7"
     ],
     "hace": [
       "10055523:11",
-      "10220930:2",
-      "11581491:17",
+      "10220946:33",
       "11888474:12",
       "12458903:36",
+      "12591720:8",
       "6924324:11",
       "7930766:38",
       "8209111:2",
       "8827239:54",
       "9402498:13"
     ],
+    "conmigo": [
+      "10055523:10",
+      "10084300:37",
+      "10116729:43",
+      "10220932:27",
+      "11373471:44",
+      "8219794:15",
+      "8406201:20",
+      "8580461:59",
+      "8874493:25",
+      "9110676:21"
+    ],
     "i": [
       "10529783:16",
       "12289314:21",
       "12556569:15",
       "12582446:33",
-      "12591719:29",
       "12591723:7",
       "12591724:40",
+      "7134347:56",
       "8224313:6",
       "8259338:18",
       "8422401:73"
     ],
-    "para": [
-      "10116729:44",
-      "10220935:7",
-      "10220937:33",
-      "11660627:32",
-      "7930766:45",
-      "8224310:54",
-      "8406201:33",
-      "8617423:21",
-      "8827239:6",
-      "9185102:4"
-    ],
-    "conmigo": [
-      "10084300:37",
-      "7750717:5",
-      "8086635:24",
-      "8219794:15",
-      "8406201:20",
-      "8503396:4",
-      "8580461:59",
-      "8874493:25",
-      "9110676:21",
-      "9788043:23"
-    ],
     "soy": [
       "10220921:26",
       "10220928:14",
+      "11660627:17",
       "11690948:16",
-      "12289314:26",
+      "12591721:43",
       "7598030:45",
-      "8721872:34",
-      "9211494:13",
+      "9185102:13",
       "9216707:31",
       "9237320:20",
-      "9555844:28"
+      "9614105:45"
     ],
     "aunque": [
-      "10220921:17",
+      "10220930:19",
       "10220935:21",
-      "10220944:12",
+      "10396585:15",
+      "11581491:49",
       "11888474:8",
-      "12458903:24",
-      "12822972:65",
+      "12570922:9",
       "8224311:5",
-      "8259338:16",
       "8970064:6",
+      "8981516:12",
       "9923845:41"
     ],
     "sabes": [
@@ -14903,84 +16220,108 @@
       "9614105:69"
     ],
     "noche": [
-      "10116729:23",
       "10220934:39",
       "12591722:29",
       "8156995:43",
       "8224314:27",
       "8361727:49",
-      "8464254:29",
-      "8602168:5",
+      "8406201:21",
+      "8617423:3",
       "8621461:6",
-      "9347157:43"
+      "9347157:43",
+      "9788043:11"
     ],
     "eres": [
       "10055523:15",
       "10220935:19",
       "12570922:31",
-      "8219794:24",
-      "8361727:33",
       "8406201:20",
+      "8580461:54",
       "8970064:13",
       "9237320:19",
       "9402498:33",
+      "9555844:47",
       "9923845:24"
+    ],
+    "esa": [
+      "10116729:23",
+      "11752402:20",
+      "12289314:29",
+      "12570920:10",
+      "12570921:42",
+      "12591719:6",
+      "12591722:28",
+      "8827239:18",
+      "9402498:2",
+      "9555844:20"
     ],
     "así": [
       "10220934:20",
       "10220946:6",
       "10529783:35",
       "12003129:27",
+      "12458903:14",
       "12591720:15",
-      "7134347:39",
+      "12822972:9",
       "8043163:15",
       "8156995:36",
-      "8219794:24",
-      "9216707:24"
+      "8602168:16"
     ],
     "esto": [
       "10220940:18",
       "11373471:39",
-      "11752402:18",
-      "12570921:38",
       "13209653:33",
+      "8086635:53",
       "8224311:9",
+      "8259338:19",
+      "8464254:20",
       "8981516:6",
       "9110676:60",
-      "9614105:53",
-      "9923845:16"
+      "9614105:53"
+    ],
+    "uh": [
+      "10220928:8",
+      "10220946:34",
+      "12570921:38",
+      "12582444:28",
+      "12591719:94",
+      "8224312:23",
+      "8224313:29",
+      "8618160:38",
+      "8874493:8",
+      "9211494:61"
     ],
     "porque": [
       "10084300:4",
       "10220933:10",
-      "11888474:13",
-      "12591719:51",
-      "12591720:28",
       "6924324:13",
       "8224310:17",
+      "8224311:8",
+      "8503396:7",
+      "8580461:2",
       "8827239:17",
-      "9185102:38",
-      "9402498:38"
+      "9402498:38",
+      "9923845:26"
     ],
     "quieren": [
       "10874271:35",
-      "12570921:23",
+      "12570923:43",
       "12591723:24",
       "13209653:14",
       "7598030:45",
       "7750717:5",
+      "8219794:9",
       "8224313:29",
       "8406201:12",
-      "8503396:62",
-      "9211494:19"
+      "8503396:62"
     ],
     "mala": [
       "10116729:34",
-      "10220946:30",
+      "10220937:15",
       "10874271:36",
       "12003129:27",
       "12582444:28",
-      "12582446:41",
+      "7134347:11",
       "7930766:5",
       "8224314:52",
       "8621461:22",
@@ -14990,97 +16331,97 @@
       "10220937:32",
       "10220940:19",
       "11581491:54",
+      "11888474:4",
       "12582445:10",
+      "12582446:3",
       "12591721:47",
       "7930766:20",
-      "8422401:55",
       "8827239:6",
-      "8874493:34",
-      "9788043:63"
+      "9185102:32"
     ],
     "sí": [
       "10051011:4",
       "10084300:21",
+      "10220921:10",
       "10220930:13",
       "10220932:18",
       "10529783:35",
       "8086635:27",
       "8602168:61",
       "8693529:4",
-      "8827239:51",
       "9555844:15"
     ],
-    "nada": [
-      "10220928:35",
-      "10220930:17",
-      "10220933:27",
-      "7750717:14",
-      "7930766:23",
-      "8086635:38",
-      "8156995:15",
-      "8224314:30",
-      "8618160:53",
-      "8827239:9"
-    ],
-    "da": [
-      "10220944:21",
-      "10396585:24",
-      "11373471:44",
-      "11888474:23",
-      "6924324:18",
-      "8209111:10",
-      "9185102:40",
-      "9216707:7",
-      "9402498:7",
-      "9614105:50"
-    ],
     "dicen": [
-      "10055523:13",
       "10220921:24",
-      "10220946:5",
-      "12582446:11",
       "12822972:1",
+      "7750717:14",
       "8224310:49",
       "8224312:7",
       "8464254:21",
+      "8721872:34",
+      "9211494:6",
       "9347157:17",
-      "9923845:20"
+      "9788043:9"
     ],
     "nota": [
       "10220928:4",
       "10220932:37",
-      "12570923:3",
-      "12591719:52",
+      "11888474:19",
       "12591724:5",
       "7134347:54",
       "8361727:7",
       "8618160:26",
       "9110676:62",
+      "9216707:28",
       "9237320:19"
     ],
+    "todas": [
+      "10220940:29",
+      "10220946:17",
+      "12570922:17",
+      "8224314:7",
+      "8361727:11",
+      "8406201:5",
+      "8580461:16",
+      "8783598:9",
+      "8874493:28",
+      "9923845:42"
+    ],
     "dice": [
-      "10084300:17",
       "11581491:14",
       "12582445:10",
-      "12591723:22",
+      "12582446:45",
+      "12591719:51",
       "13170926:14",
       "8043163:25",
       "8156995:2",
+      "8422401:55",
       "8580461:11",
-      "8721872:45",
       "8970064:17"
     ],
     "loca": [
-      "10220928:4",
-      "11888474:8",
+      "10084300:7",
       "12556569:17",
-      "12591719:48",
       "12591721:1",
       "8224311:5",
       "8621461:62",
+      "8721872:7",
       "8970064:10",
+      "9185102:85",
       "9216707:31",
       "9788043:27"
+    ],
+    "da": [
+      "10220937:23",
+      "10220944:21",
+      "10396585:24",
+      "11373471:44",
+      "6924324:18",
+      "7598030:14",
+      "8209111:10",
+      "8827239:6",
+      "9402498:7",
+      "9614105:50"
     ],
     "este": [
       "10220934:40",
@@ -15088,17 +16429,17 @@
       "11660627:5",
       "12289314:33",
       "12570922:1",
+      "12570923:11",
       "12591724:56",
-      "12822972:22",
       "8224313:24",
       "8617423:28",
       "9428284:15"
     ],
     "nena": [
+      "10055523:34",
       "10874271:36",
       "11690948:30",
-      "12591723:14",
-      "7598030:23",
+      "12591723:15",
       "7930766:5",
       "8156995:33",
       "8617423:19",
@@ -15107,28 +16448,16 @@
       "9110676:43"
     ],
     "sabe": [
-      "10055523:3",
       "10116729:34",
+      "10220928:17",
+      "11888474:22",
       "12570921:41",
       "12591722:8",
       "8043163:13",
       "8209111:2",
       "8617423:6",
       "8981516:10",
-      "9614105:48",
-      "9788043:7"
-    ],
-    "tan": [
-      "10055523:32",
-      "10084300:7",
-      "10220933:23",
-      "10396585:3",
-      "12570923:44",
-      "12582446:17",
-      "12591720:17",
-      "8503396:54",
-      "8602168:51",
-      "9923845:50"
+      "9614105:48"
     ],
     "vas": [
       "10084300:37",
@@ -15136,54 +16465,42 @@
       "10220935:4",
       "10220940:14",
       "10220944:4",
+      "11581491:2",
       "12582446:39",
       "12591722:3",
-      "8219794:16",
       "8406201:54",
       "8721872:14"
     ],
     "cara": [
+      "10055523:15",
       "10220932:13",
       "10220934:16",
-      "11581491:20",
       "12003129:11",
       "12556569:3",
       "7930766:39",
-      "8043163:29",
       "8422401:59",
       "8827239:51",
+      "8970064:8",
       "9555844:42"
     ],
     "vida": [
       "10220921:13",
       "10220930:32",
       "10220933:2",
-      "10220937:7",
       "10220940:1",
+      "10396585:3",
       "11373471:3",
+      "12570923:3",
       "12582445:25",
       "6924324:10",
-      "7134347:75",
-      "9614105:32"
-    ],
-    "toas": [
-      "10220940:29",
-      "10220946:17",
-      "12570922:17",
-      "8224314:7",
-      "8361727:11",
-      "8406201:5",
-      "8422401:4",
-      "8580461:16",
-      "8783598:9",
-      "8874493:28"
+      "7134347:75"
     ],
     "veo": [
+      "11581491:51",
       "11660627:36",
       "11752402:8",
       "12591721:8",
       "8086635:38",
-      "8406201:50",
       "8503396:10",
       "8602168:11",
       "8621461:8",
@@ -15193,10 +16510,10 @@
     "you": [
       "12289314:26",
       "12556569:7",
+      "8043163:60",
       "8224310:30",
       "8464254:42",
       "8874493:16",
-      "8970064:37",
       "9211494:65",
       "9237320:18",
       "9347157:22",
@@ -15205,12 +16522,12 @@
     "gustan": [
       "12003129:22",
       "12582445:14",
+      "12591723:1",
+      "8422401:76",
       "8464254:39",
       "8693529:12",
       "8783598:12",
       "8874493:8",
-      "8981516:10",
-      "9110676:85",
       "9185102:33",
       "9211494:36"
     ],
@@ -15222,17 +16539,17 @@
       "12822972:45",
       "8086635:28",
       "8224312:10",
+      "8464254:22",
       "8874493:13",
-      "9110676:80",
       "9347157:39"
     ],
     "bitch": [
-      "11660627:38",
       "12289314:23",
       "12582444:11",
+      "12582446:33",
       "12591724:39",
-      "7134347:5",
       "7598030:23",
+      "7930766:69",
       "8224310:9",
       "8259338:18",
       "8580461:59",
@@ -15246,8 +16563,8 @@
       "12582446:32",
       "12591721:40",
       "8259338:24",
+      "8621461:8",
       "9077520:10",
-      "9555844:64",
       "9788043:20"
     ],
     "salgo": [
@@ -15263,12 +16580,12 @@
       "10220933:3",
       "10220935:5",
       "10220937:38",
+      "11660627:4",
       "12458903:45",
       "12570921:46",
       "13209653:23",
-      "7930766:44",
       "8156995:5",
-      "8580461:20",
+      "8406201:32",
       "9237320:2"
     ],
     "casi": [
@@ -15277,24 +16594,12 @@
       "7750717:13",
       "8361727:11"
     ],
-    "di": [
-      "10084300:15",
-      "10220944:15",
-      "12582445:21",
-      "6924324:28",
-      "7598030:41",
-      "8043163:8",
-      "8219794:11",
-      "8617423:20",
-      "9216707:33",
-      "9347157:13"
-    ],
     "ser": [
       "10116729:47",
       "10396585:3",
+      "11581491:46",
       "11752402:41",
-      "12003129:7",
-      "12570921:27",
+      "12591719:89",
       "12822972:51",
       "8086635:36",
       "8219794:9",
@@ -15304,11 +16609,11 @@
     "bad": [
       "12289314:23",
       "12582444:11",
-      "12582446:33",
       "7598030:23",
       "8219794:43",
       "8224310:9",
       "8224312:12",
+      "8422401:27",
       "8827239:54",
       "9077520:2",
       "9216707:76"
@@ -15332,39 +16637,27 @@
       "12570921:46",
       "12570923:10",
       "12591720:8",
-      "12591721:42",
       "8209111:4",
       "8981516:25",
+      "9216707:7",
       "9237320:4"
     ],
     "hacer": [
-      "10055523:8",
       "10220940:14",
       "11888474:26",
       "12570922:32",
       "12582445:17",
+      "12591720:18",
       "12591722:3",
+      "8086635:43",
       "8618160:17",
       "9077520:7",
-      "9211494:42",
-      "9614105:27"
-    ],
-    "prr": [
-      "11690948:61",
-      "12582444:3",
-      "8043163:43",
-      "8224312:3",
-      "8224313:2",
-      "8361727:27",
-      "8970064:52",
-      "9347157:25",
-      "9402498:48",
-      "9428284:1"
+      "9211494:42"
     ],
     "tus": [
       "10084300:12",
-      "11581491:32",
       "12570923:2",
+      "12582446:11",
       "12591722:13",
       "8406201:33",
       "8618160:34",
@@ -15378,20 +16671,20 @@
       "10220937:10",
       "11888474:5",
       "12591721:39",
-      "8422401:62",
+      "7598030:7",
+      "8043163:37",
       "8618160:22",
       "8693529:18",
       "8721872:45",
-      "8981516:33",
       "9185102:71"
     ],
     "i'm": [
       "10220921:27",
       "10220940:27",
       "10529783:1",
-      "11660627:38",
       "12289314:21",
       "8219794:7",
+      "8224310:9",
       "8224312:37",
       "8259338:49",
       "8580461:51",
@@ -15410,26 +16703,26 @@
       "9614105:28"
     ],
     "dinero": [
-      "10220940:1",
+      "11660627:5",
       "12003129:23",
       "12458903:36",
       "7750717:19",
       "7930766:27",
       "8224314:8",
-      "8602168:59",
       "8618160:32",
       "8783598:53",
-      "8874493:27"
+      "8874493:27",
+      "8981516:35"
     ],
     "encima": [
       "10051011:7",
       "10220933:9",
       "10220935:11",
       "11752402:21",
+      "12591719:77",
       "13209653:34",
-      "8043163:17",
+      "8224310:49",
       "8224312:8",
-      "8618160:42",
       "8970064:42",
       "9211494:41"
     ],
@@ -15443,11 +16736,12 @@
       "12822972:3",
       "6924324:11",
       "8422401:60",
-      "8464254:12"
+      "9110676:66"
     ],
-    "ba": [
-      "10051011:2",
-      "9555844:6"
+    "besties": [
+      "7750717:6",
+      "8361727:51",
+      "8783598:12"
     ],
     "booty": [
       "12003129:13",
@@ -15474,7 +16768,7 @@
       "11888474:1",
       "12570920:7",
       "12582444:16",
-      "12591719:8",
+      "8361727:7",
       "8721872:6"
     ],
     "puede": [
@@ -15494,11 +16788,11 @@
       "12556569:37",
       "12582446:2",
       "6924324:46",
-      "8224310:48",
       "8617423:5",
       "8618160:1",
       "8693529:6",
-      "9923845:5"
+      "9614105:9",
+      "9788043:39"
     ],
     "up": [
       "10220940:26",
@@ -15516,10 +16810,22 @@
       "12582446:19",
       "13209653:7",
       "8503396:7",
+      "8602168:21",
       "8693529:11",
       "8874493:26",
-      "9077520:14",
       "9211494:38"
+    ],
+    "di": [
+      "10220944:15",
+      "12582445:21",
+      "6924324:28",
+      "7598030:41",
+      "8043163:8",
+      "8219794:11",
+      "8503396:47",
+      "8617423:20",
+      "9216707:33",
+      "9347157:13"
     ],
     "duro": [
       "10051011:31",
@@ -15532,11 +16838,11 @@
     ],
     "llevo": [
       "10055523:37",
-      "10220928:20",
       "10220946:40",
       "11752402:16",
       "12570923:6",
       "13170926:11",
+      "8224310:16",
       "8224312:18",
       "8580461:43",
       "8693529:46",
@@ -15557,7 +16863,7 @@
       "10220933:11",
       "10220935:6",
       "11888474:17",
-      "12570923:45",
+      "12570923:53",
       "12822972:3",
       "6924324:5",
       "8422401:60",
@@ -15623,6 +16929,18 @@
       "8224312:29",
       "9555844:39"
     ],
+    "the": [
+      "10220921:4",
+      "10220940:26",
+      "10874271:27",
+      "11690948:2",
+      "12289314:60",
+      "12570921:42",
+      "8259338:16",
+      "9077520:19",
+      "9110676:43",
+      "9402498:1"
+    ],
     "algo": [
       "10220930:15",
       "10220933:1",
@@ -15655,41 +16973,15 @@
       "9428284:21",
       "9614105:41"
     ],
-    "sea": [
-      "10055523:32",
-      "10220930:19",
-      "11373471:39",
-      "11888474:27",
-      "12458903:12",
-      "12591723:8",
-      "7930766:39",
-      "8621461:61",
-      "8970064:6",
-      "9110676:84"
-    ],
-    "the": [
-      "10220921:4",
-      "10220940:26",
-      "10874271:27",
-      "11690948:2",
-      "12289314:60",
-      "12570921:42",
-      "7598030:42",
-      "8259338:16",
-      "9077520:19",
-      "9555844:10"
-    ],
-    "todo": [
-      "10220921:18",
-      "11660627:41",
-      "11690948:39",
-      "12582445:21",
-      "12822972:6",
-      "7750717:18",
-      "8156995:31",
-      "8224313:26",
-      "8617423:20",
-      "8827239:9"
+    "abajo": [
+      "11690948:5",
+      "12003129:26",
+      "12591723:11",
+      "8361727:5",
+      "8464254:42",
+      "9077520:35",
+      "9216707:56",
+      "9788043:12"
     ],
     "disco": [
       "11690948:29",
@@ -15697,18 +16989,18 @@
       "12582444:16",
       "12591722:1",
       "6924324:50",
-      "8464254:17",
+      "8422401:44",
       "8618160:2",
       "8970064:19",
       "9402498:6",
       "9788043:9"
     ],
     "hago": [
+      "10084300:34",
       "10220921:34",
       "10220937:16",
       "10220946:16",
       "10396585:46",
-      "11690948:17",
       "7930766:6",
       "8259338:34",
       "8503396:8",
@@ -15717,15 +17009,27 @@
     ],
     "he": [
       "10220921:10",
+      "10220930:1",
       "10220934:2",
       "10220937:11",
       "10220946:28",
       "11373471:2",
       "12458903:37",
-      "12582446:37",
+      "7930766:7",
       "8503396:57",
-      "9185102:32",
-      "9211494:19"
+      "9185102:32"
+    ],
+    "ja": [
+      "10220928:29",
+      "11690948:8",
+      "12591722:39",
+      "12591723:21",
+      "7134347:1",
+      "7598030:44",
+      "8043163:4",
+      "8219794:66",
+      "8224313:5",
+      "9347157:1"
     ],
     "mal": [
       "10220937:38",
@@ -15741,15 +17045,27 @@
     ],
     "mejor": [
       "10220933:12",
-      "10220934:46",
       "10220944:10",
       "10220946:44",
       "10874271:33",
       "12556569:19",
       "12582445:19",
       "12591720:14",
+      "7930766:20",
       "8721872:17",
       "9923845:18"
+    ],
+    "prr": [
+      "12582444:3",
+      "7598030:3",
+      "8043163:43",
+      "8224310:70",
+      "8224312:3",
+      "8224313:2",
+      "8970064:52",
+      "9347157:25",
+      "9402498:48",
+      "9428284:1"
     ],
     "so": [
       "11752402:9",
@@ -15761,26 +17077,26 @@
       "9211494:9"
     ],
     "también": [
+      "10220940:17",
       "12003129:1",
       "12570922:1",
       "7134347:57",
       "7930766:11",
       "8086635:39",
       "8259338:28",
-      "8721872:34",
       "8827239:17",
       "8874493:8",
       "8981516:3"
     ],
     "ven": [
       "10116729:46",
+      "10220933:27",
       "10220935:27",
       "10529783:36",
-      "11690948:13",
       "11752402:40",
       "12582444:37",
+      "12582446:7",
       "7134347:27",
-      "7750717:31",
       "8043163:20",
       "8224312:18"
     ],
@@ -15801,21 +17117,12 @@
       "10220935:5",
       "10220937:29",
       "10396585:7",
-      "12591721:23",
+      "12570923:43",
       "12591723:17",
       "8602168:58",
       "8721872:13",
       "9185102:39",
       "9347157:25"
-    ],
-    "abajo": [
-      "11690948:5",
-      "12591723:11",
-      "8361727:5",
-      "8464254:42",
-      "9077520:35",
-      "9216707:56",
-      "9788043:12"
     ],
     "ahí": [
       "10220946:7",
@@ -15832,14 +17139,14 @@
     "contigo": [
       "10055523:14",
       "10116729:25",
-      "10220928:27",
       "10220932:26",
       "10220934:46",
       "10220935:9",
       "10220944:1",
       "8617423:23",
       "8618160:2",
-      "9428284:21"
+      "9428284:21",
+      "9788043:38"
     ],
     "dejo": [
       "10220932:25",
@@ -15864,7 +17171,6 @@
     ],
     "fue": [
       "10116729:43",
-      "10220932:29",
       "10220934:12",
       "6924324:28",
       "8086635:4",
@@ -15872,31 +17178,8 @@
       "8224311:10",
       "8721872:6",
       "8783598:26",
-      "9185102:4"
-    ],
-    "ja": [
-      "12591722:39",
-      "12591723:21",
-      "7134347:1",
-      "7598030:44",
-      "8043163:4",
-      "8219794:66",
-      "8224313:5",
-      "8602168:25",
-      "9347157:1",
-      "9614105:67"
-    ],
-    "na'": [
-      "10220933:15",
-      "10220934:26",
-      "10220935:3",
-      "12003129:6",
-      "12591720:6",
-      "12822972:41",
-      "8219794:23",
-      "9185102:38",
-      "9347157:17",
-      "9614105:27"
+      "9185102:4",
+      "9923845:5"
     ],
     "pide": [
       "11373471:51",
@@ -15923,10 +17206,10 @@
       "9216707:28"
     ],
     "rico": [
+      "11690948:60",
       "12570920:9",
       "12582445:5",
       "12591722:8",
-      "8422401:44",
       "8580461:33",
       "8602168:70",
       "8981516:27",
@@ -15944,8 +17227,20 @@
       "8422401:54",
       "9237320:32"
     ],
+    "sea": [
+      "10055523:32",
+      "10220930:19",
+      "11373471:39",
+      "11888474:27",
+      "12458903:12",
+      "12591721:11",
+      "7930766:39",
+      "8621461:61",
+      "8970064:6",
+      "9110676:84"
+    ],
     "tá": [
-      "12458903:18",
+      "10220932:11",
       "13209653:19",
       "8156995:43",
       "8464254:7",
@@ -15955,6 +17250,18 @@
       "8981516:36",
       "9402498:15",
       "9923845:12"
+    ],
+    "toda": [
+      "10220928:6",
+      "10874271:32",
+      "11752402:26",
+      "11888474:6",
+      "8361727:17",
+      "8406201:21",
+      "8503396:64",
+      "8602168:37",
+      "8621461:20",
+      "8721872:42"
     ],
     "todos": [
       "10220921:26",
@@ -15980,20 +17287,16 @@
       "9110676:18",
       "9555844:13"
     ],
-    "besties": [
-      "7750717:6",
-      "8361727:51"
-    ],
     "fuck": [
       "10051011:25",
       "12570922:20",
       "7598030:42",
       "7750717:38",
+      "8464254:42",
       "8503396:37",
       "8783598:33",
       "9077520:23",
-      "9110676:43",
-      "9347157:37",
+      "9211494:11",
       "9555844:62"
     ],
     "gente": [
@@ -16017,26 +17320,6 @@
       "8602168:30",
       "8981516:40"
     ],
-    "mm": [
-      "12556569:56",
-      "12570920:11",
-      "12570922:23",
-      "7134347:3",
-      "8618160:1",
-      "9216707:71"
-    ],
-    "mmm": [
-      "10529783:38",
-      "12570920:11",
-      "12570922:23",
-      "8219794:24",
-      "8503396:71",
-      "8580461:4",
-      "9185102:39",
-      "9237320:1",
-      "9614105:14",
-      "9788043:19"
-    ],
     "pensando": [
       "10116729:23",
       "10220934:2",
@@ -16048,6 +17331,10 @@
       "8617423:12",
       "8621461:6",
       "9077520:27"
+    ],
+    "picky": [
+      "12591721:10",
+      "9185102:37"
     ],
     "suena": [
       "11690948:2",
@@ -16066,18 +17353,6 @@
       "9216707:56",
       "9614105:19",
       "9788043:12"
-    ],
-    "oye": [
-      "10220946:9",
-      "12591719:70",
-      "6924324:48",
-      "8422401:4",
-      "9211494:32",
-      "9614105:53"
-    ],
-    "picky": [
-      "12591721:10",
-      "9185102:37"
     ],
     "puedo": [
       "10220937:37",
@@ -16113,18 +17388,6 @@
       "9211494:5",
       "9555844:64"
     ],
-    "to'a": [
-      "10220928:6",
-      "10874271:32",
-      "11752402:26",
-      "11888474:6",
-      "8361727:17",
-      "8406201:21",
-      "8503396:64",
-      "8602168:37",
-      "8621461:20",
-      "8783598:8"
-    ],
     "veces": [
       "10220932:1",
       "10220934:2",
@@ -16159,11 +17422,11 @@
     ],
     "it's": [
       "10220921:45",
+      "10220946:45",
       "11581491:68",
       "11660627:34",
-      "11752402:49",
       "12591722:46",
-      "8043163:56",
+      "7134347:1",
       "8224312:1",
       "8621461:56",
       "8970064:51",
@@ -16184,7 +17447,7 @@
     "mauro": [
       "11752402:50",
       "12003129:38",
-      "12591722:43",
+      "8219794:70",
       "8406201:81",
       "8618160:74",
       "8621461:53",
@@ -16197,11 +17460,11 @@
       "10220921:18",
       "10220944:3",
       "10396585:2",
-      "12556569:45",
       "12570922:10",
       "7134347:45",
       "8224310:47",
       "8617423:25",
+      "8618160:24",
       "8693529:28",
       "8970064:15"
     ],
@@ -16242,7 +17505,7 @@
       "8617423:26"
     ],
     "cabrón": [
-      "10220933:20",
+      "12591719:93",
       "12591722:15",
       "12591723:13",
       "8043163:65",
@@ -16272,9 +17535,9 @@
       "11888474:15",
       "12570922:10",
       "12570923:13",
-      "12591719:88",
       "8361727:10",
       "8422401:61",
+      "8618160:53",
       "9555844:23"
     ],
     "mía": [
@@ -16289,6 +17552,14 @@
       "8621461:22",
       "9614105:8"
     ],
+    "oye": [
+      "10220946:9",
+      "12591719:70",
+      "6924324:48",
+      "8422401:4",
+      "9211494:32",
+      "9614105:53"
+    ],
     "traje": [
       "10220935:10",
       "10220940:25",
@@ -16297,9 +17568,9 @@
       "12003129:6",
       "12591722:23",
       "8224310:19",
+      "8503396:60",
       "8602168:32",
-      "8621461:39",
-      "9211494:37"
+      "8621461:39"
     ],
     "tás": [
       "10051011:29",
@@ -16313,6 +17584,28 @@
       "8981516:22",
       "9428284:14"
     ],
+    "corazón": [
+      "10220932:22",
+      "10220944:10",
+      "10529783:16",
+      "12570920:13",
+      "12822972:36",
+      "8209111:6",
+      "8406201:22",
+      "8422401:10"
+    ],
+    "atrás": [
+      "12591720:5",
+      "12591722:16",
+      "6924324:42",
+      "7598030:40",
+      "8259338:26",
+      "8406201:55",
+      "8464254:2",
+      "8721872:19",
+      "9211494:45",
+      "9788043:21"
+    ],
     "cojones": [
       "10220933:21",
       "12591722:10",
@@ -16325,7 +17618,7 @@
       "13209653:8",
       "8086635:35",
       "8464254:37",
-      "8618160:52",
+      "8618160:6",
       "8693529:30",
       "8827239:44",
       "9555844:52",
@@ -16375,11 +17668,11 @@
       "11888474:3",
       "12003129:6",
       "12570921:47",
-      "12591722:24",
       "13209653:22",
       "7598030:37",
       "8156995:3",
       "8219794:24",
+      "8618160:31",
       "9216707:9",
       "9347157:43"
     ],
@@ -16424,18 +17717,6 @@
       "9185102:11",
       "9555844:8"
     ],
-    "vo'a": [
-      "10051011:2",
-      "7598030:43",
-      "8156995:44",
-      "8361727:49",
-      "8621461:21",
-      "8970064:11",
-      "9110676:70",
-      "9555844:61",
-      "9788043:26",
-      "9923845:8"
-    ],
     "les": [
       "10220921:24",
       "10874271:35",
@@ -16447,18 +17728,6 @@
       "8693529:12",
       "8874493:26",
       "9614105:43"
-    ],
-    "atrás": [
-      "12591719:18",
-      "12591720:5",
-      "12591722:16",
-      "6924324:42",
-      "8259338:26",
-      "8406201:55",
-      "8464254:2",
-      "8721872:19",
-      "9211494:45",
-      "9788043:21"
     ],
     "después": [
       "10051011:4",
@@ -16484,6 +17753,18 @@
       "8783598:9",
       "9211494:15"
     ],
+    "lado": [
+      "10220937:9",
+      "10220946:27",
+      "12570922:1",
+      "12582445:15",
+      "12591724:39",
+      "8602168:35",
+      "8617423:1",
+      "8693529:42",
+      "8827239:48",
+      "9185102:85"
+    ],
     "ajá": [
       "8156995:24",
       "8219794:70",
@@ -16497,7 +17778,7 @@
     "ando": [
       "10220921:31",
       "11581491:20",
-      "12570921:21",
+      "11690948:18",
       "7134347:26",
       "8043163:28",
       "8219794:37",
@@ -16518,15 +17799,6 @@
       "9216707:51",
       "9614105:68"
     ],
-    "corazón": [
-      "10220944:10",
-      "10529783:16",
-      "12570920:13",
-      "12822972:36",
-      "8209111:6",
-      "8406201:22",
-      "8422401:10"
-    ],
     "cuarto": [
       "10220933:28",
       "11373471:41",
@@ -16543,7 +17815,7 @@
       "10220921:2",
       "10220935:11",
       "12570921:35",
-      "12570923:45",
+      "12570923:53",
       "12822972:55",
       "8224311:6",
       "8361727:6",
@@ -16555,11 +17827,11 @@
       "7930766:17",
       "8259338:6",
       "8361727:17",
-      "8422401:52",
       "8503396:22",
       "8602168:91",
       "8693529:29",
       "9211494:41",
+      "9555844:40",
       "9614105:12"
     ],
     "frente": [
@@ -16588,20 +17860,11 @@
       "12556569:12",
       "12570922:20",
       "12582446:6",
+      "12591724:14",
       "7930766:23",
-      "8224310:10",
       "8259338:24",
       "8580461:8",
       "8621461:22"
-    ],
-    "m": [
-      "10220940:50",
-      "12591719:29",
-      "12591724:35",
-      "7598030:46",
-      "7750717:7",
-      "8464254:7",
-      "9788043:18"
     ],
     "martino": [
       "7750717:3",
@@ -16626,9 +17889,9 @@
     ],
     "mucho": [
       "10220928:40",
+      "10220933:18",
       "10220934:35",
       "11660627:39",
-      "11690948:13",
       "12570920:15",
       "12822972:33",
       "13170926:9",
@@ -16679,7 +17942,7 @@
       "10220932:51",
       "10396585:12",
       "12458903:15",
-      "12556569:28",
+      "12556569:52",
       "12582446:44",
       "8621461:6",
       "8693529:8",
@@ -16688,19 +17951,8 @@
     ],
     "contacto": [
       "8086635:23",
-      "8209111:21",
+      "8209111:1",
       "9110676:41"
-    ],
-    "eh": [
-      "10220935:8",
-      "11581491:73",
-      "11888474:28",
-      "8086635:54",
-      "8361727:3",
-      "8464254:7",
-      "8580461:58",
-      "8602168:46",
-      "9110676:70"
     ],
     "gucci": [
       "10220933:26",
@@ -16729,6 +17981,18 @@
       "12458903:7",
       "8693529:1",
       "9428284:7"
+    ],
+    "mmm": [
+      "10529783:38",
+      "12556569:56",
+      "8503396:71",
+      "8580461:4",
+      "8602168:66",
+      "8618160:37",
+      "9185102:39",
+      "9216707:3",
+      "9237320:1",
+      "9788043:19"
     ],
     "money": [
       "11690948:17",
@@ -16802,17 +18066,17 @@
       "8617423:2",
       "9211494:47"
     ],
-    "woh": [
-      "10220932:53",
-      "12570920:2",
-      "12570923:37",
-      "7598030:14",
-      "8086635:33",
-      "8464254:29",
-      "8580461:58",
-      "8827239:54",
-      "8970064:35",
-      "9402498:50"
+    "young": [
+      "8219794:65",
+      "8224310:15",
+      "8224312:32",
+      "8464254:21",
+      "8503396:67",
+      "8580461:60",
+      "8721872:4",
+      "9185102:83",
+      "9216707:76",
+      "9788043:68"
     ],
     "pacas": [
       "7134347:8",
@@ -16847,7 +18111,7 @@
       "13170926:9",
       "13209653:18",
       "7750717:17",
-      "8464254:7",
+      "8464254:25",
       "8617423:14",
       "8693529:19",
       "9923845:21"
@@ -16863,9 +18127,12 @@
       "8224312:37",
       "9923845:4"
     ],
+    "ba": [
+      "10051011:13"
+    ],
     "bellaca": [
       "11581491:51",
-      "12570923:40",
+      "12570923:44",
       "12582446:44",
       "8874493:28",
       "9110676:20",
@@ -16903,7 +18170,7 @@
       "12591719:85",
       "6924324:46",
       "7134347:66",
-      "8209111:21",
+      "8209111:1",
       "8219794:23",
       "8224314:28",
       "9077520:23",
@@ -16920,16 +18187,6 @@
       "9185102:7",
       "9614105:10"
     ],
-    "g": [
-      "10220933:7",
-      "12003129:4",
-      "7134347:22",
-      "8464254:21",
-      "8783598:5",
-      "9185102:87",
-      "9211494:24",
-      "9402498:49"
-    ],
     "go": [
       "10220928:18",
       "10220937:18",
@@ -16938,6 +18195,13 @@
       "8580461:6",
       "9211494:69",
       "9347157:13"
+    ],
+    "m": [
+      "10220940:50",
+      "12591724:35",
+      "7598030:46",
+      "7750717:7",
+      "8464254:7"
     ],
     "muévelo": [
       "12570922:26",
@@ -16988,6 +18252,18 @@
       "8621461:35",
       "8970064:11"
     ],
+    "tan": [
+      "10055523:32",
+      "10084300:7",
+      "10220933:23",
+      "10396585:3",
+      "11888474:13",
+      "12582446:17",
+      "12591720:17",
+      "8503396:54",
+      "9110676:82",
+      "9923845:50"
+    ],
     "van": [
       "10116729:47",
       "10220934:10",
@@ -17005,30 +18281,6 @@
       "12570920:26",
       "12591721:15",
       "9347157:22"
-    ],
-    "young": [
-      "8219794:65",
-      "8224310:15",
-      "8224312:32",
-      "8464254:21",
-      "8580461:60",
-      "8602168:69",
-      "8721872:4",
-      "9185102:83",
-      "9216707:76",
-      "9788043:68"
-    ],
-    "lado": [
-      "10220937:9",
-      "10220946:30",
-      "12570922:1",
-      "12582445:15",
-      "12591724:39",
-      "8602168:35",
-      "8617423:1",
-      "8693529:42",
-      "8827239:48",
-      "9185102:85"
     ],
     "cosas": [
       "10084300:12",
@@ -17130,6 +18382,11 @@
       "9402498:3",
       "9788043:19"
     ],
+    "mm": [
+      "7134347:3",
+      "8618160:1",
+      "9216707:71"
+    ],
     "movie": [
       "12003129:2",
       "12591722:25",
@@ -17197,14 +18454,6 @@
       "9788043:3",
       "9923845:21"
     ],
-    "yah": [
-      "11690948:20",
-      "8224310:4",
-      "8224312:2",
-      "8224313:1",
-      "8503396:70",
-      "9216707:1"
-    ],
     "ellos": [
       "10220933:17",
       "10220940:3",
@@ -17228,9 +18477,6 @@
       "8224312:6",
       "8259338:3",
       "8693529:8"
-    ],
-    "big": [
-      "8783598:6"
     ],
     "busco": [
       "10220932:21",
@@ -17311,7 +18557,7 @@
       "7750717:21",
       "8086635:41",
       "8693529:42",
-      "9555844:7"
+      "8783598:48"
     ],
     "pa": [
       "6924324:50",
@@ -17475,6 +18721,15 @@
       "9402498:11",
       "9614105:23"
     ],
+    "eh": [
+      "10220935:8",
+      "11581491:73",
+      "11888474:28",
+      "8086635:54",
+      "8580461:58",
+      "8602168:46",
+      "9110676:70"
+    ],
     "fama": [
       "11752402:42",
       "7598030:8",
@@ -17503,7 +18758,7 @@
       "8224313:27",
       "8224314:28",
       "8361727:30",
-      "8580461:57"
+      "9555844:42"
     ],
     "nuevo": [
       "10084300:37",
@@ -17602,6 +18857,17 @@
       "9211494:45",
       "9923845:49"
     ],
+    "verdad": [
+      "10051011:3",
+      "12556569:10",
+      "12582445:20",
+      "12582446:29",
+      "12591724:41",
+      "8422401:61",
+      "8580461:1",
+      "8618160:46",
+      "9614105:69"
+    ],
     "hagas": [
       "10220928:3",
       "11888474:36",
@@ -17636,6 +18902,15 @@
       "7750717:48",
       "8259338:30",
       "8783598:40"
+    ],
+    "caleb": [
+      "7598030:25",
+      "8086635:56",
+      "8219794:45",
+      "8580461:70",
+      "8874493:52",
+      "8970064:49",
+      "9428284:52"
     ],
     "cartera": [
       "11581491:19",
@@ -17690,18 +18965,20 @@
       "9216707:59",
       "9614105:16"
     ],
+    "fuera": [
+      "10220932:39",
+      "10396585:20",
+      "12003129:8",
+      "8503396:5",
+      "8693529:24",
+      "9110676:14",
+      "9211494:25",
+      "9428284:5"
+    ],
     "janguear": [
       "8361727:4",
       "8580461:2",
       "9402498:6"
-    ],
-    "jet": [
-      "10220933:19",
-      "11373471:46",
-      "12003129:1",
-      "12570921:21",
-      "9110676:64",
-      "9923845:9"
     ],
     "let's": [
       "10220937:18",
@@ -17822,6 +19099,13 @@
       "8580461:58",
       "8693529:42"
     ],
+    "yah": [
+      "11690948:20",
+      "8224312:2",
+      "8224313:1",
+      "8503396:70",
+      "9216707:1"
+    ],
     "él": [
       "11752402:5",
       "12003129:7",
@@ -17868,6 +19152,11 @@
       "8224312:37",
       "8503396:52",
       "8621461:25"
+    ],
+    "shorties": [
+      "10220937:42",
+      "11373471:4",
+      "7598030:7"
     ],
     "ama": [
       "10116729:6",
@@ -17949,15 +19238,6 @@
       "13170926:2",
       "7750717:16",
       "8361727:60"
-    ],
-    "fuera": [
-      "10396585:20",
-      "12003129:8",
-      "8503396:5",
-      "8693529:24",
-      "9110676:14",
-      "9211494:25",
-      "9428284:5"
     ],
     "gistro": [
       "12003129:10",
@@ -18101,14 +19381,11 @@
       "8827239:22",
       "9614105:62"
     ],
-    "uhh": [
-      "8618160:38"
-    ],
     "viran": [
       "10220940:2"
     ],
     "vuelvo": [
-      "11581491:65",
+      "11581491:9",
       "8617423:8"
     ],
     "with": [
@@ -18134,12 +19411,6 @@
       "9428284:13",
       "9788043:26"
     ],
-    "pa'trás": [
-      "11581491:65",
-      "12570922:26",
-      "7598030:40",
-      "9110676:89"
-    ],
     "dios": [
       "10529783:36",
       "11581491:17",
@@ -18164,6 +19435,15 @@
       "10220933:25",
       "12582445:12"
     ],
+    "luz": [
+      "10051011:6",
+      "10220940:14",
+      "12582444:17",
+      "12822972:8",
+      "6924324:41",
+      "8043163:15",
+      "8219794:15"
+    ],
     "apaga": [
       "10051011:6",
       "12458903:21",
@@ -18176,13 +19456,8 @@
       "8219794:52",
       "9237320:32"
     ],
-    "caleb": [
-      "7598030:25",
-      "8086635:56",
-      "8219794:45",
-      "8580461:70",
-      "8874493:52",
-      "9428284:52"
+    "big": [
+      "8783598:6"
     ],
     "cel": [
       "10220930:24",
@@ -18226,6 +19501,15 @@
       "12591720:26",
       "8621461:62"
     ],
+    "g": [
+      "10220933:7",
+      "12003129:4",
+      "7134347:22",
+      "8464254:21",
+      "9185102:87",
+      "9211494:24",
+      "9402498:49"
+    ],
     "ha": [
       "10220930:5",
       "10220933:3",
@@ -18247,6 +19531,13 @@
       "7750717:7",
       "8621461:61",
       "9110676:87"
+    ],
+    "jet": [
+      "10220933:19",
+      "11373471:46",
+      "12003129:1",
+      "9110676:64",
+      "9923845:9"
     ],
     "llegar": [
       "10055523:4",
@@ -18290,6 +19581,20 @@
       "8224313:6",
       "9110676:54",
       "9923845:16"
+    ],
+    "on": [
+      "11690948:17",
+      "7598030:15",
+      "8209111:9",
+      "9077520:19",
+      "9402498:1",
+      "9428284:22",
+      "9555844:10"
+    ],
+    "pa'trás": [
+      "11581491:9",
+      "12570922:26",
+      "9110676:89"
     ],
     "paso": [
       "10116729:22",
@@ -18395,12 +19700,6 @@
       "9347157:37",
       "9555844:62"
     ],
-    "wow": [
-      "8602168:70",
-      "8693529:1",
-      "8970064:29",
-      "9614105:15"
-    ],
     "andamos": [
       "7598030:26",
       "8156995:36",
@@ -18452,16 +19751,22 @@
     "abuela": [
       "12822972:4"
     ],
+    "acá": [
+      "10220944:20",
+      "11373471:44",
+      "11690948:6",
+      "12591719:32",
+      "12591723:3",
+      "9185102:56",
+      "9614105:52",
+      "9923845:4"
+    ],
     "alta": [
       "10220944:7",
       "10220946:38",
       "12003129:6",
       "8618160:49",
       "9347157:25"
-    ],
-    "ao'": [
-      "12570920:14",
-      "12591720:26"
     ],
     "asiento": [
       "8224312:6",
@@ -18671,15 +19976,6 @@
       "13209653:19",
       "7750717:52"
     ],
-    "k": [
-      "10220940:12",
-      "12458903:38",
-      "12591719:29",
-      "12591722:45",
-      "7598030:1",
-      "8219794:26",
-      "8224310:30"
-    ],
     "line": [
       "11690948:2"
     ],
@@ -18695,9 +19991,6 @@
       "8602168:17",
       "9923845:12"
     ],
-    "mmh": [
-      "9216707:62"
-    ],
     "mío": [
       "12591724:49",
       "12822972:55",
@@ -18707,14 +20000,6 @@
       "8503396:62",
       "9216707:51",
       "9788043:48"
-    ],
-    "on": [
-      "11690948:17",
-      "7598030:15",
-      "8209111:9",
-      "9077520:19",
-      "9428284:22",
-      "9555844:10"
     ],
     "palgo": [
       "9110676:9"
@@ -18815,14 +20100,6 @@
       "8693529:30",
       "9237320:6"
     ],
-    "verdad": [
-      "10051011:3",
-      "12582445:20",
-      "12582446:29",
-      "12591724:41",
-      "8422401:61",
-      "8618160:46"
-    ],
     "verme": [
       "6924324:17",
       "7930766:46",
@@ -18894,15 +20171,6 @@
       "8406201:6",
       "9185102:65"
     ],
-    "acá": [
-      "10220944:20",
-      "11373471:44",
-      "11690948:6",
-      "12591719:32",
-      "12591723:3",
-      "9614105:52",
-      "9923845:4"
-    ],
     "adentro": [
       "10220934:19",
       "12458903:9",
@@ -18916,6 +20184,10 @@
       "9185102:25",
       "9402498:40",
       "9788043:3"
+    ],
+    "ao'": [
+      "12570920:14",
+      "12591720:26"
     ],
     "babe": [
       "12582446:7",
@@ -19012,7 +20284,7 @@
     ],
     "diabla": [
       "10116729:27",
-      "8209111:21",
+      "8209111:1",
       "8580461:54",
       "8721872:34"
     ],
@@ -19110,6 +20382,14 @@
       "12570923:17",
       "8224313:24",
       "8580461:14"
+    ],
+    "k": [
+      "10220940:12",
+      "12458903:38",
+      "12591722:45",
+      "7598030:1",
+      "8219794:26",
+      "8224310:30"
     ],
     "llamar": [
       "10220937:42",
@@ -19390,7 +20670,7 @@
       "8422401:79",
       "8602168:32"
     ],
-    "bocina'": [
+    "bocinas": [
       "12570923:35",
       "8602168:12"
     ],
@@ -19405,6 +20685,14 @@
     "caja": [
       "12591723:20",
       "8361727:9"
+    ],
+    "calloway": [
+      "8086635:56",
+      "8219794:69",
+      "8580461:70",
+      "8874493:52",
+      "8970064:49",
+      "9428284:52"
     ],
     "cambia": [
       "10220940:3",
@@ -19476,7 +20764,7 @@
       "8827239:8",
       "8981516:29"
     ],
-    "despierta'": [
+    "despiertas": [
       "7750717:7"
     ],
     "dio": [
@@ -19618,7 +20906,7 @@
       "11690948:17",
       "12556569:5"
     ],
-    "hookero'": [
+    "hookeros": [
       "8224314:10"
     ],
     "id": [
@@ -19684,12 +20972,6 @@
       "8464254:19",
       "9788043:27"
     ],
-    "luz": [
-      "10051011:6",
-      "12822972:8",
-      "6924324:41",
-      "8043163:15"
-    ],
     "manifiesto": [
       "12591719:10"
     ],
@@ -19709,9 +20991,6 @@
       "8406201:72",
       "8621461:57",
       "9614105:69"
-    ],
-    "mo": [
-      "7598030:6"
     ],
     "momento": [
       "10220921:16",
@@ -19828,17 +21107,11 @@
       "9110676:59",
       "9923845:19"
     ],
-    "shorties": [
-      "7598030:7"
-    ],
     "significa": [
       "10220928:36",
       "12582446:38",
       "8209111:6",
       "9923845:44"
-    ],
-    "slo": [
-      "7598030:6"
     ],
     "suba": [
       "12003129:26",
@@ -19986,7 +21259,7 @@
       "11373471:5",
       "9347157:4"
     ],
-    "acicalá'": [
+    "acicalás": [
       "10220946:4"
     ],
     "agresiva": [
@@ -20005,15 +21278,6 @@
       "8219794:24",
       "8406201:55",
       "8621461:32"
-    ],
-    "am": [
-      "8224312:11",
-      "8580461:1",
-      "8693529:33"
-    ],
-    "amo": [
-      "12582445:5",
-      "9110676:69"
     ],
     "avión": [
       "8422401:9"
@@ -20055,13 +21319,6 @@
       "12591723:15",
       "8406201:25"
     ],
-    "calloway": [
-      "8086635:56",
-      "8219794:69",
-      "8580461:70",
-      "8874493:52",
-      "9428284:52"
-    ],
     "cansada": [
       "12570920:7",
       "13170926:3"
@@ -20089,7 +21346,7 @@
       "9555844:16",
       "9614105:49"
     ],
-    "compartimo'": [
+    "compartimos": [
       "8086635:14"
     ],
     "compro": [
@@ -20172,7 +21429,7 @@
       "10220921:18",
       "12570920:7"
     ],
-    "envuelta'": [
+    "envueltas": [
       "7750717:8"
     ],
     "era": [
@@ -20194,7 +21451,7 @@
       "12570922:11",
       "9555844:56"
     ],
-    "extranjera'": [
+    "extranjeras": [
       "8224312:5",
       "8580461:10"
     ],
@@ -20333,10 +21590,6 @@
       "12458903:41",
       "7134347:59",
       "8827239:4"
-    ],
-    "or": [
-      "12582445:5",
-      "12591719:36"
     ],
     "out": [
       "12570922:29",
@@ -20484,10 +21737,6 @@
       "12582445:17",
       "9923845:47"
     ],
-    "shortie'": [
-      "10220937:42",
-      "11373471:4"
-    ],
     "silicon": [
       "8422401:7"
     ],
@@ -20601,9 +21850,10 @@
     "woah": [
       "11581491:6"
     ],
-    "wuh": [
-      "11690948:39",
-      "12591719:1"
+    "wow": [
+      "8602168:70",
+      "8970064:29",
+      "9614105:15"
     ],
     "zirconia": [
       "8827239:13"
@@ -20641,6 +21891,10 @@
       "8621461:18",
       "8721872:23",
       "9614105:44"
+    ],
+    "moteles": [
+      "12570922:12",
+      "7930766:39"
     ],
     "andas": [
       "12582446:36",
@@ -20686,6 +21940,9 @@
       "8043163:17",
       "8503396:49",
       "9211494:49"
+    ],
+    "volvías": [
+      "10084300:24"
     ],
     "acento": [
       "8224312:5"
@@ -20919,7 +22176,7 @@
       "10220934:10",
       "9923845:2"
     ],
-    "cámara'": [
+    "cámaras": [
       "10220933:10"
     ],
     "daniela": [
@@ -21164,11 +22421,6 @@
       "8783598:24",
       "8970064:38"
     ],
-    "lu'": [
-      "10220940:14",
-      "12582444:17",
-      "8219794:15"
-    ],
     "malo": [
       "10084300:18",
       "11581491:54",
@@ -21225,9 +22477,6 @@
     ],
     "mona": [
       "8874493:18"
-    ],
-    "motele'": [
-      "12570922:12"
     ],
     "mover": [
       "10220933:14",
@@ -21294,11 +22543,6 @@
       "10220937:17",
       "12591724:2"
     ],
-    "p": [
-      "10220940:50",
-      "11660627:20",
-      "9788043:18"
-    ],
     "pai": [
       "11690948:21",
       "12570921:40",
@@ -21319,7 +22563,7 @@
       "8259338:6",
       "9555844:30"
     ],
-    "pegaíto'": [
+    "pegaítos": [
       "12591722:23",
       "9185102:8"
     ],
@@ -21394,9 +22638,6 @@
       "8209111:27",
       "8422401:22"
     ],
-    "ran": [
-      "8602168:51"
-    ],
     "ranking": [
       "12003129:2",
       "8503396:5"
@@ -21430,9 +22671,6 @@
     ],
     "rogar": [
       "9788043:38"
-    ],
-    "sa": [
-      "9110676:36"
     ],
     "salvaje": [
       "12591722:7",
@@ -21604,6 +22842,16 @@
       "8693529:22",
       "9428284:13"
     ],
+    "cuentos": [
+      "6924324:48",
+      "8602168:50"
+    ],
+    "dedo": [
+      "11752402:17",
+      "12570923:4",
+      "8422401:77",
+      "9185102:59"
+    ],
     "deseos": [
       "12289314:35",
       "12570923:2",
@@ -21632,10 +22880,10 @@
       "10396585:2",
       "12003129:3"
     ],
-    "todas": [
-      "12591723:23",
-      "8219794:18",
-      "9923845:43"
+    "usas": [
+      "12570921:40",
+      "8621461:26",
+      "9110676:59"
     ],
     "vemos": [
       "10116729:49",
@@ -21647,6 +22895,10 @@
       "12458903:20",
       "12570923:46",
       "9614105:13"
+    ],
+    "verdaderos": [
+      "8219794:63",
+      "9211494:50"
     ],
     "vienes": [
       "10220930:24",
@@ -21667,6 +22919,9 @@
       "10220937:29",
       "12570922:20",
       "12570923:53"
+    ],
+    "llaves": [
+      "10220944:13"
     ],
     "menos": [
       "12582445:13",
@@ -21766,7 +23021,7 @@
       "11690948:19",
       "12822972:15"
     ],
-    "bañá'": [
+    "bañás": [
       "12570922:19"
     ],
     "be": [
@@ -21787,9 +23042,6 @@
       "12582446:30",
       "8219794:23"
     ],
-    "bestie'": [
-      "8783598:12"
-    ],
     "bichote": [
       "12003129:2"
     ],
@@ -21804,7 +23056,7 @@
       "12289314:30",
       "8219794:14"
     ],
-    "bolsillo'": [
+    "bolsillos": [
       "10220940:17",
       "12591724:19",
       "8602168:56"
@@ -21885,10 +23137,6 @@
       "12582445:15",
       "9077520:41"
     ],
-    "can": [
-      "8224312:11",
-      "8580461:22"
-    ],
     "capsu": [
       "8602168:10"
     ],
@@ -21935,7 +23183,7 @@
       "9185102:10"
     ],
     "chris": [
-      "8361727:78"
+      "8361727:76"
     ],
     "cierto": [
       "10220921:11"
@@ -22015,15 +23263,8 @@
     "cristina": [
       "8602168:7"
     ],
-    "cu": [
-      "12582444:3",
-      "12591724:13"
-    ],
     "cucándome": [
       "8970064:11"
-    ],
-    "cuento'": [
-      "8602168:50"
     ],
     "cuesta": [
       "10220921:17",
@@ -22077,12 +23318,7 @@
       "10220933:1",
       "12822972:34"
     ],
-    "dedo": [
-      "11752402:17",
-      "12570923:4",
-      "8422401:77"
-    ],
-    "dejá'": [
+    "dejás": [
       "10055523:7"
     ],
     "demasia": [
@@ -22385,11 +23621,6 @@
       "7134347:3",
       "8618160:29"
     ],
-    "key": [
-      "11752402:24",
-      "8464254:2",
-      "8721872:18"
-    ],
     "khalifa": [
       "8827239:17"
     ],
@@ -22400,11 +23631,6 @@
     ],
     "laberinto": [
       "10220934:14"
-    ],
-    "lao'": [
-      "10220934:30",
-      "12591720:29",
-      "9216707:21"
     ],
     "largo": [
       "12570921:38",
@@ -22524,7 +23750,7 @@
       "12556569:12",
       "7134347:53"
     ],
-    "miedo'": [
+    "miedos": [
       "10084300:12"
     ],
     "modelo": [
@@ -22611,6 +23837,10 @@
       "12582446:37",
       "8981516:26"
     ],
+    "p": [
+      "10220940:50",
+      "11660627:20"
+    ],
     "paisaje": [
       "12591722:6"
     ],
@@ -22624,7 +23854,7 @@
     "pantis": [
       "12003129:3"
     ],
-    "pantycito'": [
+    "pantycitos": [
       "8621461:6"
     ],
     "paran": [
@@ -22689,7 +23919,7 @@
     "pensarte": [
       "8617423:4"
     ],
-    "perdida'": [
+    "perdidas": [
       "9211494:32"
     ],
     "perdiste": [
@@ -22745,7 +23975,7 @@
       "8361727:27",
       "9402498:3"
     ],
-    "prendíamo'": [
+    "prendíamos": [
       "8621461:7"
     ],
     "problemas": [
@@ -23024,10 +24254,6 @@
       "8721872:20",
       "9614105:21"
     ],
-    "usa'": [
-      "8621461:26",
-      "9110676:59"
-    ],
     "usan": [
       "9211494:7"
     ],
@@ -23054,20 +24280,12 @@
       "10220928:9",
       "8086635:11"
     ],
-    "verda'": [
-      "12556569:10",
-      "8580461:1"
-    ],
-    "verdadero'": [
-      "8219794:63",
-      "9211494:50"
-    ],
     "verlo": [
       "12570921:19",
       "12591723:20",
       "9216707:22"
     ],
-    "viaje'": [
+    "viajes": [
       "11373471:1"
     ],
     "vibra": [
@@ -23100,9 +24318,6 @@
       "8721872:7",
       "9788043:43"
     ],
-    "volvía'": [
-      "10084300:24"
-    ],
     "vuelo": [
       "11581491:52",
       "12582446:27",
@@ -23128,6 +24343,11 @@
     "wiz": [
       "8827239:17"
     ],
+    "woh": [
+      "7598030:14",
+      "8580461:58",
+      "8970064:35"
+    ],
     "éramos": [
       "12591720:22"
     ],
@@ -23145,6 +24365,15 @@
       "10220937:5",
       "11660627:31",
       "8219794:47"
+    ],
+    "amiguitas": [
+      "8224310:19",
+      "8361727:60"
+    ],
+    "bitches": [
+      "8219794:43",
+      "8224312:12",
+      "9211494:9"
     ],
     "cabrones": [
       "10220932:43",
@@ -23164,10 +24393,22 @@
       "7930766:37",
       "8224314:47"
     ],
+    "leas": [
+      "10396585:26"
+    ],
+    "londres": [
+      "11660627:16",
+      "12582446:45",
+      "13209653:14"
+    ],
     "millas": [
       "12570923:15",
       "12582444:14",
       "8580461:24"
+    ],
+    "mismas": [
+      "8361727:60",
+      "8406201:47"
     ],
     "mueves": [
       "12458903:14",
@@ -23201,6 +24442,15 @@
     "tamos": [
       "8503396:48",
       "8580461:35"
+    ],
+    "tardes": [
+      "10220935:8",
+      "12570920:16"
+    ],
+    "tiendas": [
+      "10220946:17",
+      "12591721:24",
+      "9555844:55"
     ],
     "traes": [
       "9185102:34",
@@ -23251,9 +24501,6 @@
     "aha": [
       "8224312:2"
     ],
-    "ahh": [
-      "8618160:39"
-    ],
     "alcance": [
       "8618160:26"
     ],
@@ -23276,17 +24523,18 @@
       "12591721:25",
       "8874493:7"
     ],
+    "am": [
+      "8580461:1",
+      "8693529:33"
+    ],
     "amamos": [
       "12582445:6"
     ],
-    "amanece'": [
+    "amaneces": [
       "8617423:12"
     ],
     "amiguita": [
       "8406201:55"
-    ],
-    "amiguita'": [
-      "8361727:60"
     ],
     "amiri": [
       "10220928:13",
@@ -23295,7 +24543,7 @@
     "anormal": [
       "12570923:12"
     ],
-    "aplique'": [
+    "apliques": [
       "12591722:17",
       "8406201:19"
     ],
@@ -23317,7 +24565,7 @@
       "11690948:60",
       "8219794:19"
     ],
-    "arrebata'os": [
+    "arrebatados": [
       "8693529:44"
     ],
     "arrepiento": [
@@ -23411,7 +24659,7 @@
     "bendición": [
       "8224310:32"
     ],
-    "bermuda'": [
+    "bermudas": [
       "12556569:14",
       "9110676:55"
     ],
@@ -23435,10 +24683,6 @@
     "bikini": [
       "12591719:85",
       "8721872:6"
-    ],
-    "bitches": [
-      "8224312:12",
-      "9211494:9"
     ],
     "biza": [
       "8219794:19",
@@ -23513,7 +24757,7 @@
       "8693529:25",
       "9428284:19"
     ],
-    "cachetito'": [
+    "cachetitos": [
       "12556569:22"
     ],
     "caigo": [
@@ -23533,7 +24777,7 @@
       "12570922:31",
       "8086635:38"
     ],
-    "caloría'": [
+    "calorías": [
       "10220930:1"
     ],
     "caminando": [
@@ -23629,9 +24873,6 @@
       "10220928:36",
       "12591724:50"
     ],
-    "chó": [
-      "9402498:31"
-    ],
     "cinta": [
       "8224312:35"
     ],
@@ -23689,10 +24930,6 @@
     ],
     "copa": [
       "10220940:1"
-    ],
-    "cora": [
-      "10220932:22",
-      "10220944:15"
     ],
     "coreografía": [
       "12556569:21"
@@ -23763,10 +25000,6 @@
     "cógelo": [
       "8156995:41"
     ],
-    "d": [
-      "12556569:47",
-      "12570921:19"
-    ],
     "dancer": [
       "12591723:7",
       "8693529:14"
@@ -23808,14 +25041,14 @@
       "10084300:18",
       "9216707:27"
     ],
-    "demasia'os": [
+    "demasiados": [
       "8693529:39"
     ],
     "dembow": [
       "12570922:26",
       "9185102:62"
     ],
-    "descabronamo'": [
+    "descabronamos": [
       "7598030:25"
     ],
     "desean": [
@@ -23848,7 +25081,7 @@
       "8618160:28"
     ],
     "diez": [
-      "8693529:32"
+      "8693529:4"
     ],
     "difficulté": [
       "8602168:19"
@@ -23885,10 +25118,6 @@
     "don": [
       "8361727:53",
       "9555844:40"
-    ],
-    "doo": [
-      "12591719:7",
-      "12591723:8"
     ],
     "dougie": [
       "8209111:13"
@@ -24143,7 +25372,7 @@
       "12591721:45",
       "8580461:30"
     ],
-    "gemela'": [
+    "gemelas": [
       "11660627:40",
       "7750717:42"
     ],
@@ -24239,15 +25468,12 @@
       "12556569:43",
       "8693529:29"
     ],
-    "hijeputa'": [
+    "hijeputas": [
       "9211494:50"
     ],
     "hilo": [
       "10220944:2",
       "12458903:17"
-    ],
-    "hm": [
-      "7930766:1"
     ],
     "hmm": [
       "8618160:62",
@@ -24308,7 +25534,7 @@
       "8621461:12"
     ],
     "jedi": [
-      "8361727:78"
+      "8361727:76"
     ],
     "jeje": [
       "12003129:39",
@@ -24384,7 +25610,11 @@
     "kris": [
       "8580461:62"
     ],
-    "la'os": [
+    "l": [
+      "7134347:45",
+      "8224311:6"
+    ],
+    "lados": [
       "9347157:42"
     ],
     "lala": [
@@ -24405,9 +25635,6 @@
     "latidos": [
       "8617423:25",
       "9788043:39"
-    ],
-    "lea'": [
-      "10396585:26"
     ],
     "lee": [
       "8618160:72"
@@ -24453,19 +25680,13 @@
       "10396585:19",
       "12570920:13"
     ],
-    "llave'": [
-      "10220944:13"
-    ],
-    "llaves": [
-      "10220944:8"
-    ],
     "llegaste": [
       "12591719:29"
     ],
     "llenos": [
       "10220940:17"
     ],
-    "llevamo'": [
+    "llevamos": [
       "12822972:63",
       "8043163:32"
     ],
@@ -24487,22 +25708,11 @@
     "llévame": [
       "12591720:10"
     ],
-    "londres": [
-      "12582446:45",
-      "13209653:14"
-    ],
     "loose": [
       "8219794:8",
       "8693529:6"
     ],
-    "low": [
-      "8464254:2",
-      "8721872:18"
-    ],
-    "lu": [
-      "8361727:82"
-    ],
-    "lágrima'": [
+    "lágrimas": [
       "12570923:46"
     ],
     "mamacita": [
@@ -24527,7 +25737,7 @@
       "10220940:22",
       "9923845:42"
     ],
-    "marciano'": [
+    "marcianos": [
       "8361727:80"
     ],
     "mari": [
@@ -24570,14 +25780,14 @@
       "6924324:42",
       "8503396:29"
     ],
-    "misma'": [
-      "8361727:60"
+    "mmh": [
+      "9216707:62"
     ],
     "moda": [
       "11373471:39",
       "9110676:66"
     ],
-    "modelito'": [
+    "modelitos": [
       "8874493:9"
     ],
     "mojarte": [
@@ -24600,7 +25810,7 @@
     "moped": [
       "7598030:26"
     ],
-    "morenita'": [
+    "morenitas": [
       "8874493:11"
     ],
     "mostrame": [
@@ -24723,7 +25933,7 @@
     "novena": [
       "13209653:10"
     ],
-    "nublá'": [
+    "nublás": [
       "10220935:12"
     ],
     "nudes": [
@@ -24741,9 +25951,6 @@
       "10220921:5",
       "11888474:20"
     ],
-    "oah": [
-      "8618160:39"
-    ],
     "of": [
       "10220921:4",
       "7134347:16"
@@ -24756,7 +25963,7 @@
       "11660627:31",
       "12591723:18"
     ],
-    "olvidaba'": [
+    "olvidabas": [
       "10084300:12"
     ],
     "olvidar": [
@@ -24769,7 +25976,7 @@
     "orgullo": [
       "11888474:2"
     ],
-    "oscura'": [
+    "oscuras": [
       "10055523:2",
       "9923845:27"
     ],
@@ -24777,7 +25984,7 @@
       "11373471:38",
       "9614105:55"
     ],
-    "pa'lante": [
+    "adelante": [
       "12570922:26",
       "12591722:16"
     ],
@@ -24789,7 +25996,7 @@
       "8209111:11",
       "8224312:10"
     ],
-    "palma'": [
+    "palmas": [
       "12591719:45"
     ],
     "parecen": [
@@ -24839,7 +26046,7 @@
       "8503396:9",
       "9788043:2"
     ],
-    "pegá'": [
+    "pegás": [
       "8224312:35"
     ],
     "peleamos": [
@@ -24849,7 +26056,7 @@
     "peligrosa": [
       "8970064:17"
     ],
-    "pelirroja'": [
+    "pelirrojas": [
       "8874493:10"
     ],
     "pen": [
@@ -24858,7 +26065,7 @@
     "pensado": [
       "10220937:11"
     ],
-    "pequita'": [
+    "pequitas": [
       "8874493:10"
     ],
     "perdone": [
@@ -24890,7 +26097,7 @@
       "8406201:30",
       "8464254:24"
     ],
-    "picheamo'": [
+    "picheamos": [
       "8156995:26",
       "8464254:20"
     ],
@@ -24935,7 +26142,7 @@
       "12582446:21",
       "8406201:49"
     ],
-    "plástica'": [
+    "plásticas": [
       "12570923:41"
     ],
     "poderosa": [
@@ -25031,7 +26238,7 @@
       "11660627:20"
     ],
     "página": [
-      "12570923:45"
+      "12570923:53"
     ],
     "pégate": [
       "12570923:14",
@@ -25091,7 +26298,7 @@
       "11690948:11",
       "7134347:42"
     ],
-    "rebelá'": [
+    "rebelás": [
       "9402498:2"
     ],
     "recibo": [
@@ -25135,7 +26342,7 @@
     "riri": [
       "8224314:28"
     ],
-    "risito'": [
+    "risitos": [
       "8874493:11"
     ],
     "ritmo": [
@@ -25165,10 +26372,6 @@
     "round": [
       "12591719:4",
       "9347157:39"
-    ],
-    "rr": [
-      "7930766:2",
-      "9788043:18"
     ],
     "rvssian": [
       "11581491:5"
@@ -25388,9 +26591,6 @@
     "taca'": [
       "9555844:11"
     ],
-    "tarde'": [
-      "10220935:8"
-    ],
     "tato": [
       "12591722:45",
       "9614105:71"
@@ -25451,10 +26651,6 @@
       "11581491:53",
       "8259338:31"
     ],
-    "tienda'": [
-      "10220946:17",
-      "9555844:55"
-    ],
     "tirando": [
       "11752402:19",
       "9555844:38"
@@ -25483,10 +26679,6 @@
     ],
     "tocas": [
       "8721872:10"
-    ],
-    "toda": [
-      "8224310:25",
-      "8224314:26"
     ],
     "todita": [
       "8086635:34"
@@ -25565,6 +26757,9 @@
     ],
     "uff": [
       "10084300:20"
+    ],
+    "uhh": [
+      "8618160:38"
     ],
     "uhmm": [
       "8618160:31"
@@ -25662,9 +26857,6 @@
       "10055523:14",
       "8406201:79"
     ],
-    "volvías": [
-      "10084300:7"
-    ],
     "vuelta": [
       "8361727:24",
       "8464254:25"
@@ -25676,7 +26868,7 @@
     "vuelvas": [
       "11888474:8"
     ],
-    "vídeo'": [
+    "vídeos": [
       "10220930:3"
     ],
     "want": [
@@ -25693,9 +26885,6 @@
     "west": [
       "12570922:35",
       "9614105:25"
-    ],
-    "wet": [
-      "12570921:17"
     ],
     "when": [
       "10220935:28",
@@ -25759,6 +26948,10 @@
       "10220930:18",
       "9402498:30"
     ],
+    "dejes": [
+      "10220932:15",
+      "10220934:4"
+    ],
     "detrás": [
       "8219794:34",
       "9185102:43"
@@ -25783,6 +26976,14 @@
       "12591723:20",
       "8503396:12"
     ],
+    "negras": [
+      "8043163:63",
+      "8219794:64"
+    ],
+    "ovejas": [
+      "8043163:63",
+      "8219794:64"
+    ],
     "pegues": [
       "8224310:18",
       "8618160:41"
@@ -25803,6 +27004,10 @@
       "12556569:42",
       "12582446:6"
     ],
+    "unos": [
+      "12003129:7",
+      "8503396:20"
+    ],
     "usamos": [
       "12570921:46",
       "8580461:47"
@@ -25817,7 +27022,7 @@
     "abdominales": [
       "7134347:62"
     ],
-    "abierto'": [
+    "abiertos": [
       "10220921:8"
     ],
     "about": [
@@ -25919,7 +27124,7 @@
     "again": [
       "10220932:41"
     ],
-    "agarre'": [
+    "agarren": [
       "8464254:19"
     ],
     "agarro": [
@@ -26030,8 +27235,8 @@
     "amigo": [
       "10220928:29"
     ],
-    "amiguitas": [
-      "8224310:19"
+    "amo": [
+      "9110676:69"
     ],
     "amorfoda": [
       "8224310:22"
@@ -26060,7 +27265,7 @@
     "anhelando": [
       "8617423:32"
     ],
-    "anillo'": [
+    "anillos": [
       "11752402:17"
     ],
     "ankhal": [
@@ -26216,7 +27421,7 @@
     "arrolla": [
       "12822972:44"
     ],
-    "artista'": [
+    "artistas": [
       "10220921:4"
     ],
     "aruba": [
@@ -26543,9 +27748,6 @@
     "birthday": [
       "12289314:20"
     ],
-    "bitche'": [
-      "8219794:43"
-    ],
     "bitchies": [
       "9614105:20"
     ],
@@ -26561,7 +27763,7 @@
     "blame": [
       "8406201:50"
     ],
-    "blanco'": [
+    "blancos": [
       "8224314:23"
     ],
     "blanquita": [
@@ -27044,7 +28246,7 @@
     "cenicero": [
       "8503396:34"
     ],
-    "cerramo'": [
+    "cerramos": [
       "10220934:40"
     ],
     "cerré": [
@@ -27473,7 +28675,7 @@
     "conocerte": [
       "12570923:23"
     ],
-    "consecuencia'": [
+    "consecuencias": [
       "8156995:26"
     ],
     "consejos": [
@@ -27665,6 +28867,9 @@
     "cruzarle'": [
       "8043163:38"
     ],
+    "cu": [
+      "12591724:13"
+    ],
     "cubierto": [
       "10220921:18"
     ],
@@ -27673,9 +28878,6 @@
     ],
     "cuela": [
       "12822972:25"
-    ],
-    "cuentos": [
-      "6924324:48"
     ],
     "cuerda": [
       "10220928:34"
@@ -27734,6 +28936,9 @@
     "cúrate": [
       "9077520:37"
     ],
+    "d": [
+      "12556569:47"
+    ],
     "daba": [
       "10220928:39"
     ],
@@ -27754,9 +28959,6 @@
     ],
     "daño": [
       "12556569:47"
-    ],
-    "de'o": [
-      "9185102:59"
     ],
     "deadly": [
       "8621461:18"
@@ -27808,12 +29010,6 @@
     ],
     "deje": [
       "9110676:87"
-    ],
-    "deje'": [
-      "10220934:4"
-    ],
-    "dejes": [
-      "10220932:15"
     ],
     "delante": [
       "9185102:43"
@@ -28088,6 +29284,9 @@
     "drogas": [
       "8219794:37"
     ],
+    "drums": [
+      "9402498:1"
+    ],
     "dta": [
       "10220933:19"
     ],
@@ -28178,7 +29377,7 @@
     "enamorar": [
       "8422401:57"
     ],
-    "enamorá'": [
+    "enamorás": [
       "11690948:32"
     ],
     "enamoré": [
@@ -28199,7 +29398,7 @@
     "encojona": [
       "12003129:8"
     ],
-    "encontramo'": [
+    "encontramos": [
       "12591720:20"
     ],
     "encuentra": [
@@ -28367,7 +29566,7 @@
     "escale": [
       "9555844:7"
     ],
-    "escapa'": [
+    "escapas": [
       "9185102:34"
     ],
     "escapo": [
@@ -28433,7 +29632,7 @@
     "esperó": [
       "10084300:6"
     ],
-    "esposa'": [
+    "esposas": [
       "8970064:32"
     ],
     "esquina": [
@@ -28538,7 +29737,7 @@
     "expuesto": [
       "10220934:21"
     ],
-    "extensione'": [
+    "extensiones": [
       "9555844:57"
     ],
     "exótica": [
@@ -28574,7 +29773,7 @@
     "fantasmeo": [
       "12582446:47"
     ],
-    "fanático'": [
+    "fanáticos": [
       "8086635:40"
     ],
     "fariseo": [
@@ -28601,7 +29800,7 @@
     "fatiga": [
       "12582446:12"
     ],
-    "favore'": [
+    "favores": [
       "9923845:20"
     ],
     "favorita": [
@@ -28628,13 +29827,13 @@
     "fetiche'": [
       "8219794:44"
     ],
-    "fiele'": [
+    "fieles": [
       "8406201:7"
     ],
     "fijo": [
       "8224312:10"
     ],
-    "fila'": [
+    "filas": [
       "8219794:6"
     ],
     "finally": [
@@ -28712,13 +29911,10 @@
     "fotitos": [
       "12570922:5"
     ],
-    "fou": [
-      "12570920:15"
-    ],
     "four": [
       "8721872:42"
     ],
-    "francé'": [
+    "francés": [
       "8580461:10"
     ],
     "frankie": [
@@ -28844,7 +30040,7 @@
     "ganó": [
       "11888474:20"
     ],
-    "garra'": [
+    "garras": [
       "7598030:38"
     ],
     "gasolina": [
@@ -28874,7 +30070,7 @@
     "george": [
       "9555844:18"
     ],
-    "gesto'": [
+    "gestos": [
       "12591721:36"
     ],
     "get": [
@@ -28892,7 +30088,7 @@
     "gigantesco": [
       "10220921:28"
     ],
-    "gira'": [
+    "girar": [
       "8503396:15"
     ],
     "girls": [
@@ -28934,7 +30130,7 @@
     "goose": [
       "8693529:6"
     ],
-    "gordo'": [
+    "gordos": [
       "8602168:56"
     ],
     "gordon": [
@@ -29066,7 +30262,7 @@
     "gémini'": [
       "12570922:35"
     ],
-    "génesi'": [
+    "génesis": [
       "12570922:36"
     ],
     "haber": [
@@ -29105,10 +30301,10 @@
     "haciéndote": [
       "10220932:45"
     ],
-    "hackeá'": [
+    "hackeás": [
       "8721872:21"
     ],
-    "hada'": [
+    "hadas": [
       "9110676:79"
     ],
     "hagan": [
@@ -29147,9 +30343,6 @@
     "hazlo": [
       "12570922:33"
     ],
-    "hd": [
-      "12570921:19"
-    ],
     "heather": [
       "8224310:49"
     ],
@@ -29183,7 +30376,7 @@
     "him": [
       "10220921:43"
     ],
-    "hipnotiza'os": [
+    "hipnotizados": [
       "8503396:58"
     ],
     "histórica": [
@@ -29210,7 +30403,7 @@
     "holla": [
       "11752402:40"
     ],
-    "homie'": [
+    "homies": [
       "11690948:18"
     ],
     "honda": [
@@ -29342,7 +30535,7 @@
     "improviso": [
       "10874271:33"
     ],
-    "impuesto'": [
+    "impuestos": [
       "8970064:31"
     ],
     "impulsive": [
@@ -29522,7 +30715,7 @@
     "juanka": [
       "8043163:55"
     ],
-    "juego'": [
+    "juegos": [
       "10220932:20"
     ],
     "jueves": [
@@ -29588,6 +30781,9 @@
     "keeper": [
       "8580461:38"
     ],
+    "key": [
+      "11752402:24"
+    ],
     "keys": [
       "11373471:46"
     ],
@@ -29636,9 +30832,6 @@
     "kyrie": [
       "8224312:19"
     ],
-    "l": [
-      "7134347:45"
-    ],
     "lambía'": [
       "9185102:39"
     ],
@@ -29671,9 +30864,6 @@
     ],
     "lazos": [
       "8617423:31"
-    ],
-    "leas": [
-      "10396585:9"
     ],
     "leash": [
       "12591723:24"
@@ -29759,13 +30949,13 @@
     "lips": [
       "8422401:73"
     ],
-    "lista'": [
+    "listas": [
       "10220921:5"
     ],
     "livin'": [
       "8224312:31"
     ],
-    "llanta'": [
+    "llantas": [
       "11690948:9"
     ],
     "llegado": [
@@ -29821,9 +31011,6 @@
     ],
     "logro": [
       "9555844:59"
-    ],
-    "londre'": [
-      "11660627:16"
     ],
     "lonely": [
       "10220932:15"
@@ -29885,7 +31072,7 @@
     "madrugada": [
       "9077520:42"
     ],
-    "madrugá'": [
+    "madrugás": [
       "12570922:4"
     ],
     "maelo": [
@@ -30176,9 +31363,6 @@
     "misiones": [
       "8043163:59"
     ],
-    "mismas": [
-      "8406201:47"
-    ],
     "missionary": [
       "12582446:44"
     ],
@@ -30247,9 +31431,6 @@
     ],
     "moscas": [
       "7930766:42"
-    ],
-    "moteles": [
-      "7930766:39"
     ],
     "mother": [
       "9614105:24"
@@ -30329,7 +31510,7 @@
     "máscara": [
       "7134347:47"
     ],
-    "máscara'": [
+    "máscaras": [
       "8464254:43"
     ],
     "mónaco": [
@@ -30377,12 +31558,6 @@
     "negar": [
       "8086635:25"
     ],
-    "negra'": [
-      "8043163:63"
-    ],
-    "negras": [
-      "8219794:64"
-    ],
     "nenes": [
       "12570923:22"
     ],
@@ -30425,7 +31600,7 @@
     "noplastic": [
       "8981516:15"
     ],
-    "nosotra'": [
+    "nosotras": [
       "12591720:29"
     ],
     "notas": [
@@ -30515,7 +31690,7 @@
     "olvídate": [
       "9402498:30"
     ],
-    "opcione'": [
+    "opciones": [
       "8580461:4"
     ],
     "opinan": [
@@ -30526,6 +31701,9 @@
     ],
     "oportunidad": [
       "6924324:14"
+    ],
+    "or": [
+      "12591719:36"
     ],
     "orgullosa": [
       "12570923:33"
@@ -30551,23 +31729,11 @@
     "otros": [
       "8617423:29"
     ],
-    "ou": [
-      "12570920:15"
-    ],
     "oui": [
       "12591723:23"
     ],
-    "oul": [
-      "12570920:15"
-    ],
     "outfit": [
       "10220946:44"
-    ],
-    "oveja'": [
-      "8043163:63"
-    ],
-    "ovejas": [
-      "8219794:64"
     ],
     "over": [
       "8970064:35"
@@ -30586,15 +31752,6 @@
     ],
     "oía": [
       "12822972:33"
-    ],
-    "pa'bajo": [
-      "12003129:26"
-    ],
-    "pa'cá": [
-      "9185102:56"
-    ],
-    "pa'fuera": [
-      "10220932:39"
     ],
     "pa'trá": [
       "11581491:45"
@@ -30625,9 +31782,6 @@
     ],
     "pal": [
       "6924324:52"
-    ],
-    "pal'": [
-      "7930766:28"
     ],
     "palestinos": [
       "8406201:77"
@@ -30776,7 +31930,7 @@
     "pegó": [
       "8086635:10"
     ],
-    "pela'os": [
+    "pelados": [
       "13209653:15"
     ],
     "pelean": [
@@ -30941,7 +32095,7 @@
     "piensen": [
       "9614105:69"
     ],
-    "pierda'": [
+    "pierdas": [
       "11888474:26"
     ],
     "pierde": [
@@ -31106,7 +32260,7 @@
     "precio": [
       "8224312:10"
     ],
-    "prefiere'": [
+    "prefieres": [
       "11373471:50"
     ],
     "prefieren": [
@@ -31448,7 +32602,7 @@
     "reel": [
       "9555844:30"
     ],
-    "reemplaza'": [
+    "reemplazar": [
       "12582445:13"
     ],
     "reemplazas": [
@@ -31529,7 +32683,7 @@
     "respiros": [
       "9788043:39"
     ],
-    "responda'": [
+    "respondan": [
       "10220934:41"
     ],
     "rest": [
@@ -31601,7 +32755,7 @@
     "rincón": [
       "8422401:33"
     ],
-    "rinda'": [
+    "rindas": [
       "9110676:48"
     ],
     "ringo": [
@@ -31631,7 +32785,7 @@
     "roca": [
       "9216707:60"
     ],
-    "roca'": [
+    "rocas": [
       "11690948:29"
     ],
     "rodean": [
@@ -32054,7 +33208,7 @@
     "sonrisa": [
       "10084300:2"
     ],
-    "soporta'": [
+    "soportar": [
       "8464254:42"
     ],
     "soporte": [
@@ -32291,9 +33445,6 @@
     "taparte": [
       "12591722:11"
     ],
-    "tardes": [
-      "12570920:16"
-    ],
     "tari": [
       "12591724:49"
     ],
@@ -32321,7 +33472,7 @@
     "telas": [
       "12591724:52"
     ],
-    "teléfono'": [
+    "teléfonos": [
       "11752402:21"
     ],
     "temblando": [
@@ -32363,7 +33514,7 @@
     "tetica'": [
       "10220934:42"
     ],
-    "tetota'": [
+    "tetotas": [
       "9185102:33"
     ],
     "thank": [
@@ -32386,9 +33537,6 @@
     ],
     "threesome": [
       "9185102:28"
-    ],
-    "tiendas": [
-      "12591721:24"
     ],
     "tienta": [
       "12458903:23"
@@ -32546,7 +33694,7 @@
     "trerre": [
       "12003129:39"
     ],
-    "tresciento'": [
+    "trescientos": [
       "9555844:29"
     ],
     "tricky": [
@@ -32591,7 +33739,7 @@
     "tumba": [
       "9923845:19"
     ],
-    "tumbamo'": [
+    "tumbamos": [
       "7598030:47"
     ],
     "tumban": [
@@ -32654,20 +33802,11 @@
     "united": [
       "10220932:30"
     ],
-    "uno'": [
-      "8503396:20"
-    ],
-    "unos": [
-      "12003129:7"
-    ],
     "update": [
       "10220932:29"
     ],
     "urbano": [
       "12822972:61"
-    ],
-    "usas": [
-      "12570921:40"
     ],
     "usd": [
       "11752402:22"
@@ -32717,7 +33856,7 @@
     "veas": [
       "12570921:35"
     ],
-    "veamo'": [
+    "veamos": [
       "8621461:19"
     ],
     "vecindad": [
@@ -32755,12 +33894,6 @@
     ],
     "verdadero": [
       "8406201:79"
-    ],
-    "verdaderos": [
-      "9211494:65"
-    ],
-    "verdá'": [
-      "9614105:69"
     ],
     "verle": [
       "12003129:10"
@@ -32981,6 +34114,9 @@
     "wu": [
       "9211494:48"
     ],
+    "wuh": [
+      "12591719:1"
+    ],
     "xanax": [
       "7750717:38"
     ],
@@ -33035,16 +34171,13 @@
     "ánimo": [
       "11581491:16"
     ],
-    "é": [
-      "9788043:18"
-    ],
     "élite": [
       "11581491:51"
     ],
     "ía": [
       "10874271:30"
     ],
-    "íntimo'": [
+    "íntimos": [
       "8086635:42"
     ],
     "ñoñita": [
@@ -33052,6 +34185,49 @@
     ],
     "úsame": [
       "9077520:38"
+    ],
+    "derrumba": [
+      "12458903:22"
+    ],
+    "excusar": [
+      "9077520:36"
+    ],
+    "chequea": [
+      "9555844:8"
+    ],
+    "superar": [
+      "6924324:9"
+    ],
+    "chocar": [
+      "9402498:31"
+    ],
+    "enviar": [
+      "8156995:30"
+    ],
+    "cucar": [
+      "10220935:7"
+    ],
+    "loo": [
+      "8219794:8",
+      "8693529:6"
+    ],
+    "mezclar": [
+      "12591724:4"
+    ],
+    "bendecir": [
+      "8721872:29"
+    ],
+    "naturo": [
+      "8219794:38",
+      "8981516:15"
     ]
+  },
+  "_meta": {
+    "step_name": "tag_example_pos",
+    "step_version": 2,
+    "generated_at": 1776646047,
+    "tool_versions": {
+      "spacy_model": "dep_news_trf"
+    }
   }
 }

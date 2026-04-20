@@ -1,6 +1,6 @@
 {
   "a": {
-    "freq": 2875,
+    "freq": 2861,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -593,14 +593,6 @@
       "verb"
     ],
     "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "aca": {
-    "freq": 1,
-    "wikt_pos": [],
-    "bucket": "normal_vocab",
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2672,7 +2664,7 @@
     "in_en_50k": false
   },
   "ah": {
-    "freq": 248,
+    "freq": 81,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -2686,13 +2678,6 @@
     "bucket": "normal_vocab",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "ahm": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
     "in_en_50k": true
   },
   "ahocica": {
@@ -2900,8 +2885,9 @@
     "in_en_50k": false
   },
   "aju": {
-    "freq": 2,
-    "bucket": "gemini",
+    "freq": 1,
+    "bucket": "low_frequency",
+    "source": "freq<2",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -3859,7 +3845,7 @@
     "in_en_50k": false
   },
   "am": {
-    "freq": 8,
+    "freq": 1,
     "wikt_pos": [
       "adv"
     ],
@@ -6039,7 +6025,7 @@
     "in_en_50k": true
   },
   "ar": {
-    "freq": 7,
+    "freq": 4,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -7984,7 +7970,7 @@
     "in_en_50k": false
   },
   "ay": {
-    "freq": 23,
+    "freq": 16,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -8280,19 +8266,16 @@
     "in_en_50k": false
   },
   "b": {
-    "freq": 16,
+    "freq": 14,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ba": {
-    "freq": 5,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "freq": 2,
+    "bucket": "interjections",
+    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -8332,7 +8315,7 @@
     "in_en_50k": false
   },
   "baby": {
-    "freq": 606,
+    "freq": 613,
     "wikt_pos": [
       "noun"
     ],
@@ -8434,7 +8417,7 @@
     "in_en_50k": true
   },
   "bad": {
-    "freq": 223,
+    "freq": 232,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -9716,7 +9699,7 @@
     "in_en_50k": true
   },
   "be": {
-    "freq": 15,
+    "freq": 7,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -9737,7 +9720,7 @@
     "in_en_50k": false
   },
   "beat": {
-    "freq": 3,
+    "freq": 4,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -9985,9 +9968,8 @@
     "in_en_50k": false
   },
   "beibe": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "freq": 2,
+    "bucket": "gemini",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10764,7 +10746,7 @@
     "in_en_50k": false
   },
   "bi": {
-    "freq": 13,
+    "freq": 11,
     "wikt_pos": [
       "adj"
     ],
@@ -11133,7 +11115,7 @@
     "in_en_50k": false
   },
   "bla": {
-    "freq": 30,
+    "freq": 6,
     "wikt_pos": [
       "noun"
     ],
@@ -13335,7 +13317,7 @@
     "in_en_50k": false
   },
   "bum": {
-    "freq": 21,
+    "freq": 5,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -13354,7 +13336,7 @@
     "in_en_50k": true
   },
   "bunny": {
-    "freq": 216,
+    "freq": 228,
     "bucket": "english",
     "source": "curated_extra_english",
     "in_spanish_forms": false,
@@ -13712,7 +13694,7 @@
     "in_en_50k": false
   },
   "bye": {
-    "freq": 10,
+    "freq": 8,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -13790,7 +13772,7 @@
     "in_en_50k": false
   },
   "bé": {
-    "freq": 14,
+    "freq": 7,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -13888,21 +13870,9 @@
     "in_en_50k": false
   },
   "c": {
-    "freq": 5,
+    "freq": 3,
     "bucket": "interjections",
     "source": "curated_noise",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "ca": {
-    "freq": 8,
-    "wikt_pos": [
-      "conj",
-      "intj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -15082,17 +15052,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "cam": {
-    "freq": 2,
-    "wikt_pos": [
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
   "cama": {
     "freq": 137,
     "wikt_pos": [
@@ -15512,7 +15471,7 @@
     "in_en_50k": false
   },
   "can": {
-    "freq": 8,
+    "freq": 1,
     "wikt_pos": [
       "name",
       "noun"
@@ -17514,7 +17473,7 @@
     "in_en_50k": false
   },
   "ce": {
-    "freq": 2,
+    "freq": 1,
     "wikt_pos": [
       "name",
       "noun"
@@ -18078,7 +18037,7 @@
     "in_en_50k": false
   },
   "champion": {
-    "freq": 1,
+    "freq": 2,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -18602,7 +18561,7 @@
     "in_en_50k": true
   },
   "chi": {
-    "freq": 4,
+    "freq": 2,
     "wikt_pos": [
       "particle"
     ],
@@ -19483,14 +19442,8 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "chq": {
-    "freq": 5,
-    "bucket": "gemini",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "chris": {
-    "freq": 9,
+    "freq": 10,
     "bucket": "proper_nouns",
     "source": "curated_drop",
     "in_spanish_forms": false,
@@ -20462,7 +20415,7 @@
     "in_en_50k": false
   },
   "co": {
-    "freq": 4,
+    "freq": 1,
     "wikt_pos": [
       "noun",
       "pron"
@@ -27346,7 +27299,7 @@
     "in_en_50k": false
   },
   "d": {
-    "freq": 21,
+    "freq": 8,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -27360,7 +27313,7 @@
     "in_en_50k": false
   },
   "da": {
-    "freq": 68,
+    "freq": 67,
     "wikt_pos": [
       "verb"
     ],
@@ -27390,7 +27343,7 @@
     "in_en_50k": false
   },
   "daddy": {
-    "freq": 11,
+    "freq": 13,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -27553,7 +27506,7 @@
     "in_en_50k": false
   },
   "dar": {
-    "freq": 69,
+    "freq": 67,
     "wikt_pos": [
       "verb"
     ],
@@ -30777,7 +30730,7 @@
     "in_en_50k": false
   },
   "di": {
-    "freq": 61,
+    "freq": 57,
     "wikt_pos": [
       "verb"
     ],
@@ -32528,7 +32481,7 @@
     "in_en_50k": false
   },
   "don": {
-    "freq": 21,
+    "freq": 20,
     "wikt_pos": [
       "noun"
     ],
@@ -32880,6 +32833,13 @@
     "in_en_50k": true
   },
   "drop": {
+    "freq": 1,
+    "bucket": "english",
+    "source": "en_50k",
+    "in_spanish_forms": false,
+    "in_en_50k": true
+  },
+  "drums": {
     "freq": 1,
     "bucket": "english",
     "source": "en_50k",
@@ -33429,7 +33389,7 @@
     "in_en_50k": false
   },
   "dí": {
-    "freq": 13,
+    "freq": 6,
     "wikt_pos": [],
     "bucket": "normal_vocab",
     "source": "spanish_forms",
@@ -33535,7 +33495,7 @@
     "in_en_50k": false
   },
   "e": {
-    "freq": 244,
+    "freq": 234,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -33941,7 +33901,7 @@
     "in_en_50k": false
   },
   "eh": {
-    "freq": 587,
+    "freq": 349,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -37631,7 +37591,7 @@
     "in_en_50k": true
   },
   "es": {
-    "freq": 1286,
+    "freq": 1284,
     "wikt_pos": [
       "noun",
       "verb"
@@ -38615,7 +38575,7 @@
     "in_en_50k": false
   },
   "ese": {
-    "freq": 211,
+    "freq": 209,
     "wikt_pos": [
       "det",
       "intj",
@@ -39241,13 +39201,6 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": false
-  },
-  "est": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
   },
   "esta": {
     "freq": 154,
@@ -41253,7 +41206,7 @@
     "in_en_50k": false
   },
   "ey": {
-    "freq": 852,
+    "freq": 844,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -43112,13 +43065,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "flo": {
-    "freq": 18,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "floja": {
     "freq": 4,
     "wikt_pos": [
@@ -44879,7 +44825,7 @@
     "in_en_50k": false
   },
   "g": {
-    "freq": 43,
+    "freq": 35,
     "wikt_pos": [
       "character"
     ],
@@ -44941,7 +44887,7 @@
     "in_en_50k": false
   },
   "gaby": {
-    "freq": 6,
+    "freq": 7,
     "bucket": "proper_nouns",
     "source": "curated_drop",
     "in_spanish_forms": false,
@@ -45776,13 +45722,6 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "ge": {
-    "freq": 17,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
   "gee": {
     "freq": 2,
     "bucket": "english",
@@ -45999,13 +45938,6 @@
     "source": "freq<2",
     "in_spanish_forms": false,
     "in_en_50k": false
-  },
-  "gi": {
-    "freq": 17,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": true
   },
   "giannis": {
     "freq": 1,
@@ -46300,7 +46232,7 @@
     "in_en_50k": true
   },
   "go": {
-    "freq": 25,
+    "freq": 8,
     "wikt_pos": [
       "noun"
     ],
@@ -46351,6 +46283,13 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": false
+  },
+  "goddammit": {
+    "freq": 1,
+    "bucket": "english",
+    "source": "en_50k",
+    "in_spanish_forms": false,
+    "in_en_50k": true
   },
   "goes": {
     "freq": 1,
@@ -47448,13 +47387,6 @@
     "in_spanish_forms": false,
     "in_en_50k": false
   },
-  "gu": {
-    "freq": 17,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "guagua": {
     "freq": 5,
     "wikt_pos": [
@@ -48239,7 +48171,7 @@
     "in_en_50k": true
   },
   "ha": {
-    "freq": 90,
+    "freq": 72,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -48857,7 +48789,7 @@
     "in_en_50k": false
   },
   "hah": {
-    "freq": 4,
+    "freq": 2,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -49121,7 +49053,7 @@
     "in_en_50k": false
   },
   "hay": {
-    "freq": 258,
+    "freq": 253,
     "wikt_pos": [
       "adv",
       "intj",
@@ -49340,7 +49272,7 @@
     "in_en_50k": true
   },
   "heh": {
-    "freq": 16,
+    "freq": 2,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -50005,17 +49937,10 @@
     "in_en_50k": false
   },
   "hmm": {
-    "freq": 8,
+    "freq": 3,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "ho": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
     "in_en_50k": true
   },
   "hobby": {
@@ -50480,13 +50405,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "hue": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "hueco": {
     "freq": 1,
     "wikt_pos": [
@@ -50596,7 +50514,7 @@
     "in_en_50k": true
   },
   "huh": {
-    "freq": 19,
+    "freq": 9,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -50937,7 +50855,7 @@
     "in_en_50k": false
   },
   "i": {
-    "freq": 21,
+    "freq": 16,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -53270,7 +53188,7 @@
     "in_en_50k": false
   },
   "is": {
-    "freq": 9,
+    "freq": 10,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -53411,14 +53329,14 @@
     "in_en_50k": false
   },
   "j": {
-    "freq": 33,
+    "freq": 32,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ja": {
-    "freq": 24,
+    "freq": 20,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -53772,7 +53690,7 @@
     "in_en_50k": false
   },
   "jay": {
-    "freq": 8,
+    "freq": 6,
     "bucket": "proper_nouns",
     "source": "curated_drop",
     "in_spanish_forms": false,
@@ -53803,7 +53721,7 @@
     "in_en_50k": true
   },
   "jeday": {
-    "freq": 5,
+    "freq": 6,
     "bucket": "proper_nouns",
     "source": "curated_drop",
     "in_spanish_forms": false,
@@ -54566,13 +54484,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "ju": {
-    "freq": 5,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "juan": {
     "freq": 10,
     "bucket": "proper_nouns",
@@ -54850,7 +54761,7 @@
     "in_en_50k": true
   },
   "jum": {
-    "freq": 8,
+    "freq": 5,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -55141,13 +55052,6 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "juy": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "juzgar": {
     "freq": 1,
     "wikt_pos": [
@@ -55244,7 +55148,7 @@
     "in_en_50k": false
   },
   "k": {
-    "freq": 6,
+    "freq": 4,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -55737,7 +55641,7 @@
     "in_en_50k": true
   },
   "la": {
-    "freq": 3235,
+    "freq": 3229,
     "wikt_pos": [
       "det",
       "noun",
@@ -56277,7 +56181,7 @@
     "in_en_50k": false
   },
   "le": {
-    "freq": 699,
+    "freq": 697,
     "wikt_pos": [
       "pron"
     ],
@@ -56908,13 +56812,6 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
-  },
-  "lga": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
   },
   "liberando": {
     "freq": 1,
@@ -58461,7 +58358,7 @@
     "in_en_50k": true
   },
   "lo": {
-    "freq": 1824,
+    "freq": 1823,
     "wikt_pos": [
       "det",
       "pron"
@@ -58943,13 +58840,6 @@
     "bucket": "gemini",
     "in_spanish_forms": false,
     "in_en_50k": false
-  },
-  "lu": {
-    "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
   },
   "luar": {
     "freq": 1,
@@ -59518,7 +59408,7 @@
     "in_en_50k": true
   },
   "ma": {
-    "freq": 59,
+    "freq": 30,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -61784,7 +61674,7 @@
     "in_en_50k": true
   },
   "martino": {
-    "freq": 4,
+    "freq": 6,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -62473,7 +62363,7 @@
     "in_en_50k": false
   },
   "me": {
-    "freq": 3337,
+    "freq": 3331,
     "wikt_pos": [
       "pron"
     ],
@@ -64716,15 +64606,8 @@
     "in_spanish_forms": false,
     "in_en_50k": false
   },
-  "mm": {
-    "freq": 5,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
   "mmm": {
-    "freq": 33,
+    "freq": 11,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -66969,7 +66852,7 @@
     "in_en_50k": false
   },
   "music": {
-    "freq": 78,
+    "freq": 79,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -67233,12 +67116,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "mé": {
-    "freq": 2,
-    "bucket": "gemini",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "médico": {
     "freq": 2,
     "wikt_pos": [
@@ -67288,7 +67165,7 @@
     "in_en_50k": false
   },
   "mí": {
-    "freq": 472,
+    "freq": 462,
     "wikt_pos": [
       "pron"
     ],
@@ -67422,7 +67299,7 @@
     "in_en_50k": false
   },
   "n": {
-    "freq": 5,
+    "freq": 1,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -67582,7 +67459,7 @@
     "in_en_50k": false
   },
   "nada": {
-    "freq": 315,
+    "freq": 197,
     "wikt_pos": [
       "adv",
       "intj",
@@ -67637,7 +67514,7 @@
     "in_en_50k": false
   },
   "nah": {
-    "freq": 28,
+    "freq": 25,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -68551,7 +68428,7 @@
     "in_en_50k": false
   },
   "nigga": {
-    "freq": 9,
+    "freq": 13,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -68698,7 +68575,7 @@
     "in_en_50k": false
   },
   "no": {
-    "freq": 3481,
+    "freq": 3456,
     "wikt_pos": [
       "adv",
       "intj",
@@ -69386,7 +69263,7 @@
     "in_en_50k": false
   },
   "o": {
-    "freq": 193,
+    "freq": 183,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -69429,13 +69306,6 @@
     "in_en_50k": false
   },
   "obey": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
-  "obi": {
     "freq": 1,
     "bucket": "english",
     "source": "en_50k",
@@ -70013,7 +69883,7 @@
     "in_en_50k": true
   },
   "oh": {
-    "freq": 330,
+    "freq": 140,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -70462,7 +70332,7 @@
     "in_en_50k": false
   },
   "on": {
-    "freq": 3,
+    "freq": 5,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -70687,7 +70557,7 @@
     "in_en_50k": false
   },
   "or": {
-    "freq": 6,
+    "freq": 2,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -71125,7 +70995,7 @@
     "in_en_50k": false
   },
   "ouh": {
-    "freq": 12,
+    "freq": 4,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -71331,14 +71201,14 @@
     "in_en_50k": false
   },
   "p": {
-    "freq": 28,
+    "freq": 26,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "pa": {
-    "freq": 39,
+    "freq": 35,
     "wikt_pos": [
       "noun",
       "prep"
@@ -72276,7 +72146,7 @@
     "in_en_50k": true
   },
   "papi": {
-    "freq": 41,
+    "freq": 42,
     "wikt_pos": [
       "noun"
     ],
@@ -73827,16 +73697,6 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": false
-  },
-  "pe": {
-    "freq": 10,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": true
   },
   "peace": {
     "freq": 1,
@@ -76954,7 +76814,7 @@
     "in_en_50k": false
   },
   "pin": {
-    "freq": 17,
+    "freq": 12,
     "wikt_pos": [
       "noun"
     ],
@@ -80051,9 +79911,9 @@
     "in_en_50k": false
   },
   "pri": {
-    "freq": 4,
-    "bucket": "proper_nouns",
-    "source": "wikt_all_propn",
+    "freq": 1,
+    "bucket": "interjections",
+    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -81028,7 +80888,7 @@
     "in_en_50k": false
   },
   "prr": {
-    "freq": 10,
+    "freq": 8,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -82157,7 +82017,7 @@
     "in_en_50k": true
   },
   "que": {
-    "freq": 5376,
+    "freq": 5374,
     "wikt_pos": [
       "conj",
       "pron"
@@ -83332,14 +83192,14 @@
     "in_en_50k": false
   },
   "r": {
-    "freq": 45,
+    "freq": 43,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ra": {
-    "freq": 5,
+    "freq": 4,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -86573,13 +86433,6 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "ri": {
-    "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "ric": {
     "freq": 1,
     "bucket": "english",
@@ -88701,17 +88554,10 @@
     "in_en_50k": false
   },
   "s": {
-    "freq": 11,
+    "freq": 9,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "sa": {
-    "freq": 3,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
     "in_en_50k": true
   },
   "sabe": {
@@ -92848,7 +92694,7 @@
     "in_en_50k": false
   },
   "so": {
-    "freq": 27,
+    "freq": 23,
     "wikt_pos": [
       "intj",
       "name",
@@ -93054,7 +92900,7 @@
     "in_en_50k": true
   },
   "sol": {
-    "freq": 76,
+    "freq": 72,
     "wikt_pos": [
       "name",
       "noun"
@@ -93734,7 +93580,7 @@
     "in_en_50k": false
   },
   "sorry": {
-    "freq": 15,
+    "freq": 16,
     "wikt_pos": [
       "intj"
     ],
@@ -93821,6 +93667,13 @@
   },
   "sou": {
     "freq": 3,
+    "bucket": "english",
+    "source": "en_50k",
+    "in_spanish_forms": false,
+    "in_en_50k": true
+  },
+  "sound": {
+    "freq": 1,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -94287,7 +94140,7 @@
     "in_en_50k": true
   },
   "su": {
-    "freq": 134,
+    "freq": 127,
     "wikt_pos": [
       "det",
       "name"
@@ -95780,7 +95633,7 @@
     "in_en_50k": false
   },
   "sí": {
-    "freq": 125,
+    "freq": 124,
     "wikt_pos": [
       "noun",
       "particle",
@@ -95927,14 +95780,14 @@
     "in_en_50k": false
   },
   "t": {
-    "freq": 29,
+    "freq": 27,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ta": {
-    "freq": 8,
+    "freq": 4,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -96172,7 +96025,7 @@
     "in_en_50k": false
   },
   "tan": {
-    "freq": 44,
+    "freq": 42,
     "wikt_pos": [
       "adv",
       "det"
@@ -96559,7 +96412,7 @@
     "in_en_50k": false
   },
   "te": {
-    "freq": 2554,
+    "freq": 2549,
     "wikt_pos": [
       "noun",
       "pron"
@@ -97698,7 +97551,7 @@
     "in_en_50k": true
   },
   "the": {
-    "freq": 39,
+    "freq": 41,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -97719,7 +97572,7 @@
     "in_en_50k": true
   },
   "this": {
-    "freq": 54,
+    "freq": 55,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -99590,7 +99443,7 @@
     "in_en_50k": false
   },
   "tra": {
-    "freq": 11,
+    "freq": 1,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -101579,7 +101432,7 @@
     "in_en_50k": false
   },
   "tá": {
-    "freq": 57,
+    "freq": 56,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -101745,13 +101598,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "tó": {
-    "freq": 25,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "tócame": {
     "freq": 2,
     "wikt_pos": [
@@ -101812,14 +101658,14 @@
     "in_en_50k": false
   },
   "u": {
-    "freq": 4,
+    "freq": 2,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "uah": {
-    "freq": 7,
+    "freq": 5,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -101867,7 +101713,7 @@
     "in_en_50k": false
   },
   "uh": {
-    "freq": 103,
+    "freq": 40,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -102156,7 +102002,7 @@
     "in_en_50k": false
   },
   "uoh": {
-    "freq": 18,
+    "freq": 19,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -104257,7 +104103,7 @@
     "in_en_50k": false
   },
   "vete": {
-    "freq": 9,
+    "freq": 13,
     "wikt_pos": [
       "verb"
     ],
@@ -104308,7 +104154,7 @@
     "in_en_50k": false
   },
   "vi": {
-    "freq": 39,
+    "freq": 35,
     "wikt_pos": [
       "verb"
     ],
@@ -106169,13 +106015,6 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "wan": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "wanda": {
     "freq": 1,
     "bucket": "english",
@@ -106574,13 +106413,6 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "wo": {
-    "freq": 4,
-    "bucket": "interjections",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "woah": {
     "freq": 4,
     "bucket": "interjections",
@@ -106589,7 +106421,7 @@
     "in_en_50k": true
   },
   "woh": {
-    "freq": 46,
+    "freq": 15,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -106661,7 +106493,7 @@
     "in_en_50k": false
   },
   "wuh": {
-    "freq": 21,
+    "freq": 18,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -106710,7 +106542,7 @@
     "in_en_50k": true
   },
   "ya": {
-    "freq": 723,
+    "freq": 722,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -106734,7 +106566,7 @@
     "in_en_50k": false
   },
   "yah": {
-    "freq": 45,
+    "freq": 25,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -106789,7 +106621,7 @@
     "in_en_50k": false
   },
   "yankee": {
-    "freq": 3,
+    "freq": 5,
     "wikt_pos": [
       "adj",
       "noun"
@@ -106824,7 +106656,7 @@
     "in_en_50k": true
   },
   "yao'": {
-    "freq": 5,
+    "freq": 4,
     "bucket": "elision",
     "source": "elision_skip",
     "in_spanish_forms": false,
@@ -106844,16 +106676,6 @@
     "in_spanish_forms": false,
     "in_en_50k": false
   },
-  "yas": {
-    "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
   "yate": {
     "freq": 6,
     "wikt_pos": [
@@ -106872,14 +106694,14 @@
     "in_en_50k": false
   },
   "ye": {
-    "freq": 4,
+    "freq": 3,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "yeah": {
-    "freq": 244,
+    "freq": 251,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -106906,7 +106728,7 @@
     "in_en_50k": false
   },
   "yeh": {
-    "freq": 751,
+    "freq": 465,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -106996,7 +106818,7 @@
     "in_en_50k": false
   },
   "yo": {
-    "freq": 2738,
+    "freq": 2717,
     "wikt_pos": [
       "noun",
       "pron"
@@ -107007,7 +106829,7 @@
     "in_en_50k": true
   },
   "yo'": {
-    "freq": 6,
+    "freq": 5,
     "bucket": "english",
     "source": "curated_extra_english",
     "in_spanish_forms": false,
@@ -107075,7 +106897,7 @@
     "in_en_50k": false
   },
   "young": {
-    "freq": 9,
+    "freq": 11,
     "bucket": "proper_nouns",
     "source": "wikt_all_propn",
     "in_spanish_forms": true,
@@ -107138,7 +106960,7 @@
     "in_en_50k": false
   },
   "z": {
-    "freq": 5,
+    "freq": 3,
     "bucket": "interjections",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -107216,13 +107038,6 @@
   },
   "zipper": {
     "freq": 7,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
-  "zo": {
-    "freq": 1,
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
@@ -107555,13 +107370,6 @@
     ],
     "bucket": "normal_vocab",
     "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "í": {
-    "freq": 25,
-    "bucket": "interjections",
-    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
   },

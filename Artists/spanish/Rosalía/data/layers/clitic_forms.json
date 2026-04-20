@@ -1,31 +1,4 @@
 {
-  "65a70e": {
-    "base_verb": "baja",
-    "lemma": "bajar",
-    "corpus_count": 7,
-    "translation": "to go down",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "9cd",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "4057969",
-        "song_name": "Aute Cuture",
-        "spanish": "Los flecos, la' trenzas para matar, bájale",
-        "english": "The fringes, the braids to kill, lower them",
-        "timestamp_ms": 50430
-      }
-    ],
-    "id": "65a70e",
-    "base_id": "9629d7"
-  },
   "97210a": {
     "base_verb": "llévame",
     "lemma": "llévame",
@@ -51,5 +24,167 @@
     ],
     "id": "97210a",
     "base_id": "1c4feb"
+  },
+  "6f2816": {
+    "base_verb": "dicta",
+    "lemma": "díctame",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "4201752",
+        "song_name": "Barefoot in the Park",
+        "spanish": "Díctame por dónde ir",
+        "english": "tell me where to go",
+        "timestamp_ms": 38670
+      }
+    ],
+    "id": "6f2816",
+    "base_id": "c61d82"
+  },
+  "fbade3": {
+    "base_verb": "muévete",
+    "lemma": "muévetelo",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7142770",
+        "song_name": "Linda",
+        "spanish": "Muévetelo como e', Tokischa, ROSALÍA",
+        "english": "Move it like e', Tokischa, ROSALÍA",
+        "timestamp_ms": 58820
+      }
+    ],
+    "id": "fbade3",
+    "base_id": "aabe47"
+  },
+  "65a70e": {
+    "base_verb": "bajar",
+    "lemma": "bajar",
+    "corpus_count": 7,
+    "translation": "to go down",
+    "assignments": {
+      "spanishdict-flash-lite": [
+        {
+          "sense": "9cd",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "4057969",
+        "song_name": "Aute Cuture",
+        "spanish": "Los flecos, la' trenzas para matar, bájale",
+        "english": "The fringes, the braids to kill, lower them",
+        "timestamp_ms": 50430
+      }
+    ],
+    "id": "65a70e",
+    "base_id": "5efe67"
+  },
+  "a5bba5": {
+    "base_verb": "puña",
+    "lemma": "puñala",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3065897",
+        "song_name": "Si Tú Supieras Compañero",
+        "spanish": "Y dame tú de puñala-, puñalás (Puñaládas)",
+        "english": "And give me a dagger-, daggers (Stabs)",
+        "timestamp_ms": 8860
+      }
+    ],
+    "id": "a5bba5",
+    "base_id": "c3e7d8"
+  },
+  "293698": {
+    "base_verb": "permitir",
+    "lemma": "permiteme",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "4496591",
+        "song_name": "Un Millón de Veces",
+        "spanish": "Permiteme decir",
+        "english": "let me say",
+        "timestamp_ms": 202510
+      }
+    ],
+    "id": "293698",
+    "base_id": "9c0ed3"
+  },
+  "885d00": {
+    "base_verb": "desquita",
+    "lemma": "desquítate",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8324985",
+        "song_name": "El Pañuelo",
+        "spanish": "Desquítate con rabia pasional",
+        "english": "Take it out with passionate rage",
+        "timestamp_ms": 189700
+      }
+    ],
+    "id": "885d00",
+    "base_id": "387c4a"
+  },
+  "34dbb6": {
+    "base_verb": "apuntar",
+    "lemma": "apuntar",
+    "corpus_count": 10,
+    "translation": "to aim",
+    "assignments": {
+      "spanishdict-flash-lite": [
+        {
+          "sense": "dce",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "3065090",
+        "song_name": "Catalina",
+        "spanish": "Apúnteme usted una cortina que por ca' agujero cabe una vecina",
+        "english": "Point me out a curtain that fits a neighbor through every hole",
+        "timestamp_ms": 163650
+      }
+    ],
+    "id": "34dbb6",
+    "base_id": "f2f1fa"
+  },
+  "1e7b15": {
+    "base_verb": "refugiar",
+    "lemma": "refúgiate",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8324985",
+        "song_name": "El Pañuelo",
+        "spanish": "Esta noche ven, refúgiate en mis brazos",
+        "english": "Tonight come, take refuge in my arms",
+        "timestamp_ms": 185980
+      }
+    ],
+    "id": "1e7b15",
+    "base_id": "898251"
   }
 }

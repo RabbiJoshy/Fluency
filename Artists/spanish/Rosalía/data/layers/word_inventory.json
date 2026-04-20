@@ -9,19 +9,19 @@
   },
   {
     "word": "la",
-    "corpus_count": 596
+    "corpus_count": 588
   },
   {
     "word": "y",
     "corpus_count": 558
   },
   {
-    "word": "a",
-    "corpus_count": 478
-  },
-  {
     "word": "no",
     "corpus_count": 475
+  },
+  {
+    "word": "a",
+    "corpus_count": 454
   },
   {
     "word": "me",
@@ -29,7 +29,7 @@
   },
   {
     "word": "el",
-    "corpus_count": 380
+    "corpus_count": 392
   },
   {
     "word": "en",
@@ -48,12 +48,22 @@
     "corpus_count": 273
   },
   {
-    "word": "tú",
-    "corpus_count": 264
-  },
-  {
     "word": "por",
     "corpus_count": 255
+  },
+  {
+    "word": "nada",
+    "corpus_count": 251,
+    "display_form": "na",
+    "variants": {
+      "na": 160,
+      "na'": 75,
+      "nada": 16
+    }
+  },
+  {
+    "word": "tú",
+    "corpus_count": 244
   },
   {
     "word": "es",
@@ -69,12 +79,12 @@
     "corpus_count": 226
   },
   {
-    "word": "nada",
-    "corpus_count": 215,
-    "display_form": "na",
+    "word": "para",
+    "corpus_count": 213,
+    "display_form": "pa'",
     "variants": {
-      "na": 199,
-      "nada": 16
+      "pa'": 158,
+      "para": 55
     }
   },
   {
@@ -90,16 +100,8 @@
     "corpus_count": 171
   },
   {
-    "word": "pa'",
-    "corpus_count": 158
-  },
-  {
     "word": "si",
     "corpus_count": 150
-  },
-  {
-    "word": "mmm",
-    "corpus_count": 144
   },
   {
     "word": "como",
@@ -110,16 +112,16 @@
     "corpus_count": 137
   },
   {
-    "word": "ya",
-    "corpus_count": 133
-  },
-  {
     "word": "ti",
     "corpus_count": 126
   },
   {
     "word": "qué",
     "corpus_count": 121
+  },
+  {
+    "word": "ya",
+    "corpus_count": 117
   },
   {
     "word": "las",
@@ -165,16 +167,12 @@
   },
   {
     "word": "más",
-    "corpus_count": 82,
+    "corpus_count": 78,
     "display_form": "má'",
     "variants": {
-      "más": 76,
+      "más": 72,
       "má'": 6
     }
-  },
-  {
-    "word": "na'",
-    "corpus_count": 75
   },
   {
     "word": "soy",
@@ -210,12 +208,12 @@
     "corpus_count": 66
   },
   {
-    "word": "está",
-    "corpus_count": 64
+    "word": "ay",
+    "corpus_count": 65
   },
   {
-    "word": "ay",
-    "corpus_count": 62
+    "word": "está",
+    "corpus_count": 64
   },
   {
     "word": "estoy",
@@ -293,6 +291,15 @@
     "corpus_count": 49
   },
   {
+    "word": "todo",
+    "corpus_count": 48,
+    "display_form": "to'",
+    "variants": {
+      "to'": 30,
+      "todo": 18
+    }
+  },
+  {
     "word": "esta",
     "corpus_count": 47
   },
@@ -301,16 +308,21 @@
     "corpus_count": 47
   },
   {
-    "word": "ah",
-    "corpus_count": 46
-  },
-  {
     "word": "ella",
     "corpus_count": 46
   },
   {
-    "word": "ta",
-    "corpus_count": 45
+    "word": "corazón",
+    "corpus_count": 45,
+    "variants": {
+      "corazón": 37,
+      "cora": 7,
+      "cora'": 1
+    }
+  },
+  {
+    "word": "mmm",
+    "corpus_count": 44
   },
   {
     "word": "amor",
@@ -331,6 +343,15 @@
     "variants": {
       "antes": 39,
       "ante'": 4
+    }
+  },
+  {
+    "word": "muy",
+    "corpus_count": 43,
+    "display_form": "mu'",
+    "variants": {
+      "mu'": 32,
+      "muy": 11
     }
   },
   {
@@ -369,28 +390,17 @@
     "corpus_count": 41
   },
   {
-    "word": "para",
-    "corpus_count": 41
-  },
-  {
     "word": "hay",
     "corpus_count": 40
   },
   {
-    "word": "mirá'",
-    "corpus_count": 40
+    "word": "mirás",
+    "corpus_count": 40,
+    "display_form": "mirá'"
   },
   {
     "word": "tiempo",
     "corpus_count": 40
-  },
-  {
-    "word": "oh",
-    "corpus_count": 38
-  },
-  {
-    "word": "corazón",
-    "corpus_count": 37
   },
   {
     "word": "has",
@@ -448,14 +458,6 @@
     "corpus_count": 32
   },
   {
-    "word": "mu'",
-    "corpus_count": 32
-  },
-  {
-    "word": "ra",
-    "corpus_count": 32
-  },
-  {
     "word": "o",
     "corpus_count": 31
   },
@@ -464,11 +466,20 @@
     "corpus_count": 31
   },
   {
+    "word": "vida",
+    "corpus_count": 31,
+    "variants": {
+      "vida": 22,
+      "vi'a": 7,
+      "ví'a": 2
+    }
+  },
+  {
     "word": "fue",
     "corpus_count": 30
   },
   {
-    "word": "to'",
+    "word": "oh",
     "corpus_count": 30
   },
   {
@@ -488,7 +499,7 @@
     "corpus_count": 29
   },
   {
-    "word": "uh",
+    "word": "yeah",
     "corpus_count": 29
   },
   {
@@ -497,10 +508,6 @@
   },
   {
     "word": "su",
-    "corpus_count": 28
-  },
-  {
-    "word": "yeah",
     "corpus_count": 28
   },
   {
@@ -525,10 +532,6 @@
   },
   {
     "word": "da",
-    "corpus_count": 25
-  },
-  {
-    "word": "hmm",
     "corpus_count": 25
   },
   {
@@ -584,8 +587,9 @@
     }
   },
   {
-    "word": "bendecía'",
-    "corpus_count": 22
+    "word": "bendecías",
+    "corpus_count": 22,
+    "display_form": "bendecía'"
   },
   {
     "word": "olvidado",
@@ -593,19 +597,11 @@
     "display_form": "olvida'o"
   },
   {
-    "word": "tá",
-    "corpus_count": 22
-  },
-  {
     "word": "va",
     "corpus_count": 22
   },
   {
     "word": "ver",
-    "corpus_count": 22
-  },
-  {
-    "word": "vida",
     "corpus_count": 22
   },
   {
@@ -646,6 +642,14 @@
     "corpus_count": 21
   },
   {
+    "word": "quién",
+    "corpus_count": 21,
+    "variants": {
+      "quién": 20,
+      "quié'": 1
+    }
+  },
+  {
     "word": "ojos",
     "corpus_count": 21,
     "display_form": "ojo'",
@@ -660,10 +664,6 @@
   },
   {
     "word": "duro",
-    "corpus_count": 20
-  },
-  {
-    "word": "eh",
     "corpus_count": 20
   },
   {
@@ -688,10 +688,6 @@
   },
   {
     "word": "palmas",
-    "corpus_count": 20
-  },
-  {
-    "word": "quién",
     "corpus_count": 20
   },
   {
@@ -790,10 +786,6 @@
     "corpus_count": 17
   },
   {
-    "word": "todo",
-    "corpus_count": 17
-  },
-  {
     "word": "cerca",
     "corpus_count": 16
   },
@@ -814,10 +806,6 @@
     "corpus_count": 16
   },
   {
-    "word": "one",
-    "corpus_count": 16
-  },
-  {
     "word": "pecho",
     "corpus_count": 16
   },
@@ -831,10 +819,6 @@
   },
   {
     "word": "quiere",
-    "corpus_count": 16
-  },
-  {
-    "word": "rá",
     "corpus_count": 16
   },
   {
@@ -875,6 +859,10 @@
     }
   },
   {
+    "word": "ah",
+    "corpus_count": 14
+  },
+  {
     "word": "ahora",
     "corpus_count": 14
   },
@@ -884,6 +872,10 @@
   },
   {
     "word": "dice",
+    "corpus_count": 14
+  },
+  {
+    "word": "eh",
     "corpus_count": 14
   },
   {
@@ -903,7 +895,7 @@
     "corpus_count": 14
   },
   {
-    "word": "pa",
+    "word": "one",
     "corpus_count": 14
   },
   {
@@ -1021,6 +1013,16 @@
     "corpus_count": 13
   },
   {
+    "word": "todas",
+    "corpus_count": 13,
+    "display_form": "toda'",
+    "variants": {
+      "toda'": 6,
+      "todas": 6,
+      "toa'": 1
+    }
+  },
+  {
     "word": "bala",
     "corpus_count": 12
   },
@@ -1042,8 +1044,9 @@
     "corpus_count": 12
   },
   {
-    "word": "clavá'",
-    "corpus_count": 12
+    "word": "clavás",
+    "corpus_count": 12,
+    "display_form": "clavá'"
   },
   {
     "word": "conocí",
@@ -1062,8 +1065,9 @@
     "corpus_count": 12
   },
   {
-    "word": "enamorá'",
-    "corpus_count": 12
+    "word": "enamorás",
+    "corpus_count": 12,
+    "display_form": "enamorá'"
   },
   {
     "word": "go",
@@ -1074,8 +1078,9 @@
     "corpus_count": 12
   },
   {
-    "word": "homie'",
-    "corpus_count": 12
+    "word": "homies",
+    "corpus_count": 12,
+    "display_form": "homie'"
   },
   {
     "word": "it",
@@ -1127,15 +1132,6 @@
     }
   },
   {
-    "word": "todas",
-    "corpus_count": 12,
-    "display_form": "toda'",
-    "variants": {
-      "toda'": 6,
-      "todas": 6
-    }
-  },
-  {
     "word": "aún",
     "corpus_count": 11
   },
@@ -1176,15 +1172,7 @@
     "corpus_count": 11
   },
   {
-    "word": "muy",
-    "corpus_count": 11
-  },
-  {
     "word": "ninguna",
-    "corpus_count": 11
-  },
-  {
-    "word": "pa'l",
     "corpus_count": 11
   },
   {
@@ -1204,6 +1192,18 @@
     "corpus_count": 11
   },
   {
+    "word": "uh",
+    "corpus_count": 11
+  },
+  {
+    "word": "verdad",
+    "corpus_count": 11,
+    "variants": {
+      "verdad": 9,
+      "verda'": 2
+    }
+  },
+  {
     "word": "manos",
     "corpus_count": 11,
     "display_form": "mano'",
@@ -1219,6 +1219,14 @@
     "variants": {
       "cosas": 6,
       "cosa'": 5
+    }
+  },
+  {
+    "word": "toda",
+    "corpus_count": 11,
+    "variants": {
+      "toda": 6,
+      "to'a": 5
     }
   },
   {
@@ -1380,10 +1388,6 @@
     "corpus_count": 9
   },
   {
-    "word": "rom",
-    "corpus_count": 9
-  },
-  {
     "word": "salgo",
     "corpus_count": 9
   },
@@ -1408,10 +1412,6 @@
     "corpus_count": 9
   },
   {
-    "word": "verdad",
-    "corpus_count": 9
-  },
-  {
     "word": "vivo",
     "corpus_count": 9
   },
@@ -1422,6 +1422,14 @@
   {
     "word": "yali",
     "corpus_count": 9
+  },
+  {
+    "word": "quien",
+    "corpus_count": 9,
+    "variants": {
+      "quien": 8,
+      "quie'": 1
+    }
   },
   {
     "word": "das",
@@ -1545,15 +1553,7 @@
     "corpus_count": 8
   },
   {
-    "word": "po",
-    "corpus_count": 8
-  },
-  {
     "word": "ponme",
-    "corpus_count": 8
-  },
-  {
-    "word": "quien",
     "corpus_count": 8
   },
   {
@@ -1632,10 +1632,6 @@
   },
   {
     "word": "c",
-    "corpus_count": 7
-  },
-  {
-    "word": "cora",
     "corpus_count": 7
   },
   {
@@ -1826,10 +1822,6 @@
     "corpus_count": 7
   },
   {
-    "word": "vi'a",
-    "corpus_count": 7
-  },
-  {
     "word": "ojitos",
     "corpus_count": 7,
     "display_form": "ojito'",
@@ -1883,6 +1875,10 @@
     "corpus_count": 6
   },
   {
+    "word": "allá",
+    "corpus_count": 6
+  },
+  {
     "word": "alma",
     "corpus_count": 6
   },
@@ -1923,8 +1919,9 @@
     "corpus_count": 6
   },
   {
-    "word": "coroná'",
-    "corpus_count": 6
+    "word": "coronás",
+    "corpus_count": 6,
+    "display_form": "coroná'"
   },
   {
     "word": "deja",
@@ -1996,8 +1993,9 @@
     "corpus_count": 6
   },
   {
-    "word": "hería'",
-    "corpus_count": 6
+    "word": "herías",
+    "corpus_count": 6,
+    "display_form": "hería'"
   },
   {
     "word": "hookah",
@@ -2046,6 +2044,10 @@
   },
   {
     "word": "muerdes",
+    "corpus_count": 6
+  },
+  {
+    "word": "pa",
     "corpus_count": 6
   },
   {
@@ -2134,15 +2136,15 @@
     "corpus_count": 6
   },
   {
-    "word": "toda",
-    "corpus_count": 6
-  },
-  {
     "word": "travesura",
     "corpus_count": 6
   },
   {
     "word": "tuve",
+    "corpus_count": 6
+  },
+  {
+    "word": "tá",
     "corpus_count": 6
   },
   {
@@ -2179,6 +2181,14 @@
     }
   },
   {
+    "word": "penas",
+    "corpus_count": 6,
+    "variants": {
+      "penas": 5,
+      "pena'": 1
+    }
+  },
+  {
     "word": "prendas",
     "corpus_count": 6,
     "display_form": "prenda'",
@@ -2194,6 +2204,15 @@
     "variants": {
       "atrás": 4,
       "atrá'": 2
+    }
+  },
+  {
+    "word": "leguas",
+    "corpus_count": 6,
+    "display_form": "legua'",
+    "variants": {
+      "legua'": 4,
+      "leguas": 2
     }
   },
   {
@@ -2402,15 +2421,7 @@
     "corpus_count": 5
   },
   {
-    "word": "penas",
-    "corpus_count": 5
-  },
-  {
     "word": "plata",
-    "corpus_count": 5
-  },
-  {
-    "word": "pom",
     "corpus_count": 5
   },
   {
@@ -2490,10 +2501,6 @@
     "corpus_count": 5
   },
   {
-    "word": "to'a",
-    "corpus_count": 5
-  },
-  {
     "word": "tv",
     "corpus_count": 5
   },
@@ -2540,7 +2547,6 @@
   {
     "word": "azules",
     "corpus_count": 5,
-    "display_form": "azule'",
     "variants": {
       "azules": 4,
       "azule'": 1
@@ -2618,9 +2624,16 @@
     }
   },
   {
+    "word": "perlas",
+    "corpus_count": 5,
+    "variants": {
+      "perlas": 3,
+      "perla'": 2
+    }
+  },
+  {
     "word": "pienses",
     "corpus_count": 5,
-    "display_form": "piense'",
     "variants": {
       "pienses": 3,
       "piense'": 2
@@ -2647,12 +2660,9 @@
     "corpus_count": 4
   },
   {
-    "word": "allá",
-    "corpus_count": 4
-  },
-  {
-    "word": "alocá'",
-    "corpus_count": 4
+    "word": "alocás",
+    "corpus_count": 4,
+    "display_form": "alocá'"
   },
   {
     "word": "altura",
@@ -2719,8 +2729,9 @@
     "corpus_count": 4
   },
   {
-    "word": "cante'",
-    "corpus_count": 4
+    "word": "cantes",
+    "corpus_count": 4,
+    "display_form": "cante'"
   },
   {
     "word": "capos",
@@ -2784,8 +2795,9 @@
     "corpus_count": 4
   },
   {
-    "word": "despechá'",
-    "corpus_count": 4
+    "word": "despechás",
+    "corpus_count": 4,
+    "display_form": "despechá'"
   },
   {
     "word": "dicen",
@@ -2920,10 +2932,6 @@
     "corpus_count": 4
   },
   {
-    "word": "legua'",
-    "corpus_count": 4
-  },
-  {
     "word": "lelelelele",
     "corpus_count": 4
   },
@@ -2948,8 +2956,9 @@
     "corpus_count": 4
   },
   {
-    "word": "loquito'",
-    "corpus_count": 4
+    "word": "loquitos",
+    "corpus_count": 4,
+    "display_form": "loquito'"
   },
   {
     "word": "lux",
@@ -3009,10 +3018,6 @@
   },
   {
     "word": "olé",
-    "corpus_count": 4
-  },
-  {
-    "word": "p",
     "corpus_count": 4
   },
   {
@@ -3109,6 +3114,10 @@
   },
   {
     "word": "rojo",
+    "corpus_count": 4
+  },
+  {
+    "word": "rom",
     "corpus_count": 4
   },
   {
@@ -3284,6 +3293,15 @@
     }
   },
   {
+    "word": "pestañas",
+    "corpus_count": 4,
+    "display_form": "pestaña'",
+    "variants": {
+      "pestaña'": 3,
+      "pestañas": 1
+    }
+  },
+  {
     "word": "rosas",
     "corpus_count": 4,
     "display_form": "rosa'",
@@ -3334,6 +3352,10 @@
   },
   {
     "word": "acabar",
+    "corpus_count": 3
+  },
+  {
+    "word": "acá",
     "corpus_count": 3
   },
   {
@@ -3547,8 +3569,9 @@
     "corpus_count": 3
   },
   {
-    "word": "curarno'",
-    "corpus_count": 3
+    "word": "curarnos",
+    "corpus_count": 3,
+    "display_form": "curarno'"
   },
   {
     "word": "debajo",
@@ -3776,10 +3799,6 @@
     "corpus_count": 3
   },
   {
-    "word": "jum",
-    "corpus_count": 3
-  },
-  {
     "word": "juqueado",
     "corpus_count": 3,
     "display_form": "juquea'o"
@@ -3952,14 +3971,6 @@
   },
   {
     "word": "peor",
-    "corpus_count": 3
-  },
-  {
-    "word": "perlas",
-    "corpus_count": 3
-  },
-  {
-    "word": "pestaña'",
     "corpus_count": 3
   },
   {
@@ -4234,12 +4245,30 @@
     }
   },
   {
+    "word": "coronada",
+    "corpus_count": 3,
+    "display_form": "corona'a",
+    "variants": {
+      "corona'a": 2,
+      "coronada": 1
+    }
+  },
+  {
     "word": "decías",
     "corpus_count": 3,
     "display_form": "decía'",
     "variants": {
       "decías": 2,
       "decía'": 1
+    }
+  },
+  {
+    "word": "diez",
+    "corpus_count": 3,
+    "display_form": "die'",
+    "variants": {
+      "die'": 2,
+      "diez": 1
     }
   },
   {
@@ -4279,6 +4308,23 @@
     }
   },
   {
+    "word": "lágrimas",
+    "corpus_count": 3,
+    "variants": {
+      "lágrimas": 2,
+      "lágrima'": 1
+    }
+  },
+  {
+    "word": "podrás",
+    "corpus_count": 3,
+    "display_form": "podrá'",
+    "variants": {
+      "podrá'": 2,
+      "podrás": 1
+    }
+  },
+  {
     "word": "pones",
     "corpus_count": 3,
     "display_form": "pone'",
@@ -4288,12 +4334,29 @@
     }
   },
   {
+    "word": "prefieres",
+    "corpus_count": 3,
+    "variants": {
+      "prefieres": 2,
+      "prefiere'": 1
+    }
+  },
+  {
     "word": "puedas",
     "corpus_count": 3,
     "display_form": "pueda'",
     "variants": {
       "pueda'": 2,
       "puedas": 1
+    }
+  },
+  {
+    "word": "salida",
+    "corpus_count": 3,
+    "display_form": "salí'a",
+    "variants": {
+      "salí'a": 2,
+      "salida": 1
     }
   },
   {
@@ -4333,10 +4396,6 @@
   },
   {
     "word": "acordarme",
-    "corpus_count": 2
-  },
-  {
-    "word": "acá",
     "corpus_count": 2
   },
   {
@@ -4425,8 +4484,9 @@
     "corpus_count": 2
   },
   {
-    "word": "ata'a",
-    "corpus_count": 2
+    "word": "atada",
+    "corpus_count": 2,
+    "display_form": "ata'a"
   },
   {
     "word": "atardecer",
@@ -4760,8 +4820,9 @@
     "corpus_count": 2
   },
   {
-    "word": "confia'",
-    "corpus_count": 2
+    "word": "confias",
+    "corpus_count": 2,
+    "display_form": "confia'"
   },
   {
     "word": "consigo",
@@ -4792,8 +4853,9 @@
     "corpus_count": 2
   },
   {
-    "word": "copla'",
-    "corpus_count": 2
+    "word": "coplas",
+    "corpus_count": 2,
+    "display_form": "copla'"
   },
   {
     "word": "corea",
@@ -4801,10 +4863,6 @@
   },
   {
     "word": "corona",
-    "corpus_count": 2
-  },
-  {
-    "word": "corona'a",
     "corpus_count": 2
   },
   {
@@ -4906,8 +4964,9 @@
     "corpus_count": 2
   },
   {
-    "word": "demuestra'",
-    "corpus_count": 2
+    "word": "demuestras",
+    "corpus_count": 2,
+    "display_form": "demuestra'"
   },
   {
     "word": "derecha",
@@ -4954,10 +5013,6 @@
     "corpus_count": 2
   },
   {
-    "word": "die'",
-    "corpus_count": 2
-  },
-  {
     "word": "dieran",
     "corpus_count": 2
   },
@@ -4978,8 +5033,9 @@
     "corpus_count": 2
   },
   {
-    "word": "distrae'",
-    "corpus_count": 2
+    "word": "distraes",
+    "corpus_count": 2,
+    "display_form": "distrae'"
   },
   {
     "word": "doblar",
@@ -5227,8 +5283,9 @@
     "corpus_count": 2
   },
   {
-    "word": "firme'",
-    "corpus_count": 2
+    "word": "firmes",
+    "corpus_count": 2,
+    "display_form": "firme'"
   },
   {
     "word": "flash",
@@ -5259,8 +5316,9 @@
     "corpus_count": 2
   },
   {
-    "word": "gafa'",
-    "corpus_count": 2
+    "word": "gafas",
+    "corpus_count": 2,
+    "display_form": "gafa'"
   },
   {
     "word": "galaxia",
@@ -5295,8 +5353,9 @@
     "corpus_count": 2
   },
   {
-    "word": "golpe'",
-    "corpus_count": 2
+    "word": "golpes",
+    "corpus_count": 2,
+    "display_form": "golpe'"
   },
   {
     "word": "golpea",
@@ -5341,8 +5400,9 @@
     "corpus_count": 2
   },
   {
-    "word": "hackeá'",
-    "corpus_count": 2
+    "word": "hackeás",
+    "corpus_count": 2,
+    "display_form": "hackeá'"
   },
   {
     "word": "hacía",
@@ -5528,10 +5588,6 @@
     "corpus_count": 2
   },
   {
-    "word": "leguas",
-    "corpus_count": 2
-  },
-  {
     "word": "lenguas",
     "corpus_count": 2
   },
@@ -5598,10 +5654,6 @@
   },
   {
     "word": "lágrima",
-    "corpus_count": 2
-  },
-  {
-    "word": "lágrimas",
     "corpus_count": 2
   },
   {
@@ -5878,7 +5930,7 @@
     "corpus_count": 2
   },
   {
-    "word": "pa'llá",
+    "word": "p",
     "corpus_count": 2
   },
   {
@@ -5956,10 +6008,6 @@
     "corpus_count": 2
   },
   {
-    "word": "perla'",
-    "corpus_count": 2
-  },
-  {
     "word": "permiso",
     "corpus_count": 2
   },
@@ -6020,19 +6068,11 @@
     "corpus_count": 2
   },
   {
-    "word": "podrá'",
-    "corpus_count": 2
-  },
-  {
     "word": "podío'",
     "corpus_count": 2
   },
   {
     "word": "popstar",
-    "corpus_count": 2
-  },
-  {
-    "word": "prefieres",
     "corpus_count": 2
   },
   {
@@ -6254,10 +6294,6 @@
     "corpus_count": 2
   },
   {
-    "word": "salí'a",
-    "corpus_count": 2
-  },
-  {
     "word": "sangría",
     "corpus_count": 2
   },
@@ -6371,8 +6407,9 @@
     "corpus_count": 2
   },
   {
-    "word": "suyo'",
-    "corpus_count": 2
+    "word": "suyos",
+    "corpus_count": 2,
+    "display_form": "suyo'"
   },
   {
     "word": "sío",
@@ -6558,10 +6595,6 @@
     "corpus_count": 2
   },
   {
-    "word": "verda'",
-    "corpus_count": 2
-  },
-  {
     "word": "verla",
     "corpus_count": 2
   },
@@ -6627,15 +6660,7 @@
     "corpus_count": 2
   },
   {
-    "word": "ví'a",
-    "corpus_count": 2
-  },
-  {
     "word": "white",
-    "corpus_count": 2
-  },
-  {
-    "word": "woh",
     "corpus_count": 2
   },
   {
@@ -6663,12 +6688,39 @@
     "corpus_count": 2
   },
   {
+    "word": "arroz",
+    "corpus_count": 2,
+    "display_form": "arro'",
+    "variants": {
+      "arro'": 1,
+      "arroz": 1
+    }
+  },
+  {
+    "word": "caramelos",
+    "corpus_count": 2,
+    "display_form": "caramelo'",
+    "variants": {
+      "caramelo'": 1,
+      "caramelos": 1
+    }
+  },
+  {
     "word": "des",
     "corpus_count": 2,
     "display_form": "de'",
     "variants": {
       "de'": 1,
       "des": 1
+    }
+  },
+  {
+    "word": "entrañas",
+    "corpus_count": 2,
+    "display_form": "entraña'",
+    "variants": {
+      "entraña'": 1,
+      "entrañas": 1
     }
   },
   {
@@ -6935,8 +6987,9 @@
     "corpus_count": 1
   },
   {
-    "word": "agua'",
-    "corpus_count": 1
+    "word": "aguas",
+    "corpus_count": 1,
+    "display_form": "agua'"
   },
   {
     "word": "aguantar",
@@ -7247,15 +7300,7 @@
     "corpus_count": 1
   },
   {
-    "word": "arro'",
-    "corpus_count": 1
-  },
-  {
     "word": "arrope",
-    "corpus_count": 1
-  },
-  {
-    "word": "arroz",
     "corpus_count": 1
   },
   {
@@ -7875,14 +7920,6 @@
     "corpus_count": 1
   },
   {
-    "word": "caramelo'",
-    "corpus_count": 1
-  },
-  {
-    "word": "caramelos",
-    "corpus_count": 1
-  },
-  {
     "word": "care",
     "corpus_count": 1
   },
@@ -7965,8 +8002,9 @@
     "corpus_count": 1
   },
   {
-    "word": "ceniza'",
-    "corpus_count": 1
+    "word": "cenizas",
+    "corpus_count": 1,
+    "display_form": "ceniza'"
   },
   {
     "word": "centro",
@@ -8353,11 +8391,6 @@
     "corpus_count": 1
   },
   {
-    "word": "coras",
-    "corpus_count": 1,
-    "display_form": "cora'"
-  },
-  {
     "word": "corales",
     "corpus_count": 1
   },
@@ -8365,10 +8398,6 @@
     "word": "corazones",
     "corpus_count": 1,
     "display_form": "corazone'"
-  },
-  {
-    "word": "coronada",
-    "corpus_count": 1
   },
   {
     "word": "coronan",
@@ -8787,8 +8816,9 @@
     "corpus_count": 1
   },
   {
-    "word": "descansa'",
-    "corpus_count": 1
+    "word": "descansar",
+    "corpus_count": 1,
+    "display_form": "descansa'"
   },
   {
     "word": "descansillo",
@@ -8865,8 +8895,9 @@
     "corpus_count": 1
   },
   {
-    "word": "desnudo'",
-    "corpus_count": 1
+    "word": "desnudos",
+    "corpus_count": 1,
+    "display_form": "desnudo'"
   },
   {
     "word": "desordenado",
@@ -8930,8 +8961,9 @@
     "display_form": "detalle'"
   },
   {
-    "word": "detra'",
-    "corpus_count": 1
+    "word": "detras",
+    "corpus_count": 1,
+    "display_form": "detra'"
   },
   {
     "word": "devolverá",
@@ -8963,10 +8995,6 @@
   },
   {
     "word": "dieu",
-    "corpus_count": 1
-  },
-  {
-    "word": "diez",
     "corpus_count": 1
   },
   {
@@ -9137,10 +9165,6 @@
     "corpus_count": 1
   },
   {
-    "word": "dye",
-    "corpus_count": 1
-  },
-  {
     "word": "décidé",
     "corpus_count": 1
   },
@@ -9185,12 +9209,14 @@
     "corpus_count": 1
   },
   {
-    "word": "elemento'",
-    "corpus_count": 1
+    "word": "elementos",
+    "corpus_count": 1,
+    "display_form": "elemento'"
   },
   {
-    "word": "elevamo'",
-    "corpus_count": 1
+    "word": "elevamos",
+    "corpus_count": 1,
+    "display_form": "elevamo'"
   },
   {
     "word": "elevar",
@@ -9302,8 +9328,9 @@
     "corpus_count": 1
   },
   {
-    "word": "enfermeda'",
-    "corpus_count": 1
+    "word": "enfermedad",
+    "corpus_count": 1,
+    "display_form": "enfermeda'"
   },
   {
     "word": "engañaba",
@@ -9389,14 +9416,6 @@
   },
   {
     "word": "entra",
-    "corpus_count": 1
-  },
-  {
-    "word": "entraña'",
-    "corpus_count": 1
-  },
-  {
-    "word": "entrañas",
     "corpus_count": 1
   },
   {
@@ -9584,8 +9603,9 @@
     "corpus_count": 1
   },
   {
-    "word": "espíritu'",
-    "corpus_count": 1
+    "word": "espíritus",
+    "corpus_count": 1,
+    "display_form": "espíritu'"
   },
   {
     "word": "esquina'",
@@ -9998,8 +10018,9 @@
     "corpus_count": 1
   },
   {
-    "word": "gesto'",
-    "corpus_count": 1
+    "word": "gestos",
+    "corpus_count": 1,
+    "display_form": "gesto'"
   },
   {
     "word": "gianni",
@@ -10263,10 +10284,6 @@
     "corpus_count": 1
   },
   {
-    "word": "hip",
-    "corpus_count": 1
-  },
-  {
     "word": "historia",
     "corpus_count": 1
   },
@@ -10288,10 +10305,6 @@
   },
   {
     "word": "hoodie'",
-    "corpus_count": 1
-  },
-  {
-    "word": "hop",
     "corpus_count": 1
   },
   {
@@ -10566,8 +10579,9 @@
     "corpus_count": 1
   },
   {
-    "word": "jodemo'",
-    "corpus_count": 1
+    "word": "jodemos",
+    "corpus_count": 1,
+    "display_form": "jodemo'"
   },
   {
     "word": "jose",
@@ -10918,10 +10932,6 @@
     "corpus_count": 1
   },
   {
-    "word": "lágrima'",
-    "corpus_count": 1
-  },
-  {
     "word": "lía",
     "corpus_count": 1
   },
@@ -10966,8 +10976,9 @@
     "corpus_count": 1
   },
   {
-    "word": "madrugá'",
-    "corpus_count": 1
+    "word": "madrugás",
+    "corpus_count": 1,
+    "display_form": "madrugá'"
   },
   {
     "word": "madurse",
@@ -11185,8 +11196,9 @@
     "corpus_count": 1
   },
   {
-    "word": "metale'",
-    "corpus_count": 1
+    "word": "metales",
+    "corpus_count": 1,
+    "display_form": "metale'"
   },
   {
     "word": "metida",
@@ -11368,8 +11380,9 @@
     "corpus_count": 1
   },
   {
-    "word": "mora'os",
-    "corpus_count": 1
+    "word": "morados",
+    "corpus_count": 1,
+    "display_form": "mora'os"
   },
   {
     "word": "morena",
@@ -11554,8 +11567,9 @@
     "display_form": "nivele'"
   },
   {
-    "word": "niña'",
-    "corpus_count": 1
+    "word": "niñas",
+    "corpus_count": 1,
+    "display_form": "niña'"
   },
   {
     "word": "nodreixen",
@@ -11766,10 +11780,6 @@
     "corpus_count": 1
   },
   {
-    "word": "pa'cá",
-    "corpus_count": 1
-  },
-  {
     "word": "paca",
     "corpus_count": 1
   },
@@ -11937,8 +11947,9 @@
     "corpus_count": 1
   },
   {
-    "word": "pe'",
-    "corpus_count": 1
+    "word": "pez",
+    "corpus_count": 1,
+    "display_form": "pe'"
   },
   {
     "word": "pecado",
@@ -11958,17 +11969,14 @@
     "corpus_count": 1
   },
   {
-    "word": "pegaíto'",
-    "corpus_count": 1
+    "word": "pegaítos",
+    "corpus_count": 1,
+    "display_form": "pegaíto'"
   },
   {
     "word": "peleas",
     "corpus_count": 1,
     "display_form": "pelea'"
-  },
-  {
-    "word": "pena'",
-    "corpus_count": 1
   },
   {
     "word": "penita",
@@ -12028,8 +12036,9 @@
     "corpus_count": 1
   },
   {
-    "word": "perdí'os",
-    "corpus_count": 1
+    "word": "perdidos",
+    "corpus_count": 1,
+    "display_form": "perdí'os"
   },
   {
     "word": "perdías",
@@ -12079,10 +12088,6 @@
   },
   {
     "word": "pesao'",
-    "corpus_count": 1
-  },
-  {
-    "word": "pestañas",
     "corpus_count": 1
   },
   {
@@ -12202,10 +12207,6 @@
     "corpus_count": 1
   },
   {
-    "word": "podrás",
-    "corpus_count": 1
-  },
-  {
     "word": "policía",
     "corpus_count": 1
   },
@@ -12276,10 +12277,6 @@
   },
   {
     "word": "preciosa",
-    "corpus_count": 1
-  },
-  {
-    "word": "prefiere'",
     "corpus_count": 1
   },
   {
@@ -12574,10 +12571,6 @@
     "corpus_count": 1
   },
   {
-    "word": "quie'",
-    "corpus_count": 1
-  },
-  {
     "word": "quinto",
     "corpus_count": 1
   },
@@ -12605,10 +12598,6 @@
     "word": "quizás",
     "corpus_count": 1,
     "display_form": "quizá'"
-  },
-  {
-    "word": "quié'",
-    "corpus_count": 1
   },
   {
     "word": "quédate",
@@ -12709,8 +12698,9 @@
     "corpus_count": 1
   },
   {
-    "word": "reflejo'",
-    "corpus_count": 1
+    "word": "reflejos",
+    "corpus_count": 1,
+    "display_form": "reflejo'"
   },
   {
     "word": "refúgiate",
@@ -12830,10 +12820,6 @@
   },
   {
     "word": "ritmo",
-    "corpus_count": 1
-  },
-  {
-    "word": "ro",
     "corpus_count": 1
   },
   {
@@ -13029,10 +13015,6 @@
   },
   {
     "word": "sali'a",
-    "corpus_count": 1
-  },
-  {
-    "word": "salida",
     "corpus_count": 1
   },
   {
@@ -13442,6 +13424,10 @@
     "corpus_count": 1
   },
   {
+    "word": "ta",
+    "corpus_count": 1
+  },
+  {
     "word": "take",
     "corpus_count": 1
   },
@@ -13560,10 +13546,6 @@
     "corpus_count": 1
   },
   {
-    "word": "tie",
-    "corpus_count": 1
-  },
-  {
     "word": "tiembla",
     "corpus_count": 1
   },
@@ -13576,8 +13558,9 @@
     "corpus_count": 1
   },
   {
-    "word": "tijera'",
-    "corpus_count": 1
+    "word": "tijeras",
+    "corpus_count": 1,
+    "display_form": "tijera'"
   },
   {
     "word": "tinto",
@@ -13637,17 +13620,8 @@
     "corpus_count": 1
   },
   {
-    "word": "to'l",
-    "corpus_count": 1
-  },
-  {
     "word": "to's",
     "corpus_count": 1
-  },
-  {
-    "word": "toas",
-    "corpus_count": 1,
-    "display_form": "toa'"
   },
   {
     "word": "toca",
@@ -14059,8 +14033,9 @@
     "corpus_count": 1
   },
   {
-    "word": "viento'",
-    "corpus_count": 1
+    "word": "vientos",
+    "corpus_count": 1,
+    "display_form": "viento'"
   },
   {
     "word": "vieras",
@@ -14276,259 +14251,31 @@
     "corpus_count": 1
   },
   {
-    "word": "aniquilar",
+    "word": "dicta",
     "corpus_count": 1
   },
   {
-    "word": "detener",
-    "corpus_count": 2
-  },
-  {
-    "word": "cortar",
-    "corpus_count": 7
-  },
-  {
-    "word": "follar",
+    "word": "muévete",
     "corpus_count": 1
   },
   {
-    "word": "regalar",
+    "word": "puña",
     "corpus_count": 1
   },
   {
-    "word": "reír",
-    "corpus_count": 2
-  },
-  {
-    "word": "perrear",
-    "corpus_count": 8
-  },
-  {
-    "word": "atar",
+    "word": "permitir",
     "corpus_count": 1
   },
   {
-    "word": "voseo",
+    "word": "desquita",
     "corpus_count": 1
   },
   {
-    "word": "medir",
-    "corpus_count": 2
+    "word": "apuntar",
+    "corpus_count": 10
   },
   {
-    "word": "vadear",
-    "corpus_count": 1
-  },
-  {
-    "word": "doler",
-    "corpus_count": 4
-  },
-  {
-    "word": "tirar",
-    "corpus_count": 1
-  },
-  {
-    "word": "rozar",
-    "corpus_count": 1
-  },
-  {
-    "word": "tratar",
-    "corpus_count": 1
-  },
-  {
-    "word": "aliviar",
-    "corpus_count": 3
-  },
-  {
-    "word": "avisar",
-    "corpus_count": 2
-  },
-  {
-    "word": "cansar",
-    "corpus_count": 1
-  },
-  {
-    "word": "vestir",
-    "corpus_count": 1
-  },
-  {
-    "word": "crucificar",
-    "corpus_count": 1
-  },
-  {
-    "word": "atrever",
-    "corpus_count": 2
-  },
-  {
-    "word": "pegar",
-    "corpus_count": 2
-  },
-  {
-    "word": "estrellar",
-    "corpus_count": 2
-  },
-  {
-    "word": "arrancar",
-    "corpus_count": 1
-  },
-  {
-    "word": "acordar",
-    "corpus_count": 2
-  },
-  {
-    "word": "mandar",
-    "corpus_count": 4
-  },
-  {
-    "word": "desvestir",
-    "corpus_count": 1
-  },
-  {
-    "word": "juzgar",
-    "corpus_count": 1
-  },
-  {
-    "word": "valer",
-    "corpus_count": 1
-  },
-  {
-    "word": "buscar",
-    "corpus_count": 2
-  },
-  {
-    "word": "far",
-    "corpus_count": 2
-  },
-  {
-    "word": "invitar",
-    "corpus_count": 1
-  },
-  {
-    "word": "perseguir",
-    "corpus_count": 1
-  },
-  {
-    "word": "despertar",
-    "corpus_count": 1
-  },
-  {
-    "word": "acostar",
-    "corpus_count": 1
-  },
-  {
-    "word": "llamar",
-    "corpus_count": 3
-  },
-  {
-    "word": "obligar",
-    "corpus_count": 3
-  },
-  {
-    "word": "guardar",
-    "corpus_count": 4
-  },
-  {
-    "word": "abrazar",
-    "corpus_count": 1
-  },
-  {
-    "word": "mantener",
-    "corpus_count": 1
-  },
-  {
-    "word": "mover",
-    "corpus_count": 1
-  },
-  {
-    "word": "montar",
-    "corpus_count": 1
-  },
-  {
-    "word": "entregar",
-    "corpus_count": 1
-  },
-  {
-    "word": "transformar",
-    "corpus_count": 1
-  },
-  {
-    "word": "relajar",
-    "corpus_count": 1
-  },
-  {
-    "word": "conocer",
-    "corpus_count": 1
-  },
-  {
-    "word": "callar",
-    "corpus_count": 1
-  },
-  {
-    "word": "aborrecer",
-    "corpus_count": 1
-  },
-  {
-    "word": "traer",
-    "corpus_count": 1
-  },
-  {
-    "word": "chingar",
-    "corpus_count": 2
-  },
-  {
-    "word": "levantar",
-    "corpus_count": 1
-  },
-  {
-    "word": "esperar",
-    "corpus_count": 1
-  },
-  {
-    "word": "poner",
-    "corpus_count": 1
-  },
-  {
-    "word": "equivocar",
-    "corpus_count": 2
-  },
-  {
-    "word": "secar",
-    "corpus_count": 1
-  },
-  {
-    "word": "desquitar",
-    "corpus_count": 2
-  },
-  {
-    "word": "colgar",
-    "corpus_count": 1
-  },
-  {
-    "word": "sentar",
-    "corpus_count": 1
-  },
-  {
-    "word": "usar",
-    "corpus_count": 4
-  },
-  {
-    "word": "recordar",
-    "corpus_count": 1
-  },
-  {
-    "word": "tatuar",
-    "corpus_count": 2
-  },
-  {
-    "word": "castigar",
-    "corpus_count": 2
-  },
-  {
-    "word": "divertir",
-    "corpus_count": 1
-  },
-  {
-    "word": "cobrar",
+    "word": "refugiar",
     "corpus_count": 1
   }
 ]
