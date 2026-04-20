@@ -10,6 +10,87 @@ let _spanishRanksLoading = false;
 let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, translation}
 let _conjugationLoading = false;
 
+// Part-of-speech lookup shown when a user taps the POS pill on a sense
+// row. Full name + one-sentence plain-language description targeted at
+// language learners, not grammarians. Keys match the UPOS / Kaikki POS
+// values produced by the pipeline (see util_5c_sense_menu_format.py
+// and util_5c_spanishdict.py).
+const POS_INFO = {
+    NOUN: { name: "Noun",
+            description: "Names a person, place, thing, or idea (e.g. casa, amor, tiempo)." },
+    VERB: { name: "Verb",
+            description: "An action, state, or occurrence (e.g. correr, ser, tener)." },
+    ADJ:  { name: "Adjective",
+            description: "Describes or modifies a noun (e.g. grande, feliz, rápido)." },
+    ADV:  { name: "Adverb",
+            description: "Modifies a verb, adjective, or another adverb (e.g. rápidamente, muy, siempre)." },
+    ADP:  { name: "Preposition",
+            description: "Shows a relationship between words — usually place, time, or direction (e.g. a, de, en, con)." },
+    DET:  { name: "Determiner",
+            description: "Introduces or specifies a noun (e.g. el, una, este, mi)." },
+    PRON: { name: "Pronoun",
+            description: "Replaces a noun (e.g. él, ella, esto, nosotros)." },
+    CCONJ: { name: "Conjunction",
+             description: "Connects words, phrases, or clauses (e.g. y, pero, o, porque)." },
+    SCONJ: { name: "Conjunction",
+             description: "Introduces a subordinate clause (e.g. si, cuando, aunque)." },
+    INTJ: { name: "Interjection",
+            description: "An exclamation or sudden expression of emotion (e.g. ¡ay!, ¡oh!, ¡vale!)." },
+    NUM:  { name: "Number",
+            description: "Expresses a quantity or order (e.g. uno, dos, primero)." },
+    PART: { name: "Particle",
+            description: "A small grammatical marker with a specific role — doesn't always translate cleanly (e.g. no, sí, se)." },
+    PROPN: { name: "Proper Noun",
+             description: "The specific name of a person, place, or thing (e.g. María, Madrid, Spotify)." },
+    PHRASE: { name: "Phrase",
+              description: "A fixed group of words that function together (e.g. por favor, sin embargo)." },
+    CONTRACTION: { name: "Contraction",
+                   description: "Two words fused together into one written form (e.g. al = a + el, del = de + el, c'est = ce + est)." },
+    X:    { name: "Unclassified",
+            description: "Part of speech couldn't be determined for this sense." },
+};
+
+// Show an info popover describing a part of speech. The pill is tappable;
+// a tap on the pill opens a full-screen semi-transparent overlay holding
+// a small card with the POS name + description. Any subsequent click
+// (or Escape) closes the overlay. The pill's own click stops propagation
+// so the row's selectMeaning handler doesn't also fire.
+function showPOSInfo(event, pos) {
+    if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    const info = POS_INFO[pos] || {
+        name: pos || "Unknown",
+        description: "No description available for this part of speech.",
+    };
+    const overlay = document.createElement('div');
+    overlay.className = 'pos-info-overlay';
+    // Inline the popover's colour accent so it matches the pill that
+    // was tapped — the .pos-* classes on the pill carry the colour;
+    // mirror them on the popover so the pairing is obvious.
+    const posColorClass = getPosColorClass(pos) || '';
+    overlay.innerHTML = `
+        <div class="pos-info-popover ${posColorClass}" role="dialog" aria-label="${info.name}">
+            <div class="pos-info-name">${info.name}</div>
+            <div class="pos-info-description">${info.description}</div>
+            <div class="pos-info-hint">Tap anywhere to close</div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+    const close = () => {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        document.removeEventListener('keydown', onKey);
+    };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    // Any click on the overlay (including the popover) closes. The user
+    // asked for "press anywhere to close" — pairs cleanly with the
+    // one-glance nature of the info.
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', onKey);
+}
+window.showPOSInfo = showPOSInfo;
+
 function formatMorphMood(mood) {
     const moodMap = {
         indicativo: '',        // indicative is default, omit
@@ -1437,7 +1518,7 @@ function updateCard() {
                 const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;';
                 target.push(`
                 <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px; opacity: 0.75;" onclick="selectMeaning(${idx})">
-                    <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start;">${cyclePos}</span>
+                    <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
                     <span style="font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${cyclePos}</span>
                 </div>
@@ -1456,7 +1537,8 @@ function updateCard() {
                     : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                       + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
                 const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1;';
-                const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start;">${posPillInner}</span>`;
+                // Pill is tappable — stops row-select, opens POS info popover.
+                const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}')">${posPillInner}</span>`;
                 const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
                 // Inline context: rendered on the same line as the translation
                 // in a smaller, dimmer typeface. Always full; a post-render
