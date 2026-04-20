@@ -51,10 +51,13 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
+    3: "+ strip hyphen-chain ad-libs (ah-na-na, aca-ca-ca, Ba-Ba-Baila) "
+       "before tokenization — prevents ad-lib stutters polluting short-"
+       "token counts that later merge into real words via elision",
 }
 
 try:
@@ -69,6 +72,29 @@ LETTER_CLASS = r"A-Za-zÁÉÍÓÚÜÑáéíóúüñ"
 WORD_RE = re.compile(rf"[{LETTER_CLASS}]+(?:'[{LETTER_CLASS}]+)*'?")
 SECTION_LINE_RE = re.compile(r"^\[.*\]$")
 _ADLIB_RE = re.compile(r'\[[^\]]*\]|\([^\)]*\)')
+
+# Hyphen-chain ad-libs: 2+ short (≤3-char) hyphen-separated chunks. These
+# are stylistic stutters / onomatopoeia / elongated syllables in lyrics —
+# "ah-na-na", "woh-na-na-na", "ja-ja-ja", "aca-ca-ca-ca", "flo-flo",
+# "preguntó-tó-tó-tó", "Mé-Mé-Métele", "Ba-Ba-Baila". Because WORD_RE
+# tokenizes on hyphen boundaries each chunk would otherwise become a
+# separate token, inflating the count of short fragments that, via the
+# elision merge (na → nada, tó → todo, etc.), pollute real words' example
+# lists with ad-lib lyrics. Stripping these sequences BEFORE WORD_RE
+# runs removes them from counting entirely while leaving genuine short-
+# word usage ("no sé na", "pa'l") untouched.
+#
+# Requires both sides of every hyphen to be ≤3 chars so long compounds
+# like "ex-presidente" or "post-guerra" pass through unchanged.
+_HYPHEN_ADLIB_RE = re.compile(
+    rf"\b[{LETTER_CLASS}]{{1,3}}(?:-[{LETTER_CLASS}]{{1,3}}){{1,}}\b",
+    re.IGNORECASE,
+)
+
+
+def strip_hyphen_adlibs(text: str) -> str:
+    """Remove runs of 2+ short hyphen-separated tokens from ``text``."""
+    return _HYPHEN_ADLIB_RE.sub(" ", text)
 FOOTER_MARKERS = ["You might also like", "Embed"]
 BOILERPLATE_LINE_RE = re.compile(
     r'… Read More'              # Truncated Genius annotation paragraphs
@@ -198,7 +224,13 @@ def strip_adlibs(text):
 
 
 def tokenize(line: str) -> List[str]:
-    """letters only, optional internal apostrophes"""
+    """letters only, optional internal apostrophes.
+
+    Strips hyphen-chain ad-libs ("ah-na-na-na", "Ba-Ba-Baila",
+    "preguntó-tó-tó") before WORD_RE runs so stutters don't inflate the
+    counts of their short fragments. See ``_HYPHEN_ADLIB_RE`` docstring.
+    """
+    line = strip_hyphen_adlibs(line)
     return [m.group(0).lower() for m in WORD_RE.finditer(line)]
 
 
