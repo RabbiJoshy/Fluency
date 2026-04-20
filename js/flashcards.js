@@ -1825,14 +1825,22 @@ function updateCard() {
     //   1. Flag meaning rows whose translation+context actually overflows the
     //      3-line clamp so the span becomes tap-to-expand. We only flag what
     //      measures as clipped, not everything past an arbitrary char count.
-    //   2. When the scroll region holds more than 3 rows, cap its max-height
-    //      to the sum of the first 3 row heights so it scrolls rather than
-    //      stealing vertical space from the example sentence below. Fewer
-    //      rows -> no cap, the region keeps its current flex-fill behaviour.
-    // Run synchronously — scrollHeight triggers reflow so the numbers are
-    // valid without waiting for the next frame. We intentionally avoid
-    // requestAnimationFrame here because rAF is paused in background tabs
-    // and hidden iframes, which would leave the clamp state stale.
+    //   2. If the total (meanings + tray + sentence + links) would overflow
+    //      the card's content area, cap .meanings-scroll to the remaining
+    //      space so IT scrolls — not the whole card. If everything fits, no
+    //      cap is applied and flex-layout centres the block as normal.
+    //
+    // The cap is measured live: we sum every non-scroll child's rendered
+    // height (+ its top/bottom margins) and subtract from backContent's
+    // client height. That way the scroll threshold adapts to:
+    //   - header wrapping to two lines (long word + lemma)
+    //   - example sentence growing with longer lines
+    //   - MWE / clitic tray being present or empty
+    //   - expanded (tap-to-expand) sense rows taking more vertical space
+    //
+    // Previously there was a hardcoded "> 3 rows → cap at 3 rows" rule that
+    // forced scrolling even when the card had plenty of room; this replaces
+    // it with a genuine content-vs-space check.
     {
         const backEl = document.getElementById('backContent');
         if (backEl) {
@@ -1848,13 +1856,25 @@ function updateCard() {
             });
             const scroll = backEl.querySelector('.meanings-scroll');
             if (scroll) {
-                const rows = scroll.querySelectorAll('.meaning-row');
-                if (rows.length > 3) {
-                    let cap = 0;
-                    for (let i = 0; i < 3; i++) cap += rows[i].offsetHeight + 8;
-                    scroll.style.maxHeight = cap + 'px';
-                } else {
-                    scroll.style.maxHeight = '';
+                // Clear any prior cap so we can measure natural heights
+                // before deciding whether a new cap is needed.
+                scroll.style.maxHeight = '';
+                const availableHeight = backEl.clientHeight;
+                let overhead = 0;
+                Array.from(backEl.children).forEach(child => {
+                    if (child === scroll) return;
+                    const cs = getComputedStyle(child);
+                    overhead += child.offsetHeight
+                        + (parseFloat(cs.marginTop) || 0)
+                        + (parseFloat(cs.marginBottom) || 0);
+                });
+                const availableForScroll = availableHeight - overhead;
+                // Only cap when the natural scroll content would overflow
+                // the remaining room. Small safety floor (60px) so a
+                // miscalculation never produces a zero-height scroller.
+                if (availableForScroll > 60
+                    && scroll.scrollHeight > availableForScroll) {
+                    scroll.style.maxHeight = availableForScroll + 'px';
                 }
             }
         }
