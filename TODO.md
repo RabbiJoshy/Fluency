@@ -51,6 +51,17 @@ below have enough complexity to warrant this treatment when the time comes.
   card view, and flag the card so `saveWordProgress()` skips it. Non-trivial mostly because of
   the extraction work across two codepaths.
 
+- **[idea] Unify PHRASE POS tag with MWE rows (M) [shared] [cross-lang]**
+  Today there are two row shapes for phrase-like entries on cards: regular rows with
+  `pos = "PHRASE"` (38 in Spanish vocab today, sourced from sense data) and MWE rows
+  (`pos = "MWE"`, with `allMWEs`, expression pill, counter). They render differently —
+  standard POS pill vs. expression pill — and have different data lineages (one lives in
+  `meanings[]`, the other in `mwe_memberships[]`). Eventually these should collapse into a
+  single phrase-row renderer that handles both, with a consistent pill width and layout.
+  Opened after pulling PHRASE out of the shared POS-pill `min-width` constraint on
+  2026-04-20 — the split widths (tight POS pill vs. wider expression pill) are a stopgap
+  until the row types merge.
+
 ---
 
 ## Data / Pipeline

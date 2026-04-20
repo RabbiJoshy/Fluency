@@ -226,6 +226,49 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     shared_mwes_path = os.path.join(project_root, "Data", "Spanish", "layers", "mwe_phrases.json")
     mwe_by_word = load_layer(shared_mwes_path, "mwe_phrases (shared)", required=False) or {}
 
+    # Artist-specific MWEs from the lyric counting pass (step_2a → mwe_detected.json).
+    # Merged in-memory, not written back to the shared layer — these are per-artist
+    # by construction (PMI collocations + elision-preserving curated hits).
+    # Curated entries already have translations; PMI-detected entries ship blank
+    # until a future Gemini translation step fills them in. Both are tagged
+    # ``source: "artist-curated"`` / ``"artist-pmi"`` so the UI can treat them
+    # as artist-sourced.
+    # layers_dir == {artist_dir}/data/layers; word_counts/ is its sibling.
+    artist_detected_path = os.path.join(os.path.dirname(layers_dir), "word_counts", "mwe_detected.json")
+    artist_mwes_added = 0
+    if os.path.isfile(artist_detected_path):
+        with open(artist_detected_path, "r", encoding="utf-8") as f:
+            detected = json.load(f)
+        buckets = [
+            ("artist-curated", detected.get("mwes") or []),
+            ("artist-pmi",     detected.get("pmi_detected") or []),
+        ]
+        for source, items in buckets:
+            for m in items:
+                expr = (m.get("expression") or "").strip()
+                if not expr:
+                    continue
+                entry = {
+                    "expression": expr,
+                    "translation": m.get("translation", "") or "",
+                    "count": m.get("count", 0) or 0,
+                    "source": source,
+                }
+                # Attach to every component token. If the token isn't in the
+                # artist's vocab, the attachment is a no-op at annotation
+                # time. If it is, the MWE shows up on that card.
+                for token in expr.lower().split():
+                    if not token:
+                        continue
+                    existing = mwe_by_word.setdefault(token, [])
+                    if any((e.get("expression") or "").lower() == expr.lower()
+                           and e.get("source") == source
+                           for e in existing):
+                        continue
+                    existing.append(entry)
+                artist_mwes_added += 1
+        print("  mwe_detected (artist): merged %d expressions into layer" % artist_mwes_added)
+
     # Load curated translations (artist-specific first, then shared as fallback)
     curated = {}
     if curated_translations_path and os.path.isfile(curated_translations_path):
@@ -1116,11 +1159,21 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             if not word_mwes:
                 continue
 
-            # Sort: artist-sourced first (by count desc), then wiktionary (by corpus_freq desc)
+            # Sort priority:
+            #   0 — artist-sourced (curated or PMI from this artist's lyrics)
+            #   1 — spanishdict (shared layer, scraped)
+            #   2 — wiktionary / unclassified (shared layer, legacy)
+            # Within each tier, higher count/corpus_freq wins.
             def mwe_sort_key(m):
-                is_wikt = 1 if m.get("source") == "wiktionary" else 0
+                source = m.get("source") or ""
+                if source.startswith("artist"):
+                    priority = 0
+                elif source == "spanishdict":
+                    priority = 1
+                else:
+                    priority = 2
                 freq = -(m.get("count", 0) or m.get("corpus_freq", 0))
-                return (is_wikt, freq)
+                return (priority, freq)
             sorted_mwes = sorted(word_mwes, key=mwe_sort_key)
 
             memberships = []
@@ -1151,12 +1204,20 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         result = result[:MAX_TRANSLATION_LEN - 3] + "..."
                     trans = result
 
-                memberships.append({
+                membership = {
                     "expression": expr,
                     "translation": trans,
                     "examples": mwe_examples_cache[expr],
                     "source": mwe.get("source", "wiktionary"),
-                })
+                }
+                # Two context tiers (see step_8a_assemble_vocabulary for the
+                # canonical comment). ``context`` is real/scraped,
+                # ``context_heuristic`` is regex-split from the quickdef.
+                if mwe.get("context"):
+                    membership["context"] = mwe["context"]
+                if mwe.get("context_heuristic"):
+                    membership["context_heuristic"] = mwe["context_heuristic"]
+                memberships.append(membership)
             if memberships:
                 entry["mwe_memberships"] = memberships
                 mwe_count += 1
@@ -1291,8 +1352,11 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             idx_entry["morphology"] = entry["morphology"]
         if entry_mwes:
             idx_entry["mwe_memberships"] = [
-                {"expression": mwe["expression"], "translation": mwe.get("translation", ""),
-                 "source": mwe.get("source", "artist")}
+                {**{"expression": mwe["expression"],
+                    "translation": mwe.get("translation", ""),
+                    "source": mwe.get("source", "artist")},
+                 **({"context": mwe["context"]} if mwe.get("context") else {}),
+                 **({"context_heuristic": mwe["context_heuristic"]} if mwe.get("context_heuristic") else {})}
                 for mwe in entry_mwes
             ]
         # Clitic memberships (parallel to MWEs)

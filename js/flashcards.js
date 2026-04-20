@@ -191,6 +191,80 @@ async function loadConjugationData() {
     _conjugationLoading = false;
 }
 
+// --- MWE translation split (JS mirror of pipeline/util_5c_spanishdict.split_mwe_translation) ---
+// Applied at render time so existing decks (whose mwe_memberships predate the
+// pipeline-side split) still get the two-line layout. New builds set m.context
+// directly and skip this parser.
+const _MWE_UOTFI_RE = /^\s*Used other than figuratively or idiomatically:\s*see[^.]*\.\s*/i;
+const _MWE_USED_PREFIX_RE = /^\s*(Used [^:]+?):\s*/i;
+
+function splitMWETranslation(raw) {
+    if (typeof raw !== 'string' || !raw.trim()) return { primary: raw || '', context: '' };
+    let s = raw.replace(_MWE_UOTFI_RE, '').trim();
+    if (!s) return { primary: '', context: '' };
+    let context = '';
+    const pm = s.match(_MWE_USED_PREFIX_RE);
+    if (pm) {
+        context = pm[1].trim();
+        s = s.slice(pm[0].length).trim();
+        if (!s) return { primary: context, context: '' };
+    }
+    // Trailing balanced ``(...)`` split.
+    if (s.endsWith(')')) {
+        let depth = 0, start = -1;
+        for (let i = s.length - 1; i >= 0; i--) {
+            const c = s[i];
+            if (c === ')') depth++;
+            else if (c === '(') {
+                depth--;
+                if (depth === 0) { start = i; break; }
+            }
+        }
+        if (start > 0) {
+            const before = s.slice(0, start).trimEnd();
+            const inside = s.slice(start + 1, -1).trim();
+            if (before && inside) {
+                context = context ? context + '; ' + inside : inside;
+                s = before;
+            }
+        }
+    }
+    return { primary: s, context };
+}
+
+// --- Fit-text-to-single-line helper ---
+// Shrinks ``el``'s inline font-size until the text fits on one line inside
+// its constrained width. Starts from the element's computed (CSS-driven)
+// font-size and steps down in 2px increments until the content no longer
+// overflows with ``white-space: nowrap`` applied, or ``minPx`` is reached.
+// CSS-level ``overflow-wrap: anywhere`` remains the last-resort fallback
+// if the text still doesn't fit at ``minPx``.
+//
+// Called after setting ``textContent`` on front-of-card word + lemma so
+// rare long words like "Sandungueo" shrink to fit instead of wrapping.
+// Idempotent: clears any prior inline font-size on each call.
+function shrinkToFit(el, minPx) {
+    if (!el || !el.textContent) return;
+    // Reset to CSS-driven baseline so repeated calls start from the same
+    // maxPx. Without this, the previous card's shrunk size would become
+    // the next card's starting point.
+    el.style.fontSize = '';
+    const maxPx = parseFloat(getComputedStyle(el).fontSize);
+    if (!maxPx || maxPx <= minPx) return;
+    const prevWS = el.style.whiteSpace;
+    // Disable wrapping to expose intrinsic content width via scrollWidth.
+    el.style.whiteSpace = 'nowrap';
+    let size = maxPx;
+    // scrollWidth is the content's ideal width; clientWidth is the
+    // constrained element width (capped by max-width: 100% of parent).
+    // When the former exceeds the latter, the text would need to wrap.
+    while (size > minPx && el.scrollWidth > el.clientWidth) {
+        size -= 2;
+        el.style.fontSize = size + 'px';
+    }
+    el.style.whiteSpace = prevWS;
+}
+
 // Cache of known words built from progressData — rebuilt when progress changes
 let _knownWordsCache = null;
 let _knownWordsCacheSize = -1;
@@ -1297,16 +1371,13 @@ function updateCard() {
         frontMeaningsEl.style.display = 'none';
         frontWordEl.style.display = '';
         frontWordEl.textContent = frontText;
-        // Auto-shrink the word font for long strings so they don't overflow
-        // or wrap awkwardly. Applies to any long displayed text (variant
-        // display OR plain long words like "encantadísimo"), not just
-        // variant strings. word-break in CSS is the final safety net.
-        const displayedLen = (frontText || '').length;
-        if (!isFlipped && displayedLen > 13) {
-            frontWordEl.style.fontSize = Math.max(32, 64 - (displayedLen - 12) * 2.2) + 'px';
-        } else {
-            frontWordEl.style.fontSize = '';
-        }
+        // Auto-shrink the word font so it fits on a single line instead of
+        // wrapping. The old heuristic keyed off character count (>13 chars),
+        // which missed cases where the chars were wide enough to overflow a
+        // narrower container ("Sandungueo" at 10 chars overflows on a phone-
+        // width card). shrinkToFit measures intrinsic content width and
+        // steps the font-size down until it fits.
+        shrinkToFit(frontWordEl, 28);
     }
 
     // Display part of speech on front with color coding
@@ -1344,6 +1415,9 @@ function updateCard() {
     if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
         frontLemmaEl.textContent = card.lemma;
         frontLemmaEl.style.display = 'block';
+        // Same measured shrink as the main word — rare, but e.g. the lemma
+        // of a long derived form can exceed the card width at 32px.
+        shrinkToFit(frontLemmaEl, 18);
     } else {
         frontLemmaEl.textContent = '';
         frontLemmaEl.style.display = 'none';
@@ -1457,15 +1531,55 @@ function updateCard() {
             const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
             if (isMWE) {
                 // MWE row: expression pill (left), translation (middle), counter (right).
-                // Keeping the translation at a single typographic level — the
-                // comma-separated synonyms are equal-weight alternatives, not
-                // "primary + context", so tiering them was misleading. Real
-                // tiering (context-style) needs the `context` field we don't
-                // currently scrape for MWEs.
+                // Two context tiers — renderer prefers real over heuristic:
+                //   1. ``context``           — structured data from the
+                //      SpanishDict phrase-page scrape (tool_5c_scrape_spanishdict_phrases).
+                //      Authoritative — same shape as the sense-level context.
+                //   2. ``context_heuristic`` — split off the quickdef string
+                //      (tool_5d_build_spanishdict_mwes → split_mwe_translation).
+                //      Best-effort regex extraction; the text is real SpanishDict
+                //      quickdef content but the paren-split is our guess.
+                // The JS splitter at splitMWETranslation() is a render-time
+                // fallback for decks whose membership entries predate the
+                // pipeline change above.
+                const activeMwe = (isMWE && m.allMWEs && m.allMWEs[mweIdx]) || null;
+                const realCtx = activeMwe ? (activeMwe.context || '') : '';
+                const heurCtx = activeMwe ? (activeMwe.context_heuristic || '') : '';
+                let mwePrimary = cleanMweMeaning;
+                let mweContext = realCtx || heurCtx;
+                let mweContextIsHeuristic = !realCtx && !!heurCtx;
+                if (!mweContext && cleanMweMeaning) {
+                    // Legacy fallback — no split fields on the membership at all.
+                    const sp = splitMWETranslation(cleanMweMeaning);
+                    mwePrimary = sp.primary;
+                    mweContext = sp.context;
+                    mweContextIsHeuristic = !!sp.context;
+                } else if (mweContext) {
+                    // When we have a split field, recompute the primary by
+                    // stripping the trailing paren that contains the heuristic
+                    // note (real context never lives inline in the quickdef).
+                    if (mweContextIsHeuristic) {
+                        const sp = splitMWETranslation(cleanMweMeaning);
+                        mwePrimary = sp.primary || cleanMweMeaning;
+                    } else {
+                        mwePrimary = cleanMweMeaning;
+                    }
+                }
+                const primaryDisplay = mwePrimary || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>';
+                // Heuristic context is the same typographic tier as real
+                // context — the text is legitimate, only its structural
+                // guarantee differs. No visual distinction is exposed to the
+                // reader (a subtle one could be added later if needed).
+                const bodyHTML = mweContext
+                    ? `<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.2;">
+                           <span style="font-size: 14px; font-weight: 600; color: white;">${primaryDisplay}</span>
+                           <span style="font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.55); line-height: 1.25; margin-top: 1px;">${mweContext}</span>
+                       </div>`
+                    : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
                 target.push(`
                 <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 36px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
-                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${displayMeaning}</span>
+                    ${bodyHTML}
                     ${mweCounter}
                 </div>
                 `);
@@ -1541,7 +1655,9 @@ function updateCard() {
                     : '';
                 // Same min-width as the regular-meaning pill so cycle + regular
                 // rows all share a unified POS-column width.
-                const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; min-width: 56px; box-sizing: border-box; text-align: center;';
+                // Same min-width philosophy as regular rows (see above): pad
+                // short labels up to 46px, let longer ones (PHRASE etc.) expand.
+                const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
                 target.push(`
                 <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
@@ -1562,11 +1678,15 @@ function updateCard() {
                     ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                     : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                       + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
-                // min-width keeps every pill the same width across sense rows
-                // — "ADV" and "CONTRACTION" now share the same column footprint
-                // so translations on different rows line up at the same x.
-                // 56px fits CONTRACTION at 10px/700 with 6px horizontal padding.
-                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 56px; box-sizing: border-box;';
+                // min-width pads short POS labels (ADJ, ADV, NOUN, VERB, PRON,
+                // INTJ, PART, NUM, ADP, DET — i.e. 3–4 chars at 10px/700) up
+                // to a shared column footprint so their translations line up
+                // at the same x. Longer labels (PROPN, CCONJ, SCONJ, PHRASE,
+                // CONTRACTION) naturally exceed this and get their own width
+                // — accepting that trade-off keeps the common case tight
+                // instead of forcing every row to accommodate the worst-case
+                // label.
+                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
                 // Pill is tappable — stops row-select, opens POS info popover.
                 // Passes pctVal so the popover can also explain what the
                 // percentage on the pill means.

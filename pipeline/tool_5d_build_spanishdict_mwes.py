@@ -14,7 +14,39 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from util_5c_spanishdict import SPANISHDICT_PHRASES_CACHE, load_json
+from util_5c_spanishdict import (
+    SPANISHDICT_DIR,
+    SPANISHDICT_PHRASES_CACHE,
+    load_json,
+    split_mwe_translation,
+)
+
+# Real (non-heuristic) context comes from the optional phrase-detail cache
+# produced by tool_5c_scrape_spanishdict_phrases.py. When present, we pull
+# the top sense's structured ``context`` field and write it as the authoritative
+# ``context`` on the MWE entry. The heuristic split of ``translation`` still
+# runs and is stored as ``context_heuristic`` either way — it is used by the
+# UI only when the real ``context`` is absent.
+PHRASES_DETAIL_CACHE = SPANISHDICT_DIR / "phrases_detail_cache.json"
+
+
+def _real_context_from_detail(detail_entry):
+    """Pull the top-sense structured context out of a phrase-detail cache entry.
+
+    The entry shape matches ``build_surface_entry`` — ``dictionary_analyses``
+    is a list of ``{headword, senses}`` dicts and each sense carries the
+    SpanishDict ``context`` field directly (e.g. "used to express purpose").
+    We return the first non-empty context we see.
+    """
+    if not isinstance(detail_entry, dict):
+        return ""
+    analyses = detail_entry.get("dictionary_analyses") or []
+    for analysis in analyses:
+        for sense in analysis.get("senses") or []:
+            ctx = (sense.get("context") or "").strip()
+            if ctx:
+                return ctx
+    return ""
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
@@ -40,6 +72,12 @@ def main():
     phrases_cache = load_json(SPANISHDICT_PHRASES_CACHE, {})
     print("  Phrases cache: %d words" % len(phrases_cache))
 
+    # Optional: real (structured) context from phrase-detail scrape.
+    # Absent on first run — populated once tool_5c_scrape_spanishdict_phrases
+    # has been run. Keyed by expression string.
+    detail_cache = load_json(PHRASES_DETAIL_CACHE, {})
+    print("  Phrase-detail cache: %d phrases (for real context)" % len(detail_cache))
+
     # Build MWE layer keyed by word ID
     mwe_by_id = defaultdict(list)
     matched_words = 0
@@ -58,7 +96,14 @@ def main():
                 continue
             seen_exprs.add(expr.lower())
 
-            trans = phrase.get("translation", "")
+            raw_trans = phrase.get("translation", "")
+            # Split "translation (heuristic note)" into two fields so the UI can
+            # render them at separate typographic levels. Truncation below
+            # applies only to the primary — the note stays intact. The note is
+            # stored as ``context_heuristic`` because SpanishDict's phrase
+            # component does NOT expose a structured context field; we're just
+            # promoting a parenthetical in the quickdef string.
+            trans, heuristic_ctx = split_mwe_translation(raw_trans)
             if len(trans) > MAX_TRANSLATION_LEN:
                 parts = trans.split(", ")
                 result = parts[0]
@@ -69,11 +114,19 @@ def main():
                     result = candidate
                 trans = result
 
-            mwe_by_id[wid].append({
+            # Real context from the phrase-detail scrape (when available).
+            real_ctx = _real_context_from_detail(detail_cache.get(expr))
+
+            entry = {
                 "expression": expr,
                 "translation": trans,
                 "source": "spanishdict",
-            })
+            }
+            if real_ctx:
+                entry["context"] = real_ctx
+            if heuristic_ctx:
+                entry["context_heuristic"] = heuristic_ctx
+            mwe_by_id[wid].append(entry)
 
     total_mwes = sum(len(v) for v in mwe_by_id.values())
 

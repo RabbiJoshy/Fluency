@@ -463,10 +463,14 @@ async function loadVocabularyData(rangeString, opts = {}) {
             // Synthesize a single MWE meaning that cycles through all expressions
             if (item.mwe_memberships && item.mwe_memberships.length > 0) {
                 const allMWEs = [];
-                // Sort artist-specific MWEs first, then wiktionary
+                // Sort artist-sourced MWEs first (including artist-curated /
+                // artist-pmi tags from step_2a lyric counting), then shared
+                // sources (spanishdict / wiktionary / legacy).
                 const sortedMWEs = [...item.mwe_memberships].sort((a, b) => {
-                    const aArtist = (a.source || 'artist') === 'artist' ? 0 : 1;
-                    const bArtist = (b.source || 'artist') === 'artist' ? 0 : 1;
+                    const aSrc = a.source || 'artist';
+                    const bSrc = b.source || 'artist';
+                    const aArtist = aSrc === 'artist' || aSrc.startsWith('artist-') ? 0 : 1;
+                    const bArtist = bSrc === 'artist' || bSrc.startsWith('artist-') ? 0 : 1;
                     return aArtist - bArtist;
                 });
                 // Strip elision markers for fuzzy MWE matching
@@ -499,6 +503,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     allMWEs.push({
                         expression: mwe.expression,
                         translation: mwe.translation || '',
+                        // Two context tiers:
+                        //   context           — real/scraped (authoritative)
+                        //   context_heuristic — regex-split from quickdef
+                        // Renderer prefers real over heuristic.
+                        context: mwe.context || '',
+                        context_heuristic: mwe.context_heuristic || '',
                         examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
                     });
                 }
@@ -806,10 +816,14 @@ async function loadIncorrectWordsSet() {
             // Synthesize a single MWE meaning that cycles through all expressions
             if (item.mwe_memberships && item.mwe_memberships.length > 0) {
                 const allMWEs = [];
-                // Sort artist-specific MWEs first, then wiktionary
+                // Sort artist-sourced MWEs first (including artist-curated /
+                // artist-pmi tags from step_2a lyric counting), then shared
+                // sources (spanishdict / wiktionary / legacy).
                 const sortedMWEs = [...item.mwe_memberships].sort((a, b) => {
-                    const aArtist = (a.source || 'artist') === 'artist' ? 0 : 1;
-                    const bArtist = (b.source || 'artist') === 'artist' ? 0 : 1;
+                    const aSrc = a.source || 'artist';
+                    const bSrc = b.source || 'artist';
+                    const aArtist = aSrc === 'artist' || aSrc.startsWith('artist-') ? 0 : 1;
+                    const bArtist = bSrc === 'artist' || bSrc.startsWith('artist-') ? 0 : 1;
                     return aArtist - bArtist;
                 });
                 // Strip elision markers for fuzzy MWE matching
@@ -842,6 +856,12 @@ async function loadIncorrectWordsSet() {
                     allMWEs.push({
                         expression: mwe.expression,
                         translation: mwe.translation || '',
+                        // Two context tiers:
+                        //   context           — real/scraped (authoritative)
+                        //   context_heuristic — regex-split from quickdef
+                        // Renderer prefers real over heuristic.
+                        context: mwe.context || '',
+                        context_heuristic: mwe.context_heuristic || '',
                         examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
                     });
                 }

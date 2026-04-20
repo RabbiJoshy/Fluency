@@ -792,6 +792,17 @@ def main():
                     mwe_entry = {"expression": mwe["expression"]}
                     if mwe.get("translation"):
                         mwe_entry["translation"] = mwe["translation"]
+                    # Two context tiers:
+                    #   * ``context`` — real, structured, scraped from
+                    #     SpanishDict's per-phrase page (authoritative).
+                    #   * ``context_heuristic`` — split off the quickdef
+                    #     string by regex (best-effort). UI prefers ``context``
+                    #     and falls back to ``context_heuristic`` only when
+                    #     the real field is missing.
+                    if mwe.get("context"):
+                        mwe_entry["context"] = mwe["context"]
+                    if mwe.get("context_heuristic"):
+                        mwe_entry["context_heuristic"] = mwe["context_heuristic"]
                     if mwe.get("source"):
                         mwe_entry["source"] = mwe["source"]
                     mwe_memberships.append(mwe_entry)

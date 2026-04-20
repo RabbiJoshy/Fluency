@@ -411,8 +411,83 @@ def build_surface_entry(query, component):
     }
 
 
+_MWE_UOTFI_RE = re.compile(
+    r"^\s*Used other than figuratively or idiomatically:\s*see[^.]*\.\s*",
+    re.IGNORECASE,
+)
+_MWE_USED_PREFIX_RE = re.compile(r"^\s*(Used [^:]+?):\s*", re.IGNORECASE)
+
+
+def split_mwe_translation(trans):
+    """Parse a raw MWE translation string into ``(primary, context)``.
+
+    The SpanishDict ``quickdef`` strings bundle three things in one line:
+    the translation itself, a Wiktionary-style parenthetical note, and the
+    occasional boilerplate prefix. This helper unbundles them so the UI can
+    render ``translation`` bold and ``context`` dim (the same pattern sense
+    rows already use).
+
+    Rules, in order:
+      1. Strip ``Used other than figuratively or idiomatically: see X, Y.``
+         (pure Wiktionary noise).
+      2. If the string starts with ``Used [for/to/as] X: Y``, promote ``Y``
+         to primary and keep ``Used [for/to/as] X`` as context.
+      3. If what remains matches ``PRIMARY (CONTEXT)`` with balanced parens,
+         split at the last balanced paren group.
+
+    Returns ``(primary, context)``. ``context`` is ``None`` when no split
+    applies. The raw string is returned unchanged as ``primary`` in the
+    fallback case.
+    """
+    if not isinstance(trans, str) or not trans.strip():
+        return trans or "", None
+
+    s = _MWE_UOTFI_RE.sub("", trans).strip()
+    if not s:
+        return "", None
+
+    context = None
+    m = _MWE_USED_PREFIX_RE.match(s)
+    if m:
+        context = m.group(1).strip()
+        s = s[m.end():].strip()
+        if not s:
+            return context, None
+
+    # Find a trailing ``(...)`` with balanced parens that actually closes the
+    # string. ``re`` alone can't balance, so walk from the last ``)`` back.
+    if s.endswith(")"):
+        depth = 0
+        start = -1
+        for i in range(len(s) - 1, -1, -1):
+            c = s[i]
+            if c == ")":
+                depth += 1
+            elif c == "(":
+                depth -= 1
+                if depth == 0:
+                    start = i
+                    break
+        if start > 0:
+            before = s[:start].rstrip()
+            inside = s[start + 1:-1].strip()
+            # Only split when both sides are non-trivial — avoids mangling
+            # entries that are just a single ``(note)``.
+            if before and inside:
+                extra = inside
+                context = (context + "; " + extra) if context else extra
+                s = before
+
+    return s, context
+
+
 def extract_phrases(component):
-    """Extract phrase data from SpanishDict component (separate from senses)."""
+    """Extract phrase data from SpanishDict component (separate from senses).
+
+    The ``translation`` field keeps the raw ``quickdef`` string so the on-disk
+    phrase cache stays lossless. Callers that render MWEs (builders + UI) run
+    ``split_mwe_translation`` to peel off the parenthetical context.
+    """
     raw = component.get("phrases")
     if not raw or not isinstance(raw, list):
         return []
