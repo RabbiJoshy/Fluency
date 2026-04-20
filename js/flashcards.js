@@ -1454,22 +1454,37 @@ function updateCard() {
             const cliticCount = isClitic && m.allClitics ? m.allClitics.length : 0;
             const cliticCounter = (isClitic && cliticCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous form">‹</button><span style="opacity: 0.6; font-size: 10px;">${cliticIdx + 1}/${cliticCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next form">›</button></span>` : '';
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
-            const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
+            // Tier the translation like sense-row "meaning · context": the
+            // first comma/semicolon-separated term stays bold/primary; the
+            // rest are rendered small + dim after a "·" separator. Keeps
+            // long multi-term MWE glosses ("however, notwithstanding,
+            // nevertheless, in spite of") from dominating the row.
+            const _formatTieredTranslation = (raw) => {
+                if (!raw) return '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>';
+                const parts = String(raw).split(/\s*[,;]\s*/).map(s => s.trim()).filter(Boolean);
+                if (parts.length <= 1) return String(raw);
+                const primary = parts[0];
+                const alt = parts.slice(1).join(', ');
+                return `${primary}<span style="font-weight: 400; font-size: 11px; opacity: 0.55; margin-left: 5px;">· ${alt}</span>`;
+            };
+            const displayMeaning = isMWE ? _formatTieredTranslation(cleanMweMeaning) : m.meaning;
             if (isMWE) {
-                // MWE row: expression in a light pill (same font size as translation), counter — no POS badge
+                // MWE row: expression pill (left) + tiered translation (middle, bold primary + dim alternates) + counter (right).
                 target.push(`
-                <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 36px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
-                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${displayMeaning}</span>
+                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${displayMeaning}</span>
                     ${mweCounter}
                 </div>
                 `);
             } else if (isClitic) {
-                // Clitic row: form in a light pill, translation centered, cycling counter
+                // Clitic row: form pill (left) + tiered translation (middle) + counter (right).
+                const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
+                const cliticTranslation = _formatTieredTranslation(cliticTrRaw);
                 target.push(`
-                <div class="meaning-row meaning-row-clitic" style="position: relative; display: flex; align-items: center; padding: 10px 15px; margin-bottom: 8px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 44px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-clitic" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 36px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
-                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center;">${m.allClitics ? m.allClitics[cliticIdx].translation : ''}</span>
+                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${cliticTranslation}</span>
                     ${cliticCounter}
                 </div>
                 `);
