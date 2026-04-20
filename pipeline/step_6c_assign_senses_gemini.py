@@ -752,6 +752,23 @@ def main():
                 for abs_i in item.get("examples", []) or []:
                     if isinstance(abs_i, int):
                         covered_abs.add(abs_i)
+            # Same-priority methods from prior runs (gap-fill at 50, any
+            # other future equal-tier method). Without this, a word with
+            # an existing gap-fill claim on every example would still fall
+            # through the word-level priority check (which uses strict `>`
+            # so equal tiers don't block) and re-queue for a full
+            # re-classification every run. Union their covered examples
+            # into the skip set.
+            for method_name, items in (existing_assigns[word] or {}).items():
+                if method_name in (my_method, args.auto_method_name):
+                    continue
+                prio = METHOD_PRIORITY.get(method_name, 0)
+                if prio < my_priority:
+                    continue
+                for item in items or []:
+                    for abs_i in item.get("examples", []) or []:
+                        if isinstance(abs_i, int):
+                            covered_abs.add(abs_i)
 
         # Build the (abs_idx, ex) list of NEW examples in the target window.
         selected = [(abs_i, all_exs[abs_i]) for abs_i in range(target_end)
