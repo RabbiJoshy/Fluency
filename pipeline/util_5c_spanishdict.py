@@ -138,14 +138,38 @@ def analysis_signature(analysis):
     )
 
 
+def _is_abbreviation_mismatch(surface, headword):
+    """True when SpanishDict's fuzzy match returned an abbreviation.
+
+    Our corpus queries are letters only (WORD_RE in step_2a strips
+    punctuation except apostrophes). If the returned headword contains
+    periods (`p.a.`, `e.g.`, `m.n.`, …) but the surface query doesn't,
+    SpanishDict's fuzzy-match has substituted an abbreviation for a
+    real word — e.g. `pa'` (elision of `para`) returned `p.a.` ("per
+    annum"), which then produced a bogus "dad" / "yearly" card. Filter
+    those matches out.
+    """
+    if not headword:
+        return False
+    if "." in (surface or ""):
+        return False  # caller genuinely queried an abbreviation — allow
+    return "." in headword
+
+
 def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True):
     """Build the analyses list for one surface word from the shared SpanishDict cache.
 
     Starts from the surface page's own dictionary_analyses, then optionally extends
     with headword redirects ("possible_results") — dedup'd by signature.
+
+    Abbreviation-style headwords (`p.a.`, `e.g.`, …) are filtered out when the
+    surface query itself has no dots — see ``_is_abbreviation_mismatch``.
     """
     surface_entry = surface_cache.get(surface) or {}
-    analyses = normalize_cached_analyses(surface_entry.get("dictionary_analyses") or [])
+    analyses = [
+        a for a in normalize_cached_analyses(surface_entry.get("dictionary_analyses") or [])
+        if not _is_abbreviation_mismatch(surface, a.get("headword"))
+    ]
     seen_headwords = {a.get("headword") for a in analyses if a.get("headword")}
     seen_signatures = {analysis_signature(a) for a in analyses}
 
@@ -153,6 +177,8 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
         for result in surface_entry.get("possible_results") or []:
             headword = (result.get("headword") or "").strip()
             if not headword or headword in seen_headwords:
+                continue
+            if _is_abbreviation_mismatch(surface, headword):
                 continue
             headword_entry = headword_cache.get(headword) or {}
             headword_analyses = normalize_cached_analyses(headword_entry.get("dictionary_analyses") or [])
