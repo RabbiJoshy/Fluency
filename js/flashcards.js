@@ -1533,7 +1533,9 @@ function updateCard() {
                 const ellipsisBtn = isTruncated
                     ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
                     : '';
-                const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap;';
+                // Same min-width as the regular-meaning pill so cycle + regular
+                // rows all share a unified POS-column width.
+                const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; min-width: 56px; box-sizing: border-box; text-align: center;';
                 target.push(`
                 <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
@@ -1554,7 +1556,11 @@ function updateCard() {
                     ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                     : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                       + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
-                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1;';
+                // min-width keeps every pill the same width across sense rows
+                // — "ADV" and "CONTRACTION" now share the same column footprint
+                // so translations on different rows line up at the same x.
+                // 56px fits CONTRACTION at 10px/700 with 6px horizontal padding.
+                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 56px; box-sizing: border-box;';
                 // Pill is tappable — stops row-select, opens POS info popover.
                 // Passes pctVal so the popover can also explain what the
                 // percentage on the pill means.
