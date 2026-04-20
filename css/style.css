@@ -1086,6 +1086,41 @@
             margin-bottom: 14px;
         }
 
+        /* Secondary section in the popover — only present when the
+           pill carried a real <100% frequency. Divider separates it
+           from the POS definition above. */
+        .pos-info-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 4px -6px 14px;
+        }
+
+        .pos-info-pct-label {
+            font-family: var(--font-emphasis, var(--font-data));
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-muted, #6a7389);
+            opacity: 0.85;
+            margin-bottom: 2px;
+        }
+
+        .pos-info-pct-value {
+            font-family: var(--font-emphasis, var(--font-data));
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .pos-info-pct-description {
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-secondary, #c8d0e0);
+            margin-bottom: 14px;
+        }
+
         .pos-info-hint {
             font-size: 11px;
             letter-spacing: 0.4px;

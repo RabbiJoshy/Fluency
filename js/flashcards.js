@@ -52,10 +52,12 @@ const POS_INFO = {
 
 // Show an info popover describing a part of speech. The pill is tappable;
 // a tap on the pill opens a full-screen semi-transparent overlay holding
-// a small card with the POS name + description. Any subsequent click
-// (or Escape) closes the overlay. The pill's own click stops propagation
-// so the row's selectMeaning handler doesn't also fire.
-function showPOSInfo(event, pos) {
+// a small card with the POS name + description. If a percentage is
+// passed and is a real sub-100 frequency, the popover also explains
+// what that percentage means. Any subsequent click (or Escape) closes
+// the overlay. The pill's own click stops propagation so the row's
+// selectMeaning handler doesn't also fire.
+function showPOSInfo(event, pos, pct) {
     if (event) {
         event.stopPropagation();
         event.preventDefault();
@@ -64,6 +66,21 @@ function showPOSInfo(event, pos) {
         name: pos || "Unknown",
         description: "No description available for this part of speech.",
     };
+    // Show the percentage-explainer only when a meaningful pct was
+    // passed: integer between 1 and 99. 100% / missing / zero means
+    // there's nothing to explain (either implicit or irrelevant).
+    const pctNum = Number(pct);
+    const showPct = Number.isFinite(pctNum) && pctNum > 0 && pctNum < 100;
+    const pctSection = showPct ? `
+            <div class="pos-info-divider"></div>
+            <div class="pos-info-pct-label">Frequency on this card</div>
+            <div class="pos-info-pct-value">${pctNum}%</div>
+            <div class="pos-info-pct-description">
+                Of the example sentences we have for this word, about
+                ${pctNum}% use this meaning. The other ${100 - pctNum}%
+                split between the other meanings shown on the card.
+            </div>
+    ` : '';
     const overlay = document.createElement('div');
     overlay.className = 'pos-info-overlay';
     // Inline the popover's colour accent so it matches the pill that
@@ -74,6 +91,7 @@ function showPOSInfo(event, pos) {
         <div class="pos-info-popover ${posColorClass}" role="dialog" aria-label="${info.name}">
             <div class="pos-info-name">${info.name}</div>
             <div class="pos-info-description">${info.description}</div>
+            ${pctSection}
             <div class="pos-info-hint">Tap anywhere to close</div>
         </div>
     `;
@@ -1538,7 +1556,9 @@ function updateCard() {
                       + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
                 const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1;';
                 // Pill is tappable — stops row-select, opens POS info popover.
-                const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}')">${posPillInner}</span>`;
+                // Passes pctVal so the popover can also explain what the
+                // percentage on the pill means.
+                const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}', ${pctVal})">${posPillInner}</span>`;
                 const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
                 // Inline context: rendered on the same line as the translation
                 // in a smaller, dimmer typeface. Always full; a post-render
