@@ -2007,7 +2007,7 @@ function updateCard() {
     const linkIcons = {
         'spanishDict': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="40" height="40" alt="SpanishDict" style="border-radius:4px">`,
         'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=64" width="40" height="40" alt="Reverso" style="border-radius:4px">`,
-        'conjugation': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="32" height="32" alt="Conjugate" style="border-radius:4px"><span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>`
+        'conjugation': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="32" height="32" alt="Conjugate" style="border-radius:4px">`
     };
     const linkTitles = {
         'spanishDict': 'SpanishDict',
@@ -2034,11 +2034,24 @@ function updateCard() {
         if (key === 'conjugation' && !isVerb) continue;
         // Replace external conjugation link with inline toggle when we have data
         if (key === 'conjugation' && conjEntry) {
-            backHTML += `<button class="ref-icon-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
+            // Square 32×32 icon to match the Reverso / SpanishDict favicons.
+            // The art echoes the conjugation panel: three rows, each a
+            // muted-stem segment on the left + accent-coloured ending on
+            // the right (varying ending length suggests different persons).
+            // Wrapper gets a darkened rounded background so the icon reads
+            // as a proper square button, same visual weight as the others.
+            backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
+                <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="0" y="0" width="32" height="32" rx="5" fill="rgba(255,255,255,0.08)"/>
+                    <g stroke-linecap="round" stroke-width="2.4">
+                        <line x1="6"  y1="10" x2="13" y2="10" stroke="rgba(255,255,255,0.55)"/>
+                        <line x1="15" y1="10" x2="21" y2="10" stroke="var(--accent-primary)"/>
+                        <line x1="6"  y1="16" x2="13" y2="16" stroke="rgba(255,255,255,0.55)"/>
+                        <line x1="15" y1="16" x2="25" y2="16" stroke="var(--accent-primary)"/>
+                        <line x1="6"  y1="22" x2="13" y2="22" stroke="rgba(255,255,255,0.55)"/>
+                        <line x1="15" y1="22" x2="19" y2="22" stroke="var(--accent-primary)"/>
+                    </g>
                 </svg>
-                <span style="font-size:9px;color:rgba(255,255,255,0.7);margin-left:2px">verb</span>
             </button>`;
             continue;
         }
