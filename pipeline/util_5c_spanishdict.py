@@ -232,7 +232,13 @@ def extract_component_data(html):
 
 
 def fetch_spanishdict_component(session, word):
-    url = "https://www.spanishdict.com/translate/%s" % quote(word)
+    # ``?langFrom=es`` forces Spanish-source mode. Without it,
+    # SpanishDict guesses the direction from the surface word and picks
+    # English-source for words like "has" / "dice" — handing us a
+    # backwards entry (headword is the English word, translations are
+    # Spanish). This scraper is Spanish-only, so forcing the direction
+    # is always the correct behaviour.
+    url = "https://www.spanishdict.com/translate/%s?langFrom=es" % quote(word)
     last_exc = None
     for attempt in range(5):
         try:
@@ -404,8 +410,17 @@ def build_dictionary_analyses(surface, rows, possible_results):
 def build_surface_entry(query, component):
     rows = extract_translation_rows(component)
     possible_results = extract_possible_results(component)
+    # entry_lang tells us which direction SpanishDict resolved the
+    # query in. With the scraper now forcing ``?langFrom=es`` this
+    # should always be "es"; we stash it on the cache entry anyway as
+    # a defensive signal so the builder can skip any legacy backwards
+    # entries that predate the fix.
+    props = component.get("sdDictionaryResultsProps") or {}
+    entry = props.get("entry") or {}
+    entry_lang = (props.get("entryLang") or entry.get("entryLang") or "").strip()
     return {
         "query": query,
+        "entry_lang": entry_lang,
         "dictionary_analyses": build_dictionary_analyses(query, rows, possible_results),
         "possible_results": possible_results,
     }

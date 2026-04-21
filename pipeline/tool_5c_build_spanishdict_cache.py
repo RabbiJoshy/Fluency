@@ -26,10 +26,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 # Bump when the scraper's extraction logic changes in a way that invalidates
 # previously cached entries. Entries tagged with an older step_version are
 # re-fetched on the next run (no --force needed).
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "initial — surface + headword caches",
     2: "adds phrases_cache extraction alongside surface fetch",
+    3: "force ?langFrom=es on the fetch URL to stop backwards entries "
+       "for words that are also English (has → have/tener, "
+       "dice → dice/dados). Also stores entry_lang on each surface "
+       "cache entry as a defensive signal.",
 }
 
 

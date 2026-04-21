@@ -1016,6 +1016,19 @@ def build_spanishdict_menu(
         if word not in surface_cache:
             skipped_uncached += 1
             continue
+        # Defensive filter: skip any legacy surface cache entry that was
+        # fetched before the scraper forced ?langFrom=es. Those entries
+        # resolved to the English headword and carry Spanish translations
+        # (has → have/tener, dice → dice/dados), which would be wrong on
+        # a Spanish card. The scraper now stores ``entry_lang`` so we can
+        # detect this; entries from before that change will have
+        # ``entry_lang == ""`` (missing) and we keep them — bumping the
+        # scraper STEP_VERSION will refetch them on the next build.
+        sc_entry = surface_cache[word]
+        sc_lang = (sc_entry.get("entry_lang") or "").strip() if isinstance(sc_entry, dict) else ""
+        if sc_lang and sc_lang != "es":
+            skipped_uncached += 1
+            continue
         eligible.append(word)
     if max_words is not None:
         eligible = eligible[:max_words]
