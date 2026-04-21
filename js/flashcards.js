@@ -2034,22 +2034,20 @@ function updateCard() {
         if (key === 'conjugation' && !isVerb) continue;
         // Replace external conjugation link with inline toggle when we have data
         if (key === 'conjugation' && conjEntry) {
-            // Square 32×32 icon to match the Reverso / SpanishDict favicons.
-            // The art echoes the conjugation panel: three rows, each a
-            // muted-stem segment on the left + accent-coloured ending on
-            // the right (varying ending length suggests different persons).
-            // Wrapper gets a darkened rounded background so the icon reads
-            // as a proper square button, same visual weight as the others.
+            // Square 32×32 icon — same footprint as the Reverso /
+            // SpanishDict favicons. The art shows the three Spanish verb
+            // classes (-AR / -ER / -IR) stacked, with the dash muted and
+            // the suffix letters in the accent colour. Mirrors the
+            // stem/ending split used throughout the conjugation panel and
+            // is instantly readable as "Spanish verb" to anyone who has
+            // studied the language.
             backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
                 <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <rect x="0" y="0" width="32" height="32" rx="5" fill="rgba(255,255,255,0.08)"/>
-                    <g stroke-linecap="round" stroke-width="2.4">
-                        <line x1="6"  y1="10" x2="13" y2="10" stroke="rgba(255,255,255,0.55)"/>
-                        <line x1="15" y1="10" x2="21" y2="10" stroke="var(--accent-primary)"/>
-                        <line x1="6"  y1="16" x2="13" y2="16" stroke="rgba(255,255,255,0.55)"/>
-                        <line x1="15" y1="16" x2="25" y2="16" stroke="var(--accent-primary)"/>
-                        <line x1="6"  y1="22" x2="13" y2="22" stroke="rgba(255,255,255,0.55)"/>
-                        <line x1="15" y1="22" x2="19" y2="22" stroke="var(--accent-primary)"/>
+                    <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
+                        <text x="16" y="11"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="var(--accent-primary)">AR</tspan></text>
+                        <text x="16" y="20"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="var(--accent-primary)">ER</tspan></text>
+                        <text x="16" y="29"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="var(--accent-primary)">IR</tspan></text>
                     </g>
                 </svg>
             </button>`;
@@ -2996,19 +2994,33 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
         grouped.push({ mood: 'Otras', accent: 'rgba(255,255,255,0.3)', tenses: orphanTenses });
     }
 
-    // Tense toggle, grouped by mood. Display label strips the "Subj." prefix
-    // since the mood label already provides that context.
+    // The mood that owns the default tense is the one we open on.
+    const defaultMood = (grouped.find(g => g.tenses.includes(defaultTense)) || grouped[0] || {}).mood;
+
+    // Mood toggle — segmented control, rendered only when more than one
+    // mood is present. When there's just one (e.g. only Indicativo tenses
+    // shipped), the toggle is redundant and hidden.
+    const moodToggleHTML = grouped.length > 1 ? `
+        <div class="conj-mood-toggle">
+            ${grouped.map(g => {
+                const active = g.mood === defaultMood ? ' conj-mood-toggle-active' : '';
+                return `<button class="conj-mood-toggle-btn${active}" data-mood="${g.mood}" style="--mood-accent: ${g.accent};" onclick="switchConjMood('${g.mood}')">${g.mood}</button>`;
+            }).join('')}
+        </div>` : '';
+
+    // One tense-toggle row per mood; only the active mood's row is
+    // visible (display toggled by switchConjMood). This keeps the tense
+    // list to a single horizontal row instead of stacking a label +
+    // buttons for every mood.
     const tenseToggleHTML = grouped.map(g => {
+        const isActiveMood = g.mood === defaultMood;
+        const hidden = isActiveMood ? '' : ' style="display:none"';
         const btns = g.tenses.map(t => {
             const active = t === defaultTense ? ' conj-tense-active' : '';
             const display = t.replace(/^Subj\.\s*/, '').replace(/^Imp\.\s*/, '');
             return `<button class="conj-tense-btn${active}" data-tense="${t}" onclick="switchConjTense('${t}')">${display}</button>`;
         }).join('');
-        return `
-            <div class="conj-mood-group" style="--mood-accent: ${g.accent};">
-                <div class="conj-mood-label">${g.mood}</div>
-                <div class="conj-tense-toggle">${btns}</div>
-            </div>`;
+        return `<div class="conj-tense-toggle" data-mood="${g.mood}" style="--mood-accent: ${g.accent};"${hidden}>${btns}</div>`;
     }).join('');
 
     // Per-tense table. Each form is split stem/ending so the pattern pops.
@@ -3056,18 +3068,19 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
 
     return `
         <div id="conjugationTable" class="conjugation-panel">
+            <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
             <div class="conj-header">
-                <div class="conj-header-row">
-                    <div class="conj-title">
-                        <span class="conj-infinitive">${infinitive}</span>
-                        ${translation ? `<span class="conj-translation">${translation}</span>` : ''}
-                    </div>
+                <div class="conj-title">
+                    <span class="conj-infinitive">${infinitive}</span>
                     ${typeBadge}
-                    <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
                 </div>
+                ${translation ? `<div class="conj-translation">${translation}</div>` : ''}
                 ${nonFiniteHTML}
             </div>
-            ${tenseToggleHTML}
+            ${moodToggleHTML}
+            <div class="conj-tense-toggles">
+                ${tenseToggleHTML}
+            </div>
             <div class="conj-tables-wrap">
                 ${tenseTables}
             </div>
@@ -3088,6 +3101,26 @@ function switchConjTense(tenseName) {
         b.classList.toggle('conj-tense-active', b.dataset.tense === tenseName);
     });
 }
+
+function switchConjMood(moodName) {
+    const panel = document.getElementById('conjugationTable');
+    if (!panel) return;
+    // Swap mood-toggle active state.
+    panel.querySelectorAll('.conj-mood-toggle-btn').forEach(b => {
+        b.classList.toggle('conj-mood-toggle-active', b.dataset.mood === moodName);
+    });
+    // Show only the active mood's tense-toggle row.
+    panel.querySelectorAll('.conj-tense-toggle').forEach(t => {
+        t.style.display = t.dataset.mood === moodName ? '' : 'none';
+    });
+    // Switch the visible tense to the mood's first (or already-active) one.
+    const activeRow = panel.querySelector(`.conj-tense-toggle[data-mood="${moodName}"]`);
+    if (activeRow) {
+        const active = activeRow.querySelector('.conj-tense-active') || activeRow.querySelector('.conj-tense-btn');
+        if (active) switchConjTense(active.dataset.tense);
+    }
+}
+window.switchConjMood = switchConjMood;
 
 function toggleConjugationTable() {
     const panel = document.getElementById('conjugationTable');

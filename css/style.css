@@ -2921,25 +2921,34 @@
             visibility: visible;
         }
 
-        /* ---- Header: infinitive · translation · type badge · close ---- */
+        /* ---- Header: infinitive + type badge, translation, non-finite
+           forms — all centred. Close button floats top-right out of flow. */
+        .conj-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+            padding: 4px 8px;
+            line-height: 1;
+            z-index: 2;
+        }
+        .conj-close-btn:hover { color: var(--text-primary); }
+
         .conj-header {
             margin-bottom: 14px;
-            padding-bottom: 12px;
+            padding: 2px 0 12px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .conj-header-row {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 10px;
+            text-align: center;
         }
         .conj-title {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            flex: 1;
-            min-width: 0;
-            flex-wrap: wrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
         }
         .conj-infinitive {
             font-size: 22px;
@@ -2951,6 +2960,7 @@
             font-size: 14px;
             color: var(--text-muted);
             font-style: italic;
+            margin-top: 2px;
         }
         .conj-type-badge {
             font-size: 10px;
@@ -2961,30 +2971,18 @@
             background: rgba(var(--accent-primary-rgb), 0.22);
             color: var(--accent-primary);
             border: 1px solid rgba(var(--accent-primary-rgb), 0.35);
-            flex-shrink: 0;
         }
-        .conj-close-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 22px;
-            cursor: pointer;
-            padding: 0 4px;
-            line-height: 1;
-            flex-shrink: 0;
-            align-self: center;
-        }
-        .conj-close-btn:hover { color: var(--text-primary); }
 
-        /* Non-finite forms pinned in the header — always visible regardless
-           of the active tense. */
+        /* Non-finite forms pinned in the header, centred. */
         .conj-nonfinite {
             display: flex;
-            gap: 14px;
+            gap: 10px;
             flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
         }
         .conj-nf-item {
-            display: flex;
+            display: inline-flex;
             align-items: baseline;
             gap: 6px;
             padding: 3px 8px;
@@ -3010,26 +3008,54 @@
             color: white;
         }
 
-        /* ---- Mood group (tense picker) ----
-           Each mood gets an accent color via --mood-accent, set inline on
-           the group wrapper. Indicative=blue, Subjunctive=purple,
-           Imperative=pink. */
-        .conj-mood-group {
-            margin-bottom: 10px;
+        /* ---- Mood toggle (segmented control) ----
+           Two (or more) moods as a single pill-shaped segmented row.
+           Active button picks up its mood's accent colour via
+           --mood-accent (set inline on each button). Rendered only when
+           more than one mood has data; single-mood cases skip it. */
+        .conj-mood-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 12px;
         }
-        .conj-mood-label {
-            font-size: 10px;
+        .conj-mood-toggle-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-right-width: 0;
+            color: var(--text-muted);
+            font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: var(--mood-accent, var(--text-muted));
-            margin-bottom: 5px;
-            opacity: 0.9;
+            font-family: var(--font-data);
+            padding: 6px 14px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .conj-mood-toggle-btn:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+        .conj-mood-toggle-btn:last-child {
+            border-radius: 0 6px 6px 0;
+            border-right-width: 1px;
+        }
+        .conj-mood-toggle-btn:hover {
+            background: rgba(255,255,255,0.07);
+            color: var(--text-primary);
+        }
+        .conj-mood-toggle-btn.conj-mood-toggle-active {
+            background: color-mix(in srgb, var(--mood-accent) 30%, transparent);
+            color: white;
+            border-color: var(--mood-accent);
+        }
+
+        /* ---- Tense picker (horizontal row of tenses for the active mood) ---- */
+        .conj-tense-toggles {
+            margin-bottom: 10px;
         }
         .conj-tense-toggle {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
+            justify-content: center;
         }
         .conj-tense-btn {
             background: rgba(255,255,255,0.04);
@@ -3059,22 +3085,37 @@
         /* ---- Conjugation table ---- */
         .conj-tables-wrap {
             margin-top: 8px;
+            display: flex;
+            justify-content: center;
         }
         .conj-table {
-            width: 100%;
-            border-collapse: collapse;
+            /* Width fits content, and the wrap above centres it — the
+               two columns cluster around the panel's horizontal midpoint
+               instead of hugging the left edge. */
+            width: auto;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: 15px;
             color: var(--text-primary);
         }
         .conj-table tr {
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            /* No cell borders — the active-row box-shadow + subtle
+               striping do the visual work. Removes the lopsided look
+               that came from each row being a <tr> with its own border. */
         }
-        .conj-table tr:nth-child(even) {
-            background: rgba(255,255,255,0.015);
+        .conj-table tr:nth-child(even) td {
+            background: rgba(255,255,255,0.02);
         }
-        .conj-table tr.conj-active {
+        .conj-table tr.conj-active td {
             background: rgba(var(--accent-primary-rgb), 0.14);
-            box-shadow: inset 0 0 0 1px rgba(var(--accent-primary-rgb), 0.45);
+        }
+        .conj-table tr.conj-active td:first-child {
+            border-radius: 6px 0 0 6px;
+            box-shadow: inset 1px 0 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 1px 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 -1px 0 rgba(var(--accent-primary-rgb), 0.45);
+        }
+        .conj-table tr.conj-active td:last-child {
+            border-radius: 0 6px 6px 0;
+            box-shadow: inset -1px 0 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 1px 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 -1px 0 rgba(var(--accent-primary-rgb), 0.45);
         }
         .conj-table tr.conj-active .conj-stem,
         .conj-table tr.conj-active .conj-ending {
@@ -3083,17 +3124,22 @@
         }
 
         .conj-pronoun {
-            padding: 7px 10px 7px 4px;
+            /* Right-aligned so pronouns butt up against the visual centre
+               line; form column starts just to the right of centre. Feels
+               balanced without a hard column line. */
+            padding: 7px 14px 7px 12px;
             color: var(--text-muted);
             font-size: 12px;
             font-family: var(--font-data);
-            width: 80px;
             white-space: nowrap;
+            text-align: right;
         }
         .conj-form {
-            padding: 7px 4px;
+            padding: 7px 12px 7px 4px;
             font-size: 16px;
             font-family: var(--font-emphasis);
+            text-align: left;
+            min-width: 110px;
         }
         /* Stem: muted. Ending: accent-coloured + bold. For regular verbs
            every ending in a tense shares the same colour + shape so the
