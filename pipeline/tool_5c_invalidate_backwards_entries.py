@@ -80,11 +80,46 @@ TOKEN_RE = re.compile(r"[a-zA-Z]+(?:[áéíóúñüÁÉÍÓÚÑÜa-zA-Z]*)", re.
 
 
 def load_known_spanish_infinitives():
-    """Return the set of Spanish infinitives from ``conjugations.json`` keys."""
+    """Return the set of Spanish infinitives (plus -se reflexive variants)
+    from ``conjugations.json`` keys.
+
+    The reflexive suffix is added programmatically because
+    ``conjugations.json`` only stores non-reflexive bases. Without the
+    -se variants, translations like ``imaginarse`` / ``figurarse`` /
+    ``creerse`` / ``venirse`` read as English and an obviously-backwards
+    entry like ``imagine → imaginarse`` escapes the filter.
+    """
     if not CONJUGATIONS_PATH.exists():
         return set()
     with open(CONJUGATIONS_PATH, encoding="utf-8") as f:
-        return {k.lower() for k in json.load(f).keys()}
+        bases = {k.lower() for k in json.load(f).keys()}
+    out = set(bases)
+    for b in bases:
+        out.add(b + "se")
+    return out
+
+
+def load_spanish_word_set(word_lemmas):
+    """Return a set of Spanish word-forms known to appear in the corpus.
+
+    Built from the inventory: every entry's surface word and its
+    ``known_lemmas`` contribute. Used to catch Spanish adjectives /
+    nouns / adverbs that don't carry diacritics and aren't infinitives
+    (``tarde``, ``atrasado``, ``retrasado``, ``difunto`` in translations
+    of ``late``, for example). An inventory-membership signal isn't
+    conclusive on its own — many forms coincide with English words —
+    but counted alongside Spanish-char and infinitive signals it
+    correctly flags entries whose translations are mostly Spanish
+    content words.
+    """
+    out = set()
+    for word, lemmas in word_lemmas.items():
+        if word:
+            out.add(word)
+        for lm in lemmas:
+            if lm:
+                out.add(lm)
+    return out
 
 
 def load_word_lemma_map():
@@ -114,22 +149,36 @@ def _tokens(text):
     return [m.group(0).lower() for m in TOKEN_RE.finditer(text or "")]
 
 
-def flag_entry(word, entry, infinitives, word_lemmas):
+def flag_entry(word, entry, infinitives, word_lemmas, spanish_words=None):
     """Return ``(is_backwards, reason)``.
 
     ``word`` is the cache key (lowercase). ``entry`` is the surface
     cache row. ``infinitives`` + ``word_lemmas`` are loaded once.
+
+    Heuristic: flag if the MAJORITY of the entry's senses have
+    translations that look Spanish. Using a per-sense count instead of
+    "any sense" eliminates the false positive where a forward entry
+    has one loanword translation with Spanish accents (café has a
+    translation "café" among "coffee/coffee shop/brown"; novia has
+    "fiancée" among "bride/girlfriend/fiancée"). Those entries are
+    actually correct — Spanish → English — but contain one loanword
+    output that triggered the naive "any Spanish char" rule.
+
+    "Looks Spanish" per sense:
+      * translation contains Spanish-only chars (á é í ó ú ñ ü), OR
+      * translation contains a Spanish infinitive token (from
+        conjugations.json) and the entry's headword is NOT one of the
+        query word's morphological lemmas — blocks the sonaría→sonar
+        false positive (headword "sonar" IS sonaría's known lemma).
     """
     if not isinstance(entry, dict):
         return False, ""
 
     lang = (entry.get("entry_lang") or "").strip()
-    if lang and lang != "es":
-        return True, f"entry_lang={lang!r}"
-
-    # Already confirmed Spanish — leave alone.
     if lang == "es":
         return False, ""
+    if lang and lang != "es":
+        return True, f"entry_lang={lang!r}"
 
     analyses = entry.get("dictionary_analyses") or []
     if not analyses:
@@ -137,30 +186,64 @@ def flag_entry(word, entry, infinitives, word_lemmas):
 
     known_lemmas = set(word_lemmas.get(word, []))
 
+    total_senses = 0
+    spanish_senses = 0
+    first_reason = ""
+
     for a in analyses:
         headword = (a.get("headword") or "").strip().lower()
-        headword_is_known_lemma = bool(headword and headword in known_lemmas)
+        # Exclude the headword itself from translation-token matching.
+        # That's the narrow fix for sonaría → sonar → sonar (headword
+        # "sonar" happens to be both a Spanish infinitive AND the query's
+        # known lemma, so counting the identity-translation as Spanish
+        # would wrongly flag a forward entry). Using a blanket
+        # ``headword_is_known_lemma`` gate was too aggressive — it also
+        # skipped genuine backwards entries like ``okay`` (known_lemmas
+        # = [okay], headword = okay) whose translations "bien / bueno /
+        # vale" don't match the headword but ARE Spanish.
+        exclude_tokens = {word}
+        if headword:
+            exclude_tokens.add(headword)
         senses = a.get("senses") or []
         for s in senses:
             tr = s.get("translation") or ""
             if not tr:
                 continue
-            # A: Spanish-only characters — ironclad.
+            total_senses += 1
+            is_spanish = False
+            reason = ""
             if SPANISH_CHARS_RE.search(tr):
-                return True, f"translation {tr!r} contains Spanish char"
-            # B: Infinitive-looking token, and the entry's headword
-            # isn't a morphological ancestor of the query. This blocks
-            # the common false positive: sonaría → headword sonar →
-            # translation sonar. "sonar" IS a Spanish infinitive, but
-            # it's also the query's known lemma, so the entry is
-            # forward.
-            if headword_is_known_lemma:
-                continue
-            for tok in _tokens(tr):
-                if tok == word:
-                    continue
-                if tok in infinitives:
-                    return True, f"translation {tr!r} contains Spanish infinitive {tok!r}"
+                is_spanish = True
+                reason = f"{tr!r} contains Spanish char"
+            else:
+                for tok in _tokens(tr):
+                    if tok in exclude_tokens:
+                        continue
+                    if tok in infinitives:
+                        is_spanish = True
+                        reason = f"{tr!r} contains Spanish infinitive {tok!r}"
+                        break
+                    if spanish_words and len(tok) >= 4 and tok in spanish_words:
+                        # Inventory-membership as a weaker fallback for
+                        # content words that don't carry diacritics and
+                        # aren't infinitives (tarde, atrasado, difunto).
+                        # 4-char gate avoids short English-Spanish
+                        # homographs (de, la, el, un, en).
+                        is_spanish = True
+                        reason = f"{tr!r} contains Spanish word {tok!r}"
+                        break
+            if is_spanish:
+                spanish_senses += 1
+                if not first_reason:
+                    first_reason = reason
+
+    if total_senses == 0:
+        return False, ""
+    # Majority of senses look Spanish → the entry is a backwards
+    # translation (English headword, Spanish glosses). One stray
+    # loanword in an otherwise-English entry doesn't trip this.
+    if spanish_senses * 2 > total_senses:
+        return True, f"{spanish_senses}/{total_senses} senses look Spanish ({first_reason})"
     return False, ""
 
 
@@ -192,15 +275,17 @@ def main():
     print(f"Loaded surface cache: {len(cache)} entries")
 
     infinitives = load_known_spanish_infinitives()
-    print(f"Loaded {len(infinitives)} Spanish infinitives from conjugations.json")
+    print(f"Loaded {len(infinitives)} Spanish infinitives (incl. -se reflexive)")
     word_lemmas = load_word_lemma_map()
     print(f"Loaded {len(word_lemmas)} word→lemmas mappings from word_inventory.json")
+    spanish_words = load_spanish_word_set(word_lemmas)
+    print(f"Spanish word set (inventory words + lemmas): {len(spanish_words)} forms")
 
     flagged = []
     for word, entry in cache.items():
         if word in skip:
             continue
-        is_back, reason = flag_entry(word, entry, infinitives, word_lemmas)
+        is_back, reason = flag_entry(word, entry, infinitives, word_lemmas, spanish_words)
         if is_back:
             flagged.append((word, entry, reason))
 
