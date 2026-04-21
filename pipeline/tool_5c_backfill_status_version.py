@@ -63,29 +63,41 @@ def main():
 
     with open(SPANISHDICT_STATUS, encoding="utf-8") as f:
         status = json.load(f)
-    surface = status.get("surface", {})
-    print(f"Loaded status: {len(surface)} surface rows")
 
-    counts_before = Counter()
-    missing_rows = []
-    for word, s in surface.items():
-        if not isinstance(s, dict):
-            continue
-        v = s.get("step_version", "missing")
-        counts_before[v] += 1
-        if v == "missing":
-            missing_rows.append(word)
+    # Backfill BOTH the ``surface`` and ``headwords`` status sections.
+    # The cache builder's stale-version check applies equally to both;
+    # a backfill that only covered surface still left ~4k unversioned
+    # headword rows driving a spurious ~24 min of headword re-fetches.
+    sections = [
+        ("surface", status.get("surface", {})),
+        ("headwords", status.get("headwords", {})),
+    ]
+    total_missing = []
+    for name, section in sections:
+        counts_before = Counter()
+        missing = []
+        for k, s in section.items():
+            if not isinstance(s, dict):
+                continue
+            v = s.get("step_version", "missing")
+            counts_before[v] += 1
+            if v == "missing":
+                missing.append(k)
+        print(f"\n[{name}] {len(section)} rows; step_version distribution (before):")
+        for v, n in sorted(counts_before.items(), key=lambda kv: (str(kv[0]))):
+            print(f"  {v!r}: {n}")
+        total_missing.append((name, section, missing))
 
-    print("step_version distribution (before):")
-    for v, n in sorted(counts_before.items(), key=lambda kv: (str(kv[0]))):
-        print(f"  {v!r}: {n}")
-
-    if not missing_rows:
+    any_missing = any(missing for _, _, missing in total_missing)
+    if not any_missing:
         print("\nNothing to backfill.")
         return
 
-    print(f"\nWould stamp {len(missing_rows)} rows with step_version={args.target_version}")
-    print(f"Sample: {missing_rows[:10]}")
+    for name, _, missing in total_missing:
+        if not missing:
+            continue
+        print(f"\n[{name}] Would stamp {len(missing)} rows with step_version={args.target_version}")
+        print(f"  Sample: {missing[:10]}")
 
     if not args.execute:
         print("\nDry run — no changes made.")
@@ -97,12 +109,16 @@ def main():
         shutil.copy2(SPANISHDICT_STATUS, bak)
         print(f"\nBacked up → {bak}")
 
-    for word in missing_rows:
-        surface[word]["step_version"] = args.target_version
+    total_stamped = 0
+    for name, section, missing in total_missing:
+        for k in missing:
+            section[k]["step_version"] = args.target_version
+        total_stamped += len(missing)
 
     with open(SPANISHDICT_STATUS, "w", encoding="utf-8") as f:
         json.dump(status, f, ensure_ascii=False, indent=2)
-    print(f"Stamped {len(missing_rows)} rows with step_version={args.target_version}.")
+    print(f"Stamped {total_stamped} rows (surface + headwords) with "
+          f"step_version={args.target_version}.")
 
 
 if __name__ == "__main__":
