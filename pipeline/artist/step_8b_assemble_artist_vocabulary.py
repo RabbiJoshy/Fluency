@@ -36,6 +36,10 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
 from pipeline.util_pipeline_config import get_default_min_priority  # noqa: E402
+from pipeline.util_5c_spanishdict import (  # noqa: E402
+    SPANISHDICT_SURFACE_CACHE,
+    conjugation_lemma_from_possible_results,
+)
 
 STEP_VERSION = 1
 STEP_VERSION_NOTES = {
@@ -225,6 +229,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # Keyed by word string (lowercase), e.g. {"que": [{expression, translation, source, ...}]}.
     shared_mwes_path = os.path.join(project_root, "Data", "Spanish", "layers", "mwe_phrases.json")
     mwe_by_word = load_layer(shared_mwes_path, "mwe_phrases (shared)", required=False) or {}
+
+    # SpanishDict surface cache — source for `related_lemma` (the
+    # morphological pointer SpanishDict attaches to lexicalised
+    # conjugated-form headwords, e.g. hay → haber). See
+    # util_5c_spanishdict.conjugation_lemma_from_possible_results.
+    spanishdict_surface_cache = {}
+    if SPANISHDICT_SURFACE_CACHE.exists():
+        with open(SPANISHDICT_SURFACE_CACHE, "r", encoding="utf-8") as f:
+            spanishdict_surface_cache = json.load(f)
+        print(f"  spanishdict_surface_cache: {len(spanishdict_surface_cache)} entries")
+    else:
+        print("  spanishdict_surface_cache: (not found, related_lemma disabled)")
 
     # Artist-specific MWEs from the lyric counting pass (step_2a → mwe_detected.json).
     # Merged in-memory, not written back to the shared layer — these are per-artist
@@ -1350,6 +1366,17 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             idx_entry["variants"] = entry["variants"]
         if entry.get("morphology"):
             idx_entry["morphology"] = entry["morphology"]
+        # `related_lemma` — SpanishDict's morphological pointer when it
+        # differs from this card's semantic lemma. Classic case: ``hay``
+        # has ``lemma=hay`` (SD lexicalises "there is/are" as its own
+        # headword) but ``related_lemma=haber`` (SD also flags it as a
+        # conjugation of haber). Front-end surfaces haber's paradigm
+        # when the card's own lemma has no inline conjugation data.
+        sd_entry = spanishdict_surface_cache.get((entry.get("word") or "").lower())
+        if sd_entry:
+            sd_conj = conjugation_lemma_from_possible_results(sd_entry)
+            if sd_conj and sd_conj != (entry.get("lemma") or "").lower():
+                idx_entry["related_lemma"] = sd_conj
         if entry_mwes:
             idx_entry["mwe_memberships"] = [
                 {**{"expression": mwe["expression"],

@@ -2028,8 +2028,23 @@ function updateCard() {
         isVerb = pos.includes('verb') || pos === 'v' || pos === 'vb';
     }
 
-    // Check for inline conjugation data
-    const conjEntry = isVerb && _conjugationData ? _conjugationData[card.lemma] : null;
+    // Check for inline conjugation data — first under the card's own
+    // lemma, then (as a fallback) under its `relatedLemma` if one was
+    // stamped. The related lemma is SpanishDict's morphological
+    // pointer for lexicalised conjugated-form headwords (hay → haber);
+    // we use it to surface the related verb's paradigm when the card's
+    // own lemma doesn't have one. See buildConjugationTableHTML for
+    // the "related paradigm" display treatment.
+    let conjEntry = null;
+    let conjEntryIsRelated = false;
+    if (isVerb && _conjugationData) {
+        if (_conjugationData[card.lemma]) {
+            conjEntry = _conjugationData[card.lemma];
+        } else if (card.relatedLemma && _conjugationData[card.relatedLemma]) {
+            conjEntry = _conjugationData[card.relatedLemma];
+            conjEntryIsRelated = true;
+        }
+    }
 
     backHTML += `<div class="links-section" id="linksSection">`;
 
@@ -2069,8 +2084,17 @@ function updateCard() {
     // Conjugation panel — always built for verbs. The builder handles
     // the no-inline-data case itself (returns a "no data" panel + SD
     // link), so the button above always has something to toggle.
+    // When we're rendering data for the card's related verb (e.g.
+    // showing haber's paradigm for a hay card), we pass that flag
+    // through so the panel can label it honestly instead of pretending
+    // the paradigm belongs to the card's own word.
     if (isVerb) {
-        backHTML += buildConjugationTableHTML(conjEntry, card.targetWord, card.lemma);
+        backHTML += buildConjugationTableHTML(
+            conjEntry,
+            card.targetWord,
+            card.lemma,
+            { relatedLemma: card.relatedLemma, isRelatedParadigm: conjEntryIsRelated }
+        );
     }
 
     document.getElementById('backContent').innerHTML = backHTML;
@@ -2962,15 +2986,27 @@ function splitStemEnding(form, infinitive) {
     return { stem: form.slice(0, i), ending: form.slice(i) };
 }
 
-function buildConjugationTableHTML(conjEntry, targetWord, lemma) {
+function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
+    opts = opts || {};
+    const relatedLemma = opts.relatedLemma || null;
+    const isRelatedParadigm = !!opts.isRelatedParadigm;
+
     // No inline data (conjEntry absent or empty): render a small
-    // "no-data" panel with the infinitive + a prominent SpanishDict
-    // link. Happens for defective / lexicalised-headword verbs like
-    // "hay" whose lemma we don't have in conjugations.json.
+    // "no-data" panel with the card's own lemma + a prominent SpanishDict
+    // link. If the card has a `relatedLemma` pointer (SpanishDict flagged
+    // it as a conjugation of another verb), surface that relationship so
+    // the user knows where to go for the paradigm.
     const hasData = conjEntry && Object.keys(conjEntry.tenses || {}).length > 0;
     if (!hasData) {
         const displayLemma = (lemma || targetWord || '').toLowerCase();
-        const sdUrl = `https://www.spanishdict.com/conjugate/${encodeURIComponent(displayLemma)}`;
+        const sdTarget = relatedLemma || displayLemma;
+        const sdUrl = `https://www.spanishdict.com/conjugate/${encodeURIComponent(sdTarget)}`;
+        const emptyMsg = relatedLemma
+            ? `<strong>${displayLemma}</strong> is a lexicalised form related to <strong>${relatedLemma}</strong>. We don't have its conjugation inline.`
+            : `No conjugation data available for this verb.`;
+        const sdLabel = relatedLemma
+            ? `Conjugate ${relatedLemma} on SpanishDict`
+            : `Conjugate on SpanishDict`;
         return `
             <div id="conjugationTable" class="conjugation-panel">
                 <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
@@ -2980,11 +3016,11 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma) {
                     </div>
                 </div>
                 <div class="conj-empty-msg">
-                    No conjugation data available for this verb.
+                    ${emptyMsg}
                 </div>
-                <a href="${sdUrl}" target="_blank" class="conj-sd-link conj-sd-link-prominent" title="Full paradigm on SpanishDict">
+                <a href="${sdUrl}" target="_blank" class="conj-sd-link conj-sd-link-prominent" title="${sdLabel}">
                     <img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="18" height="18" alt="" style="border-radius:3px">
-                    <span>Conjugate on SpanishDict</span>
+                    <span>${sdLabel}</span>
                 </a>
             </div>
         `;
@@ -2993,8 +3029,10 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma) {
     const tenseNames = Object.keys(tenses);
     const targetLower = targetWord.toLowerCase();
     // Prefer an explicit infinitive on the conj entry; fall back to
-    // the lemma, then targetWord as a last resort.
-    const infinitive = (conjEntry.infinitive || lemma || targetWord || '').toLowerCase();
+    // the lemma (or relatedLemma when we're rendering a related
+    // verb's paradigm), then targetWord as a last resort.
+    const conjOwnerLemma = isRelatedParadigm ? (relatedLemma || lemma || targetWord || '') : (lemma || targetWord || '');
+    const infinitive = (conjEntry.infinitive || conjOwnerLemma).toLowerCase();
 
     // Pick the tense containing targetWord as the default; Presente otherwise.
     let defaultTense = tenses['Presente'] ? 'Presente' : tenseNames[0];
@@ -3109,9 +3147,20 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma) {
             <span>Full paradigm on SpanishDict</span>
         </a>`;
 
+    // When we're rendering a related verb's paradigm (e.g. haber for a
+    // hay card), add a note above the header so the user knows the
+    // table isn't the card's own verb. Keeps the panel honest: the
+    // paradigm belongs to the related verb, not the lexicalised word
+    // on the card.
+    const relatedNoteHTML = isRelatedParadigm && lemma && relatedLemma ? `
+        <div class="conj-related-note">
+            <strong>${lemma.toLowerCase()}</strong> is a lexicalised form related to <strong>${relatedLemma.toLowerCase()}</strong>. Showing <strong>${relatedLemma.toLowerCase()}</strong>'s full paradigm below.
+        </div>` : '';
+
     return `
         <div id="conjugationTable" class="conjugation-panel">
             <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
+            ${relatedNoteHTML}
             <div class="conj-header">
                 <div class="conj-title">
                     <span class="conj-infinitive">${infinitive}</span>

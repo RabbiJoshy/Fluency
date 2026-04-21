@@ -411,6 +411,63 @@ def build_surface_entry(query, component):
     }
 
 
+def conjugation_lemma_from_possible_results(entry):
+    """Return the morphological lemma SpanishDict flagged this surface as,
+    or ``None``.
+
+    SpanishDict's surface-lookup response has two parallel views:
+
+    * ``dictionary_analyses[].headword`` — the lexicalised dictionary
+      entry for the surface word (e.g. ``hay`` has its own headword
+      because the "there is/are" meaning is lexicalised; ``vino``-the-
+      noun gets its own headword even though ``vino`` is also a
+      conjugation of ``venir``).
+    * ``possible_results`` — a flat list of disambiguation hints tagged
+      by ``heuristic``. Rows with ``heuristic: "conjugation"`` are
+      explicit morphological pointers: "this surface is a conjugation
+      of VERB", independent of any dictionary entry.
+
+    This helper returns the conjugation pointer's headword, handling:
+
+    * multiple duplicate pointers (e.g. ``habla`` lists ``hablar`` three
+      times) — dedupe, take first.
+    * multi-verb ambiguity (``fue`` / ``fui`` point to both ``ser`` and
+      ``ir``) — prefer the pointer whose headword matches the
+      ``dictionary_analyses`` headword (that's SpanishDict's own
+      default pick), else fall back to the first.
+    * pure-noun cases (no conjugation pointer) — return ``None``.
+
+    The caller decides what to do with the result — the usual pattern
+    is: if the card's semantic lemma differs from this morphological
+    pointer, stamp a separate ``related_lemma`` field on the card so
+    the UI can surface the related paradigm without collapsing the
+    card's semantic identity.
+    """
+    if not isinstance(entry, dict):
+        return None
+    possibles = entry.get("possible_results") or []
+    seen = set()
+    conj_lemmas = []
+    for row in possibles:
+        if not isinstance(row, dict) or row.get("heuristic") != "conjugation":
+            continue
+        hw = (row.get("headword") or "").strip()
+        if hw and hw not in seen:
+            seen.add(hw)
+            conj_lemmas.append(hw)
+    if not conj_lemmas:
+        return None
+    if len(conj_lemmas) == 1:
+        return conj_lemmas[0]
+    # Multi-pointer ambiguity — tie-break with the dictionary headword.
+    analyses = entry.get("dictionary_analyses") or []
+    if analyses:
+        dict_hw = (analyses[0].get("headword") or "").strip()
+        if dict_hw and dict_hw in seen:
+            return dict_hw
+    return conj_lemmas[0]
+
+
 _MWE_UOTFI_RE = re.compile(
     r"^\s*Used other than figuratively or idiomatically:\s*see[^.]*\.\s*",
     re.IGNORECASE,

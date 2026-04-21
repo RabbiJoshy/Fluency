@@ -597,7 +597,13 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 isMultiMeaning: true,
                 variants: item.variants || null,
                 homographIds: item.homograph_ids || null,
-                morphology: item.morphology || null
+                morphology: item.morphology || null,
+                // SpanishDict's morphological pointer (e.g. hay → haber).
+                // Set when the word's semantic lemma is lexicalised but
+                // SD also flags it as a conjugation of some verb. The
+                // conjugation panel uses this as a fallback when the
+                // card's own lemma has no inline paradigm.
+                relatedLemma: item.related_lemma || null
             };
             flashcards.push(card);
         }
@@ -902,7 +908,13 @@ async function loadIncorrectWordsSet() {
                 isMultiMeaning: true,
                 variants: item.variants || null,
                 homographIds: item.homograph_ids || null,
-                morphology: item.morphology || null
+                morphology: item.morphology || null,
+                // SpanishDict's morphological pointer (e.g. hay → haber).
+                // Set when the word's semantic lemma is lexicalised but
+                // SD also flags it as a conjugation of some verb. The
+                // conjugation panel uses this as a fallback when the
+                // card's own lemma has no inline paradigm.
+                relatedLemma: item.related_lemma || null
             };
             flashcards.push(card);
         }

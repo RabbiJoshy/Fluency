@@ -43,6 +43,10 @@ from pathlib import Path
 import argparse
 
 from util_5c_sense_paths import sense_menu_path, sense_assignments_lemma_path
+from util_5c_spanishdict import (
+    SPANISHDICT_SURFACE_CACHE,
+    conjugation_lemma_from_possible_results,
+)
 from util_6a_assignment_format import load_assignments, resolve_best_per_example
 
 # Keyword-tier priority ceiling for meaning-level assignment_method stamping.
@@ -435,6 +439,20 @@ def main():
     else:
         conj_reverse = {}
         print("  conjugation_reverse: (not found, skipping)")
+
+    # SpanishDict surface cache — needed for `related_lemma`, the
+    # morphological pointer SpanishDict attaches to words whose
+    # dictionary headword is lexicalised separately from their
+    # conjugation source (classic case: ``hay`` is its own dict
+    # headword but ``possible_results`` flags it as a conjugation of
+    # ``haber``). See util_5c_spanishdict.conjugation_lemma_from_possible_results.
+    if SPANISHDICT_SURFACE_CACHE.exists():
+        with open(SPANISHDICT_SURFACE_CACHE, encoding="utf-8") as f:
+            spanishdict_surface_cache = json.load(f)
+        print(f"  spanishdict_surface_cache: {len(spanishdict_surface_cache)} entries")
+    else:
+        spanishdict_surface_cache = {}
+        print("  spanishdict_surface_cache: (not found, related_lemma disabled)")
 
     # Clitic routing: read from word_routing.json (produced by step_4a_route_clitics.py)
     routing_path = LAYERS / "word_routing.json"
@@ -858,6 +876,21 @@ def main():
                 if not meanings_lean:
                     continue
 
+            # `related_lemma` — SpanishDict's morphological pointer for
+            # lexicalised conjugated-form headwords. Stamped only when the
+            # SD pointer differs from this card's semantic lemma, so it
+            # doesn't duplicate information already on the card. UI uses
+            # this to surface the related verb's paradigm when the card's
+            # own lemma has no inline conjugation data (e.g. ``hay`` has
+            # ``lemma=hay`` but ``related_lemma=haber``, so the panel can
+            # fall through to haber's paradigm labelled as related).
+            related_lemma = None
+            sd_entry = spanishdict_surface_cache.get(word.lower())
+            if sd_entry:
+                sd_conj = conjugation_lemma_from_possible_results(sd_entry)
+                if sd_conj and sd_conj != lemma:
+                    related_lemma = sd_conj
+
             # Collect the entry (sort and compute most_frequent later)
             all_entries.append({
                 "word": word,
@@ -872,6 +905,7 @@ def main():
                 "mwe_examples_by_idx": mwe_examples_by_idx,
                 "morphology": morphology,
                 "variants": inv_entry.get("variants"),
+                "related_lemma": related_lemma,
             })
             if morphology:
                 stats["with_morphology"] += 1
@@ -963,6 +997,8 @@ def main():
             mono_entry["mwe_memberships"] = e["mwe_memberships"]
         if e["morphology"]:
             mono_entry["morphology"] = e["morphology"]
+        if e.get("related_lemma"):
+            mono_entry["related_lemma"] = e["related_lemma"]
         if e.get("variants"):
             mono_entry["variants"] = e["variants"]
             merged_ids = merged_ids_by_base.get(word_id)
@@ -986,6 +1022,8 @@ def main():
             idx_entry["mwe_memberships"] = e["mwe_memberships"]
         if e["morphology"]:
             idx_entry["morphology"] = e["morphology"]
+        if e.get("related_lemma"):
+            idx_entry["related_lemma"] = e["related_lemma"]
         index.append(idx_entry)
 
         ex_entry = {}
