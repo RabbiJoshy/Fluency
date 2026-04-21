@@ -11,9 +11,20 @@ Running this tool:
 1. Scans the existing surface_cache.
 2. Flags entries whose translations look Spanish (= we got the English
    headword for a word that ought to have been Spanish-source).
-3. Either prints them (dry run) or removes them from the cache so the
-   next ``tool_5c_build_spanishdict_cache.py`` run will refetch them
-   through the fixed URL.
+3. Either prints them (dry run) or:
+   a. Removes flagged entries from the shared surface cache so the
+      next ``tool_5c_build_spanishdict_cache.py`` run refetches them
+      through the fixed URL, and
+   b. Wipes matching keys from every ``sense_assignments`` file it
+      finds — both normal-mode
+      (``Data/Spanish/layers/sense_assignments/...``) and per-artist
+      (``Artists/*/*/data/layers/sense_assignments/...``). Otherwise
+      step_6c's coverage check would skip those examples on the next
+      Gemini run and leave stale assignments referencing sense IDs
+      that no longer exist in the rebuilt menu.
+
+The surface cache is shared across normal + artist modes, so the
+fix propagates to every mode as soon as the cache is refetched.
 
 Why not bump STEP_VERSION on the cache builder? Because STEP_VERSION=3
 would invalidate all ~13k cache entries and trigger ~3h of scraping,
@@ -55,6 +66,7 @@ so the ~13k good entries stay put.
 """
 
 import argparse
+import glob
 import json
 import re
 import shutil
@@ -69,10 +81,36 @@ INVENTORY_PATH = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.
 # re-classifies their examples against the new (correct) sense menu.
 # Lemma-keyed file is also cleared because stale word-keyed entries
 # would otherwise propagate there on the next step_7a run.
-SENSE_ASSIGNMENTS_FILES = [
+#
+# Covers BOTH modes:
+#   * Normal mode:   Data/Spanish/layers/sense_assignments/...
+#   * Artist mode:   Artists/{lang}/{Name}/data/layers/sense_assignments/...
+# The surface_cache is shared, so a backwards entry there poisons
+# every artist pipeline that looks up the word. Wiping both families
+# keeps the rebuild path clean for both.
+_NORMAL_ASSIGNMENT_FILES = [
     PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_assignments" / "spanishdict.json",
     PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_assignments_lemma" / "spanishdict.json",
 ]
+_ARTISTS_DIR = PROJECT_ROOT / "Artists"
+
+
+def _artist_assignment_files():
+    """Find every per-artist sense_assignments spanishdict.json in the repo."""
+    if not _ARTISTS_DIR.exists():
+        return []
+    patterns = [
+        "*/*/data/layers/sense_assignments/spanishdict.json",
+        "*/*/data/layers/sense_assignments_lemma/spanishdict.json",
+    ]
+    out = []
+    for pat in patterns:
+        out.extend(Path(p) for p in glob.glob(str(_ARTISTS_DIR / pat)))
+    return sorted(out)
+
+
+def _collect_assignment_files():
+    return list(_NORMAL_ASSIGNMENT_FILES) + _artist_assignment_files()
 
 SPANISH_CHARS_RE = re.compile(r"[áéíóúñüÁÉÍÓÚÑÜ]")
 # Tokens are letters only; strip punctuation + spaces.
@@ -330,8 +368,12 @@ def main():
     # Otherwise step_6c's `covered_abs` check thinks the examples are
     # already classified and skips them, leaving assignments that
     # reference sense IDs that no longer exist in the new menu.
+    # Covers both normal-mode and per-artist files.
     flagged_words = {w for w, _, _ in flagged}
-    for path in SENSE_ASSIGNMENTS_FILES:
+    assignment_files = _collect_assignment_files()
+    total_keys_wiped = 0
+    files_touched = 0
+    for path in assignment_files:
         if not path.exists():
             continue
         with open(path, encoding="utf-8") as f:
@@ -349,18 +391,33 @@ def main():
                 shutil.copy2(path, bak)
             with open(path, "w", encoding="utf-8") as f:
                 json.dump(assignments, f, ensure_ascii=False, indent=2)
-            print(f"  Wiped {len(removed_keys)} keys from {path.name} "
+            # Show a short relative path so the log reads cleanly
+            # across normal + many-artist cases.
+            try:
+                rel = path.relative_to(PROJECT_ROOT)
+            except ValueError:
+                rel = path
+            print(f"  Wiped {len(removed_keys)} keys from {rel} "
                   f"({before} → {len(assignments)})")
+            total_keys_wiped += len(removed_keys)
+            files_touched += 1
+    if files_touched:
+        print(f"  Total: {total_keys_wiped} assignment keys wiped across "
+              f"{files_touched} file(s).")
 
     print("\nNext: run tool_5c_build_spanishdict_cache to refetch through the "
           "corrected URL (only the deleted entries will be fetched):")
     print("    .venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py \\")
     print("        --inventory-file Data/Spanish/layers/word_inventory.json")
-    print("\nThen rebuild sense menu + re-run Gemini on the orphaned words:")
+    print("\nThen rebuild normal-mode sense menu + Gemini + assembly:")
     print("    .venv/bin/python3 pipeline/step_5c_build_senses.py --sense-source spanishdict")
     print("    .venv/bin/python3 pipeline/step_6a_assign_senses.py --classifier gemini")
     print("    .venv/bin/python3 pipeline/step_7a_map_senses_to_lemmas.py --sense-source spanishdict")
     print("    .venv/bin/python3 pipeline/step_8a_assemble_vocabulary.py")
+    print("\nAnd for each artist (re-runs Gemini on wiped words, then rebuilds):")
+    print('    .venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny"  --from-step 6')
+    print('    .venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Rosalía"    --from-step 6')
+    print('    .venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Young Miko" --from-step 6')
 
 
 if __name__ == "__main__":
