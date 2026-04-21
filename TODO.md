@@ -51,6 +51,20 @@ below have enough complexity to warrant this treatment when the time comes.
   card view, and flag the card so `saveWordProgress()` skips it. Non-trivial mostly because of
   the extraction work across two codepaths.
 
+- **[idea] Prefer morphological lemma for conjugated-form headwords (S) [shared] [spanish]**
+  Cards for conjugated forms that SpanishDict has lexicalised as their own headword
+  (e.g. `hay` as "there is/are", which SD treats as its own entry as well as a form
+  of `haber`) end up with `lemma: "hay"` on the vocab entry. That breaks the inline
+  conjugation toggle because `_conjugationData` is keyed by infinitive (`haber`).
+  `conjugation_reverse["hay"]` correctly maps to `haber`, and `word_inventory` has
+  `known_lemmas: ["haber"]` — the data is already there. The fix: in the assembly
+  step, if the word is a known conjugated form (present in `conjugation_reverse`),
+  prefer that infinitive as the card's lemma over SpanishDict's lexicalised headword.
+  SpanishDict's `possible_results` entry with `heuristic: "conjugation"` is already
+  flagging this case in the raw scrape. Today the UI falls back to a "no conjugation
+  data" panel with a SpanishDict link; this fix would make the full inline paradigm
+  light up instead.
+
 - **[idea] Synonym + antonym viewer (M) [shared] [spanish]**
   SpanishDict has a separate thesaurus endpoint at `/thesaurus/<word>` that returns rich
   structured synonym + antonym data in `thesaurusProps`. The relationship enum is clean:

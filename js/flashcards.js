@@ -2004,27 +2004,15 @@ function updateCard() {
     }
 
     // Reference links as icon buttons — real favicons via Google's proxy.
-    // The `conjugation` external-link icon used to be the plain SpanishDict
-    // favicon, which was visually indistinguishable from the main
-    // `spanishDict` translate button next to it — cards like "hay" (whose
-    // lemma isn't in our conjugation layer so the inline toggle is
-    // suppressed) ended up with two SpanishDict-looking squares side by
-    // side. Swapped to an AR/ER/IR stacked icon in SpanishDict's
-    // blue-on-white brand palette so it still reads as "SpanishDict
-    // conjugations" but is visually distinct from the translate button.
-    const CONJ_EXT_SVG = `
-        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="0" y="0" width="32" height="32" rx="5" fill="#1a5db1"/>
-            <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
-                <text x="16" y="11"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="#ffffff">AR</tspan></text>
-                <text x="16" y="20"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="#ffffff">ER</tspan></text>
-                <text x="16" y="29"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="#ffffff">IR</tspan></text>
-            </g>
-        </svg>`;
+    // `conjugation` is not in this map: verb cards always get the unified
+    // in-app conjugation toggle (red/yellow AR/ER/IR icon) instead of an
+    // external link. The toggle's panel handles the no-data case with a
+    // friendly message + SpanishDict link, so there's a single entry
+    // point regardless of whether we ship inline conjugations for a
+    // given lemma.
     const linkIcons = {
         'spanishDict': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="40" height="40" alt="SpanishDict" style="border-radius:4px">`,
-        'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=64" width="40" height="40" alt="Reverso" style="border-radius:4px">`,
-        'conjugation': CONJ_EXT_SVG
+        'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=64" width="40" height="40" alt="Reverso" style="border-radius:4px">`
     };
     const linkTitles = {
         'spanishDict': 'SpanishDict',
@@ -2045,30 +2033,28 @@ function updateCard() {
 
     backHTML += `<div class="links-section" id="linksSection">`;
 
+    // Unified in-app conjugation button for every verb card (always the
+    // same red/yellow AR/ER/IR icon). Clicking opens the conjugation
+    // panel, which itself handles the "no inline data" case with a
+    // friendly message + SpanishDict link. Single entry point avoids
+    // the old "visually-indistinguishable-SpanishDict-favicon" clutter.
+    if (isVerb) {
+        backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="32" height="32" rx="5" fill="rgba(255,255,255,0.08)"/>
+                <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
+                    <text x="16" y="11"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">AR</tspan></text>
+                    <text x="16" y="20"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">ER</tspan></text>
+                    <text x="16" y="29"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">IR</tspan></text>
+                </g>
+            </svg>
+        </button>`;
+    }
+
     for (const [key, url] of Object.entries(card.links)) {
         if (key === 'wordReference') continue; // Skip wordReference
-        // Skip conjugation link for non-verbs
-        if (key === 'conjugation' && !isVerb) continue;
-        // Replace external conjugation link with inline toggle when we have data
-        if (key === 'conjugation' && conjEntry) {
-            // Square 32×32 icon — same footprint as the Reverso /
-            // SpanishDict favicons. Art shows `-AR / -ER / -IR` stacked
-            // with the dash in Spanish-flag red and the suffix letters
-            // in the app's yellow accent. The red + yellow palette marks
-            // this as an internal (in-app) action, visually distinct
-            // from the external SpanishDict conjugation link (blue/white).
-            backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
-                <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="0" y="0" width="32" height="32" rx="5" fill="rgba(255,255,255,0.08)"/>
-                    <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
-                        <text x="16" y="11"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">AR</tspan></text>
-                        <text x="16" y="20"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">ER</tspan></text>
-                        <text x="16" y="29"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">IR</tspan></text>
-                    </g>
-                </svg>
-            </button>`;
-            continue;
-        }
+        // Conjugation is handled by the unified in-app toggle above.
+        if (key === 'conjugation') continue;
         const icon = linkIcons[key];
         const title = linkTitles[key] || key;
         if (icon) {
@@ -2080,9 +2066,11 @@ function updateCard() {
 
     backHTML += `</div>`;
 
-    // Conjugation table (hidden by default, toggled by button)
-    if (conjEntry) {
-        backHTML += buildConjugationTableHTML(conjEntry, card.targetWord);
+    // Conjugation panel — always built for verbs. The builder handles
+    // the no-inline-data case itself (returns a "no data" panel + SD
+    // link), so the button above always has something to toggle.
+    if (isVerb) {
+        backHTML += buildConjugationTableHTML(conjEntry, card.targetWord, card.lemma);
     }
 
     document.getElementById('backContent').innerHTML = backHTML;
@@ -2974,15 +2962,39 @@ function splitStemEnding(form, infinitive) {
     return { stem: form.slice(0, i), ending: form.slice(i) };
 }
 
-function buildConjugationTableHTML(conjEntry, targetWord) {
-    const tenses = conjEntry.tenses || {};
+function buildConjugationTableHTML(conjEntry, targetWord, lemma) {
+    // No inline data (conjEntry absent or empty): render a small
+    // "no-data" panel with the infinitive + a prominent SpanishDict
+    // link. Happens for defective / lexicalised-headword verbs like
+    // "hay" whose lemma we don't have in conjugations.json.
+    const hasData = conjEntry && Object.keys(conjEntry.tenses || {}).length > 0;
+    if (!hasData) {
+        const displayLemma = (lemma || targetWord || '').toLowerCase();
+        const sdUrl = `https://www.spanishdict.com/conjugate/${encodeURIComponent(displayLemma)}`;
+        return `
+            <div id="conjugationTable" class="conjugation-panel">
+                <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
+                <div class="conj-header">
+                    <div class="conj-title">
+                        <span class="conj-infinitive">${displayLemma}</span>
+                    </div>
+                </div>
+                <div class="conj-empty-msg">
+                    No conjugation data available for this verb.
+                </div>
+                <a href="${sdUrl}" target="_blank" class="conj-sd-link conj-sd-link-prominent" title="Full paradigm on SpanishDict">
+                    <img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="18" height="18" alt="" style="border-radius:3px">
+                    <span>Conjugate on SpanishDict</span>
+                </a>
+            </div>
+        `;
+    }
+    const tenses = conjEntry.tenses;
     const tenseNames = Object.keys(tenses);
-    if (tenseNames.length === 0) return '';
-
     const targetLower = targetWord.toLowerCase();
     // Prefer an explicit infinitive on the conj entry; fall back to
-    // targetWord (the card's verb infinitive in normal cases).
-    const infinitive = (conjEntry.infinitive || targetWord || '').toLowerCase();
+    // the lemma, then targetWord as a last resort.
+    const infinitive = (conjEntry.infinitive || lemma || targetWord || '').toLowerCase();
 
     // Pick the tense containing targetWord as the default; Presente otherwise.
     let defaultTense = tenses['Presente'] ? 'Presente' : tenseNames[0];

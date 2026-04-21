@@ -3009,78 +3009,73 @@
             color: white;
         }
 
-        /* ---- Mood toggle (segmented control) ----
-           Two (or more) moods as a single pill-shaped segmented row.
-           Active button picks up its mood's accent colour via
-           --mood-accent (set inline on each button). Rendered only when
-           more than one mood has data; single-mood cases skip it. */
+        /* ---- Mood toggle ----
+           Individual pill buttons, matching the `.level-btn` style used
+           on the setup / Choose Card page — transparent when idle,
+           filled with the mood's accent colour when active. Each mood's
+           accent (blue/purple/pink) flows in via the --mood-accent
+           custom property set on each button. Rendered only when more
+           than one mood has data; single-mood cases skip it. */
         .conj-mood-toggle {
             display: flex;
             justify-content: center;
+            gap: 8px;
             margin-bottom: 14px;
         }
         .conj-mood-toggle-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-right-width: 0;
+            background: transparent;
+            border: none;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             font-family: var(--font-data);
-            padding: 7px 18px;
+            padding: 9px 18px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.15s;
-        }
-        .conj-mood-toggle-btn:first-child {
-            border-radius: 6px 0 0 6px;
-        }
-        .conj-mood-toggle-btn:last-child {
-            border-radius: 0 6px 6px 0;
-            border-right-width: 1px;
+            transition: all 0.2s ease;
+            min-width: 110px;
         }
         .conj-mood-toggle-btn:hover {
-            background: rgba(255,255,255,0.07);
+            background: color-mix(in srgb, var(--mood-accent, rgba(255,255,255,0.4)) 10%, transparent);
             color: var(--text-primary);
         }
         .conj-mood-toggle-btn.conj-mood-toggle-active {
-            background: color-mix(in srgb, var(--mood-accent) 30%, transparent);
+            background: var(--mood-accent);
             color: white;
-            border-color: var(--mood-accent);
         }
 
-        /* ---- Tense picker (horizontal row of tenses for the active mood) ---- */
+        /* ---- Tense picker (horizontal row of tenses for the active mood) ----
+           Same pill-style treatment as mood toggle and the setup page's
+           level buttons: clean, rounded, no borders. Sized smaller than
+           moods because there are more of them per row. */
         .conj-tense-toggles {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .conj-tense-toggle {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 6px;
             justify-content: center;
         }
         .conj-tense-btn {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 5px;
+            background: transparent;
+            border: none;
             color: var(--text-muted);
-            font-size: 11px;
-            padding: 4px 9px;
-            cursor: pointer;
-            transition: all 0.15s;
+            font-size: 12px;
+            font-weight: 600;
             font-family: var(--font-data);
+            padding: 6px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
         .conj-tense-btn:hover {
-            background: rgba(255,255,255,0.08);
+            background: color-mix(in srgb, var(--mood-accent) 12%, transparent);
             color: var(--text-primary);
         }
         .conj-tense-btn.conj-tense-active {
-            /* Active tense picks up the mood's accent colour — pill feels
-               connected to its mood group instead of the generic yellow
-               accent. */
-            background: color-mix(in srgb, var(--mood-accent) 35%, transparent);
-            border-color: var(--mood-accent);
+            background: color-mix(in srgb, var(--mood-accent) 85%, transparent);
             color: white;
-            font-weight: 600;
         }
 
         /* ---- Conjugation table ---- */
@@ -3143,30 +3138,59 @@
             min-width: 120px;
         }
 
-        /* SpanishDict "see full paradigm" link at the bottom of the
-           panel — small, subtle, but a real escape hatch for tenses we
-           don't ship locally (compound, imperative, etc.). */
+        /* SpanishDict "full paradigm" button at the bottom of the panel.
+           Sized as a proper tap target — the verb-conjugation panel has
+           a predictable vertical footprint (header + toggles + fixed
+           6-person table), so there's room for a real button without
+           risking overflow. Escape hatch for compound / imperative
+           tenses we don't ship locally. */
         .conj-sd-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
-            margin-top: 18px;
-            padding: 8px 12px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            color: var(--text-muted);
-            font-size: 12px;
+            gap: 10px;
+            margin: 18px auto 4px;
+            padding: 12px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
             text-decoration: none;
-            transition: color 0.15s;
+            transition: all 0.2s ease;
+            width: fit-content;
+            min-width: 240px;
+            justify-content: center;
         }
         .conj-sd-link:hover {
-            color: var(--text-primary);
+            background: rgba(var(--accent-primary-rgb), 0.14);
+            border-color: rgba(var(--accent-primary-rgb), 0.45);
+            color: white;
         }
         .conj-sd-link img {
-            opacity: 0.7;
+            opacity: 0.85;
+            width: 18px;
+            height: 18px;
         }
         .conj-sd-link:hover img {
             opacity: 1;
+        }
+
+        /* "No conjugation data" variant — when we don't have inline data
+           for a verb's lemma (defective verbs like "hay"). The panel
+           collapses to: header + short message + a SpanishDict button. */
+        .conj-empty-msg {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-style: italic;
+            padding: 32px 16px 18px;
+        }
+        .conj-sd-link-prominent {
+            /* The no-data case uses the same `.conj-sd-link` button — no
+               extra styling needed. This class is kept as a hook in case
+               we want to differentiate later. */
         }
         /* Stem: muted. Ending: accent-coloured + bold. For regular verbs
            every ending in a tense shares the same colour + shape so the
