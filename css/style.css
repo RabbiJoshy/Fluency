@@ -2939,35 +2939,36 @@
         .conj-close-btn:hover { color: var(--text-primary); }
 
         .conj-header {
-            margin-bottom: 14px;
-            padding: 2px 0 12px;
+            margin-bottom: 16px;
+            padding: 4px 0 14px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
             text-align: center;
         }
         .conj-title {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
         }
         .conj-infinitive {
-            font-size: 22px;
+            font-size: 30px;
             font-weight: 700;
             color: var(--text-primary);
             font-family: var(--font-emphasis);
+            line-height: 1.1;
         }
         .conj-translation {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--text-muted);
             font-style: italic;
-            margin-top: 2px;
+            margin-top: 4px;
         }
         .conj-type-badge {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.5px;
-            padding: 3px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 5px;
             background: rgba(var(--accent-primary-rgb), 0.22);
             color: var(--accent-primary);
             border: 1px solid rgba(var(--accent-primary-rgb), 0.35);
@@ -2976,17 +2977,17 @@
         /* Non-finite forms pinned in the header, centred. */
         .conj-nonfinite {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         .conj-nf-item {
             display: inline-flex;
             align-items: baseline;
-            gap: 6px;
-            padding: 3px 8px;
-            border-radius: 6px;
+            gap: 7px;
+            padding: 5px 11px;
+            border-radius: 7px;
             background: rgba(255,255,255,0.04);
         }
         .conj-nf-item.is-active {
@@ -2994,13 +2995,13 @@
             box-shadow: inset 0 0 0 1px rgba(var(--accent-primary-rgb), 0.45);
         }
         .conj-nf-label {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
         .conj-nf-form {
-            font-size: 14px;
+            font-size: 17px;
             color: var(--text-primary);
             font-weight: 600;
         }
@@ -3016,17 +3017,17 @@
         .conj-mood-toggle {
             display: flex;
             justify-content: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .conj-mood-toggle-btn {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
             border-right-width: 0;
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
             font-family: var(--font-data);
-            padding: 6px 14px;
+            padding: 7px 18px;
             cursor: pointer;
             transition: all 0.15s;
         }
@@ -3084,7 +3085,7 @@
 
         /* ---- Conjugation table ---- */
         .conj-tables-wrap {
-            margin-top: 8px;
+            margin-top: 12px;
             display: flex;
             justify-content: center;
         }
@@ -3095,7 +3096,7 @@
             width: auto;
             border-collapse: separate;
             border-spacing: 0;
-            font-size: 15px;
+            font-size: 17px;
             color: var(--text-primary);
         }
         .conj-table tr {
@@ -3127,19 +3128,45 @@
             /* Right-aligned so pronouns butt up against the visual centre
                line; form column starts just to the right of centre. Feels
                balanced without a hard column line. */
-            padding: 7px 14px 7px 12px;
+            padding: 9px 16px 9px 14px;
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: 14px;
             font-family: var(--font-data);
             white-space: nowrap;
             text-align: right;
         }
         .conj-form {
-            padding: 7px 12px 7px 4px;
-            font-size: 16px;
+            padding: 9px 14px 9px 6px;
+            font-size: 19px;
             font-family: var(--font-emphasis);
             text-align: left;
-            min-width: 110px;
+            min-width: 120px;
+        }
+
+        /* SpanishDict "see full paradigm" link at the bottom of the
+           panel — small, subtle, but a real escape hatch for tenses we
+           don't ship locally (compound, imperative, etc.). */
+        .conj-sd-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 18px;
+            padding: 8px 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .conj-sd-link:hover {
+            color: var(--text-primary);
+        }
+        .conj-sd-link img {
+            opacity: 0.7;
+        }
+        .conj-sd-link:hover img {
+            opacity: 1;
         }
         /* Stem: muted. Ending: accent-coloured + bold. For regular verbs
            every ending in a tense shares the same colour + shape so the

@@ -2003,11 +2003,28 @@ function updateCard() {
         }
     }
 
-    // Reference links as icon buttons — real favicons via Google's proxy
+    // Reference links as icon buttons — real favicons via Google's proxy.
+    // The `conjugation` external-link icon used to be the plain SpanishDict
+    // favicon, which was visually indistinguishable from the main
+    // `spanishDict` translate button next to it — cards like "hay" (whose
+    // lemma isn't in our conjugation layer so the inline toggle is
+    // suppressed) ended up with two SpanishDict-looking squares side by
+    // side. Swapped to an AR/ER/IR stacked icon in SpanishDict's
+    // blue-on-white brand palette so it still reads as "SpanishDict
+    // conjugations" but is visually distinct from the translate button.
+    const CONJ_EXT_SVG = `
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0" width="32" height="32" rx="5" fill="#1a5db1"/>
+            <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
+                <text x="16" y="11"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="#ffffff">AR</tspan></text>
+                <text x="16" y="20"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="#ffffff">ER</tspan></text>
+                <text x="16" y="29"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="#ffffff">IR</tspan></text>
+            </g>
+        </svg>`;
     const linkIcons = {
         'spanishDict': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="40" height="40" alt="SpanishDict" style="border-radius:4px">`,
         'reverso': `<img src="https://www.google.com/s2/favicons?domain=reverso.net&sz=64" width="40" height="40" alt="Reverso" style="border-radius:4px">`,
-        'conjugation': `<img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="32" height="32" alt="Conjugate" style="border-radius:4px">`
+        'conjugation': CONJ_EXT_SVG
     };
     const linkTitles = {
         'spanishDict': 'SpanishDict',
@@ -2035,19 +2052,18 @@ function updateCard() {
         // Replace external conjugation link with inline toggle when we have data
         if (key === 'conjugation' && conjEntry) {
             // Square 32×32 icon — same footprint as the Reverso /
-            // SpanishDict favicons. The art shows the three Spanish verb
-            // classes (-AR / -ER / -IR) stacked, with the dash muted and
-            // the suffix letters in the accent colour. Mirrors the
-            // stem/ending split used throughout the conjugation panel and
-            // is instantly readable as "Spanish verb" to anyone who has
-            // studied the language.
+            // SpanishDict favicons. Art shows `-AR / -ER / -IR` stacked
+            // with the dash in Spanish-flag red and the suffix letters
+            // in the app's yellow accent. The red + yellow palette marks
+            // this as an internal (in-app) action, visually distinct
+            // from the external SpanishDict conjugation link (blue/white).
             backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
                 <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <rect x="0" y="0" width="32" height="32" rx="5" fill="rgba(255,255,255,0.08)"/>
                     <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
-                        <text x="16" y="11"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="var(--accent-primary)">AR</tspan></text>
-                        <text x="16" y="20"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="var(--accent-primary)">ER</tspan></text>
-                        <text x="16" y="29"><tspan fill="rgba(255,255,255,0.55)">-</tspan><tspan fill="var(--accent-primary)">IR</tspan></text>
+                        <text x="16" y="11"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">AR</tspan></text>
+                        <text x="16" y="20"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">ER</tspan></text>
+                        <text x="16" y="29"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">IR</tspan></text>
                     </g>
                 </svg>
             </button>`;
@@ -3012,15 +3028,20 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
     // visible (display toggled by switchConjMood). This keeps the tense
     // list to a single horizontal row instead of stacking a label +
     // buttons for every mood.
+    //
+    // The hide-inactive-rows logic merges into one style attribute:
+    // putting `display:none` in a second `style` silently drops it
+    // (browsers take the first `style` attribute only), which is why
+    // subjunctive tenses were showing at initial render.
     const tenseToggleHTML = grouped.map(g => {
         const isActiveMood = g.mood === defaultMood;
-        const hidden = isActiveMood ? '' : ' style="display:none"';
+        const styleStr = `--mood-accent: ${g.accent};${isActiveMood ? '' : ' display: none;'}`;
         const btns = g.tenses.map(t => {
             const active = t === defaultTense ? ' conj-tense-active' : '';
             const display = t.replace(/^Subj\.\s*/, '').replace(/^Imp\.\s*/, '');
             return `<button class="conj-tense-btn${active}" data-tense="${t}" onclick="switchConjTense('${t}')">${display}</button>`;
         }).join('');
-        return `<div class="conj-tense-toggle" data-mood="${g.mood}" style="--mood-accent: ${g.accent};"${hidden}>${btns}</div>`;
+        return `<div class="conj-tense-toggle" data-mood="${g.mood}" style="${styleStr}">${btns}</div>`;
     }).join('');
 
     // Per-tense table. Each form is split stem/ending so the pattern pops.
@@ -3066,6 +3087,16 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
             </div>` : ''}
         </div>` : '';
 
+    // Link to SpanishDict's full paradigm page — the in-app panel covers
+    // the high-frequency tenses; this covers "I want to see every tense
+    // incl. compound + imperative forms we don't ship locally".
+    const sdUrl = `https://www.spanishdict.com/conjugate/${encodeURIComponent(infinitive)}`;
+    const sdLinkHTML = `
+        <a href="${sdUrl}" target="_blank" class="conj-sd-link" title="Full paradigm on SpanishDict">
+            <img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="16" height="16" alt="" style="border-radius:3px">
+            <span>Full paradigm on SpanishDict</span>
+        </a>`;
+
     return `
         <div id="conjugationTable" class="conjugation-panel">
             <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
@@ -3084,6 +3115,7 @@ function buildConjugationTableHTML(conjEntry, targetWord) {
             <div class="conj-tables-wrap">
                 ${tenseTables}
             </div>
+            ${sdLinkHTML}
         </div>
     `;
 }

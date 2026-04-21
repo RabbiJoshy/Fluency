@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260421a';
-import './flashcards.js?v=20260421a';
+import './vocab.js?v=20260421b';
+import './flashcards.js?v=20260421b';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
