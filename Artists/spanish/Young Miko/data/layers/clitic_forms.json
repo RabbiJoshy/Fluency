@@ -21,7 +21,7 @@
     "base_verb": "roncar",
     "lemma": "roncarte",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to snore",
     "assignments": {},
     "examples": [
       {
@@ -39,7 +39,7 @@
     "base_verb": "vira",
     "lemma": "vírate",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to tack",
     "assignments": {},
     "examples": [
       {
@@ -58,17 +58,7 @@
     "lemma": "rómpela",
     "corpus_count": 5,
     "translation": "to break",
-    "assignments": {
-      "gap-fill": [
-        {
-          "sense": "b61",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8874493",
@@ -209,7 +199,7 @@
     "base_verb": "chequea",
     "lemma": "chequéate",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to check",
     "assignments": {},
     "examples": [
       {
@@ -271,7 +261,7 @@
     "base_verb": "chocar",
     "lemma": "chócame",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to crash",
     "assignments": {},
     "examples": [
       {
@@ -289,7 +279,7 @@
     "base_verb": "enviar",
     "lemma": "envíaste",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to send",
     "assignments": {},
     "examples": [
       {
@@ -412,7 +402,7 @@
     "base_verb": "bendecir",
     "lemma": "bendíceme",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to bless",
     "assignments": {},
     "examples": [
       {

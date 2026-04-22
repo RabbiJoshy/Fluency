@@ -2142,17 +2142,23 @@ function updateCard() {
                 Array.from(backEl.children).forEach(child => {
                     if (child === scroll) return;
                     const cs = getComputedStyle(child);
+                    // Skip out-of-flow children. The conjugation panel is
+                    // position: absolute and overlays the card when toggled
+                    // — its 600+px offsetHeight would otherwise blow out
+                    // the overhead total and disable the scroll cap on
+                    // every verb card.
+                    if (cs.position === 'absolute' || cs.position === 'fixed') return;
                     overhead += child.offsetHeight
                         + (parseFloat(cs.marginTop) || 0)
                         + (parseFloat(cs.marginBottom) || 0);
                 });
                 const availableForScroll = availableHeight - overhead;
-                // Only cap when the natural scroll content would overflow
-                // the remaining room. Small safety floor (60px) so a
-                // miscalculation never produces a zero-height scroller.
-                if (availableForScroll > 60
-                    && scroll.scrollHeight > availableForScroll) {
-                    scroll.style.maxHeight = availableForScroll + 'px';
+                // Cap meanings-scroll whenever its natural content overflows
+                // the remaining room. Floor the cap value (not the gate) at
+                // 60px so the scroller stays usable even when overhead is
+                // tight, instead of silently disabling the cap.
+                if (scroll.scrollHeight > availableForScroll) {
+                    scroll.style.maxHeight = Math.max(60, availableForScroll) + 'px';
                 }
             }
         }
@@ -2840,10 +2846,170 @@ function navigateToVocabCard(tokenIndex) {
     updateCard();
 }
 
+// Open a single vocab card as a popup (used by the find-word search).
+// Pushes the current position onto cardNavStack so navigateBack returns
+// to the search modal. Works whether or not a deck is currently loaded.
+async function popupFoundWord(entry) {
+    if (!entry || !entry.id) return;
+
+    // Look up the full vocab entry by ID from cached vocab data.
+    const vocabSource = (activeArtist && window._cachedMergedIndex)
+        ? window._cachedMergedIndex
+        : window._cachedJoinedIndex;
+    if (!vocabSource) {
+        console.warn('popupFoundWord: no cached vocab index available');
+        return;
+    }
+    const vocabEntry = vocabSource.find(it => it.id === entry.id);
+    if (!vocabEntry) {
+        console.warn('popupFoundWord: entry not found in cached index', entry.id);
+        return;
+    }
+
+    const langConfig = (config && config.languages && config.languages[selectedLanguage]) || {};
+
+    // Lazy-load examples file if needed and merge into the entry's meanings.
+    if (langConfig.examplesPath && !window._cachedExamplesData) {
+        try {
+            const r = await fetch(langConfig.examplesPath);
+            if (r.ok) window._cachedExamplesData = await r.json();
+        } catch (e) {
+            console.warn('popupFoundWord: failed to fetch examples', e);
+        }
+    }
+    const examplesData = window._cachedExamplesData;
+    if (examplesData && examplesData[vocabEntry.id]) {
+        const ex = examplesData[vocabEntry.id];
+        if (ex.m && Array.isArray(vocabEntry.meanings)) {
+            vocabEntry.meanings.forEach((m, i) => {
+                if (!m.examples || m.examples.length === 0) {
+                    m.examples = ex.m[i] || [];
+                }
+            });
+        }
+    }
+
+    // Build the temp card from the entry (mirrors navigateToVocabCard).
+    const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
+    const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
+
+    const meanings = (vocabEntry.meanings || []).map(m => {
+        const ex = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+        const meaning = {
+            pos: m.pos,
+            meaning: m.translation,
+            percentage: parseFloat(m.frequency) || 0,
+            targetSentence: ex.targetSentence,
+            englishSentence: ex.englishSentence,
+            allExamples: ex.allExamples
+        };
+        if (m.unassigned) meaning.unassigned = true;
+        if (m.assignment_method) meaning.assignment_method = m.assignment_method;
+        if (m.source) meaning.source = m.source;
+        if (m.context) meaning.context = m.context;
+        if (m.allSenses) meaning.allSenses = m.allSenses;
+        if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
+        return meaning;
+    });
+
+    const firstExample = meanings.length > 0
+        ? { targetSentence: meanings[0].targetSentence, englishSentence: meanings[0].englishSentence }
+        : { targetSentence: '', englishSentence: '' };
+
+    const tempCard = {
+        targetWord: vocabEntry.word,
+        lemma: vocabEntry.lemma || '',
+        id: vocabEntry.id || '0000',
+        fullId: getWordId(vocabEntry),
+        rank: vocabEntry.rank || 0,
+        corpusCount: vocabEntry.corpus_count || null,
+        meanings: meanings,
+        translation: meanings.length > 0 ? meanings[0].meaning : '',
+        targetSentence: firstExample.targetSentence,
+        englishSentence: firstExample.englishSentence,
+        links: generateLinks(vocabEntry.word, vocabEntry.lemma || vocabEntry.word, langConfig.referenceLinks || {}),
+        isMultiMeaning: true,
+        variants: vocabEntry.variants || null,
+        homographIds: vocabEntry.homograph_ids || null,
+        morphology: vocabEntry.morphology || null,
+        relatedLemma: vocabEntry.related_lemma || null
+    };
+
+    // Hide the search modal while the card is being viewed.
+    const findModal = document.getElementById('findWordModal');
+    if (findModal) findModal.classList.add('hidden');
+
+    const noDeckLoaded = !flashcards || flashcards.length === 0;
+    const wasOnSetup = !document.getElementById('setupPanel').classList.contains('hidden');
+
+    if (noDeckLoaded) {
+        // No deck — build a one-card temp deck and show the app panel.
+        cardNavStack.push({
+            popupOnly: true,
+            wasOnSetup: wasOnSetup,
+            reopenSearchOnBack: true
+        });
+        flashcards.length = 0;
+        flashcards.push(tempCard);
+        currentIndex = 0;
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
+        document.getElementById('setupPanel').classList.add('hidden');
+        document.getElementById('appContent').classList.remove('hidden');
+        showFloatingBtns(true);
+        document.getElementById('flashcard').classList.remove('flipped');
+        initializeApp();
+    } else {
+        // Deck loaded — append temp card and push current position onto nav stack.
+        const tempIndex = flashcards.length;
+        flashcards.push(tempCard);
+        cardNavStack.push({
+            index: currentIndex,
+            meaningIndex: currentMeaningIndex,
+            exampleIndex: currentExampleIndex,
+            mweIndex: currentMWEIndex,
+            tempCard: true,
+            tempIndex: tempIndex,
+            reopenSearchOnBack: true
+        });
+        currentIndex = tempIndex;
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
+        document.getElementById('flashcard').classList.remove('flipped');
+        updateCard();
+    }
+}
+
 function navigateBack() {
     if (cardNavStack.length === 0) return;
 
     const prev = cardNavStack.pop();
+
+    // Popup-only state: no deck was loaded when the temp card was opened.
+    // Tear down the temp deck and restore the setup panel.
+    if (prev.popupOnly) {
+        flashcards.length = 0;
+        currentIndex = 0;
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
+        if (prev.wasOnSetup) {
+            document.getElementById('appContent').classList.add('hidden');
+            document.getElementById('setupPanel').classList.remove('hidden');
+            showFloatingBtns(false);
+        }
+        if (prev.reopenSearchOnBack) {
+            const modal = document.getElementById('findWordModal');
+            if (modal) modal.classList.remove('hidden');
+            setTimeout(() => {
+                const input = document.getElementById('findWordInput');
+                if (input) input.focus();
+            }, 50);
+        }
+        return;
+    }
 
     // Remove temp card if one was created
     if (prev.tempCard && prev.tempIndex !== undefined) {
@@ -2856,6 +3022,15 @@ function navigateBack() {
     currentMWEIndex = prev.mweIndex || 0;
     document.getElementById('flashcard').classList.remove('flipped');
     updateCard();
+
+    if (prev.reopenSearchOnBack) {
+        const modal = document.getElementById('findWordModal');
+        if (modal) modal.classList.remove('hidden');
+        setTimeout(() => {
+            const input = document.getElementById('findWordInput');
+            if (input) input.focus();
+        }, 50);
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -3260,6 +3435,7 @@ window.hideWordPopup = hideWordPopup;
 window.navigateToCard = navigateToCard;
 window.navigateToVocabCard = navigateToVocabCard;
 window.navigateBack = navigateBack;
+window.popupFoundWord = popupFoundWord;
 
 // ---------------------------------------------------------------------------
 // Card metadata popover (debug info — per-sense source + per-example method)

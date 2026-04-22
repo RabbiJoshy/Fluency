@@ -10657,7 +10657,7 @@
       }
     ],
     "id": "c349b5",
-    "base_id": "c4418e"
+    "base_id": "339f32"
   },
   "9a0d2d": {
     "base_verb": "comprar",
@@ -13265,45 +13265,12 @@
     "id": "926e46",
     "base_id": "e54371"
   },
-  "d70feb": {
+  "518343": {
     "base_verb": "controlar",
-    "lemma": "controlar",
+    "lemma": "controlarlo",
     "corpus_count": 8,
     "translation": "to control",
-    "assignments": {
-      "spanishdict-keyword": [
-        {
-          "sense": "15c",
-          "examples": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            9,
-            10,
-            11,
-            12,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19
-          ]
-        },
-        {
-          "sense": "307",
-          "examples": [
-            8,
-            13
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "target": "No puedo controlarlo.",
@@ -13426,7 +13393,7 @@
         "easiness": 27
       }
     ],
-    "id": "d70feb",
+    "id": "518343",
     "base_id": "90ef2c"
   },
   "8fa6fc": {
@@ -13885,45 +13852,12 @@
     "id": "502c2e",
     "base_id": "86f3f6"
   },
-  "a883a4": {
+  "205db8": {
     "base_verb": "corre",
-    "lemma": "correo",
+    "lemma": "correos",
     "corpus_count": 6,
     "translation": "mail",
-    "assignments": {
-      "spanishdict-keyword": [
-        {
-          "sense": "385",
-          "examples": [
-            3,
-            19
-          ]
-        },
-        {
-          "sense": "166",
-          "examples": [
-            0,
-            1,
-            2,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "target": "La oficina de correos se ubica en el centro de la ciudad.",
@@ -14046,7 +13980,7 @@
         "easiness": 38
       }
     ],
-    "id": "a883a4",
+    "id": "205db8",
     "base_id": "143022"
   },
   "c8456d": {
@@ -16626,7 +16560,7 @@
       }
     ],
     "id": "8ac5a4",
-    "base_id": "c4418e"
+    "base_id": "339f32"
   },
   "e0a22a": {
     "base_verb": "dar",
@@ -20222,36 +20156,8 @@
     "base_verb": "de",
     "lemma": "dele",
     "corpus_count": 5,
-    "translation": "borrar",
-    "assignments": {
-      "spanishdict-keyword": [
-        {
-          "sense": "e3e",
-          "examples": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19
-          ]
-        }
-      ]
-    },
+    "translation": "",
+    "assignments": {},
     "examples": [
       {
         "target": "Déle recuerdos de mi parte.",
@@ -20693,7 +20599,7 @@
       }
     ],
     "id": "f868b4",
-    "base_id": "ce77f9"
+    "base_id": "78bcf0"
   },
   "a85fb1": {
     "base_verb": "den",
@@ -20852,7 +20758,7 @@
       }
     ],
     "id": "a85fb1",
-    "base_id": "ce77f9"
+    "base_id": "78bcf0"
   },
   "23a587": {
     "base_verb": "deshacer",
@@ -22953,40 +22859,12 @@
     "id": "066885",
     "base_id": "48aa0e"
   },
-  "e77a08": {
+  "99878d": {
     "base_verb": "detener",
-    "lemma": "détente",
+    "lemma": "detente",
     "corpus_count": 74,
-    "translation": "distensión",
-    "assignments": {
-      "keyword": [
-        {
-          "sense": "4f7",
-          "examples": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19
-          ]
-        }
-      ]
-    },
+    "translation": "to hold unlawfully",
+    "assignments": {},
     "examples": [
       {
         "target": "Detente un momento a pensarlo.",
@@ -23109,7 +22987,7 @@
         "easiness": 37
       }
     ],
-    "id": "e77a08",
+    "id": "99878d",
     "base_id": "48aa0e"
   },
   "598903": {
@@ -52018,35 +51896,7 @@
     "lemma": "mostrarme",
     "corpus_count": 5,
     "translation": "to show me",
-    "assignments": {
-      "spanishdict-keyword": [
-        {
-          "sense": "4fc",
-          "examples": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "target": "Hago lo que puedo por mostrarme atento.",
@@ -53256,40 +53106,12 @@
     "id": "16e722",
     "base_id": "3a794e"
   },
-  "795b73": {
+  "024752": {
     "base_verb": "muestra",
-    "lemma": "mostrar",
+    "lemma": "muéstrame",
     "corpus_count": 21,
-    "translation": "to show",
-    "assignments": {
-      "spanishdict-keyword": [
-        {
-          "sense": "c53",
-          "examples": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19
-          ]
-        }
-      ]
-    },
+    "translation": "show me",
+    "assignments": {},
     "examples": [
       {
         "target": "Muéstrame lo que tienes en el bolsillo.",
@@ -53412,7 +53234,7 @@
         "easiness": 210
       }
     ],
-    "id": "795b73",
+    "id": "024752",
     "base_id": "3b7576"
   },
   "18b4de": {
