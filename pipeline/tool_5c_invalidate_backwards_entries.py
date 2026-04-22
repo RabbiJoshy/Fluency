@@ -192,6 +192,74 @@ def _tokens(text):
     return [m.group(0).lower() for m in TOKEN_RE.finditer(text or "")]
 
 
+def _flag_analyses(word, analyses, infinitives, word_lemmas, spanish_words):
+    """Shared majority-vote check over a list of (headword, senses) analyses.
+
+    Senses can be a list (surface_cache format) or a dict (sense_menu
+    format) — both are iterated the same way for this check.
+    """
+    known_lemmas = set(word_lemmas.get(word, []))
+    total_senses = 0
+    spanish_senses = 0
+    first_reason = ""
+    for a in analyses:
+        headword = (a.get("headword") or "").strip().lower()
+        exclude_tokens = {word}
+        if headword:
+            exclude_tokens.add(headword)
+        senses = a.get("senses") or []
+        # Menu-format senses are {sense_id: sense_dict}; surface is [sense_dict, ...].
+        sense_iter = senses.values() if isinstance(senses, dict) else senses
+        for s in sense_iter:
+            tr = (s or {}).get("translation") or ""
+            if not tr:
+                continue
+            total_senses += 1
+            is_spanish = False
+            reason = ""
+            if SPANISH_CHARS_RE.search(tr):
+                is_spanish = True
+                reason = f"{tr!r} contains Spanish char"
+            else:
+                for tok in _tokens(tr):
+                    if tok in exclude_tokens:
+                        continue
+                    if tok in infinitives:
+                        is_spanish = True
+                        reason = f"{tr!r} contains Spanish infinitive {tok!r}"
+                        break
+                    if spanish_words and len(tok) >= 4 and tok in spanish_words:
+                        is_spanish = True
+                        reason = f"{tr!r} contains Spanish word {tok!r}"
+                        break
+            if is_spanish:
+                spanish_senses += 1
+                if not first_reason:
+                    first_reason = reason
+    if total_senses == 0:
+        return False, ""
+    if spanish_senses * 2 > total_senses:
+        return True, f"{spanish_senses}/{total_senses} senses look Spanish ({first_reason})"
+    return False, ""
+
+
+def flag_menu_entry(word, entry, infinitives, word_lemmas, spanish_words=None):
+    """Same heuristic as ``flag_entry``, adapted for sense_menu format
+    (the per-word value is directly the analyses list — no entry_lang,
+    no possible_results).
+
+    Catches backwards entries that survive in per-artist sense_menus
+    even after the shared surface_cache was cleaned. Happens for
+    elision-spelled forms (``dize``, ``pa'``, ``tá``) that got scraped
+    once before the fix and whose surface_cache entry later got wiped
+    — but the artist's frozen sense_menu copy persists independently.
+    """
+    if not isinstance(entry, (list, dict)):
+        return False, ""
+    analyses = entry if isinstance(entry, list) else [entry]
+    return _flag_analyses(word, analyses, infinitives, word_lemmas, spanish_words)
+
+
 def flag_entry(word, entry, infinitives, word_lemmas, spanish_words=None):
     """Return ``(is_backwards, reason)``.
 
@@ -409,6 +477,53 @@ def main():
     if files_touched:
         print(f"  Total: {total_keys_wiped} assignment keys wiped across "
               f"{files_touched} file(s).")
+
+    # --- Second pass: scan artist sense_menus directly for backwards entries. ---
+    # The surface_cache scan catches most cases, but per-artist sense_menus
+    # carry their own frozen copies of the old data. Elision-spelled forms
+    # (dize, pa', tá, reggaetón) whose surface_cache entry was wiped in an
+    # earlier pass but whose artist-local menu entry survived independently
+    # are the typical leak. This pass catches them and wipes them directly
+    # from each artist's menu.
+    print("\nScanning artist sense_menus for backwards entries...")
+    artist_menu_paths = sorted(glob.glob(
+        str(_ARTISTS_DIR / "*/*/data/layers/sense_menu/spanishdict.json")
+    ))
+    total_menu_wiped = 0
+    for menu_path in artist_menu_paths:
+        menu_path = Path(menu_path)
+        if not menu_path.exists():
+            continue
+        with open(menu_path, encoding="utf-8") as f:
+            menu = json.load(f)
+        flagged = []
+        for word, entry in menu.items():
+            if word in skip:
+                continue
+            is_back, reason = flag_menu_entry(word, entry, infinitives, word_lemmas, spanish_words)
+            if is_back:
+                flagged.append((word, reason))
+        if not flagged:
+            continue
+        if not args.no_backup:
+            bak = menu_path.with_suffix(menu_path.suffix + ".bak")
+            shutil.copy2(menu_path, bak)
+        for word, _ in flagged:
+            menu.pop(word, None)
+        with open(menu_path, "w", encoding="utf-8") as f:
+            json.dump(menu, f, ensure_ascii=False, indent=2)
+        try:
+            rel = menu_path.relative_to(PROJECT_ROOT)
+        except ValueError:
+            rel = menu_path
+        print(f"  {rel}: wiped {len(flagged)} backwards menu entries")
+        print(f"    sample: {[w for w, _ in flagged[:10]]}")
+        total_menu_wiped += len(flagged)
+    if total_menu_wiped:
+        print(f"  Total: {total_menu_wiped} menu entries wiped across "
+              f"{sum(1 for p in artist_menu_paths if Path(p).exists())} artist(s).")
+    else:
+        print("  No additional backwards menu entries found.")
 
     print("\nNext: run tool_5c_build_spanishdict_cache to refetch through the "
           "corrected URL (only the deleted entries will be fetched):")
