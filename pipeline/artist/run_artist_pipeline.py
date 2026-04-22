@@ -43,7 +43,13 @@ _load_dotenv()
 _LANG_DEFAULTS = {
     "spanish": {
         "spacy_model": "es_dep_news_trf",
-        "default_classifier": "biencoder",
+        # Gemini is the go-to: Spanish builder uses min_priority: 50,
+        # which only accepts priority-50 assignments (Gemini) + auto.
+        # biencoder (priority 30) gets silently filtered out at build
+        # time — running it as default made cards silently drop senses
+        # when cache entries were wiped and biencoder filled the gap.
+        # --classifier keyword stays available as the fast local option.
+        "default_classifier": "gemini",
         "default_sense_source": "spanishdict",
         # Spanish uses pre-built SpanishDict cache; wiktionary menu is not
         # rebuilt per-artist. No step 5c in the list.
