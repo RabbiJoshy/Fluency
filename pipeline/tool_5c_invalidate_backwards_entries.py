@@ -77,18 +77,22 @@ from util_5c_spanishdict import SPANISHDICT_SURFACE_CACHE
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CONJUGATIONS_PATH = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugations.json"
 INVENTORY_PATH = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
-# Sense-assignment files to wipe for invalidated words so step_6c
-# re-classifies their examples against the new (correct) sense menu.
-# Lemma-keyed file is also cleared because stale word-keyed entries
-# would otherwise propagate there on the next step_7a run.
+# Sense-assignment AND sense-menu files to wipe for invalidated words:
+# step_6c re-classifies their examples against the new (correct) sense
+# menu after rebuild. Wiping the menu entry too forces step_5c to
+# rebuild from the clean surface cache (its `if word in output: skip`
+# incremental check would otherwise keep the stale menu entry forever).
+# Lemma-keyed assignment file is also cleared so stale word-keyed
+# entries don't propagate via step_7a.
 #
 # Covers BOTH modes:
-#   * Normal mode:   Data/Spanish/layers/sense_assignments/...
-#   * Artist mode:   Artists/{lang}/{Name}/data/layers/sense_assignments/...
+#   * Normal mode:   Data/Spanish/layers/{sense_menu,sense_assignments,sense_assignments_lemma}/...
+#   * Artist mode:   Artists/{lang}/{Name}/data/layers/{same}/...
 # The surface_cache is shared, so a backwards entry there poisons
-# every artist pipeline that looks up the word. Wiping both families
-# keeps the rebuild path clean for both.
+# every artist pipeline that looks up the word. Wiping all three layers
+# across both modes keeps the rebuild path clean.
 _NORMAL_ASSIGNMENT_FILES = [
+    PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_menu" / "spanishdict.json",
     PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_assignments" / "spanishdict.json",
     PROJECT_ROOT / "Data" / "Spanish" / "layers" / "sense_assignments_lemma" / "spanishdict.json",
 ]
@@ -96,10 +100,11 @@ _ARTISTS_DIR = PROJECT_ROOT / "Artists"
 
 
 def _artist_assignment_files():
-    """Find every per-artist sense_assignments spanishdict.json in the repo."""
+    """Find every per-artist sense_menu/sense_assignments spanishdict.json."""
     if not _ARTISTS_DIR.exists():
         return []
     patterns = [
+        "*/*/data/layers/sense_menu/spanishdict.json",
         "*/*/data/layers/sense_assignments/spanishdict.json",
         "*/*/data/layers/sense_assignments_lemma/spanishdict.json",
     ]
