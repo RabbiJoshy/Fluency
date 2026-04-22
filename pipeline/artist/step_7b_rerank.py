@@ -256,8 +256,11 @@ def main():
             cognates = json.load(f)
         print(f"  cognates: {len(cognates)} entries")
 
-    # Load master for flags (ignore words in easiness)
-    master_path = os.path.join(project_root, "Artists", "vocabulary_master.json")
+    # Load master for flags (ignore words in easiness). Master lives at
+    # Artists/<lang>/vocabulary_master.json; fall back to the parent directory
+    # name when artist.json doesn't specify a language.
+    language = config.get("language") or os.path.basename(os.path.dirname(artist_dir))
+    master_path = os.path.join(project_root, "Artists", language, "vocabulary_master.json")
     master = {}
     if os.path.isfile(master_path):
         with open(master_path, "r", encoding="utf-8") as f:

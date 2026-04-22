@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260421d';
-import './flashcards.js?v=20260421d';
+import './vocab.js?v=20260423b';
+import './flashcards.js?v=20260423b';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -356,46 +356,17 @@ function renderFindResults(query) {
 }
 
 async function jumpToFoundWord(entry) {
-    const statusEl = document.getElementById('findWordStatus');
-    if (!entry.displayRank) {
-        statusEl.textContent = 'Word is excluded by current filters (cognate/lemma/mastered). Adjust filters and try again.';
-        return;
-    }
-    const gs = (typeof groupSize === 'number' && groupSize > 0) ? groupSize : 25;
-    const rangeStart = Math.floor((entry.displayRank - 1) / gs) * gs + 1;
-    const rangeEnd = rangeStart + gs;
-    const rangeStr = `${rangeStart}-${rangeEnd}`;
-    statusEl.textContent = `Loading set ${rangeStr}…`;
-    // Close the modal now; loadVocabularyData drives its own loading UI
-    document.getElementById('findWordModal').classList.add('hidden');
-    try {
-        await window.loadVocabularyData(rangeStr, { includeWordId: entry.id });
-    } catch (e) {
-        console.error('Find-word: loadVocabularyData failed', e);
-        return;
-    }
-    // loadVocabularyData schedules a ~800ms setTimeout before initializing the card view.
-    // Wait past that, then try to locate the card in the current deck.
-    setTimeout(() => {
-        const targetId = entry.id;
-        const targetWord = (entry.targetWord || '').toLowerCase();
-        const targetLemma = (entry.lemma || '').toLowerCase();
-        let found = -1;
-        for (let i = 0; i < (flashcards || []).length; i++) {
-            const c = flashcards[i];
-            if (targetId && (c.id === targetId || c.fullId === targetId)) { found = i; break; }
-            if (c.targetWord && c.targetWord.toLowerCase() === targetWord &&
-                (!targetLemma || (c.lemma || '').toLowerCase() === targetLemma)) {
-                found = i; break;
-            }
+    // Open the word as a standalone popup card via the cardNavStack pattern.
+    // navigateBack reopens the search modal afterwards.
+    if (window.popupFoundWord) {
+        try {
+            await window.popupFoundWord(entry);
+        } catch (e) {
+            console.error('Find-word: popupFoundWord failed', e);
+            const statusEl = document.getElementById('findWordStatus');
+            if (statusEl) statusEl.textContent = 'Could not open card.';
         }
-        if (found >= 0) {
-            window.currentIndex = found;
-            if (window.updateCard) window.updateCard();
-        } else {
-            console.warn('Find-word: word loaded set but was filtered out of deck', entry);
-        }
-    }, 950);
+    }
 }
 
 function setupFindWord() {

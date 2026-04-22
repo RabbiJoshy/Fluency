@@ -1139,40 +1139,39 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         if entry.get("display_form") and not m.get("display_form"):
             m["display_form"] = entry["display_form"]
 
-        # Update master senses. If this entry has Wiktionary assignments
-        # (biencoder/flash-lite/gap-fill), replace master senses entirely —
-        # those are higher quality than old Gemini step 6 senses.
-        # Otherwise union (for entries with only old Gemini data).
+        # Master senses are a union across artists — keyed by
+        # (pos, normalized translation, normalized context). Context matters
+        # because SpanishDict exposes sibling senses that share (pos, translation)
+        # but disambiguate via the sub-sense context (e.g. decir "to say"
+        # with contexts "to speak", "to give an opinion", "to be rumored").
+        # Collapsing them loses the per-sense example buckets downstream.
         entry_meanings = entry.get("meanings", [])
-        if entry.get("_has_wikt_assignments"):
-            new_senses_list = []
-            for m_ in entry_meanings:
-                if m_.get("pos") in ("SENSE_CYCLE", "X"):
-                    continue
-                s_entry = {"pos": m_.get("pos", "X"), "translation": m_.get("translation", "")}
-                src = m_.get("source")
-                if src:
-                    s_entry["source"] = src
-                new_senses_list.append(s_entry)
-            if new_senses_list:
-                old_count = len(m["senses"])
-                m["senses"] = new_senses_list
-                new_senses += len(new_senses_list) - old_count
-        else:
-            for meaning in entry_meanings:
-                pos = meaning.get("pos", "X")
-                if pos in ("X", "SENSE_CYCLE"):
-                    continue  # don't pollute master with fallback senses
-                translation = meaning.get("translation", "")
-                norm = normalize_translation(translation)
-                exists = any(s["pos"] == pos and normalize_translation(s["translation"]) == norm for s in m["senses"])
-                if not exists:
-                    s_entry = {"pos": pos, "translation": translation}
-                    src = meaning.get("source")
-                    if src:
-                        s_entry["source"] = src
-                    m["senses"].append(s_entry)
-                    new_senses += 1
+
+        def _ctx_key(s):
+            return (s.get("context") or "").strip().lower()
+
+        existing_keys = {
+            (s["pos"], normalize_translation(s.get("translation", "")), _ctx_key(s))
+            for s in m["senses"]
+        }
+        for meaning in entry_meanings:
+            pos = meaning.get("pos", "X")
+            if pos in ("X", "SENSE_CYCLE"):
+                continue  # don't pollute master with fallback senses
+            translation = meaning.get("translation", "")
+            context = meaning.get("context")
+            key = (pos, normalize_translation(translation), (context or "").strip().lower())
+            if key in existing_keys:
+                continue
+            s_entry = {"pos": pos, "translation": translation}
+            if context:
+                s_entry["context"] = context
+            src = meaning.get("source")
+            if src:
+                s_entry["source"] = src
+            m["senses"].append(s_entry)
+            existing_keys.add(key)
+            new_senses += 1
 
     print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))
 
@@ -1343,12 +1342,29 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
         sense_examples = []
         total_ex = 0
 
+        def _ctx_key(s):
+            return (s.get("context") or "").strip().lower()
+
         for sense in m.get("senses", []):
+            sense_ctx = _ctx_key(sense)
             matching = None
+            # First pass: exact match on (pos, translation, context).
             for meaning in entry.get("meanings", []):
-                if meaning.get("pos") == sense["pos"] and meaning.get("translation") == sense["translation"]:
+                if (meaning.get("pos") == sense["pos"]
+                        and meaning.get("translation") == sense["translation"]
+                        and _ctx_key(meaning) == sense_ctx):
                     matching = meaning
                     break
+            # Fallback: match on (pos, translation) only when the master sense
+            # has no context. Avoids siblings with distinct contexts stealing
+            # each other's examples.
+            if matching is None and not sense_ctx:
+                for meaning in entry.get("meanings", []):
+                    if (meaning.get("pos") == sense["pos"]
+                            and meaning.get("translation") == sense["translation"]
+                            and not _ctx_key(meaning)):
+                        matching = meaning
+                        break
             exs = matching.get("examples", []) if matching else []
             sense_examples.append(exs)
             total_ex += len(exs)
@@ -1460,7 +1476,8 @@ def main():
     parser = argparse.ArgumentParser(description="Build artist vocabulary from layers")
     add_artist_arg(parser)
     parser.add_argument("--master-path", type=str, default=None,
-                        help="Path to shared master vocabulary (default: Artists/vocabulary_master.json)")
+                        help="Path to shared master vocabulary (default: "
+                             "Artists/<lang>/vocabulary_master.json, derived from --artist-dir)")
     parser.add_argument("--sense-source", choices=["gemini", "wiktionary", "wiktionary-gemini", "spanishdict"],
                         default="spanishdict",
                         help="Which sense layers to use (default: spanishdict)")

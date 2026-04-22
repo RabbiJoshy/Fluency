@@ -2,7 +2,7 @@
   "bad-bunny": {
     "name": "Bad Bunny",
     "language": "spanish",
-    "masterPath": "Artists/vocabulary_master.json",
+    "masterPath": "Artists/spanish/vocabulary_master.json",
     "dataPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.json",
     "indexPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
     "examplesPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
@@ -51,7 +51,7 @@
   "rosalia": {
     "name": "Rosalía",
     "language": "spanish",
-    "masterPath": "Artists/vocabulary_master.json",
+    "masterPath": "Artists/spanish/vocabulary_master.json",
     "dataPath": "Artists/spanish/Rosalía/Rosaliavocabulary.json",
     "indexPath": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
     "examplesPath": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
@@ -75,7 +75,7 @@
   "young-miko": {
     "name": "Young Miko",
     "language": "spanish",
-    "masterPath": "Artists/vocabulary_master.json",
+    "masterPath": "Artists/spanish/vocabulary_master.json",
     "dataPath": "Artists/spanish/Young Miko/YoungMikovocabulary.json",
     "indexPath": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
     "examplesPath": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",

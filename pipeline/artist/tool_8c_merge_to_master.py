@@ -7,9 +7,12 @@ Usage (from project root):
 
 Reads every artist's monolith vocabulary file, computes 6-char hex IDs, merges
 senses by exact (pos, translation, context) match, and writes:
-  - Artists/vocabulary_master.json           (shared master)
-  - Per-artist .index.json and .examples.json (new split format)
-  - Per-artist monolith .json                 (denormalized, for debugging)
+  - Artists/<lang>/vocabulary_master.json      (per-language master)
+  - Per-artist .index.json and .examples.json  (new split format)
+  - Per-artist monolith .json                  (denormalized, for debugging)
+
+Artists are discovered at Artists/<lang>/<name>/ and grouped by language so each
+language gets its own master (progress keys are per-language).
 
 Also validates that no two distinct word|lemma pairs collide on the same 6-char ID.
 """
@@ -44,7 +47,11 @@ STEP_VERSION_NOTES = {
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 ARTISTS_DIR = os.path.join(PROJECT_ROOT, "Artists")
-MASTER_PATH = os.path.join(ARTISTS_DIR, "vocabulary_master.json")
+
+
+def master_path_for_language(language):
+    # type: (str) -> str
+    return os.path.join(ARTISTS_DIR, language, "vocabulary_master.json")
 
 
 # ---------------------------------------------------------------------------
@@ -145,30 +152,45 @@ def make_stable_id(word, lemma, used=None):
 
 
 def discover_artists():
-    # type: () -> list
-    """Find all artist directories that have an artist.json and a monolith vocab file."""
-    artists = []
-    for name in sorted(os.listdir(ARTISTS_DIR)):
-        artist_dir = os.path.join(ARTISTS_DIR, name)
-        config_path = os.path.join(artist_dir, "artist.json")
-        if not os.path.isfile(config_path):
+    # type: () -> dict
+    """Walk Artists/<lang>/<name>/ and group artists by language.
+
+    Language is taken from the artist.json ``language`` field when present,
+    otherwise from the parent directory name.
+
+    Returns ``{language: [artist, ...]}``.
+    """
+    by_language = {}  # type: dict
+    for lang in sorted(os.listdir(ARTISTS_DIR)):
+        lang_dir = os.path.join(ARTISTS_DIR, lang)
+        if not os.path.isdir(lang_dir):
             continue
-        with open(config_path, "r", encoding="utf-8") as f:
-            config = json.load(f)
-        vocab_file = config.get("vocabulary_file")
-        if not vocab_file:
+        # Skip helper dirs that aren't actually language folders
+        if lang.startswith(".") or lang in ("curations", "tools"):
             continue
-        vocab_path = os.path.join(artist_dir, vocab_file)
-        if not os.path.isfile(vocab_path):
-            print("  SKIP %s — vocabulary file not found: %s" % (name, vocab_path))
-            continue
-        artists.append({
-            "name": config.get("name", name),
-            "dir": artist_dir,
-            "config": config,
-            "vocab_path": vocab_path,
-        })
-    return artists
+        for name in sorted(os.listdir(lang_dir)):
+            artist_dir = os.path.join(lang_dir, name)
+            config_path = os.path.join(artist_dir, "artist.json")
+            if not os.path.isfile(config_path):
+                continue
+            with open(config_path, "r", encoding="utf-8") as f:
+                config = json.load(f)
+            vocab_file = config.get("vocabulary_file")
+            if not vocab_file:
+                continue
+            vocab_path = os.path.join(artist_dir, vocab_file)
+            if not os.path.isfile(vocab_path):
+                print("  SKIP %s/%s — vocabulary file not found: %s" % (lang, name, vocab_path))
+                continue
+            artist_lang = config.get("language") or lang
+            by_language.setdefault(artist_lang, []).append({
+                "name": config.get("name", name),
+                "dir": artist_dir,
+                "language": artist_lang,
+                "config": config,
+                "vocab_path": vocab_path,
+            })
+    return by_language
 
 
 def assign_all_ids(artists):
@@ -549,51 +571,54 @@ def main():
     args = parser.parse_args()
 
     print("Discovering artists...")
-    artists = discover_artists()
-    if not artists:
+    by_language = discover_artists()
+    if not by_language:
         print("No artists found in %s" % ARTISTS_DIR)
         sys.exit(1)
-    print("Found %d artists: %s" % (len(artists), ", ".join(a["name"] for a in artists)))
 
-    print("\nBuilding master vocabulary...")
-    master, per_artist_data, stats = build_master(artists)
+    for lang, artists in sorted(by_language.items()):
+        print("\n" + "=" * 60)
+        print("LANGUAGE: %s" % lang)
+        print("=" * 60)
+        print("Found %d artists: %s" % (len(artists), ", ".join(a["name"] for a in artists)))
+
+        print("\nBuilding master vocabulary for %s..." % lang)
+        master, per_artist_data, stats = build_master(artists)
+
+        if args.dry_run:
+            print("\nDRY RUN (%s) — no files written" % lang)
+            print("Senses merged: %d" % stats["senses_merged"])
+            for word, wid, pos, existing, incoming in stats.get("merge_details", []):
+                m = master[wid]
+                canonical = ""
+                for s in m["senses"]:
+                    if s["pos"] == pos and normalize_translation(s["translation"]) == normalize_translation(existing):
+                        canonical = s["translation"]
+                        break
+                print("  %s [%s] %s: \"%s\" + \"%s\" -> \"%s\"" % (
+                    word, wid, pos, existing, incoming, canonical))
+            validate(master, per_artist_data, stats)
+            continue
+
+        master_path = master_path_for_language(lang)
+        os.makedirs(os.path.dirname(master_path), exist_ok=True)
+        print("\nWriting master vocabulary to %s..." % master_path)
+        with open(master_path, "w", encoding="utf-8") as f:
+            json.dump(master, f, ensure_ascii=False, indent=None)
+        write_sidecar(master_path, make_meta("merge_to_master", STEP_VERSION))
+        master_size = os.path.getsize(master_path)
+        print("  %d entries, %s bytes" % (len(master), "{:,}".format(master_size)))
+
+        for ad in per_artist_data:
+            print("\nWriting files for %s..." % ad["artist"]["name"])
+            write_artist_files(master, ad)
+
+        validate(master, per_artist_data, stats)
 
     if args.dry_run:
-        print("\n" + "=" * 60)
-        print("DRY RUN — no files written")
-        print("=" * 60)
-        print("Senses merged: %d" % stats["senses_merged"])
-        for word, wid, pos, existing, incoming in stats.get("merge_details", []):
-            # Find the canonical translation chosen
-            m = master[wid]
-            canonical = ""
-            for s in m["senses"]:
-                if s["pos"] == pos and normalize_translation(s["translation"]) == normalize_translation(existing):
-                    canonical = s["translation"]
-                    break
-            print("  %s [%s] %s: \"%s\" + \"%s\" -> \"%s\"" % (
-                word, wid, pos, existing, incoming, canonical))
-        validate(master, per_artist_data, stats)
         print("\nDry run complete. Run without --dry-run to write files.")
-        return
-
-    # Write master
-    print("\nWriting master vocabulary to %s..." % MASTER_PATH)
-    with open(MASTER_PATH, "w", encoding="utf-8") as f:
-        json.dump(master, f, ensure_ascii=False, indent=None)
-    write_sidecar(MASTER_PATH, make_meta("merge_to_master", STEP_VERSION))
-    master_size = os.path.getsize(MASTER_PATH)
-    print("  %d entries, %s bytes" % (len(master), "{:,}".format(master_size)))
-
-    # Write per-artist files
-    for ad in per_artist_data:
-        print("\nWriting files for %s..." % ad["artist"]["name"])
-        write_artist_files(master, ad)
-
-    # Validate
-    validate(master, per_artist_data, stats)
-
-    print("\nDone!")
+    else:
+        print("\nDone!")
 
 
 if __name__ == "__main__":

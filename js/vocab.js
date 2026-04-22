@@ -88,26 +88,32 @@ function joinWithMaster(indexData, master) {
         const m = master[idx.id];
         if (!m) continue;
 
-        // Build meanings array from master senses + artist sense_frequencies
+        // Build meanings array from master senses + artist sense_frequencies.
+        // Master accumulates every sense seen across all artists; drop the
+        // senses this artist never uses (freq 0 or missing) so we don't
+        // cross-pollinate another artist's senses onto this card.
         const methods = idx.sense_methods || [];
-        const meanings = (m.senses || []).map((sense, i) => {
+        const freqs = idx.sense_frequencies || [];
+        const meanings = [];
+        (m.senses || []).forEach((sense, i) => {
+            const freq = freqs[i];
+            if (!freq) return;
             const meaning = {
                 pos: sense.pos,
                 translation: sense.translation,
-                frequency: String(idx.sense_frequencies?.[i] ?? 0),
+                frequency: String(freq),
                 examples: []  // Attached later from examples file
             };
             if (sense.source) meaning.source = sense.source;
             if (sense.context) meaning.context = sense.context;
             const method = methods[i];
             if (method) {
-                // Has a specific assignment method — record it, gets border
                 meaning.assignment_method = method;
             } else if (idx.unassigned) {
-                // No method + entry has unassigned senses = this sense is a random bucket
                 meaning.unassigned = true;
             }
-            return meaning;
+            meaning._masterSenseIndex = i;
+            meanings.push(meaning);
         });
 
         // Build mwe_memberships from index entry (per-artist, not master)
@@ -383,7 +389,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     const ex = examplesData[item.id];
                     if (ex && ex.m) {
                         item.meanings.forEach((m, i) => {
-                            m.examples = ex.m[i] || [];
+                            // ex.m is indexed against the master sense order;
+                            // after joinWithMaster drops zero-freq senses, the
+                            // array positions diverge — honor _masterSenseIndex.
+                            const bucket = m._masterSenseIndex ?? i;
+                            m.examples = ex.m[bucket] || [];
                         });
                     }
                     if (ex && ex.w && item.mwe_memberships) {
@@ -766,7 +776,8 @@ async function loadIncorrectWordsSet() {
                     const ex = examplesData[item.id];
                     if (ex && ex.m) {
                         item.meanings.forEach((m, i) => {
-                            m.examples = ex.m[i] || [];
+                            const bucket = m._masterSenseIndex ?? i;
+                            m.examples = ex.m[bucket] || [];
                         });
                     }
                     if (ex && ex.w && item.mwe_memberships) {
@@ -1183,7 +1194,8 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 const ex = examplesData[id];
                 if (ex.m) {
                     entry.meanings.forEach((m, i) => {
-                        m.examples = ex.m[i] || [];
+                        const bucket = m._masterSenseIndex ?? i;
+                        m.examples = ex.m[bucket] || [];
                     });
                 }
                 if (ex.w && entry.mwe_memberships) {
