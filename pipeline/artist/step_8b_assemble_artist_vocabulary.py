@@ -942,6 +942,19 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             if morphology:
                 entry["morphology"] = morphology
 
+            # `related_lemma` — SpanishDict's morphological pointer when it
+            # differs from the card's semantic lemma. Classic case: ``hay``
+            # has ``lemma=hay`` (SD lexicalises "there is/are" as its own
+            # headword) but ``related_lemma=haber`` (SD also flags it as a
+            # conjugation of haber). Stamped on the entry here so
+            # write_split_files reads it off without having to re-load the
+            # surface cache separately.
+            sd_entry = spanishdict_surface_cache.get(wl)
+            if sd_entry:
+                sd_conj = conjugation_lemma_from_possible_results(sd_entry)
+                if sd_conj and sd_conj != (word_lemma or "").lower():
+                    entry["related_lemma"] = sd_conj
+
             cognate_key = "%s|%s" % (word, word_lemma)
             cognate_obj = cognates.get(cognate_key)
             if isinstance(cognate_obj, (int, float)):
@@ -1366,17 +1379,10 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             idx_entry["variants"] = entry["variants"]
         if entry.get("morphology"):
             idx_entry["morphology"] = entry["morphology"]
-        # `related_lemma` — SpanishDict's morphological pointer when it
-        # differs from this card's semantic lemma. Classic case: ``hay``
-        # has ``lemma=hay`` (SD lexicalises "there is/are" as its own
-        # headword) but ``related_lemma=haber`` (SD also flags it as a
-        # conjugation of haber). Front-end surfaces haber's paradigm
-        # when the card's own lemma has no inline conjugation data.
-        sd_entry = spanishdict_surface_cache.get((entry.get("word") or "").lower())
-        if sd_entry:
-            sd_conj = conjugation_lemma_from_possible_results(sd_entry)
-            if sd_conj and sd_conj != (entry.get("lemma") or "").lower():
-                idx_entry["related_lemma"] = sd_conj
+        # related_lemma was stamped earlier in assemble_from_layers where
+        # the surface cache is loaded. Just pass it through here.
+        if entry.get("related_lemma"):
+            idx_entry["related_lemma"] = entry["related_lemma"]
         if entry_mwes:
             idx_entry["mwe_memberships"] = [
                 {**{"expression": mwe["expression"],
