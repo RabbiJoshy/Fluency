@@ -4283,13 +4283,20 @@
             padding: 0;
             border: none;
             background: var(--bg-primary, var(--bg-card));
-            display: flex;
-            flex-direction: column;
             position: relative;
+            /* Scroll container for the about modal. Putting overflow here
+               (rather than on .about-project-body) keeps the scrollbar
+               flush with the viewport's right edge instead of floating
+               at the body's max-width boundary in the middle of wide
+               screens. */
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .about-close-floating {
-            position: absolute;
+            /* Fixed (not absolute) so it stays pinned to the viewport
+               corner while the modal scrolls underneath. */
+            position: fixed;
             top: 18px;
             right: 22px;
             z-index: 10;
@@ -4342,18 +4349,18 @@
         }
 
         .about-project-body {
+            /* Scroll lives on the parent .about-project-modal so the
+               scrollbar sits at the viewport's right edge. The body just
+               flows naturally inside, capped at a readable width. */
             padding: 44px 48px 80px;
             color: var(--text-secondary);
             font-family: var(--font-reading);
             font-size: 16px;
             line-height: 1.7;
-            overflow-y: auto;
-            max-height: none;
-            max-width: 1280px;
+            max-width: 880px;
             width: 100%;
             margin: 0 auto;
             box-sizing: border-box;
-            flex: 1;
         }
 
         /* About-modal title treatments. Using var(--accent-primary) for

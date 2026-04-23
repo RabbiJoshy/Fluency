@@ -112,44 +112,45 @@ window.showPOSInfo = showPOSInfo;
 function formatMorphMood(mood) {
     const moodMap = {
         indicativo: '',        // indicative is default, omit
-        subjuntivo: 'subj',
-        imperativo: 'imp',
-        gerundio: 'ger',
-        participio: 'part',
-        participo: 'part',
-        'participio-pasado': 'past part',
-        condicional: 'cond',
-        infinitivo: 'inf',
+        subjuntivo: 'subjunctive',
+        imperativo: 'imperative',
+        gerundio: 'gerund',
+        participio: 'past participle',
+        participo: 'past participle',
+        'participio-pasado': 'past participle',
+        condicional: 'conditional',
+        infinitivo: 'infinitive',
     };
     return moodMap[mood] || mood;
 }
 
 function formatMorphTense(tense) {
     const tenseMap = {
-        presente: 'pres',
-        afirmativo: 'aff',
-        negativo: 'neg',
-        futuro: 'fut',
-        'futuro-perfecto': 'fut perf',
-        'pretérito-perfecto-simple': 'pret',
-        'pretérito-imperfecto': 'imperf',
-        'pretérito-imperfecto-1': 'imperf',
-        'pretérito-imperfecto-2': 'imperf',
-        'pretérito-perfecto': 'pres perf',
-        'pretérito-pluscuamperfecto-1': 'pluperf',
-        'pretérito-pluscuamperfecto-2': 'pluperf',
-        infinitivo: 'inf',
-        gerundio: 'ger',
-        participo: 'part',
+        presente: 'present',
+        afirmativo: 'affirmative',
+        negativo: 'negative',
+        futuro: 'future',
+        'futuro-perfecto': 'future perfect',
+        'pretérito-perfecto-simple': 'preterite',
+        'pretérito-imperfecto': 'imperfect',
+        'pretérito-imperfecto-1': 'imperfect',
+        'pretérito-imperfecto-2': 'imperfect',
+        'pretérito-perfecto': 'present perfect',
+        'pretérito-pluscuamperfecto-1': 'pluperfect',
+        'pretérito-pluscuamperfecto-2': 'pluperfect',
+        infinitivo: '',        // infinitive is implied by mood, omit
+        gerundio: '',
+        participo: '',
     };
-    return tenseMap[tense] || tense;
+    const mapped = tenseMap[tense];
+    return mapped !== undefined ? mapped : tense;
 }
 
 function formatMorphPerson(person) {
     const personMap = {
-        '1s': '1s',
-        '2s': '2s',
-        '3s': '3s',
+        '1s': '1sg',
+        '2s': '2sg',
+        '3s': '3sg',
         '1p': '1pl',
         '2p': '2pl',
         '3p': '3pl',
@@ -2056,11 +2057,11 @@ function updateCard() {
     if (isVerb) {
         backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
             <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="0" y="0" width="32" height="32" rx="5" fill="rgba(255,255,255,0.08)"/>
-                <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3">
-                    <text x="16" y="11"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">AR</tspan></text>
-                    <text x="16" y="20"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">ER</tspan></text>
-                    <text x="16" y="29"><tspan fill="#c4252a">-</tspan><tspan fill="var(--accent-primary)">IR</tspan></text>
+                <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
+                <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3" fill="#000000">
+                    <text x="16" y="11">-AR</text>
+                    <text x="16" y="20">-ER</text>
+                    <text x="16" y="29">-IR</text>
                 </g>
             </svg>
         </button>`;
@@ -3119,23 +3120,41 @@ window.peekHomograph = peekHomograph;
 const CONJ_PRONOUNS_FULL = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', 'ellos / ellas'];
 
 // Tense → mood mapping. Tenses we currently ship are just the first six;
-// the Imperativo + compound entries are scaffolded so future data slots in
-// without a renderer change. Unknown tenses fall under "Otras".
+// the Imperative + compound entries are scaffolded so future data slots in
+// without a renderer change. Unknown tenses fall under "Other".
+//
+// Mood keys are display labels (English). Tense keys must match the Spanish
+// labels in `conjEntry.tenses` (the conjugation data is keyed by Spanish
+// tense names from verbecc). `CONJ_TENSE_DISPLAY` below maps each Spanish
+// key to a short English label for the toggle buttons.
 const CONJ_MOOD_GROUPS = {
-    'Indicativo': {
+    'Indicative': {
         tenses: ['Presente', 'Pretérito', 'Imperfecto', 'Futuro', 'Condicional'],
         accent: 'rgba(74, 158, 255, 0.6)',   // blue
     },
-    'Subjuntivo': {
+    'Subjunctive': {
         tenses: ['Subj. Presente', 'Subj. Imperfecto', 'Subj. Futuro'],
         accent: 'rgba(168, 85, 247, 0.6)',   // purple
     },
-    'Imperativo': {
+    'Imperative': {
         tenses: ['Imperativo', 'Imp. Negativo'],
         accent: 'rgba(236, 72, 153, 0.6)',   // pink
     },
 };
-const CONJ_MOOD_ORDER = ['Indicativo', 'Subjuntivo', 'Imperativo'];
+const CONJ_MOOD_ORDER = ['Indicative', 'Subjunctive', 'Imperative'];
+
+const CONJ_TENSE_DISPLAY = {
+    'Presente': 'pres',
+    'Pretérito': 'pret',
+    'Imperfecto': 'imperf',
+    'Futuro': 'fut',
+    'Condicional': 'cond',
+    'Subj. Presente': 'pres',
+    'Subj. Imperfecto': 'imperf',
+    'Subj. Futuro': 'fut',
+    'Imperativo': 'affirm',
+    'Imp. Negativo': 'neg',
+};
 
 // Split a form into (stem, ending) using longest-common-prefix vs the
 // infinitive's STEM (infinitive minus the -ar/-er/-ir ending). For regular
@@ -3232,7 +3251,7 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
     }
     const orphanTenses = tenseNames.filter(t => !seen.has(t));
     if (orphanTenses.length) {
-        grouped.push({ mood: 'Otras', accent: 'rgba(255,255,255,0.3)', tenses: orphanTenses });
+        grouped.push({ mood: 'Other', accent: 'rgba(255,255,255,0.3)', tenses: orphanTenses });
     }
 
     // The mood that owns the default tense is the one we open on.
@@ -3263,7 +3282,7 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
         const styleStr = `--mood-accent: ${g.accent};${isActiveMood ? '' : ' display: none;'}`;
         const btns = g.tenses.map(t => {
             const active = t === defaultTense ? ' conj-tense-active' : '';
-            const display = t.replace(/^Subj\.\s*/, '').replace(/^Imp\.\s*/, '');
+            const display = CONJ_TENSE_DISPLAY[t] || t;
             return `<button class="conj-tense-btn${active}" data-tense="${t}" onclick="switchConjTense('${t}')">${display}</button>`;
         }).join('');
         return `<div class="conj-tense-toggle" data-mood="${g.mood}" style="${styleStr}">${btns}</div>`;
@@ -3303,11 +3322,11 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
     const nonFiniteHTML = (conjEntry.gerund || conjEntry.past_participle) ? `
         <div class="conj-nonfinite">
             ${conjEntry.gerund ? `<div class="conj-nf-item${gerActive}">
-                <span class="conj-nf-label">gerundio</span>
+                <span class="conj-nf-label">gerund</span>
                 <span class="conj-nf-form">${conjEntry.gerund}</span>
             </div>` : ''}
             ${conjEntry.past_participle ? `<div class="conj-nf-item${ppActive}">
-                <span class="conj-nf-label">participio</span>
+                <span class="conj-nf-label">past participle</span>
                 <span class="conj-nf-form">${conjEntry.past_participle}</span>
             </div>` : ''}
         </div>` : '';
