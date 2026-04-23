@@ -1,5 +1,6 @@
 {
-  "step_name": "merge_to_master",
-  "step_version": 2,
-  "generated_at": 1776900936
+  "step_name": "assemble_artist_vocabulary",
+  "step_version": 1,
+  "generated_at": 1776904632,
+  "output": "master"
 }

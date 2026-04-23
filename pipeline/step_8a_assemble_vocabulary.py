@@ -440,6 +440,21 @@ def main():
         conj_reverse = {}
         print("  conjugation_reverse: (not found, skipping)")
 
+    # Wiktionary-derived morphology layer (tool_4a_build_morphology_layer).
+    # Same shape as conjugation_reverse — used as the primary source for
+    # mood/tense/person stamping because Wiktionary covers ~42% more verb
+    # forms than verbecc on this corpus (voseo, regional slang, clitic
+    # bundles). Verbecc remains the fallback for the canonical paradigms
+    # Wiktionary skips.
+    morphology_path = LAYERS / "morphology.json"
+    if morphology_path.exists():
+        with open(morphology_path, encoding="utf-8") as f:
+            wikt_morph = json.load(f)
+        print(f"  morphology (wiktionary): {len(wikt_morph)} forms")
+    else:
+        wikt_morph = {}
+        print("  morphology (wiktionary): (not found, falling back to verbecc only)")
+
     # SpanishDict surface cache — needed for `related_lemma`, the
     # morphological pointer SpanishDict attaches to words whose
     # dictionary headword is lexicalised separately from their
@@ -832,12 +847,24 @@ def main():
                     mwe_examples_by_idx.append(matched_exs[:5])
                 stats["with_mwes"] += 1
 
-            # Morphology from conjugation reverse lookup
+            # Morphology stamping. Wiktionary first (richer coverage —
+            # voseo, regional slang, clitic bundles), verbecc fills the
+            # canonical-paradigm gaps Wiktionary skips. Both lookups share
+            # the {lemma, mood, tense, person} shape.
             morphology = None
-            if wl != lemma.lower() and conj_reverse:
-                candidates = conj_reverse.get(wl, [])
-                matches = [{"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
-                           for c in candidates if c["lemma"] == lemma.lower()]
+            if wl != lemma.lower():
+                lemma_l = lemma.lower()
+                matches = [
+                    {"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                    for c in wikt_morph.get(wl, [])
+                    if c["lemma"] == lemma_l
+                ]
+                if not matches and conj_reverse:
+                    matches = [
+                        {"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                        for c in conj_reverse.get(wl, [])
+                        if c["lemma"] == lemma_l
+                    ]
                 if len(matches) == 1:
                     morphology = matches[0]
                 elif len(matches) > 1:

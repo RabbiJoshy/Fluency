@@ -218,6 +218,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     cognates = load_layer(shared_cognates, "cognates (shared)", required=False) or {}
     conj_reverse_path = os.path.join(project_root, "Data", "Spanish", "layers", "conjugation_reverse.json")
     conj_reverse = load_layer(conj_reverse_path, "conjugation_reverse (shared)", required=False) or {}
+    # Wiktionary-derived morphology layer (tool_4a_build_morphology_layer).
+    # Same shape as conjugation_reverse — primary source for stamping
+    # because Wiktionary covers ~42% more verb forms than verbecc on the
+    # master vocab (voseo, regional slang, clitic bundles). Verbecc
+    # remains the fallback for canonical-paradigm gaps Wiktionary skips.
+    wikt_morph_path = os.path.join(project_root, "Data", "Spanish", "layers", "morphology.json")
+    wikt_morph = load_layer(wikt_morph_path, "morphology (wiktionary, shared)", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
     translation_scores = load_layer(os.path.join(layers_dir, "translation_scores.json"),
                                      "translation_scores", required=False) or {}
@@ -906,16 +913,30 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     "examples": fallback_examples,
                 })
 
+            # Morphology stamping. Wiktionary first (richer coverage —
+            # voseo, regional slang, clitic bundles), verbecc fills the
+            # canonical-paradigm gaps Wiktionary skips. Both lookups share
+            # the {lemma, mood, tense, person} shape.
             morphology = None
-            if word.lower() != word_lemma.lower() and conj_reverse:
-                candidates = conj_reverse.get(word.lower(), [])
-                matches = [{"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
-                           for c in candidates if c["lemma"] == word_lemma.lower()]
+            wl_lower = word.lower()
+            lemma_lower = word_lemma.lower()
+            if wl_lower != lemma_lower:
+                matches = [
+                    {"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                    for c in wikt_morph.get(wl_lower, [])
+                    if c["lemma"] == lemma_lower
+                ]
+                if not matches and conj_reverse:
+                    matches = [
+                        {"mood": c["mood"], "tense": c["tense"], "person": c["person"]}
+                        for c in conj_reverse.get(wl_lower, [])
+                        if c["lemma"] == lemma_lower
+                    ]
                 if len(matches) == 1:
                     morphology = matches[0]
                 elif len(matches) > 1:
                     morphology = matches
-            elif word.lower() == word_lemma.lower():
+            elif wl_lower == lemma_lower:
                 has_verb = word_senses and any(s.get("pos") == "VERB" for s in word_senses)
                 if has_verb:
                     morphology = {"mood": "infinitivo"}
