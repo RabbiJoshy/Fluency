@@ -78,6 +78,14 @@ Artists/spotify_tracks.json
 *.cache.pkl
 .bench_sense_cache.json
 *.bak
+*.bak[0-9]
+*.bak[0-9][0-9]
 
 # Generated pipeline status snapshot — regenerate with scripts/pipeline_status.py
 PIPELINE_STATUS.txt
+
+# Wiktionary morphology layer — 87MB, regenerate locally with
+# `pipeline/tool_4a_build_morphology_layer.py`. The kaikki source dump is
+# committed under Data/Spanish/Senses/wiktionary/, so this file is fully
+# reproducible and doesn't need to be in source.
+Data/Spanish/layers/morphology.json
