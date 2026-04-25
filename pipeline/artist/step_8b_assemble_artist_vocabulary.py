@@ -225,6 +225,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # remains the fallback for canonical-paradigm gaps Wiktionary skips.
     wikt_morph_path = os.path.join(project_root, "Data", "Spanish", "layers", "morphology.json")
     wikt_morph = load_layer(wikt_morph_path, "morphology (wiktionary, shared)", required=False) or {}
+    # SpanishDict-derived synonyms/antonyms layer (tool_5e_build_synonyms_layer).
+    # Keyed by lemma; value is {synonyms: [...], antonyms: [...]}. Optional —
+    # runs without when the thesaurus cache hasn't been built yet.
+    synonyms_path = os.path.join(project_root, "Data", "Spanish", "layers", "synonyms.json")
+    synonyms_layer = load_layer(synonyms_path, "synonyms (spanishdict, shared)", required=False) or {}
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
     translation_scores = load_layer(os.path.join(layers_dir, "translation_scores.json"),
                                      "translation_scores", required=False) or {}
@@ -963,6 +968,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             if morphology:
                 entry["morphology"] = morphology
 
+            # Synonyms / antonyms — looked up by lemma since they're a
+            # property of the lexeme. The same hablar entry serves every
+            # surface form (hablo / habla / hablaste / …).
+            syn_entry = synonyms_layer.get(lemma_lower) or {}
+            if syn_entry.get("synonyms"):
+                entry["synonyms"] = syn_entry["synonyms"]
+            if syn_entry.get("antonyms"):
+                entry["antonyms"] = syn_entry["antonyms"]
+
             # `related_lemma` — SpanishDict's morphological pointer when it
             # differs from the card's semantic lemma. Classic case: ``hay``
             # has ``lemma=hay`` (SD lexicalises "there is/are" as its own
@@ -1416,6 +1430,10 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             idx_entry["variants"] = entry["variants"]
         if entry.get("morphology"):
             idx_entry["morphology"] = entry["morphology"]
+        if entry.get("synonyms"):
+            idx_entry["synonyms"] = entry["synonyms"]
+        if entry.get("antonyms"):
+            idx_entry["antonyms"] = entry["antonyms"]
         # related_lemma was stamped earlier in assemble_from_layers where
         # the surface cache is loaded. Just pass it through here.
         if entry.get("related_lemma"):

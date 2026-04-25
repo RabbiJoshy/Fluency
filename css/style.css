@@ -2893,8 +2893,12 @@
             border: none;
         }
 
-        /* Conjugation panel — slides in over the card face. */
-        .conjugation-panel {
+        /* Conjugation panel — slides in over the card face.
+           Synonyms panel reuses the same layout (slide-in, header, close
+           button) so the two share these selectors. Synonym-specific
+           rules live further down. */
+        .conjugation-panel,
+        .synonyms-panel {
             position: absolute;
             /* Was top/bottom: -40px (extended past the card); .card-face
                has overflow: hidden so the close button at the panel top
@@ -2916,9 +2920,63 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.4);
             visibility: hidden;
         }
-        .conjugation-panel.visible {
+        .conjugation-panel.visible,
+        .synonyms-panel.visible {
             transform: translateX(0);
             visibility: visible;
+        }
+
+        /* Synonyms / antonyms panel — two stacked sections, words rendered
+           as inline pill-links sized by relationship strength. */
+        .syn-body {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 4px 0 8px;
+        }
+        .syn-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .syn-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+        }
+        .syn-item {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.2;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+        .syn-item:hover {
+            background: rgba(var(--accent-primary-rgb), 0.18);
+            transform: translateY(-1px);
+        }
+        .syn-item .syn-word {
+            font-weight: 600;
+        }
+        .syn-item.syn-strong .syn-word {
+            font-size: 17px;
+        }
+        .syn-item.syn-weak .syn-word {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .syn-item .syn-context {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-style: italic;
         }
 
         /* ---- Header: infinitive + type badge, translation, non-finite

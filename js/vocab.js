@@ -159,6 +159,8 @@ function joinWithMaster(indexData, master) {
             clitic_memberships: clitic_memberships.length > 0 ? clitic_memberships : undefined,
             sense_cycles: sense_cycles.length > 0 ? sense_cycles : undefined,
             morphology: idx.morphology || null,
+            synonyms: idx.synonyms || null,
+            antonyms: idx.antonyms || null,
         });
     }
     return result;
@@ -608,6 +610,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 variants: item.variants || null,
                 homographIds: item.homograph_ids || null,
                 morphology: item.morphology || null,
+                synonyms: item.synonyms || null,
+                antonyms: item.antonyms || null,
                 // SpanishDict's morphological pointer (e.g. hay → haber).
                 // Set when the word's semantic lemma is lexicalised but
                 // SD also flags it as a conjugation of some verb. The
@@ -920,6 +924,8 @@ async function loadIncorrectWordsSet() {
                 variants: item.variants || null,
                 homographIds: item.homograph_ids || null,
                 morphology: item.morphology || null,
+                synonyms: item.synonyms || null,
+                antonyms: item.antonyms || null,
                 // SpanishDict's morphological pointer (e.g. hay → haber).
                 // Set when the word's semantic lemma is lexicalised but
                 // SD also flags it as a conjugation of some verb. The
@@ -1082,7 +1088,9 @@ function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
                 links: generateLinks(group.word, group.lemma || group.word, langConfig.referenceLinks),
                 isMultiMeaning: true,
                 variants: group.variants || null,
-                morphology: group.morphology || null
+                morphology: group.morphology || null,
+                synonyms: group.synonyms || null,
+                antonyms: group.antonyms || null
             };
 
             flashcards.push(card);

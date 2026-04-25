@@ -455,6 +455,20 @@ def main():
         wikt_morph = {}
         print("  morphology (wiktionary): (not found, falling back to verbecc only)")
 
+    # SpanishDict-derived synonyms/antonyms layer (tool_5e_build_synonyms_layer).
+    # Keyed by lemma; value is {synonyms: [...], antonyms: [...]} where each
+    # item is {word, strength, context?}. Strength is the absolute relationship
+    # value (2 = strong, 1 = weak/related). Optional — runs without when the
+    # thesaurus cache hasn't been built yet.
+    synonyms_path = LAYERS / "synonyms.json"
+    if synonyms_path.exists():
+        with open(synonyms_path, encoding="utf-8") as f:
+            synonyms_layer = json.load(f)
+        print(f"  synonyms (spanishdict): {len(synonyms_layer)} lemmas")
+    else:
+        synonyms_layer = {}
+        print("  synonyms (spanishdict): (not found, skipping)")
+
     # SpanishDict surface cache — needed for `related_lemma`, the
     # morphological pointer SpanishDict attaches to words whose
     # dictionary headword is lexicalised separately from their
@@ -553,7 +567,7 @@ def main():
     used_ids = set()  # track hex IDs for collision avoidance
     all_entries = []   # (word, lemma, corpus_count, entry_dict) for sorting
     stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0,
-             "with_morphology": 0, "clitic_merged": len(clitic_data)}
+             "with_morphology": 0, "with_synonyms": 0, "clitic_merged": len(clitic_data)}
 
     for inv_entry in inventory:
         word = inv_entry["word"]
@@ -874,6 +888,14 @@ def main():
                 if has_verb:
                     morphology = {"mood": "infinitivo"}
 
+            # Synonyms / antonyms — looked up by lemma (since they're a
+            # property of the lexeme, not the surface form). A multi-form
+            # paradigm (hablar / hablo / habla / habló) all reuse the same
+            # hablar entry from the layer.
+            syn_entry = synonyms_layer.get(lemma.lower()) or {}
+            synonyms_list = syn_entry.get("synonyms") or None
+            antonyms_list = syn_entry.get("antonyms") or None
+
             # Cognate signals (keyed by word|lemma)
             cognate_obj = cognates.get(key)
             if isinstance(cognate_obj, (int, float)):
@@ -931,11 +953,15 @@ def main():
                 "mwe_memberships": mwe_memberships,
                 "mwe_examples_by_idx": mwe_examples_by_idx,
                 "morphology": morphology,
+                "synonyms": synonyms_list,
+                "antonyms": antonyms_list,
                 "variants": inv_entry.get("variants"),
                 "related_lemma": related_lemma,
             })
             if morphology:
                 stats["with_morphology"] += 1
+            if synonyms_list or antonyms_list:
+                stats["with_synonyms"] += 1
 
     # Re-sort by corpus_count desc so lemma-split entries slot into their
     # true frequency position (otherwise e.g. para|parar (323) would sit
@@ -1024,6 +1050,10 @@ def main():
             mono_entry["mwe_memberships"] = e["mwe_memberships"]
         if e["morphology"]:
             mono_entry["morphology"] = e["morphology"]
+        if e.get("synonyms"):
+            mono_entry["synonyms"] = e["synonyms"]
+        if e.get("antonyms"):
+            mono_entry["antonyms"] = e["antonyms"]
         if e.get("related_lemma"):
             mono_entry["related_lemma"] = e["related_lemma"]
         if e.get("variants"):
@@ -1049,6 +1079,10 @@ def main():
             idx_entry["mwe_memberships"] = e["mwe_memberships"]
         if e["morphology"]:
             idx_entry["morphology"] = e["morphology"]
+        if e.get("synonyms"):
+            idx_entry["synonyms"] = e["synonyms"]
+        if e.get("antonyms"):
+            idx_entry["antonyms"] = e["antonyms"]
         if e.get("related_lemma"):
             idx_entry["related_lemma"] = e["related_lemma"]
         index.append(idx_entry)
@@ -1092,6 +1126,7 @@ def main():
     print(f"Translations cleaned: {stats['cleaned']:>5}")
     print(f"With MWEs:          {stats['with_mwes']:>6}")
     print(f"With morphology:    {stats['with_morphology']:>6}")
+    print(f"With synonyms:      {stats['with_synonyms']:>6}")
     print(f"Clitics merged:     {stats['clitic_merged']:>6}")
     print()
 

@@ -20,6 +20,7 @@ SPANISHDICT_HEADWORD_CACHE = SPANISHDICT_DIR / "headword_cache.json"
 SPANISHDICT_REDIRECTS = SPANISHDICT_DIR / "redirects.json"
 SPANISHDICT_STATUS = SPANISHDICT_DIR / "status.json"
 SPANISHDICT_PHRASES_CACHE = SPANISHDICT_DIR / "phrases_cache.json"
+SPANISHDICT_THESAURUS_CACHE = SPANISHDICT_DIR / "thesaurus_cache.json"
 REQUEST_DELAY_SECONDS = 0.35
 
 _request_lock = threading.Lock()
@@ -323,6 +324,89 @@ def fetch_spanishdict_component(session, word):
             last_exc = exc
             time.sleep(min(3 * (2 ** attempt), 30))
     raise last_exc
+
+
+def fetch_spanishdict_thesaurus(session, word):
+    """Fetch SpanishDict's per-word thesaurus page and return SD_COMPONENT_DATA.
+
+    The page is at ``/thesaurus/<word>`` and is Spanish-only, so we don't
+    need ``?langFrom=es`` here. The redux blob lives under the same
+    ``SD_COMPONENT_DATA`` marker as the dictionary page; ``thesaurusProps``
+    holds the headword id, linked words, senses, and senseLinks (the
+    relationship graph). Returns ``None`` when the page has no thesaurus
+    data — SD serves a generic "no results" page for those, with
+    ``thesaurusProps`` either missing or empty.
+    """
+    url = "https://www.spanishdict.com/thesaurus/%s" % quote(word)
+    last_exc = None
+    for attempt in range(5):
+        try:
+            throttle_request()
+            response = session.get(url, timeout=20)
+            response.raise_for_status()
+            return extract_component_data(response.text)
+        except requests.HTTPError as exc:
+            last_exc = exc
+            code = getattr(exc.response, "status_code", None)
+            if code == 404:
+                return None
+            if code in (429, 503):
+                retry_after = getattr(exc.response, "headers", {}).get("Retry-After")
+                try:
+                    wait = min(int(retry_after), 60) if retry_after else min(5 * (2 ** attempt), 60)
+                except ValueError:
+                    wait = min(5 * (2 ** attempt), 60)
+                time.sleep(wait)
+                continue
+            raise
+        except requests.RequestException as exc:
+            last_exc = exc
+            time.sleep(min(3 * (2 ** attempt), 30))
+    raise last_exc
+
+
+def extract_thesaurus_payload(component):
+    """Strip ``thesaurusProps`` to the fields the layer builder uses.
+
+    The raw payload includes editor-only fields (``senseEditHost``) and
+    fields the builder doesn't need (``examples``, ``translations``).
+    Cache only the join inputs so the on-disk file stays small.
+    Returns ``None`` when the page has no usable thesaurus content.
+    """
+    if not isinstance(component, dict):
+        return None
+    tp = component.get("thesaurusProps") or {}
+    headword = tp.get("headword") or {}
+    sense_links = tp.get("senseLinks") or []
+    senses = tp.get("senses") or []
+    linked_words = tp.get("linkedWords") or []
+    if not headword or not sense_links or not senses:
+        return None
+    return {
+        "headword": {"id": headword.get("id"), "source": headword.get("source")},
+        "senses": [
+            {
+                "id": s.get("id"),
+                "wordId": s.get("wordId"),
+                "partOfSpeechId": s.get("partOfSpeechId"),
+                "contextEn": s.get("contextEn") or "",
+                "contextEs": s.get("contextEs") or "",
+            }
+            for s in senses
+        ],
+        "linkedWords": [
+            {"id": w.get("id"), "source": w.get("source")}
+            for w in linked_words
+        ],
+        "senseLinks": [
+            {
+                "relationship": link.get("relationship"),
+                "senseLinkA": link.get("senseLinkA"),
+                "senseLinkB": link.get("senseLinkB"),
+            }
+            for link in sense_links
+        ],
+    }
 
 
 def extract_translation_rows(component):
