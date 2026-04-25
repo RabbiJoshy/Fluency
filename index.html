@@ -278,6 +278,7 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard" data-rank="">
                         <div class="card-face card-front">
+                            <button class="nav-back-btn-pinned hidden" data-nav-back title="Back to previous card">↩</button>
                             <!-- Top row: REVERSE, STATS, SETTINGS, SHUFFLE -->
                             <div style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; justify-content: space-between; align-items: center;">
                                 <div style="display: flex; gap: 8px; pointer-events: auto;">
@@ -333,9 +334,9 @@
                             </div>
                         </div>
                         <div class="card-face card-back">
+                            <button class="nav-back-btn-pinned hidden" data-nav-back title="Back to previous card">↩</button>
                             <div class="desktop-back-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
-                                    <button class="nav-btn-inline nav-back-btn hidden" id="navBackBtn" title="Back to previous card">↩</button>
                                     <button class="nav-btn-inline" id="prevBtnBack">←</button>
                                 </div>
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
@@ -829,6 +830,6 @@
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260425f"></script>
+    <script type="module" src="js/main.js?v=20260425s"></script>
 </body>
 </html>

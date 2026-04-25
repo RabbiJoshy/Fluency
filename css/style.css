@@ -961,6 +961,14 @@
             text-align: center;
         }
 
+        .variant-sep {
+            font-weight: 200;
+            opacity: 0.45;
+            padding: 0 4px;
+            font-size: 0.75em;
+            vertical-align: middle;
+        }
+
         .front-meaning-pos {
             font-family: var(--font-data);
             font-size: 10px;
@@ -1430,6 +1438,40 @@
 
         .nav-btn-inline:disabled:hover {
             transform: none;
+        }
+
+        .nav-back-btn-pinned {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 56px;
+            height: 56px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 56px;
+            line-height: 1;
+            padding: 0;
+            padding-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 50;
+            transition: background 0.15s, transform 0.15s;
+            pointer-events: auto;
+        }
+
+        .nav-back-btn-pinned:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: scale(1.05);
+        }
+
+        .nav-back-btn-pinned:active {
+            transform: scale(0.95);
         }
 
         .progress {
@@ -2977,6 +3019,20 @@
             font-size: 11px;
             color: var(--text-muted);
             font-style: italic;
+        }
+        /* Tap-to-jump cue: in-deck words pick up the accent border so it's
+           obvious they navigate; external words stay neutral and open SD. */
+        .syn-item.syn-in-deck {
+            box-shadow: inset 0 0 0 1px rgba(var(--accent-primary-rgb), 0.55);
+        }
+        .syn-item.syn-in-deck:hover {
+            background: rgba(var(--accent-primary-rgb), 0.22);
+        }
+        .syn-item.syn-external {
+            opacity: 0.78;
+        }
+        .syn-item.syn-external:hover {
+            opacity: 1;
         }
 
         /* ---- Header: infinitive + type badge, translation, non-finite
