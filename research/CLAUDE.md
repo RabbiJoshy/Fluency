@@ -1,5 +1,7 @@
 # Research: Playlist Scraping Tooling
 
+> **Don't bulk-read** the per-song lyrics JSON files in `lyrics/{lang}/` — there are hundreds. Grep or list-then-read specific titles.
+
 Generic tooling for building a playlist-based "artist" (mixed real artists, treated as a single corpus). The numbered scripts in this folder (`1_fetch_playlist.py` … `5_google_translate.py`) are playlist-specific and live outside the main pipeline. The resulting data directory should be placed under `Artists/{lang}/{Name}/` once scraped, and then fed into the main pipeline via `--artist-dir Artists/{lang}/{Name}`.
 
 As of 2026-04-18 the original PoC playlist moved to `Artists/french/TestPlaylist/` — the paths in the examples below point there.

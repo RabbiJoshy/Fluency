@@ -1,19 +1,17 @@
 # Pipeline Notes
 
-This folder now uses a phase-based naming scheme shared across normal mode and artist mode.
+> **Don't bulk-read** layer files in `Data/Spanish/layers/` or `Artists/{lang}/{Name}/data/layers/` — Grep them.
+> **Deep reference**: `docs/reference/builder_flags.md`, `docs/reference/sense_assignment_internals.md`, `docs/reference/method_priority.md`.
+
+This folder uses a phase-based naming scheme shared across normal mode and artist mode.
 
 ## Naming
 
-- `step_<phase><letter>_*.py`
-  Active pipeline steps that an orchestrator can call directly.
-- `tool_<phase><letter>_*.py`
-  Optional/manual scripts tied to a phase.
-- `util_<phase><letter>_*.py`
-  Helper modules mostly supporting a phase.
-- `legacy_<phase><letter>_*.py`
-  Deprecated scripts kept for reference.
-- `bench_*`
-  Evaluation and diagnostics.
+- `step_<phase><letter>_*.py` — Active pipeline steps that an orchestrator can call directly.
+- `tool_<phase><letter>_*.py` — Optional/manual scripts tied to a phase.
+- `util_<phase><letter>_*.py` — Helper modules mostly supporting a phase.
+- `legacy_<phase><letter>_*.py` — Deprecated scripts kept for reference.
+- `bench_*` — Evaluation and diagnostics.
 
 ## Shared Phases
 
@@ -30,13 +28,15 @@ The important distinction is:
 
 - Phase 5 builds candidate structures like inventories, examples, sense menus, and MWEs.
 - Phase 6 assigns evidence to those menus.
-- Lemma consolidation should happen after assignment, not before it.
+- Lemma consolidation happens after assignment, not before it.
+
+## Practical Rule
+
+If a script is part of the main pipeline, prefer making it a `step_*`. If it is optional or experimental, keep it as `tool_*`. Do not add new unnumbered pipeline scripts in this folder.
 
 ## Normal Mode
 
-Entry point:
-
-- `run_normal_pipeline.py`
+Entry point: `run_normal_pipeline.py`
 
 Current main steps:
 
@@ -66,9 +66,7 @@ Supporting tools/utils:
 
 ## Artist Mode
 
-Entry point:
-
-- `artist/run_artist_pipeline.py`
+Entry point: `artist/run_artist_pipeline.py`
 
 Current main steps:
 
@@ -99,16 +97,9 @@ Key artist helpers:
 - `artist/util_1a_artist_config.py`
 - `util_5c_sense_menu_format.py` (shared; used by both modes)
 
-## Practical Rule
-
-If a script is part of the main pipeline, prefer making it a `step_*`.
-If it is optional or experimental, keep it as `tool_*`.
-Do not add new unnumbered pipeline scripts in this folder.
-
 ## Sense Assignment Model (step 6)
 
-Normal mode and artist mode both use the same dispatcher model as of the
-refactor. One classifier runs per invocation, gap-fill is independent.
+Normal mode and artist mode both use the same dispatcher model. **One classifier runs per invocation; gap-fill is independent.**
 
 Flags on `step_6a_assign_senses.py` (normal) and `artist/step_6a_assign_senses.py`:
 
@@ -119,7 +110,6 @@ Flags on `step_6a_assign_senses.py` (normal) and `artist/step_6a_assign_senses.p
 - `--force` — re-classify everything
 - `--gemini-model MODEL` — default gemini-2.5-flash-lite
 
-The legacy `--keyword-only`, `--no-gemini`, `--all-gemini` flags are gone.
 Old combinations map cleanly:
 
 - `--keyword-only --no-gemini` → `--classifier keyword`
@@ -138,31 +128,25 @@ Old combinations map cleanly:
 | gemini | off | no | yes, `--skip-gap-fill` |
 
 ### Step_6b routing
-`step_6b_assign_senses_local.py` reads `word_routing.json` for `exclude.*`
-and `clitic_merge` only. The `biencoder` / `gemini` sub-buckets are
-metadata — the chosen classifier processes every non-excluded,
-non-clitic-merge word.
+
+`step_6b_assign_senses_local.py` reads `word_routing.json` for `exclude.*` and `clitic_merge` only. The `biencoder` / `gemini` sub-buckets are metadata — the chosen classifier processes every non-excluded, non-clitic-merge word.
 
 ### Step_6c filters
+
 `step_6c_assign_senses_gemini.py`:
 - Skips `word_routing.exclude.*` entries.
 - Skips `clitic_merge` entries (unless `--include-clitics`).
 - Skips words containing apostrophes (they're elision forms merged by step 3).
-- Does NOT skip by length — core function words (de, no, y, en, me, lo)
-  get Gemini classification too.
-- `--skip-classification` and `--skip-gap-fill` let the dispatcher pick
-  which half runs.
+- Does NOT skip by length — core function words (de, no, y, en, me, lo) get Gemini classification too.
+- `--skip-classification` and `--skip-gap-fill` let the dispatcher pick which half runs.
 
 ### Example-level incrementality
-step_6c tracks coverage per `(word, method)` so `--max-examples N` runs
-incrementally: re-running with a larger N only sends new indices to
-Gemini. `--force` wipes prior entries for the current method and
-re-classifies.
+
+`step_6c` tracks coverage per `(word, method)` so `--max-examples N` runs incrementally: re-running with a larger N only sends new indices to Gemini. `--force` wipes prior entries for the current method and re-classifies.
 
 ## Assignment File Format (step 6 output)
 
-On-disk at `sense_assignments/{source}.json` and
-`sense_assignments_lemma/{source}.json`:
+On-disk at `sense_assignments/{source}.json` and `sense_assignments_lemma/{source}.json`:
 
 ```json
 {
@@ -176,65 +160,15 @@ On-disk at `sense_assignments/{source}.json` and
 }
 ```
 
-Method is the dict key, not a per-item field. Items only carry
-`sense` + `examples` (and inline sense fields for gap-fill discoveries).
-Multiple methods coexist per word; the builder's
-`resolve_best_per_example` picks the highest-priority (method, sense)
-claim per example at build time.
+Method is the dict key, not a per-item field. Items only carry `sense` + `examples` (and inline sense fields for gap-fill discoveries). Multiple methods coexist per word; the builder's `resolve_best_per_example` picks the highest-priority `(method, sense)` claim per example at build time.
 
-`load_assignments` in `util_6a_assignment_format.py` auto-detects the
-new dict form AND the legacy flat-list form, so old files still read
-cleanly. `dump_assignments` writes the new form.
+`load_assignments` in `util_6a_assignment_format.py` auto-detects the new dict form AND the legacy flat-list form, so old files still read cleanly. `dump_assignments` writes the new form.
 
 ## Builder Flags (step 8)
 
-`step_8a_assemble_vocabulary.py` (normal) and
-`artist/step_8b_assemble_artist_vocabulary.py`:
+`step_8a_assemble_vocabulary.py` (normal) and `artist/step_8b_assemble_artist_vocabulary.py` share two orthogonal flags:
 
-- `--remainders` — emit SENSE_CYCLE remainder buckets for unassigned
-  examples. Default: off (cleaner cards).
-- `--min-priority N` — drop assignments whose method priority is below
-  N. Auto-assignments (`*-auto`) are exempt regardless of priority
-  (they're "trivially correct" single-sense defaults). Useful values:
-  15 (skip keyword-tier), 30 (biencoder+), 50 (Gemini only).
+- `--remainders` — emit SENSE_CYCLE remainder buckets for unassigned examples. Default: off.
+- `--min-priority N` — drop assignments whose method priority is below N. Auto-assignments (`*-auto`) are exempt.
 
-  **Default is language-specific**, resolved from
-  `config/config.json` → `languages.<lang>.pipelineDefaults.minPriority`
-  via `pipeline/util_pipeline_config.py`. Spanish opts in to 50 (Gemini
-  flash-lite covers every word, so keyword-tier noise like
-  `para|parir` is dropped by default). Any language without the
-  `pipelineDefaults.minPriority` key falls back to 0 — keyword claims
-  show by default until the language opts in. `step_8a` hardcodes
-  `language="spanish"`; `step_8b` reads `artist.json.language`
-  (default `"spanish"`). The resolved value is printed at start-up
-  alongside the source (config vs. explicit flag).
-
-The two flags are orthogonal:
-
-- `--min-priority 50 --remainders` → Gemini-only claims + catch-all
-  buckets for everything else
-- `--min-priority 50` (no remainders) → sparsest trusted deck
-- `--min-priority 0 --remainders` → full evidence + catch-all
-
-### Meaning dedup + context disambiguation
-`step_8a` dedupes meaning rows by `(pos, translation, context)` where
-`context` comes from SpanishDict's sub-sense labels. When two rows
-share `(pos, translation)` but differ in context (e.g. `uno` PRON
-"one" as numeral vs impersonal), the context is rendered parenthetically
-on the visible translation: `one (numeral or indefinite)` vs
-`one (impersonal use)`. Singletons keep their clean translation.
-
-## Step_7a (lemma split + unassigned routing)
-
-`pipeline/step_7a_map_senses_to_lemmas.py` is unified between normal and
-artist modes. The artist-specific `pipeline/artist/step_7a_*.py` is now
-a thin subprocess wrapper that forwards `--artist-dir` to the shared
-script.
-
-Both modes produce:
-
-- `sense_assignments_lemma/{source}.json` — splits `word` assignments
-  into `word|lemma` keys using sense-id ownership.
-- `unassigned_routing/{source}.json` — routes unassigned raw examples
-  to a `word|lemma` key based on spaCy POS. Used by builders to populate
-  SENSE_CYCLE remainder buckets when `--remainders` is on.
+Defaults are language-specific (Spanish: 50). Full detail — including combined behavior, meaning dedup, context disambiguation, and step_7a routing rules — in `docs/reference/builder_flags.md`.

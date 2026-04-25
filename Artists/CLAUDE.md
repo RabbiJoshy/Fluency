@@ -1,6 +1,9 @@
 # Artists Pipeline — AI Reference
 
-All scripts run from the **project root** (`Fluency/`), not from inside `Artists/`.
+> **Don't bulk-read** `vocabulary_master.json`, `sense_assignments/*.json`, layer files — Grep them.
+> **Deep reference**: see `docs/reference/sense_assignment_internals.md`, `docs/reference/builder_flags.md`, `docs/reference/method_priority.md`.
+
+All scripts run from the **project root** (`Fluency/`), not from inside `Artists/`. For runnable commands and the typical run order for a new artist, see `docs/setup/artist-pipeline-quick-start.md`.
 
 ## Directory Layout
 
@@ -22,15 +25,6 @@ Artists/
 ```
 
 The orchestrator (`run_artist_pipeline.py`) walks `Artists/*/*/artist.json` and resolves `--artist "Bad Bunny"` → `Artists/spanish/Bad Bunny/`. Names must be unique across languages.
-
-## Quick Start
-
-```bash
-.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny"
-.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Rosalía" --from-step 6 --words-only
-.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "TestPlaylist" --classifier keyword --no-gap-fill
-.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny" --from-step build  # re-assemble only
-```
 
 ## Architecture: Layered Pipeline
 
@@ -57,14 +51,14 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 6 phases: junk → known vocab → English → Wiktionary reclassify → NER → frequency. Also detects derivations (diminutives, gerund+clitics) and clitic forms (3-tier). Output grouped by treatment: `exclude`, `biencoder`, `gemini`, `clitic_merge`/`clitic_keep`. |
-| 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers. Carries `surface` field from step 3 for elided forms. |
-| 6a | `pipeline/tool_6a_tag_example_pos.py --artist-dir ...` | `example_pos.json` | Tag examples with spaCy POS (es_dep_news_trf). Shared tool (normal + artist modes). Incremental: skips unchanged words. `--force` to retag all. |
-| 6 | `pipeline/artist/assign_senses.py` | `sense_assignments.json` | Unified sense assignment. Dispatches to bi-encoder (biencoder-routed) then Gemini (gemini-routed, if API key set). Gap-fill reuses existing inline senses. Single output file. |
+| 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 6 phases. Output grouped by treatment: `exclude`, `biencoder`, `gemini`, `clitic_merge`/`clitic_keep`. |
+| 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers. Carries `surface` field. |
+| 6a | `pipeline/tool_6a_tag_example_pos.py --artist-dir ...` | `example_pos.json` | Tag examples with spaCy POS (es_dep_news_trf). Incremental. |
+| 6 | `pipeline/artist/assign_senses.py` | `sense_assignments.json` | Unified sense assignment. Dispatches to bi-encoder (biencoder-routed) then Gemini (gemini-routed, if API key set). Gap-fill reuses existing inline senses. |
 | 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
 | 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | 8 | `pipeline/artist/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
-| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, `clitic_forms.json`, monolith | Assemble all layers → front-end output. Reads word_routing for clitic merge + flags. Writes clitic layer (MWE-style). |
+| build | `pipeline/artist/build_artist_vocabulary.py` | `index.json`, `examples.json`, `clitic_forms.json`, monolith | Assemble all layers → front-end output. |
 
 Cognates use a shared layer at `Data/Spanish/layers/cognates.json` — no per-artist step needed.
 
@@ -80,42 +74,9 @@ The `word_routing.json` controls which classifier runs on which words. `assign_s
 
 Results merge additively into `senses_wiktionary.json` + `sense_assignments_wiktionary.json`. Methods coexist per word.
 
-### Method Priority
-
-Defined in `pipeline/method_priority.py` (re-exported by `_artist_config.py`). Higher priority = better quality. Both pipelines use this — scripts skip words with equal-or-higher priority assignments.
-
-```
-flash-lite-wiktionary: 50   (Gemini classifier)
-gap-fill:             50   (Gemini gap-fill)
-gemini:               40   (normal-mode Gemini classifier)
-biencoder:            30
-keyword-wiktionary:   10
-keyword:              10
-wiktionary-auto:       0   (single-sense default)
-```
-
-Translation priority (artist builder uses for example sorting):
-```
-gemini:  50   (LLM re-translation)
-genius:  40   (fan translations)
-google:  10   (raw Google Translate)
-```
-
-### Typical run order for a new artist
-
-```bash
-# Steps 2-5 (corpus processing)
-.venv/bin/python3 pipeline/artist/run_pipeline.py --artist "Name" --from-step 2 --to-step 5 --skip 2b --no-gemini
-
-# Bi-encoder on all words with Wiktionary senses (free)
-.venv/bin/python3 pipeline/artist/match_artist_senses.py --artist-dir "Artists/{lang}/{Name}"
-
-# Gemini on remaining non-normal words (~$0.05)
-.venv/bin/python3 pipeline/artist/build_wiktionary_senses.py --artist-dir "Artists/{lang}/{Name}" --new-only
-
-# Build final output
-.venv/bin/python3 pipeline/artist/build_artist_vocabulary.py --artist-dir "Artists/{lang}/{Name}"
-```
+For method priorities, see `docs/reference/method_priority.md`.
+For the dispatcher model and shared `step_6b` / `step_6c` classifiers, see `pipeline/CLAUDE.md` "Sense Assignment Model".
+For deep internals (surface form normalization, orthogonal POS, keyword classifier specifics, SpanishDict cache), see `docs/reference/sense_assignment_internals.md`.
 
 ## Layer Files
 
@@ -131,9 +92,9 @@ All layers live in `Artists/{lang}/{Name}/data/layers/`. Schemas parallel normal
 | `senses_wiktionary.json` | `{word\|lemma: {sense_id: {pos, translation, source}}}` (new) | `senses_wiktionary.json` |
 | `sense_assignments_wiktionary.json` | `{word: {method: [{sense, examples}]}}` (new) | `sense_assignments.json` |
 | `sense_assignments.json` | `{word: [{sense_idx, examples, method}]}` (old) | `sense_assignments.json` (now uses unified format) |
-| `sense_assignments_lemma/<source>.json` | `{word\|lemma: {method: [{sense, examples}]}}` | (none) — step 7a output, keyword assignments split by lemma |
-| `unassigned_routing/<source>.json` | `{word\|lemma: [raw_example_idx, ...]}` | (none) — step 7a output, POS-based routing of examples with no keyword assignment |
-| `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) — consumed by builder for example quality sorting |
+| `sense_assignments_lemma/<source>.json` | `{word\|lemma: {method: [{sense, examples}]}}` | (none) — step 7a output |
+| `unassigned_routing/<source>.json` | `{word\|lemma: [raw_example_idx, ...]}` | (none) — step 7a output |
+| `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) — consumed by builder |
 | `cognates.json` | `{word\|lemma: true}` (legacy per-artist; shared layer preferred) | `cognates.json` |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (none) |
 | `lyrics_timestamps.json` | `{_meta: {...}, timestamps: {song: {line: {ms, confidence}}}}` | (none) |
@@ -172,7 +133,7 @@ Artists/{lang}/{Name}/
     translations/aligned_translations.json  # Genius community translations (step 2b)
     duplicate_songs.json         # Songs to exclude from corpus
   data/word_counts/
-    vocab_evidence.json          # Step 2 output (word counts + evidence)
+    vocab_evidence.json          # Step 2 output
     mwe_detected.json            # Multi-word expressions detected
   data/llm_analysis/
     curated_translations.json    # Artist-specific translation fixes (overrides shared/curated_translations.json)
@@ -197,26 +158,11 @@ Artists/{lang}/{Name}/
 
 ## Other Directories
 
-- `Artists/tools/` — audit utilities (`check_translations.py`, `split_lang_audit.py`, `scan_duplicates.py` — finds copied verses + reports artist line attribution via section tags)
+- `Artists/tools/` — audit utilities (`check_translations.py`, `split_lang_audit.py`, `scan_duplicates.py`)
 
-## Modes
+## Adding a New Artist
 
-- **Full run**: All steps, Gemini API required. Produces complete vocabulary with POS/lemma/translations.
-- **`--no-gemini`**: Skips all Gemini calls. Uses Genius translations + curated overrides only. Free. Lower quality.
-- **`--words-only`**: Gemini word analysis but skips sentence translation. Cheaper.
-- **`--from-step N`**: Resume from step N. `--from-step build` re-assembles without re-running analysis.
-
-Typical cheap workflow: `--no-gemini` first, then `--words-only` to add word translations.
-
-## Sentence Translation Sources
-
-Step 6 checks two sources in order:
-1. **Genius index** (free): Built from `aligned_translations.json`. ~40% coverage for Bad Bunny.
-2. **Gemini** (expensive): Cached in `sentence_translations.json`. Only called for lines Genius doesn't cover.
-
-The `example_translations.json` layer tracks provenance: `source: "genius"|"gemini"|"google"`.
-
-**Cost-optimized workflow**: For new artists, use `translate_sentences_google.py` (free) for all lines, then `judge_translations.py` to score quality and re-translate only bad ones via Gemini (~15-20% of lines). Flags lines scoring <=2 by default (`--threshold` to adjust). Use `--judge-only` to inspect scores before committing to re-translation.
+See `docs/setup/new-artist-onboarding.md`.
 
 ## Provenance Tracking
 
@@ -227,81 +173,7 @@ Layer files track the method/source that produced each piece of data:
 - `senses_wiktionary.json` (normal mode): `source` field — `"wiktionary"` or `"jehle"`
 - `translation_scores.json`: Gemini judge scores (1-5) per sentence
 
-### assignment_method on meanings and examples
-
-Keyword-level assignments (priority ≤ 15: `spanishdict-keyword`, `keyword-wiktionary`, etc.) propagate in two places:
-- **Per-example**: Each example dict in `*.examples.json` carries its own `assignment_method`. The builder stamps the method from `assignment.get("method")` on every example in an assignment. This is the authoritative signal for per-example UI decisions (border, English keyword highlight).
-- **Per-meaning**: Informational `assignment_method` field on the assembled meaning (only for keyword-level best methods, for UI fallback when examples lack the stamp).
-- **Per-sense in index**: `sense_methods[i]` on the index entry, used by front-end `joinWithMaster()` to reconstruct the per-sense flag. `null` entries in `sense_methods` plus `idx.unassigned = true` signal a random/remainder bucket.
-
-### Unassigned-example routing (step 7a)
-
-Step 7a does two things:
-1. Splits word-level sense assignments onto `word|lemma` keys using the sense IDs of each analysis (existing behaviour) — writes to `sense_assignments_lemma/<source>.json`.
-2. **Routes every unassigned raw example to one `word|lemma` key based on its spaCy POS tag** — writes to `unassigned_routing/<source>.json` as `{lemma_key: [raw_example_idx, ...]}`.
-
-Routing rules (`_route_unassigned_for_word` in `pipeline/artist/step_7a_map_senses_to_lemmas.py`):
-- If the example's POS is in `_TRUSTED_ROUTING_POS` ({VERB, NOUN, ADJ, ADV, INTJ}) and at least one analysis has senses of that POS, route to the analysis with the most senses of that POS (tiebreak: most existing assignments).
-- If the POS is untrusted (PRON, CCONJ, DET, PHRASE, CONTRACTION, …) or missing, or no analysis has a matching POS, route to the **primary analysis** — the one with the most keyword assignments (tiebreak: first analysis).
-
-This means `gana` (with 4 analyses: gana, ganas, ganar, ganarse) produces distinct cards per lemma. NOUN-tagged unassigned examples land on `gana|ganas` (most NOUN senses) instead of piling onto the ganar card.
-
-`example_pos.json` and `examples_raw.json` are optional inputs — if either is missing, step 7a skips routing or routes everything to the primary analysis.
-
-### SENSE_CYCLE remainder behaviour (step 8b)
-
-Step 8b reads `unassigned_routing/<source>.json` and attaches each group's routed indices as `group["unassigned_ex_indices"]`. A group becomes a card if it has **either** keyword assignments **or** routed unassigned examples — a group with only routed examples produces a SENSE_CYCLE-only card. No build-time POS routing happens here; 8b is pure assembly.
-
-When `best_method` is keyword-level, the builder turns routed unassigned examples into SENSE_CYCLE remainder rows, grouped by the example's spaCy POS tag:
-- Trusted POS ({VERB, NOUN, ADJ, ADV, INTJ}) → POS-specific bucket; `allSenses` lists every sense of that POS in the current group.
-- Untrusted or missing POS → universal `ANY` bucket; `allSenses` lists every sense in the group across all POS.
-- Keyword-assigned examples are never duplicated into remainder rows.
-- Gemini/bi-encoder assignments do not generate remainder rows.
-- Remainders with zero examples are never emitted.
-
-SENSE_CYCLE entries always use `pos: "SENSE_CYCLE"` (with `cycle_pos` carrying the actual POS or `"ANY"`) — this keeps them out of the master vocabulary. The builder filters SENSE_CYCLE/X senses when writing to master, which prevents single-sense remainders from colliding with assigned senses of the same translation.
-
-### Surface form normalization
-
-Step 3 stamps a `surface` field on each example recording the original word form found in the lyrics (e.g. `"vece'"` for inventory key `"veces"`). Step 5 carries this through to `examples_raw.json`. Downstream consumers use it to:
-- **POS tagger** (tool_6a): substitutes the canonical word into the sentence before spaCy tagging, so spaCy sees proper Spanish.
-- **Sense assignment** (step_6b, step_6c): same substitution for bi-encoder embedding and Gemini prompts. Translation lookup uses the original (pre-substitution) Spanish as the key.
-
-Re-running step 3 backfills `surface` on all examples, then step 5's backfill (`if not prev_ex.get("surface") and new_by_id[eid].get("surface")`) propagates it to `examples_raw.json`. If the surface field is ever missing on tagged examples, re-run 3 + 5 together — do not patch per-word.
-
-### Orthogonal POS labels
-
-`pipeline/util_6a_pos_menu_filter.py` defines `_ORTHOGONAL_POS = {"PHRASE", "CONTRACTION"}`. These sense POS types are **never filtered out** by observed-POS narrowing — they apply regardless of the surface word's grammatical POS (an idiom or contraction can surface as any POS in context). Both filter paths (`filter_senses_by_pos` live tagging, `filter_senses_by_precomputed_pos`) keep orthogonal senses in the candidate pool.
-
-When adding new SpanishDict POS labels to `_POS_MAP` in `pipeline/util_5c_spanishdict.py`, decide per-label whether it represents a grammatical category (filterable) or an orthogonal category (survives filtering) and update `_ORTHOGONAL_POS` accordingly.
-
-### Keyword classifier (step_6b)
-
-- **Dynamic stop-word exemption**: `classify_example_keyword` collects every token present in any candidate sense translation and exempts those tokens from `_STOP_WORDS` for that word's classification. This lets function-word translations like `"that"` (que), `"but"` (pero), `"than"` (que) survive filtering and actually match against example English. For unrelated words, `"that"` stays as a stop word to avoid spurious matches.
-- **No fallback dump**: when no example matches any keyword, the word gets **no assignment at all**. Previously the classifier would dump all examples into sense 0 as a last resort; that made every SpanishDict entry look keyword-assigned even when it wasn't. Now the word falls through to the builder's remainder bucketing.
-
-### SpanishDict cache coverage
-
-The SpanishDict **phrases cache** (`Data/Spanish/senses/spanishdict/phrases_cache.json`) was introduced after the initial scrape of Bad Bunny, Young Miko, and normal mode. Only Rosalía has full phrases coverage. Re-run `tool_5c_build_spanishdict_cache.py --force` for each to populate MWE phrases:
-
-```
-.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/spanish/Bad Bunny" --force
-.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/spanish/Young Miko" --force
-.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --inventory-file Data/Spanish/layers/word_inventory.json --force
-```
-
-After re-scraping, rebuild the SpanishDict sense menu with `step_5c_build_senses.py --sense-source spanishdict --artist-dir "Artists/{lang}/{Name}" --force` (or omit `--artist-dir` for normal mode) to pick up newly cached headword redirects and phrases.
-
-## Adding a New Artist
-
-1. Create `Artists/{lang}/{Name}/artist.json` with `name`, `genius_query`, `vocabulary_file`
-2. Run step 1 to download lyrics
-3. Curate `duplicate_songs.json` (see `DEDUP_INSTRUCTIONS.md`)
-4. Copy reusable curated data from existing artist (conjugation_families, skip_mwes, etc.)
-5. Run pipeline (`--no-gemini` for free, then `--words-only` to add translations)
-6. Builder auto-produces index + examples from layers
-7. Add artist to `config/artists.json`
-8. Shared words get translations via client-side merge — no Gemini needed for overlapping vocab
+For full `assignment_method` propagation rules, SENSE_CYCLE remainder behavior, surface form normalization, orthogonal POS labels, keyword classifier specifics, and SpanishDict cache coverage — see `docs/reference/sense_assignment_internals.md`.
 
 ## Pitfalls
 

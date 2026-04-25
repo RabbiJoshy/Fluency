@@ -1,5 +1,7 @@
 # Layers — AI Reference
 
+> **Don't bulk-read** layer files — most are 100 KB to 10 MB. Grep them by `word|lemma` or hex ID.
+
 Intermediate data layers produced by pipeline steps. Each layer captures one aspect of vocabulary analysis. The final `build_vocabulary.py` step joins layers into `vocabulary.json`.
 
 ## Design Principle: Provenance

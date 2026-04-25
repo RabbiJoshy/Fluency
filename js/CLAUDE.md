@@ -1,5 +1,7 @@
 # Front-end JS — AI Reference
 
+> **Don't bulk-read** large source files (`flashcards.js`, `vocab.js`) — use Grep + Read with offset for the function you need.
+
 Vanilla JS with native ES modules. No framework, no bundler, no build step.
 
 ## Module Map

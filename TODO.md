@@ -1,18 +1,6 @@
 # Fluency — TODO
 
-<!-- Guide for Claude
-This is Josh's backlog. Items are NOT instructions to start working.
-- Do NOT start any item without Josh explicitly asking in the current conversation.
-- DO mention relevant items when they come up naturally ("this relates to X on the todo, want to tackle it?").
-- "idea" items: don't suggest unless Josh brings them up.
-- When completing an item, move it to Decisions Made with a summary of what was done and why.
-- UPDATE this file when working on items — record what was tried, what was learned, and why decisions were made.
-- Do NOT use preview mode. Service worker caching makes previews unreliable — Josh tests in his own browser.
-
-For items needing investigation before implementation, create a design doc at `docs/design/`
-with `status: prompt`. See `docs/design/CLAUDE.md` for the lifecycle. Items marked [design doc]
-below have enough complexity to warrant this treatment when the time comes.
--->
+<!-- Don't start items without explicit ask. Mention relevant items naturally; update them in-place when worked on; move to Decisions Made when done. [design doc] items get a docs/design/ prompt before implementation. -->
 
 ## Key
 

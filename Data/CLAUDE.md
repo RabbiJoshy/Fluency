@@ -1,5 +1,7 @@
 # Data Directory — AI Reference
 
+> **Don't bulk-read** vocabulary or examples JSON files — they're 1–10 MB. Grep them by hex ID or word.
+
 Static vocabulary JSON files consumed by the front-end. No backend.
 
 Pipeline layers (intermediate files produced by each build step) are in `Spanish/layers/` — see `layers/CLAUDE.md` for schemas and provenance design. The normal-mode pipeline orchestrator is `pipeline/run_pipeline.py`.

@@ -1,5 +1,7 @@
 # Design Docs — AI Reference
 
+> **Open one doc at a time** — they're long-form. The "Current docs" table below is the index; pick the one that matches the topic before reading.
+
 Design documents live here. They have a lifecycle:
 
 ## Lifecycle
