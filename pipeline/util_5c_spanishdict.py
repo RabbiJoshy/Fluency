@@ -156,6 +156,37 @@ def _is_abbreviation_mismatch(surface, headword):
     return "." in headword
 
 
+def is_phrase_only_analysis(analysis):
+    """True when every sense in the analysis is tagged ``pos: 'PHRASE'``.
+
+    SpanishDict tags phrasebook glosses (single-translation idiomatic
+    lines such as "he's" / "she's" / "it's" for the surface ``está``)
+    with ``pos: 'PHRASE'``, distinct from the lexical POS tags
+    (``NOUN``, ``VERB``, ``ADJ``, …) that real lemma entries carry. An
+    analysis whose senses are *all* PHRASE is, by SD's own taxonomy,
+    not asserting lemma status — it's just supplying a translation
+    gloss for the surface as a phrase.
+
+    Used by :func:`build_menu_analyses` to suppress spurious self-
+    headword analyses (``está→está``, ``estoy→estoy``, ``pongan→pongan``,
+    …) when SD also offers a real morphological pointer (``estar``,
+    ``estar``, ``poner``, …) via ``possible_results``.
+
+    The corresponding *lexicalised* exception is ``hay``: its self-
+    headword senses are tagged ``pos: 'VERB'`` ("there is", "there
+    are"), so this returns ``False`` and the self-headword survives —
+    which is the intended behaviour, since SD genuinely treats ``hay``
+    as its own dictionary entry.
+    """
+    senses = analysis.get("senses") or []
+    if isinstance(senses, dict):
+        senses = list(senses.values())
+    real_senses = [s for s in senses if isinstance(s, dict)]
+    if not real_senses:
+        return False
+    return all((s.get("pos") or "").strip().upper() == "PHRASE" for s in real_senses)
+
+
 def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True):
     """Build the analyses list for one surface word from the shared SpanishDict cache.
 
@@ -164,6 +195,17 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
 
     Abbreviation-style headwords (`p.a.`, `e.g.`, …) are filtered out when the
     surface query itself has no dots — see ``_is_abbreviation_mismatch``.
+
+    Spurious self-headword PHRASE-only analyses are filtered out when SD also
+    flagged this surface as a ``heuristic: "conjugation"`` of a real verb — see
+    :func:`is_phrase_only_analysis`. The classic case is ``está``: SD lists a
+    self-headword whose 10 senses are all ``pos: 'PHRASE'`` (phrasebook glosses
+    "he's" / "she's" / "it's"), plus a conjugation pointer to ``estar``. We
+    drop the self-headword and keep the ``estar`` analysis, so the resulting
+    sense menu, sense assignment, lemma map, and master vocabulary all use
+    ``estar`` — the same lemma normal mode picks via the frequency CSV. The
+    filter only fires when a non-self conjugation analysis is available, so it
+    can never empty an otherwise-populated menu.
     """
     surface_entry = surface_cache.get(surface) or {}
     analyses = [
@@ -193,6 +235,25 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
                 analyses.append(analysis)
                 seen_headwords.add(analysis.get("headword"))
                 seen_signatures.add(sig)
+
+    # Drop spurious self-headword PHRASE-only analyses when SD itself offers a
+    # real morphological alternative. See :func:`is_phrase_only_analysis` for
+    # the rationale and the ``hay`` carve-out (which has VERB senses, not
+    # PHRASE-only, so the filter doesn't fire).
+    has_conjugation_alternative = any(
+        a.get("surface_relation") == "conjugation"
+        and (a.get("headword") or "").strip().lower() != surface.lower()
+        for a in analyses
+    )
+    if has_conjugation_alternative:
+        analyses = [
+            a for a in analyses
+            if not (
+                (a.get("headword") or "").strip().lower() == surface.lower()
+                and is_phrase_only_analysis(a)
+            )
+        ]
+
     return analyses
 
 
