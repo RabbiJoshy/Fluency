@@ -10,6 +10,11 @@ export const state = {
     currentMeaningIndex: 0,
     currentExampleIndex: 0,
     currentMWEIndex: 0,
+    // When a group card's shared field is clicked, this holds
+    // {axis, groupKey, members:[idx,...]} so the example pane shows the
+    // union of all member examples and the shared field gets the selected
+    // outline. Cleared by selectMeaning() (sub-row click) and on card change.
+    currentGroupSelection: null,
     isFlipped: false,
     isAppInitialized: false,
     stats: {

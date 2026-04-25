@@ -1043,6 +1043,7 @@ function handleSwipeAction(result) {
             currentMeaningIndex = 0; // Reset meaning index for new card
             currentExampleIndex = 0; // Reset example index for new card
             currentMWEIndex = 0;
+            currentGroupSelection = null;
             updateCard();
             // Always show front side of next card
             document.getElementById('flashcard').classList.remove('flipped');
@@ -1300,6 +1301,28 @@ function updateCard() {
     // Reset meaning index if out of bounds
     if (card.isMultiMeaning && currentMeaningIndex >= card.meanings.length) {
         currentMeaningIndex = 0;
+        currentGroupSelection = null;
+    }
+
+    // Validate the group selection against the current card. If any member
+    // index is out of range, or the anchor's pos+meaning/context no longer
+    // matches the stored groupKey (data shifted under us), drop the
+    // selection and fall back to per-meaning rendering.
+    if (currentGroupSelection) {
+        const sel = currentGroupSelection;
+        const inRange = card.isMultiMeaning && sel.members && sel.members.length >= 2
+            && sel.members.every(i => i >= 0 && i < card.meanings.length);
+        if (!inRange) {
+            currentGroupSelection = null;
+        } else {
+            const a = card.meanings[sel.members[0]];
+            const expectedKey = sel.axis === 'translation'
+                ? `${a.pos}|${a.meaning}`
+                : `${a.pos}|${a.context || ''}`;
+            if (expectedKey !== sel.groupKey) {
+                currentGroupSelection = null;
+            }
+        }
     }
 
     // Get the current meaning for multi-meaning cards
@@ -1559,50 +1582,43 @@ function updateCard() {
         // target. Pure render layer; data is untouched. Flip to false to
         // revert to flat one-row-per-meaning.
         const GROUP_DUPLICATE_MEANINGS = true;
-        const transGroupSize = new Map();
-        const ctxGroupSize = new Map();
-        const transGroupMembers = new Map();
-        const ctxGroupMembers = new Map();
-        const transGroupPctSum = new Map();
-        const ctxGroupPctSum = new Map();
-        const firstIdxByTransKey = new Map();
-        const firstIdxByCtxKey = new Map();
         // Per-meaning-idx axis assignment: 'translation' | 'context' |
         // 'singleton' | 'special' (MWE/CLITIC/SENSE_CYCLE — opted out).
         const axisOf = new Map();
         const groupKeyOf = new Map();
+        // Effective per-(axis,key) bookkeeping rebuilt after axis assignment
+        // so a meaning never appears in two groups (i.e. listed in the
+        // members of a group whose axis it didn't get assigned to).
+        // compKey = `${axis}|${groupKey}`.
+        const groupMembers = new Map();
+        const groupFirstIdx = new Map();
+        const groupPctSum = new Map();
         if (GROUP_DUPLICATE_MEANINGS) {
-            // First pass: tally both axes.
+            // Pass 1: tally raw sizes per axis (used only to make the
+            // per-meaning axis decision in pass 2).
+            const transRawSize = new Map();
+            const ctxRawSize = new Map();
             card.meanings.forEach((m, idx) => {
                 if (m.pos === 'MWE' || m.pos === 'CLITIC' || m.pos === 'SENSE_CYCLE') {
                     axisOf.set(idx, 'special');
                     return;
                 }
                 const tk = `${m.pos}|${m.meaning}`;
-                transGroupSize.set(tk, (transGroupSize.get(tk) || 0) + 1);
-                if (!transGroupMembers.has(tk)) transGroupMembers.set(tk, []);
-                transGroupMembers.get(tk).push(idx);
-                transGroupPctSum.set(tk, (transGroupPctSum.get(tk) || 0) + (m.percentage || 0));
-                if (!firstIdxByTransKey.has(tk)) firstIdxByTransKey.set(tk, idx);
+                transRawSize.set(tk, (transRawSize.get(tk) || 0) + 1);
                 if (m.context) {
                     const ck = `${m.pos}|${m.context}`;
-                    ctxGroupSize.set(ck, (ctxGroupSize.get(ck) || 0) + 1);
-                    if (!ctxGroupMembers.has(ck)) ctxGroupMembers.set(ck, []);
-                    ctxGroupMembers.get(ck).push(idx);
-                    ctxGroupPctSum.set(ck, (ctxGroupPctSum.get(ck) || 0) + (m.percentage || 0));
-                    if (!firstIdxByCtxKey.has(ck)) firstIdxByCtxKey.set(ck, idx);
+                    ctxRawSize.set(ck, (ctxRawSize.get(ck) || 0) + 1);
                 }
             });
-            // Second pass: pick the dominant axis per meaning. Ties or
-            // translation-only collisions go to the translation axis
-            // (the more common failure mode is classifier slop on a
-            // single sense, which manifests as duplicate translations).
+            // Pass 2: pick the dominant axis per meaning. Ties go to
+            // translation (the more common failure mode is classifier slop
+            // on a single sense, which manifests as duplicate translations).
             card.meanings.forEach((m, idx) => {
                 if (axisOf.get(idx) === 'special') return;
                 const tk = `${m.pos}|${m.meaning}`;
-                const ts = transGroupSize.get(tk) || 0;
+                const ts = transRawSize.get(tk) || 0;
                 const ck = m.context ? `${m.pos}|${m.context}` : null;
-                const cs = ck ? (ctxGroupSize.get(ck) || 0) : 0;
+                const cs = ck ? (ctxRawSize.get(ck) || 0) : 0;
                 if (ts > 1 && cs > 1) {
                     if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
                     else { axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck); }
@@ -1614,6 +1630,37 @@ function updateCard() {
                     axisOf.set(idx, 'singleton');
                 }
             });
+            // Pass 3: rebuild effective members per (axis, key). If a
+            // group's effective size has shrunk below 2 (because some of
+            // its candidates were stolen by the other axis), downgrade
+            // those meanings to singletons. Iterate until stable so a
+            // chain of demotions converges.
+            let changed = true;
+            while (changed) {
+                changed = false;
+                groupMembers.clear();
+                groupFirstIdx.clear();
+                groupPctSum.clear();
+                card.meanings.forEach((m, idx) => {
+                    const ax = axisOf.get(idx);
+                    if (ax !== 'translation' && ax !== 'context') return;
+                    const k = groupKeyOf.get(idx);
+                    const compKey = `${ax}|${k}`;
+                    if (!groupMembers.has(compKey)) groupMembers.set(compKey, []);
+                    groupMembers.get(compKey).push(idx);
+                    if (!groupFirstIdx.has(compKey)) groupFirstIdx.set(compKey, idx);
+                    groupPctSum.set(compKey, (groupPctSum.get(compKey) || 0) + (m.percentage || 0));
+                });
+                for (const [compKey, members] of groupMembers) {
+                    if (members.length < 2) {
+                        for (const i of members) {
+                            axisOf.set(i, 'singleton');
+                            groupKeyOf.delete(i);
+                        }
+                        changed = true;
+                    }
+                }
+            }
         }
 
         card.meanings.forEach((m, idx) => {
@@ -1793,10 +1840,9 @@ function updateCard() {
                 const axis = GROUP_DUPLICATE_MEANINGS ? (axisOf.get(idx) || 'singleton') : 'singleton';
                 const isGrouped = axis === 'translation' || axis === 'context';
                 const groupKey = isGrouped ? groupKeyOf.get(idx) : null;
+                const compKey = isGrouped ? `${axis}|${groupKey}` : null;
                 if (isGrouped) {
-                    const firstIdx = axis === 'translation'
-                        ? firstIdxByTransKey.get(groupKey)
-                        : firstIdxByCtxKey.get(groupKey);
+                    const firstIdx = groupFirstIdx.get(compKey);
                     if (firstIdx !== idx) return;
                 }
                 const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
@@ -1804,26 +1850,33 @@ function updateCard() {
                     // Group card. POS pill shows the cluster's summed
                     // percentage; each list item shows its own % so the
                     // user can still see relative weights.
-                    const members = axis === 'translation'
-                        ? transGroupMembers.get(groupKey)
-                        : ctxGroupMembers.get(groupKey);
-                    const pctSumRaw = axis === 'translation'
-                        ? transGroupPctSum.get(groupKey)
-                        : ctxGroupPctSum.get(groupKey);
+                    const members = groupMembers.get(compKey);
+                    const pctSumRaw = groupPctSum.get(compKey);
                     const sumPct = Math.round((pctSumRaw || 0) * 100);
                     const isTransAxis = axis === 'translation';
                     const sharedText = isTransAxis
                         ? displayMeaning
                         : String(m.context || '').replace(/"/g, '&quot;');
+                    // Group-level selection: clicking the shared field selects
+                    // the whole group (examples become union of members);
+                    // clicking any sub-item reverts to per-meaning selection.
+                    const groupSelected = !!(currentGroupSelection
+                        && currentGroupSelection.axis === axis
+                        && currentGroupSelection.groupKey === groupKey);
                     const groupPosPillInner = sumPct >= 100
                         ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                         : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
                           + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${sumPct}%</span>`;
-                    const groupPosPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; align-self: center; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}', ${sumPct})">${groupPosPillInner}</span>`;
+                    // POS pill stops propagation so its info-popup click
+                    // doesn't also trigger the row-level group-select.
+                    const groupPosPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; align-self: center; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${m.pos}', ${sumPct})">${groupPosPillInner}</span>`;
                     const groupPosPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; align-self: center; visibility: hidden; pointer-events: none;" aria-hidden="true">${groupPosPillInner}</span>`;
                     const memberLines = members.map(memberIdx => {
                         const mm = card.meanings[memberIdx];
-                        const isMemberSelected = memberIdx === currentMeaningIndex;
+                        // When the whole group is selected, suppress the
+                        // per-item highlight — the outline lives on the
+                        // shared field instead.
+                        const isMemberSelected = !groupSelected && memberIdx === currentMeaningIndex;
                         const memberPct = Math.round((mm.percentage || 0) * 100);
                         const varyingRaw = isTransAxis
                             ? (mm.context || '')
@@ -1837,21 +1890,32 @@ function updateCard() {
                         const itemBorder = (isMemberSelected && !mm.unassigned)
                             ? 'border: 2px solid var(--accent-primary);'
                             : 'border: 2px solid transparent;';
-                        return `<div class="group-card-item" onclick="selectMeaning(${memberIdx})" style="display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 3px 8px; background: ${itemBg}; ${itemBorder} border-radius: 6px; cursor: pointer; min-height: 22px;">
-                            <span style="font-size: 13px; color: var(--text-primary); line-height: 1.3; min-width: 0; text-align: left;">${varying}</span>
+                        // stopPropagation so a sub-row click doesn't also
+                        // bubble to the row-level group-select handler.
+                        return `<div class="group-card-item" onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 3px 8px; background: ${itemBg}; ${itemBorder} border-radius: 6px; cursor: pointer; min-height: 22px;">
+                            <span style="font-size: 13px; color: var(--text-primary); line-height: 1.3; min-width: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${varying}</span>
                             <span style="font-size: 10px; opacity: 0.65; white-space: nowrap; color: var(--text-primary);">${memberPct}%</span>
                         </div>`;
                     }).join('');
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
-                    const cardBg = anyMemberSelected
+                    const cardBg = (groupSelected || anyMemberSelected)
                         ? 'rgba(var(--accent-primary-rgb), 0.18)'
                         : 'rgba(15, 20, 28, 0.82)';
+                    const sharedBg = groupSelected
+                        ? 'rgba(var(--accent-primary-rgb), 0.55)'
+                        : 'transparent';
+                    const sharedBorder = groupSelected
+                        ? 'border: 2px solid var(--accent-primary);'
+                        : 'border: 2px solid transparent;';
+                    // The whole group card is the group-select target; the
+                    // shared field gets the outline cue when active.
+                    // Sub-items override via stopPropagation; POS pill too.
                     target.push(`
-                    <div class="meaning-row meaning-row-group" data-axis="${axis}" style="display: grid; grid-template-columns: auto 1fr auto; align-items: stretch; padding: 4px 4px; margin-bottom: 6px; background: ${cardBg}; border-radius: 8px;">
+                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 4px 4px; margin-bottom: 6px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${groupPosPill}
-                        <div class="meaning-row-body group-card-body" style="display: flex; flex-direction: column; align-items: stretch; min-width: 0; padding: 2px 8px; gap: 4px;">
-                            <div class="group-card-shared" style="font-size: 15px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25;">${sharedText}</div>
-                            <div class="group-card-items" style="display: flex; flex-direction: column; gap: 2px;">${memberLines}</div>
+                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: minmax(0, max-content) minmax(0, 1fr); align-items: center; gap: 12px; min-width: 0; padding: 2px 8px;">
+                            <div class="group-card-shared" style="font-size: 15px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;">${sharedText}</div>
+                            <div class="group-card-items" style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">${memberLines}</div>
                         </div>
                         ${groupPosPillMirror}
                     </div>
@@ -1911,6 +1975,15 @@ function updateCard() {
             } else if (currentMeaning.allClitics) {
                 activeMweIdx = currentMWEIndex % currentMeaning.allClitics.length;
                 activeExamples = dedupeExamples(currentMeaning.allClitics[activeMweIdx].examples || []);
+            } else if (currentGroupSelection && currentGroupSelection.members) {
+                // Group selected: union of every member's allExamples,
+                // deduped to avoid the same sentence repeating across senses.
+                const merged = [];
+                for (const mi of currentGroupSelection.members) {
+                    const mm = card.meanings[mi];
+                    if (mm && mm.allExamples) merged.push(...mm.allExamples);
+                }
+                activeExamples = dedupeExamples(merged);
             } else {
                 activeExamples = dedupeExamples(currentMeaning.allExamples || []);
             }
@@ -2536,7 +2609,7 @@ function cycleMWEBackward(event) {
 }
 
 function selectMeaning(index) {
-    if (index === currentMeaningIndex) {
+    if (index === currentMeaningIndex && !currentGroupSelection) {
         // Already selected — cycle if this is a cycling pill (MWE/clitic/sense cycle)
         const card = flashcards[currentIndex];
         const m = card && card.meanings[index];
@@ -2559,6 +2632,8 @@ function selectMeaning(index) {
             return;
         }
     }
+    // Clicking a sub-row exits group-selection mode and pins the chosen meaning.
+    currentGroupSelection = null;
     currentMeaningIndex = index;
     currentExampleIndex = 0;
     currentMWEIndex = 0;
@@ -2577,12 +2652,52 @@ function selectMeaning(index) {
     }
 }
 
+// Click handler for the shared field of a group card. Re-derives the member
+// set from `axis` + the anchor meaning so the inline onclick stays trivial
+// (no JSON-encoded payload in the attribute). The anchor index is the leader
+// of the group (firstIdx); we use it as a fallback for currentMeaning so
+// downstream code that reads `card.meanings[currentMeaningIndex]` still has
+// a valid object.
+function selectGroup(axis, anchorIdx) {
+    const card = flashcards[currentIndex];
+    if (!card || !card.meanings || !card.meanings[anchorIdx]) return;
+    const anchor = card.meanings[anchorIdx];
+    let groupKey;
+    let members;
+    if (axis === 'translation') {
+        groupKey = `${anchor.pos}|${anchor.meaning}`;
+        members = card.meanings
+            .map((mm, i) => ({ mm, i }))
+            .filter(({ mm }) => mm.pos === anchor.pos && mm.meaning === anchor.meaning)
+            .map(({ i }) => i);
+    } else {
+        groupKey = `${anchor.pos}|${anchor.context || ''}`;
+        members = card.meanings
+            .map((mm, i) => ({ mm, i }))
+            .filter(({ mm }) => mm.pos === anchor.pos && (mm.context || '') === (anchor.context || ''))
+            .map(({ i }) => i);
+    }
+    if (members.length < 2) return;
+    currentGroupSelection = { axis, groupKey, members };
+    currentMeaningIndex = anchorIdx;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    updateCard();
+    // Auto-speak the shared aspect.
+    if (axis === 'translation') {
+        speakWord(anchor.meaning, true);
+    } else {
+        speakWord(card.targetWord, false);
+    }
+}
+
 function previousCard() {
     if (currentIndex > 0) {
         currentIndex--;
         currentMeaningIndex = 0;
         currentExampleIndex = 0;
         currentMWEIndex = 0;
+        currentGroupSelection = null;
         updateCard();
         document.getElementById('flashcard').classList.remove('flipped');
     }
@@ -2594,6 +2709,7 @@ function nextCard() {
         currentMeaningIndex = 0;
         currentExampleIndex = 0;
         currentMWEIndex = 0;
+        currentGroupSelection = null;
         updateCard();
         document.getElementById('flashcard').classList.remove('flipped');
     }
@@ -3726,6 +3842,7 @@ window.cycleExampleBackward = cycleExampleBackward;
 window.cycleMWEForward = cycleMWEForward;
 window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
+window.selectGroup = selectGroup;
 window.previousCard = previousCard;
 window.nextCard = nextCard;
 window.shuffleCards = shuffleCards;
