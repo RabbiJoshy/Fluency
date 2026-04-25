@@ -514,10 +514,12 @@ function initializeApp() {
         shuffleCards();
     });
 
-    // Nav stack back button
-    document.getElementById('navBackBtn').addEventListener('click', function(e) {
-        e.stopPropagation();
-        navigateBack();
+    // Nav stack back button (one per card face — front and back)
+    document.querySelectorAll('[data-nav-back]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateBack();
+        });
     });
 
     // Lyric breakdown modal
@@ -1282,7 +1284,7 @@ function buildVariantDisplay(card) {
     const [primary, ...rest] = entries;
     const kept = [primary, ...rest.filter(([, c]) => c >= MIN_VARIANT_COUNT)];
     if (kept.length < 2) return null;
-    return kept.map(e => e[0]).join(' | ');
+    return kept.map(e => e[0]).join('<span class="variant-sep">|</span>');
 }
 
 function updateCard() {
@@ -1410,7 +1412,7 @@ function updateCard() {
         frontMeaningsEl.innerHTML = '';
         frontMeaningsEl.style.display = 'none';
         frontWordEl.style.display = '';
-        frontWordEl.textContent = frontText;
+        frontWordEl.innerHTML = frontText;
         // Auto-shrink the word font so it fits on a single line instead of
         // wrapping. The old heuristic keyed off character count (>13 chars),
         // which missed cases where the chars were wide enough to overflow a
@@ -2346,9 +2348,11 @@ function updateCard() {
         }
     }
 
-    // Toggle back button for nav stack
-    const navBackBtn = document.getElementById('navBackBtn');
-    if (navBackBtn) navBackBtn.classList.toggle('hidden', cardNavStack.length === 0);
+    // Toggle back button(s) for nav stack — one per card face
+    const showBack = cardNavStack.length === 0;
+    document.querySelectorAll('[data-nav-back]').forEach(btn => {
+        btn.classList.toggle('hidden', showBack);
+    });
 
     // Update frequency display (skip for peek/stacked cards)
     if (cardNavStack.length === 0) {
@@ -3028,11 +3032,19 @@ function navigateToVocabCard(tokenIndex) {
     updateCard();
 }
 
-// Open a single vocab card as a popup (used by the find-word search).
-// Pushes the current position onto cardNavStack so navigateBack returns
-// to the search modal. Works whether or not a deck is currently loaded.
-async function popupFoundWord(entry) {
+// Open a single vocab card as a popup (used by the find-word search and
+// the synonyms panel's tap-to-jump). Pushes the current position onto
+// cardNavStack so navigateBack returns to the previous state. Works
+// whether or not a deck is currently loaded.
+//
+// opts.reopenSearchOnBack — when true (default for find-word callers),
+// hitting back reopens the find-word search modal. The synonyms panel
+// passes false so back returns straight to the originating card.
+async function popupFoundWord(entry, opts) {
     if (!entry || !entry.id) return;
+    opts = opts || {};
+    const reopenSearchOnBack = opts.reopenSearchOnBack !== false;
+    const startFlipped = opts.startFlipped === true;
 
     // Look up the full vocab entry by ID from cached vocab data.
     const vocabSource = (activeArtist && window._cachedMergedIndex)
@@ -3129,7 +3141,7 @@ async function popupFoundWord(entry) {
         cardNavStack.push({
             popupOnly: true,
             wasOnSetup: wasOnSetup,
-            reopenSearchOnBack: true
+            reopenSearchOnBack: reopenSearchOnBack
         });
         flashcards.length = 0;
         flashcards.push(tempCard);
@@ -3140,7 +3152,8 @@ async function popupFoundWord(entry) {
         document.getElementById('setupPanel').classList.add('hidden');
         document.getElementById('appContent').classList.remove('hidden');
         showFloatingBtns(true);
-        document.getElementById('flashcard').classList.remove('flipped');
+        const fc = document.getElementById('flashcard');
+        if (startFlipped) fc.classList.add('flipped'); else fc.classList.remove('flipped');
         initializeApp();
     } else {
         // Deck loaded — append temp card and push current position onto nav stack.
@@ -3153,13 +3166,14 @@ async function popupFoundWord(entry) {
             mweIndex: currentMWEIndex,
             tempCard: true,
             tempIndex: tempIndex,
-            reopenSearchOnBack: true
+            reopenSearchOnBack: reopenSearchOnBack
         });
         currentIndex = tempIndex;
         currentMeaningIndex = 0;
         currentExampleIndex = 0;
         currentMWEIndex = 0;
-        document.getElementById('flashcard').classList.remove('flipped');
+        const fc = document.getElementById('flashcard');
+        if (startFlipped) fc.classList.add('flipped'); else fc.classList.remove('flipped');
         updateCard();
     }
 }
@@ -3597,15 +3611,56 @@ function toggleConjugationTable() {
     }
 }
 
+// Scan the cached vocab index for a card matching the given Spanish word.
+// Matches surface or lemma, case-insensitive. Returns the entry's id or null.
+// Used by the synonyms panel: tap-a-synonym should jump to its card if we
+// have one, otherwise fall back to SpanishDict.
+function findCardIdForWord(word) {
+    const target = (word || '').toLowerCase();
+    if (!target) return null;
+    const source = (activeArtist && window._cachedMergedIndex)
+        ? window._cachedMergedIndex
+        : window._cachedJoinedIndex;
+    if (!source) return null;
+    for (const it of source) {
+        const w = (it.word || it.targetWord || '').toLowerCase();
+        const l = (it.lemma || '').toLowerCase();
+        if (w === target || l === target) {
+            return it.id || (window.getWordId ? window.getWordId(it) : null);
+        }
+    }
+    return null;
+}
+
+function jumpToSynonym(word) {
+    const id = findCardIdForWord(word);
+    if (id && window.popupFoundWord) {
+        // Close the panel before navigating so back-button returns cleanly.
+        const panel = document.getElementById('synonymsPanel');
+        if (panel) panel.classList.remove('visible');
+        // reopenSearchOnBack: false — back should return to the originating
+        // card, not pop up the find-word search modal.
+        // startFlipped: true — synonyms panel lives on the back, so land on
+        // the back of the new card (where ↩ lives) for continuity.
+        window.popupFoundWord({ id }, { reopenSearchOnBack: false, startFlipped: true });
+        return;
+    }
+    // No card available — open SpanishDict in a new tab.
+    const url = `https://www.spanishdict.com/translate/${encodeURIComponent((word || '').toLowerCase())}`;
+    window.open(url, '_blank', 'noopener');
+}
+
 function buildSynonymsPanelHTML(synonyms, antonyms, headword) {
     const headwordLower = (headword || '').toLowerCase();
     function renderItem(item) {
         const word = item && item.word ? item.word : '';
         if (!word) return '';
         const strength = item.strength === 2 ? 'syn-strong' : 'syn-weak';
-        const sdUrl = `https://www.spanishdict.com/translate/${encodeURIComponent(word.toLowerCase())}`;
+        const inDeck = !!findCardIdForWord(word);
+        const inDeckCls = inDeck ? ' syn-in-deck' : ' syn-external';
+        const escaped = word.replace(/'/g, "\\'");
         const ctx = item.context ? `<span class="syn-context">${item.context}</span>` : '';
-        return `<a class="syn-item ${strength}" href="${sdUrl}" target="_blank" rel="noopener">
+        return `<a class="syn-item ${strength}${inDeckCls}" href="javascript:void(0)" onclick="jumpToSynonym('${escaped}')">
             <span class="syn-word">${word}</span>${ctx}
         </a>`;
     }
@@ -3649,6 +3704,8 @@ window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
 window.loadConjugatedEnglishData = loadConjugatedEnglishData;
 window.toggleConjugationTable = toggleConjugationTable;
+window.toggleSynonymsPanel = toggleSynonymsPanel;
+window.jumpToSynonym = jumpToSynonym;
 window.switchConjTense = switchConjTense;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
