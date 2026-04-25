@@ -9,6 +9,31 @@ let _spanishRanks = null;  // word -> rank (loaded once)
 let _spanishRanksLoading = false;
 let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, translation}
 let _conjugationLoading = false;
+let _conjugatedEnglishData = null;  // lemma -> translation -> tense -> 6-element person-indexed array
+let _conjugatedEnglishLoading = false;
+
+// Map verbecc tense keys (used in vocabulary.index.json's morphology field) to
+// the keys produced by step_5e_build_conjugated_english.py. Identical today, but
+// the indirection makes the mapping explicit and easy to extend.
+const _MORPH_TENSE_TO_CONJ_EN = {
+    "presente": "presente",
+    "pretérito-perfecto-simple": "pretérito-perfecto-simple",
+    "futuro": "futuro",
+};
+
+const _PERSON_TO_INDEX = { "1s": 0, "2s": 1, "3s": 2, "1p": 3, "2p": 4, "3p": 5 };
+
+function getConjugatedEnglish(card, translation) {
+    if (!_conjugatedEnglishData || !card || !translation) return null;
+    const morph = card.morphology;
+    if (!morph || morph.mood !== "indicativo") return null;
+    const tenseKey = _MORPH_TENSE_TO_CONJ_EN[morph.tense];
+    const personIdx = _PERSON_TO_INDEX[morph.person];
+    if (tenseKey === undefined || personIdx === undefined) return null;
+    const lemma = (card.lemma || "").toLowerCase();
+    const row = _conjugatedEnglishData?.[lemma]?.[translation]?.[tenseKey];
+    return row ? (row[personIdx] || null) : null;
+}
 
 // Part-of-speech lookup shown when a user taps the POS pill on a sense
 // row. Full name + one-sentence plain-language description targeted at
@@ -190,6 +215,20 @@ async function loadConjugationData() {
         // Non-fatal — conjugation table just won't show
     }
     _conjugationLoading = false;
+}
+
+async function loadConjugatedEnglishData() {
+    if (_conjugatedEnglishData || _conjugatedEnglishLoading) return;
+    const langConfig = config.languages[selectedLanguage];
+    if (!langConfig || !langConfig.conjugatedEnglishPath) return;
+    _conjugatedEnglishLoading = true;
+    try {
+        const resp = await fetch(langConfig.conjugatedEnglishPath);
+        if (resp.ok) _conjugatedEnglishData = await resp.json();
+    } catch (e) {
+        // Non-fatal — falls back to infinitive display
+    }
+    _conjugatedEnglishLoading = false;
 }
 
 // --- MWE translation split (JS mirror of pipeline/util_5c_spanishdict.split_mwe_translation) ---
@@ -1505,6 +1544,76 @@ function updateCard() {
         //     scroll area so the user doesn't have to hunt for them)
         const scrollRows = [];
         const trayRows = [];
+
+        // Render-side grouping: collapse rows that share either
+        // (pos, translation) OR (pos, context) into a single "group card"
+        // — POS pill + the shared field on the left, list of varying
+        // values on the right. Examples:
+        //   `dice` → 3 senses share "to say" → translation-axis group
+        //            shared = "to say", varying = contexts
+        //   `su`   → 5 senses share possessive context → context-axis group
+        //            shared = context,  varying = translations
+        // Each list item stays an independently clickable selectMeaning
+        // target. Pure render layer; data is untouched. Flip to false to
+        // revert to flat one-row-per-meaning.
+        const GROUP_DUPLICATE_MEANINGS = true;
+        const transGroupSize = new Map();
+        const ctxGroupSize = new Map();
+        const transGroupMembers = new Map();
+        const ctxGroupMembers = new Map();
+        const transGroupPctSum = new Map();
+        const ctxGroupPctSum = new Map();
+        const firstIdxByTransKey = new Map();
+        const firstIdxByCtxKey = new Map();
+        // Per-meaning-idx axis assignment: 'translation' | 'context' |
+        // 'singleton' | 'special' (MWE/CLITIC/SENSE_CYCLE — opted out).
+        const axisOf = new Map();
+        const groupKeyOf = new Map();
+        if (GROUP_DUPLICATE_MEANINGS) {
+            // First pass: tally both axes.
+            card.meanings.forEach((m, idx) => {
+                if (m.pos === 'MWE' || m.pos === 'CLITIC' || m.pos === 'SENSE_CYCLE') {
+                    axisOf.set(idx, 'special');
+                    return;
+                }
+                const tk = `${m.pos}|${m.meaning}`;
+                transGroupSize.set(tk, (transGroupSize.get(tk) || 0) + 1);
+                if (!transGroupMembers.has(tk)) transGroupMembers.set(tk, []);
+                transGroupMembers.get(tk).push(idx);
+                transGroupPctSum.set(tk, (transGroupPctSum.get(tk) || 0) + (m.percentage || 0));
+                if (!firstIdxByTransKey.has(tk)) firstIdxByTransKey.set(tk, idx);
+                if (m.context) {
+                    const ck = `${m.pos}|${m.context}`;
+                    ctxGroupSize.set(ck, (ctxGroupSize.get(ck) || 0) + 1);
+                    if (!ctxGroupMembers.has(ck)) ctxGroupMembers.set(ck, []);
+                    ctxGroupMembers.get(ck).push(idx);
+                    ctxGroupPctSum.set(ck, (ctxGroupPctSum.get(ck) || 0) + (m.percentage || 0));
+                    if (!firstIdxByCtxKey.has(ck)) firstIdxByCtxKey.set(ck, idx);
+                }
+            });
+            // Second pass: pick the dominant axis per meaning. Ties or
+            // translation-only collisions go to the translation axis
+            // (the more common failure mode is classifier slop on a
+            // single sense, which manifests as duplicate translations).
+            card.meanings.forEach((m, idx) => {
+                if (axisOf.get(idx) === 'special') return;
+                const tk = `${m.pos}|${m.meaning}`;
+                const ts = transGroupSize.get(tk) || 0;
+                const ck = m.context ? `${m.pos}|${m.context}` : null;
+                const cs = ck ? (ctxGroupSize.get(ck) || 0) : 0;
+                if (ts > 1 && cs > 1) {
+                    if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
+                    else { axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck); }
+                } else if (ts > 1) {
+                    axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk);
+                } else if (cs > 1) {
+                    axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck);
+                } else {
+                    axisOf.set(idx, 'singleton');
+                }
+            });
+        }
+
         card.meanings.forEach((m, idx) => {
             const isSelected = idx === currentMeaningIndex;
             const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.6)' : 'rgba(15, 20, 28, 0.82)';
@@ -1529,7 +1638,9 @@ function updateCard() {
             const cliticCount = isClitic && m.allClitics ? m.allClitics.length : 0;
             const cliticCounter = (isClitic && cliticCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous form">‹</button><span style="opacity: 0.6; font-size: 10px;">${cliticIdx + 1}/${cliticCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next form">›</button></span>` : '';
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
-            const displayMeaning = isMWE ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>') : m.meaning;
+            const displayMeaning = isMWE
+                ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>')
+                : (getConjugatedEnglish(card, m.meaning) || m.meaning);
             if (isMWE) {
                 // MWE row: expression pill (left), translation (middle), counter (right).
                 // Two context tiers — renderer prefers real over heuristic:
@@ -1667,50 +1778,106 @@ function updateCard() {
                 </div>
                 `);
             } else {
-                // Regular meaning row: POS pill in left grid column, translation centered in middle column.
-                // A visibility:hidden mirror of the pill sits in col 3 so col widths auto-size together;
-                // this keeps the body symmetrically centred without hard-coding a side-column width.
+                // Regular meaning row. Three layouts:
+                //   axis === 'singleton' → flat one-row card (translation
+                //                          centred, optional inline context)
+                //   axis === 'translation' → group card; shared = translation,
+                //                          varying list = contexts
+                //   axis === 'context'   → group card; shared = context,
+                //                          varying list = translations
+                // Continuations of a group are skipped; the leader emits a
+                // single card containing all members.
                 const pctVal = Math.round(m.percentage * 100);
-                // Stacked pill: POS name on top, percentage below it (no
-                // pipe separator). At 100% frequency the percentage is
-                // redundant, so the pill collapses to just the POS name —
-                // matches the prior behaviour for single-meaning cards.
-                const posPillInner = pctVal >= 100
-                    ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
-                    : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
-                      + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
-                // min-width pads short POS labels (ADJ, ADV, NOUN, VERB, PRON,
-                // INTJ, PART, NUM, ADP, DET — i.e. 3–4 chars at 10px/700) up
-                // to a shared column footprint so their translations line up
-                // at the same x. Longer labels (PROPN, CCONJ, SCONJ, PHRASE,
-                // CONTRACTION) naturally exceed this and get their own width
-                // — accepting that trade-off keeps the common case tight
-                // instead of forcing every row to accommodate the worst-case
-                // label.
-                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
-                // Pill is tappable — stops row-select, opens POS info popover.
-                // Passes pctVal so the popover can also explain what the
-                // percentage on the pill means.
-                const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}', ${pctVal})">${posPillInner}</span>`;
-                const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
-                // Inline context: rendered on the same line as the translation
-                // in a smaller, dimmer typeface. Always full; a post-render
-                // overflow check marks the row `.is-clamped` when the 3-line
-                // clamp actually hides content, so it becomes tap-to-expand.
-                let contextInline = '';
-                if (m.context) {
-                    const safeFull = String(m.context).replace(/"/g, '&quot;');
-                    contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
+                const axis = GROUP_DUPLICATE_MEANINGS ? (axisOf.get(idx) || 'singleton') : 'singleton';
+                const isGrouped = axis === 'translation' || axis === 'context';
+                const groupKey = isGrouped ? groupKeyOf.get(idx) : null;
+                if (isGrouped) {
+                    const firstIdx = axis === 'translation'
+                        ? firstIdxByTransKey.get(groupKey)
+                        : firstIdxByCtxKey.get(groupKey);
+                    if (firstIdx !== idx) return;
                 }
-                target.push(`
-                <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px;" onclick="selectMeaning(${idx})">
-                    ${posPill}
-                    <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
-                        <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
+                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
+                if (isGrouped) {
+                    // Group card. POS pill shows the cluster's summed
+                    // percentage; each list item shows its own % so the
+                    // user can still see relative weights.
+                    const members = axis === 'translation'
+                        ? transGroupMembers.get(groupKey)
+                        : ctxGroupMembers.get(groupKey);
+                    const pctSumRaw = axis === 'translation'
+                        ? transGroupPctSum.get(groupKey)
+                        : ctxGroupPctSum.get(groupKey);
+                    const sumPct = Math.round((pctSumRaw || 0) * 100);
+                    const isTransAxis = axis === 'translation';
+                    const sharedText = isTransAxis
+                        ? displayMeaning
+                        : String(m.context || '').replace(/"/g, '&quot;');
+                    const groupPosPillInner = sumPct >= 100
+                        ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
+                        : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
+                          + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${sumPct}%</span>`;
+                    const groupPosPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; align-self: center; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}', ${sumPct})">${groupPosPillInner}</span>`;
+                    const groupPosPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; align-self: center; visibility: hidden; pointer-events: none;" aria-hidden="true">${groupPosPillInner}</span>`;
+                    const memberLines = members.map(memberIdx => {
+                        const mm = card.meanings[memberIdx];
+                        const isMemberSelected = memberIdx === currentMeaningIndex;
+                        const memberPct = Math.round((mm.percentage || 0) * 100);
+                        const varyingRaw = isTransAxis
+                            ? (mm.context || '')
+                            : (getConjugatedEnglish(card, mm.meaning) || mm.meaning);
+                        const varying = varyingRaw
+                            ? String(varyingRaw).replace(/"/g, '&quot;')
+                            : '<span style="opacity: 0.5; font-style: italic;">(no context)</span>';
+                        const itemBg = isMemberSelected
+                            ? 'rgba(var(--accent-primary-rgb), 0.55)'
+                            : 'rgba(255, 255, 255, 0.03)';
+                        const itemBorder = (isMemberSelected && !mm.unassigned)
+                            ? 'border: 2px solid var(--accent-primary);'
+                            : 'border: 2px solid transparent;';
+                        return `<div class="group-card-item" onclick="selectMeaning(${memberIdx})" style="display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 3px 8px; background: ${itemBg}; ${itemBorder} border-radius: 6px; cursor: pointer; min-height: 22px;">
+                            <span style="font-size: 13px; color: var(--text-primary); line-height: 1.3; min-width: 0; text-align: left;">${varying}</span>
+                            <span style="font-size: 10px; opacity: 0.65; white-space: nowrap; color: var(--text-primary);">${memberPct}%</span>
+                        </div>`;
+                    }).join('');
+                    const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
+                    const cardBg = anyMemberSelected
+                        ? 'rgba(var(--accent-primary-rgb), 0.18)'
+                        : 'rgba(15, 20, 28, 0.82)';
+                    target.push(`
+                    <div class="meaning-row meaning-row-group" data-axis="${axis}" style="display: grid; grid-template-columns: auto 1fr auto; align-items: stretch; padding: 4px 4px; margin-bottom: 6px; background: ${cardBg}; border-radius: 8px;">
+                        ${groupPosPill}
+                        <div class="meaning-row-body group-card-body" style="display: flex; flex-direction: column; align-items: stretch; min-width: 0; padding: 2px 8px; gap: 4px;">
+                            <div class="group-card-shared" style="font-size: 15px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25;">${sharedText}</div>
+                            <div class="group-card-items" style="display: flex; flex-direction: column; gap: 2px;">${memberLines}</div>
+                        </div>
+                        ${groupPosPillMirror}
                     </div>
-                    ${posPillMirror}
-                </div>
-                `);
+                    `);
+                } else {
+                    // Singleton: original flat row. POS pill + centred
+                    // translation with optional inline context.
+                    const posPillInner = pctVal >= 100
+                        ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
+                        : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
+                          + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
+                    const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}', ${pctVal})">${posPillInner}</span>`;
+                    const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
+                    let contextInline = '';
+                    if (m.context) {
+                        const safeFull = String(m.context).replace(/"/g, '&quot;');
+                        contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
+                    }
+                    target.push(`
+                    <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px;" onclick="selectMeaning(${idx})">
+                        ${posPill}
+                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
+                            <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
+                        </div>
+                        ${posPillMirror}
+                    </div>
+                    `);
+                }
             }
         });
         // Emit the scroll region first, then the pinned tray underneath
@@ -2067,6 +2234,16 @@ function updateCard() {
         </button>`;
     }
 
+    const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
+    if (hasSynonyms) {
+        backHTML += `<button class="ref-icon-btn ref-syn-btn" title="Synonyms &amp; Antonyms" onclick="toggleSynonymsPanel()">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
+                <text x="16" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#000000">≈</text>
+            </svg>
+        </button>`;
+    }
+
     for (const [key, url] of Object.entries(card.links)) {
         if (key === 'wordReference') continue; // Skip wordReference
         // Conjugation is handled by the unified in-app toggle above.
@@ -2096,6 +2273,10 @@ function updateCard() {
             card.lemma,
             { relatedLemma: card.relatedLemma, isRelatedParadigm: conjEntryIsRelated }
         );
+    }
+
+    if (hasSynonyms) {
+        backHTML += buildSynonymsPanelHTML(card.synonyms || [], card.antonyms || [], card.lemma || card.targetWord);
     }
 
     document.getElementById('backContent').innerHTML = backHTML;
@@ -3416,9 +3597,57 @@ function toggleConjugationTable() {
     }
 }
 
+function buildSynonymsPanelHTML(synonyms, antonyms, headword) {
+    const headwordLower = (headword || '').toLowerCase();
+    function renderItem(item) {
+        const word = item && item.word ? item.word : '';
+        if (!word) return '';
+        const strength = item.strength === 2 ? 'syn-strong' : 'syn-weak';
+        const sdUrl = `https://www.spanishdict.com/translate/${encodeURIComponent(word.toLowerCase())}`;
+        const ctx = item.context ? `<span class="syn-context">${item.context}</span>` : '';
+        return `<a class="syn-item ${strength}" href="${sdUrl}" target="_blank" rel="noopener">
+            <span class="syn-word">${word}</span>${ctx}
+        </a>`;
+    }
+    const synBlock = synonyms.length
+        ? `<div class="syn-section">
+                <div class="syn-section-title">Synonyms</div>
+                <div class="syn-list">${synonyms.map(renderItem).join('')}</div>
+            </div>`
+        : '';
+    const antBlock = antonyms.length
+        ? `<div class="syn-section">
+                <div class="syn-section-title">Antonyms</div>
+                <div class="syn-list">${antonyms.map(renderItem).join('')}</div>
+            </div>`
+        : '';
+    return `
+        <div id="synonymsPanel" class="synonyms-panel">
+            <button class="conj-close-btn" onclick="toggleSynonymsPanel()" aria-label="Close">&times;</button>
+            <div class="conj-header">
+                <div class="conj-title">
+                    <span class="conj-infinitive">${headwordLower}</span>
+                </div>
+            </div>
+            <div class="syn-body">
+                ${synBlock}
+                ${antBlock}
+            </div>
+        </div>
+    `;
+}
+
+function toggleSynonymsPanel() {
+    const panel = document.getElementById('synonymsPanel');
+    if (panel) {
+        panel.classList.toggle('visible');
+    }
+}
+
 window.computeLinesUnderstood = computeLinesUnderstood;
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
+window.loadConjugatedEnglishData = loadConjugatedEnglishData;
 window.toggleConjugationTable = toggleConjugationTable;
 window.switchConjTense = switchConjTense;
 window.initializeApp = initializeApp;

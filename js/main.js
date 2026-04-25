@@ -7,8 +7,8 @@ import './estimation.js';
 import './config.js';
 import './progress.js';
 import './ui.js';
-import './vocab.js?v=20260423d';
-import './flashcards.js?v=20260423d';
+import './vocab.js?v=20260425f';
+import './flashcards.js?v=20260425f';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -78,6 +78,7 @@ loadConfig().then(async () => {
     // Fire-and-forget: load Spanish rank lookup for personal easiness scoring
     if (window.loadSpanishRanks) window.loadSpanishRanks();
     if (window.loadConjugationData) window.loadConjugationData();
+    if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
     renderLanguageTabs();
     // Set first language with data as default (but don't auto-select it)
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];

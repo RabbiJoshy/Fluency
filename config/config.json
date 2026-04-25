@@ -6,6 +6,7 @@
       "indexPath": "Data/Spanish/vocabulary.index.json",
       "examplesPath": "Data/Spanish/vocabulary.examples.json",
       "conjugationsPath": "Data/Spanish/layers/conjugations.json",
+      "conjugatedEnglishPath": "Data/Spanish/layers/senses_conjugated_english.json",
       "ppmDataPath": "Data/Spanish/SpanishRawWiki.csv",
       "exampleTargetField": "example_spanish",
       "exampleEnglishField": "example_english",
