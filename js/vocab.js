@@ -1324,6 +1324,97 @@ async function mergeArtistVocabularies(artistConfigs, master) {
     return { mergedIndex, mergedExamples };
 }
 
+// Synthesize MWE / CLITIC / SENSE_CYCLE meanings on a card's meanings array.
+// Mirrors the inline blocks in loadVocabularyData (line 484+) and
+// loadIncorrectWordsSet (line 846+), but assumes mwe_memberships[i].examples
+// (and the sense_cycles equivalents) are already populated by the caller —
+// no corpus-scan fallback. Used by the popup/temp-card paths in
+// flashcards.js (popupFoundWord, navigateToVocabCard) which previously
+// skipped this synthesis entirely, hiding all MWEs (including curated ones)
+// on cards reached via search or click-through.
+function synthesizeSpecialMeanings(item, meanings) {
+    if (item.mwe_memberships && item.mwe_memberships.length > 0) {
+        const sortedMWEs = [...item.mwe_memberships].sort((a, b) => {
+            const aSrc = a.source || 'artist';
+            const bSrc = b.source || 'artist';
+            const aArtist = aSrc === 'artist' || aSrc.startsWith('artist-') ? 0 : 1;
+            const bArtist = bSrc === 'artist' || bSrc.startsWith('artist-') ? 0 : 1;
+            return aArtist - bArtist;
+        });
+        const allMWEs = sortedMWEs.map(mwe => {
+            const matched = mwe.examples || [];
+            return {
+                expression: mwe.expression,
+                translation: mwe.translation || '',
+                context: mwe.context || '',
+                context_heuristic: mwe.context_heuristic || '',
+                examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }],
+            };
+        });
+        const firstEx = allMWEs[0].examples[0];
+        meanings.push({
+            pos: 'MWE',
+            meaning: allMWEs[0].translation,
+            expression: allMWEs[0].expression,
+            allMWEs,
+            percentage: 0,
+            targetSentence: firstEx.spanish || firstEx.target || '',
+            englishSentence: firstEx.english || '',
+            allExamples: allMWEs[0].examples,
+        });
+    }
+    if (item.clitic_memberships && item.clitic_memberships.length > 0) {
+        const allClitics = item.clitic_memberships.map(cl => {
+            const matched = cl.examples || [];
+            return {
+                form: cl.form,
+                translation: cl.translation || '',
+                corpus_count: cl.corpus_count || 0,
+                examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }],
+            };
+        });
+        allClitics.sort((a, b) => b.corpus_count - a.corpus_count);
+        const firstEx = allClitics[0].examples[0];
+        meanings.push({
+            pos: 'CLITIC',
+            meaning: allClitics[0].form,
+            allClitics,
+            percentage: 0,
+            targetSentence: firstEx.spanish || firstEx.target || '',
+            englishSentence: firstEx.english || '',
+            allExamples: allClitics[0].examples,
+        });
+    }
+    if (item.sense_cycles && item.sense_cycles.length > 0) {
+        for (const sc of item.sense_cycles) {
+            const scExamples = sc.examples || [];
+            const firstEx = scExamples[0] || { spanish: '', english: '' };
+            const meaning = {
+                pos: sc.pos === 'SENSE_CYCLE' ? 'SENSE_CYCLE' : sc.pos,
+                meaning: sc.translation || '',
+                percentage: 0,
+                unassigned: true,
+                targetSentence: firstEx.spanish || firstEx.target || '',
+                englishSentence: firstEx.english || '',
+                allExamples: scExamples,
+            };
+            if (sc.allSenses && sc.allSenses.length > 0) {
+                meaning.allSenses = sc.allSenses;
+                meaning.cycle_pos = sc.cycle_pos || sc.pos;
+            }
+            meanings.push(meaning);
+        }
+    }
+    const order = { 'SENSE_CYCLE': 1, 'CLITIC': 2, 'MWE': 3 };
+    meanings.sort((a, b) => {
+        const aOrd = order[a.pos] || 0;
+        const bOrd = order[b.pos] || 0;
+        if (aOrd !== bOrd) return aOrd - bOrd;
+        return (b.percentage || 0) - (a.percentage || 0);
+    });
+}
+
+window.synthesizeSpecialMeanings = synthesizeSpecialMeanings;
 window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.joinWithMaster = joinWithMaster;
 window.fetchAndJoinIndex = fetchAndJoinIndex;

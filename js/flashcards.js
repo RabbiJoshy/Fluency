@@ -3204,6 +3204,34 @@ function navigateToVocabCard(tokenIndex) {
     const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
     const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
+    // Merge cached examples (sense, MWE, sense-cycle) before synthesis so
+    // the MWE pill has lyric lines to render.
+    const examplesData = window._cachedExamplesData;
+    if (examplesData && examplesData[vocabEntry.id]) {
+        const cached = examplesData[vocabEntry.id];
+        if (cached.m && Array.isArray(vocabEntry.meanings)) {
+            vocabEntry.meanings.forEach((m, i) => {
+                if (!m.examples || m.examples.length === 0) {
+                    m.examples = cached.m[i] || [];
+                }
+            });
+        }
+        if (cached.w && Array.isArray(vocabEntry.mwe_memberships)) {
+            vocabEntry.mwe_memberships.forEach((mwe, i) => {
+                if (!mwe.examples || mwe.examples.length === 0) {
+                    mwe.examples = cached.w[i] || [];
+                }
+            });
+        }
+        if (cached.s && Array.isArray(vocabEntry.sense_cycles)) {
+            vocabEntry.sense_cycles.forEach((sc, i) => {
+                if (!sc.examples || sc.examples.length === 0) {
+                    sc.examples = cached.s[i] || [];
+                }
+            });
+        }
+    }
+
     const meanings = (vocabEntry.meanings || []).map(m => {
         const ex = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
         return {
@@ -3215,6 +3243,13 @@ function navigateToVocabCard(tokenIndex) {
             allExamples: ex.allExamples
         };
     });
+
+    // Synthesize MWE / CLITIC / SENSE_CYCLE meanings, mirroring
+    // loadVocabularyData. The popup paths previously skipped this and so
+    // never showed MWEs on cards reached via lyric-token click-through.
+    if (typeof window.synthesizeSpecialMeanings === 'function') {
+        window.synthesizeSpecialMeanings(vocabEntry, meanings);
+    }
 
     const firstExample = meanings.length > 0 ? { targetSentence: meanings[0].targetSentence, englishSentence: meanings[0].englishSentence } : { targetSentence: '', englishSentence: '' };
 
@@ -3308,6 +3343,24 @@ async function popupFoundWord(entry, opts) {
                 }
             });
         }
+        // Mirror loadVocabularyData's merge of "w" (MWE examples) and "s"
+        // (sense-cycle examples) so the special-meaning synthesis below
+        // has examples to render. Without this, MWE pills would render
+        // empty even though mwe_memberships is populated.
+        if (ex.w && Array.isArray(vocabEntry.mwe_memberships)) {
+            vocabEntry.mwe_memberships.forEach((mwe, i) => {
+                if (!mwe.examples || mwe.examples.length === 0) {
+                    mwe.examples = ex.w[i] || [];
+                }
+            });
+        }
+        if (ex.s && Array.isArray(vocabEntry.sense_cycles)) {
+            vocabEntry.sense_cycles.forEach((sc, i) => {
+                if (!sc.examples || sc.examples.length === 0) {
+                    sc.examples = ex.s[i] || [];
+                }
+            });
+        }
     }
 
     // Build the temp card from the entry (mirrors navigateToVocabCard).
@@ -3332,6 +3385,13 @@ async function popupFoundWord(entry, opts) {
         if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
         return meaning;
     });
+
+    // Synthesize MWE / CLITIC / SENSE_CYCLE meanings — without this the
+    // popup would show only sense pills, hiding all MWEs (including
+    // curated ones like "no te hagas") that the deck-flow path renders.
+    if (typeof window.synthesizeSpecialMeanings === 'function') {
+        window.synthesizeSpecialMeanings(vocabEntry, meanings);
+    }
 
     const firstExample = meanings.length > 0
         ? { targetSentence: meanings[0].targetSentence, englishSentence: meanings[0].englishSentence }
