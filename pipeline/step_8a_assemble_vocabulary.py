@@ -261,10 +261,10 @@ def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
                 sense_map = analysis.get("senses", {})
                 flat = list(sense_map.values())
                 return flat, sense_map
-        # Fallback: try first analysis if lemma matches word
-        if lemma == word and analyses:
-            sense_map = analyses[0].get("senses", {})
-            return list(sense_map.values()), sense_map
+        # No matching analysis. Don't fall back to analyses[0] when
+        # lemma == word — that path would conflate distinct lemmas of the
+        # same surface (e.g. a|a inheriting avoir's senses because the only
+        # analysis under surface "a" is for headword "avoir").
         return [], {}
     else:
         # Old format: word|lemma key -> flat list of sense dicts
@@ -413,17 +413,28 @@ def main():
         # or that explicitly target "all" (or legacy "shared"/"normal" that
         # predate per-source scoping). mode="archive" and anything else is
         # retained in the file but never applied.
+        # Also filter by language: an entry with no "language" field defaults
+        # to "spanish" (the historical curation source — every existing entry
+        # was curated against Spanish data). New language-specific curations
+        # can set "language" explicitly to override.
         active_modes = {args.sense_source, "all", "shared", "normal"}
         for k, v in raw_curated.items():
             if k.startswith("_"):
                 continue
             if isinstance(v, dict):
-                if v.get("mode") in active_modes:
-                    curated[k] = v
+                if v.get("mode") not in active_modes:
+                    continue
+                entry_lang = v.get("language", "spanish")
+                if entry_lang not in (args.language, "all"):
+                    continue
+                curated[k] = v
             else:
-                curated[k] = {"translation": v, "pos": "X"}
+                # Bare-string entries are legacy Spanish-only curations.
+                if args.language == "spanish":
+                    curated[k] = {"translation": v, "pos": "X"}
         print(f"  curated_translations: {len(curated)} overrides "
-              f"(filtered by sense-source={args.sense_source!r})")
+              f"(filtered by sense-source={args.sense_source!r}, "
+              f"language={args.language!r})")
 
     mwe_path = LAYERS / "mwe_phrases.json"
     if mwe_path.exists():

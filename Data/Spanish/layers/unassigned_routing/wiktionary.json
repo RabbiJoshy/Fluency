@@ -853,18 +853,6 @@
     18,
     19
   ],
-  "sólo|sólo": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "soy|ser": [
     0,
     2,
@@ -1538,18 +1526,6 @@
     18,
     19
   ],
-  "ti|ti": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "vida|vida": [
     2,
     10,
@@ -1837,7 +1813,7 @@
     18,
     19
   ],
-  "fue|ir": [
+  "fue|ser": [
     1,
     2,
     5,
@@ -2492,7 +2468,7 @@
     18,
     19
   ],
-  "siento|sentar": [
+  "siento|sentir": [
     2,
     3,
     5,
@@ -6656,7 +6632,7 @@
     18,
     19
   ],
-  "dólares|dólares": [
+  "dólares|dólar": [
     10,
     11,
     12,
@@ -7787,18 +7763,6 @@
     18,
     19
   ],
-  "ésta|ésta": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "podrías|poder": [
     0,
     4,
@@ -7806,18 +7770,6 @@
     7,
     8,
     9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "pequeña|pequeña": [
     10,
     11,
     12,
@@ -8256,7 +8208,7 @@
     18,
     19
   ],
-  "semanas|semanas": [
+  "semanas|semana": [
     10,
     11,
     12,
@@ -9072,7 +9024,7 @@
     18,
     19
   ],
-  "uds|uds": [
+  "uds|ustedes": [
     10,
     11,
     12,
@@ -11261,7 +11213,7 @@
     18,
     19
   ],
-  "fui|ir": [
+  "fui|ser": [
     2,
     10,
     11,
@@ -15187,7 +15139,7 @@
     18,
     19
   ],
-  "soldados|soldados": [
+  "soldados|soldado": [
     10,
     11,
     12,
@@ -15859,7 +15811,7 @@
     18,
     19
   ],
-  "miles|miles": [
+  "miles|mil": [
     10,
     11,
     12,
@@ -16701,7 +16653,7 @@
     18,
     19
   ],
-  "sientes|sentar": [
+  "sientes|sentir": [
     1,
     10,
     11,
@@ -17325,7 +17277,7 @@
     18,
     19
   ],
-  "tenia|tenia": [
+  "tenia|tener": [
     10,
     11,
     12,
@@ -17633,7 +17585,7 @@
     18,
     19
   ],
-  "londres|londres": [
+  "londres|Londres": [
     10,
     11,
     12,
@@ -18500,7 +18452,7 @@
     18,
     19
   ],
-  "zapatos|zapatos": [
+  "zapatos|zapato": [
     10,
     11,
     12,
@@ -21839,7 +21791,7 @@
     18,
     38
   ],
-  "robots|robots": [
+  "robots|robot": [
     10,
     11,
     12,
@@ -22796,20 +22748,6 @@
     18,
     19
   ],
-  "aquella|aquella": [
-    5,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "bastardo|bastardo": [
     10,
     11,
@@ -23520,27 +23458,6 @@
     18,
     19
   ],
-  "mr|mister": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "nuevas|nuevo": [
     10,
     11,
@@ -23831,7 +23748,7 @@
     18,
     19
   ],
-  "inglaterra|inglaterra": [
+  "inglaterra|Inglaterra": [
     10,
     11,
     12,
@@ -25668,7 +25585,7 @@
     18,
     19
   ],
-  "millas|millas": [
+  "millas|milla": [
     10,
     11,
     12,
@@ -28986,7 +28903,7 @@
     18,
     19
   ],
-  "troya|troya": [
+  "troya|Troya": [
     10,
     11,
     12,
@@ -30262,19 +30179,17 @@
     18,
     19
   ],
-  "poquito|poquito": [
+  "poquito|poco": [
     10,
     11,
     12,
     13,
+    14,
     15,
     16,
     17,
     18,
     19
-  ],
-  "poquito|poco": [
-    14
   ],
   "puto|puto": [
     10,
@@ -31690,7 +31605,7 @@
     18,
     19
   ],
-  "odia|odia": [
+  "odia|odiar": [
     10,
     11,
     12,
@@ -33135,7 +33050,7 @@
     18,
     19
   ],
-  "mintiendo|mintiendo": [
+  "mintiendo|mentir": [
     10,
     11,
     12,
@@ -33812,7 +33727,7 @@
     18,
     19
   ],
-  "fuimos|ir": [
+  "fuimos|ser": [
     2,
     6,
     9,
@@ -35987,7 +35902,7 @@
     18,
     19
   ],
-  "odie|odie": [
+  "odie|odiar": [
     10,
     11,
     12,
@@ -36114,7 +36029,7 @@
     18,
     19
   ],
-  "rodillas|rodillas": [
+  "rodillas|rodilla": [
     10,
     11,
     12,
@@ -36695,7 +36610,7 @@
     18,
     19
   ],
-  "cigarrillos|cigarrillos": [
+  "cigarrillos|cigarrillo": [
     10,
     11,
     12,
@@ -41378,7 +41293,7 @@
     18,
     19
   ],
-  "canciones|canciones": [
+  "canciones|canción": [
     10,
     11,
     12,
@@ -42295,7 +42210,7 @@
     18,
     19
   ],
-  "prisioneros|prisioneros": [
+  "prisioneros|prisionero": [
     10,
     11,
     12,
@@ -43858,18 +43773,6 @@
     18,
     19
   ],
-  "prostituta|prostituta": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "pudieras|poder": [
     0,
     1,
@@ -44994,7 +44897,7 @@
     18,
     19
   ],
-  "guerreros|guerreros": [
+  "guerreros|guerrero": [
     10,
     11,
     12,
@@ -45599,7 +45502,7 @@
     18,
     19
   ],
-  "rocas|rocas": [
+  "rocas|roca": [
     10,
     11,
     12,
@@ -46307,7 +46210,7 @@
     18,
     19
   ],
-  "conduce|conduce": [
+  "conduce|conducir": [
     10,
     11,
     12,
@@ -47909,11 +47812,9 @@
     14,
     15,
     16,
+    17,
     18,
     19
-  ],
-  "ciudadanos|ciudadanos": [
-    17
   ],
   "ciudades|ciudad": [
     0,
@@ -49575,7 +49476,7 @@
     18,
     19
   ],
-  "afganistán|afganistán": [
+  "afganistán|Afganistán": [
     10,
     11,
     12,
@@ -49919,37 +49820,35 @@
     18,
     19
   ],
-  "corta|cortar": [
+  "corta|corto": [
     1,
+    2,
     3,
+    10,
+    11,
     12,
     13,
     14,
-    21,
-    23,
-    29,
-    32,
-    33,
-    34
-  ],
-  "corta|corto": [
-    2,
-    10,
-    11,
     15,
     16,
     17,
     18,
     19,
     20,
+    21,
     22,
+    23,
     24,
     25,
     26,
     27,
     28,
+    29,
     30,
     31,
+    32,
+    33,
+    34,
     35,
     36,
     37,
@@ -50174,7 +50073,7 @@
     18,
     19
   ],
-  "dolares|dolares": [
+  "dolares|dólar": [
     10,
     11,
     12,
@@ -52248,23 +52147,6 @@
     20,
     27
   ],
-  "compañera|compañera": [
-    0,
-    2,
-    4,
-    6,
-    7,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "compras|compra": [
     0,
     2,
@@ -52901,7 +52783,7 @@
     18,
     19
   ],
-  "hijas|hijas": [
+  "hijas|hija": [
     10,
     11,
     12,
@@ -53091,13 +52973,17 @@
   ],
   "limpia|limpio": [
     2,
+    7,
+    9,
     10,
+    11,
     12,
     13,
     14,
     15,
     16,
     17,
+    18,
     19,
     20,
     21,
@@ -53106,25 +52992,19 @@
     24,
     25,
     26,
+    27,
     28,
+    29,
     30,
+    31,
     32,
     33,
     34,
     35,
     36,
     37,
+    38,
     39
-  ],
-  "limpia|limpiar": [
-    7,
-    9,
-    11,
-    18,
-    27,
-    29,
-    31,
-    38
   ],
   "limpieza|limpieza": [
     0,
@@ -53477,7 +53357,7 @@
     58,
     59
   ],
-  "pasajeros|pasajeros": [
+  "pasajeros|pasajero": [
     10,
     11,
     12,
@@ -53922,7 +53802,7 @@
     18,
     19
   ],
-  "tarjetas|tarjetas": [
+  "tarjetas|tarjeta": [
     10,
     11,
     12,
@@ -53969,7 +53849,7 @@
     18,
     19
   ],
-  "tenias|tenias": [
+  "tenias|tener": [
     10,
     11,
     12,
@@ -54975,7 +54855,7 @@
     18,
     19
   ],
-  "explosivos|explosivos": [
+  "explosivos|explosivo": [
     10,
     11,
     12,
@@ -55163,18 +55043,6 @@
     18,
     19
   ],
-  "guión|guión": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "gusano|gusano": [
     4,
     6,
@@ -55237,14 +55105,12 @@
   "herida|herido": [
     15,
     16,
+    26,
     35,
     36,
+    46,
     55,
     56
-  ],
-  "herida|herir": [
-    26,
-    46
   ],
   "historial|historial": [
     10,
@@ -55378,18 +55244,6 @@
     7,
     8,
     9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "linea|linea": [
     10,
     11,
     12,
@@ -55614,37 +55468,39 @@
     18,
     19
   ],
-  "parada|parada": [
+  "parada|parar": [
     10,
     11,
     12,
     13,
     14,
     15,
-    16,
-    17,
     18,
     19,
-    20,
     21,
-    22,
     23,
     24,
     25,
     26,
-    27,
     28,
-    29,
     30,
     31,
     32,
     33,
     34,
     35,
-    36,
-    37,
     38,
     39
+  ],
+  "parada|parada": [
+    16,
+    17,
+    20,
+    22,
+    27,
+    29,
+    36,
+    37
   ],
   "parecido|parecido": [
     0,
@@ -55883,7 +55739,7 @@
     18,
     19
   ],
-  "pulmones|pulmones": [
+  "pulmones|pulmón": [
     10,
     11,
     12,
@@ -55963,7 +55819,7 @@
     18,
     19
   ],
-  "rehenes|rehenes": [
+  "rehenes|rehén": [
     10,
     11,
     12,
@@ -56219,7 +56075,7 @@
     18,
     19
   ],
-  "sienta|sentar": [
+  "sienta|sentir": [
     0,
     1,
     2,
@@ -57390,7 +57246,7 @@
     34,
     37
   ],
-  "computadoras|computadoras": [
+  "computadoras|computadora": [
     10,
     11,
     12,
@@ -57515,7 +57371,7 @@
     18,
     19
   ],
-  "coordenadas|coordenadas": [
+  "coordenadas|coordenada": [
     10,
     11,
     12,
@@ -58230,7 +58086,7 @@
     18,
     19
   ],
-  "fueran|ir": [
+  "fueran|ser": [
     5,
     6,
     8,
@@ -58712,7 +58568,7 @@
     18,
     19
   ],
-  "modales|modales": [
+  "modales|modal": [
     10,
     11,
     12,
@@ -59503,7 +59359,7 @@
     18,
     19
   ],
-  "riesgos|riesgos": [
+  "riesgos|riesgo": [
     10,
     11,
     12,
@@ -59570,18 +59426,6 @@
     4,
     5,
     9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "samurai|samurai": [
     10,
     11,
     12,
@@ -60567,7 +60411,7 @@
     18,
     19
   ],
-  "canadá|canadá": [
+  "canadá|Canadá": [
     10,
     11,
     12,
@@ -60956,18 +60800,6 @@
   "corten|cortar": [
     3,
     5,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "cuan|cuan": [
     10,
     11,
     12,
@@ -61576,6 +61408,7 @@
     8,
     9,
     10,
+    11,
     12,
     13,
     14,
@@ -61595,6 +61428,7 @@
     29,
     31,
     32,
+    33,
     34,
     35,
     36,
@@ -61604,10 +61438,8 @@
   ],
   "esposas|esposas": [
     7,
-    11,
     19,
-    30,
-    33
+    30
   ],
   "estabamos|estar": [
     0,
@@ -61668,7 +61500,7 @@
     18,
     19
   ],
-  "expertos|expertos": [
+  "expertos|experto": [
     10,
     11,
     12,
@@ -61928,6 +61760,7 @@
     5,
     6,
     7,
+    8,
     10,
     11,
     12,
@@ -61946,6 +61779,7 @@
     25,
     26,
     27,
+    28,
     29,
     30,
     31,
@@ -61957,10 +61791,6 @@
     37,
     38,
     39
-  ],
-  "heridas|herir": [
-    8,
-    28
   ],
   "hicieras|hacer": [
     4,
@@ -62331,7 +62161,7 @@
     18,
     19
   ],
-  "mia|Mia": [
+  "mia|mío": [
     2,
     10,
     11,
@@ -64328,7 +64158,7 @@
     18,
     19
   ],
-  "cervezas|cervezas": [
+  "cervezas|cerveza": [
     10,
     11,
     12,
@@ -65144,7 +64974,7 @@
     18,
     19
   ],
-  "edificios|edificios": [
+  "edificios|edificio": [
     10,
     11,
     12,
@@ -65402,7 +65232,7 @@
     18,
     19
   ],
-  "experimentos|experimentos": [
+  "experimentos|experimento": [
     10,
     11,
     12,
@@ -65674,7 +65504,7 @@
     18,
     19
   ],
-  "hadas|hadas": [
+  "hadas|hada": [
     10,
     11,
     12,
@@ -65711,7 +65541,7 @@
     18,
     19
   ],
-  "hombros|hombros": [
+  "hombros|hombro": [
     10,
     11,
     12,
@@ -66188,7 +66018,7 @@
     18,
     19
   ],
-  "líderes|líderes": [
+  "líderes|líder": [
     10,
     11,
     12,
@@ -66312,7 +66142,7 @@
     18,
     19
   ],
-  "mencionó|mencionó": [
+  "mencionó|mencionar": [
     10,
     11,
     12,
@@ -66324,7 +66154,7 @@
     18,
     19
   ],
-  "mentí|mentí": [
+  "mentí|mentir": [
     10,
     11,
     12,
@@ -66681,7 +66511,7 @@
     18,
     19
   ],
-  "odian|odian": [
+  "odian|odiar": [
     10,
     11,
     12,
@@ -67366,7 +67196,7 @@
     35,
     38
   ],
-  "sexuales|sexuales": [
+  "sexuales|sexual": [
     10,
     11,
     12,
@@ -67378,19 +67208,7 @@
     18,
     19
   ],
-  "sida|SIDA": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "sienten|sentar": [
+  "sienten|sentir": [
     1,
     4,
     9,
@@ -69351,7 +69169,7 @@
     18,
     19
   ],
-  "enfermeras|enfermeras": [
+  "enfermeras|enfermera": [
     10,
     11,
     12,
@@ -70315,7 +70133,7 @@
     18,
     19
   ],
-  "mintió|mintió": [
+  "mintió|mentir": [
     10,
     11,
     12,
@@ -70421,7 +70239,7 @@
     18,
     19
   ],
-  "múltiples|múltiples": [
+  "múltiples|múltiple": [
     10,
     11,
     12,
@@ -70528,7 +70346,7 @@
     18,
     19
   ],
-  "odiaba|odiaba": [
+  "odiaba|odiar": [
     10,
     11,
     12,
@@ -72067,7 +71885,7 @@
     18,
     19
   ],
-  "asia|asia": [
+  "asia|Asia": [
     10,
     11,
     12,
@@ -72610,21 +72428,6 @@
     7,
     8,
     9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "compañia|compañia": [
-    3,
-    6,
-    7,
     10,
     11,
     12,
@@ -74179,6 +73982,8 @@
   "heridos|herido": [
     0,
     1,
+    3,
+    4,
     6,
     9,
     10,
@@ -74194,6 +73999,8 @@
     20,
     21,
     22,
+    23,
+    24,
     25,
     26,
     27,
@@ -74209,12 +74016,6 @@
     37,
     38,
     39
-  ],
-  "heridos|herir": [
-    3,
-    4,
-    23,
-    24
   ],
   "herir|herir": [
     9,
@@ -74823,7 +74624,7 @@
     18,
     19
   ],
-  "mapas|mapas": [
+  "mapas|mapa": [
     10,
     11,
     12,
@@ -74973,7 +74774,7 @@
     18,
     19
   ],
-  "mentiste|mentiste": [
+  "mentiste|mentir": [
     10,
     11,
     12,
@@ -75121,7 +74922,7 @@
     18,
     19
   ],
-  "músculos|músculos": [
+  "músculos|músculo": [
     10,
     11,
     12,
@@ -75381,7 +75182,7 @@
     18,
     19
   ],
-  "pasas|pasa": [
+  "pasas|pasar": [
     0,
     3,
     10,
@@ -75396,13 +75197,11 @@
     19,
     20,
     21,
-    22,
     23,
     24,
     25,
     26,
     27,
-    28,
     29,
     30,
     31,
@@ -75414,6 +75213,10 @@
     37,
     38,
     39
+  ],
+  "pasas|pasa": [
+    22,
+    28
   ],
   "patada|patada": [
     10,
@@ -76073,7 +75876,7 @@
     18,
     19
   ],
-  "sacado|sacado": [
+  "sacado|sacar": [
     1,
     2,
     6,
@@ -76408,7 +76211,7 @@
     18,
     19
   ],
-  "sábanas|sábanas": [
+  "sábanas|sábana": [
     10,
     11,
     12,
@@ -77089,7 +76892,7 @@
     18,
     19
   ],
-  "anciana|anciana": [
+  "anciana|anciano": [
     4,
     5,
     7,
@@ -77637,7 +77440,7 @@
     18,
     19
   ],
-  "billones|billones": [
+  "billones|billón": [
     10,
     11,
     12,
@@ -79745,12 +79548,8 @@
     18,
     19
   ],
-  "firmada|firmar": [
+  "firmada|firmado": [
     10,
-    20,
-    30
-  ],
-  "firmada|firmada": [
     11,
     12,
     13,
@@ -79760,6 +79559,7 @@
     17,
     18,
     19,
+    20,
     21,
     22,
     23,
@@ -79769,6 +79569,7 @@
     27,
     28,
     29,
+    30,
     31,
     32,
     33,
@@ -80140,7 +79941,7 @@
     18,
     19
   ],
-  "hospitales|hospitales": [
+  "hospitales|hospital": [
     10,
     11,
     12,
@@ -80251,7 +80052,7 @@
     18,
     19
   ],
-  "insectos|insectos": [
+  "insectos|insecto": [
     10,
     11,
     12,
@@ -82185,7 +81986,7 @@
     18,
     19
   ],
-  "recuperado|recuperado": [
+  "recuperado|recuperar": [
     0,
     1,
     2,
@@ -82545,7 +82346,7 @@
     18,
     19
   ],
-  "servido|servido": [
+  "servido|servir": [
     1,
     7,
     8,
@@ -82695,7 +82496,7 @@
     18,
     19
   ],
-  "sobrevivientes|sobrevivientes": [
+  "sobrevivientes|sobreviviente": [
     10,
     11,
     12,
@@ -83469,18 +83270,6 @@
     18,
     19
   ],
-  "abogada|abogada": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "absoluta|absoluto": [
     8,
     10,
@@ -83895,13 +83684,18 @@
     15,
     16,
     17,
+    18,
     19,
+    20,
+    21,
     22,
     23,
     24,
     25,
     26,
+    27,
     28,
+    29,
     30,
     31,
     32,
@@ -83912,13 +83706,6 @@
     37,
     38,
     39
-  ],
-  "amada|amar": [
-    18,
-    20,
-    21,
-    27,
-    29
   ],
   "amado|amar": [
     0,
@@ -85066,7 +84853,7 @@
     18,
     19
   ],
-  "capturado|capturado": [
+  "capturado|capturar": [
     0,
     1,
     2,
@@ -85553,6 +85340,8 @@
     4,
     10,
     11,
+    12,
+    13,
     14,
     15,
     16,
@@ -85561,6 +85350,7 @@
     19,
     20,
     21,
+    22,
     23,
     24,
     25,
@@ -85570,19 +85360,14 @@
     29,
     30,
     31,
+    32,
+    33,
     34,
     35,
     36,
     37,
     38,
     39
-  ],
-  "condenada|condenar": [
-    12,
-    13,
-    22,
-    32,
-    33
   ],
   "confesar|confesar": [
     3,
@@ -86745,7 +86530,7 @@
     38,
     39
   ],
-  "disparado|disparado": [
+  "disparado|disparar": [
     0,
     1,
     3,
@@ -88014,7 +87799,7 @@
     18,
     19
   ],
-  "hallado|hallado": [
+  "hallado|hallar": [
     1,
     2,
     5,
@@ -88078,7 +87863,7 @@
     18,
     19
   ],
-  "hoteles|hoteles": [
+  "hoteles|hotel": [
     10,
     11,
     12,
@@ -89030,7 +88815,7 @@
     38,
     39
   ],
-  "mirado|mirado": [
+  "mirado|mirar": [
     0,
     1,
     2,
@@ -89355,7 +89140,7 @@
     18,
     19
   ],
-  "osos|osos": [
+  "osos|oso": [
     10,
     11,
     12,
@@ -89817,7 +89602,7 @@
     38,
     39
   ],
-  "programado|programado": [
+  "programado|programar": [
     6,
     7,
     8,
@@ -89885,7 +89670,7 @@
     38,
     39
   ],
-  "prometida|prometido": [
+  "prometida|prometer": [
     4,
     6,
     7,
@@ -89914,14 +89699,12 @@
     30,
     31,
     32,
+    33,
     34,
     35,
     36,
     37,
-    38
-  ],
-  "prometida|prometer": [
-    33,
+    38,
     39
   ],
   "prometido|prometido": [
@@ -90205,7 +89988,7 @@
     18,
     19
   ],
-  "regresado|regresado": [
+  "regresado|regresar": [
     6,
     8,
     10,
@@ -90819,7 +90602,7 @@
     18,
     19
   ],
-  "sensores|sensores": [
+  "sensores|sensor": [
     10,
     11,
     12,
@@ -91621,7 +91404,7 @@
     18,
     19
   ],
-  "turistas|turistas": [
+  "turistas|turista": [
     10,
     11,
     12,
@@ -91906,7 +91689,7 @@
     18,
     19
   ],
-  "yardas|yardas": [
+  "yardas|yarda": [
     10,
     11,
     12,
@@ -91973,37 +91756,35 @@
     18,
     19
   ],
-  "abandonada|abandonar": [
-    10,
-    15,
-    21,
-    23,
-    28,
-    32,
-    35,
-    37
-  ],
   "abandonada|abandonado": [
+    10,
     11,
     12,
     13,
     14,
+    15,
     16,
     17,
     18,
     19,
     20,
+    21,
     22,
+    23,
     24,
     25,
     26,
     27,
+    28,
     29,
     30,
     31,
+    32,
     33,
     34,
+    35,
     36,
+    37,
     38,
     39
   ],
@@ -92021,6 +91802,7 @@
   ],
   "abiertos|abierto": [
     10,
+    11,
     12,
     13,
     14,
@@ -92037,9 +91819,11 @@
     25,
     26,
     27,
+    28,
     29,
     30,
     31,
+    32,
     33,
     34,
     35,
@@ -92047,11 +91831,6 @@
     37,
     38,
     39
-  ],
-  "abiertos|abrir": [
-    11,
-    28,
-    32
   ],
   "abras|abrir": [
     10,
@@ -93108,6 +92887,8 @@
     5,
     7,
     10,
+    11,
+    12,
     13,
     14,
     15,
@@ -93126,6 +92907,8 @@
     28,
     29,
     30,
+    31,
+    32,
     33,
     34,
     35,
@@ -93133,12 +92916,6 @@
     37,
     38,
     39
-  ],
-  "atrapados|atrapar": [
-    11,
-    12,
-    31,
-    32
   ],
   "ayudara|ayudar": [
     0,
@@ -93459,7 +93236,7 @@
     18,
     19
   ],
-  "calcetines|calcetines": [
+  "calcetines|calcetín": [
     10,
     11,
     12,
@@ -94087,7 +93864,7 @@
     18,
     19
   ],
-  "comprado|comprado": [
+  "comprado|comprar": [
     1,
     2,
     3,
@@ -94164,7 +93941,7 @@
     18,
     19
   ],
-  "concierne|concierne": [
+  "concierne|concernir": [
     10,
     11,
     12,
@@ -94201,6 +93978,7 @@
     26,
     27,
     28,
+    29,
     30,
     31,
     32,
@@ -94211,9 +93989,6 @@
     37,
     38,
     39
-  ],
-  "condenados|condenar": [
-    29
   ],
   "conexiones|conexión": [
     10,
@@ -94637,7 +94412,7 @@
     18,
     19
   ],
-  "creencias|creencias": [
+  "creencias|creencia": [
     10,
     11,
     12,
@@ -94844,7 +94619,7 @@
     18,
     19
   ],
-  "cuántica|cuántica": [
+  "cuántica|cuántico": [
     10,
     11,
     12,
@@ -94876,7 +94651,7 @@
     18,
     19
   ],
-  "césar|césar": [
+  "césar|César": [
     10,
     11,
     12,
@@ -95748,7 +95523,7 @@
     18,
     19
   ],
-  "docenas|docenas": [
+  "docenas|docena": [
     10,
     11,
     12,
@@ -95946,7 +95721,7 @@
     38,
     39
   ],
-  "echado|echado": [
+  "echado|echar": [
     0,
     1,
     2,
@@ -96677,7 +96452,7 @@
     18,
     19
   ],
-  "esparta|esparta": [
+  "esparta|Esparta": [
     10,
     11,
     12,
@@ -96768,7 +96543,7 @@
     18,
     19
   ],
-  "euros|euros": [
+  "euros|Euro": [
     10,
     11,
     12,
@@ -97606,7 +97381,7 @@
     38,
     39
   ],
-  "helicópteros|helicópteros": [
+  "helicópteros|helicóptero": [
     10,
     11,
     12,
@@ -98165,6 +97940,7 @@
     16,
     17,
     18,
+    19,
     20,
     21,
     22,
@@ -98185,9 +97961,6 @@
     37,
     38,
     39
-  ],
-  "invitada|invitar": [
-    19
   ],
   "irlanda|Irlanda": [
     10,
@@ -98573,15 +98346,8 @@
     18,
     19
   ],
-  "llamados|llamar": [
-    1,
-    17,
-    18,
-    21,
-    37,
-    38
-  ],
   "llamados|llamado": [
+    1,
     3,
     9,
     10,
@@ -98591,8 +98357,11 @@
     14,
     15,
     16,
+    17,
+    18,
     19,
     20,
+    21,
     22,
     23,
     24,
@@ -98608,6 +98377,8 @@
     34,
     35,
     36,
+    37,
+    38,
     39
   ],
   "llegada|llegada": [
@@ -99566,7 +99337,7 @@
     18,
     19
   ],
-  "notado|notado": [
+  "notado|notar": [
     4,
     9,
     10,
@@ -100343,7 +100114,7 @@
     37,
     38
   ],
-  "pizzas|pizzas": [
+  "pizzas|pizza": [
     10,
     11,
     12,
@@ -101127,7 +100898,7 @@
     38,
     39
   ],
-  "registrado|registrado": [
+  "registrado|registrar": [
     0,
     2,
     3,
@@ -101276,7 +101047,7 @@
     18,
     19
   ],
-  "restaurantes|restaurantes": [
+  "restaurantes|restaurante": [
     10,
     11,
     12,
@@ -101593,7 +101364,7 @@
     18,
     19
   ],
-  "sacerdotes|sacerdotes": [
+  "sacerdotes|sacerdote": [
     10,
     11,
     12,
@@ -101809,18 +101580,6 @@
     6,
     8,
     9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "senadora|senadora": [
     10,
     11,
     12,
@@ -102084,7 +101843,7 @@
     18,
     19
   ],
-  "sirvientes|sirvientes": [
+  "sirvientes|sirviente": [
     10,
     11,
     12,
@@ -102496,6 +102255,7 @@
   ],
   "terminada|terminado": [
     1,
+    2,
     4,
     5,
     6,
@@ -102513,6 +102273,7 @@
     19,
     20,
     21,
+    22,
     23,
     24,
     25,
@@ -102530,10 +102291,6 @@
     37,
     38,
     39
-  ],
-  "terminada|terminar": [
-    2,
-    22
   ],
   "terminen|terminar": [
     3,
@@ -103084,7 +102841,7 @@
     18,
     19
   ],
-  "visitantes|visitantes": [
+  "visitantes|visitante": [
     10,
     11,
     12,
@@ -103333,7 +103090,7 @@
     18,
     19
   ],
-  "aceptado|aceptado": [
+  "aceptado|aceptar": [
     0,
     1,
     2,
@@ -103677,6 +103434,7 @@
     7,
     8,
     9,
+    10,
     11,
     12,
     13,
@@ -103684,6 +103442,7 @@
     15,
     16,
     17,
+    18,
     19,
     20,
     21,
@@ -103695,20 +103454,16 @@
     27,
     28,
     29,
+    30,
     31,
+    32,
     33,
     34,
+    35,
     36,
     37,
     38,
     39
-  ],
-  "acusados|acusar": [
-    10,
-    18,
-    30,
-    32,
-    35
   ],
   "acérquense|acercar": [
     6,
@@ -104652,7 +104407,7 @@
     18,
     19
   ],
-  "avisado|avisado": [
+  "avisado|avisar": [
     1,
     2,
     3,
@@ -104879,7 +104634,7 @@
     18,
     19
   ],
-  "bloqueado|bloqueado": [
+  "bloqueado|bloquear": [
     0,
     1,
     2,
@@ -105075,7 +104830,7 @@
     38,
     39
   ],
-  "calorías|calorías": [
+  "calorías|caloría": [
     10,
     11,
     12,
@@ -105827,7 +105582,7 @@
     18,
     19
   ],
-  "confirmado|confirmado": [
+  "confirmado|confirmar": [
     0,
     1,
     2,
@@ -107153,7 +106908,7 @@
     18,
     19
   ],
-  "demostrado|demostrado": [
+  "demostrado|demostrar": [
     0,
     1,
     3,
@@ -107209,18 +106964,6 @@
     3,
     5,
     9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "desaparecida|desaparecida": [
     10,
     11,
     12,
@@ -107570,22 +107313,20 @@
     18,
     19
   ],
-  "dicha|dicho": [
+  "dicha|decir": [
     0,
     1,
     2,
     3,
     4,
     6,
-    8,
     10,
-    11,
     12,
+    13,
+    14,
     15,
     16,
     17,
-    18,
-    19,
     20,
     21,
     22,
@@ -107595,10 +107336,11 @@
     26,
     27,
     28,
-    29,
     30,
     31,
-    32,
+    33,
+    34,
+    35,
     36,
     37,
     38,
@@ -107612,24 +107354,25 @@
     46,
     47,
     48,
-    49,
     50,
     51,
-    52,
+    53,
+    54,
+    55,
     56,
     57,
     58,
     59
   ],
-  "dicha|decir": [
-    13,
-    14,
-    33,
-    34,
-    35,
-    53,
-    54,
-    55
+  "dicha|dicho": [
+    8,
+    11,
+    18,
+    19,
+    29,
+    32,
+    49,
+    52
   ],
   "dieran|dar": [
     0,
@@ -107917,7 +107660,7 @@
     18,
     19
   ],
-  "elfos|elfos": [
+  "elfos|elfo": [
     10,
     11,
     12,
@@ -109124,7 +108867,7 @@
     37,
     39
   ],
-  "fijado|fijado": [
+  "fijado|fijar": [
     0,
     4,
     10,
@@ -109226,7 +108969,7 @@
     18,
     19
   ],
-  "firmó|firmó": [
+  "firmó|firmar": [
     10,
     11,
     12,
@@ -109386,26 +109129,6 @@
     18,
     19
   ],
-  "futbol|futbol": [
-    0,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "fórmula|fórmula": [
     1,
     4,
@@ -109421,7 +109144,7 @@
     18,
     19
   ],
-  "galáctica|galáctica": [
+  "galáctica|galáctico": [
     10,
     11,
     12,
@@ -109955,7 +109678,7 @@
     18,
     19
   ],
-  "hombrecito|hombrecito": [
+  "hombrecito|hombre": [
     10,
     11,
     12,
@@ -110740,7 +110463,7 @@
     18,
     19
   ],
-  "laboratorios|laboratorios": [
+  "laboratorios|laboratorio": [
     10,
     11,
     12,
@@ -111101,7 +110824,7 @@
     18,
     19
   ],
-  "luchado|luchado": [
+  "luchado|luchar": [
     0,
     1,
     2,
@@ -111586,7 +111309,7 @@
     10,
     30
   ],
-  "mencionado|mencionado": [
+  "mencionado|mencionar": [
     10,
     11,
     12,
@@ -111763,7 +111486,7 @@
     18,
     19
   ],
-  "monjes|monjes": [
+  "monjes|monje": [
     10,
     11,
     12,
@@ -112346,7 +112069,7 @@
     18,
     19
   ],
-  "palomitas|paloma": [
+  "palomitas|palomita": [
     10,
     11,
     12,
@@ -112747,7 +112470,7 @@
     38,
     39
   ],
-  "peleado|peleado": [
+  "peleado|pelear": [
     0,
     3,
     7,
@@ -112908,7 +112631,7 @@
     18,
     19
   ],
-  "periodistas|periodistas": [
+  "periodistas|periodista": [
     10,
     11,
     12,
@@ -112958,7 +112681,7 @@
     18,
     19
   ],
-  "permitido|permitido": [
+  "permitido|permitir": [
     0,
     1,
     2,
@@ -113346,15 +113069,10 @@
     18,
     19
   ],
-  "privados|privar": [
+  "privados|privado": [
     2,
     10,
     11,
-    22,
-    31,
-    32
-  ],
-  "privados|privado": [
     12,
     13,
     14,
@@ -113365,6 +113083,7 @@
     19,
     20,
     21,
+    22,
     23,
     24,
     25,
@@ -113373,6 +113092,8 @@
     28,
     29,
     30,
+    31,
+    32,
     33,
     34,
     35,
@@ -113830,7 +113551,7 @@
     18,
     19
   ],
-  "rechazado|rechazado": [
+  "rechazado|rechazar": [
     2,
     3,
     5,
@@ -114177,18 +113898,6 @@
     18,
     19
   ],
-  "reportera|reportera": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "reportero|reportero": [
     10,
     11,
@@ -114336,7 +114045,7 @@
     18,
     19
   ],
-  "revisado|revisado": [
+  "revisado|revisar": [
     0,
     1,
     2,
@@ -114500,7 +114209,7 @@
     18,
     19
   ],
-  "rita|rita": [
+  "rita|Rita": [
     10,
     11,
     12,
@@ -114551,7 +114260,7 @@
     18,
     19
   ],
-  "roman|roman": [
+  "roman|román": [
     10,
     11,
     12,
@@ -114921,7 +114630,7 @@
     18,
     19
   ],
-  "similares|similares": [
+  "similares|similar": [
     10,
     11,
     12,
@@ -115389,7 +115098,7 @@
     18,
     19
   ],
-  "teorías|teorías": [
+  "teorías|teoría": [
     10,
     11,
     12,
@@ -115568,7 +115277,7 @@
     18,
     19
   ],
-  "tribus|tribus": [
+  "tribus|tribu": [
     10,
     11,
     12,
@@ -115849,7 +115558,7 @@
     38,
     39
   ],
-  "viajado|viajado": [
+  "viajado|viajar": [
     0,
     1,
     2,
@@ -116216,7 +115925,7 @@
     18,
     19
   ],
-  "abejas|abejas": [
+  "abejas|abeja": [
     10,
     11,
     12,
@@ -116385,7 +116094,7 @@
     18,
     19
   ],
-  "acontecimientos|acontecimientos": [
+  "acontecimientos|acontecimiento": [
     10,
     11,
     12,
@@ -116771,7 +116480,7 @@
     18,
     19
   ],
-  "albania|albania": [
+  "albania|Albania": [
     10,
     11,
     12,
@@ -116939,7 +116648,6 @@
     16,
     17,
     18,
-    19,
     20,
     21,
     22,
@@ -116960,6 +116668,9 @@
     37,
     38,
     39
+  ],
+  "altas|alta": [
+    19
   ],
   "alterado|alterado": [
     1,
@@ -117806,8 +117517,10 @@
   ],
   "atrapada|atrapado": [
     3,
+    4,
     7,
     8,
+    9,
     10,
     11,
     12,
@@ -117823,10 +117536,12 @@
     22,
     23,
     24,
+    25,
     26,
     27,
     28,
     29,
+    30,
     31,
     32,
     33,
@@ -117834,13 +117549,7 @@
     35,
     36,
     37,
-    38
-  ],
-  "atrapada|atrapar": [
-    4,
-    9,
-    25,
-    30,
+    38,
     39
   ],
   "atrapan|atrapar": [
@@ -118028,7 +117737,7 @@
     18,
     19
   ],
-  "babilonia|babilonia": [
+  "babilonia|babilonio": [
     10,
     11,
     12,
@@ -118353,7 +118062,7 @@
     38,
     39
   ],
-  "bombarderos|bombarderos": [
+  "bombarderos|bombardero": [
     10,
     11,
     12,
@@ -118974,7 +118683,7 @@
     58,
     59
   ],
-  "caída|caído": [
+  "caída|caer": [
     6,
     26,
     46
@@ -119330,18 +119039,6 @@
     38,
     39
   ],
-  "cocinera|cocinera": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "codo|codo": [
     10,
     11,
@@ -119609,26 +119306,6 @@
     34,
     35,
     38
-  ],
-  "concedido|concedido": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
   ],
   "concreto|concreto": [
     1,
@@ -119913,39 +119590,37 @@
     18,
     19
   ],
-  "construida|construida": [
+  "construida|construido": [
     10,
+    11,
+    12,
+    13,
+    14,
     15,
     16,
     17,
     18,
     19,
+    20,
+    21,
+    22,
+    23,
     24,
+    25,
     26,
     27,
     28,
     29,
     30,
+    31,
+    32,
+    33,
+    34,
     35,
     36,
     37,
     38,
     39
-  ],
-  "construida|construir": [
-    11,
-    12,
-    13,
-    14,
-    20,
-    21,
-    22,
-    23,
-    25,
-    31,
-    32,
-    33,
-    34
   ],
   "conteo|conteo": [
     1,
@@ -121235,7 +120910,7 @@
     38,
     39
   ],
-  "despertado|despertado": [
+  "despertado|despertar": [
     7,
     10,
     11,
@@ -121584,6 +121259,7 @@
     22,
     23,
     24,
+    25,
     26,
     27,
     28,
@@ -121598,9 +121274,6 @@
     37,
     38,
     39
-  ],
-  "divertida|divertir": [
-    25
   ],
   "divertimos|divertir": [
     1,
@@ -122174,7 +121847,7 @@
     18,
     19
   ],
-  "engañado|engañado": [
+  "engañado|engañar": [
     0,
     1,
     2,
@@ -122304,10 +121977,17 @@
     3,
     5,
     10,
+    11,
     12,
     13,
     14,
     15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
     22,
     23,
     24,
@@ -122317,20 +121997,11 @@
     28,
     29,
     30,
+    31,
     32,
     33,
     34,
-    35
-  ],
-  "enterrada|enterrar": [
-    11,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    31,
+    35,
     36,
     37,
     38,
@@ -122633,7 +122304,7 @@
     18,
     19
   ],
-  "estambul|estambul": [
+  "estambul|Estambul": [
     10,
     11,
     12,
@@ -122798,18 +122469,6 @@
     1,
     4,
     7,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "experta|experta": [
     10,
     11,
     12,
@@ -123712,7 +123371,7 @@
     18,
     19
   ],
-  "generadores|generadores": [
+  "generadores|generador": [
     10,
     11,
     12,
@@ -124088,7 +123747,7 @@
     18,
     19
   ],
-  "idiomas|idiomas": [
+  "idiomas|idioma": [
     10,
     11,
     12,
@@ -125510,27 +125169,6 @@
     18,
     19
   ],
-  "marchado|marchado": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "marchen|marchar": [
     1,
     2,
@@ -125581,7 +125219,7 @@
     18,
     19
   ],
-  "marruecos|marruecos": [
+  "marruecos|Marruecos": [
     10,
     11,
     12,
@@ -125682,7 +125320,7 @@
     18,
     19
   ],
-  "mencioné|mencioné": [
+  "mencioné|mencionar": [
     10,
     11,
     12,
@@ -125694,7 +125332,7 @@
     18,
     19
   ],
-  "mentiría|mentiría": [
+  "mentiría|mentir": [
     10,
     11,
     12,
@@ -125755,7 +125393,7 @@
     18,
     19
   ],
-  "miedos|miedos": [
+  "miedos|miedo": [
     10,
     11,
     12,
@@ -126075,26 +125713,24 @@
     56,
     58
   ],
-  "movida|movido": [
+  "movida|mover": [
     13,
     14,
     15,
+    17,
     19,
+    22,
     33,
     34,
     35,
+    37,
     39,
+    42,
     53,
     54,
     55,
+    57,
     59
-  ],
-  "movida|mover": [
-    17,
-    22,
-    37,
-    42,
-    57
   ],
   "movido|mover": [
     0,
@@ -126157,7 +125793,7 @@
     18,
     19
   ],
-  "muchísimas|muchísimas": [
+  "muchísimas|mucho": [
     10,
     11,
     12,
@@ -126871,7 +126507,7 @@
     18,
     19
   ],
-  "onu|onu": [
+  "onu|ONU": [
     10,
     11,
     12,
@@ -127139,7 +126775,7 @@
     38,
     39
   ],
-  "paramédicos|paramédicos": [
+  "paramédicos|paramédico": [
     10,
     11,
     12,
@@ -127394,7 +127030,7 @@
     18,
     19
   ],
-  "patadas|patadas": [
+  "patadas|patada": [
     10,
     11,
     12,
@@ -127584,7 +127220,7 @@
     18,
     19
   ],
-  "pequeñín|pequeñín": [
+  "pequeñín|pequeño": [
     10,
     11,
     12,
@@ -128836,7 +128472,7 @@
     18,
     19
   ],
-  "quitado|quitado": [
+  "quitado|quitar": [
     9,
     10,
     11,
@@ -129011,7 +128647,7 @@
     18,
     19
   ],
-  "realizado|realizado": [
+  "realizado|realizar": [
     1,
     2,
     3,
@@ -130444,7 +130080,7 @@
     18,
     19
   ],
-  "sorprendida|sorprendida": [
+  "sorprendida|sorprendido": [
     10,
     11,
     12,
@@ -130844,7 +130480,7 @@
     18,
     19
   ],
-  "superhéroes|superhéroes": [
+  "superhéroes|superhéroe": [
     10,
     11,
     12,
@@ -131033,18 +130669,6 @@
     2,
     6,
     8,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "tijeras|tijeras": [
     10,
     11,
     12,
@@ -131623,42 +131247,40 @@
     18,
     19
   ],
-  "usada|usar": [
+  "usada|usado": [
     4,
     6,
-    9,
-    11,
-    13,
-    15,
-    16,
-    20,
-    21,
-    22,
-    25,
-    27,
-    29,
-    30,
-    32,
-    34,
-    36,
-    37
-  ],
-  "usada|usado": [
     7,
     8,
+    9,
     10,
+    11,
     12,
+    13,
     14,
+    15,
+    16,
     17,
     18,
     19,
+    20,
+    21,
+    22,
     23,
     24,
+    25,
     26,
+    27,
     28,
+    29,
+    30,
     31,
+    32,
     33,
+    34,
     35,
+    36,
+    37,
     38,
     39
   ],
@@ -131674,7 +131296,7 @@
     18,
     19
   ],
-  "utilizado|utilizado": [
+  "utilizado|utilizar": [
     0,
     3,
     5,
@@ -131852,26 +131474,6 @@
     18,
     19
   ],
-  "vecina|vecina": [
-    0,
-    1,
-    3,
-    4,
-    5,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "veis|ver": [
     6,
     8,
@@ -131979,7 +131581,7 @@
     18,
     19
   ],
-  "venecia|venecia": [
+  "venecia|Venecia": [
     10,
     11,
     12,
@@ -132209,7 +131811,7 @@
     18,
     19
   ],
-  "vitaminas|vitaminas": [
+  "vitaminas|vitamina": [
     10,
     11,
     12,
@@ -132509,18 +132111,6 @@
     3,
     4,
     6,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "abordo|abordo": [
     10,
     11,
     12,
@@ -133111,7 +132701,7 @@
     38,
     39
   ],
-  "alaska|alaska": [
+  "alaska|Alaska": [
     10,
     11,
     12,
@@ -133573,7 +133163,7 @@
     18,
     19
   ],
-  "antibióticos|antibióticos": [
+  "antibióticos|antibiótico": [
     10,
     11,
     12,
@@ -133670,7 +133260,7 @@
     18,
     19
   ],
-  "apoyado|apoyado": [
+  "apoyado|apoyar": [
     1,
     2,
     4,
@@ -133783,7 +133373,7 @@
     18,
     19
   ],
-  "arabia|arabia": [
+  "arabia|Arabia": [
     10,
     11,
     12,
@@ -134083,6 +133673,7 @@
     12,
     13,
     14,
+    15,
     16,
     17,
     18,
@@ -134102,14 +133693,11 @@
     32,
     33,
     34,
+    35,
     36,
     37,
     38,
     39
-  ],
-  "atada|atar": [
-    15,
-    35
   ],
   "atraparemos|atrapar": [
     2,
@@ -134994,7 +134582,7 @@
     18,
     19
   ],
-  "caderas|caderas": [
+  "caderas|cadera": [
     10,
     11,
     12,
@@ -135137,7 +134725,7 @@
     18,
     19
   ],
-  "cancion|cancion": [
+  "cancion|canción": [
     10,
     11,
     12,
@@ -135618,7 +135206,7 @@
     18,
     19
   ],
-  "cirujanos|cirujanos": [
+  "cirujanos|cirujano": [
     10,
     11,
     12,
@@ -135824,7 +135412,7 @@
     35,
     39
   ],
-  "colombia|colombia": [
+  "colombia|Colombia": [
     10,
     11,
     12,
@@ -136439,7 +136027,7 @@
     18,
     19
   ],
-  "controlado|controlado": [
+  "controlado|controlar": [
     6,
     10,
     11,
@@ -136883,7 +136471,7 @@
     31,
     39
   ],
-  "cruces|cruce": [
+  "cruces|cruz": [
     6,
     9,
     10,
@@ -138106,22 +137694,6 @@
     18,
     19
   ],
-  "dividido|dividido": [
-    0,
-    3,
-    4,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "donación|donación": [
     0,
     2,
@@ -138975,22 +138547,6 @@
     18,
     19
   ],
-  "entrañas|entrañas": [
-    2,
-    4,
-    6,
-    7,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "entregado|entregar": [
     0,
     2,
@@ -139536,7 +139092,7 @@
     18,
     19
   ],
-  "estomago|estomago": [
+  "estomago|estómago": [
     10,
     11,
     12,
@@ -139696,18 +139252,6 @@
     23,
     30
   ],
-  "explicado|explicado": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "explicaría|explicar": [
     10,
     11,
@@ -139801,7 +139345,7 @@
     18,
     19
   ],
-  "extranjera|extranjera": [
+  "extranjera|extranjero": [
     10,
     11,
     12,
@@ -140110,7 +139654,7 @@
     32,
     37
   ],
-  "firmo|firmo": [
+  "firmo|firmar": [
     10,
     11,
     12,
@@ -140475,18 +140019,6 @@
     37,
     38,
     39
-  ],
-  "fé|fé": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
   ],
   "fíjense|fijar": [
     0,
@@ -141353,7 +140885,7 @@
     18,
     19
   ],
-  "imaginado|imaginado": [
+  "imaginado|imaginar": [
     1,
     2,
     3,
@@ -141945,7 +141477,7 @@
     18,
     19
   ],
-  "islandia|islandia": [
+  "islandia|Islandia": [
     10,
     11,
     12,
@@ -142885,7 +142417,7 @@
     18,
     19
   ],
-  "masajes|masajes": [
+  "masajes|masaje": [
     10,
     11,
     12,
@@ -143045,7 +142577,7 @@
     18,
     19
   ],
-  "menciona|menciona": [
+  "menciona|mencionar": [
     10,
     11,
     12,
@@ -143057,7 +142589,7 @@
     18,
     19
   ],
-  "mencionaste|mencionaste": [
+  "mencionaste|mencionar": [
     10,
     11,
     12,
@@ -143259,7 +142791,7 @@
     38,
     39
   ],
-  "molestado|molestado": [
+  "molestado|molestar": [
     1,
     2,
     5,
@@ -143308,7 +142840,7 @@
     18,
     19
   ],
-  "monjas|monjas": [
+  "monjas|monja": [
     10,
     11,
     12,
@@ -143702,7 +143234,7 @@
     38,
     39
   ],
-  "nochebuena|nochebuena": [
+  "nochebuena|Nochebuena": [
     10,
     11,
     12,
@@ -143729,7 +143261,7 @@
     18,
     19
   ],
-  "norteamérica|norteamérica": [
+  "norteamérica|Norteamérica": [
     10,
     11,
     12,
@@ -144744,18 +144276,6 @@
     18,
     19
   ],
-  "perdonado|perdonado": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "perdonará|perdonar": [
     10,
     11,
@@ -145081,7 +144601,7 @@
     18,
     19
   ],
-  "poemas|poemas": [
+  "poemas|poema": [
     10,
     11,
     12,
@@ -145105,7 +144625,7 @@
     18,
     19
   ],
-  "portado|portado": [
+  "portado|portar": [
     0,
     4,
     5,
@@ -145902,7 +145422,7 @@
     18,
     19
   ],
-  "pulgadas|pulgadas": [
+  "pulgadas|pulgada": [
     10,
     11,
     12,
@@ -146260,23 +145780,6 @@
     18,
     19
   ],
-  "recordado|recordado": [
-    0,
-    2,
-    3,
-    5,
-    7,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "recordando|recordar": [
     0,
     1,
@@ -146322,7 +145825,7 @@
     18,
     19
   ],
-  "refugiados|refugiados": [
+  "refugiados|refugiado": [
     10,
     11,
     12,
@@ -146530,7 +146033,7 @@
     29,
     38
   ],
-  "reporteros|reporteros": [
+  "reporteros|reportero": [
     10,
     11,
     12,
@@ -146727,13 +146230,8 @@
     18,
     19
   ],
-  "retirada|retirar": [
-    0,
-    15,
-    22,
-    37
-  ],
   "retirada|retirado": [
+    0,
     1,
     2,
     3,
@@ -146746,12 +146244,14 @@
     12,
     13,
     14,
+    15,
     16,
     17,
     18,
     19,
     20,
     21,
+    22,
     23,
     24,
     25,
@@ -146766,6 +146266,7 @@
     34,
     35,
     36,
+    37,
     38,
     39
   ],
@@ -147063,7 +146564,7 @@
     18,
     19
   ],
-  "rodeado|rodeado": [
+  "rodeado|rodear": [
     0,
     3,
     4,
@@ -147608,15 +147109,10 @@
     18,
     19
   ],
-  "separados|separar": [
-    0,
-    4,
-    19,
-    20,
-    24
-  ],
   "separados|separado": [
+    0,
     3,
+    4,
     5,
     7,
     10,
@@ -147628,9 +147124,12 @@
     16,
     17,
     18,
+    19,
+    20,
     21,
     22,
     23,
+    24,
     25,
     26,
     27,
@@ -148464,7 +147963,7 @@
     18,
     19
   ],
-  "taxis|taxis": [
+  "taxis|taxi": [
     10,
     11,
     12,
@@ -148657,7 +148156,7 @@
     18,
     19
   ],
-  "testículos|testículos": [
+  "testículos|testículo": [
     10,
     11,
     12,
@@ -148670,20 +148169,6 @@
     19
   ],
   "tia|tía": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "tinieblas|tinieblas": [
-    0,
-    2,
     10,
     11,
     12,
@@ -148753,25 +148238,6 @@
     18,
     19
   ],
-  "trabajadora|trabajadora": [
-    0,
-    1,
-    2,
-    4,
-    5,
-    6,
-    7,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "traducido|traducir": [
     0,
     1,
@@ -148830,7 +148296,7 @@
     18,
     19
   ],
-  "traicionado|traicionado": [
+  "traicionado|traicionar": [
     0,
     1,
     2,
@@ -148871,7 +148337,7 @@
     38,
     39
   ],
-  "transilvania|transilvania": [
+  "transilvania|Transilvania": [
     10,
     11,
     12,
@@ -149247,12 +148713,14 @@
     18,
     19
   ],
-  "vendo|vendar": [
+  "vendo|vender": [
     0,
     1,
+    4,
     5,
     6,
     10,
+    11,
     12,
     13,
     14,
@@ -149265,6 +148733,7 @@
     21,
     22,
     23,
+    24,
     25,
     26,
     27,
@@ -149273,18 +148742,13 @@
     30,
     31,
     32,
+    33,
     34,
     35,
     36,
     37,
     38,
     39
-  ],
-  "vendo|vender": [
-    4,
-    11,
-    24,
-    33
   ],
   "verifica|verificar": [
     10,
@@ -149351,18 +148815,6 @@
     18,
     19
   ],
-  "vigilado|vigilado": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "violeta|violeta": [
     1,
     6,
@@ -149417,36 +148869,45 @@
     18,
     19
   ],
-  "vistas|vista": [
+  "vistas|ver": [
     4,
+    12,
+    16,
+    17,
+    19,
+    25,
+    28,
+    33,
+    36,
+    37,
+    45,
+    48,
+    53,
+    56,
+    57
+  ],
+  "vistas|vista": [
     6,
     8,
     10,
     11,
-    12,
     13,
+    14,
     15,
-    16,
-    17,
     18,
-    19,
     20,
     21,
     22,
     23,
     24,
-    25,
     26,
     27,
-    28,
     29,
     30,
     31,
     32,
-    33,
     34,
-    36,
-    37,
+    35,
     38,
     39,
     40,
@@ -149454,25 +148915,16 @@
     42,
     43,
     44,
-    45,
     46,
     47,
-    48,
     49,
     50,
     51,
     52,
-    53,
     54,
-    56,
-    57,
+    55,
     58,
     59
-  ],
-  "vistas|visto": [
-    14,
-    35,
-    55
   ],
   "vivirán|vivir": [
     0,
@@ -149659,10 +149111,6 @@
     18,
     19
   ],
-  "yoyo|yoyo": [
-    10,
-    11
-  ],
   "zurdo|zurdo": [
     5,
     8,
@@ -149845,7 +149293,7 @@
     58,
     59
   ],
-  "comidas|comida": [
+  "comidas|comer": [
     0,
     3,
     4,
@@ -150173,7 +149621,7 @@
     18,
     19
   ],
-  "minutos|minutos": [
+  "minutos|minuto": [
     10,
     11,
     12,
@@ -150261,10 +149709,8 @@
     18,
     19
   ],
-  "diablos|diablos": [
-    10
-  ],
   "diablos|diablo": [
+    10,
     11,
     12,
     13,
@@ -150307,7 +149753,7 @@
     18,
     19
   ],
-  "muchachos|muchachos": [
+  "muchachos|muchacho": [
     10,
     11,
     12,
@@ -150433,7 +149879,7 @@
     18,
     19
   ],
-  "bromeando|bromeando": [
+  "bromeando|bromear": [
     10,
     11,
     12,
@@ -150445,7 +149891,7 @@
     18,
     19
   ],
-  "libros|libros": [
+  "libros|libro": [
     10,
     11,
     12,
@@ -150457,7 +149903,7 @@
     18,
     19
   ],
-  "trabaja|trabaja": [
+  "trabaja|trabajar": [
     10,
     11,
     12,
@@ -150466,22 +149912,20 @@
     15,
     16,
     17,
-    18,
-    19
-  ],
-  "tome|tome": [
-    10,
-    11,
-    12,
-    13,
-    15,
-    16,
     18,
     19
   ],
   "tome|tomar": [
+    10,
+    11,
+    12,
+    13,
     14,
-    17
+    15,
+    16,
+    17,
+    18,
+    19
   ],
   "debajo|debajo": [
     10,
@@ -150507,19 +149951,17 @@
     18,
     19
   ],
-  "santa|santa": [
+  "santa|santo": [
     10,
     11,
     12,
     13,
+    14,
     15,
     16,
     17,
     18,
     19
-  ],
-  "santa|santo": [
-    14
   ],
   "cartas|carta": [
     0,
@@ -150542,7 +149984,7 @@
     18,
     19
   ],
-  "dioses|dioses": [
+  "dioses|dios": [
     10,
     11,
     12,
@@ -150566,7 +150008,7 @@
     18,
     19
   ],
-  "eeuu|eeuu": [
+  "eeuu|EEUU": [
     10,
     11,
     12,
@@ -150656,7 +150098,7 @@
     18,
     19
   ],
-  "perdona|perdona": [
+  "perdona|perdonar": [
     10,
     11,
     12,
@@ -150725,7 +150167,7 @@
     18,
     19
   ],
-  "ángeles|ángeles": [
+  "ángeles|ángel": [
     10,
     11,
     12,
@@ -150824,7 +150266,7 @@
     18,
     19
   ],
-  "enemigos|enemigos": [
+  "enemigos|enemigo": [
     10,
     11,
     12,
@@ -150920,7 +150362,7 @@
     18,
     19
   ],
-  "respuestas|respuestas": [
+  "respuestas|respuesta": [
     10,
     11,
     12,
@@ -151077,7 +150519,7 @@
     18,
     19
   ],
-  "kilómetros|kilómetros": [
+  "kilómetros|kilómetro": [
     10,
     11,
     12,
@@ -151089,7 +150531,7 @@
     18,
     19
   ],
-  "estudiantes|estudiantes": [
+  "estudiantes|estudiante": [
     10,
     11,
     12,
@@ -151118,7 +150560,7 @@
     18,
     19
   ],
-  "operaciones|operaciones": [
+  "operaciones|operación": [
     10,
     11,
     12,
@@ -151221,23 +150663,7 @@
     18,
     19
   ],
-  "ó|ó": [
-    0,
-    5,
-    6,
-    7,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "abogados|abogados": [
+  "abogados|abogado": [
     10,
     11,
     12,
@@ -151261,7 +150687,7 @@
     18,
     19
   ],
-  "decisiones|decisiones": [
+  "decisiones|decisión": [
     10,
     11,
     12,
@@ -151292,7 +150718,7 @@
     18,
     19
   ],
-  "galletas|galletas": [
+  "galletas|galleta": [
     10,
     11,
     12,
@@ -151338,7 +150764,7 @@
     37,
     39
   ],
-  "periódicos|periódicos": [
+  "periódicos|periódico": [
     10,
     11,
     12,
@@ -151350,7 +150776,7 @@
     18,
     19
   ],
-  "ratas|ratas": [
+  "ratas|rata": [
     10,
     11,
     12,
@@ -151455,7 +150881,7 @@
     18,
     19
   ],
-  "opciones|opciones": [
+  "opciones|opción": [
     10,
     11,
     12,
@@ -151467,7 +150893,7 @@
     18,
     19
   ],
-  "ayudo|ayudo": [
+  "ayudo|ayudar": [
     10,
     11,
     12,
@@ -151479,7 +150905,7 @@
     18,
     19
   ],
-  "ayudó|ayudó": [
+  "ayudó|ayudar": [
     10,
     11,
     12,
@@ -151491,7 +150917,7 @@
     18,
     19
   ],
-  "barcos|barcos": [
+  "barcos|barco": [
     10,
     11,
     12,
@@ -151503,7 +150929,7 @@
     18,
     19
   ],
-  "bromeas|bromeas": [
+  "bromeas|bromear": [
     10,
     11,
     12,
@@ -151547,7 +150973,7 @@
     38,
     39
   ],
-  "héroes|héroes": [
+  "héroes|héroe": [
     10,
     11,
     12,
@@ -151583,19 +151009,17 @@
     18,
     19
   ],
-  "salve|salve": [
+  "salve|salvar": [
     10,
     11,
     12,
+    13,
     14,
     15,
-    17,
-    19
-  ],
-  "salve|salvar": [
-    13,
     16,
-    18
+    17,
+    18,
+    19
   ],
   "homicidio|homicidio": [
     10,
@@ -151609,19 +151033,7 @@
     18,
     19
   ],
-  "imágenes|imágenes": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "junior|junior": [
+  "imágenes|imagen": [
     10,
     11,
     12,
@@ -151796,7 +151208,7 @@
     18,
     19
   ],
-  "vende|vende": [
+  "vende|vender": [
     10,
     11,
     12,
@@ -151808,7 +151220,7 @@
     18,
     19
   ],
-  "vigilando|vigilando": [
+  "vigilando|vigilar": [
     10,
     11,
     12,
@@ -151861,7 +151273,7 @@
     18,
     19
   ],
-  "gritos|gritos": [
+  "gritos|grito": [
     10,
     11,
     12,
@@ -151873,7 +151285,7 @@
     18,
     19
   ],
-  "motivos|motivos": [
+  "motivos|motivo": [
     10,
     11,
     12,
@@ -151885,7 +151297,7 @@
     18,
     19
   ],
-  "pecados|pecados": [
+  "pecados|pecado": [
     10,
     11,
     12,
@@ -151941,7 +151353,7 @@
     18,
     19
   ],
-  "lágrimas|lágrimas": [
+  "lágrimas|lágrima": [
     10,
     11,
     12,
@@ -151989,7 +151401,7 @@
     18,
     19
   ],
-  "dude|dude": [
+  "dude|dudar": [
     10,
     11,
     12,
@@ -152053,7 +151465,7 @@
     38,
     39
   ],
-  "límites|límites": [
+  "límites|límite": [
     10,
     11,
     12,
@@ -152077,7 +151489,7 @@
     18,
     19
   ],
-  "trabajadores|trabajadores": [
+  "trabajadores|trabajador": [
     10,
     11,
     12,
@@ -152174,6 +151586,8 @@
     13,
     14,
     15,
+    16,
+    17,
     18,
     19,
     20,
@@ -152192,14 +151606,10 @@
     33,
     34,
     35,
+    36,
+    37,
     38,
     39
-  ],
-  "notas|notar": [
-    16,
-    17,
-    36,
-    37
   ],
   "nubes|nube": [
     3,
@@ -152214,7 +151624,7 @@
     18,
     19
   ],
-  "observando|observando": [
+  "observando|observar": [
     10,
     11,
     12,
@@ -152277,6 +151687,7 @@
   ],
   "patas|pata": [
     10,
+    11,
     12,
     13,
     14,
@@ -152286,21 +151697,16 @@
     18,
     19
   ],
-  "patas|patas": [
-    11
-  ],
   "santos|santo": [
     10,
+    11,
     12,
     13,
     14,
-    17,
-    18
-  ],
-  "santos|santos": [
-    11,
     15,
     16,
+    17,
+    18,
     19
   ],
   "vacas|vaca": [
@@ -152363,7 +151769,7 @@
     38,
     39
   ],
-  "merecía|merecía": [
+  "merecía|merecer": [
     10,
     11,
     12,
@@ -152411,7 +151817,7 @@
     38,
     39
   ],
-  "métodos|métodos": [
+  "métodos|método": [
     10,
     11,
     12,
@@ -152485,7 +151891,7 @@
     38,
     39
   ],
-  "alumnos|alumnos": [
+  "alumnos|alumno": [
     10,
     11,
     12,
@@ -152542,7 +151948,7 @@
     18,
     19
   ],
-  "destruyó|destruyó": [
+  "destruyó|destruir": [
     10,
     11,
     12,
@@ -152560,15 +151966,13 @@
     12,
     13,
     14,
+    15,
     16,
     17,
     18,
     19
   ],
-  "jefes|jefes": [
-    15
-  ],
-  "naciones|naciones": [
+  "naciones|nación": [
     10,
     11,
     12,
@@ -152599,7 +152003,7 @@
     18,
     19
   ],
-  "persiguiendo|persiguiendo": [
+  "persiguiendo|perseguir": [
     10,
     11,
     12,
@@ -152611,7 +152015,7 @@
     18,
     19
   ],
-  "protegiendo|protegiendo": [
+  "protegiendo|proteger": [
     10,
     11,
     12,
@@ -152623,7 +152027,7 @@
     18,
     19
   ],
-  "síntomas|síntomas": [
+  "síntomas|síntoma": [
     10,
     11,
     12,
@@ -152647,7 +152051,7 @@
     18,
     19
   ],
-  "venas|venas": [
+  "venas|vena": [
     10,
     11,
     12,
@@ -152659,7 +152063,7 @@
     18,
     19
   ],
-  "ancestros|ancestros": [
+  "ancestros|ancestro": [
     10,
     11,
     12,
@@ -152670,19 +152074,17 @@
     17,
     18,
     19
-  ],
-  "bárbara|bárbara": [
-    10,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18
   ],
   "bárbara|bárbaro": [
+    10,
     11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
     19
   ],
   "cables|cable": [
@@ -152759,7 +152161,7 @@
     18,
     19
   ],
-  "estupideces|estupideces": [
+  "estupideces|estupidez": [
     10,
     11,
     12,
@@ -152783,7 +152185,7 @@
     18,
     19
   ],
-  "generaciones|generaciones": [
+  "generaciones|generación": [
     10,
     11,
     12,
@@ -152856,7 +152258,7 @@
     18,
     19
   ],
-  "respirando|respirando": [
+  "respirando|respirar": [
     10,
     11,
     12,
@@ -152868,19 +152270,17 @@
     18,
     19
   ],
-  "torres|torres": [
+  "torres|torre": [
     10,
     11,
+    12,
     13,
     14,
     15,
+    16,
     17,
     18,
     19
-  ],
-  "torres|torre": [
-    12,
-    16
   ],
   "uses|usar": [
     10,
@@ -152985,7 +152385,7 @@
     18,
     19
   ],
-  "cuba|cuba": [
+  "cuba|Cuba": [
     10,
     11,
     12,
@@ -153041,7 +152441,7 @@
     38,
     39
   ],
-  "escondiendo|escondiendo": [
+  "escondiendo|esconder": [
     10,
     11,
     12,
@@ -153066,7 +152466,7 @@
     18,
     19
   ],
-  "fuegos|fuegos": [
+  "fuegos|fuego": [
     10,
     11,
     12,
@@ -153078,7 +152478,7 @@
     18,
     19
   ],
-  "lecciones|lecciones": [
+  "lecciones|lección": [
     10,
     11,
     12,
@@ -153152,7 +152552,7 @@
     18,
     19
   ],
-  "muros|muros": [
+  "muros|muro": [
     10,
     11,
     12,
@@ -153270,7 +152670,7 @@
     18,
     19
   ],
-  "viajando|viajando": [
+  "viajando|viajar": [
     10,
     11,
     12,
@@ -153326,7 +152726,7 @@
     18,
     19
   ],
-  "centímetros|centímetros": [
+  "centímetros|centímetro": [
     10,
     11,
     12,
@@ -153351,7 +152751,7 @@
     18,
     19
   ],
-  "extraterrestres|extraterrestres": [
+  "extraterrestres|extraterrestre": [
     10,
     11,
     12,
@@ -153363,7 +152763,7 @@
     18,
     19
   ],
-  "fans|fans": [
+  "fans|fan": [
     10,
     11,
     12,
@@ -153456,12 +152856,8 @@
     37,
     39
   ],
-  "granadas|granadas": [
-    10,
-    24,
-    31
-  ],
   "granadas|granada": [
+    10,
     11,
     12,
     13,
@@ -153475,12 +152871,14 @@
     21,
     22,
     23,
+    24,
     25,
     26,
     27,
     28,
     29,
     30,
+    31,
     32,
     33,
     34,
@@ -153502,7 +152900,7 @@
     18,
     19
   ],
-  "helena|helena": [
+  "helena|heleno": [
     10,
     11,
     12,
@@ -153624,19 +153022,7 @@
     15,
     16
   ],
-  "picnic|picnic": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "prepare|prepare": [
+  "prepare|preparar": [
     10,
     11,
     12,
@@ -153660,7 +153046,7 @@
     18,
     19
   ],
-  "tales|tales": [
+  "tales|tal": [
     10,
     11,
     12,
@@ -153688,7 +153074,7 @@
     18,
     19
   ],
-  "vehículos|vehículos": [
+  "vehículos|vehículo": [
     10,
     11,
     12,
@@ -153700,7 +153086,7 @@
     18,
     19
   ],
-  "bromeaba|bromeaba": [
+  "bromeaba|bromear": [
     10,
     11,
     12,
@@ -153724,19 +153110,17 @@
     18,
     19
   ],
-  "depto|depto": [
+  "depto|departamento": [
     10,
     11,
+    12,
     13,
+    14,
     15,
+    16,
+    17,
     18,
     19
-  ],
-  "depto|departamento": [
-    12,
-    14,
-    16,
-    17
   ],
   "elle|elle": [
     1,
@@ -153824,7 +153208,7 @@
     18,
     19
   ],
-  "metida|metida": [
+  "metida|meter": [
     10,
     11,
     12,
@@ -153876,11 +153260,9 @@
     14,
     15,
     16,
+    17,
     18,
     19
-  ],
-  "moscas|moscas": [
-    17
   ],
   "mutuamente|mutuamente": [
     10,
@@ -153894,7 +153276,7 @@
     18,
     19
   ],
-  "obtuvo|obtuvo": [
+  "obtuvo|obtener": [
     10,
     11,
     12,
@@ -153937,7 +153319,7 @@
     18,
     19
   ],
-  "perdedores|perdedores": [
+  "perdedores|perdedor": [
     10,
     11,
     12,
@@ -154019,7 +153401,7 @@
     18,
     19
   ],
-  "sonriendo|sonriendo": [
+  "sonriendo|sonreír": [
     10,
     11,
     12,
@@ -154043,7 +153425,7 @@
     18,
     19
   ],
-  "vinos|vinos": [
+  "vinos|vino": [
     10,
     11,
     12,
@@ -154055,7 +153437,7 @@
     18,
     19
   ],
-  "alucinaciones|alucinaciones": [
+  "alucinaciones|alucinación": [
     10,
     11,
     12,
@@ -154066,19 +153448,17 @@
     17,
     18,
     19
-  ],
-  "amen|amen": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    18
   ],
   "amen|amar": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
     16,
     17,
+    18,
     19
   ],
   "aprisa|aprisa": [
@@ -154125,7 +153505,7 @@
     38,
     39
   ],
-  "barbara|barbara": [
+  "barbara|bárbaro": [
     10,
     11,
     12,
@@ -154214,13 +153594,11 @@
     12,
     13,
     14,
+    15,
     16,
     17,
     18,
     19
-  ],
-  "carteles|carteles": [
-    15
   ],
   "cartuchos|cartucho": [
     0,
@@ -154243,7 +153621,7 @@
     18,
     19
   ],
-  "cayo|cayo": [
+  "cayo|caer": [
     10,
     11,
     12,
@@ -154256,18 +153634,6 @@
     19
   ],
   "cenicienta|cenicienta": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "comics|comics": [
     10,
     11,
     12,
@@ -154303,7 +153669,7 @@
     18,
     19
   ],
-  "cualidades|cualidades": [
+  "cualidades|cualidad": [
     10,
     11,
     12,
@@ -154327,7 +153693,7 @@
     18,
     19
   ],
-  "círculos|círculos": [
+  "círculos|círculo": [
     10,
     11,
     12,
@@ -154339,7 +153705,7 @@
     18,
     19
   ],
-  "define|define": [
+  "define|definir": [
     10,
     11,
     12,
@@ -154386,7 +153752,7 @@
     18,
     19
   ],
-  "existido|existido": [
+  "existido|existir": [
     10,
     11,
     12,
@@ -154437,7 +153803,7 @@
     18,
     19
   ],
-  "favores|favores": [
+  "favores|favor": [
     10,
     11,
     12,
@@ -154449,7 +153815,7 @@
     18,
     19
   ],
-  "gramos|gramos": [
+  "gramos|gramo": [
     10,
     11,
     12,
@@ -154507,7 +153873,7 @@
     18,
     19
   ],
-  "marineros|marineros": [
+  "marineros|marinero": [
     10,
     11,
     12,
@@ -154590,7 +153956,7 @@
     38,
     39
   ],
-  "máscaras|máscaras": [
+  "máscaras|máscara": [
     10,
     11,
     12,
@@ -154631,7 +153997,7 @@
     18,
     19
   ],
-  "ringo|ringo": [
+  "ringo|ringar": [
     10,
     11,
     12,
@@ -154675,7 +154041,7 @@
     38,
     39
   ],
-  "sandwich|sandwich": [
+  "sandwich|sándwich": [
     10,
     11,
     12,
@@ -154727,7 +154093,7 @@
     18,
     19
   ],
-  "alrededores|alrededores": [
+  "alrededores|alrededor": [
     10,
     11,
     12,
@@ -154751,21 +154117,19 @@
     18,
     19
   ],
-  "amos|amos": [
+  "amos|amo": [
     10,
     11,
     12,
     13,
-    16,
-    19
-  ],
-  "amos|amo": [
     14,
     15,
+    16,
     17,
-    18
+    18,
+    19
   ],
-  "arbustos|arbustos": [
+  "arbustos|arbusto": [
     10,
     11,
     12,
@@ -154790,7 +154154,7 @@
     18,
     19
   ],
-  "arruinando|arruinando": [
+  "arruinando|arruinar": [
     10,
     11,
     12,
@@ -154802,7 +154166,7 @@
     18,
     19
   ],
-  "bretaña|bretaña": [
+  "bretaña|Bretaña": [
     10,
     11,
     12,
@@ -154832,7 +154196,7 @@
     18,
     19
   ],
-  "candidatos|candidatos": [
+  "candidatos|candidato": [
     10,
     11,
     12,
@@ -154910,7 +154274,7 @@
     38,
     39
   ],
-  "cubriendo|cubriendo": [
+  "cubriendo|cubrir": [
     10,
     11,
     12,
@@ -154934,7 +154298,7 @@
     18,
     19
   ],
-  "cómics|cómics": [
+  "cómics|cómic": [
     10,
     11,
     12,
@@ -154971,7 +154335,7 @@
     18,
     19
   ],
-  "encontrada|encontrar": [
+  "encontrada|encontrado": [
     6,
     8,
     9,
@@ -154979,24 +154343,11 @@
     11,
     12,
     13,
+    14,
     15,
     16,
     17,
     18,
-    26,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    35,
-    36,
-    37,
-    38
-  ],
-  "encontrada|encontrado": [
-    14,
     19,
     20,
     21,
@@ -155004,8 +154355,19 @@
     23,
     24,
     25,
+    26,
     27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
     34,
+    35,
+    36,
+    37,
+    38,
     39
   ],
   "escapé|escapar": [
@@ -155087,7 +154449,7 @@
     38,
     39
   ],
-  "explicaciones|explicaciones": [
+  "explicaciones|explicación": [
     10,
     11,
     12,
@@ -155099,7 +154461,7 @@
     18,
     19
   ],
-  "genes|genes": [
+  "genes|gen": [
     10,
     11,
     12,
@@ -155111,7 +154473,7 @@
     18,
     19
   ],
-  "habitantes|habitantes": [
+  "habitantes|habitante": [
     10,
     11,
     12,
@@ -155128,16 +154490,14 @@
     11,
     12,
     13,
+    14,
     15,
     16,
     17,
     18,
     19
   ],
-  "ilusiones|ilusiones": [
-    14
-  ],
-  "jinetes|jinetes": [
+  "jinetes|jinete": [
     10,
     11,
     12,
@@ -155243,15 +154603,6 @@
     38,
     39
   ],
-  "nono|nono": [
-    0,
-    2,
-    6,
-    8,
-    9,
-    10,
-    11
-  ],
   "paces|pacer": [
     2,
     4,
@@ -155302,7 +154653,7 @@
     38,
     39
   ],
-  "preparé|preparé": [
+  "preparé|preparar": [
     10,
     11,
     12,
@@ -155443,7 +154794,7 @@
     18,
     19
   ],
-  "satélites|satélites": [
+  "satélites|satélite": [
     10,
     11,
     12,
@@ -155476,7 +154827,7 @@
     18,
     19
   ],
-  "trozos|trozos": [
+  "trozos|trozo": [
     10,
     11,
     12,
@@ -155488,7 +154839,7 @@
     18,
     19
   ],
-  "yanquis|yanquis": [
+  "yanquis|yanqui": [
     10,
     11,
     12,
@@ -155520,21 +154871,25 @@
     18,
     19
   ],
-  "asesinados|asesinar": [
+  "asesinados|asesinado": [
     10,
     11,
     12,
     13,
     14,
+    15,
     16,
     17,
     18,
+    19,
     20,
     21,
     22,
     23,
     24,
+    25,
     26,
+    27,
     28,
     29,
     30,
@@ -155542,16 +154897,10 @@
     32,
     33,
     34,
+    35,
     36,
     37,
-    38
-  ],
-  "asesinados|asesinados": [
-    15,
-    19,
-    25,
-    27,
-    35,
+    38,
     39
   ],
   "besó|besar": [
@@ -155562,11 +154911,9 @@
     14,
     15,
     16,
+    17,
     18,
     19
-  ],
-  "besó|besó": [
-    17
   ],
   "cantidades|cantidad": [
     10,
@@ -155580,7 +154927,7 @@
     18,
     19
   ],
-  "chester|chester": [
+  "chester|chéster": [
     10,
     11,
     12,
@@ -155644,7 +154991,7 @@
     38,
     39
   ],
-  "complicaciones|complicaciones": [
+  "complicaciones|complicación": [
     10,
     11,
     12,
@@ -155688,7 +155035,7 @@
     38,
     39
   ],
-  "discípulos|discípulos": [
+  "discípulos|discípulo": [
     10,
     11,
     12,
@@ -155700,7 +155047,7 @@
     18,
     19
   ],
-  "escondió|escondió": [
+  "escondió|esconder": [
     10,
     11,
     12,
@@ -155712,7 +155059,7 @@
     18,
     19
   ],
-  "escritores|escritores": [
+  "escritores|escritor": [
     10,
     11,
     12,
@@ -155724,7 +155071,7 @@
     18,
     19
   ],
-  "estatuas|estatuas": [
+  "estatuas|estatua": [
     10,
     11,
     12,
@@ -155736,7 +155083,7 @@
     18,
     19
   ],
-  "filmando|filmando": [
+  "filmando|filmar": [
     10,
     11,
     12,
@@ -155790,7 +155137,7 @@
     18,
     19
   ],
-  "hale|hale": [
+  "hale|halar": [
     10,
     11,
     12,
@@ -155802,7 +155149,7 @@
     18,
     19
   ],
-  "imagine|imagine": [
+  "imagine|imaginar": [
     10,
     11,
     12,
@@ -155850,7 +155197,7 @@
     18,
     19
   ],
-  "intentos|intentos": [
+  "intentos|intentar": [
     10,
     11,
     12,
@@ -155882,7 +155229,7 @@
     38,
     39
   ],
-  "investiga|investiga": [
+  "investiga|investigar": [
     10,
     11,
     12,
@@ -155961,30 +155308,6 @@
     38,
     39
   ],
-  "manager|manager": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
-  "mason|mason": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "mordido|morder": [
     10,
     11,
@@ -156049,7 +155372,7 @@
     18,
     19
   ],
-  "opera|opera": [
+  "opera|operar": [
     10,
     11,
     12,
@@ -156103,16 +155426,14 @@
   ],
   "ramos|ramo": [
     10,
+    11,
     12,
     13,
-    15,
-    18
-  ],
-  "ramos|ramos": [
-    11,
     14,
+    15,
     16,
     17,
+    18,
     19
   ],
   "recompensas|recompensa": [
@@ -156201,7 +155522,7 @@
     18,
     19
   ],
-  "traido|traido": [
+  "traido|traer": [
     10,
     11,
     12,

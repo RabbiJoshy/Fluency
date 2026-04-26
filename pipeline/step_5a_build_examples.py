@@ -28,6 +28,7 @@ import re
 import sys
 import time
 import unicodedata
+import zlib
 from collections import defaultdict
 from pathlib import Path
 from statistics import median
@@ -237,12 +238,16 @@ def build_sentence_index(sentences):
         tokens = tokenize(spa)
         if len(tokens) < MIN_SENTENCE_WORDS or len(tokens) > MAX_SENTENCE_WORDS:
             continue
+        # Index by literal token. Wiktionary headwords + the inventory both
+        # treat accented and unaccented forms as distinct words (à vs a, où
+        # vs ou, sé vs se), so the example index needs to do the same. The
+        # previous strip_accents key merged them and forced a downstream
+        # _filter_accent dance for accented words.
         seen = set()
         for t in tokens:
-            norm = strip_accents(t)
-            if norm not in seen:
-                seen.add(norm)
-                index[norm].append(i)
+            if t not in seen:
+                seen.add(t)
+                index[t].append(i)
     elapsed = time.time() - t0
     print(f"\r    Done in {elapsed:.1f}s" + " " * 30)
     return index
@@ -277,8 +282,8 @@ def overlap_tier(spanish_text, target_rank, inv_rank_lookup):
         return 0
     count = 0
     for t in tokenize(spanish_text):
-        norm = strip_accents(t)
-        rank = inv_rank_lookup.get(norm)
+        # Literal lookup; inv_rank_lookup is keyed by literal surface words.
+        rank = inv_rank_lookup.get(t)
         if rank is not None and rank != target_rank:
             if abs(target_rank - rank) <= OVERLAP_WINDOW:
                 count += 1
@@ -289,10 +294,17 @@ def overlap_tier(spanish_text, target_rank, inv_rank_lookup):
 
 def select_examples(candidate_indices, sentences, word_to_rank,
                     source="tatoeba", max_examples=MAX_EXAMPLES_PER_WORD,
-                    exclude_targets=None, target_rank=0, inv_rank_lookup=None):
-    # Cap candidates to avoid scoring huge lists for common words
+                    exclude_targets=None, target_rank=0, inv_rank_lookup=None,
+                    word=""):
+    # Cap candidates with a per-word deterministic RNG so reruns are stable —
+    # same word always samples the same candidates regardless of when step_5a
+    # runs. Without this, rerunning step_5a churns example_raw entries for any
+    # word with >MAX_CANDIDATES candidates, silently invalidating downstream
+    # sense_assignments that reference example indices.
     if len(candidate_indices) > MAX_CANDIDATES:
-        candidate_indices = random.sample(candidate_indices, MAX_CANDIDATES)
+        seed = zlib.crc32(word.encode("utf-8")) if word else 0
+        rng = random.Random(seed)
+        candidate_indices = rng.sample(candidate_indices, MAX_CANDIDATES)
 
     scored = []
     seen_targets = set(exclude_targets) if exclude_targets else set()
@@ -369,6 +381,14 @@ def parse_args():
         "--tenth", action="store_true",
         help="Use a tenth of the corpus (fastest iteration)"
     )
+    parser.add_argument(
+        "--word", action="append", default=[],
+        help="Only regenerate examples for these surface words (repeatable). "
+             "Loads existing examples_raw.json and replaces only the targeted "
+             "entries; all other entries are preserved verbatim. Use this for "
+             "surgical fixes when a full rebuild would invalidate downstream "
+             "sense_assignments via example index drift."
+    )
     return parser.parse_args()
 
 
@@ -441,48 +461,51 @@ def main():
 
     # --- Match and merge ---
     print("Matching examples to vocabulary...")
-    # Build rank lookup: normalised word -> position in inventory (by frequency order)
+    # Build rank lookup: literal surface word -> position in inventory.
+    # The sentence index is keyed by literal token, so this must match.
     inv_rank_lookup = {}
     for i, e in enumerate(inventory):
-        norm = strip_accents(e["word"].lower())
-        if norm not in inv_rank_lookup:
-            inv_rank_lookup[norm] = i
+        wl = e["word"].lower()
+        if wl not in inv_rank_lookup:
+            inv_rank_lookup[wl] = i
 
+    # --word mode: load existing examples_raw and regenerate only targeted
+    # entries. All other entries stay byte-identical, so downstream sense
+    # assignments remain valid for the words we don't touch.
+    target_words = {w.lower() for w in args.word} if args.word else None
     output = {}
+    if target_words is not None:
+        if OUTPUT_FILE.exists():
+            with open(OUTPUT_FILE, encoding="utf-8") as f:
+                output = json.load(f)
+            print(f"\n--word mode: loaded existing {OUTPUT_FILE.name} "
+                  f"({len(output)} entries); regenerating only: "
+                  f"{sorted(target_words)}")
+        else:
+            print(f"\n--word mode: {OUTPUT_FILE} not found; will create with "
+                  f"only the {len(target_words)} targeted entries")
+
     coverage = {"0": 0, "1-2": 0, "3-5": 0, "5+": 0}
     total_examples = 0
 
     for i, entry in enumerate(inventory):
         word_lower = entry["word"].lower()
-        word_norm = strip_accents(word_lower)
-        # If accent-stripping changes the word (sé→se, más→mas, él→el),
-        # filter candidates to those containing the original accented form.
-        # This prevents reflexive "se" sentences matching "sé" (I know), etc.
-        accent_sensitive = (word_lower != word_norm)
 
-        def _filter_accent(candidate_ids, sentences):
-            if not accent_sensitive:
-                return candidate_ids
-            filtered = []
-            for idx in candidate_ids:
-                spa = sentences[idx][1].lower()
-                # Check the accented form appears as a whole token
-                # Word-boundary regex using same letter class as the tokenizer.
-                _CHARSET = r"a-zàáâäæçèéêëíîïñóôœùúûüÿ"
-                if re.search(r'(?<![' + _CHARSET + r'])' + re.escape(word_lower) + r'(?![' + _CHARSET + r'])', spa):
-                    filtered.append(idx)
-            return filtered
+        if target_words is not None and word_lower not in target_words:
+            continue  # preserve existing entry verbatim
 
-        # Tatoeba first (preferred)
-        tat_candidates = _filter_accent(tat_index.get(word_norm, []), tat_sentences)
+        # Tatoeba first (preferred). Index lookups are now strict — sentences
+        # for "ou" don't include "où"-content and vice versa, so no post-filter.
+        tat_candidates = tat_index.get(word_lower, [])
         examples = select_examples(tat_candidates, tat_sentences, word_to_rank,
                                    source="tatoeba",
-                                   target_rank=i, inv_rank_lookup=inv_rank_lookup)
+                                   target_rank=i, inv_rank_lookup=inv_rank_lookup,
+                                   word=word_lower)
 
         # Fill remaining slots with OpenSubtitles
         remaining = MAX_EXAMPLES_PER_WORD - len(examples)
         if remaining > 0:
-            sub_candidates = _filter_accent(sub_index.get(word_norm, []), sub_sentences)
+            sub_candidates = sub_index.get(word_lower, [])
             if sub_candidates:
                 # Pass Tatoeba targets to avoid cross-corpus duplicates
                 existing_targets = {ex["target"].lower().strip() for ex in examples}
@@ -491,11 +514,15 @@ def main():
                     source="opensubtitles", max_examples=remaining,
                     exclude_targets=existing_targets,
                     target_rank=i, inv_rank_lookup=inv_rank_lookup,
+                    word=word_lower,
                 )
                 examples.extend(sub_examples)
 
         if examples:
             output[entry["word"]] = examples
+        elif target_words is not None and entry["word"] in output:
+            # Targeted regeneration produced zero examples — drop stale entry.
+            del output[entry["word"]]
 
         n = len(examples)
         total_examples += n
@@ -514,25 +541,37 @@ def main():
     write_sidecar(OUTPUT_FILE, make_meta("build_examples", STEP_VERSION))
 
     # --- Results ---
-    tat_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "tatoeba")
-    sub_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "opensubtitles")
+    if target_words is not None:
+        # Targeted summary — only the words we regenerated. Full-coverage
+        # stats are meaningless because we skipped most of the inventory.
+        print(f"\n{'='*50}")
+        print(f"TARGETED REBUILD ({len(target_words)} words)")
+        print(f"{'='*50}")
+        for entry in inventory:
+            if entry["word"].lower() in target_words:
+                n = len(output.get(entry["word"], []))
+                print(f"  {entry['word']}: {n} examples")
+        print(f"\nTotal entries in {OUTPUT_FILE.name}: {len(output)}")
+    else:
+        tat_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "tatoeba")
+        sub_count = sum(1 for exs in output.values() for ex in exs if ex["source"] == "opensubtitles")
 
-    print(f"\n{'='*50}")
-    print("RESULTS")
-    print(f"{'='*50}")
-    print(f"Total vocabulary entries: {len(inventory)}")
-    print(f"Total examples attached:  {total_examples}")
-    print(f"  From Tatoeba:       {tat_count:,}")
-    print(f"  From OpenSubtitles: {sub_count:,}")
-    print(f"")
-    print(f"Coverage breakdown:")
-    print(f"  0 examples:   {coverage['0']:5d} words")
-    print(f"  1-2 examples: {coverage['1-2']:5d} words")
-    print(f"  3-5 examples: {coverage['3-5']:5d} words")
-    print(f"  5+ examples:  {coverage['5+']:5d} words")
-    print(f"")
-    pct = 100 * (len(inventory) - coverage["0"]) / len(inventory)
-    print(f"Words with at least 1 example: {pct:.1f}%")
+        print(f"\n{'='*50}")
+        print("RESULTS")
+        print(f"{'='*50}")
+        print(f"Total vocabulary entries: {len(inventory)}")
+        print(f"Total examples attached:  {total_examples}")
+        print(f"  From Tatoeba:       {tat_count:,}")
+        print(f"  From OpenSubtitles: {sub_count:,}")
+        print(f"")
+        print(f"Coverage breakdown:")
+        print(f"  0 examples:   {coverage['0']:5d} words")
+        print(f"  1-2 examples: {coverage['1-2']:5d} words")
+        print(f"  3-5 examples: {coverage['3-5']:5d} words")
+        print(f"  5+ examples:  {coverage['5+']:5d} words")
+        print(f"")
+        pct = 100 * (len(inventory) - coverage["0"]) / len(inventory)
+        print(f"Words with at least 1 example: {pct:.1f}%")
 
 
 if __name__ == "__main__":

@@ -97,3 +97,6 @@ PIPELINE_STATUS.txt
 # committed under Data/Spanish/Senses/wiktionary/, so this file is fully
 # reproducible and doesn't need to be in source.
 Data/Spanish/layers/morphology.json
+
+# Local pipeline backups (Data/{Lang}/layers/_backups/)
+_backups/

@@ -116,6 +116,10 @@ def main():
                         help="Re-classify everything, ignoring existing assignments.")
     parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
                         help="Gemini model (default: gemini-2.5-flash-lite)")
+    parser.add_argument("--word", action="append", default=[],
+                        help="Only process specific surface words (repeatable). "
+                             "Forwarded to the underlying classifier. Useful "
+                             "with --force for surgical re-classification.")
     args = parser.parse_args()
 
     _load_dotenv()
@@ -139,6 +143,10 @@ def main():
     # -----------------------------------------------------------------
     # Primary classifier
     # -----------------------------------------------------------------
+    word_args = []
+    for w in args.word:
+        word_args.extend(["--word", w])
+
     if args.classifier in ("keyword", "biencoder"):
         bienc_args = ["--language", args.language]
         if args.sense_source == "spanishdict":
@@ -147,6 +155,7 @@ def main():
             bienc_args.append("--keyword-only")
         if args.force:
             bienc_args.append("--force")
+        bienc_args.extend(word_args)
         label = "Classifier: %s" % args.classifier
         run_step(label, "step_6b_assign_senses_local.py", bienc_args)
     else:
@@ -162,6 +171,7 @@ def main():
             gemini_args.extend(["--max-examples", str(args.max_examples)])
         if not gap_fill:
             gemini_args.append("--skip-gap-fill")
+        gemini_args.extend(word_args)
         label = "Classifier: gemini" + (" + gap-fill" if gap_fill else "")
         run_step(label, "step_6c_assign_senses_gemini.py", gemini_args)
 
@@ -179,6 +189,7 @@ def main():
             gemini_args.extend(["--gemini-model", args.gemini_model])
         if args.max_examples is not None:
             gemini_args.extend(["--max-examples", str(args.max_examples)])
+        gemini_args.extend(word_args)
         run_step("Gap-fill (Gemini, zero-sense words only)",
                  "step_6c_assign_senses_gemini.py", gemini_args)
 

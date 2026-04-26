@@ -115,13 +115,6 @@
           8,
           9
         ]
-      },
-      {
-        "sense": "e3e",
-        "examples": [
-          4,
-          5
-        ]
       }
     ]
   },
@@ -356,13 +349,6 @@
           7,
           8
         ]
-      },
-      {
-        "sense": "16c",
-        "examples": [
-          1,
-          9
-        ]
       }
     ]
   },
@@ -391,12 +377,6 @@
           7,
           8,
           9
-        ]
-      },
-      {
-        "sense": "b04",
-        "examples": [
-          1
         ]
       }
     ]
@@ -547,17 +527,6 @@
           6,
           7,
           8
-        ]
-      },
-      {
-        "sense": "afb",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          9
         ]
       }
     ]
@@ -943,6 +912,17 @@
   "este|este": {
     "keyword": [
       {
+        "sense": "b62",
+        "examples": [
+          0,
+          2,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
         "sense": "274",
         "examples": [
           4,
@@ -1067,6 +1047,28 @@
     ]
   },
   "sólo|sólo": {
+    "keyword": [
+      {
+        "sense": "a21",
+        "examples": [
+          5
+        ]
+      },
+      {
+        "sense": "0cc",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "aa2",
@@ -2532,20 +2534,6 @@
         "examples": [
           2
         ]
-      },
-      {
-        "sense": "316",
-        "examples": [
-          0,
-          1,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
       }
     ]
   },
@@ -2894,12 +2882,6 @@
           7,
           8,
           9
-        ]
-      },
-      {
-        "sense": "afb",
-        "examples": [
-          3
         ]
       }
     ]
@@ -3805,13 +3787,20 @@
     ]
   },
   "mas|mas": {
-    "keyword": [
+    "wiktionary-auto": [
       {
-        "sense": "6b8",
+        "sense": "106",
         "examples": [
+          0,
           1,
+          2,
+          3,
+          4,
+          5,
+          6,
           7,
-          8
+          8,
+          9
         ]
       }
     ]
@@ -4021,19 +4010,6 @@
         "examples": [
           7
         ]
-      },
-      {
-        "sense": "48c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          8
-        ]
       }
     ]
   },
@@ -4194,14 +4170,6 @@
         "sense": "1e5",
         "examples": [
           9
-        ]
-      },
-      {
-        "sense": "274",
-        "examples": [
-          6,
-          7,
-          8
         ]
       },
       {
@@ -4703,8 +4671,27 @@
       }
     ]
   },
-  "esas|ese": {
+  "esas|esas": {
     "keyword": [
+      {
+        "sense": "41d",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7
+        ]
+      },
+      {
+        "sense": "ce8",
+        "examples": [
+          8,
+          9
+        ]
+      },
       {
         "sense": "510",
         "examples": [
@@ -8649,21 +8636,6 @@
           9
         ]
       }
-    ],
-    "keyword": [
-      {
-        "sense": "b0d",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          8,
-          9
-        ]
-      }
     ]
   },
   "cuidado|cuidado": {
@@ -8746,24 +8718,6 @@
         "examples": [
           0,
           6
-        ]
-      },
-      {
-        "sense": "215",
-        "examples": [
-          3
-        ]
-      },
-      {
-        "sense": "c91",
-        "examples": [
-          1,
-          2,
-          4,
-          5,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -9397,6 +9351,28 @@
     ]
   },
   "ésta|ésta": {
+    "keyword": [
+      {
+        "sense": "253",
+        "examples": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "c59",
+        "examples": [
+          1,
+          2
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "0fe",
@@ -9434,6 +9410,24 @@
     ]
   },
   "pequeña|pequeña": {
+    "keyword": [
+      {
+        "sense": "fcc",
+        "examples": [
+          1,
+          2,
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "sense": "dee",
+        "examples": [
+          6
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "f0b",
@@ -9861,25 +9855,6 @@
           0,
           4,
           6
-        ]
-      }
-    ]
-  },
-  "semanas|semanas": {
-    "wiktionary-auto": [
-      {
-        "sense": "291",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -10904,25 +10879,6 @@
           3,
           4,
           5,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "uds|uds": {
-    "wiktionary-auto": [
-      {
-        "sense": "59c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -15210,12 +15166,6 @@
           6,
           9
         ]
-      },
-      {
-        "sense": "b8a",
-        "examples": [
-          8
-        ]
       }
     ]
   },
@@ -15243,6 +15193,28 @@
     ]
   },
   "cuántos|cuántos": {
+    "keyword": [
+      {
+        "sense": "005",
+        "examples": [
+          0,
+          1,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "52a",
+        "examples": [
+          2,
+          3,
+          5
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "5af",
@@ -18857,25 +18829,6 @@
       }
     ]
   },
-  "miles|miles": {
-    "wiktionary-auto": [
-      {
-        "sense": "a7a",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "perdí|perder": {
     "keyword": [
       {
@@ -20409,25 +20362,6 @@
       }
     ]
   },
-  "tenia|tenia": {
-    "wiktionary-auto": [
-      {
-        "sense": "2bc",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "velocidad|velocidad": {
     "keyword": [
       {
@@ -20742,25 +20676,6 @@
         "examples": [
           1,
           4
-        ]
-      }
-    ]
-  },
-  "londres|londres": {
-    "wiktionary-auto": [
-      {
-        "sense": "b2f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -21267,6 +21182,17 @@
   "aquel|aquel": {
     "keyword": [
       {
+        "sense": "dac",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          9
+        ]
+      },
+      {
         "sense": "ea3",
         "examples": [
           4,
@@ -21641,17 +21567,6 @@
         "sense": "1ca",
         "examples": [
           0
-        ]
-      },
-      {
-        "sense": "35f",
-        "examples": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -22142,7 +22057,7 @@
       }
     ]
   },
-  "quienes|quien": {
+  "quienes|quienes": {
     "keyword": [
       {
         "sense": "22a",
@@ -25445,25 +25360,6 @@
       }
     ]
   },
-  "robots|robots": {
-    "wiktionary-auto": [
-      {
-        "sense": "5a3",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ruido|ruido": {
     "keyword": [
       {
@@ -26573,6 +26469,14 @@
   },
   "aquella|aquella": {
     "keyword": [
+      {
+        "sense": "2e0",
+        "examples": [
+          6,
+          7,
+          8
+        ]
+      },
       {
         "sense": "c89",
         "examples": [
@@ -27825,25 +27729,6 @@
       {
         "sense": "c8a",
         "examples": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "inglaterra|inglaterra": {
-    "wiktionary-auto": [
-      {
-        "sense": "b42",
-        "examples": [
-          0,
           1,
           2,
           3,
@@ -30187,7 +30072,7 @@
       }
     ]
   },
-  "cuantos|cuanto": {
+  "cuantos|cuantos": {
     "keyword": [
       {
         "sense": "b0d",
@@ -31667,14 +31552,6 @@
           8,
           9
         ]
-      },
-      {
-        "sense": "f9e",
-        "examples": [
-          0,
-          1,
-          6
-        ]
       }
     ]
   },
@@ -32994,6 +32871,20 @@
     ]
   },
   "adonde|adonde": {
+    "keyword": [
+      {
+        "sense": "111",
+        "examples": [
+          0,
+          2,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "05a",
@@ -33821,25 +33712,6 @@
       }
     ]
   },
-  "troya|troya": {
-    "wiktionary-auto": [
-      {
-        "sense": "e92",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "truco|truco": {
     "keyword": [
       {
@@ -34353,14 +34225,6 @@
         "examples": [
           9
         ]
-      },
-      {
-        "sense": "635",
-        "examples": [
-          0,
-          1,
-          5
-        ]
       }
     ]
   },
@@ -34739,25 +34603,6 @@
     "keyword": [
       {
         "sense": "165",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "tercer|tercer": {
-    "wiktionary-auto": [
-      {
-        "sense": "729",
         "examples": [
           0,
           1,
@@ -35395,25 +35240,6 @@
           3,
           5,
           6
-        ]
-      }
-    ]
-  },
-  "poquito|poquito": {
-    "wiktionary-auto": [
-      {
-        "sense": "41e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -36717,7 +36543,7 @@
       }
     ]
   },
-  "cuantas|cuanto": {
+  "cuantas|cuantas": {
     "keyword": [
       {
         "sense": "e38",
@@ -37049,25 +36875,6 @@
           3,
           4,
           5,
-          9
-        ]
-      }
-    ]
-  },
-  "odia|odia": {
-    "wiktionary-auto": [
-      {
-        "sense": "4a0",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -38772,25 +38579,6 @@
         "sense": "a8e",
         "examples": [
           2,
-          9
-        ]
-      }
-    ]
-  },
-  "mintiendo|mintiendo": {
-    "wiktionary-auto": [
-      {
-        "sense": "0e1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -41667,25 +41455,6 @@
       }
     ]
   },
-  "drácula|drácula": {
-    "wiktionary-auto": [
-      {
-        "sense": "151",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "dulces|dulce": {
     "keyword": [
       {
@@ -42092,25 +41861,6 @@
       }
     ]
   },
-  "odie|odie": {
-    "wiktionary-auto": [
-      {
-        "sense": "2f1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "orgullosa|orgulloso": {
     "keyword": [
       {
@@ -42282,25 +42032,6 @@
         "sense": "051",
         "examples": [
           0
-        ]
-      }
-    ]
-  },
-  "rodillas|rodillas": {
-    "wiktionary-auto": [
-      {
-        "sense": "245",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -43035,25 +42766,6 @@
         "sense": "8f4",
         "examples": [
           7
-        ]
-      }
-    ]
-  },
-  "cigarrillos|cigarrillos": {
-    "wiktionary-auto": [
-      {
-        "sense": "f7c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -44065,25 +43777,6 @@
       }
     ]
   },
-  "alemania|alemania": {
-    "wiktionary-auto": [
-      {
-        "sense": "099",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "almas|alma": {
     "keyword": [
       {
@@ -44374,15 +44067,6 @@
           5,
           6,
           7
-        ]
-      },
-      {
-        "sense": "c91",
-        "examples": [
-          2,
-          3,
-          8,
-          9
         ]
       }
     ]
@@ -49162,25 +48846,6 @@
       }
     ]
   },
-  "prisioneros|prisioneros": {
-    "wiktionary-auto": [
-      {
-        "sense": "c18",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "puerto|puerto": {
     "wiktionary-auto": [
       {
@@ -50879,6 +50544,16 @@
     ]
   },
   "prostituta|prostituta": {
+    "keyword": [
+      {
+        "sense": "b92",
+        "examples": [
+          0,
+          1,
+          5
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "8c6",
@@ -52058,25 +51733,6 @@
       }
     ]
   },
-  "guerreros|guerreros": {
-    "wiktionary-auto": [
-      {
-        "sense": "2a9",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "habilidades|habilidad": {
     "wiktionary-auto": [
       {
@@ -52818,25 +52474,6 @@
         "examples": [
           5,
           8
-        ]
-      }
-    ]
-  },
-  "rocas|rocas": {
-    "wiktionary-auto": [
-      {
-        "sense": "a8b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -53657,25 +53294,6 @@
           5,
           6,
           7
-        ]
-      }
-    ]
-  },
-  "conduce|conduce": {
-    "wiktionary-auto": [
-      {
-        "sense": "cb5",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -55667,25 +55285,6 @@
       }
     ]
   },
-  "ciudadanos|ciudadanos": {
-    "wiktionary-auto": [
-      {
-        "sense": "94e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ciudades|ciudad": {
     "keyword": [
       {
@@ -57547,25 +57146,6 @@
       }
     ]
   },
-  "afganistán|afganistán": {
-    "wiktionary-auto": [
-      {
-        "sense": "101",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "anciano|anciano": {
     "keyword": [
       {
@@ -58763,25 +58343,6 @@
       }
     ]
   },
-  "italia|italia": {
-    "wiktionary-auto": [
-      {
-        "sense": "b1d",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "japonés|japonés": {
     "keyword": [
       {
@@ -58917,25 +58478,6 @@
     "keyword": [
       {
         "sense": "5e4",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "moscú|moscú": {
-    "wiktionary-auto": [
-      {
-        "sense": "e68",
         "examples": [
           0,
           1,
@@ -59097,26 +58639,7 @@
       }
     ]
   },
-  "odias|odias": {
-    "wiktionary-auto": [
-      {
-        "sense": "0a3",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "ordenes|orden": {
+  "ordenes|ordenes": {
     "keyword": [
       {
         "sense": "5f1",
@@ -61282,25 +60805,6 @@
       }
     ]
   },
-  "hijas|hijas": {
-    "wiktionary-auto": [
-      {
-        "sense": "054",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "imagina|imaginar": {
     "wiktionary-auto": [
       {
@@ -62459,25 +61963,6 @@
       }
     ]
   },
-  "tarjetas|tarjetas": {
-    "wiktionary-auto": [
-      {
-        "sense": "9d6",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "telefono|teléfono": {
     "keyword": [
       {
@@ -62518,25 +62003,6 @@
           5,
           7,
           8
-        ]
-      }
-    ]
-  },
-  "tenias|tenias": {
-    "wiktionary-auto": [
-      {
-        "sense": "e3a",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -62587,12 +62053,6 @@
           4,
           7,
           9
-        ]
-      },
-      {
-        "sense": "8a6",
-        "examples": [
-          5
         ]
       }
     ]
@@ -64229,6 +63689,23 @@
     ]
   },
   "linea|linea": {
+    "wiktionary-auto": [
+      {
+        "sense": "9aa",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "4ab",
@@ -64823,25 +64300,6 @@
         "examples": [
           2,
           8
-        ]
-      }
-    ]
-  },
-  "rehenes|rehenes": {
-    "wiktionary-auto": [
-      {
-        "sense": "d1d",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -66336,25 +65794,6 @@
         "sense": "57e",
         "examples": [
           4
-        ]
-      }
-    ]
-  },
-  "computadoras|computadoras": {
-    "wiktionary-auto": [
-      {
-        "sense": "84e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -67895,7 +67334,7 @@
       }
     ]
   },
-  "ordenó|ordenar": {
+  "ordenó|ordenó": {
     "keyword": [
       {
         "sense": "e34",
@@ -68654,25 +68093,6 @@
           2,
           3,
           6,
-          9
-        ]
-      }
-    ]
-  },
-  "riesgos|riesgos": {
-    "wiktionary-auto": [
-      {
-        "sense": "590",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -69694,25 +69114,6 @@
           4,
           5,
           6,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "canadá|canadá": {
-    "wiktionary-auto": [
-      {
-        "sense": "dee",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -71630,7 +71031,7 @@
       }
     ]
   },
-  "mia|Mia": {
+  "mia|mia": {
     "keyword": [
       {
         "sense": "655",
@@ -71865,7 +71266,7 @@
       }
     ]
   },
-  "ordeno|ordenar": {
+  "ordeno|ordeno": {
     "keyword": [
       {
         "sense": "e34",
@@ -74955,25 +74356,6 @@
       }
     ]
   },
-  "experimentos|experimentos": {
-    "wiktionary-auto": [
-      {
-        "sense": "83c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "fantasía|fantasía": {
     "keyword": [
       {
@@ -75345,25 +74727,6 @@
       }
     ]
   },
-  "hadas|hadas": {
-    "wiktionary-auto": [
-      {
-        "sense": "f22",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "hamburguesa|hamburguesa": {
     "keyword": [
       {
@@ -75404,25 +74767,6 @@
         "sense": "f47",
         "examples": [
           2
-        ]
-      }
-    ]
-  },
-  "hombros|hombros": {
-    "wiktionary-auto": [
-      {
-        "sense": "0e4",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -75754,7 +75098,7 @@
       }
     ]
   },
-  "juntas|junta": {
+  "juntas|juntas": {
     "keyword": [
       {
         "sense": "2f4",
@@ -76044,25 +75388,6 @@
       }
     ]
   },
-  "mencionó|mencionó": {
-    "wiktionary-auto": [
-      {
-        "sense": "b53",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "mentí|mentir": {
     "keyword": [
       {
@@ -76076,25 +75401,6 @@
           5,
           6,
           7
-        ]
-      }
-    ]
-  },
-  "mentí|mentí": {
-    "wiktionary-auto": [
-      {
-        "sense": "23b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -76527,25 +75833,6 @@
       }
     ]
   },
-  "odian|odian": {
-    "wiktionary-auto": [
-      {
-        "sense": "131",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ofrecer|ofrecer": {
     "keyword": [
       {
@@ -76638,12 +75925,6 @@
           1,
           3,
           4
-        ]
-      },
-      {
-        "sense": "6a1",
-        "examples": [
-          6
         ]
       }
     ]
@@ -77234,25 +76515,6 @@
       {
         "sense": "1b9",
         "examples": [
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "sexuales|sexuales": {
-    "wiktionary-auto": [
-      {
-        "sense": "2d6",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -79348,25 +78610,6 @@
       }
     ]
   },
-  "enfermeras|enfermeras": {
-    "wiktionary-auto": [
-      {
-        "sense": "4df",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "entran|entrar": {
     "keyword": [
       {
@@ -79419,25 +78662,6 @@
     "keyword": [
       {
         "sense": "ce2",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "escocia|escocia": {
-    "wiktionary-auto": [
-      {
-        "sense": "822",
         "examples": [
           0,
           1,
@@ -79561,17 +78785,6 @@
         "sense": "5e8",
         "examples": [
           2
-        ]
-      }
-    ]
-  },
-  "falla|fallar": {
-    "keyword": [
-      {
-        "sense": "27e",
-        "examples": [
-          0,
-          7
         ]
       }
     ]
@@ -80492,25 +79705,6 @@
       }
     ]
   },
-  "mintió|mintió": {
-    "wiktionary-auto": [
-      {
-        "sense": "1e0",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "miró|mirar": {
     "keyword": [
       {
@@ -80696,25 +79890,6 @@
       }
     ]
   },
-  "múltiples|múltiples": {
-    "wiktionary-auto": [
-      {
-        "sense": "2d1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "nacer|nacer": {
     "keyword": [
       {
@@ -80862,25 +80037,6 @@
           5,
           6,
           7
-        ]
-      }
-    ]
-  },
-  "odiaba|odiaba": {
-    "wiktionary-auto": [
-      {
-        "sense": "c8b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -82293,16 +81449,6 @@
         ]
       },
       {
-        "sense": "274",
-        "examples": [
-          0,
-          1,
-          3,
-          4,
-          5
-        ]
-      },
-      {
         "sense": "efc",
         "examples": [
           2,
@@ -82691,25 +81837,6 @@
       }
     ]
   },
-  "asia|asia": {
-    "wiktionary-auto": [
-      {
-        "sense": "c1c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "asistencia|asistencia": {
     "keyword": [
       {
@@ -82797,25 +81924,6 @@
     "keyword": [
       {
         "sense": "a05",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "australia|australia": {
-    "wiktionary-auto": [
-      {
-        "sense": "eb5",
         "examples": [
           0,
           1,
@@ -84848,7 +83956,7 @@
       }
     ]
   },
-  "falló|fallar": {
+  "falló|falló": {
     "keyword": [
       {
         "sense": "27e",
@@ -85432,25 +84540,6 @@
       }
     ]
   },
-  "interesantes|interesantes": {
-    "wiktionary-auto": [
-      {
-        "sense": "b6b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "invasión|invasión": {
     "keyword": [
       {
@@ -85827,25 +84916,6 @@
       }
     ]
   },
-  "mapas|mapas": {
-    "wiktionary-auto": [
-      {
-        "sense": "6a4",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "marcas|marca": {
     "keyword": [
       {
@@ -85964,25 +85034,6 @@
           5,
           7,
           8
-        ]
-      }
-    ]
-  },
-  "mentiste|mentiste": {
-    "wiktionary-auto": [
-      {
-        "sense": "483",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -86149,25 +85200,6 @@
         "sense": "fc3",
         "examples": [
           4
-        ]
-      }
-    ]
-  },
-  "músculos|músculos": {
-    "wiktionary-auto": [
-      {
-        "sense": "0e7",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -86426,17 +85458,6 @@
         "examples": [
           1,
           5
-        ]
-      },
-      {
-        "sense": "5b3",
-        "examples": [
-          2,
-          4,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -88795,25 +87816,6 @@
       }
     ]
   },
-  "billones|billones": {
-    "wiktionary-auto": [
-      {
-        "sense": "167",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "bonitos|bonito": {
     "keyword": [
       {
@@ -89027,19 +88029,6 @@
         "examples": [
           6
         ]
-      },
-      {
-        "sense": "f9e",
-        "examples": [
-          8,
-          9
-        ]
-      },
-      {
-        "sense": "89b",
-        "examples": [
-          4
-        ]
       }
     ]
   },
@@ -89119,25 +88108,6 @@
     "keyword": [
       {
         "sense": "1a2",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "casados|casados": {
-    "wiktionary-auto": [
-      {
-        "sense": "faa",
         "examples": [
           0,
           1,
@@ -90141,25 +89111,6 @@
       }
     ]
   },
-  "egipto|egipto": {
-    "wiktionary-auto": [
-      {
-        "sense": "e46",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ejercicios|ejercicio": {
     "keyword": [
       {
@@ -90972,25 +89923,6 @@
       }
     ]
   },
-  "firmada|firmada": {
-    "wiktionary-auto": [
-      {
-        "sense": "3a5",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "funciones|funciones": {
     "keyword": [
       {
@@ -91054,19 +89986,6 @@
       }
     ]
   },
-  "genética|genético": {
-    "keyword": [
-      {
-        "sense": "e3b",
-        "examples": [
-          0,
-          5,
-          6,
-          8
-        ]
-      }
-    ]
-  },
   "genética|genética": {
     "wiktionary-auto": [
       {
@@ -91092,6 +90011,19 @@
           1,
           4,
           7
+        ]
+      }
+    ]
+  },
+  "genética|genético": {
+    "keyword": [
+      {
+        "sense": "e3b",
+        "examples": [
+          0,
+          5,
+          6,
+          8
         ]
       }
     ]
@@ -91447,25 +90379,6 @@
         "sense": "31c",
         "examples": [
           6
-        ]
-      }
-    ]
-  },
-  "hospitales|hospitales": {
-    "wiktionary-auto": [
-      {
-        "sense": "7bb",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -92759,19 +91672,6 @@
   },
   "ordenar|ordenar": {
     "keyword": [
-      {
-        "sense": "e34",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          5,
-          6,
-          7,
-          8
-        ]
-      },
       {
         "sense": "291",
         "examples": [
@@ -94891,6 +93791,28 @@
     ]
   },
   "abogada|abogada": {
+    "keyword": [
+      {
+        "sense": "ab9",
+        "examples": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "sense": "555",
+        "examples": [
+          3
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "e7a",
@@ -99930,7 +98852,7 @@
       }
     ]
   },
-  "muevanse|mover": {
+  "muevanse|muevanse": {
     "keyword": [
       {
         "sense": "b30",
@@ -100136,13 +99058,6 @@
   "ordenado|ordenar": {
     "keyword": [
       {
-        "sense": "e34",
-        "examples": [
-          0,
-          9
-        ]
-      },
-      {
         "sense": "291",
         "examples": [
           1,
@@ -100175,48 +99090,10 @@
       }
     ]
   },
-  "osos|osos": {
-    "wiktionary-auto": [
-      {
-        "sense": "3e1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ovejas|oveja": {
     "keyword": [
       {
         "sense": "acb",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "ovejas|ovejas": {
-    "wiktionary-auto": [
-      {
-        "sense": "8d4",
         "examples": [
           0,
           1,
@@ -101519,25 +100396,6 @@
       }
     ]
   },
-  "sensores|sensores": {
-    "wiktionary-auto": [
-      {
-        "sense": "c33",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "sentada|sentada": {
     "keyword": [
       {
@@ -102549,7 +101407,17 @@
       }
     ]
   },
-  "videos|video": {
+  "videos|videos": {
+    "keyword": [
+      {
+        "sense": "d3e",
+        "examples": [
+          1,
+          5,
+          6
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "718",
@@ -102655,25 +101523,6 @@
           4,
           5,
           7,
-          9
-        ]
-      }
-    ]
-  },
-  "yardas|yardas": {
-    "wiktionary-auto": [
-      {
-        "sense": "a21",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -103528,7 +102377,7 @@
       }
     ]
   },
-  "aquellas|aquello": {
+  "aquellas|aquellas": {
     "keyword": [
       {
         "sense": "7a2",
@@ -104965,25 +103814,6 @@
       }
     ]
   },
-  "concierne|concierne": {
-    "wiktionary-auto": [
-      {
-        "sense": "74f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "condenados|condenado": {
     "keyword": [
       {
@@ -105458,25 +104288,6 @@
       }
     ]
   },
-  "creencias|creencias": {
-    "wiktionary-auto": [
-      {
-        "sense": "314",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "creería|creer": {
     "keyword": [
       {
@@ -105648,25 +104459,6 @@
           6,
           7,
           8
-        ]
-      }
-    ]
-  },
-  "cuántica|cuántica": {
-    "wiktionary-auto": [
-      {
-        "sense": "095",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -106479,25 +105271,6 @@
       }
     ]
   },
-  "docenas|docenas": {
-    "wiktionary-auto": [
-      {
-        "sense": "919",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "dolerá|doler": {
     "keyword": [
       {
@@ -107272,25 +106045,6 @@
       }
     ]
   },
-  "esparta|esparta": {
-    "wiktionary-auto": [
-      {
-        "sense": "c11",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "especies|especie": {
     "keyword": [
       {
@@ -107377,25 +106131,6 @@
         "examples": [
           2,
           4
-        ]
-      }
-    ]
-  },
-  "euros|euros": {
-    "wiktionary-auto": [
-      {
-        "sense": "cc2",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -108259,25 +106994,6 @@
       }
     ]
   },
-  "helicópteros|helicópteros": {
-    "wiktionary-auto": [
-      {
-        "sense": "3ef",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "herencia|herencia": {
     "wiktionary-auto": [
       {
@@ -109074,42 +107790,6 @@
       }
     ]
   },
-  "japonesa|japonesa": {
-    "wiktionary-auto": [
-      {
-        "sense": "312",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ],
-    "keyword": [
-      {
-        "sense": "312",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "jinete|jinete": {
     "wiktionary-auto": [
       {
@@ -109232,18 +107912,6 @@
       }
     ]
   },
-  "lava|lavar": {
-    "keyword": [
-      {
-        "sense": "a32",
-        "examples": [
-          1,
-          5,
-          6
-        ]
-      }
-    ]
-  },
   "lava|lava": {
     "wiktionary-auto": [
       {
@@ -109259,6 +107927,18 @@
           7,
           8,
           9
+        ]
+      }
+    ]
+  },
+  "lava|lavar": {
+    "keyword": [
+      {
+        "sense": "a32",
+        "examples": [
+          1,
+          5,
+          6
         ]
       }
     ]
@@ -110267,25 +108947,6 @@
       }
     ]
   },
-  "nadando|nadando": {
-    "wiktionary-auto": [
-      {
-        "sense": "b90",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "naranja|naranja": {
     "keyword": [
       {
@@ -111174,25 +109835,6 @@
       }
     ]
   },
-  "pizzas|pizzas": {
-    "wiktionary-auto": [
-      {
-        "sense": "72b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "plumas|pluma": {
     "keyword": [
       {
@@ -111200,16 +109842,6 @@
         "examples": [
           6,
           7
-        ]
-      }
-    ]
-  },
-  "po|pues": {
-    "keyword": [
-      {
-        "sense": "77a",
-        "examples": [
-          0
         ]
       }
     ]
@@ -111229,6 +109861,16 @@
           7,
           8,
           9
+        ]
+      }
+    ]
+  },
+  "po|pues": {
+    "keyword": [
+      {
+        "sense": "77a",
+        "examples": [
+          0
         ]
       }
     ]
@@ -111957,25 +110599,6 @@
         "sense": "a05",
         "examples": [
           3,
-          9
-        ]
-      }
-    ]
-  },
-  "restaurantes|restaurantes": {
-    "wiktionary-auto": [
-      {
-        "sense": "f7e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -115542,25 +114165,6 @@
       }
     ]
   },
-  "calorías|calorías": {
-    "wiktionary-auto": [
-      {
-        "sense": "0cc",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "calvo|calvo": {
     "keyword": [
       {
@@ -117065,12 +115669,6 @@
           8,
           9
         ]
-      },
-      {
-        "sense": "8e2",
-        "examples": [
-          6
-        ]
       }
     ]
   },
@@ -117646,6 +116244,23 @@
     ]
   },
   "desaparecida|desaparecida": {
+    "keyword": [
+      {
+        "sense": "af1",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "8d5",
@@ -119535,25 +118150,6 @@
       }
     ]
   },
-  "galáctica|galáctica": {
-    "wiktionary-auto": [
-      {
-        "sense": "6c6",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ganará|ganar": {
     "keyword": [
       {
@@ -120064,16 +118660,6 @@
       }
     ]
   },
-  "helion|helion": {
-    "wiktionary-auto": [
-      {
-        "sense": "423",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
   "hermanita|hermana": {
     "keyword": [
       {
@@ -120155,6 +118741,23 @@
     ]
   },
   "hombrecito|hombrecito": {
+    "wiktionary-auto": [
+      {
+        "sense": "9d8",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "747",
@@ -122276,7 +120879,7 @@
       }
     ]
   },
-  "ordene|ordenar": {
+  "ordene|ordene": {
     "keyword": [
       {
         "sense": "e34",
@@ -124363,23 +122966,6 @@
       }
     ]
   },
-  "roman|Roman": {
-    "keyword": [
-      {
-        "sense": "110",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          5,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "roman|roman": {
     "wiktionary-auto": [
       {
@@ -124392,6 +122978,21 @@
           4,
           5,
           6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "keyword": [
+      {
+        "sense": "110",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          5,
           7,
           8,
           9
@@ -124748,25 +123349,6 @@
           1,
           2,
           3,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "similares|similares": {
-    "wiktionary-auto": [
-      {
-        "sense": "94c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
           5,
           6,
           7,
@@ -125212,25 +123794,6 @@
       }
     ]
   },
-  "teorías|teorías": {
-    "wiktionary-auto": [
-      {
-        "sense": "030",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "terminan|terminar": {
     "keyword": [
       {
@@ -125405,25 +123968,6 @@
         "sense": "134",
         "examples": [
           3
-        ]
-      }
-    ]
-  },
-  "tribus|tribus": {
-    "wiktionary-auto": [
-      {
-        "sense": "ee1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -125706,25 +124250,6 @@
       }
     ]
   },
-  "viena|viena": {
-    "wiktionary-auto": [
-      {
-        "sense": "86f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "vieras|ver": {
     "keyword": [
       {
@@ -125820,25 +124345,6 @@
           6,
           7,
           8
-        ]
-      }
-    ]
-  },
-  "voladora|voladora": {
-    "wiktionary-auto": [
-      {
-        "sense": "f46",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -126104,25 +124610,6 @@
         "sense": "1b0",
         "examples": [
           8
-        ]
-      }
-    ]
-  },
-  "abejas|abejas": {
-    "wiktionary-auto": [
-      {
-        "sense": "c02",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -128320,25 +126807,6 @@
       }
     ]
   },
-  "bombarderos|bombarderos": {
-    "wiktionary-auto": [
-      {
-        "sense": "710",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "brasil|brasil": {
     "keyword": [
       {
@@ -129192,6 +127660,22 @@
     ]
   },
   "cocinera|cocinera": {
+    "keyword": [
+      {
+        "sense": "a4a",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "ed9",
@@ -130174,7 +128658,7 @@
       }
     ]
   },
-  "cuanta|cuanto": {
+  "cuanta|cuanta": {
     "keyword": [
       {
         "sense": "b0d",
@@ -132154,25 +130638,6 @@
       }
     ]
   },
-  "estambul|estambul": {
-    "wiktionary-auto": [
-      {
-        "sense": "202",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "estancia|estancia": {
     "keyword": [
       {
@@ -132398,6 +130863,27 @@
     ]
   },
   "experta|experta": {
+    "keyword": [
+      {
+        "sense": "aa0",
+        "examples": [
+          0,
+          2,
+          3,
+          6,
+          7,
+          9
+        ]
+      },
+      {
+        "sense": "d26",
+        "examples": [
+          1,
+          4,
+          8
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "321",
@@ -133162,25 +131648,6 @@
       }
     ]
   },
-  "generadores|generadores": {
-    "wiktionary-auto": [
-      {
-        "sense": "467",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "generosa|generoso": {
     "keyword": [
       {
@@ -133696,25 +132163,6 @@
       }
     ]
   },
-  "idiomas|idiomas": {
-    "wiktionary-auto": [
-      {
-        "sense": "569",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "ignorancia|ignorancia": {
     "keyword": [
       {
@@ -133924,25 +132372,6 @@
     "keyword": [
       {
         "sense": "5c4",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "infectada|infectada": {
-    "wiktionary-auto": [
-      {
-        "sense": "7f7",
         "examples": [
           0,
           1,
@@ -135198,25 +133627,6 @@
       }
     ]
   },
-  "marruecos|marruecos": {
-    "wiktionary-auto": [
-      {
-        "sense": "4de",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "matare|matar": {
     "keyword": [
       {
@@ -135318,25 +133728,6 @@
       }
     ]
   },
-  "mencioné|mencioné": {
-    "wiktionary-auto": [
-      {
-        "sense": "89c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "mentiría|mentir": {
     "keyword": [
       {
@@ -135349,25 +133740,6 @@
           4,
           5,
           6,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "mentiría|mentiría": {
-    "wiktionary-auto": [
-      {
-        "sense": "8d0",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -135430,25 +133802,6 @@
         "examples": [
           1,
           8
-        ]
-      }
-    ]
-  },
-  "miedos|miedos": {
-    "wiktionary-auto": [
-      {
-        "sense": "345",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -135742,25 +134095,6 @@
           6,
           7,
           8
-        ]
-      }
-    ]
-  },
-  "muchísimas|muchísimas": {
-    "wiktionary-auto": [
-      {
-        "sense": "b3e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -136299,25 +134633,6 @@
     "keyword": [
       {
         "sense": "636",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "odiaría|odiaría": {
-    "wiktionary-auto": [
-      {
-        "sense": "c93",
         "examples": [
           0,
           1,
@@ -136908,25 +135223,6 @@
       }
     ]
   },
-  "patadas|patadas": {
-    "wiktionary-auto": [
-      {
-        "sense": "98d",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "pausa|pausa": {
     "wiktionary-auto": [
       {
@@ -137078,25 +135374,6 @@
           3,
           4,
           6,
-          9
-        ]
-      }
-    ]
-  },
-  "pequeñín|pequeñín": {
-    "wiktionary-auto": [
-      {
-        "sense": "879",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -140019,25 +138296,6 @@
       }
     ]
   },
-  "sorprendida|sorprendida": {
-    "wiktionary-auto": [
-      {
-        "sense": "d48",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "sospecha|sospecha": {
     "keyword": [
       {
@@ -140442,25 +138700,6 @@
         "examples": [
           0,
           2
-        ]
-      }
-    ]
-  },
-  "superhéroes|superhéroes": {
-    "wiktionary-auto": [
-      {
-        "sense": "b7f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -141547,25 +139786,6 @@
       }
     ]
   },
-  "venecia|venecia": {
-    "wiktionary-auto": [
-      {
-        "sense": "772",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "vengar|vengar": {
     "wiktionary-auto": [
       {
@@ -141624,25 +139844,6 @@
     "keyword": [
       {
         "sense": "a6c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "vestida|vestida": {
-    "wiktionary-auto": [
-      {
-        "sense": "7d8",
         "examples": [
           0,
           1,
@@ -141815,25 +140016,6 @@
         "sense": "26d",
         "examples": [
           8
-        ]
-      }
-    ]
-  },
-  "vitaminas|vitaminas": {
-    "wiktionary-auto": [
-      {
-        "sense": "7ec",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -142069,12 +140251,6 @@
   "ésas|esa": {
     "keyword": [
       {
-        "sense": "b90",
-        "examples": [
-          9
-        ]
-      },
-      {
         "sense": "601",
         "examples": [
           0,
@@ -142092,12 +140268,6 @@
   },
   "ésos|ese": {
     "keyword": [
-      {
-        "sense": "510",
-        "examples": [
-          0
-        ]
-      },
       {
         "sense": "f53",
         "examples": [
@@ -142199,6 +140369,23 @@
     ]
   },
   "abordo|abordo": {
+    "wiktionary-auto": [
+      {
+        "sense": "8d3",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "keyword": [
       {
         "sense": "9ab",
@@ -142765,25 +140952,6 @@
           4,
           5,
           6,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "alaska|alaska": {
-    "wiktionary-auto": [
-      {
-        "sense": "968",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -143437,25 +141605,6 @@
           0,
           2,
           3,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "arabia|arabia": {
-    "wiktionary-auto": [
-      {
-        "sense": "d2e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
           6,
           7,
           8,
@@ -144655,12 +142804,6 @@
           8,
           9
         ]
-      },
-      {
-        "sense": "5c0",
-        "examples": [
-          2
-        ]
       }
     ]
   },
@@ -144957,25 +143100,6 @@
       {
         "sense": "1bb",
         "examples": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "cancion|cancion": {
-    "wiktionary-auto": [
-      {
-        "sense": "4ac",
-        "examples": [
-          0,
           1,
           2,
           3,
@@ -145430,7 +143554,7 @@
       }
     ]
   },
-  "ciegas|ciego": {
+  "ciegas|ciegas": {
     "keyword": [
       {
         "sense": "84c",
@@ -145709,25 +143833,6 @@
           1,
           2,
           4,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "colombia|colombia": {
-    "wiktionary-auto": [
-      {
-        "sense": "e85",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
           6,
           7,
           8,
@@ -148975,25 +147080,6 @@
       }
     ]
   },
-  "estomago|estomago": {
-    "wiktionary-auto": [
-      {
-        "sense": "1b6",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "estrecho|estrecho": {
     "keyword": [
       {
@@ -149126,6 +147212,16 @@
     ]
   },
   "explicado|explicado": {
+    "keyword": [
+      {
+        "sense": "6a6",
+        "examples": [
+          1,
+          4,
+          9
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "507",
@@ -149247,25 +147343,6 @@
           4,
           6,
           7,
-          9
-        ]
-      }
-    ]
-  },
-  "extranjera|extranjera": {
-    "wiktionary-auto": [
-      {
-        "sense": "3b1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -149889,6 +147966,20 @@
     ]
   },
   "fé|fé": {
+    "keyword": [
+      {
+        "sense": "920",
+        "examples": [
+          0,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "91f",
@@ -150401,25 +148492,6 @@
     "keyword": [
       {
         "sense": "385",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "heroe|heroe": {
-    "wiktionary-auto": [
-      {
-        "sense": "0e7",
         "examples": [
           0,
           1,
@@ -150961,7 +149033,7 @@
       }
     ]
   },
-  "ingles|ingle": {
+  "ingles|ingles": {
     "keyword": [
       {
         "sense": "d76",
@@ -151298,25 +149370,6 @@
           4,
           5,
           6,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "islandia|islandia": {
-    "wiktionary-auto": [
-      {
-        "sense": "637",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -152283,25 +150336,6 @@
       }
     ]
   },
-  "masajes|masajes": {
-    "wiktionary-auto": [
-      {
-        "sense": "29c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "masas|masa": {
     "keyword": [
       {
@@ -152522,25 +150556,6 @@
       }
     ]
   },
-  "menciona|menciona": {
-    "wiktionary-auto": [
-      {
-        "sense": "1bc",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "mencionaste|mencionar": {
     "keyword": [
       {
@@ -152551,25 +150566,6 @@
           6,
           7,
           8
-        ]
-      }
-    ]
-  },
-  "mencionaste|mencionaste": {
-    "wiktionary-auto": [
-      {
-        "sense": "564",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -153242,25 +151238,6 @@
       }
     ]
   },
-  "norteamérica|norteamérica": {
-    "wiktionary-auto": [
-      {
-        "sense": "fc1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "noventa|noventa": {
     "wiktionary-auto": [
       {
@@ -153605,7 +151582,7 @@
       }
     ]
   },
-  "ordené|ordenar": {
+  "ordené|ordené": {
     "keyword": [
       {
         "sense": "e34",
@@ -154187,6 +152164,20 @@
     ]
   },
   "perdonado|perdonado": {
+    "keyword": [
+      {
+        "sense": "be1",
+        "examples": [
+          3
+        ]
+      },
+      {
+        "sense": "1a1",
+        "examples": [
+          8
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "cfd",
@@ -155296,25 +153287,6 @@
       }
     ]
   },
-  "pulgadas|pulgadas": {
-    "wiktionary-auto": [
-      {
-        "sense": "928",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "pulgas|pulga": {
     "keyword": [
       {
@@ -155764,25 +153736,6 @@
         "sense": "95a",
         "examples": [
           5,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "refugiados|refugiados": {
-    "wiktionary-auto": [
-      {
-        "sense": "8e2",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -156626,25 +154579,6 @@
     "keyword": [
       {
         "sense": "c49",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "saudita|saudita": {
-    "wiktionary-auto": [
-      {
-        "sense": "065",
         "examples": [
           0,
           1,
@@ -157636,25 +155570,6 @@
       }
     ]
   },
-  "tailandia|tailandia": {
-    "wiktionary-auto": [
-      {
-        "sense": "441",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "talla|talla": {
     "keyword": [
       {
@@ -157700,25 +155615,6 @@
         "examples": [
           1,
           4
-        ]
-      }
-    ]
-  },
-  "taxis|taxis": {
-    "wiktionary-auto": [
-      {
-        "sense": "791",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -157968,6 +155864,13 @@
   "tinieblas|tinieblas": {
     "keyword": [
       {
+        "sense": "198",
+        "examples": [
+          5,
+          6
+        ]
+      },
+      {
         "sense": "aa3",
         "examples": [
           1,
@@ -158118,25 +156021,6 @@
           1,
           2,
           5,
-          9
-        ]
-      }
-    ]
-  },
-  "transilvania|transilvania": {
-    "wiktionary-auto": [
-      {
-        "sense": "f00",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -158661,6 +156545,22 @@
     ]
   },
   "vigilado|vigilado": {
+    "keyword": [
+      {
+        "sense": "b5a",
+        "examples": [
+          9
+        ]
+      },
+      {
+        "sense": "7e0",
+        "examples": [
+          2,
+          5,
+          8
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "0f3",
@@ -158773,12 +156673,6 @@
           0,
           1,
           3
-        ]
-      },
-      {
-        "sense": "b3d",
-        "examples": [
-          7
         ]
       }
     ]
@@ -159038,6 +156932,19 @@
     ]
   },
   "yoyo|yoyo": {
+    "keyword": [
+      {
+        "sense": "6ce",
+        "examples": [
+          0,
+          2,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
     "wiktionary-auto": [
       {
         "sense": "e53",
@@ -159194,12 +157101,18 @@
       }
     ]
   },
-  "comidas|comida": {
+  "comidas|comidas": {
     "keyword": [
       {
         "sense": "e2a",
         "examples": [
           1
+        ]
+      },
+      {
+        "sense": "39b",
+        "examples": [
+          2
         ]
       }
     ]
@@ -159515,25 +157428,6 @@
       }
     ]
   },
-  "mujeres|mujeres": {
-    "wiktionary-auto": [
-      {
-        "sense": "678",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "muchachos|muchachos": {
     "wiktionary-auto": [
       {
@@ -159589,25 +157483,6 @@
         "examples": [
           2,
           3,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "sale|sale": {
-    "wiktionary-auto": [
-      {
-        "sense": "3af",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
           5,
           6,
           7,
@@ -159751,25 +157626,6 @@
       }
     ]
   },
-  "trabaja|trabaja": {
-    "wiktionary-auto": [
-      {
-        "sense": "0ee",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "tome|tomar": {
     "keyword": [
       {
@@ -159779,25 +157635,6 @@
           1,
           5,
           8
-        ]
-      }
-    ]
-  },
-  "tome|tome": {
-    "wiktionary-auto": [
-      {
-        "sense": "890",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -159862,25 +157699,6 @@
       {
         "sense": "fd3",
         "examples": [
-          9
-        ]
-      }
-    ]
-  },
-  "santa|santa": {
-    "wiktionary-auto": [
-      {
-        "sense": "54d",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -160000,25 +157818,6 @@
       }
     ]
   },
-  "planes|planes": {
-    "wiktionary-auto": [
-      {
-        "sense": "dcf",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "solos|solo": {
     "keyword": [
       {
@@ -160057,25 +157856,6 @@
           3,
           4,
           5
-        ]
-      }
-    ]
-  },
-  "perdona|perdona": {
-    "wiktionary-auto": [
-      {
-        "sense": "62d",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -160361,25 +158141,6 @@
       }
     ]
   },
-  "date|date": {
-    "wiktionary-auto": [
-      {
-        "sense": "110",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "huellas|huella": {
     "keyword": [
       {
@@ -160387,25 +158148,6 @@
         "examples": [
           0,
           1,
-          9
-        ]
-      }
-    ]
-  },
-  "huellas|huellas": {
-    "wiktionary-auto": [
-      {
-        "sense": "490",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -160460,25 +158202,6 @@
       }
     ]
   },
-  "historias|historias": {
-    "wiktionary-auto": [
-      {
-        "sense": "ac5",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "menudo|menudo": {
     "keyword": [
       {
@@ -160527,16 +158250,6 @@
       }
     ]
   },
-  "dejado|dejar": {
-    "keyword": [
-      {
-        "sense": "f47",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
   "dejado|dejado": {
     "wiktionary-auto": [
       {
@@ -160552,6 +158265,16 @@
           7,
           8,
           9
+        ]
+      }
+    ]
+  },
+  "dejado|dejar": {
+    "keyword": [
+      {
+        "sense": "f47",
+        "examples": [
+          0
         ]
       }
     ]
@@ -161062,25 +158785,6 @@
       }
     ]
   },
-  "héroes|héroes": {
-    "wiktionary-auto": [
-      {
-        "sense": "25b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "jersey|jersey": {
     "wiktionary-auto": [
       {
@@ -161135,25 +158839,6 @@
       }
     ]
   },
-  "rota|rota": {
-    "wiktionary-auto": [
-      {
-        "sense": "d68",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "salve|salvar": {
     "keyword": [
       {
@@ -161163,25 +158848,6 @@
           4,
           5,
           6,
-          9
-        ]
-      }
-    ]
-  },
-  "salve|salve": {
-    "wiktionary-auto": [
-      {
-        "sense": "261",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -161411,25 +159077,6 @@
         "sense": "883",
         "examples": [
           2
-        ]
-      }
-    ]
-  },
-  "vende|vende": {
-    "wiktionary-auto": [
-      {
-        "sense": "633",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -161671,25 +159318,6 @@
           2,
           3,
           7,
-          9
-        ]
-      }
-    ]
-  },
-  "dude|dude": {
-    "wiktionary-auto": [
-      {
-        "sense": "501",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }
@@ -162196,25 +159824,6 @@
       }
     ]
   },
-  "cuartos|cuartos": {
-    "wiktionary-auto": [
-      {
-        "sense": "af1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "destruyó|destruyó": {
     "wiktionary-auto": [
       {
@@ -162241,25 +159850,6 @@
         "examples": [
           3,
           5
-        ]
-      }
-    ]
-  },
-  "jefes|jefes": {
-    "wiktionary-auto": [
-      {
-        "sense": "b89",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -162300,25 +159890,6 @@
       {
         "sense": "15e",
         "examples": [
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "persiguiendo|persiguiendo": {
-    "wiktionary-auto": [
-      {
-        "sense": "ba4",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -162598,25 +160169,6 @@
     "keyword": [
       {
         "sense": "73a",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "pais|pais": {
-    "wiktionary-auto": [
-      {
-        "sense": "d02",
         "examples": [
           0,
           1,
@@ -163385,25 +160937,6 @@
       }
     ]
   },
-  "prepare|prepare": {
-    "wiktionary-auto": [
-      {
-        "sense": "d92",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "supremo|supremo": {
     "wiktionary-auto": [
       {
@@ -163523,25 +161056,6 @@
       }
     ]
   },
-  "cuevas|cuevas": {
-    "wiktionary-auto": [
-      {
-        "sense": "6df",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "depto|departamento": {
     "keyword": [
       {
@@ -163557,25 +161071,6 @@
         "sense": "1fb",
         "examples": [
           4
-        ]
-      }
-    ]
-  },
-  "depto|depto": {
-    "wiktionary-auto": [
-      {
-        "sense": "95c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -163722,25 +161217,6 @@
       }
     ]
   },
-  "misiones|misiones": {
-    "wiktionary-auto": [
-      {
-        "sense": "bed",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "moscas|mosca": {
     "keyword": [
       {
@@ -163748,25 +161224,6 @@
         "examples": [
           1,
           2
-        ]
-      }
-    ]
-  },
-  "moscas|moscas": {
-    "wiktionary-auto": [
-      {
-        "sense": "b59",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -163907,25 +161364,6 @@
       }
     ]
   },
-  "record|record": {
-    "wiktionary-auto": [
-      {
-        "sense": "940",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "sientate|sentar": {
     "keyword": [
       {
@@ -164026,25 +161464,6 @@
       }
     ]
   },
-  "vinos|vinos": {
-    "wiktionary-auto": [
-      {
-        "sense": "f31",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "alucinaciones|alucinaciones": {
     "wiktionary-auto": [
       {
@@ -164074,25 +161493,6 @@
           3,
           4,
           5,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "amen|amen": {
-    "wiktionary-auto": [
-      {
-        "sense": "59f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -164137,47 +161537,12 @@
       }
     ]
   },
-  "barbara|Barbara": {
-    "keyword": [
-      {
-        "sense": "49a",
-        "examples": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "barbara|bárbaro": {
     "keyword": [
       {
         "sense": "d0c",
         "examples": [
           0
-        ]
-      }
-    ]
-  },
-  "barbara|barbara": {
-    "wiktionary-auto": [
-      {
-        "sense": "ef7",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -164229,25 +161594,6 @@
       }
     ]
   },
-  "carteles|carteles": {
-    "wiktionary-auto": [
-      {
-        "sense": "3a9",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "cartuchos|cartucho": {
     "keyword": [
       {
@@ -164265,25 +161611,6 @@
         "examples": [
           0,
           1
-        ]
-      }
-    ]
-  },
-  "cayo|cayo": {
-    "wiktionary-auto": [
-      {
-        "sense": "cb8",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -164461,25 +161788,6 @@
           4,
           5,
           6,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "define|define": {
-    "wiktionary-auto": [
-      {
-        "sense": "2d3",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
           8,
           9
         ]
@@ -164766,25 +162074,6 @@
       }
     ]
   },
-  "ringo|ringo": {
-    "wiktionary-auto": [
-      {
-        "sense": "1e1",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "rob|rob": {
     "wiktionary-auto": [
       {
@@ -164983,25 +162272,6 @@
       }
     ]
   },
-  "bretaña|bretaña": {
-    "wiktionary-auto": [
-      {
-        "sense": "a89",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "cabras|cabras": {
     "keyword": [
       {
@@ -165161,25 +162431,6 @@
       }
     ]
   },
-  "cómics|cómics": {
-    "wiktionary-auto": [
-      {
-        "sense": "649",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "dare|dar": {
     "keyword": [
       {
@@ -165295,25 +162546,6 @@
       {
         "sense": "d6b",
         "examples": [
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
-  "excusas|excusas": {
-    "wiktionary-auto": [
-      {
-        "sense": "de2",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
           6,
           7,
           8,
@@ -165468,25 +162700,6 @@
       }
     ]
   },
-  "metrópolis|metrópolis": {
-    "wiktionary-auto": [
-      {
-        "sense": "75c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "milagros|milagros": {
     "wiktionary-auto": [
       {
@@ -165569,25 +162782,6 @@
         "examples": [
           0,
           5
-        ]
-      }
-    ]
-  },
-  "preparé|preparé": {
-    "wiktionary-auto": [
-      {
-        "sense": "357",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -165782,25 +162976,6 @@
         "sense": "a31",
         "examples": [
           5
-        ]
-      }
-    ]
-  },
-  "besó|besó": {
-    "wiktionary-auto": [
-      {
-        "sense": "b47",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -166101,50 +163276,12 @@
       }
     ]
   },
-  "hale|hale": {
-    "wiktionary-auto": [
-      {
-        "sense": "e6e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "imagine|imaginar": {
     "keyword": [
       {
         "sense": "7b8",
         "examples": [
           0
-        ]
-      }
-    ]
-  },
-  "imagine|imagine": {
-    "wiktionary-auto": [
-      {
-        "sense": "172",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -166451,25 +163588,6 @@
       }
     ]
   },
-  "opera|opera": {
-    "wiktionary-auto": [
-      {
-        "sense": "f0c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      }
-    ]
-  },
   "puestas|puesto": {
     "keyword": [
       {
@@ -166488,25 +163606,6 @@
         "examples": [
           3,
           7
-        ]
-      }
-    ]
-  },
-  "ramos|ramos": {
-    "wiktionary-auto": [
-      {
-        "sense": "31b",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -166595,25 +163694,6 @@
           4,
           5,
           6
-        ]
-      }
-    ]
-  },
-  "traido|traido": {
-    "wiktionary-auto": [
-      {
-        "sense": "96e",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
         ]
       }
     ]
@@ -166841,7 +163921,7 @@
       }
     ]
   },
-  "amiguito|amigo": {
+  "amiguito|amiguito": {
     "keyword": [
       {
         "sense": "2e4",

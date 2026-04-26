@@ -438,6 +438,11 @@ def main():
                         help="Source label for reporting with --sense-menu-file")
     parser.add_argument("--include-clitics", action="store_true",
                         help="Include clitic-merge words (skipped by default)")
+    parser.add_argument("--word", action="append", default=[],
+                        help="Only process specific surface words (repeatable). "
+                             "Useful with --force to re-classify a small set "
+                             "without disturbing existing assignments for the "
+                             "rest of the inventory.")
     parser.add_argument("--skip-classification", action="store_true",
                         help="Skip multi-sense classification; only run gap-fill.")
     parser.add_argument("--skip-gap-fill", action="store_true",
@@ -717,12 +722,21 @@ def main():
             print("  WARNING: word_routing.json not found — run step 4 first")
             sys.exit(1)
 
-    print("\nProcessing %d words..." % len(inventory))
+    target_words = set(args.word) if args.word else None
+    if target_words is not None:
+        print("\n--word mode: processing only %d targeted words: %s"
+              % (len(target_words), sorted(target_words)))
+    else:
+        print("\nProcessing %d words..." % len(inventory))
 
     for entry in inventory:
         word = entry["word"]
         lemma = word
         corpus_count = entry.get("corpus_count", 1)
+
+        # --word filter: process only the targeted set when set.
+        if target_words is not None and word not in target_words:
+            continue
 
         # Skip words flagged by step 4 (preferred) or master flags (fallback)
         if word in skip_set:

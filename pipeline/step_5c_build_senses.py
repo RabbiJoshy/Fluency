@@ -57,7 +57,10 @@ STEP_VERSION_NOTES = {
 }
 
 # Bumped whenever the shape of the pickled load_wiktionary cache changes.
-CACHE_SCHEMA_VERSION = 4
+# v5: drop accent-stripping fallback in index + lookup. Wiktionary entries are
+#     accent-authoritative (à and a, où and ou are distinct headwords with
+#     distinct senses); the old fallback merged them and polluted both menus.
+CACHE_SCHEMA_VERSION = 5
 
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
@@ -477,9 +480,9 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
                             # we want to collect senses from BOTH bases rather
                             # than silently picking whichever Kaikki lists last.
                             _append_redirect(redirects, word, base)
-                            norm = strip_accents(word)
-                            if norm != word:
-                                _append_redirect(redirects, norm, base)
+                            # NOTE: previously also added a stripped-accent
+                            # alias (esta → estar via está → estar). Dropped
+                            # in cache v5 — accent variants are distinct words.
                             # Track reflexive form-of for post-processing
                             stags = set(s.get("tags", []))
                             links = s.get("links", [])
@@ -492,10 +495,10 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
 
             entry = {"pos": mapped_pos, "senses": real_senses}
             index[word].append(entry)
-            # Also index by accent-stripped form for fallback lookups
-            norm = strip_accents(word)
-            if norm != word:
-                index[norm].append(entry)
+            # NOTE: previously also indexed under strip_accents(word) so
+            # accentless lookups would find accented headwords. Dropped in
+            # cache v5 — that fallback merged distinct words (à vs a, où vs
+            # ou) and polluted both menus with each other's senses.
 
     # Post-process: create real index entries for reflexive form-of words
     # whose base verb has reflexive-tagged senses (tier 3).
@@ -521,11 +524,8 @@ def load_wiktionary(path: Path, use_cache: bool = True) -> dict:
             refl_entry = {"pos": pos, "senses": refl_senses,
                           "_reflexive_of": base_verb}
             index[refl_word].append(refl_entry)
-            norm = strip_accents(refl_word)
-            if norm != refl_word:
-                index[norm].append(refl_entry)
+            # NOTE: dropped strip_accents alias in cache v5 (see above).
             redirects.pop(refl_word, None)
-            redirects.pop(strip_accents(refl_word), None)
             refl_created += 1
 
     print(f"  {total} total entries, {skipped} skipped (no real senses)")
@@ -588,17 +588,26 @@ def lookup_senses(word: str, lemma: str, wikt_index: dict,
                     current = nxt
         return queue
 
-    # Build groups of forms: primary (lemma), secondary (word if different)
-    # We merge results from all matching groups
+    # Build groups of forms: primary (lemma), secondary (word if different).
+    # We merge results from all matching groups.
+    # Cache v5: drop strip_accents fallback — Wiktionary headwords are
+    # accent-authoritative; à and a, où and ou etc. are distinct entries.
     groups = []
-    # Group 1: lemma and its variants
-    lemma_forms = [lemma.lower(), strip_accents(lemma.lower())]
-    lemma_forms = follow_redirects(lemma_forms, redirects, wikt_index)
+    # Group 1: lemma. Only follow form-of redirects when word != lemma (i.e.,
+    # this is a derived/inflected form lookup). For canonical (word == lemma)
+    # lookups, the word IS the canonical form by definition; following a
+    # redirect would conflate homographs where one surface is both a lemma
+    # AND a form-of for another lemma (est = NOM "east" + form-of être;
+    # a = NOM "letter a" + form-of avoir).
+    same_surface = (word.lower() == lemma.lower())
+    lemma_forms = [lemma.lower()]
+    if not same_surface:
+        lemma_forms = follow_redirects(lemma_forms, redirects, wikt_index)
     groups.append(lemma_forms)
-    # Group 2: word form and its variants (if different from lemma)
+    # Group 2: word form (if different from lemma)
     word_has_own_entry = False
-    if word.lower() != lemma.lower():
-        word_forms = [word.lower(), strip_accents(word.lower())]
+    if not same_surface:
+        word_forms = [word.lower()]
         word_forms = follow_redirects(word_forms, redirects, wikt_index)
         groups.append(word_forms)
         # Check if word has a _reflexive_of entry (tier 3 reflexive verb).
