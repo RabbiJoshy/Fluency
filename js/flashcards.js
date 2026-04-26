@@ -1739,7 +1739,7 @@ function updateCard() {
                     : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
                 target.push(`
                 <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 36px;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
+                    <span style="font-size: 12px; color: white; padding: 5px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     ${bodyHTML}
                     ${mweCounter}
                 </div>
@@ -1818,7 +1818,7 @@ function updateCard() {
                 // rows all share a unified POS-column width.
                 // Same min-width philosophy as regular rows (see above): pad
                 // short labels up to 46px, let longer ones (PHRASE etc.) expand.
-                const cyclePillStyle = 'font-size: 10px; padding: 7px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
+                const cyclePillStyle = 'font-size: 12px; padding: 5px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
                 target.push(`
                 <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 28px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
@@ -1845,11 +1845,12 @@ function updateCard() {
                     const firstIdx = groupFirstIdx.get(compKey);
                     if (firstIdx !== idx) return;
                 }
-                const pillStyleBase = 'padding: 7px 8px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
+                const pillStyleBase = 'padding: 5px 9px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
                 // Single POS-pill renderer for both group + singleton: just the
-                // POS label, no percentage (the % now always lives on the right
-                // end of the row, hidden at 100%).
-                const buildPosPillInner = () => `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`;
+                // POS label (no %; the % lives on the right of the row).
+                // Font 12px to match the MWE-expression highlight pill so the
+                // two visually pair as the same typographic tier.
+                const buildPosPillInner = () => `<span style="display: block; font-size: 12px; font-weight: 700; line-height: 1;">${m.pos}</span>`;
                 if (isGrouped) {
                     const members = groupMembers.get(compKey);
                     const pctSumRaw = groupPctSum.get(compKey);
@@ -1903,11 +1904,12 @@ function updateCard() {
                         // Pct cell — always col 3, hidden at 100%. Reuses the
                         // varying cell's bg/border so the % highlights with
                         // its sense when selected (visually pairs them).
-                        // Right padding 2px so the % text ends ~4px from the
-                        // row's outer right edge (row padding 2px + cell pad
-                        // 2px), matching the singleton pct's right: 4px.
+                        // Horizontal padding 6px both sides for a more
+                        // substantial highlight box; right pad + row pad
+                        // (6 + 2 = 8px) puts the % text ~8px from the row's
+                        // outer right edge — matches singleton pct's right:8px.
                         const pctCell = memberPct < 100
-                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell.replace('padding: 2px 6px', 'padding: 2px 2px 2px 4px')} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
+                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell.replace('padding: 2px 6px', 'padding: 2px 6px')} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
                             : '';
                         // Varying cell — col 2 (trans-axis: ctx) or col 1 (ctx-axis: trans).
                         let varyingHtml;
@@ -1971,9 +1973,10 @@ function updateCard() {
                     // Pct pinned to the row's right edge (not body's), so it
                     // hugs the row outline rather than sitting inside body
                     // padding. pointer-events:none lets the row's selectMeaning
-                    // still fire through.
+                    // still fire through. right:8px matches the group pct's
+                    // effective right offset for vertical alignment.
                     const pctTail = pctVal < 100
-                        ? `<span style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
+                        ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                         : '';
                     target.push(`
                     <div class="meaning-row meaning-row-regular" style="position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 28px;" onclick="selectMeaning(${idx})">
