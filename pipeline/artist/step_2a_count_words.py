@@ -979,9 +979,10 @@ def _detect_clitic_patterns(ng_counts, ng_songs, matched_keys, skip_mwes,
             continue
         if len(members) < 2:
             continue
-        top_share = members.most_common(1)[0][1] / total
-        if top_share > 0.80:
-            continue
+        # No top-variant cap. Patterns where one form dominates (e.g.
+        # "no te hagas" 24 / "no me hagas" 3 / "no lo hagas" 2) are still
+        # pedagogically useful — the dominant form anchors the template
+        # and the smaller variants reveal the slot's flexibility.
         # Skip if every variant is already a curated/PMI/wiktionary MWE
         # (the family doesn't add information beyond those entries).
         all_variants_known = all(
@@ -991,7 +992,11 @@ def _detect_clitic_patterns(ng_counts, ng_songs, matched_keys, skip_mwes,
         if all_variants_known:
             continue
         patterns.append({
-            "pattern": key,
+            # Use ``expression`` (not ``pattern``) so step_8b can iterate this
+            # bucket alongside ``mwes`` / ``pmi_detected`` with one schema.
+            # The placeholder string is the user-facing display ("no [PRON] hagas")
+            # and the variants dict carries the surface forms that collapsed.
+            "expression": key,
             "count": total,
             "num_variants": len(members),
             "num_songs": len(family_songs[key]),

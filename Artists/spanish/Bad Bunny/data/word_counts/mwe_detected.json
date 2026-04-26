@@ -1257,7 +1257,7 @@
   ],
   "patterns": [
     {
-      "pattern": "[PRON] voy a",
+      "expression": "[PRON] voy a",
       "count": 186,
       "num_variants": 8,
       "num_songs": 108,
@@ -1273,7 +1273,7 @@
       }
     },
     {
-      "pattern": "que yo [PRON]",
+      "expression": "que yo [PRON]",
       "count": 82,
       "num_variants": 8,
       "num_songs": 60,
@@ -1289,7 +1289,17 @@
       }
     },
     {
-      "pattern": "[PRON] va a",
+      "expression": "todo [PRON] que",
+      "count": 72,
+      "num_variants": 2,
+      "num_songs": 57,
+      "variants": {
+        "todo lo que": 68,
+        "todo los que": 4
+      }
+    },
+    {
+      "expression": "[PRON] va a",
       "count": 69,
       "num_variants": 9,
       "num_songs": 56,
@@ -1306,7 +1316,7 @@
       }
     },
     {
-      "pattern": "yo no [PRON]",
+      "expression": "yo no [PRON]",
       "count": 66,
       "num_variants": 9,
       "num_songs": 54,
@@ -1323,7 +1333,17 @@
       }
     },
     {
-      "pattern": "y yo [PRON]",
+      "expression": "a mí [PRON]",
+      "count": 58,
+      "num_variants": 2,
+      "num_songs": 39,
+      "variants": {
+        "a mí me": 54,
+        "a mí se": 4
+      }
+    },
+    {
+      "expression": "y yo [PRON]",
       "count": 45,
       "num_variants": 8,
       "num_songs": 30,
@@ -1339,7 +1359,7 @@
       }
     },
     {
-      "pattern": "[PRON] vas a",
+      "expression": "[PRON] vas a",
       "count": 44,
       "num_variants": 6,
       "num_songs": 28,
@@ -1353,7 +1373,28 @@
       }
     },
     {
-      "pattern": "pero no [PRON]",
+      "expression": "a ti [PRON]",
+      "count": 37,
+      "num_variants": 2,
+      "num_songs": 32,
+      "variants": {
+        "a ti te": 35,
+        "a ti se": 2
+      }
+    },
+    {
+      "expression": "[PRON] que tú",
+      "count": 37,
+      "num_variants": 3,
+      "num_songs": 32,
+      "variants": {
+        "lo que tú": 35,
+        "la que tú": 1,
+        "los que tú": 1
+      }
+    },
+    {
+      "expression": "pero no [PRON]",
       "count": 36,
       "num_variants": 7,
       "num_songs": 31,
@@ -1368,7 +1409,7 @@
       }
     },
     {
-      "pattern": "que tú [PRON]",
+      "expression": "que tú [PRON]",
       "count": 35,
       "num_variants": 6,
       "num_songs": 30,
@@ -1382,7 +1423,7 @@
       }
     },
     {
-      "pattern": "[PRON] que yo",
+      "expression": "[PRON] que yo",
       "count": 34,
       "num_variants": 3,
       "num_songs": 29,
@@ -1393,7 +1434,7 @@
       }
     },
     {
-      "pattern": "que [PRON] dé",
+      "expression": "que [PRON] dé",
       "count": 32,
       "num_variants": 4,
       "num_songs": 14,
@@ -1405,7 +1446,7 @@
       }
     },
     {
-      "pattern": "sé que [PRON]",
+      "expression": "sé que [PRON]",
       "count": 31,
       "num_variants": 7,
       "num_songs": 22,
@@ -1420,7 +1461,18 @@
       }
     },
     {
-      "pattern": "que [PRON] gusta",
+      "expression": "[PRON] juro que",
+      "count": 31,
+      "num_variants": 3,
+      "num_songs": 27,
+      "variants": {
+        "te juro que": 25,
+        "lo juro que": 3,
+        "les juro que": 3
+      }
+    },
+    {
+      "expression": "que [PRON] gusta",
       "count": 31,
       "num_variants": 4,
       "num_songs": 23,
@@ -1432,7 +1484,7 @@
       }
     },
     {
-      "pattern": "tú no [PRON]",
+      "expression": "tú no [PRON]",
       "count": 30,
       "num_variants": 5,
       "num_songs": 24,
@@ -1445,7 +1497,18 @@
       }
     },
     {
-      "pattern": "si tú [PRON]",
+      "expression": "no [PRON] hagas",
+      "count": 29,
+      "num_variants": 3,
+      "num_songs": 17,
+      "variants": {
+        "no te hagas": 24,
+        "no me hagas": 3,
+        "no lo hagas": 2
+      }
+    },
+    {
+      "expression": "si tú [PRON]",
       "count": 28,
       "num_variants": 4,
       "num_songs": 19,
@@ -1457,7 +1520,7 @@
       }
     },
     {
-      "pattern": "no [PRON] voy",
+      "expression": "no [PRON] voy",
       "count": 27,
       "num_variants": 6,
       "num_songs": 23,
@@ -1471,7 +1534,7 @@
       }
     },
     {
-      "pattern": "no [PRON] voy a",
+      "expression": "no [PRON] voy a",
       "count": 27,
       "num_variants": 6,
       "num_songs": 23,
@@ -1485,7 +1548,7 @@
       }
     },
     {
-      "pattern": "hasta que [PRON]",
+      "expression": "hasta que [PRON]",
       "count": 26,
       "num_variants": 6,
       "num_songs": 23,
@@ -1499,7 +1562,7 @@
       }
     },
     {
-      "pattern": "[PRON] voy a dar",
+      "expression": "[PRON] voy a dar",
       "count": 26,
       "num_variants": 5,
       "num_songs": 17,
@@ -1512,7 +1575,7 @@
       }
     },
     {
-      "pattern": "[PRON] vamos a",
+      "expression": "[PRON] vamos a",
       "count": 24,
       "num_variants": 6,
       "num_songs": 18,
@@ -1526,7 +1589,7 @@
       }
     },
     {
-      "pattern": "después de [PRON]",
+      "expression": "después de [PRON]",
       "count": 24,
       "num_variants": 4,
       "num_songs": 22,
@@ -1538,7 +1601,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] voy",
+      "expression": "yo [PRON] voy",
       "count": 24,
       "num_variants": 6,
       "num_songs": 17,
@@ -1552,7 +1615,7 @@
       }
     },
     {
-      "pattern": "quiere que [PRON]",
+      "expression": "quiere que [PRON]",
       "count": 24,
       "num_variants": 5,
       "num_songs": 20,
@@ -1565,7 +1628,7 @@
       }
     },
     {
-      "pattern": "ya yo [PRON]",
+      "expression": "ya yo [PRON]",
       "count": 23,
       "num_variants": 5,
       "num_songs": 16,
@@ -1578,7 +1641,7 @@
       }
     },
     {
-      "pattern": "quiero que [PRON]",
+      "expression": "quiero que [PRON]",
       "count": 21,
       "num_variants": 5,
       "num_songs": 16,
@@ -1591,7 +1654,17 @@
       }
     },
     {
-      "pattern": "a veces [PRON]",
+      "expression": "que [PRON] joda",
+      "count": 21,
+      "num_variants": 2,
+      "num_songs": 9,
+      "variants": {
+        "que se joda": 20,
+        "que me joda": 1
+      }
+    },
+    {
+      "expression": "a veces [PRON]",
       "count": 20,
       "num_variants": 5,
       "num_songs": 18,
@@ -1604,7 +1677,7 @@
       }
     },
     {
-      "pattern": "desde que [PRON]",
+      "expression": "desde que [PRON]",
       "count": 19,
       "num_variants": 5,
       "num_songs": 17,
@@ -1617,7 +1690,17 @@
       }
     },
     {
-      "pattern": "yo [PRON] voy a",
+      "expression": "yo soy [PRON]",
+      "count": 19,
+      "num_variants": 2,
+      "num_songs": 14,
+      "variants": {
+        "yo soy la": 16,
+        "yo soy lo": 3
+      }
+    },
+    {
+      "expression": "yo [PRON] voy a",
       "count": 19,
       "num_variants": 6,
       "num_songs": 15,
@@ -1631,7 +1714,7 @@
       }
     },
     {
-      "pattern": "cuando yo [PRON]",
+      "expression": "cuando yo [PRON]",
       "count": 17,
       "num_variants": 4,
       "num_songs": 15,
@@ -1643,7 +1726,17 @@
       }
     },
     {
-      "pattern": "[PRON] voy a hacer",
+      "expression": "[PRON] dice que",
+      "count": 17,
+      "num_variants": 2,
+      "num_songs": 15,
+      "variants": {
+        "me dice que": 16,
+        "te dice que": 1
+      }
+    },
+    {
+      "expression": "[PRON] voy a hacer",
       "count": 17,
       "num_variants": 5,
       "num_songs": 15,
@@ -1656,7 +1749,7 @@
       }
     },
     {
-      "pattern": "[PRON] vuelvo a",
+      "expression": "[PRON] vuelvo a",
       "count": 16,
       "num_variants": 3,
       "num_songs": 10,
@@ -1667,7 +1760,17 @@
       }
     },
     {
-      "pattern": "tú [PRON] vas",
+      "expression": "[PRON] compré un",
+      "count": 16,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "me compré un": 14,
+        "te compré un": 2
+      }
+    },
+    {
+      "expression": "tú [PRON] vas",
       "count": 16,
       "num_variants": 4,
       "num_songs": 15,
@@ -1679,7 +1782,18 @@
       }
     },
     {
-      "pattern": "por qué [PRON]",
+      "expression": "yo [PRON] quiero",
+      "count": 16,
+      "num_variants": 3,
+      "num_songs": 15,
+      "variants": {
+        "yo te quiero": 13,
+        "yo lo quiero": 2,
+        "yo la quiero": 1
+      }
+    },
+    {
+      "expression": "por qué [PRON]",
       "count": 15,
       "num_variants": 7,
       "num_songs": 12,
@@ -1694,7 +1808,7 @@
       }
     },
     {
-      "pattern": "ando con [PRON]",
+      "expression": "ando con [PRON]",
       "count": 15,
       "num_variants": 4,
       "num_songs": 14,
@@ -1706,7 +1820,17 @@
       }
     },
     {
-      "pattern": "yo sé que [PRON]",
+      "expression": "[PRON] dijo que",
+      "count": 15,
+      "num_variants": 2,
+      "num_songs": 14,
+      "variants": {
+        "me dijo que": 14,
+        "te dijo que": 1
+      }
+    },
+    {
+      "expression": "yo sé que [PRON]",
       "count": 15,
       "num_variants": 6,
       "num_songs": 13,
@@ -1720,7 +1844,7 @@
       }
     },
     {
-      "pattern": "antes que [PRON]",
+      "expression": "antes que [PRON]",
       "count": 14,
       "num_variants": 4,
       "num_songs": 11,
@@ -1732,7 +1856,7 @@
       }
     },
     {
-      "pattern": "no [PRON] llames",
+      "expression": "no [PRON] llames",
       "count": 14,
       "num_variants": 5,
       "num_songs": 6,
@@ -1745,7 +1869,7 @@
       }
     },
     {
-      "pattern": "que nadie [PRON]",
+      "expression": "que nadie [PRON]",
       "count": 14,
       "num_variants": 7,
       "num_songs": 14,
@@ -1760,7 +1884,7 @@
       }
     },
     {
-      "pattern": "yo nunca [PRON]",
+      "expression": "yo nunca [PRON]",
       "count": 14,
       "num_variants": 7,
       "num_songs": 13,
@@ -1775,7 +1899,17 @@
       }
     },
     {
-      "pattern": "que [PRON] vaya",
+      "expression": "[PRON] que quiero",
+      "count": 14,
+      "num_variants": 2,
+      "num_songs": 13,
+      "variants": {
+        "lo que quiero": 13,
+        "la que quiero": 1
+      }
+    },
+    {
+      "expression": "que [PRON] vaya",
       "count": 14,
       "num_variants": 4,
       "num_songs": 6,
@@ -1787,7 +1921,7 @@
       }
     },
     {
-      "pattern": "que [PRON] voy",
+      "expression": "que [PRON] voy",
       "count": 14,
       "num_variants": 6,
       "num_songs": 12,
@@ -1801,7 +1935,18 @@
       }
     },
     {
-      "pattern": "por ti [PRON]",
+      "expression": "no [PRON] importa",
+      "count": 14,
+      "num_variants": 3,
+      "num_songs": 12,
+      "variants": {
+        "no me importa": 12,
+        "no le importa": 1,
+        "no te importa": 1
+      }
+    },
+    {
+      "expression": "por ti [PRON]",
       "count": 14,
       "num_variants": 4,
       "num_songs": 11,
@@ -1813,7 +1958,7 @@
       }
     },
     {
-      "pattern": "[PRON] gusta el",
+      "expression": "[PRON] gusta el",
       "count": 13,
       "num_variants": 4,
       "num_songs": 13,
@@ -1825,7 +1970,7 @@
       }
     },
     {
-      "pattern": "[PRON] iba a",
+      "expression": "[PRON] iba a",
       "count": 13,
       "num_variants": 3,
       "num_songs": 13,
@@ -1836,7 +1981,7 @@
       }
     },
     {
-      "pattern": "tú [PRON] ves",
+      "expression": "tú [PRON] ves",
       "count": 13,
       "num_variants": 3,
       "num_songs": 10,
@@ -1847,7 +1992,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] sé",
+      "expression": "yo [PRON] sé",
       "count": 13,
       "num_variants": 2,
       "num_songs": 8,
@@ -1857,7 +2002,7 @@
       }
     },
     {
-      "pattern": "[PRON] van a",
+      "expression": "[PRON] van a",
       "count": 13,
       "num_variants": 6,
       "num_songs": 10,
@@ -1871,7 +2016,17 @@
       }
     },
     {
-      "pattern": "ti no [PRON]",
+      "expression": "pero en [PRON]",
+      "count": 13,
+      "num_variants": 2,
+      "num_songs": 9,
+      "variants": {
+        "pero en la": 12,
+        "pero en las": 1
+      }
+    },
+    {
+      "expression": "ti no [PRON]",
       "count": 12,
       "num_variants": 2,
       "num_songs": 10,
@@ -1881,7 +2036,7 @@
       }
     },
     {
-      "pattern": "ver si [PRON]",
+      "expression": "ver si [PRON]",
       "count": 12,
       "num_variants": 5,
       "num_songs": 11,
@@ -1894,7 +2049,17 @@
       }
     },
     {
-      "pattern": "sin cojones [PRON]",
+      "expression": "vamos para [PRON]",
+      "count": 12,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "vamos para la": 11,
+        "vamos para los": 1
+      }
+    },
+    {
+      "expression": "sin cojones [PRON]",
       "count": 12,
       "num_variants": 3,
       "num_songs": 9,
@@ -1905,7 +2070,7 @@
       }
     },
     {
-      "pattern": "más que [PRON]",
+      "expression": "más que [PRON]",
       "count": 12,
       "num_variants": 5,
       "num_songs": 11,
@@ -1918,7 +2083,7 @@
       }
     },
     {
-      "pattern": "otra vez [PRON]",
+      "expression": "otra vez [PRON]",
       "count": 12,
       "num_variants": 3,
       "num_songs": 8,
@@ -1929,7 +2094,7 @@
       }
     },
     {
-      "pattern": "si quieres [PRON]",
+      "expression": "si quieres [PRON]",
       "count": 12,
       "num_variants": 4,
       "num_songs": 12,
@@ -1941,7 +2106,7 @@
       }
     },
     {
-      "pattern": "por eso [PRON]",
+      "expression": "por eso [PRON]",
       "count": 12,
       "num_variants": 4,
       "num_songs": 10,
@@ -1953,7 +2118,17 @@
       }
     },
     {
-      "pattern": "no [PRON] va",
+      "expression": "estoy en [PRON]",
+      "count": 12,
+      "num_variants": 2,
+      "num_songs": 11,
+      "variants": {
+        "estoy en la": 11,
+        "estoy en los": 1
+      }
+    },
+    {
+      "expression": "no [PRON] va",
       "count": 12,
       "num_variants": 5,
       "num_songs": 11,
@@ -1966,7 +2141,7 @@
       }
     },
     {
-      "pattern": "no [PRON] gusta",
+      "expression": "no [PRON] gusta",
       "count": 12,
       "num_variants": 3,
       "num_songs": 12,
@@ -1977,7 +2152,7 @@
       }
     },
     {
-      "pattern": "quieres que [PRON]",
+      "expression": "quieres que [PRON]",
       "count": 12,
       "num_variants": 5,
       "num_songs": 12,
@@ -1990,7 +2165,7 @@
       }
     },
     {
-      "pattern": "[PRON] pongo a",
+      "expression": "[PRON] pongo a",
       "count": 12,
       "num_variants": 6,
       "num_songs": 12,
@@ -2004,7 +2179,7 @@
       }
     },
     {
-      "pattern": "fue que [PRON]",
+      "expression": "fue que [PRON]",
       "count": 12,
       "num_variants": 4,
       "num_songs": 6,
@@ -2016,7 +2191,7 @@
       }
     },
     {
-      "pattern": "que [PRON] voy a",
+      "expression": "que [PRON] voy a",
       "count": 12,
       "num_variants": 5,
       "num_songs": 11,
@@ -2029,7 +2204,7 @@
       }
     },
     {
-      "pattern": "en todo [PRON]",
+      "expression": "en todo [PRON]",
       "count": 11,
       "num_variants": 3,
       "num_songs": 10,
@@ -2040,7 +2215,7 @@
       }
     },
     {
-      "pattern": "no [PRON] hace",
+      "expression": "no [PRON] hace",
       "count": 11,
       "num_variants": 3,
       "num_songs": 10,
@@ -2051,7 +2226,7 @@
       }
     },
     {
-      "pattern": "como yo [PRON]",
+      "expression": "como yo [PRON]",
       "count": 11,
       "num_variants": 4,
       "num_songs": 8,
@@ -2063,7 +2238,7 @@
       }
     },
     {
-      "pattern": "[PRON] digo que",
+      "expression": "[PRON] digo que",
       "count": 11,
       "num_variants": 3,
       "num_songs": 9,
@@ -2074,7 +2249,18 @@
       }
     },
     {
-      "pattern": "yo que [PRON]",
+      "expression": "no [PRON] busques",
+      "count": 11,
+      "num_variants": 3,
+      "num_songs": 7,
+      "variants": {
+        "no me busques": 9,
+        "no la busques": 1,
+        "no te busques": 1
+      }
+    },
+    {
+      "expression": "yo que [PRON]",
       "count": 11,
       "num_variants": 4,
       "num_songs": 8,
@@ -2086,7 +2272,7 @@
       }
     },
     {
-      "pattern": "en toda [PRON]",
+      "expression": "en toda [PRON]",
       "count": 11,
       "num_variants": 2,
       "num_songs": 8,
@@ -2096,7 +2282,7 @@
       }
     },
     {
-      "pattern": "después que [PRON]",
+      "expression": "después que [PRON]",
       "count": 11,
       "num_variants": 4,
       "num_songs": 9,
@@ -2108,7 +2294,7 @@
       }
     },
     {
-      "pattern": "de todo [PRON]",
+      "expression": "de todo [PRON]",
       "count": 11,
       "num_variants": 3,
       "num_songs": 11,
@@ -2119,7 +2305,7 @@
       }
     },
     {
-      "pattern": "que [PRON] va",
+      "expression": "que [PRON] va",
       "count": 11,
       "num_variants": 3,
       "num_songs": 10,
@@ -2130,7 +2316,17 @@
       }
     },
     {
-      "pattern": "[PRON] puse a",
+      "expression": "a nadie [PRON]",
+      "count": 11,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "a nadie le": 9,
+        "a nadie me": 2
+      }
+    },
+    {
+      "expression": "[PRON] puse a",
       "count": 11,
       "num_variants": 3,
       "num_songs": 10,
@@ -2141,7 +2337,7 @@
       }
     },
     {
-      "pattern": "dice que [PRON]",
+      "expression": "dice que [PRON]",
       "count": 11,
       "num_variants": 4,
       "num_songs": 9,
@@ -2153,7 +2349,7 @@
       }
     },
     {
-      "pattern": "no [PRON] deja",
+      "expression": "no [PRON] deja",
       "count": 11,
       "num_variants": 3,
       "num_songs": 10,
@@ -2164,7 +2360,7 @@
       }
     },
     {
-      "pattern": "dile que [PRON]",
+      "expression": "dile que [PRON]",
       "count": 11,
       "num_variants": 5,
       "num_songs": 9,
@@ -2177,7 +2373,7 @@
       }
     },
     {
-      "pattern": "el carajo [PRON]",
+      "expression": "el carajo [PRON]",
       "count": 10,
       "num_variants": 3,
       "num_songs": 6,
@@ -2188,7 +2384,7 @@
       }
     },
     {
-      "pattern": "el mundo [PRON]",
+      "expression": "el mundo [PRON]",
       "count": 10,
       "num_variants": 5,
       "num_songs": 9,
@@ -2201,7 +2397,7 @@
       }
     },
     {
-      "pattern": "hoy yo [PRON]",
+      "expression": "hoy yo [PRON]",
       "count": 10,
       "num_variants": 3,
       "num_songs": 9,
@@ -2212,7 +2408,27 @@
       }
     },
     {
-      "pattern": "[PRON] meto a",
+      "expression": "hoy [PRON] voy",
+      "count": 10,
+      "num_variants": 2,
+      "num_songs": 8,
+      "variants": {
+        "hoy te voy": 9,
+        "hoy me voy": 1
+      }
+    },
+    {
+      "expression": "yo [PRON] compré",
+      "count": 10,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "yo me compré": 9,
+        "yo los compré": 1
+      }
+    },
+    {
+      "expression": "[PRON] meto a",
       "count": 10,
       "num_variants": 3,
       "num_songs": 9,
@@ -2223,7 +2439,7 @@
       }
     },
     {
-      "pattern": "esta noche [PRON]",
+      "expression": "esta noche [PRON]",
       "count": 10,
       "num_variants": 5,
       "num_songs": 6,
@@ -2236,7 +2452,7 @@
       }
     },
     {
-      "pattern": "si mañana [PRON]",
+      "expression": "si mañana [PRON]",
       "count": 10,
       "num_variants": 2,
       "num_songs": 5,
@@ -2246,7 +2462,7 @@
       }
     },
     {
-      "pattern": "a [PRON] dos",
+      "expression": "a [PRON] dos",
       "count": 10,
       "num_variants": 3,
       "num_songs": 9,
@@ -2257,7 +2473,7 @@
       }
     },
     {
-      "pattern": "que dios [PRON]",
+      "expression": "que dios [PRON]",
       "count": 10,
       "num_variants": 3,
       "num_songs": 9,
@@ -2268,7 +2484,7 @@
       }
     },
     {
-      "pattern": "yo siempre [PRON]",
+      "expression": "yo siempre [PRON]",
       "count": 10,
       "num_variants": 4,
       "num_songs": 8,
@@ -2280,7 +2496,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] que",
+      "expression": "yo [PRON] que",
       "count": 10,
       "num_variants": 2,
       "num_songs": 9,
@@ -2290,7 +2506,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] doy",
+      "expression": "yo [PRON] doy",
       "count": 10,
       "num_variants": 3,
       "num_songs": 8,
@@ -2301,7 +2517,17 @@
       }
     },
     {
-      "pattern": "[PRON] llames más",
+      "expression": "[PRON] tienen que",
+      "count": 10,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "me tienen que": 9,
+        "se tienen que": 1
+      }
+    },
+    {
+      "expression": "[PRON] llames más",
       "count": 10,
       "num_variants": 3,
       "num_songs": 2,
@@ -2312,7 +2538,7 @@
       }
     },
     {
-      "pattern": "para el carajo [PRON]",
+      "expression": "para el carajo [PRON]",
       "count": 10,
       "num_variants": 3,
       "num_songs": 6,
@@ -2323,7 +2549,7 @@
       }
     },
     {
-      "pattern": "tú [PRON] vas a",
+      "expression": "tú [PRON] vas a",
       "count": 10,
       "num_variants": 4,
       "num_songs": 9,
@@ -2335,7 +2561,7 @@
       }
     },
     {
-      "pattern": "no [PRON] llames más",
+      "expression": "no [PRON] llames más",
       "count": 10,
       "num_variants": 3,
       "num_songs": 2,
@@ -2346,7 +2572,27 @@
       }
     },
     {
-      "pattern": "yo [PRON] tengo",
+      "expression": "mi vida [PRON]",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "mi vida te": 8,
+        "mi vida las": 1
+      }
+    },
+    {
+      "expression": "que [PRON] da",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 8,
+      "variants": {
+        "que me da": 8,
+        "que te da": 1
+      }
+    },
+    {
+      "expression": "yo [PRON] tengo",
       "count": 9,
       "num_variants": 3,
       "num_songs": 5,
@@ -2357,7 +2603,7 @@
       }
     },
     {
-      "pattern": "tus ojos [PRON]",
+      "expression": "tus ojos [PRON]",
       "count": 9,
       "num_variants": 4,
       "num_songs": 7,
@@ -2369,7 +2615,7 @@
       }
     },
     {
-      "pattern": "hace [PRON] que",
+      "expression": "hace [PRON] que",
       "count": 9,
       "num_variants": 2,
       "num_songs": 8,
@@ -2379,7 +2625,7 @@
       }
     },
     {
-      "pattern": "[PRON] va bien",
+      "expression": "[PRON] va bien",
       "count": 9,
       "num_variants": 3,
       "num_songs": 8,
@@ -2390,7 +2636,7 @@
       }
     },
     {
-      "pattern": "no [PRON] hables",
+      "expression": "no [PRON] hables",
       "count": 9,
       "num_variants": 2,
       "num_songs": 9,
@@ -2400,7 +2646,7 @@
       }
     },
     {
-      "pattern": "[PRON] vaya a",
+      "expression": "[PRON] vaya a",
       "count": 9,
       "num_variants": 3,
       "num_songs": 3,
@@ -2411,7 +2657,17 @@
       }
     },
     {
-      "pattern": "juro que [PRON]",
+      "expression": "no [PRON] vayas",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "no te vayas": 8,
+        "no le vayas": 1
+      }
+    },
+    {
+      "expression": "juro que [PRON]",
       "count": 9,
       "num_variants": 3,
       "num_songs": 8,
@@ -2422,7 +2678,7 @@
       }
     },
     {
-      "pattern": "tú [PRON] llamas",
+      "expression": "tú [PRON] llamas",
       "count": 9,
       "num_variants": 2,
       "num_songs": 5,
@@ -2432,7 +2688,7 @@
       }
     },
     {
-      "pattern": "[PRON] gusta que",
+      "expression": "[PRON] gusta que",
       "count": 9,
       "num_variants": 3,
       "num_songs": 8,
@@ -2443,7 +2699,7 @@
       }
     },
     {
-      "pattern": "y conmigo [PRON]",
+      "expression": "y conmigo [PRON]",
       "count": 9,
       "num_variants": 2,
       "num_songs": 6,
@@ -2453,7 +2709,7 @@
       }
     },
     {
-      "pattern": "[PRON] que hay",
+      "expression": "[PRON] que hay",
       "count": 9,
       "num_variants": 2,
       "num_songs": 9,
@@ -2463,7 +2719,7 @@
       }
     },
     {
-      "pattern": "no [PRON] veo",
+      "expression": "no [PRON] veo",
       "count": 9,
       "num_variants": 4,
       "num_songs": 6,
@@ -2475,7 +2731,7 @@
       }
     },
     {
-      "pattern": "cojones [PRON] tiene",
+      "expression": "cojones [PRON] tiene",
       "count": 9,
       "num_variants": 2,
       "num_songs": 7,
@@ -2485,7 +2741,7 @@
       }
     },
     {
-      "pattern": "y eso [PRON]",
+      "expression": "y eso [PRON]",
       "count": 9,
       "num_variants": 4,
       "num_songs": 6,
@@ -2497,7 +2753,37 @@
       }
     },
     {
-      "pattern": "que tú no [PRON]",
+      "expression": "de mi vida [PRON]",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "de mi vida te": 8,
+        "de mi vida las": 1
+      }
+    },
+    {
+      "expression": "hoy [PRON] voy a",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "hoy te voy a": 8,
+        "hoy me voy a": 1
+      }
+    },
+    {
+      "expression": "[PRON] voy a buscar",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "te voy a buscar": 8,
+        "la voy a buscar": 1
+      }
+    },
+    {
+      "expression": "que tú no [PRON]",
       "count": 9,
       "num_variants": 3,
       "num_songs": 6,
@@ -2508,7 +2794,7 @@
       }
     },
     {
-      "pattern": "sin cojones [PRON] tiene",
+      "expression": "sin cojones [PRON] tiene",
       "count": 9,
       "num_variants": 2,
       "num_songs": 7,
@@ -2518,7 +2804,7 @@
       }
     },
     {
-      "pattern": "tu amiga [PRON]",
+      "expression": "tu amiga [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 5,
@@ -2530,7 +2816,17 @@
       }
     },
     {
-      "pattern": "yo [PRON] di",
+      "expression": "que [PRON] di",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "que te di": 7,
+        "que le di": 1
+      }
+    },
+    {
+      "expression": "yo [PRON] di",
       "count": 8,
       "num_variants": 2,
       "num_songs": 7,
@@ -2540,7 +2836,7 @@
       }
     },
     {
-      "pattern": "[PRON] hace falta",
+      "expression": "[PRON] hace falta",
       "count": 8,
       "num_variants": 3,
       "num_songs": 6,
@@ -2551,7 +2847,7 @@
       }
     },
     {
-      "pattern": "y [PRON] voy",
+      "expression": "y [PRON] voy",
       "count": 8,
       "num_variants": 3,
       "num_songs": 8,
@@ -2562,7 +2858,7 @@
       }
     },
     {
-      "pattern": "[PRON] hable de",
+      "expression": "[PRON] hable de",
       "count": 8,
       "num_variants": 2,
       "num_songs": 6,
@@ -2572,7 +2868,7 @@
       }
     },
     {
-      "pattern": "de cuando [PRON]",
+      "expression": "de cuando [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 6,
@@ -2584,7 +2880,7 @@
       }
     },
     {
-      "pattern": "que nunca [PRON]",
+      "expression": "que nunca [PRON]",
       "count": 8,
       "num_variants": 5,
       "num_songs": 8,
@@ -2597,7 +2893,7 @@
       }
     },
     {
-      "pattern": "que conmigo [PRON]",
+      "expression": "que conmigo [PRON]",
       "count": 8,
       "num_variants": 2,
       "num_songs": 7,
@@ -2607,7 +2903,7 @@
       }
     },
     {
-      "pattern": "pero tú [PRON]",
+      "expression": "pero tú [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 7,
@@ -2619,7 +2915,17 @@
       }
     },
     {
-      "pattern": "no [PRON] vuelvo",
+      "expression": "[PRON] compré una",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 8,
+      "variants": {
+        "me compré una": 7,
+        "le compré una": 1
+      }
+    },
+    {
+      "expression": "no [PRON] vuelvo",
       "count": 8,
       "num_variants": 3,
       "num_songs": 4,
@@ -2630,7 +2936,7 @@
       }
     },
     {
-      "pattern": "ti [PRON] va",
+      "expression": "ti [PRON] va",
       "count": 8,
       "num_variants": 2,
       "num_songs": 6,
@@ -2640,7 +2946,7 @@
       }
     },
     {
-      "pattern": "que [PRON] haga",
+      "expression": "que [PRON] haga",
       "count": 8,
       "num_variants": 4,
       "num_songs": 7,
@@ -2652,7 +2958,7 @@
       }
     },
     {
-      "pattern": "pero si [PRON]",
+      "expression": "pero si [PRON]",
       "count": 8,
       "num_variants": 3,
       "num_songs": 8,
@@ -2663,7 +2969,7 @@
       }
     },
     {
-      "pattern": "y tú [PRON]",
+      "expression": "y tú [PRON]",
       "count": 8,
       "num_variants": 3,
       "num_songs": 7,
@@ -2674,7 +2980,7 @@
       }
     },
     {
-      "pattern": "yo mismo [PRON]",
+      "expression": "yo mismo [PRON]",
       "count": 8,
       "num_variants": 3,
       "num_songs": 8,
@@ -2685,7 +2991,7 @@
       }
     },
     {
-      "pattern": "yo tengo [PRON]",
+      "expression": "yo tengo [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 8,
@@ -2697,7 +3003,7 @@
       }
     },
     {
-      "pattern": "sabes [PRON] que",
+      "expression": "sabes [PRON] que",
       "count": 8,
       "num_variants": 2,
       "num_songs": 7,
@@ -2707,7 +3013,7 @@
       }
     },
     {
-      "pattern": "gusta que [PRON]",
+      "expression": "gusta que [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 7,
@@ -2719,7 +3025,7 @@
       }
     },
     {
-      "pattern": "nadie [PRON] va",
+      "expression": "nadie [PRON] va",
       "count": 8,
       "num_variants": 5,
       "num_songs": 7,
@@ -2732,7 +3038,7 @@
       }
     },
     {
-      "pattern": "que [PRON] llegue",
+      "expression": "que [PRON] llegue",
       "count": 8,
       "num_variants": 3,
       "num_songs": 8,
@@ -2743,7 +3049,7 @@
       }
     },
     {
-      "pattern": "no [PRON] quiero",
+      "expression": "no [PRON] quiero",
       "count": 8,
       "num_variants": 5,
       "num_songs": 7,
@@ -2756,7 +3062,7 @@
       }
     },
     {
-      "pattern": "y después [PRON]",
+      "expression": "y después [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 8,
@@ -2768,7 +3074,7 @@
       }
     },
     {
-      "pattern": "que cuando [PRON]",
+      "expression": "que cuando [PRON]",
       "count": 8,
       "num_variants": 5,
       "num_songs": 7,
@@ -2781,7 +3087,7 @@
       }
     },
     {
-      "pattern": "para que yo [PRON]",
+      "expression": "para que yo [PRON]",
       "count": 8,
       "num_variants": 4,
       "num_songs": 7,
@@ -2793,7 +3099,7 @@
       }
     },
     {
-      "pattern": "no [PRON] vuelvo a",
+      "expression": "no [PRON] vuelvo a",
       "count": 8,
       "num_variants": 3,
       "num_songs": 4,
@@ -2804,7 +3110,17 @@
       }
     },
     {
-      "pattern": "a ver si [PRON]",
+      "expression": "que [PRON] vaya a",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "que la vaya a": 7,
+        "que te vaya a": 1
+      }
+    },
+    {
+      "expression": "a ver si [PRON]",
       "count": 8,
       "num_variants": 5,
       "num_songs": 7,
@@ -2817,7 +3133,7 @@
       }
     },
     {
-      "pattern": "no [PRON] va a",
+      "expression": "no [PRON] va a",
       "count": 8,
       "num_variants": 4,
       "num_songs": 7,
@@ -2829,7 +3145,17 @@
       }
     },
     {
-      "pattern": "nadie [PRON] va a",
+      "expression": "que a ti [PRON]",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "que a ti te": 7,
+        "que a ti se": 1
+      }
+    },
+    {
+      "expression": "nadie [PRON] va a",
       "count": 8,
       "num_variants": 5,
       "num_songs": 7,
@@ -2842,7 +3168,7 @@
       }
     },
     {
-      "pattern": "que yo no [PRON]",
+      "expression": "que yo no [PRON]",
       "count": 8,
       "num_variants": 3,
       "num_songs": 6,
@@ -2853,7 +3179,7 @@
       }
     },
     {
-      "pattern": "[PRON] voy a meter",
+      "expression": "[PRON] voy a meter",
       "count": 8,
       "num_variants": 2,
       "num_songs": 7,
@@ -2863,7 +3189,7 @@
       }
     },
     {
-      "pattern": "el culo [PRON]",
+      "expression": "el culo [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 7,
@@ -2875,7 +3201,7 @@
       }
     },
     {
-      "pattern": "tu jeva [PRON]",
+      "expression": "tu jeva [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 5,
@@ -2886,7 +3212,7 @@
       }
     },
     {
-      "pattern": "que ella [PRON]",
+      "expression": "que ella [PRON]",
       "count": 7,
       "num_variants": 2,
       "num_songs": 6,
@@ -2896,7 +3222,7 @@
       }
     },
     {
-      "pattern": "no [PRON] vas",
+      "expression": "no [PRON] vas",
       "count": 7,
       "num_variants": 3,
       "num_songs": 6,
@@ -2907,7 +3233,7 @@
       }
     },
     {
-      "pattern": "que [PRON] iba",
+      "expression": "que [PRON] iba",
       "count": 7,
       "num_variants": 4,
       "num_songs": 7,
@@ -2919,7 +3245,7 @@
       }
     },
     {
-      "pattern": "y hoy [PRON]",
+      "expression": "y hoy [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 7,
@@ -2931,7 +3257,17 @@
       }
     },
     {
-      "pattern": "y nadie [PRON]",
+      "expression": "[PRON] que quiere",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "lo que quiere": 6,
+        "la que quiere": 1
+      }
+    },
+    {
+      "expression": "y nadie [PRON]",
       "count": 7,
       "num_variants": 5,
       "num_songs": 7,
@@ -2944,7 +3280,7 @@
       }
     },
     {
-      "pattern": "no [PRON] has",
+      "expression": "no [PRON] has",
       "count": 7,
       "num_variants": 3,
       "num_songs": 5,
@@ -2955,7 +3291,7 @@
       }
     },
     {
-      "pattern": "que [PRON] maten",
+      "expression": "que [PRON] maten",
       "count": 7,
       "num_variants": 2,
       "num_songs": 6,
@@ -2965,7 +3301,7 @@
       }
     },
     {
-      "pattern": "que [PRON] bese",
+      "expression": "que [PRON] bese",
       "count": 7,
       "num_variants": 3,
       "num_songs": 7,
@@ -2976,7 +3312,7 @@
       }
     },
     {
-      "pattern": "ella no [PRON]",
+      "expression": "ella no [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 6,
@@ -2988,7 +3324,7 @@
       }
     },
     {
-      "pattern": "que ahora [PRON]",
+      "expression": "que ahora [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 5,
@@ -2999,7 +3335,7 @@
       }
     },
     {
-      "pattern": "cómo tú [PRON]",
+      "expression": "cómo tú [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 5,
@@ -3010,7 +3346,7 @@
       }
     },
     {
-      "pattern": "cómo yo [PRON]",
+      "expression": "cómo yo [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 7,
@@ -3021,7 +3357,7 @@
       }
     },
     {
-      "pattern": "que todo [PRON]",
+      "expression": "que todo [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 7,
@@ -3032,7 +3368,7 @@
       }
     },
     {
-      "pattern": "final de [PRON]",
+      "expression": "final de [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 6,
@@ -3043,7 +3379,17 @@
       }
     },
     {
-      "pattern": "tú [PRON] tienes",
+      "expression": "con todo [PRON]",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "con todo los": 6,
+        "con todo lo": 1
+      }
+    },
+    {
+      "expression": "tú [PRON] tienes",
       "count": 7,
       "num_variants": 3,
       "num_songs": 7,
@@ -3054,7 +3400,17 @@
       }
     },
     {
-      "pattern": "va para [PRON]",
+      "expression": "tú [PRON] quieres",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "tú me quieres": 6,
+        "tú lo quieres": 1
+      }
+    },
+    {
+      "expression": "va para [PRON]",
       "count": 7,
       "num_variants": 2,
       "num_songs": 4,
@@ -3064,7 +3420,17 @@
       }
     },
     {
-      "pattern": "tú sabes [PRON]",
+      "expression": "no [PRON] ve",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "no se ve": 6,
+        "no lo ve": 1
+      }
+    },
+    {
+      "expression": "tú sabes [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 6,
@@ -3075,7 +3441,17 @@
       }
     },
     {
-      "pattern": "sabes que [PRON]",
+      "expression": "y ahora [PRON]",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "y ahora me": 6,
+        "y ahora las": 1
+      }
+    },
+    {
+      "expression": "sabes que [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 6,
@@ -3087,7 +3463,7 @@
       }
     },
     {
-      "pattern": "que eso [PRON]",
+      "expression": "que eso [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 6,
@@ -3099,7 +3475,7 @@
       }
     },
     {
-      "pattern": "a ella [PRON]",
+      "expression": "a ella [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 7,
@@ -3111,7 +3487,7 @@
       }
     },
     {
-      "pattern": "dime si [PRON]",
+      "expression": "dime si [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 6,
@@ -3123,7 +3499,17 @@
       }
     },
     {
-      "pattern": "que [PRON] dio",
+      "expression": "dónde están [PRON]",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "dónde están las": 6,
+        "dónde están los": 1
+      }
+    },
+    {
+      "expression": "que [PRON] dio",
       "count": 7,
       "num_variants": 2,
       "num_songs": 6,
@@ -3133,7 +3519,7 @@
       }
     },
     {
-      "pattern": "tu novio [PRON]",
+      "expression": "tu novio [PRON]",
       "count": 7,
       "num_variants": 2,
       "num_songs": 6,
@@ -3143,7 +3529,7 @@
       }
     },
     {
-      "pattern": "ya tú [PRON]",
+      "expression": "ya tú [PRON]",
       "count": 7,
       "num_variants": 3,
       "num_songs": 5,
@@ -3154,7 +3540,7 @@
       }
     },
     {
-      "pattern": "vez que [PRON]",
+      "expression": "vez que [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 7,
@@ -3166,7 +3552,7 @@
       }
     },
     {
-      "pattern": "dices que [PRON]",
+      "expression": "dices que [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 5,
@@ -3178,7 +3564,7 @@
       }
     },
     {
-      "pattern": "mejor que [PRON]",
+      "expression": "mejor que [PRON]",
       "count": 7,
       "num_variants": 5,
       "num_songs": 6,
@@ -3191,7 +3577,37 @@
       }
     },
     {
-      "pattern": "y [PRON] voy a",
+      "expression": "él no [PRON]",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "él no te": 6,
+        "él no se": 1
+      }
+    },
+    {
+      "expression": "[PRON] de ustedes",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "lo de ustedes": 6,
+        "la de ustedes": 1
+      }
+    },
+    {
+      "expression": "a ti no [PRON]",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "a ti no te": 6,
+        "a ti no me": 1
+      }
+    },
+    {
+      "expression": "y [PRON] voy a",
       "count": 7,
       "num_variants": 3,
       "num_songs": 7,
@@ -3202,7 +3618,7 @@
       }
     },
     {
-      "pattern": "todo el mundo [PRON]",
+      "expression": "todo el mundo [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 6,
@@ -3214,7 +3630,7 @@
       }
     },
     {
-      "pattern": "sé por qué [PRON]",
+      "expression": "sé por qué [PRON]",
       "count": 7,
       "num_variants": 4,
       "num_songs": 5,
@@ -3226,7 +3642,7 @@
       }
     },
     {
-      "pattern": "que [PRON] va a",
+      "expression": "que [PRON] va a",
       "count": 7,
       "num_variants": 3,
       "num_songs": 6,
@@ -3237,7 +3653,7 @@
       }
     },
     {
-      "pattern": "sé que tú [PRON]",
+      "expression": "sé que tú [PRON]",
       "count": 7,
       "num_variants": 2,
       "num_songs": 6,
@@ -3247,7 +3663,17 @@
       }
     },
     {
-      "pattern": "y todo [PRON]",
+      "expression": "el diablo [PRON]",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "el diablo me": 5,
+        "el diablo te": 1
+      }
+    },
+    {
+      "expression": "y todo [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3258,7 +3684,7 @@
       }
     },
     {
-      "pattern": "si hoy [PRON]",
+      "expression": "si hoy [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 3,
@@ -3269,7 +3695,7 @@
       }
     },
     {
-      "pattern": "[PRON] doy todo",
+      "expression": "[PRON] doy todo",
       "count": 6,
       "num_variants": 2,
       "num_songs": 6,
@@ -3279,7 +3705,7 @@
       }
     },
     {
-      "pattern": "doy todo [PRON]",
+      "expression": "doy todo [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3290,7 +3716,7 @@
       }
     },
     {
-      "pattern": "no [PRON] he",
+      "expression": "no [PRON] he",
       "count": 6,
       "num_variants": 4,
       "num_songs": 6,
@@ -3302,7 +3728,7 @@
       }
     },
     {
-      "pattern": "novio no [PRON]",
+      "expression": "novio no [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3313,7 +3739,7 @@
       }
     },
     {
-      "pattern": "que hoy [PRON]",
+      "expression": "que hoy [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3324,7 +3750,7 @@
       }
     },
     {
-      "pattern": "[PRON] hables de",
+      "expression": "[PRON] hables de",
       "count": 6,
       "num_variants": 2,
       "num_songs": 6,
@@ -3334,7 +3760,7 @@
       }
     },
     {
-      "pattern": "por mí [PRON]",
+      "expression": "por mí [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 5,
@@ -3344,7 +3770,27 @@
       }
     },
     {
-      "pattern": "el cielo [PRON]",
+      "expression": "estos cabrones [PRON]",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "estos cabrones me": 5,
+        "estos cabrones te": 1
+      }
+    },
+    {
+      "expression": "con [PRON] míos",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "con los míos": 5,
+        "con lo míos": 1
+      }
+    },
+    {
+      "expression": "el cielo [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 5,
@@ -3354,7 +3800,7 @@
       }
     },
     {
-      "pattern": "[PRON] vayas a",
+      "expression": "[PRON] vayas a",
       "count": 6,
       "num_variants": 3,
       "num_songs": 5,
@@ -3365,7 +3811,7 @@
       }
     },
     {
-      "pattern": "pero yo [PRON]",
+      "expression": "pero yo [PRON]",
       "count": 6,
       "num_variants": 5,
       "num_songs": 6,
@@ -3378,7 +3824,7 @@
       }
     },
     {
-      "pattern": "a todo [PRON]",
+      "expression": "a todo [PRON]",
       "count": 6,
       "num_variants": 4,
       "num_songs": 4,
@@ -3390,7 +3836,7 @@
       }
     },
     {
-      "pattern": "no [PRON] dejo",
+      "expression": "no [PRON] dejo",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3401,7 +3847,7 @@
       }
     },
     {
-      "pattern": "el dinero [PRON]",
+      "expression": "el dinero [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 6,
@@ -3411,7 +3857,17 @@
       }
     },
     {
-      "pattern": "mí que [PRON]",
+      "expression": "[PRON] hago un",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "te hago un": 5,
+        "les hago un": 1
+      }
+    },
+    {
+      "expression": "mí que [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3422,7 +3878,7 @@
       }
     },
     {
-      "pattern": "[PRON] tienes que",
+      "expression": "[PRON] tienes que",
       "count": 6,
       "num_variants": 2,
       "num_songs": 4,
@@ -3432,7 +3888,7 @@
       }
     },
     {
-      "pattern": "[PRON] dije que",
+      "expression": "[PRON] dije que",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3443,7 +3899,7 @@
       }
     },
     {
-      "pattern": "no [PRON] digas",
+      "expression": "no [PRON] digas",
       "count": 6,
       "num_variants": 3,
       "num_songs": 3,
@@ -3454,7 +3910,7 @@
       }
     },
     {
-      "pattern": "que [PRON] vas",
+      "expression": "que [PRON] vas",
       "count": 6,
       "num_variants": 2,
       "num_songs": 6,
@@ -3464,7 +3920,7 @@
       }
     },
     {
-      "pattern": "eso no [PRON]",
+      "expression": "eso no [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 5,
@@ -3474,7 +3930,7 @@
       }
     },
     {
-      "pattern": "[PRON] tengo en",
+      "expression": "[PRON] tengo en",
       "count": 6,
       "num_variants": 4,
       "num_songs": 6,
@@ -3486,7 +3942,7 @@
       }
     },
     {
-      "pattern": "para qué [PRON]",
+      "expression": "para qué [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 4,
@@ -3496,7 +3952,7 @@
       }
     },
     {
-      "pattern": "a hacer [PRON]",
+      "expression": "a hacer [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3507,7 +3963,17 @@
       }
     },
     {
-      "pattern": "tú [PRON] haces",
+      "expression": "no [PRON] olvido",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "no te olvido": 5,
+        "no me olvido": 1
+      }
+    },
+    {
+      "expression": "tú [PRON] haces",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3518,7 +3984,7 @@
       }
     },
     {
-      "pattern": "no [PRON] da",
+      "expression": "no [PRON] da",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3529,7 +3995,17 @@
       }
     },
     {
-      "pattern": "[PRON] pone en",
+      "expression": "[PRON] busco en",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "te busco en": 5,
+        "las busco en": 1
+      }
+    },
+    {
+      "expression": "[PRON] pone en",
       "count": 6,
       "num_variants": 3,
       "num_songs": 5,
@@ -3540,7 +4016,17 @@
       }
     },
     {
-      "pattern": "por todo [PRON]",
+      "expression": "no [PRON] bajes",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "no le bajes": 5,
+        "no me bajes": 1
+      }
+    },
+    {
+      "expression": "por todo [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 4,
@@ -3550,7 +4036,7 @@
       }
     },
     {
-      "pattern": "espero que [PRON]",
+      "expression": "espero que [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 4,
@@ -3561,7 +4047,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] vi",
+      "expression": "yo [PRON] vi",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3572,7 +4058,7 @@
       }
     },
     {
-      "pattern": "que siempre [PRON]",
+      "expression": "que siempre [PRON]",
       "count": 6,
       "num_variants": 4,
       "num_songs": 5,
@@ -3584,7 +4070,7 @@
       }
     },
     {
-      "pattern": "dijo que [PRON]",
+      "expression": "dijo que [PRON]",
       "count": 6,
       "num_variants": 6,
       "num_songs": 6,
@@ -3598,7 +4084,7 @@
       }
     },
     {
-      "pattern": "[PRON] llevo para",
+      "expression": "[PRON] llevo para",
       "count": 6,
       "num_variants": 2,
       "num_songs": 3,
@@ -3608,7 +4094,7 @@
       }
     },
     {
-      "pattern": "y toda [PRON]",
+      "expression": "y toda [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 5,
@@ -3619,7 +4105,7 @@
       }
     },
     {
-      "pattern": "pero ya [PRON]",
+      "expression": "pero ya [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 4,
@@ -3630,7 +4116,7 @@
       }
     },
     {
-      "pattern": "que [PRON] quiero",
+      "expression": "que [PRON] quiero",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3641,7 +4127,7 @@
       }
     },
     {
-      "pattern": "[PRON] dices que",
+      "expression": "[PRON] dices que",
       "count": 6,
       "num_variants": 2,
       "num_songs": 3,
@@ -3651,7 +4137,7 @@
       }
     },
     {
-      "pattern": "hay quien [PRON]",
+      "expression": "hay quien [PRON]",
       "count": 6,
       "num_variants": 5,
       "num_songs": 6,
@@ -3664,7 +4150,7 @@
       }
     },
     {
-      "pattern": "que [PRON] metí",
+      "expression": "que [PRON] metí",
       "count": 6,
       "num_variants": 3,
       "num_songs": 4,
@@ -3675,7 +4161,7 @@
       }
     },
     {
-      "pattern": "tú quieres [PRON]",
+      "expression": "tú quieres [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 3,
@@ -3686,7 +4172,7 @@
       }
     },
     {
-      "pattern": "que [PRON] perdone",
+      "expression": "que [PRON] perdone",
       "count": 6,
       "num_variants": 3,
       "num_songs": 5,
@@ -3697,7 +4183,7 @@
       }
     },
     {
-      "pattern": "que [PRON] iba a",
+      "expression": "que [PRON] iba a",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3708,7 +4194,7 @@
       }
     },
     {
-      "pattern": "no [PRON] hables de",
+      "expression": "no [PRON] hables de",
       "count": 6,
       "num_variants": 2,
       "num_songs": 6,
@@ -3718,7 +4204,7 @@
       }
     },
     {
-      "pattern": "mí sin cojones [PRON]",
+      "expression": "mí sin cojones [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 5,
@@ -3728,7 +4214,17 @@
       }
     },
     {
-      "pattern": "yo no [PRON] voy",
+      "expression": "no [PRON] vas a",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "no me vas a": 5,
+        "no lo vas a": 1
+      }
+    },
+    {
+      "expression": "yo no [PRON] voy",
       "count": 6,
       "num_variants": 5,
       "num_songs": 6,
@@ -3741,7 +4237,17 @@
       }
     },
     {
-      "pattern": "por más que [PRON]",
+      "expression": "ya tú no [PRON]",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "ya tú no me": 5,
+        "ya tú no le": 1
+      }
+    },
+    {
+      "expression": "por más que [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 6,
@@ -3752,7 +4258,7 @@
       }
     },
     {
-      "pattern": "[PRON] voy a poner",
+      "expression": "[PRON] voy a poner",
       "count": 6,
       "num_variants": 4,
       "num_songs": 6,
@@ -3764,7 +4270,7 @@
       }
     },
     {
-      "pattern": "quiere que yo [PRON]",
+      "expression": "quiere que yo [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 3,
@@ -3775,7 +4281,17 @@
       }
     },
     {
-      "pattern": "no hay quien [PRON]",
+      "expression": "[PRON] que quiero es",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "lo que quiero es": 5,
+        "la que quiero es": 1
+      }
+    },
+    {
+      "expression": "no hay quien [PRON]",
       "count": 6,
       "num_variants": 5,
       "num_songs": 6,
@@ -3788,7 +4304,7 @@
       }
     },
     {
-      "pattern": "llama para que [PRON]",
+      "expression": "llama para que [PRON]",
       "count": 6,
       "num_variants": 2,
       "num_songs": 4,
@@ -3798,7 +4314,7 @@
       }
     },
     {
-      "pattern": "si tú quieres [PRON]",
+      "expression": "si tú quieres [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 3,
@@ -3809,7 +4325,7 @@
       }
     },
     {
-      "pattern": "creo que [PRON]",
+      "expression": "creo que [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -3819,7 +4335,7 @@
       }
     },
     {
-      "pattern": "día que [PRON]",
+      "expression": "día que [PRON]",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -3831,7 +4347,7 @@
       }
     },
     {
-      "pattern": "más nadie [PRON]",
+      "expression": "más nadie [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -3842,7 +4358,7 @@
       }
     },
     {
-      "pattern": "a dios [PRON]",
+      "expression": "a dios [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -3852,7 +4368,7 @@
       }
     },
     {
-      "pattern": "que [PRON] puso",
+      "expression": "que [PRON] puso",
       "count": 5,
       "num_variants": 5,
       "num_songs": 5,
@@ -3865,7 +4381,7 @@
       }
     },
     {
-      "pattern": "porque no [PRON]",
+      "expression": "porque no [PRON]",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -3877,7 +4393,7 @@
       }
     },
     {
-      "pattern": "ese culo [PRON]",
+      "expression": "ese culo [PRON]",
       "count": 5,
       "num_variants": 4,
       "num_songs": 4,
@@ -3889,7 +4405,7 @@
       }
     },
     {
-      "pattern": "pensaba que [PRON]",
+      "expression": "pensaba que [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 2,
@@ -3899,7 +4415,7 @@
       }
     },
     {
-      "pattern": "[PRON] gusta cómo",
+      "expression": "[PRON] gusta cómo",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -3910,7 +4426,7 @@
       }
     },
     {
-      "pattern": "si [PRON] ves",
+      "expression": "si [PRON] ves",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -3920,7 +4436,7 @@
       }
     },
     {
-      "pattern": "con toda [PRON]",
+      "expression": "con toda [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -3930,7 +4446,7 @@
       }
     },
     {
-      "pattern": "y [PRON] puse",
+      "expression": "y [PRON] puse",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -3941,7 +4457,7 @@
       }
     },
     {
-      "pattern": "que [PRON] hace",
+      "expression": "que [PRON] hace",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -3953,7 +4469,7 @@
       }
     },
     {
-      "pattern": "[PRON] hace el",
+      "expression": "[PRON] hace el",
       "count": 5,
       "num_variants": 2,
       "num_songs": 3,
@@ -3963,7 +4479,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] meto",
+      "expression": "yo [PRON] meto",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -3973,7 +4489,7 @@
       }
     },
     {
-      "pattern": "contigo [PRON] voy",
+      "expression": "contigo [PRON] voy",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -3984,7 +4500,7 @@
       }
     },
     {
-      "pattern": "[PRON] pone bellaca",
+      "expression": "[PRON] pone bellaca",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -3994,7 +4510,7 @@
       }
     },
     {
-      "pattern": "[PRON] más que",
+      "expression": "[PRON] más que",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4004,7 +4520,7 @@
       }
     },
     {
-      "pattern": "no [PRON] puedo",
+      "expression": "no [PRON] puedo",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4014,7 +4530,7 @@
       }
     },
     {
-      "pattern": "sé si [PRON]",
+      "expression": "sé si [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4025,7 +4541,7 @@
       }
     },
     {
-      "pattern": "y aunque [PRON]",
+      "expression": "y aunque [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4035,7 +4551,7 @@
       }
     },
     {
-      "pattern": "[PRON] ven y",
+      "expression": "[PRON] ven y",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4045,7 +4561,7 @@
       }
     },
     {
-      "pattern": "de mí [PRON]",
+      "expression": "de mí [PRON]",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -4057,7 +4573,7 @@
       }
     },
     {
-      "pattern": "y [PRON] pone",
+      "expression": "y [PRON] pone",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4067,7 +4583,7 @@
       }
     },
     {
-      "pattern": "yo solo [PRON]",
+      "expression": "yo solo [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4078,7 +4594,7 @@
       }
     },
     {
-      "pattern": "encima e [PRON]",
+      "expression": "encima e [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4088,7 +4604,7 @@
       }
     },
     {
-      "pattern": "cuatro y [PRON]",
+      "expression": "cuatro y [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4099,7 +4615,7 @@
       }
     },
     {
-      "pattern": "si [PRON] quieres",
+      "expression": "si [PRON] quieres",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4109,7 +4625,7 @@
       }
     },
     {
-      "pattern": "el corazón [PRON]",
+      "expression": "el corazón [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4120,7 +4636,7 @@
       }
     },
     {
-      "pattern": "y nunca [PRON]",
+      "expression": "y nunca [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 3,
@@ -4130,7 +4646,7 @@
       }
     },
     {
-      "pattern": "que [PRON] quieres",
+      "expression": "que [PRON] quieres",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4141,7 +4657,7 @@
       }
     },
     {
-      "pattern": "no [PRON] sale",
+      "expression": "no [PRON] sale",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4152,7 +4668,7 @@
       }
     },
     {
-      "pattern": "si yo [PRON]",
+      "expression": "si yo [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4163,7 +4679,7 @@
       }
     },
     {
-      "pattern": "[PRON] encanta que",
+      "expression": "[PRON] encanta que",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4174,7 +4690,7 @@
       }
     },
     {
-      "pattern": "ya [PRON] ha",
+      "expression": "ya [PRON] ha",
       "count": 5,
       "num_variants": 2,
       "num_songs": 2,
@@ -4184,7 +4700,7 @@
       }
     },
     {
-      "pattern": "que [PRON] han",
+      "expression": "que [PRON] han",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4194,7 +4710,7 @@
       }
     },
     {
-      "pattern": "que [PRON] deje",
+      "expression": "que [PRON] deje",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -4206,7 +4722,7 @@
       }
     },
     {
-      "pattern": "de ti [PRON]",
+      "expression": "de ti [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4217,7 +4733,7 @@
       }
     },
     {
-      "pattern": "que [PRON] mate",
+      "expression": "que [PRON] mate",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4227,7 +4743,7 @@
       }
     },
     {
-      "pattern": "pero ella [PRON]",
+      "expression": "pero ella [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4238,7 +4754,7 @@
       }
     },
     {
-      "pattern": "[PRON] llevé para",
+      "expression": "[PRON] llevé para",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4248,7 +4764,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] busco",
+      "expression": "yo [PRON] busco",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4258,7 +4774,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] conocí",
+      "expression": "yo [PRON] conocí",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4268,7 +4784,7 @@
       }
     },
     {
-      "pattern": "de nuevo [PRON]",
+      "expression": "de nuevo [PRON]",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -4280,7 +4796,7 @@
       }
     },
     {
-      "pattern": "no [PRON] baja",
+      "expression": "no [PRON] baja",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4290,7 +4806,7 @@
       }
     },
     {
-      "pattern": "[PRON] trata de",
+      "expression": "[PRON] trata de",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4300,7 +4816,7 @@
       }
     },
     {
-      "pattern": "no [PRON] sabe",
+      "expression": "no [PRON] sabe",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4310,7 +4826,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] hago",
+      "expression": "yo [PRON] hago",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4321,7 +4837,7 @@
       }
     },
     {
-      "pattern": "único que [PRON]",
+      "expression": "único que [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4331,7 +4847,7 @@
       }
     },
     {
-      "pattern": "[PRON] que hace",
+      "expression": "[PRON] que hace",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4342,7 +4858,7 @@
       }
     },
     {
-      "pattern": "que [PRON] hable",
+      "expression": "que [PRON] hable",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4353,7 +4869,7 @@
       }
     },
     {
-      "pattern": "no son [PRON]",
+      "expression": "no son [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4363,7 +4879,7 @@
       }
     },
     {
-      "pattern": "[PRON] que está",
+      "expression": "[PRON] que está",
       "count": 5,
       "num_variants": 2,
       "num_songs": 3,
@@ -4373,7 +4889,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] hice",
+      "expression": "yo [PRON] hice",
       "count": 5,
       "num_variants": 4,
       "num_songs": 4,
@@ -4385,7 +4901,7 @@
       }
     },
     {
-      "pattern": "aquí no [PRON]",
+      "expression": "aquí no [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4396,7 +4912,7 @@
       }
     },
     {
-      "pattern": "cuando él [PRON]",
+      "expression": "cuando él [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4406,7 +4922,7 @@
       }
     },
     {
-      "pattern": "estoy que [PRON]",
+      "expression": "estoy que [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4417,7 +4933,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] paso",
+      "expression": "yo [PRON] paso",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4428,7 +4944,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] dejo",
+      "expression": "yo [PRON] dejo",
       "count": 5,
       "num_variants": 4,
       "num_songs": 4,
@@ -4440,7 +4956,7 @@
       }
     },
     {
-      "pattern": "más y [PRON]",
+      "expression": "más y [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 3,
@@ -4451,7 +4967,7 @@
       }
     },
     {
-      "pattern": "que [PRON] tienes",
+      "expression": "que [PRON] tienes",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4461,7 +4977,7 @@
       }
     },
     {
-      "pattern": "[PRON] quiero ver",
+      "expression": "[PRON] quiero ver",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4471,7 +4987,7 @@
       }
     },
     {
-      "pattern": "tú [PRON] mueves",
+      "expression": "tú [PRON] mueves",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4481,7 +4997,7 @@
       }
     },
     {
-      "pattern": "ya [PRON] di",
+      "expression": "ya [PRON] di",
       "count": 5,
       "num_variants": 4,
       "num_songs": 5,
@@ -4493,7 +5009,7 @@
       }
     },
     {
-      "pattern": "[PRON] doy un",
+      "expression": "[PRON] doy un",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4504,7 +5020,7 @@
       }
     },
     {
-      "pattern": "antes de [PRON]",
+      "expression": "antes de [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 4,
@@ -4515,7 +5031,7 @@
       }
     },
     {
-      "pattern": "[PRON] llevo a",
+      "expression": "[PRON] llevo a",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4525,7 +5041,7 @@
       }
     },
     {
-      "pattern": "que [PRON] vayas",
+      "expression": "que [PRON] vayas",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4535,7 +5051,7 @@
       }
     },
     {
-      "pattern": "[PRON] tengo sometida",
+      "expression": "[PRON] tengo sometida",
       "count": 5,
       "num_variants": 2,
       "num_songs": 1,
@@ -4545,7 +5061,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] de",
+      "expression": "yo [PRON] de",
       "count": 5,
       "num_variants": 2,
       "num_songs": 3,
@@ -4555,7 +5071,7 @@
       }
     },
     {
-      "pattern": "que [PRON] tiran",
+      "expression": "que [PRON] tiran",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4566,7 +5082,7 @@
       }
     },
     {
-      "pattern": "mientras yo [PRON]",
+      "expression": "mientras yo [PRON]",
       "count": 5,
       "num_variants": 5,
       "num_songs": 5,
@@ -4579,7 +5095,7 @@
       }
     },
     {
-      "pattern": "dentro de [PRON]",
+      "expression": "dentro de [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4589,7 +5105,7 @@
       }
     },
     {
-      "pattern": "que [PRON] toque",
+      "expression": "que [PRON] toque",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4600,7 +5116,7 @@
       }
     },
     {
-      "pattern": "pide que [PRON]",
+      "expression": "pide que [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4610,7 +5126,7 @@
       }
     },
     {
-      "pattern": "ver como [PRON]",
+      "expression": "ver como [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 2,
@@ -4620,7 +5136,7 @@
       }
     },
     {
-      "pattern": "soy el que [PRON]",
+      "expression": "soy el que [PRON]",
       "count": 5,
       "num_variants": 5,
       "num_songs": 5,
@@ -4633,7 +5149,7 @@
       }
     },
     {
-      "pattern": "no [PRON] hace falta",
+      "expression": "no [PRON] hace falta",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4643,7 +5159,7 @@
       }
     },
     {
-      "pattern": "tu novio no [PRON]",
+      "expression": "tu novio no [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 5,
@@ -4653,7 +5169,7 @@
       }
     },
     {
-      "pattern": "contigo [PRON] voy a",
+      "expression": "contigo [PRON] voy a",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4664,7 +5180,7 @@
       }
     },
     {
-      "pattern": "no [PRON] vayas a",
+      "expression": "no [PRON] vayas a",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4674,7 +5190,7 @@
       }
     },
     {
-      "pattern": "no sé si [PRON]",
+      "expression": "no sé si [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4685,7 +5201,7 @@
       }
     },
     {
-      "pattern": "en cuatro y [PRON]",
+      "expression": "en cuatro y [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4696,7 +5212,7 @@
       }
     },
     {
-      "pattern": "voy a hacer [PRON]",
+      "expression": "voy a hacer [PRON]",
       "count": 5,
       "num_variants": 3,
       "num_songs": 5,
@@ -4707,7 +5223,7 @@
       }
     },
     {
-      "pattern": "todo el que [PRON]",
+      "expression": "todo el que [PRON]",
       "count": 5,
       "num_variants": 4,
       "num_songs": 4,
@@ -4719,7 +5235,7 @@
       }
     },
     {
-      "pattern": "[PRON] voy a mandar",
+      "expression": "[PRON] voy a mandar",
       "count": 5,
       "num_variants": 2,
       "num_songs": 3,
@@ -4729,7 +5245,7 @@
       }
     },
     {
-      "pattern": "fui el que [PRON]",
+      "expression": "fui el que [PRON]",
       "count": 5,
       "num_variants": 2,
       "num_songs": 4,
@@ -4739,7 +5255,7 @@
       }
     },
     {
-      "pattern": "ya mismo [PRON]",
+      "expression": "ya mismo [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4749,7 +5265,7 @@
       }
     },
     {
-      "pattern": "tú misma [PRON]",
+      "expression": "tú misma [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4759,7 +5275,7 @@
       }
     },
     {
-      "pattern": "[PRON] toco y",
+      "expression": "[PRON] toco y",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -4769,7 +5285,7 @@
       }
     },
     {
-      "pattern": "mi cama [PRON]",
+      "expression": "mi cama [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -4780,7 +5296,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] toco",
+      "expression": "yo [PRON] toco",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -4790,7 +5306,7 @@
       }
     },
     {
-      "pattern": "y siempre [PRON]",
+      "expression": "y siempre [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4801,7 +5317,7 @@
       }
     },
     {
-      "pattern": "siento que [PRON]",
+      "expression": "siento que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4812,7 +5328,7 @@
       }
     },
     {
-      "pattern": "cabrones que [PRON]",
+      "expression": "cabrones que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4823,7 +5339,7 @@
       }
     },
     {
-      "pattern": "siempre con [PRON]",
+      "expression": "siempre con [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -4833,7 +5349,7 @@
       }
     },
     {
-      "pattern": "y [PRON] da",
+      "expression": "y [PRON] da",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4844,7 +5360,7 @@
       }
     },
     {
-      "pattern": "[PRON] hice para",
+      "expression": "[PRON] hice para",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4854,7 +5370,7 @@
       }
     },
     {
-      "pattern": "y ella [PRON]",
+      "expression": "y ella [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4864,7 +5380,7 @@
       }
     },
     {
-      "pattern": "alguien que [PRON]",
+      "expression": "alguien que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -4875,7 +5391,7 @@
       }
     },
     {
-      "pattern": "que [PRON] trajo",
+      "expression": "que [PRON] trajo",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4886,7 +5402,7 @@
       }
     },
     {
-      "pattern": "y [PRON] vamos",
+      "expression": "y [PRON] vamos",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -4896,7 +5412,7 @@
       }
     },
     {
-      "pattern": "y [PRON] compré",
+      "expression": "y [PRON] compré",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4907,7 +5423,7 @@
       }
     },
     {
-      "pattern": "[PRON] dejo en",
+      "expression": "[PRON] dejo en",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4917,7 +5433,7 @@
       }
     },
     {
-      "pattern": "tú [PRON] besas",
+      "expression": "tú [PRON] besas",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4928,7 +5444,7 @@
       }
     },
     {
-      "pattern": "saben [PRON] que",
+      "expression": "saben [PRON] que",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4938,7 +5454,7 @@
       }
     },
     {
-      "pattern": "[PRON] dijeron que",
+      "expression": "[PRON] dijeron que",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4948,7 +5464,7 @@
       }
     },
     {
-      "pattern": "pero todo [PRON]",
+      "expression": "pero todo [PRON]",
       "count": 4,
       "num_variants": 4,
       "num_songs": 4,
@@ -4960,7 +5476,7 @@
       }
     },
     {
-      "pattern": "más de [PRON]",
+      "expression": "más de [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4970,7 +5486,7 @@
       }
     },
     {
-      "pattern": "y [PRON] doy",
+      "expression": "y [PRON] doy",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -4980,7 +5496,7 @@
       }
     },
     {
-      "pattern": "pero [PRON] gusta",
+      "expression": "pero [PRON] gusta",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -4991,7 +5507,7 @@
       }
     },
     {
-      "pattern": "si [PRON] da",
+      "expression": "si [PRON] da",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5001,7 +5517,7 @@
       }
     },
     {
-      "pattern": "yo [PRON] llevo",
+      "expression": "yo [PRON] llevo",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5011,7 +5527,7 @@
       }
     },
     {
-      "pattern": "y [PRON] pones",
+      "expression": "y [PRON] pones",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5021,7 +5537,7 @@
       }
     },
     {
-      "pattern": "no [PRON] compares",
+      "expression": "no [PRON] compares",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5031,7 +5547,7 @@
       }
     },
     {
-      "pattern": "[PRON] hago todo",
+      "expression": "[PRON] hago todo",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5041,7 +5557,7 @@
       }
     },
     {
-      "pattern": "y [PRON] puso",
+      "expression": "y [PRON] puso",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5051,7 +5567,7 @@
       }
     },
     {
-      "pattern": "no [PRON] comparen",
+      "expression": "no [PRON] comparen",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5061,7 +5577,7 @@
       }
     },
     {
-      "pattern": "anda con [PRON]",
+      "expression": "anda con [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5071,7 +5587,7 @@
       }
     },
     {
-      "pattern": "haces [PRON] que",
+      "expression": "haces [PRON] que",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5081,7 +5597,7 @@
       }
     },
     {
-      "pattern": "si [PRON] digo",
+      "expression": "si [PRON] digo",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5091,7 +5607,7 @@
       }
     },
     {
-      "pattern": "que [PRON] tire",
+      "expression": "que [PRON] tire",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5102,7 +5618,7 @@
       }
     },
     {
-      "pattern": "mira a [PRON]",
+      "expression": "mira a [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5112,7 +5628,7 @@
       }
     },
     {
-      "pattern": "siempre [PRON] voy",
+      "expression": "siempre [PRON] voy",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5122,7 +5638,7 @@
       }
     },
     {
-      "pattern": "so no [PRON]",
+      "expression": "so no [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5133,7 +5649,7 @@
       }
     },
     {
-      "pattern": "si [PRON] gusta",
+      "expression": "si [PRON] gusta",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5143,7 +5659,7 @@
       }
     },
     {
-      "pattern": "digo que [PRON]",
+      "expression": "digo que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5154,7 +5670,7 @@
       }
     },
     {
-      "pattern": "tú siempre [PRON]",
+      "expression": "tú siempre [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5165,7 +5681,7 @@
       }
     },
     {
-      "pattern": "quién [PRON] va",
+      "expression": "quién [PRON] va",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5175,7 +5691,7 @@
       }
     },
     {
-      "pattern": "noche yo [PRON]",
+      "expression": "noche yo [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5185,7 +5701,7 @@
       }
     },
     {
-      "pattern": "veces ni [PRON]",
+      "expression": "veces ni [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 2,
@@ -5196,7 +5712,7 @@
       }
     },
     {
-      "pattern": "hace que [PRON]",
+      "expression": "hace que [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5206,7 +5722,7 @@
       }
     },
     {
-      "pattern": "y luego [PRON]",
+      "expression": "y luego [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -5217,7 +5733,7 @@
       }
     },
     {
-      "pattern": "[PRON] toca a",
+      "expression": "[PRON] toca a",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5228,7 +5744,7 @@
       }
     },
     {
-      "pattern": "[PRON] tengo que",
+      "expression": "[PRON] tengo que",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5239,7 +5755,7 @@
       }
     },
     {
-      "pattern": "tiempo no [PRON]",
+      "expression": "tiempo no [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5249,7 +5765,7 @@
       }
     },
     {
-      "pattern": "ahora [PRON] toca",
+      "expression": "ahora [PRON] toca",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5259,7 +5775,7 @@
       }
     },
     {
-      "pattern": "el sol [PRON]",
+      "expression": "el sol [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5269,7 +5785,7 @@
       }
     },
     {
-      "pattern": "ti yo [PRON]",
+      "expression": "ti yo [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5279,7 +5795,7 @@
       }
     },
     {
-      "pattern": "fue [PRON] que",
+      "expression": "fue [PRON] que",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5289,7 +5805,7 @@
       }
     },
     {
-      "pattern": "[PRON] hago sentir",
+      "expression": "[PRON] hago sentir",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5299,7 +5815,7 @@
       }
     },
     {
-      "pattern": "que [PRON] vi",
+      "expression": "que [PRON] vi",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5310,7 +5826,7 @@
       }
     },
     {
-      "pattern": "dios [PRON] bendiga",
+      "expression": "dios [PRON] bendiga",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5320,7 +5836,7 @@
       }
     },
     {
-      "pattern": "[PRON] pone a",
+      "expression": "[PRON] pone a",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5330,7 +5846,7 @@
       }
     },
     {
-      "pattern": "no [PRON] ha",
+      "expression": "no [PRON] ha",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5340,7 +5856,7 @@
       }
     },
     {
-      "pattern": "contigo no [PRON]",
+      "expression": "contigo no [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5350,7 +5866,7 @@
       }
     },
     {
-      "pattern": "cuando tú [PRON]",
+      "expression": "cuando tú [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5361,7 +5877,7 @@
       }
     },
     {
-      "pattern": "nadie [PRON] ha",
+      "expression": "nadie [PRON] ha",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5371,7 +5887,7 @@
       }
     },
     {
-      "pattern": "hasta en [PRON]",
+      "expression": "hasta en [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5382,7 +5898,7 @@
       }
     },
     {
-      "pattern": "[PRON] doy con",
+      "expression": "[PRON] doy con",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5392,7 +5908,7 @@
       }
     },
     {
-      "pattern": "ti [PRON] voy",
+      "expression": "ti [PRON] voy",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5402,7 +5918,7 @@
       }
     },
     {
-      "pattern": "meto a [PRON]",
+      "expression": "meto a [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5412,7 +5928,7 @@
       }
     },
     {
-      "pattern": "debajo e [PRON]",
+      "expression": "debajo e [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 2,
@@ -5422,7 +5938,7 @@
       }
     },
     {
-      "pattern": "qué bien [PRON]",
+      "expression": "qué bien [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -5433,7 +5949,7 @@
       }
     },
     {
-      "pattern": "que [PRON] mete",
+      "expression": "que [PRON] mete",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5443,7 +5959,7 @@
       }
     },
     {
-      "pattern": "algo que [PRON]",
+      "expression": "algo que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -5454,7 +5970,7 @@
       }
     },
     {
-      "pattern": "que [PRON] dejó",
+      "expression": "que [PRON] dejó",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5464,7 +5980,7 @@
       }
     },
     {
-      "pattern": "aquí [PRON] hace",
+      "expression": "aquí [PRON] hace",
       "count": 4,
       "num_variants": 2,
       "num_songs": 2,
@@ -5474,7 +5990,7 @@
       }
     },
     {
-      "pattern": "voy a [PRON]",
+      "expression": "voy a [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5484,7 +6000,7 @@
       }
     },
     {
-      "pattern": "[PRON] que están",
+      "expression": "[PRON] que están",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5494,7 +6010,7 @@
       }
     },
     {
-      "pattern": "para [PRON] haters",
+      "expression": "para [PRON] haters",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5504,7 +6020,7 @@
       }
     },
     {
-      "pattern": "y [PRON] pide",
+      "expression": "y [PRON] pide",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5514,7 +6030,7 @@
       }
     },
     {
-      "pattern": "que [PRON] baile",
+      "expression": "que [PRON] baile",
       "count": 4,
       "num_variants": 2,
       "num_songs": 2,
@@ -5524,7 +6040,7 @@
       }
     },
     {
-      "pattern": "no [PRON] han",
+      "expression": "no [PRON] han",
       "count": 4,
       "num_variants": 3,
       "num_songs": 2,
@@ -5535,7 +6051,7 @@
       }
     },
     {
-      "pattern": "encanta que [PRON]",
+      "expression": "encanta que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -5546,7 +6062,7 @@
       }
     },
     {
-      "pattern": "el día que [PRON]",
+      "expression": "el día que [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5557,7 +6073,7 @@
       }
     },
     {
-      "pattern": "para ver si [PRON]",
+      "expression": "para ver si [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5568,7 +6084,7 @@
       }
     },
     {
-      "pattern": "que no [PRON] hace",
+      "expression": "que no [PRON] hace",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5578,7 +6094,7 @@
       }
     },
     {
-      "pattern": "sabes que yo [PRON]",
+      "expression": "sabes que yo [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5588,7 +6104,7 @@
       }
     },
     {
-      "pattern": "es por mí [PRON]",
+      "expression": "es por mí [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5598,7 +6114,7 @@
       }
     },
     {
-      "pattern": "[PRON] va a hacer",
+      "expression": "[PRON] va a hacer",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5609,7 +6125,7 @@
       }
     },
     {
-      "pattern": "[PRON] voy a llevar",
+      "expression": "[PRON] voy a llevar",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5619,7 +6135,7 @@
       }
     },
     {
-      "pattern": "yo quiero que [PRON]",
+      "expression": "yo quiero que [PRON]",
       "count": 4,
       "num_variants": 4,
       "num_songs": 4,
@@ -5631,7 +6147,7 @@
       }
     },
     {
-      "pattern": "es [PRON] que yo",
+      "expression": "es [PRON] que yo",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5641,7 +6157,7 @@
       }
     },
     {
-      "pattern": "así que no [PRON]",
+      "expression": "así que no [PRON]",
       "count": 4,
       "num_variants": 4,
       "num_songs": 4,
@@ -5653,7 +6169,7 @@
       }
     },
     {
-      "pattern": "siempre ando con [PRON]",
+      "expression": "siempre ando con [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5663,7 +6179,7 @@
       }
     },
     {
-      "pattern": "que [PRON] vas a",
+      "expression": "que [PRON] vas a",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5673,7 +6189,7 @@
       }
     },
     {
-      "pattern": "aunque a veces [PRON]",
+      "expression": "aunque a veces [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5684,7 +6200,7 @@
       }
     },
     {
-      "pattern": "siempre [PRON] voy a",
+      "expression": "siempre [PRON] voy a",
       "count": 4,
       "num_variants": 2,
       "num_songs": 3,
@@ -5694,7 +6210,7 @@
       }
     },
     {
-      "pattern": "yo el que [PRON]",
+      "expression": "yo el que [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5704,7 +6220,7 @@
       }
     },
     {
-      "pattern": "quién [PRON] va a",
+      "expression": "quién [PRON] va a",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5714,7 +6230,7 @@
       }
     },
     {
-      "pattern": "el único que [PRON]",
+      "expression": "el único que [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5724,7 +6240,7 @@
       }
     },
     {
-      "pattern": "a veces ni [PRON]",
+      "expression": "a veces ni [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 2,
@@ -5735,7 +6251,7 @@
       }
     },
     {
-      "pattern": "dile que no [PRON]",
+      "expression": "dile que no [PRON]",
       "count": 4,
       "num_variants": 3,
       "num_songs": 3,
@@ -5746,7 +6262,7 @@
       }
     },
     {
-      "pattern": "cada vez que [PRON]",
+      "expression": "cada vez que [PRON]",
       "count": 4,
       "num_variants": 4,
       "num_songs": 4,
@@ -5758,7 +6274,7 @@
       }
     },
     {
-      "pattern": "al final de [PRON]",
+      "expression": "al final de [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 4,
@@ -5768,7 +6284,7 @@
       }
     },
     {
-      "pattern": "yo ando con [PRON]",
+      "expression": "yo ando con [PRON]",
       "count": 4,
       "num_variants": 4,
       "num_songs": 4,
@@ -5780,7 +6296,7 @@
       }
     },
     {
-      "pattern": "[PRON] juro que no",
+      "expression": "[PRON] juro que no",
       "count": 4,
       "num_variants": 3,
       "num_songs": 4,
@@ -5791,7 +6307,7 @@
       }
     },
     {
-      "pattern": "con [PRON] que yo",
+      "expression": "con [PRON] que yo",
       "count": 4,
       "num_variants": 2,
       "num_songs": 2,
@@ -5801,7 +6317,7 @@
       }
     },
     {
-      "pattern": "que yo siempre [PRON]",
+      "expression": "que yo siempre [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 2,
@@ -5815,6 +6331,6 @@
   "stats": {
     "confirmed_count": 79,
     "pmi_detected_count": 115,
-    "patterns_count": 408
+    "patterns_count": 459
   }
 }

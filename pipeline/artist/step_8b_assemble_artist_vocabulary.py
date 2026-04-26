@@ -270,6 +270,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         buckets = [
             ("artist-curated", detected.get("mwes") or []),
             ("artist-pmi",     detected.get("pmi_detected") or []),
+            # Clitic-placeholder patterns: e.g. "no [PRON] hagas" surfaces a
+            # template family ({no te hagas, no me hagas, no lo hagas, ...})
+            # on each component word's card. The [PRON] token is skipped at
+            # attachment time so it doesn't get added as a fake vocab word.
+            ("artist-pattern", detected.get("patterns") or []),
         ]
         for source, items in buckets:
             for m in items:
@@ -286,7 +291,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 # artist's vocab, the attachment is a no-op at annotation
                 # time. If it is, the MWE shows up on that card.
                 for token in expr.lower().split():
-                    if not token:
+                    if not token or token == "[pron]":
                         continue
                     existing = mwe_by_word.setdefault(token, [])
                     if any((e.get("expression") or "").lower() == expr.lower()
@@ -1038,12 +1043,24 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # is NOT a Spanish letter (handles accented chars that \b misses)
     _SPANISH_LETTER = r'a-zA-ZáéíóúñüÁÉÍÓÚÑÜ'
 
+    # Pattern entries from the clitic-placeholder bucket carry a "[PRON]" slot
+    # that won't appear literally in any lyric line. When we see it, expand
+    # to a regex alternation over the object/reflexive clitics so the same
+    # function can surface example lines for "no [PRON] hagas" by matching
+    # "no te hagas", "no me hagas", "no lo hagas", etc.
+    _PRON_PLACEHOLDER_RE = re.compile(r'\[pron\]', re.IGNORECASE)
+    _PRON_CLITIC_ALT = r'(?:me|te|se|le|les|nos|lo|la|los|las)'
+
     def find_mwe_examples(expression, max_examples=3):
         """Find lyric lines containing an MWE expression (word-boundary match)."""
         expr_lower = expression.lower()
+        if '[pron]' in expr_lower:
+            parts = _PRON_PLACEHOLDER_RE.split(expr_lower)
+            body = _PRON_CLITIC_ALT.join(re.escape(p) for p in parts)
+        else:
+            body = re.escape(expr_lower)
         pattern = re.compile(
-            r'(?<![' + _SPANISH_LETTER + r'])' +
-            re.escape(expr_lower) +
+            r'(?<![' + _SPANISH_LETTER + r'])' + body +
             r'(?![' + _SPANISH_LETTER + r'])',
             re.IGNORECASE,
         )
