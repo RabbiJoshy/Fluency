@@ -2,7 +2,7 @@
 """
 step_2a_build_inventory.py — Build word inventory from frequency CSV.
 
-Reads SpanishRawWiki.csv and produces a surface-word-first inventory. Each
+Reads {Language}RawWiki.csv and produces a surface-word-first inventory. Each
 surface word gets one entry with the total corpus_count and a list of known
 lemmas from the CSV.
 
@@ -10,15 +10,16 @@ Lemma disambiguation is deferred to step 7a (after sense assignment), and
 frequency redistribution across lemmas happens at assembly time (step 8a).
 
 Usage:
-    python3 pipeline/step_2a_build_inventory.py
+    python3 pipeline/step_2a_build_inventory.py [--language {spanish,french}]
 
 Inputs:
-    Data/Spanish/SpanishRawWiki.csv
+    Data/{Language}/{Language}RawWiki.csv
 
 Output:
-    Data/Spanish/layers/word_inventory.json
+    Data/{Language}/layers/word_inventory.json
 """
 
+import argparse
 import csv
 import json
 import sys
@@ -35,15 +36,25 @@ STEP_VERSION_NOTES = {
     1: "surface-first inventory with known_lemmas list, corpus_count from ppm",
 }
 
-CSV_SOURCE = PROJECT_ROOT / "Data" / "Spanish" / "SpanishRawWiki.csv"
-OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
-
 
 def main():
-    print("Loading vocabulary from CSV...")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--language",
+        default="spanish",
+        choices=["spanish", "french"],
+        help="Language to build inventory for (default: spanish)",
+    )
+    args = parser.parse_args()
+
+    lang_dir = args.language.capitalize()
+    csv_source = PROJECT_ROOT / "Data" / lang_dir / f"{lang_dir}RawWiki.csv"
+    output_file = PROJECT_ROOT / "Data" / lang_dir / "layers" / "word_inventory.json"
+
+    print(f"Loading vocabulary from {csv_source}...")
     by_word = defaultdict(lambda: {"corpus_count": 0, "lemmas": set()})
 
-    with open(CSV_SOURCE, encoding="utf-8") as f:
+    with open(csv_source, encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             word = row["word"]
@@ -66,11 +77,11 @@ def main():
 
     entries.sort(key=lambda e: (-e["corpus_count"], e["word"]))
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    print(f"Writing {OUTPUT_FILE}...")
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    print(f"Writing {output_file}...")
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)
-    write_sidecar(OUTPUT_FILE, make_meta("build_inventory", STEP_VERSION))
+    write_sidecar(output_file, make_meta("build_inventory", STEP_VERSION))
 
     multi_lemma = sum(1 for e in entries if len(e["known_lemmas"]) > 1)
     print(f"\n  {len(entries)} surface words ({multi_lemma} with multiple lemmas)")

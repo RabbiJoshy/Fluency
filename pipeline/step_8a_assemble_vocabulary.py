@@ -57,8 +57,7 @@ from util_8a_assembly_helpers import make_stable_id, split_count_proportionally
 from util_pipeline_config import get_default_min_priority
 from util_pipeline_meta import make_meta, write_sidecar
 
-# Normal mode only ships Spanish today. If another language gets a normal-mode
-# pipeline later, either pass `--language` or promote this to an argparse arg.
+# Default language; overridden by --language at runtime.
 NORMAL_MODE_LANGUAGE = "spanish"
 
 STEP_VERSION = 2
@@ -68,9 +67,20 @@ STEP_VERSION_NOTES = {
 }
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+# Path globals — bound at runtime in main() once --language is known.
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
 OUTPUT_DIR = PROJECT_ROOT / "Data" / "Spanish"
 WIKTIONARY_RAW = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
+
+
+def _bind_paths(language):
+    """Rebind LAYERS / OUTPUT_DIR / WIKTIONARY_RAW from --language."""
+    global LAYERS, OUTPUT_DIR, WIKTIONARY_RAW, NORMAL_MODE_LANGUAGE
+    NORMAL_MODE_LANGUAGE = language
+    lang_dir = language.capitalize()
+    LAYERS = PROJECT_ROOT / "Data" / lang_dir / "layers"
+    OUTPUT_DIR = PROJECT_ROOT / "Data" / lang_dir
+    WIKTIONARY_RAW = PROJECT_ROOT / "Data" / lang_dir / "Senses" / "wiktionary" / f"kaikki-{language}.jsonl.gz"
 
 
 def load_clitic_map(path):
@@ -281,22 +291,25 @@ def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
 # ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="Assemble final vocabulary from layers")
+    parser.add_argument("--language", choices=("spanish", "french"), default="spanish",
+                        help="Target language (default: spanish)")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="spanishdict",
                         help="Sense source to assemble from (default: spanishdict)")
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards; unassigned examples dropped)")
-    default_min_priority = get_default_min_priority(NORMAL_MODE_LANGUAGE, fallback=0)
     parser.add_argument("--min-priority", type=int, default=None,
                         help="Drop assignments whose method priority is below N. "
                              "Their examples become orphans (eligible for remainders "
-                             "when --remainders is on). Default from "
-                             "config/config.json languages.%s.pipelineDefaults.minPriority "
-                             "(%d today); falls back to 0 when unset. "
+                             "when --remainders is on). Defaults from "
+                             "config/config.json languages.{language}.pipelineDefaults.minPriority; "
+                             "falls back to 0 when unset. "
                              "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
-                             "50 (Gemini only)." % (NORMAL_MODE_LANGUAGE, default_min_priority))
+                             "50 (Gemini only).")
     args = parser.parse_args()
+    _bind_paths(args.language)
+    default_min_priority = get_default_min_priority(NORMAL_MODE_LANGUAGE, fallback=0)
     if args.min_priority is None:
         args.min_priority = default_min_priority
         print("min-priority: %d (from config/config.json: languages.%s.pipelineDefaults)"

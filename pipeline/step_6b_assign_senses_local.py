@@ -352,6 +352,9 @@ def main():
     parser.add_argument("--artist-dir", default=None,
                         help="Artist directory (e.g. Artists/spanish/Bad Bunny). "
                              "Omit for normal mode (Data/Spanish).")
+    parser.add_argument("--language", choices=["spanish", "french"], default="spanish",
+                        help="Target language for normal-mode paths (default: spanish). "
+                             "Ignored when --artist-dir is set.")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--biencoder", action="store_true", default=True,
                       help="Bi-encoder cosine similarity (default)")
@@ -391,9 +394,18 @@ def main():
         mode_label = "Artist: %s" % config["name"]
         routing_path = Path(artist_dir) / "data" / "known_vocab" / "word_routing.json"
     else:
-        layers_dir = PROJECT_ROOT / "Data" / "Spanish" / "layers"
-        mode_label = "Normal mode (Data/Spanish)"
+        lang_dir = args.language.capitalize()
+        layers_dir = PROJECT_ROOT / "Data" / lang_dir / "layers"
+        mode_label = "Normal mode (Data/%s)" % lang_dir
         routing_path = layers_dir / "word_routing.json"
+        # Rebind module-level Wiktionary path globals for the chosen language so
+        # downstream loaders (load_wiktionary, eswikt cache, etc.) hit the right files.
+        global WIKTIONARY_SENSES_FILE, WIKTIONARY_RAW_PATH
+        WIKTIONARY_SENSES_FILE = layers_dir / "sense_menu" / "wiktionary.json"
+        if args.language == "spanish":
+            WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
+        else:
+            WIKTIONARY_RAW_PATH = PROJECT_ROOT / "Data" / lang_dir / "Senses" / "wiktionary" / f"kaikki-{args.language}.jsonl.gz"
 
     use_keyword = args.keyword_only
     method = "keyword overlap" if use_keyword else "bi-encoder"

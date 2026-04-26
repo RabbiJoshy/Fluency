@@ -25,6 +25,7 @@ Buckets:
 """
 
 import json
+from pathlib import Path
 
 from util_6a_method_priority import METHOD_PRIORITY
 
@@ -128,6 +129,7 @@ def dump_assignments(word_dict, path):
                 methods[method] = clean
         if methods:
             serialized[word] = methods
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(serialized, f, ensure_ascii=False, indent=2)
 

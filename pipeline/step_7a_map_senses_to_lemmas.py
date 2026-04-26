@@ -242,14 +242,17 @@ def main():
     parser = argparse.ArgumentParser(description="Step 7a: map sense assignments to word|lemma keys")
     parser.add_argument("--artist-dir", type=str, default=None,
                         help="If set, operate against this artist's layers instead of normal mode.")
+    parser.add_argument("--language", choices=["spanish", "french"], default="spanish",
+                        help="Target language for normal-mode paths (default: spanish). "
+                             "Ignored when --artist-dir is set.")
     args = parser.parse_args()
 
     if args.artist_dir:
         layers_dir = Path(os.path.abspath(args.artist_dir)) / "data" / "layers"
         print(f"Artist mode: {args.artist_dir}")
     else:
-        layers_dir = NORMAL_LAYERS
-        print("Normal mode")
+        layers_dir = PROJECT_ROOT / "Data" / args.language.capitalize() / "layers"
+        print(f"Normal mode ({args.language})")
 
     sources = discover_sources(layers_dir, "sense_assignments")
     if not sources:

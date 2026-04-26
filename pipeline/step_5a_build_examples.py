@@ -2,21 +2,23 @@
 """
 step_5a_build_examples.py — Match example sentences to vocabulary.
 
-Reads the word inventory and corpora (Tatoeba + OpenSubtitles), finds example
-sentences for each word, scores them by easiness, and writes a keyed examples layer.
-Tatoeba examples are preferred; OpenSubtitles fills remaining slots up to 50.
+Reads the word inventory and corpora (Tatoeba + optional OpenSubtitles), finds
+example sentences for each word, scores them by easiness, and writes a keyed
+examples layer. Tatoeba examples are preferred; OpenSubtitles fills remaining
+slots up to MAX_EXAMPLES_PER_WORD when enabled.
 
 Usage:
-    python3 pipeline/step_5a_build_examples.py [--max-lines N]
+    python3 pipeline/step_5a_build_examples.py [--language {spanish,french}]
+                                               [--no-opensubtitles] [--max-lines N]
 
-Inputs:
-    Data/Spanish/layers/word_inventory.json
-    Data/Spanish/corpora/tatoeba/spa.txt
-    Data/Spanish/corpora/opensubtitles/OpenSubtitles.en-es.{es,en}
-    Data/Spanish/spanish_ranks.json
+Inputs (paths derived from --language):
+    Data/{Lang}/layers/word_inventory.json
+    Data/{Lang}/corpora/tatoeba/{iso639-3}.txt
+    Data/{Lang}/corpora/opensubtitles/OpenSubtitles.en-{xx}.{xx,en}   (optional)
+    Data/{Lang}/{language}_ranks.json
 
 Output:
-    Data/Spanish/layers/examples_raw.json  — {word: [{target, english, source, easiness}]}
+    Data/{Lang}/layers/examples_raw.json  — {word: [{target, english, source, easiness}]}
 """
 
 import argparse
@@ -40,12 +42,29 @@ STEP_VERSION_NOTES = {
     1: "tatoeba preferred + opensubs fill, easiness scoring, diversity sampling",
 }
 
-INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
-TATOEBA_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "tatoeba" / "spa.txt"
-OPENSUBS_ES = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"
-OPENSUBS_EN = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.en"
-RANKS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "spanish_ranks.json"
-OUTPUT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "examples_raw.json"
+# Per-language path config. Tatoeba file is named with ISO 639-3 (spa/fra);
+# OpenSubtitles uses ISO 639-1 in the filename pair (es/fr).
+_LANGUAGE_CONFIG = {
+    "spanish": {
+        "iso3": "spa",
+        "iso2": "es",
+        "ranks_file": "spanish_ranks.json",
+    },
+    "french": {
+        "iso3": "fra",
+        "iso2": "fr",
+        "ranks_file": "french_ranks.json",
+    },
+}
+
+# Path globals — bound at runtime in main() once --language is known.
+INVENTORY_FILE = None
+TATOEBA_FILE = None
+OPENSUBS_ES = None
+OPENSUBS_EN = None
+RANKS_FILE = None
+OUTPUT_FILE = None
+OPENSUBS_CACHE = None
 
 SENTINEL_RANK = 999_999
 DEFAULT_MAX_LINES = 5_000_000
@@ -55,7 +74,8 @@ MIN_SENTENCE_WORDS = 3
 MAX_SENTENCE_WORDS = 25
 TOP_N_TRIVIAL = 100           # sentences using only top-N words are trivial
 
-_TOKEN_RE = re.compile(r"[a-záéíóúüñ]+")
+# Combined Spanish + French letter set; harmless to over-match.
+_TOKEN_RE = re.compile(r"[a-zàáâäæçèéêëíîïñóôœùúûüÿ]+")
 
 # Subtitle junk patterns — reject entire line if matched
 _SUBTITLE_JUNK_RE = re.compile(
@@ -110,9 +130,6 @@ def clean_subtitle_line(line):
     if not line:
         return None
     return line
-
-
-OPENSUBS_CACHE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "cached_pairs.json.gz"
 
 
 def load_opensubtitles(es_path, en_path, max_lines):
@@ -333,6 +350,14 @@ def parse_args():
         description="Match example sentences from corpora to vocabulary words."
     )
     parser.add_argument(
+        "--language", default="spanish", choices=list(_LANGUAGE_CONFIG.keys()),
+        help="Target language (default: spanish)"
+    )
+    parser.add_argument(
+        "--no-opensubtitles", action="store_true",
+        help="Skip OpenSubtitles entirely (Tatoeba-only mode)"
+    )
+    parser.add_argument(
         "--max-lines", type=int, default=DEFAULT_MAX_LINES,
         help="Max OpenSubtitles lines to read (default: %(default)s)"
     )
@@ -347,15 +372,32 @@ def parse_args():
     return parser.parse_args()
 
 
+def _bind_paths(language):
+    """Bind module-level path globals from --language."""
+    global INVENTORY_FILE, TATOEBA_FILE, OPENSUBS_ES, OPENSUBS_EN
+    global RANKS_FILE, OUTPUT_FILE, OPENSUBS_CACHE
+    cfg = _LANGUAGE_CONFIG[language]
+    lang_dir = language.capitalize()
+    base = PROJECT_ROOT / "Data" / lang_dir
+    INVENTORY_FILE = base / "layers" / "word_inventory.json"
+    TATOEBA_FILE = base / "corpora" / "tatoeba" / f"{cfg['iso3']}.txt"
+    OPENSUBS_ES = base / "corpora" / "opensubtitles" / f"OpenSubtitles.en-{cfg['iso2']}.{cfg['iso2']}"
+    OPENSUBS_EN = base / "corpora" / "opensubtitles" / f"OpenSubtitles.en-{cfg['iso2']}.en"
+    OPENSUBS_CACHE = base / "corpora" / "opensubtitles" / "cached_pairs.json.gz"
+    RANKS_FILE = base / cfg["ranks_file"]
+    OUTPUT_FILE = base / "layers" / "examples_raw.json"
+
+
 def main():
     args = parse_args()
+    _bind_paths(args.language)
 
     print("Loading word inventory...")
     with open(INVENTORY_FILE, encoding="utf-8") as f:
         inventory = json.load(f)
     print(f"  {len(inventory)} entries")
 
-    print("Loading spanish_ranks.json...")
+    print(f"Loading {RANKS_FILE.name}...")
     with open(RANKS_FILE, encoding="utf-8") as f:
         word_to_rank = json.load(f)
     print(f"  {len(word_to_rank)} rank entries")
@@ -383,14 +425,19 @@ def main():
     tat_index = build_sentence_index(tat_sentences)
     print(f"  {len(tat_index)} unique normalized tokens indexed")
 
-    # --- OpenSubtitles ---
-    print(f"Loading OpenSubtitles (first {max_lines:,} lines)...")
-    sub_sentences = load_opensubtitles(OPENSUBS_ES, OPENSUBS_EN, max_lines)
-    print(f"  {len(sub_sentences)} sentence pairs after cleaning")
+    # --- OpenSubtitles (optional) ---
+    if args.no_opensubtitles:
+        print("Skipping OpenSubtitles (--no-opensubtitles).")
+        sub_sentences = []
+        sub_index = {}
+    else:
+        print(f"Loading OpenSubtitles (first {max_lines:,} lines)...")
+        sub_sentences = load_opensubtitles(OPENSUBS_ES, OPENSUBS_EN, max_lines)
+        print(f"  {len(sub_sentences)} sentence pairs after cleaning")
 
-    print("Building OpenSubtitles sentence index...")
-    sub_index = build_sentence_index(sub_sentences)
-    print(f"  {len(sub_index)} unique normalized tokens indexed")
+        print("Building OpenSubtitles sentence index...")
+        sub_index = build_sentence_index(sub_sentences)
+        print(f"  {len(sub_index)} unique normalized tokens indexed")
 
     # --- Match and merge ---
     print("Matching examples to vocabulary...")
@@ -420,7 +467,9 @@ def main():
             for idx in candidate_ids:
                 spa = sentences[idx][1].lower()
                 # Check the accented form appears as a whole token
-                if re.search(r'(?<![a-záéíóúüñ])' + re.escape(word_lower) + r'(?![a-záéíóúüñ])', spa):
+                # Word-boundary regex using same letter class as the tokenizer.
+                _CHARSET = r"a-zàáâäæçèéêëíîïñóôœùúûüÿ"
+                if re.search(r'(?<![' + _CHARSET + r'])' + re.escape(word_lower) + r'(?![' + _CHARSET + r'])', spa):
                     filtered.append(idx)
             return filtered
 
