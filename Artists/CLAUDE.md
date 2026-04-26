@@ -51,10 +51,10 @@ This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer conce
 | 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
-| 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 6 phases. Output grouped by treatment: `exclude`, `biencoder`, `gemini`, `clitic_merge`/`clitic_keep`. |
+| 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 5 phases. schema_v2 output: `exclude.*`, `classifier.*`, `derivation_map`, `sense_discovery`, `clitic_merge`/`clitic_orphans`/`clitic_keep`. See `pipeline/CLAUDE.md` for the full schema. |
 | 5 | `pipeline/artist/5_split_evidence.py` | `word_inventory.json`, `examples_raw.json` | Split evidence into inventory + examples layers. Carries `surface` field. |
 | 6a | `pipeline/tool_6a_tag_example_pos.py --artist-dir ...` | `example_pos.json` | Tag examples with spaCy POS (es_dep_news_trf). Incremental. |
-| 6 | `pipeline/artist/assign_senses.py` | `sense_assignments.json` | Unified sense assignment. Dispatches to bi-encoder (biencoder-routed) then Gemini (gemini-routed, if API key set). Gap-fill reuses existing inline senses. |
+| 6 | `pipeline/artist/step_6a_assign_senses.py` | `sense_assignments.json` | Thin dispatcher around shared `step_6b` (keyword/biencoder) + `step_6c` (Gemini). One classifier per invocation; selected via `--classifier`. Gap-fill is independent. See `pipeline/CLAUDE.md` for the full dispatch table. |
 | 6j | `pipeline/artist/judge_translations.py` | `translation_scores.json` | Judge Google Translate quality via Gemini, re-translate bad ones. Optional. |
 | 7 | `pipeline/artist/7_rerank.py` | `ranking.json` | Sort order + per-example easiness scores |
 | 8 | `pipeline/artist/8_fetch_lrc_timestamps.py` | `lyrics_timestamps.json` | Fetch synced lyrics from LRCLIB, match timestamps to examples |
@@ -153,7 +153,7 @@ Artists/{lang}/{Name}/
 | `elision_mapping.json` | Per-word elision merge rules. `action: merge` with `elision_pair`/`elided_only`/`same_word_dup` types routes elided forms to canonical targets. `action: skip` leaves a word unmerged. Manual overrides for non-s-elisions (e.g. `pa' → para`, `lu' → luz`) go here. |
 | `multi_word_elisions.json` | Contractions that should split into multiple Spanish words at tokenization (`pal' → para el`). **Not yet wired into step 2a** — see TODO. |
 | `extra_english.json` | English words (and English contractions like `goin'`, `fuckin'`) that leak into lyrics via code-switching. Step 4 uses this to route them to the `english` exclusion bucket. |
-| `interjections.json`, `proper_nouns.json`, `known_proper_nouns.json`, `not_proper_nouns.json` | Further routing overrides used by step 4. |
+| `noise.json`, `proper_nouns.json`, `cognates.json` | Sectioned `{drop, keep}` curations used by step 4. drop = filter into the named bucket; keep = override (e.g. function words `a`/`o`/`y` in `noise.json.keep` survive the noise filter; false friends like `embarazada` in `cognates.json.keep` survive cognate exclusion). Loader: `load_curation_section()` in `util_1a_artist_config.py`. |
 | `conjugation_families.json`, `curated_mwes.json`, `skip_mwes.json` | MWE and conjugation curation. |
 
 ## Other Directories

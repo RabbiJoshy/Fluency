@@ -268,14 +268,19 @@ def build_master(artists):
             if old_id != new_id:
                 stats["old_id_changes"] += 1
 
-            # Merge into master
+            # Merge into master.
+            # is_noise / is_interjection are aliases (schema_v2 rename); read
+            # either, write both so the master is consistent regardless of
+            # which version of step_8b produced the source artist file.
+            noise_flag = entry.get("is_noise", entry.get("is_interjection", False))
             if new_id not in master:
                 master[new_id] = {
                     "word": word,
                     "lemma": lemma,
                     "senses": [],
                     "is_english": entry.get("is_english", False),
-                    "is_interjection": entry.get("is_interjection", False),
+                    "is_noise": noise_flag,
+                    "is_interjection": noise_flag,
                     "is_propernoun": entry.get("is_propernoun", False),
                     "is_transparent_cognate": entry.get("is_transparent_cognate", False),
                     "display_form": entry.get("display_form"),
@@ -284,8 +289,12 @@ def build_master(artists):
 
             m = master[new_id]
 
-            # Union flags (if any artist says true, keep true)
-            for flag in ("is_english", "is_interjection", "is_propernoun", "is_transparent_cognate"):
+            # Union flags (if any artist says true, keep true). Treat
+            # is_noise and is_interjection as one underlying flag.
+            if noise_flag:
+                m["is_noise"] = True
+                m["is_interjection"] = True
+            for flag in ("is_english", "is_propernoun", "is_transparent_cognate"):
                 if entry.get(flag, False):
                     m[flag] = True
 
@@ -498,7 +507,9 @@ def write_artist_files(master, artist_data):
             "meanings": meanings,
             "most_frequent_lemma_instance": idx_entry["most_frequent_lemma_instance"],
             "is_english": m.get("is_english", False),
-            "is_interjection": m.get("is_interjection", False),
+            # is_noise / is_interjection mirror each other (schema_v2 alias).
+            "is_noise": m.get("is_noise", m.get("is_interjection", False)),
+            "is_interjection": m.get("is_noise", m.get("is_interjection", False)),
             "is_propernoun": m.get("is_propernoun", False),
             "is_transparent_cognate": m.get("is_transparent_cognate", False),
             "corpus_count": idx_entry["corpus_count"],

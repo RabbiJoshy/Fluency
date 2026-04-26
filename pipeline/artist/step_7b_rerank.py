@@ -322,7 +322,10 @@ def main():
     for e in entries:
         wl_key = "%s|%s" % (e["word"], e["lemma"])
         m = wl_to_master.get(wl_key, {})
-        if m.get("is_interjection") or m.get("is_english") or m.get("is_propernoun"):
+        # is_noise replaces is_interjection in schema_v2; read both for
+        # compatibility with master entries built before the rename.
+        if (m.get("is_noise") or m.get("is_interjection")
+                or m.get("is_english") or m.get("is_propernoun")):
             ignore_words.add(e["word"].lower())
             df = (e.get("display_form") or "").lower().strip()
             if df:

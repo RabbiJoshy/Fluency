@@ -596,10 +596,18 @@ def main():
         with open(routing_path) as f:
             routing_data = json.load(f)
         exclude = routing_data.get("exclude", {})
-        for cat in ("english", "proper_nouns", "interjections"):
+        # schema_v2 renamed exclude.interjections → exclude.noise; read both
+        # so step_6c works against pre-rerun word_routing.json files too.
+        for cat in ("english", "proper_nouns", "noise", "interjections"):
             skip_set.update(exclude.get(cat, []))
         if not args.all_gemini:
-            skip_set.update(routing_data.get("biencoder", {}).get("shared", []))
+            # schema_v2 renamed biencoder.* → classifier.* and dropped the
+            # always-empty `shared` sub-bucket; the .get() chain returns []
+            # in either schema, so this stays a no-op for new files and a
+            # safe read for legacy files that still have shared entries.
+            skip_set.update(
+                routing_data.get("classifier", routing_data.get("biencoder", {})).get("shared", [])
+            )
         # Skip merge-clitics (folded into base verb, don't need assignment)
         if not args.include_clitics:
             clitic_merge = routing_data.get("clitic_merge", {})
@@ -669,13 +677,30 @@ def main():
     new_only_words = set()
     if args.new_only:
         if os.path.isfile(routing_path):
-            new_only_words = set(routing_data.get("gemini", []))
+            # schema_v2 renamed gemini → sense_discovery; read both for
+            # backward-compat.
+            new_only_words = set(
+                routing_data.get("sense_discovery", routing_data.get("gemini", []))
+            )
             if args.all_gemini:
-                for value in routing_data.get("biencoder", {}).values():
+                # schema_v2 renamed biencoder → classifier and hoisted
+                # derivation out to top-level derivation_map. Walk both
+                # schema shapes so --all-gemini --new-only catches every
+                # routed word.
+                classifier_section = routing_data.get(
+                    "classifier", routing_data.get("biencoder", {})
+                )
+                for value in classifier_section.values():
                     if isinstance(value, list):
                         new_only_words.update(value)
                     elif isinstance(value, dict):
+                        # schema_v1 had derivation as a {form: base} dict
+                        # nested under biencoder; schema_v2 hoists it to
+                        # top-level derivation_map.
                         new_only_words.update(value.keys())
+                derivation_map = routing_data.get("derivation_map", {})
+                if isinstance(derivation_map, dict):
+                    new_only_words.update(derivation_map.keys())
             print("  --new-only whitelist (from step 4): %d words" % len(new_only_words))
         else:
             print("  WARNING: word_routing.json not found — run step 4 first")
@@ -801,7 +826,10 @@ def main():
         precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
         wl_key = "%s|%s" % (word, lemma)
         mf = master_flags.get(wl_key, {})
-        if mf.get("is_english") or mf.get("is_propernoun") or mf.get("is_interjection"):
+        # is_noise replaces is_interjection in schema_v2; read both for
+        # compatibility with master entries built before the rename.
+        if (mf.get("is_english") or mf.get("is_propernoun")
+                or mf.get("is_noise") or mf.get("is_interjection")):
             skipped_flags += 1
             continue
 

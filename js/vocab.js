@@ -148,7 +148,11 @@ function joinWithMaster(indexData, master) {
             meanings,
             most_frequent_lemma_instance: idx.most_frequent_lemma_instance,
             is_english: m.is_english || false,
-            is_interjection: m.is_interjection || false,
+            // is_noise is the schema_v2 flag name; is_interjection is the
+            // legacy alias kept for vocabularies built before the rename.
+            // Carry both forward so downstream filters can read either.
+            is_noise: m.is_noise || m.is_interjection || false,
+            is_interjection: m.is_noise || m.is_interjection || false,
             is_propernoun: m.is_propernoun || false,
             cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
             cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
@@ -232,7 +236,11 @@ function buildFilteredVocab(vocabData) {
     // Artist/lyrics mode: skip English loanwords, interjections, proper nouns
     if (activeArtist) {
         const before = result.length;
-        result = result.filter(item => !item.is_english && !item.is_interjection && !item.is_propernoun);
+        result = result.filter(item =>
+            !item.is_english &&
+            !item.is_noise && !item.is_interjection &&  // schema_v2 alias
+            !item.is_propernoun
+        );
         counts.english = before - result.length;
     }
 

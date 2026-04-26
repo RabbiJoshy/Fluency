@@ -4,17 +4,34 @@ Step 4: Route artist vocabulary to its sense-assignment bucket.
 
 Five phases, one source of truth for "known Spanish", no heuristic detectors:
 
-  Phase 1: Curated drops        (noise ∪ extra_english ∪ drop_proper_nouns)
+  Phase 1: Curated drops        (noise ∪ extra_english ∪ proper_nouns.drop)
                                 + regex for 3+ repeated letters (jajajajaja)
                                 + Wiktionary all-PROPN (unambiguous names)
   Phase 2: Known Spanish        (spanish_forms.json lookup); words also in
-                                en_50k or CogNet split off to exclude.cognate,
-                                rest go to biencoder by POS
+                                cognates.drop split off to exclude.cognate,
+                                rest go to classifier by POS
   Phase 3: Clitic + derivation  (strip clitic, check base in verb forms;
                                 or resolve diminutive/superlative)
   Phase 4: English fallback     (en_50k for words not in spanish_forms)
   Phase 5: Frequency floor
-           → everything else   → gemini
+           → everything else   → sense_discovery
+
+Output bucket names (word_routing.json schema_version 2):
+  - exclude.{english, cognate, proper_nouns, noise, low_frequency}
+    cognate is a flat list (no per-word voter dict).
+    noise was previously called interjections; the rename matches what the
+    bucket actually holds (single-letter / ad-lib / hype noises).
+  - classifier.{normal_vocab, conjugation, elision}
+    Was biencoder.* — renamed because the runtime classifier (biencoder vs
+    Gemini) is a per-invocation choice; the buckets are agnostic metadata.
+  - derivation_map: {form: base}
+    Hoisted out of classifier.* so the classifier section is uniformly list-
+    shaped. Sibling of clitic_merge.
+  - sense_discovery: [...]
+    Was gemini — renamed because "no SD/wiktionary sense menu, needs a model
+    to invent senses" describes the bucket; whichever model does the work is
+    a runtime choice.
+  - clitic_merge, clitic_orphans, clitic_keep, stats, _meta, schema_version
 
 Principles:
   - One canonical 'is this Spanish?' source: Data/Spanish/layers/spanish_forms.json
@@ -54,14 +71,22 @@ from pipeline.util_pipeline_meta import make_meta  # noqa: E402
 from pipeline.util_4a_routing import resolve_derivation  # noqa: E402
 
 sys.path.insert(0, _THIS_DIR)
-from util_1a_artist_config import add_artist_arg, load_shared_list, SHARED_DIR  # noqa: E402
+from util_1a_artist_config import (  # noqa: E402
+    add_artist_arg, load_shared_list, load_curation_section, SHARED_DIR,
+)
 
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "initial: 6 phases with heuristic detectors",
     2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
     3: "simplified: canonical spanish_forms.json; dropped spaCy/cap-ratio/regex-interj/suffix-rule; one clitic rule",
+    4: "schema_version 2: bucket renames (biencoder→classifier, gemini→sense_discovery, interjections→noise); cognate flattened; derivation hoisted to derivation_map; sectioned curation files (proper_nouns/cognates/noise have drop+keep)",
 }
+
+# Bumped whenever the output JSON schema changes in a way consumers must
+# notice (key renames, shape changes). Independent of STEP_VERSION which
+# tracks the producer's behaviour.
+SCHEMA_VERSION = 2
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -111,6 +136,15 @@ def _maybe_load_shared(name):
         return frozenset(w.lower() for w in load_shared_list(name))
     except FileNotFoundError:
         return frozenset()
+
+
+def _load_section(filename, section):
+    """Lower-cased frozenset of one section of a sectioned curation file.
+
+    Wraps ``load_curation_section`` so step_4a's curation loads are uniformly
+    typed. Missing files / missing sections both return an empty frozenset.
+    """
+    return frozenset(w.lower() for w in load_curation_section(filename, section))
 
 
 def _strip_acute(s):
@@ -204,23 +238,30 @@ def main():
             conj_reverse = json.load(f)
         print(f"  conjugation_reverse: {len(conj_reverse)} forms")
 
-    # Curations
-    noise = _maybe_load_shared("noise.json") | _maybe_load_shared("interjections.json")
-    extra_english = _maybe_load_shared("extra_english.json")
-    drop_propn = _maybe_load_shared("drop_proper_nouns.json") | _maybe_load_shared("known_proper_nouns.json")
-    allow_propn = _maybe_load_shared("allow_proper_nouns.json") | _maybe_load_shared("not_proper_nouns.json")
-    always_teach = _maybe_load_shared("always_teach.json")
-    always_skip_cognate = _maybe_load_shared("always_skip_cognate.json")
+    # Curations — sectioned files (drop + keep in one file).
+    # Each curation has a "drop" list (words to filter into a bucket) and a
+    # "keep" list (override — words that look like the filtered category but
+    # are real Spanish vocab and must survive). `keep` wins on conflicts.
+    noise_drop = _load_section("noise.json", "drop")
+    noise_keep = _load_section("noise.json", "keep")
+    noise = noise_drop - noise_keep
 
-    # Resolve drop/allow conflicts: allow wins
+    extra_english = _maybe_load_shared("extra_english.json")  # one-direction; no keep counterpart
+
+    drop_propn = _load_section("proper_nouns.json", "drop")
+    allow_propn = _load_section("proper_nouns.json", "keep")
     conflicts = drop_propn & allow_propn
     if conflicts:
-        print(f"  [WARN] drop/allow propn conflicts (allow wins): {sorted(conflicts)[:10]}")
+        print(f"  [WARN] proper_nouns drop/keep conflicts (keep wins): {sorted(conflicts)[:10]}")
         drop_propn = drop_propn - allow_propn
 
-    print(f"  Curations: {len(noise)} noise, {len(extra_english)} extra_english, "
+    always_skip_cognate = _load_section("cognates.json", "drop")
+    always_teach = _load_section("cognates.json", "keep")
+
+    print(f"  Curations: {len(noise)} noise (={len(noise_drop)}-{len(noise_keep)}), "
+          f"{len(extra_english)} extra_english, "
           f"{len(drop_propn)} drop_propn, {len(allow_propn)} allow_propn, "
-          f"{len(always_teach)} always_teach")
+          f"{len(always_skip_cognate)} skip_cognate, {len(always_teach)} always_teach")
 
     # ------------------------------------------------------------------
     # Routing state
@@ -228,15 +269,14 @@ def main():
     remaining = set(artist_words)
     buckets = {
         "english": set(),
-        "cognate": {},                # word -> {"voter": source}
+        "cognate": set(),             # flat set; was {word: {voters: [...]}} in schema_v1
         "proper_nouns": set(),
-        "interjections": set(),       # bucket name kept for output compat
+        "noise": set(),               # was "interjections" in schema_v1
         "low_frequency": set(),
         "normal_vocab": set(),
         "conjugation": set(),
         "elision": set(),
-        "derivation": {},             # word -> base
-        "shared": set(),              # unused in simplified pipeline
+        "derivation": {},             # word -> base; written to top-level derivation_map at output time
         "clitic_merge": {},           # word -> (base, clitic_pronoun)
     }
     trail = {w: {"freq": word_freq[w]} for w in artist_words}
@@ -246,21 +286,25 @@ def main():
     # ------------------------------------------------------------------
     print("\n--- Phase 1: Curated drops ---")
 
-    # 1a. Noise (ad-libs, single letters, interjections)
+    # 1a. Noise (ad-libs, single letters, hype noises). The keep section of
+    #     noise.json has already been subtracted, so function words ('a',
+    #     'o', 'y', 'e', 'u') survive this filter.
     matched = (remaining & noise) - allow_propn
-    buckets["interjections"] |= matched
+    buckets["noise"] |= matched
     remaining -= matched
     for w in matched:
-        trail[w]["bucket"] = "interjections"
+        trail[w]["bucket"] = "noise"
         trail[w]["source"] = "curated_noise"
     print(f"  Curated noise:        {len(matched)}")
 
-    # 1b. Regex: words with 3+ repeated letters
+    # 1b. Regex: words with 3+ repeated letters (jajajajaja, brrrrr, wooo).
+    #     This safety-net is intentionally not affected by noise.json's keep
+    #     section — no real Spanish word triple-repeats a letter.
     matched = {w for w in remaining if _REPEAT_RE.search(w)}
-    buckets["interjections"] |= matched
+    buckets["noise"] |= matched
     remaining -= matched
     for w in matched:
-        trail[w]["bucket"] = "interjections"
+        trail[w]["bucket"] = "noise"
         trail[w]["source"] = "regex_repeat"
     print(f"  Repeated-letter noise: {len(matched)}")
 
@@ -307,17 +351,19 @@ def main():
         # Cognate check (curation-only). en_50k is too polluted with Spanish
         # loan-tokens (nada, para, todo, vida, noche all appear in it) to use
         # as an automated voter. CogNet has similar noise. Users curate
-        # always_skip_cognate.json with the obvious loanwords (bikini, bolero,
-        # chalet, …). Parsimony > false-positive automated detection.
+        # cognates.json (drop section) with the obvious loanwords (bikini,
+        # bolero, chalet, …). Parsimony > false-positive automated detection.
+        # The richer multi-voter provenance lives in step_7c_flag_cognates →
+        # cognates.json layer; here we only need the boolean "drop or not".
         if w in always_skip_cognate and w not in always_teach:
-            buckets["cognate"][w] = {"voters": ["curated"]}
+            buckets["cognate"].add(w)
             trail[w]["bucket"] = "cognate"
-            trail[w]["cognate_voters"] = ["curated"]
+            trail[w]["cognate_source"] = "curated"
             remaining.discard(w)
             cog_count += 1
             continue
 
-        # Not a cognate — route to biencoder by POS.
+        # Not a cognate — route to classifier by POS.
         if "verb" in pos:
             buckets["conjugation"].add(w)
             trail[w]["bucket"] = "conjugation"
@@ -406,9 +452,9 @@ def main():
             lo_count += 1
     print(f"  Low frequency: {lo_count}")
 
-    gemini = sorted(remaining, key=lambda w: -word_freq[w])
+    sense_discovery = sorted(remaining, key=lambda w: -word_freq[w])
     for w in remaining:
-        trail[w]["bucket"] = "gemini"
+        trail[w]["bucket"] = "sense_discovery"
 
     elapsed = time.time() - start_time
 
@@ -416,25 +462,25 @@ def main():
     # Summary
     # ------------------------------------------------------------------
     n_exclude = (len(buckets["english"]) + len(buckets["cognate"]) +
-                 len(buckets["proper_nouns"]) + len(buckets["interjections"]) +
+                 len(buckets["proper_nouns"]) + len(buckets["noise"]) +
                  len(buckets["low_frequency"]))
-    n_biencoder = (len(buckets["normal_vocab"]) + len(buckets["conjugation"]) +
-                   len(buckets["elision"]) + len(buckets["derivation"]))
+    n_classifier = (len(buckets["normal_vocab"]) + len(buckets["conjugation"]) +
+                    len(buckets["elision"]))
     print(f"\n=== Word Routing Summary ===")
     print(f"  Input words: {len(artist_words)}")
     print(f"  EXCLUDE ({n_exclude}):")
     print(f"    English:       {len(buckets['english'])}")
     print(f"    Cognate:       {len(buckets['cognate'])}")
     print(f"    Proper nouns:  {len(buckets['proper_nouns'])}")
-    print(f"    Interjections: {len(buckets['interjections'])}")
+    print(f"    Noise:         {len(buckets['noise'])}")
     print(f"    Low frequency: {len(buckets['low_frequency'])}")
-    print(f"  BIENCODER ({n_biencoder}):")
+    print(f"  CLASSIFIER ({n_classifier}):")
     print(f"    Normal vocab:  {len(buckets['normal_vocab'])}")
     print(f"    Conjugation:   {len(buckets['conjugation'])}")
     print(f"    Elision:       {len(buckets['elision'])}")
-    print(f"    Derivation:    {len(buckets['derivation'])}")
-    print(f"  GEMINI ({len(gemini)})")
-    print(f"  CLITIC MERGE:   {len(buckets['clitic_merge'])}")
+    print(f"  DERIVATION_MAP: {len(buckets['derivation'])}")
+    print(f"  SENSE_DISCOVERY ({len(sense_discovery)})")
+    print(f"  CLITIC_MERGE:   {len(buckets['clitic_merge'])}")
     print(f"  Time: {elapsed:.1f}s")
 
     # ------------------------------------------------------------------
@@ -444,16 +490,16 @@ def main():
     overlaps = []
     flat = {
         "english": buckets["english"],
-        "cognate": set(buckets["cognate"].keys()),
+        "cognate": buckets["cognate"],
         "proper_nouns": buckets["proper_nouns"],
-        "interjections": buckets["interjections"],
+        "noise": buckets["noise"],
         "low_frequency": buckets["low_frequency"],
         "normal_vocab": buckets["normal_vocab"],
         "conjugation": buckets["conjugation"],
         "elision": buckets["elision"],
-        "derivation": set(buckets["derivation"].keys()),
+        "derivation_map": set(buckets["derivation"].keys()),
         "clitic_merge": set(buckets["clitic_merge"].keys()),
-        "gemini": set(remaining),
+        "sense_discovery": set(remaining),
     }
     for name, s in flat.items():
         for w in s:
@@ -476,29 +522,35 @@ def main():
     # Write main output
     # ------------------------------------------------------------------
     output = {
+        "schema_version": SCHEMA_VERSION,
         "exclude": {
             "english": sorted(buckets["english"]),
-            "cognate": {w: buckets["cognate"][w] for w in sorted(buckets["cognate"])},
+            "cognate": sorted(buckets["cognate"]),
             "proper_nouns": sorted(buckets["proper_nouns"]),
-            "interjections": sorted(buckets["interjections"]),
+            "noise": sorted(buckets["noise"]),
             "low_frequency": sorted(buckets["low_frequency"]),
         },
-        "biencoder": {
+        "classifier": {
             "normal_vocab": sorted(buckets["normal_vocab"]),
             "conjugation": sorted(buckets["conjugation"]),
             "elision": sorted(buckets["elision"]),
-            "derivation": buckets["derivation"],
-            "shared": sorted(buckets["shared"]),
         },
-        "gemini": gemini,
+        "derivation_map": buckets["derivation"],
+        "sense_discovery": sense_discovery,
         "clitic_merge": buckets["clitic_merge"],
-        "clitic_orphans": [],  # deprecated — kept for downstream compat
-        "clitic_keep": [],      # deprecated — tier-3 semantics moved to build phase
+        # clitic_orphans / clitic_keep are populated by NORMAL-MODE
+        # step_4a_route_clitics and consumed by step_8a/step_8b. Artist mode
+        # moved tier-3 logic into step_8b so we always write empty lists for
+        # schema parity with normal mode — never let a downstream consumer
+        # raise KeyError just because we routed differently here.
+        "clitic_orphans": [],
+        "clitic_keep": [],
         "stats": {
             "input_words": len(artist_words),
             "exclude": n_exclude,
-            "biencoder": n_biencoder,
-            "gemini": len(gemini),
+            "classifier": n_classifier,
+            "derivation_map": len(buckets["derivation"]),
+            "sense_discovery": len(sense_discovery),
             "cognate": len(buckets["cognate"]),
             "clitic_merge": len(buckets["clitic_merge"]),
             "clitic_keep": 0,

@@ -318,7 +318,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     clitic_orphans = set()  # orphan clitics mapped to synthetic infinitive
     skip_english = set()
     skip_propn = set()
-    skip_intj = set()
+    skip_noise = set()  # was skip_intj in schema_v1; bucket renamed interjections→noise
     if skip_words_path and os.path.isfile(skip_words_path):
         with open(skip_words_path, "r", encoding="utf-8") as f:
             routing_data = json.load(f)
@@ -330,13 +330,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             skip_english.add(w.lower() if isinstance(w, str) else w)
         for w in exclude.get("proper_nouns", []):
             skip_propn.add(w.lower() if isinstance(w, str) else w)
-        for w in exclude.get("interjections", []):
-            skip_intj.add(w.lower() if isinstance(w, str) else w)
+        # schema_v2 renamed exclude.interjections → exclude.noise. Read both
+        # so the builder works against pre-rerun word_routing.json files too.
+        for w in exclude.get("noise", []) + exclude.get("interjections", []):
+            skip_noise.add(w.lower() if isinstance(w, str) else w)
         if clitic_merge:
             print("  clitic_merge: %d words (%d orphans → synthetic infinitive)" %
                   (len(clitic_merge), len(clitic_orphans)))
-        print("  routing flags: %d english, %d propn, %d intj" %
-              (len(skip_english), len(skip_propn), len(skip_intj)))
+        print("  routing flags: %d english, %d propn, %d noise" %
+              (len(skip_english), len(skip_propn), len(skip_noise)))
 
     # Pre-process clitic merges: skip clitics from main deck, build separate
     # clitic data file (like MWEs). Base verb references clitic IDs; front-end
@@ -955,7 +957,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "meanings": meanings,
                 "most_frequent_lemma_instance": True,
                 "is_english": wl in skip_english,
-                "is_interjection": wl in skip_intj,
+                # is_noise is the schema_v2 name; is_interjection is kept as
+                # an alias so master entries built before the rename and
+                # consumers (front-end filter, tools) still see the flag.
+                # Both fields carry identical truth values.
+                "is_noise": wl in skip_noise,
+                "is_interjection": wl in skip_noise,
                 "is_propernoun": wl in skip_propn,
                 "is_transparent_cognate": False,
                 "corpus_count": group_counts[g_idx] if g_idx < len(group_counts) else 0,
@@ -1099,7 +1106,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "lemma": clitic_word,
                 "senses": [{"pos": "X", "translation": ""}],
                 "is_english": False,
-                "is_interjection": False,
+                "is_noise": False,
+                "is_interjection": False,  # alias of is_noise; see schema_v2 notes
                 "is_propernoun": False,
                 "is_transparent_cognate": False,
                 "display_form": None,
@@ -1127,12 +1135,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 if vid:
                     merged_ids[vid] = v
             if merged_ids:
+                # is_noise / is_interjection are aliases (see schema_v2);
+                # read either, write both so the master is consistent.
+                noise_flag = entry.get("is_noise", entry.get("is_interjection", False))
                 master.setdefault(fid, {
                     "word": entry["word"],
                     "lemma": entry["lemma"],
                     "senses": [],
                     "is_english": entry.get("is_english", False),
-                    "is_interjection": entry.get("is_interjection", False),
+                    "is_noise": noise_flag,
+                    "is_interjection": noise_flag,
                     "is_propernoun": entry.get("is_propernoun", False),
                     "is_transparent_cognate": entry.get("is_transparent_cognate", False),
                     "display_form": entry.get("display_form"),
@@ -1146,12 +1158,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     for entry in entries:
         fid = entry["id"]
         if fid not in master:
+            # is_noise / is_interjection are aliases (see schema_v2 notes
+            # above); read either, write both so the master is consistent.
+            noise_flag = entry.get("is_noise", entry.get("is_interjection", False))
             master[fid] = {
                 "word": entry["word"],
                 "lemma": entry["lemma"],
                 "senses": [],
                 "is_english": entry.get("is_english", False),
-                "is_interjection": entry.get("is_interjection", False),
+                "is_noise": noise_flag,
+                "is_interjection": noise_flag,
                 "is_propernoun": entry.get("is_propernoun", False),
                 "is_transparent_cognate": entry.get("is_transparent_cognate", False),
                 "display_form": entry.get("display_form"),
@@ -1160,12 +1176,16 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
         m = master[fid]
         # Propagate flags TO master from current step-4 data.
-        # For step-4-derived flags (is_english, is_interjection, is_propernoun),
+        # For step-4-derived flags (is_english, is_noise, is_propernoun),
         # overwrite the master — the current routing data is authoritative and
         # stale True flags from previous builds must be cleared.
         # is_transparent_cognate is union-only (comes from cognates layer, not step 4).
-        for flag in ("is_english", "is_interjection", "is_propernoun"):
-            m[flag] = entry.get(flag, False)
+        # is_noise/is_interjection mirror each other (schema_v2 alias).
+        noise_flag = entry.get("is_noise", entry.get("is_interjection", False))
+        m["is_english"] = entry.get("is_english", False)
+        m["is_noise"] = noise_flag
+        m["is_interjection"] = noise_flag
+        m["is_propernoun"] = entry.get("is_propernoun", False)
         if entry.get("is_transparent_cognate", False):
             m["is_transparent_cognate"] = True
         # Only pull is_transparent_cognate from master (not step-4 derived)

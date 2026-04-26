@@ -129,7 +129,20 @@ Old combinations map cleanly:
 
 ### Step_6b routing
 
-`step_6b_assign_senses_local.py` reads `word_routing.json` for `exclude.*` and `clitic_merge` only. The `biencoder` / `gemini` sub-buckets are metadata — the chosen classifier processes every non-excluded, non-clitic-merge word.
+`step_6b_assign_senses_local.py` reads `word_routing.json` for `exclude.*` and `clitic_merge` only. The `classifier.*` sub-buckets and `sense_discovery` are metadata — the chosen classifier processes every non-excluded, non-clitic-merge word.
+
+### word_routing.json schema (schema_version 2)
+
+Top-level keys (artist mode, written by `step_4a_filter_known_vocab.py`):
+
+- `exclude.{english, cognate, proper_nouns, noise, low_frequency}` — flat lists. `cognate` is a flat list (provenance lives in `cognates.json` layer, not here). `noise` was previously called `interjections`; the rename matches what the bucket holds (single-letter / ad-lib / hype noises). Builders also accept the old `interjections` key for backward-compat.
+- `classifier.{normal_vocab, conjugation, elision}` — flat lists of words that have a sense menu and need a classifier (bi-encoder or Gemini, runtime choice). Was `biencoder.*` in schema_v1; the runtime classifier is decoupled from the bucket name.
+- `derivation_map: {form: base}` — diminutive/superlative pointers. Was `biencoder.derivation` in schema_v1; hoisted to top-level so `classifier.*` siblings are uniform.
+- `sense_discovery: [...]` — words with no SD/wiktionary sense menu, need a model to invent senses. Was `gemini` in schema_v1; renamed because the model used (currently Gemini Flash Lite) is a runtime choice.
+- `clitic_merge: {form: base}`, `clitic_orphans: [...]`, `clitic_keep: [...]` — clitic routing. Artist-mode step_4a always writes `clitic_orphans` and `clitic_keep` empty (tier-3 logic moved into step_8b); normal-mode `step_4a_route_clitics.py` populates them with real data.
+- `stats`, `_meta`, `schema_version`.
+
+Curation files in `Artists/curations/` use a sectioned shape `{drop, keep}`: `noise.json`, `proper_nouns.json`, `cognates.json`. Loader: `load_curation_section(filename, section)` in `pipeline/artist/util_1a_artist_config.py`. The pre-rename pairs (`drop_proper_nouns.json`/`allow_proper_nouns.json`, `always_skip_cognate.json`/`always_teach.json`) are gone.
 
 ### Step_6c filters
 

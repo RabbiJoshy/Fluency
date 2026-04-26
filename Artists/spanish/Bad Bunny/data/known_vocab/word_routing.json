@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "exclude": {
     "english": [
       "accord",
@@ -937,403 +938,87 @@
       "zipper",
       "zone"
     ],
-    "cognate": {
-      "abdominales": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "adversario": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "anaconda": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "angelina": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "angular": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "anime": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "antisocial": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "baby": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "backstage": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "barbero": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "barbie": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "basket": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "bff": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "bikini": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "blackjack": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "blockbuster": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "blondie": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "blooper": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "bluetooth": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "blunt": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "bolero": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "boutique": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "break": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "bro": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "brother": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "bumper": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cake": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "candela": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cash": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "chalet": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cliché": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "closet": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "combo": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cool": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cover": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "dealer": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "diploma": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "diva": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "flash": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "flow": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "gang": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "gangsters": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "glamour": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "hater": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "haters": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "hoodie": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "jam": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "jedi": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "latino": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "light": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "look": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "mambo": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "oasis": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "ok": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "okay": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "okey": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "online": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "parking": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "party": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "pin": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "polaroid": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "rap": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "rasta": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "records": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "reggaetón": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "remix": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "retro": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "sexy": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "shot": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "show": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "snap": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "sorry": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "stop": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "super": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "tequila": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "ticket": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "top": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "trap": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "whatsapp": {
-        "voters": [
-          "curated"
-        ]
-      }
-    },
+    "cognate": [
+      "abdominales",
+      "adversario",
+      "anaconda",
+      "angelina",
+      "angular",
+      "anime",
+      "antisocial",
+      "baby",
+      "backstage",
+      "barbero",
+      "barbie",
+      "basket",
+      "bff",
+      "bikini",
+      "blackjack",
+      "blockbuster",
+      "blondie",
+      "blooper",
+      "bluetooth",
+      "blunt",
+      "bolero",
+      "boutique",
+      "break",
+      "bro",
+      "brother",
+      "bumper",
+      "cake",
+      "candela",
+      "cash",
+      "chalet",
+      "cliché",
+      "closet",
+      "combo",
+      "cool",
+      "cover",
+      "dealer",
+      "diploma",
+      "diva",
+      "flash",
+      "flow",
+      "gang",
+      "gangsters",
+      "glamour",
+      "hater",
+      "haters",
+      "hoodie",
+      "jam",
+      "jedi",
+      "latino",
+      "light",
+      "look",
+      "mambo",
+      "oasis",
+      "ok",
+      "okay",
+      "okey",
+      "online",
+      "parking",
+      "party",
+      "pin",
+      "polaroid",
+      "rap",
+      "rasta",
+      "records",
+      "reggaetón",
+      "remix",
+      "retro",
+      "sexy",
+      "shot",
+      "show",
+      "snap",
+      "sorry",
+      "stop",
+      "super",
+      "tequila",
+      "ticket",
+      "top",
+      "trap",
+      "whatsapp"
+    ],
     "proper_nouns": [
       "adidas",
       "alberto",
@@ -1689,8 +1374,7 @@
       "ñengo",
       "óscar"
     ],
-    "interjections": [
-      "a",
+    "noise": [
       "aa",
       "aah",
       "ah",
@@ -1711,7 +1395,6 @@
       "bé",
       "c",
       "d",
-      "e",
       "eah",
       "eh",
       "ey",
@@ -1749,7 +1432,6 @@
       "mmm",
       "n",
       "nah",
-      "o",
       "oh",
       "ouh",
       "p",
@@ -1777,7 +1459,6 @@
       "to",
       "tra",
       "tá",
-      "u",
       "uah",
       "uff",
       "uh",
@@ -1791,7 +1472,6 @@
       "wua",
       "wuh",
       "x",
-      "y",
       "ya",
       "yah",
       "yap",
@@ -2645,8 +2325,9 @@
       "ñeta"
     ]
   },
-  "biencoder": {
+  "classifier": {
     "normal_vocab": [
+      "a",
       "abdomen",
       "abrazos",
       "abril",
@@ -3629,6 +3310,7 @@
       "dólares",
       "dónde",
       "dúo",
+      "e",
       "ea",
       "eco",
       "económico",
@@ -4693,6 +4375,7 @@
       "néctar",
       "número",
       "números",
+      "o",
       "obrero",
       "obscenas",
       "obsesión",
@@ -5729,6 +5412,7 @@
       "tónica",
       "tórtola",
       "tú",
+      "u",
       "ultra",
       "un",
       "uni",
@@ -5871,6 +5555,7 @@
       "whisky",
       "wiki",
       "wok",
+      "y",
       "yal",
       "yales",
       "yankee",
@@ -11217,48 +10902,47 @@
       "deo'",
       "treve'",
       "yao'"
-    ],
-    "derivation": {
-      "lobillo": "lobo",
-      "to'ito": "to'",
-      "penita": "pena",
-      "bacanísimo": "bacano",
-      "güirita": "güira",
-      "verdecitos": "verdes",
-      "disquito": "disco",
-      "mansita": "mansa",
-      "callaito": "callao",
-      "completita": "completa",
-      "julito": "jul",
-      "to'itas": "to'",
-      "tranquilita": "tranquila",
-      "pantycito": "panty",
-      "nandito": "nando",
-      "bellaquita": "bellaca",
-      "fueguito": "fuego",
-      "lejitos": "lejos",
-      "donitas": "donas",
-      "bellaquito": "bellaco",
-      "paisita": "paisa",
-      "chichito": "chicho",
-      "fotitos": "fotos",
-      "totitos": "totos",
-      "jaimito": "jaime",
-      "rockerita": "rockera",
-      "rolandito": "rolando",
-      "pantisito": "pantis",
-      "morritas": "morras",
-      "neverita": "nevera",
-      "panticito": "panti",
-      "diosito": "dios",
-      "panita": "pana",
-      "perfumito": "perfumo",
-      "chamaquita": "chamaca",
-      "totito": "toto"
-    },
-    "shared": []
+    ]
   },
-  "gemini": [
+  "derivation_map": {
+    "to'ito": "to'",
+    "to'itas": "to'",
+    "panticito": "panti",
+    "callaito": "callao",
+    "jaimito": "jaime",
+    "fueguito": "fuego",
+    "verdecitos": "verdes",
+    "lejitos": "lejos",
+    "perfumito": "perfumo",
+    "bellaquito": "bellaco",
+    "disquito": "disco",
+    "totito": "toto",
+    "mansita": "mansa",
+    "pantycito": "panty",
+    "panita": "pana",
+    "fotitos": "fotos",
+    "rockerita": "rockera",
+    "tranquilita": "tranquila",
+    "totitos": "totos",
+    "nandito": "nando",
+    "completita": "completa",
+    "rolandito": "rolando",
+    "chamaquita": "chamaca",
+    "bellaquita": "bellaca",
+    "julito": "jul",
+    "donitas": "donas",
+    "diosito": "dios",
+    "pantisito": "pantis",
+    "morritas": "morras",
+    "neverita": "nevera",
+    "lobillo": "lobo",
+    "paisita": "paisa",
+    "güirita": "güira",
+    "bacanísimo": "bacano",
+    "penita": "pena",
+    "chichito": "chicho"
+  },
+  "sense_discovery": [
     "to'as",
     "to's",
     "mojaítas",
@@ -11266,306 +10950,307 @@
     "bellaqueo",
     "saramambiche",
     "bellacoso",
-    "tera",
     "demaga",
+    "tera",
     "rolié",
     "demonia",
     "caile",
-    "vamo",
     "frontear",
-    "ójala",
+    "vamo",
     "pichea",
+    "ójala",
     "tán",
+    "metíos",
     "revol",
     "manín",
-    "metíos",
     "acho",
-    "perriabas",
     "juquear",
     "bellaquear",
     "exagerao",
+    "perriabas",
+    "capsuleando",
     "callaítas",
     "bellaqueando",
-    "capsuleando",
     "nio",
-    "squirteé",
-    "crecíos",
-    "sata",
-    "bellaqueos",
     "jodíos",
     "spiff",
+    "squirteé",
+    "bellaqueos",
     "cienes",
+    "crecíos",
+    "sata",
+    "maleanteo",
+    "fulete",
+    "fronteando",
+    "sendo",
+    "pa'trás",
+    "felis",
+    "quiles",
+    "rrear",
+    "encuerna",
+    "feka",
+    "orma",
     "fuletes",
     "guíllate",
-    "sendo",
-    "fulete",
-    "rrear",
-    "quiles",
-    "feka",
-    "pa'trás",
-    "fronteando",
-    "encuerna",
-    "maleanteo",
-    "orma",
-    "felis",
-    "lary",
-    "juqueó",
-    "domi",
+    "tequi",
     "gangalee",
-    "urus",
+    "rulay",
+    "lary",
+    "tató",
+    "domi",
+    "juqueó",
     "nalgotas",
+    "blunes",
+    "picheas",
+    "urus",
+    "kronix",
     "prendíos",
     "tetotas",
-    "rulay",
-    "tequi",
-    "picheas",
-    "rulin",
-    "kronix",
-    "blunes",
-    "guiru",
-    "tató",
     "frontearme",
+    "guiru",
     "frabian",
-    "fuletazo",
-    "fronteándome",
-    "bendecíos",
-    "ustes",
-    "marash",
-    "tota",
-    "cavaliers",
-    "perse",
-    "javish",
-    "soliá",
+    "rulin",
+    "bebesota",
     "esbocas",
-    "arrebataos",
-    "parao'",
-    "compe",
-    "geniuz",
-    "bluntes",
+    "javish",
+    "bendecíos",
     "fronteo",
     "maliantes",
-    "yonaguni",
-    "farrus",
-    "estilazo",
-    "cheki",
     "juquea",
+    "perse",
     "aborrecíos",
-    "lambebicho",
-    "bebesota",
+    "marash",
+    "fronteándome",
+    "soliá",
+    "yonaguni",
+    "fuletazo",
+    "arrebataos",
     "wason",
+    "parao'",
+    "lambebicho",
+    "cheki",
+    "farrus",
+    "ustes",
+    "bluntes",
     "switche",
-    "caripelao",
-    "ousi",
-    "ojalái",
-    "jodien",
-    "wuff",
-    "tatís",
-    "champola",
-    "acapella",
-    "frontean",
-    "chapi",
-    "yomo",
-    "glizzy",
-    "yeezy",
-    "lowkey",
-    "puertorro",
-    "brum",
-    "déj",
-    "cohol",
-    "ferro",
-    "balass",
-    "tous",
-    "malianteos",
-    "ojeda",
-    "compes",
-    "wasón",
-    "trás",
-    "caicos",
-    "beno",
-    "jhay",
-    "juqueado",
-    "illuminatis",
-    "piquetú",
-    "omb",
-    "kaponi",
-    "jouais",
-    "esnúa",
-    "hijeputada",
-    "gta",
-    "baby'",
-    "rosselló",
-    "perriaba",
-    "piquetúa",
-    "bichota",
-    "wheeliando",
-    "beibe",
-    "filoteado",
-    "mujere",
-    "sudaítas",
-    "plein",
-    "acape",
-    "damilola",
-    "oya",
-    "safaera",
-    "laramercy",
-    "choliseo",
-    "confundíos",
-    "coelho",
-    "connes",
-    "nkan",
-    "sinfo",
-    "conne",
-    "algarete",
-    "lysi",
-    "bombon",
-    "tíguere",
-    "hijeputa",
-    "durota",
-    "hookiás",
+    "cavaliers",
+    "estilazo",
+    "compe",
+    "geniuz",
+    "tota",
     "wisin",
-    "anthon",
-    "trapxficante",
-    "nacíos",
-    "má",
-    "vencíos",
-    "llorens",
     "margiela",
-    "sandunguera",
-    "eo",
-    "kariri",
-    "planking",
-    "wayy",
-    "zendaya",
-    "güiri",
-    "blin",
+    "algarete",
+    "beibe",
     "jevos",
-    "pikete",
-    "ganda",
-    "patás",
-    "murdaz",
-    "depres",
-    "capisci",
-    "bleacher",
-    "snuka",
-    "tenqui",
-    "frontearle",
-    "diablona",
-    "chuló",
-    "ripiao",
-    "vander",
-    "pichyboyz",
-    "frontee",
-    "trili",
+    "trás",
+    "conne",
+    "brum",
+    "jouais",
+    "gta",
+    "ousi",
+    "piquetúa",
+    "ojeda",
+    "wasón",
     "pichaera",
-    "caressais",
-    "lanalizer",
+    "má",
+    "champola",
+    "piquetú",
+    "snuka",
+    "diablona",
+    "vander",
+    "beno",
+    "bombon",
     "cumplíos",
+    "omb",
+    "safaera",
+    "ferro",
+    "acape",
+    "filoteado",
+    "puertorro",
+    "frontearle",
     "chapis",
-    "foke",
-    "yanyo",
+    "depres",
+    "trapxficante",
+    "wuff",
+    "illuminatis",
+    "sinfo",
+    "hijeputada",
+    "ganda",
+    "acapella",
+    "tous",
+    "ojalái",
+    "malianteos",
     "fav",
-    "escondíos"
+    "lysi",
+    "compes",
+    "foke",
+    "esnúa",
+    "wayy",
+    "wheeliando",
+    "juqueado",
+    "chuló",
+    "anthon",
+    "hijeputa",
+    "jodien",
+    "déj",
+    "damilola",
+    "sandunguera",
+    "tíguere",
+    "laramercy",
+    "pikete",
+    "kaponi",
+    "tatís",
+    "güiri",
+    "frontee",
+    "connes",
+    "frontean",
+    "murdaz",
+    "pichyboyz",
+    "caripelao",
+    "cohol",
+    "lanalizer",
+    "nacíos",
+    "baby'",
+    "bleacher",
+    "tenqui",
+    "rosselló",
+    "capisci",
+    "yomo",
+    "escondíos",
+    "yanyo",
+    "chapi",
+    "nkan",
+    "lowkey",
+    "trili",
+    "confundíos",
+    "caressais",
+    "bichota",
+    "jhay",
+    "mujere",
+    "planking",
+    "perriaba",
+    "yeezy",
+    "blin",
+    "vencíos",
+    "zendaya",
+    "patás",
+    "hookiás",
+    "glizzy",
+    "ripiao",
+    "durota",
+    "choliseo",
+    "caicos",
+    "sudaítas",
+    "kariri",
+    "balass",
+    "eo",
+    "llorens",
+    "plein",
+    "oya",
+    "coelho"
   ],
   "clitic_merge": {
-    "actualícense": "actualicen",
-    "lámelo": "lame",
-    "pártelo": "partir",
-    "mamárselo": "mamarse",
-    "besártelo": "besarte",
-    "confiésale": "confesar",
-    "actívate": "activar",
-    "aprovéchame": "aprovechar",
-    "atendértelo": "atenderte",
-    "roncarle": "roncar",
-    "bájatelo": "bájate",
-    "partíendola": "partir",
-    "suéltate": "soltar",
     "salúdenme": "saludar",
-    "roncándome": "roncando",
-    "modélame": "modelar",
-    "alócate": "aloca",
-    "disfrútate": "disfrutar",
-    "pónteme": "ponte",
-    "envíale": "enviar",
-    "copiete": "copiar",
-    "escápate": "escapar",
-    "papele": "papar",
-    "levántame": "levantar",
-    "préndelo": "prender",
-    "tiéntame": "tienta",
-    "dimelo": "dime",
-    "agarrense": "agarrar",
-    "sóbate": "soba",
-    "avísale": "avisar",
-    "contéstale": "contestar",
-    "picharte": "pichar",
-    "separame": "separar",
-    "convéncela": "convencer",
-    "préndete": "prender",
-    "trépate": "trepa",
-    "rompértelo": "romperte",
-    "roncarnos": "roncar",
     "picharle": "pichar",
-    "grítale": "gritar",
-    "moléstate": "molestar",
-    "bájenme": "bajar",
-    "enciérrate": "encerrar",
-    "gástalo": "gastar",
-    "juégate": "jugar",
-    "múdate": "mudar",
-    "arrópame": "arropa",
-    "desaparecértelo": "desaparecerte",
-    "cómprales": "comprar",
-    "vírate": "vira",
-    "perreártelas": "perrearte",
-    "pósame": "posar",
-    "piquetearle": "piquetear",
-    "protégeme": "proteger",
-    "muérdete": "morder",
-    "dévorame": "devora",
-    "caliéntame": "calentar",
-    "bájale": "bajar",
-    "roncarme": "roncar",
-    "párame": "parar",
-    "mójame": "mojar",
-    "échasela": "echar",
-    "dedícame": "dedicar",
+    "aprovéchame": "aprovechar",
     "perfúmate": "perfuma",
-    "stalkeándote": "stalkeando",
-    "rompértela": "romperte",
-    "rolearme": "rolear",
-    "caliéntate": "calentar",
+    "mójame": "mojar",
+    "bájenme": "bajar",
+    "rompértelo": "romperte",
+    "disfrútate": "disfrutar",
+    "roncarle": "roncar",
+    "alócate": "aloca",
+    "levántame": "levantar",
+    "desaparecértelo": "desaparecerte",
+    "pártelo": "partir",
+    "préndelo": "prender",
+    "perreártelas": "perrearte",
     "mamártela": "mamarte",
-    "pídelo": "pedir",
-    "fumárselo": "fumarse",
-    "muéveme": "mover",
-    "escapármele": "escaparme",
-    "adáptense": "adapten",
-    "invítame": "invitar",
-    "mojartelo": "mojarte",
-    "tráelas": "traer",
+    "actívate": "activar",
+    "bájatelo": "bájate",
+    "enciérrate": "encerrar",
+    "párame": "parar",
+    "avísale": "avisar",
+    "múdate": "mudar",
+    "picharte": "pichar",
+    "roncarnos": "roncar",
+    "modélame": "modelar",
+    "partíendola": "partir",
+    "muérdete": "morder",
+    "stalkeándote": "stalkeando",
     "chapéame": "chapea",
     "siénteme": "sentar",
-    "piénsame": "pensar",
-    "mándalo": "mandar",
+    "muéveme": "mover",
     "túmbame": "tumbar",
-    "tumbármelo": "tumbarme",
-    "traiganme": "traer",
-    "invítala": "invitar",
+    "caliéntame": "calentar",
+    "fumárselo": "fumarse",
+    "juégate": "jugar",
+    "piquetearle": "piquetear",
+    "dedícame": "dedicar",
+    "piénsame": "pensar",
+    "escapármele": "escaparme",
     "delete": "dele",
-    "pichándole": "pichando",
-    "peguete": "pegar",
+    "bájale": "bajar",
+    "gástalo": "gastar",
+    "mamárselo": "mamarse",
+    "tráelas": "traer",
+    "atendértelo": "atenderte",
+    "dimelo": "dime",
+    "síguete": "seguir",
+    "caliéntate": "calentar",
+    "copiete": "copiar",
+    "protégeme": "proteger",
     "chequéate": "chequea",
+    "invítame": "invitar",
+    "vírate": "vira",
+    "pósame": "posar",
+    "lámelo": "lame",
+    "trépate": "trepa",
+    "roncarme": "roncar",
+    "rompértela": "romperte",
+    "actualícense": "actualicen",
+    "sóbate": "soba",
+    "grítale": "gritar",
+    "pichándole": "pichando",
+    "besártelo": "besarte",
+    "adáptense": "adapten",
+    "envíale": "enviar",
+    "agarrense": "agarrar",
+    "peguete": "pegar",
+    "dévorame": "devora",
+    "échasela": "echar",
+    "pídelo": "pedir",
+    "escápate": "escapar",
+    "tiéntame": "tienta",
+    "mojartelo": "mojarte",
+    "contéstale": "contestar",
+    "roncándome": "roncando",
+    "tumbármelo": "tumbarme",
     "pónme": "poner",
-    "síguete": "seguir"
+    "confiésale": "confesar",
+    "convéncela": "convencer",
+    "traiganme": "traer",
+    "mándalo": "mandar",
+    "invítala": "invitar",
+    "moléstate": "molestar",
+    "suéltate": "soltar",
+    "arrópame": "arropa",
+    "rolearme": "rolear",
+    "préndete": "prender",
+    "cómprales": "comprar",
+    "papele": "papar",
+    "pónteme": "ponte",
+    "separame": "separar"
   },
   "clitic_orphans": [],
   "clitic_keep": [],
   "stats": {
     "input_words": 11217,
-    "exclude": 2318,
-    "biencoder": 8602,
-    "gemini": 206,
+    "exclude": 2313,
+    "classifier": 8571,
+    "derivation_map": 36,
+    "sense_discovery": 206,
     "cognate": 79,
     "clitic_merge": 91,
     "clitic_keep": 0,
@@ -11573,7 +11258,7 @@
   },
   "_meta": {
     "step_name": "filter_known_vocab",
-    "step_version": 3,
-    "generated_at": 1776646086
+    "step_version": 4,
+    "generated_at": 1777201005
   }
 }

@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "exclude": {
     "english": [
       "adieu",
@@ -202,108 +203,28 @@
       "you",
       "your"
     ],
-    "cognate": {
-      "baby": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "blunt": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cash": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "casual": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "cookie": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "crash": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "diva": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "drag": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "flamenco": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "flash": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "flow": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "haiku": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "heavy": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "hentai": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "hoodie": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "jedi": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "mambo": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "okay": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "top": {
-        "voters": [
-          "curated"
-        ]
-      },
-      "zoom": {
-        "voters": [
-          "curated"
-        ]
-      }
-    },
+    "cognate": [
+      "baby",
+      "blunt",
+      "cash",
+      "casual",
+      "cookie",
+      "crash",
+      "diva",
+      "drag",
+      "flamenco",
+      "flash",
+      "flow",
+      "haiku",
+      "heavy",
+      "hentai",
+      "hoodie",
+      "jedi",
+      "mambo",
+      "okay",
+      "top",
+      "zoom"
+    ],
     "proper_nouns": [
       "alemania",
       "alicia",
@@ -360,15 +281,13 @@
       "yandel",
       "york"
     ],
-    "interjections": [
-      "a",
+    "noise": [
       "aah",
       "ah",
       "ay",
       "b",
       "c",
       "d",
-      "e",
       "eh",
       "ey",
       "f",
@@ -392,7 +311,6 @@
       "mmm",
       "n",
       "nah",
-      "o",
       "oh",
       "p",
       "q",
@@ -404,14 +322,12 @@
       "to",
       "tra",
       "tá",
-      "u",
       "uff",
       "uh",
       "v",
       "w",
       "woah",
       "x",
-      "y",
       "ya",
       "yeah",
       "z"
@@ -618,8 +534,9 @@
       "épargnez"
     ]
   },
-  "biencoder": {
+  "classifier": {
     "normal_vocab": [
+      "a",
       "abejas",
       "abril",
       "abs",
@@ -947,6 +864,7 @@
       "día",
       "días",
       "dónde",
+      "e",
       "ea",
       "ego",
       "ejército",
@@ -1318,6 +1236,7 @@
       "nuevo",
       "nunca",
       "número",
+      "o",
       "obediencia",
       "obsesión",
       "oficialmente",
@@ -1622,6 +1541,7 @@
       "tótem",
       "tóxico",
       "tú",
+      "u",
       "ultrasonidos",
       "umbral",
       "un",
@@ -1666,6 +1586,7 @@
       "vos",
       "voz",
       "wasabi",
+      "y",
       "yales",
       "yenes",
       "yin",
@@ -3381,104 +3302,104 @@
       "átame",
       "échale"
     ],
-    "elision": [],
-    "derivation": {
-      "tanguillo": "tango",
-      "penita": "pena",
-      "hoyuelitos": "hoyuelos",
-      "canelita": "canela",
-      "vestidita": "vestida",
-      "na'ita": "na'"
-    },
-    "shared": []
+    "elision": []
   },
-  "gemini": [
+  "derivation_map": {
+    "hoyuelitos": "hoyuelos",
+    "vestidita": "vestida",
+    "canelita": "canela",
+    "tanguillo": "tango",
+    "penita": "pena",
+    "na'ita": "na'"
+  },
+  "sense_discovery": [
     "alí",
     "encendío",
     "kil",
     "rulin",
-    "caimos",
-    "saoco",
     "tkn",
+    "saoco",
+    "caimos",
     "yali",
+    "demasiás",
     "wut",
     "chiri",
-    "demasiás",
     "blut",
-    "senta'ita",
     "racineta",
-    "mundi",
-    "algarete",
+    "senta'ita",
     "highlighter",
-    "lelelelele",
     "vvs",
     "kilié",
+    "mundi",
+    "algarete",
     "millon",
-    "és",
+    "lelelelele",
     "m'a",
-    "caidas",
-    "sein",
+    "chiquiti",
+    "nihil",
     "més",
+    "tiri",
+    "caidas",
     "enterraor",
     "juqueado",
-    "tiri",
-    "tie's'",
-    "lamborghinis",
-    "sacais",
-    "chiquiti",
-    "lelele",
-    "nihil",
-    "subi'o",
     "tie's",
-    "m'han",
-    "confias",
-    "popstar",
-    "sío",
-    "rue'a",
-    "reimos",
-    "enfocá'",
-    "rendre",
-    "desnu'a",
-    "pimpean",
-    "angelada",
-    "ncia",
-    "puñalás",
-    "pimpea",
-    "taina",
-    "taggeado",
-    "señala'íto",
-    "to'as",
-    "tíguere",
-    "pámpara",
-    "teteo",
+    "lamborghinis",
+    "subi'o",
+    "sacais",
+    "tie's'",
+    "sein",
+    "lelele",
+    "és",
     "omertá",
-    "fasea",
-    "corri'o",
-    "podío'",
-    "vestía'",
+    "pimpea",
     "olvi'ando",
+    "sío",
+    "podío'",
+    "corri'o",
+    "señala'íto",
+    "teteo",
     "tigueraje",
+    "desnu'a",
+    "vestía'",
+    "tíguere",
+    "enfocá'",
+    "confias",
     "volvi'o",
-    "crujío"
+    "rendre",
+    "puñalás",
+    "taggeado",
+    "reimos",
+    "angelada",
+    "to'as",
+    "fasea",
+    "rue'a",
+    "crujío",
+    "popstar",
+    "pimpean",
+    "taina",
+    "pámpara",
+    "m'han",
+    "ncia"
   ],
   "clitic_merge": {
-    "llévamelo": "llévame",
-    "díctame": "dicta",
-    "muévetelo": "muévete",
-    "bájale": "bajar",
     "puñala": "puña",
-    "permiteme": "permitir",
-    "desquítate": "desquita",
+    "llévamelo": "llévame",
+    "bájale": "bajar",
+    "muévetelo": "muévete",
+    "refúgiate": "refugiar",
+    "díctame": "dicta",
     "apúnteme": "apuntar",
-    "refúgiate": "refugiar"
+    "desquítate": "desquita",
+    "permiteme": "permitir"
   },
   "clitic_orphans": [],
   "clitic_keep": [],
   "stats": {
     "input_words": 3367,
-    "exclude": 527,
-    "biencoder": 2764,
-    "gemini": 67,
+    "exclude": 522,
+    "classifier": 2763,
+    "derivation_map": 6,
+    "sense_discovery": 67,
     "cognate": 20,
     "clitic_merge": 9,
     "clitic_keep": 0,
@@ -3486,7 +3407,7 @@
   },
   "_meta": {
     "step_name": "filter_known_vocab",
-    "step_version": 3,
-    "generated_at": 1776645905
+    "step_version": 4,
+    "generated_at": 1777201008
   }
 }

@@ -72,7 +72,9 @@ async function updateExclusionBars() {
 
     if (activeArtist) {
         baseVocab = baseVocab.filter(item =>
-            !item.is_english && !item.is_interjection && !item.is_propernoun
+            !item.is_english &&
+            !item.is_noise && !item.is_interjection &&  // schema_v2 alias
+            !item.is_propernoun
         );
     }
 

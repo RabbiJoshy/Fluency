@@ -63,7 +63,7 @@ function buildEstimationWordList() {
         !item.duplicate &&
         item.meanings && item.meanings.length > 0 &&
         (item.cognate_score ?? 0) < 0.83 &&
-        !item.is_interjection &&
+        !item.is_noise && !item.is_interjection &&  // schema_v2 alias
         !item.is_propernoun &&
         !item.is_english
     );

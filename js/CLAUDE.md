@@ -66,7 +66,9 @@ loadConfig() → renderLanguageTabs()
 
 ## buildFilteredVocab() — Central Filter
 
-Filter order: blank/dupe removal → artist flags (is_english, is_interjection, is_propernoun) → cognates → single-occurrence → lemma mode.
+Filter order: blank/dupe removal → artist flags (is_english, is_noise/is_interjection, is_propernoun) → cognates → single-occurrence → lemma mode.
+
+Note: `is_noise` is the schema_v2 flag name; `is_interjection` is the legacy alias kept for vocabularies built before the rename. Both fields carry identical truth values — read either, the filter checks both.
 
 Assigns `displayRank` (1-based, continuous). Range buttons use `displayRank`, NOT the JSON's `rank`.
 
@@ -80,7 +82,7 @@ Assigns `displayRank` (1-based, continuous). Range buttons use `displayRank`, NO
 
 - Vocab, paths, colors from `artists.json` (not hardcoded)
 - Language tabs hidden, auto-selects artist's language
-- Filters: is_english, is_interjection, is_propernoun removed
+- Filters: is_english, is_noise (alias is_interjection), is_propernoun removed
 - hideSingleOccurrence: true by default
 - Album artwork backgrounds (`updateArtistBackground()` in `artist-ui.js`)
 - Multiple lyric examples per card; tap to cycle
@@ -106,7 +108,9 @@ Per-sense flags set by `joinWithMaster()`:
 
 ## Cache-busting for ES Modules
 
-`index.html` imports `js/main.js?v=YYYYMMDDx`. `main.js` imports `./flashcards.js?v=YYYYMMDDx` and `./vocab.js?v=YYYYMMDDx`. Bump every `v=…` tag whenever any JS module changes substantively — the ES module cache survives page reloads and service-worker resets, so only a URL change forces browsers to re-import. All three version tags should stay in sync.
+The ES module cache keys by resolved URL and survives page reloads, service-worker resets, and even hard refreshes — only a URL change forces a re-import. So every entry-point import in `main.js` carries a `?v=YYYYMMDDx` query string, and `index.html`'s `js/main.js?v=…` reference matches. **Bump every `?v=` tag in lockstep whenever any module changes substantively** — even modules that look "minor" like `state.js`, `auth.js`, or `speech.js`. Missing the bump on a module that gained a new export (or new `window.x = …` assignment) means consumers run against the stale version and the new symbol is silently undefined.
+
+Module-to-module imports inside `js/` (e.g. `flashcards.js` importing `./speech.js`) currently have no `?v=` tag. They share the same cache slot regardless of `main.js`'s version, so they only re-import when the browser's HTTP cache decides to. If you hit a "looks cached even after reload" bug, hard-refresh; if it persists, that import is the suspect — add a `?v=` tag matching `main.js`.
 
 ## Multi-Artist Merge
 

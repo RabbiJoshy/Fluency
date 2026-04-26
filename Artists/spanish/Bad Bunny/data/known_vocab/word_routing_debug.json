@@ -1,8 +1,12 @@
 {
   "a": {
     "freq": 2861,
-    "bucket": "interjections",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "character",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -22,14 +26,14 @@
   },
   "aa": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "aah": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -111,9 +115,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -200,7 +202,7 @@
   },
   "aborrecíos": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -719,13 +721,13 @@
   },
   "acape": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "acapella": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -951,7 +953,7 @@
   },
   "acho": {
     "freq": 9,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -2025,9 +2027,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -2665,7 +2665,7 @@
   },
   "ah": {
     "freq": 81,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -3330,7 +3330,7 @@
   },
   "algarete": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4549,9 +4549,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -4797,9 +4795,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -4834,9 +4830,7 @@
       "verb"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -4898,9 +4892,7 @@
       "verb"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -5047,7 +5039,7 @@
   },
   "anthon": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -5088,9 +5080,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -6026,7 +6016,7 @@
   },
   "ar": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -6206,7 +6196,7 @@
   },
   "argh": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -6449,7 +6439,7 @@
   },
   "arrebataos": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -7590,7 +7580,7 @@
   },
   "au": {
     "freq": 3,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -7621,7 +7611,7 @@
   },
   "auh": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -7750,7 +7740,7 @@
   },
   "auuu": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -7971,7 +7961,7 @@
   },
   "ay": {
     "freq": 16,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -8267,14 +8257,14 @@
   },
   "b": {
     "freq": 14,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ba": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -8320,15 +8310,13 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "baby'": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -8410,9 +8398,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -8845,7 +8831,7 @@
   },
   "balass": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -9190,9 +9176,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -9212,9 +9196,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -9373,9 +9355,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -9700,7 +9680,7 @@
   },
   "be": {
     "freq": 7,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -9860,7 +9840,7 @@
   },
   "bebesota": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -9969,7 +9949,7 @@
   },
   "beibe": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10040,7 +10020,7 @@
   },
   "bellacoso": {
     "freq": 20,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10053,25 +10033,25 @@
   },
   "bellaqueando": {
     "freq": 7,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "bellaquear": {
     "freq": 8,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "bellaqueo": {
     "freq": 21,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "bellaqueos": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10214,7 +10194,7 @@
   },
   "bendecíos": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10342,7 +10322,7 @@
   },
   "beno": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10732,9 +10712,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -10814,7 +10792,7 @@
   },
   "bichota": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10945,9 +10923,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11137,9 +11113,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11227,7 +11201,7 @@
   },
   "bleacher": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11254,7 +11228,7 @@
   },
   "blin": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11283,9 +11257,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11302,9 +11274,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11321,9 +11291,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -11428,9 +11396,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11443,7 +11409,7 @@
   },
   "blunes": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11453,9 +11419,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11468,7 +11432,7 @@
   },
   "bluntes": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11491,7 +11455,7 @@
   },
   "bo": {
     "freq": 14,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -11679,9 +11643,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11797,7 +11759,7 @@
   },
   "bombon": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11870,7 +11832,7 @@
   },
   "boo": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -12390,9 +12352,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -12538,9 +12498,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -12849,9 +12807,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -12920,9 +12876,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -12942,14 +12896,14 @@
   },
   "brr": {
     "freq": 27,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "brra": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -13007,7 +12961,7 @@
   },
   "brum": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -13318,7 +13272,7 @@
   },
   "bum": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -13329,9 +13283,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -13773,7 +13725,7 @@
   },
   "bé": {
     "freq": 7,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -13871,7 +13823,7 @@
   },
   "c": {
     "freq": 3,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -14497,7 +14449,7 @@
   },
   "caicos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -14543,7 +14495,7 @@
   },
   "caile": {
     "freq": 14,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -14583,9 +14535,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -14898,7 +14848,7 @@
   },
   "callaítas": {
     "freq": 7,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -15689,9 +15639,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -16098,7 +16046,7 @@
   },
   "capisci": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -16203,7 +16151,7 @@
   },
   "capsuleando": {
     "freq": 7,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -16438,7 +16386,7 @@
   },
   "caressais": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -16520,7 +16468,7 @@
   },
   "caripelao": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -17008,9 +16956,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -17259,7 +17205,7 @@
   },
   "cavaliers": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -17952,9 +17898,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -18045,7 +17989,7 @@
   },
   "champola": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -18203,7 +18147,7 @@
   },
   "chapi": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -18216,7 +18160,7 @@
   },
   "chapis": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -18453,7 +18397,7 @@
   },
   "cheki": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -19318,7 +19262,7 @@
   },
   "choliseo": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -19545,7 +19489,7 @@
   },
   "chuló": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -19767,7 +19711,7 @@
   },
   "cienes": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -20268,9 +20212,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -20355,9 +20297,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -20642,7 +20582,7 @@
   },
   "coelho": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -20768,7 +20708,7 @@
   },
   "cohol": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -21238,9 +21178,7 @@
       "verb"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -21812,13 +21750,13 @@
   },
   "compe": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "compes": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -22994,7 +22932,7 @@
   },
   "confundíos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -23091,7 +23029,7 @@
   },
   "conne": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -23104,7 +23042,7 @@
   },
   "connes": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -24146,9 +24084,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -25021,9 +24957,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -25255,7 +25189,7 @@
   },
   "crecíos": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -26827,7 +26761,7 @@
   },
   "cumplíos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -27300,7 +27234,7 @@
   },
   "d": {
     "freq": 8,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -27418,7 +27352,7 @@
   },
   "damilola": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -27777,9 +27711,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -28663,7 +28595,7 @@
   },
   "demaga": {
     "freq": 19,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -28792,7 +28724,7 @@
   },
   "demonia": {
     "freq": 14,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -29039,7 +28971,7 @@
   },
   "depres": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -30802,7 +30734,7 @@
   },
   "diablona": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -31461,9 +31393,7 @@
       "verb"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -32066,9 +31996,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -32368,7 +32296,7 @@
   },
   "domi": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -33193,7 +33121,7 @@
   },
   "durota": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -33316,7 +33244,7 @@
   },
   "déj": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -33496,8 +33424,13 @@
   },
   "e": {
     "freq": 234,
-    "bucket": "interjections",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "character",
+      "conj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -33527,7 +33460,7 @@
   },
   "eah": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -33902,7 +33835,7 @@
   },
   "eh": {
     "freq": 349,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -35550,7 +35483,7 @@
   },
   "encuerna": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -37316,7 +37249,7 @@
   },
   "eo": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -37632,7 +37565,7 @@
   },
   "esbocas": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -38103,7 +38036,7 @@
   },
   "escondíos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -38658,7 +38591,7 @@
   },
   "esnúa": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -39540,7 +39473,7 @@
   },
   "estilazo": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -40337,7 +40270,7 @@
   },
   "exagerao": {
     "freq": 8,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -41207,7 +41140,7 @@
   },
   "ey": {
     "freq": 844,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -41228,7 +41161,7 @@
   },
   "f": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -41908,7 +41841,7 @@
   },
   "farrus": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -41952,7 +41885,7 @@
   },
   "fav": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -42157,7 +42090,7 @@
   },
   "feka": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -42216,7 +42149,7 @@
   },
   "felis": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -42349,7 +42282,7 @@
   },
   "ferro": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -42645,7 +42578,7 @@
   },
   "filoteado": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -42966,9 +42899,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -43187,9 +43118,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -43290,7 +43219,7 @@
   },
   "foke": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -43615,7 +43544,7 @@
   },
   "frabian": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -43973,37 +43902,37 @@
   },
   "frontean": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "fronteando": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "frontear": {
     "freq": 13,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "frontearle": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "frontearme": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "frontee": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44016,7 +43945,7 @@
   },
   "fronteo": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44034,7 +43963,7 @@
   },
   "fronteándome": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44143,7 +44072,7 @@
   },
   "fu": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -44379,7 +44308,7 @@
   },
   "fuletazo": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44392,13 +44321,13 @@
   },
   "fulete": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "fuletes": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -45204,7 +45133,7 @@
   },
   "ganda": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -45236,9 +45165,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -45254,7 +45181,7 @@
   },
   "gangalee": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -45281,9 +45208,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -45845,7 +45770,7 @@
   },
   "geniuz": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -46127,15 +46052,13 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "glizzy": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -47383,7 +47306,7 @@
   },
   "gta": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -47774,7 +47697,7 @@
   },
   "guiru": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -48034,7 +47957,7 @@
   },
   "guíllate": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -48142,7 +48065,7 @@
   },
   "güiri": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -48165,14 +48088,14 @@
   },
   "h": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ha": {
     "freq": 72,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -48790,14 +48713,14 @@
   },
   "hah": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "haha": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -48999,9 +48922,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -49011,9 +48932,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -49167,7 +49086,7 @@
   },
   "he": {
     "freq": 90,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -49273,14 +49192,14 @@
   },
   "heh": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "hehe": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -49710,13 +49629,13 @@
   },
   "hijeputa": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "hijeputada": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -49938,7 +49857,7 @@
   },
   "hmm": {
     "freq": 3,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -50114,9 +50033,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -50136,7 +50053,7 @@
   },
   "hookiás": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -50515,7 +50432,7 @@
   },
   "huh": {
     "freq": 9,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -50856,7 +50773,7 @@
   },
   "i": {
     "freq": 16,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -50941,7 +50858,7 @@
   },
   "ieh": {
     "freq": 20,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -51107,7 +51024,7 @@
   },
   "illuminatis": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -53330,14 +53247,14 @@
   },
   "j": {
     "freq": 32,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ja": {
     "freq": 20,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -53403,21 +53320,21 @@
   },
   "jaja": {
     "freq": 38,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
   "jajaja": {
     "freq": 27,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
   "jajajaja": {
     "freq": 9,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -53431,7 +53348,7 @@
   },
   "jajajajaja": {
     "freq": 12,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -53520,9 +53437,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -53685,7 +53600,7 @@
   },
   "javish": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -53705,7 +53620,7 @@
   },
   "je": {
     "freq": 79,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -53734,9 +53649,7 @@
       "verb"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -53823,14 +53736,14 @@
   },
   "jeje": {
     "freq": 35,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
   "jejeje": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -54017,19 +53930,19 @@
   },
   "jevo": {
     "freq": 26,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "jevos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "jhay": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -54217,7 +54130,7 @@
   },
   "jodien": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -54280,7 +54193,7 @@
   },
   "jodíos": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -54437,7 +54350,7 @@
   },
   "jouais": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -54762,7 +54675,7 @@
   },
   "jum": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -54905,19 +54818,19 @@
   },
   "juquea": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "juqueado": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "juquear": {
     "freq": 8,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -54930,7 +54843,7 @@
   },
   "juqueó": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55149,7 +55062,7 @@
   },
   "k": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -55215,7 +55128,7 @@
   },
   "kaponi": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55228,7 +55141,7 @@
   },
   "kariri": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55345,7 +55258,7 @@
   },
   "ki": {
     "freq": 8,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -55567,7 +55480,7 @@
   },
   "kronix": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55587,7 +55500,7 @@
   },
   "ku": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -55761,7 +55674,7 @@
   },
   "lalalalalalala": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -55785,7 +55698,7 @@
   },
   "lambebicho": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55890,7 +55803,7 @@
   },
   "lanalizer": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55956,7 +55869,7 @@
   },
   "laramercy": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -56016,7 +55929,7 @@
   },
   "lary": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -56086,9 +55999,7 @@
       "verb"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -56448,7 +56359,7 @@
   },
   "lelolai": {
     "freq": 7,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -56985,9 +56896,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -58163,7 +58072,7 @@
   },
   "llorens": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -58682,9 +58591,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -58837,7 +58744,7 @@
   },
   "lowkey": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -59260,7 +59167,7 @@
   },
   "lysi": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -59402,14 +59309,14 @@
   },
   "m": {
     "freq": 18,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ma": {
     "freq": 30,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -60008,7 +59915,7 @@
   },
   "maleanteo": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -60062,13 +59969,13 @@
   },
   "malianteos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "maliantes": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -60349,9 +60256,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -61047,7 +60952,7 @@
   },
   "manuellle": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "regex_repeat",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -61098,7 +61003,7 @@
   },
   "manín": {
     "freq": 10,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -61202,7 +61107,7 @@
   },
   "marash": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -61454,7 +61359,7 @@
   },
   "margiela": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -63636,7 +63541,7 @@
   },
   "metíos": {
     "freq": 10,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -64608,7 +64513,7 @@
   },
   "mmm": {
     "freq": 11,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -64911,7 +64816,7 @@
   },
   "mojaítas": {
     "freq": 27,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -66613,7 +66518,7 @@
   },
   "mujere": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -66765,7 +66670,7 @@
   },
   "murdaz": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67029,7 +66934,7 @@
   },
   "má": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67300,7 +67205,7 @@
   },
   "n": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -67454,7 +67359,7 @@
   },
   "nacíos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67515,7 +67420,7 @@
   },
   "nah": {
     "freq": 25,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -67563,7 +67468,7 @@
   },
   "nalgotas": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -68492,7 +68397,7 @@
   },
   "nio": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -68570,7 +68475,7 @@
   },
   "nkan": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -69264,8 +69169,14 @@
   },
   "o": {
     "freq": 183,
-    "bucket": "interjections",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "adv",
+      "character",
+      "conj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -69282,9 +69193,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -69884,7 +69793,7 @@
   },
   "oh": {
     "freq": 140,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -69918,13 +69827,13 @@
   },
   "ojalái": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "ojeda": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -69976,9 +69885,7 @@
       "intj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -69988,9 +69895,7 @@
       "intj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -70001,9 +69906,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -70293,7 +70196,7 @@
   },
   "omb": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -70384,9 +70287,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -70796,7 +70697,7 @@
   },
   "orma": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -70996,14 +70897,14 @@
   },
   "ouh": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "ousi": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -71119,7 +71020,7 @@
   },
   "oya": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -71202,7 +71103,7 @@
   },
   "p": {
     "freq": 26,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -71227,7 +71128,7 @@
   },
   "pa'trás": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -72321,7 +72222,7 @@
   },
   "parao'": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -72656,9 +72557,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -72863,9 +72762,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -73603,7 +73500,7 @@
   },
   "patás": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -75529,13 +75426,13 @@
   },
   "perriaba": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "perriabas": {
     "freq": 8,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -75583,7 +75480,7 @@
   },
   "perse": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76130,7 +76027,7 @@
   },
   "pichaera": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76202,7 +76099,7 @@
   },
   "pichea": {
     "freq": 12,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76225,7 +76122,7 @@
   },
   "picheas": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76241,7 +76138,7 @@
   },
   "pichyboyz": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76682,7 +76579,7 @@
   },
   "pikete": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76819,9 +76716,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -77041,13 +76936,13 @@
   },
   "piquetú": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "piquetúa": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -77469,7 +77364,7 @@
   },
   "planking": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -77622,7 +77517,7 @@
   },
   "plein": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -77660,7 +77555,7 @@
   },
   "plo": {
     "freq": 9,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -77696,7 +77591,7 @@
   },
   "po": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -78066,9 +77961,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -79545,7 +79438,7 @@
   },
   "prendíos": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -79912,7 +79805,7 @@
   },
   "pri": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80889,14 +80782,14 @@
   },
   "prr": {
     "freq": 8,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "prra": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -81052,7 +80945,7 @@
   },
   "pu": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -81294,7 +81187,7 @@
   },
   "puertorro": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82769,7 +82662,7 @@
   },
   "quiles": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -83193,14 +83086,14 @@
   },
   "r": {
     "freq": 43,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ra": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -83313,7 +83206,7 @@
   },
   "rah": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -83459,9 +83352,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -83575,9 +83466,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -84205,9 +84094,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -84738,9 +84625,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -85104,9 +84989,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -86098,9 +85981,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -86247,7 +86128,7 @@
   },
   "revol": {
     "freq": 10,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -86759,7 +86640,7 @@
   },
   "ripiao": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -87310,7 +87191,7 @@
   },
   "rolié": {
     "freq": 17,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -87878,7 +87759,7 @@
   },
   "roro": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -87962,7 +87843,7 @@
   },
   "rosselló": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88128,48 +88009,48 @@
   },
   "rra": {
     "freq": 6,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "rrear": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "rrr": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "rrra": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "rrrah": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "rrrrr": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "rrrrrrah": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -88281,7 +88162,7 @@
   },
   "rulay": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88311,7 +88192,7 @@
   },
   "rulin": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88555,7 +88436,7 @@
   },
   "s": {
     "freq": 9,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -88933,7 +88814,7 @@
   },
   "safaera": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -89554,7 +89435,7 @@
   },
   "sandunguera": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -89765,7 +89646,7 @@
   },
   "saramambiche": {
     "freq": 21,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -89778,7 +89659,7 @@
   },
   "sata": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -90761,7 +90642,7 @@
   },
   "sendo": {
     "freq": 5,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -91483,9 +91364,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -91643,7 +91522,7 @@
   },
   "shh": {
     "freq": 13,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -91706,9 +91585,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -91728,9 +91605,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -92238,7 +92113,7 @@
   },
   "sinfo": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -92603,7 +92478,7 @@
   },
   "skrt": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -92653,9 +92528,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -92689,7 +92562,7 @@
   },
   "snuka": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -93042,7 +92915,7 @@
   },
   "soliá": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -93585,9 +93458,7 @@
       "intj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -93804,7 +93675,7 @@
   },
   "spiff": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -93916,7 +93787,7 @@
   },
   "squirteé": {
     "freq": 6,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -94033,9 +93904,7 @@
       "intj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -94513,7 +94382,7 @@
   },
   "sudaítas": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -95081,9 +94950,7 @@
       "adj"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -95555,7 +95422,7 @@
   },
   "switche": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -95781,14 +95648,14 @@
   },
   "t": {
     "freq": 27,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ta": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -96327,13 +96194,13 @@
   },
   "tatís": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "tató": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -96920,7 +96787,7 @@
   },
   "tenqui": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -97024,7 +96891,7 @@
   },
   "tequi": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -97035,15 +96902,13 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "tera": {
     "freq": 19,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -97391,7 +97256,7 @@
   },
   "tetotas": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -97673,9 +97538,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -98449,14 +98312,14 @@
   },
   "to": {
     "freq": 29,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "to'as": {
     "freq": 47,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -98483,7 +98346,7 @@
   },
   "to's": {
     "freq": 35,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -99036,9 +98899,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -99306,7 +99167,7 @@
   },
   "tota": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -99383,7 +99244,7 @@
   },
   "tous": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -99444,7 +99305,7 @@
   },
   "tra": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -100066,9 +99927,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -100118,7 +99977,7 @@
   },
   "trapxficante": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -100590,7 +100449,7 @@
   },
   "trili": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -100937,7 +100796,7 @@
   },
   "trás": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -101433,7 +101292,7 @@
   },
   "tá": {
     "freq": 56,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101458,7 +101317,7 @@
   },
   "tán": {
     "freq": 11,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -101504,7 +101363,7 @@
   },
   "tíguere": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -101659,14 +101518,19 @@
   },
   "u": {
     "freq": 2,
-    "bucket": "interjections",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "character",
+      "conj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "uah": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -101707,14 +101571,14 @@
   },
   "uff": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "uh": {
     "freq": 40,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -102003,7 +101867,7 @@
   },
   "uoh": {
     "freq": 19,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -102080,7 +101944,7 @@
   },
   "urus": {
     "freq": 4,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -102249,7 +102113,7 @@
   },
   "ustes": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -102305,7 +102169,7 @@
   },
   "v": {
     "freq": 12,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -102683,7 +102547,7 @@
   },
   "vamo": {
     "freq": 13,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -102731,7 +102595,7 @@
   },
   "vander": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -103286,7 +103150,7 @@
   },
   "vencíos": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -105954,7 +105818,7 @@
   },
   "w": {
     "freq": 5,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -106052,13 +105916,13 @@
   },
   "wason": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "wasón": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106078,7 +105942,7 @@
   },
   "wayy": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106199,9 +106063,7 @@
       "noun"
     ],
     "bucket": "cognate",
-    "cognate_voters": [
-      "curated"
-    ],
+    "cognate_source": "curated",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -106228,7 +106090,7 @@
   },
   "wheeliando": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106395,7 +106257,7 @@
   },
   "wisin": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106415,14 +106277,14 @@
   },
   "woah": {
     "freq": 4,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "woh": {
     "freq": 15,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -106453,7 +106315,7 @@
   },
   "woo": {
     "freq": 7,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -106474,27 +106336,27 @@
   },
   "wow": {
     "freq": 20,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "wua": {
     "freq": 27,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "wuff": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "wuh": {
     "freq": 18,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": false
@@ -106508,7 +106370,7 @@
   },
   "x": {
     "freq": 2,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -106536,14 +106398,18 @@
   },
   "y": {
     "freq": 3501,
-    "bucket": "interjections",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "character",
+      "conj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ya": {
     "freq": 722,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -106567,7 +106433,7 @@
   },
   "yah": {
     "freq": 25,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -106644,7 +106510,7 @@
   },
   "yanyo": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106664,7 +106530,7 @@
   },
   "yap": {
     "freq": 1,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -106695,14 +106561,14 @@
   },
   "ye": {
     "freq": 3,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "yeah": {
     "freq": 251,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -106716,7 +106582,7 @@
   },
   "yeezy": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106729,7 +106595,7 @@
   },
   "yeh": {
     "freq": 465,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
     "in_en_50k": true
@@ -106851,7 +106717,7 @@
   },
   "yomo": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106864,7 +106730,7 @@
   },
   "yonaguni": {
     "freq": 3,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106961,7 +106827,7 @@
   },
   "z": {
     "freq": 3,
-    "bucket": "interjections",
+    "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -106998,7 +106864,7 @@
   },
   "zendaya": {
     "freq": 2,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -107433,7 +107299,7 @@
   },
   "ójala": {
     "freq": 12,
-    "bucket": "gemini",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },

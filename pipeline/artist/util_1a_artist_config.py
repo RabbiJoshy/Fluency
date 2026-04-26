@@ -109,6 +109,46 @@ def load_shared_list(filename):
     return data.get("entries", [])
 
 
+def load_curation_section(filename, section):
+    """Load one section of a sectioned curation file.
+
+    The newer curation files use a two-section shape so that the *drop* list
+    and its *keep*/override list live in the same file rather than as paired
+    `foo.json` + `not_foo.json`. Example: ``proper_nouns.json`` has both
+    ``drop`` (words to filter as proper nouns) and ``keep`` (overrides that
+    survive the filter). Schema:
+
+        {
+          "_intent": "...",
+          "drop": ["…"],
+          "keep": ["…"]
+        }
+
+    Returns a list of strings for the named section. Returns ``[]`` when the
+    file is missing or the section is absent — callers should treat both
+    "no overrides" and "file not yet migrated" as the same empty case.
+
+    Backward-compat: if the file is the legacy flat list / ``entries`` shape,
+    we return that list when ``section`` is ``"drop"`` or ``"entries"``, else
+    ``[]``. This lets callers keep working during the migration.
+    """
+    path = os.path.join(SHARED_DIR, filename)
+    if not os.path.exists(path):
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, list):
+        return data if section in ("drop", "entries") else []
+    if isinstance(data, dict):
+        if section in data and isinstance(data[section], list):
+            return data[section]
+        # Legacy fallback: ``entries`` key holds the drop-equivalent.
+        if section == "drop" and isinstance(data.get("entries"), list):
+            return data["entries"]
+        return []
+    return []
+
+
 def scrape_lyrics_by_id(genius_client, song_id, max_tries=5):
     """Scrape lyrics from Genius by song ID with exponential backoff."""
     from requests.exceptions import Timeout, HTTPError
