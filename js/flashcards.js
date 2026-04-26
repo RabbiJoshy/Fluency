@@ -1950,7 +1950,7 @@ function updateCard() {
                         const cellBorder = (isMemberSelected && !mm.unassigned)
                             ? 'border: 2px solid var(--accent-primary);'
                             : 'border: 2px solid transparent;';
-                        const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 20px; display: flex; align-items: center;`;
+                        const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 20px; display: flex; align-items: center; justify-content: center;`;
                         // Per-row POS pill — only when group spans multiple POS.
                         // Each member's own pos + color class, info-popup hooked
                         // up like the outer/singleton pill.
@@ -1959,11 +1959,6 @@ function updateCard() {
                             const memberPosColorClass = getPosColorClass(mm.pos);
                             perRowPosPill = `<span class="card-pos ${memberPosColorClass}" style="${pillStyleBase} grid-row: ${rowIdx + 1}; grid-column: 1; align-self: center; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${mm.pos}', ${memberPct})"><span style="display: block; font-size: 12px; font-weight: 700; line-height: 1;">${mm.pos}</span></span>`;
                         }
-                        // Pct cell — always rightmost col, hidden at 100%.
-                        const pctCol = 3 + colShift;
-                        const pctCell = memberPct < 100
-                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${pctCol}; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
-                            : '';
                         // Varying cell.
                         let varyingHtml;
                         if (isTransAxis) {
@@ -1979,40 +1974,53 @@ function updateCard() {
                         }
                         const varyingCol = (isTransAxis ? 2 : 1) + colShift;
                         const varyingCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${varyingCol}; min-width: 0; overflow: hidden;">${varyingHtml}</div>`;
-                        return perRowPosPill + varyingCell + pctCell;
+                        return perRowPosPill + varyingCell;
                     }).join('');
+
+                    // Pct stack — lives outside the highlight box, in its own
+                    // outer-grid column on the right edge of the row, so the
+                    // %s align with singleton-card %s. Each row matches the
+                    // body cell sizing (min-height 20px + padding) so they
+                    // visually line up with the corresponding varying cell.
+                    const pctStackHtml = members.map((memberIdx) => {
+                        const mm = card.meanings[memberIdx];
+                        const memberPct = Math.round((mm.percentage || 0) * 100);
+                        if (memberPct >= 100) {
+                            return '<div style="min-height: 20px; padding: 2px 6px;"></div>';
+                        }
+                        return `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="min-height: 20px; padding: 2px 6px; display: flex; align-items: center; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; cursor: pointer;">${memberPct}%</div>`;
+                    }).join('');
+                    const pctColumnHtml = `<div class="pct-column" style="display: flex; flex-direction: column; gap: 3px; padding-right: 4px;">${pctStackHtml}</div>`;
 
                     // Shared cell — col shift applies in cross-POS so it lands
                     // right of the per-row POS pill column.
                     const sharedCol = (isTransAxis ? 1 : 2) + colShift;
                     const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
-                        ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;">${sharedText}</div>`
-                        : `<div class="group-card-shared" style="${sharedSpan} text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;"><span class="meaning-context">${sharedText}</span></div>`;
+                        ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}</div>`
+                        : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;"><span class="meaning-context">${sharedText}</span></div>`;
 
                     // Body grid template — per-row POS lane prepended for cross-POS.
-                    const baseGridCols = isTransAxis
-                        ? 'minmax(0, max-content) minmax(0, 1fr) auto'
-                        : 'minmax(0, 1fr) minmax(0, max-content) auto';
+                    // All cols sized to content (no 1fr) so the body shrinks to
+                    // wrap shared + varying tightly; the body itself carries the
+                    // group-highlight bg and is centered in the outer row.
+                    // Pct lives in its own outer-grid column, so no pct lane here.
+                    const baseGridCols = 'minmax(0, max-content) minmax(0, max-content)';
                     const gridCols = isCrossPos ? `auto ${baseGridCols}` : baseGridCols;
 
-                    // Outer row: same-POS keeps the single outer POS pill at
-                    // col 1; cross-POS drops it (per-row pills cover that role)
-                    // and the body fills the whole row.
-                    const outerGridCols = isCrossPos ? '1fr' : 'auto 1fr';
+                    // Outer row: POS pill (same-POS only) | body (centered, has
+                    // highlight) | pct stack (right edge, mirrors singleton %).
+                    const outerGridCols = isCrossPos ? '1fr auto' : 'auto 1fr auto';
                     const outerPillSection = isCrossPos ? '' : groupPosPill;
-                    // Body left-padding: 8px when same-POS (gap from outer pill);
-                    // 0px when cross-POS so per-row pills sit flush at the
-                    // body's left edge (≈ row's left edge).
-                    const bodyPadding = isCrossPos ? '1px 0 1px 0' : '1px 0 1px 8px';
 
                     target.push(`
                     <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${outerPillSection}
-                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: ${bodyPadding};">
+                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
                         </div>
+                        ${pctColumnHtml}
                     </div>
                     `);
                 } else {
