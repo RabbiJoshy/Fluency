@@ -18,7 +18,7 @@ from datetime import datetime
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRETS_PATH = os.path.join(SCRIPT_DIR, 'secrets.json')
 LOCAL_DIR = os.path.join(SCRIPT_DIR, 'local')
-SHEETS = ['UserProgress', 'Lyrics']
+SHEETS = ['UserProgress', 'Lyrics', 'FlaggedWords']
 HEADER_KEYS = ['user', 'word', 'wordId', 'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong']
 
 

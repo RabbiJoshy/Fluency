@@ -474,6 +474,47 @@ async function saveWordProgress(card, isCorrect) {
     }
 }
 
+// Flag a word as having erroneous translation/data — debugging-only path.
+// Routes to a separate FlaggedWords sheet (auto-created by GAS) so it doesn't
+// pollute UserProgress/Lyrics. Reuses the lastWrong column as the flag timestamp.
+async function flagWord(card) {
+    if (!currentUser) {
+        console.warn('flagWord skipped: no user logged in');
+        return;
+    }
+    if (currentUser.isGuest) {
+        console.warn('flagWord skipped: guest sessions are not persisted');
+        return;
+    }
+    const wordId = card.fullId;
+    const word = card.targetWord;
+    const language = selectedLanguage;
+    const timestamp = new Date().toISOString();
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'save',
+                sheet: 'FlaggedWords',
+                user: currentUser.initials,
+                word: word,
+                language: language,
+                wordId: wordId,
+                lastWrong: timestamp
+            })
+        });
+        const result = await response.json();
+        if (!result.success) {
+            console.error('Failed to flag word:', result.message);
+        } else {
+            console.log(`Flagged ${word} (${wordId}) for review`);
+        }
+    } catch (error) {
+        console.error('Failed to flag word:', error);
+    }
+}
+
 // Minimal Markdown → HTML renderer. Handles headings (##/###), paragraphs,
 // unordered lists, bold/italic, inline code, links, and images. Enough for
 // the About copy at docs/about.md without a runtime dependency.
@@ -1184,4 +1225,5 @@ window.logout = logout;
 window.loadUserProgressFromSheet = loadUserProgressFromSheet;
 window.saveLevelEstimateToSheet = saveLevelEstimateToSheet;
 window.saveWordProgress = saveWordProgress;
+window.flagWord = flagWord;
 window.setupAuthEventListeners = setupAuthEventListeners;

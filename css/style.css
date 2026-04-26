@@ -188,12 +188,22 @@
             animation: swipeLeft 0.3s ease-out forwards;
         }
 
+        .card.swipe-flag {
+            animation: swipeUp 0.3s ease-out forwards;
+            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.7);
+        }
+
         .card.flipped.swipe-correct {
             animation: swipeRightFlipped 0.3s ease-out forwards;
         }
 
         .card.flipped.swipe-incorrect {
             animation: swipeLeftFlipped 0.3s ease-out forwards;
+        }
+
+        .card.flipped.swipe-flag {
+            animation: swipeUpFlipped 0.3s ease-out forwards;
+            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.7);
         }
 
         @keyframes swipeRight {
@@ -210,6 +220,13 @@
             }
         }
 
+        @keyframes swipeUp {
+            to {
+                transform: translateY(-150%);
+                opacity: 0;
+            }
+        }
+
         @keyframes swipeRightFlipped {
             to {
                 transform: translateX(150%) rotate(20deg) rotateY(180deg);
@@ -220,6 +237,13 @@
         @keyframes swipeLeftFlipped {
             to {
                 transform: translateX(-150%) rotate(-20deg) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes swipeUpFlipped {
+            to {
+                transform: translateY(-150%) rotateY(180deg);
                 opacity: 0;
             }
         }
