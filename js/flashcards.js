@@ -990,6 +990,11 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             handleSwipeAction('incorrect');
         }
+        // F = flag erroneous data (debugging — desktop only, no on-screen control)
+        else if (e.key === 'f' || e.key === 'F') {
+            e.preventDefault();
+            handleFlagAction();
+        }
         // Space = flip card
         else if (e.key === ' ') {
             e.preventDefault();
@@ -1009,6 +1014,39 @@ function setupKeyboardShortcuts() {
             }
         }
     });
+}
+
+function handleFlagAction() {
+    const currentCard = flashcards[currentIndex];
+    if (!currentCard || !currentCard.rank) return;
+
+    flagWord(currentCard);
+
+    const card = document.getElementById('flashcard');
+    card.classList.add('swipe-flag');
+
+    setTimeout(() => {
+        card.classList.remove('swipe-flag');
+        card.style.transform = '';
+
+        if (cardNavStack.length > 0) {
+            navigateBack();
+            return;
+        }
+
+        if (currentIndex < flashcards.length - 1) {
+            currentIndex++;
+            currentSentenceIndex = 0;
+            currentMeaningIndex = 0;
+            currentExampleIndex = 0;
+            currentMWEIndex = 0;
+            currentGroupSelection = null;
+            updateCard();
+            document.getElementById('flashcard').classList.remove('flipped');
+        } else {
+            showEndOfDeckOptions();
+        }
+    }, 300);
 }
 
 function handleSwipeAction(result) {
@@ -1571,9 +1609,13 @@ function updateCard() {
         const trayRows = [];
 
         // Render-side grouping: collapse rows that share either
-        // (pos, translation) OR (pos, context) into a single "group card"
-        // — POS pill + the shared field on the left, list of varying
-        // values on the right. Examples:
+        // translation OR context into a single "group card" — shared
+        // field on one side, list of varying values on the other.
+        // POS is intentionally NOT part of the grouping key; cross-POS
+        // collisions still merge (e.g. `que` CONJ "that" + REL "that").
+        // The renderer detects cross-POS groups and shows per-row POS
+        // pills inside the body so the distinction stays visible.
+        // Examples:
         //   `dice` → 3 senses share "to say" → translation-axis group
         //            shared = "to say", varying = contexts
         //   `su`   → 5 senses share possessive context → context-axis group
@@ -1595,7 +1637,8 @@ function updateCard() {
         const groupPctSum = new Map();
         if (GROUP_DUPLICATE_MEANINGS) {
             // Pass 1: tally raw sizes per axis (used only to make the
-            // per-meaning axis decision in pass 2).
+            // per-meaning axis decision in pass 2). Keys are POS-free so
+            // cross-POS collisions can group (e.g. CONJ + REL "that").
             const transRawSize = new Map();
             const ctxRawSize = new Map();
             card.meanings.forEach((m, idx) => {
@@ -1603,10 +1646,10 @@ function updateCard() {
                     axisOf.set(idx, 'special');
                     return;
                 }
-                const tk = `${m.pos}|${m.meaning}`;
+                const tk = m.meaning || '';
                 transRawSize.set(tk, (transRawSize.get(tk) || 0) + 1);
                 if (m.context) {
-                    const ck = `${m.pos}|${m.context}`;
+                    const ck = m.context;
                     ctxRawSize.set(ck, (ctxRawSize.get(ck) || 0) + 1);
                 }
             });
@@ -1615,9 +1658,9 @@ function updateCard() {
             // on a single sense, which manifests as duplicate translations).
             card.meanings.forEach((m, idx) => {
                 if (axisOf.get(idx) === 'special') return;
-                const tk = `${m.pos}|${m.meaning}`;
+                const tk = m.meaning || '';
                 const ts = transRawSize.get(tk) || 0;
-                const ck = m.context ? `${m.pos}|${m.context}` : null;
+                const ck = m.context || null;
                 const cs = ck ? (ctxRawSize.get(ck) || 0) : 0;
                 if (ts > 1 && cs > 1) {
                     if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
@@ -1859,6 +1902,12 @@ function updateCard() {
                     const sharedText = isTransAxis
                         ? displayMeaning
                         : String(m.context || '').replace(/"/g, '&quot;');
+                    // Cross-POS detection: members may now span multiple POS
+                    // (the grouping key is POS-free). When they do, drop the
+                    // single outer POS pill and render a per-row POS pill in
+                    // the body so the distinction stays visible.
+                    const distinctPos = new Set(members.map(i => card.meanings[i].pos));
+                    const isCrossPos = distinctPos.size > 1;
                     // Group-level selection: clicking the shared field selects
                     // the whole group (examples become union of members);
                     // clicking any sub-item reverts to per-meaning selection.
@@ -1869,16 +1918,16 @@ function updateCard() {
                     // POS pill stops propagation so its info-popup click
                     // doesn't also trigger the row-level group-select.
                     const groupPosPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; align-self: center; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${m.pos}', ${sumPct})">${groupPosPillInner}</span>`;
-                    const groupPosPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; align-self: center; visibility: hidden; pointer-events: none;" aria-hidden="true">${groupPosPillInner}</span>`;
                     // Body grid keeps trans+ctx adjacent and parks the
-                    // percentage in the rightmost column for every axis:
+                    // percentage in the rightmost column. For cross-POS groups
+                    // a per-row POS pill column (col 1) is inserted, shifting
+                    // the rest by +1:
                     //
-                    //   translation-axis (decir):  shared trans | varying ctx | pct
-                    //   context-axis     (su):  varying trans | shared ctx | pct
-                    //
-                    // Shared cell spans every member row via grid-row span; per-
-                    // member varying + pct cells live in their own grid rows and
-                    // share a click handler so highlights stay synced.
+                    //   same-POS  trans-axis: shared trans | varying ctx | pct
+                    //   same-POS  ctx-axis:   varying trans | shared ctx | pct
+                    //   cross-POS trans-axis: pos | shared trans | varying ctx | pct
+                    //   cross-POS ctx-axis:   pos | varying trans | shared ctx | pct
+                    const colShift = isCrossPos ? 1 : 0;
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
                     const cardBg = (groupSelected || anyMemberSelected)
                         ? 'rgba(var(--accent-primary-rgb), 0.18)'
@@ -1901,17 +1950,20 @@ function updateCard() {
                             ? 'border: 2px solid var(--accent-primary);'
                             : 'border: 2px solid transparent;';
                         const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 20px; display: flex; align-items: center;`;
-                        // Pct cell — always col 3, hidden at 100%. Reuses the
-                        // varying cell's bg/border so the % highlights with
-                        // its sense when selected (visually pairs them).
-                        // Horizontal padding 6px both sides for a more
-                        // substantial highlight box; right pad + row pad
-                        // (6 + 2 = 8px) puts the % text ~8px from the row's
-                        // outer right edge — matches singleton pct's right:8px.
+                        // Per-row POS pill — only when group spans multiple POS.
+                        // Each member's own pos + color class, info-popup hooked
+                        // up like the outer/singleton pill.
+                        let perRowPosPill = '';
+                        if (isCrossPos) {
+                            const memberPosColorClass = getPosColorClass(mm.pos);
+                            perRowPosPill = `<span class="card-pos ${memberPosColorClass}" style="${pillStyleBase} grid-row: ${rowIdx + 1}; grid-column: 1; align-self: center; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${mm.pos}', ${memberPct})"><span style="display: block; font-size: 12px; font-weight: 700; line-height: 1;">${mm.pos}</span></span>`;
+                        }
+                        // Pct cell — always rightmost col, hidden at 100%.
+                        const pctCol = 3 + colShift;
                         const pctCell = memberPct < 100
-                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell.replace('padding: 2px 6px', 'padding: 2px 6px')} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
+                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${pctCol}; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
                             : '';
-                        // Varying cell — col 2 (trans-axis: ctx) or col 1 (ctx-axis: trans).
+                        // Varying cell.
                         let varyingHtml;
                         if (isTransAxis) {
                             const ctxRaw = mm.context || '';
@@ -1924,35 +1976,39 @@ function updateCard() {
                             const transSafe = String(transRaw).replace(/"/g, '&quot;');
                             varyingHtml = `<span style="font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
                         }
-                        const varyingCol = isTransAxis ? 2 : 1;
+                        const varyingCol = (isTransAxis ? 2 : 1) + colShift;
                         const varyingCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${varyingCol}; min-width: 0; overflow: hidden;">${varyingHtml}</div>`;
-                        return varyingCell + pctCell;
+                        return perRowPosPill + varyingCell + pctCell;
                     }).join('');
 
-                    // Shared cell — trans-axis sits in col 1 (left), ctx-axis sits
-                    // in col 2 (centre). Spans every member row via grid-row span.
-                    const sharedCol = isTransAxis ? 1 : 2;
+                    // Shared cell — col shift applies in cross-POS so it lands
+                    // right of the per-row POS pill column.
+                    const sharedCol = (isTransAxis ? 1 : 2) + colShift;
                     const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
                         ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;">${sharedText}</div>`
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;"><span class="meaning-context">${sharedText}</span></div>`;
 
-                    // Cols: trans | ctx | pct (pct always rightmost).
-                    //   trans-axis: shared trans (max-content) | varying ctx (1fr) | pct (auto)
-                    //   ctx-axis:   varying trans (1fr) | shared ctx (max-content) | pct (auto)
-                    const gridCols = isTransAxis
+                    // Body grid template — per-row POS lane prepended for cross-POS.
+                    const baseGridCols = isTransAxis
                         ? 'minmax(0, max-content) minmax(0, 1fr) auto'
                         : 'minmax(0, 1fr) minmax(0, max-content) auto';
+                    const gridCols = isCrossPos ? `auto ${baseGridCols}` : baseGridCols;
 
-                    // No POS mirror on group cards — it would reserve ~50px on
-                    // the right and push the pct column inward. Body extends to
-                    // the row's right edge so pcts can sit flush. The body's
-                    // own internal layout (3 cols) keeps trans+ctx adjacent
-                    // without needing the mirror for symmetry.
+                    // Outer row: same-POS keeps the single outer POS pill at
+                    // col 1; cross-POS drops it (per-row pills cover that role)
+                    // and the body fills the whole row.
+                    const outerGridCols = isCrossPos ? '1fr' : 'auto 1fr';
+                    const outerPillSection = isCrossPos ? '' : groupPosPill;
+                    // Body left-padding: 8px when same-POS (gap from outer pill);
+                    // 0px when cross-POS so per-row pills sit flush at the
+                    // body's left edge (≈ row's left edge).
+                    const bodyPadding = isCrossPos ? '1px 0 1px 0' : '1px 0 1px 8px';
+
                     target.push(`
-                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
-                        ${groupPosPill}
-                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: 1px 0 1px 8px;">
+                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                        ${outerPillSection}
+                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: ${bodyPadding};">
                             ${memberCells}
                             ${sharedCellHtml}
                         </div>
