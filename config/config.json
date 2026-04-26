@@ -229,9 +229,12 @@
     "french": {
       "name": "French",
       "dataPath": "Data/French/vocabulary.json",
+      "indexPath": "Data/French/vocabulary.index.json",
+      "examplesPath": "Data/French/vocabulary.examples.json",
+      "ppmDataPath": "Data/French/FrenchRawWiki.csv",
       "exampleTargetField": "example_french",
       "exampleEnglishField": "example_english",
-      "hasData": false,
+      "hasData": true,
       "colorTheme": {
         "primary": "#4A7FFF",
         "secondary": "#ED2939"
