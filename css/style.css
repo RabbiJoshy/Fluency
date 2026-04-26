@@ -565,23 +565,29 @@
         /* Card metadata popover */
         .card-meta-popover {
             position: fixed;
-            left: 70px;
-            bottom: 24px;
-            width: 380px;
-            max-width: calc(100vw - 90px);
-            max-height: 70vh;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 100;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-data);
+            font-size: 12px;
+            padding: 16px;
+        }
+        .card-meta-popover[hidden] { display: none; }
+
+        .card-meta-modal-content {
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
             overflow-y: auto;
             background: rgba(20, 22, 28, 0.97);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 8px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
-            z-index: 40;
-            color: rgba(255, 255, 255, 0.9);
-            font-family: var(--font-data);
-            font-size: 12px;
-            padding: 0;
         }
-        .card-meta-popover[hidden] { display: none; }
 
         .card-meta-header {
             display: flex;
@@ -608,6 +614,57 @@
         .card-meta-close:hover { color: #fff; }
 
         .card-meta-body { padding: 8px 12px 12px; }
+
+        .card-meta-footer {
+            padding: 8px 12px 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .card-meta-flag-btn {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            background: rgba(255, 196, 0, 0.12);
+            border: 1px solid rgba(255, 196, 0, 0.5);
+            border-radius: 6px;
+            color: rgba(255, 220, 120, 0.95);
+            font-family: var(--font-data);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .card-meta-flag-btn:hover {
+            background: rgba(255, 196, 0, 0.22);
+            border-color: rgba(255, 196, 0, 0.8);
+        }
+
+        .card-meta-flag-row {
+            margin-left: 8px;
+            padding: 1px 6px;
+            background: transparent;
+            border: 1px solid rgba(255, 196, 0, 0.45);
+            border-radius: 3px;
+            color: rgba(255, 220, 120, 0.85);
+            font-family: var(--font-data);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            vertical-align: middle;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .card-meta-flag-row:hover {
+            background: rgba(255, 196, 0, 0.18);
+            border-color: rgba(255, 196, 0, 0.75);
+        }
+        .card-meta-flag-row.flagged {
+            background: rgba(255, 196, 0, 0.35);
+            border-color: rgba(255, 196, 0, 0.9);
+            color: rgba(255, 240, 200, 1);
+        }
         .card-meta-section { margin-top: 10px; }
         .card-meta-section:first-child { margin-top: 0; }
         .card-meta-section h4 {

@@ -113,13 +113,18 @@
             </div>
         </div>
     </div>
-    <!-- Card metadata popover -->
+    <!-- Card metadata modal (backdrop + centered frame) -->
     <div id="cardMetaPopover" class="card-meta-popover" role="dialog" aria-hidden="true" hidden>
-        <div class="card-meta-header">
-            <span class="card-meta-title" id="cardMetaTitle">Card info</span>
-            <button class="card-meta-close" id="cardMetaClose" aria-label="Close">×</button>
+        <div class="card-meta-modal-content" id="cardMetaContent">
+            <div class="card-meta-header">
+                <span class="card-meta-title" id="cardMetaTitle">Card info</span>
+                <button class="card-meta-close" id="cardMetaClose" aria-label="Close">×</button>
+            </div>
+            <div class="card-meta-body" id="cardMetaBody"></div>
+            <div class="card-meta-footer" id="cardMetaFooter" style="display: none;">
+                <button class="card-meta-flag-btn" id="cardMetaFlagBtn" type="button" title="Flag this card for review">Flag this card</button>
+            </div>
         </div>
-        <div class="card-meta-body" id="cardMetaBody"></div>
     </div>
 
     <div class="container">
@@ -830,6 +835,6 @@
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260426c"></script>
+    <script type="module" src="js/main.js?v=20260426g"></script>
 </body>
 </html>

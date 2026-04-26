@@ -1,14 +1,14 @@
-import './state.js?v=20260426c';
-import './speech.js?v=20260426c';
-import './artist-ui.js?v=20260426c';
-import './auth.js?v=20260426c';
-import './spotify.js?v=20260426c';
-import './estimation.js?v=20260426c';
-import './config.js?v=20260426c';
-import './progress.js?v=20260426c';
-import './ui.js?v=20260426c';
-import './vocab.js?v=20260426c';
-import './flashcards.js?v=20260426c';
+import './state.js?v=20260426h';
+import './speech.js?v=20260426h';
+import './artist-ui.js?v=20260426h';
+import './auth.js?v=20260426h';
+import './spotify.js?v=20260426h';
+import './estimation.js?v=20260426h';
+import './config.js?v=20260426h';
+import './progress.js?v=20260426h';
+import './ui.js?v=20260426h';
+import './vocab.js?v=20260426h';
+import './flashcards.js?v=20260426h';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {

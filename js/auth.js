@@ -477,7 +477,7 @@ async function saveWordProgress(card, isCorrect) {
 // Flag a word as having erroneous translation/data — debugging-only path.
 // Routes to a separate FlaggedWords sheet (auto-created by GAS) so it doesn't
 // pollute UserProgress/Lyrics. Reuses the lastWrong column as the flag timestamp.
-async function flagWord(card) {
+async function flagWord(card, fieldPath, fieldValue) {
     if (!currentUser) {
         console.warn('flagWord skipped: no user logged in');
         return;
@@ -486,8 +486,11 @@ async function flagWord(card) {
         console.warn('flagWord skipped: guest sessions are not persisted');
         return;
     }
-    const wordId = card.fullId;
-    const word = card.targetWord;
+    const baseId = card.fullId;
+    const wordId = fieldPath ? `${baseId}#${fieldPath}` : baseId;
+    const word = (fieldValue !== undefined && fieldValue !== null && fieldValue !== '')
+        ? String(fieldValue)
+        : card.targetWord;
     const language = selectedLanguage;
     const timestamp = new Date().toISOString();
 
@@ -501,6 +504,7 @@ async function flagWord(card) {
                 word: word,
                 language: language,
                 wordId: wordId,
+                lastCorrect: fieldPath || '',
                 lastWrong: timestamp
             })
         });

@@ -2433,6 +2433,17 @@ function updateCard() {
         }
     }
 
+    // Card-info button (opens the same metadata popover as the desktop `i` key).
+    // JST-gated for now while we shake out the mobile flagging flow.
+    if (currentUser && currentUser.initials === 'JST') {
+        backHTML += `<button class="ref-icon-btn ref-meta-btn" title="Card info" onclick="event.stopPropagation(); toggleCardMetaPopover();">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
+                <text x="16" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#000000">i</text>
+            </svg>
+        </button>`;
+    }
+
     backHTML += `</div>`;
 
     // Conjugation panel — always built for verbs. The builder handles
@@ -3973,13 +3984,19 @@ function _escapeHtml(s) {
 
 function _renderCardMetaBody(card) {
     if (!card) return '<div class="card-meta-empty">No card selected.</div>';
+    const showFlags = !!(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
+    const flagBtn = (path, value) => showFlags
+        ? `<button class="card-meta-flag-row" type="button" data-path="${_escapeHtml(path)}" data-value="${_escapeHtml(value == null ? '' : String(value))}" title="Flag this field">flag</button>`
+        : '';
+
     const lines = [];
     const id = card.fullId || card.id || '';
     lines.push('<div class="card-meta-section">');
     lines.push('<dl class="card-meta-kv">');
-    lines.push(`<dt>word</dt><dd>${_escapeHtml(card.targetWord || card.word || '')}</dd>`);
-    if (card.lemma && card.lemma !== (card.targetWord || card.word)) {
-        lines.push(`<dt>lemma</dt><dd>${_escapeHtml(card.lemma)}</dd>`);
+    const wordVal = card.targetWord || card.word || '';
+    lines.push(`<dt>word</dt><dd>${_escapeHtml(wordVal)}${flagBtn('word', wordVal)}</dd>`);
+    if (card.lemma && card.lemma !== wordVal) {
+        lines.push(`<dt>lemma</dt><dd>${_escapeHtml(card.lemma)}${flagBtn('lemma', card.lemma)}</dd>`);
     }
     if (id) lines.push(`<dt>id</dt><dd>${_escapeHtml(id)}</dd>`);
     if (card.rank) lines.push(`<dt>rank</dt><dd>${_escapeHtml(card.rank)}</dd>`);
@@ -4000,8 +4017,9 @@ function _renderCardMetaBody(card) {
             if (m.unassigned) tags.push('<span class="card-meta-tag flag">unassigned</span>');
             if (m.pos === 'SENSE_CYCLE') tags.push('<span class="card-meta-tag flag">SENSE_CYCLE</span>');
             const pctText = (typeof m.percentage === 'number') ? (m.percentage * 100).toFixed(0) + '%' : '';
-            const label = `${_escapeHtml(m.pos || '?')} · ${_escapeHtml(m.meaning || m.translation || '')}${pctText ? ' · ' + pctText : ''}`;
-            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${label}<div>${tags.join(' ') || '<span class="card-meta-empty">no tags</span>'}</div></li>`);
+            const meaningText = m.meaning || m.translation || '';
+            const label = `${_escapeHtml(m.pos || '?')} · ${_escapeHtml(meaningText)}${pctText ? ' · ' + pctText : ''}`;
+            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${label}${flagBtn(`sense:${i}`, meaningText)}<div>${tags.join(' ') || '<span class="card-meta-empty">no tags</span>'}</div></li>`);
         });
         lines.push('</ul>');
     }
@@ -4010,6 +4028,7 @@ function _renderCardMetaBody(card) {
     // Per-example methods for the currently displayed meaning.
     const curMeaning = meanings[currentMeaningIndex] || meanings[0];
     const exs = (curMeaning && curMeaning.allExamples) || [];
+    const senseIdx = (typeof currentMeaningIndex === 'number') ? currentMeaningIndex : 0;
     lines.push('<div class="card-meta-section"><h4>Examples (current meaning)</h4>');
     if (!exs.length) {
         lines.push('<div class="card-meta-empty">No examples.</div>');
@@ -4020,7 +4039,7 @@ function _renderCardMetaBody(card) {
             const method = ex.assignment_method ? `<span class="card-meta-tag method">m: ${_escapeHtml(ex.assignment_method)}</span>` : '<span class="card-meta-empty">no method</span>';
             const tsrc = ex.translation_source ? `<span class="card-meta-tag source">t: ${_escapeHtml(ex.translation_source)}</span>` : '';
             const spanish = ex.spanish || ex.targetSentence || ex.original || '';
-            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${method} ${tsrc}<div class="card-meta-ex">${_escapeHtml(spanish)}</div></li>`);
+            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${method} ${tsrc}${flagBtn(`example:${senseIdx}:${i}`, spanish)}<div class="card-meta-ex">${_escapeHtml(spanish)}</div></li>`);
         });
         lines.push('</ul>');
     }
@@ -4033,10 +4052,24 @@ function showCardMetaPopover() {
     const pop = document.getElementById('cardMetaPopover');
     const body = document.getElementById('cardMetaBody');
     const title = document.getElementById('cardMetaTitle');
+    const footer = document.getElementById('cardMetaFooter');
     if (!pop || !body) return;
     const card = (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
     if (title) title.textContent = card ? `${card.targetWord || card.word || 'Card'} — info` : 'Card info';
     body.innerHTML = _renderCardMetaBody(card);
+    body.querySelectorAll('.card-meta-flag-row').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const path = btn.dataset.path;
+            const value = btn.dataset.value;
+            if (card && typeof flagWord === 'function') flagWord(card, path, value);
+            btn.classList.add('flagged');
+        });
+    });
+    if (footer) {
+        const showFlagBtn = !!(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
+        footer.style.display = showFlagBtn ? '' : 'none';
+    }
     pop.hidden = false;
     pop.setAttribute('aria-hidden', 'false');
 }
@@ -4074,9 +4107,19 @@ window.refreshCardMetaPopoverIfOpen = refreshCardMetaPopoverIfOpen;
             toggleCardMetaPopover();
         });
         if (closeBtn) closeBtn.addEventListener('click', hideCardMetaPopover);
+        const flagBtn = document.getElementById('cardMetaFlagBtn');
+        if (flagBtn) {
+            flagBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
+                if (card && typeof flagWord === 'function') flagWord(card);
+                hideCardMetaPopover();
+            });
+        }
+        const content = document.getElementById('cardMetaContent');
         document.addEventListener('click', (e) => {
             if (pop.hidden) return;
-            if (pop.contains(e.target) || btn.contains(e.target)) return;
+            if ((content && content.contains(e.target)) || btn.contains(e.target)) return;
             hideCardMetaPopover();
         });
         // Refresh contents when the popover is open and the card changes.
