@@ -1871,45 +1871,17 @@ function updateCard() {
                     // doesn't also trigger the row-level group-select.
                     const groupPosPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; align-self: center; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${m.pos}', ${sumPct})">${groupPosPillInner}</span>`;
                     const groupPosPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; align-self: center; visibility: hidden; pointer-events: none;" aria-hidden="true">${groupPosPillInner}</span>`;
-                    // Build per-member rows for the *varying* side. Translation
-                    // formatting (16px bold) for translations; .meaning-context
-                    // (12px italic faded) for contexts — same as singletons.
-                    const buildMemberRow = (memberIdx) => {
-                        const mm = card.meanings[memberIdx];
-                        // When the whole group is selected, suppress the
-                        // per-item highlight — outline lives on the shared
-                        // cell instead.
-                        const isMemberSelected = !groupSelected && memberIdx === currentMeaningIndex;
-                        const memberPct = Math.round((mm.percentage || 0) * 100);
-                        let bodyHtml;
-                        if (isTransAxis) {
-                            // Varying = context (right column).
-                            const ctxRaw = mm.context || '';
-                            const ctxSafe = String(ctxRaw).replace(/"/g, '&quot;');
-                            bodyHtml = ctxRaw
-                                ? `<span class="meaning-context" style="line-height: 1.3; min-width: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${ctxSafe}</span>`
-                                : `<span style="opacity: 0.4; font-style: italic; font-size: 12px;">—</span>`;
-                        } else {
-                            // Varying = translation (left column).
-                            const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
-                            const transSafe = String(transRaw).replace(/"/g, '&quot;');
-                            bodyHtml = `<span style="font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
-                        }
-                        const itemBg = isMemberSelected
-                            ? 'rgba(var(--accent-primary-rgb), 0.55)'
-                            : 'rgba(255, 255, 255, 0.03)';
-                        const itemBorder = (isMemberSelected && !mm.unassigned)
-                            ? 'border: 2px solid var(--accent-primary);'
-                            : 'border: 2px solid transparent;';
-                        // stopPropagation so a sub-row click doesn't also
-                        // bubble to the row-level group-select handler.
-                        return `<div class="group-card-item" onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px; padding: 3px 8px; background: ${itemBg}; ${itemBorder} border-radius: 6px; cursor: pointer; min-height: 22px;">
-                            ${bodyHtml}
-                            <span style="font-size: 10px; opacity: 0.65; white-space: nowrap; color: var(--text-primary);">${memberPct}%</span>
-                        </div>`;
-                    };
-                    const stackedColHtml = `<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">${members.map(buildMemberRow).join('')}</div>`;
-
+                    // Three-column body grid keeps the trans+ctx pair adjacent
+                    // and pushes the percentage to the OUTER edge, so the user
+                    // reads `translation context` without a number between them:
+                    //
+                    //   translation-axis (decir):   pct | shared trans | varying ctx
+                    //   context-axis     (su):  varying trans | shared ctx | pct
+                    //
+                    // Shared cell spans every member row via grid-row span; per-
+                    // member pct + varying cells live in their own grid rows and
+                    // share a click handler (selectMeaning) so highlights stay
+                    // synced even though they're in separate cells.
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
                     const cardBg = (groupSelected || anyMemberSelected)
                         ? 'rgba(var(--accent-primary-rgb), 0.18)'
@@ -1920,26 +1892,59 @@ function updateCard() {
                     const sharedBorder = groupSelected
                         ? 'border: 2px solid var(--accent-primary);'
                         : 'border: 2px solid transparent;';
-                    // Shared cell — text shown once, vertically centered against
-                    // the stacked column on the other side. Translation gets
-                    // 16px bold; context gets .meaning-context (12px italic
-                    // faded). Same typographic tier as singletons.
+
+                    const memberCells = members.map((memberIdx, rowIdx) => {
+                        const mm = card.meanings[memberIdx];
+                        const isMemberSelected = !groupSelected && memberIdx === currentMeaningIndex;
+                        const memberPct = Math.round((mm.percentage || 0) * 100);
+                        const cellBg = isMemberSelected
+                            ? 'rgba(var(--accent-primary-rgb), 0.55)'
+                            : 'rgba(255, 255, 255, 0.03)';
+                        const cellBorder = (isMemberSelected && !mm.unassigned)
+                            ? 'border: 2px solid var(--accent-primary);'
+                            : 'border: 2px solid transparent;';
+                        const baseCell = `grid-row: ${rowIdx + 1}; padding: 3px 8px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 22px; display: flex; align-items: center;`;
+                        const pctCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${isTransAxis ? 1 : 3}; justify-content: center; font-size: 10px; opacity: 0.75; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`;
+                        let varyingHtml;
+                        if (isTransAxis) {
+                            // Varying = context (col 3, right edge of pair).
+                            const ctxRaw = mm.context || '';
+                            const ctxSafe = String(ctxRaw).replace(/"/g, '&quot;');
+                            varyingHtml = ctxRaw
+                                ? `<span class="meaning-context" style="line-height: 1.3; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${ctxSafe}</span>`
+                                : `<span style="opacity: 0.4; font-style: italic; font-size: 12px;">—</span>`;
+                        } else {
+                            // Varying = translation (col 1, left edge of pair).
+                            const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
+                            const transSafe = String(transRaw).replace(/"/g, '&quot;');
+                            varyingHtml = `<span style="font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
+                        }
+                        const varyingCol = isTransAxis ? 3 : 1;
+                        const varyingCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${varyingCol}; min-width: 0; overflow: hidden;">${varyingHtml}</div>`;
+                        return pctCell + varyingCell;
+                    }).join('');
+
+                    // Shared cell — col 2, spans every row, vertically centered
+                    // against the stacked side. Translation: 16px bold (singleton
+                    // primary). Context: .meaning-context (singleton tail).
+                    const sharedSpan = `grid-column: 2; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
-                        ? `<div class="group-card-shared" style="font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;">${sharedText}</div>`
-                        : `<div class="group-card-shared" style="text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;"><span class="meaning-context">${sharedText}</span></div>`;
-                    // Translations always go on the LEFT, contexts on the RIGHT.
-                    // Whichever side is shared shows once; the other stacks.
-                    const transColHtml = isTransAxis ? sharedCellHtml : stackedColHtml;
-                    const ctxColHtml   = isTransAxis ? stackedColHtml : sharedCellHtml;
-                    // The whole group card is the group-select target; the
-                    // shared cell gets the outline cue when active.
-                    // Sub-items override via stopPropagation; POS pill too.
+                        ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;">${sharedText}</div>`
+                        : `<div class="group-card-shared" style="${sharedSpan} text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;"><span class="meaning-context">${sharedText}</span></div>`;
+
+                    // Grid template: pct lane (auto) on the OUTSIDE of the
+                    // trans+ctx pair. Stretch lane (1fr) gives stacked text room
+                    // to grow; max-content keeps the shared cell snug against it.
+                    const gridCols = isTransAxis
+                        ? 'auto minmax(0, max-content) minmax(0, 1fr)'
+                        : 'minmax(0, 1fr) minmax(0, max-content) auto';
+
                     target.push(`
                     <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 4px 4px; margin-bottom: 6px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${groupPosPill}
-                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 12px; min-width: 0; padding: 2px 8px;">
-                            ${transColHtml}
-                            ${ctxColHtml}
+                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 4px 8px; min-width: 0; padding: 2px 8px;">
+                            ${memberCells}
+                            ${sharedCellHtml}
                         </div>
                         ${groupPosPillMirror}
                     </div>
