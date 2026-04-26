@@ -1900,13 +1900,14 @@ function updateCard() {
                             ? 'border: 2px solid var(--accent-primary);'
                             : 'border: 2px solid transparent;';
                         const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 20px; display: flex; align-items: center;`;
-                        // Pct cell — always col 3, hidden at 100%. No bg/border
-                        // (matches singleton pct: plain text, not a cell).
-                        // Right padding 0 so the % aligns with the singleton
-                        // pct (both end ~4px from the row's outer right edge,
-                        // courtesy of the row's 2px padding + body's 2px gap).
+                        // Pct cell — always col 3, hidden at 100%. Reuses the
+                        // varying cell's bg/border so the % highlights with
+                        // its sense when selected (visually pairs them).
+                        // Right padding 2px so the % text ends ~4px from the
+                        // row's outer right edge (row padding 2px + cell pad
+                        // 2px), matching the singleton pct's right: 4px.
                         const pctCell = memberPct < 100
-                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="grid-row: ${rowIdx + 1}; grid-column: 3; padding: 2px 0 2px 4px; cursor: pointer; min-height: 20px; display: flex; align-items: center; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
+                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell.replace('padding: 2px 6px', 'padding: 2px 2px 2px 4px')} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
                             : '';
                         // Varying cell — col 2 (trans-axis: ctx) or col 1 (ctx-axis: trans).
                         let varyingHtml;
@@ -1941,14 +1942,18 @@ function updateCard() {
                         ? 'minmax(0, max-content) minmax(0, 1fr) auto'
                         : 'minmax(0, 1fr) minmax(0, max-content) auto';
 
+                    // No POS mirror on group cards — it would reserve ~50px on
+                    // the right and push the pct column inward. Body extends to
+                    // the row's right edge so pcts can sit flush. The body's
+                    // own internal layout (3 cols) keeps trans+ctx adjacent
+                    // without needing the mirror for symmetry.
                     target.push(`
-                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${groupPosPill}
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: 1px 0 1px 8px;">
                             ${memberCells}
                             ${sharedCellHtml}
                         </div>
-                        ${groupPosPillMirror}
                     </div>
                     `);
                 } else {
