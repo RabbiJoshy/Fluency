@@ -942,17 +942,26 @@ def _deprioritize_letter_senses(senses: list) -> list:
 def _load_artist_excluded_words(artist_dir: Path, include_clitics: bool = False):
     """Read an artist's word_routing.json and return the set of words to skip.
 
-    Matches the behaviour of the old artist/tool_5c_build_spanishdict_menu.py:
-    skip the four exclude buckets and (by default) clitic_merge targets.
+    Skips every exclude.* bucket — same semantic as step_6b/step_6c: anything
+    step_4a routed to ``exclude.*`` is "do not spend menu/classifier work on
+    this". Previously we hardcoded a four-name list (english/proper_nouns/
+    interjections/low_frequency) which (a) missed ``cognate`` entirely
+    and (b) silently broke after the schema_v2 rename of ``interjections``
+    → ``noise``. Iterating ``exclude.values()`` keeps step_5c in sync with
+    step_4a's contract regardless of future bucket renames or additions.
+
+    Schema_v1 stored ``exclude.cognate`` as a ``{word: {voters: [...]}}``
+    dict; the isinstance branches handle both list and dict shapes.
     """
     routing_path = artist_dir / "data" / "known_vocab" / "word_routing.json"
     routing = load_json(routing_path, {})
     exclude = routing.get("exclude", {}) if isinstance(routing, dict) else {}
     skipped = set()
-    for category in ("english", "proper_nouns", "interjections", "low_frequency"):
-        values = exclude.get(category, [])
-        if isinstance(values, list):
-            skipped.update(v for v in values if isinstance(v, str))
+    for cat_value in exclude.values():
+        if isinstance(cat_value, list):
+            skipped.update(v for v in cat_value if isinstance(v, str))
+        elif isinstance(cat_value, dict):
+            skipped.update(k for k in cat_value.keys() if isinstance(k, str))
     if not include_clitics:
         clitic_merge = routing.get("clitic_merge", {})
         if isinstance(clitic_merge, dict):

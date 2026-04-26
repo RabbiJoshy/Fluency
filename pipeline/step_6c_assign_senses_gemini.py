@@ -595,11 +595,22 @@ def main():
     if os.path.isfile(routing_path):
         with open(routing_path) as f:
             routing_data = json.load(f)
-        exclude = routing_data.get("exclude", {})
-        # schema_v2 renamed exclude.interjections → exclude.noise; read both
-        # so step_6c works against pre-rerun word_routing.json files too.
-        for cat in ("english", "proper_nouns", "noise", "interjections"):
-            skip_set.update(exclude.get(cat, []))
+        exclude = routing_data.get("exclude", {}) or {}
+        # Skip every exclude.* bucket — they all share the same semantic
+        # ("step 4 already decided this word is not worth classifier work").
+        # Previously we hardcoded a subset (english/proper_nouns/interjections)
+        # and let cognate + low_frequency leak through into the gap-fill queue,
+        # which spent Gemini calls inventing senses for ~900 words per BB run
+        # whose cards step_8b/the front-end then filter out anyway. Iterating
+        # all values matches what step_6b already does and keeps step_6c in
+        # sync with step_4a's contract: exclude == do not process.
+        # Schema_v1 wrapped exclude.cognate as {word: {voters:[...]}}; the
+        # isinstance branches handle both shapes safely.
+        for cat_value in exclude.values():
+            if isinstance(cat_value, list):
+                skip_set.update(cat_value)
+            elif isinstance(cat_value, dict):
+                skip_set.update(cat_value.keys())
         if not args.all_gemini:
             # schema_v2 renamed biencoder.* → classifier.* and dropped the
             # always-empty `shared` sub-bucket; the .get() chain returns []
