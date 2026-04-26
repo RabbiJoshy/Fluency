@@ -1846,10 +1846,11 @@ function updateCard() {
                     if (firstIdx !== idx) return;
                 }
                 const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
+                // Single POS-pill renderer for both group + singleton: just the
+                // POS label, no percentage (the % now always lives on the right
+                // end of the row, hidden at 100%).
+                const buildPosPillInner = () => `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`;
                 if (isGrouped) {
-                    // Group card. POS pill shows the cluster's summed
-                    // percentage; each list item shows its own % so the
-                    // user can still see relative weights.
                     const members = groupMembers.get(compKey);
                     const pctSumRaw = groupPctSum.get(compKey);
                     const sumPct = Math.round((pctSumRaw || 0) * 100);
@@ -1863,25 +1864,20 @@ function updateCard() {
                     const groupSelected = !!(currentGroupSelection
                         && currentGroupSelection.axis === axis
                         && currentGroupSelection.groupKey === groupKey);
-                    const groupPosPillInner = sumPct >= 100
-                        ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
-                        : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
-                          + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${sumPct}%</span>`;
+                    const groupPosPillInner = buildPosPillInner();
                     // POS pill stops propagation so its info-popup click
                     // doesn't also trigger the row-level group-select.
                     const groupPosPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; align-self: center; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${m.pos}', ${sumPct})">${groupPosPillInner}</span>`;
                     const groupPosPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; align-self: center; visibility: hidden; pointer-events: none;" aria-hidden="true">${groupPosPillInner}</span>`;
-                    // Three-column body grid keeps the trans+ctx pair adjacent
-                    // and pushes the percentage to the OUTER edge, so the user
-                    // reads `translation context` without a number between them:
+                    // Body grid keeps trans+ctx adjacent and parks the
+                    // percentage in the rightmost column for every axis:
                     //
-                    //   translation-axis (decir):   pct | shared trans | varying ctx
+                    //   translation-axis (decir):  shared trans | varying ctx | pct
                     //   context-axis     (su):  varying trans | shared ctx | pct
                     //
                     // Shared cell spans every member row via grid-row span; per-
-                    // member pct + varying cells live in their own grid rows and
-                    // share a click handler (selectMeaning) so highlights stay
-                    // synced even though they're in separate cells.
+                    // member varying + pct cells live in their own grid rows and
+                    // share a click handler so highlights stay synced.
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
                     const cardBg = (groupSelected || anyMemberSelected)
                         ? 'rgba(var(--accent-primary-rgb), 0.18)'
@@ -1904,39 +1900,41 @@ function updateCard() {
                             ? 'border: 2px solid var(--accent-primary);'
                             : 'border: 2px solid transparent;';
                         const baseCell = `grid-row: ${rowIdx + 1}; padding: 3px 8px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 22px; display: flex; align-items: center;`;
-                        const pctCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${isTransAxis ? 1 : 3}; justify-content: center; font-size: 10px; opacity: 0.75; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`;
+                        // Pct cell — always col 3, hidden at 100%.
+                        const pctCell = memberPct < 100
+                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
+                            : '';
+                        // Varying cell — col 2 (trans-axis: ctx) or col 1 (ctx-axis: trans).
                         let varyingHtml;
                         if (isTransAxis) {
-                            // Varying = context (col 3, right edge of pair).
                             const ctxRaw = mm.context || '';
                             const ctxSafe = String(ctxRaw).replace(/"/g, '&quot;');
                             varyingHtml = ctxRaw
                                 ? `<span class="meaning-context" style="line-height: 1.3; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${ctxSafe}</span>`
                                 : `<span style="opacity: 0.4; font-style: italic; font-size: 12px;">—</span>`;
                         } else {
-                            // Varying = translation (col 1, left edge of pair).
                             const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
                             const transSafe = String(transRaw).replace(/"/g, '&quot;');
                             varyingHtml = `<span style="font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
                         }
-                        const varyingCol = isTransAxis ? 3 : 1;
+                        const varyingCol = isTransAxis ? 2 : 1;
                         const varyingCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${varyingCol}; min-width: 0; overflow: hidden;">${varyingHtml}</div>`;
-                        return pctCell + varyingCell;
+                        return varyingCell + pctCell;
                     }).join('');
 
-                    // Shared cell — col 2, spans every row, vertically centered
-                    // against the stacked side. Translation: 16px bold (singleton
-                    // primary). Context: .meaning-context (singleton tail).
-                    const sharedSpan = `grid-column: 2; grid-row: 1 / span ${members.length}; align-self: center;`;
+                    // Shared cell — trans-axis sits in col 1 (left), ctx-axis sits
+                    // in col 2 (centre). Spans every member row via grid-row span.
+                    const sharedCol = isTransAxis ? 1 : 2;
+                    const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
                         ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;">${sharedText}</div>`
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: left; line-height: 1.25; min-width: 0; word-break: break-word; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px;"><span class="meaning-context">${sharedText}</span></div>`;
 
-                    // Grid template: pct lane (auto) on the OUTSIDE of the
-                    // trans+ctx pair. Stretch lane (1fr) gives stacked text room
-                    // to grow; max-content keeps the shared cell snug against it.
+                    // Cols: trans | ctx | pct (pct always rightmost).
+                    //   trans-axis: shared trans (max-content) | varying ctx (1fr) | pct (auto)
+                    //   ctx-axis:   varying trans (1fr) | shared ctx (max-content) | pct (auto)
                     const gridCols = isTransAxis
-                        ? 'auto minmax(0, max-content) minmax(0, 1fr)'
+                        ? 'minmax(0, max-content) minmax(0, 1fr) auto'
                         : 'minmax(0, 1fr) minmax(0, max-content) auto';
 
                     target.push(`
@@ -1950,24 +1948,26 @@ function updateCard() {
                     </div>
                     `);
                 } else {
-                    // Singleton: original flat row. POS pill + centred
-                    // translation with optional inline context.
-                    const posPillInner = pctVal >= 100
-                        ? `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
-                        : `<span style="display: block; font-size: 10px; font-weight: 700; line-height: 1;">${m.pos}</span>`
-                          + `<span style="display: block; font-size: 8.5px; font-weight: 500; opacity: 0.78; line-height: 1; margin-top: 2px;">${pctVal}%</span>`;
-                    const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${m.pos}', ${pctVal})">${posPillInner}</span>`;
+                    // Singleton: flat row. POS pill (no %) | centred translation
+                    // with optional inline context | % pinned to the right edge
+                    // of the body (absolute, hidden at 100%, click-through).
+                    const posPillInner = buildPosPillInner();
+                    const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${m.pos}', ${pctVal})">${posPillInner}</span>`;
                     const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
                     let contextInline = '';
                     if (m.context) {
                         const safeFull = String(m.context).replace(/"/g, '&quot;');
                         contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                     }
+                    const pctTail = pctVal < 100
+                        ? `<span style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
+                        : '';
                     target.push(`
                     <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px;" onclick="selectMeaning(${idx})">
                         ${posPill}
-                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
+                        <div class="meaning-row-body" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
                             <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
+                            ${pctTail}
                         </div>
                         ${posPillMirror}
                     </div>
