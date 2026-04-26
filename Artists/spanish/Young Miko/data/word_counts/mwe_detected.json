@@ -3,12 +3,31 @@
     {
       "expression": "voy a",
       "translation": "I'm going to",
-      "count": 48
+      "count": 51,
+      "variants": [
+        "vo' a"
+      ]
+    },
+    {
+      "expression": "es que",
+      "translation": "it's that (elided)",
+      "count": 47,
+      "variants": [
+        "e' que"
+      ]
     },
     {
       "expression": "sé que",
       "translation": "I know that",
       "count": 44
+    },
+    {
+      "expression": "vamos a",
+      "translation": "let's",
+      "count": 36,
+      "variants": [
+        "vamo' a"
+      ]
     },
     {
       "expression": "no hay",
@@ -21,14 +40,41 @@
       "count": 26
     },
     {
-      "expression": "pa' que",
+      "expression": "para que",
       "translation": "so that, in order to",
-      "count": 24
+      "count": 25,
+      "variants": [
+        "pa' que"
+      ]
+    },
+    {
+      "expression": "tú sabes",
+      "translation": "you know (elided)",
+      "count": 21,
+      "variants": [
+        "tú sabe'"
+      ]
+    },
+    {
+      "expression": "tú eres",
+      "translation": "you are (elided)",
+      "count": 20,
+      "variants": [
+        "tú ere'"
+      ]
     },
     {
       "expression": "la disco",
       "translation": "the club",
       "count": 18
+    },
+    {
+      "expression": "a veces",
+      "translation": "sometimes",
+      "count": 16,
+      "variants": [
+        "a vece'"
+      ]
     },
     {
       "expression": "dice que",
@@ -41,9 +87,12 @@
       "count": 15
     },
     {
-      "expression": "tú ere'",
-      "translation": "you are (elided)",
-      "count": 15
+      "expression": "todas las",
+      "translation": "all the (fem., elided)",
+      "count": 15,
+      "variants": [
+        "toa' las"
+      ]
     },
     {
       "expression": "la nota",
@@ -81,9 +130,12 @@
       "count": 13
     },
     {
-      "expression": "toa' las",
-      "translation": "all the (fem., elided)",
-      "count": 13
+      "expression": "otra vez",
+      "translation": "again",
+      "count": 13,
+      "variants": [
+        "otra ve'"
+      ]
     },
     {
       "expression": "hay que",
@@ -111,6 +163,22 @@
       "count": 10
     },
     {
+      "expression": "todo el mundo",
+      "translation": "everybody",
+      "count": 9,
+      "variants": [
+        "to' el mundo"
+      ]
+    },
+    {
+      "expression": "todo lo que",
+      "translation": "everything that",
+      "count": 9,
+      "variants": [
+        "to' lo que"
+      ]
+    },
+    {
       "expression": "no sé si",
       "translation": "I don't know if",
       "count": 9
@@ -118,7 +186,10 @@
     {
       "expression": "te voy a",
       "translation": "I'm going to (you)",
-      "count": 9
+      "count": 9,
+      "variants": [
+        "te vo'a"
+      ]
     },
     {
       "expression": "me dice",
@@ -128,11 +199,6 @@
     {
       "expression": "dime si",
       "translation": "tell me if",
-      "count": 8
-    },
-    {
-      "expression": "a vece'",
-      "translation": "sometimes (elided)",
       "count": 8
     },
     {
@@ -151,14 +217,20 @@
       "count": 7
     },
     {
-      "expression": "e' que",
-      "translation": "it's that (elided)",
-      "count": 7
+      "expression": "toda la",
+      "translation": "all the (fem. sg., elided)",
+      "count": 7,
+      "variants": [
+        "to'a la"
+      ]
     },
     {
-      "expression": "otra ve'",
-      "translation": "again (elided)",
-      "count": 7
+      "expression": "no te hagas",
+      "translation": "don't play dumb",
+      "count": 7,
+      "variants": [
+        "no te haga'"
+      ]
     },
     {
       "expression": "por eso",
@@ -168,6 +240,11 @@
     {
       "expression": "hace tiempo",
       "translation": "a while ago",
+      "count": 6
+    },
+    {
+      "expression": "to'as las",
+      "translation": "all the (fem., elided)",
       "count": 6
     },
     {
@@ -196,8 +273,8 @@
       "count": 5
     },
     {
-      "expression": "to' el mundo",
-      "translation": "everybody",
+      "expression": "por más que",
+      "translation": "no matter how much",
       "count": 4
     },
     {
@@ -206,9 +283,12 @@
       "count": 3
     },
     {
-      "expression": "no te haga'",
-      "translation": "don't play dumb",
-      "count": 3
+      "expression": "tú sabes que",
+      "translation": "you know that (elided)",
+      "count": 3,
+      "variants": [
+        "tú sabe' que"
+      ]
     },
     {
       "expression": "un flow",
@@ -221,14 +301,12 @@
       "count": 3
     },
     {
-      "expression": "pa' qué",
+      "expression": "para qué",
       "translation": "what for",
-      "count": 2
-    },
-    {
-      "expression": "por más que",
-      "translation": "no matter how much",
-      "count": 2
+      "count": 2,
+      "variants": [
+        "pa' qué"
+      ]
     },
     {
       "expression": "lo mío",
@@ -251,9 +329,12 @@
       "count": 2
     },
     {
-      "expression": "todo lo que",
-      "translation": "everything that",
-      "count": 2
+      "expression": "para el carajo",
+      "translation": "to hell",
+      "count": 2,
+      "variants": [
+        "pa'l carajo"
+      ]
     },
     {
       "expression": "yo hago lo que",
@@ -314,11 +395,614 @@
       "expression": "me voy a",
       "translation": "I'm going to",
       "count": 1
+    },
+    {
+      "expression": "se hizo las tetas",
+      "translation": null,
+      "count": 5,
+      "pmi": 25.3,
+      "num_songs": 3
+    },
+    {
+      "expression": "it's baby miko",
+      "translation": null,
+      "count": 4,
+      "pmi": 16.6,
+      "num_songs": 4
+    },
+    {
+      "expression": "y que se joda",
+      "translation": null,
+      "count": 4,
+      "pmi": 16.4,
+      "num_songs": 3
+    },
+    {
+      "expression": "te he visto",
+      "translation": null,
+      "count": 5,
+      "pmi": 15.9,
+      "num_songs": 5
+    },
+    {
+      "expression": "me dan ganas",
+      "translation": null,
+      "count": 4,
+      "pmi": 15.5,
+      "num_songs": 4
+    },
+    {
+      "expression": "en la disco y",
+      "translation": null,
+      "count": 4,
+      "pmi": 15.3,
+      "num_songs": 3
+    },
+    {
+      "expression": "todo los días",
+      "translation": null,
+      "count": 6,
+      "pmi": 15.2,
+      "num_songs": 4
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": "y yo [PRON]",
+      "count": 26,
+      "num_variants": 7,
+      "num_songs": 16,
+      "variants": {
+        "y yo me": 12,
+        "y yo te": 5,
+        "y yo la": 3,
+        "y yo le": 2,
+        "y yo los": 2,
+        "y yo nos": 1,
+        "y yo lo": 1
+      }
+    },
+    {
+      "pattern": "que yo [PRON]",
+      "count": 19,
+      "num_variants": 5,
+      "num_songs": 14,
+      "variants": {
+        "que yo me": 5,
+        "que yo te": 5,
+        "que yo la": 4,
+        "que yo le": 4,
+        "que yo los": 1
+      }
+    },
+    {
+      "pattern": "[PRON] voy a",
+      "count": 16,
+      "num_variants": 6,
+      "num_songs": 10,
+      "variants": {
+        "te voy a": 9,
+        "la voy a": 3,
+        "le voy a": 1,
+        "lo voy a": 1,
+        "las voy a": 1,
+        "me voy a": 1
+      }
+    },
+    {
+      "pattern": "yo no [PRON]",
+      "count": 14,
+      "num_variants": 6,
+      "num_songs": 13,
+      "variants": {
+        "yo no me": 5,
+        "yo no te": 4,
+        "yo no la": 2,
+        "yo no le": 1,
+        "yo no lo": 1,
+        "yo no los": 1
+      }
+    },
+    {
+      "pattern": "sé que [PRON]",
+      "count": 12,
+      "num_variants": 5,
+      "num_songs": 6,
+      "variants": {
+        "sé que lo": 4,
+        "sé que me": 3,
+        "sé que te": 2,
+        "sé que les": 2,
+        "sé que se": 1
+      }
+    },
+    {
+      "pattern": "[PRON] va a",
+      "count": 10,
+      "num_variants": 3,
+      "num_songs": 8,
+      "variants": {
+        "se va a": 5,
+        "te va a": 4,
+        "me va a": 1
+      }
+    },
+    {
+      "pattern": "que tú [PRON]",
+      "count": 10,
+      "num_variants": 3,
+      "num_songs": 8,
+      "variants": {
+        "que tú te": 4,
+        "que tú la": 3,
+        "que tú me": 3
+      }
+    },
+    {
+      "pattern": "yo sé que [PRON]",
+      "count": 10,
+      "num_variants": 5,
+      "num_songs": 6,
+      "variants": {
+        "yo sé que lo": 3,
+        "yo sé que me": 2,
+        "yo sé que te": 2,
+        "yo sé que les": 2,
+        "yo sé que se": 1
+      }
+    },
+    {
+      "pattern": "que [PRON] gusta",
+      "count": 9,
+      "num_variants": 3,
+      "num_songs": 6,
+      "variants": {
+        "que te gusta": 4,
+        "que le gusta": 3,
+        "que me gusta": 2
+      }
+    },
+    {
+      "pattern": "tú sabes [PRON]",
+      "count": 9,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "tú sabes la": 7,
+        "tú sabes lo": 2
+      }
+    },
+    {
+      "pattern": "yo [PRON] dejo",
+      "count": 9,
+      "num_variants": 3,
+      "num_songs": 3,
+      "variants": {
+        "yo me dejo": 5,
+        "yo la dejo": 3,
+        "yo lo dejo": 1
+      }
+    },
+    {
+      "pattern": "quiere que [PRON]",
+      "count": 8,
+      "num_variants": 3,
+      "num_songs": 7,
+      "variants": {
+        "quiere que le": 4,
+        "quiere que la": 3,
+        "quiere que me": 1
+      }
+    },
+    {
+      "pattern": "no [PRON] quiero",
+      "count": 8,
+      "num_variants": 4,
+      "num_songs": 4,
+      "variants": {
+        "no te quiero": 5,
+        "no me quiero": 1,
+        "no la quiero": 1,
+        "no las quiero": 1
+      }
+    },
+    {
+      "pattern": "sabes [PRON] que",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "sabes lo que": 5,
+        "sabes la que": 2
+      }
+    },
+    {
+      "pattern": "quiero que [PRON]",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "quiero que me": 4,
+        "quiero que las": 3
+      }
+    },
+    {
+      "pattern": "yo [PRON] busco",
+      "count": 7,
+      "num_variants": 3,
+      "num_songs": 6,
+      "variants": {
+        "yo te busco": 4,
+        "yo las busco": 2,
+        "yo la busco": 1
+      }
+    },
+    {
+      "pattern": "[PRON] vas a",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "te vas a": 3,
+        "me vas a": 2
+      }
+    },
+    {
+      "pattern": "puede que [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "puede que te": 3,
+        "puede que me": 2
+      }
+    },
+    {
+      "pattern": "pero no [PRON]",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "pero no las": 3,
+        "pero no se": 1,
+        "pero no me": 1
+      }
+    },
+    {
+      "pattern": "tú [PRON] has",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "tú me has": 4,
+        "tú te has": 1
+      }
+    },
+    {
+      "pattern": "ella no [PRON]",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "ella no se": 2,
+        "ella no le": 2,
+        "ella no te": 1
+      }
+    },
+    {
+      "pattern": "[PRON] tiene en",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "me tiene en": 4,
+        "te tiene en": 1
+      }
+    },
+    {
+      "pattern": "[PRON] gusta que",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "me gusta que": 4,
+        "le gusta que": 1
+      }
+    },
+    {
+      "pattern": "que [PRON] han",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 3,
+      "variants": {
+        "que lo han": 3,
+        "que me han": 1,
+        "que te han": 1
+      }
+    },
+    {
+      "pattern": "a veces [PRON]",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "a veces se": 3,
+        "a veces nos": 1,
+        "a veces me": 1
+      }
+    },
+    {
+      "pattern": "yo [PRON] siento",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "yo me siento": 4,
+        "yo te siento": 1
+      }
+    },
+    {
+      "pattern": "esta boca [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 1,
+      "variants": {
+        "esta boca te": 4,
+        "esta boca se": 1
+      }
+    },
+    {
+      "pattern": "en esta boca [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 1,
+      "variants": {
+        "en esta boca te": 4,
+        "en esta boca se": 1
+      }
+    },
+    {
+      "pattern": "[PRON] que hay",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "la que hay": 3,
+        "lo que hay": 1
+      }
+    },
+    {
+      "pattern": "[PRON] ves bien",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "te ves bien": 3,
+        "la ves bien": 1
+      }
+    },
+    {
+      "pattern": "que [PRON] dé",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "que te dé": 2,
+        "que le dé": 2
+      }
+    },
+    {
+      "pattern": "[PRON] doy a",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "les doy a": 2,
+        "le doy a": 2
+      }
+    },
+    {
+      "pattern": "a [PRON] dos",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "a las dos": 3,
+        "a los dos": 1
+      }
+    },
+    {
+      "pattern": "si tú [PRON]",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 3,
+      "variants": {
+        "si tú te": 2,
+        "si tú me": 1,
+        "si tú la": 1
+      }
+    },
+    {
+      "pattern": "no [PRON] veo",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "no te veo": 3,
+        "no los veo": 1
+      }
+    },
+    {
+      "pattern": "yo [PRON] sé",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "yo lo sé": 3,
+        "yo me sé": 1
+      }
+    },
+    {
+      "pattern": "[PRON] deja en",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 3,
+      "variants": {
+        "me deja en": 2,
+        "lo deja en": 1,
+        "los deja en": 1
+      }
+    },
+    {
+      "pattern": "cuando tú [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "cuando tú me": 3,
+        "cuando tú te": 1
+      }
+    },
+    {
+      "pattern": "el mundo [PRON]",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "el mundo se": 2,
+        "el mundo los": 1,
+        "el mundo la": 1
+      }
+    },
+    {
+      "pattern": "yo ni [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "yo ni lo": 3,
+        "yo ni le": 1
+      }
+    },
+    {
+      "pattern": "debajo e [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "debajo e la": 3,
+        "debajo e las": 1
+      }
+    },
+    {
+      "pattern": "yo [PRON] voy",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "yo te voy": 3,
+        "yo le voy": 1
+      }
+    },
+    {
+      "pattern": "dice que [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "dice que me": 3,
+        "dice que le": 1
+      }
+    },
+    {
+      "pattern": "que nunca [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "que nunca me": 3,
+        "que nunca te": 1
+      }
+    },
+    {
+      "pattern": "frente a [PRON]",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 3,
+      "variants": {
+        "frente a las": 2,
+        "frente a la": 1,
+        "frente a los": 1
+      }
+    },
+    {
+      "pattern": "siempre que [PRON]",
+      "count": 4,
+      "num_variants": 4,
+      "num_songs": 4,
+      "variants": {
+        "siempre que la": 1,
+        "siempre que te": 1,
+        "siempre que me": 1,
+        "siempre que nos": 1
+      }
+    },
+    {
+      "pattern": "[PRON] vamos a",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "nos vamos a": 3,
+        "le vamos a": 1
+      }
+    },
+    {
+      "pattern": "desde que [PRON]",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 3,
+      "variants": {
+        "desde que te": 2,
+        "desde que me": 1,
+        "desde que la": 1
+      }
+    },
+    {
+      "pattern": "tú sabes [PRON] que",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "tú sabes lo que": 2,
+        "tú sabes la que": 2
+      }
+    },
+    {
+      "pattern": "yo [PRON] voy a",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "yo te voy a": 3,
+        "yo le voy a": 1
+      }
+    },
+    {
+      "pattern": "quiere que yo [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "quiere que yo me": 2,
+        "quiere que yo le": 2
+      }
     }
   ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 63,
-    "pmi_detected_count": 0
+    "confirmed_count": 69,
+    "pmi_detected_count": 7,
+    "patterns_count": 51
   }
 }
