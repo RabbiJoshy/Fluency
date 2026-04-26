@@ -514,14 +514,6 @@ function initializeApp() {
         shuffleCards();
     });
 
-    // Nav stack back button (one per card face — front and back)
-    document.querySelectorAll('[data-nav-back]').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navigateBack();
-        });
-    });
-
     // Lyric breakdown modal
     document.getElementById('closeLyricBreakdown').addEventListener('click', hideLyricBreakdown);
     document.getElementById('lyricBreakdownModal').addEventListener('click', function(e) {
@@ -542,14 +534,23 @@ function initializeApp() {
         toggleAutoSpeak();
     });
 
-    // Floating buttons (outside the card, for both mobile and desktop)
-    document.getElementById('backBtnFloating').addEventListener('click', function(e) {
-        e.stopPropagation();
-        goBackToSetup();
+    // Floating buttons (desktop sidebar) + on-card mobile copies share handlers.
+    // Back uses navigateBack() which falls through to goBackToSetup() when
+    // cardNavStack is empty — single smart-back affordance for normal decks
+    // and synonym/search/lyrics popup chains alike.
+    ['backBtnFloating', 'backBtnFrontMobile', 'backBtnBackMobile'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateBack();
+        });
     });
-    document.getElementById('statsBtnFloating').addEventListener('click', function(e) {
-        e.stopPropagation();
-        showStatsModal();
+    ['statsBtnFloating', 'statsBtnFrontMobile', 'statsBtnBackMobile'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showStatsModal();
+        });
     });
 
     // Desktop speak button — toggles auto-speak
@@ -1000,7 +1001,7 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             flipCard();
         }
-        // Escape = close modal or return to setup
+        // Escape = close modal or smart-back (pop nav stack, else return to setup)
         else if (e.key === 'Escape') {
             e.preventDefault();
             const deckModal = document.getElementById('deckCompleteModal');
@@ -1010,7 +1011,7 @@ function setupKeyboardShortcuts() {
             } else if (statsModal && !statsModal.classList.contains('hidden')) {
                 hideStatsModal();
             } else {
-                goBackToSetup();
+                navigateBack();
             }
         }
     });
@@ -2533,11 +2534,9 @@ function updateCard() {
         }
     }
 
-    // Toggle back button(s) for nav stack — one per card face
-    const showBack = cardNavStack.length === 0;
-    document.querySelectorAll('[data-nav-back]').forEach(btn => {
-        btn.classList.toggle('hidden', showBack);
-    });
+    // Visual cue: this card was opened via search/synonym/lyric breakdown.
+    // The .is-stacked class drives a peek-tab pseudo above the card.
+    document.getElementById('flashcard').classList.toggle('is-stacked', cardNavStack.length > 0);
 
     // Update frequency display (skip for peek/stacked cards)
     if (cardNavStack.length === 0) {
@@ -3407,7 +3406,10 @@ async function popupFoundWord(entry, opts) {
 }
 
 function navigateBack() {
-    if (cardNavStack.length === 0) return;
+    if (cardNavStack.length === 0) {
+        goBackToSetup();
+        return;
+    }
 
     const prev = cardNavStack.pop();
 

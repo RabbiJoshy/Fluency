@@ -176,6 +176,40 @@
             -webkit-user-drag: none;
         }
 
+        /* Stacked-card cue: when the card was reached via search/synonym/lyric
+           breakdown (cardNavStack non-empty), draw two "peek" tabs of cards
+           protruding above the top edge — implies a stack of cards behind the
+           current one. Both pseudos sit in .card-container's top padding so
+           .card-container's overflow:hidden doesn't clip them. Y-only offset
+           means the Y-axis flip doesn't visibly mirror them. */
+        .card.is-stacked::before,
+        .card.is-stacked::after {
+            content: '';
+            position: absolute;
+            background: var(--bg-card);
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .card.is-stacked::before {
+            top: -12px;
+            left: 10px;
+            right: 10px;
+            height: 16px;
+            border: 2.5px solid rgba(255, 107, 53, 0.85);
+        }
+
+        .card.is-stacked::after {
+            top: -24px;
+            left: 22px;
+            right: 22px;
+            height: 16px;
+            border: 2.5px solid rgba(255, 107, 53, 0.55);
+        }
+
         .card.swiping {
             transition: none;
         }
@@ -862,6 +896,12 @@
             padding-bottom: 4px;
         }
 
+        @media (max-width: 767px) {
+            .card-back {
+                padding-top: 60px;
+            }
+        }
+
         /* Back layout: header / scroll / tray / sentence / links.
            #backContent sits inside .card-back and is the actual flex column
            container — updateCard() writes all rows directly into it, so the
@@ -1523,40 +1563,6 @@
 
         .nav-btn-inline:disabled:hover {
             transform: none;
-        }
-
-        .nav-back-btn-pinned {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            width: 56px;
-            height: 56px;
-            border: none;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.4);
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 56px;
-            line-height: 1;
-            padding: 0;
-            padding-bottom: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            z-index: 50;
-            transition: background 0.15s, transform 0.15s;
-            pointer-events: auto;
-        }
-
-        .nav-back-btn-pinned:hover {
-            background: rgba(0, 0, 0, 0.6);
-            transform: scale(1.05);
-        }
-
-        .nav-back-btn-pinned:active {
-            transform: scale(0.95);
         }
 
         .progress {
@@ -5267,6 +5273,26 @@
             .gear-btn svg {
                 width: 24px;
                 height: 24px;
+            }
+
+            .floating-btns,
+            .floating-btns.visible {
+                display: none !important;
+            }
+        }
+
+        .nav-row-icon {
+            padding: 8px;
+        }
+
+        .nav-row-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-row-icon-group {
+                display: none !important;
             }
         }
 

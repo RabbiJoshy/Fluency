@@ -283,11 +283,25 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard" data-rank="">
                         <div class="card-face card-front">
-                            <button class="nav-back-btn-pinned hidden" data-nav-back title="Back to previous card">↩</button>
                             <!-- Top row: REVERSE, STATS, SETTINGS, SHUFFLE -->
                             <div style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; justify-content: space-between; align-items: center;">
                                 <div style="display: flex; gap: 8px; pointer-events: auto;">
                                     <button class="card-action-small" id="reverseLangBtn" title="Reverse language direction">REVERSE</button>
+                                </div>
+                                <div class="nav-row-icon-group" style="display: flex; gap: 6px; align-items: center; pointer-events: auto;">
+                                    <button class="gear-btn nav-row-icon" id="backBtnFrontMobile" title="Back">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="9 14 4 9 9 4"></polyline>
+                                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="gear-btn nav-row-icon" id="statsBtnFrontMobile" title="View stats">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 20V10"></path>
+                                            <path d="M12 20V4"></path>
+                                            <path d="M6 20v-6"></path>
+                                        </svg>
+                                    </button>
                                 </div>
                                 <div style="display: flex; gap: 8px; pointer-events: auto;">
                                     <button class="card-action-small" id="shuffleBtnTop" title="Shuffle">
@@ -339,10 +353,24 @@
                             </div>
                         </div>
                         <div class="card-face card-back">
-                            <button class="nav-back-btn-pinned hidden" data-nav-back title="Back to previous card">↩</button>
                             <div class="desktop-back-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
                                     <button class="nav-btn-inline" id="prevBtnBack">←</button>
+                                </div>
+                                <div class="nav-row-icon-group" style="display: flex; gap: 6px; align-items: center; pointer-events: auto;">
+                                    <button class="gear-btn nav-row-icon" id="backBtnBackMobile" title="Back">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="9 14 4 9 9 4"></polyline>
+                                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="gear-btn nav-row-icon" id="statsBtnBackMobile" title="View stats">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 20V10"></path>
+                                            <path d="M12 20V4"></path>
+                                            <path d="M6 20v-6"></path>
+                                        </svg>
+                                    </button>
                                 </div>
                                 <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
                                     <button class="nav-btn-inline" id="nextBtnBack">→</button>
@@ -835,6 +863,6 @@
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260426g"></script>
+    <script type="module" src="js/main.js?v=20260426j"></script>
 </body>
 </html>
