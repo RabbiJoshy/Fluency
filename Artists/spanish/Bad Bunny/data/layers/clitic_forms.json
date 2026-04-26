@@ -1,125 +1,39 @@
 {
-  "5b61d5": {
-    "base_verb": "actualicen",
-    "lemma": "actualícense",
+  "280384": {
+    "base_verb": "saludar",
+    "lemma": "salúdenme",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to say hello to",
     "assignments": {},
     "examples": [
       {
-        "song": "5629886",
-        "song_name": "Lo De Nosotros",
-        "spanish": "Actualícense primero, ¿okey?",
-        "english": "Update yourselves first, okay?"
+        "song": "3176687",
+        "song_name": "Andan Por Ahí",
+        "spanish": "Salúdenme con respeto y bájenme las miradas",
+        "english": "Greet me with respect and lower your gazes",
+        "timestamp_ms": 310850
       }
     ],
-    "id": "5b61d5",
-    "base_id": "574936"
+    "id": "280384",
+    "base_id": "ab8661"
   },
-  "127e8b": {
-    "base_verb": "lame",
-    "lemma": "lámelo",
+  "72b6df": {
+    "base_verb": "pichar",
+    "lemma": "picharle",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to pitch",
     "assignments": {},
     "examples": [
       {
-        "song": "7824895",
-        "song_name": "X ÚLTIMA VEZ",
-        "spanish": "Baby, no está' en Charlotte, pero ven, lámelo (Plo)",
-        "english": "Baby, you're not in Charlotte, but come, lick it (Plo)",
-        "timestamp_ms": 57710
+        "song": "3753517",
+        "song_name": "Maldades (Remix)",
+        "spanish": "Vas a picharle a la clase y disfrútate esta clase bicho que te vo'a meter",
+        "english": "You're gonna skip class and enjoy this dick I'm gonna give you",
+        "timestamp_ms": 328980
       }
     ],
-    "id": "127e8b",
-    "base_id": "d0a3cf"
-  },
-  "5dd794": {
-    "base_verb": "partir",
-    "lemma": "pártelo",
-    "corpus_count": 1,
-    "translation": "to cut",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "7967934",
-        "song_name": "Aguacero",
-        "spanish": "Pero pichea, ven y pártelo",
-        "english": "But ignore me, come and break it down",
-        "timestamp_ms": 129330
-      }
-    ],
-    "id": "5dd794",
-    "base_id": "d5e20c"
-  },
-  "3b0d87": {
-    "base_verb": "mamarse",
-    "lemma": "mamárselo",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2915707",
-        "song_name": "CYNH2",
-        "spanish": "Sin ensuciarme las mano', sin mamárselo a mengano",
-        "english": "Without getting my hands dirty, without sucking off anyone"
-      }
-    ],
-    "id": "3b0d87",
-    "base_id": "ac9681"
-  },
-  "07c9f5": {
-    "base_verb": "besarte",
-    "lemma": "besártelo",
-    "corpus_count": 1,
-    "translation": "to kiss",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2935271",
-        "song_name": "Me Llamas",
-        "spanish": "Eso allá abajo yo voy a besártelo (Muah)",
-        "english": "I'm gonna kiss that down there (Muah)",
-        "timestamp_ms": 163900
-      }
-    ],
-    "id": "07c9f5"
-  },
-  "36ee96": {
-    "base_verb": "confesar",
-    "lemma": "confiésale",
-    "corpus_count": 1,
-    "translation": "to confess",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3176704",
-        "song_name": "Explícale",
-        "spanish": "Confiésale, que cambiaste tu forma de pensar",
-        "english": "Confess it, that you changed your way of thinking",
-        "timestamp_ms": 152620
-      }
-    ],
-    "id": "36ee96",
-    "base_id": "d28238"
-  },
-  "92c3e7": {
-    "base_verb": "activar",
-    "lemma": "activar",
-    "corpus_count": 2,
-    "translation": "to activate",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11304595",
-        "song_name": "VeLDÁ",
-        "spanish": "Y dale, actívate",
-        "english": "And come on, get active",
-        "timestamp_ms": 42890
-      }
-    ],
-    "id": "92c3e7"
+    "id": "72b6df",
+    "base_id": "f2a0e8"
   },
   "48dc42": {
     "base_verb": "aprovechar",
@@ -146,105 +60,47 @@
     "id": "48dc42",
     "base_id": "fbaece"
   },
-  "d4c7b7": {
-    "base_verb": "atenderte",
-    "lemma": "atendértelo",
+  "8fc0a3": {
+    "base_verb": "perfuma",
+    "lemma": "perfúmate",
     "corpus_count": 1,
     "translation": "",
     "assignments": {},
     "examples": [
       {
-        "song": "2935271",
-        "song_name": "Me Llamas",
-        "spanish": "Atendértelo (Aha)",
-        "english": "Taking care of you (Aha)",
-        "timestamp_ms": 169680
+        "song": "2976831",
+        "song_name": "Amigos y Enemigos (Remix)",
+        "spanish": "Perfúmate bien, échate Vicini (Uh-uh), yeah",
+        "english": "Perfume yourself well, put on Vicini (Uh-uh), yeah",
+        "timestamp_ms": 116120
       }
     ],
-    "id": "d4c7b7",
-    "base_id": "2b6494"
+    "id": "8fc0a3",
+    "base_id": "775064"
   },
-  "e5de6a": {
-    "base_verb": "roncar",
-    "lemma": "roncarle",
-    "corpus_count": 1,
-    "translation": "to snore",
+  "be736f": {
+    "base_verb": "mojar",
+    "lemma": "mojar",
+    "corpus_count": 3,
+    "translation": "to get wet",
     "assignments": {},
     "examples": [
       {
-        "song": "2967123",
-        "song_name": "Crecia",
-        "spanish": "Y vienes a roncarle diz' que a uno",
-        "english": "And you come to front like you're gonna take on someone"
+        "song": "3171036",
+        "song_name": "Báilame (Remix)",
+        "spanish": "Con un besito, mójame (Eh)",
+        "english": "With a little kiss, wet me (Eh)",
+        "timestamp_ms": 63580
       }
     ],
-    "id": "e5de6a",
-    "base_id": "8f244f"
+    "id": "be736f",
+    "base_id": "78e185"
   },
-  "8901fb": {
-    "base_verb": "bájate",
-    "lemma": "bájatelo",
+  "a43226": {
+    "base_verb": "bajar",
+    "lemma": "bájenme",
     "corpus_count": 1,
     "translation": "to go down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5529171",
-        "song_name": "SI ELLA SALE",
-        "spanish": "Ven y bájatelo de nuevo",
-        "english": "Come and take it down again",
-        "timestamp_ms": 74070
-      }
-    ],
-    "id": "8901fb"
-  },
-  "c941ca": {
-    "base_verb": "partir",
-    "lemma": "partíendola",
-    "corpus_count": 1,
-    "translation": "to cut",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5629886",
-        "song_name": "Lo De Nosotros",
-        "spanish": "Corriendo pistas Usain Bolt, pero partíendola El Conejo",
-        "english": "Running tracks like Usain Bolt, but killing it like El Conejo"
-      }
-    ],
-    "id": "c941ca",
-    "base_id": "d5e20c"
-  },
-  "41d35a": {
-    "base_verb": "soltar",
-    "lemma": "soltar",
-    "corpus_count": 2,
-    "translation": "to let go of",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5761512",
-        "song_name": "UN DÍA (ONE DAY)",
-        "spanish": "Suéltate conmigo, mamá (Mamá)",
-        "english": "Let loose with me, mama (Mama)",
-        "timestamp_ms": 98400
-      },
-      {
-        "song": "11290147",
-        "song_name": "VOY A LLeVARTE PA PR",
-        "spanish": "Dale, mami, suéltate el grillete",
-        "english": "Come on, baby, take off the shackles",
-        "timestamp_ms": 148930
-      }
-    ],
-    "id": "41d35a",
-    "base_id": "40f6f4"
-  },
-  "280384": {
-    "base_verb": "saludar",
-    "lemma": "salúdenme",
-    "corpus_count": 1,
-    "translation": "to say hello to",
     "assignments": {},
     "examples": [
       {
@@ -255,61 +111,25 @@
         "timestamp_ms": 310850
       }
     ],
-    "id": "280384",
-    "base_id": "ab8661"
+    "id": "a43226",
+    "base_id": "5efe67"
   },
-  "8293ac": {
-    "base_verb": "roncando",
-    "lemma": "roncándome",
-    "corpus_count": 2,
-    "translation": "to snore",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5305033",
-        "song_name": "Puesto Pa’ Guerrial",
-        "spanish": "Se pasan roncándome (Ja; ¡prr!)",
-        "english": "They go bossing me around (Ha; prr!)",
-        "timestamp_ms": 6170
-      }
-    ],
-    "id": "8293ac"
-  },
-  "b30c0b": {
-    "base_verb": "modelar",
-    "lemma": "modélame",
+  "0435d5": {
+    "base_verb": "romperte",
+    "lemma": "rompértelo",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to break",
     "assignments": {},
     "examples": [
       {
-        "song": "3122516",
-        "song_name": "Lean",
-        "spanish": "Modélame con la Margiela (Oh-yeah)",
-        "english": "Pose for me with the Margiela (Oh-yeah)",
-        "timestamp_ms": 28080
+        "song": "2935271",
+        "song_name": "Me Llamas",
+        "spanish": "'Tá de más que diga que yo puedo rompértelo",
+        "english": "It's too much for me to say that I can break you",
+        "timestamp_ms": 169680
       }
     ],
-    "id": "b30c0b",
-    "base_id": "99f161"
-  },
-  "337353": {
-    "base_verb": "aloca",
-    "lemma": "alócate",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "4589199",
-        "song_name": "Callaita",
-        "spanish": "(Alócate y hazte mía",
-        "english": "Get wild and be mine",
-        "timestamp_ms": 223310
-      }
-    ],
-    "id": "337353",
-    "base_id": "f407b5"
+    "id": "0435d5"
   },
   "8aacea": {
     "base_verb": "disfrutar",
@@ -329,100 +149,40 @@
     "id": "8aacea",
     "base_id": "f1c056"
   },
-  "79d3e3": {
-    "base_verb": "ponte",
-    "lemma": "pónteme",
-    "corpus_count": 2,
-    "translation": "to put",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5529101",
-        "song_name": "PA’ ROMPERLA",
-        "spanish": "Pónteme linda pa' subir par de video' a mi cel",
-        "english": "Look cute for me so I can upload a couple of videos to my phone",
-        "timestamp_ms": 35230
-      }
-    ],
-    "id": "79d3e3"
-  },
-  "48f776": {
-    "base_verb": "enviar",
-    "lemma": "envíale",
-    "corpus_count": 2,
-    "translation": "to send",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5305007",
-        "song_name": "Soliá",
-        "spanish": "Envíale un mensaje que diga",
-        "english": "Send her a message that says",
-        "timestamp_ms": 29840
-      }
-    ],
-    "id": "48f776",
-    "base_id": "fca91b"
-  },
-  "e20f20": {
-    "base_verb": "copiar",
-    "lemma": "copiete",
+  "e5de6a": {
+    "base_verb": "roncar",
+    "lemma": "roncarle",
     "corpus_count": 1,
-    "translation": "to copy",
+    "translation": "to snore",
     "assignments": {},
     "examples": [
       {
-        "song": "3626034",
-        "song_name": "Original",
-        "spanish": "Tú eres fake, cabrón, tú eres un copiete",
-        "english": "You're fake, bastard, you're a copycat.",
-        "timestamp_ms": 80660
+        "song": "2967123",
+        "song_name": "Crecia",
+        "spanish": "Y vienes a roncarle diz' que a uno",
+        "english": "And you come to front like you're gonna take on someone"
       }
     ],
-    "id": "e20f20",
-    "base_id": "a5f78c"
+    "id": "e5de6a",
+    "base_id": "8f244f"
   },
-  "a0baa1": {
-    "base_verb": "escapar",
-    "lemma": "escapar",
-    "corpus_count": 7,
-    "translation": "to escape",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5305012",
-        "song_name": "Una Vez",
-        "spanish": "Pe-Pe-Pe-Pero dale escápate (-te)",
-        "english": "B-b-but go ahead and escape (-ape)",
-        "timestamp_ms": 44380
-      },
-      {
-        "song": "3101741",
-        "song_name": "Escápate Conmigo (Remix)",
-        "spanish": "Escápate conmigo y quítate la ropa que desnudos vamo' a grabar un feat (Mami, el oso del dinero)",
-        "english": "Escape with me and take off your clothes, 'cause naked we're gonna record a collab (Baby, the money bear)",
-        "timestamp_ms": 3270
-      }
-    ],
-    "id": "a0baa1",
-    "base_id": "222c99"
-  },
-  "b47ba3": {
-    "base_verb": "papar",
-    "lemma": "papele",
+  "337353": {
+    "base_verb": "aloca",
+    "lemma": "alócate",
     "corpus_count": 1,
     "translation": "",
     "assignments": {},
     "examples": [
       {
-        "song": "2914746",
-        "song_name": "Soy Culpable",
-        "spanish": "Ahora se cambian los papele’, e' a mí quien me toca sufrir",
-        "english": "Now the roles are reversed, it's my turn to suffer"
+        "song": "4589199",
+        "song_name": "Callaita",
+        "spanish": "(Alócate y hazte mía",
+        "english": "Get wild and be mine",
+        "timestamp_ms": 223310
       }
     ],
-    "id": "b47ba3",
-    "base_id": "bcb88f"
+    "id": "337353",
+    "base_id": "f407b5"
   },
   "b43b15": {
     "base_verb": "levantar",
@@ -440,6 +200,42 @@
       }
     ],
     "id": "b43b15"
+  },
+  "b596d9": {
+    "base_verb": "desaparecerte",
+    "lemma": "desaparecértelo",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2935271",
+        "song_name": "Me Llamas",
+        "spanish": "Sacarlo a pasear y desaparecértelo",
+        "english": "Take him out for a walk and make him disappear",
+        "timestamp_ms": 173440
+      }
+    ],
+    "id": "b596d9",
+    "base_id": "928663"
+  },
+  "5dd794": {
+    "base_verb": "partir",
+    "lemma": "pártelo",
+    "corpus_count": 1,
+    "translation": "to cut",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7967934",
+        "song_name": "Aguacero",
+        "spanish": "Pero pichea, ven y pártelo",
+        "english": "But ignore me, come and break it down",
+        "timestamp_ms": 129330
+      }
+    ],
+    "id": "5dd794",
+    "base_id": "d5e20c"
   },
   "909872": {
     "base_verb": "prender",
@@ -466,22 +262,566 @@
     "id": "909872",
     "base_id": "6d5789"
   },
-  "d8f9be": {
-    "base_verb": "tienta",
-    "lemma": "tiéntame",
+  "6212c2": {
+    "base_verb": "perrearte",
+    "lemma": "perreártelas",
     "corpus_count": 1,
-    "translation": "to tempt",
+    "translation": "to twerk",
     "assignments": {},
     "examples": [
       {
-        "song": "3092934",
-        "song_name": "Move Your Body",
-        "spanish": "Tiéntame, nos vamos de misión (-ión)",
-        "english": "Tempt me, we're going on a mission (-ion)",
-        "timestamp_ms": 104520
+        "song": "7967942",
+        "song_name": "Party",
+        "spanish": "Y perreártela' la noche entera",
+        "english": "And dance with you all night",
+        "timestamp_ms": 62590
       }
     ],
-    "id": "d8f9be"
+    "id": "6212c2"
+  },
+  "a44c1e": {
+    "base_verb": "mamarte",
+    "lemma": "mamártela",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7967975",
+        "song_name": "La Corriente",
+        "spanish": "Pa' mamártela y rompértela",
+        "english": "To suck you off and fuck you up",
+        "timestamp_ms": 77510
+      }
+    ],
+    "id": "a44c1e",
+    "base_id": "986364"
+  },
+  "92c3e7": {
+    "base_verb": "activar",
+    "lemma": "activar",
+    "corpus_count": 2,
+    "translation": "to activate",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11304595",
+        "song_name": "VeLDÁ",
+        "spanish": "Y dale, actívate",
+        "english": "And come on, get active",
+        "timestamp_ms": 42890
+      }
+    ],
+    "id": "92c3e7"
+  },
+  "8901fb": {
+    "base_verb": "bájate",
+    "lemma": "bájatelo",
+    "corpus_count": 1,
+    "translation": "to go down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5529171",
+        "song_name": "SI ELLA SALE",
+        "spanish": "Ven y bájatelo de nuevo",
+        "english": "Come and take it down again",
+        "timestamp_ms": 74070
+      }
+    ],
+    "id": "8901fb"
+  },
+  "aa711f": {
+    "base_verb": "encerrar",
+    "lemma": "enciérrate",
+    "corpus_count": 1,
+    "translation": "to shut oneself up",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3059630",
+        "song_name": "Panamera (Remix)",
+        "spanish": "O enciérrate en el baño, que van camino a darte piso (Rrrah)",
+        "english": "Or lock yourself in the bathroom, 'cause they're on their way to get you (Rrrah)",
+        "timestamp_ms": 189120
+      }
+    ],
+    "id": "aa711f"
+  },
+  "4dc0d9": {
+    "base_verb": "parar",
+    "lemma": "párame",
+    "corpus_count": 1,
+    "translation": "to stop",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3001094",
+        "song_name": "Diabla (Remix)",
+        "spanish": "Así que Luian (Yah), párame en la pista (Yeah)",
+        "english": "So Luian (Yah), put me on the track (Yeah)",
+        "timestamp_ms": 200380
+      }
+    ],
+    "id": "4dc0d9",
+    "base_id": "01e540"
+  },
+  "2b5fd1": {
+    "base_verb": "avisar",
+    "lemma": "avisar",
+    "corpus_count": 3,
+    "translation": "to let know",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2979218",
+        "song_name": "Si Tu Novio Te Deja Sola",
+        "spanish": "Avísale (Avísale)",
+        "english": "Let them know (Let them know)",
+        "timestamp_ms": 177070
+      },
+      {
+        "song": "3021794",
+        "song_name": "No Me Wua Dejar",
+        "spanish": "Avísale al movimiento que ya me soltaron y yo soy un lío (Brr)",
+        "english": "",
+        "timestamp_ms": 149670
+      }
+    ],
+    "id": "2b5fd1",
+    "base_id": "8a5ab2"
+  },
+  "0af82a": {
+    "base_verb": "mudar",
+    "lemma": "múdate",
+    "corpus_count": 1,
+    "translation": "to move",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9614083",
+        "song_name": "BATICANO",
+        "spanish": "El más duro en PR, múdate pa' Pennsylvania (-vania), sí, sí",
+        "english": "The hardest in PR, move to Pennsylvania (-vania), yeah, yeah",
+        "timestamp_ms": 93450
+      }
+    ],
+    "id": "0af82a"
+  },
+  "2916fb": {
+    "base_verb": "pichar",
+    "lemma": "picharte",
+    "corpus_count": 1,
+    "translation": "to pitch",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6862415",
+        "song_name": "AM Remix",
+        "spanish": "Traté de picharte, pero no se pudo",
+        "english": "I tried to hit on you, but it didn't work out",
+        "timestamp_ms": 138830
+      }
+    ],
+    "id": "2916fb",
+    "base_id": "f2a0e8"
+  },
+  "49b48b": {
+    "base_verb": "roncar",
+    "lemma": "roncarnos",
+    "corpus_count": 1,
+    "translation": "to snore",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3104979",
+        "song_name": "Thinkin",
+        "spanish": "Cabrones, ustede' no pueden roncarno' de Trap a nosotro', jejeje",
+        "english": "Motherfuckers, you can't brag to us about Trap, hahaha",
+        "timestamp_ms": 221290
+      }
+    ],
+    "id": "49b48b",
+    "base_id": "8f244f"
+  },
+  "b30c0b": {
+    "base_verb": "modelar",
+    "lemma": "modélame",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3122516",
+        "song_name": "Lean",
+        "spanish": "Modélame con la Margiela (Oh-yeah)",
+        "english": "Pose for me with the Margiela (Oh-yeah)",
+        "timestamp_ms": 28080
+      }
+    ],
+    "id": "b30c0b",
+    "base_id": "99f161"
+  },
+  "c941ca": {
+    "base_verb": "partir",
+    "lemma": "partíendola",
+    "corpus_count": 1,
+    "translation": "to cut",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5629886",
+        "song_name": "Lo De Nosotros",
+        "spanish": "Corriendo pistas Usain Bolt, pero partíendola El Conejo",
+        "english": "Running tracks like Usain Bolt, but killing it like El Conejo"
+      }
+    ],
+    "id": "c941ca",
+    "base_id": "d5e20c"
+  },
+  "14043e": {
+    "base_verb": "morder",
+    "lemma": "muérdete",
+    "corpus_count": 1,
+    "translation": "to bite",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3022353",
+        "song_name": "Tócate Tú Misma",
+        "spanish": "Amárrate el pelo, quítate la ropa, muérdete los labios (Oh, yeah)",
+        "english": "Tie up your hair, take off your clothes, bite your lips (Oh, yeah)",
+        "timestamp_ms": 146650
+      }
+    ],
+    "id": "14043e",
+    "base_id": "8b3987"
+  },
+  "fb80cd": {
+    "base_verb": "stalkeando",
+    "lemma": "stalkeándote",
+    "corpus_count": 2,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11292695",
+        "song_name": "KLOuFRENS",
+        "spanish": "Me paso stalkeándote pa' ver qué hace'",
+        "english": "I spend my time stalking you to see what you're doing",
+        "timestamp_ms": 24180
+      }
+    ],
+    "id": "fb80cd",
+    "base_id": "813a24"
+  },
+  "7eef5c": {
+    "base_verb": "chapea",
+    "lemma": "chapear",
+    "corpus_count": 2,
+    "translation": "to plate",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8915218",
+        "song_name": "Coco Chanel",
+        "spanish": "Tengo chavo' con cojone', chapéame (Cash, cash, cash)",
+        "english": "I have cash with balls, hit me up (Cash, cash, cash)",
+        "timestamp_ms": 43890
+      },
+      {
+        "song": "8598733",
+        "song_name": "La Jumpa",
+        "spanish": "Ah, mami, chapéame, no me molesta, je",
+        "english": "Ah, baby, hit me up, it doesn't bother me, yeah",
+        "timestamp_ms": 173230
+      }
+    ],
+    "id": "7eef5c",
+    "base_id": "2c6e96"
+  },
+  "8e9571": {
+    "base_verb": "sentar",
+    "lemma": "sentir",
+    "corpus_count": 3,
+    "translation": "to feel",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3171036",
+        "song_name": "Báilame (Remix)",
+        "spanish": "Con tus manos, siénteme",
+        "english": "With your hands, feel me",
+        "timestamp_ms": 58720
+      }
+    ],
+    "id": "8e9571",
+    "base_id": "00df0a"
+  },
+  "6aae92": {
+    "base_verb": "mover",
+    "lemma": "muéveme",
+    "corpus_count": 1,
+    "translation": "to move",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3753517",
+        "song_name": "Maldades (Remix)",
+        "spanish": "Yo soy tu chapo, muéveme esa' chapa",
+        "english": "I'm your Chapo, move those plates for me",
+        "timestamp_ms": 225520
+      }
+    ],
+    "id": "6aae92",
+    "base_id": "7cfb5a"
+  },
+  "ef1d42": {
+    "base_verb": "tumbar",
+    "lemma": "túmbame",
+    "corpus_count": 1,
+    "translation": "to knock down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3297866",
+        "song_name": "Chambea",
+        "spanish": "Túmbame el piquete de bronco (Woo!)",
+        "english": "Knock down my tough attitude (Woo!)",
+        "timestamp_ms": 112200
+      }
+    ],
+    "id": "ef1d42",
+    "base_id": "1cd576"
+  },
+  "f13439": {
+    "base_verb": "calentar",
+    "lemma": "caliéntame",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "4726686",
+        "song_name": "Bellacoso",
+        "spanish": "Si quieres huevo, caliéntame el nido",
+        "english": "If you want eggs, warm up my nest for me",
+        "timestamp_ms": 80290
+      }
+    ],
+    "id": "f13439",
+    "base_id": "552475"
+  },
+  "b9266f": {
+    "base_verb": "fumarse",
+    "lemma": "fumárselo",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3523266",
+        "song_name": "Loca (Remix)",
+        "spanish": "Me lo sacó 'e la boca pa' fumárselo (Pa' fumar-mar-mar)",
+        "english": "He took it out of my mouth to smoke it (To smoke, smoke, smoke)",
+        "timestamp_ms": 216780
+      }
+    ],
+    "id": "b9266f",
+    "base_id": "c2f5c5"
+  },
+  "0a83d8": {
+    "base_verb": "jugar",
+    "lemma": "juégate",
+    "corpus_count": 1,
+    "translation": "to play",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3888528",
+        "song_name": "Vamos Pa’ La Calle",
+        "spanish": "Cógelo to' a broma, dale, juégate tú la maroma",
+        "english": "Take it all as a joke, go ahead, play the game yourself",
+        "timestamp_ms": 125880
+      }
+    ],
+    "id": "0a83d8",
+    "base_id": "9a83d3"
+  },
+  "dc61e8": {
+    "base_verb": "piquetear",
+    "lemma": "piquetearle",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3167974",
+        "song_name": "El Challet (Remix)",
+        "spanish": "Y una X6 pa' piquetearle en condado después de las 6",
+        "english": "And an X6 to cruise the county after 6"
+      }
+    ],
+    "id": "dc61e8",
+    "base_id": "537cb7"
+  },
+  "e113a3": {
+    "base_verb": "dedicar",
+    "lemma": "dedícame",
+    "corpus_count": 1,
+    "translation": "to dedicate",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3870990",
+        "song_name": "¿Cuál es tu plan?",
+        "spanish": "Pero hoy, por lo meno', dedícame un poco 'e tiempo",
+        "english": "But today, at least, dedicate a little time to me",
+        "timestamp_ms": 169950
+      }
+    ],
+    "id": "e113a3",
+    "base_id": "3c1b8d"
+  },
+  "b46e70": {
+    "base_verb": "pensar",
+    "lemma": "pensar",
+    "corpus_count": 2,
+    "translation": "to think",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11304595",
+        "song_name": "VeLDÁ",
+        "spanish": "Cierra los ojo' y piénsame",
+        "english": "Close your eyes and think of me",
+        "timestamp_ms": 158950
+      }
+    ],
+    "id": "b46e70",
+    "base_id": "196911"
+  },
+  "27fe0c": {
+    "base_verb": "escaparme",
+    "lemma": "escapármele",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3334750",
+        "song_name": "Prayer",
+        "spanish": "La muerte me busca, escapármele to' lo' día' me gusta",
+        "english": ""
+      }
+    ],
+    "id": "27fe0c",
+    "base_id": "6b27b2"
+  },
+  "d1b3a7": {
+    "base_verb": "dele",
+    "lemma": "delete",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5305008",
+        "song_name": "La Zona",
+        "spanish": "Sino, delete, te jodiste",
+        "english": "Otherwise, delete, you're screwed",
+        "timestamp_ms": 85600
+      }
+    ],
+    "id": "d1b3a7",
+    "base_id": "2563d5"
+  },
+  "65a70e": {
+    "base_verb": "bajar",
+    "lemma": "bájale",
+    "corpus_count": 1,
+    "translation": "to go down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3640901",
+        "song_name": "Estamos Clear",
+        "spanish": "Primero que to', mi herma, bájale do' a la actitu' (Ey; -tu')",
+        "english": "First of all, my bro, dial down the attitude (Ey)",
+        "timestamp_ms": 31800
+      }
+    ],
+    "id": "65a70e",
+    "base_id": "5efe67"
+  },
+  "235aeb": {
+    "base_verb": "gastar",
+    "lemma": "gástalo",
+    "corpus_count": 1,
+    "translation": "to spend",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6100181",
+        "song_name": "DÁKITI",
+        "spanish": "Toma cinco mil, gástalo en Sephora",
+        "english": "Take five thousand, spend it at Sephora"
+      }
+    ],
+    "id": "235aeb",
+    "base_id": "bd1981"
+  },
+  "3b0d87": {
+    "base_verb": "mamarse",
+    "lemma": "mamárselo",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2915707",
+        "song_name": "CYNH2",
+        "spanish": "Sin ensuciarme las mano', sin mamárselo a mengano",
+        "english": "Without getting my hands dirty, without sucking off anyone"
+      }
+    ],
+    "id": "3b0d87",
+    "base_id": "ac9681"
+  },
+  "c617a9": {
+    "base_verb": "traer",
+    "lemma": "tráelas",
+    "corpus_count": 1,
+    "translation": "to bring",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3591240",
+        "song_name": "Get",
+        "spanish": "Si tus amiga' son igual, pues entonces tráela'",
+        "english": "If your friends are the same, then bring them too"
+      }
+    ],
+    "id": "c617a9",
+    "base_id": "37411b"
+  },
+  "d4c7b7": {
+    "base_verb": "atenderte",
+    "lemma": "atendértelo",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2935271",
+        "song_name": "Me Llamas",
+        "spanish": "Atendértelo (Aha)",
+        "english": "Taking care of you (Aha)",
+        "timestamp_ms": 169680
+      }
+    ],
+    "id": "d4c7b7",
+    "base_id": "2b6494"
   },
   "dee5de": {
     "base_verb": "dime",
@@ -513,161 +853,189 @@
     "id": "dee5de",
     "base_id": "a49c83"
   },
-  "50945e": {
-    "base_verb": "agarrar",
-    "lemma": "agarrense",
+  "9bc85e": {
+    "base_verb": "seguir",
+    "lemma": "síguete",
     "corpus_count": 1,
-    "translation": "to grab",
+    "translation": "to follow",
     "assignments": {},
     "examples": [
       {
-        "song": "5629827",
-        "song_name": "Flow Exagerao",
-        "spanish": "Yah, agarrense cabrones que les vo'a dar una ride",
-        "english": "Yeah, hold on, motherfuckers, 'cause I'm gonna give you a ride"
+        "song": "3021794",
+        "song_name": "No Me Wua Dejar",
+        "spanish": "Síguete haciendo el loco que esta noche tu va' a ver a Lucifer (Oh)",
+        "english": "",
+        "timestamp_ms": 133640
       }
     ],
-    "id": "50945e",
-    "base_id": "2afb6c"
+    "id": "9bc85e",
+    "base_id": "99594c"
   },
-  "774757": {
-    "base_verb": "soba",
-    "lemma": "sóbate",
+  "7bea65": {
+    "base_verb": "calentar",
+    "lemma": "caliéntate",
     "corpus_count": 1,
     "translation": "",
     "assignments": {},
     "examples": [
       {
-        "song": "9614098",
-        "song_name": "TELEFONO NUEVO",
-        "spanish": "Sóbate, cabrón, yo sé que les duele",
-        "english": "Rub it in, motherfucker, I know it hurts you",
-        "timestamp_ms": 312580
+        "song": "3431731",
+        "song_name": "Sexo Sin Cariño",
+        "spanish": "Caliéntate, prepárate",
+        "english": "Heat up, get ready",
+        "timestamp_ms": 40890
       }
     ],
-    "id": "774757",
-    "base_id": "9c74cc"
+    "id": "7bea65",
+    "base_id": "552475"
   },
-  "2b5fd1": {
-    "base_verb": "avisar",
-    "lemma": "avisar",
-    "corpus_count": 3,
-    "translation": "to let know",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2979218",
-        "song_name": "Si Tu Novio Te Deja Sola",
-        "spanish": "Avísale (Avísale)",
-        "english": "Let them know (Let them know)",
-        "timestamp_ms": 177070
-      },
-      {
-        "song": "3021794",
-        "song_name": "No Me Wua Dejar",
-        "spanish": "Avísale al movimiento que ya me soltaron y yo soy un lío (Brr)",
-        "english": "",
-        "timestamp_ms": 149670
-      }
-    ],
-    "id": "2b5fd1",
-    "base_id": "8a5ab2"
-  },
-  "d9ef6e": {
-    "base_verb": "contestar",
-    "lemma": "contéstale",
+  "e20f20": {
+    "base_verb": "copiar",
+    "lemma": "copiete",
     "corpus_count": 1,
-    "translation": "to answer",
+    "translation": "to copy",
     "assignments": {},
     "examples": [
       {
-        "song": "2959823",
-        "song_name": "Te Lo Meto Yo",
-        "spanish": "Contéstale y a la ve' me lo mamas",
-        "english": "Answer her and at the same time, suck me off",
-        "timestamp_ms": 22490
+        "song": "3626034",
+        "song_name": "Original",
+        "spanish": "Tú eres fake, cabrón, tú eres un copiete",
+        "english": "You're fake, bastard, you're a copycat.",
+        "timestamp_ms": 80660
       }
     ],
-    "id": "d9ef6e",
-    "base_id": "60769c"
+    "id": "e20f20",
+    "base_id": "a5f78c"
   },
-  "2916fb": {
-    "base_verb": "pichar",
-    "lemma": "picharte",
-    "corpus_count": 1,
-    "translation": "to pitch",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6862415",
-        "song_name": "AM Remix",
-        "spanish": "Traté de picharte, pero no se pudo",
-        "english": "I tried to hit on you, but it didn't work out",
-        "timestamp_ms": 138830
-      }
-    ],
-    "id": "2916fb",
-    "base_id": "f2a0e8"
-  },
-  "50739e": {
-    "base_verb": "separar",
-    "lemma": "separame",
-    "corpus_count": 1,
-    "translation": "to separate",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5629886",
-        "song_name": "Lo De Nosotros",
-        "spanish": "Separame toda' las LeBron y quédense ustedes con to'a las Retro",
-        "english": "Separate all the LeBrons for me and you keep all the Retros"
-      }
-    ],
-    "id": "50739e",
-    "base_id": "33d5f5"
-  },
-  "6944e2": {
-    "base_verb": "convencer",
-    "lemma": "convéncela",
-    "corpus_count": 1,
-    "translation": "to convince",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3870990",
-        "song_name": "¿Cuál es tu plan?",
-        "spanish": "Si tienes jeva, pues, convéncela pa'l trío (Prr)",
-        "english": "If you have a girl, well, convince her for a threesome (Prr)",
-        "timestamp_ms": 97000
-      }
-    ],
-    "id": "6944e2",
-    "base_id": "f69817"
-  },
-  "635da4": {
-    "base_verb": "prender",
-    "lemma": "prender",
+  "e8d010": {
+    "base_verb": "proteger",
+    "lemma": "proteger",
     "corpus_count": 2,
-    "translation": "to light",
+    "translation": "to protect",
     "assignments": {},
     "examples": [
       {
-        "song": "3022353",
-        "song_name": "Tócate Tú Misma",
-        "spanish": "Préndete algo y apaga el dembow",
-        "english": "Light something up and turn off the dembow",
-        "timestamp_ms": 136110
-      },
-      {
-        "song": "2919428",
-        "song_name": "La Vida",
-        "spanish": "Pues dale, préndete otro, aunque termine' tras las reja'",
-        "english": "So go ahead, light another one, even if you end up behind bars",
-        "timestamp_ms": 32640
+        "song": "3255641",
+        "song_name": "Mi Puerto Rico",
+        "spanish": "Protégeme a todos los barrio' y a los caserío'",
+        "english": "Protect all the neighborhoods and the housing projects"
       }
     ],
-    "id": "635da4",
-    "base_id": "6d5789"
+    "id": "e8d010",
+    "base_id": "e88edf"
+  },
+  "7f0890": {
+    "base_verb": "chequea",
+    "lemma": "chequear",
+    "corpus_count": 6,
+    "translation": "to check",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11304636",
+        "song_name": "EoO",
+        "spanish": "Chequéate la historia",
+        "english": "Check out the story",
+        "timestamp_ms": 198810
+      },
+      {
+        "song": "11296557",
+        "song_name": "DtMF",
+        "spanish": "Chequéate las babie', diablo, mami, qué dulce",
+        "english": "Check out the babes, damn, mommy, so sweet",
+        "timestamp_ms": 45820
+      },
+      {
+        "song": "11304595",
+        "song_name": "VeLDÁ",
+        "spanish": "Ey, chequéate el AP, nunca se va de hora",
+        "english": "Hey, check the AP, it never goes off time",
+        "timestamp_ms": 128850
+      },
+      {
+        "song": "6852775",
+        "song_name": "100 MILLONES",
+        "spanish": "Chequéate lo' Billboard, llevo número uno doce mese' (Ey, ey, ey, ey)",
+        "english": "Check the Billboard, I've been number one for twelve months (Ey, ey, ey, ey)",
+        "timestamp_ms": 194560
+      },
+      {
+        "song": "9246653",
+        "song_name": "PASIEMPRE",
+        "spanish": "Chequéate los número' y verás que son facts (Dile)",
+        "english": "Check the numbers and you'll see they're facts (Tell 'em)"
+      }
+    ],
+    "id": "7f0890"
+  },
+  "dacafe": {
+    "base_verb": "invitar",
+    "lemma": "invítame",
+    "corpus_count": 1,
+    "translation": "to invite",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7934367",
+        "song_name": "Me Gusta (Remix)",
+        "spanish": "Invítame al precipicio, si e' contigo yo me aviento",
+        "english": "Invite me to the edge, if it's with you I'll jump"
+      }
+    ],
+    "id": "dacafe",
+    "base_id": "5e588f"
+  },
+  "edf4ef": {
+    "base_verb": "vira",
+    "lemma": "virar",
+    "corpus_count": 2,
+    "translation": "to tack",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11304636",
+        "song_name": "EoO",
+        "spanish": "Dale, mami, pégate (¡Ah!), vírate",
+        "english": "Come on, baby, get closer (Ah!), turn around",
+        "timestamp_ms": 55680
+      }
+    ],
+    "id": "edf4ef"
+  },
+  "13f831": {
+    "base_verb": "posar",
+    "lemma": "posar",
+    "corpus_count": 2,
+    "translation": "to put down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3825550",
+        "song_name": "Polaroid (Remix)",
+        "spanish": "Pósame en cuatro que despacio ahí mismo te doy, doy, yeh-eh",
+        "english": "Put me on all fours, I'll hit it right there slowly, slowly, yeh-eh"
+      }
+    ],
+    "id": "13f831",
+    "base_id": "ff88b7"
+  },
+  "127e8b": {
+    "base_verb": "lame",
+    "lemma": "lámelo",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7824895",
+        "song_name": "X ÚLTIMA VEZ",
+        "spanish": "Baby, no está' en Charlotte, pero ven, lámelo (Plo)",
+        "english": "Baby, you're not in Charlotte, but come, lick it (Plo)",
+        "timestamp_ms": 57710
+      }
+    ],
+    "id": "127e8b",
+    "base_id": "d0a3cf"
   },
   "53d283": {
     "base_verb": "trepa",
@@ -728,392 +1096,6 @@
     ],
     "id": "53d283"
   },
-  "0435d5": {
-    "base_verb": "romperte",
-    "lemma": "rompértelo",
-    "corpus_count": 1,
-    "translation": "to break",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2935271",
-        "song_name": "Me Llamas",
-        "spanish": "'Tá de más que diga que yo puedo rompértelo",
-        "english": "It's too much for me to say that I can break you",
-        "timestamp_ms": 169680
-      }
-    ],
-    "id": "0435d5"
-  },
-  "49b48b": {
-    "base_verb": "roncar",
-    "lemma": "roncarnos",
-    "corpus_count": 1,
-    "translation": "to snore",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3104979",
-        "song_name": "Thinkin",
-        "spanish": "Cabrones, ustede' no pueden roncarno' de Trap a nosotro', jejeje",
-        "english": "Motherfuckers, you can't brag to us about Trap, hahaha",
-        "timestamp_ms": 221290
-      }
-    ],
-    "id": "49b48b",
-    "base_id": "8f244f"
-  },
-  "72b6df": {
-    "base_verb": "pichar",
-    "lemma": "picharle",
-    "corpus_count": 1,
-    "translation": "to pitch",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3753517",
-        "song_name": "Maldades (Remix)",
-        "spanish": "Vas a picharle a la clase y disfrútate esta clase bicho que te vo'a meter",
-        "english": "You're gonna skip class and enjoy this dick I'm gonna give you",
-        "timestamp_ms": 328980
-      }
-    ],
-    "id": "72b6df",
-    "base_id": "f2a0e8"
-  },
-  "f3f387": {
-    "base_verb": "gritar",
-    "lemma": "grita",
-    "corpus_count": 2,
-    "translation": "uproar",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3109163",
-        "song_name": "Te Descuidó",
-        "spanish": "Grítale bien fuerte se acabó, se acabó",
-        "english": "Yell it real loud, it's over, it's over"
-      }
-    ],
-    "id": "f3f387",
-    "base_id": "b2e3ec"
-  },
-  "4c93e8": {
-    "base_verb": "molestar",
-    "lemma": "moléstate",
-    "corpus_count": 1,
-    "translation": "to bother",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5185823",
-        "song_name": "Ignorantes",
-        "spanish": "No (No-oh-oh-oh), si te atraparon, moléstate, pero",
-        "english": "No (No-oh-oh-oh), if they caught you, get mad, but",
-        "timestamp_ms": 95680
-      }
-    ],
-    "id": "4c93e8",
-    "base_id": "90fa32"
-  },
-  "a43226": {
-    "base_verb": "bajar",
-    "lemma": "bájenme",
-    "corpus_count": 1,
-    "translation": "to go down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3176687",
-        "song_name": "Andan Por Ahí",
-        "spanish": "Salúdenme con respeto y bájenme las miradas",
-        "english": "Greet me with respect and lower your gazes",
-        "timestamp_ms": 310850
-      }
-    ],
-    "id": "a43226",
-    "base_id": "5efe67"
-  },
-  "aa711f": {
-    "base_verb": "encerrar",
-    "lemma": "enciérrate",
-    "corpus_count": 1,
-    "translation": "to shut oneself up",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3059630",
-        "song_name": "Panamera (Remix)",
-        "spanish": "O enciérrate en el baño, que van camino a darte piso (Rrrah)",
-        "english": "Or lock yourself in the bathroom, 'cause they're on their way to get you (Rrrah)",
-        "timestamp_ms": 189120
-      }
-    ],
-    "id": "aa711f"
-  },
-  "235aeb": {
-    "base_verb": "gastar",
-    "lemma": "gástalo",
-    "corpus_count": 1,
-    "translation": "to spend",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6100181",
-        "song_name": "DÁKITI",
-        "spanish": "Toma cinco mil, gástalo en Sephora",
-        "english": "Take five thousand, spend it at Sephora"
-      }
-    ],
-    "id": "235aeb",
-    "base_id": "bd1981"
-  },
-  "0a83d8": {
-    "base_verb": "jugar",
-    "lemma": "juégate",
-    "corpus_count": 1,
-    "translation": "to play",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3888528",
-        "song_name": "Vamos Pa’ La Calle",
-        "spanish": "Cógelo to' a broma, dale, juégate tú la maroma",
-        "english": "Take it all as a joke, go ahead, play the game yourself",
-        "timestamp_ms": 125880
-      }
-    ],
-    "id": "0a83d8",
-    "base_id": "9a83d3"
-  },
-  "0af82a": {
-    "base_verb": "mudar",
-    "lemma": "múdate",
-    "corpus_count": 1,
-    "translation": "to move",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9614083",
-        "song_name": "BATICANO",
-        "spanish": "El más duro en PR, múdate pa' Pennsylvania (-vania), sí, sí",
-        "english": "The hardest in PR, move to Pennsylvania (-vania), yeah, yeah",
-        "timestamp_ms": 93450
-      }
-    ],
-    "id": "0af82a"
-  },
-  "291f63": {
-    "base_verb": "arropa",
-    "lemma": "arropar",
-    "corpus_count": 3,
-    "translation": "to tuck in",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3171036",
-        "song_name": "Báilame (Remix)",
-        "spanish": "Con ese cuerpo, arrópame",
-        "english": "With that body, cover me up",
-        "timestamp_ms": 56220
-      }
-    ],
-    "id": "291f63",
-    "base_id": "c0eb1a"
-  },
-  "b596d9": {
-    "base_verb": "desaparecerte",
-    "lemma": "desaparecértelo",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2935271",
-        "song_name": "Me Llamas",
-        "spanish": "Sacarlo a pasear y desaparecértelo",
-        "english": "Take him out for a walk and make him disappear",
-        "timestamp_ms": 173440
-      }
-    ],
-    "id": "b596d9",
-    "base_id": "928663"
-  },
-  "b31c24": {
-    "base_verb": "comprar",
-    "lemma": "cómprales",
-    "corpus_count": 1,
-    "translation": "to buy",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9614098",
-        "song_name": "TELEFONO NUEVO",
-        "spanish": "Hey, Father, 'tán cagao', cómprale' lo' Pamper'",
-        "english": "Hey, Father, they're full of shit, buy them diapers",
-        "timestamp_ms": 320540
-      }
-    ],
-    "id": "b31c24",
-    "base_id": "377a7c"
-  },
-  "edf4ef": {
-    "base_verb": "vira",
-    "lemma": "virar",
-    "corpus_count": 2,
-    "translation": "to tack",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11304636",
-        "song_name": "EoO",
-        "spanish": "Dale, mami, pégate (¡Ah!), vírate",
-        "english": "Come on, baby, get closer (Ah!), turn around",
-        "timestamp_ms": 55680
-      }
-    ],
-    "id": "edf4ef"
-  },
-  "6212c2": {
-    "base_verb": "perrearte",
-    "lemma": "perreártelas",
-    "corpus_count": 1,
-    "translation": "to twerk",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "7967942",
-        "song_name": "Party",
-        "spanish": "Y perreártela' la noche entera",
-        "english": "And dance with you all night",
-        "timestamp_ms": 62590
-      }
-    ],
-    "id": "6212c2"
-  },
-  "13f831": {
-    "base_verb": "posar",
-    "lemma": "posar",
-    "corpus_count": 2,
-    "translation": "to put down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3825550",
-        "song_name": "Polaroid (Remix)",
-        "spanish": "Pósame en cuatro que despacio ahí mismo te doy, doy, yeh-eh",
-        "english": "Put me on all fours, I'll hit it right there slowly, slowly, yeh-eh"
-      }
-    ],
-    "id": "13f831",
-    "base_id": "ff88b7"
-  },
-  "dc61e8": {
-    "base_verb": "piquetear",
-    "lemma": "piquetearle",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3167974",
-        "song_name": "El Challet (Remix)",
-        "spanish": "Y una X6 pa' piquetearle en condado después de las 6",
-        "english": "And an X6 to cruise the county after 6"
-      }
-    ],
-    "id": "dc61e8",
-    "base_id": "537cb7"
-  },
-  "e8d010": {
-    "base_verb": "proteger",
-    "lemma": "proteger",
-    "corpus_count": 2,
-    "translation": "to protect",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3255641",
-        "song_name": "Mi Puerto Rico",
-        "spanish": "Protégeme a todos los barrio' y a los caserío'",
-        "english": "Protect all the neighborhoods and the housing projects"
-      }
-    ],
-    "id": "e8d010",
-    "base_id": "e88edf"
-  },
-  "14043e": {
-    "base_verb": "morder",
-    "lemma": "muérdete",
-    "corpus_count": 1,
-    "translation": "to bite",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3022353",
-        "song_name": "Tócate Tú Misma",
-        "spanish": "Amárrate el pelo, quítate la ropa, muérdete los labios (Oh, yeah)",
-        "english": "Tie up your hair, take off your clothes, bite your lips (Oh, yeah)",
-        "timestamp_ms": 146650
-      }
-    ],
-    "id": "14043e",
-    "base_id": "8b3987"
-  },
-  "c61e8d": {
-    "base_verb": "devora",
-    "lemma": "devorar",
-    "corpus_count": 2,
-    "translation": "to devour",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2942055",
-        "song_name": "Caile",
-        "spanish": "Dévorame, dévorame hasta que las gotas de calor se derramen",
-        "english": "Devour me, devour me until the drops of heat spill over",
-        "timestamp_ms": 62460
-      }
-    ],
-    "id": "c61e8d",
-    "base_id": "1a9909"
-  },
-  "f13439": {
-    "base_verb": "calentar",
-    "lemma": "caliéntame",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "4726686",
-        "song_name": "Bellacoso",
-        "spanish": "Si quieres huevo, caliéntame el nido",
-        "english": "If you want eggs, warm up my nest for me",
-        "timestamp_ms": 80290
-      }
-    ],
-    "id": "f13439",
-    "base_id": "552475"
-  },
-  "65a70e": {
-    "base_verb": "bajar",
-    "lemma": "bájale",
-    "corpus_count": 1,
-    "translation": "to go down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3640901",
-        "song_name": "Estamos Clear",
-        "spanish": "Primero que to', mi herma, bájale do' a la actitu' (Ey; -tu')",
-        "english": "First of all, my bro, dial down the attitude (Ey)",
-        "timestamp_ms": 31800
-      }
-    ],
-    "id": "65a70e",
-    "base_id": "5efe67"
-  },
   "ed932c": {
     "base_verb": "roncar",
     "lemma": "roncar",
@@ -1139,114 +1121,6 @@
     "id": "ed932c",
     "base_id": "8f244f"
   },
-  "4dc0d9": {
-    "base_verb": "parar",
-    "lemma": "párame",
-    "corpus_count": 1,
-    "translation": "to stop",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3001094",
-        "song_name": "Diabla (Remix)",
-        "spanish": "Así que Luian (Yah), párame en la pista (Yeah)",
-        "english": "So Luian (Yah), put me on the track (Yeah)",
-        "timestamp_ms": 200380
-      }
-    ],
-    "id": "4dc0d9",
-    "base_id": "01e540"
-  },
-  "be736f": {
-    "base_verb": "mojar",
-    "lemma": "mojar",
-    "corpus_count": 3,
-    "translation": "to get wet",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3171036",
-        "song_name": "Báilame (Remix)",
-        "spanish": "Con un besito, mójame (Eh)",
-        "english": "With a little kiss, wet me (Eh)",
-        "timestamp_ms": 63580
-      }
-    ],
-    "id": "be736f",
-    "base_id": "78e185"
-  },
-  "712de1": {
-    "base_verb": "echar",
-    "lemma": "échasela",
-    "corpus_count": 1,
-    "translation": "to throw",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9614081",
-        "song_name": "NADIE SABE",
-        "spanish": "No me eche' la culpa, échasela a Dio'",
-        "english": "Don't blame me, blame God",
-        "timestamp_ms": 148650
-      }
-    ],
-    "id": "712de1",
-    "base_id": "121655"
-  },
-  "e113a3": {
-    "base_verb": "dedicar",
-    "lemma": "dedícame",
-    "corpus_count": 1,
-    "translation": "to dedicate",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3870990",
-        "song_name": "¿Cuál es tu plan?",
-        "spanish": "Pero hoy, por lo meno', dedícame un poco 'e tiempo",
-        "english": "But today, at least, dedicate a little time to me",
-        "timestamp_ms": 169950
-      }
-    ],
-    "id": "e113a3",
-    "base_id": "3c1b8d"
-  },
-  "8fc0a3": {
-    "base_verb": "perfuma",
-    "lemma": "perfúmate",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2976831",
-        "song_name": "Amigos y Enemigos (Remix)",
-        "spanish": "Perfúmate bien, échate Vicini (Uh-uh), yeah",
-        "english": "Perfume yourself well, put on Vicini (Uh-uh), yeah",
-        "timestamp_ms": 116120
-      }
-    ],
-    "id": "8fc0a3",
-    "base_id": "775064"
-  },
-  "fb80cd": {
-    "base_verb": "stalkeando",
-    "lemma": "stalkeándote",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11292695",
-        "song_name": "KLOuFRENS",
-        "spanish": "Me paso stalkeándote pa' ver qué hace'",
-        "english": "I spend my time stalking you to see what you're doing",
-        "timestamp_ms": 24180
-      }
-    ],
-    "id": "fb80cd",
-    "base_id": "813a24"
-  },
   "69711f": {
     "base_verb": "romperte",
     "lemma": "rompértela",
@@ -1264,129 +1138,91 @@
     ],
     "id": "69711f"
   },
-  "526936": {
-    "base_verb": "rolear",
-    "lemma": "rolearme",
+  "5b61d5": {
+    "base_verb": "actualicen",
+    "lemma": "actualícense",
     "corpus_count": 1,
     "translation": "",
     "assignments": {},
     "examples": [
       {
-        "song": "6852775",
-        "song_name": "100 MILLONES",
-        "spanish": "Toíto' quieren rolearme y ninguno pide la reta (¿Quién?)",
-        "english": "Everyone wants to play me and nobody asks for the challenge (Who?)",
-        "timestamp_ms": 138210
+        "song": "5629886",
+        "song_name": "Lo De Nosotros",
+        "spanish": "Actualícense primero, ¿okey?",
+        "english": "Update yourselves first, okay?"
       }
     ],
-    "id": "526936",
-    "base_id": "9bf221"
+    "id": "5b61d5",
+    "base_id": "574936"
   },
-  "7bea65": {
-    "base_verb": "calentar",
-    "lemma": "caliéntate",
+  "774757": {
+    "base_verb": "soba",
+    "lemma": "sóbate",
     "corpus_count": 1,
     "translation": "",
     "assignments": {},
     "examples": [
       {
-        "song": "3431731",
-        "song_name": "Sexo Sin Cariño",
-        "spanish": "Caliéntate, prepárate",
-        "english": "Heat up, get ready",
-        "timestamp_ms": 40890
+        "song": "9614098",
+        "song_name": "TELEFONO NUEVO",
+        "spanish": "Sóbate, cabrón, yo sé que les duele",
+        "english": "Rub it in, motherfucker, I know it hurts you",
+        "timestamp_ms": 312580
       }
     ],
-    "id": "7bea65",
-    "base_id": "552475"
+    "id": "774757",
+    "base_id": "9c74cc"
   },
-  "a44c1e": {
-    "base_verb": "mamarte",
-    "lemma": "mamártela",
+  "f3f387": {
+    "base_verb": "gritar",
+    "lemma": "grita",
+    "corpus_count": 2,
+    "translation": "uproar",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3109163",
+        "song_name": "Te Descuidó",
+        "spanish": "Grítale bien fuerte se acabó, se acabó",
+        "english": "Yell it real loud, it's over, it's over"
+      }
+    ],
+    "id": "f3f387",
+    "base_id": "b2e3ec"
+  },
+  "1b75c7": {
+    "base_verb": "pichando",
+    "lemma": "pichándole",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to pitch",
     "assignments": {},
     "examples": [
       {
-        "song": "7967975",
-        "song_name": "La Corriente",
-        "spanish": "Pa' mamártela y rompértela",
-        "english": "To suck you off and fuck you up",
-        "timestamp_ms": 77510
+        "song": "9614064",
+        "song_name": "GRACIAS POR NADA",
+        "spanish": "Tú con él, yo pichándole a toa'",
+        "english": "You with him, I'm pitching to all of them",
+        "timestamp_ms": 96170
       }
     ],
-    "id": "a44c1e",
-    "base_id": "986364"
+    "id": "1b75c7"
   },
-  "a98d0d": {
-    "base_verb": "pedir",
-    "lemma": "pídelo",
-    "corpus_count": 3,
-    "translation": "to ask for",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "7763818",
-        "song_name": "DIMELO",
-        "spanish": "Pídelo, pídelo, pídelo",
-        "english": "Ask for it, ask for it, ask for it"
-      }
-    ],
-    "id": "a98d0d",
-    "base_id": "fa9385"
-  },
-  "b9266f": {
-    "base_verb": "fumarse",
-    "lemma": "fumárselo",
+  "07c9f5": {
+    "base_verb": "besarte",
+    "lemma": "besártelo",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to kiss",
     "assignments": {},
     "examples": [
       {
-        "song": "3523266",
-        "song_name": "Loca (Remix)",
-        "spanish": "Me lo sacó 'e la boca pa' fumárselo (Pa' fumar-mar-mar)",
-        "english": "He took it out of my mouth to smoke it (To smoke, smoke, smoke)",
-        "timestamp_ms": 216780
+        "song": "2935271",
+        "song_name": "Me Llamas",
+        "spanish": "Eso allá abajo yo voy a besártelo (Muah)",
+        "english": "I'm gonna kiss that down there (Muah)",
+        "timestamp_ms": 163900
       }
     ],
-    "id": "b9266f",
-    "base_id": "c2f5c5"
-  },
-  "6aae92": {
-    "base_verb": "mover",
-    "lemma": "muéveme",
-    "corpus_count": 1,
-    "translation": "to move",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3753517",
-        "song_name": "Maldades (Remix)",
-        "spanish": "Yo soy tu chapo, muéveme esa' chapa",
-        "english": "I'm your Chapo, move those plates for me",
-        "timestamp_ms": 225520
-      }
-    ],
-    "id": "6aae92",
-    "base_id": "7cfb5a"
-  },
-  "27fe0c": {
-    "base_verb": "escaparme",
-    "lemma": "escapármele",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3334750",
-        "song_name": "Prayer",
-        "spanish": "La muerte me busca, escapármele to' lo' día' me gusta",
-        "english": ""
-      }
-    ],
-    "id": "27fe0c",
-    "base_id": "6b27b2"
+    "id": "07c9f5"
   },
   "dc32ef": {
     "base_verb": "adapten",
@@ -1405,240 +1241,40 @@
     "id": "dc32ef",
     "base_id": "d69724"
   },
-  "dacafe": {
-    "base_verb": "invitar",
-    "lemma": "invítame",
-    "corpus_count": 1,
-    "translation": "to invite",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "7934367",
-        "song_name": "Me Gusta (Remix)",
-        "spanish": "Invítame al precipicio, si e' contigo yo me aviento",
-        "english": "Invite me to the edge, if it's with you I'll jump"
-      }
-    ],
-    "id": "dacafe",
-    "base_id": "5e588f"
-  },
-  "6b081a": {
-    "base_verb": "mojarte",
-    "lemma": "mojartelo",
-    "corpus_count": 1,
-    "translation": "to get wet",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "2935271",
-        "song_name": "Me Llamas",
-        "spanish": "Y si está seco, yo quiero mojartelo",
-        "english": "And if it's dry, I want to wet you",
-        "timestamp_ms": 166080
-      }
-    ],
-    "id": "6b081a"
-  },
-  "c617a9": {
-    "base_verb": "traer",
-    "lemma": "tráelas",
-    "corpus_count": 1,
-    "translation": "to bring",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3591240",
-        "song_name": "Get",
-        "spanish": "Si tus amiga' son igual, pues entonces tráela'",
-        "english": "If your friends are the same, then bring them too"
-      }
-    ],
-    "id": "c617a9",
-    "base_id": "37411b"
-  },
-  "7eef5c": {
-    "base_verb": "chapea",
-    "lemma": "chapear",
+  "48f776": {
+    "base_verb": "enviar",
+    "lemma": "envíale",
     "corpus_count": 2,
-    "translation": "to plate",
+    "translation": "to send",
     "assignments": {},
     "examples": [
       {
-        "song": "8915218",
-        "song_name": "Coco Chanel",
-        "spanish": "Tengo chavo' con cojone', chapéame (Cash, cash, cash)",
-        "english": "I have cash with balls, hit me up (Cash, cash, cash)",
-        "timestamp_ms": 43890
-      },
-      {
-        "song": "8598733",
-        "song_name": "La Jumpa",
-        "spanish": "Ah, mami, chapéame, no me molesta, je",
-        "english": "Ah, baby, hit me up, it doesn't bother me, yeah",
-        "timestamp_ms": 173230
+        "song": "5305007",
+        "song_name": "Soliá",
+        "spanish": "Envíale un mensaje que diga",
+        "english": "Send her a message that says",
+        "timestamp_ms": 29840
       }
     ],
-    "id": "7eef5c",
-    "base_id": "2c6e96"
+    "id": "48f776",
+    "base_id": "fca91b"
   },
-  "8e9571": {
-    "base_verb": "sentar",
-    "lemma": "sentir",
-    "corpus_count": 3,
-    "translation": "to feel",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3171036",
-        "song_name": "Báilame (Remix)",
-        "spanish": "Con tus manos, siénteme",
-        "english": "With your hands, feel me",
-        "timestamp_ms": 58720
-      }
-    ],
-    "id": "8e9571",
-    "base_id": "00df0a"
-  },
-  "b46e70": {
-    "base_verb": "pensar",
-    "lemma": "pensar",
-    "corpus_count": 2,
-    "translation": "to think",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11304595",
-        "song_name": "VeLDÁ",
-        "spanish": "Cierra los ojo' y piénsame",
-        "english": "Close your eyes and think of me",
-        "timestamp_ms": 158950
-      }
-    ],
-    "id": "b46e70",
-    "base_id": "196911"
-  },
-  "dba791": {
-    "base_verb": "mandar",
-    "lemma": "mándalo",
+  "50945e": {
+    "base_verb": "agarrar",
+    "lemma": "agarrense",
     "corpus_count": 1,
-    "translation": "to order",
+    "translation": "to grab",
     "assignments": {},
     "examples": [
       {
-        "song": "3289205",
-        "song_name": "Después De Las 9",
-        "spanish": "Mándalo pa'l carajo, ese cabrón no te respeta",
-        "english": "Send that motherfucker to hell, that asshole doesn't respect you"
+        "song": "5629827",
+        "song_name": "Flow Exagerao",
+        "spanish": "Yah, agarrense cabrones que les vo'a dar una ride",
+        "english": "Yeah, hold on, motherfuckers, 'cause I'm gonna give you a ride"
       }
     ],
-    "id": "dba791",
-    "base_id": "9945a2"
-  },
-  "ef1d42": {
-    "base_verb": "tumbar",
-    "lemma": "túmbame",
-    "corpus_count": 1,
-    "translation": "to knock down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3297866",
-        "song_name": "Chambea",
-        "spanish": "Túmbame el piquete de bronco (Woo!)",
-        "english": "Knock down my tough attitude (Woo!)",
-        "timestamp_ms": 112200
-      }
-    ],
-    "id": "ef1d42",
-    "base_id": "1cd576"
-  },
-  "a5072b": {
-    "base_verb": "tumbarme",
-    "lemma": "tumbármelo",
-    "corpus_count": 1,
-    "translation": "to knock down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "3523266",
-        "song_name": "Loca (Remix)",
-        "spanish": "Ya e' la dueña del lugar, va a tumbármelo (Tumbármelo)",
-        "english": "She's already the owner of the place, she's gonna tear it down (Tear it down)",
-        "timestamp_ms": 212380
-      }
-    ],
-    "id": "a5072b"
-  },
-  "7374bf": {
-    "base_verb": "traer",
-    "lemma": "traiganme",
-    "corpus_count": 1,
-    "translation": "to bring",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6211048",
-        "song_name": "ANTES QUE SE ACABE",
-        "spanish": "Prendan-Prendan, y traiganme el alcohol",
-        "english": "Light 'em up, light 'em up, and bring me the alcohol",
-        "timestamp_ms": 117760
-      }
-    ],
-    "id": "7374bf",
-    "base_id": "37411b"
-  },
-  "6e5324": {
-    "base_verb": "invitar",
-    "lemma": "invitar",
-    "corpus_count": 2,
-    "translation": "to invite",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "7967975",
-        "song_name": "La Corriente",
-        "spanish": "Ve, invítala, que se va a hacer",
-        "english": "Look, invite her, she's gonna get it",
-        "timestamp_ms": 84920
-      }
-    ],
-    "id": "6e5324",
-    "base_id": "5e588f"
-  },
-  "d1b3a7": {
-    "base_verb": "dele",
-    "lemma": "delete",
-    "corpus_count": 1,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5305008",
-        "song_name": "La Zona",
-        "spanish": "Sino, delete, te jodiste",
-        "english": "Otherwise, delete, you're screwed",
-        "timestamp_ms": 85600
-      }
-    ],
-    "id": "d1b3a7",
-    "base_id": "2563d5"
-  },
-  "1b75c7": {
-    "base_verb": "pichando",
-    "lemma": "pichándole",
-    "corpus_count": 1,
-    "translation": "to pitch",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9614064",
-        "song_name": "GRACIAS POR NADA",
-        "spanish": "Tú con él, yo pichándole a toa'",
-        "english": "You with him, I'm pitching to all of them",
-        "timestamp_ms": 96170
-      }
-    ],
-    "id": "1b75c7"
+    "id": "50945e",
+    "base_id": "2afb6c"
   },
   "260599": {
     "base_verb": "pegar",
@@ -1658,49 +1294,169 @@
     "id": "260599",
     "base_id": "9bc35d"
   },
-  "7f0890": {
-    "base_verb": "chequea",
-    "lemma": "chequear",
-    "corpus_count": 6,
-    "translation": "to check",
+  "c61e8d": {
+    "base_verb": "devora",
+    "lemma": "devorar",
+    "corpus_count": 2,
+    "translation": "to devour",
     "assignments": {},
     "examples": [
       {
-        "song": "11304636",
-        "song_name": "EoO",
-        "spanish": "Chequéate la historia",
-        "english": "Check out the story",
-        "timestamp_ms": 198810
-      },
-      {
-        "song": "11296557",
-        "song_name": "DtMF",
-        "spanish": "Chequéate las babie', diablo, mami, qué dulce",
-        "english": "Check out the babes, damn, mommy, so sweet",
-        "timestamp_ms": 45820
-      },
-      {
-        "song": "11304595",
-        "song_name": "VeLDÁ",
-        "spanish": "Ey, chequéate el AP, nunca se va de hora",
-        "english": "Hey, check the AP, it never goes off time",
-        "timestamp_ms": 128850
-      },
-      {
-        "song": "6852775",
-        "song_name": "100 MILLONES",
-        "spanish": "Chequéate lo' Billboard, llevo número uno doce mese' (Ey, ey, ey, ey)",
-        "english": "Check the Billboard, I've been number one for twelve months (Ey, ey, ey, ey)",
-        "timestamp_ms": 194560
-      },
-      {
-        "song": "9246653",
-        "song_name": "PASIEMPRE",
-        "spanish": "Chequéate los número' y verás que son facts (Dile)",
-        "english": "Check the numbers and you'll see they're facts (Tell 'em)"
+        "song": "2942055",
+        "song_name": "Caile",
+        "spanish": "Dévorame, dévorame hasta que las gotas de calor se derramen",
+        "english": "Devour me, devour me until the drops of heat spill over",
+        "timestamp_ms": 62460
       }
     ],
-    "id": "7f0890"
+    "id": "c61e8d",
+    "base_id": "1a9909"
+  },
+  "712de1": {
+    "base_verb": "echar",
+    "lemma": "échasela",
+    "corpus_count": 1,
+    "translation": "to throw",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9614081",
+        "song_name": "NADIE SABE",
+        "spanish": "No me eche' la culpa, échasela a Dio'",
+        "english": "Don't blame me, blame God",
+        "timestamp_ms": 148650
+      }
+    ],
+    "id": "712de1",
+    "base_id": "121655"
+  },
+  "a98d0d": {
+    "base_verb": "pedir",
+    "lemma": "pídelo",
+    "corpus_count": 3,
+    "translation": "to ask for",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7763818",
+        "song_name": "DIMELO",
+        "spanish": "Pídelo, pídelo, pídelo",
+        "english": "Ask for it, ask for it, ask for it"
+      }
+    ],
+    "id": "a98d0d",
+    "base_id": "fa9385"
+  },
+  "a0baa1": {
+    "base_verb": "escapar",
+    "lemma": "escapar",
+    "corpus_count": 7,
+    "translation": "to escape",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5305012",
+        "song_name": "Una Vez",
+        "spanish": "Pe-Pe-Pe-Pero dale escápate (-te)",
+        "english": "B-b-but go ahead and escape (-ape)",
+        "timestamp_ms": 44380
+      },
+      {
+        "song": "3101741",
+        "song_name": "Escápate Conmigo (Remix)",
+        "spanish": "Escápate conmigo y quítate la ropa que desnudos vamo' a grabar un feat (Mami, el oso del dinero)",
+        "english": "Escape with me and take off your clothes, 'cause naked we're gonna record a collab (Baby, the money bear)",
+        "timestamp_ms": 3270
+      }
+    ],
+    "id": "a0baa1",
+    "base_id": "222c99"
+  },
+  "d8f9be": {
+    "base_verb": "tienta",
+    "lemma": "tiéntame",
+    "corpus_count": 1,
+    "translation": "to tempt",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3092934",
+        "song_name": "Move Your Body",
+        "spanish": "Tiéntame, nos vamos de misión (-ión)",
+        "english": "Tempt me, we're going on a mission (-ion)",
+        "timestamp_ms": 104520
+      }
+    ],
+    "id": "d8f9be"
+  },
+  "6b081a": {
+    "base_verb": "mojarte",
+    "lemma": "mojartelo",
+    "corpus_count": 1,
+    "translation": "to get wet",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2935271",
+        "song_name": "Me Llamas",
+        "spanish": "Y si está seco, yo quiero mojartelo",
+        "english": "And if it's dry, I want to wet you",
+        "timestamp_ms": 166080
+      }
+    ],
+    "id": "6b081a"
+  },
+  "d9ef6e": {
+    "base_verb": "contestar",
+    "lemma": "contéstale",
+    "corpus_count": 1,
+    "translation": "to answer",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2959823",
+        "song_name": "Te Lo Meto Yo",
+        "spanish": "Contéstale y a la ve' me lo mamas",
+        "english": "Answer her and at the same time, suck me off",
+        "timestamp_ms": 22490
+      }
+    ],
+    "id": "d9ef6e",
+    "base_id": "60769c"
+  },
+  "8293ac": {
+    "base_verb": "roncando",
+    "lemma": "roncándome",
+    "corpus_count": 2,
+    "translation": "to snore",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5305033",
+        "song_name": "Puesto Pa’ Guerrial",
+        "spanish": "Se pasan roncándome (Ja; ¡prr!)",
+        "english": "They go bossing me around (Ha; prr!)",
+        "timestamp_ms": 6170
+      }
+    ],
+    "id": "8293ac"
+  },
+  "a5072b": {
+    "base_verb": "tumbarme",
+    "lemma": "tumbármelo",
+    "corpus_count": 1,
+    "translation": "to knock down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3523266",
+        "song_name": "Loca (Remix)",
+        "spanish": "Ya e' la dueña del lugar, va a tumbármelo (Tumbármelo)",
+        "english": "She's already the owner of the place, she's gonna tear it down (Tear it down)",
+        "timestamp_ms": 212380
+      }
+    ],
+    "id": "a5072b"
   },
   "fd324b": {
     "base_verb": "poner",
@@ -1720,22 +1476,266 @@
     "id": "fd324b",
     "base_id": "1fa2ba"
   },
-  "9bc85e": {
-    "base_verb": "seguir",
-    "lemma": "síguete",
+  "36ee96": {
+    "base_verb": "confesar",
+    "lemma": "confiésale",
     "corpus_count": 1,
-    "translation": "to follow",
+    "translation": "to confess",
     "assignments": {},
     "examples": [
       {
-        "song": "3021794",
-        "song_name": "No Me Wua Dejar",
-        "spanish": "Síguete haciendo el loco que esta noche tu va' a ver a Lucifer (Oh)",
-        "english": "",
-        "timestamp_ms": 133640
+        "song": "3176704",
+        "song_name": "Explícale",
+        "spanish": "Confiésale, que cambiaste tu forma de pensar",
+        "english": "Confess it, that you changed your way of thinking",
+        "timestamp_ms": 152620
       }
     ],
-    "id": "9bc85e",
-    "base_id": "99594c"
+    "id": "36ee96",
+    "base_id": "d28238"
+  },
+  "6944e2": {
+    "base_verb": "convencer",
+    "lemma": "convéncela",
+    "corpus_count": 1,
+    "translation": "to convince",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3870990",
+        "song_name": "¿Cuál es tu plan?",
+        "spanish": "Si tienes jeva, pues, convéncela pa'l trío (Prr)",
+        "english": "If you have a girl, well, convince her for a threesome (Prr)",
+        "timestamp_ms": 97000
+      }
+    ],
+    "id": "6944e2",
+    "base_id": "f69817"
+  },
+  "7374bf": {
+    "base_verb": "traer",
+    "lemma": "traiganme",
+    "corpus_count": 1,
+    "translation": "to bring",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6211048",
+        "song_name": "ANTES QUE SE ACABE",
+        "spanish": "Prendan-Prendan, y traiganme el alcohol",
+        "english": "Light 'em up, light 'em up, and bring me the alcohol",
+        "timestamp_ms": 117760
+      }
+    ],
+    "id": "7374bf",
+    "base_id": "37411b"
+  },
+  "dba791": {
+    "base_verb": "mandar",
+    "lemma": "mándalo",
+    "corpus_count": 1,
+    "translation": "to order",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3289205",
+        "song_name": "Después De Las 9",
+        "spanish": "Mándalo pa'l carajo, ese cabrón no te respeta",
+        "english": "Send that motherfucker to hell, that asshole doesn't respect you"
+      }
+    ],
+    "id": "dba791",
+    "base_id": "9945a2"
+  },
+  "6e5324": {
+    "base_verb": "invitar",
+    "lemma": "invitar",
+    "corpus_count": 2,
+    "translation": "to invite",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "7967975",
+        "song_name": "La Corriente",
+        "spanish": "Ve, invítala, que se va a hacer",
+        "english": "Look, invite her, she's gonna get it",
+        "timestamp_ms": 84920
+      }
+    ],
+    "id": "6e5324",
+    "base_id": "5e588f"
+  },
+  "4c93e8": {
+    "base_verb": "molestar",
+    "lemma": "moléstate",
+    "corpus_count": 1,
+    "translation": "to bother",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5185823",
+        "song_name": "Ignorantes",
+        "spanish": "No (No-oh-oh-oh), si te atraparon, moléstate, pero",
+        "english": "No (No-oh-oh-oh), if they caught you, get mad, but",
+        "timestamp_ms": 95680
+      }
+    ],
+    "id": "4c93e8",
+    "base_id": "90fa32"
+  },
+  "41d35a": {
+    "base_verb": "soltar",
+    "lemma": "soltar",
+    "corpus_count": 2,
+    "translation": "to let go of",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5761512",
+        "song_name": "UN DÍA (ONE DAY)",
+        "spanish": "Suéltate conmigo, mamá (Mamá)",
+        "english": "Let loose with me, mama (Mama)",
+        "timestamp_ms": 98400
+      },
+      {
+        "song": "11290147",
+        "song_name": "VOY A LLeVARTE PA PR",
+        "spanish": "Dale, mami, suéltate el grillete",
+        "english": "Come on, baby, take off the shackles",
+        "timestamp_ms": 148930
+      }
+    ],
+    "id": "41d35a",
+    "base_id": "40f6f4"
+  },
+  "291f63": {
+    "base_verb": "arropa",
+    "lemma": "arropar",
+    "corpus_count": 3,
+    "translation": "to tuck in",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3171036",
+        "song_name": "Báilame (Remix)",
+        "spanish": "Con ese cuerpo, arrópame",
+        "english": "With that body, cover me up",
+        "timestamp_ms": 56220
+      }
+    ],
+    "id": "291f63",
+    "base_id": "c0eb1a"
+  },
+  "526936": {
+    "base_verb": "rolear",
+    "lemma": "rolearme",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6852775",
+        "song_name": "100 MILLONES",
+        "spanish": "Toíto' quieren rolearme y ninguno pide la reta (¿Quién?)",
+        "english": "Everyone wants to play me and nobody asks for the challenge (Who?)",
+        "timestamp_ms": 138210
+      }
+    ],
+    "id": "526936",
+    "base_id": "9bf221"
+  },
+  "635da4": {
+    "base_verb": "prender",
+    "lemma": "prender",
+    "corpus_count": 2,
+    "translation": "to light",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "3022353",
+        "song_name": "Tócate Tú Misma",
+        "spanish": "Préndete algo y apaga el dembow",
+        "english": "Light something up and turn off the dembow",
+        "timestamp_ms": 136110
+      },
+      {
+        "song": "2919428",
+        "song_name": "La Vida",
+        "spanish": "Pues dale, préndete otro, aunque termine' tras las reja'",
+        "english": "So go ahead, light another one, even if you end up behind bars",
+        "timestamp_ms": 32640
+      }
+    ],
+    "id": "635da4",
+    "base_id": "6d5789"
+  },
+  "b31c24": {
+    "base_verb": "comprar",
+    "lemma": "cómprales",
+    "corpus_count": 1,
+    "translation": "to buy",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9614098",
+        "song_name": "TELEFONO NUEVO",
+        "spanish": "Hey, Father, 'tán cagao', cómprale' lo' Pamper'",
+        "english": "Hey, Father, they're full of shit, buy them diapers",
+        "timestamp_ms": 320540
+      }
+    ],
+    "id": "b31c24",
+    "base_id": "377a7c"
+  },
+  "b47ba3": {
+    "base_verb": "papar",
+    "lemma": "papele",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "2914746",
+        "song_name": "Soy Culpable",
+        "spanish": "Ahora se cambian los papele’, e' a mí quien me toca sufrir",
+        "english": "Now the roles are reversed, it's my turn to suffer"
+      }
+    ],
+    "id": "b47ba3",
+    "base_id": "bcb88f"
+  },
+  "79d3e3": {
+    "base_verb": "ponte",
+    "lemma": "pónteme",
+    "corpus_count": 2,
+    "translation": "to put",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5529101",
+        "song_name": "PA’ ROMPERLA",
+        "spanish": "Pónteme linda pa' subir par de video' a mi cel",
+        "english": "Look cute for me so I can upload a couple of videos to my phone",
+        "timestamp_ms": 35230
+      }
+    ],
+    "id": "79d3e3"
+  },
+  "50739e": {
+    "base_verb": "separar",
+    "lemma": "separame",
+    "corpus_count": 1,
+    "translation": "to separate",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5629886",
+        "song_name": "Lo De Nosotros",
+        "spanish": "Separame toda' las LeBron y quédense ustedes con to'a las Retro",
+        "english": "Separate all the LeBrons for me and you keep all the Retros"
+      }
+    ],
+    "id": "50739e",
+    "base_id": "33d5f5"
   }
 }

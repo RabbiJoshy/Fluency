@@ -1,56 +1,4 @@
 {
-  "9803c6": {
-    "base_verb": "ponte",
-    "lemma": "ponteme",
-    "corpus_count": 1,
-    "translation": "to put",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8086635",
-        "song_name": "Un Poquito",
-        "spanish": "Mami, ven y ponteme agresiva",
-        "english": "Mommy, come and be aggressive for me",
-        "timestamp_ms": 77140
-      }
-    ],
-    "id": "9803c6"
-  },
-  "c28635": {
-    "base_verb": "roncar",
-    "lemma": "roncarte",
-    "corpus_count": 1,
-    "translation": "to snore",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10220932",
-        "song_name": "ay mami",
-        "spanish": "No es por roncarte, pero el día que yo falte",
-        "english": "It's not to snore you, but the day I'm gone",
-        "timestamp_ms": 110010
-      }
-    ],
-    "id": "c28635",
-    "base_id": "8f244f"
-  },
-  "edf4ef": {
-    "base_verb": "vira",
-    "lemma": "vírate",
-    "corpus_count": 1,
-    "translation": "to tack",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9110676",
-        "song_name": "COLMILLO",
-        "spanish": "Vírate, señora",
-        "english": "Get ready, lady",
-        "timestamp_ms": 247580
-      }
-    ],
-    "id": "edf4ef"
-  },
   "12fe56": {
     "base_verb": "romper",
     "lemma": "rómpela",
@@ -76,58 +24,207 @@
     "id": "12fe56",
     "base_id": "a54569"
   },
-  "496c4a": {
-    "base_verb": "derrumba",
-    "lemma": "derrúmbate",
+  "c28635": {
+    "base_verb": "roncar",
+    "lemma": "roncarte",
     "corpus_count": 1,
+    "translation": "to snore",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10220932",
+        "song_name": "ay mami",
+        "spanish": "No es por roncarte, pero el día que yo falte",
+        "english": "It's not to snore you, but the day I'm gone",
+        "timestamp_ms": 110010
+      }
+    ],
+    "id": "c28635",
+    "base_id": "8f244f"
+  },
+  "8f1c87": {
+    "base_verb": "loo",
+    "lemma": "loose",
+    "corpus_count": 2,
     "translation": "",
     "assignments": {},
     "examples": [
       {
-        "song": "12458903",
-        "song_name": "Meiomi",
-        "spanish": "Derrúmbate en mi cama, como Jenga",
-        "english": "Collapse on my bed, like Jenga",
-        "timestamp_ms": 85250
+        "song": "8219794",
+        "song_name": "Bi",
+        "spanish": "No puedo salir, they loose it, ah (Ah-ah)",
+        "english": "I can't get out, they loose it, ah (Ah-ah)",
+        "timestamp_ms": 18010
+      },
+      {
+        "song": "8693529",
+        "song_name": "Déjanos Pasar",
+        "spanish": "Y yo me siento loose culpa del Grey Goose, yeah",
+        "english": "And I feel loose because of the Gray Goose, yeah",
+        "timestamp_ms": 23630
       }
     ],
-    "id": "496c4a",
-    "base_id": "14e4c5"
+    "id": "8f1c87",
+    "base_id": "f6d3ec"
   },
-  "5f18f9": {
-    "base_verb": "excusar",
-    "lemma": "excúsame",
+  "54b21d": {
+    "base_verb": "naturo",
+    "lemma": "natura",
+    "corpus_count": 2,
+    "translation": "nature",
+    "assignments": {
+      "spanishdict-auto": [
+        {
+          "sense": "d3e",
+          "examples": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "8219794",
+        "song_name": "Bi",
+        "spanish": "Naturola, yo ni ensayo",
+        "english": "Naturola, I don't even try",
+        "timestamp_ms": 101970
+      },
+      {
+        "song": "8981516",
+        "song_name": "Brinca",
+        "spanish": "Naturola, noplastic, ey",
+        "english": "Naturola, noplastic, hey",
+        "timestamp_ms": 44810
+      }
+    ],
+    "id": "54b21d",
+    "base_id": "8932f9"
+  },
+  "3398b1": {
+    "base_verb": "enviar",
+    "lemma": "envíaste",
     "corpus_count": 1,
-    "translation": "",
+    "translation": "to send",
     "assignments": {},
     "examples": [
       {
-        "song": "9077520",
-        "song_name": "8 AM",
-        "spanish": "Si te miro mucho, mami, excúsame",
-        "english": "If I look at you too much, mommy, excuse me",
-        "timestamp_ms": 96560
+        "song": "8156995",
+        "song_name": "Castigada",
+        "spanish": "Tú me envíaste un story",
+        "english": "You sent me a story",
+        "timestamp_ms": 104430
       }
     ],
-    "id": "5f18f9",
-    "base_id": "70af6d"
+    "id": "3398b1",
+    "base_id": "fca91b"
   },
-  "79d3e3": {
-    "base_verb": "ponte",
-    "lemma": "pónteme",
-    "corpus_count": 1,
-    "translation": "to put",
-    "assignments": {},
+  "8e1802": {
+    "base_verb": "brinca",
+    "lemma": "brincar",
+    "corpus_count": 8,
+    "translation": "to jump",
+    "assignments": {
+      "spanishdict-flash-lite": [
+        {
+          "sense": "8dd",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
     "examples": [
       {
         "song": "8981516",
         "song_name": "Brinca",
-        "spanish": "Con esta ruleta pónteme al revé'",
-        "english": "",
-        "timestamp_ms": 10710
+        "spanish": "Brinca, brinca, brinca, bríncame",
+        "english": "Jump, jump, jump, jump me",
+        "timestamp_ms": 31690
       }
     ],
-    "id": "79d3e3"
+    "id": "8e1802"
+  },
+  "77b8c5": {
+    "base_verb": "superar",
+    "lemma": "superar",
+    "corpus_count": 3,
+    "translation": "to overcome",
+    "assignments": {
+      "spanishdict-flash-lite": [
+        {
+          "sense": "53d",
+          "examples": [
+            0
+          ]
+        }
+      ]
+    },
+    "examples": [
+      {
+        "song": "6924324",
+        "song_name": "Saturno",
+        "spanish": "Baby superame (Eh)",
+        "english": "Baby get over me (Eh)"
+      }
+    ],
+    "id": "77b8c5",
+    "base_id": "15894b"
+  },
+  "65a70e": {
+    "base_verb": "bajar",
+    "lemma": "bájale",
+    "corpus_count": 1,
+    "translation": "to go down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9237320",
+        "song_name": "mañana",
+        "spanish": "Vamo' a pichear y bájale a esta bella crisis, yeah",
+        "english": "Let's go play and lower this beautiful crisis, yeah",
+        "timestamp_ms": 101280
+      }
+    ],
+    "id": "65a70e",
+    "base_id": "5efe67"
+  },
+  "c11c55": {
+    "base_verb": "chocar",
+    "lemma": "chócame",
+    "corpus_count": 1,
+    "translation": "to crash",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9402498",
+        "song_name": "DISPO",
+        "spanish": "Chó-Chó-Chócame (Je), yo me pierdo en tu piel",
+        "english": "Chó-Chó-Chócame (Heh), I get lost in your skin",
+        "timestamp_ms": 114590
+      }
+    ],
+    "id": "c11c55",
+    "base_id": "7a06fa"
+  },
+  "6de69e": {
+    "base_verb": "subir",
+    "lemma": "súbanle",
+    "corpus_count": 1,
+    "translation": "to go up",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "11690948",
+        "song_name": "EN LA CITY",
+        "spanish": "Súbanle volumen, que la música revienta, ja",
+        "english": "Turn up the volume, the music explodes, ha",
+        "timestamp_ms": 22200
+      }
+    ],
+    "id": "6de69e",
+    "base_id": "7ebd32"
   },
   "53d283": {
     "base_verb": "trepa",
@@ -192,103 +289,6 @@
     ],
     "id": "53d283"
   },
-  "7f0890": {
-    "base_verb": "chequea",
-    "lemma": "chequéate",
-    "corpus_count": 1,
-    "translation": "to check",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9555844",
-        "song_name": "CC (Remix)",
-        "spanish": "Cabrón, chequéate el drippin' que por los poros se sale",
-        "english": "Bastard, check the drippin' that comes out of the pores",
-        "timestamp_ms": 25380
-      }
-    ],
-    "id": "7f0890"
-  },
-  "31e709": {
-    "base_verb": "esconder",
-    "lemma": "escóndela",
-    "corpus_count": 1,
-    "translation": "to hide",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8406201",
-        "song_name": "La Mini",
-        "spanish": "La mini rómpela, la .9 escóndela, ah",
-        "english": "The mini break it, the .9 hide it, ah",
-        "timestamp_ms": 66990
-      }
-    ],
-    "id": "31e709",
-    "base_id": "cda962"
-  },
-  "77b8c5": {
-    "base_verb": "superar",
-    "lemma": "superar",
-    "corpus_count": 3,
-    "translation": "to overcome",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "53d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "6924324",
-        "song_name": "Saturno",
-        "spanish": "Baby superame (Eh)",
-        "english": "Baby get over me (Eh)"
-      }
-    ],
-    "id": "77b8c5",
-    "base_id": "15894b"
-  },
-  "c11c55": {
-    "base_verb": "chocar",
-    "lemma": "chócame",
-    "corpus_count": 1,
-    "translation": "to crash",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9402498",
-        "song_name": "DISPO",
-        "spanish": "Chó-Chó-Chócame (Je), yo me pierdo en tu piel",
-        "english": "Chó-Chó-Chócame (Heh), I get lost in your skin",
-        "timestamp_ms": 114590
-      }
-    ],
-    "id": "c11c55",
-    "base_id": "7a06fa"
-  },
-  "3398b1": {
-    "base_verb": "enviar",
-    "lemma": "envíaste",
-    "corpus_count": 1,
-    "translation": "to send",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8156995",
-        "song_name": "Castigada",
-        "spanish": "Tú me envíaste un story",
-        "english": "You sent me a story",
-        "timestamp_ms": 104430
-      }
-    ],
-    "id": "3398b1",
-    "base_id": "fca91b"
-  },
   "589358": {
     "base_verb": "cucar",
     "lemma": "cucar",
@@ -315,31 +315,6 @@
     ],
     "id": "589358",
     "base_id": "dda172"
-  },
-  "8f1c87": {
-    "base_verb": "loo",
-    "lemma": "loose",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8219794",
-        "song_name": "Bi",
-        "spanish": "No puedo salir, they loose it, ah (Ah-ah)",
-        "english": "I can't get out, they loose it, ah (Ah-ah)",
-        "timestamp_ms": 18010
-      },
-      {
-        "song": "8693529",
-        "song_name": "Déjanos Pasar",
-        "spanish": "Y yo me siento loose culpa del Grey Goose, yeah",
-        "english": "And I feel loose because of the Gray Goose, yeah",
-        "timestamp_ms": 23630
-      }
-    ],
-    "id": "8f1c87",
-    "base_id": "f6d3ec"
   },
   "90244e": {
     "base_verb": "mezclar",
@@ -368,31 +343,59 @@
     "id": "90244e",
     "base_id": "2bbc36"
   },
-  "8e1802": {
-    "base_verb": "brinca",
-    "lemma": "brincar",
-    "corpus_count": 8,
-    "translation": "to jump",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "8dd",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+  "48dc42": {
+    "base_verb": "aprovechar",
+    "lemma": "aprovéchame",
+    "corpus_count": 3,
+    "translation": "to take advantage of",
+    "assignments": {},
     "examples": [
       {
-        "song": "8981516",
-        "song_name": "Brinca",
-        "spanish": "Brinca, brinca, brinca, bríncame",
-        "english": "Jump, jump, jump, jump me",
-        "timestamp_ms": 31690
+        "song": "8464254",
+        "song_name": "Aprovéchame BB",
+        "spanish": "Aprovéchame, bebé, yeh",
+        "english": "Take advantage of me, baby, yeh",
+        "timestamp_ms": 21760
       }
     ],
-    "id": "8e1802"
+    "id": "48dc42",
+    "base_id": "fbaece"
+  },
+  "5f18f9": {
+    "base_verb": "excusar",
+    "lemma": "excúsame",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9077520",
+        "song_name": "8 AM",
+        "spanish": "Si te miro mucho, mami, excúsame",
+        "english": "If I look at you too much, mommy, excuse me",
+        "timestamp_ms": 96560
+      }
+    ],
+    "id": "5f18f9",
+    "base_id": "70af6d"
+  },
+  "31e709": {
+    "base_verb": "esconder",
+    "lemma": "escóndela",
+    "corpus_count": 1,
+    "translation": "to hide",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8406201",
+        "song_name": "La Mini",
+        "spanish": "La mini rómpela, la .9 escóndela, ah",
+        "english": "The mini break it, the .9 hide it, ah",
+        "timestamp_ms": 66990
+      }
+    ],
+    "id": "31e709",
+    "base_id": "cda962"
   },
   "cb0f9b": {
     "base_verb": "bendecir",
@@ -412,112 +415,22 @@
     "id": "cb0f9b",
     "base_id": "b36706"
   },
-  "dc0493": {
-    "base_verb": "bajar",
-    "lemma": "bajola",
+  "79d3e3": {
+    "base_verb": "ponte",
+    "lemma": "pónteme",
     "corpus_count": 1,
-    "translation": "to go down",
+    "translation": "to put",
     "assignments": {},
     "examples": [
-      {
-        "song": "8783598",
-        "song_name": "Big Booty",
-        "spanish": "'Tábamo en bajola y se fue conmigo a la suite",
-        "english": "'We were in a suitcase and he went with me to the suite",
-        "timestamp_ms": 66280
-      }
-    ],
-    "id": "dc0493",
-    "base_id": "5efe67"
-  },
-  "54b21d": {
-    "base_verb": "naturo",
-    "lemma": "natura",
-    "corpus_count": 2,
-    "translation": "nature",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "d3e",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    "examples": [
-      {
-        "song": "8219794",
-        "song_name": "Bi",
-        "spanish": "Naturola, yo ni ensayo",
-        "english": "Naturola, I don't even try",
-        "timestamp_ms": 101970
-      },
       {
         "song": "8981516",
         "song_name": "Brinca",
-        "spanish": "Naturola, noplastic, ey",
-        "english": "Naturola, noplastic, hey",
-        "timestamp_ms": 44810
+        "spanish": "Con esta ruleta pónteme al revé'",
+        "english": "",
+        "timestamp_ms": 10710
       }
     ],
-    "id": "54b21d",
-    "base_id": "8932f9"
-  },
-  "6aae92": {
-    "base_verb": "mover",
-    "lemma": "muéveme",
-    "corpus_count": 6,
-    "translation": "to move",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8086635",
-        "song_name": "Un Poquito",
-        "spanish": "Muéveme un poquito, vente conmigo",
-        "english": "Move me a little, come with me",
-        "timestamp_ms": 30150
-      }
-    ],
-    "id": "6aae92",
-    "base_id": "7cfb5a"
-  },
-  "6de69e": {
-    "base_verb": "subir",
-    "lemma": "súbanle",
-    "corpus_count": 1,
-    "translation": "to go up",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "11690948",
-        "song_name": "EN LA CITY",
-        "spanish": "Súbanle volumen, que la música revienta, ja",
-        "english": "Turn up the volume, the music explodes, ha",
-        "timestamp_ms": 22200
-      }
-    ],
-    "id": "6de69e",
-    "base_id": "7ebd32"
-  },
-  "65a70e": {
-    "base_verb": "bajar",
-    "lemma": "bájale",
-    "corpus_count": 1,
-    "translation": "to go down",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9237320",
-        "song_name": "mañana",
-        "spanish": "Vamo' a pichear y bájale a esta bella crisis, yeah",
-        "english": "Let's go play and lower this beautiful crisis, yeah",
-        "timestamp_ms": 101280
-      }
-    ],
-    "id": "65a70e",
-    "base_id": "5efe67"
+    "id": "79d3e3"
   },
   "1f4da8": {
     "base_verb": "prender",
@@ -537,22 +450,109 @@
     "id": "1f4da8",
     "base_id": "6d5789"
   },
-  "48dc42": {
-    "base_verb": "aprovechar",
-    "lemma": "aprovéchame",
-    "corpus_count": 3,
-    "translation": "to take advantage of",
+  "7f0890": {
+    "base_verb": "chequea",
+    "lemma": "chequéate",
+    "corpus_count": 1,
+    "translation": "to check",
     "assignments": {},
     "examples": [
       {
-        "song": "8464254",
-        "song_name": "Aprovéchame BB",
-        "spanish": "Aprovéchame, bebé, yeh",
-        "english": "Take advantage of me, baby, yeh",
-        "timestamp_ms": 21760
+        "song": "9555844",
+        "song_name": "CC (Remix)",
+        "spanish": "Cabrón, chequéate el drippin' que por los poros se sale",
+        "english": "Bastard, check the drippin' that comes out of the pores",
+        "timestamp_ms": 25380
       }
     ],
-    "id": "48dc42",
-    "base_id": "fbaece"
+    "id": "7f0890"
+  },
+  "edf4ef": {
+    "base_verb": "vira",
+    "lemma": "vírate",
+    "corpus_count": 1,
+    "translation": "to tack",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9110676",
+        "song_name": "COLMILLO",
+        "spanish": "Vírate, señora",
+        "english": "Get ready, lady",
+        "timestamp_ms": 247580
+      }
+    ],
+    "id": "edf4ef"
+  },
+  "9803c6": {
+    "base_verb": "ponte",
+    "lemma": "ponteme",
+    "corpus_count": 1,
+    "translation": "to put",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "Mami, ven y ponteme agresiva",
+        "english": "Mommy, come and be aggressive for me",
+        "timestamp_ms": 77140
+      }
+    ],
+    "id": "9803c6"
+  },
+  "496c4a": {
+    "base_verb": "derrumba",
+    "lemma": "derrúmbate",
+    "corpus_count": 1,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "12458903",
+        "song_name": "Meiomi",
+        "spanish": "Derrúmbate en mi cama, como Jenga",
+        "english": "Collapse on my bed, like Jenga",
+        "timestamp_ms": 85250
+      }
+    ],
+    "id": "496c4a",
+    "base_id": "14e4c5"
+  },
+  "6aae92": {
+    "base_verb": "mover",
+    "lemma": "muéveme",
+    "corpus_count": 6,
+    "translation": "to move",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8086635",
+        "song_name": "Un Poquito",
+        "spanish": "Muéveme un poquito, vente conmigo",
+        "english": "Move me a little, come with me",
+        "timestamp_ms": 30150
+      }
+    ],
+    "id": "6aae92",
+    "base_id": "7cfb5a"
+  },
+  "dc0493": {
+    "base_verb": "bajar",
+    "lemma": "bajola",
+    "corpus_count": 1,
+    "translation": "to go down",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8783598",
+        "song_name": "Big Booty",
+        "spanish": "'Tábamo en bajola y se fue conmigo a la suite",
+        "english": "'We were in a suitcase and he went with me to the suite",
+        "timestamp_ms": 66280
+      }
+    ],
+    "id": "dc0493",
+    "base_id": "5efe67"
   }
 }
