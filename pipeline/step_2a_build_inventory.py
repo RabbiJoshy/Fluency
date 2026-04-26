@@ -50,6 +50,13 @@ def main():
     lang_dir = args.language.capitalize()
     csv_source = PROJECT_ROOT / "Data" / lang_dir / f"{lang_dir}RawWiki.csv"
     output_file = PROJECT_ROOT / "Data" / lang_dir / "layers" / "word_inventory.json"
+    # Optional per-lemma frequency sidecar (e.g. french_lemma_counts.json from
+    # tool_2a_build_french_freq.py). When present, step_8a uses these as
+    # pre-split corpus_count weights instead of proportional-by-example fallback,
+    # which fixes verb-form homographs like est (être) vs est (NOM "east").
+    lemma_counts_file = (
+        PROJECT_ROOT / "Data" / lang_dir / f"{args.language}_lemma_counts.json"
+    )
 
     print(f"Loading vocabulary from {csv_source}...")
     by_word = defaultdict(lambda: {"corpus_count": 0, "lemmas": set()})
@@ -66,14 +73,35 @@ def main():
             entry["corpus_count"] = max(entry["corpus_count"], corpus_count)
             entry["lemmas"].add(lemma)
 
+    # Optional: load per-lemma counts sidecar
+    lemma_counts_map = {}
+    if lemma_counts_file.exists():
+        print(f"Loading per-lemma counts from {lemma_counts_file.name}...")
+        with open(lemma_counts_file, encoding="utf-8") as f:
+            raw = json.load(f)
+        # Convert ppm-floats to ints to match corpus_count style
+        for word, lemma_to_ppm in raw.items():
+            lemma_counts_map[word] = {
+                lem: int(round(float(ppm))) for lem, ppm in lemma_to_ppm.items()
+            }
+        print(f"  {len(lemma_counts_map)} surfaces with per-lemma splits")
+
     # Build output: one entry per surface word, sorted by corpus_count descending
     entries = []
     for word, info in by_word.items():
-        entries.append({
+        entry = {
             "word": word,
             "corpus_count": info["corpus_count"],
             "known_lemmas": sorted(info["lemmas"]),
-        })
+        }
+        if word in lemma_counts_map:
+            # Only include lemmas we know about in this inventory entry's known_lemmas
+            entry["lemma_counts"] = {
+                lem: count
+                for lem, count in lemma_counts_map[word].items()
+                if lem in info["lemmas"]
+            }
+        entries.append(entry)
 
     entries.sort(key=lambda e: (-e["corpus_count"], e["word"]))
 

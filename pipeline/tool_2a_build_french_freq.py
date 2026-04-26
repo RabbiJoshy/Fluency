@@ -34,6 +34,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_LEXIQUE = Path("/tmp/Lexique383/Lexique383.tsv")
 OUTPUT_CSV = PROJECT_ROOT / "Data" / "French" / "FrenchRawWiki.csv"
 OUTPUT_RANKS = PROJECT_ROOT / "Data" / "French" / "french_ranks.json"
+OUTPUT_LEMMA_COUNTS = PROJECT_ROOT / "Data" / "French" / "french_lemma_counts.json"
 
 # Cap depth so the inventory matches Spanish's order of magnitude (~10k surface
 # words). Lexique has ~140k rows total but the long tail is single-occurrence
@@ -145,6 +146,23 @@ def main():
     with open(OUTPUT_RANKS, "w", encoding="utf-8") as f:
         # Single-line, no indent — matches spanish_ranks.json shape
         json.dump(ranks_map, f, ensure_ascii=False, separators=(",", ":"))
+
+    # Per-lemma counts sidecar — step_2a reads this to populate inventory
+    # entries with lemma_counts, which step_8a then uses as pre-split corpus_count
+    # weights instead of falling back to example-count proportionality. Critical
+    # for French homographs like est (être verb form vs noun "east"): without
+    # this, all of est's corpus_count gets attributed to whichever lemma the
+    # keyword classifier happened to route example sentences to.
+    kept_orthos = {ortho for ortho, _ in surfaces_ranked}
+    lemma_counts_by_surface = {}
+    for (ortho, lemme), freq in pair_freq.items():
+        if ortho not in kept_orthos:
+            continue
+        lemma_counts_by_surface.setdefault(ortho, {})[lemme] = round(freq, 1)
+
+    print(f"Writing {OUTPUT_LEMMA_COUNTS} ({len(lemma_counts_by_surface):,} surfaces)...")
+    with open(OUTPUT_LEMMA_COUNTS, "w", encoding="utf-8") as f:
+        json.dump(lemma_counts_by_surface, f, ensure_ascii=False, indent=2)
 
     # Sample output
     print("\nTop 15 entries:")
