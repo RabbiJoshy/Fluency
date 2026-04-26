@@ -1818,9 +1818,9 @@ function updateCard() {
                 // rows all share a unified POS-column width.
                 // Same min-width philosophy as regular rows (see above): pad
                 // short labels up to 46px, let longer ones (PHRASE etc.) expand.
-                const cyclePillStyle = 'font-size: 10px; padding: 4px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
+                const cyclePillStyle = 'font-size: 10px; padding: 7px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
                 target.push(`
-                <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 28px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
                     <span style="font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${cyclePos}</span>
@@ -1845,7 +1845,7 @@ function updateCard() {
                     const firstIdx = groupFirstIdx.get(compKey);
                     if (firstIdx !== idx) return;
                 }
-                const pillStyleBase = 'padding: 3px 6px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
+                const pillStyleBase = 'padding: 7px 8px; margin: 0; white-space: nowrap; line-height: 1; min-width: 46px; box-sizing: border-box;';
                 // Single POS-pill renderer for both group + singleton: just the
                 // POS label, no percentage (the % now always lives on the right
                 // end of the row, hidden at 100%).
@@ -1899,10 +1899,11 @@ function updateCard() {
                         const cellBorder = (isMemberSelected && !mm.unassigned)
                             ? 'border: 2px solid var(--accent-primary);'
                             : 'border: 2px solid transparent;';
-                        const baseCell = `grid-row: ${rowIdx + 1}; padding: 3px 8px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 22px; display: flex; align-items: center;`;
-                        // Pct cell — always col 3, hidden at 100%.
+                        const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 20px; display: flex; align-items: center;`;
+                        // Pct cell — always col 3, hidden at 100%. Tight right
+                        // padding (2px) so the % hugs the row's right edge.
                         const pctCell = memberPct < 100
-                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
+                            ? `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell.replace('padding: 2px 6px', 'padding: 2px 2px 2px 4px')} grid-column: 3; justify-content: flex-end; font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap;">${memberPct}%</div>`
                             : '';
                         // Varying cell — col 2 (trans-axis: ctx) or col 1 (ctx-axis: trans).
                         let varyingHtml;
@@ -1938,9 +1939,9 @@ function updateCard() {
                         : 'minmax(0, 1fr) minmax(0, max-content) auto';
 
                     target.push(`
-                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 4px 4px; margin-bottom: 6px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${groupPosPill}
-                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 4px 8px; min-width: 0; padding: 2px 8px;">
+                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: 1px 4px 1px 8px;">
                             ${memberCells}
                             ${sharedCellHtml}
                         </div>
@@ -1959,17 +1960,21 @@ function updateCard() {
                         const safeFull = String(m.context).replace(/"/g, '&quot;');
                         contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                     }
+                    // Pct pinned to the row's right edge (not body's), so it
+                    // hugs the row outline rather than sitting inside body
+                    // padding. pointer-events:none lets the row's selectMeaning
+                    // still fire through.
                     const pctTail = pctVal < 100
-                        ? `<span style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
+                        ? `<span style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 10px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                         : '';
                     target.push(`
-                    <div class="meaning-row meaning-row-regular" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 2px 2px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 32px;" onclick="selectMeaning(${idx})">
+                    <div class="meaning-row meaning-row-regular" style="position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 28px;" onclick="selectMeaning(${idx})">
                         ${posPill}
-                        <div class="meaning-row-body" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
+                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
                             <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
-                            ${pctTail}
                         </div>
                         ${posPillMirror}
+                        ${pctTail}
                     </div>
                     `);
                 }
