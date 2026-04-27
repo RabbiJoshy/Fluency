@@ -3,32 +3,8 @@
     "name": "Bad Bunny",
     "language": "spanish",
     "masterPath": "Artists/spanish/vocabulary_master.json",
-    "dataPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.json",
     "indexPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
     "examplesPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
-    "albumsDictionary": "Artists/spanish/Bad Bunny/bad_bunny_albums_dictionary.json",
-    "albumImageMap": {
-      "X 100PRE (2018)": "Artists/spanish/Bad Bunny/Images/X100PRE.jpg",
-      "OASIS (2019) [with J Balvin]": "Artists/spanish/Bad Bunny/Images/OASIS.png",
-      "YHLQMDLG (2020)": "Artists/spanish/Bad Bunny/Images/YHLQMDLG.png",
-      "LAS QUE NO IBAN A SALIR (2020)": "Artists/spanish/Bad Bunny/Images/LAS_QUE_NO_IBAN_A_SALIR.jpg",
-      "EL \u00daLTIMO TOUR DEL MUNDO (2020)": "Artists/spanish/Bad Bunny/Images/EL_ULTIMO_TOUR_DEL_MUNDO.png",
-      "UN VERANO SIN TI (2022)": "Artists/spanish/Bad Bunny/Images/UN_VERANO_SIN_TI.png",
-      "NADIE SABE LO QUE VA A PASAR MA\u00d1ANA (2023)": "Artists/spanish/Bad Bunny/Images/NADIE_SABE_LO_QUE_VA_A_PASAR_MANANA.png",
-      "DEB\u00cd TIRAR M\u00c1S FOTOS (2025)": "Artists/spanish/Bad Bunny/Images/DEBI_TIRAR_MAS_FOTOS.png",
-      "Singles & Other Tracks": "Artists/spanish/Bad Bunny/Images/SINGLES.jpg"
-    },
-    "defaultAlbumArt": "Artists/spanish/Bad Bunny/Images/SINGLES.jpg",
-    "colorTheme": {
-      "primary": "#0050A0",
-      "secondary": "#ED1C24"
-    },
-    "maxLevel": 8500
-  },
-  "bad-bunny-test": {
-    "name": "Bad Bunny (Test)",
-    "language": "spanish",
-    "dataPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary_test.json",
     "albumsDictionary": "Artists/spanish/Bad Bunny/bad_bunny_albums_dictionary.json",
     "albumImageMap": {
       "X 100PRE (2018)": "Artists/spanish/Bad Bunny/Images/X100PRE.jpg",
@@ -52,7 +28,6 @@
     "name": "Rosalía",
     "language": "spanish",
     "masterPath": "Artists/spanish/vocabulary_master.json",
-    "dataPath": "Artists/spanish/Rosalía/Rosaliavocabulary.json",
     "indexPath": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
     "examplesPath": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
     "albumsDictionary": "Artists/spanish/Rosalía/rosalia_albums_dictionary.json",
@@ -76,7 +51,6 @@
     "name": "Young Miko",
     "language": "spanish",
     "masterPath": "Artists/spanish/vocabulary_master.json",
-    "dataPath": "Artists/spanish/Young Miko/YoungMikovocabulary.json",
     "indexPath": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
     "examplesPath": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
     "colorTheme": {

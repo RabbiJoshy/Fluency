@@ -11,7 +11,12 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23667eea'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white'%3E📚%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Trimmed from 11 weights to 6: dropped DM Sans 500 + italic 400 (sys
+         italic fallback), JetBrains Mono 500/600 (mono weights barely differ),
+         and Space Grotesk 500. Google Fonts are cross-origin so they bypass
+         our service worker's cache and re-fetch on every load — fewer
+         weights = fewer round trips to fonts.gstatic.com on cold start. -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
@@ -862,7 +867,24 @@
         </div>
     </div>
 
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script type="module" src="js/main.js?v=20260426n"></script>
+    <script>
+        // Spotify Web Playback SDK is only used in artist/lyrics mode.
+        // Gate the load on the mode flag so normal-mode visitors don't pay
+        // the ~50KB download + parse cost. Async injection means the SDK
+        // races with module scripts; spotify.js registers
+        // onSpotifyWebPlaybackSDKReady at module-init time, and the SDK
+        // handles late-bound callback registration the same way it did
+        // when this was a sync <script> tag.
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('artist') || params.get('mode') === 'badbunny') {
+                const s = document.createElement('script');
+                s.src = 'https://sdk.scdn.co/spotify-player.js';
+                s.async = true;
+                document.body.appendChild(s);
+            }
+        })();
+    </script>
+    <script type="module" src="js/main.js?v=20260427b"></script>
 </body>
 </html>

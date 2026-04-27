@@ -1,14 +1,14 @@
-import './state.js?v=20260426n';
-import './speech.js?v=20260426n';
-import './artist-ui.js?v=20260426n';
-import './auth.js?v=20260426n';
-import './spotify.js?v=20260426n';
-import './estimation.js?v=20260426n';
-import './config.js?v=20260426n';
-import './progress.js?v=20260426n';
-import './ui.js?v=20260426n';
-import './vocab.js?v=20260426n';
-import './flashcards.js?v=20260426n';
+import './state.js?v=20260427b';
+import './speech.js?v=20260427b';
+import './artist-ui.js?v=20260427b';
+import './auth.js?v=20260427b';
+import './spotify.js?v=20260427b';
+import './estimation.js?v=20260427b';
+import './config.js?v=20260427b';
+import './progress.js?v=20260427b';
+import './ui.js?v=20260427b';
+import './vocab.js?v=20260427b';
+import './flashcards.js?v=20260427b';
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -75,14 +75,19 @@ if (activeArtist) {
 }
 
 loadConfig().then(async () => {
-    // Fire-and-forget: load Spanish rank lookup for personal easiness scoring
-    if (window.loadSpanishRanks) window.loadSpanishRanks();
-    if (window.loadConjugationData) window.loadConjugationData();
-    if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
     renderLanguageTabs();
     // Set first language with data as default (but don't auto-select it)
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
     selectedLanguage = firstLang;
+    // Spanish-only boot fetches: rank lookup (personal easiness), conjugation
+    // tables, conjugated-English translations. Skip when the first language
+    // isn't Spanish — the ui.js language-tab handler refires them on
+    // switch-to-Spanish, and the load helpers themselves are idempotent.
+    if (selectedLanguage === 'spanish') {
+        if (window.loadSpanishRanks) window.loadSpanishRanks();
+        if (window.loadConjugationData) window.loadConjugationData();
+        if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
+    }
     applyLanguageColorTheme();
     setupGroupSizeSelector();
     setupLemmaToggle();

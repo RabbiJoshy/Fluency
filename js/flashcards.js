@@ -23,6 +23,23 @@ const _MORPH_TENSE_TO_CONJ_EN = {
 
 const _PERSON_TO_INDEX = { "1s": 0, "2s": 1, "3s": 2, "1p": 3, "2p": 4, "3p": 5 };
 
+// Regex cache for the render hot path. Word/MWE/clitic highlight + filter
+// patterns are deterministic in their inputs, so compiling once per unique
+// (pattern, flags) and reusing avoids thousands of RegExp constructions
+// per card render — especially the deck-word highlight loop which scales
+// with deck size. Safe to share: callers use .test() on non-/g regexes
+// and .replace() on /g ones, both of which are stateless across calls.
+const _regexCache = new Map();
+function _cachedRegex(pattern, flags) {
+    const key = flags + ':' + pattern;
+    let re = _regexCache.get(key);
+    if (re === undefined) {
+        re = new RegExp(pattern, flags);
+        _regexCache.set(key, re);
+    }
+    return re;
+}
+
 function getConjugatedEnglish(card, translation) {
     if (!_conjugatedEnglishData || !card || !translation) return null;
     const morph = card.morphology;
@@ -1627,84 +1644,88 @@ function updateCard() {
         const GROUP_DUPLICATE_MEANINGS = true;
         // Per-meaning-idx axis assignment: 'translation' | 'context' |
         // 'singleton' | 'special' (MWE/CLITIC/SENSE_CYCLE — opted out).
-        const axisOf = new Map();
-        const groupKeyOf = new Map();
-        // Effective per-(axis,key) bookkeeping rebuilt after axis assignment
-        // so a meaning never appears in two groups (i.e. listed in the
-        // members of a group whose axis it didn't get assigned to).
-        // compKey = `${axis}|${groupKey}`.
-        const groupMembers = new Map();
-        const groupFirstIdx = new Map();
-        const groupPctSum = new Map();
-        if (GROUP_DUPLICATE_MEANINGS) {
-            // Pass 1: tally raw sizes per axis (used only to make the
-            // per-meaning axis decision in pass 2). Keys are POS-free so
-            // cross-POS collisions can group (e.g. CONJ + REL "that").
-            const transRawSize = new Map();
-            const ctxRawSize = new Map();
-            card.meanings.forEach((m, idx) => {
-                if (m.pos === 'MWE' || m.pos === 'CLITIC' || m.pos === 'SENSE_CYCLE') {
-                    axisOf.set(idx, 'special');
-                    return;
-                }
-                const tk = m.meaning || '';
-                transRawSize.set(tk, (transRawSize.get(tk) || 0) + 1);
-                if (m.context) {
-                    const ck = m.context;
-                    ctxRawSize.set(ck, (ctxRawSize.get(ck) || 0) + 1);
-                }
-            });
-            // Pass 2: pick the dominant axis per meaning. Ties go to
-            // translation (the more common failure mode is classifier slop
-            // on a single sense, which manifests as duplicate translations).
-            card.meanings.forEach((m, idx) => {
-                if (axisOf.get(idx) === 'special') return;
-                const tk = m.meaning || '';
-                const ts = transRawSize.get(tk) || 0;
-                const ck = m.context || null;
-                const cs = ck ? (ctxRawSize.get(ck) || 0) : 0;
-                if (ts > 1 && cs > 1) {
-                    if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
-                    else { axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck); }
-                } else if (ts > 1) {
-                    axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk);
-                } else if (cs > 1) {
-                    axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck);
-                } else {
-                    axisOf.set(idx, 'singleton');
-                }
-            });
-            // Pass 3: rebuild effective members per (axis, key). If a
-            // group's effective size has shrunk below 2 (because some of
-            // its candidates were stolen by the other axis), downgrade
-            // those meanings to singletons. Iterate until stable so a
-            // chain of demotions converges.
-            let changed = true;
-            while (changed) {
-                changed = false;
-                groupMembers.clear();
-                groupFirstIdx.clear();
-                groupPctSum.clear();
+        // Cached on the card after first compute — meanings don't mutate
+        // post-load, so flips/cycles/selects can reuse the same maps.
+        let axisOf, groupKeyOf, groupMembers, groupFirstIdx, groupPctSum;
+        if (card._grouping) {
+            ({ axisOf, groupKeyOf, groupMembers, groupFirstIdx, groupPctSum } = card._grouping);
+        } else {
+            axisOf = new Map();
+            groupKeyOf = new Map();
+            groupMembers = new Map();
+            groupFirstIdx = new Map();
+            groupPctSum = new Map();
+            if (GROUP_DUPLICATE_MEANINGS) {
+                // Pass 1: tally raw sizes per axis (used only to make the
+                // per-meaning axis decision in pass 2). Keys are POS-free so
+                // cross-POS collisions can group (e.g. CONJ + REL "that").
+                const transRawSize = new Map();
+                const ctxRawSize = new Map();
                 card.meanings.forEach((m, idx) => {
-                    const ax = axisOf.get(idx);
-                    if (ax !== 'translation' && ax !== 'context') return;
-                    const k = groupKeyOf.get(idx);
-                    const compKey = `${ax}|${k}`;
-                    if (!groupMembers.has(compKey)) groupMembers.set(compKey, []);
-                    groupMembers.get(compKey).push(idx);
-                    if (!groupFirstIdx.has(compKey)) groupFirstIdx.set(compKey, idx);
-                    groupPctSum.set(compKey, (groupPctSum.get(compKey) || 0) + (m.percentage || 0));
+                    if (m.pos === 'MWE' || m.pos === 'CLITIC' || m.pos === 'SENSE_CYCLE') {
+                        axisOf.set(idx, 'special');
+                        return;
+                    }
+                    const tk = m.meaning || '';
+                    transRawSize.set(tk, (transRawSize.get(tk) || 0) + 1);
+                    if (m.context) {
+                        const ck = m.context;
+                        ctxRawSize.set(ck, (ctxRawSize.get(ck) || 0) + 1);
+                    }
                 });
-                for (const [compKey, members] of groupMembers) {
-                    if (members.length < 2) {
-                        for (const i of members) {
-                            axisOf.set(i, 'singleton');
-                            groupKeyOf.delete(i);
+                // Pass 2: pick the dominant axis per meaning. Ties go to
+                // translation (the more common failure mode is classifier slop
+                // on a single sense, which manifests as duplicate translations).
+                card.meanings.forEach((m, idx) => {
+                    if (axisOf.get(idx) === 'special') return;
+                    const tk = m.meaning || '';
+                    const ts = transRawSize.get(tk) || 0;
+                    const ck = m.context || null;
+                    const cs = ck ? (ctxRawSize.get(ck) || 0) : 0;
+                    if (ts > 1 && cs > 1) {
+                        if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
+                        else { axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck); }
+                    } else if (ts > 1) {
+                        axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk);
+                    } else if (cs > 1) {
+                        axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck);
+                    } else {
+                        axisOf.set(idx, 'singleton');
+                    }
+                });
+                // Pass 3: rebuild effective members per (axis, key). If a
+                // group's effective size has shrunk below 2 (because some of
+                // its candidates were stolen by the other axis), downgrade
+                // those meanings to singletons. Iterate until stable so a
+                // chain of demotions converges.
+                let changed = true;
+                while (changed) {
+                    changed = false;
+                    groupMembers.clear();
+                    groupFirstIdx.clear();
+                    groupPctSum.clear();
+                    card.meanings.forEach((m, idx) => {
+                        const ax = axisOf.get(idx);
+                        if (ax !== 'translation' && ax !== 'context') return;
+                        const k = groupKeyOf.get(idx);
+                        const compKey = `${ax}|${k}`;
+                        if (!groupMembers.has(compKey)) groupMembers.set(compKey, []);
+                        groupMembers.get(compKey).push(idx);
+                        if (!groupFirstIdx.has(compKey)) groupFirstIdx.set(compKey, idx);
+                        groupPctSum.set(compKey, (groupPctSum.get(compKey) || 0) + (m.percentage || 0));
+                    });
+                    for (const [compKey, members] of groupMembers) {
+                        if (members.length < 2) {
+                            for (const i of members) {
+                                axisOf.set(i, 'singleton');
+                                groupKeyOf.delete(i);
+                            }
+                            changed = true;
                         }
-                        changed = true;
                     }
                 }
             }
+            card._grouping = { axisOf, groupKeyOf, groupMembers, groupFirstIdx, groupPctSum };
         }
 
         card.meanings.forEach((m, idx) => {
@@ -2118,7 +2139,7 @@ function updateCard() {
                 const expr = currentMeaning.allMWEs[activeMweIdx].expression;
                 if (expr) {
                     const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    const re = new RegExp(escaped, 'i');
+                    const re = _cachedRegex(escaped, 'i');
                     activeExamples = activeExamples.filter(ex => {
                         const target = ex.target || ex.spanish || '';
                         return re.test(target);
@@ -2129,7 +2150,7 @@ function updateCard() {
                 if (cliticForm) {
                     const escaped = cliticForm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     try {
-                        const re = new RegExp('(?<![\\p{L}])' + escaped + '(?![\\p{L}])', 'iu');
+                        const re = _cachedRegex('(?<![\\p{L}])' + escaped + '(?![\\p{L}])', 'iu');
                         activeExamples = activeExamples.filter(ex => {
                             const target = ex.target || ex.spanish || '';
                             return re.test(target);
@@ -2215,14 +2236,14 @@ function updateCard() {
                 // MWE sense: highlight the current MWE expression
                 const expr = currentMeaning.allMWEs[activeMweIdx].expression;
                 const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
+                const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
                     `<span style="${pillStyle}">$1</span>`);
             } else {
                 // Regular sense: highlight the target word (word boundaries for short words)
                 const word = card.targetWord;
                 const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
+                const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
                     `<span style="${pillStyle}">$1</span>`);
             }
@@ -2234,7 +2255,7 @@ function updateCard() {
                 if (dw === targetLower || dw.length <= 2) continue;
                 // Skip if already inside a <span> tag (already highlighted)
                 const dwEscaped = dw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const dwRegex = new RegExp(`(?<![\\p{L}\\p{N}])(${dwEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
+                const dwRegex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${dwEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(dwRegex,
                     `<span style="${pillStyle}">$1</span>`);
             }
@@ -2246,7 +2267,7 @@ function updateCard() {
                 const fragments = currentMeaning.meaning.split(/[,;]/).map(f => f.trim()).filter(f => f.length > 1);
                 for (const frag of fragments) {
                     const fragEscaped = frag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    const fragRegex = new RegExp(`(?<![\\p{L}\\p{N}])(${fragEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
+                    const fragRegex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${fragEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
                     displayEnglishSentence = displayEnglishSentence.replace(fragRegex,
                         `<span style="${pillStyle}">$1</span>`);
                 }
@@ -2291,7 +2312,7 @@ function updateCard() {
                 const activeMwe = currentMeaning.allMWEs[currentMWEIndex % currentMeaning.allMWEs.length];
                 if (activeMwe && activeMwe.expression) {
                     const escaped = activeMwe.expression.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    const re = new RegExp(escaped, 'i');
+                    const re = _cachedRegex(escaped, 'i');
                     exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
                 }
             }
@@ -2300,7 +2321,7 @@ function updateCard() {
                 const activeClitic = currentMeaning.allClitics[currentMWEIndex % currentMeaning.allClitics.length];
                 if (activeClitic && activeClitic.form) {
                     const escaped = activeClitic.form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    const re = new RegExp('(?<![\\p{L}])' + escaped + '(?![\\p{L}])', 'iu');
+                    const re = _cachedRegex('(?<![\\p{L}])' + escaped + '(?![\\p{L}])', 'iu');
                     exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
                 }
             }
@@ -2500,16 +2521,18 @@ function updateCard() {
     {
         const backEl = document.getElementById('backContent');
         if (backEl) {
+            // Two-phase: collect overflowing rows in a read-only pass, then
+            // add the .is-clamped class in a separate write pass. Mixing
+            // reads and writes per row would force layout flush per row;
+            // splitting keeps it to one flush total. The click handler
+            // lives at module scope as a delegated listener (see bottom of
+            // file), so no per-row addEventListener here.
+            const toClamp = [];
             backEl.querySelectorAll('.meaning-row-translation').forEach(el => {
-                if (el.scrollHeight > el.clientHeight + 1) {
-                    el.classList.add('is-clamped');
-                    el.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        el.classList.remove('is-clamped');
-                        el.classList.add('is-expanded');
-                    }, { once: true });
-                }
+                if (el.scrollHeight > el.clientHeight + 1) toClamp.push(el);
             });
+            for (const el of toClamp) el.classList.add('is-clamped');
+
             const scroll = backEl.querySelector('.meanings-scroll');
             if (scroll) {
                 // Clear any prior cap so we can measure natural heights
@@ -2517,19 +2540,20 @@ function updateCard() {
                 scroll.style.maxHeight = '';
                 const availableHeight = backEl.clientHeight;
                 let overhead = 0;
-                Array.from(backEl.children).forEach(child => {
-                    if (child === scroll) return;
+                // The conjugation panel is the only known position:absolute
+                // direct child of #backContent; skip by class to avoid one
+                // getComputedStyle call per render on verb cards. Other
+                // direct children are in flow, so we still need the call
+                // for their margin values.
+                for (const child of backEl.children) {
+                    if (child === scroll) continue;
+                    if (child.classList.contains('conjugation-panel')) continue;
                     const cs = getComputedStyle(child);
-                    // Skip out-of-flow children. The conjugation panel is
-                    // position: absolute and overlays the card when toggled
-                    // — its 600+px offsetHeight would otherwise blow out
-                    // the overhead total and disable the scroll cap on
-                    // every verb card.
-                    if (cs.position === 'absolute' || cs.position === 'fixed') return;
+                    if (cs.position === 'absolute' || cs.position === 'fixed') continue;
                     overhead += child.offsetHeight
                         + (parseFloat(cs.marginTop) || 0)
                         + (parseFloat(cs.marginBottom) || 0);
-                });
+                }
                 const availableForScroll = availableHeight - overhead;
                 // Cap meanings-scroll whenever its natural content overflows
                 // the remaining room. Floor the cap value (not the gate) at
@@ -4205,6 +4229,18 @@ window.refreshCardMetaPopoverIfOpen = refreshCardMetaPopoverIfOpen;
 window.toggleCardMetaPopover = toggleCardMetaPopover;
 window.showCardMetaPopover = showCardMetaPopover;
 window.hideCardMetaPopover = hideCardMetaPopover;
+
+// Delegated tap-to-expand for clamped meaning rows. One listener at the
+// document root replaces the per-row addEventListener that updateCard()
+// used to attach inside its post-render layout pass — saves ~5-15 listener
+// registrations per card flip.
+document.addEventListener('click', (e) => {
+    const el = e.target.closest && e.target.closest('.meaning-row-translation.is-clamped');
+    if (!el) return;
+    e.stopPropagation();
+    el.classList.remove('is-clamped');
+    el.classList.add('is-expanded');
+}, true);
 
 // Keyboard-shortcut guide: collapse/expand with localStorage persistence.
 (function _initKbGuideCollapse() {

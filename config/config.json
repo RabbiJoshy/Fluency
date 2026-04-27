@@ -2,7 +2,6 @@
   "languages": {
     "spanish": {
       "name": "Spanish",
-      "dataPath": "Data/Spanish/vocabulary.json",
       "indexPath": "Data/Spanish/vocabulary.index.json",
       "examplesPath": "Data/Spanish/vocabulary.examples.json",
       "conjugationsPath": "Data/Spanish/layers/conjugations.json",
@@ -228,7 +227,6 @@
     },
     "french": {
       "name": "French",
-      "dataPath": "Data/French/vocabulary.json",
       "indexPath": "Data/French/vocabulary.index.json",
       "examplesPath": "Data/French/vocabulary.examples.json",
       "ppmDataPath": "Data/French/FrenchRawWiki.csv",

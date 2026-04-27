@@ -147,6 +147,16 @@ function setupLanguageTabs() {
             selectedLanguage = newLanguage;
             selectedLevel = null;
 
+            // Mirror the boot-time Spanish-only fetches in main.js so users
+            // who land on a non-Spanish first language and switch to Spanish
+            // still get rank + conjugation data. Idempotent — no-ops if
+            // already loaded.
+            if (newLanguage === 'spanish') {
+                if (window.loadSpanishRanks) window.loadSpanishRanks();
+                if (window.loadConjugationData) window.loadConjugationData();
+                if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
+            }
+
             applyLanguageColorTheme();
 
             // Show inline pill in the header, hide the tabs
