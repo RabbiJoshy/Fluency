@@ -70,7 +70,11 @@ OPENSUBS_CACHE = None
 SENTINEL_RANK = 999_999
 DEFAULT_MAX_LINES = 5_000_000
 MAX_EXAMPLES_PER_WORD = 20
-MAX_CANDIDATES = 500          # random-sample cap before scoring
+# Pre-scoring sample cap. Was 500 (designed for fast iteration on small
+# corpora); raised to 50k so every reasonable candidate gets scored, not
+# random-sampled. Set lower to speed up iteration; set higher (or 0 = no
+# cap) for maximum-quality runs on big corpora.
+MAX_CANDIDATES = 50_000
 MIN_SENTENCE_WORDS = 3
 MAX_SENTENCE_WORDS = 25
 TOP_N_TRIVIAL = 100           # sentences using only top-N words are trivial
@@ -265,8 +269,18 @@ def is_trivial(spanish_text, word_to_rank):
     )
 
 
-OVERLAP_WINDOW = 10      # ±rank window for co-study words
-MAX_OVERLAP_TIER = 2     # cap benefit at 2 nearby words
+# Co-study scoring. A candidate sentence's overlap_tier counts how many of
+# its tokens have a corpus rank within ±OVERLAP_WINDOW of the target word's
+# rank. Higher tier = denser pedagogical pairing (target + nearby-difficulty
+# vocab in one sentence).
+#
+# Was OVERLAP_WINDOW=10 / MAX_OVERLAP_TIER=2 — narrow window + low cap meant
+# even a 5-word-rich sentence scored the same as a 2-word-rich one, and
+# many medium-frequency words couldn't find tier-2 matches in random 500
+# candidates. Raised to 50/10: a wider "nearby" set + uncapped-in-practice
+# tiebreak so the best co-study sentences actually float to the top.
+OVERLAP_WINDOW = 50
+MAX_OVERLAP_TIER = 10
 PREFERRED_MAX_WORDS = 12 # sentences under this length pay no penalty
 LENGTH_PENALTY_WEIGHT = 5  # per extra word above PREFERRED_MAX_WORDS
 MAX_SENTENCE_LEN = 18    # hard reject above this
@@ -389,6 +403,25 @@ def parse_args():
              "surgical fixes when a full rebuild would invalidate downstream "
              "sense_assignments via example index drift."
     )
+    parser.add_argument(
+        "--max-candidates", type=int, default=MAX_CANDIDATES,
+        help="Pre-scoring sample cap (default %(default)s). 0 = no cap (score "
+             "every indexed candidate; slow on huge corpora but maximally "
+             "thorough). Lower for faster iteration."
+    )
+    parser.add_argument(
+        "--max-overlap-tier", type=int, default=MAX_OVERLAP_TIER,
+        help="Cap on the co-study count contribution to a sentence's score "
+             "(default %(default)s). With many candidates, raise this so "
+             "sentences with 5-10+ nearby words actually outrank sentences "
+             "with just 2."
+    )
+    parser.add_argument(
+        "--overlap-window", type=int, default=OVERLAP_WINDOW,
+        help="±rank window defining 'nearby' words for the co-study tier "
+             "(default %(default)s). Narrower keeps difficulty tightly "
+             "matched; wider gives more candidate sentences a tier > 0."
+    )
     return parser.parse_args()
 
 
@@ -411,6 +444,15 @@ def _bind_paths(language):
 def main():
     args = parse_args()
     _bind_paths(args.language)
+
+    # Apply runtime tunables (mutate module globals so the helper functions
+    # — overlap_tier, select_examples — see the new values).
+    global MAX_CANDIDATES, MAX_OVERLAP_TIER, OVERLAP_WINDOW
+    MAX_CANDIDATES = args.max_candidates if args.max_candidates > 0 else 10**12
+    MAX_OVERLAP_TIER = args.max_overlap_tier
+    OVERLAP_WINDOW = args.overlap_window
+    print(f"Scoring config: max_candidates={args.max_candidates or 'unlimited'}, "
+          f"max_overlap_tier={MAX_OVERLAP_TIER}, overlap_window=±{OVERLAP_WINDOW}")
 
     print("Loading word inventory...")
     with open(INVENTORY_FILE, encoding="utf-8") as f:

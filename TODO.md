@@ -123,6 +123,67 @@
     *within* one analysis by POS would require menu-layer surgery and is
     covered by the root-cause refactor bullet above.
 
+- **[soon] Spanish full pipeline regeneration after accent-twin fix (L) [normal] [spanish]**
+  Spanish vocabulary is in a half-clean state after the 2026-04-26 accent-twin
+  fix. **What we did:** plumbed `--word` into step_5a / step_6a / step_6c with
+  per-word seeded RNG (`zlib.crc32(word)`) for deterministic reruns; removed
+  `strip_accents` fallbacks from step_5a's sentence index and step_5c's
+  Wiktionary index/`lookup_senses`; removed the `analyses[0]` fallback in
+  step_8a's `get_senses_for_lemma`; language-scoped curated_translations.
+  These code changes are language-agnostic — French already ran a full
+  rebuild and is end-to-end clean. For Spanish, instead of regenerating
+  examples (which would have churned 11k Gemini classifications and lost the
+  user's example continuity), a one-shot helper
+  (`/tmp/filter_accent_contamination.py`) walked existing `examples_raw.json`,
+  identified entries whose target text didn't contain the literal target
+  word as a token, and removed 5382 contaminated index references from
+  `sense_assignments/spanishdict.json` (393 of 411 affected unaccented
+  words). Existing clean examples + paid Gemini classifications preserved.
+  Backup at `Data/Spanish/layers/_backups/spanishdict.before-accent-filter.json`.
+
+  **Why semi-stale:** `Data/Spanish/layers/examples_raw.json` still physically
+  contains the contaminated example entries on disk. They're orphaned (no
+  assignment references them, don't appear in `vocabulary.json`) but remain
+  until the next step_5a run.
+
+  **Full rebuild plan** (do after new co-study scoring is validated on French
+  and after inventory-artifact cleanup — the audit flagged ~411 unaccented
+  entries like `mio`, `lastima`, `africa`, `frio`, `publico`, `abandono`,
+  `iras` with 100% example contamination, suggesting the unaccented form is
+  never legitimate Spanish for many of these and they should be deleted from
+  `word_inventory.json` first):
+  ```bash
+  # Step_5a with new defaults (50k candidates / ±50 window / tier cap 10).
+  # 30-60 min, no API.
+  .venv/bin/python3 pipeline/step_5a_build_examples.py --language spanish
+
+  # Full Gemini reclassification on cleaner examples — supersedes the
+  # filter's preserved-but-imperfect classifications. ~$15-20, ~30-60 min.
+  .venv/bin/python3 pipeline/step_6a_assign_senses.py \
+      --language spanish --classifier gemini --sense-source spanishdict --force
+
+  .venv/bin/python3 pipeline/step_7a_map_senses_to_lemmas.py --language spanish
+  .venv/bin/python3 pipeline/step_8a_assemble_vocabulary.py \
+      --language spanish --sense-source spanishdict
+  ```
+  After this, Spanish matches French's end-to-end cleanliness and benefits
+  from the new co-study-rich scoring. The big-corpus run with the new params
+  should also massively improve example quality (the French audit showed
+  >90% of old examples were tier-0 under the co-study rubric).
+
+- **[soon] Audit step_5d MWE strip_accents fallbacks (S) [shared] [cross-lang]**
+  Closing gap from the 2026-04-26 accent-twin fix. With step_5a, step_5c,
+  and step_8a all going strict-literal on accents, `pipeline/step_5d_build_mwes.py`
+  is the last holdout: lines 127-128 and 173 still use `strip_accents` as a
+  fallback when matching MWE parent words to the inventory. An MWE parent
+  like `"más allá"` could silently fall back to the unaccented inventory
+  entry `"mas"` if `"más"` isn't in the inventory, misattributing the MWE.
+  Probably benign in practice (most MWE parents are well-formed accented
+  words that match directly) but worth tightening for consistency. Replace
+  the `strip_accents` fallbacks with literal lookups; if a legitimately
+  accented MWE parent fails to match, surface as a warning rather than
+  silently accent-stripping.
+
 - **[I think this is done] Wire multi-word elision split into tokenization (M) [artist] [spanish]**
   Config exists at `Artists/curations/multi_word_elisions.json` mapping contracted
   surface forms to expanded Spanish (e.g. `"pal'" -> "para el"`). Step 2a
