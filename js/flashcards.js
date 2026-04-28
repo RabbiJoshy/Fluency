@@ -52,105 +52,6 @@ function getConjugatedEnglish(card, translation) {
     return row ? (row[personIdx] || null) : null;
 }
 
-// Part-of-speech lookup shown when a user taps the POS pill on a sense
-// row. Full name + one-sentence plain-language description targeted at
-// language learners, not grammarians. Keys match the UPOS / Kaikki POS
-// values produced by the pipeline (see util_5c_sense_menu_format.py
-// and util_5c_spanishdict.py).
-const POS_INFO = {
-    NOUN: { name: "Noun",
-            description: "Names a person, place, thing, or idea (e.g. casa, amor, tiempo)." },
-    VERB: { name: "Verb",
-            description: "An action, state, or occurrence (e.g. correr, ser, tener)." },
-    ADJ:  { name: "Adjective",
-            description: "Describes or modifies a noun (e.g. grande, feliz, rápido)." },
-    ADV:  { name: "Adverb",
-            description: "Modifies a verb, adjective, or another adverb (e.g. rápidamente, muy, siempre)." },
-    ADP:  { name: "Preposition",
-            description: "Shows a relationship between words — usually place, time, or direction (e.g. a, de, en, con)." },
-    DET:  { name: "Determiner",
-            description: "Introduces or specifies a noun (e.g. el, una, este, mi)." },
-    PRON: { name: "Pronoun",
-            description: "Replaces a noun (e.g. él, ella, esto, nosotros)." },
-    CCONJ: { name: "Conjunction",
-             description: "Connects words, phrases, or clauses (e.g. y, pero, o, porque)." },
-    SCONJ: { name: "Conjunction",
-             description: "Introduces a subordinate clause (e.g. si, cuando, aunque)." },
-    INTJ: { name: "Interjection",
-            description: "An exclamation or sudden expression of emotion (e.g. ¡ay!, ¡oh!, ¡vale!)." },
-    NUM:  { name: "Number",
-            description: "Expresses a quantity or order (e.g. uno, dos, primero)." },
-    PART: { name: "Particle",
-            description: "A small grammatical marker with a specific role — doesn't always translate cleanly (e.g. no, sí, se)." },
-    PROPN: { name: "Proper Noun",
-             description: "The specific name of a person, place, or thing (e.g. María, Madrid, Spotify)." },
-    PHRASE: { name: "Phrase",
-              description: "A fixed group of words that function together (e.g. por favor, sin embargo)." },
-    CONTRACTION: { name: "Contraction",
-                   description: "Two words fused together into one written form (e.g. al = a + el, del = de + el, c'est = ce + est)." },
-    X:    { name: "Unclassified",
-            description: "Part of speech couldn't be determined for this sense." },
-};
-
-// Show an info popover describing a part of speech. The pill is tappable;
-// a tap on the pill opens a full-screen semi-transparent overlay holding
-// a small card with the POS name + description. If a percentage is
-// passed and is a real sub-100 frequency, the popover also explains
-// what that percentage means. Any subsequent click (or Escape) closes
-// the overlay. The pill's own click stops propagation so the row's
-// selectMeaning handler doesn't also fire.
-function showPOSInfo(event, pos, pct) {
-    if (event) {
-        event.stopPropagation();
-        event.preventDefault();
-    }
-    const info = POS_INFO[pos] || {
-        name: pos || "Unknown",
-        description: "No description available for this part of speech.",
-    };
-    // Show the percentage-explainer only when a meaningful pct was
-    // passed: integer between 1 and 99. 100% / missing / zero means
-    // there's nothing to explain (either implicit or irrelevant).
-    const pctNum = Number(pct);
-    const showPct = Number.isFinite(pctNum) && pctNum > 0 && pctNum < 100;
-    const pctSection = showPct ? `
-            <div class="pos-info-divider"></div>
-            <div class="pos-info-pct-label">Frequency on this card</div>
-            <div class="pos-info-pct-value">${pctNum}%</div>
-            <div class="pos-info-pct-description">
-                Of the example sentences we have for this word, about
-                ${pctNum}% use this meaning. The other ${100 - pctNum}%
-                split between the other meanings shown on the card.
-            </div>
-    ` : '';
-    const overlay = document.createElement('div');
-    overlay.className = 'pos-info-overlay';
-    // Inline the popover's colour accent so it matches the pill that
-    // was tapped — the .pos-* classes on the pill carry the colour;
-    // mirror them on the popover so the pairing is obvious.
-    const posColorClass = getPosColorClass(pos) || '';
-    overlay.innerHTML = `
-        <div class="pos-info-popover ${posColorClass}" role="dialog" aria-label="${info.name}">
-            <div class="pos-info-name">${info.name}</div>
-            <div class="pos-info-description">${info.description}</div>
-            ${pctSection}
-            <div class="pos-info-hint">Tap anywhere to close</div>
-        </div>
-    `;
-    document.body.appendChild(overlay);
-    const close = () => {
-        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-        document.removeEventListener('keydown', onKey);
-    };
-    const onKey = (e) => { if (e.key === 'Escape') close(); };
-    // Any click on the overlay (including the popover) closes. The user
-    // asked for "press anywhere to close" — pairs cleanly with the
-    // one-glance nature of the info.
-    overlay.addEventListener('click', close);
-    document.addEventListener('keydown', onKey);
-}
-window.showPOSInfo = showPOSInfo;
-
 function formatMorphMood(mood) {
     const moodMap = {
         indicativo: '',        // indicative is default, omit
@@ -4126,7 +4027,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260427h';
+const ASSET_VERSION = '20260427i';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
@@ -4150,7 +4051,8 @@ const stubFor = (name, loader) => {
     window[name] = fn;
 };
 
-['toggleCardMetaPopover', 'showCardMetaPopover', 'hideCardMetaPopover']
+['toggleCardMetaPopover', 'showCardMetaPopover', 'hideCardMetaPopover',
+ 'showPOSInfo']
     .forEach(name => stubFor(name, lazyModals));
 
 // Special: refreshCardMetaPopoverIfOpen runs on every updateCard(). If we
