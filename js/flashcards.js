@@ -1011,78 +1011,6 @@ function handleSwipeAction(result) {
     }, 300);
 }
 
-function showEndOfDeckOptions() {
-    const incorrectCards = Object.keys(stats.cardStats)
-        .filter(idx => stats.cardStats[idx].incorrect > stats.cardStats[idx].correct)
-        .map(Number);
-
-    const totalAttempts = stats.correct + stats.incorrect;
-    const accuracy = totalAttempts > 0 ? Math.round((stats.correct / totalAttempts) * 100) : 0;
-
-    // Update modal content
-    document.getElementById('completeCorrect').textContent = stats.correct;
-    document.getElementById('completeIncorrect').textContent = stats.incorrect;
-    document.getElementById('completeAccuracy').textContent = `Accuracy: ${accuracy}%`;
-
-    const continueBtn = document.getElementById('continueIncorrectBtn');
-    const messageEl = document.getElementById('completeMessage');
-
-    if (incorrectCards.length > 0) {
-        messageEl.textContent = `${incorrectCards.length} card${incorrectCards.length > 1 ? 's' : ''} to review`;
-        continueBtn.disabled = false;
-        continueBtn.querySelector('span:last-child').textContent = `Review ${incorrectCards.length} Mistake${incorrectCards.length > 1 ? 's' : ''}`;
-    } else {
-        messageEl.innerHTML = `<span style="color: var(--accent-green); font-weight: 600;">Perfect score! 🎉</span>`;
-        continueBtn.disabled = true;
-        continueBtn.querySelector('span:last-child').textContent = 'No Mistakes';
-    }
-
-    // Store incorrect cards for later use
-    window.currentIncorrectCards = incorrectCards;
-
-    // Show the modal
-    document.getElementById('deckCompleteModal').classList.remove('hidden');
-}
-
-function hideDeckCompleteModal() {
-    document.getElementById('deckCompleteModal').classList.add('hidden');
-}
-
-function restartWithIncorrectCards(incorrectIndices) {
-    // Create new deck with only incorrect cards
-    const incorrectFlashcards = incorrectIndices.map(idx => flashcards[idx]);
-
-    // Reset stats
-    stats.correct = 0;
-    stats.incorrect = 0;
-    stats.total = 0;
-    stats.studied = new Set();
-    stats.cardStats = {};
-
-    // Set new flashcards array
-    flashcards = incorrectFlashcards;
-    currentIndex = 0;
-    currentSentenceIndex = 0;
-
-    updateCard();
-    document.getElementById('flashcard').classList.remove('flipped');
-}
-
-function restartAllCards() {
-    // Reset stats
-    stats.correct = 0;
-    stats.incorrect = 0;
-    stats.total = 0;
-    stats.studied = new Set();
-    stats.cardStats = {};
-
-    currentIndex = 0;
-    currentSentenceIndex = 0;
-
-    updateCard();
-    document.getElementById('flashcard').classList.remove('flipped');
-}
-
 function recordCardResult(result) {
     const isCorrect = result === 'correct';
 
@@ -3204,10 +3132,6 @@ window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;
 window.handleSwipeAction = handleSwipeAction;
-window.showEndOfDeckOptions = showEndOfDeckOptions;
-window.hideDeckCompleteModal = hideDeckCompleteModal;
-window.restartWithIncorrectCards = restartWithIncorrectCards;
-window.restartAllCards = restartAllCards;
 window.recordCardResult = recordCardResult;
 window.showFloatingBtns = showFloatingBtns;
 window.goBackToSetup = goBackToSetup;
@@ -3313,7 +3237,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260427j';
+const ASSET_VERSION = '20260427k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
@@ -3342,7 +3266,9 @@ const stubFor = (name, loader) => {
  'showLyricBreakdown', 'hideLyricBreakdown',
  'showWordPopup', 'hideWordPopup',
  'navigateToCard', 'navigateToVocabCard', 'navigateBack',
- 'popupFoundWord', 'peekHomograph']
+ 'popupFoundWord', 'peekHomograph',
+ 'showEndOfDeckOptions', 'hideDeckCompleteModal',
+ 'restartWithIncorrectCards', 'restartAllCards']
     .forEach(name => stubFor(name, lazyModals));
 
 // Special: refreshCardMetaPopoverIfOpen runs on every updateCard(). If we
