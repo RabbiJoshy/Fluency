@@ -157,6 +157,7 @@
             touch-action: pan-x pan-y;
             -webkit-user-select: none;
             user-select: none;
+            position: relative;
         }
 
         .card {
@@ -177,37 +178,51 @@
         }
 
         /* Stacked-card cue: when the card was reached via search/synonym/lyric
-           breakdown (cardNavStack non-empty), draw two "peek" tabs of cards
-           protruding above the top edge — implies a stack of cards behind the
-           current one. Both pseudos sit in .card-container's top padding so
-           .card-container's overflow:hidden doesn't clip them. Y-only offset
-           means the Y-axis flip doesn't visibly mirror them. */
-        .card.is-stacked::before,
-        .card.is-stacked::after {
+           breakdown (cardNavStack non-empty), shrink the visible card to ~92%
+           and reveal a phantom "underlying" card backdrop behind it. The
+           smaller temporary view + visible-bigger backdrop together imply
+           "you're temporarily on top of a previous card; tap back to return."
+           The phantom is anchored to .card-container so it isn't transformed
+           with the card itself; its dimensions match .card's natural height
+           so it sits exactly where .card would be at full size. */
+        .card-container::before {
             content: '';
             position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: calc(100vh - 100px);
+            min-height: 460px;
+            max-height: calc(100vh - 100px);
             background: var(--bg-card);
-            border-bottom: none;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.35);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 0;
             pointer-events: none;
-            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.32s ease-out;
         }
 
-        .card.is-stacked::before {
-            top: -12px;
-            left: 10px;
-            right: 10px;
-            height: 16px;
-            border: 2.5px solid rgba(255, 107, 53, 0.85);
+        .card-container:has(.card.is-stacked)::before {
+            opacity: 0.55;
         }
 
+        .card.is-stacked {
+            transform: scale(0.92);
+            z-index: 1;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .card.is-stacked.flipped {
+            transform: rotateY(180deg) scale(0.92);
+        }
+
+        /* Old peek-tab pseudos removed — kept disabled in case any cached
+           rule cascade tries to use them. */
+        .card.is-stacked::before,
         .card.is-stacked::after {
-            top: -24px;
-            left: 22px;
-            right: 22px;
-            height: 16px;
-            border: 2.5px solid rgba(255, 107, 53, 0.55);
+            display: none;
         }
 
         .card.swiping {
@@ -475,41 +490,69 @@
         }
         .kb-collapse-btn .kb-icon-keyboard { display: none; }
         .kb-collapse-btn .kb-icon-chevron { display: block; }
-        /* Collapsed state: mirror the right-hand toolbar's circular icon style
-           (see .desktop-nav-btn-outside .nav-icon — 48x48, 50% radius,
-           rgba(255,255,255,0.08) background). */
+        /* Collapsed state: large circular toggle (~2x the previous size) so the
+           keyboard icon is easy to spot and click on desktop. Uses a soft
+           backdrop blur for an elegant floating-glass feel. */
         .desktop-keyboard-guide.collapsed .kb-collapse-btn {
-            width: 64px;
-            height: 64px;
+            width: 128px;
+            height: 128px;
             border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
         }
         .desktop-keyboard-guide.collapsed .kb-collapse-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.14);
             color: #fff;
+            transform: scale(1.04);
+            transition: transform 0.18s, background 0.2s, color 0.2s;
         }
         .desktop-keyboard-guide.collapsed .kb-collapse-btn .kb-icon-chevron { display: none; }
         .desktop-keyboard-guide.collapsed .kb-collapse-btn .kb-icon-keyboard {
             display: block;
-            width: 38px;
-            height: 38px;
+            width: 76px;
+            height: 76px;
         }
         .desktop-keyboard-guide.collapsed .kb-content { display: none; }
 
+        /* Expanded popup — wraps the key sections in a subtle glass-panel
+           backdrop so the keys read as a connected widget instead of floating
+           text. Spacing and dividers carry the visual hierarchy. */
         .kb-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 28px;
+            gap: 22px;
+            padding: 22px 16px;
+            background: rgba(20, 25, 32, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
         }
 
         .kb-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            position: relative;
+        }
+
+        /* Subtle divider between sections — adds visual rhythm to the column */
+        .kb-section + .kb-section::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         /* kb-row: keys centered; hints (tick/cross) absolutely positioned so they
@@ -533,18 +576,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-bottom-width: 2px;
-            border-radius: 6px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.32);
+            border-radius: 7px;
             padding: 8px 14px;
             font-family: var(--font-data);
             font-size: 15px;
-            color: rgba(255, 255, 255, 0.75);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
             line-height: 1.2;
             min-width: 38px;
             text-align: center;
             white-space: nowrap;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
         .kb-key.small {
@@ -578,8 +623,11 @@
         }
 
         .kb-hint {
-            font-size: 11px;
+            font-size: 10px;
             color: rgba(255, 255, 255, 0.55);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
         }
 
         /* Info button (matches .kb-key look but is clickable) */
@@ -1021,7 +1069,7 @@
            the context is long we truncate at a word boundary and show a
            clickable "…" that expands the full text. */
         .meaning-context {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 400;
             opacity: 0.6;
             font-style: italic;
@@ -1347,6 +1395,59 @@
 
         .card-action-small:active {
             transform: scale(0.95);
+        }
+
+        /* Language reverse button — single big "from" flag with a small
+           circular swap badge in the bottom-right corner. Sized to match the
+           shuffle button's visual weight. The "to" flag is emitted by JS for
+           screen readers but hidden visually. */
+        #reverseLangBtn {
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            position: relative;
+            overflow: visible;
+            line-height: 1;
+        }
+        #reverseLangBtn .reverse-flag-from {
+            font-size: 36px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #reverseLangBtn .reverse-flag-to {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #reverseLangBtn .reverse-swap-glyph {
+            position: absolute;
+            right: -4px;
+            bottom: -4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(20, 24, 32, 0.92);
+            color: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            line-height: 1;
+            box-sizing: border-box;
+            font-family: var(--font-data);
+            font-weight: 700;
+        }
+        #reverseLangBtn:hover .reverse-swap-glyph {
+            background: var(--accent-primary, rgba(74, 158, 255, 0.95));
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .card-details {
@@ -5252,9 +5353,11 @@
         @media (max-width: 767px) {
             .user-info {
                 top: 10px;
-                padding: 10px 24px;
+                padding: 10px 16px;
                 font-size: 17px;
                 gap: 12px;
+                background: transparent;
+                border: none;
             }
 
             .user-badge {
@@ -5279,6 +5382,22 @@
             .floating-btns.visible {
                 display: none !important;
             }
+
+            /* Top-of-card back/stats — match the 64x64 footprint of the
+               bottom-row arrow buttons (.nav-btn-inline) so all four mobile
+               action buttons read as peers. Specificity matches .gear-btn so
+               source order wins; keep these AFTER the .gear-btn rule above. */
+            .nav-row-icon {
+                padding: 12px;
+                width: 64px;
+                height: 64px;
+                box-sizing: border-box;
+            }
+
+            .nav-row-icon svg {
+                width: 36px;
+                height: 36px;
+            }
         }
 
         .nav-row-icon {
@@ -5301,6 +5420,13 @@
                 min-height: calc(100vh - 60px);
                 padding: 70px 0 10px 0;
                 align-items: flex-start;
+            }
+
+            .card-container::before {
+                height: calc(100vh - 140px);
+                max-height: none;
+                top: 70px;
+                transform: none;
             }
 
             .card {
