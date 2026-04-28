@@ -8,7 +8,7 @@ import './speech.js';
 let _spanishRanks = null;  // word -> rank (loaded once)
 let _spanishRanksLoading = false;
 let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, translation}
-let _conjugationLoading = false;
+let _conjugationLoadPromise = null;  // shared in-flight promise so concurrent callers don't double-fetch
 let _conjugatedEnglishData = null;  // lemma -> translation -> tense -> 6-element person-indexed array
 let _conjugatedEnglishLoading = false;
 
@@ -121,18 +121,31 @@ async function loadSpanishRanks() {
     _spanishRanksLoading = false;
 }
 
+// Returns a promise that resolves when the data is loaded (or has already
+// been loaded). Concurrent callers share the in-flight promise, so a fast
+// conj-toggle click before the boot-time prefetch completes will wait for
+// the same fetch instead of seeing an empty cache and rendering "no data".
+// window._conjugationData is set on success so flashcards-conj.js (which
+// has no module import of this file) can read the cache via globalThis.
 async function loadConjugationData() {
-    if (_conjugationData || _conjugationLoading) return;
+    if (_conjugationData) return _conjugationData;
+    if (_conjugationLoadPromise) return _conjugationLoadPromise;
     const langConfig = config.languages[selectedLanguage];
-    if (!langConfig || !langConfig.conjugationsPath) return;
-    _conjugationLoading = true;
-    try {
-        const resp = await fetch(langConfig.conjugationsPath);
-        if (resp.ok) _conjugationData = await resp.json();
-    } catch (e) {
-        // Non-fatal — conjugation table just won't show
-    }
-    _conjugationLoading = false;
+    if (!langConfig || !langConfig.conjugationsPath) return null;
+    _conjugationLoadPromise = (async () => {
+        try {
+            const resp = await fetch(langConfig.conjugationsPath);
+            if (resp.ok) {
+                _conjugationData = await resp.json();
+                window._conjugationData = _conjugationData;
+            }
+        } catch (e) {
+            // Non-fatal — conjugation panel just won't have inline data
+        }
+        _conjugationLoadPromise = null;
+        return _conjugationData;
+    })();
+    return _conjugationLoadPromise;
 }
 
 async function loadConjugatedEnglishData() {
@@ -2209,24 +2222,6 @@ function updateCard() {
         isVerb = pos.includes('verb') || pos === 'v' || pos === 'vb';
     }
 
-    // Check for inline conjugation data — first under the card's own
-    // lemma, then (as a fallback) under its `relatedLemma` if one was
-    // stamped. The related lemma is SpanishDict's morphological
-    // pointer for lexicalised conjugated-form headwords (hay → haber);
-    // we use it to surface the related verb's paradigm when the card's
-    // own lemma doesn't have one. See buildConjugationTableHTML for
-    // the "related paradigm" display treatment.
-    let conjEntry = null;
-    let conjEntryIsRelated = false;
-    if (isVerb && _conjugationData) {
-        if (_conjugationData[card.lemma]) {
-            conjEntry = _conjugationData[card.lemma];
-        } else if (card.relatedLemma && _conjugationData[card.relatedLemma]) {
-            conjEntry = _conjugationData[card.relatedLemma];
-            conjEntryIsRelated = true;
-        }
-    }
-
     backHTML += `<div class="links-section" id="linksSection">`;
 
     // Unified in-app conjugation button for every verb card (always the
@@ -2283,20 +2278,15 @@ function updateCard() {
 
     backHTML += `</div>`;
 
-    // Conjugation panel — always built for verbs. The builder handles
-    // the no-inline-data case itself (returns a "no data" panel + SD
-    // link), so the button above always has something to toggle.
-    // When we're rendering data for the card's related verb (e.g.
-    // showing haber's paradigm for a hay card), we pass that flag
-    // through so the panel can label it honestly instead of pretending
-    // the paradigm belongs to the card's own word.
+    // Conjugation placeholder — empty div carrying the data needed to
+    // build the panel lazily on first toggle. Lemma / related-lemma /
+    // target-word land in data-attributes so flashcards-conj.js's
+    // toggleConjugationTable() can read them, look up _conjugationData,
+    // and call buildConjugationTableHTML on demand. See conj.js for the
+    // per-(lemma, targetWord, isRelated) build cache.
     if (isVerb) {
-        backHTML += buildConjugationTableHTML(
-            conjEntry,
-            card.targetWord,
-            card.lemma,
-            { relatedLemma: card.relatedLemma, isRelatedParadigm: conjEntryIsRelated }
-        );
+        const attr = (s) => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        backHTML += `<div id="conjugationTable" class="conjugation-panel" data-lemma="${attr(card.lemma)}" data-related="${attr(card.relatedLemma)}" data-target="${attr(card.targetWord)}"></div>`;
     }
 
     if (hasSynonyms) {
@@ -2730,307 +2720,6 @@ function updateStats() {
 }
 
 
-// ---------------------------------------------------------------------------
-// Conjugation table rendering
-// ---------------------------------------------------------------------------
-const CONJ_PRONOUNS_FULL = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', 'ellos / ellas'];
-
-// Tense → mood mapping. Tenses we currently ship are just the first six;
-// the Imperative + compound entries are scaffolded so future data slots in
-// without a renderer change. Unknown tenses fall under "Other".
-//
-// Mood keys are display labels (English). Tense keys must match the Spanish
-// labels in `conjEntry.tenses` (the conjugation data is keyed by Spanish
-// tense names from verbecc). `CONJ_TENSE_DISPLAY` below maps each Spanish
-// key to a short English label for the toggle buttons.
-const CONJ_MOOD_GROUPS = {
-    'Indicative': {
-        tenses: ['Presente', 'Pretérito', 'Imperfecto', 'Futuro', 'Condicional'],
-        accent: 'rgba(74, 158, 255, 0.6)',   // blue
-    },
-    'Subjunctive': {
-        tenses: ['Subj. Presente', 'Subj. Imperfecto', 'Subj. Futuro'],
-        accent: 'rgba(168, 85, 247, 0.6)',   // purple
-    },
-    'Imperative': {
-        tenses: ['Imperativo', 'Imp. Negativo'],
-        accent: 'rgba(236, 72, 153, 0.6)',   // pink
-    },
-};
-const CONJ_MOOD_ORDER = ['Indicative', 'Subjunctive', 'Imperative'];
-
-const CONJ_TENSE_DISPLAY = {
-    'Presente': 'pres',
-    'Pretérito': 'pret',
-    'Imperfecto': 'imperf',
-    'Futuro': 'fut',
-    'Condicional': 'cond',
-    'Subj. Presente': 'pres',
-    'Subj. Imperfecto': 'imperf',
-    'Subj. Futuro': 'fut',
-    'Imperativo': 'affirm',
-    'Imp. Negativo': 'neg',
-};
-
-// Split a form into (stem, ending) using longest-common-prefix vs the
-// infinitive's STEM (infinitive minus the -ar/-er/-ir ending). For regular
-// verbs this gives the expected pattern ("habl|o", "habl|as", "habl|a"...).
-// For stem-changing irregulars the shared prefix stops earlier, so more
-// of the word lands in the accent-colored "ending" span — which surfaces
-// the stem change (e.g. "t|engo" from "tener", showing only the "t" as
-// the preserved stem).
-//
-// Using the full infinitive as the reference was wrong: the "a" in the
-// middle of "hablar" matched the "a" ending of "habla", stealing it into
-// the stem.
-function splitStemEnding(form, infinitive) {
-    if (!form) return { stem: '', ending: '' };
-    const src = (infinitive || '').toLowerCase();
-    const dst = form.toLowerCase();
-    // Spanish infinitives always end in -ar / -er / -ir. Strip those two
-    // chars to get the stem reference; fall back to the full infinitive if
-    // it's shorter than 2 chars (defensive — shouldn't happen in practice).
-    const stemLen = src.length >= 2 ? src.length - 2 : src.length;
-    let i = 0;
-    while (i < stemLen && i < dst.length && src[i] === dst[i]) i++;
-    return { stem: form.slice(0, i), ending: form.slice(i) };
-}
-
-function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
-    opts = opts || {};
-    const relatedLemma = opts.relatedLemma || null;
-    const isRelatedParadigm = !!opts.isRelatedParadigm;
-
-    // No inline data (conjEntry absent or empty): render a small
-    // "no-data" panel with the card's own lemma + a prominent SpanishDict
-    // link. If the card has a `relatedLemma` pointer (SpanishDict flagged
-    // it as a conjugation of another verb), surface that relationship so
-    // the user knows where to go for the paradigm.
-    const hasData = conjEntry && Object.keys(conjEntry.tenses || {}).length > 0;
-    if (!hasData) {
-        const displayLemma = (lemma || targetWord || '').toLowerCase();
-        const sdTarget = relatedLemma || displayLemma;
-        const sdUrl = `https://www.spanishdict.com/conjugate/${encodeURIComponent(sdTarget)}`;
-        const emptyMsg = relatedLemma
-            ? `<strong>${displayLemma}</strong> is a lexicalised form related to <strong>${relatedLemma}</strong>. We don't have its conjugation inline.`
-            : `No conjugation data available for this verb.`;
-        const sdLabel = relatedLemma
-            ? `Conjugate ${relatedLemma} on SpanishDict`
-            : `Conjugate on SpanishDict`;
-        return `
-            <div id="conjugationTable" class="conjugation-panel">
-                <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
-                <div class="conj-header">
-                    <div class="conj-title">
-                        <span class="conj-infinitive">${displayLemma}</span>
-                    </div>
-                </div>
-                <div class="conj-empty-msg">
-                    ${emptyMsg}
-                </div>
-                <a href="${sdUrl}" target="_blank" class="conj-sd-link conj-sd-link-prominent" title="${sdLabel}">
-                    <img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="18" height="18" alt="" style="border-radius:3px">
-                    <span>${sdLabel}</span>
-                </a>
-            </div>
-        `;
-    }
-    const tenses = conjEntry.tenses;
-    const tenseNames = Object.keys(tenses);
-    const targetLower = targetWord.toLowerCase();
-    // Prefer an explicit infinitive on the conj entry; fall back to
-    // the lemma (or relatedLemma when we're rendering a related
-    // verb's paradigm), then targetWord as a last resort.
-    const conjOwnerLemma = isRelatedParadigm ? (relatedLemma || lemma || targetWord || '') : (lemma || targetWord || '');
-    const infinitive = (conjEntry.infinitive || conjOwnerLemma).toLowerCase();
-
-    // Pick the tense containing targetWord as the default; Presente otherwise.
-    let defaultTense = tenses['Presente'] ? 'Presente' : tenseNames[0];
-    for (const [tenseName, forms] of Object.entries(tenses)) {
-        if (forms.some(f => f.toLowerCase() === targetLower)) {
-            defaultTense = tenseName;
-            break;
-        }
-    }
-
-    // Group tenses by mood (Indicativo / Subjuntivo / Imperativo / Otras).
-    // Tenses not covered by the known groups slot under "Otras" so the UI
-    // never drops data on the floor.
-    const grouped = [];
-    const seen = new Set();
-    for (const moodName of CONJ_MOOD_ORDER) {
-        const cfg = CONJ_MOOD_GROUPS[moodName];
-        const present = cfg.tenses.filter(t => tenses[t]);
-        if (!present.length) continue;
-        grouped.push({ mood: moodName, accent: cfg.accent, tenses: present });
-        present.forEach(t => seen.add(t));
-    }
-    const orphanTenses = tenseNames.filter(t => !seen.has(t));
-    if (orphanTenses.length) {
-        grouped.push({ mood: 'Other', accent: 'rgba(255,255,255,0.3)', tenses: orphanTenses });
-    }
-
-    // The mood that owns the default tense is the one we open on.
-    const defaultMood = (grouped.find(g => g.tenses.includes(defaultTense)) || grouped[0] || {}).mood;
-
-    // Mood toggle — segmented control, rendered only when more than one
-    // mood is present. When there's just one (e.g. only Indicativo tenses
-    // shipped), the toggle is redundant and hidden.
-    const moodToggleHTML = grouped.length > 1 ? `
-        <div class="conj-mood-toggle">
-            ${grouped.map(g => {
-                const active = g.mood === defaultMood ? ' conj-mood-toggle-active' : '';
-                return `<button class="conj-mood-toggle-btn${active}" data-mood="${g.mood}" style="--mood-accent: ${g.accent};" onclick="switchConjMood('${g.mood}')">${g.mood}</button>`;
-            }).join('')}
-        </div>` : '';
-
-    // One tense-toggle row per mood; only the active mood's row is
-    // visible (display toggled by switchConjMood). This keeps the tense
-    // list to a single horizontal row instead of stacking a label +
-    // buttons for every mood.
-    //
-    // The hide-inactive-rows logic merges into one style attribute:
-    // putting `display:none` in a second `style` silently drops it
-    // (browsers take the first `style` attribute only), which is why
-    // subjunctive tenses were showing at initial render.
-    const tenseToggleHTML = grouped.map(g => {
-        const isActiveMood = g.mood === defaultMood;
-        const styleStr = `--mood-accent: ${g.accent};${isActiveMood ? '' : ' display: none;'}`;
-        const btns = g.tenses.map(t => {
-            const active = t === defaultTense ? ' conj-tense-active' : '';
-            const display = CONJ_TENSE_DISPLAY[t] || t;
-            return `<button class="conj-tense-btn${active}" data-tense="${t}" onclick="switchConjTense('${t}')">${display}</button>`;
-        }).join('');
-        return `<div class="conj-tense-toggle" data-mood="${g.mood}" style="${styleStr}">${btns}</div>`;
-    }).join('');
-
-    // Per-tense table. Each form is split stem/ending so the pattern pops.
-    let tenseTables = '';
-    for (const [tenseName, forms] of Object.entries(tenses)) {
-        const hidden = tenseName !== defaultTense ? ' style="display:none"' : '';
-        let rows = '';
-        for (let i = 0; i < forms.length; i++) {
-            const form = forms[i];
-            const isActive = form.toLowerCase() === targetLower;
-            const cls = isActive ? ' conj-active' : '';
-            const { stem, ending } = splitStemEnding(form, infinitive);
-            // Stem is muted; ending is accent-colored — makes regular
-            // patterns rhyme and irregular stems stand out.
-            const formHTML = stem
-                ? `<span class="conj-stem">${stem}</span><span class="conj-ending">${ending}</span>`
-                : `<span class="conj-ending conj-ending-full">${ending}</span>`;
-            rows += `<tr class="${cls}"><td class="conj-pronoun">${CONJ_PRONOUNS_FULL[i]}</td><td class="conj-form">${formHTML}</td></tr>`;
-        }
-        tenseTables += `<table class="conj-table" data-tense="${tenseName}"${hidden}>${rows}</table>`;
-    }
-
-    // --- Header block ---
-    // Infinitive + translation on top; -ar/-er/-ir type badge on the right;
-    // non-finite forms (gerund + past participle) pinned underneath so
-    // they're visible regardless of which tense is currently showing.
-    const infEnd = infinitive.slice(-2).toUpperCase();
-    const typeBadge = ['AR', 'ER', 'IR'].includes(infEnd)
-        ? `<span class="conj-type-badge">-${infEnd}</span>`
-        : '';
-    const translation = conjEntry.translation || '';
-    const gerActive = conjEntry.gerund && conjEntry.gerund.toLowerCase() === targetLower ? ' is-active' : '';
-    const ppActive = conjEntry.past_participle && conjEntry.past_participle.toLowerCase() === targetLower ? ' is-active' : '';
-    const nonFiniteHTML = (conjEntry.gerund || conjEntry.past_participle) ? `
-        <div class="conj-nonfinite">
-            ${conjEntry.gerund ? `<div class="conj-nf-item${gerActive}">
-                <span class="conj-nf-label">gerund</span>
-                <span class="conj-nf-form">${conjEntry.gerund}</span>
-            </div>` : ''}
-            ${conjEntry.past_participle ? `<div class="conj-nf-item${ppActive}">
-                <span class="conj-nf-label">past participle</span>
-                <span class="conj-nf-form">${conjEntry.past_participle}</span>
-            </div>` : ''}
-        </div>` : '';
-
-    // Link to SpanishDict's full paradigm page — the in-app panel covers
-    // the high-frequency tenses; this covers "I want to see every tense
-    // incl. compound + imperative forms we don't ship locally".
-    const sdUrl = `https://www.spanishdict.com/conjugate/${encodeURIComponent(infinitive)}`;
-    const sdLinkHTML = `
-        <a href="${sdUrl}" target="_blank" class="conj-sd-link" title="Full paradigm on SpanishDict">
-            <img src="https://www.google.com/s2/favicons?domain=spanishdict.com&sz=64" width="16" height="16" alt="" style="border-radius:3px">
-            <span>Full paradigm on SpanishDict</span>
-        </a>`;
-
-    // When we're rendering a related verb's paradigm (e.g. haber for a
-    // hay card), add a note above the header so the user knows the
-    // table isn't the card's own verb. Keeps the panel honest: the
-    // paradigm belongs to the related verb, not the lexicalised word
-    // on the card.
-    const relatedNoteHTML = isRelatedParadigm && lemma && relatedLemma ? `
-        <div class="conj-related-note">
-            <strong>${lemma.toLowerCase()}</strong> is a lexicalised form related to <strong>${relatedLemma.toLowerCase()}</strong>. Showing <strong>${relatedLemma.toLowerCase()}</strong>'s full paradigm below.
-        </div>` : '';
-
-    return `
-        <div id="conjugationTable" class="conjugation-panel">
-            <button class="conj-close-btn" onclick="toggleConjugationTable()" aria-label="Close">&times;</button>
-            ${relatedNoteHTML}
-            <div class="conj-header">
-                <div class="conj-title">
-                    <span class="conj-infinitive">${infinitive}</span>
-                    ${typeBadge}
-                </div>
-                ${translation ? `<div class="conj-translation">${translation}</div>` : ''}
-                ${nonFiniteHTML}
-            </div>
-            ${moodToggleHTML}
-            <div class="conj-tense-toggles">
-                ${tenseToggleHTML}
-            </div>
-            <div class="conj-tables-wrap">
-                ${tenseTables}
-            </div>
-            ${sdLinkHTML}
-        </div>
-    `;
-}
-
-function switchConjTense(tenseName) {
-    const panel = document.getElementById('conjugationTable');
-    if (!panel) return;
-    // Match tables + buttons by data-tense (button text now has the
-    // "Subj."/"Imp." prefix stripped for display under the mood label, so
-    // text-based matching no longer works).
-    panel.querySelectorAll('.conj-table').forEach(t => {
-        t.style.display = t.dataset.tense === tenseName ? '' : 'none';
-    });
-    panel.querySelectorAll('.conj-tense-btn').forEach(b => {
-        b.classList.toggle('conj-tense-active', b.dataset.tense === tenseName);
-    });
-}
-
-function switchConjMood(moodName) {
-    const panel = document.getElementById('conjugationTable');
-    if (!panel) return;
-    // Swap mood-toggle active state.
-    panel.querySelectorAll('.conj-mood-toggle-btn').forEach(b => {
-        b.classList.toggle('conj-mood-toggle-active', b.dataset.mood === moodName);
-    });
-    // Show only the active mood's tense-toggle row.
-    panel.querySelectorAll('.conj-tense-toggle').forEach(t => {
-        t.style.display = t.dataset.mood === moodName ? '' : 'none';
-    });
-    // Switch the visible tense to the mood's first (or already-active) one.
-    const activeRow = panel.querySelector(`.conj-tense-toggle[data-mood="${moodName}"]`);
-    if (activeRow) {
-        const active = activeRow.querySelector('.conj-tense-active') || activeRow.querySelector('.conj-tense-btn');
-        if (active) switchConjTense(active.dataset.tense);
-    }
-}
-window.switchConjMood = switchConjMood;
-
-function toggleConjugationTable() {
-    const panel = document.getElementById('conjugationTable');
-    if (panel) {
-        panel.classList.toggle('visible');
-    }
-}
 
 // Scan the cached vocab index for a card matching the given Spanish word.
 // Matches surface or lemma, case-insensitive. Returns the entry's id or null.
@@ -3124,10 +2813,8 @@ window.computeLinesUnderstood = computeLinesUnderstood;
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
 window.loadConjugatedEnglishData = loadConjugatedEnglishData;
-window.toggleConjugationTable = toggleConjugationTable;
 window.toggleSynonymsPanel = toggleSynonymsPanel;
 window.jumpToSynonym = jumpToSynonym;
-window.switchConjTense = switchConjTense;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;
@@ -3237,12 +2924,19 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260427k';
+const ASSET_VERSION = '20260427l';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
     import('./flashcards-modals.js?v=' + ASSET_VERSION).catch(err => {
         _modalsModulePromise = null;
+        throw err;
+    }));
+
+let _conjModulePromise = null;
+const lazyConj = () => _conjModulePromise || (_conjModulePromise =
+    import('./flashcards-conj.js?v=' + ASSET_VERSION).catch(err => {
+        _conjModulePromise = null;
         throw err;
     }));
 
@@ -3270,6 +2964,9 @@ const stubFor = (name, loader) => {
  'showEndOfDeckOptions', 'hideDeckCompleteModal',
  'restartWithIncorrectCards', 'restartAllCards']
     .forEach(name => stubFor(name, lazyModals));
+
+['toggleConjugationTable', 'switchConjMood', 'switchConjTense']
+    .forEach(name => stubFor(name, lazyConj));
 
 // Special: refreshCardMetaPopoverIfOpen runs on every updateCard(). If we
 // triggered the lazy load on every card flip we'd defeat the lazy pattern.
