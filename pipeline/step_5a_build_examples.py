@@ -76,7 +76,6 @@ MAX_EXAMPLES_PER_WORD = 20
 # cap) for maximum-quality runs on big corpora.
 MAX_CANDIDATES = 50_000
 MIN_SENTENCE_WORDS = 3
-MAX_SENTENCE_WORDS = 25
 TOP_N_TRIVIAL = 100           # sentences using only top-N words are trivial
 
 # Combined Spanish + French letter set; harmless to over-match.
@@ -103,21 +102,6 @@ def strip_accents(s):
 
 def tokenize(text):
     return _TOKEN_RE.findall(text.lower())
-
-
-def compute_easiness(spanish_text, word_to_rank):
-    tokens = tokenize(spanish_text)
-    if not tokens:
-        return SENTINEL_RANK
-    ranks = []
-    for t in tokens:
-        rank = word_to_rank.get(t)
-        if rank is None:
-            rank = word_to_rank.get(strip_accents(t))
-        if rank is None:
-            rank = SENTINEL_RANK
-        ranks.append(rank)
-    return int(median(ranks))
 
 
 def clean_subtitle_line(line):
@@ -224,11 +208,37 @@ def load_tatoeba(path):
     return sentences
 
 
-def build_sentence_index(sentences):
-    index = defaultdict(list)
+def build_sentence_index(sentences, word_to_rank, inv_rank_lookup,
+                         phrase_to_inv_rank=None):
+    """One-pass index build. Computes per-sentence scoring metadata once,
+    drops trash (too short/long, trivial, no-inventory), and returns:
+      - records: list[dict] of surviving sentences with precomputed scores
+      - inv_index: dict[token_or_phrase, list[record_idx]] for fast lookup
+
+    Single-token index keys are literal tokens. Wiktionary headwords + the
+    inventory both treat accented and unaccented forms as distinct (à vs a,
+    où vs ou, sé vs se), so the example index does the same.
+
+    Multi-token inventory entries (l', parce que, grand-père, etc.) can't be
+    captured by token-level lookup because the tokenizer regex splits on
+    apostrophes, hyphens, and spaces. Pass them via phrase_to_inv_rank — they
+    get scanned with a precompiled multi-pattern regex per kept sentence,
+    then folded into both inv_ranks (drives tier scoring) and inv_index
+    (drives candidate lookup at scoring time).
+    """
+    phrase_re = None
+    if phrase_to_inv_rank:
+        # Longest-first ordering so "parce que" wins over "que" at overlaps.
+        phrases_sorted = sorted(phrase_to_inv_rank, key=len, reverse=True)
+        phrase_re = re.compile("|".join(re.escape(p) for p in phrases_sorted))
+
+    records = []
+    inv_index = defaultdict(list)
+    drop_short = drop_long = drop_trivial = drop_no_inv = 0
     total = len(sentences)
     report_every = max(1, total // 20)
     t0 = time.time()
+
     for i, (eng, spa) in enumerate(sentences):
         if i % report_every == 0 and i > 0:
             pct = 100 * i / total
@@ -236,37 +246,76 @@ def build_sentence_index(sentences):
             rate = i / elapsed if elapsed > 0 else 0
             remaining = (total - i) / rate if rate > 0 else 0
             sys.stdout.write(
-                f"\r    {pct:5.1f}%  ~{remaining:.0f}s remaining   "
+                f"\r    {pct:5.1f}%  {len(records):,} kept  "
+                f"~{remaining:.0f}s remaining   "
             )
             sys.stdout.flush()
+
         tokens = tokenize(spa)
-        if len(tokens) < MIN_SENTENCE_WORDS or len(tokens) > MAX_SENTENCE_WORDS:
+        length = len(tokens)
+        if length < MIN_SENTENCE_WORDS:
+            drop_short += 1
             continue
-        # Index by literal token. Wiktionary headwords + the inventory both
-        # treat accented and unaccented forms as distinct words (à vs a, où
-        # vs ou, sé vs se), so the example index needs to do the same. The
-        # previous strip_accents key merged them and forced a downstream
-        # _filter_accent dance for accented words.
+        if length > MAX_SENTENCE_LEN:
+            drop_long += 1
+            continue
+
+        # Single rank pass — reused for trivial check and easiness median.
+        ranks = []
+        for t in tokens:
+            r = word_to_rank.get(t)
+            if r is None:
+                r = word_to_rank.get(strip_accents(t))
+            if r is None:
+                r = SENTINEL_RANK
+            ranks.append(r)
+
+        if all(r <= TOP_N_TRIVIAL for r in ranks):
+            drop_trivial += 1
+            continue
+
+        # Inventory ranks present in this sentence (deduped, sorted for
+        # stable downstream consumption + future bisect-based queries).
+        inv_ranks_set = set()
+        for t in tokens:
+            ir = inv_rank_lookup.get(t)
+            if ir is not None:
+                inv_ranks_set.add(ir)
+
+        # Phrase pass: catch multi-token inventory entries the tokenizer
+        # splits (l', parce que, grand-père, etc.).
+        matched_phrases = ()
+        if phrase_re is not None:
+            matched_phrases = set(phrase_re.findall(spa.lower()))
+            for p in matched_phrases:
+                inv_ranks_set.add(phrase_to_inv_rank[p])
+
+        if not inv_ranks_set:
+            drop_no_inv += 1
+            continue
+
+        easiness = int(median(ranks))
+        rec_idx = len(records)
+        records.append({
+            "eng": eng,
+            "spa": spa,
+            "length": length,
+            "easiness": easiness,
+            "inv_ranks": tuple(sorted(inv_ranks_set)),
+        })
         seen = set()
         for t in tokens:
             if t not in seen:
                 seen.add(t)
-                index[t].append(i)
+                inv_index[t].append(rec_idx)
+        for p in matched_phrases:
+            inv_index[p].append(rec_idx)
+
     elapsed = time.time() - t0
-    print(f"\r    Done in {elapsed:.1f}s" + " " * 30)
-    return index
-
-
-def is_trivial(spanish_text, word_to_rank):
-    """True if every token is in the top-N most common words."""
-    tokens = tokenize(spanish_text)
-    if not tokens:
-        return True
-    return all(
-        (word_to_rank.get(t) or word_to_rank.get(strip_accents(t)) or SENTINEL_RANK)
-        <= TOP_N_TRIVIAL
-        for t in tokens
-    )
+    print(f"\r    Done in {elapsed:.1f}s — kept {len(records):,} of {total:,} "
+          f"(dropped: {drop_short} short, {drop_long} long, "
+          f"{drop_trivial} trivial, {drop_no_inv} no-inv)" + " " * 10)
+    return records, inv_index
 
 
 # Co-study scoring. A candidate sentence's overlap_tier counts how many of
@@ -286,89 +335,267 @@ LENGTH_PENALTY_WEIGHT = 5  # per extra word above PREFERRED_MAX_WORDS
 MAX_SENTENCE_LEN = 18    # hard reject above this
 
 
-def overlap_tier(spanish_text, target_rank, inv_rank_lookup):
-    """Count inventory words within ±OVERLAP_WINDOW of target rank.
-
-    Capped at MAX_OVERLAP_TIER — having 2 co-study words is enough,
-    more doesn't help and would bias toward long sentences.
-    """
-    if not inv_rank_lookup:
-        return 0
-    count = 0
-    for t in tokenize(spanish_text):
-        # Literal lookup; inv_rank_lookup is keyed by literal surface words.
-        rank = inv_rank_lookup.get(t)
-        if rank is not None and rank != target_rank:
-            if abs(target_rank - rank) <= OVERLAP_WINDOW:
-                count += 1
-                if count >= MAX_OVERLAP_TIER:
-                    return MAX_OVERLAP_TIER
-    return count
-
-
-def select_examples(candidate_indices, sentences, word_to_rank,
-                    source="tatoeba", max_examples=MAX_EXAMPLES_PER_WORD,
-                    exclude_targets=None, target_rank=0, inv_rank_lookup=None,
-                    word=""):
+def select_examples(record_indices, records, source="tatoeba",
+                    max_examples=MAX_EXAMPLES_PER_WORD,
+                    exclude_targets=None, target_rank=0, word=""):
     # Cap candidates with a per-word deterministic RNG so reruns are stable —
     # same word always samples the same candidates regardless of when step_5a
     # runs. Without this, rerunning step_5a churns example_raw entries for any
     # word with >MAX_CANDIDATES candidates, silently invalidating downstream
     # sense_assignments that reference example indices.
-    if len(candidate_indices) > MAX_CANDIDATES:
+    if len(record_indices) > MAX_CANDIDATES:
         seed = zlib.crc32(word.encode("utf-8")) if word else 0
         rng = random.Random(seed)
-        candidate_indices = rng.sample(candidate_indices, MAX_CANDIDATES)
+        record_indices = rng.sample(record_indices, MAX_CANDIDATES)
 
     scored = []
     seen_targets = set(exclude_targets) if exclude_targets else set()
-    for idx in candidate_indices:
-        eng, spa = sentences[idx]
+    for idx in record_indices:
+        rec = records[idx]
+        spa = rec["spa"]
         key = spa.lower().strip()
         if key in seen_targets:
             continue
         seen_targets.add(key)
-        # Skip trivial dialogue (all top-100 words)
-        if is_trivial(spa, word_to_rank):
-            continue
-        # Hard reject sentences that are too long
-        word_count = len(tokenize(spa))
-        if word_count > MAX_SENTENCE_LEN:
-            continue
-        easiness = compute_easiness(spa, word_to_rank)
-        tier = overlap_tier(spa, target_rank, inv_rank_lookup)
-        length_pen = max(0, word_count - PREFERRED_MAX_WORDS) * LENGTH_PENALTY_WEIGHT
+
+        # Co-study neighbours: inventory ranks within ±OVERLAP_WINDOW of
+        # target_rank, excluding target itself. Full set (uncapped) drives
+        # greedy set-cover; tier is the capped count used for sort ordering
+        # (cap avoids long-sentence bias in tiebreak).
+        neighbours = frozenset(
+            r for r in rec["inv_ranks"]
+            if r != target_rank and abs(r - target_rank) <= OVERLAP_WINDOW
+        )
+        tier = min(MAX_OVERLAP_TIER, len(neighbours))
+
+        length_pen = max(0, rec["length"] - PREFERRED_MAX_WORDS) * LENGTH_PENALTY_WEIGHT
+
         scored.append({
-            "target": spa, "english": eng, "source": source,
-            "easiness": easiness,
-            "_tier": tier, "_length_pen": length_pen,
+            "target": spa,
+            "english": rec["eng"],
+            "source": source,
+            "easiness": rec["easiness"],
+            "_tier": tier,
+            "_length_pen": length_pen,
+            "_neighbours": neighbours,
         })
 
-    # Sort: higher overlap tier first, then lower (easiness + length penalty)
+    # Sort: higher overlap tier first, then lower (easiness + length penalty).
+    # This drives the greedy tiebreak — within ties on uncovered count, the
+    # earlier (better-scored) candidate wins.
     scored.sort(key=lambda x: (-x["_tier"], x["easiness"] + x["_length_pen"]))
 
-    # Diversity: pick from thirds within the top candidates
-    pool = scored[:max_examples * 3]  # generous pool
-    if len(pool) <= max_examples:
-        selected = pool
-    else:
-        third = len(pool) // 3
-        buckets = [pool[:third], pool[third:2*third], pool[2*third:]]
-        per_bucket = max_examples // 3
-        selected = buckets[0][:per_bucket] + buckets[1][:per_bucket] + buckets[2][:per_bucket]
-        # Fill remainder from whatever's left
-        used = set(id(x) for x in selected)
-        for ex in pool:
-            if len(selected) >= max_examples:
-                break
-            if id(ex) not in used:
-                selected.append(ex)
+    # Greedy set-cover diversity. From the sorted pool, filter to tier > 0
+    # (sentences with no nearby co-study vocab don't help) and at each step
+    # pick the candidate that introduces the most *uncovered* nearby-rank
+    # neighbours. Stops when no candidate adds anything new OR when
+    # max_examples reached. Pool capped so the inner loop stays cheap on
+    # high-frequency words; widening it past 200 produces diminishing returns
+    # because rare neighbours are usually already covered by top-tier sentences.
+    GREEDY_POOL_SIZE = max(200, max_examples * 10)
+    pool = [c for c in scored if c["_tier"] > 0][:GREEDY_POOL_SIZE]
+
+    selected = []
+    covered = set()
+    while len(selected) < max_examples and pool:
+        best_idx = None
+        best_new = 0
+        for i, c in enumerate(pool):
+            new_count = len(c["_neighbours"] - covered)
+            if new_count > best_new:
+                best_new = new_count
+                best_idx = i
+        if best_idx is None:
+            break  # no remaining candidate adds uncovered neighbours
+        c = pool.pop(best_idx)
+        selected.append(c)
+        covered |= c["_neighbours"]
+
+    # Tier-0 fallback: if greedy found nothing (the word's candidates all
+    # have tier=0 — no nearby co-study vocab in any sentence), fall back to
+    # easiness-sorted candidates so every word with at least one indexed
+    # candidate gets at least one example. Only triggers on len(selected)==0
+    # so the diversity goal is preserved for words with co-study evidence.
+    if not selected and scored:
+        fallback = sorted(scored, key=lambda x: x["easiness"] + x["_length_pen"])
+        selected = fallback[:max_examples]
 
     # Remove internal scoring fields
     for ex in selected:
         del ex["_tier"]
         del ex["_length_pen"]
+        del ex["_neighbours"]
     return selected
+
+
+def _backfill_rare_examples(output, inventory, raw_es_path, raw_en_path,
+                            word_to_rank, inv_rank_lookup, phrase_to_inv_rank,
+                            max_per_word, threshold, restrict_to=None):
+    """Streaming pass over the raw OpenSubs files to backfill examples for
+    inventory words that finished the main pass with < threshold examples.
+
+    Why streaming: the raw corpus is ~3 GB / ~30M parallel pairs. The main
+    pass works from a 5M-pair stride-sampled cache (~30 MB), so rare words
+    with corpus_count ≤ 10 typically end up with 1-2 examples. Streaming the
+    raw file once, retaining only matches for the ~few-thousand undersupplied
+    target words, costs ~5 min wall + ~250 MB peak — far cheaper than
+    rebuilding the cache from the full corpus.
+
+    Existing examples are preserved verbatim (so example indices stay stable
+    for downstream sense_assignments). New examples are appended.
+    """
+    # 1. Identify targets
+    targets = {}  # word_lower -> (target_rank, original_word, slots)
+    target_words_set = set()       # single-token target lookups
+    target_phrase_words = set()    # phrase target lookups
+    for i, e in enumerate(inventory):
+        wl = e["word"].lower()
+        if restrict_to is not None and wl not in restrict_to:
+            continue
+        n = len(output.get(e["word"], []))
+        if n >= threshold:
+            continue
+        slots = max_per_word - n
+        if slots <= 0:
+            continue
+        targets[wl] = (i, e["word"], slots)
+        if any(c in wl for c in " '-"):
+            target_phrase_words.add(wl)
+        else:
+            target_words_set.add(wl)
+
+    if not targets:
+        print("Backfill: no undersupplied words.")
+        return
+    print(f"Backfill: {len(targets):,} undersupplied words "
+          f"(<{threshold} examples). Streaming raw OpenSubs...")
+
+    # Reuse the full-inventory phrase regex so inv_ranks gets the same scoring
+    # signal it would in the main indexer (preserves tier accuracy).
+    full_phrase_re = None
+    if phrase_to_inv_rank:
+        phrases_sorted = sorted(phrase_to_inv_rank, key=len, reverse=True)
+        full_phrase_re = re.compile("|".join(re.escape(p) for p in phrases_sorted))
+
+    # 2. Stream the raw files. Cap candidates per target to avoid runaway
+    # memory on marginally-undersupplied common-ish words.
+    candidates_by_target = defaultdict(list)
+    cap_per_target = max_per_word * 5
+    line_count = 0
+    matched_count = 0
+    drop_short = drop_long = drop_trivial = drop_no_inv = 0
+    t0 = time.time()
+
+    with open(raw_es_path, encoding="utf-8") as f_es, \
+         open(raw_en_path, encoding="utf-8") as f_en:
+        for line_es, line_en in zip(f_es, f_en):
+            line_count += 1
+            if line_count % 1_000_000 == 0:
+                elapsed = time.time() - t0
+                rate = line_count / elapsed if elapsed > 0 else 0
+                sys.stdout.write(
+                    f"\r    {line_count:,} lines  "
+                    f"{matched_count:,} matches  "
+                    f"{rate/1000:.0f}k lines/s   "
+                )
+                sys.stdout.flush()
+
+            spa = clean_subtitle_line(line_es)
+            eng = clean_subtitle_line(line_en)
+            if not spa or not eng:
+                continue
+
+            tokens = tokenize(spa)
+            length = len(tokens)
+            if length < MIN_SENTENCE_WORDS:
+                drop_short += 1
+                continue
+            if length > MAX_SENTENCE_LEN:
+                drop_long += 1
+                continue
+
+            ranks = []
+            for t in tokens:
+                r = word_to_rank.get(t)
+                if r is None:
+                    r = word_to_rank.get(strip_accents(t))
+                if r is None:
+                    r = SENTINEL_RANK
+                ranks.append(r)
+            if all(r <= TOP_N_TRIVIAL for r in ranks):
+                drop_trivial += 1
+                continue
+
+            inv_ranks_set = set()
+            for t in tokens:
+                ir = inv_rank_lookup.get(t)
+                if ir is not None:
+                    inv_ranks_set.add(ir)
+            spa_lower = spa.lower()
+            matched_phrases = ()
+            if full_phrase_re is not None:
+                matched_phrases = set(full_phrase_re.findall(spa_lower))
+                for p in matched_phrases:
+                    inv_ranks_set.add(phrase_to_inv_rank[p])
+            if not inv_ranks_set:
+                drop_no_inv += 1
+                continue
+
+            # Target match: tokens ∩ target_words_set, plus matched_phrases ∩
+            # target_phrase_words (the latter requires the phrase to be both a
+            # target AND have shown up in the regex scan above).
+            matched_targets = set()
+            for t in tokens:
+                if t in target_words_set:
+                    matched_targets.add(t)
+            if matched_phrases and target_phrase_words:
+                matched_targets |= matched_phrases & target_phrase_words
+            if not matched_targets:
+                continue
+
+            matched_count += 1
+            easiness = int(median(ranks))
+            record = {
+                "eng": eng,
+                "spa": spa,
+                "length": length,
+                "easiness": easiness,
+                "inv_ranks": tuple(sorted(inv_ranks_set)),
+            }
+            for t in matched_targets:
+                bucket = candidates_by_target[t]
+                if len(bucket) < cap_per_target:
+                    bucket.append(record)
+
+    elapsed = time.time() - t0
+    print(f"\r    Done in {elapsed:.1f}s — scanned {line_count:,} lines, "
+          f"{matched_count:,} target-matching records collected "
+          f"(dropped: {drop_short} short, {drop_long} long, "
+          f"{drop_trivial} trivial, {drop_no_inv} no-inv)" + " " * 5)
+
+    # 3. Score and select per target. Re-uses select_examples, which pulls
+    # in greedy + tier-0 fallback for free.
+    appended_total = 0
+    words_topped_up = 0
+    for wl, records in candidates_by_target.items():
+        target_rank, original_word, slots = targets[wl]
+        existing_for_word = output.get(original_word, [])
+        existing_keys = {ex["target"].lower().strip() for ex in existing_for_word}
+        new_examples = select_examples(
+            list(range(len(records))), records,
+            source="opensubtitles",
+            max_examples=slots,
+            exclude_targets=existing_keys,
+            target_rank=target_rank,
+            word=wl,
+        )
+        if new_examples:
+            output[original_word] = existing_for_word + new_examples
+            appended_total += len(new_examples)
+            words_topped_up += 1
+
+    print(f"  added {appended_total:,} examples to {words_topped_up:,} "
+          f"of {len(targets):,} target words")
 
 
 def parse_args():
@@ -422,6 +649,13 @@ def parse_args():
              "(default %(default)s). Narrower keeps difficulty tightly "
              "matched; wider gives more candidate sentences a tier > 0."
     )
+    parser.add_argument(
+        "--no-backfill-rare", action="store_true",
+        help="Disable the post-pass streaming scan of the raw OpenSubs file "
+             "for inventory words that finished with < MAX_EXAMPLES_PER_WORD "
+             "examples. Default: backfill is on. The cache is stride-sampled, "
+             "so rare words underflow without it; off only for diagnostics."
+    )
     return parser.parse_args()
 
 
@@ -445,8 +679,8 @@ def main():
     args = parse_args()
     _bind_paths(args.language)
 
-    # Apply runtime tunables (mutate module globals so the helper functions
-    # — overlap_tier, select_examples — see the new values).
+    # Apply runtime tunables (mutate module globals so build_sentence_index
+    # and select_examples see the new values).
     global MAX_CANDIDATES, MAX_OVERLAP_TIER, OVERLAP_WINDOW
     MAX_CANDIDATES = args.max_candidates if args.max_candidates > 0 else 10**12
     MAX_OVERLAP_TIER = args.max_overlap_tier
@@ -463,6 +697,25 @@ def main():
     with open(RANKS_FILE, encoding="utf-8") as f:
         word_to_rank = json.load(f)
     print(f"  {len(word_to_rank)} rank entries")
+
+    # Inventory rank lookup: literal surface word -> position in inventory.
+    # Built before indexing so the indexer can drop no-inventory sentences in
+    # one pass. Keyed by literal token (matches the sentence index keys).
+    inv_rank_lookup = {}
+    for i, e in enumerate(inventory):
+        wl = e["word"].lower()
+        if wl not in inv_rank_lookup:
+            inv_rank_lookup[wl] = i
+
+    # Multi-token inventory entries (hyphen/apostrophe/space). The tokenizer
+    # regex splits on these chars, so per-token lookup never finds them —
+    # build_sentence_index does a phrase scan to fill the gap.
+    phrase_to_inv_rank = {}
+    for i, e in enumerate(inventory):
+        w = e["word"].lower()
+        if any(c in w for c in " '-") and w not in phrase_to_inv_rank:
+            phrase_to_inv_rank[w] = i
+    print(f"  {len(phrase_to_inv_rank)} multi-token entries (phrase-indexed)")
 
     # --- Corpora ---
     if args.tenth:
@@ -484,13 +737,14 @@ def main():
     print(f"  {len(tat_sentences)} sentence pairs")
 
     print("Building Tatoeba sentence index...")
-    tat_index = build_sentence_index(tat_sentences)
-    print(f"  {len(tat_index)} unique normalized tokens indexed")
+    tat_records, tat_index = build_sentence_index(tat_sentences, word_to_rank, inv_rank_lookup, phrase_to_inv_rank)
+    print(f"  {len(tat_index)} unique tokens indexed across {len(tat_records):,} kept sentences")
+    del tat_sentences  # records carry eng/spa from here on
 
     # --- OpenSubtitles (optional) ---
     if args.no_opensubtitles:
         print("Skipping OpenSubtitles (--no-opensubtitles).")
-        sub_sentences = []
+        sub_records = []
         sub_index = {}
     else:
         print(f"Loading OpenSubtitles (first {max_lines:,} lines)...")
@@ -498,18 +752,12 @@ def main():
         print(f"  {len(sub_sentences)} sentence pairs after cleaning")
 
         print("Building OpenSubtitles sentence index...")
-        sub_index = build_sentence_index(sub_sentences)
-        print(f"  {len(sub_index)} unique normalized tokens indexed")
+        sub_records, sub_index = build_sentence_index(sub_sentences, word_to_rank, inv_rank_lookup, phrase_to_inv_rank)
+        print(f"  {len(sub_index)} unique tokens indexed across {len(sub_records):,} kept sentences")
+        del sub_sentences
 
     # --- Match and merge ---
     print("Matching examples to vocabulary...")
-    # Build rank lookup: literal surface word -> position in inventory.
-    # The sentence index is keyed by literal token, so this must match.
-    inv_rank_lookup = {}
-    for i, e in enumerate(inventory):
-        wl = e["word"].lower()
-        if wl not in inv_rank_lookup:
-            inv_rank_lookup[wl] = i
 
     # --word mode: load existing examples_raw and regenerate only targeted
     # entries. All other entries stay byte-identical, so downstream sense
@@ -527,9 +775,6 @@ def main():
             print(f"\n--word mode: {OUTPUT_FILE} not found; will create with "
                   f"only the {len(target_words)} targeted entries")
 
-    coverage = {"0": 0, "1-2": 0, "3-5": 0, "5+": 0}
-    total_examples = 0
-
     for i, entry in enumerate(inventory):
         word_lower = entry["word"].lower()
 
@@ -539,10 +784,9 @@ def main():
         # Tatoeba first (preferred). Index lookups are now strict — sentences
         # for "ou" don't include "où"-content and vice versa, so no post-filter.
         tat_candidates = tat_index.get(word_lower, [])
-        examples = select_examples(tat_candidates, tat_sentences, word_to_rank,
+        examples = select_examples(tat_candidates, tat_records,
                                    source="tatoeba",
-                                   target_rank=i, inv_rank_lookup=inv_rank_lookup,
-                                   word=word_lower)
+                                   target_rank=i, word=word_lower)
 
         # Fill remaining slots with OpenSubtitles
         remaining = MAX_EXAMPLES_PER_WORD - len(examples)
@@ -552,11 +796,10 @@ def main():
                 # Pass Tatoeba targets to avoid cross-corpus duplicates
                 existing_targets = {ex["target"].lower().strip() for ex in examples}
                 sub_examples = select_examples(
-                    sub_candidates, sub_sentences, word_to_rank,
+                    sub_candidates, sub_records,
                     source="opensubtitles", max_examples=remaining,
                     exclude_targets=existing_targets,
-                    target_rank=i, inv_rank_lookup=inv_rank_lookup,
-                    word=word_lower,
+                    target_rank=i, word=word_lower,
                 )
                 examples.extend(sub_examples)
 
@@ -566,7 +809,26 @@ def main():
             # Targeted regeneration produced zero examples — drop stale entry.
             del output[entry["word"]]
 
-        n = len(examples)
+    # Backfill rare words from the raw OpenSubs file. Default on; opt-out
+    # for diagnostics. Skipped when --no-opensubtitles (nothing to backfill
+    # from). In --word mode, restricted to the targeted words so non-targeted
+    # entries stay byte-identical.
+    if not args.no_backfill_rare and not args.no_opensubtitles:
+        _backfill_rare_examples(
+            output, inventory,
+            OPENSUBS_ES, OPENSUBS_EN,
+            word_to_rank, inv_rank_lookup, phrase_to_inv_rank,
+            max_per_word=MAX_EXAMPLES_PER_WORD,
+            threshold=MAX_EXAMPLES_PER_WORD,
+            restrict_to=target_words,
+        )
+
+    # Recompute coverage from the final output dict so backfill counts land
+    # in the printed breakdown.
+    coverage = {"0": 0, "1-2": 0, "3-5": 0, "5+": 0}
+    total_examples = 0
+    for entry in inventory:
+        n = len(output.get(entry["word"], []))
         total_examples += n
         if n == 0:
             coverage["0"] += 1
