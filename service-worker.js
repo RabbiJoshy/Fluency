@@ -9,12 +9,12 @@
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v14';
+const CACHE_NAME = 'flashcards-v15';
 
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260427g';
+const ASSET_VERSION = '20260427h';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -41,7 +41,8 @@ const urlsToCache = [
   `/js/progress.js?v=${ASSET_VERSION}`,
   `/js/ui.js?v=${ASSET_VERSION}`,
   `/js/vocab.js?v=${ASSET_VERSION}`,
-  `/js/flashcards.js?v=${ASSET_VERSION}`
+  `/js/flashcards.js?v=${ASSET_VERSION}`,
+  `/js/flashcards-modals.js?v=${ASSET_VERSION}`
 ];
 
 self.addEventListener('install', event => {

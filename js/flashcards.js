@@ -4043,158 +4043,22 @@ window.navigateBack = navigateBack;
 window.popupFoundWord = popupFoundWord;
 
 // ---------------------------------------------------------------------------
-// Card metadata popover (debug info — per-sense source + per-example method)
+// Card metadata popover button wiring — eager, button is in DOM from boot.
+// The popover implementation lives in flashcards-modals.js; the lazy stub
+// for window.toggleCardMetaPopover triggers the dynamic import on first
+// click. Other popover handlers (close, outside-click, flag button) wire
+// themselves at module-load time inside flashcards-modals.js — they only
+// need to fire when the popover is open, which can only happen after the
+// modals module has loaded.
 // ---------------------------------------------------------------------------
-
-function _escapeHtml(s) {
-    if (s == null) return '';
-    return String(s).replace(/[&<>"']/g, c => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    })[c]);
-}
-
-function _renderCardMetaBody(card) {
-    if (!card) return '<div class="card-meta-empty">No card selected.</div>';
-    const showFlags = !!(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
-    const flagBtn = (path, value) => showFlags
-        ? `<button class="card-meta-flag-row" type="button" data-path="${_escapeHtml(path)}" data-value="${_escapeHtml(value == null ? '' : String(value))}" title="Flag this field">flag</button>`
-        : '';
-
-    const lines = [];
-    const id = card.fullId || card.id || '';
-    lines.push('<div class="card-meta-section">');
-    lines.push('<dl class="card-meta-kv">');
-    const wordVal = card.targetWord || card.word || '';
-    lines.push(`<dt>word</dt><dd>${_escapeHtml(wordVal)}${flagBtn('word', wordVal)}</dd>`);
-    if (card.lemma && card.lemma !== wordVal) {
-        lines.push(`<dt>lemma</dt><dd>${_escapeHtml(card.lemma)}${flagBtn('lemma', card.lemma)}</dd>`);
-    }
-    if (id) lines.push(`<dt>id</dt><dd>${_escapeHtml(id)}</dd>`);
-    if (card.rank) lines.push(`<dt>rank</dt><dd>${_escapeHtml(card.rank)}</dd>`);
-    if (card.corpusCount != null) lines.push(`<dt>corpus</dt><dd>${_escapeHtml(card.corpusCount)}</dd>`);
-    lines.push('</dl></div>');
-
-    const meanings = card.meanings || [];
-    lines.push('<div class="card-meta-section"><h4>Meanings</h4>');
-    if (!meanings.length) {
-        lines.push('<div class="card-meta-empty">No meanings.</div>');
-    } else {
-        lines.push('<ul class="card-meta-list">');
-        meanings.forEach((m, i) => {
-            const isCurrent = (typeof currentMeaningIndex === 'number' && i === currentMeaningIndex);
-            const tags = [];
-            if (m.source) tags.push(`<span class="card-meta-tag source">src: ${_escapeHtml(m.source)}</span>`);
-            if (m.assignment_method) tags.push(`<span class="card-meta-tag method">m: ${_escapeHtml(m.assignment_method)}</span>`);
-            if (m.unassigned) tags.push('<span class="card-meta-tag flag">unassigned</span>');
-            if (m.pos === 'SENSE_CYCLE') tags.push('<span class="card-meta-tag flag">SENSE_CYCLE</span>');
-            const pctText = (typeof m.percentage === 'number') ? (m.percentage * 100).toFixed(0) + '%' : '';
-            const meaningText = m.meaning || m.translation || '';
-            const label = `${_escapeHtml(m.pos || '?')} · ${_escapeHtml(meaningText)}${pctText ? ' · ' + pctText : ''}`;
-            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${label}${flagBtn(`sense:${i}`, meaningText)}<div>${tags.join(' ') || '<span class="card-meta-empty">no tags</span>'}</div></li>`);
-        });
-        lines.push('</ul>');
-    }
-    lines.push('</div>');
-
-    // Per-example methods for the currently displayed meaning.
-    const curMeaning = meanings[currentMeaningIndex] || meanings[0];
-    const exs = (curMeaning && curMeaning.allExamples) || [];
-    const senseIdx = (typeof currentMeaningIndex === 'number') ? currentMeaningIndex : 0;
-    lines.push('<div class="card-meta-section"><h4>Examples (current meaning)</h4>');
-    if (!exs.length) {
-        lines.push('<div class="card-meta-empty">No examples.</div>');
-    } else {
-        lines.push('<ul class="card-meta-list">');
-        exs.forEach((ex, i) => {
-            const isCurrent = (typeof currentExampleIndex === 'number' && i === (currentExampleIndex % exs.length));
-            const method = ex.assignment_method ? `<span class="card-meta-tag method">m: ${_escapeHtml(ex.assignment_method)}</span>` : '<span class="card-meta-empty">no method</span>';
-            const tsrc = ex.translation_source ? `<span class="card-meta-tag source">t: ${_escapeHtml(ex.translation_source)}</span>` : '';
-            const spanish = ex.spanish || ex.targetSentence || ex.original || '';
-            lines.push(`<li${isCurrent ? ' class="card-meta-current"' : ''}>${method} ${tsrc}${flagBtn(`example:${senseIdx}:${i}`, spanish)}<div class="card-meta-ex">${_escapeHtml(spanish)}</div></li>`);
-        });
-        lines.push('</ul>');
-    }
-    lines.push('</div>');
-
-    return lines.join('');
-}
-
-function showCardMetaPopover() {
-    const pop = document.getElementById('cardMetaPopover');
-    const body = document.getElementById('cardMetaBody');
-    const title = document.getElementById('cardMetaTitle');
-    const footer = document.getElementById('cardMetaFooter');
-    if (!pop || !body) return;
-    const card = (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
-    if (title) title.textContent = card ? `${card.targetWord || card.word || 'Card'} — info` : 'Card info';
-    body.innerHTML = _renderCardMetaBody(card);
-    body.querySelectorAll('.card-meta-flag-row').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const path = btn.dataset.path;
-            const value = btn.dataset.value;
-            if (card && typeof flagWord === 'function') flagWord(card, path, value);
-            btn.classList.add('flagged');
-        });
-    });
-    if (footer) {
-        const showFlagBtn = !!(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
-        footer.style.display = showFlagBtn ? '' : 'none';
-    }
-    pop.hidden = false;
-    pop.setAttribute('aria-hidden', 'false');
-}
-
-function hideCardMetaPopover() {
-    const pop = document.getElementById('cardMetaPopover');
-    if (!pop) return;
-    pop.hidden = true;
-    pop.setAttribute('aria-hidden', 'true');
-}
-
-function toggleCardMetaPopover() {
-    const pop = document.getElementById('cardMetaPopover');
-    if (!pop) return;
-    if (pop.hidden) showCardMetaPopover();
-    else hideCardMetaPopover();
-}
-
-function refreshCardMetaPopoverIfOpen() {
-    const pop = document.getElementById('cardMetaPopover');
-    if (!pop || pop.hidden) return;
-    showCardMetaPopover();
-}
-window.refreshCardMetaPopoverIfOpen = refreshCardMetaPopoverIfOpen;
-
-// Wire up the button + outside-click dismiss + refresh on card change.
-(function _initCardMetaPopover() {
+(function _initCardMetaButton() {
     function attach() {
         const btn = document.getElementById('cardMetaBtn');
-        const pop = document.getElementById('cardMetaPopover');
-        const closeBtn = document.getElementById('cardMetaClose');
-        if (!btn || !pop) return;
+        if (!btn) return;
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            toggleCardMetaPopover();
+            window.toggleCardMetaPopover();
         });
-        if (closeBtn) closeBtn.addEventListener('click', hideCardMetaPopover);
-        const flagBtn = document.getElementById('cardMetaFlagBtn');
-        if (flagBtn) {
-            flagBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const card = (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
-                if (card && typeof flagWord === 'function') flagWord(card);
-                hideCardMetaPopover();
-            });
-        }
-        const content = document.getElementById('cardMetaContent');
-        document.addEventListener('click', (e) => {
-            if (pop.hidden) return;
-            if ((content && content.contains(e.target)) || btn.contains(e.target)) return;
-            hideCardMetaPopover();
-        });
-        // Refresh contents when the popover is open and the card changes.
-        // (Driven by refreshCardMetaPopoverIfOpen() calls inside updateCard.)
     }
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', attach, { once: true });
@@ -4202,10 +4066,6 @@ window.refreshCardMetaPopoverIfOpen = refreshCardMetaPopoverIfOpen;
         attach();
     }
 })();
-
-window.toggleCardMetaPopover = toggleCardMetaPopover;
-window.showCardMetaPopover = showCardMetaPopover;
-window.hideCardMetaPopover = hideCardMetaPopover;
 
 // Delegated tap-to-expand for clamped meaning rows. One listener at the
 // document root replaces the per-row addEventListener that updateCard()
@@ -4246,3 +4106,58 @@ document.addEventListener('click', (e) => {
         attach();
     }
 })();
+
+// ===========================================================================
+// Lazy-load stubs for extras modules
+// ===========================================================================
+//
+// flashcards-modals.js holds card-meta popover, lyric breakdown, POS popup,
+// nav stack, homograph peek, and end-of-deck modal — all event-driven, none
+// needed at boot. These stubs install on boot; the dynamic import resolves
+// on first user interaction; the loaded module's top-level `window.X = X`
+// overwrites each stub with the real function. Subsequent calls hit the
+// real function directly.
+//
+// On rejection (e.g. transient network failure) the cached promise is nulled
+// so the next click retries — a flaky cellular connection shouldn't lock
+// the user out of card-meta for the session.
+//
+// The STUB symbol marker + post-resolve assertion catches the case where a
+// name in the stub list isn't actually exported by the lazy module (typo /
+// drift); without it, the stub would infinite-recurse into itself.
+
+const ASSET_VERSION = '20260427h';
+
+let _modalsModulePromise = null;
+const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
+    import('./flashcards-modals.js?v=' + ASSET_VERSION).catch(err => {
+        _modalsModulePromise = null;
+        throw err;
+    }));
+
+const STUB = Symbol('lazyStub');
+const stubFor = (name, loader) => {
+    const fn = (...args) => loader().then(() => {
+        if (window[name] === fn) {
+            console.error('Lazy module loaded but did not export', name);
+            return;
+        }
+        return window[name](...args);
+    }).catch(err => {
+        console.error('Lazy load failed for', name, err);
+    });
+    fn[STUB] = true;
+    window[name] = fn;
+};
+
+['toggleCardMetaPopover', 'showCardMetaPopover', 'hideCardMetaPopover']
+    .forEach(name => stubFor(name, lazyModals));
+
+// Special: refreshCardMetaPopoverIfOpen runs on every updateCard(). If we
+// triggered the lazy load on every card flip we'd defeat the lazy pattern.
+// Instead, no-op when modals isn't loaded — the popover can't be open.
+window.refreshCardMetaPopoverIfOpen = () => {
+    if (_modalsModulePromise) {
+        _modalsModulePromise.then(() => window.refreshCardMetaPopoverIfOpen());
+    }
+};
