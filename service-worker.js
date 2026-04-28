@@ -6,11 +6,41 @@
 // Trade-off: a deploy takes one extra page load to roll out (visit N shows
 // stale assets but populates the cache; visit N+1 shows fresh). For an
 // install-grade PWA used daily, that's an acceptable price for instant boot.
-const CACHE_NAME = 'flashcards-v11';
+// Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
+// are deleted in the activate handler, so a bump forces the new pre-cache
+// list to be rebuilt on next install.
+const CACHE_NAME = 'flashcards-v12';
+
+// Single source of truth for the module/CSS version tags. Must match
+// js/main.js's import URLs and index.html's modulepreload links. When you
+// bump the ?v= tags, change this and bump CACHE_NAME above.
+const ASSET_VERSION = '20260427f';
+
+// Pre-cache the boot-critical static assets on install. Without this, the
+// first install populates the cache lazily — visit 1 doesn't go through
+// the SW at all (it's not registered yet), and visit 2 has to fetch each
+// asset from network before stale-while-revalidate has anything to serve.
+// With pre-cache, visit 2 hits the SW with a fully-warm cache and the app
+// boots offline-fast even on first reload after install.
 const urlsToCache = [
   '/',
   '/index.html',
-  '/config/artists.json'
+  '/css/style.css',
+  '/config/config.json',
+  '/config/cefr_levels.json',
+  '/config/artists.json',
+  `/js/main.js?v=${ASSET_VERSION}`,
+  `/js/state.js?v=${ASSET_VERSION}`,
+  `/js/speech.js?v=${ASSET_VERSION}`,
+  `/js/artist-ui.js?v=${ASSET_VERSION}`,
+  `/js/auth.js?v=${ASSET_VERSION}`,
+  `/js/spotify.js?v=${ASSET_VERSION}`,
+  `/js/estimation.js?v=${ASSET_VERSION}`,
+  `/js/config.js?v=${ASSET_VERSION}`,
+  `/js/progress.js?v=${ASSET_VERSION}`,
+  `/js/ui.js?v=${ASSET_VERSION}`,
+  `/js/vocab.js?v=${ASSET_VERSION}`,
+  `/js/flashcards.js?v=${ASSET_VERSION}`
 ];
 
 self.addEventListener('install', event => {

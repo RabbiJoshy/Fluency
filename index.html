@@ -19,6 +19,23 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Module preloads. Without these the browser waits to discover the
+         imports inside main.js before kicking off the per-module fetches,
+         which serializes ~11 round trips behind the main.js parse step.
+         Preload starts them all in parallel during HTML parse. Versions
+         must stay in lockstep with main.js's import URLs. -->
+    <link rel="modulepreload" href="js/main.js?v=20260427f">
+    <link rel="modulepreload" href="js/state.js?v=20260427f">
+    <link rel="modulepreload" href="js/speech.js?v=20260427f">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260427f">
+    <link rel="modulepreload" href="js/auth.js?v=20260427f">
+    <link rel="modulepreload" href="js/spotify.js?v=20260427f">
+    <link rel="modulepreload" href="js/estimation.js?v=20260427f">
+    <link rel="modulepreload" href="js/config.js?v=20260427f">
+    <link rel="modulepreload" href="js/progress.js?v=20260427f">
+    <link rel="modulepreload" href="js/ui.js?v=20260427f">
+    <link rel="modulepreload" href="js/vocab.js?v=20260427f">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260427f">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -340,7 +357,8 @@
                                     <svg id="speakBtnMobileIcon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                         <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                        <line class="speak-off-indicator" x1="23" y1="1" x2="17" y2="7" style="display:none"></line>
+                                        <line class="speak-off-indicator" x1="23" y1="9" x2="17" y2="15" style="display:none"></line>
+                                        <line class="speak-off-indicator" x1="17" y1="9" x2="23" y2="15" style="display:none"></line>
                                     </svg>
                                 </button>
                                 <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
@@ -352,7 +370,8 @@
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                         <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                         <path class="speak-on-indicator" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                                        <line class="speak-off-indicator" x1="23" y1="1" x2="17" y2="7" style="display:none"></line>
+                                        <line class="speak-off-indicator" x1="23" y1="9" x2="17" y2="15" style="display:none"></line>
+                                        <line class="speak-off-indicator" x1="17" y1="9" x2="23" y2="15" style="display:none"></line>
                                     </svg>
                                 </button>
                             </div>
@@ -885,6 +904,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260427b"></script>
+    <script type="module" src="js/main.js?v=20260427f"></script>
 </body>
 </html>
