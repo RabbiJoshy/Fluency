@@ -1,14 +1,37 @@
-import './state.js?v=20260427f';
-import './speech.js?v=20260427f';
-import './artist-ui.js?v=20260427f';
-import './auth.js?v=20260427f';
-import './spotify.js?v=20260427f';
-import './estimation.js?v=20260427f';
-import './config.js?v=20260427f';
-import './progress.js?v=20260427f';
-import './ui.js?v=20260427f';
-import './vocab.js?v=20260427f';
-import './flashcards.js?v=20260427f';
+import './state.js?v=20260427g';
+import './speech.js?v=20260427g';
+import './artist-ui.js?v=20260427g';
+import './auth.js?v=20260427g';
+import './spotify.js?v=20260427g';
+import './estimation.js?v=20260427g';
+import './config.js?v=20260427g';
+import './progress.js?v=20260427g';
+import './ui.js?v=20260427g';
+import './vocab.js?v=20260427g';
+import './flashcards.js?v=20260427g';
+
+// Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
+// console noise. After boot, call window.perfSummary() in DevTools (or it
+// auto-runs at the end of boot) to see a table of phase timings: cumulative
+// time since navigation start + delta from the previous mark. Useful for
+// validating whether a given perf change actually moved the needle.
+const _perfEnabled = new URLSearchParams(window.location.search).has('perf');
+const _perfMarks = [];
+function perfMark(name) {
+    if (!_perfEnabled) return;
+    _perfMarks.push({ name, t: performance.now() });
+}
+function perfSummary() {
+    if (!_perfEnabled || _perfMarks.length === 0) return;
+    console.table(_perfMarks.map((m, i) => ({
+        phase: m.name,
+        cumulative_ms: m.t.toFixed(1),
+        delta_ms: (i === 0 ? m.t : m.t - _perfMarks[i - 1].t).toFixed(1),
+    })));
+}
+window.perfMark = perfMark;
+window.perfSummary = perfSummary;
+perfMark('main.js top — module imports done');
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -63,6 +86,7 @@ async function resolveArtist() {
 }
 
 await resolveArtist();
+perfMark('after resolveArtist');
 
 // Expose for use by ui.js artist selection
 window._allArtistsConfig = allArtistsConfig;
@@ -75,6 +99,7 @@ if (activeArtist) {
 }
 
 loadConfig().then(async () => {
+    perfMark('after loadConfig');
     renderLanguageTabs();
     // Set first language with data as default (but don't auto-select it)
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
@@ -122,12 +147,16 @@ loadConfig().then(async () => {
     setupTabSwitching(document.getElementById('helpModal'));
     // Hide floating gear — replaced by gear in the top bar
     document.getElementById('gearBtn').style.display = 'none';
+    perfMark('after sync setup phase');
     await migrateLocalStorageIds();
     await migrateLocalStorageIdsV2();
+    perfMark('after migrations');
     await loadSecrets();
+    perfMark('after loadSecrets');
     // Retry Spotify player init now that client ID is available (handles race with SDK load)
     if (window._spotifyTryInit) window._spotifyTryInit();
     checkAuthentication();
+    perfMark('after checkAuthentication');
 
     // Set user name in top bar immediately (don't wait for progress load)
     const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';
@@ -174,6 +203,7 @@ loadConfig().then(async () => {
             // Always reveal body, even if something above threw
             document.documentElement.classList.remove('artist-loading');
         }
+        perfMark('after artist init');
     }
 
     // Wait for Sheets refresh to complete; re-render set badges if data changed
@@ -181,6 +211,8 @@ loadConfig().then(async () => {
     if (dataChanged && selectedLanguage) {
         try { await renderRangeSelector(); } catch (e) { /* range selector may not be visible yet */ }
     }
+    perfMark('boot complete');
+    perfSummary();
 });
 
 // Mode switch button: toggle between normal and artist modes
