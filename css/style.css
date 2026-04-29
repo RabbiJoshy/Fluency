@@ -2102,19 +2102,21 @@
             transition: --rb-fill 0.3s ease, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
         }
 
-        /* Studied sets read like a progress bar: full accent on the filled
-           portion, plain white on the unfilled portion, yellow border
-           framing the whole. Dark text (via --accent-secondary-text)
-           reads against both halves; the white bg pops cleanly against
-           the dark page so studied sets are unmistakable. */
+        /* Studied sets: full accent on the filled portion, translucent
+           accent on the unfilled portion. Both halves stay tinted with
+           the accent colour family, so --accent-secondary-text — which
+           is white for dark accents (Bad Bunny red, etc.) and dark for
+           light accents (yellow) — reads against either side. A plain
+           white unfilled bg looks crisp for light accents but goes
+           white-on-white invisible for dark-accent / white-text artists. */
         .range-btn-new.has-progress {
             color: var(--accent-secondary-text);
             border-color: var(--accent-secondary);
             background: linear-gradient(to right,
                 var(--accent-secondary) 0%,
                 var(--accent-secondary) var(--rb-fill),
-                white var(--rb-fill),
-                white 100%);
+                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.4) var(--rb-fill),
+                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.4) 100%);
             font-weight: 600;
         }
 
