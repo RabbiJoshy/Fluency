@@ -2102,25 +2102,28 @@
             transition: --rb-fill 0.3s ease, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
         }
 
-        /* Studied sets: full yellow on the filled portion, mid-opacity
-           yellow on the unfilled portion (so the whole button reads as
-           "yellow tinted" — visually distinct from never-started sets,
-           which stay outline-only on the page bg). Text switches to
-           --accent-secondary-text — dark on yellow themes, white on dark
-           themes — set by the JS contrast helper, so it reads against
-           both halves of the button. The light text-shadow adds a faint
-           halo so dark text stays crisp over the unfilled half (which
-           blends with the dark page bg into a muddy olive otherwise). */
+        /* Studied sets: full accent on the filled portion, lightened +
+           translucent accent on the unfilled portion. Pre-mixing with
+           white BEFORE applying alpha keeps the unfilled half reading
+           as "pale yellow / pale blue / etc." instead of the muddy
+           olive that pure rgba(yellow, 0.5) produced over the dark page
+           bg — and the same nesting works for dark accent colours
+           (mixing with white is what lightens them too). Text uses
+           --accent-secondary-text (dark on light accents, white on dark
+           accents via the JS contrast helper) so it contrasts against
+           both halves. */
         .range-btn-new.has-progress {
+            --rb-tint: color-mix(in srgb,
+                color-mix(in srgb, var(--accent-secondary) 30%, white) 70%,
+                transparent);
             color: var(--accent-secondary-text);
             border-color: var(--accent-secondary);
             background: linear-gradient(to right,
                 var(--accent-secondary) 0%,
                 var(--accent-secondary) var(--rb-fill),
-                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.5) var(--rb-fill),
-                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.5) 100%);
-            text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-            font-weight: 700;
+                var(--rb-tint) var(--rb-fill),
+                var(--rb-tint) 100%);
+            font-weight: 600;
         }
 
         /* Hover always fills to 100% and switches text to the on-yellow
