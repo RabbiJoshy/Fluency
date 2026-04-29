@@ -2114,7 +2114,7 @@
            both halves. */
         .range-btn-new.has-progress {
             --rb-tint: color-mix(in srgb,
-                color-mix(in srgb, var(--accent-secondary) 30%, white) 70%,
+                color-mix(in srgb, var(--accent-secondary) 15%, white) 70%,
                 transparent);
             color: var(--accent-secondary-text);
             border-color: var(--accent-secondary);
