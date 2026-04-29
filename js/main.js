@@ -1,14 +1,14 @@
-import './state.js?v=20260427u';
-import './speech.js?v=20260427u';
-import './artist-ui.js?v=20260427u';
-import './auth.js?v=20260427u';
-import './spotify.js?v=20260427u';
-import './estimation.js?v=20260427u';
-import './config.js?v=20260427u';
-import './progress.js?v=20260427u';
-import './ui.js?v=20260427u';
-import './vocab.js?v=20260427u';
-import './flashcards.js?v=20260427u';
+import './state.js?v=20260427v';
+import './speech.js?v=20260427v';
+import './artist-ui.js?v=20260427v';
+import './auth.js?v=20260427v';
+import './spotify.js?v=20260427v';
+import './estimation.js?v=20260427v';
+import './config.js?v=20260427v';
+import './progress.js?v=20260427v';
+import './ui.js?v=20260427v';
+import './vocab.js?v=20260427v';
+import './flashcards.js?v=20260427v';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -190,8 +190,9 @@ loadConfig().then(async () => {
             document.querySelector('#cognateToggleContainer .step-number').textContent = '3';
             await loadPpmData(activeArtist.language || 'spanish');
             document.getElementById('step2').style.display = 'block';
-            document.getElementById('step2Title').textContent = 'Choose Level';
-            document.getElementById('percentModeBtn').style.display = 'none';
+            // Title is now static ("Choose level" in the HTML); the
+            // CEFR/% toggle hides itself in artist mode via
+            // setupPercentModeButton() — both are no-ops here.
             updateStep2Tooltip();
             updateStep5Tooltip();
             await updateLemmaToggleVisibility();
