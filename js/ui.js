@@ -420,26 +420,12 @@ function setupCognateToggle() {
             this.textContent = this.dataset.full;
             excludeCognates = this.dataset.cognate === 'exclude';
 
-            // Show/hide threshold slider
-            const sliderRow = document.getElementById('cognateThresholdRow');
-            if (sliderRow) sliderRow.style.display = excludeCognates ? '' : 'none';
-
             _refreshAfterCognateChange();
         });
     });
-
-    // Threshold slider
-    const slider = document.getElementById('cognateThresholdSlider');
-    const label = document.getElementById('cognateThresholdLabel');
-    if (slider) {
-        slider.value = String(cognateThreshold);
-        if (label) label.textContent = Number(cognateThreshold).toFixed(2);
-        slider.addEventListener('input', function() {
-            cognateThreshold = parseFloat(this.value);
-            if (label) label.textContent = cognateThreshold.toFixed(2);
-            _refreshAfterCognateChange();
-        });
-    }
+    // Cognate threshold sensitivity is no longer adjustable from the setup
+    // page — it stays at the default cognateThreshold (state.js) until
+    // exposed in settings. The slider HTML + CSS were removed.
 }
 
 function _refreshAfterCognateChange() {
@@ -700,7 +686,10 @@ async function renderRangeSelector() {
 
     const { vocab: lemmaFilteredVocab, counts: filterCounts } = buildFilteredVocab(vocabularyData);
 
-    // Update lemma info line with exclusion count
+    // Per-step exclusion counts. Cognates and lemma are SEPARATE filter
+    // stages — cognate runs first, items it excludes don't count toward
+    // the lemma filter, so each info-line reports only its own stage's
+    // exclusions instead of an aggregated total.
     const lemmaInfo = document.getElementById('lemmaInfoLine');
     if (lemmaInfo) {
         if (filterCounts.lemma > 0) {
@@ -708,6 +697,15 @@ async function renderRangeSelector() {
             lemmaInfo.style.display = '';
         } else {
             lemmaInfo.style.display = 'none';
+        }
+    }
+    const cognateInfo = document.getElementById('cognateInfoLine');
+    if (cognateInfo) {
+        if (filterCounts.cognates > 0) {
+            cognateInfo.textContent = filterCounts.cognates.toLocaleString() + ' flashcards excluded';
+            cognateInfo.style.display = '';
+        } else {
+            cognateInfo.style.display = 'none';
         }
     }
 

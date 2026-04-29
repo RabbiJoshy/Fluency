@@ -24,18 +24,18 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260427y">
-    <link rel="modulepreload" href="js/state.js?v=20260427y">
-    <link rel="modulepreload" href="js/speech.js?v=20260427y">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260427y">
-    <link rel="modulepreload" href="js/auth.js?v=20260427y">
-    <link rel="modulepreload" href="js/spotify.js?v=20260427y">
-    <link rel="modulepreload" href="js/estimation.js?v=20260427y">
-    <link rel="modulepreload" href="js/config.js?v=20260427y">
-    <link rel="modulepreload" href="js/progress.js?v=20260427y">
-    <link rel="modulepreload" href="js/ui.js?v=20260427y">
-    <link rel="modulepreload" href="js/vocab.js?v=20260427y">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260427y">
+    <link rel="modulepreload" href="js/main.js?v=20260427z">
+    <link rel="modulepreload" href="js/state.js?v=20260427z">
+    <link rel="modulepreload" href="js/speech.js?v=20260427z">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260427z">
+    <link rel="modulepreload" href="js/auth.js?v=20260427z">
+    <link rel="modulepreload" href="js/spotify.js?v=20260427z">
+    <link rel="modulepreload" href="js/estimation.js?v=20260427z">
+    <link rel="modulepreload" href="js/config.js?v=20260427z">
+    <link rel="modulepreload" href="js/progress.js?v=20260427z">
+    <link rel="modulepreload" href="js/ui.js?v=20260427z">
+    <link rel="modulepreload" href="js/vocab.js?v=20260427z">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260427z">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -282,11 +282,6 @@
                 <div id="cognateToggleSelector" class="group-size-selector">
                     <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include cognates">Include cognates</button>
                     <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
-                </div>
-                <div id="cognateThresholdRow" class="cognate-threshold-row" style="display: none;">
-                    <label for="cognateThresholdSlider">Sensitivity</label>
-                    <input type="range" id="cognateThresholdSlider" min="0.5" max="1.0" step="0.01" value="0.85">
-                    <span id="cognateThresholdLabel" class="threshold-label">0.85</span>
                 </div>
             </div>
 
@@ -917,6 +912,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260427y"></script>
+    <script type="module" src="js/main.js?v=20260427z"></script>
 </body>
 </html>
