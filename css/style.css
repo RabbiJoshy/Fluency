@@ -2102,27 +2102,19 @@
             transition: --rb-fill 0.3s ease, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
         }
 
-        /* Studied sets: full accent on the filled portion, lightened +
-           translucent accent on the unfilled portion. Pre-mixing with
-           white BEFORE applying alpha keeps the unfilled half reading
-           as "pale yellow / pale blue / etc." instead of the muddy
-           olive that pure rgba(yellow, 0.5) produced over the dark page
-           bg — and the same nesting works for dark accent colours
-           (mixing with white is what lightens them too). Text uses
-           --accent-secondary-text (dark on light accents, white on dark
-           accents via the JS contrast helper) so it contrasts against
-           both halves. */
+        /* Studied sets read like a progress bar: full accent on the filled
+           portion, plain white on the unfilled portion, yellow border
+           framing the whole. Dark text (via --accent-secondary-text)
+           reads against both halves; the white bg pops cleanly against
+           the dark page so studied sets are unmistakable. */
         .range-btn-new.has-progress {
-            --rb-tint: color-mix(in srgb,
-                color-mix(in srgb, var(--accent-secondary) 15%, white) 70%,
-                transparent);
             color: var(--accent-secondary-text);
             border-color: var(--accent-secondary);
             background: linear-gradient(to right,
                 var(--accent-secondary) 0%,
                 var(--accent-secondary) var(--rb-fill),
-                var(--rb-tint) var(--rb-fill),
-                var(--rb-tint) 100%);
+                white var(--rb-fill),
+                white 100%);
             font-weight: 600;
         }
 
