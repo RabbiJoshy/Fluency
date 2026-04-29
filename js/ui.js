@@ -779,7 +779,7 @@ async function renderRangeSelector() {
                     style="--rb-pct: ${r.pct}%"
                     ${disabledAttr}
                     title="${title}">
-                <span class="rb-label">${r.label}</span>
+                ${r.label}
             </button>
         `;
     }).join('');
