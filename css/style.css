@@ -2102,21 +2102,25 @@
             transition: --rb-fill 0.3s ease, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
         }
 
-        /* Studied sets: full yellow on the filled portion, low-opacity
+        /* Studied sets: full yellow on the filled portion, mid-opacity
            yellow on the unfilled portion (so the whole button reads as
            "yellow tinted" — visually distinct from never-started sets,
            which stay outline-only on the page bg). Text switches to
            --accent-secondary-text — dark on yellow themes, white on dark
            themes — set by the JS contrast helper, so it reads against
-           both halves of the button. */
+           both halves of the button. The light text-shadow adds a faint
+           halo so dark text stays crisp over the unfilled half (which
+           blends with the dark page bg into a muddy olive otherwise). */
         .range-btn-new.has-progress {
             color: var(--accent-secondary-text);
             border-color: var(--accent-secondary);
             background: linear-gradient(to right,
                 var(--accent-secondary) 0%,
                 var(--accent-secondary) var(--rb-fill),
-                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3) var(--rb-fill),
-                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3) 100%);
+                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.5) var(--rb-fill),
+                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.5) 100%);
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+            font-weight: 700;
         }
 
         /* Hover always fills to 100% and switches text to the on-yellow
@@ -2838,37 +2842,49 @@
             padding-right: 0;
         }
 
-        /* Segmented control: two pills, the active one fills with accent. */
+        /* Segmented CEFR/% toggle — matches the .header-toggle pattern used
+           by the cards-per-set 25/50 toggle so all in-header toggles share
+           the same shape, padding, and active-pill treatment. */
         .level-mode-toggle {
-            display: inline-flex;
+            display: flex;
+            gap: 0;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 2px;
-            gap: 2px;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .level-mode-btn {
-            padding: 4px 10px;
+            padding: 10px 18px;
+            font-size: 13px;
+            min-width: 50px;
             background: transparent;
             border: none;
+            border-radius: 0;
             color: var(--text-muted);
-            font-size: 12px;
             font-weight: 600;
             font-family: var(--font-emphasis);
             cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.2s ease;
             line-height: 1;
         }
 
+        .level-mode-btn:first-child {
+            border-right: 1px solid var(--border-color);
+        }
+
         .level-mode-btn:hover:not(.active) {
+            background: rgba(255, 107, 53, 0.15);
             color: var(--text-primary);
         }
 
         .level-mode-btn.active {
             background: var(--accent-primary);
             color: var(--accent-primary-text);
+        }
+
+        .level-mode-btn.active:hover {
+            background: var(--accent-primary);
         }
 
         .cefr-actions {
