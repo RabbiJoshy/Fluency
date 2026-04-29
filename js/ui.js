@@ -689,57 +689,52 @@ async function renderRangeSelector() {
         const wordsInRange = lemmaFilteredVocab.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
         const hasData = wordsInRange.length > 0;
 
-        // Check mastery and attempted status
-        let isMastered = false;
-        let isAttempted = false;
+        // Per-word "completed" criterion (same as the old isMastered check):
+        // a word is completed if its rank sits inside the user's level
+        // estimate OR has been answered correctly at least once. The
+        // resulting percentage drives the partial-fill bar on the button.
+        let pct = 0;
         if (hasData && currentUser && !currentUser.isGuest && progressData) {
             const estimate = levelEstimates[selectedLanguage] || 0;
-            isMastered = wordsInRange.every(item => {
+            const knownCount = wordsInRange.filter(item => {
                 if (item.rank <= estimate) return true;
                 return isWordKnown(getWordId(item));
-            });
-
-            if (!isMastered) {
-                isAttempted = wordsInRange.some(item => {
-                    const id = getWordId(item);
-                    const crossId = getCrossModeId(id);
-                    const p = progressData?.[id];
-                    const cp = crossId ? progressData?.[crossId] : null;
-                    return (p && p.language === selectedLanguage && (Number(p.correct) > 0 || Number(p.wrong) > 0))
-                        || (cp && cp.language === selectedLanguage && (Number(cp.correct) > 0 || Number(cp.wrong) > 0));
-                });
-            }
+            }).length;
+            pct = Math.round(100 * knownCount / wordsInRange.length);
         }
 
         ranges.push({
             range: `${i}-${rangeEnd}`,
             label: `${i}-${rangeEnd - 1}`,
             available: hasData,
-            mastered: isMastered,
-            attempted: isAttempted
+            pct: pct
         });
     }
 
-    // Generate HTML with disabled state for unavailable ranges, mastered state for completed ranges, and attempted state
+    // Generate HTML — partial-fill bar based on completion percentage. The
+    // button bg is a left-to-right gradient with a hard transition at
+    // var(--rb-pct); the inner span uses the same gradient on its text via
+    // background-clip:text so the label colour switches at the same X. See
+    // .range-btn-new and .rb-label CSS for the trick.
     const rangesHTML = ranges.map(r => {
         const disabledAttr = !r.available ? 'disabled' : '';
         const disabledClass = !r.available ? 'disabled' : '';
-        const masteredClass = r.mastered ? 'mastered' : '';
-        const attemptedClass = r.attempted ? 'attempted' : '';
+        const progressClass = r.pct > 0 ? 'has-progress' : '';
         let title = 'Load ' + r.label;
         if (!r.available) {
             title = 'Greyed out because no vocabulary data exists for this range yet';
-        } else if (r.mastered) {
+        } else if (r.pct === 100) {
             title = 'All words in this set answered correctly at least once';
-        } else if (r.attempted) {
-            title = 'Some words in this set have been practiced';
+        } else if (r.pct > 0) {
+            title = `${r.pct}% complete — keep going`;
         }
         return `
-            <button class="range-btn-new ${disabledClass} ${masteredClass} ${attemptedClass}"
+            <button class="range-btn-new ${disabledClass} ${progressClass}"
                     data-range="${r.range}"
+                    style="--rb-pct: ${r.pct}%"
                     ${disabledAttr}
                     title="${title}">
-                ${r.label}
+                <span class="rb-label">${r.label}</span>
             </button>
         `;
     }).join('');

@@ -2065,51 +2065,75 @@
             justify-content: center;
         }
 
+        /* Range buttons render as a partial-fill bar: completion % drives a
+           left-to-right gradient on both the button bg AND the label text
+           (via background-clip:text). Both gradients share var(--rb-fill)
+           so the boundary lines up to the pixel — where the fill cuts
+           through a letter, the left half reads in --accent-secondary-text
+           over the yellow fill and the right half reads in --text-muted
+           over the default bg. @property lets --rb-fill animate as a
+           percentage so :hover smoothly extends the fill to 100%. */
+        @property --rb-fill {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 0%;
+        }
+
         .range-btn-new {
             font-family: var(--font-emphasis);
             padding: 10px 16px;
-            background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
             font-size: 13px;
             font-weight: 500;
-            transition: all 0.3s;
             color: var(--text-muted);
             min-width: 81px;
+            position: relative;
+            overflow: hidden;
+            /* --rb-fill defaults to the inline --rb-pct set by the JS render,
+               but :hover sets --rb-fill directly so it wins the cascade
+               against the inline value. */
+            --rb-fill: var(--rb-pct, 0%);
+            background: linear-gradient(to right,
+                var(--accent-secondary) 0%,
+                var(--accent-secondary) var(--rb-fill),
+                var(--bg-tertiary) var(--rb-fill),
+                var(--bg-tertiary) 100%);
+            transition: --rb-fill 0.3s ease, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+
+        /* Inner label — same gradient as the button bg, but applied to the
+           text via background-clip:text. Negative margin extends the label's
+           background across the button's padding so its gradient pixel-aligns
+           with the button's gradient. */
+        .range-btn-new .rb-label {
+            display: block;
+            margin: -10px -16px;
+            padding: 10px 16px;
+            text-align: center;
+            background: linear-gradient(to right,
+                var(--accent-secondary-text) 0%,
+                var(--accent-secondary-text) var(--rb-fill),
+                var(--text-muted) var(--rb-fill),
+                var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .range-btn-new:hover {
-            background: var(--accent-secondary);
-            color: var(--accent-secondary-text);
+            --rb-fill: 100%;
             border-color: var(--accent-secondary);
             box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
             transform: translateY(-2px);
         }
 
-        .range-btn-new.mastered {
-            background: var(--accent-secondary);
-            color: var(--accent-secondary-text);
+        /* Border accent kicks in once any progress exists, so a partially
+           filled range reads as 'in progress' at low pct values where the
+           fill alone might be too narrow to notice. */
+        .range-btn-new.has-progress {
             border-color: var(--accent-secondary);
-        }
-
-        .range-btn-new.mastered:hover {
-            background: var(--accent-secondary);
-            color: var(--accent-secondary-text);
-            border-color: var(--accent-secondary);
-            box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
-            transform: translateY(-2px);
-        }
-
-        .range-btn-new.attempted {
-            background: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.15);
-            border-color: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.4);
-        }
-
-        .range-btn-new.attempted:hover {
-            background: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.25);
-            border-color: rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.6);
-            transform: translateY(-2px);
         }
 
         .range-btn-new:active {
@@ -2124,6 +2148,17 @@
             cursor: not-allowed;
             opacity: 0.35;
             pointer-events: none;
+        }
+
+        /* Drop the text-clip gradient in disabled state so the label is
+           plainly muted-coloured (defensive — disabled buttons can't have
+           progress in practice, but this keeps appearance consistent). */
+        .range-btn-new.disabled .rb-label,
+        .range-btn-new:disabled .rb-label {
+            background: none;
+            -webkit-background-clip: initial;
+            background-clip: initial;
+            color: var(--text-muted);
         }
 
         .range-btn-new.disabled:hover,
