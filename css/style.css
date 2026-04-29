@@ -5477,18 +5477,20 @@
 
             /* Top-of-card back/stats — match the 64x64 footprint of the
                bottom-row arrow buttons (.nav-btn-inline) so all four mobile
-               action buttons read as peers. Specificity matches .gear-btn so
-               source order wins; keep these AFTER the .gear-btn rule above. */
+               action buttons read as peers. SVG bumped to 44px so the icons
+               carry similar visual weight to the 48px arrow glyphs.
+               Specificity matches .gear-btn so source order wins; keep these
+               AFTER the .gear-btn rule above. */
             .nav-row-icon {
-                padding: 12px;
+                padding: 10px;
                 width: 64px;
                 height: 64px;
                 box-sizing: border-box;
             }
 
             .nav-row-icon svg {
-                width: 36px;
-                height: 36px;
+                width: 44px;
+                height: 44px;
             }
         }
 

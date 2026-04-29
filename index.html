@@ -24,18 +24,18 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260427x">
-    <link rel="modulepreload" href="js/state.js?v=20260427x">
-    <link rel="modulepreload" href="js/speech.js?v=20260427x">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260427x">
-    <link rel="modulepreload" href="js/auth.js?v=20260427x">
-    <link rel="modulepreload" href="js/spotify.js?v=20260427x">
-    <link rel="modulepreload" href="js/estimation.js?v=20260427x">
-    <link rel="modulepreload" href="js/config.js?v=20260427x">
-    <link rel="modulepreload" href="js/progress.js?v=20260427x">
-    <link rel="modulepreload" href="js/ui.js?v=20260427x">
-    <link rel="modulepreload" href="js/vocab.js?v=20260427x">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260427x">
+    <link rel="modulepreload" href="js/main.js?v=20260427y">
+    <link rel="modulepreload" href="js/state.js?v=20260427y">
+    <link rel="modulepreload" href="js/speech.js?v=20260427y">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260427y">
+    <link rel="modulepreload" href="js/auth.js?v=20260427y">
+    <link rel="modulepreload" href="js/spotify.js?v=20260427y">
+    <link rel="modulepreload" href="js/estimation.js?v=20260427y">
+    <link rel="modulepreload" href="js/config.js?v=20260427y">
+    <link rel="modulepreload" href="js/progress.js?v=20260427y">
+    <link rel="modulepreload" href="js/ui.js?v=20260427y">
+    <link rel="modulepreload" href="js/vocab.js?v=20260427y">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260427y">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -388,10 +388,9 @@
                             </div>
                         </div>
                         <div class="card-face card-back">
-                            <div class="desktop-back-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 20px; left: 0; padding: 0 20px; pointer-events: none;">
-                                <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
-                                    <button class="nav-btn-inline" id="prevBtnBack">←</button>
-                                </div>
+                            <!-- Top row (mobile only): back + stats centred. Arrows
+                                 moved to the bottom row to mirror the front face. -->
+                            <div class="desktop-back-nav-hidden" style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; justify-content: center; align-items: center;">
                                 <div class="nav-row-icon-group" style="display: flex; gap: 6px; align-items: center; pointer-events: auto;">
                                     <button class="gear-btn nav-row-icon" id="backBtnBackMobile" title="Back">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -407,11 +406,14 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <div style="display: flex; gap: 10px; align-items: center; pointer-events: auto;">
-                                    <button class="nav-btn-inline" id="nextBtnBack">→</button>
-                                </div>
                             </div>
                             <div class="card-details" id="backContent"></div>
+                            <!-- Bottom row (mobile only): prev/next arrows.
+                                 Mirrors the front-face .mobile-nav-row layout. -->
+                            <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
+                                <button class="nav-btn-inline" id="prevBtnBack" style="pointer-events: auto;">←</button>
+                                <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
+                            </div>
                         </div>
                     </div>
                     <!-- Hidden: keep IDs for pressAnswerBtn animation -->
@@ -915,6 +917,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260427x"></script>
+    <script type="module" src="js/main.js?v=20260427y"></script>
 </body>
 </html>
