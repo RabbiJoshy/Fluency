@@ -24,18 +24,18 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260427w">
-    <link rel="modulepreload" href="js/state.js?v=20260427w">
-    <link rel="modulepreload" href="js/speech.js?v=20260427w">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260427w">
-    <link rel="modulepreload" href="js/auth.js?v=20260427w">
-    <link rel="modulepreload" href="js/spotify.js?v=20260427w">
-    <link rel="modulepreload" href="js/estimation.js?v=20260427w">
-    <link rel="modulepreload" href="js/config.js?v=20260427w">
-    <link rel="modulepreload" href="js/progress.js?v=20260427w">
-    <link rel="modulepreload" href="js/ui.js?v=20260427w">
-    <link rel="modulepreload" href="js/vocab.js?v=20260427w">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260427w">
+    <link rel="modulepreload" href="js/main.js?v=20260427x">
+    <link rel="modulepreload" href="js/state.js?v=20260427x">
+    <link rel="modulepreload" href="js/speech.js?v=20260427x">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260427x">
+    <link rel="modulepreload" href="js/auth.js?v=20260427x">
+    <link rel="modulepreload" href="js/spotify.js?v=20260427x">
+    <link rel="modulepreload" href="js/estimation.js?v=20260427x">
+    <link rel="modulepreload" href="js/config.js?v=20260427x">
+    <link rel="modulepreload" href="js/progress.js?v=20260427x">
+    <link rel="modulepreload" href="js/ui.js?v=20260427x">
+    <link rel="modulepreload" href="js/vocab.js?v=20260427x">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260427x">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -247,8 +247,10 @@
                 <div class="step-header step-header-with-help">
                     <span class="step-number">3</span>
                     <span class="step-title">Cards per Lemma</span>
-                    <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
-                    <span id="lemmaInfoLine" class="level-info-line" style="display: none;"></span>
+                    <div class="step-header-actions">
+                        <span id="lemmaInfoLine" class="level-info-line" style="display: none;"></span>
+                        <button class="step-help-btn" data-tooltip="step3Tooltip" title="Help">?</button>
+                    </div>
                     <div id="step3Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p><strong>Lemma</strong> = the base/dictionary form of a word. For example, "correr" is the lemma for "corre", "corrí", "corriendo"; "casa" is the lemma for "casas".</p>
                         <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
@@ -266,8 +268,10 @@
                 <div class="step-header step-header-with-help">
                     <span class="step-number">4</span>
                     <span class="step-title">Exclude Cognates</span>
-                    <button class="step-help-btn" data-tooltip="cognateTooltip" title="Help">?</button>
-                    <span id="cognateInfoLine" class="level-info-line" style="display: none;"></span>
+                    <div class="step-header-actions">
+                        <span id="cognateInfoLine" class="level-info-line" style="display: none;"></span>
+                        <button class="step-help-btn" data-tooltip="cognateTooltip" title="Help">?</button>
+                    </div>
                     <div id="cognateTooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
                         <p><strong>Include</strong> = Show all words, including cognates.</p>
@@ -911,6 +915,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260427w"></script>
+    <script type="module" src="js/main.js?v=20260427x"></script>
 </body>
 </html>
