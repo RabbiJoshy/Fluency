@@ -269,7 +269,39 @@ function updateStep5Tooltip() {
     }
 }
 
-function renderLevelSelector(language) {
+// Returns the first .level-btn whose level isn't fully completed, using the
+// same per-word "known" check the range buttons use (rank inside the user's
+// level estimate OR ≥1 correct attempt). Returns the LAST button if every
+// level is complete (you've maxed out — land on the most-advanced level so
+// you don't bounce off into nothing). Returns null on data-load failure;
+// caller falls back to the first button.
+async function findFirstIncompleteLevelBtn(language, buttons) {
+    const langConfig = config.languages[language];
+    if (!langConfig) return null;
+    const vocabularyData = await fetchAndJoinIndex(langConfig);
+    const { vocab: filteredVocab } = buildFilteredVocab(vocabularyData);
+    const estimate = levelEstimates[language] || 0;
+    const wordKnown = (item) => (item.rank <= estimate) || isWordKnown(getWordId(item));
+
+    for (const btn of buttons) {
+        let minWord, maxWord;
+        if (percentageMode && ppmData && ppmData.length > 0) {
+            minWord = parseInt(btn.dataset.startRank);
+            maxWord = parseInt(btn.dataset.endRank);
+        } else {
+            const cefrLevels = getCefrLevels(language);
+            const lv = cefrLevels.find(l => l.level === btn.dataset.level);
+            if (!lv) continue;
+            [minWord, maxWord] = lv.wordCount.split('-').map(Number);
+        }
+        const wordsInLevel = filteredVocab.filter(it => it.rank >= minWord && it.rank < maxWord);
+        if (wordsInLevel.length === 0) continue;
+        if (!wordsInLevel.every(wordKnown)) return btn;
+    }
+    return buttons[buttons.length - 1];
+}
+
+async function renderLevelSelector(language) {
     const container = document.getElementById('levelSelector');
 
     // Debug logging
@@ -328,10 +360,23 @@ function renderLevelSelector(language) {
         });
     });
 
-    // Auto-select first level to render sets immediately
-    const firstBtn = document.querySelector('.level-btn');
-    if (firstBtn && !selectedLevel) {
-        firstBtn.click();
+    // Auto-select first time only (preserves manual picks across re-renders).
+    // Pick the first level that isn't fully completed so the user lands on
+    // actionable work — finishing the 70% level should auto-open 80%, not
+    // sit on a maxed-out set with all-100% range buttons. Falls back to the
+    // first button on data-load failure or if there are no buttons.
+    if (!selectedLevel) {
+        const buttons = Array.from(document.querySelectorAll('.level-btn'));
+        if (buttons.length === 0) return;
+        let target = buttons[0];
+        try {
+            const incomplete = await findFirstIncompleteLevelBtn(language, buttons);
+            if (incomplete) target = incomplete;
+        } catch (err) {
+            console.warn('Level auto-pick failed, using first', err);
+        }
+        // Re-check: the user may have clicked a level during the await above.
+        if (!selectedLevel) target.click();
     }
 }
 
