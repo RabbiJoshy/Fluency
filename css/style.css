@@ -2099,21 +2099,35 @@
                 var(--accent-secondary) var(--rb-fill),
                 transparent var(--rb-fill),
                 transparent 100%);
-            transition: --rb-fill 0.3s ease, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+            transition: --rb-fill 0.3s ease, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
         }
 
+        /* Studied sets: full yellow on the filled portion, low-opacity
+           yellow on the unfilled portion (so the whole button reads as
+           "yellow tinted" — visually distinct from never-started sets,
+           which stay outline-only on the page bg). Text switches to
+           --accent-secondary-text — dark on yellow themes, white on dark
+           themes — set by the JS contrast helper, so it reads against
+           both halves of the button. */
+        .range-btn-new.has-progress {
+            color: var(--accent-secondary-text);
+            border-color: var(--accent-secondary);
+            background: linear-gradient(to right,
+                var(--accent-secondary) 0%,
+                var(--accent-secondary) var(--rb-fill),
+                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3) var(--rb-fill),
+                rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3) 100%);
+        }
+
+        /* Hover always fills to 100% and switches text to the on-yellow
+           contrast colour — applies to never-started buttons too so the
+           full-yellow hover state isn't white-on-yellow. */
         .range-btn-new:hover {
             --rb-fill: 100%;
+            color: var(--accent-secondary-text);
             border-color: var(--accent-secondary);
             box-shadow: 0 0 15px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.3);
             transform: translateY(-2px);
-        }
-
-        /* Border accent kicks in once any progress exists, so a partially
-           filled range reads as 'in progress' at low pct values where the
-           fill alone might be too narrow to notice. */
-        .range-btn-new.has-progress {
-            border-color: var(--accent-secondary);
         }
 
         .range-btn-new:active {
