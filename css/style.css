@@ -2801,6 +2801,62 @@
             padding-right: 20px;
         }
 
+        /* Right-aligned group on step 2 — holds the optional info line, the
+           CEFR/% mode toggle, and the help "?" button. margin-left: auto
+           pushes the whole cluster to the far edge of the header. */
+        .step-header-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Cancel the absolute positioning + auto-margin those children carry
+           by default — inside the actions group they sit in normal flex flow. */
+        .step-header-actions .step-help-btn {
+            position: static;
+            top: auto;
+            right: auto;
+            margin-left: 0;
+        }
+        .step-header-actions .level-info-line {
+            margin-left: 0;
+            padding-right: 0;
+        }
+
+        /* Segmented control: two pills, the active one fills with accent. */
+        .level-mode-toggle {
+            display: inline-flex;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .level-mode-btn {
+            padding: 4px 10px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            font-family: var(--font-emphasis);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+            line-height: 1;
+        }
+
+        .level-mode-btn:hover:not(.active) {
+            color: var(--text-primary);
+        }
+
+        .level-mode-btn.active {
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+        }
+
         .cefr-actions {
             display: none;
             margin-top: 15px;

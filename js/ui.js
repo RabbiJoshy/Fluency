@@ -191,8 +191,9 @@ function setupLanguageTabs() {
             // Hide loading indicator and show step 2 immediately (using cached progress)
             loadingIndicator.classList.remove('visible');
             document.getElementById('step2').style.display = 'block';
-            // Update step 2 title, tooltip, and % Mode button based on current mode
-            document.getElementById('step2Title').textContent = percentageMode ? 'Choose level' : 'Choose CEFR level';
+            // Step 2 title is fixed ("Choose level"); refresh the toggle's
+            // active pill + tooltip in case the language switch implies a
+            // different mode (e.g. artist mode forces % mode).
             updatePercentModeButton();
             updateStep2Tooltip();
             updateStep5Tooltip();
@@ -219,36 +220,30 @@ function hideAllSelectionPills() {
 }
 
 function updatePercentModeButton() {
-    const btn = document.getElementById('percentModeBtn');
-    if (percentageMode) {
-        btn.classList.add('active');
-    } else {
-        btn.classList.remove('active');
-    }
+    const toggle = document.getElementById('levelModeToggle');
+    if (!toggle) return;
+    const activeMode = percentageMode ? 'percent' : 'cefr';
+    toggle.querySelectorAll('.level-mode-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.mode === activeMode);
+    });
 }
 
 function updateStep2Tooltip() {
     const tooltip = document.getElementById('step2Tooltip');
+    if (!tooltip) return;
+    const inner = tooltip.querySelector('.step-info-tooltip-inner') || tooltip;
     if (activeArtist) {
+        // Artist mode is always % coverage of lyrics — explain that
+        // specifically and don't reference the CEFR/% toggle (it's hidden).
         const name = activeArtist.name;
-        tooltip.innerHTML = `
-            <p><strong>Lyrics Coverage</strong> shows what percentage of ${name}'s lyrics you'll understand.</p>
+        inner.innerHTML = `
+            <p><strong>Lyrics Coverage</strong> shows what percentage of ${name}'s lyrics you'll understand at each level.</p>
             <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words across the songs.</p>
             <p>Words are ranked by how often they appear in the discography.</p>
         `;
-    } else if (percentageMode) {
-        tooltip.innerHTML = `
-            <p><strong>Corpus Coverage</strong> shows what percentage of real-world text you'll understand.</p>
-            <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words in typical movies, TV shows, and conversations.</p>
-            <p>This is based on word frequency data from subtitle corpora.</p>
-        `;
-    } else {
-        tooltip.innerHTML = `
-            <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
-            <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
-            <p><strong>% Mode</strong> switches to percentage coverage mode, showing how much of real-world text you'll understand (based on word frequency data from subtitle corpora).</p>
-        `;
     }
+    // Non-artist modes: leave the static HTML in place (it explains both
+    // CEFR and % alongside the toggle that switches between them).
 }
 
 function updateStep5Tooltip() {
@@ -515,44 +510,49 @@ function setupLemmaToggle() {
 }
 
 function setupPercentModeButton() {
-    // Hide the % Mode button in artist mode (always percentage mode)
+    const toggle = document.getElementById('levelModeToggle');
+    if (!toggle) return;
+
+    // Hide the toggle entirely in artist mode — artist mode is always
+    // % coverage of lyrics, so there's no choice to expose.
     if (activeArtist) {
-        document.getElementById('percentModeBtn').style.display = 'none';
+        toggle.style.display = 'none';
+        return;
     }
-    document.getElementById('percentModeBtn').addEventListener('click', async function() {
-        const langConfig = config.languages[selectedLanguage];
-        if (!langConfig || !langConfig.ppmDataPath) {
-            alert('Percentage mode is not available for this language yet.');
-            return;
-        }
 
-        percentageMode = !percentageMode;
+    toggle.querySelectorAll('.level-mode-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const targetMode = this.dataset.mode;  // 'cefr' or 'percent'
+            const wantPercent = targetMode === 'percent';
+            if (wantPercent === percentageMode) return;  // already there
 
-        // Update button appearance
-        updatePercentModeButton();
+            const langConfig = config.languages[selectedLanguage];
+            if (wantPercent && (!langConfig || !langConfig.ppmDataPath)) {
+                alert('Percentage mode is not available for this language yet.');
+                return;
+            }
 
-        // Load PPM data if enabling percentage mode
-        if (percentageMode && !ppmData) {
-            await loadPpmData(selectedLanguage);
-        }
+            percentageMode = wantPercent;
+            updatePercentModeButton();
 
-        // Update the title text and tooltip
-        document.getElementById('step2Title').textContent = percentageMode ? 'Choose level' : 'Choose CEFR level';
-        updateStep2Tooltip();
-        updateStep5Tooltip();
+            if (percentageMode && !ppmData) {
+                await loadPpmData(selectedLanguage);
+            }
 
-        // Hide level info line (re-shown on level click)
-        const infoLine = document.getElementById('levelInfoLine');
-        if (infoLine) infoLine.style.display = 'none';
+            updateStep2Tooltip();
+            updateStep5Tooltip();
 
-        // Re-render the level selector
-        selectedLevel = null;
-        renderLevelSelector(selectedLanguage);
-        document.getElementById('lemmaToggleContainer').style.display = 'none';
-        document.getElementById('cognateToggleContainer').style.display = 'none';
+            // Hide level info line (re-shown on level click)
+            const infoLine = document.getElementById('levelInfoLine');
+            if (infoLine) infoLine.style.display = 'none';
 
-        document.getElementById('step4').style.display = 'none';
-
+            // Re-render the level selector for the new mode
+            selectedLevel = null;
+            renderLevelSelector(selectedLanguage);
+            document.getElementById('lemmaToggleContainer').style.display = 'none';
+            document.getElementById('cognateToggleContainer').style.display = 'none';
+            document.getElementById('step4').style.display = 'none';
+        });
     });
 }
 

@@ -24,18 +24,18 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260427o">
-    <link rel="modulepreload" href="js/state.js?v=20260427o">
-    <link rel="modulepreload" href="js/speech.js?v=20260427o">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260427o">
-    <link rel="modulepreload" href="js/auth.js?v=20260427o">
-    <link rel="modulepreload" href="js/spotify.js?v=20260427o">
-    <link rel="modulepreload" href="js/estimation.js?v=20260427o">
-    <link rel="modulepreload" href="js/config.js?v=20260427o">
-    <link rel="modulepreload" href="js/progress.js?v=20260427o">
-    <link rel="modulepreload" href="js/ui.js?v=20260427o">
-    <link rel="modulepreload" href="js/vocab.js?v=20260427o">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260427o">
+    <link rel="modulepreload" href="js/main.js?v=20260427p">
+    <link rel="modulepreload" href="js/state.js?v=20260427p">
+    <link rel="modulepreload" href="js/speech.js?v=20260427p">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260427p">
+    <link rel="modulepreload" href="js/auth.js?v=20260427p">
+    <link rel="modulepreload" href="js/spotify.js?v=20260427p">
+    <link rel="modulepreload" href="js/estimation.js?v=20260427p">
+    <link rel="modulepreload" href="js/config.js?v=20260427p">
+    <link rel="modulepreload" href="js/progress.js?v=20260427p">
+    <link rel="modulepreload" href="js/ui.js?v=20260427p">
+    <link rel="modulepreload" href="js/vocab.js?v=20260427p">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260427p">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -223,13 +223,20 @@
             <div id="step2" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
                     <span class="step-number">2</span>
-                    <span class="step-title" id="step2Title">Choose CEFR level</span>
-                    <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
-                    <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
-                    <button class="percent-mode-btn" id="percentModeBtn">% Mode</button>
+                    <span class="step-title">Choose level</span>
+                    <div class="step-header-actions">
+                        <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
+                        <div class="level-mode-toggle" id="levelModeToggle">
+                            <button type="button" class="level-mode-btn" data-mode="cefr" title="CEFR levels (A1–C2)">CEFR</button>
+                            <button type="button" class="level-mode-btn" data-mode="percent" title="% coverage of real-world text">%</button>
+                        </div>
+                        <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
+                    </div>
                     <div id="step2Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
-                        <p><strong>CEFR Levels</strong> indicate proficiency from beginner (A1) to proficient (C2).</p>
-                        <p>Words are ranked by frequency. Lower levels cover the most common words needed for basic comprehension.</p>
+                        <p><strong>Level mode</strong> — toggle between CEFR levels and % coverage.</p>
+                        <p><strong>CEFR</strong> ranks levels from beginner (A1) to proficient (C2) based on standard proficiency tiers.</p>
+                        <p><strong>%</strong> shows what fraction of real-world text you'll understand at each level (based on word-frequency data from subtitle corpora).</p>
+                        <p>Lower levels cover the most common words; higher levels add rarer vocabulary.</p>
                     </div></div>
                 </div>
                 <div id="levelSelector" class="level-selector"></div>
@@ -904,6 +911,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260427o"></script>
+    <script type="module" src="js/main.js?v=20260427p"></script>
 </body>
 </html>
