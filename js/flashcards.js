@@ -2930,6 +2930,7 @@ document.addEventListener('click', (e) => {
 
 // Keyboard-shortcut guide: collapse/expand with localStorage persistence.
 // Toggled from the right-edge sidebar button (#kbToggleSidebar).
+// Defaults to collapsed (off) for new users; existing localStorage value wins.
 (function _initKbGuideCollapse() {
     const LS_KEY = 'fluency.kbGuideCollapsed';
     function attach() {
@@ -2942,8 +2943,11 @@ document.addEventListener('click', (e) => {
             btn.setAttribute('aria-label', btn.title);
             try { localStorage.setItem(LS_KEY, collapsed ? '1' : '0'); } catch (e) {}
         };
-        let initial = false;
-        try { initial = localStorage.getItem(LS_KEY) === '1'; } catch (e) {}
+        let initial = true;
+        try {
+            const stored = localStorage.getItem(LS_KEY);
+            if (stored !== null) initial = stored === '1';
+        } catch (e) {}
         setCollapsed(initial);
         btn.addEventListener('click', (e) => {
             e.stopPropagation();

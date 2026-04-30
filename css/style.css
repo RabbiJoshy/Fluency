@@ -5426,19 +5426,19 @@
         @media (max-width: 767px) {
             .card-container {
                 min-height: 100vh;
-                padding: 0 0 10px 0;
+                padding: 12px 0 16px 0;
                 align-items: flex-start;
             }
 
             .card-container::before {
-                height: calc(100vh - 10px);
+                height: calc(100vh - 28px);
                 max-height: none;
-                top: 0;
+                top: 12px;
                 transform: none;
             }
 
             .card {
-                height: calc(100vh - 10px);
+                height: calc(100vh - 28px);
                 min-height: 460px;
                 max-height: none;
             }
