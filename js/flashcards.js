@@ -1268,9 +1268,10 @@ function updateCard() {
     }
 
     // Validate the group selection against the current card. If any member
-    // index is out of range, or the anchor's pos+meaning/context no longer
+    // index is out of range, or the anchor's meaning/context no longer
     // matches the stored groupKey (data shifted under us), drop the
-    // selection and fall back to per-meaning rendering.
+    // selection and fall back to per-meaning rendering. Keys are POS-free
+    // to match the rendering side's `groupKeyOf` (cross-POS groups allowed).
     if (currentGroupSelection) {
         const sel = currentGroupSelection;
         const inRange = card.isMultiMeaning && sel.members && sel.members.length >= 2
@@ -1280,8 +1281,8 @@ function updateCard() {
         } else {
             const a = card.meanings[sel.members[0]];
             const expectedKey = sel.axis === 'translation'
-                ? `${a.pos}|${a.meaning}`
-                : `${a.pos}|${a.context || ''}`;
+                ? (a.meaning || '')
+                : (a.context || '');
             if (expectedKey !== sel.groupKey) {
                 currentGroupSelection = null;
             }
@@ -2663,6 +2664,10 @@ function selectMeaning(index) {
 // of the group (firstIdx); we use it as a fallback for currentMeaning so
 // downstream code that reads `card.meanings[currentMeaningIndex]` still has
 // a valid object.
+//
+// Group keys are POS-free (matching the rendering side's `groupKeyOf`)
+// because cross-POS collisions are intentionally allowed to group — e.g.
+// CONJ + REL "that" share translation "that" and render as one row.
 function selectGroup(axis, anchorIdx) {
     const card = flashcards[currentIndex];
     if (!card || !card.meanings || !card.meanings[anchorIdx]) return;
@@ -2670,16 +2675,16 @@ function selectGroup(axis, anchorIdx) {
     let groupKey;
     let members;
     if (axis === 'translation') {
-        groupKey = `${anchor.pos}|${anchor.meaning}`;
+        groupKey = anchor.meaning || '';
         members = card.meanings
             .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => mm.pos === anchor.pos && mm.meaning === anchor.meaning)
+            .filter(({ mm }) => (mm.meaning || '') === groupKey)
             .map(({ i }) => i);
     } else {
-        groupKey = `${anchor.pos}|${anchor.context || ''}`;
+        groupKey = anchor.context || '';
         members = card.meanings
             .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => mm.pos === anchor.pos && (mm.context || '') === (anchor.context || ''))
+            .filter(({ mm }) => (mm.context || '') === groupKey)
             .map(({ i }) => i);
     }
     if (members.length < 2) return;
