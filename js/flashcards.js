@@ -687,6 +687,7 @@ function setupSwipeGestures() {
     card.addEventListener('touchstart', function(e) {
         // Don't handle if touch is on buttons, links, or specific interactive elements
         if (e.target.closest('.nav-btn-inline') ||
+            e.target.closest('.gear-btn') ||
             e.target.closest('.link-btn') ||
             e.target.closest('.ref-icon-btn') ||
             e.target.closest('.card-control-btn') ||
@@ -2928,15 +2929,16 @@ document.addEventListener('click', (e) => {
 }, true);
 
 // Keyboard-shortcut guide: collapse/expand with localStorage persistence.
+// Toggled from the right-edge sidebar button (#kbToggleSidebar).
 (function _initKbGuideCollapse() {
     const LS_KEY = 'fluency.kbGuideCollapsed';
     function attach() {
         const guide = document.getElementById('desktopKeyboardGuide');
-        const btn = document.getElementById('kbCollapseBtn');
+        const btn = document.getElementById('kbToggleSidebar');
         if (!guide || !btn) return;
         const setCollapsed = (collapsed) => {
             guide.classList.toggle('collapsed', collapsed);
-            btn.title = collapsed ? 'Show shortcuts' : 'Hide shortcuts';
+            btn.title = collapsed ? 'Show keyboard shortcuts' : 'Hide keyboard shortcuts';
             btn.setAttribute('aria-label', btn.title);
             try { localStorage.setItem(LS_KEY, collapsed ? '1' : '0'); } catch (e) {}
         };

@@ -454,69 +454,13 @@
                 opacity: 0.95;
             }
 
-            .desktop-keyboard-guide.collapsed {
-                gap: 0;
-                padding: 0;
-                /* Sit flush with the viewport edge so the collapsed icon mirrors
-                   the right-hand toolbar's positioning (which is offset inward
-                   from the card, not the viewport — using left: 20px here
-                   matches the right toolbar's right: 20px visually). */
-                left: 20px;
+            /* Collapsed: hide the panel entirely (toggle lives in the right-edge
+               sidebar; nothing should remain visible on the left). Selector
+               matches the :has() prefix above so specificity wins. */
+            body:has(#appContent:not(.hidden)) .desktop-keyboard-guide.collapsed {
+                display: none;
             }
         }
-
-        /* Collapse toggle — shows chevron when expanded, keyboard icon when collapsed */
-        .kb-collapse-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 8px;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            padding: 0;
-            transition: background 0.2s, color 0.2s, width 0.2s, height 0.2s;
-        }
-        .kb-collapse-btn .kb-icon-chevron {
-            width: 18px;
-            height: 18px;
-        }
-        .kb-collapse-btn:hover {
-            background: rgba(255, 255, 255, 0.16);
-            color: #fff;
-        }
-        .kb-collapse-btn .kb-icon-keyboard { display: none; }
-        .kb-collapse-btn .kb-icon-chevron { display: block; }
-        /* Collapsed state: large circular toggle (~2x the previous size) so the
-           keyboard icon is easy to spot and click on desktop. Uses a soft
-           backdrop blur for an elegant floating-glass feel. */
-        .desktop-keyboard-guide.collapsed .kb-collapse-btn {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.07);
-            color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-        }
-        .desktop-keyboard-guide.collapsed .kb-collapse-btn:hover {
-            background: rgba(255, 255, 255, 0.14);
-            color: #fff;
-            transform: scale(1.04);
-            transition: transform 0.18s, background 0.2s, color 0.2s;
-        }
-        .desktop-keyboard-guide.collapsed .kb-collapse-btn .kb-icon-chevron { display: none; }
-        .desktop-keyboard-guide.collapsed .kb-collapse-btn .kb-icon-keyboard {
-            display: block;
-            width: 76px;
-            height: 76px;
-        }
-        .desktop-keyboard-guide.collapsed .kb-content { display: none; }
 
         /* Expanded popup — wraps the key sections in a subtle glass-panel
            backdrop so the keys read as a connected widget instead of floating
@@ -5446,22 +5390,21 @@
                 display: none !important;
             }
 
-            /* Top-of-card back/stats — match the 64x64 footprint of the
-               bottom-row arrow buttons (.nav-btn-inline) so all four mobile
-               action buttons read as peers. SVG bumped to 44px so the icons
-               carry similar visual weight to the 48px arrow glyphs.
+            /* Mobile banner buttons (back, gear) match the 64x64 footprint of
+               the arrow buttons (.nav-btn-inline). SVG sized to 48px so the
+               icons match the visual weight of the 48px arrow glyphs.
                Specificity matches .gear-btn so source order wins; keep these
                AFTER the .gear-btn rule above. */
             .nav-row-icon {
-                padding: 10px;
+                padding: 8px;
                 width: 64px;
                 height: 64px;
                 box-sizing: border-box;
             }
 
             .nav-row-icon svg {
-                width: 44px;
-                height: 44px;
+                width: 48px;
+                height: 48px;
             }
         }
 

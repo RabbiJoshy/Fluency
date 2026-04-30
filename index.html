@@ -24,7 +24,7 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260428b">
+    <link rel="modulepreload" href="js/main.js?v=20260430a">
     <link rel="modulepreload" href="js/state.js?v=20260428b">
     <link rel="modulepreload" href="js/speech.js?v=20260428b">
     <link rel="modulepreload" href="js/artist-ui.js?v=20260428b">
@@ -77,6 +77,25 @@
                     <line x1="4" y1="4" x2="9" y2="9"></line>
                 </svg>
             </button>
+            <button class="gear-btn" id="speakBtn" title="Toggle auto-speak">
+                <svg id="speakBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path class="speak-on-indicator" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    <line class="speak-off-indicator" x1="23" y1="9" x2="17" y2="15" style="display:none"></line>
+                    <line class="speak-off-indicator" x1="17" y1="9" x2="23" y2="15" style="display:none"></line>
+                </svg>
+            </button>
+            <button class="gear-btn" id="kbToggleSidebar" title="Toggle keyboard shortcuts" aria-label="Toggle keyboard shortcuts">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2"></rect>
+                    <line x1="6" y1="10" x2="6" y2="10"></line>
+                    <line x1="10" y1="10" x2="10" y2="10"></line>
+                    <line x1="14" y1="10" x2="14" y2="10"></line>
+                    <line x1="18" y1="10" x2="18" y2="10"></line>
+                    <line x1="7" y1="14" x2="17" y2="14"></line>
+                </svg>
+            </button>
         </div>
         <button class="gear-btn" id="gearBtn" title="Settings" style="display: none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -86,21 +105,9 @@
         </button>
     </div>
 
-    <!-- Desktop: keyboard shortcut guide (left side, viewport-fixed) -->
+    <!-- Desktop: keyboard shortcut guide (left side, viewport-fixed).
+         Toggled from the right-edge sidebar (#kbToggleSidebar). -->
     <div class="desktop-keyboard-guide" id="desktopKeyboardGuide">
-        <button class="kb-collapse-btn" id="kbCollapseBtn" title="Hide shortcuts" aria-label="Hide shortcuts">
-            <svg class="kb-icon-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-            <svg class="kb-icon-keyboard" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="6" width="20" height="12" rx="2" ry="2"></rect>
-                <line x1="6" y1="10" x2="6" y2="10"></line>
-                <line x1="10" y1="10" x2="10" y2="10"></line>
-                <line x1="14" y1="10" x2="14" y2="10"></line>
-                <line x1="18" y1="10" x2="18" y2="10"></line>
-                <line x1="7" y1="14" x2="17" y2="14"></line>
-            </svg>
-        </button>
         <div class="kb-content">
             <div class="kb-section">
                 <div class="kb-row">
@@ -387,18 +394,6 @@
                                         <path d="M18 20V10"></path>
                                         <path d="M12 20V4"></path>
                                         <path d="M6 20v-6"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <!-- Desktop: Speaker button centered at bottom -->
-                            <div class="desktop-nav-row" style="position: absolute; bottom: 20px; left: 0; right: 0; z-index: 5; pointer-events: none; display: flex; justify-content: center;">
-                                <button class="card-action-small" id="speakBtn" title="Toggle auto-speak" style="pointer-events: auto;">
-                                    <svg id="speakBtnIcon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                        <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                        <path class="speak-on-indicator" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                                        <line class="speak-off-indicator" x1="23" y1="9" x2="17" y2="15" style="display:none"></line>
-                                        <line class="speak-off-indicator" x1="17" y1="9" x2="23" y2="15" style="display:none"></line>
                                     </svg>
                                 </button>
                             </div>
@@ -955,6 +950,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260428b"></script>
+    <script type="module" src="js/main.js?v=20260430a"></script>
 </body>
 </html>
