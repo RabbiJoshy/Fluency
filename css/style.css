@@ -5529,6 +5529,43 @@
             .desktop-back-nav-hidden {
                 display: none !important;
             }
+            /* The gear popup is mobile-only — never visible on desktop. */
+            .card-actions-popup,
+            .card-actions-popup.visible {
+                display: none !important;
+            }
+        }
+
+        /* Mobile-only: hide the desktop-style top toolbar (REVERSE / SHUFFLE)
+           since the new mobile top row (prev / return / next) replaces it. */
+        @media (max-width: 767px) {
+            .desktop-only-card-toolbar {
+                display: none !important;
+            }
+        }
+
+        /* Floating actions popup that opens above the bottom-centre gear on
+           mobile. Hidden by default; .visible swaps display to flex. Tap any
+           inner button to trigger its action AND dismiss; tap outside to
+           dismiss (handled by document click listener in flashcards.js). */
+        .card-actions-popup {
+            display: none;
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            pointer-events: auto;
+            background: var(--bg-card-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            gap: 8px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+            align-items: center;
+        }
+        .card-actions-popup.visible {
+            display: flex;
         }
 
         /* Small pill button style (like logout) */

@@ -435,14 +435,24 @@ function initializeApp() {
         e.stopPropagation();
         nextCard();
     });
-    // Top card buttons
-    document.getElementById('reverseLangBtn').addEventListener('click', function(e) {
-        e.stopPropagation();
-        flipDirection();
+    // Top card buttons + their mobile-popup counterparts. The popup variants
+    // (id suffix `PopupFront`/`PopupBack`) live in the bottom-centre actions
+    // popup rendered on mobile; tapping them runs the same handler as the
+    // desktop top-toolbar button. Iterator pattern matches the back/stats
+    // wiring below — null entries (button not in DOM) are skipped.
+    ['reverseLangBtn', 'reverseLangBtnPopupFront', 'reverseLangBtnPopupBack'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            flipDirection();
+        });
     });
-    document.getElementById('shuffleBtnTop').addEventListener('click', function(e) {
-        e.stopPropagation();
-        shuffleCards();
+    ['shuffleBtnTop', 'shuffleBtnPopupFront', 'shuffleBtnPopupBack'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            shuffleCards();
+        });
     });
 
     // Lyric breakdown modal
@@ -460,9 +470,47 @@ function initializeApp() {
         e.stopPropagation();
         nextCard();
     });
-    document.getElementById('speakBtnMobile').addEventListener('click', function(e) {
-        e.stopPropagation();
-        toggleAutoSpeak();
+    // Mic / auto-speak toggle: the desktop centred speaker (#speakBtn) is
+    // wired further down; the mobile copy lives in the front-card actions
+    // popup as #speakBtnPopupFront. Iterator handles both ids gracefully.
+    ['speakBtnMobile', 'speakBtnPopupFront'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleAutoSpeak();
+        });
+    });
+
+    // Mobile actions popup — tap the gear to toggle, tap any inner button
+    // to perform the action AND dismiss, tap anywhere outside to dismiss.
+    [['actionsGearFront', 'cardActionsPopupFront'],
+     ['actionsGearBack',  'cardActionsPopupBack']].forEach(([gearId, popupId]) => {
+        const gear = document.getElementById(gearId);
+        const popup = document.getElementById(popupId);
+        if (!gear || !popup) return;
+        gear.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Close any sibling popup before opening this one so only one
+            // is visible at a time (the other face's popup might be open
+            // mid-flip; cheap defensive close).
+            document.querySelectorAll('.card-actions-popup.visible').forEach(p => {
+                if (p !== popup) p.classList.remove('visible');
+            });
+            popup.classList.toggle('visible');
+        });
+        popup.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                popup.classList.remove('visible');
+            });
+        });
+    });
+    document.addEventListener('click', function(e) {
+        document.querySelectorAll('.card-actions-popup.visible').forEach(popup => {
+            const gearId = popup.id === 'cardActionsPopupFront' ? 'actionsGearFront' : 'actionsGearBack';
+            const gear = document.getElementById(gearId);
+            if (popup.contains(e.target) || (gear && gear.contains(e.target))) return;
+            popup.classList.remove('visible');
+        });
     });
 
     // Floating buttons (desktop sidebar) + on-card mobile copies share handlers.
@@ -847,8 +895,10 @@ function toggleAutoSpeak() {
 }
 
 function updateSpeakIcons() {
-    // Update both desktop and mobile speaker icons
-    ['speakBtnIcon', 'speakBtnMobileIcon'].forEach(id => {
+    // Update desktop centred speaker icon + mobile actions-popup speak icon.
+    // (The old #speakBtnMobileIcon — bottom-row mic — was removed when the
+    // mic moved into the gear popup as #speakBtnPopupFrontIcon.)
+    ['speakBtnIcon', 'speakBtnPopupFrontIcon'].forEach(id => {
         const svg = document.getElementById(id);
         if (!svg) return;
         svg.querySelectorAll('.speak-on-indicator').forEach(el => {
@@ -2924,7 +2974,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260428a';
+const ASSET_VERSION = '20260428b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
