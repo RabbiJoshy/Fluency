@@ -5482,13 +5482,17 @@
         /* Floating actions popup that drops down from the top-banner gear on
            mobile. Hidden by default; .visible swaps display to flex. Tap any
            inner button to trigger its action AND dismiss; tap outside to
-           dismiss (handled by document click listener in flashcards.js). */
+           dismiss (handled by document click listener in flashcards.js).
+           translateZ(1px) pushes the popup 1px forward in the card's
+           preserve-3d context so it always renders in front of the card-face
+           plane — without it, z-fighting on some mobile browsers (especially
+           iOS Safari) renders the popup behind the card surface. */
         .card-actions-popup {
             display: none;
             position: absolute;
             top: 80px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateZ(1px);
             z-index: 10;
             pointer-events: auto;
             background: var(--bg-card-hover);
