@@ -49,7 +49,21 @@ function getConjugatedEnglish(card, translation) {
     if (tenseKey === undefined || personIdx === undefined) return null;
     const lemma = (card.lemma || "").toLowerCase();
     const row = _conjugatedEnglishData?.[lemma]?.[translation]?.[tenseKey];
-    return row ? (row[personIdx] || null) : null;
+    const form = row ? (row[personIdx] || null) : null;
+    if (!form) return null;
+    // 3rd-person singular in Spanish covers he/she/it. The data file stores
+    // only "he X"; expand to "he/she/it X" so the displayed translation
+    // reflects the actual pronoun coverage. Handles "he X" and "he's X"
+    // (contracted forms like "he's eating" → "he/she/it's eating").
+    if (personIdx === 2) {
+        if (/^he\s/i.test(form)) {
+            return form.replace(/^he\s/i, 'he/she/it ');
+        }
+        if (/^he'/i.test(form)) {
+            return form.replace(/^he'/i, "he/she/it'");
+        }
+    }
+    return form;
 }
 
 function formatMorphMood(mood) {
