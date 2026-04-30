@@ -1,0 +1,1136 @@
+<HTML>
+<HEAD>
+<TITLE> WebCelex Help </TITLE>
+
+</HEAD>
+
+<BODY text=seashell bgcolor="#004080" link="#FFFFFF" vlink="#FBF7F7" alink="#FF0000">
+<TABLE><TR>
+<TD>
+
+<IMAGE TYPE=image SRC="mpg-logo-90x90-grey.gif" WIDTH=10% ALIGN="center"  ALT="Help">
+
+</TD>
+<TD><H1> <font color=seashell face="Arial,Helvetica">  Max Planck Institute for Psycholinguistics</H1></TD>
+</TR></TABLE>
+
+<H1> WebCelex Help - Project Documentation screen</H1>
+
+This document contains an overview of all the files which comprise this webbased application. Every file (or class of files) is handled separately and a description is given of its functionality. All the files presented in this document should be available on cd as a backup of the full application.
+<BR><BR>
+
+<I> HTML files </I>
+<UL>
+<LI> <A HREF="#char">.char class</A>
+<LI> <A HREF="#num">.num class</A>
+<LI> <A HREF="#idx">.idx class</A>
+<LI> <A HREF="#dat">.dat class</A>
+<LI> <A HREF="#login">Login.html</A>
+<LI> <A HREF="#cols">Cols.html class</A>
+<LI> <A HREF="#dia">Dia.html class</A>
+<LI> <A HREF="#helpfiles">Helpfiles class</A>
+</UL>
+
+<I>CGI scripts</I>
+<UL>
+<LI> <A HREF="#entry">Entry.pl</A>
+<LI> <A HREF="#export">Export.pl</A>
+<LI> <A HREF="#get">Get.pl class</A>
+<LI> <A HREF="#mailit">Mailit.pl</A>
+<LI> <A HREF="#restrictions">Restrictions.pl</A>
+<LI> <A HREF="#start">Colstart.pl</A>
+<LI> <A HREF="#password">.passwords file</A>
+</UL>
+
+<I>Databases</I>
+<UL>
+<LI> <A HREF="#dbintro">Introduction</A>
+<LI> <A HREF="#dab">dab.cd</A>
+<LI> <A HREF="#dabn">dabn.cd</A>
+<LI> <A HREF="#dct">dct.cd</A>
+<LI> <A HREF="#dfl">dfl.cd</A>
+<LI> <A HREF="#dfs">dfs.cd</A>
+<LI> <A HREF="#dfw">dfw.cd</A>
+<LI> <A HREF="#dml2">dml2.cd</A>
+<LI> <A HREF="#dol3">dol3.cd</A>
+<LI> <A HREF="#dow3">dow3.cd</A>
+<LI> <A HREF="#dpl">dpl.cd</A>
+<LI> <A HREF="#dpw">dpw.cd</A>
+<LI> <A HREF="#dsl">dsl.cd</A>
+<LI> <A HREF="#dvl2">dvl2.cd</A>
+<LI> <A HREF="#ect">ect.cd</A>
+<LI> <A HREF="#efl">efl.cd</A>
+<LI> <A HREF="#efs">efs.cd</A>
+<LI> <A HREF="#eml3">eml3.cd</A>
+<LI> <A HREF="#emw">emw.cd</A>
+<LI> <A HREF="#eol">eol2.cd</A>
+<LI> <A HREF="#eow">eow2.cd</A>
+<LI> <A HREF="#epl">epl3.cd</A>
+<LI> <A HREF="#epw">epw3.cd</A>
+<LI> <A HREF="#esl">esl.cd</A>
+<LI> <A HREF="#gct">gct.cd</A>
+<LI> <A HREF="#gfl">gfl.cd</A>
+<LI> <A HREF="#gfs">gfs.cd</A>
+<LI> <A HREF="#gfw">gfw.cd</A>
+<LI> <A HREF="#gml2">gml2.cd</A>
+<LI> <A HREF="#gmw">gmw.cd</A>
+<LI> <A HREF="#gol">gol.cd</A>
+<LI> <A HREF="#gow">gow.cd</A>
+<LI> <A HREF="#gpl">gpl.cd</A>
+<LI> <A HREF="#gpw">gpw.cd</A>
+<LI> <A HREF="#gsl">gsl.cd</A>
+<LI> <A HREF="#udb">udb.cd</A>
+</UL>
+
+<!--
+<I>Other</I>
+<UL>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+<LI> <A HREF=""></A>
+</UL>
+-->
+
+<A NAME="char"><H3>.char class</H3>
+The <CODE>.char</CODE> class is a set of indexes. It is used by interval when an alphabetic range is chosen and significantly speeds up the lookup process. It works by providing the byteoffsets for every separate database based on the first two characters of the word.
+
+<A NAME="num"><H3>.num class</H3>
+The <CODE>.num</CODE> class is a set of indexes. It is used by interval when a numeric range is chosen and significantly speeds up the lookup process. It works by providing the byteoffsets for every separate database in steps of 500 rows.
+
+<A NAME="idx"><H3>.idx class</H3>
+The <CODE>.idx</CODE> class provides an index which couples the wordforms IdNums with the Lemma IdNums. In this way, lemma information can be presented within the wordforms section, looking up the byteoffsets for the lemma db's for a given wordform IdNum.
+
+<A NAME="dat"><H3>.dat class</H3>
+The <CODE>.dat</CODE> class is a set of files to generate the output for the columns <I>Familysize</I> and <I>Familyfrequency</I>. Those files could be added to the <CODE>.cd </CODE> files, but by doing this all the indexfiles would have to be recreated, which is an immense task. Therefore, those files have been added separately. Dirty, but quick.
+
+<A NAME="login"><H3>Login.html</H3>
+<CODE> Login.html </CODE> is the file which provides the entry point to the WebCelex application. 
+A user should enter his useraccount and password as specified in the <CODE>.passwords</CODE> file in the /cgi directory.
+
+<A NAME="cols"><H3>Cols.html class</H3>
+HTML files ending with <CODE>cols.html</CODE> are the left frames for the column selection page. Its parent is the cgi script <CODE> colstart.pl</CODE>. In this file the items which can be selected from a specific database are specified. Three hidden fields are submitted, being info, comprising useraccount, password and email-address; cnames, comprising the column names and groups, comprising the group in which the column names reside.
+
+<A NAME="dia"><H3>Dia.html class</H3>
+HTML files ending with <CODE>dia.html</CODE> are the right frames for the column selection page. Its parent is the cgi script <CODE>colstart.pl</CODE>. In this file, the column descriptions for the items to be selected in <CODE>cols.html</CODE> reside.
+
+<A NAME="helpfiles"><H3>Helpfiles</H3>
+<TABLE BORDER=1>
+<TR><TD><B>File Name</B></TD><TD><B>Contains</B></TD></TR>
+<TR><TD><CODE> dab.html </CODE></TD><TD>help on Dutch Abbreviations </TD></TR>
+<TR><TD><CODE> dabn.html</CODE></TD><TD>help on Dutch New Abbreviations</TD></TR>
+<TR><TD><CODE> dct.html </CODE></TD><TD>help on Dutch Corpustypes</TD></TR>
+<TR><TD><CODE> dlemmas.html </CODE></TD><TD>help on Dutch Lemmas     </TD></TR>
+<TR><TD><CODE> dsyl.html  </CODE></TD><TD>help on Dutch Syllables    </TD></TR>                
+<TR><TD><CODE> dudb.html </CODE></TD><TD>help on Dutch uitdenBoogaart  </TD></TR>
+<TR><TD><CODE> dwordforms.html</CODE></TD><TD>help on Dutch Wordforms</TD></TR>
+<TR><TD><CODE> gct.html</CODE></TD><TD>help on German Corpustypes</TD></TR>
+<TR><TD><CODE> glemmas.html</CODE></TD><TD>help on German Lemmas</TD></TR>
+<TR><TD><CODE> gsyl.html</CODE></TD><TD>help on German Syllables</TD></TR>
+<TR><TD><CODE> gwordforms.html</CODE></TD><TD>help on German Wordforms</TD></TR>
+<TR><TD><CODE> ect.html</CODE></TD><TD>help on English Corpustypes</TD></TR>
+<TR><TD><CODE> elemmas.html</CODE></TD><TD>help on English Lemmas</TD></TR>
+<TR><TD><CODE> esyl.html</CODE></TD><TD>help on English Syllables</TD></TR>
+<TR><TD><CODE> ewordforms.html</CODE></TD><TD>help on English Wordforms</TD></TR>
+<TR><TD><CODE> help01.html</CODE></TD><TD>the first overview helpscreen</TD></TR>
+<TR><TD><CODE> helpCode.html</CODE></TD><TD>this document</TD></TR>
+<TR><TD><CODE> helpCohorts.html</CODE></TD><TD>help on Toolbox Cohorts</TD></TR>
+<TR><TD><CODE> helpColumn.html</CODE></TD><TD>help on Column Selection</TD></TR>
+<TR><TD><CODE> helpExport.html</CODE></TD><TD>help on Export Screen</TD></TR>
+<TR><TD><CODE> helpLexicon.html</CODE></TD><TD>help on Lexicon Screen</TD></TR>
+<TR><TD><CODE> helpLogin.html</CODE></TD><TD>help on Login Screen </TD></TR>
+<TR><TD><CODE> helpNeighbours.html</CODE></TD><TD>help on Toolbox Neighbours </TD></TR>
+<TR><TD><CODE> helpNgrams.html</CODE></TD><TD>help on Toolbox N-grams </TD></TR>
+<TR><TD><CODE> helpRestrictions.html</CODE></TD><TD>help on Restrictions Screen</TD></TR>
+<TR><TD><CODE> helpSorting.html</CODE></TD><TD>help on Toolbox Sorting</TD></TR>
+<TR><TD><CODE> helpStatistics.html</CODE></TD><TD>help on Toolbox Statistics</TD></TR>
+<TR><TD><CODE> helpToolbox.html</CODE></TD><TD>help on Toolbox</TD></TR>
+<TR><TD><CODE> helpUniqueness.html</CODE></TD><TD>help on Toolbox Uniqueness Points</TD></TR>
+</TABLE>
+
+<BR><HR>
+
+<A NAME="entry"><H3>Entry.pl</H3>
+Within entry, the login and password are validated. One can select a database, which calls <CODE>colstart.pl</CODE> with a specific language and type. <CODE>Colstart.pl</CODE> is the parent of all <CODE>cols.html</CODE> and <CODE>dia.html</CODE> files. Alternatively, the user can type a message, which is passed to the <CODE>mailit.pl</CODE> program.
+
+<A NAME="export"><H3>Export.pl</H3>
+<CODE>Export.pl</CODE> is the cgi script which calls the results script <CODE>get.pl</CODE>. Here the formatting of the results is specified.
+
+<A NAME="get"><H3>Get.pl class</H3>
+The <CODE>get.pl</CODE> class of files are the scripts, providing the resulting data for a specific database. These are the most complex scripts in the application. 
+
+<A NAME="mailit"><H3>Mailit.pl</H3>
+The <CODE>mailit.pl</CODE> script mails a message specified by the user in <CODE>entry.pl</CODE> to the developer.
+
+<A NAME="restrictions"><H3>Restrictions.pl</H3>
+The <CODE>restrictions.pl</CODE> file is responsible for the restrictions screen in which restrictions on the data can be set.
+
+<A NAME="start"><H3>Colstart.pl</H3>
+The <CODE>colstart.pl</CODE> file is the parent providing the frameset for the column selection screen. It passes login and passwords to its frames.
+
+<A NAME="password"><H3>.passwords file</H3>
+Within the .passwords file, login, password and email for each user is specified.
+
+<BR><BR><HR>
+
+<A NAME="dbintro"><H3>Introduction</H3>
+This application makes use of the database as specified on the CELEX cdrom. There are however some differences. The alternatives for certain columns are represented at the end of a row on the cdrom (the fields repeat themselves). However, within this application, the alternatives are all present within the same field and separated by a % sign. Furthermore, there are some db's which contain variants on the cdrom. These lines were to long for the awk-scripts on the cdrom to be processed and were put into separate files. Within this application, the variants are reintegrated with their original db. There are many fields which are present in several databases, but the application only makes use of one field in one db (i.e, it uses Inl within frequency, but not Inl within Orthography or Morphology). These fields could be cut from the db's which would mean a speedup of the application, but this has severe implications for the <CODE>get.pl</CODE> files. Finally, there are many fields which are not present within the db, but which can be deduced from it. This has been done within the <CODE>get.pl</CODE> files, where the orginal awk scripts have been converted and are applied at run-time when necessary.
+
+<A NAME="dab"><H3>dab.cd</H3>
+   
+   The dab.cd file contains the following fields:
+
+<OL>
+<LI> Abbr
+<LI> AbbrDia
+<LI> Meaning
+<LI> Inl
+<LI> InlDev
+<LI> InlMln
+<LI> InlLog
+<LI> OrthoCnt
+</OL>
+
+<A NAME="dabn"><H3>dabn.cd</H3>
+
+ The dabn.cd file contains the following fields:
+
+<OL>
+<LI> IdNum
+<LI> OrthoCnt
+<LI> OrthoNum
+<LI> AbbrChg
+<LI> NewOrthoStatus
+<LI> OldOrthoStatus
+<LI> Abbr
+<LI> AbbrDia
+<LI> Meaning
+<LI> Inl
+<LI> InlDev
+<LI> InlMln
+<LI> InlLog
+<LI> AbbrImage
+</OL>
+
+<A NAME="dct"><H3>dct.cd</H3>
+
+ The dct.cd file contains the following fields:
+
+<OL>
+<LI> Type
+<LI> Freq
+<LI> Disp
+<LI> Indet
+<LI> Status
+</OL>
+
+<A NAME="dfl"><H3>dfl.cd</H3>
+
+ The dfl.cd file contains the following fields:
+
+<OL>
+<LI> IdNum
+<LI> Head
+<LI> Inl
+<LI> InlDev
+<LI> InlMln
+<LI> InlLog
+<LI> Dict
+</OL>
+
+<A NAME="dfs"><H3>dfs.cd</H3>
+
+ The dfs.cd file contains the following fields:
+
+<OL>
+<LI> Syllable
+<LI> SylPos
+<LI> SylInlMln
+<LI> SylTotInlMln
+</OL>
+
+<A NAME="dfw"><H3>dfw.cd</H3>
+
+ The dfw.cd file contains the following fields:
+
+<OL>
+<LI> IdNum
+<LI> Word
+<LI> IdNumLemma
+<LI> Inl
+<LI> InlDev
+<LI> InlMln
+<LI> InlLog
+</OL>
+
+<A NAME="dml2"><H3>dml2.cd</H3>
+
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>DML-fields in CELEX</B></TD><TD><B>DML-fields in CD-file</B></TD></TR>
+<TR><TD>1</TD><TD>IdNum</TD><TD>Column 1</TD><TD></TR>
+<TR><TD>2</TD><TD>Head</TD><TD>Column 2</TD><TD></TR>
+<TR><TD>3</TD><TD>MorphStatus</TD><TD>Column 4</TD><TD></TR>
+<TR><TD>4</TD><TD>MorphCnt</TD><TD>Column 5</TD><TD></TR>
+<TR><TD>5</TD><TD>MorphNum</TD><TD>obsolete</TD><TD></TR>
+<TR><TD>6</TD><TD>DerComp</TD><TD>Column 6</TD><TD></TR>
+<TR><TD>7</TD><TD>Comp</TD><TD>Column 7</TD><TD></TR>
+<TR><TD>8</TD><TD>Def</TD><TD>Column 8</TD><TD></TR>
+<TR><TD>9</TD><TD>Imm</TD><TD>Column 9</TD><TD></TR>
+<TR><TD>10</TD><TD>ImmClass</TD><TD>ConvertVerbNumbersToV(ImmSubCat);</TD><TD></TR>
+<TR><TD>11</TD><TD>ImmSubCat</TD><TD>Column 10</TD><TD></TR>
+<TR><TD>12</TD><TD>ImmSA</TD><TD>ConvertImmWordClassToSAPattern(ImmSubCat);</TD><TD></TR>
+<TR><TD>13</TD><TD>ImmAllo</TD><TD>Column 11</TD><TD></TR>
+<TR><TD>14</TD><TD>ImmSubst</TD><TD>Column 12</TD><TD></TR>
+<TR><TD>15</TD><TD>Flat</TD><TD>StripStructureMarkers(StrucLab);</TD><TD></TR>
+<TR><TD>16</TD><TD>FlatClass</TD><TD>ExtractWordClass(StrucLab);</TD><TD></TR>
+<TR><TD>17</TD><TD>FlatSA </TD><TD>ConvertFlatWordClassToSAPattern(StrucLab);</TD><TD></TR>
+<TR><TD>18</TD><TD>Struc </TD><TD>StripClassLabels(StrucLab);</TD><TD></TR>
+<TR><TD>19</TD><TD>StrucLab</TD><TD>Column 13</TD><TD></TR>
+<TR><TD>20</TD><TD>StrucBrackLab</TD><TD>StripOrthographicInformation(StrucLab);</TD><TD></TR>
+<TR><TD>21</TD><TD>StrucAllo</TD><TD>Column 14</TD><TD></TR>
+<TR><TD>22</TD><TD>StrucSubst</TD><TD>Column 15</TD><TD></TR>
+<TR><TD>23</TD><TD>CompCnt</TD><TD>CountMorpComponents(ImmSubCat);</TD><TD></TR>
+<TR><TD>24</TD><TD>MorCnt</TD><TD>CountMorphemes(StrucLab);</TD><TD></TR>
+<TR><TD>25</TD><TD>LevelCnt</TD><TD>CountLevels(StrucLab);</TD><TD></TR>
+<TR><TD>26</TD><TD>Sepa</TD><TD>Column 16</TD><TD></TR>
+</TABLE>
+<BR>
+There are 11 fields which can have alternative parsings. These parsings are separated by a % sign. These eleven fields are:
+
+<UL>
+<LI>DerComp 
+<LI>Comp
+<LI>Def
+<LI>Imm
+<LI>ImmSubCat
+<LI>ImmAllo
+<LI>ImmSubst
+<LI>StrucLab
+<LI>StrucAllo
+<LI>StrucSubst
+<LI>Sepa
+</UL>
+
+<A NAME="dol3"><H3>dol3.cd</H3>
+
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>DOL-fields in CELEX</B></TD><TD><B>DOL-fields in CD-file</B></TD></TR>
+<TR><TD>1</TD><TD>IdNum</TD><TD>Column 1</TD></TR>
+<TR><TD>2</TD><TD>OrthoCnt</TD><TD>Column 4</TD></TR>
+<TR><TD>3</TD><TD>OrthoNum</TD><TD>obsolete</TD></TR>
+<TR><TD>4</TD><TD>OrthoStatus</TD><TD>Column 5</TD></TR>
+<TR><TD>5</TD><TD>InlSpellFreq</TD><TD>Column 6</TD></TR>
+<TR><TD>6</TD><TD>InlSpellDev</TD><TD>Column 7</TD></TR>
+<TR><TD>7</TD><TD>Head</TD><TD>StripDiacritics(HeadDia);</TD></TR>
+<TR><TD>8</TD><TD>HeadRev</TD><TD>ReverseString(HeadDia);</TD></TR>
+<TR><TD>9</TD><TD>HeadDia</TD><TD>Column 2</TD></TR>
+<TR><TD>10</TD><TD>HeadLow</TD><TD>ToLower(HeadDia);</TD></TR>
+<TR><TD>11</TD><TD>HeadLowSort</TD><TD>SortString(HeadDia);</TD></TR>
+<TR><TD>12</TD><TD>HeadCnt</TD><TD>CountCharacters(HeadDia);</TD></TR>
+<TR><TD>13</TD><TD>HeadSyl</TD><TD>StripDiacritics(HeadSylDia);</TD></TR>
+<TR><TD>14</TD><TD>HeadSylDia</TD><TD>Column 8</TD></TR>
+<TR><TD>15</TD><TD>HeadSylCnt</TD><TD>CountSyllables(HeadSylDia);</TD></TR>
+<TR><TD>16</TD><TD>Stem</TD><TD>StripDiacritics(StemDia);</TD></TR>
+<TR><TD>17</TD><TD>StemRev</TD><TD>ReverseString(StemDia);</TD></TR>
+<TR><TD>18</TD><TD>StemDia</TD><TD>Column 9</TD></TR>
+<TR><TD>19</TD><TD>StemCnt</TD><TD>CountCharacters(StemDia);</TD></TR>
+<TR><TD>20</TD><TD>StemSyl</TD><TD>StripDiacritics(StemSylDia);</TD></TR>
+<TR><TD>21</TD><TD>StemSylDia</TD><TD>Column 10</TD></TR>
+<TR><TD>22</TD><TD>StemSylCnt</TD><TD>CountSyllables(StemSylDia);</TD></TR>
+<TR><TD>23</TD><TD>AbStem</TD><TD>StripDiacritics(AbStemDia);</TD></TR>
+<TR><TD>24</TD><TD>AbStemDia</TD><TD>Column 11</TD></TR>
+<TR><TD>25</TD><TD>AbStemCnt</TD><TD>CountCharacters(AbStemDia);</TD></TR>
+</TABLE>
+<BR>
+There are 8 fields which can have alternative parsings. These parsings are separated by a % sign. These eight fields are:
+
+<UL>
+<LI>HeadDia
+<LI>OrthoStatus
+<LI>InlSpellFreq
+<LI>InlSpellDev
+<LI>HeadSylDia
+<LI>StemDia
+<LI>StemSylDia
+<LI>AbStemDia
+</UL>
+
+The original doln file has been integrated with the original dol file to create dol3.cd. Therefore, the fields 
+HeadDiaNew, SpellChg and HeadSylDiaNew are the last three fields of this dol3.cd database.
+
+<A NAME="dow3"><H3>dow3.cd</H3>
+
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>DOW-fields in CELEX</B></TD><TD><B>DOW-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>    IdNum                     </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>    OrthoCnt                  </TD><TD>Column 5</TD></TR>
+<TR><TD>   3</TD><TD>    OrthoNum                  </TD><TD>obsolete</TD></TR>
+<TR><TD>   4</TD><TD>    OrthoStatus               </TD><TD>Column 6</TD></TR>
+<TR><TD>   5</TD><TD>    InlSpellFreq              </TD><TD>Column 7</TD></TR>
+<TR><TD>   6</TD><TD>    InlSpellDev               </TD><TD>Column 8</TD></TR>
+ <TR><TD>  7</TD><TD>    Word                      </TD><TD>StripDiacritics(WordDia);</TD></TR>
+ <TR><TD>  8</TD><TD>    WordRev                   </TD><TD>ReverseString(WordDia);</TD></TR>
+ <TR><TD>  9</TD><TD>    WordDia                   </TD><TD>Column 2</TD></TR>
+<TR><TD>   10</TD><TD>   WordLow                   </TD><TD>ToLower(WordDia);</TD></TR>
+<TR><TD>   11</TD><TD>   WordLowSort               </TD><TD>SortString(WordDia);</TD></TR>
+ <TR><TD>  12</TD><TD>   WordCnt                   </TD><TD>CountCharacters(WordDia);</TD></TR>
+ <TR><TD>  13</TD><TD>   WordSyl                   </TD><TD>StripDiacritics(WordSylDia);</TD></TR>
+ <TR><TD>  14</TD><TD>   WordSylDia                </TD><TD>Column 9</TD></TR>
+ <TR><TD>  15</TD><TD>   WordSylCnt                </TD><TD>CountSyllables(WordSylDia);</TD></TR>
+ <TR><TD>  16</TD><TD>   IdNumLemma                </TD><TD>Column 4</TD></TR>
+</TABLE>
+<BR>
+There are 5 fields which can have alternative parsings. These parsings are separated by a % sign. These eight fields are:
+
+<UL>
+<LI>WordDia
+<LI>OrthoStatus
+<LI>InlSpellFreq
+<LI>InlSpellDev
+<LI>WordSylDia
+</UL>
+
+The original down file has been integrated with the original dow file to create dow3.cd. Therefore, the fields 
+WordDiaNew, SpellChg and WordSylDiaNew are the last three fields of this dow3.cd database.
+
+<A NAME="dpl"><H3>dpl.cd</H3>
+
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>DPL-fields in CELEX</B></TD><TD><B>DPL-fields in CD-file</B></TD></TR>
+ <TR><TD>   1</TD><TD>     IdNum               </TD><TD>Column 1</TD></TR>
+ <TR><TD>   2</TD><TD>     PhonSAM             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>    3</TD><TD>     PhonCLX             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CX</TD></TR>
+ <TR><TD>   4</TD><TD>     PhonCPA             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>    5</TD><TD>     PhonDISC            </TD><TD>PhoneticTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>    6</TD><TD>     PhonCnt             </TD><TD>NumOfChar(PhonStrsDISC)</TD></TR>
+<TR><TD>    7</TD><TD>     PhonSylSAM          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>    8</TD><TD>     PhonSylCLX          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CX</TD></TR>
+ <TR><TD>   9</TD><TD>     PhonSylBCLX         </TD><TD>Column 6</TD></TR>
+ <TR><TD>  10</TD><TD>     PhonSylCPA          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   11</TD><TD>     PhonSylDISC         </TD><TD>PhonSylTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   12</TD><TD>     SylCnt              </TD><TD>CountSyllables(PhonStrsDISC)</TD></TR>
+<TR><TD>   13</TD><TD>     PhonStrsSAM         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   14</TD><TD>     PhonStrsCLX         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   15</TD><TD>     PhonStrsCPA         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   16</TD><TD>     PhonStrsDISC        </TD><TD>Column 4</TD></TR>
+<TR><TD>   17</TD><TD>     StrsPat             </TD><TD>MakeStressPattern(PhonStrsDISC)</TD></TR>
+<TR><TD>   18</TD><TD>     PhonStSAM           </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) SP</TD></TR>
+<TR><TD>   19</TD><TD>     PhonStCLX           </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) CX</TD></TR>
+<TR><TD>   20</TD><TD>     PhonStCPA           </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) CP</TD></TR>
+<TR><TD>   21</TD><TD>     PhonStDISC          </TD><TD>PhoneticTranscriptions(PhonStrsStDISC)</TD></TR>
+<TR><TD>   22</TD><TD>     PhonStCnt           </TD><TD>NumOfChar(PhonStrsStDISC)</TD></TR>
+<TR><TD>   23</TD><TD>     PhonSylStSAM        </TD><TD>PhonSylTranscriptions(PhonStrsStDISC) SP</TD></TR>
+<TR><TD>   24</TD><TD>     PhonSylStCLX        </TD><TD>PhonSylTranscriptions(PhonStrsStDISC) CX</TD></TR>
+<TR><TD>   25</TD><TD>     PhonSylStBCLX       </TD><TD>Column 9</TD></TR>
+<TR><TD>   26</TD><TD>     PhonSylStCPA        </TD><TD>PhonSylTranscriptions(PhonStrsStDISC) CP</TD></TR>
+<TR><TD>   27</TD><TD>     PhonSylStDISC       </TD><TD>PhonSylTranscriptions(PhonStrsStDISC)</TD></TR>
+ <TR><TD>  28</TD><TD>     StSylCnt            </TD><TD>CountSyllables(PhonStrsStDISC)</TD></TR>
+<TR><TD>   29</TD><TD>     PhonStrsStSAM       </TD><TD>PhonStrsTranscriptions(PhonStrsStDISC) SP</TD></TR>
+<TR><TD>   30</TD><TD>     PhonStrsStCLX       </TD><TD>PhonStrsTranscriptions(PhonStrsStDISC) CX</TD></TR>
+<TR><TD>   31</TD><TD>     PhonStrsStCPA       </TD><TD>PhonStrsTranscriptions(PhonStrsStDISC) CP</TD></TR>
+<TR><TD>   32</TD><TD>     PhonStrsStDISC      </TD><TD>Column 7</TD></TR>
+<TR><TD>   33</TD><TD>     StStrsPat           </TD><TD>MakeStressPattern(PhonStrsStDISC)</TD></TR>
+<TR><TD>   34</TD><TD>     PhonCV              </TD><TD>ConvertBrackets(PhonCVBr)</TD></TR>
+<TR><TD>   35</TD><TD>     PhonCVBr            </TD><TD>Column 5</TD></TR>
+<TR><TD>   36</TD><TD>     PhonStCV            </TD><TD>ConvertBrackets(PhonStCVBr)</TD></TR>
+<TR><TD>   37</TD><TD>     PhonStCVBr          </TD><TD>Column 8</TD></TR>
+<TR><TD>   38</TD><TD>     PhonolCLX           </TD><TD>Column 10</TD></TR>
+<TR><TD>   39</TD><TD>     PhonolCPA           </TD><TD>Column 11</TD></TR>
+</TABLE>
+
+<A NAME="dpw"><H3>dpw.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>DPW-fields in CELEX</B></TD><TD><B>DPW-fields in CD-file</B></TD></TR>
+<TR><TD>    1</TD><TD>     IdNum               </TD><TD>Column 1</TD></TR>
+ <TR><TD>   2</TD><TD>     PhonSAM             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) SP</TD></TR>
+ <TR><TD>   3</TD><TD>     PhonCLX             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>    4</TD><TD>     PhonCPA             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>    5</TD><TD>     PhonDISC            </TD><TD>PhoneticTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>    6</TD><TD>     PhonCnt             </TD><TD>NumOfChar(PhonStrsDISC)</TD></TR>
+<TR><TD>    7</TD><TD>     PhonSylSAM          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>    8</TD><TD>     PhonSylCLX          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>    9</TD><TD>     PhonSylBCLX         </TD><TD>Column 7</TD></TR>
+<TR><TD>   10</TD><TD>     PhonSylCPA          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   11</TD><TD>     PhonSylDISC         </TD><TD>PhonSylTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   12</TD><TD>     SylCnt              </TD><TD>CountSyllables(PhonStrsDISC)</TD></TR>
+<TR><TD>   13</TD><TD>     PhonStrsSAM         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   14</TD><TD>     PhonStrsCLX         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CX</TD></TR>
+ <TR><TD>  15</TD><TD>     PhonStrsCPA         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CP</TD></TR>
+ <TR><TD>  16</TD><TD>     PhonStrsDISC        </TD><TD>Column 5</TD></TR>
+<TR><TD>   17</TD><TD>     StrsPat             </TD><TD>MakeStressPattern(PhonStrsDISC)</TD></TR>
+<TR><TD>   18</TD><TD>     PhonCV              </TD><TD>ConvertBrackets(PhonCVBr)</TD></TR>
+<TR><TD>   19</TD><TD>     PhonCVBr            </TD><TD>Column 6</TD></TR>
+</TABLE>
+
+<A NAME="dsl"><H3>dsl.cd</H3>
+
+ The dsl.cd file contains the following fields:
+
+<OL>
+<LI>IdNum
+<LI>Head
+<LI>Inl
+<LI>ClassNum
+<LI>GendNum
+<LI>DeHetNum
+<LI>PropNum
+<LI>AuxNum
+<LI>SubClassVNum
+<LI>SubCatNum
+<LI>AdvNum
+<LI>CardOrdNum
+<LI>SubClassPNum
+</OL>
+
+<A NAME="dvl2"><H3>dvl2.cd</H3>
+The dvl file has alternative parsings for its complementation frames. For a specification of the meaning of the fields within the db, please check the associated README file on the cdrom.
+
+<A NAME="ect"><H3>ect.cd</H3>
+
+ The ect.cd file contains the following fields:
+
+<OL>
+<LI>Type
+<LI>Freq
+<LI>FreqW
+<LI>FreqWB
+<LI>FreqWA
+<LI>FreqWU
+<LI>FreqS
+<LI>FreqSB
+<LI>FreqSU
+</OL>
+
+<A NAME="efl"><H3>efl.cd</H3>
+
+ The efl.cd file contains the following fields:
+ 
+<OL>
+<LI>IdNum
+<LI>Head
+<LI>Cob
+<LI>CobDev
+<LI>CobMln
+<LI>CobLog
+<LI>CobW
+<LI>CobWMln
+<LI>CobWLog
+<LI>CobS
+<LI>CobSMln
+<LI>CobSLog
+</OL>
+
+<A NAME="efs"><H3>efs.cd</H3>
+ 
+The file contains the following fields:
+
+<OL>
+<LI>Syllable
+<LI>SylPos
+<LI>SylInlMln
+<LI>SylTotInlMln
+</OL>
+
+<A NAME="eml3"><H3>eml3.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>EML-fields in CELEX</B></TD><TD><B>EML-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>     IdNum                        </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>     Head                         </TD><TD>Column 2</TD></TR>
+<TR><TD>   3</TD><TD>     MorphStatus                  </TD><TD>Column 4</TD></TR>
+<TR><TD>   4</TD><TD>     Lang                         </TD><TD>Column 5</TD></TR>
+<TR><TD>   5</TD><TD>     MorphCnt                     </TD><TD>Column 6</TD></TR>
+<TR><TD>   6</TD><TD>     MorphNum                     </TD><TD>obsolete</TD></TR>
+<TR><TD>   7</TD><TD>     NVAffComp                    </TD><TD>Column 7</TD></TR>
+<TR><TD>   8</TD><TD>     Der                          </TD><TD>Column 8</TD></TR>
+<TR><TD>   9</TD><TD>     Comp                         </TD><TD>Column 9</TD></TR>
+<TR><TD>   10</TD><TD>    DerComp                      </TD><TD>Column 10</TD></TR>
+<TR><TD>   11</TD><TD>    Def                          </TD><TD>Column 11</TD></TR>
+<TR><TD>   12</TD><TD>    Imm                          </TD><TD>Column 12</TD></TR>
+<TR><TD>   13</TD><TD>    ImmClass                     </TD><TD>ConvertVerbNumbersToV(ImmSubCat);</TD></TR>
+<TR><TD>   14</TD><TD>    ImmSubCat                    </TD><TD>Column 13</TD></TR>
+<TR><TD>   15</TD><TD>    ImmSA                        </TD><TD>Column 14</TD></TR>
+<TR><TD>   16</TD><TD>    ImmAllo                      </TD><TD>Column 15</TD></TR>
+<TR><TD>   17</TD><TD>    ImmSubst                     </TD><TD>Column 16</TD></TR>
+<TR><TD>   18</TD><TD>    ImmOpac                      </TD><TD>Column 17</TD></TR>
+<TR><TD>   19</TD><TD>    TransDer                     </TD><TD>Column 18</TD></TR>
+<TR><TD>   20</TD><TD>    ImmInfix                     </TD><TD>Column 19</TD></TR>
+<TR><TD>   21</TD><TD>    ImmRevers                    </TD><TD>Column 20</TD></TR>
+<TR><TD>   22</TD><TD>    Flat                         </TD><TD>StripStructureMarkers(StrucLab);</TD></TR>
+<TR><TD>   23</TD><TD>    FlatClass                    </TD><TD>ExtractWordClass(StrucLab);</TD></TR>
+<TR><TD>   24</TD><TD>    FlatSA                       </TD><TD>Column 21</TD></TR>
+<TR><TD>   25</TD><TD>    Struc                        </TD><TD>StripClassLabels(StrucLab);</TD></TR>
+<TR><TD>   26</TD><TD>    StrucLab                     </TD><TD>Column 22</TD></TR>
+<TR><TD>   27</TD><TD>    StrucBrackLab                </TD><TD>StripOrthographicInformation(StrucLab);</TD></TR>
+<TR><TD>   28</TD><TD>    StrucAllo                    </TD><TD>Column 23</TD></TR>
+<TR><TD>   29</TD><TD>    StrucSubst                   </TD><TD>Column 24</TD></TR>
+<TR><TD>   30</TD><TD>    StrucOpac                    </TD><TD>Column 25</TD></TR>
+<TR><TD>   31</TD><TD>    CompCnt                      </TD><TD>CountMorpComponents(ImmSubCat);</TD></TR>
+<TR><TD>   32</TD><TD>    MorphCnt                     </TD><TD>CountMorphemes(StrucLab);</TD></TR>
+<TR><TD>   33</TD><TD>    LevelCnt                     </TD><TD>CountLevels(StrucLab);</TD></TR>
+</TABLE>
+<BR>
+There are 19 fields which can have alternative parsings. These parsings are separated by a % sign. These nineteen fields are:
+
+<UL>
+<LI>NVAffComp
+<LI>Der 
+<LI>Comp
+<LI>DerComp
+<LI>Def
+<LI>Imm
+<LI>ImmSubCat
+<LI>ImmSA
+<LI>ImmAllo
+<LI>ImmSubst
+<LI>ImmOpac
+<LI>TransDer
+<LI>ImmInfix
+<LI>ImmRevers
+<LI>FlatSA
+<LI>StrucLab 
+<LI>StrucAllo
+<LI>StrucSubst
+<LI>StrucOpac
+</UL>
+
+6 variants have been reintegrated with the database.
+
+<A NAME="emw"><H3>emw.cd</H3>
+
+ The emw.cd file contains the following fields:
+
+<OL>
+<LI>IdNum
+<LI>Word
+<LI>Cob
+<LI>IdNumLemma
+<LI>FlectType
+<LI>TransInfl
+</OL>
+
+ The awk directory contains the script: script TypeToInflectionalFeatures(String):    type2fea.awk
+ for reconstructing the 13 Inflectional Features fields outlined in the  CELEX User Guide:
+
+<OL>
+<LI>Sing
+<LI>Plu
+<LI>Pos
+<LI> Comp
+<LI> Sup
+<LI> Inf
+<LI> Part
+<LI> Pres
+<LI> Past
+<LI> Sin1
+<LI> Sin2
+<LI> Sin3
+<LI> Rare
+</OL>
+
+<A NAME="eol"><H3>eol2.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>EOL-fields in CELEX</B></TD><TD><B>EOL-fields in CD-file</B></TD></TR>
+<TR><TD>1</TD><TD>    IdNum                      </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>    OrthoCnt                   </TD><TD>Column 4</TD></TR>
+<TR><TD>   3</TD><TD>    OrthoNum                   </TD><TD>obsolete</TD></TR>
+<TR><TD>   4</TD><TD>    OrthoStatus                </TD><TD>Column 5</TD></TR>
+<TR><TD>   5</TD><TD>    CobSpellFreq               </TD><TD>Column 6</TD></TR>
+<TR><TD>   6</TD><TD>    CobSpellDev                </TD><TD>Column 7</TD></TR>
+<TR><TD>   7</TD><TD>    Head                       </TD><TD>StripDiacritics(HeadDia);</TD></TR>
+<TR><TD>   8</TD><TD>    HeadRev                    </TD><TD>ReverseString(HeadDia);</TD></TR>
+<TR><TD>   9</TD><TD>    HeadDia                    </TD><TD>Column 2</TD></TR>
+<TR><TD>   10</TD><TD>   HeadLow                    </TD><TD>ToLower(HeadDia);</TD></TR>
+<TR><TD>   11</TD><TD>   HeadLowSort                </TD><TD>SortString(HeadDia);</TD></TR>
+<TR><TD>   12</TD><TD>   HeadCnt                    </TD><TD>CountCharacters(HeadDia);</TD></TR>
+<TR><TD>   13</TD><TD>   HeadSyl                    </TD><TD>StripDiacritics(HeadSylDia);</TD></TR>
+<TR><TD>   14</TD><TD>   HeadSylDia                 </TD><TD>Column 8</TD></TR>
+<TR><TD>   15</TD><TD>   HeadSylCnt                 </TD><TD>CountSyllables(HeadSylDia);</TD></TR>
+</TABLE>
+<BR>
+There are 4 fields which can have alternative parsings. These parsings are separated by a % sign. These four fields are:
+
+<UL>
+<LI>OrthoStatus
+<LI>     CobSpellFreq
+<LI>     CobSpellDev
+<LI>   HeadSylDia
+</UL>
+
+<A NAME="eow"><H3>eow2.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>EOW-fields in CELEX</B></TD><TD><B>EOW-fields in CD-file</B></TD></TR>
+<TR><TD>  1</TD><TD>    IdNum                     </TD><TD>Column 1</TD></TR>
+<TR><TD>  2</TD><TD>    OrthoCnt                  </TD><TD>Column 5</TD></TR>
+<TR><TD>  3</TD><TD>    OrthoNum                  </TD><TD>obsolete</TD></TR>
+<TR><TD>  4</TD><TD>    OrthoStatus               </TD><TD>Column 6</TD></TR>
+<TR><TD>  5</TD><TD>    CobSpellFreq              </TD><TD>Column 7</TD></TR>
+<TR><TD>  6</TD><TD>    CobSpellDev               </TD><TD>Column 8</TD></TR>
+<TR><TD>  7</TD><TD>    Word                      </TD><TD>StripDiacritics(WordDia);</TD></TR>
+<TR><TD>  8</TD><TD>    WordRev                   </TD><TD>ReverseString(WordDia);</TD></TR>
+<TR><TD>  9</TD><TD>    WordDia                   </TD><TD>Column 2</TD></TR>
+<TR><TD>  10</TD><TD>   WordLow                   </TD><TD>ToLower(WordDia);</TD></TR>
+<TR><TD>  11</TD><TD>   WordLowSort               </TD><TD>SortString(WordDia);</TD></TR>
+<TR><TD>  12</TD><TD>   WordCnt                   </TD><TD>CountCharacters(WordDia);</TD></TR>
+<TR><TD>  13</TD><TD>   WordSyl                   </TD><TD>StripDiacritics(WordSylDia);</TD></TR>
+<TR><TD>  14</TD><TD>   WordSylDia                </TD><TD>Column 9</TD></TR>
+<TR><TD>  15</TD><TD>   WordSylCnt                </TD><TD>CountSyllables(WordSylDia);</TD></TR>
+<TR><TD>  16</TD><TD>   IdNumLemma                </TD><TD>Column 4</TD></TR>
+</TABLE>
+
+<A NAME="epl"><H3>epl3.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>EPL-fields in CELEX</B></TD><TD><B>EPL-fields in CD-file</B></TD></TR>
+ <TR><TD>  1</TD><TD>     IdNum               </TD><TD>Column 1</TD></TR>
+ <TR><TD>  2</TD><TD>     PronCnt             </TD><TD>Column 4</TD></TR>
+<TR><TD>   3</TD><TD>     PronNum             </TD><TD>obsolete</TD></TR>
+<TR><TD>   4</TD><TD>     PronStatus          </TD><TD>Column 5</TD></TR>
+<TR><TD>   5</TD><TD>     PhonSAM             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) SP</TD></TR>
+  <TR><TD> 6</TD><TD>     PhonCLX             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   7</TD><TD>     PhonCPA             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CP</TD></TR>
+  <TR><TD> 8</TD><TD>     PhonDISC            </TD><TD>PhoneticTranscriptions(PhonStrsDISC)</TD></TR>
+  <TR><TD> 9</TD><TD>     PhonCnt             </TD><TD>NumOfChar(PhonStrsDISC)</TD></TR>
+<TR><TD>   10</TD><TD>     PhonSylSAM          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) SP</TD></TR>
+  <TR><TD> 11</TD><TD>     PhonSylCLX          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CX</TD></TR>
+  <TR><TD> 12</TD><TD>     PhonSylBCLX         </TD><TD>Column 8</TD></TR>
+<TR><TD>   13</TD><TD>     PhonSylCPA          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CP</TD></TR>
+ <TR><TD>  14</TD><TD>     PhonSylDISC         </TD><TD>PhonSylTranscriptions(PhonStrsDISC)</TD></TR>
+  <TR><TD> 15</TD><TD>     SylCnt              </TD><TD>CountSyllables(PhonStrsDISC)</TD></TR>
+<TR><TD>  16</TD><TD>     PhonStrsSAM         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) SP</TD></TR>
+ <TR><TD>  17</TD><TD>     PhonStrsCLX         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CX</TD></TR>
+ <TR><TD>  18</TD><TD>     PhonStrsCPA         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CP</TD></TR>
+ <TR><TD>  19</TD><TD>     PhonStrsDISC        </TD><TD>Column 6</TD></TR>
+ <TR><TD>  20</TD><TD>     StrsPat             </TD><TD>MakeStressPattern(PhonStrsDISC)</TD></TR>
+ <TR><TD>  21</TD><TD>     PhonCV              </TD><TD>ConvertBrackets(PhonCVBr)</TD></TR>
+ <TR><TD>  22</TD><TD>     PhonCVBr            </TD><TD>Column 7</TD></TR>
+</TABLE>
+<BR>
+There are 4 fields which can have alternative parsings. These parsings are separated by a % sign. These four fields are:
+
+<UL>
+<LI>    PronStatus
+<LI>      PhonStrsDISC   
+<LI>      PhonCVBr
+<LI>      PhonSylBCLX
+</UL>
+
+16 variants have been reintegrated with the database.
+
+<A NAME="epw"><H3>epw3.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>EPW-fields in CELEX</B></TD><TD><B>EPW-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>   IdNum            </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>   PronCnt          </TD><TD>Column 5</TD></TR>
+<TR><TD>   3</TD><TD>   PronNum          </TD><TD>obsolete</TD></TR>
+<TR><TD>   4</TD><TD>   PronStatus       </TD><TD>Column 6</TD></TR>
+<TR><TD>   5</TD><TD>   PhonSAM          </TD><TD>PhoneticTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   6</TD><TD>   PhonCLX          </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   7</TD><TD>   PhonCPA          </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   8</TD><TD>   PhonDISC         </TD><TD>PhoneticTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   9</TD><TD>   PhonCnt          </TD><TD>NumOfChar(PhonStrsDISC)</TD></TR>
+<TR><TD>  10</TD><TD>   PhonSylSAM       </TD><TD>PhonSylTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>  11</TD><TD>   PhonSylCLX       </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>  12</TD><TD>   PhonSylBCLX      </TD><TD>Column 9</TD></TR>
+<TR><TD>  13</TD><TD>   PhonSylCPA       </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>  14</TD><TD>   PhonSylDISC      </TD><TD>PhonSylTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>  15</TD><TD>   SylCnt           </TD><TD>CountSyllables(PhonStrsDISC)</TD></TR>
+<TR><TD>  16</TD><TD>   PhonStrsSAM      </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>  17</TD><TD>   PhonStrsCLX      </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>  18</TD><TD>   PhonStrsCPA      </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>  19</TD><TD>   PhonStrsDISC     </TD><TD>Column 7</TD></TR>
+<TR><TD>  20</TD><TD>   StrsPat          </TD><TD>MakeStressPattern(PhonStrsDISC)</TD></TR>
+<TR><TD>  21</TD><TD>   PhonCV           </TD><TD>ConvertBrackets(PhonCVBr)</TD></TR>
+<TR><TD>  22</TD><TD>   PhonCVBr         </TD><TD>Column 8</TD></TR>
+</TABLE>
+<BR>
+There are 4 fields which can have alternative parsings. These parsings are separated by a % sign. These four fields are:
+<UL>
+<LI>      PronStatus
+<LI>      PhonStrsDISC   
+<LI>      PhonCVBr
+<LI>      PhonSylBCLX
+</UL>
+
+48 variants have been reintegrated with the database.
+
+<A NAME="esl"><H3>esl.cd</H3>
+
+ The esl.cd file contains the following fields:
+
+<OL>
+<LI>   IdNum
+<LI>   Head
+<LI>   Cob
+<LI>   ClassNum
+<LI>   C_N
+<LI>   Unc_N
+<LI>   Sing_N
+<LI>   Plu_N
+<LI>   GrC_N
+<LI>   GrUnc_N
+<LI>   Attr_N
+<LI>   PostPos_N
+<LI>   Voc_N
+<LI>   Proper_N
+<LI>   Exp_N
+<LI>   Trans_V
+<LI>   TransComp_V
+<LI>   Intrans_V
+<LI>   Ditrans_V
+<LI>   Link_V
+<LI>   Phr_V
+<LI>   Prep_V
+<LI>   PhrPrep_V
+<LI>   Exp_V
+<LI>   Ord_A
+<LI>   Attr_A
+<LI>   Pred_A
+<LI>   PostPos_A
+<LI>   Exp_A
+<LI>  Ord_ADV
+<LI>   Pred_ADV
+<LI>   PostPos_ADV
+<LI>   Comb_ADV
+<LI>   Exp_ADV
+<LI>   Card_NUM
+<LI>   Ord_NUM
+<LI>   Exp_NUM
+<LI>   Pers_PRON
+<LI>   Dem_PRON
+<LI>   Poss_PRON
+<LI>   Refl_PRON
+<LI>   Wh_PRON
+<LI>   Det_PRON
+<LI>   Pron_PRON
+<LI>   Exp_PRON
+<LI>   Cor_C
+<LI>   Sub_C
+</OL>
+
+<A NAME="gct"><H3>gct.cd</H3>
+
+ The gct.cd file contains the following fields:
+
+<OL>
+<LI> Type
+<LI> Freq
+<LI> Disp
+<LI> FreqW
+<LI> DispW
+<LI> FreqS
+<LI> DispS
+</OL>
+
+<A NAME="gfl"><H3>gfl.cd</H3>
+
+ The gfl.cd file contains the following fields:
+
+<OL>
+<LI>   IdNum
+<LI>   Head
+<LI>   Mann
+<LI>   MannDev
+<LI>   MannMln
+<LI>   MannLog
+<LI>   MannW
+<LI>   MannWMln
+<LI>   MannWLog
+<LI>   MannS
+<LI>   MannSMln
+<LI>   MannSLog
+</OL>
+
+<A NAME="gfs"><H3>gfs.cd</H3>
+
+ The gfs.cd file contains the following fields:
+
+<OL>
+<LI>  Syllable
+<LI>  SylPos
+<LI>  SylInlMln
+<LI>  SylTotInlMln
+</OL>
+
+<A NAME="gfw"><H3>gfw.cd</H3>
+
+ The gfw.cd file contains the following fields:
+
+<OL>
+<LI>   IdNum
+<LI>   Word 
+<LI>   IdNumLemma
+<LI>   Mann
+<LI>   MannDev
+<LI>   MannMln
+<LI>   MannLog
+<LI>   MannW
+<LI>   MannWMln
+<LI>   MannWLog
+<LI>   MannS
+<LI>   MannSMln
+<LI>   MannSLog
+</OL>
+
+<A NAME="gml2"><H3>gml2.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>GML-fields in CELEX</B></TD><TD><B>GML-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>   IdNum                      </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>   MorphStatus                </TD><TD>Column 4</TD></TR>
+<TR><TD>   3</TD><TD>   MorphCnt                   </TD><TD>Column 5</TD></TR>
+<TR><TD>   4</TD><TD>   MorphNum                   </TD><TD>obsolete</TD></TR>
+<TR><TD>   5</TD><TD>   DerComp                    </TD><TD>Column 6</TD></TR>
+<TR><TD>   6</TD><TD>   Comp                       </TD><TD>Column 7</TD></TR>
+<TR><TD>   7</TD><TD>   Def                        </TD><TD>Column 8</TD></TR>
+<TR><TD>   8</TD><TD>   Imm                        </TD><TD>Column 9</TD></TR>
+<TR><TD>   9</TD><TD>   ImmClass                   </TD><TD>Column 10</TD></TR>
+<TR><TD>  10</TD><TD>   ImmSA                      </TD><TD>ConvertImmWordClassToSAPattern(ImmClass);</TD></TR>
+<TR><TD>  11</TD><TD>   ImmAllo                    </TD><TD>Column 11</TD></TR>
+<TR><TD>  12</TD><TD>   ImmOpac                    </TD><TD>Column 12</TD></TR>
+<TR><TD>  13</TD><TD>   ImmUml                     </TD><TD>Column 13</TD></TR>
+<TR><TD>  14</TD><TD>   Flat                       </TD><TD>StripStructureMarkers(StrucLab);</TD></TR>
+<TR><TD>  15</TD><TD>   FlatClass                  </TD><TD>ExtractWordClass(StrucLab);</TD></TR>
+<TR><TD>  16</TD><TD>   FlatSA                     </TD><TD>ConvertFlatWordClassToSAPattern(StrucLab);</TD></TR>
+<TR><TD>  17</TD><TD>   Struc                      </TD><TD>StripClassLabels(StrucLab);</TD></TR>
+<TR><TD>  18</TD><TD>   StrucLab                   </TD><TD>Column 14</TD></TR>
+<TR><TD>  19</TD><TD>   StrucBracLab               </TD><TD>StripOrthographicInformation(StrucLab);</TD></TR>
+<TR><TD>  20</TD><TD>   StrucAllo                  </TD><TD>Column 15</TD></TR>
+<TR><TD>  21</TD><TD>   StrucOpac                  </TD><TD>Column 16</TD></TR>
+<TR><TD>  22</TD><TD>   StrucUml                   </TD><TD>Column 17</TD></TR> 
+<TR><TD>  23</TD><TD>   CompCnt                    </TD><TD>CountMorpComponents(ImmClass);</TD></TR>
+<TR><TD>  24</TD><TD>   MorCnt                     </TD><TD>CountMorphemes(StrucLab);</TD></TR>
+<TR><TD>  25</TD><TD>   LevelCnt                   </TD><TD>CountLevels(StrucLab);</TD></TR>
+<TR><TD>  26</TD><TD>   Sepa                       </TD><TD>Column 18</TD></TR>
+<TR><TD>  27</TD><TD>   InflPar                    </TD><TD>Column 19</TD></TR>
+<TR><TD>  28</TD><TD>   InflVar                    </TD><TD>Column 20</TD></TR>
+</TABLE>
+<BR>
+There are 15 fields which can have alternative parsings. These parsings are separated by a % sign. These fifteen fields are:
+<UL>
+<LI>   DerComp
+<LI>   Comp
+<LI>   Def
+<LI>   Imm
+<LI>   ImmClass
+<LI>   ImmAllo
+<LI>  ImmOpac
+<LI>   ImmUml
+<LI>   StrucLab
+<LI>   StrucAllo
+<LI>   StrucOpac
+<LI>   StrucUml
+<LI>   Sepa
+<LI>   InflPar
+<LI>   InflVar
+</UL>
+
+<A NAME="gmw"><H3>gmw.cd</H3>
+
+ The gmw.cd file contains the following fields:
+
+<OL>
+<LI>   IdNum
+<LI>   Word
+<LI>   Mann
+<LI>   IdNumLemma
+<LI>   FlectType
+</OL>
+
+  The awk directory contains the script: script TypeToInflectionalFeatures(String):   type2fea.awk
+  for reconstructing the 29 Inflectional Features fields outlined in the CELEX User Guide:
+
+<OL>
+<LI>   Sepa                                
+<LI>   Sing                                 
+<LI>   Plu                                 
+<LI>   Nom                                 
+<LI>   Gen
+<LI>   Dat
+<LI>   Acc
+<LI>   Pos
+<LI>   Comp
+<LI>   Sup
+<LI>   Inf
+<LI>   ZuInf
+<LI>   Part
+<LI>   Pres
+<LI>   Past
+<LI>   Sin1
+<LI>   Sin2
+<LI>   Sin3
+<LI>   Plu13
+<LI>   Plu2
+<LI>   Ind
+<LI>   Sub
+<LI>   Imp
+<LI>   Suff_e
+<LI>   Suff_en
+<LI>   Suff_er
+<LI>   Suff_em
+<LI>   Suff_es
+<LI>   Suff_s
+</OL>
+
+<A NAME="gol"><H3>gol.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>GOL-fields in CELEX</B></TD><TD><B>GOL-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>   IdNum                        </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>   Head                         </TD><TD>StripDiacritics(HeadDia);</TD></TR>
+<TR><TD>   3</TD><TD>   HeadRev                      </TD><TD>ReverseString(HeadDia);</TD></TR>
+<TR><TD>   4</TD><TD>   HeadDia                      </TD><TD>Column 2</TD></TR>
+<TR><TD>   5</TD><TD>   HeadLow                      </TD><TD>ToLower(HeadDia);</TD></TR>
+<TR><TD>   6</TD><TD>   HeadLowSort                  </TD><TD>SortString(HeadDia);</TD></TR>
+<TR><TD>   7</TD><TD>   HeadLowSortDia               </TD><TD>obsolete (not derivable, as diacr appear separately)</TD></TR>
+<TR><TD>   8</TD><TD>   HeadCnt                      </TD><TD>CountCharacters(HeadDia);</TD></TR>
+<TR><TD>   9</TD><TD>   HeadSyl                      </TD><TD>StripDiacritics(HeadSylDia);</TD></TR>
+<TR><TD>  10</TD><TD>   HeadSylDia                   </TD><TD>Column 4</TD></TR>
+<TR><TD>  11</TD><TD>   HeadSylChg                   </TD><TD>Column 5</TD></TR>
+<TR><TD>  12</TD><TD>   HeadSylCnt                   </TD><TD>CountSyllables(HeadSylDia);</TD></TR>
+<TR><TD>  13</TD><TD>   Stem                         </TD><TD>StripDiacritics(StemDia);</TD></TR>
+<TR><TD>  14</TD><TD>   StemRev                      </TD><TD>ReverseString(StemDia);</TD></TR>
+<TR><TD>  15</TD><TD>   StemDia                      </TD><TD>Column 6</TD></TR>
+<TR><TD>  16</TD><TD>   StemCnt                      </TD><TD>CountCharacters(StemDia);</TD></TR>
+<TR><TD>  17</TD><TD>   StemSyl                      </TD><TD>StripDiacritics(StemSylDia);</TD></TR>
+<TR><TD>  18</TD><TD>   StemSylDia                   </TD><TD>Column 7</TD></TR>
+<TR><TD>  19</TD><TD>   StemSylChg                   </TD><TD>Column 8</TD></TR>
+<TR><TD>  20</TD><TD>   StemSylCnt                   </TD><TD>CountSyllables(StemSylDia);</TD></TR>
+</TABLE>
+
+<A NAME="gow"><H3>gow.cd</H3> 
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>GOW-fields in CELEX</B></TD><TD><B>GOW-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>    IdNum                     </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>    Word                      </TD><TD>StripDiacritics(WordDia);</TD></TR>
+<TR><TD>   3</TD><TD>    WordRev                   </TD><TD>ReverseString(WordDia);</TD></TR>
+<TR><TD>   4</TD><TD>    WordDia                   </TD><TD>Column 2</TD></TR>
+<TR><TD>   5</TD><TD>    WordLow                   </TD><TD>ToLower(WordDia);</TD></TR>
+<TR><TD>   6</TD><TD>    WordLowSort               </TD><TD>SortString(WordDia);</TD></TR>
+<TR><TD>   7</TD><TD>    WordLowSortDia            </TD><TD>obsolete (not derivable, as diacr. appear separately)</TD></TR>
+<TR><TD>   8</TD><TD>    WordCnt                   </TD><TD>CountCharacters(WordDia);</TD></TR>
+<TR><TD>   9</TD><TD>    WordSyl                   </TD><TD>StripDiacritics(WordSylDia);</TD></TR>
+<TR><TD>  10</TD><TD>    WordSylDia                </TD><TD>Column 5</TD></TR>
+<TR><TD>  11</TD><TD>    WordSylChg                </TD><TD>Column 6</TD></TR>
+<TR><TD>  12</TD><TD>    WordSylCnt                </TD><TD>CountSyllables(WordSylDia);</TD></TR>
+<TR><TD>  13</TD><TD>    IdNumLemma                </TD><TD>Column 4    </TD></TR>
+</TABLE>
+
+<A NAME="gpl"><H3>gpl.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>GPL-fields in CELEX</B></TD><TD><B>GPL-fields in CD-file</B></TD></TR>
+<TR><TD>   1</TD><TD>      IdNum               </TD><TD>Column 1</TD></TR>
+<TR><TD>   2</TD><TD>      PhonSAM             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   3</TD><TD>      PhonCLX             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   4</TD><TD>      PhonCPA             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   5</TD><TD>      PhonDISC            </TD><TD>PhoneticTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   6</TD><TD>      PhonCnt             </TD><TD>NumOfChar(PhonStrsDISC)</TD></TR>
+<TR><TD>   7</TD><TD>      PhonSylSAM          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   8</TD><TD>      PhonSylCLX          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   9</TD><TD>      PhonSylBCLX         </TD><TD>Column 5</TD></TR>
+<TR><TD>   10</TD><TD>     PhonSylCPA          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   11</TD><TD>     PhonSylDISC         </TD><TD>PhonSylTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   12</TD><TD>     SylCnt              </TD><TD>CountSyllables(PhonStrsDISC)</TD></TR>
+<TR><TD>   13</TD><TD>     PhonStrsSAM         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   14</TD><TD>     PhonStrsCLX         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   15</TD><TD>     PhonStrsCPA         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   16</TD><TD>     PhonStrsDISC        </TD><TD>Column 4</TD></TR>
+<TR><TD>   17</TD><TD>     StrsPat             </TD><TD>MakeStressPattern(PhonStrsDISC)</TD></TR>
+<TR><TD>   18</TD><TD>     PhonStSAM           </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) SP</TD></TR>
+<TR><TD>   19</TD><TD>     PhonStCLX           </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) CX</TD></TR>
+<TR><TD>   20</TD><TD>     PhonStCPA           </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) CP</TD></TR>
+<TR><TD>   21</TD><TD>     PhonStDISC          </TD><TD>PhoneticTranscriptions(PhonStrsStDISC) </TD></TR>
+<TR><TD>   22</TD><TD>     PhonStCnt           </TD><TD>NumOfChar(PhonStrsStDISC)</TD></TR>
+<TR><TD>   23</TD><TD>     PhonSylStSAM        </TD><TD>PhonSylTranscriptions(PhonStrsStDISC) SP</TD></TR>
+<TR><TD>   24</TD><TD>     PhonSylStCLX        </TD><TD>PhonSylTranscriptions(PhonStrsStDISC) CX</TD></TR>
+<TR><TD>   25</TD><TD>     PhonSylStBCLX       </TD><TD>Column 7</TD></TR>
+<TR><TD>   26</TD><TD>     PhonSylStCPA        </TD><TD>PhonSylTranscriptions(PhonStrsStDISC) CP</TD></TR>
+<TR><TD>   27</TD><TD>     PhonSylStDISC       </TD><TD>PhonSylTranscriptions(PhonStrsStDISC)   </TD></TR>
+<TR><TD>   28</TD><TD>     StSylCnt            </TD><TD>CountSyllables(PhonStrsStDISC)</TD></TR>
+<TR><TD>   29</TD><TD>     PhonStrsStSAM       </TD><TD>PhonStrsTranscriptions(PhonStrsStDISC) SP</TD></TR>
+<TR><TD>   30</TD><TD>     PhonStrsStCLX       </TD><TD>PhonStrsTranscriptions(PhonStrsStDISC) CX</TD></TR>
+<TR><TD>   31</TD><TD>     PhonStrsStCPA       </TD><TD>PhonStrsTranscriptions(PhonStrsStDISC) CP</TD></TR>
+<TR><TD>   32</TD><TD>     PhonStrsStDISC      </TD><TD>Column 6</TD></TR>
+<TR><TD>   33</TD><TD>     StStrsPat           </TD><TD>MakeStressPattern(PhonStrsStDISC)</TD></TR>
+<TR><TD>   34</TD><TD>     PhonCV              </TD><TD>ConvertBrackets(PhonCVBr)</TD></TR>
+<TR><TD>   35</TD><TD>     PhonCVBr            </TD><TD>Column 8</TD></TR>
+<TR><TD>   36</TD><TD>     PhonStCV            </TD><TD>ConvertBrackets(PhonStCVBr)</TD></TR>
+<TR><TD>   37</TD><TD>     PhonStCVBr          </TD><TD>Column 9</TD></TR>
+<TR><TD>   38</TD><TD>     PhonolSAM           </TD><TD>Column 10</TD></TR>
+<TR><TD>   39</TD><TD>     PhonolCLX           </TD><TD>Column 11</TD></TR>
+</TABLE>
+
+<A NAME="gpw"><H3>gpw.cd</H3>
+<TABLE BORDER=1>
+<TR><TD><B>Index</B></TD><TD><B>GPW-fields in CELEX</B></TD><TD><B>GPW-fields in CD-file</B></TD></TR>
+ <TR><TD>  1</TD><TD>      IdNum               </TD><TD>Column 1</TD></TR>
+ <TR><TD>  2</TD><TD>      PhonSAM             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   3</TD><TD>      PhonCLX             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   4</TD><TD>      PhonCPA             </TD><TD>PhoneticTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   5</TD><TD>      PhonDISC            </TD><TD>PhoneticTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   6</TD><TD>      PhonCnt             </TD><TD>NumOfChar(PhonStrsDISC)</TD></TR>
+<TR><TD>   7</TD><TD>      PhonSylSAM          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   8</TD><TD>      PhonSylCLX          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   9</TD><TD>      PhonSylBCLX         </TD><TD>Column 6</TD></TR>
+<TR><TD>   10</TD><TD>     PhonSylCPA          </TD><TD>PhonSylTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   11</TD><TD>     PhonSylDISC         </TD><TD>PhonSylTranscriptions(PhonStrsDISC)</TD></TR>
+<TR><TD>   12</TD><TD>     SylCnt              </TD><TD>CountSyllables(PhonStrsDISC)</TD></TR>
+<TR><TD>   13</TD><TD>     PhonStrsSAM         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) SP</TD></TR>
+<TR><TD>   14</TD><TD>     PhonStrsCLX         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CX</TD></TR>
+<TR><TD>   15</TD><TD>     PhonStrsCPA         </TD><TD>PhonStrsTranscriptions(PhonStrsDISC) CP</TD></TR>
+<TR><TD>   16</TD><TD>     PhonStrsDISC        </TD><TD>Column 5</TD></TR>
+<TR><TD>   17</TD><TD>     StrsPat             </TD><TD>MakeStressPattern(PhonStrsDISC)</TD></TR>
+ <TR><TD>  18</TD><TD>     PhonCV              </TD><TD>ConvertBrackets(PhonCVBr)</TD></TR>
+ <TR><TD>  19</TD><TD>     PhonCVBr            </TD><TD>Column 7</TD></TR>
+</TABLE>
+
+<A NAME="gsl"><H3>gsl.cd</H3>
+ 
+The gsl.cd file contains the following fields:
+
+<OL>
+<LI>   IdNum
+<LI>   Head
+<LI>   Mann
+<LI>   ClassNum
+<LI>   GendNum
+<LI>   PropNum
+<LI>   SingTant
+<LI>   PlurTant
+<LI>   AuxNum
+<LI>   SubClassVNum
+<LI>   CompComp
+<LI>   CompEsSubj   
+<LI>   CompSubj
+<LI>   CompAcc
+<LI>   CompSecAcc
+<LI>   CompDat
+<LI>   CompGen
+<LI>   CompPrep
+<LI>   CompSecPrep
+<LI>   CompAdv
+<LI>   Grad
+<LI>   CardOrdNum
+<LI>   SubClassPNum
+<LI>   Case
+</OL>
+ 
+<A NAME="udb"><H3>udb.cd</H3>
+
+The udb.cd file contains the following fields:
+
+<OL>
+<LI>Word1
+<LI>Code1    
+<LI>Word2    
+<LI>Code2    
+<LI>FreqW    
+<LI>FreqS
+</OL>

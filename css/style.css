@@ -5408,15 +5408,6 @@
             }
         }
 
-        .nav-row-icon {
-            padding: 8px;
-        }
-
-        .nav-row-icon svg {
-            width: 24px;
-            height: 24px;
-        }
-
         @media (min-width: 768px) {
             .nav-row-icon-group {
                 display: none !important;
@@ -5483,17 +5474,17 @@
            mobile. Hidden by default; .visible swaps display to flex. Tap any
            inner button to trigger its action AND dismiss; tap outside to
            dismiss (handled by document click listener in flashcards.js).
-           translateZ(1px) pushes the popup 1px forward in the card's
-           preserve-3d context so it always renders in front of the card-face
-           plane — without it, z-fighting on some mobile browsers (especially
-           iOS Safari) renders the popup behind the card surface. */
+           position: fixed keeps the popup out of the card's preserve-3d
+           context, avoiding z-fighting and axis-reversal issues on the back
+           face. top: 84px = 12px card-container padding + 72px banner height,
+           so the popup sits directly beneath the gear button. */
         .card-actions-popup {
             display: none;
-            position: absolute;
-            top: 80px;
+            position: fixed;
+            top: 84px;
             left: 50%;
-            transform: translateX(-50%) translateZ(1px);
-            z-index: 10;
+            transform: translateX(-50%);
+            z-index: 9999;
             pointer-events: auto;
             background: var(--bg-card-hover);
             border: 1px solid var(--border-color);

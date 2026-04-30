@@ -24,7 +24,7 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260430e">
+    <link rel="modulepreload" href="js/main.js?v=20260430f">
     <link rel="modulepreload" href="js/state.js?v=20260428b">
     <link rel="modulepreload" href="js/speech.js?v=20260428b">
     <link rel="modulepreload" href="js/artist-ui.js?v=20260428b">
@@ -360,43 +360,6 @@
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
-                            <!-- Action popup (front): shuffle, reverse, mic, stats. Tap any
-                                 button to perform action + dismiss; tap outside to dismiss.
-                                 Anchored below the top-banner gear (top:80px). -->
-                            <div class="card-actions-popup" id="cardActionsPopupFront">
-                                <button class="gear-btn nav-row-icon" id="shuffleBtnPopupFront" title="Shuffle">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="16 3 21 3 21 8"></polyline>
-                                        <line x1="4" y1="20" x2="21" y2="3"></line>
-                                        <polyline points="21 16 21 21 16 21"></polyline>
-                                        <line x1="15" y1="15" x2="21" y2="21"></line>
-                                        <line x1="4" y1="4" x2="9" y2="9"></line>
-                                    </svg>
-                                </button>
-                                <button class="gear-btn nav-row-icon" id="reverseLangBtnPopupFront" title="Reverse language direction">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="17 1 21 5 17 9"></polyline>
-                                        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-                                        <polyline points="7 23 3 19 7 15"></polyline>
-                                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-                                    </svg>
-                                </button>
-                                <button class="gear-btn nav-row-icon" id="speakBtnPopupFront" title="Toggle auto-speak">
-                                    <svg id="speakBtnPopupFrontIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                        <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                        <line class="speak-off-indicator" x1="23" y1="9" x2="17" y2="15" style="display:none"></line>
-                                        <line class="speak-off-indicator" x1="17" y1="9" x2="23" y2="15" style="display:none"></line>
-                                    </svg>
-                                </button>
-                                <button class="gear-btn nav-row-icon" id="statsBtnFrontMobile" title="View stats">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 20V10"></path>
-                                        <path d="M12 20V4"></path>
-                                        <path d="M6 20v-6"></path>
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
                         <div class="card-face card-back">
                             <!-- Mobile top banner: prev far-left, [back][gear] paired in middle, next far-right -->
@@ -419,34 +382,6 @@
                                 <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
                             </div>
                             <div class="card-details" id="backContent"></div>
-                            <!-- Action popup (back): shuffle, reverse, stats (no mic). Anchored
-                                 below the top-banner gear (top:80px). -->
-                            <div class="card-actions-popup" id="cardActionsPopupBack">
-                                <button class="gear-btn nav-row-icon" id="shuffleBtnPopupBack" title="Shuffle">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="16 3 21 3 21 8"></polyline>
-                                        <line x1="4" y1="20" x2="21" y2="3"></line>
-                                        <polyline points="21 16 21 21 16 21"></polyline>
-                                        <line x1="15" y1="15" x2="21" y2="21"></line>
-                                        <line x1="4" y1="4" x2="9" y2="9"></line>
-                                    </svg>
-                                </button>
-                                <button class="gear-btn nav-row-icon" id="reverseLangBtnPopupBack" title="Reverse language direction">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="17 1 21 5 17 9"></polyline>
-                                        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-                                        <polyline points="7 23 3 19 7 15"></polyline>
-                                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-                                    </svg>
-                                </button>
-                                <button class="gear-btn nav-row-icon" id="statsBtnBackMobile" title="View stats">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 20V10"></path>
-                                        <path d="M12 20V4"></path>
-                                        <path d="M6 20v-6"></path>
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
                     </div>
                     <!-- Hidden: keep IDs for pressAnswerBtn animation -->
@@ -454,6 +389,44 @@
                     <button id="correctBtnOutside" class="hidden" aria-hidden="true"></button>
                     <button id="prevBtnFrontOutside" class="hidden" aria-hidden="true"></button>
                     <button id="nextBtnFrontOutside" class="hidden" aria-hidden="true"></button>
+                </div>
+                <!-- Mobile actions popup: position:fixed, sits just below the top banner.
+                     Both front-face and back-face gear buttons toggle this single popup.
+                     Outside the card's preserve-3d context so there are no z-fighting or
+                     axis-reversal issues. Never shown on desktop (desktop media query). -->
+                <div class="card-actions-popup" id="cardActionsPopup">
+                    <button class="gear-btn" id="shuffleBtnPopup" title="Shuffle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 3 21 3 21 8"></polyline>
+                            <line x1="4" y1="20" x2="21" y2="3"></line>
+                            <polyline points="21 16 21 21 16 21"></polyline>
+                            <line x1="15" y1="15" x2="21" y2="21"></line>
+                            <line x1="4" y1="4" x2="9" y2="9"></line>
+                        </svg>
+                    </button>
+                    <button class="gear-btn" id="reverseLangBtnPopup" title="Reverse language direction">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 1 21 5 17 9"></polyline>
+                            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                            <polyline points="7 23 3 19 7 15"></polyline>
+                            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                        </svg>
+                    </button>
+                    <button class="gear-btn" id="speakBtnPopup" title="Toggle auto-speak">
+                        <svg id="speakBtnPopupIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path class="speak-on-indicator" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            <line class="speak-off-indicator" x1="23" y1="9" x2="17" y2="15" style="display:none"></line>
+                            <line class="speak-off-indicator" x1="17" y1="9" x2="23" y2="15" style="display:none"></line>
+                        </svg>
+                    </button>
+                    <button class="gear-btn" id="statsBtnPopup" title="View stats">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 20V10"></path>
+                            <path d="M12 20V4"></path>
+                            <path d="M6 20v-6"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -950,6 +923,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260430e"></script>
+    <script type="module" src="js/main.js?v=20260430f"></script>
 </body>
 </html>
