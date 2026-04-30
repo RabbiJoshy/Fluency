@@ -2804,14 +2804,12 @@
             gap: 10px;
         }
 
-        /* Cancel the absolute positioning + auto-margin those children carry
-           by default — inside the actions group they sit in normal flex flow. */
-        .step-header-actions .step-help-btn {
-            position: static;
-            top: auto;
-            right: auto;
-            margin-left: 0;
-        }
+        /* The "?" help button stays absolute-positioned in the top-right
+           corner of its .setup-step parent across all steps — the override
+           that pulled it back into flex flow inside the actions group has
+           been removed so the buttons read as a consistent affordance per
+           box rather than floating mid-header. The actions group still
+           lays out its other children (info-line, toggle) in flex flow. */
         .step-header-actions .level-info-line {
             margin-left: 0;
             padding-right: 0;
