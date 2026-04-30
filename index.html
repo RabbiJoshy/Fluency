@@ -67,6 +67,16 @@
                     <path d="M6 20v-6"></path>
                 </svg>
             </button>
+            <button class="gear-btn" id="reverseLangBtn" title="Reverse language direction"></button>
+            <button class="gear-btn" id="shuffleBtnTop" title="Shuffle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 3 21 3 21 8"></polyline>
+                    <line x1="4" y1="20" x2="21" y2="3"></line>
+                    <polyline points="21 16 21 21 16 21"></polyline>
+                    <line x1="15" y1="15" x2="21" y2="21"></line>
+                    <line x1="4" y1="4" x2="9" y2="9"></line>
+                </svg>
+            </button>
         </div>
         <button class="gear-btn" id="gearBtn" title="Settings" style="display: none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -311,33 +321,23 @@
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard" data-rank="">
                         <div class="card-face card-front">
-                            <!-- Desktop top toolbar: REVERSE on left, SHUFFLE on right.
-                                 Hidden on mobile (the mobile top row below replaces it). -->
-                            <div class="desktop-only-card-toolbar" style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; display: flex; justify-content: space-between; align-items: center;">
-                                <div style="display: flex; gap: 8px; pointer-events: auto;">
-                                    <button class="card-action-small" id="reverseLangBtn" title="Reverse language direction">REVERSE</button>
-                                </div>
-                                <div style="display: flex; gap: 8px; pointer-events: auto;">
-                                    <button class="card-action-small" id="shuffleBtnTop" title="Shuffle">
-                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="16 3 21 3 21 8"></polyline>
-                                            <line x1="4" y1="20" x2="21" y2="3"></line>
-                                            <polyline points="21 16 21 21 16 21"></polyline>
-                                            <line x1="15" y1="15" x2="21" y2="21"></line>
-                                            <line x1="4" y1="4" x2="9" y2="9"></line>
+                            <!-- Mobile top banner: prev far-left, [back][gear] paired in middle, next far-right -->
+                            <div class="mobile-nav-row card-top-banner" style="display: none; position: absolute; top: 0; left: 0; right: 0; height: 72px; padding: 4px 12px; box-sizing: border-box; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                                <button class="nav-btn-inline" id="prevBtnFrontMobile" style="pointer-events: auto;">←</button>
+                                <div class="banner-center" style="display: flex; gap: 4px; pointer-events: auto;">
+                                    <button class="gear-btn nav-row-icon" id="backBtnFrontMobile" title="Back" style="pointer-events: auto;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="9 14 4 9 9 4"></polyline>
+                                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="gear-btn nav-row-icon" id="actionsGearFront" title="More actions" style="pointer-events: auto;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                                         </svg>
                                     </button>
                                 </div>
-                            </div>
-                            <!-- Mobile top row: prev (left), return (centre), next (right) -->
-                            <div class="mobile-nav-row" style="display: none; position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
-                                <button class="nav-btn-inline" id="prevBtnFrontMobile" style="pointer-events: auto;">←</button>
-                                <button class="gear-btn nav-row-icon" id="backBtnFrontMobile" title="Back" style="pointer-events: auto;">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 14 4 9 9 4"></polyline>
-                                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                                    </svg>
-                                </button>
                                 <button class="nav-btn-inline" id="nextBtnFrontMobile" style="pointer-events: auto;">→</button>
                             </div>
                             <button id="flipBtn" style="background: transparent; border: none; cursor: pointer; outline: none; padding: 60px; border-radius: 50%; width: 100%; z-index: 1;">
@@ -353,18 +353,9 @@
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
-                            <!-- Mobile bottom: gear icon centred. Tap to open the
-                                 actions popup (shuffle, reverse, mic, stats). -->
-                            <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 0; right: 0; z-index: 5; pointer-events: none; justify-content: center; align-items: center;">
-                                <button class="gear-btn nav-row-icon" id="actionsGearFront" title="More actions" style="pointer-events: auto;">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                    </svg>
-                                </button>
-                            </div>
                             <!-- Action popup (front): shuffle, reverse, mic, stats. Tap any
-                                 button to perform action + dismiss; tap outside to dismiss. -->
+                                 button to perform action + dismiss; tap outside to dismiss.
+                                 Anchored below the top-banner gear (top:80px). -->
                             <div class="card-actions-popup" id="cardActionsPopupFront">
                                 <button class="gear-btn nav-row-icon" id="shuffleBtnPopupFront" title="Shuffle">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -413,29 +404,28 @@
                             </div>
                         </div>
                         <div class="card-face card-back">
-                            <!-- Mobile top row: prev (left), return (centre), next (right) -->
-                            <div class="mobile-nav-row" style="display: none; position: absolute; top: 20px; left: 20px; right: 20px; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center;">
+                            <!-- Mobile top banner: prev far-left, [back][gear] paired in middle, next far-right -->
+                            <div class="mobile-nav-row card-top-banner" style="display: none; position: absolute; top: 0; left: 0; right: 0; height: 72px; padding: 4px 12px; box-sizing: border-box; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
                                 <button class="nav-btn-inline" id="prevBtnBack" style="pointer-events: auto;">←</button>
-                                <button class="gear-btn nav-row-icon" id="backBtnBackMobile" title="Back" style="pointer-events: auto;">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 14 4 9 9 4"></polyline>
-                                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                                    </svg>
-                                </button>
+                                <div class="banner-center" style="display: flex; gap: 4px; pointer-events: auto;">
+                                    <button class="gear-btn nav-row-icon" id="backBtnBackMobile" title="Back" style="pointer-events: auto;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="9 14 4 9 9 4"></polyline>
+                                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="gear-btn nav-row-icon" id="actionsGearBack" title="More actions" style="pointer-events: auto;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                                 <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
                             </div>
                             <div class="card-details" id="backContent"></div>
-                            <!-- Mobile bottom: gear icon centred. Tap to open the
-                                 actions popup (shuffle, reverse, stats — no mic). -->
-                            <div class="mobile-nav-row" style="display: none; position: absolute; bottom: 20px; left: 0; right: 0; z-index: 5; pointer-events: none; justify-content: center; align-items: center;">
-                                <button class="gear-btn nav-row-icon" id="actionsGearBack" title="More actions" style="pointer-events: auto;">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <!-- Action popup (back): shuffle, reverse, stats (no mic). -->
+                            <!-- Action popup (back): shuffle, reverse, stats (no mic). Anchored
+                                 below the top-banner gear (top:80px). -->
                             <div class="card-actions-popup" id="cardActionsPopupBack">
                                 <button class="gear-btn nav-row-icon" id="shuffleBtnPopupBack" title="Shuffle">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
