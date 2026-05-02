@@ -332,6 +332,18 @@ def main():
         examples_raw = json.load(f)
     print(f"  examples_raw: {len(examples_raw)} entries with examples")
 
+    # Append-only example store keyed by stable content-hash ID. Used to look
+    # up examples by example_ids from sense_assignments even when those
+    # sentences no longer appear in the current per-word list (e.g. after a
+    # --force rebuild of step_5a chose different sentences). Falls back to
+    # integer-index lookup for items that pre-date the ID migration.
+    example_store = {}
+    _store_path = LAYERS / "example_store.json"
+    if _store_path.exists():
+        with open(_store_path, encoding="utf-8") as f:
+            example_store = json.load(f)
+        print(f"  example_store: {len(example_store):,} entries")
+
     # When old inventory has hex-ID-keyed layer files, remap to surface words.
     # Build hex->word mapping from the raw inventory (only for old format).
     hex_to_word = {}
@@ -743,14 +755,22 @@ def main():
                     ex_list = a.get("examples", [])  # [{"ex_idx", "method"}]
 
                     # Build per-example dicts with method stamps.
+                    # Lookup order: stable ID via example_store (survives
+                    # step_5a rebuilds), then integer index via word_examples
+                    # (pre-migration fallback).
                     exs = []
                     methods_in_meaning = set()
                     for entry in ex_list:
+                        ex_id = entry.get("ex_id")
                         ex_idx = entry.get("ex_idx")
                         method = entry.get("method")
-                        if ex_idx is None or ex_idx >= len(word_examples):
+                        src = None
+                        if ex_id and ex_id in example_store:
+                            src = example_store[ex_id]
+                        elif ex_idx is not None and ex_idx < len(word_examples):
+                            src = word_examples[ex_idx]
+                        if src is None:
                             continue
-                        src = word_examples[ex_idx]
                         if isinstance(src, dict):
                             ex_copy = dict(src)
                             if method:

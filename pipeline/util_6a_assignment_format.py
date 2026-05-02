@@ -185,7 +185,7 @@ def resolve_best_per_example(word_data, min_priority=0):
     if not isinstance(word_data, dict) or not word_data:
         return {}
 
-    # ex_idx -> (priority, method, sense_id)
+    # ex_idx -> (priority, method, sense_id, ex_id_or_None)
     best = {}
     for method, items in word_data.items():
         prio = METHOD_PRIORITY.get(method, 0)
@@ -204,14 +204,25 @@ def resolve_best_per_example(word_data, min_priority=0):
             sid = item.get("sense")
             if not sid:
                 continue
-            for ex_idx in item.get("examples", []) or []:
+            examples = item.get("examples") or []
+            example_ids = item.get("example_ids") or []
+            # Map integer index -> stable ID (positional alignment).
+            idx_to_id = {
+                ex: example_ids[i]
+                for i, ex in enumerate(examples)
+                if i < len(example_ids) and example_ids[i]
+            }
+            for ex_idx in examples:
                 existing = best.get(ex_idx)
                 if existing is None or prio > existing[0]:
-                    best[ex_idx] = (prio, method, sid)
+                    best[ex_idx] = (prio, method, sid, idx_to_id.get(ex_idx))
 
     # Regroup by sense_id with ex_idx-sorted example lists.
     out = {}
     for ex_idx in sorted(best.keys()):
-        _, method, sid = best[ex_idx]
-        out.setdefault(sid, []).append({"ex_idx": ex_idx, "method": method})
+        _, method, sid, ex_id = best[ex_idx]
+        entry = {"ex_idx": ex_idx, "method": method}
+        if ex_id:
+            entry["ex_id"] = ex_id
+        out.setdefault(sid, []).append(entry)
     return out
