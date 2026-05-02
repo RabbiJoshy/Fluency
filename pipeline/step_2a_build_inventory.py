@@ -42,7 +42,7 @@ def main():
     parser.add_argument(
         "--language",
         default="spanish",
-        choices=["spanish", "french"],
+        choices=["spanish", "french", "dutch"],
         help="Language to build inventory for (default: spanish)",
     )
     args = parser.parse_args()

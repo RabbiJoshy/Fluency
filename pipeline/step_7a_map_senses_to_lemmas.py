@@ -242,7 +242,7 @@ def main():
     parser = argparse.ArgumentParser(description="Step 7a: map sense assignments to word|lemma keys")
     parser.add_argument("--artist-dir", type=str, default=None,
                         help="If set, operate against this artist's layers instead of normal mode.")
-    parser.add_argument("--language", choices=["spanish", "french"], default="spanish",
+    parser.add_argument("--language", choices=["spanish", "french", "dutch"], default="spanish",
                         help="Target language for normal-mode paths (default: spanish). "
                              "Ignored when --artist-dir is set.")
     args = parser.parse_args()

@@ -56,6 +56,11 @@ _LANGUAGE_CONFIG = {
         "iso2": "fr",
         "ranks_file": "french_ranks.json",
     },
+    "dutch": {
+        "iso3": "nld",
+        "iso2": "nl",
+        "ranks_file": "dutch_ranks.json",
+    },
 }
 
 # Path globals — bound at runtime in main() once --language is known.
@@ -78,8 +83,9 @@ MAX_CANDIDATES = 50_000
 MIN_SENTENCE_WORDS = 3
 TOP_N_TRIVIAL = 100           # sentences using only top-N words are trivial
 
-# Combined Spanish + French letter set; harmless to over-match.
-_TOKEN_RE = re.compile(r"[a-zàáâäæçèéêëíîïñóôœùúûüÿ]+")
+# Combined Spanish + French + Dutch letter set; harmless to over-match.
+# Dutch adds the ĳ ligature (rare, but standard tokenizers preserve it).
+_TOKEN_RE = re.compile(r"[a-zàáâäæçèéêëíîïñóôœùúûüÿĳ]+")
 
 # Subtitle junk patterns — reject entire line if matched
 _SUBTITLE_JUNK_RE = re.compile(
@@ -656,6 +662,14 @@ def parse_args():
              "examples. Default: backfill is on. The cache is stride-sampled, "
              "so rare words underflow without it; off only for diagnostics."
     )
+    parser.add_argument(
+        "--force", action="store_true",
+        help="Allow a full rebuild even when examples_raw.json already exists. "
+             "WARNING: re-runs greedy selection for every word, which changes "
+             "example indices and invalidates all downstream sense_assignments. "
+             "Only use this when you intend to re-classify from scratch. "
+             "For safe alternatives see --word and tool_5a_extend_examples.py."
+    )
     return parser.parse_args()
 
 
@@ -678,6 +692,34 @@ def _bind_paths(language):
 def main():
     args = parse_args()
     _bind_paths(args.language)
+
+    # Safety guard: refuse to overwrite an existing examples_raw.json unless
+    # --force is given explicitly OR --word limits scope to specific entries.
+    #
+    # A full rebuild re-runs greedy selection for every word. Even a tiny
+    # change in corpus content or candidate ordering can shift which examples
+    # get picked, which changes their positions in the output list. Downstream
+    # sense_assignments store example indices like [0, 1, 5] — if position 5
+    # is now a different sentence, every Gemini classification that touched
+    # that word is silently wrong.
+    #
+    # Safe alternatives:
+    #   --word WORD                  Regenerate specific words (all others preserved)
+    #   tool_5a_extend_examples.py   Append more examples without touching existing ones
+    #   --force                      Full rebuild (only when you intend to re-classify)
+    target_words = {w.lower() for w in args.word} if args.word else None
+    if OUTPUT_FILE.exists() and target_words is None and not args.force:
+        print(
+            f"\nERROR: {OUTPUT_FILE} already exists.\n"
+            "\nA full rebuild re-runs greedy for every word and changes example\n"
+            "indices, silently invalidating all downstream sense_assignments.\n"
+            "\nSafe alternatives:\n"
+            "  --word WORD          Regenerate only that word (all others preserved)\n"
+            "  tool_5a_extend_examples.py --target N\n"
+            "                       Append more examples without disturbing anything\n"
+            "  --force              Full rebuild (WARNING: invalidates sense_assignments)"
+        )
+        sys.exit(1)
 
     # Apply runtime tunables (mutate module globals so build_sentence_index
     # and select_examples see the new values).

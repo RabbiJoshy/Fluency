@@ -291,7 +291,7 @@ def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
 # ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="Assemble final vocabulary from layers")
-    parser.add_argument("--language", choices=("spanish", "french"), default="spanish",
+    parser.add_argument("--language", choices=("spanish", "french", "dutch"), default="spanish",
                         help="Target language (default: spanish)")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="spanishdict",

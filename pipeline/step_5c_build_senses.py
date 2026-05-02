@@ -86,6 +86,13 @@ _LANGUAGE_PATHS = {
         "conj": PROJECT_ROOT / "Data" / "French" / "layers" / "conjugations.json",
         "layers": PROJECT_ROOT / "Data" / "French" / "layers",
     },
+    "dutch": {
+        "inventory": PROJECT_ROOT / "Data" / "Dutch" / "layers" / "word_inventory.json",
+        "wiktionary": PROJECT_ROOT / "Data" / "Dutch" / "Senses" / "wiktionary" / "kaikki-dutch.jsonl.gz",
+        "conj_reverse": PROJECT_ROOT / "Data" / "Dutch" / "layers" / "conjugation_reverse.json",
+        "conj": PROJECT_ROOT / "Data" / "Dutch" / "layers" / "conjugations.json",
+        "layers": PROJECT_ROOT / "Data" / "Dutch" / "layers",
+    },
 }
 
 # ---------------------------------------------------------------------------

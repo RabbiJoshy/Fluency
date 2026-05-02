@@ -352,7 +352,7 @@ def main():
     parser.add_argument("--artist-dir", default=None,
                         help="Artist directory (e.g. Artists/spanish/Bad Bunny). "
                              "Omit for normal mode (Data/Spanish).")
-    parser.add_argument("--language", choices=["spanish", "french"], default="spanish",
+    parser.add_argument("--language", choices=["spanish", "french", "dutch"], default="spanish",
                         help="Target language for normal-mode paths (default: spanish). "
                              "Ignored when --artist-dir is set.")
     mode = parser.add_mutually_exclusive_group()
