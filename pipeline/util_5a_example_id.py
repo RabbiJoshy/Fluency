@@ -55,10 +55,17 @@ def update_example_store(examples_by_word: dict, store_path: Path) -> tuple:
             eid = ex.get("id")
             if not eid:
                 continue
+            # Only store corpus examples (target + english format).
+            # Lyric examples (spanish / title format) have their own lyric ID
+            # scheme and don't belong in the content-addressed store.
+            target = ex.get("target")
+            english = ex.get("english")
+            if not target or not english:
+                continue
             if eid not in store:
                 store[eid] = {
-                    "target": ex["target"],
-                    "english": ex["english"],
+                    "target": target,
+                    "english": english,
                     "source": ex.get("source", ""),
                     "easiness": ex.get("easiness", 0),
                 }

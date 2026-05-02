@@ -832,16 +832,24 @@ def main():
         examples = []
         abs_indices = []
         for abs_i, ex in selected:
-            spa = ex.get("spanish", "")
+            # Support both lyric format (spanish/title) and corpus format
+            # (target/english) so artist examples_raw.json can contain a mix
+            # of lyric lines and OpenSubs examples added by tool_5a_extend_examples.
+            spa = ex.get("spanish") or ex.get("target", "")
             # Normalize elided surface forms to canonical word for Gemini
             surface = ex.get("surface")
             if surface and surface.lower() != word.lower() and spa:
                 spa = re.sub(re.escape(surface), word, spa, count=1, flags=re.IGNORECASE)
-            original_spa = ex.get("spanish", "")  # original for translation lookup
-            eng_obj = translations.get(original_spa)
-            eng = eng_obj.get("english", "") if isinstance(eng_obj, dict) else (eng_obj or "")
+            # Corpus examples already carry an English translation; lyric
+            # examples need a translation lookup from the sidecar cache.
+            eng = ex.get("english", "")
+            if not eng:
+                original_spa = ex.get("spanish", "")
+                eng_obj = translations.get(original_spa)
+                eng = eng_obj.get("english", "") if isinstance(eng_obj, dict) else (eng_obj or "")
+            song_label = ex.get("title") or ex.get("source", "")
             examples.append({"spanish": spa, "english": eng,
-                             "song": ex.get("title", ""), "id": ex.get("id", "")})
+                             "song": song_label, "id": ex.get("id", "")})
             abs_indices.append(abs_i)
 
         if not examples:
