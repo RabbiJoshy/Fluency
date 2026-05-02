@@ -133,6 +133,26 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
         sense_ids = set(sense_map.keys()) if isinstance(sense_map, dict) else set()
         analysis_maps.append((analysis_key(word, a, known_lemmas=known_lemmas), sense_ids))
 
+    # Collapse reflexive/pronominal analyses into base form when both exist.
+    # E.g. fumar|fumarse -> fumar|fumar when fumar is also a lemma in this set.
+    all_lemmas = {key.split('|', 1)[1] for key, _ in analysis_maps}
+    redirects = {lem: lem[:-2] for lem in all_lemmas if lem.endswith('se') and lem[:-2] in all_lemmas}
+    if redirects:
+        analysis_maps = [
+            ('%s|%s' % (word, redirects.get(key.split('|', 1)[1], key.split('|', 1)[1])), sids)
+            for key, sids in analysis_maps
+        ]
+
+    # Collapse PHRASE self-analyses (word|word) into the first real lemma when
+    # other lemmas exist — handles cases where known_lemmas is absent.
+    self_key = '%s|%s' % (word, word)
+    other_lemmas = [key.split('|', 1)[1] for key, _ in analysis_maps if key != self_key]
+    if self_key in {k for k, _ in analysis_maps} and other_lemmas:
+        analysis_maps = [
+            ('%s|%s' % (word, other_lemmas[0]) if key == self_key else key, sids)
+            for key, sids in analysis_maps
+        ]
+
     # Split assignments by sense ID ownership. Multiple analyses can resolve
     # to the same key (e.g. a phrasebook analysis folded into its verb lemma's
     # key), so merge rather than overwrite on collision.
