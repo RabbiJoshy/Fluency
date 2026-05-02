@@ -36,6 +36,7 @@ from statistics import median
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from util_5a_example_id import example_id  # noqa: E402
 
 # Bump when example-selection logic, scoring, or corpus sources change.
 STEP_VERSION = 1
@@ -377,6 +378,7 @@ def select_examples(record_indices, records, source="tatoeba",
         length_pen = max(0, rec["length"] - PREFERRED_MAX_WORDS) * LENGTH_PENALTY_WEIGHT
 
         scored.append({
+            "id": example_id(spa, rec["eng"]),
             "target": spa,
             "english": rec["eng"],
             "source": source,
