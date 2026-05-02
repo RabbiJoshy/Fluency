@@ -56,6 +56,7 @@ from step_5a_build_examples import (  # noqa: E402
     _backfill_rare_examples,
     _LANGUAGE_CONFIG,
 )
+from util_5a_example_id import update_example_store  # noqa: E402
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Default target when --target is not specified. Higher than step_5a's
@@ -236,6 +237,10 @@ def main():
             "added": added,
         }),
     )
+    # Flush new examples into the append-only store.
+    store_path = examples_path.parent / "example_store.json"
+    store_added, store_total = update_example_store(output, store_path)
+    print(f"  Store: +{store_added:,} new  ({store_total:,} total in store)")
     print(f"Done. {total_before:,} → {total_after:,} total examples.")
 
 

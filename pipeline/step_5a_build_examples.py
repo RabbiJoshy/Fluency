@@ -36,7 +36,7 @@ from statistics import median
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
-from util_5a_example_id import example_id  # noqa: E402
+from util_5a_example_id import example_id, update_example_store  # noqa: E402
 
 # Bump when example-selection logic, scoring, or corpus sources change.
 STEP_VERSION = 1
@@ -72,6 +72,7 @@ OPENSUBS_EN = None
 RANKS_FILE = None
 OUTPUT_FILE = None
 OPENSUBS_CACHE = None
+EXAMPLE_STORE = None  # append-only flat {id: example} store
 
 SENTINEL_RANK = 999_999
 DEFAULT_MAX_LINES = 5_000_000
@@ -678,7 +679,7 @@ def parse_args():
 def _bind_paths(language):
     """Bind module-level path globals from --language."""
     global INVENTORY_FILE, TATOEBA_FILE, OPENSUBS_ES, OPENSUBS_EN
-    global RANKS_FILE, OUTPUT_FILE, OPENSUBS_CACHE
+    global RANKS_FILE, OUTPUT_FILE, OPENSUBS_CACHE, EXAMPLE_STORE
     cfg = _LANGUAGE_CONFIG[language]
     lang_dir = language.capitalize()
     base = PROJECT_ROOT / "Data" / lang_dir
@@ -689,6 +690,7 @@ def _bind_paths(language):
     OPENSUBS_CACHE = base / "corpora" / "opensubtitles" / "cached_pairs.json.gz"
     RANKS_FILE = base / cfg["ranks_file"]
     OUTPUT_FILE = base / "layers" / "examples_raw.json"
+    EXAMPLE_STORE = base / "layers" / "example_store.json"
 
 
 def main():
@@ -887,6 +889,13 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     write_sidecar(OUTPUT_FILE, make_meta("build_examples", STEP_VERSION))
+
+    # Flush new examples into the append-only store. Any example that was
+    # ever written by step_5a — including sentences from previous runs that
+    # a --force rebuild stopped selecting — stays permanently findable by ID.
+    print(f"Updating {EXAMPLE_STORE.name}...")
+    added, total = update_example_store(output, EXAMPLE_STORE)
+    print(f"  +{added:,} new  ({total:,} total in store)")
 
     # --- Results ---
     if target_words is not None:
