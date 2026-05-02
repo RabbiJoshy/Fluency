@@ -481,7 +481,37 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             for sid in group["sense_by_id"]:
                 sid_to_group[sid] = group
 
-        lemma_key_to_group = {"%s|%s" % (word, g["lemma"]): g for g in grouped}
+        # Collapse reflexive/pronominal lemmas into base form when both exist
+        # in this word's analysis set (mirrors util_7a_lemma_split logic).
+        all_group_lemmas = {g["lemma"] for g in grouped}
+        reflexive_redirects = {
+            lem: lem[:-2] for lem in all_group_lemmas
+            if lem.endswith("se") and lem[:-2] in all_group_lemmas
+        }
+        if reflexive_redirects:
+            for g in grouped:
+                if g["lemma"] in reflexive_redirects:
+                    g["lemma"] = reflexive_redirects[g["lemma"]]
+
+        # Collapse PHRASE self-analyses (lemma == word) into first real lemma.
+        other_lemmas = [g["lemma"] for g in grouped if g["lemma"] != word]
+        if other_lemmas:
+            for g in grouped:
+                if g["lemma"] == word:
+                    g["lemma"] = other_lemmas[0]
+
+        lemma_key_to_group = {}
+        for g in grouped:
+            key = "%s|%s" % (word, g["lemma"])
+            if key in lemma_key_to_group:
+                # Merge sense_by_id and word_senses from collapsed groups
+                lemma_key_to_group[key]["sense_by_id"].update(g["sense_by_id"])
+                lemma_key_to_group[key]["word_senses"].extend(g["word_senses"])
+            else:
+                lemma_key_to_group[key] = g
+        for g in lemma_key_to_group.values():
+            for sid in g["sense_by_id"]:
+                sid_to_group[sid] = g
 
         if lemma_assignments and lemma_key_to_group:
             for lemma_key, group in lemma_key_to_group.items():
@@ -1304,10 +1334,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         result = result[:MAX_TRANSLATION_LEN - 3] + "..."
                     trans = result
 
+                examples = mwe_examples_cache[expr]
+                if not examples:
+                    continue
                 membership = {
                     "expression": expr,
                     "translation": trans,
-                    "examples": mwe_examples_cache[expr],
+                    "examples": examples,
                     "source": mwe.get("source", "wiktionary"),
                 }
                 # Two context tiers (see step_8a_assemble_vocabulary for the

@@ -199,7 +199,8 @@
         "timestamp_ms": 39900
       }
     ],
-    "id": "b43b15"
+    "id": "b43b15",
+    "base_id": "c4cf70"
   },
   "b596d9": {
     "base_verb": "desaparecerte",
@@ -312,7 +313,8 @@
         "timestamp_ms": 42890
       }
     ],
-    "id": "92c3e7"
+    "id": "92c3e7",
+    "base_id": "eec7ba"
   },
   "8901fb": {
     "base_verb": "bájate",
@@ -346,7 +348,8 @@
         "timestamp_ms": 189120
       }
     ],
-    "id": "aa711f"
+    "id": "aa711f",
+    "base_id": "5be376"
   },
   "4dc0d9": {
     "base_verb": "parar",
@@ -406,7 +409,8 @@
         "timestamp_ms": 93450
       }
     ],
-    "id": "0af82a"
+    "id": "0af82a",
+    "base_id": "910b2a"
   },
   "2916fb": {
     "base_verb": "pichar",

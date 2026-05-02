@@ -995,6 +995,7 @@
             line-height: 1.3;
             overflow-wrap: anywhere;
             word-break: break-word;
+            max-width: 100%;
         }
 
         .meaning-row-translation.is-clamped {

@@ -1863,7 +1863,7 @@ function updateCard() {
                             const ctxRaw = mm.context || '';
                             const ctxSafe = String(ctxRaw).replace(/"/g, '&quot;');
                             varyingHtml = ctxRaw
-                                ? `<span class="meaning-context" style="line-height: 1.3; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${ctxSafe}</span>`
+                                ? `<span class="meaning-context" style="line-height: 1.3; min-width: 0; overflow-wrap: anywhere; word-break: break-word;">${ctxSafe}</span>`
                                 : `<span style="opacity: 0.4; font-style: italic; font-size: 12px;">—</span>`;
                         } else {
                             const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
@@ -1917,7 +1917,7 @@ function updateCard() {
                     target.push(`
                     <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${posColumnHtml}
-                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
+                        <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
                         </div>
@@ -1947,8 +1947,8 @@ function updateCard() {
                     target.push(`
                     <div class="meaning-row meaning-row-regular" style="position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 35px;" onclick="selectMeaning(${idx})">
                         ${posPill}
-                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; padding: 0 8px;">
-                            <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center;">${displayMeaning}${contextInline}</span>
+                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 8px;">
+                            <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
                         ${posPillMirror}
                         ${pctTail}

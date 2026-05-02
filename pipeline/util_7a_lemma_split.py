@@ -73,7 +73,7 @@ def analysis_key(word, analysis, known_lemmas=None):
     that lemma instead (so e.g. ``está`` phrase senses merge into ``está|estar``
     rather than creating a dead ``está|está`` entry).
     """
-    headword = analysis.get("headword")
+    headword = analysis.get("headword") or analysis.get("lemma")
     default_lemma = headword if isinstance(headword, str) and headword.strip() else word
 
     if known_lemmas:
