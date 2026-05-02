@@ -61,7 +61,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "artist"))
 from util_1a_artist_config import (load_artist_config,
                            artist_sense_menu_path, artist_sense_assignments_path)
 from util_6a_method_priority import METHOD_PRIORITY, best_method_priority
-from util_6a_assignment_format import load_assignments, dump_assignments
+from util_6a_assignment_format import load_assignments, dump_assignments, stamp_example_ids
 
 from step_5c_build_senses import (load_wiktionary, lookup_senses, clean_translation,
                           merge_similar_senses)
@@ -932,6 +932,9 @@ def main():
             print("  Dropped %d stale priority-0 auto entries (menu now multi-sense)"
                   % stale_auto_wiped)
         output = existing
+
+    # Stamp example_ids onto every new assignment item before writing.
+    stamp_example_ids(output, examples_data)
 
     print("\nWriting %s..." % output_file)
     dump_assignments(output, output_file)

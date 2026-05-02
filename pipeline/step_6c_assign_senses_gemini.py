@@ -32,7 +32,7 @@ from util_1a_artist_config import (load_artist_config,
                            load_dotenv_from_project_root)
 from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority,
                                      assign_sense_ids)
-from util_6a_assignment_format import load_assignments, dump_assignments
+from util_6a_assignment_format import load_assignments, dump_assignments, stamp_example_ids
 from util_7a_lemma_split import merge_method_maps
 from util_5c_sense_paths import sense_menu_path, sense_assignments_path
 from util_6a_pos_menu_filter import (
@@ -1241,6 +1241,10 @@ def main():
         with open(senses_path, "w", encoding="utf-8") as f:
             json.dump(existing_senses, f, ensure_ascii=False, indent=2)
         print("\nWrote %s (%d entries, %d new)" % (senses_path, len(existing_senses), len(senses_out)))
+
+    # Stamp example_ids onto every new assignment item before merging.
+    # Idempotent — items already carrying example_ids are untouched.
+    stamp_example_ids(assignments_out, examples_raw)
 
     # Merge assignments with existing file.
     #

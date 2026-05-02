@@ -134,6 +134,34 @@ def dump_assignments(word_dict, path):
         json.dump(serialized, f, ensure_ascii=False, indent=2)
 
 
+def stamp_example_ids(assignments_out, examples_raw):
+    """Add 'example_ids' to every new assignment item that lacks it.
+
+    Call on assignments_out just before merging into the on-disk file.
+    Idempotent — items already carrying example_ids are left untouched.
+
+    assignments_out : {word: {method: [items]}}  (legacy in-memory shape)
+    examples_raw    : {word: [{id, target, english, ...}]}  — the full
+                      examples_raw.json dict loaded earlier in the caller.
+                      Each example must already have an 'id' field (Phase 1).
+    """
+    for word, methods in assignments_out.items():
+        word_examples = examples_raw.get(word, [])
+        idx_to_id = {i: ex.get("id") for i, ex in enumerate(word_examples)}
+
+        items_iter = (
+            methods.values() if isinstance(methods, dict) else [methods]
+        )
+        for item_list in items_iter:
+            for item in item_list or []:
+                if not isinstance(item, dict) or "example_ids" in item:
+                    continue
+                item["example_ids"] = [
+                    idx_to_id[i] for i in item.get("examples") or []
+                    if i in idx_to_id and idx_to_id[i]
+                ]
+
+
 def resolve_best_per_example(word_data, min_priority=0):
     """Resolve per-example winners from a word's {method: [items]} dict.
 
