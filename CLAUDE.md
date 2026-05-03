@@ -46,6 +46,7 @@ Fluency/
 | Word filter pipeline | `pipeline/artist/step_4a_filter_known_vocab.py` (5 phases, uses `spanish_forms.json`). Output: `word_routing.json` with `exclude`/`biencoder`/`gemini`/`clitic_merge` buckets. |
 | Clitic bundling | `pipeline/step_5c_build_senses.py` → `load_wiktionary()` + `pipeline/artist/step_4a_filter_known_vocab.py`. Builders write `clitic_forms.json`. |
 | Sense assignment | `pipeline/step_6a_assign_senses.py` (normal) or `pipeline/artist/step_6a_assign_senses.py` (artist). Flags: `--classifier {keyword,biencoder,gemini}` + `--gap-fill/--no-gap-fill`. Output: `sense_assignments/{source}.json`. |
+| Lemma mapping (required after step_6) | `pipeline/step_7a_map_senses_to_lemmas.py --language {lang}` must run before step_8a/8b — the builders read `sense_assignments_lemma/`, not `sense_assignments/` directly. |
 | Method priority | `pipeline/util_6a_method_priority.py` — see `docs/reference/method_priority.md` for the full table. |
 | Builder filters | `--remainders` and `--min-priority N` on `step_8a` / `step_8b`. See `docs/reference/builder_flags.md`. |
 | Context disambiguation | `step_8a` dedupes on `(pos, translation, context)`; renders context parenthetically when needed. |

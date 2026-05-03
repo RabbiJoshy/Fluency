@@ -48,7 +48,7 @@ Current main steps:
 - `step_6a_assign_senses.py` (thin dispatcher; calls shared `step_6b` + `step_6c`)
 - `step_6b_assign_senses_local.py` (shared; bi-encoder / keyword classifier)
 - `step_6c_assign_senses_gemini.py` (shared; Gemini Flash Lite classifier + gap-fill)
-- `step_7a_map_senses_to_lemmas.py`
+- `step_7a_map_senses_to_lemmas.py` — **must run after any step_6 change**; maps `sense_assignments/` → `sense_assignments_lemma/`; step_8a reads the lemma-keyed file, not `sense_assignments/` directly
 - `step_7c_flag_cognates.py`
 - `step_8a_assemble_vocabulary.py`
 

@@ -24,9 +24,9 @@ Spanish uses a **split format** for efficiency:
 - `vocabulary.examples.json` — examples keyed by hex ID, lazy-loaded
 - `vocabulary.json` — full monolith (debug/legacy, contains everything)
 
-### Index Entry Schema (`vocabulary.index.json`)
+### Artist Index Entry Schema
 
-The artist index uses a **master-aligned** format. Sense definitions live in `vocabulary_master.json`; the index only carries per-artist statistics. `joinWithMaster()` in `vocab.js` reconstructs full entries at load time.
+Artist vocabulary index files live at `Artists/{lang}/` (not in `Data/`). Sense definitions live in `Artists/{lang}/vocabulary_master.json`; the per-artist index only carries per-artist statistics. `joinWithMaster()` in `vocab.js` reconstructs full entries at load time.
 
 ```json
 {
