@@ -517,13 +517,7 @@
                 pointer-events: none;
                 transition: opacity 0.2s;
             }
-            .deck-progress-fill {
-                height: 100%;
-                width: 0%;
-                background: var(--accent-primary);
-                border-radius: 2px;
-                transition: width 0.3s ease;
-            }
+            /* fill styles live in the global block below so mobile shares them */
             /* Hide progress + side zones while browsing an off-deck card */
             .card-container:has(.card.is-stacked) .deck-progress-track,
             .card-container:has(.card.is-stacked) .side-nav-zone {
@@ -1462,12 +1456,12 @@
         .card-rank-label,
         .card-freq-label {
             font-family: var(--font-reading);
-            font-size: 15px;
+            font-size: 18px;
             color: rgba(255, 255, 255, 0.55);
         }
         .card-freq-btn {
             font-family: var(--font-reading);
-            font-size: 15px;
+            font-size: 18px;
             color: rgba(255, 255, 255, 0.55);
             background: none;
             border: none;
@@ -1480,6 +1474,15 @@
             color: rgba(255, 255, 255, 0.8);
         }
         /* Frequency info tooltip */
+        /* Shared by desktop and mobile progress bars */
+        .deck-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-primary);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
         .freq-tooltip {
             position: fixed;
             background: rgba(30, 30, 40, 0.95);
@@ -3361,9 +3364,10 @@
         /* The inline width/height attributes on the favicon img (40px) set
            by updateCard() read as the default, but CSS wins — scale them
            down so the footer row is more compact. */
-        .ref-icon-btn img {
-            width: 32px;
-            height: 32px;
+        .ref-icon-btn img,
+        .ref-icon-btn svg {
+            width: 37px;
+            height: 37px;
         }
         .ref-icon-btn:hover {
             opacity: 1;
@@ -5635,15 +5639,15 @@
                AFTER the .gear-btn rule above. */
             .nav-row-icon {
                 padding: 8px;
-                width: 64px;
-                height: 64px;
+                width: 54px;
+                height: 54px;
                 box-sizing: border-box;
                 color: rgba(255, 255, 255, 0.8);
             }
 
             .nav-row-icon svg {
-                width: 48px;
-                height: 48px;
+                width: 38px;
+                height: 38px;
             }
         }
 
@@ -5656,7 +5660,7 @@
         @media (max-width: 767px) {
             .card-container {
                 min-height: 100vh;
-                padding: 52px 0 28px;
+                padding: 68px 0 44px;
                 align-items: flex-start;
             }
 
@@ -5668,7 +5672,7 @@
             }
 
             .card {
-                height: calc(100vh - 80px);
+                height: calc(100vh - 112px);
                 min-height: 460px;
                 max-height: none;
             }
@@ -5677,7 +5681,7 @@
             .deck-progress-track {
                 display: block;
                 position: absolute;
-                top: 20px;
+                top: 26px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 32px);

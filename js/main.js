@@ -5,10 +5,10 @@ import './auth.js?v=20260502b';
 import './spotify.js?v=20260502b';
 import './estimation.js?v=20260502b';
 import './config.js?v=20260502b';
-import './progress.js?v=20260502b';
+import './progress.js?v=20260503a';
 import './ui.js?v=20260502b';
 import './vocab.js?v=20260502b';
-import './flashcards.js?v=20260503d';
+import './flashcards.js?v=20260503f';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it

@@ -50,7 +50,7 @@ function calculateCoveragePercent() {
 // Update inline info text for lemma and cognate exclusion counts
 async function updateExclusionBars() {
     const langConfig = config.languages[selectedLanguage];
-    if (!langConfig || !langConfig.dataPath) return;
+    if (!langConfig || (!langConfig.dataPath && !langConfig.indexPath)) return;
 
     let vocabularyData = cachedVocabularyData;
     if (!vocabularyData) {
