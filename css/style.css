@@ -175,6 +175,7 @@
             cursor: pointer;
             touch-action: none;
             -webkit-user-drag: none;
+            z-index: 1;
         }
 
         /* Stacked-card cue: when the card was reached via search/synonym/lyric
@@ -186,43 +187,43 @@
            with the card itself; its dimensions match .card's natural height
            so it sits exactly where .card would be at full size. */
         .card-container::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            height: calc(100vh - 100px);
-            min-height: 460px;
-            max-height: calc(100vh - 100px);
-            background: var(--bg-card);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.32s ease-out;
+            content: none;
         }
 
-        .card-container:has(.card.is-stacked)::before {
-            opacity: 0.55;
-        }
-
-        .card.is-stacked {
-            transform: scale(0.92);
-            z-index: 1;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
-        }
-
-        .card.is-stacked.flipped {
-            transform: rotateY(180deg) scale(0.92);
-        }
+        /* Old phantom/scale stacked treatment removed — now uses X button instead. */
 
         /* Old peek-tab pseudos removed — kept disabled in case any cached
            rule cascade tries to use them. */
         .card.is-stacked::before,
         .card.is-stacked::after {
             display: none;
+        }
+
+        /* X button shown when browsing a card via search/synonym/lyric jump */
+        .stacked-exit-btn {
+            display: none;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 6;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.15s, color 0.15s;
+        }
+        .stacked-exit-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .card.is-stacked .stacked-exit-btn {
+            display: flex;
         }
 
         .card.swiping {
@@ -253,6 +254,27 @@
         .card.flipped.swipe-flag {
             animation: swipeUpFlipped 0.3s ease-out forwards;
             box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.7);
+        }
+
+        /* Result tint: a translucent colour wash over the card face as it exits */
+        .card-tint {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            pointer-events: none;
+            z-index: 50;
+            background: transparent;
+        }
+        .card.swipe-correct .card-tint {
+            background: rgba(55, 210, 105, 0.2);
+        }
+        .card.swipe-incorrect .card-tint {
+            background: rgba(255, 70, 70, 0.2);
+        }
+        /* Artist mode sets position:relative on all card-face children; override it */
+        body.artist-mode .card-tint {
+            position: absolute;
+            z-index: 50;
         }
 
         @keyframes swipeRight {
@@ -417,10 +439,181 @@
             }
 
             /* (hide rules moved to after .desktop-nav-row display:flex rule) */
+
+            /* Adjacent-card ghost peeking in from each gutter.
+               Ghost 1 is closer to the main card (narrower peek, taller, on top).
+               Ghost 2 extends further out horizontally (wider peek, shorter, behind).
+               This creates a staircase: ghost2-edge | ghost1-edge | main card. */
+            .deck-ghost-prev,
+            .deck-ghost-next {
+                position: absolute;
+                width: min(480px, calc(100% - 40px));
+                top: 50%;
+                border-radius: 16px;
+                background: var(--bg-card);
+                pointer-events: none;
+                z-index: 0;
+                transition: opacity 0.2s;
+            }
+            /* Ghost 1: closest to main card — 30px peek, slightly shorter */
+            .deck-ghost-prev-1 {
+                right: calc(50% - 210px);
+                height: calc(100vh - 160px);
+                min-height: 420px;
+                transform: translateY(-50%);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                filter: brightness(0.55);
+            }
+            /* Ghost 2: behind ghost 1 — 45px peek (extends further), shortest */
+            .deck-ghost-prev-2 {
+                right: calc(50% - 195px);
+                height: calc(100vh - 200px);
+                min-height: 380px;
+                transform: translateY(-50%);
+                border: 1px solid rgba(255, 255, 255, 0.04);
+                filter: brightness(0.3);
+            }
+            .deck-ghost-next-1 {
+                left: calc(50% - 210px);
+                height: calc(100vh - 160px);
+                min-height: 420px;
+                transform: translateY(-50%);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                filter: brightness(0.55);
+            }
+            .deck-ghost-next-2 {
+                left: calc(50% - 195px);
+                height: calc(100vh - 200px);
+                min-height: 380px;
+                transform: translateY(-50%);
+                border: 1px solid rgba(255, 255, 255, 0.04);
+                filter: brightness(0.3);
+            }
+            /* Hide all prev/next ghosts at the hard edges */
+            .card-container.at-deck-start .deck-ghost-prev,
+            .card-container.at-deck-end .deck-ghost-next,
+            .card-container:has(.card.is-stacked) .deck-ghost-prev,
+            .card-container:has(.card.is-stacked) .deck-ghost-next {
+                opacity: 0;
+            }
+            /* One step from edge: only 1 real card behind — hide the outer ghost */
+            .card-container.at-deck-start-2 .deck-ghost-prev-2,
+            .card-container.at-deck-end-2 .deck-ghost-next-2 {
+                opacity: 0;
+            }
+
+            /* Deck progress scrubber — sits above the card */
+            .deck-progress-track {
+                display: block;
+                position: absolute;
+                top: 50px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: min(480px, calc(100% - 40px));
+                height: 3px;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 2px;
+                overflow: hidden;
+                pointer-events: none;
+                transition: opacity 0.2s;
+            }
+            .deck-progress-fill {
+                height: 100%;
+                width: 0%;
+                background: var(--accent-primary);
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+            /* Hide progress + side zones while browsing an off-deck card */
+            .card-container:has(.card.is-stacked) .deck-progress-track,
+            .card-container:has(.card.is-stacked) .side-nav-zone {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            /* Side navigation zones — wide clickable gutters on either side of card */
+            .side-nav-zone {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: calc((100% - 480px) / 2);
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                z-index: 5;
+                padding: 0;
+                transition: opacity 0.2s;
+            }
+            .side-nav-prev {
+                left: 0;
+                justify-content: flex-end;
+                padding-right: 24px;
+            }
+            .side-nav-next {
+                right: 0;
+                justify-content: flex-start;
+                padding-left: 24px;
+            }
+            .side-nav-chevron {
+                opacity: 0;
+                transition: opacity 0.2s, transform 0.15s;
+                color: rgba(255, 255, 255, 0.5);
+                flex-shrink: 0;
+            }
+            .side-nav-zone:hover:not(:disabled) .side-nav-chevron {
+                opacity: 1;
+                color: rgba(255, 255, 255, 0.85);
+            }
+            .side-nav-prev:hover:not(:disabled) .side-nav-chevron {
+                transform: translateX(-4px);
+            }
+            .side-nav-next:hover:not(:disabled) .side-nav-chevron {
+                transform: translateX(4px);
+            }
+            .side-nav-zone:disabled {
+                pointer-events: none;
+                opacity: 0;
+            }
+        }
+
+        @keyframes card-exit-left {
+            to { transform: translateX(-150%) rotate(-20deg); opacity: 0; }
+        }
+        @keyframes card-exit-left-f {
+            to { transform: translateX(-150%) rotate(-20deg) rotateY(180deg); opacity: 0; }
+        }
+        @keyframes card-exit-right {
+            to { transform: translateX(150%) rotate(20deg); opacity: 0; }
+        }
+        @keyframes card-exit-right-f {
+            to { transform: translateX(150%) rotate(20deg) rotateY(180deg); opacity: 0; }
+        }
+        @keyframes card-enter-right {
+            from { transform: translateX(55%) rotate(8deg); opacity: 0; }
+            to   { transform: translateX(0) rotate(0deg); opacity: 1; }
+        }
+        @keyframes card-enter-left {
+            from { transform: translateX(-55%) rotate(-8deg); opacity: 0; }
+            to   { transform: translateX(0) rotate(0deg); opacity: 1; }
+        }
+        @media (min-width: 768px) {
+            .card.nav-exit-left  { animation: card-exit-left  0.28s ease-out forwards; }
+            .card.nav-exit-left-f  { animation: card-exit-left-f  0.28s ease-out forwards; }
+            .card.nav-exit-right { animation: card-exit-right 0.28s ease-out forwards; }
+            .card.nav-exit-right-f { animation: card-exit-right-f 0.28s ease-out forwards; }
+            .card.nav-enter-right { animation: card-enter-right 0.22s ease-out forwards; }
+            .card.nav-enter-left  { animation: card-enter-left  0.22s ease-out forwards; }
         }
 
         @media (max-width: 767px) {
             .desktop-side-controls {
+                display: none;
+            }
+            .side-nav-zone,
+            .deck-ghost-prev,
+            .deck-ghost-next {
                 display: none;
             }
         }
@@ -1256,11 +1449,55 @@
         }
 
         .card-ranking {
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .card-rank-label,
+        .card-freq-label {
             font-family: var(--font-reading);
-            font-size: 18px;
-            color: white;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.55);
+        }
+        .card-freq-btn {
+            font-family: var(--font-reading);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.55);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            pointer-events: auto;
+            line-height: inherit;
+        }
+        .card-freq-btn:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        /* Frequency info tooltip */
+        .freq-tooltip {
+            position: fixed;
+            background: rgba(30, 30, 40, 0.95);
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-reading);
+            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            pointer-events: none;
+            z-index: 9999;
+            max-width: 220px;
             text-align: center;
-            opacity: 0.7;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .freq-tooltip.hiding {
+            opacity: 0;
         }
 
         .card-control-btn {
@@ -5401,6 +5638,7 @@
                 width: 64px;
                 height: 64px;
                 box-sizing: border-box;
+                color: rgba(255, 255, 255, 0.8);
             }
 
             .nav-row-icon svg {
@@ -5418,21 +5656,46 @@
         @media (max-width: 767px) {
             .card-container {
                 min-height: 100vh;
-                padding: 12px 0 16px 0;
+                padding: 52px 0 28px;
                 align-items: flex-start;
             }
 
             .card-container::before {
-                height: calc(100vh - 28px);
+                height: calc(100vh - 80px);
                 max-height: none;
-                top: 12px;
+                top: 52px;
                 transform: none;
             }
 
             .card {
-                height: calc(100vh - 28px);
+                height: calc(100vh - 80px);
                 min-height: 460px;
                 max-height: none;
+            }
+
+            /* Progress bar in the top padding area */
+            .deck-progress-track {
+                display: block;
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 32px);
+                height: 3px;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 2px;
+                overflow: hidden;
+                pointer-events: none;
+                transition: opacity 0.2s;
+            }
+            .card-container:has(.card.is-stacked) .deck-progress-track {
+                opacity: 0;
+            }
+
+            /* Hide prev/next arrows in mobile banner when on an off-deck card */
+            .card.is-stacked .mobile-nav-row .nav-btn-inline {
+                visibility: hidden;
+                pointer-events: none;
             }
 
             .card-word {
@@ -5482,16 +5745,16 @@
         .card-actions-popup {
             display: none;
             position: fixed;
-            top: 84px;
+            top: 124px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 9999;
             pointer-events: auto;
             background: var(--bg-card-hover);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 8px;
-            gap: 8px;
+            border-radius: 16px;
+            padding: 12px 14px;
+            gap: 14px;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
             align-items: center;
         }
@@ -5549,6 +5812,11 @@
         }
 
         body.artist-mode .card-face > div[style*="position: absolute"] {
+            z-index: 5;
+        }
+
+        body.artist-mode .card-ranking {
+            position: absolute;
             z-index: 5;
         }
 

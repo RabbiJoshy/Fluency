@@ -534,6 +534,18 @@ function initializeApp() {
             navigateBack();
         });
     });
+
+    // Desktop side navigation zones
+    const sideNavPrev = document.getElementById('sideNavPrev');
+    const sideNavNext = document.getElementById('sideNavNext');
+    if (sideNavPrev) sideNavPrev.addEventListener('click', function(e) { e.stopPropagation(); previousCard(); });
+    if (sideNavNext) sideNavNext.addEventListener('click', function(e) { e.stopPropagation(); nextCard(); });
+
+    // X button on stacked (off-deck) cards
+    ['stackedExitFront', 'stackedExitBack'].forEach(function(id) {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', function(e) { e.stopPropagation(); navigateBack(); });
+    });
     ['statsBtnFloating', 'statsBtnPopup'].forEach(id => {
         const btn = document.getElementById(id);
         if (btn) btn.addEventListener('click', function(e) {
@@ -1468,13 +1480,20 @@ function updateCard() {
         flashcardEl.setAttribute('data-rank', '');
     }
 
-    // Display ranking and frequency on front card
+    // Display rank (bottom-left) and frequency (bottom-right) on card front
     const frontRankingEl = document.getElementById('frontRanking');
     if (card.rank !== undefined) {
-        frontRankingEl.textContent = card.corpusCount
-            ? `Rank: ${card.rank} · Frequency: ${card.corpusCount}`
-            : `Rank: ${card.rank}`;
-        frontRankingEl.style.display = 'block';
+        let freqHtml = '';
+        if (card.corpusCount) {
+            if (activeArtist) {
+                freqHtml = `<span class="card-freq-label">Frequency: ${card.corpusCount}</span>`;
+            } else {
+                freqHtml = `<button class="card-freq-btn" onclick="window.showFreqInfo(event, ${card.corpusCount})" aria-label="Spoken frequency info">Frequency: ${card.corpusCount}</button>`;
+            }
+        }
+        frontRankingEl.innerHTML =
+            `<span class="card-rank-label">Rank: ${card.rank}</span>${freqHtml}`;
+        frontRankingEl.style.display = 'flex';
     } else {
         frontRankingEl.style.display = 'none';
     }
@@ -2443,6 +2462,29 @@ function updateCard() {
     document.getElementById('prevBtnFrontMobile').disabled = isPrevDisabled;
     document.getElementById('nextBtnFrontMobile').disabled = isNextDisabled;
 
+    // Update desktop progress bar
+    const progressFill = document.getElementById('deckProgressFill');
+    if (progressFill) {
+        progressFill.style.width = (flashcards.length > 1
+            ? (currentIndex / (flashcards.length - 1)) * 100
+            : 100) + '%';
+    }
+
+    // Update desktop side nav zones
+    const sideNavPrev = document.getElementById('sideNavPrev');
+    const sideNavNext = document.getElementById('sideNavNext');
+    if (sideNavPrev) sideNavPrev.disabled = isPrevDisabled;
+    if (sideNavNext) sideNavNext.disabled = isNextDisabled;
+
+    // Drive ghost card visibility based on how many real cards exist behind each side
+    const cardContainer = document.querySelector('.card-container');
+    if (cardContainer) {
+        cardContainer.classList.toggle('at-deck-start',   currentIndex === 0);
+        cardContainer.classList.toggle('at-deck-start-2', currentIndex === 1);
+        cardContainer.classList.toggle('at-deck-end',     currentIndex === flashcards.length - 1);
+        cardContainer.classList.toggle('at-deck-end-2',   currentIndex === flashcards.length - 2);
+    }
+
     // Setup outside nav buttons (desktop)
     const prevBtnOutside = document.getElementById('prevBtnFrontOutside');
     const nextBtnOutside = document.getElementById('nextBtnFrontOutside');
@@ -2695,28 +2737,51 @@ function selectGroup(axis, anchorIdx) {
     }
 }
 
-function previousCard() {
-    if (currentIndex > 0) {
-        currentIndex--;
+function _navCard(direction) {
+    const cardEl = document.getElementById('flashcard');
+    if (!cardEl || cardEl.classList.contains('nav-exiting')) return false;
+    const wasFlipped = cardEl.classList.contains('flipped');
+    const isNext = direction === 'next';
+    const exitClass = isNext
+        ? (wasFlipped ? 'nav-exit-left-f' : 'nav-exit-left')
+        : (wasFlipped ? 'nav-exit-right-f' : 'nav-exit-right');
+    const exitAnim = isNext
+        ? (wasFlipped ? 'card-exit-left-f' : 'card-exit-left')
+        : (wasFlipped ? 'card-exit-right-f' : 'card-exit-right');
+    const enterClass = isNext ? 'nav-enter-right' : 'nav-enter-left';
+    const enterAnim = isNext ? 'card-enter-right' : 'card-enter-left';
+
+    cardEl.classList.add('nav-exiting', exitClass);
+    cardEl.addEventListener('animationend', function onExit(e) {
+        if (e.animationName !== exitAnim) return;
+        cardEl.removeEventListener('animationend', onExit);
+        cardEl.classList.remove('nav-exiting', exitClass, 'flipped');
+
+        if (isNext) currentIndex++;
+        else currentIndex--;
         currentMeaningIndex = 0;
         currentExampleIndex = 0;
         currentMWEIndex = 0;
         currentGroupSelection = null;
         updateCard();
-        document.getElementById('flashcard').classList.remove('flipped');
-    }
+
+        void cardEl.offsetWidth;
+        cardEl.classList.add(enterClass);
+        cardEl.addEventListener('animationend', function onEnter(e2) {
+            if (e2.animationName !== enterAnim) return;
+            cardEl.classList.remove(enterClass);
+            cardEl.removeEventListener('animationend', onEnter);
+        });
+    });
+    return true;
+}
+
+function previousCard() {
+    if (currentIndex > 0) _navCard('prev');
 }
 
 function nextCard() {
-    if (currentIndex < flashcards.length - 1) {
-        currentIndex++;
-        currentMeaningIndex = 0;
-        currentExampleIndex = 0;
-        currentMWEIndex = 0;
-        currentGroupSelection = null;
-        updateCard();
-        document.getElementById('flashcard').classList.remove('flipped');
-    }
+    if (currentIndex < flashcards.length - 1) _navCard('next');
 }
 
 function shuffleCards() {
@@ -2898,6 +2963,33 @@ window.selectGroup = selectGroup;
 window.previousCard = previousCard;
 window.nextCard = nextCard;
 window.shuffleCards = shuffleCards;
+
+window.showFreqInfo = function showFreqInfo(event, count) {
+    event.stopPropagation();
+    let tip = document.getElementById('freqTooltip');
+    if (!tip) {
+        tip = document.createElement('div');
+        tip.id = 'freqTooltip';
+        tip.className = 'freq-tooltip';
+        document.body.appendChild(tip);
+    }
+    tip.textContent = 'Per million words in spoken Spanish';
+    const rect = event.target.getBoundingClientRect();
+    const tipWidth = 220;
+    let left = rect.left + rect.width / 2 - tipWidth / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - tipWidth - 8));
+    tip.style.left = left + 'px';
+    tip.style.top = (rect.top - 48) + 'px';
+    tip.style.width = tipWidth + 'px';
+    tip.classList.remove('hiding');
+    clearTimeout(tip._hideTimer);
+    tip._hideTimer = setTimeout(function() {
+        tip.classList.add('hiding');
+        tip._hideTimer = setTimeout(function() {
+            tip.remove();
+        }, 320);
+    }, 2200);
+};
 window.flipDirection = flipDirection;
 window.getPosColorClass = getPosColorClass;
 window.updateReverseButton = updateReverseButton;

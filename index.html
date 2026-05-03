@@ -35,7 +35,7 @@
     <link rel="modulepreload" href="js/progress.js?v=20260428b">
     <link rel="modulepreload" href="js/ui.js?v=20260428b">
     <link rel="modulepreload" href="js/vocab.js?v=20260428b">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260428b">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260503d">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -324,6 +324,12 @@
             <!-- Flashcard Mode -->
             <div id="flashcardMode">
                 <div class="card-container">
+                    <!-- Desktop ghost cards: staircase of 2 per side. DOM order = stacking order,
+                         so -2 (deeper) must come before -1 (nearer) on each side. -->
+                    <div class="deck-ghost-prev deck-ghost-prev-2" aria-hidden="true"></div>
+                    <div class="deck-ghost-prev deck-ghost-prev-1" aria-hidden="true"></div>
+                    <div class="deck-ghost-next deck-ghost-next-2" aria-hidden="true"></div>
+                    <div class="deck-ghost-next deck-ghost-next-1" aria-hidden="true"></div>
                     <div class="swipe-indicator incorrect" id="incorrectIndicator">✗</div>
                     <div class="swipe-indicator correct" id="correctIndicator">✓</div>
                     <div class="card" id="flashcard" data-rank="">
@@ -353,13 +359,21 @@
                                 <div class="card-lemma" id="frontLemma"></div>
                                 <div class="card-morph" id="frontMorph"></div>
                                 <div class="card-pos" id="frontPOS"></div>
-                                <div class="card-ranking" id="frontRanking"></div>
                             </button>
+                            <div class="card-ranking" id="frontRanking"></div>
                             <!-- Desktop: Left/right nav buttons (hidden on desktop, moved outside card) -->
                             <div class="desktop-nav-row desktop-front-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
                                 <button class="nav-btn-inline" id="prevBtnFront" style="pointer-events: auto;">←</button>
                                 <button class="nav-btn-inline" id="nextBtnFront" style="pointer-events: auto;">→</button>
                             </div>
+                            <!-- X button: shown when card was opened via search/synonym/lyric jump -->
+                            <button class="stacked-exit-btn" id="stackedExitFront" aria-label="Return to deck">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                            <div class="card-tint" aria-hidden="true"></div>
                         </div>
                         <div class="card-face card-back">
                             <!-- Mobile top banner: prev far-left, [back][gear] paired in middle, next far-right -->
@@ -381,7 +395,15 @@
                                 </div>
                                 <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
                             </div>
+                            <!-- X button: shown when card was opened via search/synonym/lyric jump -->
+                            <button class="stacked-exit-btn" id="stackedExitBack" aria-label="Return to deck">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
                             <div class="card-details" id="backContent"></div>
+                            <div class="card-tint" aria-hidden="true"></div>
                         </div>
                     </div>
                     <!-- Hidden: keep IDs for pressAnswerBtn animation -->
@@ -389,6 +411,21 @@
                     <button id="correctBtnOutside" class="hidden" aria-hidden="true"></button>
                     <button id="prevBtnFrontOutside" class="hidden" aria-hidden="true"></button>
                     <button id="nextBtnFrontOutside" class="hidden" aria-hidden="true"></button>
+                    <!-- Desktop: deck progress scrubber (desktop only via CSS) -->
+                    <div id="deckProgressTrack" class="deck-progress-track">
+                        <div id="deckProgressFill" class="deck-progress-fill"></div>
+                    </div>
+                    <!-- Desktop: side navigation zones (click the gutter to go prev/next) -->
+                    <button id="sideNavPrev" class="side-nav-zone side-nav-prev" aria-label="Previous card">
+                        <svg class="side-nav-chevron" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button id="sideNavNext" class="side-nav-zone side-nav-next" aria-label="Next card">
+                        <svg class="side-nav-chevron" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
                 </div>
                 <!-- Mobile actions popup: position:fixed, sits just below the top banner.
                      Both front-face and back-face gear buttons toggle this single popup.
