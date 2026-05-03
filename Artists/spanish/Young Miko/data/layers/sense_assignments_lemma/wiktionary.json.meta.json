@@ -1,6 +1,5 @@
 {
-  "step_name": "map_senses_to_lemmas",
-  "step_version": 3,
-  "generated_at": 1776895842,
-  "source": "wiktionary"
+  "step_name": "migrate_example_ids",
+  "step_version": 1,
+  "generated_at": 1777717674
 }
