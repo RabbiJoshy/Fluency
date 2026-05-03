@@ -589,7 +589,10 @@ def _backfill_rare_examples(output, inventory, raw_es_path, raw_en_path,
     for wl, records in candidates_by_target.items():
         target_rank, original_word, slots = targets[wl]
         existing_for_word = output.get(original_word, [])
-        existing_keys = {ex["target"].lower().strip() for ex in existing_for_word}
+        existing_keys = {
+            (ex.get("target") or ex.get("spanish") or "").lower().strip()
+            for ex in existing_for_word
+        }
         new_examples = select_examples(
             list(range(len(records))), records,
             source="opensubtitles",
