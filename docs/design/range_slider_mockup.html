@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Range slider mockup</title>
+<style>
+  :root {
+    --bg: #1a1a1f;
+    --panel: #25252d;
+    --panel-2: #2e2e38;
+    --text: #e8e8ea;
+    --muted: #9a9aa6;
+    --accent: #7aa2ff;
+    --accent-dim: #3d5896;
+    --border: #3a3a46;
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .container { max-width: 560px; width: 100%; }
+  h2 { margin: 0 0 4px; font-size: 18px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+
+  /* Slider section */
+  .slider-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .readout {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .readout .rank {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .readout .rank span { color: var(--accent); }
+  .readout .coverage {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .readout .coverage span {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    background: transparent;
+    margin: 8px 0 4px;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--fill, 50%), var(--panel-2) var(--fill, 50%));
+    border-radius: 3px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-top: -6px;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(122,162,255,0.15);
+  }
+  .ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    user-select: none;
+  }
+  .ticks span { cursor: pointer; }
+  .ticks span:hover { color: var(--text); }
+
+  /* Buckets */
+  .bucket-list { display: flex; flex-direction: column; gap: 8px; }
+  .bucket {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .bucket:hover { border-color: var(--accent-dim); }
+  .bucket.active {
+    border-color: var(--accent);
+    background: var(--panel-2);
+  }
+  .bucket .label {
+    font-weight: 500;
+  }
+  .bucket .meta {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .bucket .pct {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .bucket .pct b { color: var(--text); font-weight: 600; }
+  .bucket .bar {
+    height: 4px;
+    background: var(--panel-2);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .bucket .bar > div {
+    height: 100%;
+    background: var(--accent);
+  }
+  .bucket-text { flex: 1; }
+  .bucket-right { text-align: right; min-width: 90px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Pick your range</h2>
+  <div class="sub">Slide to set how many words you want — coverage shows how much of the lyrics that gets you.</div>
+
+  <div class="slider-card">
+    <div class="readout">
+      <div class="rank">Top <span id="rankVal">1,500</span> words</div>
+      <div class="coverage">covers <span id="covVal">~85%</span> of lyrics</div>
+    </div>
+    <input type="range" id="slider" min="0" max="6" step="1" value="3">
+    <div class="ticks">
+      <span data-i="0">100</span>
+      <span data-i="1">300</span>
+      <span data-i="2">700</span>
+      <span data-i="3">1.5k</span>
+      <span data-i="4">3k</span>
+      <span data-i="5">6k</span>
+      <span data-i="6">10k+</span>
+    </div>
+  </div>
+
+  <div class="bucket-list" id="buckets"></div>
+</div>
+
+<script>
+  // log-spaced snap points; coverage values are illustrative Zipfian-ish
+  const stops = [
+    { rank: 100,   cov: 42 },
+    { rank: 300,   cov: 60 },
+    { rank: 700,   cov: 75 },
+    { rank: 1500,  cov: 85 },
+    { rank: 3000,  cov: 92 },
+    { rank: 6000,  cov: 96 },
+    { rank: 10000, cov: 99 },
+  ];
+  const buckets = [
+    { range: "1 – 100",        label: "Foundation",   words: 100,  cov: 42, sample: "el, de, que, y, ser…" },
+    { range: "101 – 300",      label: "Core",         words: 200,  cov: 18, sample: "todo, vida, amor, saber…" },
+    { range: "301 – 700",      label: "Everyday",     words: 400,  cov: 15, sample: "noche, mundo, dejar, sentir…" },
+    { range: "701 – 1,500",    label: "Expanding",    words: 800,  cov: 10, sample: "alma, brillar, locura, herida…" },
+    { range: "1,501 – 3,000",  label: "Rich",         words: 1500, cov: 7,  sample: "marchitar, susurro, abismo…" },
+    { range: "3,001 – 6,000",  label: "Rare",         words: 3000, cov: 4,  sample: "letargo, opaco, fulgor…" },
+    { range: "6,001 – 10,000+",label: "Long tail",    words: 4000, cov: 3,  sample: "(rarely-used artist-specific terms)" },
+  ];
+
+  const slider = document.getElementById("slider");
+  const rankEl = document.getElementById("rankVal");
+  const covEl  = document.getElementById("covVal");
+  const list   = document.getElementById("buckets");
+
+  function fmt(n){ return n.toLocaleString(); }
+
+  function render() {
+    const i = +slider.value;
+    rankEl.textContent = fmt(stops[i].rank);
+    covEl.textContent  = "~" + stops[i].cov + "%";
+    slider.style.setProperty("--fill", (i/(stops.length-1))*100 + "%");
+
+    list.innerHTML = "";
+    buckets.forEach((b, bi) => {
+      const active = bi === i;
+      const div = document.createElement("div");
+      div.className = "bucket" + (active ? " active" : "");
+      div.innerHTML = `
+        <div class="bucket-text">
+          <div class="label">${b.label} <span style="color:var(--muted);font-weight:400;font-size:12px">· ${b.range}</span></div>
+          <div class="meta">${b.sample}</div>
+          <div class="bar"><div style="width:${Math.min(100, b.cov*2.4)}%"></div></div>
+        </div>
+        <div class="bucket-right">
+          <div class="pct"><b>+${b.cov}%</b> coverage</div>
+          <div class="meta">${fmt(b.words)} words</div>
+        </div>
+      `;
+      div.onclick = () => { slider.value = bi; render(); };
+      list.appendChild(div);
+    });
+  }
+
+  slider.addEventListener("input", render);
+  document.querySelectorAll(".ticks span").forEach(t => {
+    t.onclick = () => { slider.value = t.dataset.i; render(); };
+  });
+  render();
+</script>
+</body>
+</html>

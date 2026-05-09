@@ -155,28 +155,59 @@ def _strip_acute(s):
 # Clitic detection — the one rule
 # ---------------------------------------------------------------------------
 
-def strip_clitic(word, verb_forms, conj_reverse=None):
+_CLITIC_HOST_MOODS = frozenset({"imperativo", "infinitivo", "gerundio"})
+
+
+def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None):
     """Return (base, clitic) if word is verb+clitic, else None.
 
     Imperatives drop an accent when clitics attach (baja → bájame). Try the
     accented and accent-stripped base against the verb-form set.
 
-    If ``conj_reverse`` (the verbecc form→lemma map) is provided, resolve the
-    stripped surface to its infinitive. This prevents párame → para (the
-    ambiguous imperative that also means "for") from displacing the proper
-    base verb párame → parar.
+    Guards (in order — all must pass):
+
+    1. **Surface POS guard.** If ``spanish_forms`` is provided and the input
+       word is also tagged with a non-verb POS (noun, adj, adv, intj, …),
+       refuse to split. Spanish doesn't form clitic-attachment on
+       non-verbal surfaces, so a noun reading should always win for
+       ``humanos`` (noun,adj), ``naturales`` (adj), ``tomate`` (noun,verb),
+       ``escándalo`` (noun), etc.
+
+    2. **Verbecc-known base guard.** When ``conj_reverse`` is provided, the
+       stripped base must be a *verbecc-known* form, not just a member of
+       the broader Wiktionary-derived ``verb_forms`` set. Verbecc is
+       curated; ``humanos[:-3]='huma'`` and ``naturales[:-3]='natura'``
+       won't be there.
+
+    3. **Clitic-host mood guard.** The base's verbecc analyses must include
+       at least one in {imperativo, infinitivo, gerundio}. Spanish only
+       attaches clitics to those three moods, so ``abrasaste → abrasas+te``
+       is rejected (``abrasas`` is 2sg present indicative, not a valid
+       clitic host) while ``denle → den+le`` passes (``den`` is 3pl
+       imperativo).
+
+    Without ``conj_reverse``, falls back to the looser ``verb_forms`` check
+    (older callers).
     """
+    if spanish_forms is not None:
+        surface_pos = spanish_forms.get(word)
+        if surface_pos and any(p != "verb" for p in surface_pos):
+            return None
+
     for clitic in _CLITIC_PRONOUNS:
-        if word.endswith(clitic) and len(word) > len(clitic) + 2:
+        if word.endswith(clitic) and len(word) >= len(clitic) + 2:
             base = word[:-len(clitic)]
             for candidate in (base, _strip_acute(base)):
-                if candidate in verb_forms:
-                    if conj_reverse:
-                        entries = conj_reverse.get(candidate, [])
-                        if entries:
-                            lemma = entries[0].get("lemma")
-                            if lemma:
-                                return (lemma, clitic)
+                if conj_reverse is not None:
+                    entries = conj_reverse.get(candidate, [])
+                    if not entries:
+                        continue
+                    if not any(e.get("mood") in _CLITIC_HOST_MOODS for e in entries):
+                        continue
+                    lemma = entries[0].get("lemma")
+                    if lemma:
+                        return (lemma, clitic)
+                elif candidate in verb_forms:
                     return (candidate, clitic)
     return None
 
@@ -342,11 +373,32 @@ def main():
     # ------------------------------------------------------------------
     print("\n--- Phase 2: Known Spanish (cognate-aware) ---")
     cog_count = 0
+    wikt_only_clitic_count = 0
     for w in list(remaining):
         pos = spanish_forms.get(w)
         if pos is None:
             continue
         trail[w]["wikt_pos"] = sorted(pos)
+
+        # Wiktionary-only clitic check (runs before cognate/POS routing).
+        # If the surface is verb-only in spanish_forms but verbecc doesn't
+        # know it (absent from conjugation_reverse), it's almost certainly a
+        # clitic-attached imperative that Wiktionary lists as a separate
+        # headword (denle, denme, dame, …). strip_clitic's three guards
+        # (surface POS, verbecc-known base, clitic-host mood) keep noun/adj
+        # surfaces and indicative bases out.
+        if conj_reverse and pos == {"verb"} and w not in conj_reverse:
+            split = strip_clitic(w, verb_forms, conj_reverse, spanish_forms=spanish_forms)
+            if split is not None:
+                base, clitic = split
+                buckets["clitic_merge"][w] = base
+                trail[w]["bucket"] = "clitic_merge"
+                trail[w]["clitic_base"] = base
+                trail[w]["clitic_pronoun"] = clitic
+                trail[w]["source"] = "wikt_only_clitic"
+                remaining.discard(w)
+                wikt_only_clitic_count += 1
+                continue
 
         # Cognate check (curation-only). en_50k is too polluted with Spanish
         # loan-tokens (nada, para, todo, vida, noche all appear in it) to use
@@ -372,7 +424,8 @@ def main():
             trail[w]["bucket"] = "normal_vocab"
         trail[w]["source"] = "spanish_forms"
         remaining.discard(w)
-    print(f"  Cognates:     {cog_count}")
+    print(f"  Cognates:        {cog_count}")
+    print(f"  Wikt-only clitic: {wikt_only_clitic_count}")
     print(f"  Normal vocab: {len(buckets['normal_vocab'])}  Conjugation: {len(buckets['conjugation'])}")
 
     # ------------------------------------------------------------------

@@ -126,38 +126,41 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
         fallback_lemma = inline_lemma or word
         return {"%s|%s" % (word, fallback_lemma): deepcopy(methods)}
 
-    # Build mapping: analysis_key -> set of sense IDs owned by that analysis
+    # Build mapping: analysis_key -> (set of sense IDs, analysis dict)
     analysis_maps = []
     for a in analyses:
         sense_map = a.get("senses", {})
         sense_ids = set(sense_map.keys()) if isinstance(sense_map, dict) else set()
-        analysis_maps.append((analysis_key(word, a, known_lemmas=known_lemmas), sense_ids))
+        analysis_maps.append((analysis_key(word, a, known_lemmas=known_lemmas), sense_ids, a))
 
     # Collapse reflexive/pronominal analyses into base form when both exist.
     # E.g. fumar|fumarse -> fumar|fumar when fumar is also a lemma in this set.
-    all_lemmas = {key.split('|', 1)[1] for key, _ in analysis_maps}
+    all_lemmas = {key.split('|', 1)[1] for key, _, _ in analysis_maps}
     redirects = {lem: lem[:-2] for lem in all_lemmas if lem.endswith('se') and lem[:-2] in all_lemmas}
     if redirects:
         analysis_maps = [
-            ('%s|%s' % (word, redirects.get(key.split('|', 1)[1], key.split('|', 1)[1])), sids)
-            for key, sids in analysis_maps
+            ('%s|%s' % (word, redirects.get(key.split('|', 1)[1], key.split('|', 1)[1])), sids, a)
+            for key, sids, a in analysis_maps
         ]
 
-    # Collapse PHRASE self-analyses (word|word) into the first real lemma when
-    # other lemmas exist — handles cases where known_lemmas is absent.
+    # Collapse PHRASE-only self-analyses (word|word, all senses POS=PHRASE)
+    # into the first real lemma when other lemmas exist. Gated on the phrase
+    # predicate so legitimate noun/adverb/interjection analyses whose canonical
+    # lemma equals the surface (bebé, sangre, papa, así, ojalá…) are preserved.
     self_key = '%s|%s' % (word, word)
-    other_lemmas = [key.split('|', 1)[1] for key, _ in analysis_maps if key != self_key]
-    if self_key in {k for k, _ in analysis_maps} and other_lemmas:
+    other_lemmas = [key.split('|', 1)[1] for key, _, _ in analysis_maps if key != self_key]
+    if other_lemmas:
         analysis_maps = [
-            ('%s|%s' % (word, other_lemmas[0]) if key == self_key else key, sids)
-            for key, sids in analysis_maps
+            ('%s|%s' % (word, other_lemmas[0])
+             if key == self_key and _is_phrase_only_self_analysis(word, a) else key, sids, a)
+            for key, sids, a in analysis_maps
         ]
 
     # Split assignments by sense ID ownership. Multiple analyses can resolve
     # to the same key (e.g. a phrasebook analysis folded into its verb lemma's
     # key), so merge rather than overwrite on collision.
     split = {}
-    for target_key, sense_ids in analysis_maps:
+    for target_key, sense_ids, _ in analysis_maps:
         target_methods = {}
         for method, items in methods.items():
             kept = []

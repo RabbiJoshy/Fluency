@@ -35,6 +35,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
+from pipeline.util_7a_lemma_split import _is_phrase_only_self_analysis  # noqa: E402
 from pipeline.util_pipeline_config import get_default_min_priority  # noqa: E402
 from pipeline.util_5c_spanishdict import (  # noqa: E402
     SPANISHDICT_SURFACE_CACHE,
@@ -476,6 +477,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "sense_by_id": sense_map if isinstance(sense_map, dict) else {},
                 "word_senses": list(sense_map.values()) if isinstance(sense_map, dict) else [],
                 "assignments": [],
+                "_analysis": analysis if isinstance(analysis, dict) else {},
             }
             grouped.append(group)
             for sid in group["sense_by_id"]:
@@ -493,11 +495,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 if g["lemma"] in reflexive_redirects:
                     g["lemma"] = reflexive_redirects[g["lemma"]]
 
-        # Collapse PHRASE self-analyses (lemma == word) into first real lemma.
+        # Collapse PHRASE-only self-analyses (lemma == word AND every sense
+        # POS=PHRASE) into the first real lemma. Gated on the phrase predicate
+        # so legitimate noun/adverb/interjection analyses whose canonical
+        # lemma equals the surface (bebé, sangre, papa, así, ojalá…) survive.
         other_lemmas = [g["lemma"] for g in grouped if g["lemma"] != word]
         if other_lemmas:
             for g in grouped:
-                if g["lemma"] == word:
+                if g["lemma"] == word and _is_phrase_only_self_analysis(word, g["_analysis"]):
                     g["lemma"] = other_lemmas[0]
 
         lemma_key_to_group = {}
