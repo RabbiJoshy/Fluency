@@ -1,4 +1,4 @@
-import './state.js?v=20260502b';
+import './state.js?v=20260509b';
 import './speech.js?v=20260502b';
 import './artist-ui.js?v=20260502b';
 import './auth.js?v=20260502b';
@@ -6,8 +6,8 @@ import './spotify.js?v=20260502b';
 import './estimation.js?v=20260502b';
 import './config.js?v=20260502b';
 import './progress.js?v=20260503a';
-import './ui.js?v=20260502b';
-import './vocab.js?v=20260502b';
+import './ui.js?v=20260509d';
+import './vocab.js?v=20260509b';
 import './flashcards.js?v=20260503f';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see

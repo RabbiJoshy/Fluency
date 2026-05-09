@@ -641,6 +641,20 @@ async function loadVocabularyData(rangeString, opts = {}) {
             }
         }
 
+        // Stash set sizing on stats so the stats modal can show the full set
+        // size and the previously-mastered count alongside the current session.
+        stats.setSize = totalInRange;
+        stats.previouslyKnown = excludedMastered;
+        // Inclusive label for display, e.g. "475-499" for rangeString "475-500"
+        // (rangeEnd is exclusive in the filter above).
+        stats.setLabel = `${rangeStart}-${rangeEnd - 1}`;
+        stats.allWords = allInRange.map(it => ({
+            id: it.id,
+            word: it.word,
+            translation: (it.meanings && it.meanings[0] && it.meanings[0].translation) || '',
+            displayRank: it.displayRank
+        }));
+
         // Build exclusion summary message (only report in-range exclusions)
         const totalExcluded = excludedLemma + excludedMastered;
         const loadingMsg = document.getElementById('loadingMessage');

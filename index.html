@@ -25,7 +25,7 @@
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
     <link rel="modulepreload" href="js/main.js?v=20260502b">
-    <link rel="modulepreload" href="js/state.js?v=20260428b">
+    <link rel="modulepreload" href="js/state.js?v=20260509b">
     <link rel="modulepreload" href="js/speech.js?v=20260428b">
     <link rel="modulepreload" href="js/artist-ui.js?v=20260428b">
     <link rel="modulepreload" href="js/auth.js?v=20260428b">
@@ -33,8 +33,8 @@
     <link rel="modulepreload" href="js/estimation.js?v=20260428b">
     <link rel="modulepreload" href="js/config.js?v=20260428b">
     <link rel="modulepreload" href="js/progress.js?v=20260503a">
-    <link rel="modulepreload" href="js/ui.js?v=20260428b">
-    <link rel="modulepreload" href="js/vocab.js?v=20260428b">
+    <link rel="modulepreload" href="js/ui.js?v=20260509d">
+    <link rel="modulepreload" href="js/vocab.js?v=20260509b">
     <link rel="modulepreload" href="js/flashcards.js?v=20260503f">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
@@ -758,21 +758,16 @@
     <div id="statsModal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Your Progress</h3>
+                <h3>Your Progress<span id="statsSetLabel" style="margin-left: 8px; color: var(--text-muted); font-weight: normal;"></span></h3>
                 <button class="modal-close" id="closeStatsModal">✕</button>
             </div>
+            <div style="text-align: center; padding: 12px 16px 4px; font-size: 1.1em; font-weight: 600; color: var(--accent-primary);">
+                Card <span id="cardPosition">0</span> of <span id="totalCardsStats">0</span>
+            </div>
             <div class="stats-body">
-                <div class="stat-row">
-                    <span>Cards Studied:</span>
-                    <span id="cardsStudied">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Total Cards:</span>
-                    <span id="totalCardsStats">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Progress:</span>
-                    <span id="progressPercent">0%</span>
+                <div class="stat-row" id="previouslyKnownRow" style="display: none;">
+                    <span style="color: var(--text-muted);">Previously Mastered:</span>
+                    <span id="previouslyKnownCount" style="color: var(--text-muted);">0</span>
                 </div>
                 <div class="stat-row">
                     <span style="color: var(--accent-green);">✓ Correct:</span>
@@ -783,9 +778,19 @@
                     <span id="incorrectCount" style="color: var(--error);">0</span>
                 </div>
                 <div class="stat-row">
+                    <span style="color: var(--text-muted);">⊘ Skipped:</span>
+                    <span id="skippedCount" style="color: var(--text-muted);">0</span>
+                </div>
+                <div class="stat-row">
                     <span>Accuracy:</span>
                     <span id="accuracyPercent">-</span>
                 </div>
+                <details id="wordListDetails" style="margin-top: 12px;">
+                    <summary style="cursor: pointer; padding: 8px 0; color: var(--accent-primary); font-weight: 500;">
+                        View all words in this set
+                    </summary>
+                    <ol id="wordListBody" style="margin: 8px 0 0; padding-left: 28px; font-size: 0.9em; max-height: 280px; overflow-y: auto;"></ol>
+                </details>
             </div>
         </div>
     </div>

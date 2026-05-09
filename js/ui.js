@@ -1063,17 +1063,119 @@ function updateTotalStatsButtonVisibility() {
 }
 
 function updateStatsModal() {
-    document.getElementById('cardsStudied').textContent = stats.studied.size;
-    document.getElementById('totalCardsStats').textContent = flashcards.length;
-    const progress = flashcards.length > 0 ? Math.round((stats.studied.size / flashcards.length) * 100) : 0;
-    document.getElementById('progressPercent').textContent = progress + '%';
+    // Set size = picked range (e.g. 25); previouslyKnown = filtered out as
+    // already mastered (e.g. 21); flashcards.length = active deck (e.g. 4).
+    const setSize = stats.setSize || flashcards.length;
+    const previouslyKnown = stats.previouslyKnown || 0;
 
-    document.getElementById('correctCount').textContent = stats.correct;
-    document.getElementById('incorrectCount').textContent = stats.incorrect;
+    // Card position: 1-based index into the active deck. previouslyKnown
+    // cards were filtered out before the session, so they sit "before" card 1.
+    const cardPosition = flashcards.length > 0
+        ? previouslyKnown + Math.min(currentIndex + 1, flashcards.length)
+        : previouslyKnown;
+    document.getElementById('cardPosition').textContent = cardPosition;
+    document.getElementById('totalCardsStats').textContent = setSize;
 
-    const totalAttempts = stats.correct + stats.incorrect;
-    const accuracy = totalAttempts > 0 ? Math.round((stats.correct / totalAttempts) * 100) : 0;
-    document.getElementById('accuracyPercent').textContent = totalAttempts > 0 ? accuracy + '%' : '-';
+    const labelEl = document.getElementById('statsSetLabel');
+    if (labelEl) labelEl.textContent = stats.setLabel ? `· ${stats.setLabel}` : '';
+
+    const prevRow = document.getElementById('previouslyKnownRow');
+    if (prevRow) {
+        if (previouslyKnown > 0) {
+            prevRow.style.display = '';
+            document.getElementById('previouslyKnownCount').textContent = previouslyKnown;
+        } else {
+            prevRow.style.display = 'none';
+        }
+    }
+
+    // Unique-card answer counts. correct/incorrect = unique cards that got an
+    // answer this session. skipped = cards the user navigated AWAY from without
+    // answering (visited but no answer, and not the card currently on screen).
+    // Cards never visited at all aren't counted as skipped — they're just
+    // remaining work.
+    let correctCards = 0;
+    let incorrectCards = 0;
+    const answered = new Set();
+    Object.entries(stats.cardStats || {}).forEach(([idx, cs]) => {
+        if (cs.correct > 0) {
+            correctCards++;
+            answered.add(Number(idx));
+        } else if (cs.incorrect > 0) {
+            incorrectCards++;
+            answered.add(Number(idx));
+        }
+    });
+    let skipped = 0;
+    if (stats.studied && stats.studied.forEach) {
+        stats.studied.forEach(idx => {
+            if (idx !== currentIndex && !answered.has(idx)) skipped++;
+        });
+    }
+
+    document.getElementById('correctCount').textContent = correctCards;
+    document.getElementById('incorrectCount').textContent = incorrectCards;
+    document.getElementById('skippedCount').textContent = skipped;
+
+    const answeredCards = correctCards + incorrectCards;
+    const accuracy = answeredCards > 0 ? Math.round((correctCards / answeredCards) * 100) : 0;
+    document.getElementById('accuracyPercent').textContent = answeredCards > 0 ? accuracy + '%' : '-';
+
+    renderStatsWordList(answered);
+}
+
+function renderStatsWordList(answeredIndexSet) {
+    const body = document.getElementById('wordListBody');
+    const details = document.getElementById('wordListDetails');
+    if (!body || !details) return;
+
+    const words = stats.allWords || [];
+    if (words.length === 0) {
+        details.style.display = 'none';
+        return;
+    }
+    details.style.display = '';
+
+    // Active deck ids → flashcards index, so we can flag which item is the
+    // current card and which session-answered cards correspond.
+    const activeIdToIndex = new Map();
+    flashcards.forEach((c, i) => {
+        if (c && c.id) activeIdToIndex.set(c.id, i);
+        if (c && c.fullId) activeIdToIndex.set(c.fullId, i);
+    });
+
+    body.innerHTML = '';
+    for (const w of words) {
+        const li = document.createElement('li');
+        li.style.padding = '3px 0';
+        const inDeckIdx = activeIdToIndex.has(w.id) ? activeIdToIndex.get(w.id) : -1;
+
+        let marker = '';
+        let color = '';
+        if (inDeckIdx === -1) {
+            // Not in active deck → previously mastered (filtered out).
+            marker = '✓';
+            color = 'var(--text-muted)';
+        } else if (inDeckIdx === currentIndex) {
+            marker = '▶';
+            color = 'var(--accent-primary)';
+        } else {
+            const cs = (stats.cardStats || {})[inDeckIdx];
+            if (cs && cs.correct > 0) { marker = '✓'; color = 'var(--accent-green)'; }
+            else if (cs && cs.incorrect > 0) { marker = '✗'; color = 'var(--error)'; }
+            else if (answeredIndexSet && answeredIndexSet.has && answeredIndexSet.has(inDeckIdx)) {
+                marker = '·'; color = '';
+            } else if (stats.studied && stats.studied.has && stats.studied.has(inDeckIdx)) {
+                marker = '⊘'; color = 'var(--text-muted)';
+            } else {
+                marker = '·'; color = '';
+            }
+        }
+        if (color) li.style.color = color;
+        const translation = w.translation ? ` — ${w.translation}` : '';
+        li.textContent = `${marker} ${w.word}${translation}`;
+        body.appendChild(li);
+    }
 }
 
 
