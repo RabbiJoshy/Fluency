@@ -74,6 +74,32 @@
 
 ## Data / Pipeline
 
+- **[idea] Stamp `is_propernoun` in step 8b based on POS, not just step 4a routing (S) [artist] [cross-lang]**
+  Currently `is_propernoun=true` only on entries that step_4a put in the
+  `exclude.proper_nouns` bucket (Wiktionary-only-name + curated drops).
+  Frequent proper nouns that survive into Gemini classification come back
+  with `meaning.pos === 'PROPN'` but `is_propernoun=false`, so the flag on
+  disk doesn't match what's actually a proper noun in the deck. The
+  front-end works around this in `buildFilteredVocab` by also catching
+  entries where every meaning has `pos === 'PROPN'` (2026-05-04). Pipeline
+  fix: in `step_8b_assemble_artist_vocabulary.py` near line 1001, also set
+  `is_propernoun = True` when every meaning's POS is PROPN. Then drop the
+  runtime workaround. Same shape as the `is_english` provenance issue.
+
+- **[idea] Properly deprecate `legacy_llm_analyze.py` — `is_english` provenance (M) [artist] [spanish]**
+  The `is_english` flag on artist-mode entries currently still traces back to
+  `pipeline/artist/legacy_llm_analyze.py` (the pre-split monolithic classifier).
+  That file is named "legacy" and the rest of step 6 has moved to the
+  `step_6a_assign_senses.py` dispatcher + `step_6b/6c` shared classifiers,
+  but `is_english` (along with `is_propernoun` / `is_interjection`) hasn't
+  been re-homed. Goal: make `is_english` come from a real, supported
+  pipeline source — either a dedicated step (mirroring `step_7c_flag_cognates.py`
+  for English-borrowing detection) or roll it into one of the existing
+  step_6 classifiers — and then actually delete `legacy_llm_analyze.py`.
+  Until then, the flag is set by deprecated code that's not part of the
+  documented pipeline graph in `pipeline/CLAUDE.md`. Not blocking — flag
+  works correctly today via the legacy path; this is hygiene + provenance.
+
 - **[idea] Finish "Normal mode" → "Standard mode" rename (S) [shared] [cross-lang]**
   User-facing UI strings were renamed on 2026-04-18: About-page heading
   ("Standard mode (subtitles)"), top-bar toggle ("Standard Mode"), and

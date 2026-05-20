@@ -45,13 +45,18 @@ export const state = {
     groupSize: 25,
 
     // Feature flags
-    useLemmaMode: true,
+    useLemmaMode: false,
     lemmaFieldAvailable: false,
-    excludeCognates: false,
+    excludeCognates: true,
     cognateFieldAvailable: false,
     cognateThreshold: 0.85,
-    percentageMode: false,
+    percentageMode: true,
     hideSingleOccurrence: true,
+    // Artist-mode filters that mirror the pipeline flags. Defaults match
+    // the prior unconditional filter so behaviour is unchanged until the
+    // user opts a category back in via Advanced settings.
+    excludeProperNouns: true,
+    excludeNoise: true,
     speechEnabled: true,
 
     // Config / data
@@ -96,6 +101,8 @@ export const state = {
 // No hardcoded album constants — album image maps now live in artists.json
 
 export const percentageLevels = [
+    { level: '50%',   threshold: 0.50,  description: '50% coverage' },
+    { level: '60%',   threshold: 0.60,  description: '60% coverage' },
     { level: '70%',   threshold: 0.70,  description: '70% coverage' },
     { level: '80%',   threshold: 0.80,  description: '80% coverage' },
     { level: '90%',   threshold: 0.90,  description: '90% coverage' },

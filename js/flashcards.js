@@ -310,9 +310,13 @@ function computeLinesUnderstood() {
         for (const meaningExamples of entry.m) {
             if (!meaningExamples) continue;
             for (const ex of meaningExamples) {
-                if (!ex.target) continue;
+                // Normal-mode example files use `target`, artist-mode files
+                // use `spanish` — same field, different key. Read whichever
+                // is present so this metric works for both modes.
+                const targetText = ex.target || ex.spanish;
+                if (!targetText) continue;
                 total++;
-                const cleaned = ex.target.replace(/\[[^\]]*\]|\([^\)]*\)/g, '').trim();
+                const cleaned = targetText.replace(/\[[^\]]*\]|\([^\)]*\)/g, '').trim();
                 if (!cleaned) { understood++; continue; }
                 const tokens = cleaned.toLowerCase().replace(/[^\w\s']/g, ' ').split(/\s+/).filter(Boolean);
                 if (!tokens.length) { understood++; continue; }
@@ -587,6 +591,46 @@ function initializeApp() {
             }
         }
     });
+
+    // Proper nouns + interjections/noise toggles. Same pattern as
+    // hideSingleOccurrence — flip the state, refresh the badge, then
+    // re-render the level + range selectors so the affected entries
+    // disappear/reappear in the deck. No ppm recalc needed because
+    // these flags don't change the corpus frequency totals.
+    const _refreshAfterFilterToggle = () => {
+        const step2Display = document.getElementById('step2').style.display;
+        if (selectedLanguage && step2Display !== 'none') {
+            renderLevelSelector(selectedLanguage);
+            if (selectedLevel) {
+                const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
+                if (levelBtn) {
+                    levelBtn.classList.add('selected');
+                    levelBtn.textContent = levelBtn.dataset.full;
+                }
+                renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+            }
+        }
+    };
+    const propnToggleEl = document.getElementById('excludePropernounsToggle');
+    if (propnToggleEl) {
+        propnToggleEl.addEventListener('click', function() {
+            excludeProperNouns = !excludeProperNouns;
+            const status = document.getElementById('excludePropernounsStatus');
+            status.textContent = excludeProperNouns ? 'ON' : 'OFF';
+            status.style.color = excludeProperNouns ? 'var(--accent-primary)' : 'var(--text-muted)';
+            _refreshAfterFilterToggle();
+        });
+    }
+    const noiseToggleEl = document.getElementById('excludeNoiseToggle');
+    if (noiseToggleEl) {
+        noiseToggleEl.addEventListener('click', function() {
+            excludeNoise = !excludeNoise;
+            const status = document.getElementById('excludeNoiseStatus');
+            status.textContent = excludeNoise ? 'ON' : 'OFF';
+            status.style.color = excludeNoise ? 'var(--accent-primary)' : 'var(--text-muted)';
+            _refreshAfterFilterToggle();
+        });
+    }
 
     // Percentage mode toggle
     // Refresh study set - delete progress for words in current set

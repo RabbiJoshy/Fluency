@@ -2094,6 +2094,127 @@
             margin-bottom: 8px;
         }
 
+        /* Sub-settings inside a setup-step (lemma + cognate live inside
+           Choose Level). No card chrome — they read as compact rows under
+           the parent step's main control rather than as their own panels.
+           position: relative anchors the absolute-positioned ".step-help-btn"
+           inside the substep itself rather than inheriting the parent
+           setup-step's top-right corner (where step2's own help button sits). */
+        .setup-substep {
+            position: relative;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        /* padding-right matches .step-header-with-help so the rightmost
+           inline content (info-line "X excluded" badge) keeps clear of the
+           absolute-positioned "?" help button anchored to the substep's
+           top-right corner. */
+        .substep-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            padding-right: 24px;
+        }
+        .substep-title {
+            font-family: var(--font-emphasis);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .substep-header .level-info-line {
+            margin-left: auto;
+        }
+        .substep-header .step-help-btn {
+            margin-left: 4px;
+        }
+        .substep-header .level-info-line + .step-help-btn {
+            margin-left: 4px;
+        }
+        /* When the info line is hidden, push the help button to the right */
+        .substep-header > .step-help-btn:nth-child(3) {
+            margin-left: auto;
+        }
+
+        /* Substep row — lemma + cognate side-by-side. Each substep takes
+           half the width via flex: 1, and only one shared border-top sits
+           above the row (otherwise both would draw their own and the row
+           would have a doubled separator). */
+        .substep-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        .substep-row > .setup-substep {
+            flex: 1 1 0;
+            min-width: 0;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+        /* Push the help button to the right inside each side-by-side
+           substep header — the info line moved out of the header (now
+           lives below the toggle) so we can't rely on the existing
+           sibling selectors that were keyed to the old header layout. */
+        .substep-row .substep-header .step-help-btn {
+            margin-left: auto;
+        }
+        /* Info line ("X flashcards excluded") rendered below the toggle
+           rather than inline with the help button. Compact, muted, sits
+           in the same horizontal slot under both substeps so the two
+           info lines line up across the row. */
+        .level-info-line.substep-info-below {
+            display: block;
+            margin-top: 4px;
+            font-size: 11px;
+        }
+        /* Lemma + cognate stay side-by-side at every width — the toggle
+           buttons shrink and wrap their labels onto two lines so they
+           fit half-width even on narrow phones. */
+
+        /* Desktop two-column setup layout — at wider viewports the existing
+           setup steps stay at their original width in a left column, and
+           "Choose Set" (#step4) gets its own narrower column on the right.
+           Container widens just enough to fit the new column; everything
+           that already existed (top bar, language tabs, level slider,
+           lemma/cognate toggles, progress bar) keeps its prior width.
+
+           Below 1024px the grid collapses and steps stack vertically as
+           before — no change for mobile/tablet. */
+        @media (min-width: 1024px) {
+            .container { max-width: 1140px; }
+            #setupPanel.file-upload {
+                display: grid;
+                grid-template-columns: minmax(0, 760px) minmax(280px, 340px);
+                column-gap: 20px;
+                align-items: start;
+                justify-content: start;
+                text-align: left;
+            }
+            /* All existing steps stay in the left column at their prior
+               width — no `1 / -1` spanning, so the topBar / language tabs /
+               progress bar look the same as on a single-column layout. */
+            #setupPanel.file-upload > * {
+                grid-column: 1;
+                min-width: 0;
+            }
+            /* Choose Set gets the new right column, top-aligned so it
+               appears as a sidebar alongside the steps. grid-row: 1 / -1
+               lets it span the full height of the left stack. */
+            #setupPanel.file-upload > #step4 {
+                grid-column: 2;
+                grid-row: 1 / -1;
+                align-self: start;
+                margin-bottom: 0;
+            }
+        }
+
         .selection-pill {
             display: none;
             align-items: center;
@@ -2246,6 +2367,137 @@
             background: var(--accent-primary);
             color: var(--accent-primary-text);
             padding: 10px 16px;
+        }
+
+        /* Slider variant of the level selector — used in % mode (and artist
+           mode, which forces % mode). The container loses its scrolling
+           pill-row layout and becomes a single block holding the slider UI. */
+        .level-selector.level-selector--slider {
+            display: block;
+            overflow: visible;
+            padding: 12px 14px;
+        }
+        .level-slider-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .lsw-readout {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--font-emphasis);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .lsw-readout strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        .lsw-readout .lsw-rank {
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+        /* Segmented level bar — replaces the old <input type="range">
+           thumb-on-track. Each .lsw-seg is one snap point; clicking a
+           segment selects the range from start through that segment
+           ("line within the line" fill). Equal widths regardless of how
+           many cards a segment covers, so labels stay readable. */
+        .lsw-segments {
+            display: flex;
+            gap: 2px;
+            width: 100%;
+            margin: 4px 0 2px;
+        }
+        .lsw-seg {
+            flex: 1 1 0;
+            min-width: 0;
+            height: 14px;
+            padding: 0;
+            background: var(--bg-secondary, rgba(255, 255, 255, 0.08));
+            border: 1px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .lsw-seg:first-child { border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
+        .lsw-seg:last-child  { border-top-right-radius: 6px; border-bottom-right-radius: 6px; }
+        .lsw-seg:hover:not(.filled) {
+            background: rgba(255, 107, 53, 0.18);
+        }
+        .lsw-seg.filled {
+            background: var(--accent-primary);
+        }
+        .lsw-seg.selected {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 0 1px var(--accent-primary);
+        }
+        .lsw-ticks {
+            display: flex;
+            font-family: var(--font-emphasis);
+            font-size: 12px;
+            color: var(--text-muted);
+            user-select: none;
+            padding: 0;
+            gap: 2px;
+        }
+        .lsw-ticks span {
+            flex: 1 1 0;
+            min-width: 0;
+            text-align: center;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .lsw-ticks span:hover {
+            color: var(--text-primary);
+        }
+        .lsw-examples {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            font-family: var(--font-emphasis);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            min-height: 1.2em;
+        }
+        .lsw-examples .lsw-freq {
+            flex: 0 0 auto;
+            white-space: nowrap;
+        }
+        .lsw-examples .lsw-freq {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            line-height: 1.25;
+        }
+        .lsw-examples .lsw-freq-line1 {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .lsw-examples .lsw-freq-line2 {
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 400;
+        }
+        .lsw-examples .lsw-egs {
+            flex: 1 1 auto;
+            min-width: 0;
+            text-align: right;
+            line-height: 1.35;
+            /* Allow examples to wrap onto two lines, matching the height
+               that frequency now takes up on the left. Truncate cleanly
+               at the second line if there's still overflow. */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: normal;
+            word-break: break-word;
         }
 
         .range-selector {
@@ -2724,17 +2976,23 @@
 
         .lemma-toggle-btn {
             font-family: var(--font-emphasis);
-            flex: 0 0 auto;
-            padding: 10px 14px;
+            flex: 1 1 0;
+            padding: 8px 10px;
             background: transparent;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
+            line-height: 1.2;
             transition: all 0.3s ease;
-            min-width: 38px;
+            min-width: 0;
             color: var(--text-muted);
+            /* Allow the label ("All word forms" / "1 per lemma") to wrap
+               onto two lines so the toggle stays narrow enough to sit
+               side-by-side with the cognate toggle even on phones. */
+            white-space: normal;
+            word-break: break-word;
         }
 
         .lemma-toggle-btn:hover {
@@ -2745,7 +3003,6 @@
         .lemma-toggle-btn.selected {
             background: var(--accent-primary);
             color: var(--accent-primary-text);
-            padding: 10px 16px;
         }
 
         .lemma-toggle-btn.disabled {
@@ -2762,17 +3019,20 @@
 
         .cognate-toggle-btn {
             font-family: var(--font-emphasis);
-            flex: 0 0 auto;
-            padding: 10px 14px;
+            flex: 1 1 0;
+            padding: 8px 10px;
             background: transparent;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
+            line-height: 1.2;
             transition: all 0.3s ease;
-            min-width: 38px;
+            min-width: 0;
             color: var(--text-muted);
+            white-space: normal;
+            word-break: break-word;
         }
 
         .cognate-toggle-btn:hover {
@@ -2783,7 +3043,6 @@
         .cognate-toggle-btn.selected {
             background: var(--accent-primary);
             color: var(--accent-primary-text);
-            padding: 10px 16px;
         }
 
         .cognate-toggle-btn.disabled {
@@ -2973,6 +3232,45 @@
             color: var(--text-primary);
         }
 
+        /* Tabbed help inside the Choose Level tooltip — the lemma + cognate
+           "?" buttons were folded into here as additional tabs alongside
+           the original level explainer. Reuses .settings-tab styling for
+           consistency with the settings + help modals. */
+        .step-info-tooltip-inner .help-tabs {
+            display: flex;
+            gap: 4px;
+            margin: -4px -4px 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 0 6px;
+        }
+        .step-info-tooltip-inner .help-tabs .settings-tab {
+            flex: 1 1 0;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            background: transparent;
+            border: none;
+            border-radius: 6px 6px 0 0;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-family: var(--font-emphasis);
+            transition: all 0.2s ease;
+        }
+        .step-info-tooltip-inner .help-tabs .settings-tab:hover {
+            color: var(--text-primary);
+            background: rgba(255, 107, 53, 0.08);
+        }
+        .step-info-tooltip-inner .help-tabs .settings-tab.active {
+            color: var(--accent-primary);
+            background: rgba(255, 107, 53, 0.12);
+        }
+        .step-info-tooltip-inner > .settings-tab-content {
+            display: none;
+        }
+        .step-info-tooltip-inner > .settings-tab-content.active {
+            display: block;
+        }
+
         .step-header-with-help {
             display: flex;
             align-items: center;
@@ -3000,45 +3298,36 @@
             padding-right: 0;
         }
 
-        /* Segmented CEFR/% toggle — matches the .header-toggle pattern used
-           by the cards-per-set 25/50 toggle so all in-header toggles share
-           the same shape, padding, and active-pill treatment. */
-        .level-mode-toggle {
-            display: flex;
-            gap: 0;
+        /* CEFR mode toggle — a single on/off pill. Off (default) = the
+           standard percentage-coverage experience. On = light up and switch
+           the level selector to CEFR (A1–C2) pills. The styling reuses the
+           same shape/padding as the old segmented toggle so the header
+           lockup keeps its rhythm; only the count of buttons changed. */
+        .level-mode-btn {
+            padding: 6px 12px;
+            font-size: 12px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .level-mode-btn {
-            padding: 10px 18px;
-            font-size: 13px;
-            min-width: 50px;
-            background: transparent;
-            border: none;
-            border-radius: 0;
             color: var(--text-muted);
             font-weight: 600;
             font-family: var(--font-emphasis);
+            letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s ease;
             line-height: 1;
         }
 
-        .level-mode-btn:first-child {
-            border-right: 1px solid var(--border-color);
-        }
-
         .level-mode-btn:hover:not(.active) {
             background: rgba(255, 107, 53, 0.15);
             color: var(--text-primary);
+            border-color: rgba(255, 107, 53, 0.4);
         }
 
         .level-mode-btn.active {
             background: var(--accent-primary);
             color: var(--accent-primary-text);
+            border-color: var(--accent-primary);
         }
 
         .level-mode-btn.active:hover {
@@ -3827,6 +4116,27 @@
             border-color: var(--accent-primary);
         }
 
+        /* "More about this project →" link in the Welcome tab — same shape
+           as the project's other call-to-action buttons. */
+        .help-more-info-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .help-more-info-btn:hover {
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border-color: var(--accent-primary);
+        }
+
         /* Cognate Rules Modal */
         .cognate-rules-body {
             color: var(--text-secondary);
@@ -4132,6 +4442,23 @@
 
         .settings-tab-content.active {
             display: block;
+        }
+
+        /* Section labels in the Artists settings tab — "Main artist" /
+           "Add to mix". Match the substep-title styling used elsewhere
+           so all minor section headers read consistently. */
+        .artist-section-label {
+            font-family: var(--font-emphasis);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 8px 0 4px;
+        }
+        .artist-section-label + #artistPrimarySection,
+        .artist-section-label + #artistSecondarySection {
+            margin-bottom: 6px;
         }
 
         .artist-primary-row {
@@ -4458,13 +4785,29 @@
         }
 
         .personal-progress-info {
+            font-family: var(--font-emphasis);
             font-size: 11px;
+            font-weight: 500;
             color: var(--text-muted);
-            font-style: italic;
             margin-left: auto;
-            text-align: right;
             line-height: 1.5;
-            white-space: nowrap;
+            display: inline-grid;
+            grid-template-columns: max-content max-content;
+            column-gap: 10px;
+            justify-items: end;
+        }
+        .personal-progress-info .ppi-row {
+            display: contents;
+        }
+        .personal-progress-info .ppi-label {
+            text-align: right;
+        }
+        .personal-progress-info .ppi-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            min-width: 3.2em;
+            text-align: right;
         }
 
         /* Top bar (shared: How to start, Estimate Level, gear) */

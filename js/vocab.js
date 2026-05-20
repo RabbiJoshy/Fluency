@@ -236,12 +236,32 @@ function buildFilteredVocab(vocabData) {
         // --no-gemini runs. Mutates the item, matching prior behavior.
         item.meanings = item.meanings.filter(m => !(m.pos === 'X' && !m.translation));
         if (item.meanings.length === 0) continue;
-        if (activeArtist
-                && (item.is_english
-                    || item.is_noise || item.is_interjection  // schema_v2 alias
-                    || item.is_propernoun)) {
-            counts.english++;
-            continue;
+        if (activeArtist) {
+            // English borrowings — always filtered (no toggle; they're not
+            // Spanish words at all and have no Spanish meaning to teach).
+            if (item.is_english) {
+                counts.english++;
+                continue;
+            }
+            // Noise / interjections (single-letter "y", filler "uh", "yeah").
+            // Toggleable via excludeNoise in Advanced settings.
+            if (excludeNoise && (item.is_noise || item.is_interjection)) {
+                counts.english++;
+                continue;
+            }
+            // Proper nouns — the pipeline's `is_propernoun` flag only catches
+            // the strict cases (Wiktionary-only-name + curated drops). Frequent
+            // proper nouns get classified by Gemini with POS=PROPN but stay
+            // `is_propernoun=false` in the data. Bridge that gap at runtime
+            // by also catching entries whose every meaning has pos === 'PROPN'.
+            // See TODO: Properly stamp is_propernoun based on POS in step 8b.
+            if (excludeProperNouns) {
+                const allPropn = item.meanings.length > 0 && item.meanings.every(m => m.pos === 'PROPN');
+                if (item.is_propernoun || allPropn) {
+                    counts.english++;
+                    continue;
+                }
+            }
         }
         if (excludeCognates && cognateFieldAvailable && item.cognate_score >= cognateThreshold) {
             counts.cognates++;

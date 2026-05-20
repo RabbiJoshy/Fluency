@@ -191,7 +191,13 @@ function updatePersonalCoverage(filteredVocab) {
 
     const coverageType = activeArtist ? 'lyrics' : 'speech';
     const wordPct = (coveredCount / filteredVocab.length * 100).toFixed(1);
-    label.innerHTML = `${coveragePct.toFixed(1)}% ${coverageType} understood<br>${wordPct}% flashcards learned`;
+    // Two-column rows so the percentages right-align to the same edge —
+    // labels on the left, numbers stacked on the right. Drops the italic
+    // styling for a cleaner read.
+    label.innerHTML = `
+        <span class="ppi-row"><span class="ppi-label">${coverageType} understood</span><span class="ppi-value">${coveragePct.toFixed(1)}%</span></span>
+        <span class="ppi-row"><span class="ppi-label">flashcards learned</span><span class="ppi-value">${wordPct}%</span></span>
+    `;
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {

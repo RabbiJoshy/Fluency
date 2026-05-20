@@ -5,10 +5,10 @@ import './auth.js?v=20260502b';
 import './spotify.js?v=20260502b';
 import './estimation.js?v=20260502b';
 import './config.js?v=20260502b';
-import './progress.js?v=20260503a';
+import './progress.js?v=20260504a';
 import './ui.js?v=20260509d';
 import './vocab.js?v=20260509b';
-import './flashcards.js?v=20260503f';
+import './flashcards.js?v=20260504d';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -145,6 +145,16 @@ loadConfig().then(async () => {
         document.getElementById('helpModal').classList.add('hidden');
     });
     setupTabSwitching(document.getElementById('helpModal'));
+    // Welcome tab → "More about this project" link opens the standalone
+    // project explainer modal (the same one the Account tab uses), so
+    // there's a single canonical "what is this app" surface.
+    const helpMoreInfoBtn = document.getElementById('helpMoreInfoBtn');
+    if (helpMoreInfoBtn) {
+        helpMoreInfoBtn.addEventListener('click', () => {
+            document.getElementById('helpModal').classList.add('hidden');
+            if (window.openAboutProjectModal) window.openAboutProjectModal();
+        });
+    }
     // Hide floating gear — replaced by gear in the top bar
     document.getElementById('gearBtn').style.display = 'none';
     perfMark('after sync setup phase');
@@ -184,10 +194,11 @@ loadConfig().then(async () => {
             applyLanguageColorTheme();
             // Hide step 1 entirely (language auto-selected)
             document.getElementById('step1').style.display = 'none';
-            // Renumber steps: 1, 2, 3, 4 (since step 1 is hidden)
+            // Renumber steps: in artist mode the language step is hidden,
+            // so Choose Level becomes step 1 and Choose Set becomes step 2.
+            // Lemma/cognate are sub-settings inside Choose Level — they
+            // no longer carry their own numbers.
             document.querySelector('#step2 .step-number').textContent = '1';
-            document.querySelector('#lemmaToggleContainer .step-number').textContent = '2';
-            document.querySelector('#cognateToggleContainer .step-number').textContent = '3';
             await loadPpmData(activeArtist.language || 'spanish');
             document.getElementById('step2').style.display = 'block';
             // Title is now static ("Choose level" in the HTML); the

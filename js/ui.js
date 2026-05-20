@@ -26,12 +26,22 @@ function setupTooltipHandlers() {
         });
     });
 
-    // Cognate rules modal
+    // Cognate rules modal — opens from the "More Detail →" button inside
+    // the Cognates tab of the step2 help tooltip. The standalone
+    // #cognateTooltip element is gone (its content was folded into
+    // step2Tooltip's tabbed layout), so we close step2Tooltip instead.
     document.getElementById('cognateRulesBtn').addEventListener('click', function(e) {
         e.stopPropagation();
-        document.getElementById('cognateTooltip').classList.remove('visible');
+        const step2Tip = document.getElementById('step2Tooltip');
+        if (step2Tip) step2Tip.classList.remove('visible');
         document.getElementById('cognateRulesModal').classList.remove('hidden');
     });
+
+    // Wire tab switching inside the step2 help tooltip (Choose Level /
+    // Cards per Lemma / Cognates). Reuses the generic setupTabSwitching
+    // helper used by the settings + help modals.
+    const step2Tip = document.getElementById('step2Tooltip');
+    if (step2Tip) setupTabSwitching(step2Tip);
 
     document.getElementById('closeCognateRulesModal').addEventListener('click', function() {
         document.getElementById('cognateRulesModal').classList.add('hidden');
@@ -137,9 +147,10 @@ function setupLanguageTabs() {
             this.classList.add('active');
             const newLanguage = this.dataset.lang;
 
-            // Only reset percentage mode when switching to a different language
+            // Drop cached frequency data when switching languages — new
+            // language will reload its own ppm. percentageMode is the user's
+            // preference and persists across language switches.
             if (newLanguage !== selectedLanguage) {
-                percentageMode = false;
                 ppmData = null;
                 totalPpm = 0;
             }
@@ -220,12 +231,12 @@ function hideAllSelectionPills() {
 }
 
 function updatePercentModeButton() {
+    // CEFR is now a single on/off toggle. "Off" (the default) means
+    // percentage mode — the standard experience. "On" lights up the button
+    // and switches the level selector to CEFR pills.
     const toggle = document.getElementById('levelModeToggle');
     if (!toggle) return;
-    const activeMode = percentageMode ? 'percent' : 'cefr';
-    toggle.querySelectorAll('.level-mode-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.mode === activeMode);
-    });
+    toggle.classList.toggle('active', !percentageMode);
 }
 
 function updateStep2Tooltip() {
@@ -302,20 +313,82 @@ async function renderLevelSelector(language) {
     // Debug logging
     console.log('renderLevelSelector called:', { percentageMode, ppmDataLength: ppmData ? ppmData.length : 0, language });
 
-    // Use percentage levels if in percentage mode with PPM data
+    // Use percentage levels if in percentage mode with PPM data.
+    // In percentage mode the user picks a level via a log-spaced slider:
+    // each snap point is one of the percentageLevels (70%, 80%, …, 100%).
+    // The level buttons are still rendered (hidden) because renderRangeSelector
+    // and other code paths read .level-btn.selected for startRank/endRank.
     if (percentageMode && ppmData && ppmData.length > 0) {
-        const percentageRanges = getPercentageLevelRanges();
+        // Smart segment boundaries (both modes): pick snap points that
+        // target ~equal cards-per-segment with frequency-cliff labels
+        // where the cliffs exist in the data. Algorithm auto-scales —
+        // artist mode (raw counts 2–500) gets cliffs like ≥50/≥20/…/≥2;
+        // normal mode (occurrences_ppm 1–50000) gets cliffs in the
+        // thousands. Falls back to the legacy coverage-threshold ranges
+        // if the vocab cache isn't available yet.
+        _smartLevelRangesCache = null;
+        await _loadLevelSliderSamples(selectedLanguage);
+        const _raw = _levelSliderRawCache[selectedLanguage];
+        if (_raw) {
+            const { vocab: filtered } = buildFilteredVocab(_raw);
+            _smartLevelRangesCache = computeSmartLevelRanges(filtered);
+        }
+        const percentageRanges = getActiveLevelRanges();
         console.log('Using percentage levels:', percentageRanges);
         const coverageType = activeArtist ? 'lyrics comprehension' : 'speech comprehension';
-        const levelsHTML = percentageRanges.map(level => {
-            const description = `${level.level} ${coverageType}`;
+        const buttonsHTML = percentageRanges.map(level => {
+            const description = level.description || `${level.level} ${coverageType}`;
             return `
             <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${description}" data-start-rank="${level.startRank}" data-end-rank="${level.endRank}" title="${description}">
                 ${level.level}
             </button>
         `}).join('');
-        container.innerHTML = levelsHTML;
+
+        const fmtRank = n => n >= 1000 ? (n/1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k' : String(n);
+        // Tick labels: smart ranges supply their own (e.g. "≥10", "1.5k");
+        // legacy ranges fall back to formatted endRank.
+        const ticksHTML = percentageRanges.map((lv, i) => {
+            const label = lv.tickLabel || fmtRank(lv.endRank);
+            const tooltip = lv.description || `${lv.level} coverage → top ${lv.endRank.toLocaleString()} words`;
+            return `<span data-i="${i}" title="${tooltip}">${label}</span>`;
+        }).join('');
+
+        const lastIdx = percentageRanges.length - 1;
+        // Restore slider position from selectedLevel if a level is already
+        // chosen — otherwise re-renders (lemma toggle, etc.) would snap the
+        // thumb back to the rightmost snap and visually disagree with the
+        // hidden .level-btn.selected.
+        const savedIdx = selectedLevel
+            ? percentageRanges.findIndex(r => r.level === selectedLevel)
+            : -1;
+        const initialIdx = savedIdx >= 0 ? savedIdx : lastIdx;
+        const initial = percentageRanges[initialIdx];
+        // Headline value: post-filter card count for smart ranges, raw
+        // endRank for legacy ranges.
+        const initialHeadline = (initial.cardCount != null ? initial.cardCount : initial.endRank).toLocaleString();
+        // Coverage display: use threshold for smart ranges, level string for legacy.
+        const initialCoverage = initial.threshold != null
+            ? `${(initial.threshold * 100).toFixed(1)}%`
+            : initial.level;
+        container.classList.add('level-selector--slider');
+        container.innerHTML = `
+            <div class="level-slider-wrap">
+                <div class="lsw-readout">
+                    <span class="lsw-rank">Top <strong id="lswRankVal">${initialHeadline}</strong> ${activeArtist ? 'cards' : 'words'}</span>
+                    <span class="lsw-coverage">~<strong id="lswCovVal">${initialCoverage}</strong> ${coverageType}</span>
+                </div>
+                <div id="lswSlider" class="lsw-segments" role="radiogroup" aria-label="Level segments" data-value="${initialIdx}">
+                    ${percentageRanges.map((_, i) =>
+                        `<button type="button" class="lsw-seg${i <= initialIdx ? ' filled' : ''}${i === initialIdx ? ' selected' : ''}" data-i="${i}" role="radio" aria-checked="${i === initialIdx}"></button>`
+                    ).join('')}
+                </div>
+                <div class="lsw-ticks">${ticksHTML}</div>
+                <div class="lsw-examples" id="lswExamples">&nbsp;</div>
+            </div>
+            <div class="level-selector-buttons" style="display:none">${buttonsHTML}</div>
+        `;
     } else {
+        container.classList.remove('level-selector--slider');
         const cefrLevels = getCefrLevels(language);
         const levelsHTML = cefrLevels.map(level => `
             <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${level.level}" title="${level.description}">
@@ -352,8 +425,51 @@ async function renderLevelSelector(language) {
             }, 75);
 
             renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+
+            // Keep the segmented bar in sync when a (hidden) level button
+            // is chosen programmatically — e.g. auto-select on first load,
+            // or the "Next Level" range button. Segment-driven clicks are
+            // a no-op here because the bar already matches.
+            const segBar = document.getElementById('lswSlider');
+            if (segBar) {
+                const buttons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn'));
+                const idx = buttons.indexOf(this);
+                if (idx >= 0 && +segBar.dataset.value !== idx) {
+                    setLevelSegmentSelection(idx);
+                }
+            }
         });
     });
+
+    // Wire the segmented level bar: each segment = one snap point. Clicking
+    // a segment selects the range from start through that segment (the
+    // "line within the line" fill) and clicks the matching hidden level
+    // button, which runs the existing level-selection flow.
+    const segBar = document.getElementById('lswSlider');
+    if (segBar) {
+        const buttons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn'));
+        segBar.querySelectorAll('.lsw-seg').forEach(seg => {
+            seg.addEventListener('click', () => {
+                const idx = parseInt(seg.dataset.i, 10);
+                if (Number.isNaN(idx)) return;
+                setLevelSegmentSelection(idx);
+                const btn = buttons[idx];
+                if (btn) btn.click();
+            });
+        });
+        // Tick label clicks act as shortcuts to the corresponding segment.
+        segBar.parentElement.querySelectorAll('.lsw-ticks span').forEach(tick => {
+            tick.addEventListener('click', () => {
+                const idx = parseInt(tick.dataset.i, 10);
+                if (Number.isNaN(idx)) return;
+                setLevelSegmentSelection(idx);
+                const btn = buttons[idx];
+                if (btn) btn.click();
+            });
+        });
+        // Prime the readout (examples need vocab to be loaded async).
+        updateLevelSliderReadout(parseInt(segBar.dataset.value || '0', 10));
+    }
 
     // Auto-select first time only (preserves manual picks across re-renders).
     // Pick the first level that isn't fully completed so the user lands on
@@ -375,32 +491,328 @@ async function renderLevelSelector(language) {
     }
 }
 
+// Smart-range cache: computed snap points for the active language under
+// the active filter set. Cleared on every renderLevelSelector run so it
+// always reflects current filters (re-render is the natural invalidator).
+let _smartLevelRangesCache = null;
+
+// Pick boundaries that target ~equal cards-per-segment but snap each
+// boundary to a meaningful frequency cliff (artist mode) where one is
+// nearby, falling back to rank-based subdivision for the freq=2 long
+// tail. See the design discussion 2026-05-04 for the rationale.
+//
+// `filteredVocab` must be sorted by rank ascending, with `corpus_count`
+// on each item (both modes carry this — artist directly, normal via
+// occurrences_ppm coerced into corpus_count).
+function computeSmartLevelRanges(filteredVocab) {
+    if (!filteredVocab || filteredVocab.length === 0) return [];
+    const items = filteredVocab;
+    const N_TARGET = 10;
+
+    // Strategy: pick boundaries at ROUND card counts (multiples of 100
+    // for normal-sized decks, 10 for small ones), then label each tick
+    // with the actual minimum frequency in that segment — i.e. the
+    // corpus_count of the rarest card the segment includes. Card count
+    // is the round/exact axis; frequency is the displayed axis but
+    // doesn't need to be a round cliff value. Adjacent segments may
+    // share a frequency (typically ≥2 in the freq=2 tail) and that's
+    // expected — the segments differ by card count, not freq cliff.
+    // Coverage % stays precise in the readout.
+    const total = items.length;
+    const roundStep = total >= 1000 ? 100 : (total >= 200 ? 10 : 1);
+    const targetPerSeg = total / N_TARGET;
+
+    const boundaries = [];
+    let prevCardCount = 0;
+    for (let k = 1; k <= N_TARGET; k++) {
+        let cardCount = Math.round(k * targetPerSeg / roundStep) * roundStep;
+        if (cardCount > total) cardCount = total;
+        if (cardCount <= prevCardCount) continue;
+        const endIdx = cardCount - 1;
+        const freqAt = items[endIdx].corpus_count || 0;
+        // Label with the ACTUAL min frequency at this boundary — i.e.
+        // the freq of the rarest card the segment includes. Not snapped
+        // to a round cliff. Adjacent segments may share the same freq
+        // (typically ≥2 in the freq=2 tail); that's expected and fine
+        // because the round axis is card count, not frequency.
+        boundaries.push({
+            endIdx,
+            cardCount,
+            kind: freqAt >= 2 ? 'freq' : 'rank',
+            freqMin: freqAt >= 2 ? freqAt : null,
+        });
+        prevCardCount = cardCount;
+        if (cardCount >= total) break;
+    }
+
+    // Always anchor the last segment at the end (in case rounding
+    // landed short of `total` on the final iteration).
+    const last = boundaries[boundaries.length - 1];
+    if (!last || last.cardCount < total) {
+        const freqAt = items[total - 1].corpus_count || 0;
+        boundaries.push({
+            endIdx: total - 1,
+            cardCount: total,
+            kind: freqAt >= 2 ? 'freq' : 'rank',
+            freqMin: freqAt >= 2 ? freqAt : null,
+        });
+    }
+
+    // Cumulative coverage — sum corpus_count weighted across all items
+    // up to each boundary, divided by the total. Mirrors the existing
+    // ppmData cumulativePercent logic but works on the filtered vocab.
+    let totalFreq = 0;
+    for (const it of items) totalFreq += (it.corpus_count || 0);
+
+    const ranges = [];
+    let cumFreq = 0;
+    let prevRank = 0;
+    for (let i = 0; i < boundaries.length; i++) {
+        const b = boundaries[i];
+        const startIdx = i === 0 ? 0 : boundaries[i - 1].endIdx + 1;
+        for (let j = startIdx; j <= b.endIdx; j++) cumFreq += (items[j].corpus_count || 0);
+        const coverage = totalFreq > 0 ? cumFreq / totalFreq : 0;
+        const cardCount = b.endIdx + 1;
+        const endRank = items[b.endIdx].rank;
+        const startRank = prevRank + 1;
+        prevRank = endRank;
+
+        // Level identifier — stable enough to round-trip selectedLevel
+        // across re-renders. Keyed by cardCount because that's the round
+        // axis (freqMin can repeat across segments in the freq=2 tail).
+        const level = `c${cardCount}`;
+        // Tick label = ≥{cliff freq} for every segment, so the slider
+        // row reads as a single consistent unit. Card count and exact
+        // coverage live in the tooltip + readout. Snapping freq DOWN to
+        // a cliff makes ≥N always truthful for that boundary's tail,
+        // even if the actual freq at the boundary card was a non-round
+        // number like 7 (displays as ≥5).
+        const tickLabel = b.freqMin !== null ? `≥${b.freqMin}` : String(cardCount);
+        const description = b.freqMin !== null
+            ? `Top ${cardCount.toLocaleString()} cards · words appearing ≥${b.freqMin} times · ${(coverage * 100).toFixed(1)}% coverage`
+            : `Top ${cardCount.toLocaleString()} cards · ${(coverage * 100).toFixed(1)}% coverage`;
+
+        ranges.push({
+            level,
+            startRank,
+            endRank,
+            cardCount,
+            threshold: coverage,
+            kind: b.kind,
+            freqMin: b.freqMin || null,
+            tickLabel,
+            description,
+        });
+    }
+    return ranges;
+}
+
+// Synchronous accessor used by updateLevelSliderReadout and friends.
+// Returns the cached smart ranges if renderLevelSelector has computed
+// them, otherwise falls back to the coverage-based legacy ranges.
+function getActiveLevelRanges() {
+    return _smartLevelRangesCache && _smartLevelRangesCache.length > 0
+        ? _smartLevelRangesCache
+        : getPercentageLevelRanges();
+}
+
+// Raw-vocab cache (network fetch is the slow part). Keyed by language;
+// the filter pass runs fresh every call so toggling lemma/cognate/proper
+// noun/noise/single-occurrence immediately reflects in the slider's
+// rank counts and tick labels — no stale cache shows pre-toggle numbers.
+const _levelSliderRawCache = {};
+
+function _samplesFromRaw(rawVocab) {
+    const { vocab: filtered } = buildFilteredVocab(rawVocab);
+    return filtered.map(item => ({
+        rank: item.rank,
+        word: item.lemma || item.targetWord || item.word || ''
+    })).filter(s => s.word);
+}
+
+// Synchronous fast path used by the slider readout/tick labels — returns
+// post-filter samples if the raw vocab is already cached, otherwise null
+// so the caller can fall back to raw rank numbers until the async load
+// resolves.
+function _levelSliderSamplesSync(language) {
+    const raw = _levelSliderRawCache[language];
+    return raw ? _samplesFromRaw(raw) : null;
+}
+
+async function _loadLevelSliderSamples(language) {
+    let raw = _levelSliderRawCache[language];
+    if (!raw) {
+        const langConfig = config.languages[language];
+        if (!langConfig) return null;
+        try {
+            raw = await fetchAndJoinIndex(langConfig);
+            _levelSliderRawCache[language] = raw;
+        } catch (err) {
+            console.warn('Slider sample fetch failed:', err);
+            return null;
+        }
+    }
+    return _samplesFromRaw(raw);
+}
+
+// Count post-filter items whose original rank is ≤ endRank — i.e. how
+// many cards the user actually gets at this coverage threshold given the
+// active filter set.
+function _filteredCountUpTo(samples, endRank) {
+    let n = 0;
+    for (const s of samples) if (s.rank <= endRank) n++;
+    return n;
+}
+
+function _formatTickRank(n) {
+    if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k';
+    return String(n);
+}
+
+// Patch the rank readout + tick labels with post-filter counts. Called
+// both synchronously (with cached samples) and asynchronously after a
+// fresh load, so the rank counts stay accurate across filter toggles.
+//
+// For smart ranges (artist mode) the snap points are already computed
+// from the post-filter vocab, so cardCount is authoritative — we use it
+// directly. For legacy coverage-based ranges we still need to count
+// items at runtime to convert raw rank → filtered count.
+function _applyFilteredRankCounts(samples) {
+    if (!samples) return;
+    const ranges = getActiveLevelRanges();
+    const segBar = document.getElementById('lswSlider');
+    const rankEl = document.getElementById('lswRankVal');
+    if (segBar && rankEl && ranges.length > 0) {
+        const i = parseInt(segBar.dataset.value || '0', 10);
+        const lv = ranges[i];
+        if (lv) {
+            const n = lv.cardCount != null ? lv.cardCount : _filteredCountUpTo(samples, lv.endRank);
+            rankEl.textContent = n.toLocaleString();
+        }
+    }
+    document.querySelectorAll('#levelSelector .lsw-ticks span').forEach((el) => {
+        const i = parseInt(el.dataset.i, 10);
+        const lv = ranges[i];
+        if (!lv) return;
+        const n = lv.cardCount != null ? lv.cardCount : _filteredCountUpTo(samples, lv.endRank);
+        el.textContent = lv.tickLabel || _formatTickRank(n);
+        el.title = lv.description || `${lv.level} coverage → top ${n.toLocaleString()} words`;
+    });
+}
+
+// Update the segmented level bar's selection state. Highlights all
+// segments up to (and including) the chosen index — the "line within
+// the line" fill — and stores the value on the bar's dataset so other
+// code can read it back synchronously the way it used to read
+// slider.value. Also re-runs the readout so headline + tick labels
+// follow the new selection.
+function setLevelSegmentSelection(idx) {
+    const segBar = document.getElementById('lswSlider');
+    if (!segBar) return;
+    segBar.dataset.value = String(idx);
+    segBar.querySelectorAll('.lsw-seg').forEach(seg => {
+        const i = parseInt(seg.dataset.i, 10);
+        seg.classList.toggle('filled', i <= idx);
+        seg.classList.toggle('selected', i === idx);
+        seg.setAttribute('aria-checked', i === idx ? 'true' : 'false');
+    });
+    updateLevelSliderReadout(idx);
+}
+
+// Update the slider's rank/coverage text + example words for snap index `i`.
+// Examples are loaded lazily; the readout updates synchronously and examples
+// fill in when the vocab fetch resolves.
+function updateLevelSliderReadout(i) {
+    const ranges = getActiveLevelRanges();
+    const lv = ranges[i];
+    if (!lv) return;
+    const rankEl = document.getElementById('lswRankVal');
+    const covEl  = document.getElementById('lswCovVal');
+    const exEl   = document.getElementById('lswExamples');
+    // Synchronous rank count: smart ranges already carry cardCount; for
+    // legacy ranges we count post-filter items at runtime if the raw
+    // vocab cache is warm. Cold cache → fall back to raw ppm rank; the
+    // .then() below replaces it once the load resolves.
+    const _syncSamples = _levelSliderSamplesSync(selectedLanguage);
+    if (rankEl) {
+        let display;
+        if (lv.cardCount != null) display = lv.cardCount;
+        else if (_syncSamples) display = _filteredCountUpTo(_syncSamples, lv.endRank);
+        else display = lv.endRank;
+        rankEl.textContent = display.toLocaleString();
+    }
+    if (covEl) {
+        covEl.textContent = lv.threshold != null
+            ? `${(lv.threshold * 100).toFixed(1)}%`
+            : lv.level;
+    }
+
+    // Patch tick labels too if the cache is warm — keeps the row of
+    // "100, 300, 700, 1.5k…" honest about how many cards each snap point
+    // actually yields under the current filters.
+    if (_syncSamples) _applyFilteredRankCounts(_syncSamples);
+
+    if (!exEl) return;
+
+    // Frequency at this rank ceiling — the actual corpus_count of the
+    // rarest card in this segment. Smart ranges carry it directly on
+    // lv.freqMin; legacy normal-mode ranges derive it from ppmData.
+    // Rendered on TWO LINES: the value on top, the unit ("per million
+    // words" / "in lyrics") underneath. Lets the right-hand examples
+    // column also break onto two lines.
+    let freqValue = null;
+    let freqUnit = '';
+    if (lv.freqMin != null) {
+        freqValue = lv.freqMin;
+        freqUnit = activeArtist ? 'in lyrics' : 'per million words';
+    } else if (ppmData && ppmData.length > 0) {
+        const _e = ppmData.find(p => p.rank === lv.endRank);
+        if (_e) {
+            freqValue = Math.round(_e.ppm);
+            freqUnit = activeArtist ? 'in lyrics' : 'per million words';
+        }
+    }
+
+    const _renderLine = (examplesText) => {
+        // Frequency on the left (two lines: value, then unit), examples
+        // on the right (allowed to wrap to two lines). justify-content:
+        // space-between in the CSS keeps them anchored to opposite edges.
+        const freqHTML = freqValue !== null
+            ? `<span class="lsw-freq"><span class="lsw-freq-line1">Frequency ≥ ${freqValue.toLocaleString()}</span><span class="lsw-freq-line2">${freqUnit}</span></span>`
+            : '<span class="lsw-freq"></span>';
+        const fragRight = examplesText ? `<span class="lsw-egs">${examplesText}</span>` : '<span class="lsw-egs"></span>';
+        exEl.innerHTML = freqHTML + fragRight;
+    };
+    _renderLine('');
+
+    _loadLevelSliderSamples(selectedLanguage).then(samples => {
+        if (!samples || samples.length === 0) { _renderLine(''); return; }
+        // Replace any raw-rank fallback with the real filtered count now
+        // that we've actually loaded the vocab.
+        _applyFilteredRankCounts(samples);
+        // Pick 5 words from the upper portion of this level's range — the
+        // ones that just qualified at this coverage threshold are the most
+        // illustrative of "what you'll be learning here".
+        const start = Math.max(1, Math.floor(lv.startRank + (lv.endRank - lv.startRank) * 0.6));
+        const inRange = samples.filter(s => s.rank >= start && s.rank <= lv.endRank);
+        const pick = (inRange.length ? inRange : samples.filter(s => s.rank <= lv.endRank))
+            .slice(-12);
+        const out = [];
+        const n = Math.min(5, pick.length);
+        for (let k = 0; k < n; k++) out.push(pick[Math.floor(k * pick.length / n)].word);
+        const examples = out.length ? 'e.g. ' + out.join(', ') : '';
+        _renderLine(examples);
+    });
+}
+
 function updateLevelInfoLine(btn) {
+    // Step 2 used to render a separate "Most common N words / Words appear
+    // N+ times" line in the header. The slider readout now covers the rank
+    // count, and the frequency is rendered inline with the example words
+    // (see updateLevelSliderReadout). This stays as a no-op so legacy
+    // callers don't break.
     const infoLine = document.getElementById('levelInfoLine');
-    if (!infoLine) return;
-
-    if (!percentageMode || !ppmData || ppmData.length === 0) {
-        infoLine.style.display = 'none';
-        return;
-    }
-
-    const endRank = parseInt(btn.dataset.endRank, 10);
-    if (!endRank) {
-        infoLine.style.display = 'none';
-        return;
-    }
-
-    // Find the ppm (corpus frequency) at the endRank position
-    const entry = ppmData.find(p => p.rank === endRank);
-    const minFreq = entry ? Math.round(entry.ppm) : '?';
-    const freqLabel = activeArtist ? 'corpus count' : 'frequency';
-
-    if (activeArtist) {
-        infoLine.innerHTML = 'Most common ' + endRank.toLocaleString() + ' words<br>Words appear ' + minFreq + '+ times';
-    } else {
-        infoLine.innerHTML = 'Most common ' + endRank.toLocaleString() + ' words<br>Frequency \u2265 ' + minFreq;
-    }
-    infoLine.style.display = 'block';
+    if (infoLine) infoLine.style.display = 'none';
 }
 
 function setupCognateToggle() {
@@ -423,9 +835,19 @@ function setupCognateToggle() {
             _refreshAfterCognateChange();
         });
     });
-    // Cognate threshold sensitivity is no longer adjustable from the setup
-    // page — it stays at the default cognateThreshold (state.js) until
-    // exposed in settings. The slider HTML + CSS were removed.
+    // Cognate sensitivity (Loose / Default / Strict) lives in the
+    // Advanced settings tab. Higher threshold = only the most obvious
+    // cognates excluded; lower threshold = more aggressive exclusion.
+    document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const t = parseFloat(this.dataset.threshold);
+            if (Number.isNaN(t)) return;
+            cognateThreshold = t;
+            document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn')
+                .forEach(b => b.classList.toggle('selected', b === this));
+            if (excludeCognates) _refreshAfterCognateChange();
+        });
+    });
 }
 
 function _refreshAfterCognateChange() {
@@ -506,39 +928,37 @@ function setupPercentModeButton() {
         return;
     }
 
-    toggle.querySelectorAll('.level-mode-btn').forEach(btn => {
-        btn.addEventListener('click', async function() {
-            const targetMode = this.dataset.mode;  // 'cefr' or 'percent'
-            const wantPercent = targetMode === 'percent';
-            if (wantPercent === percentageMode) return;  // already there
+    toggle.addEventListener('click', async function() {
+        // Tapping the CEFR button flips between "% coverage" (default, off)
+        // and "CEFR pills" (on). It's a binary switch — same behavior the
+        // old segmented two-button control had, just collapsed into one.
+        const wantPercent = !percentageMode;  // currently in CEFR? → switch to %
+        const langConfig = config.languages[selectedLanguage];
+        if (wantPercent && (!langConfig || !langConfig.ppmDataPath)) {
+            alert('Percentage mode is not available for this language yet.');
+            return;
+        }
 
-            const langConfig = config.languages[selectedLanguage];
-            if (wantPercent && (!langConfig || !langConfig.ppmDataPath)) {
-                alert('Percentage mode is not available for this language yet.');
-                return;
-            }
+        percentageMode = wantPercent;
+        updatePercentModeButton();
 
-            percentageMode = wantPercent;
-            updatePercentModeButton();
+        if (percentageMode && !ppmData) {
+            await loadPpmData(selectedLanguage);
+        }
 
-            if (percentageMode && !ppmData) {
-                await loadPpmData(selectedLanguage);
-            }
+        updateStep2Tooltip();
+        updateStep5Tooltip();
 
-            updateStep2Tooltip();
-            updateStep5Tooltip();
+        // Hide level info line (re-shown on level click)
+        const infoLine = document.getElementById('levelInfoLine');
+        if (infoLine) infoLine.style.display = 'none';
 
-            // Hide level info line (re-shown on level click)
-            const infoLine = document.getElementById('levelInfoLine');
-            if (infoLine) infoLine.style.display = 'none';
-
-            // Re-render the level selector for the new mode
-            selectedLevel = null;
-            renderLevelSelector(selectedLanguage);
-            document.getElementById('lemmaToggleContainer').style.display = 'none';
-            document.getElementById('cognateToggleContainer').style.display = 'none';
-            document.getElementById('step4').style.display = 'none';
-        });
+        // Re-render the level selector for the new mode
+        selectedLevel = null;
+        renderLevelSelector(selectedLanguage);
+        document.getElementById('lemmaToggleContainer').style.display = 'none';
+        document.getElementById('cognateToggleContainer').style.display = 'none';
+        document.getElementById('step4').style.display = 'none';
     });
 }
 
@@ -576,7 +996,7 @@ async function updateLemmaToggleVisibility() {
 
     // Always show the container (step 3), but disable the "1" option if field not available
     lemmaContainer.style.display = 'block';
-    rangeStepNumber.textContent = activeArtist ? '4' : '5';
+    rangeStepNumber.textContent = activeArtist ? '2' : '3';
 
     if (lemmaFieldAvailable) {
         // Enable both options
@@ -676,6 +1096,16 @@ async function renderRangeSelector() {
         [minWord, maxWord] = level.wordCount.split('-').map(Number);
     }
 
+    // Defensive guard — if the dataset values failed to parse (selected
+    // button rewritten with stale/missing attrs after a smart-range
+    // recompute, etc.) bail with an empty container rather than emitting
+    // "1 to NaN" range buttons that break the deck loader downstream.
+    if (!Number.isFinite(minWord) || !Number.isFinite(maxWord)) {
+        console.warn('renderRangeSelector: bad min/max from selected level button', { minWord, maxWord, selectedLevel });
+        container.innerHTML = '';
+        return;
+    }
+
     // Load vocabulary data, joined with master if needed
     let vocabularyData = [];
     try {
@@ -722,6 +1152,11 @@ async function renderRangeSelector() {
 
     const minDisplayRank = wordsInLevel[0].displayRank;
     const maxDisplayRank = wordsInLevel[wordsInLevel.length - 1].displayRank;
+    if (!Number.isFinite(minDisplayRank) || !Number.isFinite(maxDisplayRank)) {
+        console.warn('renderRangeSelector: bad displayRank on filtered items', { minDisplayRank, maxDisplayRank });
+        container.innerHTML = '';
+        return;
+    }
 
     // Generate range buttons using corpus-wide display ranks.
     // Mastery checks must use the same displayRank-based selection that
@@ -916,12 +1351,42 @@ function showSettingsModalWithTab(tabName) {
         hideSingleOccToggle.style.display = 'none';
     }
 
+    // Artist-mode toggles for proper nouns and noise/interjections.
+    // Mirror the hideSingleOccurrence pattern: only visible in artist
+    // mode (the underlying flags are pipeline outputs that only artist
+    // entries carry).
+    const propnToggle = document.getElementById('excludePropernounsToggle');
+    if (propnToggle) {
+        propnToggle.style.display = activeArtist ? 'flex' : 'none';
+        const status = document.getElementById('excludePropernounsStatus');
+        status.textContent = excludeProperNouns ? 'ON' : 'OFF';
+        status.style.color = excludeProperNouns ? 'var(--accent-primary)' : 'var(--text-muted)';
+    }
+    const noiseToggle = document.getElementById('excludeNoiseToggle');
+    if (noiseToggle) {
+        noiseToggle.style.display = activeArtist ? 'flex' : 'none';
+        const status = document.getElementById('excludeNoiseStatus');
+        status.textContent = excludeNoise ? 'ON' : 'OFF';
+        status.style.color = excludeNoise ? 'var(--accent-primary)' : 'var(--text-muted)';
+    }
+
     // Show/hide refresh set option based on whether a study set is loaded and user is logged in
     const refreshSetToggle = document.getElementById('refreshSetToggle');
     if (currentUser && !currentUser.isGuest && flashcards.length > 0) {
         refreshSetToggle.style.display = 'flex';
     } else {
         refreshSetToggle.style.display = 'none';
+    }
+
+    // Show cognate sensitivity row only when the active language has
+    // cognate-score data — otherwise the threshold is meaningless.
+    const cognateSensRow = document.getElementById('cognateSensitivityRow');
+    if (cognateSensRow) {
+        cognateSensRow.style.display = cognateFieldAvailable ? 'flex' : 'none';
+        // Reflect current threshold in the segmented control.
+        document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn').forEach(b => {
+            b.classList.toggle('selected', Math.abs(parseFloat(b.dataset.threshold) - cognateThreshold) < 1e-6);
+        });
     }
 
     // Update account tab with current user
@@ -970,6 +1435,25 @@ async function showTotalStatsModal() {
         } catch (e) {
             console.warn('Could not load vocab for stats:', e);
         }
+    }
+
+    // Lazy-load the examples corpus + Spanish ranks needed for the
+    // "Full sentences / Full lyric lines" row. Both files are normally
+    // pulled when the user picks a set; the stats button can be tapped
+    // before that, so fetch them here on demand. Failures are non-fatal —
+    // the row just stays hidden.
+    if (langConfig && langConfig.examplesPath && !window._cachedExamplesData) {
+        try {
+            const r = await fetch(langConfig.examplesPath);
+            if (r.ok) window._cachedExamplesData = await r.json();
+        } catch (e) {
+            console.warn('Could not load examples for stats:', e);
+        }
+    }
+    // loadSpanishRanks() is idempotent (internal guard); call unconditionally
+    // for Spanish so the lines/sentences metric has rank data to work with.
+    if (selectedLanguage === 'spanish' && window.loadSpanishRanks) {
+        try { await window.loadSpanishRanks(); } catch (e) { /* ignore */ }
     }
 
     // Calculate all stats in a single pass
@@ -1040,10 +1524,31 @@ async function showTotalStatsModal() {
     document.getElementById('totalWordsCorrect').textContent = totalCorrect;
     document.getElementById('totalWordsIncorrect').textContent = totalIncorrect;
 
-    // Lines fully understood
-    const linesEl = document.getElementById('totalStatsLinesUnderstood');
-    const linesRow = document.getElementById('totalStatsLinesRow');
-    const linesResult = activeArtist ? computeLinesUnderstood() : null;
+    // Two comprehension rows. The first row shows frequency-weighted word
+    // comprehension (set above). The second row shows what fraction of full
+    // sentences/lines are 100% known — a stricter, more practical measure
+    // ("how often will I read a whole line and understand every word").
+    //
+    // Labels switch by mode:
+    //   artist mode  → "Lyrics word comprehension" + "Full lyric lines"
+    //   normal mode  → "Comprehension: speech"     + "Full sentences"
+    const coverageLabelEl = document.getElementById('totalStatsCoverageLabel');
+    const linesLabelEl    = document.getElementById('totalStatsLinesLabel');
+    const linesEl         = document.getElementById('totalStatsLinesUnderstood');
+    const linesRow        = document.getElementById('totalStatsLinesRow');
+    if (coverageLabelEl) {
+        coverageLabelEl.textContent = activeArtist ? 'Lyrics word comprehension:' : 'Comprehension: speech';
+    }
+    if (linesLabelEl) {
+        linesLabelEl.textContent = activeArtist ? 'Full lyric lines:' : 'Full sentences:';
+    }
+
+    // Both modes share the same computation: walk every example sentence in
+    // _cachedExamplesData and count the lines where every in-vocab token is
+    // either in the user's known set or below their level estimate.
+    // computeLinesUnderstood() handles the iteration; we lazy-loaded the
+    // examples corpus and rank data above so it has what it needs.
+    let linesResult = computeLinesUnderstood();
     if (linesResult && linesResult.total > 0) {
         linesRow.style.display = '';
         linesEl.textContent = `${linesResult.pct.toFixed(1)}% (${linesResult.understood} / ${linesResult.total})`;
@@ -1320,8 +1825,12 @@ function setupArtistSelection() {
             primaryContainer.appendChild(row);
         }
 
-        // Secondary section: toggles for non-primary artists
-        if (!isPrimary) {
+        // Secondary section: toggles for non-primary artists.
+        // Only show artists in the SAME language as the primary — mixing
+        // a French playlist into a Spanish deck doesn't make sense, and
+        // the rest of the app assumes a single active language.
+        const sameLanguage = (cfg.language || 'spanish') === (activeArtist.language || 'spanish');
+        if (!isPrimary && sameLanguage) {
             const toggleRow = document.createElement('div');
             toggleRow.className = 'stat-row';
             toggleRow.style.cursor = 'pointer';
