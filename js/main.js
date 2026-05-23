@@ -7,7 +7,7 @@ import './estimation.js?v=20260502b';
 import './config.js?v=20260502b';
 import './progress.js?v=20260504a';
 import './ui.js?v=20260509d';
-import './vocab.js?v=20260509b';
+import './vocab.js?v=20260521a';
 import './flashcards.js?v=20260504d';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see

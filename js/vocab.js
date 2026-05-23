@@ -154,6 +154,12 @@ function joinWithMaster(indexData, master) {
             is_noise: m.is_noise || m.is_interjection || false,
             is_interjection: m.is_noise || m.is_interjection || false,
             is_propernoun: m.is_propernoun || false,
+            // Corpus-derived proper-noun signal from cap-rate
+            // (tool_8a_stamp_propernoun_corpus.py). Independent of the
+            // pipeline-stamped `is_propernoun` flag — both can be true,
+            // either alone is sufficient for filtering.
+            is_propernoun_corpus: m.is_propernoun_corpus || false,
+            propernoun_cap_rate: m.propernoun_cap_rate ?? null,
             cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
             cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
             corpus_count: idx.corpus_count || 0,
@@ -249,15 +255,19 @@ function buildFilteredVocab(vocabData) {
                 counts.english++;
                 continue;
             }
-            // Proper nouns — the pipeline's `is_propernoun` flag only catches
-            // the strict cases (Wiktionary-only-name + curated drops). Frequent
-            // proper nouns get classified by Gemini with POS=PROPN but stay
-            // `is_propernoun=false` in the data. Bridge that gap at runtime
-            // by also catching entries whose every meaning has pos === 'PROPN'.
-            // See TODO: Properly stamp is_propernoun based on POS in step 8b.
+            // Proper nouns — three signals, any one is sufficient:
+            //   1. `is_propernoun` — pipeline-stamped from step_4a curation
+            //      (Wiktionary-only-name + manual proper_nouns.json drops).
+            //   2. `is_propernoun_corpus` — corpus capitalization rate ≥
+            //      threshold, stamped by tool_8a_stamp_propernoun_corpus.py.
+            //      Catches frequent proper nouns Wiktionary/curation miss
+            //      (Bunny, Mercedes, Dios, LeBron, …).
+            //   3. Runtime POS=PROPN bridge — every meaning POS-tagged as
+            //      PROPN by Gemini. Kept for backwards-compat with vocab
+            //      builds that haven't been corpus-stamped yet.
             if (excludeProperNouns) {
                 const allPropn = item.meanings.length > 0 && item.meanings.every(m => m.pos === 'PROPN');
-                if (item.is_propernoun || allPropn) {
+                if (item.is_propernoun || item.is_propernoun_corpus || allPropn) {
                     counts.english++;
                     continue;
                 }
