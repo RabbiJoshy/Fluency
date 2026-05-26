@@ -227,6 +227,94 @@ def classify_batch_gemini(words_data, api_key, gemini_model):
     return None
 
 
+_DEFINITIONAL_MARKERS = (
+    "often used", "often referring", "often refers", "typically refers",
+    "used to express", "used to indicate", "used as a", "used in",
+    "similar to", "such as", "for example", "for instance",
+    "a person who", "someone who", "something that",
+    "the act of", "the state of", "the practice of",
+    "may refer to", "can mean", "refers to",
+)
+
+
+def _is_definitional(text):
+    """Heuristic: does a proposed_sense look like a dictionary definition
+    rather than a flashcard gloss?
+
+    Flashcard glosses are short (≤5 tokens), don't use explanatory phrasing,
+    and don't bundle multiple alternatives with semicolons / em-dashes.
+    Gemini Flash Lite ignores the "short flashcard-friendly" instruction in
+    the prompt with depressing regularity, so we detect and re-prompt.
+    """
+    if not isinstance(text, str):
+        return False
+    s = text.strip()
+    if not s:
+        return False
+    # Too many words — dictionary entries run long; glosses don't.
+    # 5-word threshold catches "No longer available or in stock." while
+    # preserving legitimate 4-5 word glosses like "to give back to".
+    if len(s.split()) > 5:
+        return True
+    # Definitional connectives.
+    s_lower = s.lower()
+    if any(marker in s_lower for marker in _DEFINITIONAL_MARKERS):
+        return True
+    # Semicolon or em-dash → "definition; other definition" pattern.
+    if ";" in s or "—" in s:
+        return True
+    # Ends with period and has multiple clauses (definition-style).
+    if s.endswith(".") and ("," in s and len(s.split()) > 4):
+        return True
+    return False
+
+
+def _repair_proposed_sense(word, lemma, examples, bad_answer, api_key, gemini_model):
+    """Re-prompt for a single word whose proposed_sense looks definitional.
+
+    Returns a corrected short gloss, or None if the re-prompt also fails.
+    Costs ~one extra API call per failure (rare in practice once warmed up).
+    """
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    lyric_lines = []
+    for i, ex in enumerate(examples[:5], start=1):
+        lyric_lines.append("  %d. %s" % (i, ex.get("spanish", "")))
+    lyrics_str = "\n".join(lyric_lines)
+
+    prompt = (
+        'A flashcard for the Spanish word "%s" (lemma: %s) was generated '
+        'with this translation:\n  "%s"\n\n'
+        'That\'s a dictionary definition, not a flashcard gloss. '
+        'Flashcards need a SHORT, 1-4 word English equivalent — the way a '
+        'bilingual dictionary headword is glossed.\n\n'
+        'Examples of good vs bad:\n'
+        '  shot → "drink" ✓ (NOT "a small amount of liquor consumed in one gulp")\n'
+        '  panty → "panties" ✓ (NOT "Underwear worn by women")\n'
+        '  bi → "boo" or "BMW" or "girl" depending on context ✓ (NOT "Term of endearment for a romantic partner")\n'
+        '  cherry → "cherry" ✓ (NOT "a sweet, red fruit; used metaphorically")\n\n'
+        'Lyrics where the word appears:\n%s\n\n'
+        'Return JSON: {"proposed_sense": "<1-4 word English gloss>", '
+        '"proposed_pos": "<NOUN/VERB/ADJ/ADV/INTJ>"}'
+    ) % (word, lemma, bad_answer, lyrics_str)
+
+    try:
+        response = client.models.generate_content(
+            model=gemini_model,
+            contents=prompt,
+            config={"temperature": 0.0, "response_mime_type": "application/json"},
+        )
+        data = json.loads(response.text)
+        new_sense = data.get("proposed_sense")
+        if new_sense and not _is_definitional(new_sense):
+            return data
+        return None
+    except Exception as e:
+        print("    repair-prompt error for %r: %s" % (word, str(e)[:80]))
+        return None
+
+
 def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
     """Ask Gemini: pick a sense or propose a new one. Returns result dict."""
     from google import genai
@@ -630,6 +718,32 @@ def main():
             if isinstance(clitic_merge, dict):
                 skip_set.update(clitic_merge.keys())
         print("  Skip words (from step 4): %d" % len(skip_set))
+
+    # Layer-derived skip: English loanwords identified by Wiktionary
+    # etymology (tool_4a_build_english_loanwords.py). These are surface
+    # forms that Wiktionary explicitly marks as "borrowed from English"
+    # across every entry — pure code-switches like hey/baby/shot/panty
+    # /cherry/play/out/okay. Sending them to gap-fill produces verbose
+    # dictionary definitions ("Underwear worn by women.") that aren't
+    # useful as flashcard glosses. Skip them; downstream stamping +
+    # front-end filter handle their card-level treatment.
+    #
+    # Layered on top of word_routing so we don't need to rebuild
+    # routing files to benefit — the loanword file is a separate
+    # data-derived layer.
+    loanwords_path = str(PROJECT_ROOT / "Data" / "Spanish" / "layers" / "english_loanwords.json")
+    is_spanish = 'Spanish' in (layers_dir or '') or 'spanish' in (artist_dir or '')
+    if is_spanish and os.path.isfile(loanwords_path):
+        with open(loanwords_path) as f:
+            loanwords = json.load(f)
+        # Allow per-artist override via curated keep-list (future hook).
+        # For now, the broad set goes straight into skip_set.
+        added = 0
+        for w in loanwords.keys():
+            if w not in skip_set:
+                skip_set.add(w)
+                added += 1
+        print("  Skip words (English loanword layer): +%d" % added)
 
     # Load master for flag lookups (fallback when skip_words.json absent).
     # Master vocabulary is artist-mode only.
@@ -1213,6 +1327,19 @@ def main():
                 if result and result.get("proposed_sense"):
                     pos = result.get("proposed_pos", "NOUN")
                     trans = result["proposed_sense"]
+                    # Length / definitional sanity check. Flash Lite tends to
+                    # write dictionary entries ("Term of endearment for a
+                    # romantic partner, similar to 'boo' or 'baby'.") instead
+                    # of flashcard glosses. Re-prompt with a tighter prompt
+                    # showing concrete good vs bad examples.
+                    if _is_definitional(trans):
+                        repaired = _repair_proposed_sense(
+                            word, lemma, examples, trans, api_key, gemini_model)
+                        if repaired and repaired.get("proposed_sense"):
+                            trans = repaired["proposed_sense"]
+                            pos = repaired.get("proposed_pos", pos)
+                            print("    repaired %r: %r → %r" % (
+                                word, result["proposed_sense"][:40], trans))
                     sense_list = [{"pos": pos, "translation": trans,
                                    "source": "gap-fill"}]
                     id_map = assign_sense_ids(sense_list)
