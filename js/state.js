@@ -57,6 +57,10 @@ export const state = {
     // user opts a category back in via Advanced settings.
     excludeProperNouns: true,
     excludeNoise: true,
+    // English loanwords / code-switches (hey, baby, shot, panty). Flagged
+    // by tool_8a_stamp_loanword_flag.py from the Wiktionary-etymology layer.
+    // Hidden by default; toggle to study them.
+    excludeEnglishLoanwords: true,
     speechEnabled: true,
 
     // Config / data

@@ -25,7 +25,7 @@
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
     <link rel="modulepreload" href="js/main.js?v=20260504b">
-    <link rel="modulepreload" href="js/state.js?v=20260509b">
+    <link rel="modulepreload" href="js/state.js?v=20260528a">
     <link rel="modulepreload" href="js/speech.js?v=20260428b">
     <link rel="modulepreload" href="js/artist-ui.js?v=20260428b">
     <link rel="modulepreload" href="js/auth.js?v=20260428b">
@@ -33,9 +33,9 @@
     <link rel="modulepreload" href="js/estimation.js?v=20260428b">
     <link rel="modulepreload" href="js/config.js?v=20260428b">
     <link rel="modulepreload" href="js/progress.js?v=20260504a">
-    <link rel="modulepreload" href="js/ui.js?v=20260509d">
-    <link rel="modulepreload" href="js/vocab.js?v=20260521a">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260504d">
+    <link rel="modulepreload" href="js/ui.js?v=20260528a">
+    <link rel="modulepreload" href="js/vocab.js?v=20260528a">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260528a">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -871,6 +871,11 @@
                      title="Hide noise words and interjections (yeah, uh, ay, brrr).">
                     <span>Hide interjections &amp; noise</span>
                     <span id="excludeNoiseStatus" style="color: var(--accent-primary);">ON</span>
+                </div>
+                <div class="stat-row" style="cursor: pointer; display: none;" id="excludeEnglishLoanwordsToggle"
+                     title="Hide English loanwords and code-switches (hey, baby, shot, panty).">
+                    <span>Hide English loanwords</span>
+                    <span id="excludeEnglishLoanwordsStatus" style="color: var(--accent-primary);">ON</span>
                 </div>
                 <!-- Cognate exclusion sensitivity. Higher threshold = only
                      the most obvious cognates get excluded (looser); lower

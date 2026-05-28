@@ -1369,6 +1369,13 @@ function showSettingsModalWithTab(tabName) {
         status.textContent = excludeNoise ? 'ON' : 'OFF';
         status.style.color = excludeNoise ? 'var(--accent-primary)' : 'var(--text-muted)';
     }
+    const loanwordToggle = document.getElementById('excludeEnglishLoanwordsToggle');
+    if (loanwordToggle) {
+        loanwordToggle.style.display = activeArtist ? 'flex' : 'none';
+        const status = document.getElementById('excludeEnglishLoanwordsStatus');
+        status.textContent = excludeEnglishLoanwords ? 'ON' : 'OFF';
+        status.style.color = excludeEnglishLoanwords ? 'var(--accent-primary)' : 'var(--text-muted)';
+    }
 
     // Show/hide refresh set option based on whether a study set is loaded and user is logged in
     const refreshSetToggle = document.getElementById('refreshSetToggle');

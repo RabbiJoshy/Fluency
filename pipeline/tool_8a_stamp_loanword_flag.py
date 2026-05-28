@@ -82,6 +82,67 @@ def _stamp_vocab(vocab_path, loanwords, keep_set, dry_run):
     return newly_flagged, already_flagged, kept
 
 
+def _stamp_master(language, loanwords, keep_set, dry_run, sample_limit):
+    """Stamp is_english_loanword on the per-language master vocabulary.
+
+    Master is a dict {id: entry}; the front-end reads it via joinWithMaster,
+    so stamping here gives immediate deck effect without re-running the
+    pipeline. Mirrors tool_8a_stamp_propernoun_corpus.py.
+
+    Caveat (same as the propernoun stamper): tool_8c_merge_to_master
+    rebuilds the master from per-artist monoliths and drops unknown fields,
+    so re-running tool_8c requires re-running this stamper.
+    """
+    artist_dir = _LANG_TO_ARTIST_DIR.get(language, language.lower())
+    master_path = os.path.join(_PROJECT_ROOT, "Artists", artist_dir,
+                               "vocabulary_master.json")
+    if not os.path.isfile(master_path):
+        print(f"ERROR: master not found at {master_path}")
+        sys.exit(1)
+    with open(master_path, "r", encoding="utf-8") as f:
+        master = json.load(f)
+    print(f"Loaded {len(master)} master entries from {master_path}")
+
+    newly_flagged = []
+    already = 0
+    kept = 0
+    for entry in master.values():
+        word = (entry.get("word") or "").lower()
+        is_loan = word in loanwords and word not in keep_set
+        was_flagged = bool(entry.get("is_english_loanword"))
+        if is_loan and not was_flagged:
+            newly_flagged.append(entry)
+            if not dry_run:
+                entry["is_english_loanword"] = True
+        elif is_loan and was_flagged:
+            already += 1
+        elif not is_loan and was_flagged:
+            kept += 1
+            if not dry_run:
+                entry.pop("is_english_loanword", None)
+
+    print(f"\nMaster stamping{' [dry-run]' if dry_run else ''}:")
+    print(f"  +{len(newly_flagged)} new, ={already} already, "
+          f"-{kept} unflagged (keep-list)")
+
+    if newly_flagged:
+        sample = sorted(newly_flagged,
+                        key=lambda e: -(e.get("corpus_count") or 0))[:sample_limit]
+        print(f"\nSample of {len(sample)} newly flagged:")
+        for entry in sample:
+            trs = [s.get("translation") for s in (entry.get("senses") or [])][:2]
+            trs_str = " / ".join(t for t in trs if t) or "(no translation)"
+            print(f"  {entry.get('word')!r:18s} → "
+                  f"{entry.get('lemma')!r:16s}  {trs_str[:50]}")
+
+    if not dry_run and (newly_flagged or kept):
+        with open(master_path, "w", encoding="utf-8") as f:
+            json.dump(master, f, ensure_ascii=False, indent=None)
+        print(f"\nWrote {master_path}")
+    elif dry_run:
+        print("\nDRY RUN — no files modified.")
+
+
 def _load_keep_set(keep_path):
     if not keep_path or not os.path.isfile(keep_path):
         return set()
@@ -122,6 +183,11 @@ def main():
                         help="Report what would change without writing")
     parser.add_argument("--sample-limit", type=int, default=40,
                         help="How many sample entries to print")
+    parser.add_argument("--master", action="store_true",
+                        help="Stamp the per-language master vocabulary "
+                             "(Artists/<lang>/vocabulary_master.json) — this "
+                             "is what the front-end reads via joinWithMaster, "
+                             "so use this for immediate deck effect.")
     args = parser.parse_args()
 
     loanwords, layer_path = _load_loanwords(args.language)
@@ -130,6 +196,11 @@ def main():
     keep_set = _load_keep_set(args.keep_path)
     if keep_set:
         print(f"Loaded {len(keep_set)} keep-list entries from {args.keep_path}")
+
+    if args.master:
+        _stamp_master(args.language, loanwords, keep_set, args.dry_run,
+                      args.sample_limit)
+        return
 
     if args.vocab_path:
         targets = args.vocab_path

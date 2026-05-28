@@ -160,6 +160,9 @@ function joinWithMaster(indexData, master) {
             // either alone is sufficient for filtering.
             is_propernoun_corpus: m.is_propernoun_corpus || false,
             propernoun_cap_rate: m.propernoun_cap_rate ?? null,
+            // English loanword flag (tool_8a_stamp_loanword_flag.py --master),
+            // from the Wiktionary-etymology layer. Toggleable filter.
+            is_english_loanword: m.is_english_loanword || false,
             cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
             cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
             corpus_count: idx.corpus_count || 0,
@@ -252,6 +255,13 @@ function buildFilteredVocab(vocabData) {
             // Noise / interjections (single-letter "y", filler "uh", "yeah").
             // Toggleable via excludeNoise in Advanced settings.
             if (excludeNoise && (item.is_noise || item.is_interjection)) {
+                counts.english++;
+                continue;
+            }
+            // English loanwords / code-switches (hey, baby, shot, panty),
+            // flagged from Wiktionary etymology. Toggleable via
+            // excludeEnglishLoanwords in Advanced settings.
+            if (excludeEnglishLoanwords && item.is_english_loanword) {
                 counts.english++;
                 continue;
             }

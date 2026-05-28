@@ -631,6 +631,16 @@ function initializeApp() {
             _refreshAfterFilterToggle();
         });
     }
+    const loanwordToggleEl = document.getElementById('excludeEnglishLoanwordsToggle');
+    if (loanwordToggleEl) {
+        loanwordToggleEl.addEventListener('click', function() {
+            excludeEnglishLoanwords = !excludeEnglishLoanwords;
+            const status = document.getElementById('excludeEnglishLoanwordsStatus');
+            status.textContent = excludeEnglishLoanwords ? 'ON' : 'OFF';
+            status.style.color = excludeEnglishLoanwords ? 'var(--accent-primary)' : 'var(--text-muted)';
+            _refreshAfterFilterToggle();
+        });
+    }
 
     // Percentage mode toggle
     // Refresh study set - delete progress for words in current set
