@@ -241,9 +241,10 @@ function buildFilteredVocab(vocabData) {
     for (const item of vocabData) {
         if (!item.word || item.word.trim() === '' || item.duplicate) continue;
         if (!item.meanings || item.meanings.length === 0) continue;
-        // Strip placeholder meanings (POS=X with no translation) from
-        // --no-gemini runs. Mutates the item, matching prior behavior.
-        item.meanings = item.meanings.filter(m => !(m.pos === 'X' && !m.translation));
+        // Strip any meaning with no translation (POS=X placeholders from
+        // --no-gemini runs, plus SpanishDict rows that captured a usage label
+        // but an empty gloss). Mutates the item, matching prior behavior.
+        item.meanings = item.meanings.filter(m => m.translation && m.translation.trim());
         if (item.meanings.length === 0) continue;
         if (activeArtist) {
             // English borrowings — always filtered (no toggle; they're not
