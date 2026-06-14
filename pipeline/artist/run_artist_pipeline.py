@@ -330,6 +330,11 @@ def main():
     parser.add_argument("--skip", type=str, nargs="*", default=[])
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--reset", action="store_true")
+    parser.add_argument("--force", action="store_true",
+                        help="Step 6: re-classify everything (wipe prior "
+                             "assignments for the current method). Needed to "
+                             "repair existing verbose/definitional glosses; "
+                             "passed through to step_6c (see _step_6_args).")
     parser.add_argument("--classifier", choices=["keyword", "biencoder", "gemini"],
                         default=None,
                         help="Primary classifier for step 6. Defaults per language "

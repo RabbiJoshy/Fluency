@@ -140,8 +140,27 @@ polysemy collapse, wrong slang).
   Gemini classifications — surgical gloss repair only.**
 - **Cognate leaks (61).** gloss == word, score < 0.85: `hotel`, `radio`,
   `idea`, `tequila`, `mafia`, `suite`, `alcohol`, `natural`, `original`…
-  Re-score cognates (`step_7c_flag_cognates`). NB: `me` is a pronoun
-  homograph, not a cognate — translation defect, separate.
+  **Mechanism (verified, supersedes the old "re-score step_7c" note):**
+  re-scoring the shared cognate layer does NOT reach the deck.
+  `tool_8c_merge_to_master.write_artist_files()` rebuilds each per-artist index
+  with ONLY `{id, corpus_count, most_frequent_lemma_instance,
+  sense_frequencies, mwe_memberships}` — it **strips `cognate_score`**. So
+  post-merge the front-end's only cognate signal is the master flag
+  `is_transparent_cognate` (`vocab.js:166`:
+  `cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0)`).
+  And the shared layer (`Data/Spanish/layers/cognates.json`, CogNet + suffix
+  voters) is **too noisy to stamp wholesale** — it scores core words
+  `estar`, `como`, `beso`, `creo`, `primero` at 1.0, which would hide ~700 real
+  cards. **Fix = a hand-reviewed curated stamp** of `is_transparent_cognate`
+  on the precise leak set (normalized primary gloss == normalized word,
+  len ≥ 4, not in cognates.json `keep`, not already propn/loanword/hidden) ≈
+  82 words, applied via `tool_8c_patch_master_curated.py` so it survives
+  rebuilds. **Exclude the false positives** before stamping: `china` (PR slang
+  "woman", not the country/porcelain), `media` (sock/half, not "media"),
+  `armada` (navy, not "armada"), `date` (English code-switch — flag as
+  loanword instead). `me`/`no` never enter the set (len ≥ 4 guard); `me` is a
+  pronoun homograph — translation defect, separate. **Needs Josh's review of
+  the 82-word list before stamping.**
 - **Polysemy splits (count change → rerun):** `bi` (boo vs. bisexual),
   `media` junk entries, `volver`/`vuelve` senses that belong to `volverse`.
 - **`todos`** showing "of them all" as primary — re-rank senses.
