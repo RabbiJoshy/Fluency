@@ -6,6 +6,15 @@ master, WITHOUT re-running the pipeline. Each edit is in-place (no change to
 any card's sense COUNT) so the per-artist index files — which reference senses
 positionally — stay in sync. See docs/deck_quality_audit.md.
 
+Two kinds of edit:
+  - OVERRIDES      : per-card field corrections (lemma / flag / sense fields).
+  - COGNATE_STAMPS : flag single-sense transparent cognates (gloss == the
+                     Spanish word, e.g. radio->"radio") with
+                     is_transparent_cognate so the front-end hides them by
+                     default. Single-sense only — hiding the card loses no
+                     other meaning. False friends (cognates.json `keep`) and
+                     multi-sense leaks are deliberately excluded.
+
 Idempotent and safe to re-run: it verifies each entry's surface word before
 touching it and only reports a change when a value actually differs.
 
@@ -57,6 +66,61 @@ OVERRIDES = [
         "flags": {"is_english_loanword": True},
         "senses": {},
     },
+    {
+        "key": "0aa057", "word": "compositor", "lemma": None, "flags": {},
+        # Leaked as itself; English "compositor" is an archaic printing term.
+        # The music sense (the one in the corpus) is "composer". Fix the gloss
+        # rather than hide the card.
+        "senses": {0: {"translation": "composer"}},
+    },
+    {
+        "key": "6be7cb", "word": "tití", "lemma": None, "flags": {},
+        # PR usage ("Tití me preguntó") = auntie, not the monkey "titi".
+        # Fix the gloss rather than hide the card.
+        "senses": {0: {"translation": "auntie"}},
+    },
+]
+
+# Single-sense transparent cognates: only sense glosses to the Spanish word
+# itself, so the card teaches nothing. Stamp is_transparent_cognate -> the
+# front-end hides them under the default-on cognate filter. (key, word) pairs;
+# word is verified against the master before stamping. Generated from the
+# bench cognate-leak scan, hand-reviewed: false friends and multi-sense leaks
+# (china, super, union, general, ...) are excluded. See docs/deck_quality_audit.md.
+COGNATE_STAMPS = [
+    ("19f1f6", "alcohol"),
+    ("f4245c", "area"),
+    ("a2dcd6", "bachata"),
+    ("822807", "bases"),
+    ("dc0219", "chicha"),
+    ("7cef6e", "control"),
+    ("57765a", "crack"),
+    ("22f1f4", "dimensión"),
+    ("b40305", "formal"),
+    ("acd437", "gala"),
+    ("78b399", "idea"),
+    ("391fac", "iris"),
+    ("503471", "legal"),
+    ("0e5c84", "local"),
+    ("cf0920", "manual"),
+    ("9e03b3", "marihuana"),
+    ("deeb66", "melón"),
+    ("2d00c2", "normal"),
+    ("0557d6", "novena"),
+    ("835779", "perfume"),
+    ("5f478c", "personal"),
+    ("71816b", "popular"),
+    ("91c4e7", "radio"),
+    ("dc47ea", "samurai"),
+    ("701880", "sangría"),
+    ("6e83d0", "santería"),
+    ("353258", "sativa"),
+    ("2c66cd", "sensual"),
+    ("75b019", "sushi"),
+    ("a93b2f", "súper"),
+    ("7c2d28", "unión"),
+    ("a34e06", "vodka"),
+    ("cc4896", "élite"),
 ]
 
 
@@ -100,6 +164,20 @@ def main():
                           % (ov["word"], idx, field, senses[idx].get(field), val))
                     senses[idx][field] = val
                     changes += 1
+
+    for key, word in COGNATE_STAMPS:
+        entry = m.get(key)
+        if entry is None:
+            print("SKIP %s (%s): key not in master" % (key, word))
+            continue
+        if entry.get("word") != word:
+            print("SKIP %s: expected word %r, found %r — not stamping"
+                  % (key, word, entry.get("word")))
+            continue
+        if entry.get("is_transparent_cognate") is not True:
+            print("  %-12s is_transparent_cognate -> True" % word)
+            entry["is_transparent_cognate"] = True
+            changes += 1
 
     if changes == 0:
         print("No changes (master already patched).")

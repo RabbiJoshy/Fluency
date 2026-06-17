@@ -23,6 +23,7 @@ Read-only. Run from the project root:
 import json
 import re
 import collections
+import unicodedata
 
 MASTER = "Artists/spanish/vocabulary_master.json"
 ARTISTS = {
@@ -56,6 +57,24 @@ def norm(t):
     return (t or "").strip()
 
 
+def keynorm(t):
+    """Case- and accent-insensitive, trimmed (área == area, melón == melon)."""
+    return "".join(c for c in unicodedata.normalize("NFD", (t or "").strip().lower())
+                   if unicodedata.category(c) != "Mn")
+
+
+def cognate_score(mst, idx):
+    """Mirror the front-end (js/vocab.js ~line 166):
+    idx.cognate_score ?? master.cognate_score ?? (is_transparent_cognate ? 1 : 0).
+    Without the is_transparent_cognate fallback the bench would count stamped
+    cognates as visible even though the deck hides them.
+    """
+    for v in (idx.get("cognate_score"), mst.get("cognate_score")):
+        if v is not None:
+            return v
+    return 1 if mst.get("is_transparent_cognate") else 0
+
+
 def real_senses(mst):
     """Senses the front-end would render: drop empty-translation senses.
 
@@ -80,8 +99,7 @@ def visible(mst, idx):
         return False
     if all(s.get("pos") == "PROPN" for s in senses):
         return False
-    cs = idx.get("cognate_score", mst.get("cognate_score", 0)) or 0
-    if cs >= COGNATE_THRESHOLD:
+    if cognate_score(mst, idx) >= COGNATE_THRESHOLD:
         return False
     if (idx.get("corpus_count", 0) or 0) <= 1:
         return False
@@ -128,10 +146,10 @@ def main():
                     defect["verbose_def"].append((artist, word, s.get("pos"), t[:80]))
                     break
 
-            # cognate_leak: single sense, gloss == word
+            # cognate_leak: single sense, gloss == word (accent-insensitive)
             if len(senses) == 1:
                 t = norm(senses[0].get("translation"))
-                if t and t.lower() == word.lower():
+                if t and keynorm(t) == keynorm(word):
                     defect["cognate_leak"].append((artist, word, t))
 
             # menu_bloat: one gloss repeated >= 4x

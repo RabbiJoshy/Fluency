@@ -1,6 +1,6 @@
 # Deck Quality Audit — Spanish Artist Decks
 
-**Audited:** 2026-06-13 · **Scope:** Bad Bunny + Young Miko + Rosalía visible decks
+**Audited:** 2026-06-13 · **Updated:** 2026-06-16 · **Scope:** Bad Bunny + Young Miko + Rosalía visible decks
 **Re-verify any time:** `.venv/bin/python3 pipeline/bench_deck_quality.py` (read-only, fast)
 
 This file is the durable record of a deck-quality pass. The goal (Josh's words):
@@ -11,20 +11,32 @@ Google Sheet is the gold-standard quality signal.
 
 ---
 
-## Verified current numbers (2026-06-13)
+## Verified current numbers (2026-06-16)
 
 `pipeline/bench_deck_quality.py` replicates the front-end default filters
 (`js/vocab.js` `buildFilteredVocab`) to count VISIBLE cards and scan them.
 
-| Metric | Count |
-|---|---|
-| Visible cards (unique) | **5136** (BadBunny 4409, YoungMiko 1666, Rosalía 1327; artists overlap) |
-| Blank-translation rows on visible cards | 26 cards |
-| Verbose Gemini definitions | 185 cards (overcount — see below) |
-| Cognate leaks (gloss == word, score < 0.85) | 61 cards |
-| Menu-bloat (one gloss ≥ 4×) | 25 cards |
-| Examples (visible cards) | 28040 total · 383 (1.4%) empty-English · 97 (0.3%) untranslated |
-| Cards w/ ALL examples empty-English | 13 |
+| Metric | Count (2026-06-16) | Was (2026-06-13) |
+|---|---|---|
+| Visible cards (unique) | **4704** (BadBunny 4037, YoungMiko 1535, Rosalía 1191) | 5136 |
+| Blank-translation rows on visible cards | 25 | 26 |
+| Verbose Gemini definitions | 183 (overcount — see below) | 185 |
+| Cognate leaks (gloss == word) | 6 | 61 |
+| Menu-bloat (one gloss ≥ 4×) | 25 | 25 |
+| Examples (visible cards) | 25693 total · 354 (1.4%) empty-English · 88 (0.3%) untranslated | 28040 / 383 / 97 |
+| Cards w/ ALL examples empty-English | 12 | 13 |
+
+> **Why "Visible" dropped 5136 → 4704.** Most of that (≈399) is a **bench
+> correction, not a deck change**: the old `visible()` read `cognate_score`
+> only, but `merge_to_master` strips `cognate_score` from the index, so the
+> bench was counting all 696 `is_transparent_cognate` master cards as visible
+> — even though the live front-end already hides them (`vocab.js:166` derives
+> `cognate_score` from `is_transparent_cognate`). The bench now mirrors that
+> fallback. The remaining 33 is the real deck change from FIX 3 below. The
+> cognate-leak drop (61 → 6) is FIX 3 plus making the detector
+> accent-insensitive (now catches `área`/`melón`-type leaks). The 6 survivors
+> are all short words (`me, ex, gas, eo, dúo, era`) deliberately left for
+> individual judgment — see FIX 3.
 
 ---
 
@@ -94,12 +106,54 @@ sense → count change → needs rerun. Awaiting Josh's call on bat-vs-joint.
 
 ---
 
+## FIX 3 (done, no rerun): transparent-cognate stamp + 2 gloss fixes
+
+**Mechanism recap.** Post-merge the front-end's only cognate signal is the
+master flag `is_transparent_cognate` (`merge_to_master` strips the index's
+`cognate_score`; `vocab.js:166` falls back to `is_transparent_cognate ? 1 : 0`
+and hides ≥ 0.85 under the default-on cognate filter). The shared
+`cognates.json` layer is **too noisy to stamp wholesale** (`estar`, `como`,
+`beso`, `creo`, `primero` all score 1.0). So the fix is a hand-reviewed stamp.
+
+**What was stamped (33 words).** Single-sense cards whose only gloss == the
+Spanish word itself (accent-insensitive), len ≥ 4, not a `cognates.json`
+false-friend, not already flagged:
+
+> alcohol, area, bachata, bases, chicha, control, crack, dimensión, formal,
+> gala, idea, iris, legal, local, manual, marihuana, melón, normal, novena,
+> perfume, personal, popular, radio, samurai, sangría, santería, sativa,
+> sensual, sushi, súper, unión, vodka, élite
+
+The **single-sense guard** is what makes a card-hide safe — it never throws
+away a useful second meaning. It also auto-excluded the feared false
+positives: `china` (2 senses → PR "woman" survives), and `media`/`armada`/
+`date` aren't gloss==word leaks at all.
+
+**2 carve-outs fixed in place, NOT hidden** (failed glosses, not transparent
+cognates): `compositor` "compositor" → **"composer"** (English "compositor"
+is an archaic printing term); `tití` "titi" → **"auntie"** ("Tití me
+preguntó"; "titi" isn't English).
+
+Applied via `tool_8c_patch_master_curated.py` (`COGNATE_STAMPS` list + 2
+`OVERRIDES`). Idempotent; survives rebuilds when re-run (it's in
+`run_spanish_rerun.sh` phase 4). Bench confirms: cognate_leak 61 → 6.
+
+**Left for individual judgment (6, not stamped):** `me` (pronoun
+mistranslation, not a cognate), `era` (homograph — also "was", imperfect of
+*ser*), `eo` (ad-lib noise → better as `is_noise`), and short transparent
+cognates `ex`/`gas`/`dúo` (len < 4, blanket guard skipped them).
+
+**Separate job — 12 multi-sense primary leaks** (do NOT card-hide; demote/fix
+the primary sense): `charro, china, combi, complot, general, no, paca, polo,
+super, triple, union, use`.
+
 ## Durability of the master patches
 
 Applied via the idempotent tool **`pipeline/tool_8c_patch_master_curated.py`**
-(the 6 edits are hardcoded there). `tool_8c_merge_to_master` rebuilds master
-from layers and drops these edits, so **re-run the patch tool after any master
-rebuild**, until the fixes are folded into the pipeline proper:
+(8 `OVERRIDES` field edits + 33 `COGNATE_STAMPS` are hardcoded there).
+`tool_8c_merge_to_master` rebuilds master from layers and drops these edits,
+so **re-run the patch tool after any master rebuild**, until the fixes are
+folded into the pipeline proper:
 
 ```
 .venv/bin/python3 pipeline/tool_8c_patch_master_curated.py
@@ -130,7 +184,7 @@ Root causes: (1) SpanishDict menu/scrape quality (blank rows, cognate leaks,
 menu bloat, wrong lemma); (2) Gemini Flash-Lite gap-fill (verbose defs,
 polysemy collapse, wrong slang).
 
-- **Verbose definitions (185 flagged, true defect set smaller).** Many flagged
+- **Verbose definitions (183 flagged, true defect set smaller).** Many flagged
   are loanwords that should be *hidden* not *fixed* (`lean`, `haters`, `combo`,
   `polaroid`, `champaña`, `cherry`, `reggaetón`, `shot`) and several VERB
   "phrasals" are actually fine (`joder` "to be a pain in the ass", `enamorar`
@@ -138,35 +192,17 @@ polysemy collapse, wrong slang).
   sentence-defs: `mambo`, `chalet`, `toto`, `mai`, `ángel`, `oasis`, etc. Fix
   via `step_6c` + the existing `_is_definitional` repair. **Don't throw away
   Gemini classifications — surgical gloss repair only.**
-- **Cognate leaks (61).** gloss == word, score < 0.85: `hotel`, `radio`,
-  `idea`, `tequila`, `mafia`, `suite`, `alcohol`, `natural`, `original`…
-  **Mechanism (verified, supersedes the old "re-score step_7c" note):**
-  re-scoring the shared cognate layer does NOT reach the deck.
-  `tool_8c_merge_to_master.write_artist_files()` rebuilds each per-artist index
-  with ONLY `{id, corpus_count, most_frequent_lemma_instance,
-  sense_frequencies, mwe_memberships}` — it **strips `cognate_score`**. So
-  post-merge the front-end's only cognate signal is the master flag
-  `is_transparent_cognate` (`vocab.js:166`:
-  `cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0)`).
-  And the shared layer (`Data/Spanish/layers/cognates.json`, CogNet + suffix
-  voters) is **too noisy to stamp wholesale** — it scores core words
-  `estar`, `como`, `beso`, `creo`, `primero` at 1.0, which would hide ~700 real
-  cards. **Fix = a hand-reviewed curated stamp** of `is_transparent_cognate`
-  on the precise leak set (normalized primary gloss == normalized word,
-  len ≥ 4, not in cognates.json `keep`, not already propn/loanword/hidden) ≈
-  82 words, applied via `tool_8c_patch_master_curated.py` so it survives
-  rebuilds. **Exclude the false positives** before stamping: `china` (PR slang
-  "woman", not the country/porcelain), `media` (sock/half, not "media"),
-  `armada` (navy, not "armada"), `date` (English code-switch — flag as
-  loanword instead). `me`/`no` never enter the set (len ≥ 4 guard); `me` is a
-  pronoun homograph — translation defect, separate. **Needs Josh's review of
-  the 82-word list before stamping.**
+- **Cognate leaks — DONE (no rerun), see FIX 3 above.** 33 single-sense
+  gloss==word cards stamped `is_transparent_cognate`; 2 carve-outs gloss-fixed.
+  Residual: 6 short words for individual judgment (`me, era, eo, ex, gas,
+  dúo`) and 12 multi-sense primary leaks for sense-demotion (`china, super,
+  union, general, …`).
 - **Polysemy splits (count change → rerun):** `bi` (boo vs. bisexual),
   `media` junk entries, `volver`/`vuelve` senses that belong to `volverse`.
 - **`todos`** showing "of them all" as primary — re-rank senses.
 - **Menu bloat (25)** — one gloss repeated ≥ 4× (`caer` "to fall" ×6). Low
   priority; dedup at build.
-- **Example tail (1.4% empty-English, 13 fully-empty cards** — `álbum`,
+- **Example tail (1.4% empty-English, 12 fully-empty cards** — `álbum`,
   `muchacha`, `curas`, `capítulo`…). Low priority. Prefer surgical translation
   backfill over re-picking examples.
 
