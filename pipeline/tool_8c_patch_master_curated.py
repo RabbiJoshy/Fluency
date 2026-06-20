@@ -79,6 +79,13 @@ OVERRIDES = [
         # Fix the gloss rather than hide the card.
         "senses": {0: {"translation": "auntie"}},
     },
+    {
+        "key": "eeeb94", "word": "eo", "lemma": None,
+        # Bad Bunny ad-lib filler ("eo eo eo"), not the rare noun eo=hiatus.
+        # Hide as noise (default-on noise filter) rather than teach it.
+        "flags": {"is_noise": True},
+        "senses": {},
+    },
 ]
 
 # Single-sense transparent cognates: only sense glosses to the Spanish word
@@ -121,6 +128,12 @@ COGNATE_STAMPS = [
     ("7c2d28", "unión"),
     ("a34e06", "vodka"),
     ("cc4896", "élite"),
+    # Short (<4 char) transparent cognates the generator's len>=4 guard skips;
+    # hand-verified single-sense gloss==word leaks (see the 6-short-word audit).
+    ("0cfe85", "dúo"),
+    ("bad194", "era"),    # NOUN era|era only; VERB era|ser ("to be") untouched
+    ("b936fa", "ex"),
+    ("4c30db", "gas"),
 ]
 
 

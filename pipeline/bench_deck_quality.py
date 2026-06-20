@@ -146,8 +146,10 @@ def main():
                     defect["verbose_def"].append((artist, word, s.get("pos"), t[:80]))
                     break
 
-            # cognate_leak: single sense, gloss == word (accent-insensitive)
-            if len(senses) == 1:
+            # cognate_leak: single sense, gloss == word (accent-insensitive).
+            # Skip PRON: a pronoun glossing to itself (me->"me") is a correct
+            # translation, not a cognate that slipped the net.
+            if len(senses) == 1 and senses[0].get("pos") != "PRON":
                 t = norm(senses[0].get("translation"))
                 if t and keynorm(t) == keynorm(word):
                     defect["cognate_leak"].append((artist, word, t))
