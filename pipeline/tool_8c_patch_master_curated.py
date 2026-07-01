@@ -136,6 +136,23 @@ COGNATE_STAMPS = [
     ("4c30db", "gas"),
 ]
 
+# English code-switches the Wiktionary-derived english_loanwords.json layer
+# misses (they aren't in es.wiktionary as all-English-borrowing entries, so
+# tool_4a/tool_8a never flag them). Same effect as the layer stamp:
+# is_english_loanword -> the default-on loanword filter hides them. Surface
+# word verified before stamping. The systematic fix is a manual loanword
+# supplement folded into tool_8a; until then these live here. (key, word).
+LOANWORD_STAMPS = [
+    ("8e40c1", "boy"),
+    ("6e23bc", "combo"),
+    ("1eac4f", "haters"),
+    ("f0ae8d", "lean"),
+    ("d34a61", "lit"),
+    ("9648af", "polaroid"),
+    ("ab4169", "sexy"),
+    ("39f5f1", "squad"),
+]
+
 
 def main():
     if not os.path.isfile(MASTER):
@@ -190,6 +207,20 @@ def main():
         if entry.get("is_transparent_cognate") is not True:
             print("  %-12s is_transparent_cognate -> True" % word)
             entry["is_transparent_cognate"] = True
+            changes += 1
+
+    for key, word in LOANWORD_STAMPS:
+        entry = m.get(key)
+        if entry is None:
+            print("SKIP %s (%s): key not in master" % (key, word))
+            continue
+        if entry.get("word") != word:
+            print("SKIP %s: expected word %r, found %r — not stamping"
+                  % (key, word, entry.get("word")))
+            continue
+        if entry.get("is_english_loanword") is not True:
+            print("  %-12s is_english_loanword -> True" % word)
+            entry["is_english_loanword"] = True
             changes += 1
 
     if changes == 0:
