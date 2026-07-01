@@ -2,7 +2,7 @@
 
 They teach by theme (colours, at the airport, in the kitchen) and drill you on lists of words you have no reason to care about yet. You learn *la cuchara* (spoon) and forget it before you ever hear or use it in the wild.
 
-This app takes the opposite approach: every word you study comes from material you already care about. Spotify lyrics, film subtitles, frequency-ranked sentences from real corpora. The word *corazón* (heart) is paired with a real sentence where you'll actually meet it.
+This app takes the opposite approach: every word you study comes from material you already care about. Spotify lyrics, film subtitles, frequency-ranked sentences from real corpora. The word *mañana* (tomorrow) is paired with a real sentence where you'll actually meet it.
 
 ### Standard mode (subtitles)
 
