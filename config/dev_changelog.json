@@ -1,0 +1,26 @@
+{
+  "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
+  "entries": [
+    {
+      "date": "2026-07-05",
+      "commit": "e2375ee",
+      "summary": "Freshness footer + fetch tracking on all load paths",
+      "details": [
+        "Settings footer shows data Last-Modified + fetch time (this panel)",
+        "Multi-artist merge + CSV paths now tracked too",
+        "Cache bumped to v38 to force fresh data"
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "commit": "0425581",
+      "summary": "Detector sweep: 78 junk cards hidden, 25 glosses fixed (no rerun)",
+      "details": [
+        "'tán' now = \"are (short for 'están')\" — was 9 suntan senses from English 'tan'",
+        "Hidden: rob/'syrup', vegas/'meadow', carmen/'poem', so, too, game, cash, +70 more",
+        "Fixed: media='half', manín='bro', mera='hey!', cuki='cutie'",
+        "2 new bench detectors (verbatim-EN, mid-line caps) now guard regressions"
+      ]
+    }
+  ]
+}

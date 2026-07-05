@@ -194,10 +194,17 @@ function trackDataFreshness(resp) {
     const lm = resp.headers.get('last-modified');
     if (!lm) return;
     const t = new Date(lm).getTime();
-    if (!isNaN(t) && (!window._vocabDataLastModified || t > window._vocabDataLastModified)) {
+    if (isNaN(t)) return;
+    if (!window._vocabDataLastModified || t > window._vocabDataLastModified) {
         window._vocabDataLastModified = t;
     }
     window._vocabDataLoadedAt = Date.now();
+    // Per-file breakdown for the JST dev footer.
+    try {
+        const name = decodeURIComponent(new URL(resp.url).pathname.split('/').pop());
+        window._vocabDataFreshness = window._vocabDataFreshness || {};
+        window._vocabDataFreshness[name] = t;
+    } catch (e) { /* resp.url unset in some test contexts — breakdown only */ }
 }
 window.trackDataFreshness = trackDataFreshness;
 

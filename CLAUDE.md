@@ -75,6 +75,8 @@ Fluency/
 
 **Parallel agents:** Use sub-agents for independent tasks that don't touch the same files. Group work into waves. Keep the main conversation going across waves — agents get their own context windows.
 
+**Dev changelog:** After changing deck data or user-visible app behavior, prepend an entry to `config/dev_changelog.json` (date, commit, summary, short detail bullets). It renders in the settings-modal footer for Josh's JST account only — it's how he sees what Claude changed without reading git log.
+
 **Safe git pushes:** Josh often has multiple Claude sessions open on the same repo. Before pushing, always `git pull --rebase` first to avoid overwriting changes from another session. If there are conflicts, stop and tell Josh rather than force-pushing. Never use `git push --force`. Proactively suggest committing and pushing after completing a logical chunk of work — don't wait for Josh to ask.
 
 **When to suggest a new conversation:** Only when context is genuinely stale (very long chat, topic shift). When suggesting, provide a ready-to-paste prompt with: task, files involved, and decisions that carry forward.

@@ -1422,6 +1422,8 @@ function showSettingsModalWithTab(tabName) {
     // Data-freshness footer: newest Last-Modified across the vocab files
     // (set in vocab.js trackDataFreshness). An old date = the service
     // worker served cached data; "not loaded yet" = no deck fetched.
+    // The JST account additionally gets a verbose dev block (per-file
+    // dates, app version, latest Claude changelog entry).
     const freshnessEl = document.getElementById('dataFreshnessFooter');
     if (freshnessEl) {
         if (window._vocabDataLastModified) {
@@ -1436,9 +1438,69 @@ function showSettingsModalWithTab(tabName) {
         } else {
             freshnessEl.textContent = 'Data not loaded yet';
         }
+        if (currentUser && currentUser.initials === 'JST') {
+            renderDevFooter(freshnessEl);   // async, appends below basic line
+        }
     }
 
     document.getElementById('settingsModal').classList.remove('hidden');
+}
+
+// Verbose data-provenance block for the JST (dev) account only: per-file
+// Last-Modified dates, the running asset version, and the latest entries
+// from config/dev_changelog.json (which Claude appends to when deck data
+// changes). Everyone else just sees the one-line freshness note above.
+async function renderDevFooter(freshnessEl) {
+    let devEl = document.getElementById('devFooterDetail');
+    if (!devEl) {
+        devEl = document.createElement('div');
+        devEl.id = 'devFooterDetail';
+        devEl.className = 'dev-footer-detail';
+        freshnessEl.insertAdjacentElement('afterend', devEl);
+    }
+
+    const fmt = t => new Date(t).toLocaleString(undefined,
+        { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    const lines = [];
+
+    // Per-file freshness (which file is stale, not just the newest).
+    const perFile = window._vocabDataFreshness || {};
+    const fileNames = Object.keys(perFile).sort((a, b) => perFile[b] - perFile[a]);
+    if (fileNames.length) {
+        lines.push('<div class="dev-footer-label">Loaded data files (Last-Modified)</div>');
+        for (const f of fileNames.slice(0, 6)) {
+            lines.push(`<div class="dev-footer-row"><span>${f}</span><span>${fmt(perFile[f])}</span></div>`);
+        }
+    }
+
+    // Running asset version, from the modulepreload tags (single source of
+    // truth is service-worker.js ASSET_VERSION; the tags mirror it).
+    const pre = document.querySelector('link[rel="modulepreload"]');
+    const vMatch = pre && pre.href.match(/[?&]v=([\w.-]+)/);
+    if (vMatch) {
+        lines.push(`<div class="dev-footer-row"><span>app version</span><span>${vMatch[1]}</span></div>`);
+    }
+
+    // Latest Claude changelog entries.
+    try {
+        if (!window._devChangelog) {
+            const resp = await fetch('config/dev_changelog.json');
+            if (resp.ok) window._devChangelog = await resp.json();
+        }
+        const entries = (window._devChangelog && window._devChangelog.entries) || [];
+        if (entries.length) {
+            lines.push('<div class="dev-footer-label">Recent Claude changes</div>');
+            for (const e of entries.slice(0, 2)) {
+                lines.push(`<div class="dev-footer-entry"><b>${e.date}</b> · ${e.summary}` +
+                    (e.commit ? ` <span class="dev-footer-commit">(${e.commit})</span>` : '') + '</div>');
+                for (const d of (e.details || []).slice(0, 4)) {
+                    lines.push(`<div class="dev-footer-bullet">– ${d}</div>`);
+                }
+            }
+        }
+    } catch (e) { /* changelog missing is fine — dev-only nicety */ }
+
+    devEl.innerHTML = lines.join('');
 }
 
 
