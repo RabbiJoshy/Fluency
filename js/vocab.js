@@ -192,8 +192,24 @@ async function fetchAndJoinIndex(langConfig) {
         return window._cachedJoinedIndex;
     }
 
+    // Record the newest Last-Modified across the vocab data files. The
+    // service worker preserves the original response headers, so a stale
+    // cached file keeps its old date — the settings footer surfaces this
+    // so "am I seeing cached data?" is answerable at a glance.
+    function trackDataFreshness(resp) {
+        const lm = resp.headers.get('last-modified');
+        if (!lm) return;
+        const t = new Date(lm).getTime();
+        if (!isNaN(t) && (!window._vocabDataLastModified || t > window._vocabDataLastModified)) {
+            window._vocabDataLastModified = t;
+        }
+        window._vocabDataLoadedAt = Date.now();
+    }
+    window.trackDataFreshness = trackDataFreshness;
+
     const response = await fetch(indexPath);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    trackDataFreshness(response);
     let data = await response.json();
 
     // Detect new master-based format and join if needed
@@ -202,6 +218,7 @@ async function fetchAndJoinIndex(langConfig) {
             try {
                 const masterResp = await fetch(langConfig.masterPath);
                 if (masterResp.ok) {
+                    trackDataFreshness(masterResp);
                     window._cachedMasterVocab = await masterResp.json();
                 }
             } catch (e) {
@@ -423,6 +440,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
             if (!window._cachedExamplesData) {
                 const exResponse = await fetch(langConfig.examplesPath);
                 if (exResponse.ok) {
+                    if (window.trackDataFreshness) window.trackDataFreshness(exResponse);
                     window._cachedExamplesData = await exResponse.json();
                 }
             }
@@ -824,6 +842,7 @@ async function loadIncorrectWordsSet() {
             if (!window._cachedExamplesData) {
                 const exResponse = await fetch(langConfig.examplesPath);
                 if (exResponse.ok) {
+                    if (window.trackDataFreshness) window.trackDataFreshness(exResponse);
                     window._cachedExamplesData = await exResponse.json();
                 }
             }

@@ -6253,3 +6253,17 @@
             font-family: var(--font-mono, monospace);
             flex-shrink: 0;
         }
+
+/* Data-freshness footer at the bottom of the settings modal (see
+   trackDataFreshness in vocab.js). Diagnostic for service-worker staleness. */
+.data-freshness-footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color, rgba(128, 128, 128, 0.2));
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.data-freshness-footer:empty {
+    display: none;
+}

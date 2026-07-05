@@ -1419,6 +1419,25 @@ function showSettingsModalWithTab(tabName) {
                          tabName === 'stats' ? 'statsTabContent' : 'accountTabContent';
     document.getElementById(tabContentId).classList.add('active');
 
+    // Data-freshness footer: newest Last-Modified across the vocab files
+    // (set in vocab.js trackDataFreshness). An old date = the service
+    // worker served cached data; "not loaded yet" = no deck fetched.
+    const freshnessEl = document.getElementById('dataFreshnessFooter');
+    if (freshnessEl) {
+        if (window._vocabDataLastModified) {
+            const upd = new Date(window._vocabDataLastModified).toLocaleString(undefined,
+                { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            const loaded = window._vocabDataLoadedAt
+                ? new Date(window._vocabDataLoadedAt).toLocaleTimeString(undefined,
+                    { hour: '2-digit', minute: '2-digit' })
+                : null;
+            freshnessEl.textContent = `Data last refreshed ${upd}` +
+                (loaded ? ` · fetched ${loaded}` : '');
+        } else {
+            freshnessEl.textContent = 'Data not loaded yet';
+        }
+    }
+
     document.getElementById('settingsModal').classList.remove('hidden');
 }
 
