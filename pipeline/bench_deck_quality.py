@@ -63,11 +63,15 @@ DETECTOR_KNOWN_OK = {
 }
 
 # Phrases that signal a definitional sentence rather than a gloss.
+# NB: no "used to" (legit in verb glosses like "to get used to") and no
+# bare "expression"/"informal"/"colloquial" (legit in short glosses); those
+# patterns only signal a definition when the gloss is already sentence-length,
+# which the word-count check catches.
 CONNECT = re.compile(
-    r"\b(used to|used for|refers? to|similar to|term (of|for)|expression|"
-    r"slang for|a way of|the act of|denoting|describ\w+|informal|colloquial|"
+    r"\b(used for|refers? to|similar to|term (of|for)|"
+    r"slang for|short for|a way of|the act of|denoting|describ\w+|"
     r"referring to|nickname|brand name|a type of|a person who|a group of|"
-    r"characteriz)\b",
+    r"characteriz|often used|typically)\b",
     re.I,
 )
 
@@ -161,7 +165,8 @@ def main():
                 t = norm(s.get("translation"))
                 if not t:
                     continue
-                if len(t.split()) > 5 or CONNECT.search(t) or ";" in t or t.endswith("."):
+                nw = len(t.split())
+                if nw > 7 or ";" in t or t.endswith(".") or (nw >= 3 and CONNECT.search(t)):
                     defect["verbose_def"].append((artist, word, s.get("pos"), t[:80]))
                     break
 

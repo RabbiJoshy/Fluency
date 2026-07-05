@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-05",
+      "commit": "(pending)",
+      "summary": "verbose_def 110->0: all sentence-glosses shortened; deck fully green",
+      "details": [
+        "~80 Gemini sentence-definitions cut to flashcard glosses (bellaquita, tiguere, pikete, rulay, ...)",
+        "Gems: roles=Rolex, pos/po'=por, opo=cut-off 'oportunidad', pre=pre-game, nano=bro",
+        "Hidden: strippers/men (EN), laramercy (gang), diesel/safari/portobello/pose/amén (cognates), auch/ea/wuff (interjections)",
+        "Every bench class now 0 except menu_bloat (25, needs sense-pipeline rework)"
+      ]
+    },
+    {
+      "date": "2026-07-05",
       "commit": "ac737e9",
       "summary": "Blank rows filled, verb morph tags on artist cards, shorter examples first",
       "details": [

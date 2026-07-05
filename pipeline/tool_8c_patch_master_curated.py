@@ -58,7 +58,7 @@ OVERRIDES = [
     {
         "key": "d15eaf", "word": "bi", "lemma": None, "flags": {},
         # Shorten the verbose gap-fill gloss in place (single real sense).
-        "senses": {0: {"translation": "boo; baby (term of endearment)"}},
+        "senses": {0: {"translation": "boo, baby"}},
     },
     {
         "key": "0f1ec2", "word": "shot", "lemma": None,
@@ -98,7 +98,7 @@ OVERRIDES = [
         # bench's blank_rows check ignores X; the front-end drops them on
         # translation alone either way).
         "senses": dict(
-            [(0, {"pos": "VERB", "translation": "are (short for ‘están’)",
+            [(0, {"pos": "VERB", "translation": "are (‘tán = están)",
                   "context": "colloquial contraction"})] +
             [(i, {"pos": "X", "translation": "", "context": ""})
              for i in range(1, 9)]
@@ -152,12 +152,12 @@ OVERRIDES = [
     {
         "key": "844643", "word": "toa", "lemma": None, "flags": {},
         # "Toa' solteras" = todas.
-        "senses": {0: {"translation": "all (short for ‘toda’)",
+        "senses": {0: {"translation": "all (toa’ = todas)",
                        "context": "colloquial"}},
     },
     {
         "key": "548cb0", "word": "zeta", "lemma": None, "flags": {},
-        "senses": {0: {"translation": "Z (slang for a car)", "context": ""}},
+        "senses": {0: {"translation": "a \"Z\" (car)", "context": ""}},
     },
     # Verbose gap-fill glosses shortened in place (single real sense each).
     {
@@ -273,7 +273,7 @@ OVERRIDES = [
      "senses": {1: {"translation": "of, belonging to", "context": "possession"}}},
     {"key": "b31775", "word": "bate", "lemma": None, "flags": {},
      # "to' los récords bate" = batir; (the blunt NOUN sense is separate).
-     "senses": {0: {"translation": "to break (a record), to beat",
+     "senses": {0: {"translation": "to break (records)",
                     "context": "batir"}}},
     # --- 2026-07-05 verb-lemma repairs: surface forms (or English stems)
     # stored as the lemma, so conjugation/morphology lookups all missed.
@@ -306,6 +306,189 @@ OVERRIDES = [
      "flags": {"is_english": True}, "senses": {}},
     {"key": "40242f", "word": "capisci", "lemma": None,
      "flags": {"is_english": True}, "senses": {}},
+    # --- 2026-07-05 verbose_def sweep: Gemini sentence-definitions and
+    # dictionary artifacts shortened to flashcard glosses, in place. ---
+    {"key": "593c41", "word": "amén", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "amen"}}},
+    {"key": "19de0f", "word": "atreve", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to dare"}}},
+    {"key": "e027ed", "word": "atreves", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to dare"}}},
+    {"key": "21a56e", "word": "beibe", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "baby (endearment)"}}},
+    {"key": "584ab2", "word": "bellaquita", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "bad girl, naughty girl"}}},
+    {"key": "2f9717", "word": "bendecida", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "blessed"}}},
+    {"key": "474b61", "word": "bichotes", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "drug kingpin, big shot"}}},
+    {"key": "841c24", "word": "blunes", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "blunts"}}},
+    {"key": "538cf5", "word": "cachamos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to catch, to score"}}},
+    {"key": "e31486", "word": "caigas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to fall", "context": ""}}},
+    {"key": "50313c", "word": "callaítas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "quiet, low-key (calladitas)"}}},
+    {"key": "f059b6", "word": "campeonatos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "championship"}}},
+    {"key": "e18d4e", "word": "cana", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "gray hair"}}},
+    {"key": "13bc19", "word": "capea", "lemma": None, "flags": {},
+     # PR slang capear = pick up drugs, not the bullfighting cape pass.
+     "senses": {0: {"translation": "to score, to pick up (slang)"}}},
+    {"key": "69d206", "word": "caripelao", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "shameless person"}}},
+    {"key": "c28212", "word": "chamaquita", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "young girl"}}},
+    {"key": "dfb1ae", "word": "chamaquito", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "young boy, kid"}}},
+    {"key": "9b8edb", "word": "colmadón", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "big corner store"}}},
+    {"key": "4cad6d", "word": "curvas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "curves"}}},
+    {"key": "ab1993", "word": "curé", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to heal"}}},
+    {"key": "1092d9", "word": "doña", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "ma'am, lady"}}},
+    {"key": "29be5b", "word": "enchuló", "lemma": "enchular", "flags": {},
+     "senses": {0: {"translation": "to make fall in love (slang)"}}},
+    {"key": "833c8b", "word": "ere", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "you are (ere' = eres)"}}},
+    {"key": "66b2f6", "word": "esnúa", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "naked (desnuda)"}}},
+    {"key": "bd4b60", "word": "espejos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "mirror"}}},
+    {"key": "8174f1", "word": "fantasmeas", "lemma": "fantasmear", "flags": {},
+     "senses": {0: {"translation": "to front, act fake"}}},
+    {"key": "5f7140", "word": "fantasmeo", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "fronting, fakery"}}},
+    {"key": "5cf199", "word": "fav", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "favor"}}},
+    {"key": "517c94", "word": "frontean", "lemma": "frontear", "flags": {},
+     "senses": {0: {"translation": "to front, show off"}}},
+    {"key": "4ba1f9", "word": "fronteando", "lemma": "frontear", "flags": {},
+     "senses": {0: {"translation": "to front, show off"}}},
+    {"key": "6f372f", "word": "fronteándome", "lemma": "frontear", "flags": {},
+     "senses": {0: {"translation": "to front, show off"}}},
+    {"key": "cb8838", "word": "joseando", "lemma": "josear", "flags": {},
+     "senses": {0: {"translation": "to hustle (josear)"}}},
+    {"key": "1490a7", "word": "labia", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "smooth talk"}}},
+    {"key": "fdaeb1", "word": "latina", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "Latina woman"}}},
+    {"key": "23c797", "word": "latino", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "Latino, Latin American"}}},
+    {"key": "5be41c", "word": "males", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "troubles, woes"}}},
+    {"key": "7e3f3f", "word": "malianteos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "hustling, thug life"}}},
+    {"key": "ee072f", "word": "mamas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to suck (vulgar)"}}},
+    {"key": "dbbbea", "word": "mame", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to suck (vulgar)"}}},
+    {"key": "3a9b6c", "word": "mara", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "gang"}}},
+    {"key": "d65728", "word": "mari", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "weed (marijuana)"}}},
+    {"key": "a63d28", "word": "mecha", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "fuse, wick",
+                    "context": "corto de mecha = short-tempered"}}},
+    {"key": "91f546", "word": "nano", "lemma": "nano", "flags": {},
+     # Vocative "Nano, ya" — term of address, not a diminutive suffix.
+     "senses": {0: {"pos": "NOUN", "translation": "bro, buddy (address)", "context": ""}}},
+    {"key": "a482e0", "word": "noviecito", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "boyfriend (diminutive)"}}},
+    {"key": "f4a825", "word": "pai", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "dad (slang)"}}},
+    {"key": "a924e2", "word": "pal", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "for the (pa'l = para el)"}}},
+    {"key": "7e2226", "word": "pali", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "pill (slang)"}}},
+    {"key": "e0c614", "word": "perfumito", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "perfume (diminutive)"}}},
+    {"key": "aaa994", "word": "perriabas", "lemma": "perrear", "flags": {},
+     "senses": {0: {"translation": "to dance perreo"}}},
+    {"key": "f5f1e6", "word": "pikete", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "swagger, style"}}},
+    {"key": "1eab01", "word": "ponderosa", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "ponderosa pine (weed metaphor)"}}},
+    {"key": "fb6b49", "word": "pos", "lemma": "por", "flags": {},
+     # Corpus lines are all "po'" = por ("les pasé po' encima").
+     "senses": {0: {"pos": "ADP", "translation": "por (clipped: po')", "context": ""}}},
+    {"key": "ff88b7", "word": "posar", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to pose"}}},
+    {"key": "b38355", "word": "pose", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "pose"}}},
+    {"key": "4ebcac", "word": "posteados", "lemma": "postear", "flags": {},
+     "senses": {0: {"translation": "posted up, hanging out"}}},
+    {"key": "57aa81", "word": "pre", "lemma": "pre", "flags": {},
+     # "desde el pre" = the pre-game, not a prefix.
+     "senses": {0: {"pos": "NOUN", "translation": "pre-game (el pre)", "context": ""}}},
+    {"key": "37d185", "word": "prendida", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "lit, fired up"}}},
+    {"key": "37cbc3", "word": "probé", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to try, to taste"}}},
+    {"key": "6a4343", "word": "puertorriqueños", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "Puerto Rican"}}},
+    {"key": "32c8b8", "word": "quemados", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "burned, burnt out"}}},
+    {"key": "7399fd", "word": "raja", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "slit, crack"}}},
+    {"key": "eadfe0", "word": "revueltas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "mixed up, all together"}}},
+    {"key": "de68e6", "word": "roles", "lemma": None, "flags": {},
+     # "el Role'" = a Rolex.
+     "senses": {0: {"translation": "Rolex (Role')"}}},
+    {"key": "f4904b", "word": "rosario", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "rosary"}}},
+    {"key": "e62ada", "word": "rulay", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "living it up, chilling"}}},
+    {"key": "e66e3c", "word": "rumba", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "party"}}},
+    {"key": "6a6470", "word": "serie", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "series, TV show"}}},
+    {"key": "4a25b9", "word": "sudaítas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "sweaty (sudaditas)"}}},
+    {"key": "0d5c7c", "word": "tas", "lemma": "estar", "flags": {},
+     "senses": {0: {"translation": "you are ('tás = estás)"}}},
+    {"key": "f99fa9", "word": "tetotas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "big boobs (vulgar)"}}},
+    {"key": "fe7a73", "word": "tiguere", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "hustler, street-smart guy"}}},
+    {"key": "e17ef3", "word": "toditas", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "all of them (fem.)"}}},
+    {"key": "240c23", "word": "toto", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "pussy (vulgar)"}}},
+    {"key": "5cf290", "word": "trajecito", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "little outfit"}}},
+    {"key": "525323", "word": "trapxficante", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "trap-dealer (wordplay)"}}},
+    {"key": "8c40b6", "word": "tumbamos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to knock down"}}},
+    {"key": "a32bbf", "word": "uni", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "uni, college"}}},
+    {"key": "d439c9", "word": "vídeos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "video"}}},
+    {"key": "1c1083", "word": "vo", "lemma": "ir", "flags": {},
+     "senses": {0: {"translation": "I'm gonna (vo'a = voy a)"}}},
+    {"key": "cc6c98", "word": "wheeliando", "lemma": "wheeliar", "flags": {},
+     "senses": {0: {"translation": "doing wheelies, cruising"}}},
+    {"key": "ba6e23", "word": "zona", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "zone, area"}}},
+    {"key": "91e258", "word": "brava", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "Brava (San Juan club)"}}},
+    {"key": "1a8f51", "word": "película", "lemma": None, "flags": {},
+     # YM slang: "la película" = the scene / what's going on.
+     "senses": {0: {"translation": "the scene, the situation", "context": "slang"}}},
+    # Interjections/onomatopoeia from the verbose_def sweep — hidden by the
+    # default-on noise filter (is_interjection).
+    {"key": "95f6c2", "word": "auch", "lemma": None,
+     "flags": {"is_interjection": True}, "senses": {}},
+    {"key": "d9a262", "word": "ea", "lemma": None,
+     "flags": {"is_interjection": True}, "senses": {}},
+    {"key": "7889b3", "word": "wuff", "lemma": None,
+     "flags": {"is_interjection": True}, "senses": {}},
     # Round 2 (found by the new code_switch_verbatim bench detector).
     {
         "key": "53c40c", "word": "cuki", "lemma": "cuki", "flags": {},
@@ -382,6 +565,11 @@ COGNATE_STAMPS = [
     ("38dc7a", "mariachi"),
     ("24f4f8", "parental"),   # "Parental Advisory"
     ("c5f16d", "reggaetón"),  # gloss shortened to "reggaeton" above -> transparent
+    ("8f6d3c", "diesel"),     # sour diesel / Vin Diesel
+    ("76dd7f", "safari"),
+    ("f5da8c", "portobello"),
+    ("b38355", "pose"),       # gloss shortened to "pose" above -> transparent
+    ("593c41", "amén"),       # amén/amen (accent-insensitive match)
 ]
 
 # English code-switches the Wiktionary-derived english_loanwords.json layer
@@ -442,6 +630,8 @@ LOANWORD_STAMPS = [
     ("1aff73", "do"),        # "what you can do with my body"
     ("89ceb1", "switche"),   # "nos vamos al switche" — English switch
     ("1e1175", "rulin"),     # "nos fuimos rulin" — English rulin'/rolling
+    ("a18e27", "strippers"), # plural of already-stamped stripper
+    ("0a5e61", "men"),       # PR address term from English "man"
 ]
 
 # Proper nouns the corpus detector missed — found by the mid-line-caps
@@ -489,6 +679,7 @@ PROPERNOUN_STAMPS = [
     ("2f1cc0", "barea"),      # José Juan Barea (PR NBA player)
     ("18ef23", "tatís"),      # Fernando Tatís Jr. (glossed "to walk so many"!)
     ("f38ee0", "play"),       # "jugando Play" = PlayStation
+    ("8a16b9", "laramercy"),  # gang/crew name
 ]
 
 # Junk tokens: ad-libs, stutters, bare prefixes and single letters that teach
@@ -504,6 +695,8 @@ NOISE_STAMPS = [
     ("d900bb", "ao'"),     # line-echo ad-lib ("tirao'-ao'-ao'"), Young Miko
     ("03651b", "lego"),    # "Lego, lego, lego" ad-lib
     ("87a68a", "chi"),     # truncated fragment ("me la chi-")
+    ("22fa75", "rrear"),   # stutter fragment of "(pe)rrear"
+    ("4930fb", "opo"),     # truncated "oportunidad" ("Perdiste la opo-")
 ]
 
 
