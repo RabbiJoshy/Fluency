@@ -184,6 +184,23 @@ function joinWithMaster(indexData, master) {
  * Caches the master and the joined result. Returns denormalized entries with all fields
  * (word, lemma, meanings, flags) that buildFilteredVocab() and other consumers expect.
  */
+// Record the newest Last-Modified across the vocab data files, plus when we
+// fetched. The service worker preserves the original response headers, so a
+// stale cached file keeps its old date — the settings-modal footer surfaces
+// this so "am I seeing cached data?" is answerable at a glance. Called at
+// every vocab data fetch site (index, master, examples, merge, CSV ranges).
+function trackDataFreshness(resp) {
+    if (!resp || !resp.headers) return;
+    const lm = resp.headers.get('last-modified');
+    if (!lm) return;
+    const t = new Date(lm).getTime();
+    if (!isNaN(t) && (!window._vocabDataLastModified || t > window._vocabDataLastModified)) {
+        window._vocabDataLastModified = t;
+    }
+    window._vocabDataLoadedAt = Date.now();
+}
+window.trackDataFreshness = trackDataFreshness;
+
 async function fetchAndJoinIndex(langConfig) {
     const indexPath = langConfig.indexPath || langConfig.dataPath;
 
@@ -191,21 +208,6 @@ async function fetchAndJoinIndex(langConfig) {
     if (window._cachedJoinedIndex && window._cachedJoinedIndexPath === indexPath) {
         return window._cachedJoinedIndex;
     }
-
-    // Record the newest Last-Modified across the vocab data files. The
-    // service worker preserves the original response headers, so a stale
-    // cached file keeps its old date — the settings footer surfaces this
-    // so "am I seeing cached data?" is answerable at a glance.
-    function trackDataFreshness(resp) {
-        const lm = resp.headers.get('last-modified');
-        if (!lm) return;
-        const t = new Date(lm).getTime();
-        if (!isNaN(t) && (!window._vocabDataLastModified || t > window._vocabDataLastModified)) {
-            window._vocabDataLastModified = t;
-        }
-        window._vocabDataLoadedAt = Date.now();
-    }
-    window.trackDataFreshness = trackDataFreshness;
 
     const response = await fetch(indexPath);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -440,7 +442,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
             if (!window._cachedExamplesData) {
                 const exResponse = await fetch(langConfig.examplesPath);
                 if (exResponse.ok) {
-                    if (window.trackDataFreshness) window.trackDataFreshness(exResponse);
+                    trackDataFreshness(exResponse);
                     window._cachedExamplesData = await exResponse.json();
                 }
             }
@@ -842,7 +844,7 @@ async function loadIncorrectWordsSet() {
             if (!window._cachedExamplesData) {
                 const exResponse = await fetch(langConfig.examplesPath);
                 if (exResponse.ok) {
-                    if (window.trackDataFreshness) window.trackDataFreshness(exResponse);
+                    trackDataFreshness(exResponse);
                     window._cachedExamplesData = await exResponse.json();
                 }
             }
@@ -1059,6 +1061,7 @@ async function loadCSVFiles(ranges) {
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
             }
+            trackDataFreshness(response);
             const fileText = await response.text();
 
             // Extract starting and ending rank from range (e.g., "0-50" -> 0, 50)
@@ -1238,6 +1241,7 @@ async function mergeArtistVocabularies(artistConfigs, master) {
         let indexData;
         try {
             const resp = await fetch(indexPath);
+            trackDataFreshness(resp);
             indexData = await resp.json();
         } catch (e) {
             console.warn(`Failed to load index for ${cfg.name}:`, e);
@@ -1255,6 +1259,7 @@ async function mergeArtistVocabularies(artistConfigs, master) {
         if (cfg.examplesPath) {
             try {
                 const resp = await fetch(cfg.examplesPath);
+                trackDataFreshness(resp);
                 examplesData = await resp.json();
             } catch (e) {
                 console.warn(`Failed to load examples for ${cfg.name}:`, e);
