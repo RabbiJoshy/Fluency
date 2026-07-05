@@ -48,12 +48,12 @@ OVERRIDES = [
     {
         "key": "b7f4e2", "word": "diablo", "lemma": None, "flags": {},
         # Fill the blank interjection sense (the flagged "damn!" usage).
-        "senses": {1: {"translation": "damn!; the hell", "context": "exclamation"}},
+        "senses": {1: {"translation": "damn!, the hell", "context": "exclamation"}},
     },
     {
         "key": "8b83ae", "word": "diablos", "lemma": None, "flags": {},
         # "¿Cómo diablos...?" = how the hell.
-        "senses": {0: {"translation": "the hell; devils", "context": "exclamation"}},
+        "senses": {0: {"translation": "the hell, devils", "context": "exclamation"}},
     },
     {
         "key": "d15eaf", "word": "bi", "lemma": None, "flags": {},
@@ -196,11 +196,90 @@ OVERRIDES = [
         "key": "c1ae53", "word": "puertorro", "lemma": None, "flags": {},
         "senses": {0: {"translation": "Puerto Rico / Puerto Rican (slang)"}},
     },
+    # --- 2026-07-05 blank-rows fill: SpanishDict captured the usage label
+    # (context) but not the gloss. Fill translation in place; the sense
+    # becomes visible for lyrics that were assigned to it. ---
+    {"key": "364d4a", "word": "da", "lemma": None, "flags": {},
+     "senses": {10: {"translation": "to apply, to put on"}}},
+    {"key": "c74f26", "word": "damos", "lemma": None, "flags": {},
+     "senses": {8: {"translation": "to apply, to put on"}}},
+    {"key": "aa8aaa", "word": "dado", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "to hand over"}}},
+    {"key": "b186ac", "word": "dé", "lemma": None, "flags": {},
+     "senses": {3: {"translation": "to hand over"}}},
+    {"key": "6fa2b2", "word": "dimos", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "to hand over"}}},
+    {"key": "695915", "word": "dar", "lemma": None, "flags": {},
+     "senses": {4: {"translation": "to hand over"}}},
+    {"key": "3a794e", "word": "muere", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "to be dying of",
+                    "context": "morirse de amor/hambre"}}},
+    {"key": "607394", "word": "pocos", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "few, not many"}}},
+    {"key": "7c7faf", "word": "pusimos", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to become", "context": "ponerse + adjective"}}},
+    {"key": "cd31b3", "word": "pusiera", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to become", "context": "ponerse + adjective"}}},
+    {"key": "b00c69", "word": "cada", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "each, every",
+                    "context": "progression: cada vez más"}}},
+    {"key": "70efad", "word": "fenomenal", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "amazingly, great"}}},
+    {"key": "44d65c", "word": "se", "lemma": None, "flags": {},
+     "senses": {5: {"translation": "one, people (impersonal)",
+                    "context": "se dice = people say"}}},
+    {"key": "ae4417", "word": "sendo", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "huge, mighty", "context": "colloquial"}}},
+    {"key": "1a6760", "word": "eramos", "lemma": "ser", "flags": {},
+     # éramos = "we were" (ser), not the farming verb erar.
+     "senses": {0: {"translation": "were (éramos = we were)", "context": ""}}},
+    {"key": "c6a0a0", "word": "amanezca", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "to dawn, to wake up"}}},
+    {"key": "961948", "word": "amanezco", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "to dawn, to wake up"}}},
+    {"key": "1d2e8e", "word": "pendiente", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "pending, unresolved"}}},
+    {"key": "1522d2", "word": "veces", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "turn, time"}}},
+    {"key": "85813b", "word": "culona", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "big-bottomed woman", "context": "vulgar"}}},
+    {"key": "5f5acd", "word": "huele", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "to seem, to smack of",
+                    "context": "huele a = smells like"}}},
+    {"key": "4821a1", "word": "vuelva", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "to do again", "context": "volver a + verb"}}},
+    {"key": "3f2038", "word": "vuelves", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "to do again", "context": "volver a + verb"}}},
+    {"key": "d988e1", "word": "caer", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "to fall (night, rain)", "context": "weather/time"}}},
+    {"key": "2a9135", "word": "cae", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "to fall (night, rain)", "context": "weather/time"}}},
+    {"key": "fb2520", "word": "acaso", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "perhaps, by any chance",
+                    "context": "rhetorical questions"}}},
+    {"key": "296e68", "word": "esperando", "lemma": None, "flags": {},
+     "senses": {4: {"translation": "to hang on, to wait"}}},
+    {"key": "b88fc0", "word": "saber", "lemma": None, "flags": {},
+     "senses": {4: {"translation": "to taste of", "context": "saber a"}}},
+    {"key": "85b01d", "word": "sabe", "lemma": None, "flags": {},
+     "senses": {2: {"translation": "to taste of", "context": "saber a"}}},
+    {"key": "61bd7d", "word": "a", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "at, per", "context": "with quantities"}}},
+    {"key": "2fa825", "word": "poco", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "little, not much"}}},
+    {"key": "996882", "word": "común", "lemma": None, "flags": {},
+     "senses": {0: {"translation": "the majority, common people"}}},
+    {"key": "cb971a", "word": "de", "lemma": None, "flags": {},
+     "senses": {1: {"translation": "of, belonging to", "context": "possession"}}},
+    {"key": "b31775", "word": "bate", "lemma": None, "flags": {},
+     # "to' los récords bate" = batir; (the blunt NOUN sense is separate).
+     "senses": {0: {"translation": "to break (a record), to beat",
+                    "context": "batir"}}},
     # Round 2 (found by the new code_switch_verbatim bench detector).
     {
         "key": "53c40c", "word": "cuki", "lemma": "cuki", "flags": {},
         # "esa es mi cuki" = cutie/cookie, not the guinea pig (cuy).
-        "senses": {0: {"translation": "cutie (term of endearment)", "context": ""}},
+        "senses": {0: {"translation": "cutie, sweetie", "context": ""}},
     },
     {
         "key": "bb0e1c", "word": "trili", "lemma": "trili", "flags": {},
@@ -328,6 +407,7 @@ LOANWORD_STAMPS = [
     ("810d8a", "strikes"),   # baseball
     ("4fdfde", "gangster"),
     ("ad642f", "boujee"),    # Young Miko; gloss was reverse-direction "fresa"
+    ("4a18df", "let's"),     # "let's go" — pure English contraction
 ]
 
 # Proper nouns the corpus detector missed — found by the mid-line-caps
@@ -372,6 +452,7 @@ PROPERNOUN_STAMPS = [
     ("04964d", "guiru"),      # nickname
     ("76fd28", "wasón"),      # proper name per its own gloss
     ("a5e41d", "jota"),       # Jota Rosa (producer tag), Young Miko
+    ("2f1cc0", "barea"),      # José Juan Barea (PR NBA player)
 ]
 
 # Junk tokens: ad-libs, stutters, bare prefixes and single letters that teach

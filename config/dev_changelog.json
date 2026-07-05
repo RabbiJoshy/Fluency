@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-05",
+      "commit": "(pending)",
+      "summary": "Blank rows filled, verb morph tags on artist cards, shorter examples first",
+      "details": [
+        "36 blank-gloss senses filled (dar, saber a, caer, volver a, se impersonal, …)",
+        "Artist verb cards now show tense/person tags (was 0% coverage; e.g. vi = preterite 1sg)",
+        "Normal-mode examples reordered: short sentences display first (no data lost)",
+        "eramos→ser fixed; barea/let's hidden; conjugation build extended to artist lemmas (rerun pending)"
+      ]
+    },
+    {
+      "date": "2026-07-05",
       "commit": "e2375ee",
       "summary": "Freshness footer + fetch tracking on all load paths",
       "details": [

@@ -34,9 +34,10 @@ sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_5c_sense_paths import sense_menu_path  # noqa: E402
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "verbecc conjugations + jehle override + reverse lookup",
+    2: "union artist-master verb lemmas + reflexive alias keys",
 }
 
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -143,6 +144,47 @@ def extract_verb_lemmas_from_senses(senses_file: Path) -> set[str]:
 
     print(f"  Found {len(verb_lemmas)} unique verb infinitives")
     return verb_lemmas
+
+
+INFINITIVE_RE = None  # compiled lazily (needs re; keep import surface minimal)
+
+
+def extract_verb_lemmas_from_artist_master(language: str) -> tuple[set, dict]:
+    """Verb lemmas from the artist-mode master vocabulary, so artist decks get
+    conjugation tables too — the sense-menu source only covers normal-mode
+    vocab (~26% of Bad Bunny verb lemmas were missing from conjugations.json).
+
+    Only accepts clean single-word infinitives: lemmatization failures
+    ("atreves", "andar tantas") can't be conjugated and would just fail in
+    verbecc. Reflexives (quejarse) are conjugated as their base (quejar) and
+    returned in an alias map so the entry is ALSO keyed by the reflexive
+    lemma — the front-end looks up conjugations by the master lemma exactly.
+    Returns (infinitives_to_conjugate, {alias_key: infinitive}).
+    """
+    import re
+    master_file = PROJECT_ROOT / "Artists" / language.lower() / "vocabulary_master.json"
+    if not master_file.exists():
+        return set(), {}
+    with open(master_file, encoding="utf-8") as f:
+        master = json.load(f)
+    inf_re = re.compile(r"^[a-záéíóúñü]{2,}(?:ar|er|ir|ír)$")
+    lemmas, aliases = set(), {}
+    skipped = 0
+    for entry in master.values():
+        if not any(s.get("pos") == "VERB" and (s.get("translation") or "").strip()
+                   for s in entry.get("senses", [])):
+            continue
+        lemma = (entry.get("lemma") or "").strip().lower()
+        base = lemma[:-2] if lemma.endswith("se") and inf_re.match(lemma[:-2]) else lemma
+        if not inf_re.match(base):
+            skipped += 1
+            continue
+        lemmas.add(base)
+        if base != lemma:
+            aliases[lemma] = base
+    print(f"  Artist master ({master_file.parent.name}): {len(lemmas)} verb infinitives, "
+          f"{len(aliases)} reflexive aliases, {skipped} unconjugatable lemmas skipped")
+    return lemmas, aliases
 
 
 def load_jehle_translations(path: Path) -> dict:
@@ -318,6 +360,9 @@ def main():
                         help="Target language (default: spanish). "
                              "Conjugation tables are only supported for Spanish; "
                              "other languages exit cleanly with no output written.")
+    parser.add_argument("--no-artist-lemmas", action="store_true",
+                        help="Skip pulling verb lemmas from the artist-mode "
+                             "master vocabulary (Artists/{lang}/vocabulary_master.json)")
     args = parser.parse_args()
 
     if args.language.lower() != "spanish":
@@ -329,6 +374,13 @@ def main():
         verb_lemmas = extract_verb_lemmas_from_senses(senses_file)
     else:
         verb_lemmas = extract_verb_lemmas_from_inventory()
+
+    reflexive_aliases = {}
+    if not args.no_artist_lemmas:
+        artist_lemmas, reflexive_aliases = extract_verb_lemmas_from_artist_master(args.language)
+        new = artist_lemmas - verb_lemmas
+        print(f"  +{len(new)} verb lemmas from artist master not in the sense menu")
+        verb_lemmas |= artist_lemmas
 
     # Load Jehle translations
     print("Loading Jehle translations...")
@@ -371,6 +423,12 @@ def main():
                        and e["tense"] == info["tense"] and e["person"] == info["person"]
                        for e in existing):
                 reverse[form].append(info)
+
+    # Reflexive aliases: key the base paradigm under the reflexive lemma too
+    # (front-end looks up conjugations by the master lemma exactly).
+    for alias, base in reflexive_aliases.items():
+        if base in conjugations and alias not in conjugations:
+            conjugations[alias] = conjugations[base]
 
     # Write outputs
     print(f"\nWriting {CONJUGATIONS_FILE}...")
