@@ -314,7 +314,15 @@ def main():
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
                         default="spanishdict",
                         help="Sense dictionary source to inspect for verb entries")
+    parser.add_argument("--language", default="spanish",
+                        help="Target language (default: spanish). "
+                             "Conjugation tables are only supported for Spanish; "
+                             "other languages exit cleanly with no output written.")
     args = parser.parse_args()
+
+    if args.language.lower() != "spanish":
+        print(f"step_5b: conjugation tables not supported for '{args.language}' (verbecc is Spanish-only). Skipping.")
+        sys.exit(0)
 
     senses_file = resolve_senses_file(args.sense_source)
     if senses_file is not None:

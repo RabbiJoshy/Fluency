@@ -2,22 +2,23 @@
 """
 step_5d_build_mwes.py — Extract multi-word expressions from Wiktionary derived terms.
 
-Scans kaikki-spanish.jsonl.gz for the `derived` field on word entries and
+Scans the kaikki Wiktionary JSONL for the `derived` field on word entries and
 collects multi-word items, attaching each phrase to its Wiktionary parent word.
 Also collects standalone pos="phrase"/pos="prep_phrase" entries, which get
 reverse-indexed to their content words in the inventory.
 
 Usage:
-    python3 pipeline/step_5d_build_mwes.py
+    python3 pipeline/step_5d_build_mwes.py [--language spanish|french|dutch]
 
 Inputs:
-    Data/Spanish/layers/word_inventory.json
-    Data/Spanish/Senses/wiktionary/kaikki-spanish.jsonl.gz
+    Data/{Lang}/layers/word_inventory.json
+    Data/{Lang}/Senses/wiktionary/kaikki-{lang}.jsonl.gz
 
 Output:
-    Data/Spanish/layers/mwe_phrases.json  — {word: [{expression, translation?, corpus_freq?}]}
+    Data/{Lang}/layers/mwe_phrases.json  — {word: [{expression, translation?, corpus_freq?}]}
 """
 
+import argparse
 import gzip
 import json
 import re
@@ -37,6 +38,15 @@ STEP_VERSION = 1
 STEP_VERSION_NOTES = {
     1: "wiktionary MWE extraction + aho-corasick subs counting, 10/word cap",
 }
+
+# Per-language config: iso2 = OpenSubtitles suffix, wikt_name = kaikki filename stem
+_LANG_CONFIGS = {
+    "spanish": {"iso2": "es", "wikt_name": "spanish",  "data_dir": "Spanish"},
+    "french":  {"iso2": "fr", "wikt_name": "french",   "data_dir": "French"},
+    "dutch":   {"iso2": "nl", "wikt_name": "dutch",    "data_dir": "Dutch"},
+}
+
+# Defaults (Spanish) — overridden at runtime by --language
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
 WIKT_FILE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "wiktionary" / "kaikki-spanish.jsonl.gz"
 OPENSUBS_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "opensubtitles" / "OpenSubtitles.en-es.es"
@@ -65,6 +75,29 @@ def tokenize_phrase(phrase: str) -> list[str]:
 
 
 def main():
+    global INVENTORY_FILE, WIKT_FILE, OPENSUBS_FILE, OUTPUT_FILE
+
+    parser = argparse.ArgumentParser(description="Build MWE phrase layer from Wiktionary")
+    parser.add_argument("--language", default="spanish",
+                        choices=list(_LANG_CONFIGS),
+                        help="Target language (default: spanish)")
+    args = parser.parse_args()
+
+    cfg = _LANG_CONFIGS[args.language]
+    data_dir = PROJECT_ROOT / "Data" / cfg["data_dir"]
+    INVENTORY_FILE = data_dir / "layers" / "word_inventory.json"
+    WIKT_FILE = data_dir / "Senses" / "wiktionary" / f"kaikki-{cfg['wikt_name']}.jsonl.gz"
+    OPENSUBS_FILE = (data_dir / "corpora" / "opensubtitles" /
+                     f"OpenSubtitles.en-{cfg['iso2']}.{cfg['iso2']}")
+    OUTPUT_FILE = data_dir / "layers" / "mwe_phrases.json"
+
+    if not WIKT_FILE.exists():
+        print(f"ERROR: Wiktionary file not found: {WIKT_FILE}")
+        sys.exit(1)
+    if not OPENSUBS_FILE.exists():
+        print(f"WARNING: OpenSubtitles file not found: {OPENSUBS_FILE}")
+        print("  Corpus frequency counts will be skipped; all MWEs retained.")
+
     # Load inventory
     print("Loading word inventory...")
     with open(INVENTORY_FILE, encoding="utf-8") as f:
@@ -207,44 +240,47 @@ def main():
 
     # --- Count corpus frequency via Aho-Corasick on OpenSubtitles sample ---
     total_before = sum(len(v) for v in mwe_by_word.values())
-    print(f"\nCounting corpus frequency ({OPENSUBS_FILE.name}, 1/{SAMPLE_STRIDE} sample)...")
     all_expressions = {}  # expression_lower -> list of (parent_word, idx) pointers
     for parent_w, mwes in mwe_by_word.items():
         for i, m in enumerate(mwes):
             key = m["expression"].lower()
             all_expressions.setdefault(key, []).append((parent_w, i))
 
-    # Collect parent words that need counting (only those with MWEs)
     parent_words = set(mwe_by_word.keys())
-
-    A = ahocorasick.Automaton()
-    for expr in all_expressions:
-        A.add_word(expr, expr)
-    A.make_automaton()
-
     expr_counts = {e: 0 for e in all_expressions}
     word_counts = {w: 0 for w in parent_words}
-    parent_word_set = parent_words
-    t0 = time.time()
-    line_count = 0
-    with open(OPENSUBS_FILE, "r", encoding="utf-8", errors="replace") as f:
-        for i, line in enumerate(f):
-            if i % SAMPLE_STRIDE != 0:
-                continue
-            line_count += 1
-            low = line.lower()
-            # Count MWE expressions via Aho-Corasick
-            for _, expr in A.iter(low):
-                expr_counts[expr] += 1
-            # Count parent words — iterate the smaller set (line tokens)
-            for tok in low.split():
-                if tok in parent_word_set:
-                    word_counts[tok] += 1
 
-    elapsed = time.time() - t0
-    nonzero = sum(1 for c in expr_counts.values() if c > 0)
-    print(f"  Scanned {line_count:,} lines in {elapsed:.1f}s")
-    print(f"  Expressions with >0 hits: {nonzero}/{len(all_expressions)}")
+    if not OPENSUBS_FILE.exists():
+        print(f"\nSkipping corpus frequency (OpenSubtitles not found: {OPENSUBS_FILE.name})")
+        print("  All MWEs retained; ratio filter will not apply.")
+    else:
+        print(f"\nCounting corpus frequency ({OPENSUBS_FILE.name}, 1/{SAMPLE_STRIDE} sample)...")
+        A = ahocorasick.Automaton()
+        for expr in all_expressions:
+            A.add_word(expr, expr)
+        A.make_automaton()
+
+        parent_word_set = parent_words
+        t0 = time.time()
+        line_count = 0
+        with open(OPENSUBS_FILE, "r", encoding="utf-8", errors="replace") as f:
+            for i, line in enumerate(f):
+                if i % SAMPLE_STRIDE != 0:
+                    continue
+                line_count += 1
+                low = line.lower()
+                # Count MWE expressions via Aho-Corasick
+                for _, expr in A.iter(low):
+                    expr_counts[expr] += 1
+                # Count parent words — iterate the smaller set (line tokens)
+                for tok in low.split():
+                    if tok in parent_word_set:
+                        word_counts[tok] += 1
+
+        elapsed = time.time() - t0
+        nonzero = sum(1 for c in expr_counts.values() if c > 0)
+        print(f"  Scanned {line_count:,} lines in {elapsed:.1f}s")
+        print(f"  Expressions with >0 hits: {nonzero}/{len(all_expressions)}")
 
     # Attach corpus_freq to each MWE entry
     for expr, pointers in all_expressions.items():
@@ -320,8 +356,8 @@ def main():
     print(f"  Without translation:   {total_after - translated:>6}")
 
     # Sample output — show top MWEs by corpus frequency
-    print("\nSample entries:")
-    sample_words = {"verdad", "mano", "hacer", "dar", "ojo", "cuenta"}
+    print("\nSample entries (words with most MWEs):")
+    sample_words = set(sorted(mwe_by_word, key=lambda w: -len(mwe_by_word[w]))[:6])
     for entry in inventory:
         w = entry["word"]
         if w in sample_words and w in mwe_by_word:

@@ -824,7 +824,15 @@ def main():
             print(f"\n--word mode: {OUTPUT_FILE} not found; will create with "
                   f"only the {len(target_words)} targeted entries")
 
+    n_inventory = len(inventory)
+    match_t0 = time.time()
     for i, entry in enumerate(inventory):
+        if i > 0 and i % 500 == 0:
+            elapsed = time.time() - match_t0
+            eta = elapsed / i * (n_inventory - i)
+            print(f"\r  {i}/{n_inventory} words matched "
+                  f"({elapsed:.0f}s elapsed, ~{eta:.0f}s remaining)...", end="", flush=True)
+
         word_lower = entry["word"].lower()
 
         if target_words is not None and word_lower not in target_words:
