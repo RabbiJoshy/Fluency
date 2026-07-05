@@ -133,8 +133,8 @@ OVERRIDES = [
                    1: {"translation": "conspiracy"}},
     },
     {
-        "key": "d53676", "word": "squirteé", "lemma": None, "flags": {},
-        # Spanish-language gap-fill gloss.
+        "key": "d53676", "word": "squirteé", "lemma": "squirtear", "flags": {},
+        # Spanish-language gap-fill gloss; lemma was the English stem "squirt".
         "senses": {0: {"translation": "to squirt", "context": ""}},
     },
     {
@@ -275,6 +275,37 @@ OVERRIDES = [
      # "to' los récords bate" = batir; (the blunt NOUN sense is separate).
      "senses": {0: {"translation": "to break (a record), to beat",
                     "context": "batir"}}},
+    # --- 2026-07-05 verb-lemma repairs: surface forms (or English stems)
+    # stored as the lemma, so conjugation/morphology lookups all missed.
+    # Lemma-only edits (in place); glosses were already correct. ---
+    {"key": "bfcaa5", "word": "tar", "lemma": "estar", "flags": {}, "senses": {}},
+    {"key": "0d5c7c", "word": "tas", "lemma": "estar", "flags": {}, "senses": {}},
+    {"key": "1c1083", "word": "vo", "lemma": "ir", "flags": {}, "senses": {}},
+    {"key": "aaa994", "word": "perriabas", "lemma": "perrear", "flags": {}, "senses": {}},
+    {"key": "cb8838", "word": "joseando", "lemma": "josear", "flags": {}, "senses": {}},
+    {"key": "29be5b", "word": "enchuló", "lemma": "enchular", "flags": {}, "senses": {}},
+    {"key": "4ba1f9", "word": "fronteando", "lemma": "frontear", "flags": {}, "senses": {}},
+    {"key": "77a518", "word": "frontearme", "lemma": "frontear", "flags": {}, "senses": {}},
+    {"key": "6f372f", "word": "fronteándome", "lemma": "frontear", "flags": {}, "senses": {}},
+    {"key": "517c94", "word": "frontean", "lemma": "frontear", "flags": {}, "senses": {}},
+    {"key": "59b9c0", "word": "frontee", "lemma": "frontear", "flags": {}, "senses": {}},
+    {"key": "9691f9", "word": "frontearle", "lemma": "frontear", "flags": {}, "senses": {}},
+    {"key": "3cf468", "word": "juqueó", "lemma": "juquear", "flags": {}, "senses": {}},
+    {"key": "538cf5", "word": "cachamos", "lemma": "cachar", "flags": {}, "senses": {}},
+    {"key": "8174f1", "word": "fantasmeas", "lemma": "fantasmear", "flags": {}, "senses": {}},
+    {"key": "d4768a", "word": "descontrolo", "lemma": "descontrolar", "flags": {}, "senses": {}},
+    {"key": "4ebcac", "word": "posteados", "lemma": "postear", "flags": {}, "senses": {}},
+    {"key": "cc6c98", "word": "wheeliando", "lemma": "wheeliar", "flags": {}, "senses": {}},
+    {"key": "ad1ff6", "word": "zumba", "lemma": "zumbar", "flags": {}, "senses": {}},
+    {"key": "0f69d2", "word": "dárselo", "lemma": "dar", "flags": {}, "senses": {}},
+    # Non-Spanish code-switch lines (French feature + Italian) — is_english
+    # is the unconditional hide flag for foreign-language words.
+    {"key": "ade610", "word": "jouais", "lemma": None,
+     "flags": {"is_english": True}, "senses": {}},
+    {"key": "b4a3fe", "word": "caressais", "lemma": None,
+     "flags": {"is_english": True}, "senses": {}},
+    {"key": "40242f", "word": "capisci", "lemma": None,
+     "flags": {"is_english": True}, "senses": {}},
     # Round 2 (found by the new code_switch_verbatim bench detector).
     {
         "key": "53c40c", "word": "cuki", "lemma": "cuki", "flags": {},
@@ -408,6 +439,9 @@ LOANWORD_STAMPS = [
     ("4fdfde", "gangster"),
     ("ad642f", "boujee"),    # Young Miko; gloss was reverse-direction "fresa"
     ("4a18df", "let's"),     # "let's go" — pure English contraction
+    ("1aff73", "do"),        # "what you can do with my body"
+    ("89ceb1", "switche"),   # "nos vamos al switche" — English switch
+    ("1e1175", "rulin"),     # "nos fuimos rulin" — English rulin'/rolling
 ]
 
 # Proper nouns the corpus detector missed — found by the mid-line-caps
@@ -453,6 +487,8 @@ PROPERNOUN_STAMPS = [
     ("76fd28", "wasón"),      # proper name per its own gloss
     ("a5e41d", "jota"),       # Jota Rosa (producer tag), Young Miko
     ("2f1cc0", "barea"),      # José Juan Barea (PR NBA player)
+    ("18ef23", "tatís"),      # Fernando Tatís Jr. (glossed "to walk so many"!)
+    ("f38ee0", "play"),       # "jugando Play" = PlayStation
 ]
 
 # Junk tokens: ad-libs, stutters, bare prefixes and single letters that teach
@@ -466,6 +502,8 @@ NOISE_STAMPS = [
     ("ef69e1", "dí"),      # stutter "Dí-Díselo" captured as prefix "di-"
     ("7d6209", "neo"),     # bare prefix card ("neo-")
     ("d900bb", "ao'"),     # line-echo ad-lib ("tirao'-ao'-ao'"), Young Miko
+    ("03651b", "lego"),    # "Lego, lego, lego" ad-lib
+    ("87a68a", "chi"),     # truncated fragment ("me la chi-")
 ]
 
 

@@ -167,7 +167,9 @@ def extract_verb_lemmas_from_artist_master(language: str) -> tuple[set, dict]:
         return set(), {}
     with open(master_file, encoding="utf-8") as f:
         master = json.load(f)
-    inf_re = re.compile(r"^[a-záéíóúñü]{2,}(?:ar|er|ir|ír)$")
+    # NB: stem may be empty/one char — "ir", "ser", "dar", "ver" are valid
+    # infinitives; a {2,} stem quantifier here silently dropped them all.
+    inf_re = re.compile(r"^[a-záéíóúñü]*(?:ar|er|ir|ír)$")
     lemmas, aliases = set(), {}
     skipped = 0
     for entry in master.values():
@@ -176,7 +178,7 @@ def extract_verb_lemmas_from_artist_master(language: str) -> tuple[set, dict]:
             continue
         lemma = (entry.get("lemma") or "").strip().lower()
         base = lemma[:-2] if lemma.endswith("se") and inf_re.match(lemma[:-2]) else lemma
-        if not inf_re.match(base):
+        if len(base) < 2 or not inf_re.match(base):
             skipped += 1
             continue
         lemmas.add(base)
