@@ -86,6 +86,128 @@ OVERRIDES = [
         "flags": {"is_noise": True},
         "senses": {},
     },
+    # --- 2026-07-05 audit: verbatim-EN + mid-line-caps detector triage ---
+    {
+        "key": "3f1a0e", "word": "tán", "lemma": "estar", "flags": {},
+        # "'tán" = apheresis of "están" (all 9 corpus lines), but SpanishDict
+        # resolved the ENGLISH headword "tan" -> 9 Spanish-gloss senses.
+        # Rewrite sense 0 to the real meaning and blank the other 8; the
+        # front-end drops empty-translation meanings AFTER the positional
+        # join (js/vocab.js empty-meaning guard), so blanking is index-safe.
+        # Blanked senses also get pos=X so they read as placeholders (the
+        # bench's blank_rows check ignores X; the front-end drops them on
+        # translation alone either way).
+        "senses": dict(
+            [(0, {"pos": "VERB", "translation": "are (short for ‘están’)",
+                  "context": "colloquial contraction"})] +
+            [(i, {"pos": "X", "translation": "", "context": ""})
+             for i in range(1, 9)]
+        ),
+    },
+    {
+        "key": "4c4d59", "word": "media", "lemma": "medio", "flags": {},
+        # "media virá', media asfixiá'" = half/kinda, not "communication outlets".
+        "senses": {0: {"pos": "ADJ", "translation": "half",
+                       "context": "before adjectives: media loca = half crazy"}},
+    },
+    {
+        "key": "95c738", "word": "manín", "lemma": "manín", "flags": {},
+        # PR slang vocative (Dominican origin), not the peanut (maní).
+        "senses": {0: {"translation": "bro, buddy (slang)", "context": ""}},
+    },
+    {
+        "key": "a6fac9", "word": "mera", "lemma": None, "flags": {},
+        # "¡Mera, Miko!" — PR attention-getter, not "boss".
+        "senses": {0: {"translation": "hey!, look! (attention-getter)", "context": ""}},
+    },
+    {
+        "key": "8c937e", "word": "capos", "lemma": None, "flags": {},
+        # "Conozco los capo'" = drug bosses; "ceja" is the guitar-capo sense
+        # from the reverse-direction (EN headword) SpanishDict lookup.
+        "senses": {0: {"translation": "kingpin, boss", "context": "drug capo"}},
+    },
+    {
+        "key": "359d36", "word": "complot", "lemma": None, "flags": {},
+        # Reverse-direction glosses (complot/conspiración are Spanish).
+        "senses": {0: {"translation": "plot, conspiracy"},
+                   1: {"translation": "conspiracy"}},
+    },
+    {
+        "key": "d53676", "word": "squirteé", "lemma": None, "flags": {},
+        # Spanish-language gap-fill gloss.
+        "senses": {0: {"translation": "to squirt", "context": ""}},
+    },
+    {
+        "key": "3c1255", "word": "jeepeta", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "SUV, jeep", "context": "Caribbean slang"}},
+    },
+    {
+        "key": "383046", "word": "hippies", "lemma": "hippie", "flags": {},
+        "senses": {0: {"translation": "hippie", "context": ""}},
+    },
+    {
+        "key": "49fcf4", "word": "hijeputada", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "dirty move, low blow", "context": ""}},
+    },
+    {
+        "key": "844643", "word": "toa", "lemma": None, "flags": {},
+        # "Toa' solteras" = todas.
+        "senses": {0: {"translation": "all (short for ‘toda’)",
+                       "context": "colloquial"}},
+    },
+    {
+        "key": "548cb0", "word": "zeta", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "Z (slang for a car)", "context": ""}},
+    },
+    # Verbose gap-fill glosses shortened in place (single real sense each).
+    {
+        "key": "7dc675", "word": "dos", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "two"}},
+    },
+    {
+        "key": "feeeb2", "word": "champaña", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "champagne"}},
+    },
+    {
+        "key": "55303f", "word": "condones", "lemma": "condón", "flags": {},
+        "senses": {0: {"translation": "condom"}},
+    },
+    {
+        "key": "4881ae", "word": "mai", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "mom (slang)"}},
+    },
+    {
+        "key": "19132e", "word": "bb", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "baby (texting shorthand)"}},
+    },
+    {
+        "key": "492bf1", "word": "mambo", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "party, ruckus (slang)"}},
+    },
+    {
+        "key": "c5f16d", "word": "reggaetón", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "reggaeton"}},
+    },
+    {
+        "key": "c5b6fa", "word": "chalet", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "chalet, villa"}},
+    },
+    {
+        "key": "c1ae53", "word": "puertorro", "lemma": None, "flags": {},
+        "senses": {0: {"translation": "Puerto Rico / Puerto Rican (slang)"}},
+    },
+    # Round 2 (found by the new code_switch_verbatim bench detector).
+    {
+        "key": "53c40c", "word": "cuki", "lemma": "cuki", "flags": {},
+        # "esa es mi cuki" = cutie/cookie, not the guinea pig (cuy).
+        "senses": {0: {"translation": "cutie (term of endearment)", "context": ""}},
+    },
+    {
+        "key": "bb0e1c", "word": "trili", "lemma": "trili", "flags": {},
+        # PR slang ("un charro, un trili" = a scrub, a nobody); "trino" was a
+        # reverse-direction lookup of English "trill".
+        "senses": {0: {"translation": "nobody, wack person (slang)", "context": ""}},
+    },
 ]
 
 # Single-sense transparent cognates: only sense glosses to the Spanish word
@@ -134,6 +256,22 @@ COGNATE_STAMPS = [
     ("bad194", "era"),    # NOUN era|era only; VERB era|ser ("to be") untouched
     ("b936fa", "ex"),
     ("4c30db", "gas"),
+    # 2026-07-05 audit: single-real-sense transparent cognates (any extra
+    # sense is a blank POS=X placeholder the front-end already drops).
+    ("29631d", "puma"),
+    ("7e6a8a", "panda"),
+    ("4fcc7c", "viral"),
+    ("3eb0c6", "saga"),
+    ("4e013c", "oasis"),
+    ("f51897", "ángel"),
+    ("591399", "chef"),
+    ("bd6fcd", "record"),
+    ("f5f42a", "rifles"),
+    ("5cd309", "pelvis"),
+    ("8b6095", "boutique"),
+    ("38dc7a", "mariachi"),
+    ("24f4f8", "parental"),   # "Parental Advisory"
+    ("c5f16d", "reggaetón"),  # gloss shortened to "reggaeton" above -> transparent
 ]
 
 # English code-switches the Wiktionary-derived english_loanwords.json layer
@@ -151,6 +289,102 @@ LOANWORD_STAMPS = [
     ("9648af", "polaroid"),
     ("ab4169", "sexy"),
     ("39f5f1", "squad"),
+    # 2026-07-05 audit: found by the verbatim-in-EN detector (word appears
+    # unchanged in the Genius English translation of ALL its lyric lines).
+    ("51da55", "so"),        # "so no me frontee'" — English conjunction
+    ("99931a", "go"),
+    ("6b4e32", "too"),       # "it's too late"
+    ("64488e", "yes"),
+    ("173660", "game"),      # Game Boy / game over
+    ("c25d9b", "time"),      # one time / all time
+    ("c9867f", "body"),
+    ("c699f3", "tune"),      # Auto-Tune
+    ("c0280c", "royal"),     # royal rumble / royal blue
+    ("76034e", "cash"),
+    ("2f1f33", "tag"),       # tag team
+    ("5c1136", "ski"),       # jet ski / ski mask
+    ("b6f2c9", "blackjack"),
+    ("2b486d", "planking"),
+    ("fc7e57", "speaker"),
+    ("44b09d", "stripper"),
+    ("3f5623", "closet"),
+    ("1a7731", "cherry"),
+    ("f50c67", "selfie"),
+    ("a9d184", "gangsters"),
+    ("272fb5", "boys"),      # Pep Boys / Carbon Fiber Boys
+    ("5f0ca8", "shots"),
+    ("5554cc", "viking"),
+    ("1e4c81", "parking"),
+    ("796c0e", "buffet"),
+    ("9a0d59", "bumper"),
+    ("cf5f27", "full"),      # PR "estar full" — still the English word
+    ("958218", "retros"),    # retro Jordans
+    ("372a99", "rap"),
+    ("b9fc38", "hot"),       # hot pants / Hot Topic
+    ("00deb3", "gangalee"),  # dancehall borrowing
+    ("8668fa", "fan"),       # Young Miko
+    ("a81a50", "fans"),
+    ("5c3139", "lowkey"),
+    ("810d8a", "strikes"),   # baseball
+    ("4fdfde", "gangster"),
+    ("ad642f", "boujee"),    # Young Miko; gloss was reverse-direction "fresa"
+]
+
+# Proper nouns the corpus detector missed — found by the mid-line-caps
+# detector (word is ALWAYS capitalized mid-sentence in its lyric lines) and
+# hand-verified against the examples. Most got dictionary-artifact glosses
+# (rob="syrup" for Rob Van Dam, vegas="meadow" for Las Vegas). Stamp
+# is_propernoun -> hidden by the default-on proper-noun filter. (key, word).
+PROPERNOUN_STAMPS = [
+    ("9d2e27", "rob"),        # Rob Van Dam ("syrup")
+    ("579bff", "lee"),        # Bruce Lee ("read")
+    ("7453f7", "carmen"),     # Virgen del Carmen ("poem")
+    ("e82db5", "montana"),    # Tony Montana / Montana The Producer ("mountain")
+    ("aae07e", "vegas"),      # Las Vegas ("meadow")
+    ("8e6bf9", "coronas"),    # Corona beer
+    ("57efd1", "aires"),      # Buenos Aires ("air")
+    ("d49313", "central"),    # Central Park ("main")
+    ("26cf81", "triple"),     # Triple H
+    ("d34750", "union"),      # The Union
+    ("4e023e", "formula"),    # Formula 1
+    ("91cbe0", "urus"),       # Lamborghini Urus
+    ("d1bcdc", "mini"),       # Mini Cooper
+    ("81144f", "usa"),        # USA (glossed "EE. UU."; usar has 10 own cards)
+    ("b33915", "sprinter"),   # Mercedes Sprinter
+    ("2100f3", "choliseo"),   # El Choliseo (PR venue)
+    ("6f77b0", "gta"),        # Grand Theft Auto
+    ("205b77", "ferro"),      # "el Ferro" = Ferrari ("anchor")
+    ("203998", "tic"),        # Tic Tacs / "Tic Toc" (brand refs)
+    ("d7a473", "caicos"),     # Turks and Caicos ("guys", lemma=chicos!)
+    ("5d9dad", "ganda"),      # name in ad-lib ("to eat")
+    ("cd6ba1", "luían"),      # DJ Luian ("to polish")
+    ("d48473", "lary"),       # Lary Over (lemma=lazy, gloss="perezoso")
+    ("b40a91", "glizzy"),     # Glizzy = Glock nickname ("esplendoroso")
+    ("f33f9a", "murdaz"),     # Trap Murdaz ("scathing")
+    ("29eebb", "wayy"),       # Money Wayy
+    ("7f434c", "sinfo"),      # nickname Sinfo (lemma=sino, gloss="but")
+    ("593f69", "chapo"),      # El Chapo
+    ("828399", "jhay"),       # Jhay Cortez ("chick")
+    ("7727f3", "chacón"),     # surname ("Philippine lizard")
+    ("cae1e5", "cavaliers"),  # Cleveland Cavaliers ("caballero")
+    ("2e8786", "beatles"),    # The Beatles
+    ("e4b532", "snuka"),      # Jimmy Snuka
+    ("04964d", "guiru"),      # nickname
+    ("76fd28", "wasón"),      # proper name per its own gloss
+    ("a5e41d", "jota"),       # Jota Rosa (producer tag), Young Miko
+]
+
+# Junk tokens: ad-libs, stutters, bare prefixes and single letters that teach
+# nothing. Stamp is_noise -> hidden by the default-on noise filter. (key, word).
+NOISE_STAMPS = [
+    ("724438", "kariri"),  # ad-lib; Gemini gloss was a Spanish sentence
+    ("8d67ac", "nio"),     # "¡Nio!" ad-lib (glossed "nor")
+    ("e19087", "cheki"),   # "Cheki" = check-it ad-lib (lemma=cheli!)
+    ("e58aef", "l"),       # single letter
+    ("b551c9", "des"),     # bare prefix card ("de-", "un-", ...)
+    ("ef69e1", "dí"),      # stutter "Dí-Díselo" captured as prefix "di-"
+    ("7d6209", "neo"),     # bare prefix card ("neo-")
+    ("d900bb", "ao'"),     # line-echo ad-lib ("tirao'-ao'-ao'"), Young Miko
 ]
 
 
@@ -209,19 +443,25 @@ def main():
             entry["is_transparent_cognate"] = True
             changes += 1
 
-    for key, word in LOANWORD_STAMPS:
-        entry = m.get(key)
-        if entry is None:
-            print("SKIP %s (%s): key not in master" % (key, word))
-            continue
-        if entry.get("word") != word:
-            print("SKIP %s: expected word %r, found %r — not stamping"
-                  % (key, word, entry.get("word")))
-            continue
-        if entry.get("is_english_loanword") is not True:
-            print("  %-12s is_english_loanword -> True" % word)
-            entry["is_english_loanword"] = True
-            changes += 1
+    flag_stamp_lists = [
+        (LOANWORD_STAMPS, "is_english_loanword"),
+        (PROPERNOUN_STAMPS, "is_propernoun"),
+        (NOISE_STAMPS, "is_noise"),
+    ]
+    for stamps, flag in flag_stamp_lists:
+        for key, word in stamps:
+            entry = m.get(key)
+            if entry is None:
+                print("SKIP %s (%s): key not in master" % (key, word))
+                continue
+            if entry.get("word") != word:
+                print("SKIP %s: expected word %r, found %r — not stamping"
+                      % (key, word, entry.get("word")))
+                continue
+            if entry.get(flag) is not True:
+                print("  %-12s %s -> True" % (word, flag))
+                entry[flag] = True
+                changes += 1
 
     if changes == 0:
         print("No changes (master already patched).")

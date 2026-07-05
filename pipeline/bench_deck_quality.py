@@ -15,6 +15,12 @@ deck quality:
   - menu_bloat          : the same gloss repeated >= 4x across senses.
   - example_empty_en    : example rows with no English translation.
   - example_untranslated: example rows where english == spanish verbatim.
+  - code_switch_verbatim: the word appears unchanged in the Genius ENGLISH
+                          translation of every one of its lyric lines — a
+                          native translator left it in English, so it is
+                          almost certainly a code-switch/loanword leak.
+  - propernoun_caps     : the word is capitalized mid-sentence in every
+                          lyric line it appears in — proper noun leak.
 
 Read-only. Run from the project root:
 
@@ -42,6 +48,19 @@ ARTISTS = {
 }
 
 COGNATE_THRESHOLD = 0.85
+
+# Reviewed-and-kept words the two example-side detectors would otherwise
+# re-flag forever. code_switch_verbatim: Spanish words whose English
+# translation keeps the Spanish form (genre names, PR culture terms).
+# propernoun_caps: words that only appear in capitalized contexts (titles,
+# "Polo Norte") but are worth teaching. See docs/deck_quality_audit.md.
+DETECTOR_KNOWN_OK = {
+    "bomba", "plena", "salsa", "perreo", "mamacita", "chocolates",
+    "general", "norte", "torres", "reggaetón", "wey", "puertorro",
+    "dámelo", "bb", "capos", "triángulo", "melón",
+    "bombon", "manín", "mera", "rola",  # PR/MX slang the EN keeps verbatim
+    "trili", "cuki",                    # PR slang, glosses fixed in tool_8c
+}
 
 # Phrases that signal a definitional sentence rather than a gloss.
 CONNECT = re.compile(
@@ -191,12 +210,42 @@ def main():
             if n > 0 and e_empty == n:
                 cards_all_empty.append((artist, word, n))
 
+            # code_switch_verbatim + propernoun_caps (skip reviewed keepers,
+            # dedupe across artists via visible_ids bookkeeping done above).
+            if keynorm(word) in {keynorm(w) for w in DETECTOR_KNOWN_OK}:
+                continue
+            wkey = keynorm(word)
+            translated = [e for e in flat if norm(e.get("english"))]
+            if len(translated) >= 2 and all(
+                    wkey in set(re.findall(r"[a-z']+", keynorm(e["english"])))
+                    for e in translated):
+                defect["code_switch_verbatim"].append(
+                    (artist, word, len(translated),
+                     norm(real_senses(m[mid])[0].get("translation"))[:40]))
+            caps = mid_line = 0
+            for e in flat:
+                es_line = e.get("spanish") or ""
+                for match in re.finditer(r"\S+", es_line):
+                    tok = re.sub(r"[^\w'áéíóúñüÁÉÍÓÚÑÜ]", "", match.group(0))
+                    if keynorm(tok) != wkey or match.start() == 0:
+                        continue
+                    prev = es_line[:match.start()].rstrip()
+                    if prev and prev[-1] not in '.?!¿¡"«(':
+                        mid_line += 1
+                        if tok[0].isupper():
+                            caps += 1
+            if mid_line >= 2 and caps == mid_line:
+                defect["propernoun_caps"].append(
+                    (artist, word, mid_line,
+                     norm(real_senses(m[mid])[0].get("translation"))[:40]))
+
     # ---- report ----
     print("=" * 64)
     print("VISIBLE cards (front-end default filters): %d unique" % len(visible_ids))
     print("  per-artist (overlaps counted separately): %s" % dict(per_artist))
     print("=" * 64)
-    for cat in ["blank_rows", "verbose_def", "cognate_leak", "menu_bloat"]:
+    for cat in ["blank_rows", "verbose_def", "cognate_leak", "menu_bloat",
+                "code_switch_verbatim", "propernoun_caps"]:
         items = defect[cat]
         print("\n### %s : %d cards" % (cat, len(items)))
         for it in items[:20]:

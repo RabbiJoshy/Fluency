@@ -147,6 +147,52 @@ cognates `ex`/`gas`/`dúo` (len < 4, blanket guard skipped them).
 the primary sense): `charro, china, combi, complot, general, no, paca, polo,
 super, triple, union, use`.
 
+## FIX 4 (done, no rerun, 2026-07-05): two example-side detectors + 103-card sweep
+
+Two new bench detectors exploit data the deck already has:
+
+1. **`code_switch_verbatim`** — the word appears unchanged in the Genius
+   ENGLISH translation of every one of its lyric lines. A native translator
+   already decided it doesn't translate → English code-switch. Caught 37
+   loanwords the Wiktionary-derived layer missed (`so` ×10 — was glossed
+   "under"! — `go, too, yes, game, hot, time, body, tune, royal, cash, tag,
+   ski, full, boys, shots, lowkey, boujee, …`).
+2. **`propernoun_caps`** — the word is capitalized mid-sentence in every
+   lyric line. Caught 36 proper nouns with dictionary-artifact glosses:
+   `rob`="syrup" (Rob Van Dam), `lee`="read" (Bruce Lee), `carmen`="poem"
+   (Virgen del Carmen), `vegas`="meadow", `montana`="mountain",
+   `chacón`="Philippine lizard", `cavaliers`="caballero", `jhay`="chick",
+   `caicos`="guys" (lemma=chicos!), `luían`="to polish" (DJ Luian),
+   `lary`="perezoso" (lemma=lazy!, Lary Over), …
+
+Both are permanent bench categories now (steady-state 0; reviewed keepers
+like `bomba`, `plena`, `manín`, `rola` live in `DETECTOR_KNOWN_OK`).
+
+The sweep also fixed a distinct root-cause class: **reverse-direction
+SpanishDict glosses** — the scrape hit the ENGLISH headword page when a
+Spanish surface collides with an English word, producing *Spanish* "glosses"
+(`tán`→"bronceado" via English "tan", `usa`→"EE. UU.", `capos`→"ceja",
+`complot`→"conspiración", `trili`→"trino", `boujee`→"fresa"). Flagship fix:
+**`tán` = apheresis of `están`** (9 corpus lines) — sense 0 rewritten to
+"are (short for 'están')" / lemma `estar`, senses 1–8 blanked in place
+(translation="" + pos=X; the front-end drops empty-translation meanings
+AFTER the positional join, so blanking is index-safe — the new no-rerun
+"sense removal" pattern).
+
+All via `tool_8c_patch_master_curated.py` (now with `PROPERNOUN_STAMPS` and
+`NOISE_STAMPS` lists): 165 field changes, 103 cards, 0 sense-count changes
+(verified against a pre-patch snapshot). Bench after: visible 4309→4219,
+verbose_def 175→119, cognate_leak 0, code_switch_verbatim 0,
+propernoun_caps 0. Also gloss-fixed PR slang: `media`="half" (was "media"),
+`manín`="bro" (was "peanut"), `mera`="hey!" (was "boss"), `cuki`="cutie"
+(was "guinea pig", lemma=cuy), `toa`, `jeepeta`, `zeta`, `mai`, `dos`, etc.
+
+Known loose end: `toa`'s example list contains a leaked Genius *annotation*
+("Alude al caso del niño Rolando Salas Jusino…") rendered as a lyric line —
+example-side, not master-side; scan for more when next touching examples.
+
+---
+
 ## Durability of the master patches
 
 Applied via the idempotent tool **`pipeline/tool_8c_patch_master_curated.py`**
