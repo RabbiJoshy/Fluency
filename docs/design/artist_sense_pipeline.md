@@ -540,3 +540,35 @@ Run WSD bench: `.venv/bin/python3 pipeline/artist/bench/bench_wsd.py --model all
 - `Data/Spanish/corpora/wiktionary/kaikki-spanish.jsonl.gz` — English Wiktionary (primary), 118K lookup keys
 - `Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-raw.jsonl.gz` — Spanish Wiktionary (dialect supplement), raw wiktextract format, 850K entries, 1,113 words with Caribbean/PR/Cuba tags
 - `pipeline/artist/bench/.eswikt_translation_cache.json` — cached Spanish→English gloss translations from gap-fill runs
+
+## Phase 0 coverage report (2026-07-07)
+
+`pipeline/bench_wikt_sense_coverage.py` (read-only) diffs the Wiktionary
+sense layer against the LIVE visible Bad Bunny deck (3,443 cards, post all
+2026-07 curation). Results, which supersede the 2026-04 eval estimates:
+
+| Metric | Result |
+|---|---|
+| Wiktionary coverage (visible cards) | **96.1%** (was estimated 82%) |
+| Current primary gloss present in wikt menu | **88.7%** |
+| Menu size | mean 4.1 senses |
+| menu_bloat cases (gloss ×4+) | **24/24 dissolve** |
+| Gap-fill workload (no wikt senses) | 134 words — many are diminutives / lemma failures that derivation_map + lemma repair shrink further |
+| Curated tool_8c glosses wikt lacks | 15 (carry over via curated_translations) |
+
+Notable in the 373 primary-gloss misses (the review set for cutover):
+
+- **Current-deck bugs the port fixes for free**: `besos`="collision",
+  `tás`="bench block" (wikt: "apheretic form of estás" — redirects handle
+  apheresis!), `mía` lemma=miar "to miaow", plus reverse-direction leaks the
+  gap list caught (`sea`="mar", `vine`="vid", `mire`="envolver en").
+- **PR slang where the deck is right and wikt is generic**: `bicho` (wikt
+  "bug", deck "dick"), `mambo`, `piquete`, `acho`, `jevo`, `bellaquear`
+  family. These seed curated_translations + the "is a slang sense missing?"
+  gap-fill prompt.
+
+Decisions this locks in (per the 2026-07-06 planning discussion):
+migration = parallel master (`vocabulary_master_wikt.json` + parallel BB
+index), tool_8c entries become the regression suite, gap-fill v1 triggers
+only on "no wikt senses" (no confidence gating), flags stay with steps 4/7 +
+curations, classifier = Gemini Flash Lite.
