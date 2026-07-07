@@ -481,6 +481,36 @@ OVERRIDES = [
     {"key": "1a8f51", "word": "película", "lemma": None, "flags": {},
      # YM slang: "la película" = the scene / what's going on.
      "senses": {0: {"translation": "the scene, the situation", "context": "slang"}}},
+    # --- 2026-07-07 Phase-0 finds: reverse-direction SpanishDict lookups
+    # surfaced by bench_wikt_sense_coverage (English headword collisions:
+    # sea, vine, mire, tas; plus wrong-paradigm lemmas). Same in-place
+    # pattern as 'tán': rewrite sense 0, blank extras with pos=X. ---
+    {"key": "612672", "word": "sea", "lemma": "ser", "flags": {},
+     # "sea lo que sea" = subjunctive of ser, not English "sea"->mar.
+     "senses": {0: {"pos": "VERB", "translation": "be (subjunctive of ser)",
+                    "context": ""},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "6dc1f9", "word": "vine", "lemma": "venir", "flags": {},
+     # "vine" = I came (venir), not English "vine"->vid/enredadera/parra.
+     "senses": {0: {"pos": "VERB", "translation": "to come", "context": ""},
+                1: {"pos": "X", "translation": "", "context": ""},
+                2: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "247799", "word": "mire", "lemma": "mirar", "flags": {},
+     # mirar subjunctive, not English "mire"->envolver en.
+     "senses": {0: {"pos": "VERB", "translation": "to look at", "context": ""}}},
+    {"key": "427258", "word": "tás", "lemma": "estar", "flags": {},
+     # "'tás" = estás, not the jeweler's anvil (English "tas").
+     "senses": {0: {"pos": "VERB", "translation": "you are (’tás = estás)",
+                    "context": "colloquial contraction"}}},
+    {"key": "e07d71", "word": "mía", "lemma": "mío", "flags": {},
+     # possessive "mine", not miar "to miaow".
+     "senses": {0: {"pos": "PRON", "translation": "mine", "context": ""}}},
+    {"key": "794249", "word": "mía", "lemma": "mío", "flags": {}, "senses": {}},
+    {"key": "26e43b", "word": "besos", "lemma": None, "flags": {},
+     # "collision" artifact; sense 1 is already "kiss" — keep one.
+     "senses": {0: {"translation": "kiss", "context": ""},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "890250", "word": "besos", "lemma": "beso", "flags": {}, "senses": {}},
     # Interjections/onomatopoeia from the verbose_def sweep — hidden by the
     # default-on noise filter (is_interjection).
     {"key": "95f6c2", "word": "auch", "lemma": None,
