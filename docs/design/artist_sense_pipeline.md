@@ -572,3 +572,40 @@ migration = parallel master (`vocabulary_master_wikt.json` + parallel BB
 index), tool_8c entries become the regression suite, gap-fill v1 triggers
 only on "no wikt senses" (no confidence gating), flags stay with steps 4/7 +
 curations, classifier = Gemini Flash Lite.
+
+## Phase 1/2 runbook (2026-07-07)
+
+Plumbing landed: the whole run writes a PARALLEL deck — live files untouched.
+Layer files were already per-source (`sense_menu/wiktionary.json`, ...);
+step_8b gained `--output-suffix`, tool_8c gained `--master`/`--flags-only`,
+bench_deck_quality gained `--master`/`--suffix`. Master IDs are
+md5(word|lemma), so live and _wikt masters share IDs for unchanged lemmas.
+`ranking.json` is reused from the live run (not per-source) — same card
+order, cleaner comparison.
+
+Run in order from project root (only step 2 costs money, ~$0.50):
+
+    # 1. Wiktionary sense menu for BB (local; kaikki cache)
+    .venv/bin/python3 pipeline/step_5c_build_senses.py --sense-source wiktionary --artist-dir "Artists/spanish/Bad Bunny"
+
+    # 2. Flash Lite classification + gap-fill (writes sense_assignments/wiktionary.json)
+    GEMINI_API_KEY=... .venv/bin/python3 pipeline/artist/step_6a_assign_senses.py --artist-dir "Artists/spanish/Bad Bunny" --classifier gemini --sense-source wiktionary
+
+    # 3. Lemma mapping (local; auto-discovers the wiktionary source)
+    .venv/bin/python3 pipeline/artist/step_7a_map_senses_to_lemmas.py --artist-dir "Artists/spanish/Bad Bunny"
+
+    # 4. Assemble the parallel deck (BadBunnyvocabulary_wikt.* + vocabulary_master_wikt.json)
+    .venv/bin/python3 pipeline/artist/step_8b_assemble_artist_vocabulary.py --artist-dir "Artists/spanish/Bad Bunny" --sense-source wiktionary --output-suffix _wikt
+
+    # 5. Carry curated hide-flags + lemma repairs onto the parallel master
+    #    (--flags-only: positional sense edits would corrupt wikt menus)
+    .venv/bin/python3 pipeline/tool_8c_patch_master_curated.py --master Artists/spanish/vocabulary_master_wikt.json --flags-only
+
+    # 6. Score it with the same bench as the live deck
+    .venv/bin/python3 pipeline/bench_deck_quality.py --master Artists/spanish/vocabulary_master_wikt.json --suffix _wikt
+
+Notes: `flash-lite-wiktionary` priority is 50 = exactly the Spanish
+`--min-priority` default, so assignments survive the builder cut. Gap-fill
+fires only for menu-less words (the ~134-word Phase 0 gap list). Cutover
+decision happens by diffing bench output + spot-reading the parallel index;
+front-end never sees `_wikt` files until we rename them in.

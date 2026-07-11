@@ -1606,11 +1606,21 @@ def main():
                              "(Spanish: 50; unset languages: 0 = keep everything). "
                              "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
                              "50 (Gemini only).")
+    parser.add_argument("--output-suffix", type=str, default="",
+                        help="Append to output basenames (e.g. _wikt) so this run "
+                             "writes a PARALLEL deck — monolith/index/examples/clitic "
+                             "layer get the suffix, and --master-path defaults to "
+                             "vocabulary_master{suffix}.json. The live deck files are "
+                             "not touched. Used for the Wiktionary sense-port "
+                             "comparison (docs/design/artist_sense_pipeline.md).")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
     config = load_artist_config(artist_dir)
     vocab_path = os.path.join(artist_dir, config["vocabulary_file"])
+    if args.output_suffix:
+        stem, ext = os.path.splitext(vocab_path)
+        vocab_path = stem + args.output_suffix + ext
 
     # Resolve --min-priority default from language config (artist.json → language).
     # Spanish defaults to 50 (Gemini coverage); missing/unset languages default to 0.
@@ -1623,7 +1633,8 @@ def main():
         print("min-priority: %d (from --min-priority flag)" % args.min_priority)
 
     artists_dir = os.path.dirname(artist_dir)
-    master_path = args.master_path or os.path.join(artists_dir, "vocabulary_master.json")
+    master_path = args.master_path or os.path.join(
+        artists_dir, "vocabulary_master%s.json" % args.output_suffix)
     layers_dir = os.path.join(artist_dir, "data", "layers")
     curated_path = os.path.join(artist_dir, "data", "llm_analysis", "curated_translations.json")
 
@@ -1672,10 +1683,11 @@ def main():
                     info["base_id"] = base_id
                     id_migration[clitic_id] = base_id
                 clitic_by_id[clitic_id] = info
-        clitic_path = os.path.join(layers_dir, "clitic_forms.json")
+        clitic_path = os.path.join(layers_dir, "clitic_forms%s.json" % args.output_suffix)
         with open(clitic_path, "w", encoding="utf-8") as f:
             json.dump(clitic_by_id, f, ensure_ascii=False, indent=2)
-        migration_path = os.path.join(layers_dir, "archive", "clitic_id_migration.json")
+        migration_path = os.path.join(layers_dir, "archive",
+                                      "clitic_id_migration%s.json" % args.output_suffix)
         os.makedirs(os.path.dirname(migration_path), exist_ok=True)
         with open(migration_path, "w", encoding="utf-8") as f:
             json.dump(id_migration, f, ensure_ascii=False, indent=2)

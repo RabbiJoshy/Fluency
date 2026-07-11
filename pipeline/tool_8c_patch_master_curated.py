@@ -731,9 +731,23 @@ NOISE_STAMPS = [
 
 
 def main():
-    if not os.path.isfile(MASTER):
-        sys.exit("master not found: %s (run from project root)" % MASTER)
-    with open(MASTER, "r", encoding="utf-8") as f:
+    import argparse
+    ap = argparse.ArgumentParser(description="Apply curated no-rerun patches to a master")
+    ap.add_argument("--master", default=MASTER,
+                    help="Master file to patch (default: the live master). Point at "
+                         "vocabulary_master_wikt.json for the parallel Wiktionary deck.")
+    ap.add_argument("--flags-only", action="store_true",
+                    help="Apply only flag stamps (loanword/propernoun/noise/cognate/"
+                         "interjection) and lemma corrections — skip per-sense edits. "
+                         "REQUIRED for a parallel master whose sense menus come from a "
+                         "different source: sense indexes point at different senses "
+                         "there, so positional sense edits would corrupt them.")
+    args = ap.parse_args()
+    master_path = args.master
+
+    if not os.path.isfile(master_path):
+        sys.exit("master not found: %s (run from project root)" % master_path)
+    with open(master_path, "r", encoding="utf-8") as f:
         m = json.load(f)
 
     changes = 0
@@ -758,6 +772,8 @@ def main():
                 entry[flag] = val
                 changes += 1
 
+        if args.flags_only:
+            continue
         senses = entry.get("senses", [])
         for idx, fields in ov.get("senses", {}).items():
             if idx >= len(senses):
@@ -810,11 +826,11 @@ def main():
         return
 
     # Atomic write, matching the builder's dump format (single line, raw UTF-8).
-    tmp = MASTER + ".tmp"
+    tmp = master_path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(m, f, ensure_ascii=False)
-    os.replace(tmp, MASTER)
-    print("\nApplied %d field change(s) to %s" % (changes, MASTER))
+    os.replace(tmp, master_path)
+    print("\nApplied %d field change(s) to %s" % (changes, master_path))
 
 
 if __name__ == "__main__":

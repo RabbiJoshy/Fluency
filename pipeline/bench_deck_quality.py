@@ -130,14 +130,35 @@ def visible(mst, idx):
 
 
 def main():
-    m = json.load(open(MASTER))
+    import argparse
+    ap = argparse.ArgumentParser(description="Deck-quality diagnostics")
+    ap.add_argument("--master", default=MASTER,
+                    help="Master file (default: live). Use vocabulary_master_wikt.json "
+                         "with --suffix _wikt to score the parallel Wiktionary deck.")
+    ap.add_argument("--suffix", default="",
+                    help="Inserted into the per-artist index/examples basenames "
+                         "(e.g. _wikt -> BadBunnyvocabulary_wikt.index.json). Artists "
+                         "whose suffixed files don't exist are skipped.")
+    args = ap.parse_args()
+    artists = {}
+    for name, (ip, ep) in ARTISTS.items():
+        if args.suffix:
+            ip = ip.replace("vocabulary.", "vocabulary%s." % args.suffix)
+            ep = ep.replace("vocabulary.", "vocabulary%s." % args.suffix)
+            import os
+            if not os.path.isfile(ip):
+                print("(skipping %s — no %s)" % (name, ip))
+                continue
+        artists[name] = (ip, ep)
+
+    m = json.load(open(args.master))
 
     visible_ids = set()
     per_artist = collections.Counter()
     defect = collections.defaultdict(list)
 
     # Per-card structural defects (master-side).
-    for artist, (ipath, _epath) in ARTISTS.items():
+    for artist, (ipath, _epath) in artists.items():
         idx_list = json.load(open(ipath))
         for idx in idx_list:
             mid = idx.get("id")
@@ -189,7 +210,7 @@ def main():
     # Example-level defects (examples-side).
     ex_total = ex_empty = ex_untrans = 0
     cards_all_empty = []
-    for artist, (ipath, epath) in ARTISTS.items():
+    for artist, (ipath, epath) in artists.items():
         idx_list = json.load(open(ipath))
         ex = json.load(open(epath))
         vis = {idx["id"]: idx for idx in idx_list if visible(m.get(idx.get("id")), idx)}
