@@ -219,8 +219,15 @@ def classify_batch_gemini(words_data, api_key, gemini_model):
             print("    Raw: %s" % (response.text[:500] if response.text else "None"))
             return None
         except Exception as e:
+            msg = str(e)
+            if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+                # Non-retryable — abort the whole run instead of burning
+                # 5 exponential retries per batch on a bad key.
+                sys.exit("FATAL: Gemini API key not valid. The key comes from "
+                         "$GEMINI_API_KEY (an explicit env prefix on the command "
+                         "overrides the project .env — drop the prefix to use .env).")
             wait = 2 ** attempt * 5
-            print("    API error (attempt %d/5): %s" % (attempt + 1, str(e)[:100]))
+            print("    API error (attempt %d/5): %s" % (attempt + 1, msg[:100]))
             print("    Retrying in %ds..." % wait)
             time.sleep(wait)
     print("    FAILED after 5 retries")
@@ -379,8 +386,15 @@ def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
             print("    WARNING: gap-fill parse error")
             return None
         except Exception as e:
+            msg = str(e)
+            if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+                # Non-retryable — abort the whole run instead of burning
+                # 5 exponential retries per batch on a bad key.
+                sys.exit("FATAL: Gemini API key not valid. The key comes from "
+                         "$GEMINI_API_KEY (an explicit env prefix on the command "
+                         "overrides the project .env — drop the prefix to use .env).")
             wait = 2 ** attempt * 5
-            print("    API error (attempt %d/5): %s" % (attempt + 1, str(e)[:100]))
+            print("    API error (attempt %d/5): %s" % (attempt + 1, msg[:100]))
             print("    Retrying in %ds..." % wait)
             time.sleep(wait)
     print("    FAILED after 5 retries")
@@ -441,8 +455,15 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
             print("    WARNING: gap-fill batch parse error")
             return None
         except Exception as e:
+            msg = str(e)
+            if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+                # Non-retryable — abort the whole run instead of burning
+                # 5 exponential retries per batch on a bad key.
+                sys.exit("FATAL: Gemini API key not valid. The key comes from "
+                         "$GEMINI_API_KEY (an explicit env prefix on the command "
+                         "overrides the project .env — drop the prefix to use .env).")
             wait = 2 ** attempt * 5
-            print("    API error (attempt %d/5): %s" % (attempt + 1, str(e)[:100]))
+            print("    API error (attempt %d/5): %s" % (attempt + 1, msg[:100]))
             print("    Retrying in %ds..." % wait)
             time.sleep(wait)
     print("    FAILED after 5 retries")
