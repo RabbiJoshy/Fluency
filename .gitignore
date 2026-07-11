@@ -112,3 +112,4 @@ Data/Spanish/layers/morphology.json
 
 # Local pipeline backups (Data/{Lang}/layers/_backups/)
 _backups/
+.*.checkpoint.json
