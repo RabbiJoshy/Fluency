@@ -2,7 +2,7 @@
 title: Artist mode sense discovery and assignment
 status: implemented
 created: 2026-04-08
-updated: 2026-04-11
+updated: 2026-07-12
 ---
 
 # Artist Mode Sense Pipeline — Design Notes
@@ -609,3 +609,37 @@ Notes: `flash-lite-wiktionary` priority is 50 = exactly the Spanish
 fires only for menu-less words (the ~134-word Phase 0 gap list). Cutover
 decision happens by diffing bench output + spot-reading the parallel index;
 front-end never sees `_wikt` files until we rename them in.
+
+## Cutover prep results (2026-07-12)
+
+Round 1 of cutover prep landed (commit 21520dc). Wikt bench after all fixes:
+visible 4,011 / blank 0 / menu_bloat 0 / verbose_def 374 (mostly the bench's
+blunt `";" in gloss` rule — real verbosity is gone after step_8b's
+wiktionary-gated gloss normalization) / cognate 11 / code_switch 16 /
+propernoun 20 (every remainder is an explained keep or known leftover).
+Live deck byte-identical throughout.
+
+What landed: step_8b gloss normalization (assemble-time — sense IDs hash the
+gloss text, so menu edits would orphan assignments); shared
+curated_translations.json promoted from archive-fallback to real primary
+(+79 mode=artist entries incl. bicho=dick); per-artist curated file for BB
+name-references (Calderón, Escobar, Tony...); 50 flag stamps carried from
+live into tool_8c; DETECTOR_KNOWN_OK +46; new tool_8d turns the detectors
+into a review-sheet step (first review: 194 candidates, verdicts stored in
+BB data/reports/); 3 orphaned sense-IDs (tanque/placer/seco) re-queued via
+step_6c --word --sense-menu-file --method-name flash-lite-wiktionary (NB:
+with --sense-menu-file the method default silently becomes
+spanishdict-flash-lite — always pass --method-name).
+
+Go/no-go diff vs live (word-level, visible cards): live 3,419 / wikt 4,000 /
+shared 3,141; 859 new words on wikt (agua, abuelo, afuera-class recoveries),
+278 live words lost on wikt (unexplained — pre-cutover blocker), 968 shared
+words with different lemmas. Top-500 gloss diff: 33% identical; changes are
+mostly neutral-or-better (que 'to'→'that', nadie 'anybody'→'no one') but
+with scattered catastrophic sense picks: a→'bishop', gusta→'to taste',
+cabrón→'billy goat', vamos→'to go'. Verdict: NO-GO until (1) top-500
+changed glosses reviewed via a tool_8d-style sheet, (2) the 278 lost words
+are explained/recovered, (3) multi-sense curated leftovers decided
+(don/san/mercedes/capea). Known small deltas accepted: gas/químico index
+cognate_score overrides master stamp; reggaetón/cuki master-merge drops
+pos-X senses; placer shows pos VERB with curated noun gloss.
