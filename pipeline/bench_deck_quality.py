@@ -60,6 +60,15 @@ DETECTOR_KNOWN_OK = {
     "dámelo", "bb", "capos", "triángulo", "melón",
     "bombon", "manín", "mera", "rola",  # PR/MX slang the EN keeps verbatim
     "trili", "cuki",                    # PR slang, glosses fixed in tool_8c
+    # 2026-07-12 wikt-deck audit: deck_quality_candidates_wikt.json review —
+    # hand-verified keeps (real vocab worth teaching despite tripping the
+    # code_switch_verbatim / propernoun_caps detectors).
+    "alfa", "almirante", "angular", "auto", "barbie", "beno", "bu", "caribe",
+    "climax", "foke", "g", "gaga", "gana", "geniuz", "gps", "gringos",
+    "hoodie", "jacuzzi", "javish", "kaponi", "kronix", "led", "logo", "lysi",
+    "maravilla", "marash", "mega", "mr", "nio", "ousi", "pichyboyz", "pin",
+    "piqué", "puerto", "quiles", "retro", "rosselló", "tito", "tv", "u",
+    "vander", "whatsapp", "wisin", "yankee", "yeezy", "zorro",
 }
 
 # Phrases that signal a definitional sentence rather than a gloss.
@@ -105,6 +114,99 @@ def real_senses(mst):
     with no translation, not just POS=X). A card with no real sense is hidden.
     """
     return [s for s in mst.get("senses", []) if norm(s.get("translation"))]
+
+
+# ---------------------------------------------------------------------------
+# Detectors — one function per defect class, module-level so other scripts
+# (e.g. tool_8d_flag_deck_quality_candidates.py) can import and reuse them
+# instead of re-implementing the sweep logic. Each detector takes the same
+# per-card data `main()` already has in hand and returns either None (no
+# defect) or the minimal evidence tuple; callers assemble the final
+# (artist, word, ...) report row. Pulled out of `main()` verbatim — see the
+# call sites below for confirmation the appended tuples are unchanged.
+# ---------------------------------------------------------------------------
+
+def detect_blank_rows(all_senses):
+    """Empty-translation senses (non-X pos) on an otherwise-visible card.
+    Returns the list of blank senses, or None."""
+    blanks = [s for s in all_senses if not norm(s.get("translation"))
+              and not (s.get("pos") == "X")]
+    return blanks or None
+
+
+def detect_verbose_def(senses):
+    """First sentence-style (definitional) gloss. Returns (pos, text[:80])
+    or None."""
+    for s in senses:
+        t = norm(s.get("translation"))
+        if not t:
+            continue
+        nw = len(t.split())
+        if nw > 7 or ";" in t or t.endswith(".") or (nw >= 3 and CONNECT.search(t)):
+            return (s.get("pos"), t[:80])
+    return None
+
+
+def detect_cognate_leak(word, senses):
+    """Single sense whose gloss == the Spanish word (accent-insensitive).
+    Skips PRON: a pronoun glossing to itself (me->"me") is a correct
+    translation, not a cognate that slipped the net. Returns the gloss
+    string, or None."""
+    if len(senses) == 1 and senses[0].get("pos") != "PRON":
+        t = norm(senses[0].get("translation"))
+        if t and keynorm(t) == keynorm(word):
+            return t
+    return None
+
+
+def detect_menu_bloat(senses):
+    """One gloss repeated >= 4x across a card's senses. Returns (gloss, count)
+    or None."""
+    gl = collections.Counter(norm(s.get("translation")).lower()
+                             for s in senses if norm(s.get("translation")))
+    for g, c in gl.items():
+        if c >= 4:
+            return (g, c)
+    return None
+
+
+def detect_code_switch_verbatim(word, flat_examples):
+    """The word appears unchanged in the Genius ENGLISH translation of every
+    one of its (translated) lyric lines — a native translator left it in
+    English, so it's almost certainly a code-switch/loanword leak. Returns
+    the list of translated example dicts (evidence), or None. Caller is
+    responsible for the DETECTOR_KNOWN_OK skip."""
+    wkey = keynorm(word)
+    translated = [e for e in flat_examples if norm(e.get("english"))]
+    if len(translated) >= 2 and all(
+            wkey in set(re.findall(r"[a-z']+", keynorm(e["english"])))
+            for e in translated):
+        return translated
+    return None
+
+
+def detect_propernoun_caps(word, flat_examples):
+    """The word is capitalized in every mid-sentence lyric occurrence —
+    proper-noun leak. Returns (mid_line_count, evidence_examples) or None.
+    Caller is responsible for the DETECTOR_KNOWN_OK skip."""
+    wkey = keynorm(word)
+    caps = mid_line = 0
+    evidence = []
+    for e in flat_examples:
+        es_line = e.get("spanish") or ""
+        for match in re.finditer(r"\S+", es_line):
+            tok = re.sub(r"[^\w'áéíóúñüÁÉÍÓÚÑÜ]", "", match.group(0))
+            if keynorm(tok) != wkey or match.start() == 0:
+                continue
+            prev = es_line[:match.start()].rstrip()
+            if prev and prev[-1] not in '.?!¿¡"«(':
+                mid_line += 1
+                if tok[0].isupper():
+                    caps += 1
+                    evidence.append({"example": e, "token": tok})
+    if mid_line >= 2 and caps == mid_line:
+        return (mid_line, evidence)
+    return None
 
 
 def visible(mst, idx):
@@ -174,38 +276,26 @@ def main():
             senses = real_senses(mst)
 
             # blank_rows: empty-translation sense on an otherwise-visible card
-            blanks = [s for s in all_senses if not norm(s.get("translation"))
-                      and not (s.get("pos") == "X")]
+            blanks = detect_blank_rows(all_senses)
             if blanks:
                 defect["blank_rows"].append(
                     (artist, word, len(blanks),
                      [norm(s.get("context")) for s in blanks][:3]))
 
             # verbose_def: definitional gloss
-            for s in senses:
-                t = norm(s.get("translation"))
-                if not t:
-                    continue
-                nw = len(t.split())
-                if nw > 7 or ";" in t or t.endswith(".") or (nw >= 3 and CONNECT.search(t)):
-                    defect["verbose_def"].append((artist, word, s.get("pos"), t[:80]))
-                    break
+            vd = detect_verbose_def(senses)
+            if vd:
+                defect["verbose_def"].append((artist, word) + vd)
 
-            # cognate_leak: single sense, gloss == word (accent-insensitive).
-            # Skip PRON: a pronoun glossing to itself (me->"me") is a correct
-            # translation, not a cognate that slipped the net.
-            if len(senses) == 1 and senses[0].get("pos") != "PRON":
-                t = norm(senses[0].get("translation"))
-                if t and keynorm(t) == keynorm(word):
-                    defect["cognate_leak"].append((artist, word, t))
+            # cognate_leak: single sense, gloss == word (accent-insensitive)
+            cl = detect_cognate_leak(word, senses)
+            if cl:
+                defect["cognate_leak"].append((artist, word, cl))
 
             # menu_bloat: one gloss repeated >= 4x
-            gl = collections.Counter(norm(s.get("translation")).lower()
-                                     for s in senses if norm(s.get("translation")))
-            for g, c in gl.items():
-                if c >= 4:
-                    defect["menu_bloat"].append((artist, word, g, c))
-                    break
+            mb = detect_menu_bloat(senses)
+            if mb:
+                defect["menu_bloat"].append((artist, word) + mb)
 
     # Example-level defects (examples-side).
     ex_total = ex_empty = ex_untrans = 0
@@ -240,29 +330,15 @@ def main():
             # dedupe across artists via visible_ids bookkeeping done above).
             if keynorm(word) in {keynorm(w) for w in DETECTOR_KNOWN_OK}:
                 continue
-            wkey = keynorm(word)
-            translated = [e for e in flat if norm(e.get("english"))]
-            if len(translated) >= 2 and all(
-                    wkey in set(re.findall(r"[a-z']+", keynorm(e["english"])))
-                    for e in translated):
+            cs = detect_code_switch_verbatim(word, flat)
+            if cs is not None:
                 defect["code_switch_verbatim"].append(
-                    (artist, word, len(translated),
+                    (artist, word, len(cs),
                      norm(real_senses(m[mid])[0].get("translation"))[:40]))
-            caps = mid_line = 0
-            for e in flat:
-                es_line = e.get("spanish") or ""
-                for match in re.finditer(r"\S+", es_line):
-                    tok = re.sub(r"[^\w'áéíóúñüÁÉÍÓÚÑÜ]", "", match.group(0))
-                    if keynorm(tok) != wkey or match.start() == 0:
-                        continue
-                    prev = es_line[:match.start()].rstrip()
-                    if prev and prev[-1] not in '.?!¿¡"«(':
-                        mid_line += 1
-                        if tok[0].isupper():
-                            caps += 1
-            if mid_line >= 2 and caps == mid_line:
+            pc = detect_propernoun_caps(word, flat)
+            if pc is not None:
                 defect["propernoun_caps"].append(
-                    (artist, word, mid_line,
+                    (artist, word, pc[0],
                      norm(real_senses(m[mid])[0].get("translation"))[:40]))
 
     # ---- report ----

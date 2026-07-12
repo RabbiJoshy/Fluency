@@ -1,0 +1,1779 @@
+{
+  "_format": "Curated translation overrides. mode field controls applicability: 'wiktionary' → applied when --sense-source=wiktionary; 'spanishdict' → applied when --sense-source=spanishdict; 'all' → applied in any mode; 'archive' → retained for reference but never applied. 'source' is metadata recording the artist/session that contributed the entry.",
+  "a|a": {
+    "translation": "to, at",
+    "pos": "ADP",
+    "mode": "wiktionary",
+    "source": "Bad Bunny"
+  },
+  "acho|acho": {
+    "translation": "wow, damn (PR exclamation)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ahora|ahora": {
+    "translation": "now",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ahí|ahí": {
+    "translation": "there",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "al|al": {
+    "translation": "to the",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "antes|antes": {
+    "translation": "before",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "aquí|aquí": {
+    "translation": "here",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "arrebata'o|arrebata'o": {
+    "translation": "hyped up, wild",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "arriba|arriba": {
+    "translation": "up, above",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "así|así": {
+    "translation": "like this, so",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "aunque|aunque": {
+    "translation": "although",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bellaca|bellaca": {
+    "translation": "horny, turned on",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bellaco|bellaco": {
+    "translation": "horny, turned on",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bellacoso|bellacoso": {
+    "translation": "lustful, horny",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bellaqueo|bellaqueo": {
+    "translation": "reggaeton grinding",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bellaquita|bellaquita": {
+    "translation": "flirty girl",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bicho|bicho": {
+    "translation": "dick (vulgar, PR)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "bichote|bichote": {
+    "translation": "big shot, boss",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "bien|bien": {
+    "translation": "well",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "burla'o|burla'o": {
+    "translation": "mocked",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cabrones|cabrón": {
+    "translation": "bastards, badasses",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cabrón|cabrón": {
+    "translation": "bastard, badass",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "caile|caile": {
+    "translation": "come hang out",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "calla'o|calla'o": {
+    "translation": "quiet",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "callaíta|callaíta": {
+    "translation": "quiet (feminine, PR)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "callaítas|callaítas": {
+    "translation": "quiet (fem. pl., PR)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cambiar|cambiar": {
+    "translation": "to change",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cerquita|cerquita": {
+    "translation": "real close, nearby",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "chamaquita|chamaquita": {
+    "translation": "young girl",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "claro|claro": {
+    "translation": "of course, clear",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "combo|combo": {
+    "translation": "crew, group",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "combos|combos": {
+    "translation": "crews, groups",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "como|como": {
+    "translation": "as, like",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "con|con": {
+    "translation": "with",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "conmigo|conmigo": {
+    "translation": "with me",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "conocer|conocer": {
+    "translation": "to know, to meet",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "contigo|contigo": {
+    "translation": "with you",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "contra|contra": {
+    "translation": "against",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cuando|cuando": {
+    "translation": "when",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cuida'o|cuida'o": {
+    "translation": "careful, taken care of",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cuándo|cuándo": {
+    "translation": "when",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "cómo|cómo": {
+    "translation": "how",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "dale|dar": {
+    "translation": "go ahead, do it",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "de|de": {
+    "translation": "of, from",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "de'o|de'o": {
+    "translation": "finger",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "del|del": {
+    "translation": "of the",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "demaga|demaga": {
+    "translation": "too much (PR slang)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "demasia'o|demasia'o": {
+    "translation": "too much",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "dembow|dembow": {
+    "translation": "dembow (music genre)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "demonia|demonia": {
+    "translation": "she-devil",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "desde|desde": {
+    "translation": "from, since",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "después|después": {
+    "translation": "after, later",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "donde|donde": {
+    "translation": "where",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "duro|duro": {
+    "translation": "hard, tough",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "dónde|dónde": {
+    "translation": "where",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "el|el": {
+    "translation": "the",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ella|ella": {
+    "translation": "she",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ellas|ellas": {
+    "translation": "they",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ellos|ellos": {
+    "translation": "they",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "en|en": {
+    "translation": "in, at, on",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "enamora'o|enamora'o": {
+    "translation": "in love",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "entre|entre": {
+    "translation": "between",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "esa|ese": {
+    "translation": "that",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ese|ese": {
+    "translation": "that",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "eso|eso": {
+    "translation": "that",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "esta|esta": {
+    "translation": "this",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "esta'o|esta'o": {
+    "translation": "state, been",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "este|este": {
+    "translation": "this",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "esto|esto": {
+    "translation": "this",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "exagera'o|exagera'o": {
+    "translation": "exaggerated",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "feka|feka": {
+    "translation": "fake",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "frontear|frontear": {
+    "translation": "to show off, to flex",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "gata|gata": {
+    "translation": "girl, babe",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "gato|gato": {
+    "translation": "cat, dude",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "gusta|gustar": {
+    "translation": "to like, to please",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "gustar|gustar": {
+    "translation": "to like, to please",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "haber|haber": {
+    "translation": "to have (auxiliary)",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "había|haber": {
+    "translation": "there was/were",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "hacer|hacer": {
+    "translation": "to do, to make",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "hacia|hacia": {
+    "translation": "toward",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "hasta|hasta": {
+    "translation": "until, up to",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "hoy|hoy": {
+    "translation": "today",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "janguear|janguear": {
+    "translation": "to hang out",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "jangueo|jangueo": {
+    "translation": "hanging out, partying",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "jevo|jevo": {
+    "translation": "boyfriend, partner",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "jodí'o|jodí'o": {
+    "translation": "screwed",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "juquea'o|juquea'o": {
+    "translation": "hooked up",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "juquear|juquear": {
+    "translation": "to hook up",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "la|la": {
+    "translation": "the",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "la'o|la'o": {
+    "translation": "side",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "lao'|lao'": {
+    "translation": "side",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "las|la": {
+    "translation": "the",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "le|le": {
+    "translation": "him/her (indirect)",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "les|les": {
+    "translation": "them (indirect)",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "llega'o|llega'o": {
+    "translation": "arrived",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "lo|lo": {
+    "translation": "it/him",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "loca|loco": {
+    "translation": "crazy",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "loco|loco": {
+    "translation": "crazy",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "loquita|loquita": {
+    "translation": "a little crazy",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "los|lo": {
+    "translation": "the",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "lu'|lu'": {
+    "translation": "light",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ma'i|ma'i": {
+    "translation": "mommy (PR)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mal|mal": {
+    "translation": "badly",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mami|mami": {
+    "translation": "baby, babe",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mamita|mamita": {
+    "translation": "baby, babe",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "manín|manín": {
+    "translation": "buddy, pal",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "me|me": {
+    "translation": "me",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mi|mi": {
+    "translation": "my",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mientras|mientras": {
+    "translation": "while",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mis|mi": {
+    "translation": "my",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mojaítas|mojaítas": {
+    "translation": "wet (fem. pl., PR)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mojaíto|mojaíto": {
+    "translation": "wet (PR)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mucho|mucho": {
+    "translation": "a lot, much",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "muy|muy": {
+    "translation": "very",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "más|más": {
+    "translation": "more",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "mí|mí": {
+    "translation": "me",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "na|na": {
+    "translation": "nothing",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "na'|na'": {
+    "translation": "nothing",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nacer|nacer": {
+    "translation": "to be born",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nada|nada": {
+    "translation": "nothing",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "neverita|neverita": {
+    "translation": "cooler, ice chest",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ni|ni": {
+    "translation": "nor, not even",
+    "pos": "CCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "no|no": {
+    "translation": "no, not",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nos|nos": {
+    "translation": "us",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nosotras|nosotras": {
+    "translation": "we",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nosotros|nosotros": {
+    "translation": "we",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nuestra|nuestro": {
+    "translation": "our",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nuestras|nuestro": {
+    "translation": "our",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nuestro|nuestro": {
+    "translation": "our",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nuestros|nuestro": {
+    "translation": "our",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "nunca|nunca": {
+    "translation": "never",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "o|o": {
+    "translation": "or",
+    "pos": "CCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ojalá|ojalá": {
+    "translation": "hopefully, God willing",
+    "pos": "INTJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ojito|ojito": {
+    "translation": "little eye",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ojitos|ojitos": {
+    "translation": "little eyes",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "olvida'o|olvida'o": {
+    "translation": "forgotten",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "oye|oír": {
+    "translation": "hey!, listen!",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa|pa": {
+    "translation": "for, to",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa'|pa'": {
+    "translation": "for, to",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa'cá|pa'cá": {
+    "translation": "over here",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa'l|pa'l": {
+    "translation": "to the",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa'llá|pa'llá": {
+    "translation": "over there",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa'rriba|pa'rriba": {
+    "translation": "upward",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pa'trás|pa'trás": {
+    "translation": "backwards",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pana|pana": {
+    "translation": "friend, buddy",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "panas|panas": {
+    "translation": "friends, buddies",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "papi|papi": {
+    "translation": "daddy, babe",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "para|para": {
+    "translation": "for, to",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "para'o|para'o": {
+    "translation": "standing, stopped",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pasa'o|pasa'o": {
+    "translation": "past, happened",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pela'o|pela'o": {
+    "translation": "broke, bald",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pero|pero": {
+    "translation": "but",
+    "pos": "CCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "perrear|perrear": {
+    "translation": "to dance reggaeton",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "perreo|perreo": {
+    "translation": "reggaeton dancing",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "poco|poco": {
+    "translation": "little, few",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "por|por": {
+    "translation": "for, by",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "porque|porque": {
+    "translation": "because",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "pr|pr": {
+    "translation": "Puerto Rico",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "prende|prender": {
+    "translation": "lights up, turns on",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "prender|prender": {
+    "translation": "to light up, to turn on",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "que|que": {
+    "translation": "that, which",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "quedarme|quedar": {
+    "translation": "to stay, to remain",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "querer|querer": {
+    "translation": "to want, to love",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "quién|quién": {
+    "translation": "who",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "qué|qué": {
+    "translation": "what",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "rd|rd": {
+    "translation": "Dominican Republic",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "repetir|repetir": {
+    "translation": "to repeat",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "rolié|rolié": {
+    "translation": "Rolex (slang)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "santa|santo": {
+    "translation": "saint, holy",
+    "pos": "ADJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "saramambiche|saramambiche": {
+    "translation": "damn (PR expletive)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "se|se": {
+    "translation": "oneself/himself/herself",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "si|si": {
+    "translation": "if",
+    "pos": "SCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "siempre|siempre": {
+    "translation": "always",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "sin|sin": {
+    "translation": "without",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "sobre|sobre": {
+    "translation": "on, about",
+    "pos": "ADP",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "solita|solita": {
+    "translation": "alone (diminutive)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "solito|solito": {
+    "translation": "alone (diminutive)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "solitos|solitos": {
+    "translation": "alone (dim. plural)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "su|su": {
+    "translation": "his/her/their",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "sus|su": {
+    "translation": "his/her/their",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "sé|saber": {
+    "translation": "I know",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "sí|sí": {
+    "translation": "yes",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "también|también": {
+    "translation": "also",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tamos|tamos": {
+    "translation": "we are",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tan|tanto": {
+    "translation": "so, such",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tanto|tanto": {
+    "translation": "so much",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "te|te": {
+    "translation": "you",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tera|tera": {
+    "translation": "tons of, a lot",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ti|ti": {
+    "translation": "you",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "to'|to'": {
+    "translation": "all, every",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "to'l|to'l": {
+    "translation": "all the",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "totito|totito": {
+    "translation": "completely, totally",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "toy|toy": {
+    "translation": "I am",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tu|tu": {
+    "translation": "your",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tus|tu": {
+    "translation": "your",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tá|tá": {
+    "translation": "is",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tán|tán": {
+    "translation": "they are",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "tú|tú": {
+    "translation": "you",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "un|un": {
+    "translation": "a, an",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "una|un": {
+    "translation": "a, an",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "unas|un": {
+    "translation": "some",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "unos|un": {
+    "translation": "some",
+    "pos": "DET",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "usted|usted": {
+    "translation": "you (formal)",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ustedes|usted": {
+    "translation": "you all",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "usté'|usté'": {
+    "translation": "you (formal)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "vamo|vamo": {
+    "translation": "let's go",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "verda'|verda'": {
+    "translation": "truth",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "verdá'|verdá'": {
+    "translation": "truth",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "vo'a|vo'a": {
+    "translation": "I'm going to",
+    "pos": "VERB",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "vos|vos": {
+    "translation": "you (informal)",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "y|y": {
+    "translation": "and",
+    "pos": "CCONJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ya|ya": {
+    "translation": "already, now",
+    "pos": "ADV",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "yao'|yao'": {
+    "translation": "ready, let's go (PR)",
+    "pos": "X",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "yo|yo": {
+    "translation": "I",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "él|él": {
+    "translation": "he",
+    "pos": "PRON",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "ójala|ójala": {
+    "translation": "hopefully, God willing",
+    "pos": "INTJ",
+    "mode": "archive",
+    "source": "Bad Bunny"
+  },
+  "millo|millo": {
+    "translation": "millionaire",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "bi|bi": {
+    "translation": "boo, baby",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "tití|tití": {
+    "translation": "auntie",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "mera|mera": {
+    "translation": "hey!, look! (attention-getter)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "jeepeta|jeepeta": {
+    "translation": "SUV, jeep",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "hijeputada|hijeputada": {
+    "translation": "dirty move, low blow",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "toa|toa": {
+    "translation": "all (toa’ = todas)",
+    "pos": "PRON",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "mambo|mambo": {
+    "translation": "party, ruckus (slang)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "reggaetón|reggaetón": {
+    "translation": "reggaeton",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "puertorro|puertorro": {
+    "translation": "Puerto Rico / Puerto Rican (slang)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pusimos|poner": {
+    "translation": "to become",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pusiera|poner": {
+    "translation": "to become",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "fenomenal|fenomenal": {
+    "translation": "amazingly, great",
+    "pos": "ADV",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "sendo|sendo": {
+    "translation": "huge, mighty",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "bate|bate": {
+    "translation": "to break (records)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "beibe|beibe": {
+    "translation": "baby (endearment)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "bendecida|bendecida": {
+    "translation": "blessed",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "bichotes|bichotes": {
+    "translation": "drug kingpin, big shot",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "blunes|blunes": {
+    "translation": "blunts",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "caigas|caigas": {
+    "translation": "to fall",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "campeonatos|campeonatos": {
+    "translation": "championship",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "caripelao|caripelao": {
+    "translation": "shameless person",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "colmadón|colmadón": {
+    "translation": "big corner store",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "curvas|curvas": {
+    "translation": "curves",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "curé|curé": {
+    "translation": "to heal",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "esnúa|esnúa": {
+    "translation": "naked (desnuda)",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "espejos|espejos": {
+    "translation": "mirror",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "fantasmeo|fantasmeo": {
+    "translation": "fronting, fakery",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "fav|fav": {
+    "translation": "favor",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "labia|labia": {
+    "translation": "smooth talk",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "males|males": {
+    "translation": "troubles, woes",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "malianteos|malianteos": {
+    "translation": "hustling, thug life",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "mamas|mamas": {
+    "translation": "to suck (vulgar)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "mame|mame": {
+    "translation": "to suck (vulgar)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "mari|mari": {
+    "translation": "weed (marijuana)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "nano|nano": {
+    "translation": "bro, buddy (address)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "noviecito|noviecito": {
+    "translation": "boyfriend (diminutive)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pal|pal": {
+    "translation": "for the (pa'l = para el)",
+    "pos": "ADP",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pali|pali": {
+    "translation": "pill (slang)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "perfumito|perfumito": {
+    "translation": "perfume (diminutive)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pikete|pikete": {
+    "translation": "swagger, style",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "ponderosa|ponderosa": {
+    "translation": "ponderosa pine (weed metaphor)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pre|pre": {
+    "translation": "pre-game (el pre)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "prendida|prendida": {
+    "translation": "lit, fired up",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "probé|probé": {
+    "translation": "to try, to taste",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "puertorriqueños|puertorriqueños": {
+    "translation": "Puerto Rican",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "quemados|quemados": {
+    "translation": "burned, burnt out",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "revueltas|revueltas": {
+    "translation": "mixed up, all together",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "roles|roles": {
+    "translation": "Rolex (Role')",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "rulay|rulay": {
+    "translation": "living it up, chilling",
+    "pos": "ADV",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "sudaítas|sudaítas": {
+    "translation": "sweaty (sudaditas)",
+    "pos": "ADJ",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "tetotas|tetotas": {
+    "translation": "big boobs (vulgar)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "toditas|toditas": {
+    "translation": "all of them (fem.)",
+    "pos": "PRON",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "trajecito|trajecito": {
+    "translation": "little outfit",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "trapxficante|trapxficante": {
+    "translation": "trap-dealer (wordplay)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "tumbamos|tumbamos": {
+    "translation": "to knock down",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "uni|uni": {
+    "translation": "uni, college",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "vídeos|vídeos": {
+    "translation": "video",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "brava|brava": {
+    "translation": "Brava (San Juan club)",
+    "pos": "PROPN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "película|película": {
+    "translation": "the scene, the situation",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "sea|ser": {
+    "translation": "be (subjunctive of ser)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "cuki|cuki": {
+    "translation": "cutie, sweetie",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "trili|trili": {
+    "translation": "nobody, wack person (slang)",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "atreve|atrever": {
+    "translation": "to dare",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "atreves|atrever": {
+    "translation": "to dare",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "pos|pos": {
+    "translation": "por (clipped: po')",
+    "pos": "ADP",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "éramos|ser": {
+    "translation": "were (éramos = we were)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "squirteé|squirteé": {
+    "translation": "to squirt",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "culona|culona": {
+    "translation": "big-bottomed woman",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "enchuló|enchuló": {
+    "translation": "to make fall in love (slang)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "fantasmeas|fantasmeas": {
+    "translation": "to front, act fake",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "frontean|frontean": {
+    "translation": "to front, show off",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "fronteando|fronteando": {
+    "translation": "to front, show off",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "fronteándome|fronteándome": {
+    "translation": "to front, show off",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "posteados|posteados": {
+    "translation": "posted up, hanging out",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "vo|vo": {
+    "translation": "I'm gonna (vo'a = voy a)",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "wheeliando|wheeliando": {
+    "translation": "doing wheelies, cruising",
+    "pos": "VERB",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "hippies|hippie": {
+    "translation": "hippie",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "poses|poses": {
+    "translation": "pose",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  },
+  "hippies|hippies": {
+    "translation": "hippie",
+    "pos": "NOUN",
+    "mode": "artist",
+    "source": "Bad Bunny"
+  }
+}

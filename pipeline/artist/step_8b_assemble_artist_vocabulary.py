@@ -139,6 +139,199 @@ def load_layer(path, name, required=True):
 
 
 # ---------------------------------------------------------------------------
+# Wiktionary gloss normalization (--sense-source wiktionary only)
+# ---------------------------------------------------------------------------
+# Wiktionary's scraped glosses enumerate spelling/synonym variants inline
+# ("to fulfil, to fulfill, to meet") and a handful of high-frequency verbs
+# (tener and all its conjugations) carry a sense-menu translation string
+# that already has a duplicated segment baked in, e.g.
+#   "to have; to possess; to be (a condition or quality), to have; to possess"
+# Sense IDs are content hashes of that exact string
+# (util_5c_sense_menu_format.py), so the fix can't happen at the source —
+# editing the menu would change the hash and orphan the Gemini
+# classification already sitting in sense_assignments/wiktionary.json.
+# Clean it up here at assemble time instead. spanishdict glosses are
+# already card-sized and never pass through this (call site is gated on
+# sense_source == "wiktionary").
+_GLOSS_MAX_GROUPS = 3        # max '; '-separated clauses kept per gloss
+_GLOSS_MAX_WORDS_PER_GROUP = 7  # word budget for a run of 3+ ', '-joined items
+_GLOSS_QUOTES_RE = re.compile(u"[‘’“”]")
+
+
+def _split_gloss_segments(text):
+    """Split ``text`` on top-level '; ' and ', ' (never inside parens).
+
+    Returns (items, delims) with len(delims) == len(items) - 1; delims[i] is
+    the original separator between items[i] and items[i + 1].
+    """
+    items, delims = [], []
+    buf = []
+    depth = 0
+    i, n = 0, len(text)
+    while i < n:
+        ch = text[i]
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if depth == 0 and text.startswith("; ", i):
+            items.append("".join(buf))
+            delims.append("; ")
+            buf = []
+            i += 2
+            continue
+        if depth == 0 and text.startswith(", ", i):
+            items.append("".join(buf))
+            delims.append(", ")
+            buf = []
+            i += 2
+            continue
+        buf.append(ch)
+        i += 1
+    items.append("".join(buf))
+    return [it.strip() for it in items], delims
+
+
+def _gloss_key(segment):
+    """Normalization key for duplicate/near-duplicate comparison."""
+    k = _GLOSS_QUOTES_RE.sub("'", segment.strip().lower())
+    k = re.sub(r"^to\s+", "", k)
+    k = re.sub(r"[.,;:'\"]+$", "", k)
+    return re.sub(r"\s+", " ", k).strip()
+
+
+def _is_spelling_double(a, b):
+    """True if a/b are the same word modulo a doubled final letter
+    (fulfil/fulfill) — a plain British/American spelling variant."""
+    shorter, longer = (a, b) if len(a) <= len(b) else (b, a)
+    if len(longer) - len(shorter) != 1 or len(longer) < 2:
+        return False
+    return longer[:-1] == shorter and longer[-1] == longer[-2]
+
+
+def _dedup_gloss_segments(items, delims):
+    """Drop exact/near-exact repeated segments, splicing the surrounding
+    delimiters back together so the remaining segments still read naturally
+    (the "to have; to possess ... to have; to possess" bug)."""
+    kept_items, kept_delims = [], []
+    seen_keys = []
+    carry_delim = None
+    for i, item in enumerate(items):
+        key = _gloss_key(item)
+        is_dup = any(key == k or _is_spelling_double(key, k) for k in seen_keys)
+        if is_dup:
+            if i < len(delims):
+                carry_delim = delims[i]
+            continue
+        if kept_items:
+            kept_delims.append(carry_delim if carry_delim is not None else delims[i - 1])
+        kept_items.append(item)
+        seen_keys.append(key)
+        carry_delim = None
+    return kept_items, kept_delims
+
+
+def _group_by_semicolon(items, delims):
+    """Partition a flat (items, delims) pair into groups at '; ' boundaries.
+    Each group is (group_items, group_delims) where group_delims are the
+    internal ', ' separators within that group."""
+    groups = []
+    cur_items = [items[0]] if items else []
+    cur_delims = []
+    for i, d in enumerate(delims):
+        nxt = items[i + 1]
+        if d == "; ":
+            groups.append((cur_items, cur_delims))
+            cur_items = [nxt]
+            cur_delims = []
+        else:
+            cur_items.append(nxt)
+            cur_delims.append(d)
+    if cur_items:
+        groups.append((cur_items, cur_delims))
+    return groups
+
+
+def _cap_words(items, delims, max_words):
+    """Greedy left-to-right trim so the running word count stays within
+    ``max_words``. Always keeps the first item whole and never splits an
+    item mid-word; only drops trailing items."""
+    if not items:
+        return items, delims
+    kept_items = [items[0]]
+    kept_delims = []
+    total_words = len(items[0].split())
+    for i in range(1, len(items)):
+        words = len(items[i].split())
+        if total_words + words > max_words:
+            break
+        kept_delims.append(delims[i - 1])
+        kept_items.append(items[i])
+        total_words += words
+    return kept_items, kept_delims
+
+
+def _join_gloss(items, delims):
+    out = items[0]
+    for item, delim in zip(items[1:], delims):
+        out += delim + item
+    return out
+
+
+def _clean_wiktionary_gloss(text):
+    """Normalize a raw Wiktionary translation string for card display:
+    dedupe repeated/near-duplicate segments, then cap overlong variant
+    enumerations. See the module comment above for the motivating bug.
+    """
+    text = (text or "").strip()
+    if not text:
+        return text
+    items, delims = _split_gloss_segments(text)
+    if len(items) <= 1:
+        return text
+
+    items, delims = _dedup_gloss_segments(items, delims)
+    if len(items) <= 1:
+        return items[0] if items else text
+
+    # Cap variant enumeration to something card-sized. '; '-separated
+    # clauses are the primary distinct-meaning boundary in Wiktionary
+    # glosses, so keep at most _GLOSS_MAX_GROUPS of them, biased toward the
+    # first ("prefer keeping first semicolon group when trimming"). Within
+    # a kept clause, only cap a genuine run of 3+ ', '-joined items — a
+    # 2-item group (e.g. "in, it has been...since (a past period of time)")
+    # is usually two distinct senses glued together, not a synonym run, and
+    # dropping the second would misrepresent the word rather than trim
+    # clutter.
+    groups = _group_by_semicolon(items, delims)[:_GLOSS_MAX_GROUPS]
+    parts = []
+    for g_items, g_delims in groups:
+        if len(g_items) > 2:
+            g_items, g_delims = _cap_words(g_items, g_delims, _GLOSS_MAX_WORDS_PER_GROUP)
+        parts.append(_join_gloss(g_items, g_delims))
+    return "; ".join(parts)
+
+
+def _normalize_wiktionary_senses(menu):
+    """In-place: clean up every gloss in a wiktionary sense menu (see
+    _clean_wiktionary_gloss). Only invoked for --sense-source wiktionary;
+    spanishdict menus are already card-sized and untouched."""
+    cleaned = 0
+    for analyses in menu.values():
+        for analysis in analyses:
+            for s in (analysis.get("senses") or {}).values():
+                t = s.get("translation")
+                if not t:
+                    continue
+                nt = _clean_wiktionary_gloss(t)
+                if nt != t:
+                    s["translation"] = nt
+                    cleaned += 1
+    if cleaned:
+        print("  wiktionary gloss normalization: cleaned %d senses" % cleaned)
+
+
+# ---------------------------------------------------------------------------
 # Assembly
 # ---------------------------------------------------------------------------
 
@@ -169,6 +362,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         "sense_menu", required=False,
     )
     senses = normalize_artist_sense_menu(raw_menu) if raw_menu else {}
+    if sense_source == "wiktionary" and senses:
+        _normalize_wiktionary_senses(senses)
     assignments_path = artist_sense_assignments_path(layers_dir, sense_source, prefer_new=False)
     if os.path.isfile(assignments_path):
         assignments = load_assignments(assignments_path)
@@ -887,6 +1082,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 for assignment in word_assignments:
                     pos = assignment.get("pos", "X")
                     translation = assignment.get("translation", "")
+
+                    curated_key = "%s|%s" % (word.lower(), word_lemma)
+                    if curated_key in curated and len(word_assignments) == 1:
+                        translation = curated[curated_key]
+
                     ex_entries = assignment.get("examples", [])
                     meaning_examples = []
                     methods_in_meaning = set()

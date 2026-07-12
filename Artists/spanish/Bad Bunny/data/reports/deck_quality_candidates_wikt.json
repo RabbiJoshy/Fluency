@@ -1,0 +1,1968 @@
+{
+  "_meta": {
+    "generated_at": 1783875585,
+    "master": "Artists/spanish/vocabulary_master_wikt.json",
+    "suffix": "_wikt",
+    "detectors": [
+      "cognate_leak",
+      "code_switch_verbatim",
+      "propernoun_caps"
+    ],
+    "counts": {
+      "cognate_leak": 57,
+      "code_switch_verbatim": 83,
+      "propernoun_caps": 54
+    },
+    "total": 194,
+    "reviewed_at": 1783876978,
+    "reviewed_by": "2026-07-12 wikt-deck curation session (194 candidates -> stamp/keep/fix verdicts applied)"
+  },
+  "candidates": [
+    {
+      "artist": "BadBunny",
+      "word": "flow",
+      "lemma": "flow",
+      "pos": "NOUN",
+      "gloss": "flow",
+      "detector": "cognate_leak",
+      "evidence": "flow",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "trap",
+      "lemma": "trap",
+      "pos": "NOUN",
+      "gloss": "trap",
+      "detector": "cognate_leak",
+      "evidence": "trap",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "poses",
+      "lemma": "poses",
+      "pos": "NOUN",
+      "gloss": "poses",
+      "detector": "cognate_leak",
+      "evidence": "poses",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "vip",
+      "lemma": "vip",
+      "pos": "NOUN",
+      "gloss": "VIP",
+      "detector": "cognate_leak",
+      "evidence": "VIP",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "sorry",
+      "lemma": "sorry",
+      "pos": "INTJ",
+      "gloss": "sorry",
+      "detector": "cognate_leak",
+      "evidence": "sorry",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "jet",
+      "lemma": "jet",
+      "pos": "NOUN",
+      "gloss": "jet",
+      "detector": "cognate_leak",
+      "evidence": "jet",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "break",
+      "lemma": "break",
+      "pos": "NOUN",
+      "gloss": "break",
+      "detector": "cognate_leak",
+      "evidence": "break",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "okey",
+      "lemma": "okey",
+      "pos": "NOUN",
+      "gloss": "okey",
+      "detector": "cognate_leak",
+      "evidence": "okey",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "like",
+      "lemma": "like",
+      "pos": "NOUN",
+      "gloss": "like",
+      "detector": "cognate_leak",
+      "evidence": "like",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "retro",
+      "lemma": "retro",
+      "pos": "ADJ",
+      "gloss": "retro",
+      "detector": "cognate_leak",
+      "evidence": "retro",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gang",
+      "lemma": "gang",
+      "pos": "NOUN",
+      "gloss": "gang",
+      "detector": "cognate_leak",
+      "evidence": "gang",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "remix",
+      "lemma": "remix",
+      "pos": "NOUN",
+      "gloss": "remix",
+      "detector": "cognate_leak",
+      "evidence": "remix",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "jam",
+      "lemma": "jam",
+      "pos": "NOUN",
+      "gloss": "jam",
+      "detector": "cognate_leak",
+      "evidence": "jam",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "out",
+      "lemma": "out",
+      "pos": "NOUN",
+      "gloss": "out",
+      "detector": "cognate_leak",
+      "evidence": "out",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "dealer",
+      "lemma": "dealer",
+      "pos": "NOUN",
+      "gloss": "dealer",
+      "detector": "cognate_leak",
+      "evidence": "dealer",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "curry",
+      "lemma": "curry",
+      "pos": "NOUN",
+      "gloss": "curry",
+      "detector": "cognate_leak",
+      "evidence": "curry",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "ring",
+      "lemma": "ring",
+      "pos": "NOUN",
+      "gloss": "ring",
+      "detector": "cognate_leak",
+      "evidence": "ring",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "top",
+      "lemma": "top",
+      "pos": "NOUN",
+      "gloss": "top",
+      "detector": "cognate_leak",
+      "evidence": "top",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "wiki",
+      "lemma": "wiki",
+      "pos": "NOUN",
+      "gloss": "wiki",
+      "detector": "cognate_leak",
+      "evidence": "wiki",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "crush",
+      "lemma": "crush",
+      "pos": "NOUN",
+      "gloss": "crush",
+      "detector": "cognate_leak",
+      "evidence": "crush",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "paper",
+      "lemma": "paper",
+      "pos": "NOUN",
+      "gloss": "paper",
+      "detector": "cognate_leak",
+      "evidence": "paper",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "hoodie",
+      "lemma": "hoodie",
+      "pos": "NOUN",
+      "gloss": "hoodie",
+      "detector": "cognate_leak",
+      "evidence": "hoodie",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "lady",
+      "lemma": "lady",
+      "pos": "NOUN",
+      "gloss": "lady",
+      "detector": "cognate_leak",
+      "evidence": "lady",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mall",
+      "lemma": "mall",
+      "pos": "NOUN",
+      "gloss": "mall",
+      "detector": "cognate_leak",
+      "evidence": "mall",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "kendo",
+      "lemma": "kendo",
+      "pos": "NOUN",
+      "gloss": "kendo",
+      "detector": "cognate_leak",
+      "evidence": "kendo",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "rookie",
+      "lemma": "rookie",
+      "pos": "NOUN",
+      "gloss": "rookie",
+      "detector": "cognate_leak",
+      "evidence": "rookie",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "torque",
+      "lemma": "torque",
+      "pos": "NOUN",
+      "gloss": "torque",
+      "detector": "cognate_leak",
+      "evidence": "torque",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "podcast",
+      "lemma": "podcast",
+      "pos": "NOUN",
+      "gloss": "podcast",
+      "detector": "cognate_leak",
+      "evidence": "podcast",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "led",
+      "lemma": "led",
+      "pos": "NOUN",
+      "gloss": "LED",
+      "detector": "cognate_leak",
+      "evidence": "LED",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "swing",
+      "lemma": "swing",
+      "pos": "NOUN",
+      "gloss": "swing",
+      "detector": "cognate_leak",
+      "evidence": "swing",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "climax",
+      "lemma": "climax",
+      "pos": "NOUN",
+      "gloss": "climax",
+      "detector": "cognate_leak",
+      "evidence": "climax",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "feedback",
+      "lemma": "feedback",
+      "pos": "NOUN",
+      "gloss": "feedback",
+      "detector": "cognate_leak",
+      "evidence": "feedback",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tv",
+      "lemma": "TV",
+      "pos": "NOUN",
+      "gloss": "TV",
+      "detector": "cognate_leak",
+      "evidence": "TV",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gas",
+      "lemma": "gas",
+      "pos": "NOUN",
+      "gloss": "gas",
+      "detector": "cognate_leak",
+      "evidence": "gas",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "bus",
+      "lemma": "bus",
+      "pos": "NOUN",
+      "gloss": "bus",
+      "detector": "cognate_leak",
+      "evidence": "bus",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "link",
+      "lemma": "link",
+      "pos": "NOUN",
+      "gloss": "link",
+      "detector": "cognate_leak",
+      "evidence": "link",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "logo",
+      "lemma": "logo",
+      "pos": "NOUN",
+      "gloss": "logo",
+      "detector": "cognate_leak",
+      "evidence": "logo",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "navy",
+      "lemma": "navy",
+      "pos": "NOUN",
+      "gloss": "navy",
+      "detector": "cognate_leak",
+      "evidence": "navy",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "stop",
+      "lemma": "stop",
+      "pos": "INTJ",
+      "gloss": "stop",
+      "detector": "cognate_leak",
+      "evidence": "stop",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tory",
+      "lemma": "tory",
+      "pos": "NOUN",
+      "gloss": "tory",
+      "detector": "cognate_leak",
+      "evidence": "tory",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "trip",
+      "lemma": "trip",
+      "pos": "NOUN",
+      "gloss": "trip",
+      "detector": "cognate_leak",
+      "evidence": "trip",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "capea",
+      "lemma": "capea",
+      "pos": "NOUN",
+      "gloss": "capea",
+      "detector": "cognate_leak",
+      "evidence": "capea",
+      "verdict": "fix",
+      "note": "blocked-multi-sense"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "hobby",
+      "lemma": "hobby",
+      "pos": "NOUN",
+      "gloss": "hobby",
+      "detector": "cognate_leak",
+      "evidence": "hobby",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "lobby",
+      "lemma": "lobby",
+      "pos": "NOUN",
+      "gloss": "lobby",
+      "detector": "cognate_leak",
+      "evidence": "lobby",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "barbie",
+      "lemma": "barbie",
+      "pos": "NOUN",
+      "gloss": "Barbie",
+      "detector": "cognate_leak",
+      "evidence": "Barbie",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "clóset",
+      "lemma": "clóset",
+      "pos": "NOUN",
+      "gloss": "closet",
+      "detector": "cognate_leak",
+      "evidence": "closet",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "sunroof",
+      "lemma": "sunroof",
+      "pos": "NOUN",
+      "gloss": "sunroof",
+      "detector": "cognate_leak",
+      "evidence": "sunroof",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "palomino",
+      "lemma": "palomino",
+      "pos": "NOUN",
+      "gloss": "palomino",
+      "detector": "cognate_leak",
+      "evidence": "palomino",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "piercing",
+      "lemma": "piercing",
+      "pos": "NOUN",
+      "gloss": "piercing",
+      "detector": "cognate_leak",
+      "evidence": "piercing",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "rosselló",
+      "lemma": "rosselló",
+      "pos": "NOUN",
+      "gloss": "Rosselló",
+      "detector": "cognate_leak",
+      "evidence": "Rosselló",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "cool",
+      "lemma": "cool",
+      "pos": "ADJ",
+      "gloss": "cool",
+      "detector": "cognate_leak",
+      "evidence": "cool",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "meme",
+      "lemma": "meme",
+      "pos": "NOUN",
+      "gloss": "meme",
+      "detector": "cognate_leak",
+      "evidence": "meme",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "nacho",
+      "lemma": "nacho",
+      "pos": "NOUN",
+      "gloss": "nacho",
+      "detector": "cognate_leak",
+      "evidence": "nacho",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "angular",
+      "lemma": "angular",
+      "pos": "ADJ",
+      "gloss": "angular",
+      "detector": "cognate_leak",
+      "evidence": "angular",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "cookies",
+      "lemma": "cookies",
+      "pos": "NOUN",
+      "gloss": "cookies",
+      "detector": "cognate_leak",
+      "evidence": "cookies",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "hippies",
+      "lemma": "hippie",
+      "pos": "NOUN",
+      "gloss": "hippies",
+      "detector": "cognate_leak",
+      "evidence": "hippies",
+      "verdict": "fix",
+      "note": "blocked-lemma-mismatch: built-time lemma was self ('hippies'), curated key 'hippies|hippie' requires the tool_8c-corrected lemma which only applies post-build; gloss remains 'hippies'"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "superstar",
+      "lemma": "superstar",
+      "pos": "NOUN",
+      "gloss": "superstar",
+      "detector": "cognate_leak",
+      "evidence": "superstar",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "puerto",
+      "lemma": "puerto",
+      "pos": "NOUN",
+      "gloss": "port, harbour",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"A Puerto Rico de huracane' y temblore'\" -> \"To Puerto Rico of hurricanes and earthquakes\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "puerto",
+      "lemma": "puerto",
+      "pos": "NOUN",
+      "gloss": "port, harbour",
+      "detector": "propernoun_caps",
+      "evidence": "\"Puerto\" in \"A Puerto Rico de huracane' y temblore'\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "g",
+      "lemma": "g",
+      "pos": "NOUN",
+      "gloss": "gangster, hustler (slang)",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"En la G-Wagon, ya no estamo' pa' Expedition\" -> \"In the G-Wagon, we're not about the Expedition anymore\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "g",
+      "lemma": "g",
+      "pos": "NOUN",
+      "gloss": "gangster, hustler (slang)",
+      "detector": "propernoun_caps",
+      "evidence": "\"G\" in \"Si te lo hago te enchulo, como Anuel a Karol G (G)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gana",
+      "lemma": "gana",
+      "pos": "NOUN",
+      "gloss": "desire",
+      "detector": "propernoun_caps",
+      "evidence": "\"Gana\" in \"Yo Hago Lo Que Me Da La Gana, ¿oíste, lambebicho?\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mercedes",
+      "lemma": "merced",
+      "pos": "NOUN",
+      "gloss": "mercy",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"No sé si irme en el Mercedes o en el Maserati\" -> \"I don't know if I should go in the Mercedes or the Maserati\"",
+      "verdict": "fix",
+      "note": "blocked-multi-sense"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mercedes",
+      "lemma": "merced",
+      "pos": "NOUN",
+      "gloss": "mercy",
+      "detector": "propernoun_caps",
+      "evidence": "\"Mercedes\" in \"No sé si irme en el Mercedes o en el Maserati\"",
+      "verdict": "fix",
+      "note": "blocked-multi-sense"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "party",
+      "lemma": "party",
+      "pos": "NOUN",
+      "gloss": "party; celebration, festivity",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Que después del party, vayamo' al hotel, yeh (Yeh)\" -> \"That after the party, we're going to the hotel, yeah (Yeah)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "vip",
+      "lemma": "vip",
+      "pos": "NOUN",
+      "gloss": "VIP",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Tú la ve' en el VIP, modelo como Hadid\" -> \"You see her in the VIP, a model like Hadid\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "vip",
+      "lemma": "vip",
+      "pos": "NOUN",
+      "gloss": "VIP",
+      "detector": "propernoun_caps",
+      "evidence": "\"VIP\" in \"Tú la ve' en el VIP, modelo como Hadid\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "don",
+      "lemma": "don",
+      "pos": "NOUN",
+      "gloss": "gift, present",
+      "detector": "propernoun_caps",
+      "evidence": "\"Don\" in \"Don Vito, Don Beno; de los Beatle', John Lennon\"",
+      "verdict": "fix",
+      "note": "blocked-multi-sense"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "dj",
+      "lemma": "dj",
+      "pos": "NOUN",
+      "gloss": "DJ, deejay, disk jockey",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"El DJ la pone y se las sabe todas\" -> \"The DJ plays it and he knows it all\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "dj",
+      "lemma": "dj",
+      "pos": "NOUN",
+      "gloss": "DJ, deejay, disk jockey",
+      "detector": "propernoun_caps",
+      "evidence": "\"DJ\" in \"El DJ la pone y se las sabe todas\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "jet",
+      "lemma": "jet",
+      "pos": "NOUN",
+      "gloss": "jet",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"De'l Jet Ski pa'l bote (Eh), chiquita con el booty bien grandote\" -> \"From the Jet Ski to the boat (Eh), shorty with a really big booty\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "break",
+      "lemma": "break",
+      "pos": "NOUN",
+      "gloss": "break",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Si quieres, te echo otro, pero dame un break\" -> \"If you want, I'll give you another one, but give me a break\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "pin",
+      "lemma": "pin",
+      "pos": "NOUN",
+      "gloss": "pin, lapel pin, badge, PIN number",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"De la bóveda de letras yo soy el que tiene el PIN\" -> \"From the vault of lyrics, I'm the one with the PIN\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tito",
+      "lemma": "Tito",
+      "pos": "NOUN",
+      "gloss": "uncle",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Ninguno sale con Tito y mucho meno' Joppy (Ts-ts-ts-ts-ts)\" -> \"Nobody messes with Tito, much less Joppy (Ts-ts-ts-ts-ts)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tito",
+      "lemma": "Tito",
+      "pos": "NOUN",
+      "gloss": "uncle",
+      "detector": "propernoun_caps",
+      "evidence": "\"Tito\" in \"Ninguno sale con Tito y mucho meno' Joppy (Ts-ts-ts-ts-ts)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "man",
+      "lemma": "man",
+      "pos": "NOUN",
+      "gloss": "man, guy, dude",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"J Balvin, man\" -> \"J Balvin, man\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gang",
+      "lemma": "gang",
+      "pos": "NOUN",
+      "gloss": "gang",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Latino Gang, Oasis\" -> \"Latino Gang, Oasis\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "san",
+      "lemma": "San",
+      "pos": "NOUN",
+      "gloss": "financial, temporal-savings scheme; the ",
+      "detector": "propernoun_caps",
+      "evidence": "\"San\" in \"Que por San Juan te pasee, je\"",
+      "verdict": "fix",
+      "note": "blocked-multi-sense"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "remix",
+      "lemma": "remix",
+      "pos": "NOUN",
+      "gloss": "remix",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Despué' de chingar prendemo' un blunt y te pongo la refe del remix de \"Triste\"\" -> \"After fucking, we light a blunt and I'll play you the reference of the remix of 'Triste'\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "jam",
+      "lemma": "jam",
+      "pos": "NOUN",
+      "gloss": "jam",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Nicky Jam\" -> \"Nicky Jam\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "jam",
+      "lemma": "jam",
+      "pos": "NOUN",
+      "gloss": "jam",
+      "detector": "propernoun_caps",
+      "evidence": "\"Jam\" in \"Nicky Jam\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "whatsapp",
+      "lemma": "whatsapp",
+      "pos": "NOUN",
+      "gloss": "WhatsApp, a message sent or received ove",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"WhatsApp sin el retrato, no guarda mi contacto (¡Ey, ey, ey, ey!)\" -> \"WhatsApp without the profile pic, you don't save my contact (Hey, hey, hey, hey!)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "whatsapp",
+      "lemma": "whatsapp",
+      "pos": "NOUN",
+      "gloss": "WhatsApp, a message sent or received ove",
+      "detector": "propernoun_caps",
+      "evidence": "\"WhatsApp\" in \"Contigo es la única que yo hablo por el WhatsApp\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "hey",
+      "lemma": "hey",
+      "pos": "INTJ",
+      "gloss": "hey!",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Me tienes el bicho ansioso, hey, ey\" -> \"You got my dick anxious, hey, ey\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "dealer",
+      "lemma": "dealer",
+      "pos": "NOUN",
+      "gloss": "dealer",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Quería carro y la mude pa' un dealer\" -> \"She wanted a car and I moved her to a dealer\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "nio",
+      "lemma": "nio",
+      "pos": "NOUN",
+      "gloss": "kid, child (colloquial)",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Nio\" -> \"Nio\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "alfa",
+      "lemma": "alfa",
+      "pos": "NOUN",
+      "gloss": "alpha; the Greek letter Α, α",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"'Toy como El Alfa, cacao, cacao\" -> \"I'm like El Alfa, cocoa, cocoa\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "alfa",
+      "lemma": "alfa",
+      "pos": "NOUN",
+      "gloss": "alpha; the Greek letter Α, α",
+      "detector": "propernoun_caps",
+      "evidence": "\"Alfa\" in \"'Toy como El Alfa, cacao, cacao\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "curry",
+      "lemma": "curry",
+      "pos": "NOUN",
+      "gloss": "curry",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Que este es Stephen Curry, me quieren los Warrior'\" -> \"That this is Stephen Curry, the Warriors want me\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "curry",
+      "lemma": "curry",
+      "pos": "NOUN",
+      "gloss": "curry",
+      "detector": "propernoun_caps",
+      "evidence": "\"Curry\" in \"Que este es Stephen Curry, me quieren los Warrior'\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "bu",
+      "lemma": "bu",
+      "pos": "INTJ",
+      "gloss": "boo!",
+      "detector": "propernoun_caps",
+      "evidence": "\"Bu\" in \"Yo ando con Adidas, las Bad Bu, cabrón, ya boté toa' las Bred (Jeje)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tony",
+      "lemma": "tony",
+      "pos": "NOUN",
+      "gloss": "circus clown",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Tony Dize\" -> \"Tony Dize\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tony",
+      "lemma": "tony",
+      "pos": "NOUN",
+      "gloss": "circus clown",
+      "detector": "propernoun_caps",
+      "evidence": "\"Tony\" in \"Entro al género haciendo ollie, Tony Hawk, Hawk\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "clemente",
+      "lemma": "clemente",
+      "pos": "ADJ",
+      "gloss": "lenient",
+      "detector": "propernoun_caps",
+      "evidence": "\"Clemente\" in \"Enrola otro bate, que llegó Clemente\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "down",
+      "lemma": "down",
+      "pos": "ADJ",
+      "gloss": "down, depressed",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Si no tengo de tu piel, down\" -> \"If I don't have your skin, I'm down\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "ring",
+      "lemma": "ring",
+      "pos": "NOUN",
+      "gloss": "ring",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"¡Ring, ring! La calle me llamó\" -> \"Ring, ring! The streets called me\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "yankee",
+      "lemma": "yankee",
+      "pos": "NOUN",
+      "gloss": "American",
+      "detector": "propernoun_caps",
+      "evidence": "\"Yankee\" in \"Daddy Yankee, Tego Calderón\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "top",
+      "lemma": "top",
+      "pos": "NOUN",
+      "gloss": "top",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Yo he esta'o con mile' y tú sigue' en el top ten\" -> \"I've been with thousands and you're still in the top ten\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mega",
+      "lemma": "mega",
+      "pos": "NOUN",
+      "gloss": "radio station",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"La puse en 69, no La Mega (Mmm)\" -> \"I put it on 69, not La Mega (Mmm)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mega",
+      "lemma": "mega",
+      "pos": "NOUN",
+      "gloss": "radio station",
+      "detector": "propernoun_caps",
+      "evidence": "\"Mega\" in \"La puse en 69, no La Mega (Mmm)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "wiki",
+      "lemma": "wiki",
+      "pos": "NOUN",
+      "gloss": "wiki",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Wiki-wiki-wiki-ah\" -> \"Wiki-wiki-wiki-ah\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "quiles",
+      "lemma": "quiles",
+      "pos": "NOUN",
+      "gloss": "surname",
+      "detector": "propernoun_caps",
+      "evidence": "\"Quiles\" in \"Justin Quiles, dímelo J Quiles\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "auto",
+      "lemma": "auto",
+      "pos": "NOUN",
+      "gloss": "car, automobile",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"No tengo Auto-Tune y lo quiero usar\" -> \"I don't have Auto-Tune and I want to use it\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "auto",
+      "lemma": "auto",
+      "pos": "NOUN",
+      "gloss": "car, automobile",
+      "detector": "propernoun_caps",
+      "evidence": "\"Auto\" in \"300 y el AK, salimo' a cazar cabrone', vivimo' en Grand Theft Auto (Grand Theft Auto)\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mr",
+      "lemma": "mr",
+      "pos": "NOUN",
+      "gloss": "mister",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Mr. Eazi, baby\" -> \"Mr. Eazi, baby\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "almirante",
+      "lemma": "almirante",
+      "pos": "NOUN",
+      "gloss": "admiral",
+      "detector": "propernoun_caps",
+      "evidence": "\"Almirante\" in \"Es la voz de todo un barrio desde Almirante a Frontón\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gym",
+      "lemma": "gym",
+      "pos": "NOUN",
+      "gloss": "gym, gymnasium",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Le mete al gym y con Percocet\" -> \"She's into the gym and Percocet\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gps",
+      "lemma": "gps",
+      "pos": "NOUN",
+      "gloss": "GPS, Global Positioning System",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Del celular traqueo con el GPS\" -> \"From the cell phone, I track with GPS\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gps",
+      "lemma": "gps",
+      "pos": "NOUN",
+      "gloss": "GPS, Global Positioning System",
+      "detector": "propernoun_caps",
+      "evidence": "\"GPS\" in \"Del celular traqueo con el GPS\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "pina",
+      "lemma": "pina",
+      "pos": "NOUN",
+      "gloss": "borderstone",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Estoy como Pina que tiene su Plan B\" -> \"I'm like Pina, who has his Plan B\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "pina",
+      "lemma": "pina",
+      "pos": "NOUN",
+      "gloss": "borderstone",
+      "detector": "propernoun_caps",
+      "evidence": "\"Pina\" in \"Estoy como Pina que tiene su Plan B\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "honda",
+      "lemma": "honda",
+      "pos": "NOUN",
+      "gloss": "sling, slingshot",
+      "detector": "propernoun_caps",
+      "evidence": "\"Honda\" in \"Yo sé que e' otra onda, aparte del Honda\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "paper",
+      "lemma": "paper",
+      "pos": "NOUN",
+      "gloss": "paper",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"200 cajas 'e paper que pedí en eBay\" -> \"200 boxes of paper I ordered on eBay\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "caribe",
+      "lemma": "caribe",
+      "pos": "ADJ",
+      "gloss": "Cariban, belonging to one of the Carib p",
+      "detector": "propernoun_caps",
+      "evidence": "\"Caribe\" in \"Por el Caribe probando nuevas táctica'\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "golden",
+      "lemma": "golden",
+      "pos": "NOUN",
+      "gloss": "Golden Delicious",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Y les dimo' a Curry y a Klay, se cayeron Golden State\" -> \"And we gave it to Curry and Klay, Golden State fell\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "golden",
+      "lemma": "golden",
+      "pos": "NOUN",
+      "gloss": "Golden Delicious",
+      "detector": "propernoun_caps",
+      "evidence": "\"Golden\" in \"Y les dimo' a Curry y a Klay, se cayeron Golden State\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "hoodie",
+      "lemma": "hoodie",
+      "pos": "NOUN",
+      "gloss": "hoodie",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"La voy a buscar con el hoodie, por si me ven, nadie sospeche\" -> \"I'll pick her up with the hoodie on, so if they see me, nobody suspects\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "kronix",
+      "lemma": "kronix",
+      "pos": "NOUN",
+      "gloss": "brand name",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Mera, dime, Kronix\" -> \"Yo, tell me, Kronix\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "kronix",
+      "lemma": "kronix",
+      "pos": "NOUN",
+      "gloss": "brand name",
+      "detector": "propernoun_caps",
+      "evidence": "\"Kronix\" in \"Mera, dime, Kronix\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "quintana",
+      "lemma": "quintana",
+      "pos": "NOUN",
+      "gloss": "the fifth",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Dimelo Yecko, Pepe, otra fucking visión Quintana\" -> \"Tell me Yecko, Pepe, another fucking Quintana vision\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "quintana",
+      "lemma": "quintana",
+      "pos": "NOUN",
+      "gloss": "the fifth",
+      "detector": "propernoun_caps",
+      "evidence": "\"Quintana\" in \"Dimelo Yecko, Pepe, otra fucking visión Quintana\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "maravilla",
+      "lemma": "maravilla",
+      "pos": "NOUN",
+      "gloss": "wonder, marvel",
+      "detector": "propernoun_caps",
+      "evidence": "\"Maravilla\" in \"Arcángel \"La Maravilla\", ey\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "zorro",
+      "lemma": "zorro",
+      "pos": "NOUN",
+      "gloss": "fox",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Traje un pa’l de setas y no son las del Zorro\" -> \"I brought some mushrooms, and they're not from Zorro\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "zorro",
+      "lemma": "zorro",
+      "pos": "NOUN",
+      "gloss": "fox",
+      "detector": "propernoun_caps",
+      "evidence": "\"Zorro\" in \"Traje un pa’l de setas y no son las del Zorro\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "químico",
+      "lemma": "químico",
+      "pos": "NOUN",
+      "gloss": "chemist",
+      "detector": "propernoun_caps",
+      "evidence": "\"Químico\" in \"Hyde El Químico\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "pac",
+      "lemma": "pac",
+      "pos": "NOUN",
+      "gloss": "comité de acción política; PAC.",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Ey, me mataron como a 2Pac y a Notorious (No)\" -> \"Hey, they killed me like 2Pac and Notorious (No)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "lady",
+      "lemma": "lady",
+      "pos": "NOUN",
+      "gloss": "lady",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Quería hacerte mi first lady\" -> \"I wanted to make you my first lady\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "luis",
+      "lemma": "luis",
+      "pos": "NOUN",
+      "gloss": "louis",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Quiero ser tu sol, tú Luis Miguel (Sup)\" -> \"I want to be your sun, you Luis Miguel (Sup)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "luis",
+      "lemma": "luis",
+      "pos": "NOUN",
+      "gloss": "louis",
+      "detector": "propernoun_caps",
+      "evidence": "\"Luis\" in \"Quiero ser tu sol, tú Luis Miguel (Sup)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "mall",
+      "lemma": "mall",
+      "pos": "NOUN",
+      "gloss": "mall",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"El carro siempre con Armor All, metí'o en el mall\" -> \"The car always with Armor All, parked in the mall\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "kendo",
+      "lemma": "kendo",
+      "pos": "NOUN",
+      "gloss": "kendo",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Kendo Kaponi, yo también soy una Glock, Glock\" -> \"Kendo Kaponi, I'm also a Glock, Glock\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "piqué",
+      "lemma": "piqué",
+      "pos": "NOUN",
+      "gloss": "footballer",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Como Selena y The Weeknd (Eh), como Shakira y Piqué\" -> \"Like Selena and The Weeknd (Eh), like Shakira and Piqué\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "piqué",
+      "lemma": "piqué",
+      "pos": "NOUN",
+      "gloss": "footballer",
+      "detector": "propernoun_caps",
+      "evidence": "\"Piqué\" in \"Como Selena y The Weeknd (Eh), como Shakira y Piqué\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "marash",
+      "lemma": "marash",
+      "pos": "NOUN",
+      "gloss": "nickname",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"La Marash\" -> \"La Marash\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "marash",
+      "lemma": "marash",
+      "pos": "NOUN",
+      "gloss": "nickname",
+      "detector": "propernoun_caps",
+      "evidence": "\"Marash\" in \"La Marash\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "rookie",
+      "lemma": "rookie",
+      "pos": "NOUN",
+      "gloss": "rookie",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Llegó el rookie que les brincó to' lo' rango (Jaja)\" -> \"The rookie arrived who jumped over all the ranks (Haha)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "calderón",
+      "lemma": "calderón",
+      "pos": "NOUN",
+      "gloss": "pilot whale",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Iván Calderón, pero a peso completo\" -> \"Iván Calderón, but at full weight.\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "calderón",
+      "lemma": "calderón",
+      "pos": "NOUN",
+      "gloss": "pilot whale",
+      "detector": "propernoun_caps",
+      "evidence": "\"Calderón\" in \"Iván Calderón, pero a peso completo\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "grey",
+      "lemma": "grey",
+      "pos": "NOUN",
+      "gloss": "flock",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Échate el spray, vamo' pa' la sombra, que hoy te vo'a hacer las de Grey (Huh!)\" -> \"Spray yourself, let's go to the shade, 'cause today I'm gonna do the Grey thing to you (Huh!)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "grey",
+      "lemma": "grey",
+      "pos": "NOUN",
+      "gloss": "flock",
+      "detector": "propernoun_caps",
+      "evidence": "\"Grey\" in \"Échate el spray, vamo' pa' la sombra, que hoy te vo'a hacer las de Grey (Huh!)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "geniuz",
+      "lemma": "geniuz",
+      "pos": "NOUN",
+      "gloss": "genius",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Lil Geniuz\" -> \"Lil Geniuz\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "javish",
+      "lemma": "javish",
+      "pos": "NOUN",
+      "gloss": "name",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Javish\" -> \"Javish\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "jacuzzi",
+      "lemma": "jacuzzi",
+      "pos": "NOUN",
+      "gloss": "hot tub, jacuzzi",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Por eso de la piscina pasamo' al jacuzzi\" -> \"That's why we go from the pool to the jacuzzi\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "caicos",
+      "lemma": "caicos",
+      "pos": "NOUN",
+      "gloss": "Turks and Caicos",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Domingo, Turks and Caico', ¿tú no ve' el tanning?\" -> \"Sunday, Turks and Caicos, don't you see the tanning?\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "u",
+      "lemma": "o",
+      "pos": "CCONJ",
+      "gloss": "or",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Sigo matando con la U\" -> \"Still killing it with the U\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "u",
+      "lemma": "o",
+      "pos": "CCONJ",
+      "gloss": "or",
+      "detector": "propernoun_caps",
+      "evidence": "\"U\" in \"Sigo matando con la U\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "beno",
+      "lemma": "beno",
+      "pos": "NOUN",
+      "gloss": "name",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Y si hoy me emborracho, que Beno me ayude\" -> \"And if I get drunk today, may Beno help me\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "beno",
+      "lemma": "beno",
+      "pos": "NOUN",
+      "gloss": "name",
+      "detector": "propernoun_caps",
+      "evidence": "\"Beno\" in \"Y si hoy me emborracho, que Beno me ayude\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "chat",
+      "lemma": "chat",
+      "pos": "NOUN",
+      "gloss": "chat, chat room",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Te sacamo' del group chat, te dejamo' offline\" -> \"We kicked you out of the group chat, left you offline\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "foke",
+      "lemma": "foke",
+      "pos": "PROPER NOUN",
+      "gloss": "a name or nickname",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Fue Foke que dijo\" -> \"It was Foke who said it\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "foke",
+      "lemma": "foke",
+      "pos": "PROPER NOUN",
+      "gloss": "a name or nickname",
+      "detector": "propernoun_caps",
+      "evidence": "\"Foke\" in \"Fue Foke que dijo\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gaga",
+      "lemma": "gaga",
+      "pos": "NOUN",
+      "gloss": "Lady Gaga",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Tú ere' mi Lady Gaga, yo tu Bradley Cooper\" -> \"You're my Lady Gaga, I'm your Bradley Cooper\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gaga",
+      "lemma": "gaga",
+      "pos": "NOUN",
+      "gloss": "Lady Gaga",
+      "detector": "propernoun_caps",
+      "evidence": "\"Gaga\" in \"Tú ere' mi Lady Gaga, yo tu Bradley Cooper\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "link",
+      "lemma": "link",
+      "pos": "NOUN",
+      "gloss": "link",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Son 100 millones de views por cada link\" -> \"It's 100 million views for each link\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "logo",
+      "lemma": "logo",
+      "pos": "NOUN",
+      "gloss": "logo",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"A tu novio de novela, lo pongo en el logo de los Bulls\" -> \"Your soap opera boyfriend, I'll put him on the Bulls logo\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "lysi",
+      "lemma": "lysi",
+      "pos": "NOUN",
+      "gloss": "name",
+      "detector": "propernoun_caps",
+      "evidence": "\"Lysi\" in \"Yo no voy pa' reunione', cabrón, llamando al nene de Lysi\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "navy",
+      "lemma": "navy",
+      "pos": "NOUN",
+      "gloss": "navy",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Los Navy Seals del movimiento\" -> \"The Navy Seals of the movement\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "ousi",
+      "lemma": "ousi",
+      "pos": "PROPER_NOUN",
+      "gloss": "name or nickname, context needed",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Dando vuelta' por la SanSe escuchando a Dei V y a Ousi\" -> \"Cruising around SanSe listening to Dei V and Ousi\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "ousi",
+      "lemma": "ousi",
+      "pos": "PROPER_NOUN",
+      "gloss": "name or nickname, context needed",
+      "detector": "propernoun_caps",
+      "evidence": "\"Ousi\" in \"Dando vuelta' por la SanSe escuchando a Dei V y a Ousi\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "stop",
+      "lemma": "stop",
+      "pos": "INTJ",
+      "gloss": "stop",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"A la monotonía ella le puso stop (Le puso stop; ¡huh!)\" -> \"She put a stop to the monotony (Put a stop to it; huh!)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "tory",
+      "lemma": "tory",
+      "pos": "NOUN",
+      "gloss": "tory",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Tory Lanez\" -> \"Tory Lanez\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "trip",
+      "lemma": "trip",
+      "pos": "NOUN",
+      "gloss": "trip",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Nunca anda sola, su combo siempre on the trip (Ella, ella, ella)\" -> \"She's never alone, her crew is always on the trip (She, she, she)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "ganda",
+      "lemma": "ganda",
+      "pos": "NOUN",
+      "gloss": "A name or slang term.",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Ganda\" -> \"Ganda (a name or slang)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "hobby",
+      "lemma": "hobby",
+      "pos": "NOUN",
+      "gloss": "hobby",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"A los hombres los tiene de hobby\" -> \"She has men as a hobby\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "lobby",
+      "lemma": "lobby",
+      "pos": "NOUN",
+      "gloss": "lobby",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Las babie' llegando al lobby y nosotro' en la suite (Eh)\" -> \"The babes arriving at the lobby and us in the suite (Eh)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "luían",
+      "lemma": "luían",
+      "pos": "NOUN",
+      "gloss": "proper name",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Dí-Díselo, Luían\" -> \"Tell-Tell them, Luían\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "wisin",
+      "lemma": "wisin",
+      "pos": "PROPER_NOUN",
+      "gloss": "Wisin (a reggaeton artist)",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Don Omar, Wisin, Yandel\" -> \"Don Omar, Wisin, Yandel\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "wisin",
+      "lemma": "wisin",
+      "pos": "PROPER_NOUN",
+      "gloss": "Wisin (a reggaeton artist)",
+      "detector": "propernoun_caps",
+      "evidence": "\"Wisin\" in \"Don Omar, Wisin, Yandel\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "yeezy",
+      "lemma": "yeezy",
+      "pos": "PROPER_NOUN",
+      "gloss": "Yeezy (brand of sneakers)",
+      "detector": "propernoun_caps",
+      "evidence": "\"Yeezy\" in \"Yo combino las Yeezy, ey, con los día' grise'\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "barbie",
+      "lemma": "barbie",
+      "pos": "NOUN",
+      "gloss": "Barbie",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"La Barbie que no venden en la tienda\" -> \"The Barbie they don't sell in the store\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "barbie",
+      "lemma": "barbie",
+      "pos": "NOUN",
+      "gloss": "Barbie",
+      "detector": "propernoun_caps",
+      "evidence": "\"Barbie\" in \"La Barbie que no venden en la tienda\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "canelo",
+      "lemma": "canelo",
+      "pos": "NOUN",
+      "gloss": "cinnamon",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Te pillo contra las cuerda' y te echo un Canelo (Pu-pu-pu)\" -> \"I catch you against the ropes and I hit you with a Canelo (Pu-pu-pu)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "canelo",
+      "lemma": "canelo",
+      "pos": "NOUN",
+      "gloss": "cinnamon",
+      "detector": "propernoun_caps",
+      "evidence": "\"Canelo\" in \"Te pillo contra las cuerda' y te echo un Canelo (Pu-pu-pu)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "clóset",
+      "lemma": "clóset",
+      "pos": "NOUN",
+      "gloss": "closet",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Me vo'a esconder en el clóset en lo que se va tu mai (Huh)\" -> \"I'll hide in the closet until your mom leaves (Huh)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "kaponi",
+      "lemma": "kaponi",
+      "pos": "NOUN",
+      "gloss": "proper name",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Kendo Kaponi, yo también soy una Glock, Glock\" -> \"Kendo Kaponi, I'm also a Glock, Glock\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "kaponi",
+      "lemma": "kaponi",
+      "pos": "NOUN",
+      "gloss": "proper name",
+      "detector": "propernoun_caps",
+      "evidence": "\"Kaponi\" in \"Kendo Kaponi, yo también soy una Glock, Glock\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "manatí",
+      "lemma": "manatí",
+      "pos": "NOUN",
+      "gloss": "manatee",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Como cuando me quedaba en Boquerón o en Manatí\" -> \"Like when I used to stay in Boquerón or Manatí\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "manatí",
+      "lemma": "manatí",
+      "pos": "NOUN",
+      "gloss": "manatee",
+      "detector": "propernoun_caps",
+      "evidence": "\"Manatí\" in \"Como cuando me quedaba en Boquerón o en Manatí\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "nelson",
+      "lemma": "nelson",
+      "pos": "ADV",
+      "gloss": "synonym of nel",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"DJ Nelson\" -> \"DJ Nelson\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "nelson",
+      "lemma": "nelson",
+      "pos": "ADV",
+      "gloss": "synonym of nel",
+      "detector": "propernoun_caps",
+      "evidence": "\"Nelson\" in \"DJ Nelson\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "vander",
+      "lemma": "vander",
+      "pos": "PROPER NOUN",
+      "gloss": "a place name (proper noun)",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Hoy amanecemos en el Vander\" -> \"Today we wake up in the Vander\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "vander",
+      "lemma": "vander",
+      "pos": "PROPER NOUN",
+      "gloss": "a place name (proper noun)",
+      "detector": "propernoun_caps",
+      "evidence": "\"Vander\" in \"Hoy amanecemos en el Vander\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "escobar",
+      "lemma": "escobar",
+      "pos": "VERB",
+      "gloss": "to sweep",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Yo tu Escobar, tú mi Griselda Blanco\" -> \"I'm your Escobar, you're my Griselda Blanco\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "escobar",
+      "lemma": "escobar",
+      "pos": "VERB",
+      "gloss": "to sweep",
+      "detector": "propernoun_caps",
+      "evidence": "\"Escobar\" in \"Yo tu Escobar, tú mi Griselda Blanco\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "gringos",
+      "lemma": "gringos",
+      "pos": "NOUN",
+      "gloss": "Americans",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Los jueves pa' Brava, pa' hacerle fiero a los gringo'\" -> \"Thursdays to Brava, to mess with the gringos\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "sunroof",
+      "lemma": "sunroof",
+      "pos": "NOUN",
+      "gloss": "sunroof",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Si nos para los guardia', por sunroof se bota (Jiji)\" -> \"If the cops stop us, they throw it out the sunroof (Jiji)\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "zendaya",
+      "lemma": "zendaya",
+      "pos": "NOUN",
+      "gloss": "attractive person",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Te vo'a dar con euforia, tú ere' mi Zendaya (¡Rrra!)\" -> \"I'm gonna hit you with euphoria, you're my Zendaya (¡Rrra!)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "zendaya",
+      "lemma": "zendaya",
+      "pos": "NOUN",
+      "gloss": "attractive person",
+      "detector": "propernoun_caps",
+      "evidence": "\"Zendaya\" in \"Te vo'a dar con euforia, tú ere' mi Zendaya (¡Rrra!)\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "palomino",
+      "lemma": "palomino",
+      "pos": "NOUN",
+      "gloss": "palomino",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Pichea Maldiva', yo me quedo en Palomino (Yo me quedo aquí, je), ey\" -> \"Forget the Maldives, I'm staying in Palomino (I'm staying here, je), ey\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "palomino",
+      "lemma": "palomino",
+      "pos": "NOUN",
+      "gloss": "palomino",
+      "detector": "propernoun_caps",
+      "evidence": "\"Palomino\" in \"Pichea Maldiva', yo me quedo en Palomino (Yo me quedo aquí, je), ey\"",
+      "verdict": "fix"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "piercing",
+      "lemma": "piercing",
+      "pos": "NOUN",
+      "gloss": "piercing",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Como piercing, a los hombre' perfora, eh-eh-eh\" -> \"Like a piercing, it pierces men, eh-eh-eh\"",
+      "verdict": "stamp"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "rosselló",
+      "lemma": "rosselló",
+      "pos": "NOUN",
+      "gloss": "Rosselló",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Quiero que el virus se vaya como Rosselló\" -> \"I want the virus to leave like Rosselló\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "rosselló",
+      "lemma": "rosselló",
+      "pos": "NOUN",
+      "gloss": "Rosselló",
+      "detector": "propernoun_caps",
+      "evidence": "\"Rosselló\" in \"Quiero que el virus se vaya como Rosselló\"",
+      "verdict": "keep"
+    },
+    {
+      "artist": "BadBunny",
+      "word": "pichyboyz",
+      "lemma": "pichyboyz",
+      "pos": "NOUN",
+      "gloss": "group name",
+      "detector": "code_switch_verbatim",
+      "evidence": "\"Pichyboyz & Skaary\" -> \"Pichyboyz & Skaary\"",
+      "verdict": "keep"
+    }
+  ]
+}

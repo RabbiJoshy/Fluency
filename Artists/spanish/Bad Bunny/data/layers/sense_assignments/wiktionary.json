@@ -5802,31 +5802,6 @@
       }
     ]
   },
-  "placer": {
-    "wiktionary-auto": [
-      {
-        "sense": "1b4",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ],
-        "example_ids": [
-          "7967941:5",
-          "5305004:50",
-          "11304595:54",
-          "3652331:33",
-          "6211043:33",
-          "8598733:27",
-          "3048221:84"
-        ]
-      }
-    ]
-  },
   "prohibido": {
     "wiktionary-auto": [
       {
@@ -83045,21 +83020,23 @@
   "seco": {
     "flash-lite-wiktionary": [
       {
-        "sense": "795",
-        "examples": [
-          1
-        ],
-        "example_ids": [
-          "2935271:63"
-        ]
-      },
-      {
         "sense": "e6c",
         "examples": [
           0
         ],
         "example_ids": [
           "5629919:54"
+        ]
+      }
+    ],
+    "wiktionary-auto": [
+      {
+        "sense": "e6c",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "2935271:63"
         ]
       }
     ]
@@ -96682,19 +96659,6 @@
         ],
         "example_ids": [
           "9614098:113"
-        ]
-      }
-    ]
-  },
-  "tanque": {
-    "flash-lite-wiktionary": [
-      {
-        "sense": "282",
-        "examples": [
-          0
-        ],
-        "example_ids": [
-          "5553950:55"
         ]
       }
     ]
@@ -117475,6 +117439,44 @@
         ],
         "example_ids": [
           "3171036:20"
+        ]
+      }
+    ]
+  },
+  "placer": {
+    "flash-lite-wiktionary": [
+      {
+        "sense": "c6d",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "example_ids": [
+          "7967941:5",
+          "5305004:50",
+          "11304595:54",
+          "3652331:33",
+          "6211043:33",
+          "8598733:27",
+          "3048221:84"
+        ]
+      }
+    ]
+  },
+  "tanque": {
+    "flash-lite-wiktionary": [
+      {
+        "sense": "2b3",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5553950:55"
         ]
       }
     ]
