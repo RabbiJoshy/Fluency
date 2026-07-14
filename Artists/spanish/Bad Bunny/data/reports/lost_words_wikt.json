@@ -1,0 +1,3415 @@
+{
+  "_meta": {
+    "method": "lost = {word.lower() for visible live cards} - {word.lower() for visible wikt cards}, using bench_deck_quality.visible(). For each lost word, searched the wikt INDEX for that word text under any id (any lemma split), not just the id used on live -- lemma splits are a known live/wikt artifact. Bucket (a) = word absent from wikt index under every lemma split; dug into sense_menu/wiktionary.json, sense_assignments/wiktionary.json, sense_assignments_lemma/wiktionary.json and word_routing.json exclude.* to find where it fell out, and checked method priority against the Spanish min-priority=50 builder cut. Buckets (b)/(c)/(d) = word IS in the wikt index (under some id) but that id fails visible(): (b) a master boolean flag hides it, (c) all senses are blank/POS=X, (d) some other visible() condition (all-PROPN senses, cognate_score, corpus_count<=1, or an unexplained edge).",
+    "counts": {
+      "live_visible_words": 3419,
+      "wikt_visible_words": 4000,
+      "lost_words": 278,
+      "cause_bucket_counts": {
+        "d_cognate_score": 237,
+        "c_zero_real_senses": 21,
+        "d_corpus_count": 8,
+        "a_excluded_by_routing": 4,
+        "d_all_propn_senses": 7,
+        "b_master_flag": 1
+      }
+    },
+    "root_cause_analysis": {
+      "d_cognate_score": {
+        "count": 237,
+        "root_cause": "NOT a Wiktionary sense-quality issue. The LIVE index file (BadBunnyvocabulary.index.json, built Jul 7) has ZERO entries (0/11198) carrying a cognate_score field -- it predates the assembler code path that stamps cognate_score onto the index from the shared Data/Spanish/layers/cognates.json cognate database. The WIKT index (rebuilt Jul 12 for cutover prep) DOES stamp it: 3010/11162 entries (27%) carry cognate_score, and bench_deck_quality.visible() hides any id with cognate_score >= 0.85. Data/Spanish/layers/cognates.json itself is old (Apr 20, predates the wikt cutover work) and has a meaningful false-positive rate from its CogNet+Gemini voting process. Most dramatic example: 'estar|estar' -> {score: 1.0, cognet: true}, which alone hides ALL ~20 conjugated forms of the verb 'to be' (estoy, está, estaban, estuve, ...) -- one of the most basic verbs in the language. Rebuilding the LIVE deck today with the current assembler, independent of any wiktionary/spanishdict decision, would trigger this same loss.",
+        "verdict": "MOSTLY REAL LOSSES, and the most urgent finding in this report. Sampling the 237 words: roughly half look like defensible Latinate cognates the live deck's own is_transparent_cognate filter would probably also have caught if it had ever been recomputed for these ids (acción/action, universidad/university, generación/generation, presidente/president, invitación/invitation). The other half are false positives that hide basic, essential vocabulary: the entire 'estar' (to be) conjugation paradigm, besos (kisses), bonito (pretty), botas (boots), caballero (gentleman), hombres (men), mama, mucho/mucha/muchos/muchas, mover and its forms (mueve, muevete -- very common in reggaeton dance lyrics), gemela (twin), estrellas (stars), puto, polvo, suave, santa, velas, escoria, banda, idiota, franco. This is a pipeline/data-quality bug in the shared cognate database and/or the 0.85 threshold, not an artifact of the wikt cutover specifically -- but it will surface as soon as ANY deck is rebuilt with the current tooling, so it should be fixed before or alongside the wikt cutover, not treated as a wikt-only issue."
+      },
+      "c_zero_real_senses": {
+        "count": 21,
+        "root_cause": "These ids exist in the wikt index/master but never got a Wiktionary sense-menu entry or a classifier assignment at all (checked sense_menu/wiktionary.json and sense_assignments/wiktionary.json directly -- both False for e.g. abrazos, besan, condones). In several cases the master's 'lemma' field equals the inflected surface form itself (e.g. abrazos -> lemma 'abrazos', not 'abrazo'; besan -> lemma 'besan', not 'besar') -- the wiktionary-track lemma/derivation mapping (step_7a) failed to reduce these inflected forms to a base lemma that has a real Wiktionary headword, so no sense candidates were ever available to assign.",
+        "verdict": "Real losses -- these are ordinary words (besan, condones, abrazos) that should have a gloss."
+      },
+      "d_corpus_count": {
+        "count": 8,
+        "root_cause": "The wikt-track lemmatizer splits these words into MORE distinct lemma ids than the live (SpanishDict) track did. E.g. live consolidates all 'acerca' occurrences under one id (lemma=acercar, corpus_count=2); wikt splits it into two ids (lemma=acerca, corpus_count=1 AND lemma=acercar, corpus_count=1) -- each individually fails the corpus_count>1 visibility gate even though the combined frequency clears it. Confirmed on all 8 words (acerca, acoso, despierto, guardado, maestra, mandado, marco, querido): every wikt candidate id for these words has corpus_count<=1, split across 2 ids where live had 1.",
+        "verdict": "Real losses caused by corpus-count fragmentation from over-granular lemma splitting, not a sense-quality problem."
+      },
+      "a_excluded_by_routing": {
+        "count": 4,
+        "root_cause": "word_routing.json's exclude.cognate bucket (shared across both decks, not sense-source-specific) currently lists adversario, anime, candela, latino. Checked: their LIVE master flags are all False (is_transparent_cognate=False, etc) -- the live deck predates this routing update and still shows them. The wikt deck is running against the CURRENT routing file.",
+        "verdict": "ACCEPTABLE -- these are genuine cognates/loanwords (adversario/adversary, anime is literally the English word, candela/candle, latino/latino). The live deck is the stale one here; wikt's hiding them is arguably correct/current behavior, not a loss."
+      },
+      "d_all_propn_senses": {
+        "count": 7,
+        "root_cause": "The wikt id for these words got a single PROPN (proper-noun) sense that crowds out the common-word reading, hiding the whole card since visible() drops all-PROPN cards. 'como' is the standout: its wikt master id (227610) has exactly one sense, {pos: PROPN, translation: 'Como'} (a place name / given name reading) -- yet sense_assignments/wiktionary.json shows Gemini (flash-lite-wiktionary) DID correctly classify 'como' with a real sense (id 400, 7 examples). That classified sense never made it into the final master entry for this id -- looks like a step_8b homograph-merge bug where the PROPN candidate senses win precedence over a correctly classified common-word sense.",
+        "verdict": "Mixed. 'como' is a real, serious loss -- it is one of the most frequent function words in Spanish (like/as/how) and its correct classification exists but got discarded by the builder. barrios, cantos, cela, champaña, evita, piscis are lower-frequency and plausibly do have a dominant proper-noun reading in this corpus, so those are more defensible, but worth a second look."
+      },
+      "b_master_flag": {
+        "count": 1,
+        "root_cause": "melón: is_transparent_cognate=True on the wikt master, False on the live master -- a flag divergence between the two master builds for the same id. melón is spelled almost identically to 'melon' (true cognate), but it's also in bench_deck_quality.py's DETECTOR_KNOWN_OK curated-keep list from a prior manual review ('real vocab worth teaching despite tripping detectors').",
+        "verdict": "Borderline / Josh's call -- legitimate cognate spelling-wise, but previously curated as worth keeping."
+      }
+    }
+  },
+  "words": {
+    "abandona": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ff981b",
+        "lemma": "abandonar",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "abandonar"
+        ]
+      }
+    },
+    "abandonado": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "af15a9",
+        "lemma": "abandonar",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "abandonar"
+        ]
+      }
+    },
+    "abandonó": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "8d1fce",
+        "lemma": "abandonar",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "abandonar"
+        ]
+      }
+    },
+    "abrazos": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "619a13",
+        "lemma": "abrazos",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "abrazos"
+        ]
+      }
+    },
+    "acción": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "df39a1",
+        "lemma": "acción",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "acción"
+        ]
+      }
+    },
+    "acerca": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "f011df",
+        "lemma": "acercar",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "acerca",
+          "acercar"
+        ]
+      }
+    },
+    "acoso": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "2d0910",
+        "lemma": "acosar",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "acosar",
+          "acoso"
+        ]
+      }
+    },
+    "activar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "eec7ba",
+        "lemma": "activar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "activar"
+        ]
+      }
+    },
+    "adversario": {
+      "cause": "a_excluded_by_routing",
+      "detail": {
+        "in_wikt_sense_menu": true,
+        "in_sense_assignments_wiktionary": false,
+        "sense_assignment_methods": [],
+        "sense_assignment_max_priority": 0,
+        "dropped_by_min_priority_50": false,
+        "in_sense_assignments_lemma_wiktionary": false,
+        "sense_assignments_lemma_keys": [],
+        "word_routing_exclude_buckets": [
+          "cognate"
+        ]
+      }
+    },
+    "agresiva": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "5c54e2",
+        "lemma": "agresiva",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "agresiva"
+        ]
+      }
+    },
+    "alejó": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "ecb692",
+        "lemma": "alejó",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "alejó"
+        ]
+      }
+    },
+    "amanezca": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "6b2325",
+        "lemma": "amanezca",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "amanezca"
+        ]
+      }
+    },
+    "americana": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a57d19",
+        "lemma": "americano",
+        "explanation": "cognate_score=0.94 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "americano"
+        ]
+      }
+    },
+    "amores": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "17061a",
+        "lemma": "amores",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "amores"
+        ]
+      }
+    },
+    "anime": {
+      "cause": "a_excluded_by_routing",
+      "detail": {
+        "in_wikt_sense_menu": true,
+        "in_sense_assignments_wiktionary": false,
+        "sense_assignment_methods": [],
+        "sense_assignment_max_priority": 0,
+        "dropped_by_min_priority_50": false,
+        "in_sense_assignments_lemma_wiktionary": false,
+        "sense_assignments_lemma_keys": [],
+        "word_routing_exclude_buckets": [
+          "cognate"
+        ]
+      }
+    },
+    "apartamento": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "73778e",
+        "lemma": "apartamento",
+        "explanation": "cognate_score=0.90 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "apartamento"
+        ]
+      }
+    },
+    "ardiente": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "df9adf",
+        "lemma": "ardiente",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "ardiente"
+        ]
+      }
+    },
+    "arrepiento": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f164c5",
+        "lemma": "arrepentir",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "arrepentir"
+        ]
+      }
+    },
+    "banda": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7a70b2",
+        "lemma": "banda",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "banda"
+        ]
+      }
+    },
+    "barrios": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "ff1e28",
+        "lemma": "barrios",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "barrios"
+        ]
+      }
+    },
+    "batería": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3b0832",
+        "lemma": "batería",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "batería"
+        ]
+      }
+    },
+    "besan": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "7d8d68",
+        "lemma": "besan",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "besan"
+        ]
+      }
+    },
+    "besos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "26e43b",
+        "lemma": "beso",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "beso"
+        ]
+      }
+    },
+    "billete": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "4cecd9",
+        "lemma": "billete",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "billete"
+        ]
+      }
+    },
+    "billetes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d39cec",
+        "lemma": "billete",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "billete"
+        ]
+      }
+    },
+    "bolas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a0f4dc",
+        "lemma": "bola",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "bola"
+        ]
+      }
+    },
+    "bomba": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "e5bbd7",
+        "lemma": "bomba",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "bomba"
+        ]
+      }
+    },
+    "bonito": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "fe6610",
+        "lemma": "bonito",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "bonito"
+        ]
+      }
+    },
+    "botas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "de2b96",
+        "lemma": "bota",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "bota"
+        ]
+      }
+    },
+    "brillante": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "84aee4",
+        "lemma": "brillante",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "brillante"
+        ]
+      }
+    },
+    "caballero": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c97def",
+        "lemma": "caballero",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "caballero"
+        ]
+      }
+    },
+    "cabina": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0ffdd1",
+        "lemma": "cabina",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "cabina"
+        ]
+      }
+    },
+    "calma": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "19ace6",
+        "lemma": "calma",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "calma"
+        ]
+      }
+    },
+    "canales": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "dc3da4",
+        "lemma": "canal",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "canal"
+        ]
+      }
+    },
+    "candela": {
+      "cause": "a_excluded_by_routing",
+      "detail": {
+        "in_wikt_sense_menu": true,
+        "in_sense_assignments_wiktionary": false,
+        "sense_assignment_methods": [],
+        "sense_assignment_max_priority": 0,
+        "dropped_by_min_priority_50": false,
+        "in_sense_assignments_lemma_wiktionary": false,
+        "sense_assignments_lemma_keys": [],
+        "word_routing_exclude_buckets": [
+          "cognate"
+        ]
+      }
+    },
+    "cantos": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "e284d1",
+        "lemma": "cantos",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "cantos"
+        ]
+      }
+    },
+    "católica": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0579e2",
+        "lemma": "católico",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "católico"
+        ]
+      }
+    },
+    "cela": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "60a8df",
+        "lemma": "cela",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "cela"
+        ]
+      }
+    },
+    "celebrar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2cf74f",
+        "lemma": "celebrar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "celebrar"
+        ]
+      }
+    },
+    "celular": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6cb8f9",
+        "lemma": "celular",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "celular"
+        ]
+      }
+    },
+    "champaña": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "feeeb2",
+        "lemma": "champaña",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "champaña"
+        ]
+      }
+    },
+    "champán": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d07ce8",
+        "lemma": "champán",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "champán"
+        ]
+      }
+    },
+    "chocolates": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "135298",
+        "lemma": "chocolate",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "chocolate"
+        ]
+      }
+    },
+    "clase": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "226e41",
+        "lemma": "clase",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "clase"
+        ]
+      }
+    },
+    "collar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c5a74f",
+        "lemma": "collar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "collar"
+        ]
+      }
+    },
+    "combinación": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "258540",
+        "lemma": "combinación",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "combinación"
+        ]
+      }
+    },
+    "comentarios": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a84b81",
+        "lemma": "comentario",
+        "explanation": "cognate_score=0.90 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "comentario"
+        ]
+      }
+    },
+    "como": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "227610",
+        "lemma": "como",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "como"
+        ]
+      }
+    },
+    "compañía": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "99954d",
+        "lemma": "compañía",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "compañía"
+        ]
+      }
+    },
+    "compromiso": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d8e175",
+        "lemma": "compromiso",
+        "explanation": "cognate_score=0.90 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "compromiso"
+        ]
+      }
+    },
+    "condones": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "55303f",
+        "lemma": "condón",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "condón"
+        ]
+      }
+    },
+    "confesar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d28238",
+        "lemma": "confesar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "confesar"
+        ]
+      }
+    },
+    "confié": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "4fe2a4",
+        "lemma": "confiar",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "confiar"
+        ]
+      }
+    },
+    "contenta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "47cd2b",
+        "lemma": "contento",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "contento"
+        ]
+      }
+    },
+    "contentos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5cf829",
+        "lemma": "contento",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "contento"
+        ]
+      }
+    },
+    "contesto": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "1abfa8",
+        "lemma": "contesto",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "contesto"
+        ]
+      }
+    },
+    "contra": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9e4cc8",
+        "lemma": "contra",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "contra"
+        ]
+      }
+    },
+    "convertido": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "fc5aba",
+        "lemma": "convertir",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "convertir"
+        ]
+      }
+    },
+    "convertí": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2f2064",
+        "lemma": "convertir",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "convertir"
+        ]
+      }
+    },
+    "conviene": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0f94a7",
+        "lemma": "convenir",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "convenir"
+        ]
+      }
+    },
+    "convierten": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "fd3219",
+        "lemma": "convertir",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "convertir"
+        ]
+      }
+    },
+    "convirtió": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5c4e2d",
+        "lemma": "convertir",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "convertir"
+        ]
+      }
+    },
+    "correcto": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0af4f2",
+        "lemma": "correcto",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "correcto"
+        ]
+      }
+    },
+    "corrupto": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2c10dc",
+        "lemma": "corrupto",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "corrupto"
+        ]
+      }
+    },
+    "creando": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "cf59d0",
+        "lemma": "crear",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "crear"
+        ]
+      }
+    },
+    "creen": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d55c98",
+        "lemma": "crear",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "crear"
+        ]
+      }
+    },
+    "crías": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "24ca59",
+        "lemma": "cría",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "cría"
+        ]
+      }
+    },
+    "cura": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "f82ffc",
+        "lemma": "curar",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "cura",
+          "curar"
+        ]
+      }
+    },
+    "decides": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f39179",
+        "lemma": "decidir",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "decidir"
+        ]
+      }
+    },
+    "decisiones": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "367467",
+        "lemma": "decisión",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "decisión"
+        ]
+      }
+    },
+    "delincuente": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "051e3c",
+        "lemma": "delincuente",
+        "explanation": "cognate_score=0.95 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "delincuente"
+        ]
+      }
+    },
+    "depende": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "12f0f9",
+        "lemma": "depender",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "depender"
+        ]
+      }
+    },
+    "desierto": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d97300",
+        "lemma": "desierto",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "desierto"
+        ]
+      }
+    },
+    "despedí": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "7d815a",
+        "lemma": "despedí",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "despedí"
+        ]
+      }
+    },
+    "despierto": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "bcabcc",
+        "lemma": "despertar",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "despertar",
+          "despierto"
+        ]
+      }
+    },
+    "diario": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "efb0ac",
+        "lemma": "diario",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "diario"
+        ]
+      }
+    },
+    "diferentes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "392b74",
+        "lemma": "diferente",
+        "explanation": "cognate_score=0.94 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "diferente"
+        ]
+      }
+    },
+    "directamente": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "8343f7",
+        "lemma": "directamente",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "directamente"
+        ]
+      }
+    },
+    "directo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b95fe4",
+        "lemma": "directo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "directo"
+        ]
+      }
+    },
+    "discos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "25cdfe",
+        "lemma": "disco",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "disco"
+        ]
+      }
+    },
+    "doctores": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "95e734",
+        "lemma": "doctor",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "doctor"
+        ]
+      }
+    },
+    "edades": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "31fe16",
+        "lemma": "edades",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "edades"
+        ]
+      }
+    },
+    "enamorado": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "41e872",
+        "lemma": "enamorado",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "enamorado"
+        ]
+      }
+    },
+    "enamorados": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "898221",
+        "lemma": "enamorado",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "enamorado"
+        ]
+      }
+    },
+    "enamoré": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0317a2",
+        "lemma": "enamorar",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "enamorar"
+        ]
+      }
+    },
+    "encanta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "32daa5",
+        "lemma": "encantar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "encantar"
+        ]
+      }
+    },
+    "escoria": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "56774f",
+        "lemma": "escoria",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "escoria"
+        ]
+      }
+    },
+    "espíritu": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "20d77e",
+        "lemma": "espíritu",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "espíritu"
+        ]
+      }
+    },
+    "estaba": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "e132ac",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estabamos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c1aff9",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estaban": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7a8b40",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estabas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3de6a4",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estamos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6c18e0",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "73fd55",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estará": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a9ff3a",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estarán": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ce02d8",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estemos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "352ecc",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estoy": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3ff477",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estrellas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a5eede",
+        "lemma": "estrella",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estrella"
+        ]
+      }
+    },
+    "estuve": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "843e26",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estuviera": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ad563d",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estuviste": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ef7ada",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estuviéramos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "8dbf02",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "está": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d86f06",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "están": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ac48aa",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estás": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2bb9f8",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "esté": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ee0e6f",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estén": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "578860",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "estés": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5705f3",
+        "lemma": "estar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "estar"
+        ]
+      }
+    },
+    "evita": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "fd5ec3",
+        "lemma": "evita",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "evita"
+        ]
+      }
+    },
+    "existe": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b99461",
+        "lemma": "existir",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "existir"
+        ]
+      }
+    },
+    "experto": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "cd4eb7",
+        "lemma": "experto",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "experto"
+        ]
+      }
+    },
+    "explota": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ce4e03",
+        "lemma": "explotar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "explotar"
+        ]
+      }
+    },
+    "expresar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "cd47b0",
+        "lemma": "expresar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "expresar"
+        ]
+      }
+    },
+    "facil": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2b1527",
+        "lemma": "fácil",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "fácil"
+        ]
+      }
+    },
+    "famosos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c06c5b",
+        "lemma": "famoso",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "famoso"
+        ]
+      }
+    },
+    "fantasías": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "508c47",
+        "lemma": "fantasía",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "fantasía"
+        ]
+      }
+    },
+    "favorita": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d3d345",
+        "lemma": "favorito",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "favorito"
+        ]
+      }
+    },
+    "favoritas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7ba9e5",
+        "lemma": "favorito",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "favorito"
+        ]
+      }
+    },
+    "franco": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "43925c",
+        "lemma": "Franco",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "Franco"
+        ]
+      }
+    },
+    "fresca": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f969dd",
+        "lemma": "fresco",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "fresco"
+        ]
+      }
+    },
+    "fresco": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "da0103",
+        "lemma": "fresco",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "fresco"
+        ]
+      }
+    },
+    "fácil": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "34834b",
+        "lemma": "fácil",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "fácil"
+        ]
+      }
+    },
+    "gemela": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6d1941",
+        "lemma": "gemela",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "gemela"
+        ]
+      }
+    },
+    "generación": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "265d0f",
+        "lemma": "generación",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "generación"
+        ]
+      }
+    },
+    "general": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "8674df",
+        "lemma": "general",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "general"
+        ]
+      }
+    },
+    "gramos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6dd504",
+        "lemma": "gramo",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "gramo"
+        ]
+      }
+    },
+    "gran": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "64fffa",
+        "lemma": "grande",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "grande"
+        ]
+      }
+    },
+    "grande": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "91366c",
+        "lemma": "grande",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "grande"
+        ]
+      }
+    },
+    "guardado": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "b936d8",
+        "lemma": "guardar",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "guardado",
+          "guardar"
+        ]
+      }
+    },
+    "habitación": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "035ee9",
+        "lemma": "habitación",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "habitación"
+        ]
+      }
+    },
+    "hombres": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9b10f4",
+        "lemma": "hombre",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "hombre"
+        ]
+      }
+    },
+    "idiota": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d22c8d",
+        "lemma": "idiota",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "idiota"
+        ]
+      }
+    },
+    "ilusiones": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "454abf",
+        "lemma": "ilusión",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "ilusión"
+        ]
+      }
+    },
+    "imagina": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9525f5",
+        "lemma": "imaginar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "imaginar"
+        ]
+      }
+    },
+    "imagino": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "8d87a0",
+        "lemma": "imaginar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "imaginar"
+        ]
+      }
+    },
+    "implantes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5dcee7",
+        "lemma": "implante",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "implante"
+        ]
+      }
+    },
+    "importa": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "959a6c",
+        "lemma": "importar",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "importar"
+        ]
+      }
+    },
+    "importan": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a40e75",
+        "lemma": "importar",
+        "explanation": "cognate_score=0.94 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "importar"
+        ]
+      }
+    },
+    "importar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c13615",
+        "lemma": "importar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "importar"
+        ]
+      }
+    },
+    "imposible": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "80d14e",
+        "lemma": "imposible",
+        "explanation": "cognate_score=0.95 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "imposible"
+        ]
+      }
+    },
+    "infiel": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "347b94",
+        "lemma": "infiel",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "infiel"
+        ]
+      }
+    },
+    "insistes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b0c691",
+        "lemma": "insistir",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "insistir"
+        ]
+      }
+    },
+    "invento": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "fe49fa",
+        "lemma": "inventar",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "inventar",
+          "invento"
+        ]
+      }
+    },
+    "inventé": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "cfecc6",
+        "lemma": "inventar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "inventar"
+        ]
+      }
+    },
+    "invitación": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "26c7b5",
+        "lemma": "invitación",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "invitación"
+        ]
+      }
+    },
+    "invité": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "53f05c",
+        "lemma": "invitar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "invitar"
+        ]
+      }
+    },
+    "latino": {
+      "cause": "a_excluded_by_routing",
+      "detail": {
+        "in_wikt_sense_menu": true,
+        "in_sense_assignments_wiktionary": false,
+        "sense_assignment_methods": [],
+        "sense_assignment_max_priority": 0,
+        "dropped_by_min_priority_50": false,
+        "in_sense_assignments_lemma_wiktionary": false,
+        "sense_assignments_lemma_keys": [],
+        "word_routing_exclude_buckets": [
+          "cognate"
+        ]
+      }
+    },
+    "libras": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9e1d38",
+        "lemma": "libra",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "libra"
+        ]
+      }
+    },
+    "llamas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ff6bd6",
+        "lemma": "llama",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "llama"
+        ]
+      }
+    },
+    "lunar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "288c08",
+        "lemma": "lunar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "lunar"
+        ]
+      }
+    },
+    "línea": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a9912e",
+        "lemma": "línea",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "línea"
+        ]
+      }
+    },
+    "maestra": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "beb2a2",
+        "lemma": "maestro",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "maestra",
+          "maestro"
+        ]
+      }
+    },
+    "mama": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "1ec73d",
+        "lemma": "mama",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mama"
+        ]
+      }
+    },
+    "mandado": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "fd7e7b",
+        "lemma": "mandar",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "mandado",
+          "mandar"
+        ]
+      }
+    },
+    "marco": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "077ab8",
+        "lemma": "marcar",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "marcar",
+          "marco"
+        ]
+      }
+    },
+    "melón": {
+      "cause": "b_master_flag",
+      "detail": {
+        "id": "deeb66",
+        "lemma": "melón",
+        "explanation": "flags=['is_transparent_cognate']",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "melón"
+        ]
+      }
+    },
+    "militares": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9b1d77",
+        "lemma": "militar",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "militar"
+        ]
+      }
+    },
+    "misiones": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5a8631",
+        "lemma": "misión",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "misión"
+        ]
+      }
+    },
+    "misión": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "775f9f",
+        "lemma": "misión",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "misión"
+        ]
+      }
+    },
+    "modelos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "e0b431",
+        "lemma": "modelo",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "modelo"
+        ]
+      }
+    },
+    "momentos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6d8e66",
+        "lemma": "momento",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "momento"
+        ]
+      }
+    },
+    "mover": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7cfb5a",
+        "lemma": "mover",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mover"
+        ]
+      }
+    },
+    "moviendo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "48a8ba",
+        "lemma": "mover",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mover"
+        ]
+      }
+    },
+    "mucha": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "cb0040",
+        "lemma": "mucho",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mucho"
+        ]
+      }
+    },
+    "muchas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "69e072",
+        "lemma": "mucho",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mucho"
+        ]
+      }
+    },
+    "mucho": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "dc32a2",
+        "lemma": "mucho",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mucho"
+        ]
+      }
+    },
+    "muchos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2b7880",
+        "lemma": "mucho",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mucho"
+        ]
+      }
+    },
+    "muevas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "18cd81",
+        "lemma": "mover",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mover"
+        ]
+      }
+    },
+    "mueve": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7ea1ea",
+        "lemma": "mover",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mover"
+        ]
+      }
+    },
+    "mueves": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c1b974",
+        "lemma": "mover",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mover"
+        ]
+      }
+    },
+    "muevete": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "006fa7",
+        "lemma": "mover",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "mover"
+        ]
+      }
+    },
+    "máxima": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "59c8a2",
+        "lemma": "máximo",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "máximo"
+        ]
+      }
+    },
+    "naturales": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3eb422",
+        "lemma": "natural",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "natural"
+        ]
+      }
+    },
+    "necesario": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "434d90",
+        "lemma": "necesario",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "necesario"
+        ]
+      }
+    },
+    "negativo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7642a2",
+        "lemma": "negativo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "negativo"
+        ]
+      }
+    },
+    "normales": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a5c50c",
+        "lemma": "normal",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "normal"
+        ]
+      }
+    },
+    "oficial": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "938891",
+        "lemma": "oficial",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "oficial"
+        ]
+      }
+    },
+    "opción": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a145b5",
+        "lemma": "opción",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "opción"
+        ]
+      }
+    },
+    "paga": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "28e78b",
+        "lemma": "pagar",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "paga",
+          "pagar"
+        ]
+      }
+    },
+    "pares": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "e4098b",
+        "lemma": "par",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "par",
+          "parar"
+        ]
+      }
+    },
+    "partes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ea4638",
+        "lemma": "parte",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "parte"
+        ]
+      }
+    },
+    "pasa": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f331d0",
+        "lemma": "pasar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pasar"
+        ]
+      }
+    },
+    "pasas": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "0adda0",
+        "lemma": "pasar",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "pasa",
+          "pasar"
+        ]
+      }
+    },
+    "pase": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c7032d",
+        "lemma": "pasar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pasar"
+        ]
+      }
+    },
+    "pases": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "df5ef2",
+        "lemma": "pasar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pasar"
+        ]
+      }
+    },
+    "pasión": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "15dd9f",
+        "lemma": "pasión",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pasión"
+        ]
+      }
+    },
+    "pasos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6fb328",
+        "lemma": "paso",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "paso"
+        ]
+      }
+    },
+    "pasé": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "dfce17",
+        "lemma": "pasar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pasar"
+        ]
+      }
+    },
+    "pasó": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "73afcc",
+        "lemma": "pasar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pasar"
+        ]
+      }
+    },
+    "perfecta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "104747",
+        "lemma": "perfecto",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "perfecto"
+        ]
+      }
+    },
+    "permite": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3f1356",
+        "lemma": "permitir",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "permitir"
+        ]
+      }
+    },
+    "personaje": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "66d754",
+        "lemma": "personaje",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "personaje"
+        ]
+      }
+    },
+    "peso": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "583ace",
+        "lemma": "peso",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "peso"
+        ]
+      }
+    },
+    "pesos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "76b878",
+        "lemma": "peso",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "peso"
+        ]
+      }
+    },
+    "piscis": {
+      "cause": "d_all_propn_senses",
+      "detail": {
+        "id": "4a19b4",
+        "lemma": "piscis",
+        "explanation": "1 real senses, all tagged PROPN (visible() hides all-PROPN cards)",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "piscis"
+        ]
+      }
+    },
+    "pistola": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c58fe4",
+        "lemma": "pistola",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pistola"
+        ]
+      }
+    },
+    "pistolas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6fefb8",
+        "lemma": "pistola",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pistola"
+        ]
+      }
+    },
+    "planes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "fb8014",
+        "lemma": "plan",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "plan"
+        ]
+      }
+    },
+    "planta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "dadecd",
+        "lemma": "plantar",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "plantar"
+        ]
+      }
+    },
+    "poeta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9e96f5",
+        "lemma": "poeta",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "poeta"
+        ]
+      }
+    },
+    "polo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5a8397",
+        "lemma": "polo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "polo"
+        ]
+      }
+    },
+    "polvo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d65a6a",
+        "lemma": "polvo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "polvo"
+        ]
+      }
+    },
+    "porno": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b14cfc",
+        "lemma": "porno",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "porno"
+        ]
+      }
+    },
+    "posiciones": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "839e62",
+        "lemma": "posición",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "posición"
+        ]
+      }
+    },
+    "positiva": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "43734e",
+        "lemma": "positivo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "positivo"
+        ]
+      }
+    },
+    "precioso": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "928262",
+        "lemma": "precioso",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "precioso"
+        ]
+      }
+    },
+    "prefiere": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "2cf24b",
+        "lemma": "preferir",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "preferir"
+        ]
+      }
+    },
+    "prefiero": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a0505c",
+        "lemma": "preferir",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "preferir"
+        ]
+      }
+    },
+    "prepara": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "969fdd",
+        "lemma": "preparar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "preparar"
+        ]
+      }
+    },
+    "presentes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "1788c9",
+        "lemma": "presente",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "presente"
+        ]
+      }
+    },
+    "presidencial": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "89ba80",
+        "lemma": "presidencial",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "presidencial"
+        ]
+      }
+    },
+    "presidente": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "01ec61",
+        "lemma": "presidente",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "presidente"
+        ]
+      }
+    },
+    "presiento": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "abafd4",
+        "lemma": "presentar",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "presentar"
+        ]
+      }
+    },
+    "pretendes": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a85ec0",
+        "lemma": "pretender",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "pretender"
+        ]
+      }
+    },
+    "primera": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "766ded",
+        "lemma": "primero",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "primero"
+        ]
+      }
+    },
+    "primeras": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "d9ba54",
+        "lemma": "primero",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "primero"
+        ]
+      }
+    },
+    "primero": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a8368d",
+        "lemma": "primero",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "primero"
+        ]
+      }
+    },
+    "princesa": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "24b815",
+        "lemma": "princesa",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "princesa"
+        ]
+      }
+    },
+    "problemas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9949c4",
+        "lemma": "problema",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "problema"
+        ]
+      }
+    },
+    "profundo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "520e7e",
+        "lemma": "profundo",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "profundo"
+        ]
+      }
+    },
+    "puro": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9b1d90",
+        "lemma": "puro",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "puro"
+        ]
+      }
+    },
+    "puto": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "bb6414",
+        "lemma": "puto",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "puto"
+        ]
+      }
+    },
+    "queja": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a0c19a",
+        "lemma": "queja",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "queja",
+          "quejar"
+        ]
+      }
+    },
+    "quejas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3eef45",
+        "lemma": "queja",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "queja"
+        ]
+      }
+    },
+    "querido": {
+      "cause": "d_corpus_count",
+      "detail": {
+        "id": "1e59ab",
+        "lemma": "querer",
+        "explanation": "corpus_count=1 <= 1",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "querer",
+          "querido"
+        ]
+      }
+    },
+    "reales": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "ec1cbf",
+        "lemma": "real",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "real"
+        ]
+      }
+    },
+    "recupera": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7efdaa",
+        "lemma": "recuperar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "recuperar"
+        ]
+      }
+    },
+    "religioso": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "377e10",
+        "lemma": "religioso",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "religioso"
+        ]
+      }
+    },
+    "respeta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c5feb9",
+        "lemma": "respetar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "respetar"
+        ]
+      }
+    },
+    "respeto": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "7c68a3",
+        "lemma": "respetar",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 2,
+        "all_candidate_lemmas": [
+          "respetar",
+          "respeto"
+        ]
+      }
+    },
+    "responda": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b2b7cd",
+        "lemma": "responder",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "responder"
+        ]
+      }
+    },
+    "responder": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "081dfd",
+        "lemma": "responder",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "responder"
+        ]
+      }
+    },
+    "rápida": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "dae533",
+        "lemma": "rápido",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "rápido"
+        ]
+      }
+    },
+    "sana": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "fd6b92",
+        "lemma": "sano",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "sano"
+        ]
+      }
+    },
+    "santa": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0c119d",
+        "lemma": "santo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "santo"
+        ]
+      }
+    },
+    "secuestre": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "2bf9ac",
+        "lemma": "secuestre",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "secuestre"
+        ]
+      }
+    },
+    "seducí": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "5559b5",
+        "lemma": "seducí",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "seducí"
+        ]
+      }
+    },
+    "semestre": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "990ff5",
+        "lemma": "semestre",
+        "explanation": "cognate_score=0.88 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "semestre"
+        ]
+      }
+    },
+    "sentías": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "2fa3f1",
+        "lemma": "sentías",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "sentías"
+        ]
+      }
+    },
+    "separar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "33d5f5",
+        "lemma": "separar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "separar"
+        ]
+      }
+    },
+    "seque": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "02b981",
+        "lemma": "seque",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "seque"
+        ]
+      }
+    },
+    "serias": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f2080f",
+        "lemma": "serio",
+        "explanation": "cognate_score=0.91 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "serio"
+        ]
+      }
+    },
+    "serie": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "6a6470",
+        "lemma": "serie",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "serie"
+        ]
+      }
+    },
+    "sexuales": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3e4fd1",
+        "lemma": "sexual",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "sexual"
+        ]
+      }
+    },
+    "significa": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "28d65a",
+        "lemma": "significar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "significar"
+        ]
+      }
+    },
+    "sincera": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "27a9d2",
+        "lemma": "sincero",
+        "explanation": "cognate_score=0.86 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "sincero"
+        ]
+      }
+    },
+    "sistema": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b056ec",
+        "lemma": "sistema",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "sistema"
+        ]
+      }
+    },
+    "solicita": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "4738ba",
+        "lemma": "solicitar",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "solicitar"
+        ]
+      }
+    },
+    "solita": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "da1de1",
+        "lemma": "solita",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "solita"
+        ]
+      }
+    },
+    "suave": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "e28fe3",
+        "lemma": "suave",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "suave"
+        ]
+      }
+    },
+    "super": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b0730b",
+        "lemma": "super",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "super"
+        ]
+      }
+    },
+    "temporal": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9a8a58",
+        "lemma": "temporal",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "temporal"
+        ]
+      }
+    },
+    "termina": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "173f93",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "terminamos": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "a2d1fc",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "terminan": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "3ce40e",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "terminar": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "b59781",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "terminas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "844127",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "termine": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "40b097",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "termines": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f244d2",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "termino": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "dba274",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "terminó": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "15667c",
+        "lemma": "terminar",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "terminar"
+        ]
+      }
+    },
+    "to's": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "2aa4d9",
+        "lemma": "to's",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "to's"
+        ]
+      }
+    },
+    "total": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "9bc5b7",
+        "lemma": "total",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "total"
+        ]
+      }
+    },
+    "tranquila": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "0eeb4f",
+        "lemma": "tranquilo",
+        "explanation": "cognate_score=0.94 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tranquilo"
+        ]
+      }
+    },
+    "tranquilo": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f8981f",
+        "lemma": "tranquilo",
+        "explanation": "cognate_score=0.94 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tranquilo"
+        ]
+      }
+    },
+    "trates": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "60c16c",
+        "lemma": "tratar",
+        "explanation": "cognate_score=0.89 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tratar"
+        ]
+      }
+    },
+    "tremenda": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "13451e",
+        "lemma": "tremendo",
+        "explanation": "cognate_score=0.94 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tremendo"
+        ]
+      }
+    },
+    "tristeza": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "acd9f9",
+        "lemma": "tristeza",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tristeza"
+        ]
+      }
+    },
+    "trofeos": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "2214b3",
+        "lemma": "trofeos",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "trofeos"
+        ]
+      }
+    },
+    "tríos": {
+      "cause": "c_zero_real_senses",
+      "detail": {
+        "id": "e23667",
+        "lemma": "tríos",
+        "explanation": "senses list is empty",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tríos"
+        ]
+      }
+    },
+    "tuya": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "8b55a7",
+        "lemma": "tuyo",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "tuyo"
+        ]
+      }
+    },
+    "universidad": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f1ecfb",
+        "lemma": "universidad",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "universidad"
+        ]
+      }
+    },
+    "vacaciones": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "f55ca2",
+        "lemma": "vacación",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "vacación"
+        ]
+      }
+    },
+    "velas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "5abcd5",
+        "lemma": "vela",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "vela"
+        ]
+      }
+    },
+    "violenta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "30a262",
+        "lemma": "violento",
+        "explanation": "cognate_score=0.93 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "violento"
+        ]
+      }
+    },
+    "violeta": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "da4762",
+        "lemma": "violeta",
+        "explanation": "cognate_score=0.92 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "violeta"
+        ]
+      }
+    },
+    "vueltas": {
+      "cause": "d_cognate_score",
+      "detail": {
+        "id": "c133ed",
+        "lemma": "vuelta",
+        "explanation": "cognate_score=1.00 >= threshold 0.85",
+        "n_candidates_in_wikt_index": 1,
+        "all_candidate_lemmas": [
+          "vuelta"
+        ]
+      }
+    }
+  }
+}

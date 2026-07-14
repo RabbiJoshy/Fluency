@@ -1,0 +1,8278 @@
+{
+  "_meta": {
+    "generated_at": 1783973809,
+    "generated_at_iso": "2026-07-13T20:16:49Z",
+    "method": "Iterated BadBunnyvocabulary_wikt.index.json in index order (deck-rank order), keeping entries where bench_deck_quality.visible(wikt_master, idx) is True, until 500 visible wikt cards were collected (rank = position in that visible-only sequence). For each, matched the live deck's visible set on (word.lower(), lemma.lower()) and compared top gloss (real_senses(master)[0]['translation']), case-insensitive/stripped. Rows emitted only where a live match exists AND the top gloss differs. `suggestion` is a reviewer hint, not a verdict: a first mechanical pass flagged near-synonym/formatting-only diffs as 'cosmetic' via string/token similarity (SequenceMatcher ratio >= 0.6, substring, or Jaccard token overlap >= 0.34); the remaining ~51 rows (plus one mechanical false positive, 'carro') were hand-reviewed using Spanish/English lexical judgment and the wikt/live all-senses lists as corroborating evidence (see suggestion_note per row).",
+    "counts": {
+      "wikt_visible_total": 4011,
+      "live_visible_total": 3443,
+      "checked_first_n_wikt_visible": 500,
+      "matched_in_live": 374,
+      "gloss_diffs": 250,
+      "suggestion_histogram": {
+        "wikt_win": 6,
+        "cosmetic": 219,
+        "wikt_loss": 11,
+        "unclear": 14
+      }
+    },
+    "source_files": {
+      "wikt_index": "Artists/spanish/Bad Bunny/BadBunnyvocabulary_wikt.index.json",
+      "wikt_master": "Artists/spanish/vocabulary_master_wikt.json (read from scratchpad copy per concurrent-writer isolation)",
+      "live_index": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
+      "live_master": "Artists/spanish/vocabulary_master.json"
+    }
+  },
+  "entries": [
+    {
+      "rank": 1,
+      "word": "que",
+      "lemma": "que",
+      "wikt_pos": "CCONJ",
+      "wikt_gloss": "that",
+      "wikt_all_senses": [
+        [
+          "CCONJ",
+          "that"
+        ]
+      ],
+      "live_gloss": "to",
+      "live_all_senses": [
+        [
+          "CCONJ",
+          "to"
+        ],
+        [
+          "PRON",
+          "that"
+        ],
+        [
+          "CCONJ",
+          "than"
+        ],
+        [
+          "CCONJ",
+          "that"
+        ],
+        [
+          "PRON",
+          "which"
+        ],
+        [
+          "PRON",
+          "who"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_win",
+      "suggestion_note": "manual review: 'que' cannot mean bare 'to' on its own; wikt's 'that' is the standard gloss and also appears (non-top) in live's own menu."
+    },
+    {
+      "rank": 3,
+      "word": "no",
+      "lemma": "no",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "not",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "not"
+        ]
+      ],
+      "live_gloss": "no",
+      "live_all_senses": [
+        [
+          "ADV",
+          "no"
+        ],
+        [
+          "ADV",
+          "not"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 4,
+      "word": "me",
+      "lemma": "me",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "to me, for me",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "to me, for me"
+        ]
+      ],
+      "live_gloss": "me",
+      "live_all_senses": [
+        [
+          "PRON",
+          "me"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 5,
+      "word": "la",
+      "lemma": "la",
+      "wikt_pos": "DET",
+      "wikt_gloss": "the",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "the"
+        ]
+      ],
+      "live_gloss": "it",
+      "live_all_senses": [
+        [
+          "PRON",
+          "it"
+        ],
+        [
+          "DET",
+          "the"
+        ],
+        [
+          "PRON",
+          "her"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_win",
+      "suggestion_note": "manual review: 'la' as DET 'the' is the primary/default sense of the article; live's top pick 'it' (object pronoun use) is valid but secondary."
+    },
+    {
+      "rank": 6,
+      "word": "a",
+      "lemma": "a",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "bishop",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "bishop"
+        ]
+      ],
+      "live_gloss": "to",
+      "live_all_senses": [
+        [
+          "ADP",
+          "to"
+        ],
+        [
+          "ADP",
+          "at, per"
+        ],
+        [
+          "ADP",
+          "to"
+        ],
+        [
+          "ADP",
+          "to"
+        ],
+        [
+          "ADP",
+          "to"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: wikt's only sense is 'bishop' (NOUN, board-games context) for the preposition 'a' -- POS mismatch (live is ADP) and a chess-notation homograph, not the preposition. No alt sense in wikt menu to promote."
+    },
+    {
+      "rank": 8,
+      "word": "te",
+      "lemma": "te",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "to you, for you",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "to you, for you"
+        ]
+      ],
+      "live_gloss": "you",
+      "live_all_senses": [
+        [
+          "PRON",
+          "you"
+        ],
+        [
+          "PRON",
+          "for you"
+        ],
+        [
+          "PRON",
+          "from you"
+        ],
+        [
+          "PRON",
+          "you"
+        ],
+        [
+          "PRON",
+          "yourself"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 10,
+      "word": "de",
+      "lemma": "de",
+      "wikt_pos": "ADP",
+      "wikt_gloss": "of; 's",
+      "wikt_all_senses": [
+        [
+          "ADP",
+          "of; 's"
+        ]
+      ],
+      "live_gloss": "from",
+      "live_all_senses": [
+        [
+          "ADP",
+          "from"
+        ],
+        [
+          "ADP",
+          "of, belonging to"
+        ],
+        [
+          "ADP",
+          "of"
+        ],
+        [
+          "ADP",
+          "of"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_win",
+      "suggestion_note": "manual review: 'de' most commonly renders as 'of' (genitive); live's top 'from' is valid but less central."
+    },
+    {
+      "rank": 11,
+      "word": "en",
+      "lemma": "en",
+      "wikt_pos": "ADP",
+      "wikt_gloss": "in, at, on",
+      "wikt_all_senses": [
+        [
+          "ADP",
+          "in, at, on"
+        ]
+      ],
+      "live_gloss": "in",
+      "live_all_senses": [
+        [
+          "ADP",
+          "in"
+        ],
+        [
+          "ADP",
+          "at"
+        ],
+        [
+          "ADP",
+          "in"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 12,
+      "word": "lo",
+      "lemma": "lo",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "him, you, it",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "him, you, it"
+        ]
+      ],
+      "live_gloss": "you",
+      "live_all_senses": [
+        [
+          "PRON",
+          "you"
+        ],
+        [
+          "PRON",
+          "him"
+        ],
+        [
+          "PRON",
+          "what"
+        ],
+        [
+          "PRON",
+          "the thing"
+        ],
+        [
+          "PRON",
+          "stuff"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 14,
+      "word": "se",
+      "lemma": "se",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "themselves; yourselves; each other",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "themselves; yourselves; each other"
+        ]
+      ],
+      "live_gloss": "themselves",
+      "live_all_senses": [
+        [
+          "PRON",
+          "themselves"
+        ],
+        [
+          "PRON",
+          "itself"
+        ],
+        [
+          "PRON",
+          "himself"
+        ],
+        [
+          "PRON",
+          "herself"
+        ],
+        [
+          "PRON",
+          "each other"
+        ],
+        [
+          "PRON",
+          "one, people (impersonal)"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 17,
+      "word": "un",
+      "lemma": "un",
+      "wikt_pos": "DET",
+      "wikt_gloss": "an; a",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "an; a"
+        ]
+      ],
+      "live_gloss": "a",
+      "live_all_senses": [
+        [
+          "DET",
+          "a"
+        ],
+        [
+          "DET",
+          "an"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 19,
+      "word": "si",
+      "lemma": "si",
+      "wikt_pos": "CCONJ",
+      "wikt_gloss": "if, whether",
+      "wikt_all_senses": [
+        [
+          "CCONJ",
+          "if, whether"
+        ]
+      ],
+      "live_gloss": "if",
+      "live_all_senses": [
+        [
+          "CCONJ",
+          "if"
+        ],
+        [
+          "CCONJ",
+          "whether"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 26,
+      "word": "le",
+      "lemma": "le",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "to him, for him",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "to him, for him"
+        ]
+      ],
+      "live_gloss": "him",
+      "live_all_senses": [
+        [
+          "PRON",
+          "him"
+        ],
+        [
+          "PRON",
+          "her"
+        ],
+        [
+          "PRON",
+          "you"
+        ],
+        [
+          "PRON",
+          "him"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 28,
+      "word": "una",
+      "lemma": "un",
+      "wikt_pos": "DET",
+      "wikt_gloss": "one",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "one"
+        ],
+        [
+          "DET",
+          "an; a"
+        ]
+      ],
+      "live_gloss": "a",
+      "live_all_senses": [
+        [
+          "DET",
+          "a"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: 'una' as DET: live picked 'a' (indefinite article), wikt picked 'one' (numeral) with 'an; a' present as a non-top alt in wikt's OWN menu. Both are extremely common senses of una; genuinely context-dependent."
+    },
+    {
+      "rank": 30,
+      "word": "quiero",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 32,
+      "word": "más",
+      "lemma": "más",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "more; -er",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "more; -er"
+        ]
+      ],
+      "live_gloss": "more",
+      "live_all_senses": [
+        [
+          "ADV",
+          "more"
+        ],
+        [
+          "ADV",
+          "most"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 36,
+      "word": "qué",
+      "lemma": "qué",
+      "wikt_pos": "DET",
+      "wikt_gloss": "what; which",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "what; which"
+        ]
+      ],
+      "live_gloss": "what",
+      "live_all_senses": [
+        [
+          "PRON",
+          "what"
+        ],
+        [
+          "PRON",
+          "what"
+        ],
+        [
+          "ADV",
+          "how"
+        ],
+        [
+          "ADJ",
+          "what"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 37,
+      "word": "ti",
+      "lemma": "ti",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "you (prepositional object)",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "you (prepositional object)"
+        ]
+      ],
+      "live_gloss": "you",
+      "live_all_senses": [
+        [
+          "PRON",
+          "you"
+        ],
+        [
+          "PRON",
+          "yourself"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 38,
+      "word": "tengo",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 41,
+      "word": "bien",
+      "lemma": "bien",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "well; fine; okay",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "well; fine; okay"
+        ]
+      ],
+      "live_gloss": "well",
+      "live_all_senses": [
+        [
+          "ADV",
+          "well"
+        ],
+        [
+          "ADV",
+          "very"
+        ],
+        [
+          "ADV",
+          "OK"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 44,
+      "word": "ella",
+      "lemma": "ella",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "she, her",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "she, her"
+        ]
+      ],
+      "live_gloss": "she",
+      "live_all_senses": [
+        [
+          "PRON",
+          "she"
+        ],
+        [
+          "PRON",
+          "her"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 47,
+      "word": "cabrón",
+      "lemma": "cabrón",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "billy goat",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "billy goat"
+        ]
+      ],
+      "live_gloss": "bastard",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "bastard"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'cabrón' colloquially = 'bastard/asshole' (live); wikt's literal 'billy goat' is technically correct dictionary-wise but wrong register for lyrics. Single-sense wikt menu, nothing to promote."
+    },
+    {
+      "rank": 50,
+      "word": "vamos",
+      "lemma": "ir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go"
+        ]
+      ],
+      "live_gloss": "let's go",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "let's go"
+        ],
+        [
+          "PHRASE",
+          "come on"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 53,
+      "word": "quieres",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 54,
+      "word": "al",
+      "lemma": "al",
+      "wikt_pos": "CONTRACTION",
+      "wikt_gloss": "at the, to the",
+      "wikt_all_senses": [
+        [
+          "CONTRACTION",
+          "at the, to the"
+        ]
+      ],
+      "live_gloss": "to the",
+      "live_all_senses": [
+        [
+          "CONTRACTION",
+          "to the"
+        ],
+        [
+          "ADP",
+          "when"
+        ],
+        [
+          "CONTRACTION",
+          "a"
+        ],
+        [
+          "ADP",
+          "as"
+        ],
+        [
+          "ADP",
+          "by"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 56,
+      "word": "hay",
+      "lemma": "haber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "have; forms the perfect aspect",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "have; forms the perfect aspect"
+        ]
+      ],
+      "live_gloss": "to have to",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have to"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'hay' (impersonal haber) really means 'there is/are'; neither gloss captures that, but wikt's 'have; forms the perfect aspect' is a bare grammar-book description of haber-as-auxiliary, less useful than live's 'to have to' (tied to the real hay-que idiom)."
+    },
+    {
+      "rank": 57,
+      "word": "nos",
+      "lemma": "nos",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "to us, for us",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "to us, for us"
+        ]
+      ],
+      "live_gloss": "us",
+      "live_all_senses": [
+        [
+          "PRON",
+          "us"
+        ],
+        [
+          "PRON",
+          "each other"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 64,
+      "word": "vez",
+      "lemma": "vez",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "time, instance",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "time, instance"
+        ]
+      ],
+      "live_gloss": "time",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "time"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 65,
+      "word": "del",
+      "lemma": "del",
+      "wikt_pos": "CONTRACTION",
+      "wikt_gloss": "of the, from the.",
+      "wikt_all_senses": [
+        [
+          "CONTRACTION",
+          "of the, from the."
+        ]
+      ],
+      "live_gloss": "of the",
+      "live_all_senses": [
+        [
+          "CONTRACTION",
+          "of the"
+        ],
+        [
+          "CONTRACTION",
+          "from the"
+        ],
+        [
+          "CONTRACTION",
+          "from the"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 68,
+      "word": "nadie",
+      "lemma": "nadie",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "no one; nobody",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "no one; nobody"
+        ]
+      ],
+      "live_gloss": "anybody",
+      "live_all_senses": [
+        [
+          "PRON",
+          "anybody"
+        ],
+        [
+          "PRON",
+          "nobody"
+        ],
+        [
+          "PRON",
+          "no one"
+        ],
+        [
+          "PRON",
+          "anyone"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_win",
+      "suggestion_note": "manual review: 'nadie' is literally 'no one/nobody'; live's 'anybody' is a double-negative-avoidance translation artifact, not the base gloss."
+    },
+    {
+      "rank": 70,
+      "word": "solo",
+      "lemma": "solo",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "sole; one; only",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "sole; one; only"
+        ]
+      ],
+      "live_gloss": "only",
+      "live_all_senses": [
+        [
+          "ADV",
+          "only"
+        ],
+        [
+          "ADJ",
+          "alone"
+        ],
+        [
+          "ADV",
+          "just"
+        ],
+        [
+          "ADJ",
+          "by itself"
+        ],
+        [
+          "ADJ",
+          "single"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 71,
+      "word": "ese",
+      "lemma": "ese",
+      "wikt_pos": "DET",
+      "wikt_gloss": "that",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "that"
+        ]
+      ],
+      "live_gloss": "that one",
+      "live_all_senses": [
+        [
+          "PRON",
+          "that one"
+        ],
+        [
+          "ADJ",
+          "that"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 72,
+      "word": "quiere",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 75,
+      "word": "cómo",
+      "lemma": "cómo",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "how?",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "how?"
+        ]
+      ],
+      "live_gloss": "how",
+      "live_all_senses": [
+        [
+          "ADV",
+          "how"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 79,
+      "word": "ver",
+      "lemma": "ver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to see, to check, to spot",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to see, to check, to spot"
+        ]
+      ],
+      "live_gloss": "to see",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to see"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 80,
+      "word": "tiene",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 83,
+      "word": "gusta",
+      "lemma": "gustar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to experiment, to try, to taste",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to experiment, to try, to taste"
+        ]
+      ],
+      "live_gloss": "to like",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to like"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'gustar' commonly = 'to like'; wikt's 'to experiment, to try, to taste' is a real but archaic/rare sense. Gemini (flash-lite-wiktionary) actually classified this one and still picked wrong -- likely because 'to like' isn't offered as a distinct candidate in the wikt sense menu for this lemma (see Task 2 method-priority note)."
+    },
+    {
+      "rank": 86,
+      "word": "sabes",
+      "lemma": "saber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to know, to understand (a fact)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to know, to understand (a fact)"
+        ]
+      ],
+      "live_gloss": "to know",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to know"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 87,
+      "word": "tienes",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 88,
+      "word": "él",
+      "lemma": "él",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "he, him",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "he, him"
+        ]
+      ],
+      "live_gloss": "him",
+      "live_all_senses": [
+        [
+          "PRON",
+          "him"
+        ],
+        [
+          "PRON",
+          "he"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 93,
+      "word": "mejor",
+      "lemma": "mejor",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "better off, better",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "better off, better"
+        ]
+      ],
+      "live_gloss": "best",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "best"
+        ],
+        [
+          "ADJ",
+          "better"
+        ],
+        [
+          "ADV",
+          "better"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: better/best -- same comparative root, not a real error."
+    },
+    {
+      "rank": 96,
+      "word": "hago",
+      "lemma": "hacer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to do",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to do"
+        ]
+      ],
+      "live_gloss": "I do",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "I do"
+        ],
+        [
+          "PHRASE",
+          "I make"
+        ],
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to do"
+        ],
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to make"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 97,
+      "word": "después",
+      "lemma": "después",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "later, afterwards, afterward",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "later, afterwards, afterward"
+        ]
+      ],
+      "live_gloss": "after",
+      "live_all_senses": [
+        [
+          "ADV",
+          "after"
+        ],
+        [
+          "ADV",
+          "later"
+        ],
+        [
+          "ADV",
+          "then"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 98,
+      "word": "mía",
+      "lemma": "mío",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "mine; of mine",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "mine; of mine"
+        ]
+      ],
+      "live_gloss": "mine",
+      "live_all_senses": [
+        [
+          "PRON",
+          "mine"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 100,
+      "word": "día",
+      "lemma": "día",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "day, daytime",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "day, daytime"
+        ]
+      ],
+      "live_gloss": "day",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "day"
+        ],
+        [
+          "NOUN",
+          "day"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 105,
+      "word": "quién",
+      "lemma": "quién",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "who?, whom?; whose?",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "who?, whom?; whose?"
+        ]
+      ],
+      "live_gloss": "who",
+      "live_all_senses": [
+        [
+          "PRON",
+          "who"
+        ],
+        [
+          "PRON",
+          "whom"
+        ],
+        [
+          "PRON",
+          "who"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 106,
+      "word": "desde",
+      "lemma": "desde",
+      "wikt_pos": "ADP",
+      "wikt_gloss": "since",
+      "wikt_all_senses": [
+        [
+          "ADP",
+          "since"
+        ]
+      ],
+      "live_gloss": "from",
+      "live_all_senses": [
+        [
+          "ADP",
+          "from"
+        ],
+        [
+          "ADP",
+          "since"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: desde = 'from' (spatial) or 'since' (temporal) -- both core senses, context-dependent."
+    },
+    {
+      "rank": 107,
+      "word": "su",
+      "lemma": "su",
+      "wikt_pos": "DET",
+      "wikt_gloss": "apocopic form of suyo his, her, its",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "apocopic form of suyo his, her, its"
+        ]
+      ],
+      "live_gloss": "his",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "his"
+        ],
+        [
+          "ADJ",
+          "her"
+        ],
+        [
+          "ADJ",
+          "its"
+        ],
+        [
+          "ADJ",
+          "their"
+        ],
+        [
+          "ADJ",
+          "your"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 108,
+      "word": "dice",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ],
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 109,
+      "word": "aunque",
+      "lemma": "aunque",
+      "wikt_pos": "CCONJ",
+      "wikt_gloss": "though, although, even though",
+      "wikt_all_senses": [
+        [
+          "CCONJ",
+          "though, although, even though"
+        ]
+      ],
+      "live_gloss": "even though",
+      "live_all_senses": [
+        [
+          "CCONJ",
+          "even though"
+        ],
+        [
+          "CCONJ",
+          "even if"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 112,
+      "word": "toda",
+      "lemma": "todo",
+      "wikt_pos": "DET",
+      "wikt_gloss": "each; every, all",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "each; every, all"
+        ]
+      ],
+      "live_gloss": "everything",
+      "live_all_senses": [
+        [
+          "PRON",
+          "everything"
+        ],
+        [
+          "PRON",
+          "all"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: toda: same 'everything' vs 'each/every, all' tension as todos/todas below."
+    },
+    {
+      "rank": 113,
+      "word": "amor",
+      "lemma": "amor",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "love affair, love",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "love affair, love"
+        ]
+      ],
+      "live_gloss": "love",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "love"
+        ],
+        [
+          "NOUN",
+          "honey"
+        ],
+        [
+          "NOUN",
+          "love"
+        ],
+        [
+          "NOUN",
+          "love"
+        ],
+        [
+          "NOUN",
+          "sweetie"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 116,
+      "word": "les",
+      "lemma": "les",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "to them, for them",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "to them, for them"
+        ]
+      ],
+      "live_gloss": "to them",
+      "live_all_senses": [
+        [
+          "PRON",
+          "to them"
+        ],
+        [
+          "PRON",
+          "to you"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 117,
+      "word": "ando",
+      "lemma": "andar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to walk, to go",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to walk, to go"
+        ]
+      ],
+      "live_gloss": "to be",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to be"
+        ],
+        [
+          "VERB",
+          "to ride"
+        ],
+        [
+          "VERB",
+          "to hang out with"
+        ],
+        [
+          "VERB",
+          "to be around"
+        ],
+        [
+          "VERB",
+          "to walk"
+        ],
+        [
+          "VERB",
+          "to go"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: ando: 'to be' (andar+adj colloquial 'to be in a state') is genuinely common in Caribbean Spanish, not an error, vs wikt's literal base sense 'to walk/go'."
+    },
+    {
+      "rank": 118,
+      "word": "otro",
+      "lemma": "otro",
+      "wikt_pos": "DET",
+      "wikt_gloss": "other, another",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "other, another"
+        ]
+      ],
+      "live_gloss": "another",
+      "live_all_senses": [
+        [
+          "PRON",
+          "another"
+        ],
+        [
+          "PRON",
+          "another"
+        ],
+        [
+          "PRON",
+          "another one"
+        ],
+        [
+          "ADJ",
+          "another"
+        ],
+        [
+          "ADJ",
+          "other"
+        ],
+        [
+          "ADJ",
+          "next"
+        ],
+        [
+          "ADJ",
+          "another"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 122,
+      "word": "quieren",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 127,
+      "word": "veces",
+      "lemma": "vez",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "time, instance",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "time, instance"
+        ]
+      ],
+      "live_gloss": "time",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "time"
+        ],
+        [
+          "NOUN",
+          "time"
+        ],
+        [
+          "NOUN",
+          "turn, time"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 129,
+      "word": "también",
+      "lemma": "también",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "also, too, as well",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "also, too, as well"
+        ]
+      ],
+      "live_gloss": "also",
+      "live_all_senses": [
+        [
+          "ADV",
+          "also"
+        ],
+        [
+          "ADV",
+          "too"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 132,
+      "word": "culo",
+      "lemma": "culo",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "ass, arse, booty",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "ass, arse, booty"
+        ]
+      ],
+      "live_gloss": "ass",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "ass"
+        ],
+        [
+          "NOUN",
+          "butt"
+        ],
+        [
+          "NOUN",
+          "arsehole"
+        ],
+        [
+          "NOUN",
+          "asshole"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 133,
+      "word": "dónde",
+      "lemma": "dónde",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "where?",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "where?"
+        ]
+      ],
+      "live_gloss": "where",
+      "live_all_senses": [
+        [
+          "ADV",
+          "where"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 134,
+      "word": "ahí",
+      "lemma": "ahí",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "there: used to designate a place near the listener",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "there: used to designate a place near the listener"
+        ]
+      ],
+      "live_gloss": "there",
+      "live_all_senses": [
+        [
+          "ADV",
+          "there"
+        ],
+        [
+          "ADV",
+          "then"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 138,
+      "word": "par",
+      "lemma": "par",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "pair",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "pair"
+        ]
+      ],
+      "live_gloss": "couple",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "couple"
+        ],
+        [
+          "NOUN",
+          "pair"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: couple/pair -- synonyms."
+    },
+    {
+      "rank": 139,
+      "word": "meto",
+      "lemma": "meter",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put in, insert",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put in, insert"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to stick"
+        ],
+        [
+          "VERB",
+          "to bring into"
+        ],
+        [
+          "VERB",
+          "to get into"
+        ],
+        [
+          "VERB",
+          "to drag into"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 141,
+      "word": "sabe",
+      "lemma": "saber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to know, to understand (a fact)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to know, to understand (a fact)"
+        ]
+      ],
+      "live_gloss": "to know",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to know"
+        ],
+        [
+          "VERB",
+          "to taste"
+        ],
+        [
+          "VERB",
+          "to taste of"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 142,
+      "word": "doy",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to give",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to produce"
+        ],
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to yield"
+        ],
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to teach"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 143,
+      "word": "ves",
+      "lemma": "ver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to see, to check, to spot",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to see, to check, to spot"
+        ]
+      ],
+      "live_gloss": "to watch",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to watch"
+        ],
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to look at"
+        ],
+        [
+          "VERB",
+          "to see oneself"
+        ],
+        [
+          "VERB",
+          "to look"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: watch/see -- near-synonymous for 'ver' in casual usage."
+    },
+    {
+      "rank": 144,
+      "word": "bicho",
+      "lemma": "bicho",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "dick (vulgar, PR)",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "dick (vulgar, PR)"
+        ]
+      ],
+      "live_gloss": "dick",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "dick"
+        ],
+        [
+          "NOUN",
+          "bug"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 145,
+      "word": "puedo",
+      "lemma": "poder",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be able to, can",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be able to, can"
+        ]
+      ],
+      "live_gloss": "can",
+      "live_all_senses": [
+        [
+          "VERB",
+          "can"
+        ],
+        [
+          "VERB",
+          "can"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 147,
+      "word": "donde",
+      "lemma": "donde",
+      "wikt_pos": "CCONJ",
+      "wikt_gloss": "because",
+      "wikt_all_senses": [
+        [
+          "CCONJ",
+          "because"
+        ]
+      ],
+      "live_gloss": "where",
+      "live_all_senses": [
+        [
+          "CCONJ",
+          "where"
+        ],
+        [
+          "ADV",
+          "wherever"
+        ],
+        [
+          "ADV",
+          "where"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'donde' = 'where'; wikt's 'because' is flatly wrong (that's porque). Single-sense wikt menu, nothing to promote."
+    },
+    {
+      "rank": 153,
+      "word": "tienen",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to have on"
+        ],
+        [
+          "VERB",
+          "to be"
+        ],
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 158,
+      "word": "nuevo",
+      "lemma": "nuevo",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "brand new, all-new, new",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "brand new, all-new, new"
+        ]
+      ],
+      "live_gloss": "new",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "new"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 159,
+      "word": "cabrones",
+      "lemma": "cabrón",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "billy goat",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "billy goat"
+        ]
+      ],
+      "live_gloss": "bastard",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "bastard"
+        ],
+        [
+          "NOUN",
+          "son of a bitch"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: same as cabrón (plural form)."
+    },
+    {
+      "rank": 160,
+      "word": "sola",
+      "lemma": "solo",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "alone, by oneself",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "alone, by oneself"
+        ]
+      ],
+      "live_gloss": "alone",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "alone"
+        ],
+        [
+          "ADJ",
+          "on one's own"
+        ],
+        [
+          "ADJ",
+          "lonely"
+        ],
+        [
+          "ADJ",
+          "by itself"
+        ],
+        [
+          "ADJ",
+          "single"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 162,
+      "word": "mal",
+      "lemma": "mal",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "badly, poorly, ill",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "badly, poorly, ill"
+        ]
+      ],
+      "live_gloss": "badly",
+      "live_all_senses": [
+        [
+          "ADV",
+          "badly"
+        ],
+        [
+          "NOUN",
+          "illness"
+        ],
+        [
+          "NOUN",
+          "misfortune"
+        ],
+        [
+          "ADJ",
+          "bad"
+        ],
+        [
+          "ADJ",
+          "wrong"
+        ],
+        [
+          "NOUN",
+          "evil"
+        ],
+        [
+          "ADJ",
+          "ill"
+        ],
+        [
+          "ADV",
+          "incorrectly"
+        ],
+        [
+          "NOUN",
+          "harm"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 163,
+      "word": "loca",
+      "lemma": "loco",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "crazy, insane, mad",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "crazy, insane, mad"
+        ]
+      ],
+      "live_gloss": "crazy",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "crazy"
+        ],
+        [
+          "ADJ",
+          "crazy"
+        ],
+        [
+          "ADJ",
+          "mad"
+        ],
+        [
+          "ADJ",
+          "crazy"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 168,
+      "word": "algo",
+      "lemma": "algo",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "something, anything",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "something, anything"
+        ]
+      ],
+      "live_gloss": "something",
+      "live_all_senses": [
+        [
+          "PRON",
+          "something"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 169,
+      "word": "todas",
+      "lemma": "todo",
+      "wikt_pos": "DET",
+      "wikt_gloss": "each; every, all",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "each; every, all"
+        ]
+      ],
+      "live_gloss": "everything",
+      "live_all_senses": [
+        [
+          "PRON",
+          "everything"
+        ],
+        [
+          "PRON",
+          "all"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: todas: same as toda."
+    },
+    {
+      "rank": 171,
+      "word": "loco",
+      "lemma": "loco",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "crazy, insane, mad",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "crazy, insane, mad"
+        ]
+      ],
+      "live_gloss": "crazy",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "crazy"
+        ],
+        [
+          "NOUN",
+          "crazy"
+        ],
+        [
+          "NOUN",
+          "lunatic"
+        ],
+        [
+          "ADJ",
+          "crazy"
+        ],
+        [
+          "ADJ",
+          "amazing"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 172,
+      "word": "dé",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to give",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to hold"
+        ],
+        [
+          "VERB",
+          "to produce"
+        ],
+        [
+          "VERB",
+          "to hand over"
+        ],
+        [
+          "VERB",
+          "to hit"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 174,
+      "word": "putas",
+      "lemma": "puta",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "whore, slut, prostitute",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "whore, slut, prostitute"
+        ]
+      ],
+      "live_gloss": "prostitute",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "prostitute"
+        ],
+        [
+          "NOUN",
+          "slut"
+        ],
+        [
+          "NOUN",
+          "whore"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 175,
+      "word": "sigo",
+      "lemma": "seguir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to follow, observe, to obey (a rule",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to follow, observe, to obey (a rule"
+        ]
+      ],
+      "live_gloss": "to follow",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to follow"
+        ],
+        [
+          "VERB",
+          "to continue"
+        ],
+        [
+          "VERB",
+          "to go on"
+        ],
+        [
+          "VERB",
+          "to still be in"
+        ],
+        [
+          "VERB",
+          "to carry on"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 176,
+      "word": "dar",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to give",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to throw"
+        ],
+        [
+          "VERB",
+          "to teach"
+        ],
+        [
+          "VERB",
+          "to hand over"
+        ],
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to yield"
+        ],
+        [
+          "VERB",
+          "to produce"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 178,
+      "word": "da",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to happen",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to happen"
+        ],
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to throw"
+        ],
+        [
+          "VERB",
+          "to teach"
+        ],
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to yield"
+        ],
+        [
+          "VERB",
+          "to produce"
+        ],
+        [
+          "VERB",
+          "to bear"
+        ],
+        [
+          "VERB",
+          "to hold"
+        ],
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to apply, to put on"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_win",
+      "suggestion_note": "manual review: 'da' (3rd-sg of dar) overwhelmingly means 'to give'; 'to happen' is a rare reflexive use (darse) -- looks like a live-side mis-tag."
+    },
+    {
+      "rank": 179,
+      "word": "carajo",
+      "lemma": "carajo",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "cock",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "cock"
+        ]
+      ],
+      "live_gloss": "fuck",
+      "live_all_senses": [
+        [
+          "INTJ",
+          "fuck"
+        ],
+        [
+          "INTJ",
+          "shit"
+        ],
+        [
+          "NOUN",
+          "dick"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'carajo' is overwhelmingly used as an interjection ('fuck/damn/hell') in lyrics; wikt picked the literal anatomical NOUN sense ('cock'). live's own menu has NOUN 'dick' at a non-top rank -- wikt's pick corresponds to that minor sense, not the dominant interjection use."
+    },
+    {
+      "rank": 180,
+      "word": "llego",
+      "lemma": "llegar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to arrive, get",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to arrive, get"
+        ]
+      ],
+      "live_gloss": "to arrive",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to arrive"
+        ],
+        [
+          "VERB",
+          "to get"
+        ],
+        [
+          "VERB",
+          "to get there"
+        ],
+        [
+          "VERB",
+          "to be here"
+        ],
+        [
+          "VERB",
+          "to be there"
+        ],
+        [
+          "VERB",
+          "to come"
+        ],
+        [
+          "VERB",
+          "to arrive"
+        ],
+        [
+          "VERB",
+          "to be enough"
+        ],
+        [
+          "VERB",
+          "to reach"
+        ],
+        [
+          "VERB",
+          "to become"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 181,
+      "word": "mientras",
+      "lemma": "mientras",
+      "wikt_pos": "CCONJ",
+      "wikt_gloss": "while, whilst, as, whereas",
+      "wikt_all_senses": [
+        [
+          "CCONJ",
+          "while, whilst, as, whereas"
+        ]
+      ],
+      "live_gloss": "while",
+      "live_all_senses": [
+        [
+          "CCONJ",
+          "while"
+        ],
+        [
+          "ADV",
+          "meanwhile"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 183,
+      "word": "vivo",
+      "lemma": "vivir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to live; to be alive",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to live; to be alive"
+        ]
+      ],
+      "live_gloss": "to live",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to live"
+        ],
+        [
+          "VERB",
+          "to live through"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 187,
+      "word": "sale",
+      "lemma": "salir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go out, to leave, to depart",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go out, to leave, to depart"
+        ]
+      ],
+      "live_gloss": "to do",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to do"
+        ],
+        [
+          "VERB",
+          "to go out"
+        ],
+        [
+          "VERB",
+          "to set off"
+        ],
+        [
+          "VERB",
+          "to go out"
+        ],
+        [
+          "VERB",
+          "to go"
+        ],
+        [
+          "VERB",
+          "to work out"
+        ],
+        [
+          "VERB",
+          "to come from"
+        ],
+        [
+          "VERB",
+          "to appear"
+        ],
+        [
+          "VERB",
+          "to rise"
+        ],
+        [
+          "VERB",
+          "to finish"
+        ],
+        [
+          "VERB",
+          "to turn out"
+        ],
+        [
+          "VERB",
+          "to go out"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to come out"
+        ],
+        [
+          "VERB",
+          "to come out"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_win",
+      "suggestion_note": "manual review: 'sale' (salir) means 'to go out/leave'; 'to do' is not a sense of salir at all -- looks like a live-side error."
+    },
+    {
+      "rank": 188,
+      "word": "compré",
+      "lemma": "comprar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to buy out, to buy",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to buy out, to buy"
+        ]
+      ],
+      "live_gloss": "to buy",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to buy"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 191,
+      "word": "llama",
+      "lemma": "llamar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to refer to, to call, to summon",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to refer to, to call, to summon"
+        ]
+      ],
+      "live_gloss": "to call",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to call"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 195,
+      "word": "todos",
+      "lemma": "todo",
+      "wikt_pos": "DET",
+      "wikt_gloss": "each; every, all",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "each; every, all"
+        ]
+      ],
+      "live_gloss": "everything",
+      "live_all_senses": [
+        [
+          "PRON",
+          "everything"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: todos (PRON 'everything') vs wikt (DET 'each; every, all') -- arguably wikt's plural-appropriate gloss is more grammatically precise than live's singular-flavored 'everything', but this is a judgment call, not a clear error."
+    },
+    {
+      "rank": 198,
+      "word": "pongo",
+      "lemma": "poner",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put, to put up, to place",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put, to put up, to place"
+        ],
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to set, to set up"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to add"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to send"
+        ],
+        [
+          "VERB",
+          "to lay"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to turn on"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 200,
+      "word": "veo",
+      "lemma": "ver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to see, to check, to spot",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to see, to check, to spot"
+        ]
+      ],
+      "live_gloss": "to see",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to look"
+        ],
+        [
+          "VERB",
+          "to see oneself"
+        ],
+        [
+          "VERB",
+          "to see"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 202,
+      "word": "dijo",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 204,
+      "word": "dicen",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 205,
+      "word": "sólo",
+      "lemma": "sólo",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "only, just",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "only, just"
+        ]
+      ],
+      "live_gloss": "only",
+      "live_all_senses": [
+        [
+          "ADV",
+          "only"
+        ],
+        [
+          "ADV",
+          "just"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 206,
+      "word": "deja",
+      "lemma": "dejar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave, to keep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave, to keep"
+        ],
+        [
+          "VERB",
+          "to drop off"
+        ],
+        [
+          "VERB",
+          "to let, allow"
+        ]
+      ],
+      "live_gloss": "to leave",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to let"
+        ],
+        [
+          "VERB",
+          "to allow oneself"
+        ],
+        [
+          "VERB",
+          "to let oneself"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 209,
+      "word": "boca",
+      "lemma": "boca",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "mouth, oral cavity",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "mouth, oral cavity"
+        ]
+      ],
+      "live_gloss": "mouth",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "mouth"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 210,
+      "word": "pone",
+      "lemma": "poner",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put, to put up, to place",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put, to put up, to place"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to send"
+        ],
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to put in"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 212,
+      "word": "cuerpo",
+      "lemma": "cuerpo",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "corps, body, organization, torso, corpse",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "corps, body, organization, torso, corpse"
+        ]
+      ],
+      "live_gloss": "body",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "body"
+        ],
+        [
+          "NOUN",
+          "group"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 213,
+      "word": "quiera",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to love each other"
+        ],
+        [
+          "VERB",
+          "to love oneself"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 214,
+      "word": "dejo",
+      "lemma": "dejar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave, to keep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave, to keep"
+        ]
+      ],
+      "live_gloss": "to let",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to let"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to drop"
+        ],
+        [
+          "VERB",
+          "to lend"
+        ],
+        [
+          "VERB",
+          "to let oneself"
+        ],
+        [
+          "VERB",
+          "to let oneself go"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: dejo: 'to let' vs 'to leave, to keep' -- both are core senses of dejar; live's own menu lists 'to leave' too, just non-top."
+    },
+    {
+      "rank": 217,
+      "word": "mierda",
+      "lemma": "mierda",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "feces.)",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "feces.)"
+        ]
+      ],
+      "live_gloss": "shit",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "shit"
+        ],
+        [
+          "NOUN",
+          "the shit"
+        ],
+        [
+          "NOUN",
+          "shit"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: shit/feces -- same base word. NOTE: wikt gloss text 'feces.)' has a stray trailing '.)' -- looks like a truncated-parenthetical scraping artifact, worth a data-quality look independent of the sense verdict."
+    },
+    {
+      "rank": 221,
+      "word": "puse",
+      "lemma": "poner",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put, to put up, to place",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put, to put up, to place"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to add"
+        ],
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to send"
+        ],
+        [
+          "VERB",
+          "to lay"
+        ],
+        [
+          "VERB",
+          "to put in"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to turn on"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to give"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 225,
+      "word": "tenemos",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to have on"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 233,
+      "word": "pues",
+      "lemma": "pues",
+      "wikt_pos": "CCONJ",
+      "wikt_gloss": "so, then",
+      "wikt_all_senses": [
+        [
+          "CCONJ",
+          "so, then"
+        ]
+      ],
+      "live_gloss": "then",
+      "live_all_senses": [
+        [
+          "CCONJ",
+          "then"
+        ],
+        [
+          "CCONJ",
+          "well"
+        ],
+        [
+          "CCONJ",
+          "because"
+        ],
+        [
+          "CCONJ",
+          "since"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 234,
+      "word": "toca",
+      "lemma": "tocar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have to do something, be obligated to do",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have to do something, be obligated to do"
+        ],
+        [
+          "VERB",
+          "to be someone's time or turn, or time to do something"
+        ],
+        [
+          "VERB",
+          "to touch"
+        ]
+      ],
+      "live_gloss": "to be someone's turn",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to be someone's turn"
+        ],
+        [
+          "VERB",
+          "to have to"
+        ],
+        [
+          "VERB",
+          "to touch"
+        ],
+        [
+          "VERB",
+          "to play"
+        ],
+        [
+          "VERB",
+          "to touch"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: toca: 'to be someone's turn' vs 'to have to do something, be obligated to' -- related idiomatic senses of impersonal tocar, context-dependent."
+    },
+    {
+      "rank": 235,
+      "word": "saber",
+      "lemma": "saber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to know, to understand (a fact)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to know, to understand (a fact)"
+        ]
+      ],
+      "live_gloss": "to know",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to know"
+        ],
+        [
+          "VERB",
+          "to know how"
+        ],
+        [
+          "VERB",
+          "can"
+        ],
+        [
+          "VERB",
+          "to find out"
+        ],
+        [
+          "VERB",
+          "to taste of"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 239,
+      "word": "entera",
+      "lemma": "entero",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "whole; entire",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "whole; entire"
+        ]
+      ],
+      "live_gloss": "whole",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "whole"
+        ],
+        [
+          "ADJ",
+          "upright"
+        ],
+        [
+          "ADJ",
+          "entire"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 241,
+      "word": "chingar",
+      "lemma": "chingar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to bother, to fuck with",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to bother, to fuck with"
+        ]
+      ],
+      "live_gloss": "to fuck with",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to fuck with"
+        ],
+        [
+          "VERB",
+          "to fuck"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 243,
+      "word": "digo",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to think"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 244,
+      "word": "dejar",
+      "lemma": "dejar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave, to keep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave, to keep"
+        ]
+      ],
+      "live_gloss": "to leave",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to drop"
+        ],
+        [
+          "VERB",
+          "to let"
+        ],
+        [
+          "VERB",
+          "to let oneself"
+        ],
+        [
+          "VERB",
+          "to allow oneself"
+        ],
+        [
+          "VERB",
+          "to let oneself go"
+        ],
+        [
+          "VERB",
+          "to grow"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 245,
+      "word": "puesto",
+      "lemma": "poner",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put, to put up, to place",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put, to put up, to place"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to add"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 246,
+      "word": "pide",
+      "lemma": "pedir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to ask for something, to order something",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to ask for something, to order something"
+        ]
+      ],
+      "live_gloss": "to ask for",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to ask for"
+        ],
+        [
+          "VERB",
+          "to ask"
+        ],
+        [
+          "VERB",
+          "to request"
+        ],
+        [
+          "VERB",
+          "to demand"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 248,
+      "word": "cosas",
+      "lemma": "cosa",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "thing",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "thing"
+        ]
+      ],
+      "live_gloss": "anything",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "anything"
+        ],
+        [
+          "NOUN",
+          "business"
+        ],
+        [
+          "NOUN",
+          "thing"
+        ],
+        [
+          "NOUN",
+          "matter"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 249,
+      "word": "todavía",
+      "lemma": "todavía",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "even, still, yet",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "even, still, yet"
+        ]
+      ],
+      "live_gloss": "still",
+      "live_all_senses": [
+        [
+          "ADV",
+          "still"
+        ],
+        [
+          "ADV",
+          "yet"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 250,
+      "word": "sigue",
+      "lemma": "seguir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to follow, observe, to obey (a rule",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to follow, observe, to obey (a rule"
+        ]
+      ],
+      "live_gloss": "to follow",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to follow"
+        ],
+        [
+          "VERB",
+          "to follow"
+        ],
+        [
+          "VERB",
+          "to continue"
+        ],
+        [
+          "VERB",
+          "to go on"
+        ],
+        [
+          "VERB",
+          "to still be in"
+        ],
+        [
+          "VERB",
+          "to go on"
+        ],
+        [
+          "VERB",
+          "to take"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 251,
+      "word": "llegar",
+      "lemma": "llegar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to arrive, get",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to arrive, get"
+        ]
+      ],
+      "live_gloss": "to arrive",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to arrive"
+        ],
+        [
+          "VERB",
+          "to reach"
+        ],
+        [
+          "VERB",
+          "to get there"
+        ],
+        [
+          "VERB",
+          "to come"
+        ],
+        [
+          "VERB",
+          "to be enough"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 253,
+      "word": "quieras",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to try"
+        ],
+        [
+          "VERB",
+          "to love each other"
+        ],
+        [
+          "VERB",
+          "to love oneself"
+        ],
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 255,
+      "word": "odio",
+      "lemma": "odiar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to hate, to loathe",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to hate, to loathe"
+        ]
+      ],
+      "live_gloss": "to hate",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to hate"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 256,
+      "word": "puede",
+      "lemma": "poder",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be able to, can",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be able to, can"
+        ]
+      ],
+      "live_gloss": "can",
+      "live_all_senses": [
+        [
+          "VERB",
+          "can"
+        ],
+        [
+          "VERB",
+          "may"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 258,
+      "word": "cada",
+      "lemma": "cada",
+      "wikt_pos": "DET",
+      "wikt_gloss": "each; every",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "each; every"
+        ]
+      ],
+      "live_gloss": "each",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "each"
+        ],
+        [
+          "ADJ",
+          "every"
+        ],
+        [
+          "ADJ",
+          "each, every"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 260,
+      "word": "mujeres",
+      "lemma": "mujer",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "women",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "women"
+        ]
+      ],
+      "live_gloss": "woman",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "woman"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 263,
+      "word": "juro",
+      "lemma": "jurar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to swear; to take an oath",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to swear; to take an oath"
+        ]
+      ],
+      "live_gloss": "to swear",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to swear"
+        ],
+        [
+          "VERB",
+          "to promise"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 264,
+      "word": "pienso",
+      "lemma": "pensar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to reflect, think through, to think, ponder",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to reflect, think through, to think, ponder"
+        ],
+        [
+          "VERB",
+          "to intend, to plan, to want"
+        ]
+      ],
+      "live_gloss": "to think",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to think"
+        ],
+        [
+          "VERB",
+          "to think"
+        ],
+        [
+          "VERB",
+          "to plan"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 265,
+      "word": "pensando",
+      "lemma": "pensar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to reflect, think through, to think, ponder",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to reflect, think through, to think, ponder"
+        ]
+      ],
+      "live_gloss": "to think",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to think"
+        ],
+        [
+          "VERB",
+          "to plan"
+        ],
+        [
+          "VERB",
+          "to think"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 266,
+      "word": "quería",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 268,
+      "word": "abajo",
+      "lemma": "abajo",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "down, downwards",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "down, downwards"
+        ]
+      ],
+      "live_gloss": "down",
+      "live_all_senses": [
+        [
+          "ADV",
+          "down"
+        ],
+        [
+          "ADV",
+          "below"
+        ],
+        [
+          "ADV",
+          "downstairs"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 269,
+      "word": "metí",
+      "lemma": "meter",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put in, insert",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put in, insert"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to fit"
+        ],
+        [
+          "VERB",
+          "to get into"
+        ],
+        [
+          "VERB",
+          "to score"
+        ],
+        [
+          "VERB",
+          "to go into"
+        ],
+        [
+          "VERB",
+          "to take in"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 273,
+      "word": "saben",
+      "lemma": "saber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to know, to understand (a fact)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to know, to understand (a fact)"
+        ]
+      ],
+      "live_gloss": "to know",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to know"
+        ],
+        [
+          "VERB",
+          "to taste"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 274,
+      "word": "habla",
+      "lemma": "hablar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to talk; to speak; to communicate using words",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to talk; to speak; to communicate using words"
+        ]
+      ],
+      "live_gloss": "to talk",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to talk"
+        ],
+        [
+          "VERB",
+          "to speak to"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 275,
+      "word": "papi",
+      "lemma": "papi",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "daddy, baby",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "daddy, baby"
+        ]
+      ],
+      "live_gloss": "daddy",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "daddy"
+        ],
+        [
+          "NOUN",
+          "baby"
+        ],
+        [
+          "NOUN",
+          "dude"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 277,
+      "word": "has",
+      "lemma": "haber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "have; forms the perfect aspect",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "have; forms the perfect aspect"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 279,
+      "word": "quien",
+      "lemma": "quien",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "the one who, who",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "the one who, who"
+        ]
+      ],
+      "live_gloss": "who",
+      "live_all_senses": [
+        [
+          "PRON",
+          "who"
+        ],
+        [
+          "PRON",
+          "anyone"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 280,
+      "word": "pasar",
+      "lemma": "pasar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to pass, to hand, to slip",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to pass, to hand, to slip"
+        ]
+      ],
+      "live_gloss": "to pass",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to pass"
+        ],
+        [
+          "VERB",
+          "to spend"
+        ],
+        [
+          "VERB",
+          "to go through"
+        ],
+        [
+          "VERB",
+          "to happen"
+        ],
+        [
+          "VERB",
+          "to cross"
+        ],
+        [
+          "VERB",
+          "to pass"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 281,
+      "word": "hablando",
+      "lemma": "hablar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to talk; to speak; to communicate using words",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to talk; to speak; to communicate using words"
+        ]
+      ],
+      "live_gloss": "to talk",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to talk"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 283,
+      "word": "llegó",
+      "lemma": "llegar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to arrive, get",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to arrive, get"
+        ]
+      ],
+      "live_gloss": "to arrive",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to arrive"
+        ],
+        [
+          "VERB",
+          "to reach"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 284,
+      "word": "gustan",
+      "lemma": "gustar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to experiment, to try, to taste",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to experiment, to try, to taste"
+        ]
+      ],
+      "live_gloss": "to like",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to like"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: same as gusta (plural form)."
+    },
+    {
+      "rank": 285,
+      "word": "chalet",
+      "lemma": "chalet",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "cottage, chalet",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "cottage, chalet"
+        ]
+      ],
+      "live_gloss": "chalet, villa",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "chalet, villa"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: chalet, villa / cottage, chalet -- shares 'chalet', true synonym pair; missed by token-overlap heuristic (ratio landed at 0.33, just under the 0.34 cutoff)."
+    },
+    {
+      "rank": 286,
+      "word": "creo",
+      "lemma": "creer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to think, to believe, to reckon",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to think, to believe, to reckon"
+        ]
+      ],
+      "live_gloss": "I believe",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "I believe"
+        ],
+        [
+          "PHRASE",
+          "I think"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to think"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: 'I believe' (live phrase-form) vs 'to think, to believe, to reckon' (wikt infinitive-form) -- same sense, different formatting convention."
+    },
+    {
+      "rank": 287,
+      "word": "mira",
+      "lemma": "mirar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "used for emphasis; look, to look at, to seek",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "used for emphasis; look, to look at, to seek"
+        ]
+      ],
+      "live_gloss": "to look at",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to look at"
+        ],
+        [
+          "VERB",
+          "to watch"
+        ],
+        [
+          "VERB",
+          "to be careful about"
+        ],
+        [
+          "VERB",
+          "to make sure"
+        ],
+        [
+          "VERB",
+          "to look"
+        ],
+        [
+          "VERB",
+          "to face"
+        ],
+        [
+          "VERB",
+          "to look at oneself"
+        ],
+        [
+          "VERB",
+          "to look at each other"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 288,
+      "word": "días",
+      "lemma": "día",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "day, daytime",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "day, daytime"
+        ]
+      ],
+      "live_gloss": "day",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "day"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 292,
+      "word": "volver",
+      "lemma": "volver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to return, to revert, to get back",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to return, to revert, to get back"
+        ]
+      ],
+      "live_gloss": "to return",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to return"
+        ],
+        [
+          "VERB",
+          "to come back"
+        ],
+        [
+          "VERB",
+          "to go back"
+        ],
+        [
+          "VERB",
+          "to turn"
+        ],
+        [
+          "VERB",
+          "to become"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 293,
+      "word": "buscar",
+      "lemma": "buscar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to seek, search for, look for",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to seek, search for, look for"
+        ]
+      ],
+      "live_gloss": "to look for",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to look for"
+        ],
+        [
+          "VERB",
+          "to pick up"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 294,
+      "word": "digas",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 295,
+      "word": "nueva",
+      "lemma": "nuevo",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "brand new, all-new, new",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "brand new, all-new, new"
+        ]
+      ],
+      "live_gloss": "new",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "new"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 298,
+      "word": "cambiar",
+      "lemma": "cambiar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to switch, to switch up, to change",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to switch, to switch up, to change"
+        ]
+      ],
+      "live_gloss": "to change",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to change"
+        ],
+        [
+          "VERB",
+          "to change"
+        ],
+        [
+          "VERB",
+          "to exchange"
+        ],
+        [
+          "VERB",
+          "to change"
+        ],
+        [
+          "VERB",
+          "to exchange"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 299,
+      "word": "mente",
+      "lemma": "mente",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "mind, intellect",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "mind, intellect"
+        ]
+      ],
+      "live_gloss": "mind",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "mind"
+        ],
+        [
+          "NOUN",
+          "mind"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 300,
+      "word": "míos",
+      "lemma": "mío",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "mine; of mine",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "mine; of mine"
+        ]
+      ],
+      "live_gloss": "mine",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "mine"
+        ],
+        [
+          "ADJ",
+          "my"
+        ],
+        [
+          "PRON",
+          "mine"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 306,
+      "word": "ropa",
+      "lemma": "ropa",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "garment, clothing, clothes",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "garment, clothing, clothes"
+        ]
+      ],
+      "live_gloss": "clothing",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "clothing"
+        ],
+        [
+          "NOUN",
+          "clothes"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 307,
+      "word": "ninguno",
+      "lemma": "ninguno",
+      "wikt_pos": "DET",
+      "wikt_gloss": "no; none",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "no; none"
+        ]
+      ],
+      "live_gloss": "none",
+      "live_all_senses": [
+        [
+          "PRON",
+          "none"
+        ],
+        [
+          "PRON",
+          "nobody"
+        ],
+        [
+          "PRON",
+          "any"
+        ],
+        [
+          "PRON",
+          "no one"
+        ],
+        [
+          "ADJ",
+          "no"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 309,
+      "word": "joder",
+      "lemma": "joder",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to annoy, bug, bother",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to annoy, bug, bother"
+        ]
+      ],
+      "live_gloss": "to fuck",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to fuck"
+        ],
+        [
+          "VERB",
+          "to screw"
+        ],
+        [
+          "VERB",
+          "to fuck with"
+        ],
+        [
+          "VERB",
+          "to piss off"
+        ],
+        [
+          "VERB",
+          "to be a pain in the ass"
+        ],
+        [
+          "INTJ",
+          "fuck"
+        ],
+        [
+          "VERB",
+          "to fuck up"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: 'to fuck'-family vs 'to annoy, bug, bother' -- live's own menu already lists 'to piss off' / 'to be a pain in the ass', which are near-synonyms of wikt's pick; a legitimate alternate register of joder, not an error."
+    },
+    {
+      "rank": 313,
+      "word": "frente",
+      "lemma": "frente",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "forehead, brow",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "forehead, brow"
+        ]
+      ],
+      "live_gloss": "forehead",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "forehead"
+        ],
+        [
+          "NOUN",
+          "front"
+        ],
+        [
+          "ADP",
+          "opposite"
+        ],
+        [
+          "NOUN",
+          "front"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 314,
+      "word": "bajo",
+      "lemma": "bajar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go down, come down",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go down, come down"
+        ]
+      ],
+      "live_gloss": "to go down",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to go down"
+        ],
+        [
+          "VERB",
+          "to get off"
+        ],
+        [
+          "VERB",
+          "to fall"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 316,
+      "word": "parar",
+      "lemma": "parar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to stop, halt",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to stop, halt"
+        ]
+      ],
+      "live_gloss": "to stop",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to stop"
+        ],
+        [
+          "VERB",
+          "to intercept"
+        ],
+        [
+          "VERB",
+          "to ward off"
+        ],
+        [
+          "VERB",
+          "to raise"
+        ],
+        [
+          "VERB",
+          "to stop"
+        ],
+        [
+          "VERB",
+          "to save"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 318,
+      "word": "misma",
+      "lemma": "mismo",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "same; identical; one and the same",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "same; identical; one and the same"
+        ]
+      ],
+      "live_gloss": "same",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "same"
+        ],
+        [
+          "PRON",
+          "the same thing"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 319,
+      "word": "olvidar",
+      "lemma": "olvidar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave behind, to forget",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave behind, to forget"
+        ]
+      ],
+      "live_gloss": "to forget",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to forget"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 322,
+      "word": "alguien",
+      "lemma": "alguien",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "someone, somebody",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "someone, somebody"
+        ]
+      ],
+      "live_gloss": "someone",
+      "live_all_senses": [
+        [
+          "PRON",
+          "someone"
+        ],
+        [
+          "PRON",
+          "somebody"
+        ],
+        [
+          "PRON",
+          "anyone"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 323,
+      "word": "han",
+      "lemma": "haber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "have; forms the perfect aspect",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "have; forms the perfect aspect"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 326,
+      "word": "muerte",
+      "lemma": "muerte",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "death (the cessation of life), death, demise",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "death (the cessation of life), death, demise"
+        ]
+      ],
+      "live_gloss": "death",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "death"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 329,
+      "word": "anda",
+      "lemma": "andar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to walk, to go",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to walk, to go"
+        ]
+      ],
+      "live_gloss": "to hang out with",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to hang out with"
+        ],
+        [
+          "VERB",
+          "to go out with"
+        ],
+        [
+          "VERB",
+          "to be"
+        ],
+        [
+          "VERB",
+          "to walk"
+        ],
+        [
+          "VERB",
+          "to work"
+        ],
+        [
+          "VERB",
+          "to go"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: anda: same andar reasoning as ando."
+    },
+    {
+      "rank": 332,
+      "word": "carro",
+      "lemma": "carro",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "cart",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "cart"
+        ]
+      ],
+      "live_gloss": "car",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "car"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: dialect miss: Puerto Rican Spanish 'carro' = 'car' (live, correct for Bad Bunny's PR Spanish); wikt's single sense 'cart' is the literal/peninsular reading. Flagged mechanically as 'cosmetic' by string similarity (car/cart share a prefix) -- false positive, corrected here."
+    },
+    {
+      "rank": 334,
+      "word": "hablar",
+      "lemma": "hablar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to talk; to speak; to communicate using words",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to talk; to speak; to communicate using words"
+        ]
+      ],
+      "live_gloss": "to speak",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to talk"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 335,
+      "word": "visto",
+      "lemma": "ver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to see, to check, to spot",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to see, to check, to spot"
+        ]
+      ],
+      "live_gloss": "to see",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to watch"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 336,
+      "word": "vi",
+      "lemma": "ver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to see, to check, to spot",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to see, to check, to spot"
+        ]
+      ],
+      "live_gloss": "to see",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to look at"
+        ],
+        [
+          "VERB",
+          "to see oneself"
+        ],
+        [
+          "VERB",
+          "to find oneself"
+        ],
+        [
+          "VERB",
+          "to watch"
+        ],
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to check"
+        ],
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to witness"
+        ],
+        [
+          "VERB",
+          "to live through"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 337,
+      "word": "dices",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 339,
+      "word": "llevo",
+      "lemma": "llevar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to take, to carry, to take away",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to take, to carry, to take away"
+        ]
+      ],
+      "live_gloss": "to take",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to take"
+        ],
+        [
+          "VERB",
+          "to wear"
+        ],
+        [
+          "VERB",
+          "to handle"
+        ],
+        [
+          "VERB",
+          "to carry"
+        ],
+        [
+          "VERB",
+          "to give a ride"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 340,
+      "word": "vuelvo",
+      "lemma": "volver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to return, to revert, to get back",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to return, to revert, to get back"
+        ]
+      ],
+      "live_gloss": "to return",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to return"
+        ],
+        [
+          "VERB",
+          "to come back"
+        ],
+        [
+          "VERB",
+          "to go back"
+        ],
+        [
+          "VERB",
+          "to turn"
+        ],
+        [
+          "VERB",
+          "to become"
+        ],
+        [
+          "VERB",
+          "to turn"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 343,
+      "word": "dije",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 348,
+      "word": "vos",
+      "lemma": "vos",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "you, familiar form of the second-person singular pronoun",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "you, familiar form of the second-person singular pronoun"
+        ]
+      ],
+      "live_gloss": "you",
+      "live_all_senses": [
+        [
+          "PRON",
+          "you"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 352,
+      "word": "sus",
+      "lemma": "su",
+      "wikt_pos": "DET",
+      "wikt_gloss": "apocopic form of suyo his, her, its",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "apocopic form of suyo his, her, its"
+        ]
+      ],
+      "live_gloss": "his",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "his"
+        ],
+        [
+          "ADJ",
+          "your"
+        ],
+        [
+          "ADJ",
+          "its"
+        ],
+        [
+          "ADJ",
+          "her"
+        ],
+        [
+          "ADJ",
+          "their"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 354,
+      "word": "tener",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to have to"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 355,
+      "word": "queda",
+      "lemma": "quedar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be left; to remain",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be left; to remain"
+        ],
+        [
+          "VERB",
+          "to be, to end up"
+        ],
+        [
+          "VERB",
+          "to fit, to suit; to look good"
+        ]
+      ],
+      "live_gloss": "to be left",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to be left"
+        ],
+        [
+          "VERB",
+          "to have left"
+        ],
+        [
+          "VERB",
+          "to meet"
+        ],
+        [
+          "VERB",
+          "to fit"
+        ],
+        [
+          "VERB",
+          "to remain"
+        ],
+        [
+          "VERB",
+          "to be"
+        ],
+        [
+          "VERB",
+          "to suit"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 358,
+      "word": "dando",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to give",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to throw"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 362,
+      "word": "estas",
+      "lemma": "este",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "these ones",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "these ones"
+        ]
+      ],
+      "live_gloss": "this one",
+      "live_all_senses": [
+        [
+          "PRON",
+          "this one"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 363,
+      "word": "hora",
+      "lemma": "hora",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "hour, period",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "hour, period"
+        ]
+      ],
+      "live_gloss": "time",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "time"
+        ],
+        [
+          "NOUN",
+          "hour"
+        ],
+        [
+          "NOUN",
+          "appointment"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: time/hour -- both standard in the 'qué hora es' (what time/hour is it) idiom."
+    },
+    {
+      "rank": 364,
+      "word": "caso",
+      "lemma": "casar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to wed, marry, get married",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to wed, marry, get married"
+        ]
+      ],
+      "live_gloss": "to get married",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to get married"
+        ],
+        [
+          "VERB",
+          "to marry"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 365,
+      "word": "llega",
+      "lemma": "llegar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to arrive, get",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to arrive, get"
+        ]
+      ],
+      "live_gloss": "arrive",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "arrive"
+        ],
+        [
+          "PHRASE",
+          "he arrives"
+        ],
+        [
+          "VERB",
+          "to arrive"
+        ],
+        [
+          "VERB",
+          "to come"
+        ],
+        [
+          "VERB",
+          "to get here"
+        ],
+        [
+          "VERB",
+          "to be here"
+        ],
+        [
+          "VERB",
+          "to arrive"
+        ],
+        [
+          "VERB",
+          "to be enough"
+        ],
+        [
+          "VERB",
+          "to reach"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 367,
+      "word": "claro",
+      "lemma": "claro",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "clear, easily understood",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "clear, easily understood"
+        ]
+      ],
+      "live_gloss": "clearly",
+      "live_all_senses": [
+        [
+          "ADV",
+          "clearly"
+        ],
+        [
+          "ADV",
+          "of course"
+        ],
+        [
+          "ADJ",
+          "clear"
+        ],
+        [
+          "ADJ",
+          "thin"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: clearly/clear -- same root, ADV vs ADJ formatting. (Note: wikt's menu is missing the very common 'of course' interjection sense that live has as a non-top alt -- informational, doesn't change this row's verdict since it's a top-gloss comparison.)"
+    },
+    {
+      "rank": 373,
+      "word": "saco",
+      "lemma": "sacar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to pull out, to take out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to pull out, to take out"
+        ]
+      ],
+      "live_gloss": "to get out",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to get out"
+        ],
+        [
+          "VERB",
+          "to take out"
+        ],
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to extract"
+        ],
+        [
+          "VERB",
+          "to take"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to get out/to pull out, to take out -- synonyms."
+    },
+    {
+      "rank": 376,
+      "word": "crees",
+      "lemma": "creer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to think, to believe, to reckon",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to think, to believe, to reckon"
+        ]
+      ],
+      "live_gloss": "to believe",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to believe"
+        ],
+        [
+          "VERB",
+          "to think"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 379,
+      "word": "feliz",
+      "lemma": "feliz",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "joyous, merry, happy",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "joyous, merry, happy"
+        ]
+      ],
+      "live_gloss": "happy",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "happy"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 381,
+      "word": "suena",
+      "lemma": "sonar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to make sound, to play, to sound",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to make sound, to play, to sound"
+        ]
+      ],
+      "live_gloss": "to ring",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to ring"
+        ],
+        [
+          "VERB",
+          "to go off"
+        ],
+        [
+          "VERB",
+          "to sound"
+        ],
+        [
+          "VERB",
+          "to look familiar"
+        ],
+        [
+          "VERB",
+          "to ring a bell"
+        ],
+        [
+          "VERB",
+          "to kick the bucket"
+        ],
+        [
+          "VERB",
+          "to blow"
+        ],
+        [
+          "VERB",
+          "to be pronounced"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to ring/to make sound, to play, to sound -- closely related senses."
+    },
+    {
+      "rank": 382,
+      "word": "foto",
+      "lemma": "foto",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "photo, photograph",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "photo, photograph"
+        ]
+      ],
+      "live_gloss": "photo",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "photo"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 383,
+      "word": "vuelve",
+      "lemma": "volver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to return, to revert, to get back",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to return, to revert, to get back"
+        ]
+      ],
+      "live_gloss": "to return",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to return"
+        ],
+        [
+          "VERB",
+          "to come back"
+        ],
+        [
+          "VERB",
+          "to go back"
+        ],
+        [
+          "VERB",
+          "to become"
+        ],
+        [
+          "VERB",
+          "to get"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 384,
+      "word": "puso",
+      "lemma": "poner",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put, to put up, to place",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put, to put up, to place"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to add"
+        ],
+        [
+          "VERB",
+          "to put on"
+        ],
+        [
+          "VERB",
+          "to put"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 386,
+      "word": "amar",
+      "lemma": "amar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to love, have great affection for",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to love, have great affection for"
+        ]
+      ],
+      "live_gloss": "to love",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 389,
+      "word": "hablen",
+      "lemma": "hablar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to talk; to speak; to communicate using words",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to talk; to speak; to communicate using words"
+        ]
+      ],
+      "live_gloss": "to talk",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to talk"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to call"
+        ],
+        [
+          "VERB",
+          "to speak"
+        ],
+        [
+          "VERB",
+          "to discuss"
+        ],
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to phone"
+        ],
+        [
+          "VERB",
+          "to speak to"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 390,
+      "word": "joda",
+      "lemma": "joder",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to annoy, bug, bother",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to annoy, bug, bother"
+        ]
+      ],
+      "live_gloss": "to fuck over",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to fuck over"
+        ],
+        [
+          "VERB",
+          "to fuck"
+        ],
+        [
+          "VERB",
+          "to screw"
+        ],
+        [
+          "VERB",
+          "to fuck"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: same joder-family reasoning as 'joder' (joda is a related form)."
+    },
+    {
+      "rank": 392,
+      "word": "poco",
+      "lemma": "poco",
+      "wikt_pos": "DET",
+      "wikt_gloss": "little, not much",
+      "wikt_all_senses": [
+        [
+          "DET",
+          "little, not much"
+        ]
+      ],
+      "live_gloss": "a little",
+      "live_all_senses": [
+        [
+          "PRON",
+          "a little"
+        ],
+        [
+          "ADV",
+          "little, not much"
+        ],
+        [
+          "ADJ",
+          "little"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 396,
+      "word": "pensar",
+      "lemma": "pensar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to reflect, think through, to think, ponder",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to reflect, think through, to think, ponder"
+        ]
+      ],
+      "live_gloss": "to think",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to think"
+        ],
+        [
+          "VERB",
+          "to think"
+        ],
+        [
+          "VERB",
+          "to plan"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 397,
+      "word": "cualquiera",
+      "lemma": "cualquiera",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "anyone, whoever, whomever",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "anyone, whoever, whomever"
+        ]
+      ],
+      "live_gloss": "any",
+      "live_all_senses": [
+        [
+          "PRON",
+          "any"
+        ],
+        [
+          "PRON",
+          "anyone"
+        ],
+        [
+          "PRON",
+          "anybody"
+        ],
+        [
+          "PRON",
+          "either"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 398,
+      "word": "quise",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to want",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to want"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 399,
+      "word": "quedo",
+      "lemma": "quedar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be, to end up",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be, to end up"
+        ]
+      ],
+      "live_gloss": "to remain",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to remain"
+        ],
+        [
+          "VERB",
+          "to fit"
+        ],
+        [
+          "VERB",
+          "to stay"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: quedo: 'to remain' vs 'to be, to end up' -- both are core senses of quedar (quedar = end up/turn out is very common), context-dependent."
+    },
+    {
+      "rank": 400,
+      "word": "salgo",
+      "lemma": "salir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go out, to leave, to depart",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go out, to leave, to depart"
+        ],
+        [
+          "VERB",
+          "to exit, to leave, to walk out"
+        ],
+        [
+          "VERB",
+          "to go out, to come out"
+        ]
+      ],
+      "live_gloss": "to go out",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to go out"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 401,
+      "word": "diabla",
+      "lemma": "diabla",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "devil woman",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "devil woman"
+        ]
+      ],
+      "live_gloss": "she-devil",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "she-devil"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: she-devil/devil woman -- true synonym pair; missed by token-overlap heuristic (ratio 0.33, just under cutoff)."
+    },
+    {
+      "rank": 403,
+      "word": "piquete",
+      "lemma": "piquete",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "prick",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "prick"
+        ]
+      ],
+      "live_gloss": "squad",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "squad"
+        ],
+        [
+          "NOUN",
+          "bite"
+        ],
+        [
+          "NOUN",
+          "picket"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'piquete' in PR slang = 'squad/crew' (live); wikt's single sense 'prick' is the literal/standard dictionary meaning, wrong register for reggaeton lyrics."
+    },
+    {
+      "rank": 404,
+      "word": "decir",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to say",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 407,
+      "word": "pasado",
+      "lemma": "pasar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to happen",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to happen"
+        ],
+        [
+          "VERB",
+          "to pass, to get past"
+        ],
+        [
+          "VERB",
+          "to pass time"
+        ]
+      ],
+      "live_gloss": "to pass",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to pass"
+        ],
+        [
+          "VERB",
+          "to go through"
+        ],
+        [
+          "VERB",
+          "to come in"
+        ],
+        [
+          "VERB",
+          "to happen"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: pasado: 'to pass' vs 'to happen' -- wikt's OWN menu contains 'to pass, to get past' (non-top) and live's OWN menu contains 'to happen' (non-top) -- both decks recognize both senses, just disagree on ranking. Genuinely ambiguous, both are top-tier common meanings of pasar."
+    },
+    {
+      "rank": 408,
+      "word": "mirando",
+      "lemma": "mirar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "used for emphasis; look, to look at, to seek",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "used for emphasis; look, to look at, to seek"
+        ]
+      ],
+      "live_gloss": "to look at",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to look at"
+        ],
+        [
+          "VERB",
+          "to watch"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 412,
+      "word": "suelto",
+      "lemma": "soltar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to release",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to release"
+        ]
+      ],
+      "live_gloss": "to set free",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to set free"
+        ],
+        [
+          "VERB",
+          "to let out"
+        ],
+        [
+          "VERB",
+          "to let go of"
+        ],
+        [
+          "VERB",
+          "to drop"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to set free/to release -- true synonyms, no shared lexical tokens so the mechanical heuristic missed it."
+    },
+    {
+      "rank": 415,
+      "word": "cuál",
+      "lemma": "cuál",
+      "wikt_pos": "PRON",
+      "wikt_gloss": "which, which one",
+      "wikt_all_senses": [
+        [
+          "PRON",
+          "which, which one"
+        ]
+      ],
+      "live_gloss": "which",
+      "live_all_senses": [
+        [
+          "PRON",
+          "which"
+        ],
+        [
+          "PRON",
+          "what"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 416,
+      "word": "cuenta",
+      "lemma": "contar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to count; to tally",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to count; to tally"
+        ]
+      ],
+      "live_gloss": "to tell",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to tell"
+        ],
+        [
+          "VERB",
+          "to count"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: cuenta: 'to tell' vs 'to count; to tally' -- contar is genuinely polysemous between count and narrate, both extremely common."
+    },
+    {
+      "rank": 417,
+      "word": "dio",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to give",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to teach"
+        ],
+        [
+          "VERB",
+          "to happen"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 418,
+      "word": "quisiera",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "I would like",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "I would like"
+        ],
+        [
+          "VERB",
+          "to be fond of"
+        ],
+        [
+          "VERB",
+          "to want"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: 'I would like' (live phrase-form) vs 'to desire, to want, to want to' (wikt infinitive-form) -- same sense, formatting variant."
+    },
+    {
+      "rank": 419,
+      "word": "amo",
+      "lemma": "amar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to love, have great affection for",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to love, have great affection for"
+        ]
+      ],
+      "live_gloss": "to love",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to love"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 420,
+      "word": "barrio",
+      "lemma": "barrio",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "neighbourhood",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "neighbourhood"
+        ]
+      ],
+      "live_gloss": "neighborhood",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "neighborhood"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 422,
+      "word": "olvido",
+      "lemma": "olvidar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave behind, to forget",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave behind, to forget"
+        ]
+      ],
+      "live_gloss": "to forget",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to forget"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 424,
+      "word": "parece",
+      "lemma": "parecer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to seem, to see fit",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to seem, to see fit"
+        ]
+      ],
+      "live_gloss": "it seems",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "it seems"
+        ],
+        [
+          "PHRASE",
+          "he/she look like"
+        ],
+        [
+          "VERB",
+          "to look alike"
+        ],
+        [
+          "VERB",
+          "to look like"
+        ],
+        [
+          "VERB",
+          "to seem"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: 'it seems' (live phrase-form) vs 'to seem, to see fit' (wikt infinitive-form) -- same sense, formatting variant."
+    },
+    {
+      "rank": 425,
+      "word": "allá",
+      "lemma": "allá",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "there, over there, thither",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "there, over there, thither"
+        ]
+      ],
+      "live_gloss": "there",
+      "live_all_senses": [
+        [
+          "ADV",
+          "there"
+        ],
+        [
+          "ADV",
+          "over there"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 427,
+      "word": "horas",
+      "lemma": "hora",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "hour, period",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "hour, period"
+        ]
+      ],
+      "live_gloss": "hour",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "hour"
+        ],
+        [
+          "NOUN",
+          "time"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 431,
+      "word": "traje",
+      "lemma": "traer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to bring, to fetch",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to bring, to fetch"
+        ]
+      ],
+      "live_gloss": "to bring",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to bring"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 433,
+      "word": "cabra",
+      "lemma": "cabra",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "female goat, goat",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "female goat, goat"
+        ]
+      ],
+      "live_gloss": "goat",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "goat"
+        ],
+        [
+          "NOUN",
+          "girl"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 434,
+      "word": "metes",
+      "lemma": "meter",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put in, insert",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put in, insert"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to fit"
+        ],
+        [
+          "VERB",
+          "to interfere"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 438,
+      "word": "matar",
+      "lemma": "matar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to kill, slay",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to kill, slay"
+        ]
+      ],
+      "live_gloss": "to kill",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to kill"
+        ],
+        [
+          "VERB",
+          "to slake"
+        ],
+        [
+          "VERB",
+          "to slaughter"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 440,
+      "word": "tarde",
+      "lemma": "tardar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to delay",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to delay"
+        ]
+      ],
+      "live_gloss": "to be long",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to be long"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to be long/to delay -- both about taking/causing time, close enough to call cosmetic."
+    },
+    {
+      "rank": 441,
+      "word": "vivir",
+      "lemma": "vivir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to live; to be alive",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to live; to be alive"
+        ]
+      ],
+      "live_gloss": "to live",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to live"
+        ],
+        [
+          "VERB",
+          "to live through"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 442,
+      "word": "lejos",
+      "lemma": "lejos",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "far",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "far"
+        ]
+      ],
+      "live_gloss": "far away",
+      "live_all_senses": [
+        [
+          "ADV",
+          "far away"
+        ],
+        [
+          "ADV",
+          "far"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 443,
+      "word": "dormir",
+      "lemma": "dormir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put to sleep, to sleep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put to sleep, to sleep"
+        ]
+      ],
+      "live_gloss": "to sleep",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to sleep"
+        ],
+        [
+          "VERB",
+          "to put to sleep"
+        ],
+        [
+          "VERB",
+          "to spend the night"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 444,
+      "word": "debajo",
+      "lemma": "debajo",
+      "wikt_pos": "ADP",
+      "wikt_gloss": "below, under",
+      "wikt_all_senses": [
+        [
+          "ADP",
+          "below, under"
+        ]
+      ],
+      "live_gloss": "underneath",
+      "live_all_senses": [
+        [
+          "ADV",
+          "underneath"
+        ],
+        [
+          "ADV",
+          "beneath"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: underneath/below, under -- true synonyms, no shared lexical tokens."
+    },
+    {
+      "rank": 445,
+      "word": "salí",
+      "lemma": "salir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go out, to leave, to depart",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go out, to leave, to depart"
+        ]
+      ],
+      "live_gloss": "to go out",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to go out"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to turn out"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 446,
+      "word": "sabiendo",
+      "lemma": "saber",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to know, to understand (a fact)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to know, to understand (a fact)"
+        ]
+      ],
+      "live_gloss": "to know",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to know"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 449,
+      "word": "puedes",
+      "lemma": "poder",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be able to, can",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be able to, can"
+        ]
+      ],
+      "live_gloss": "can",
+      "live_all_senses": [
+        [
+          "VERB",
+          "can"
+        ],
+        [
+          "VERB",
+          "to be allowed to"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 450,
+      "word": "tenía",
+      "lemma": "tener",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to have; to possess; to be (a condition or quality)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to have; to possess; to be (a condition or quality)"
+        ],
+        [
+          "VERB",
+          "to have; to feel"
+        ],
+        [
+          "VERB",
+          "to contain; to hold; to grasp"
+        ]
+      ],
+      "live_gloss": "to have",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to have on"
+        ],
+        [
+          "VERB",
+          "to be"
+        ],
+        [
+          "VERB",
+          "to have"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 451,
+      "word": "aún",
+      "lemma": "aún",
+      "wikt_pos": "ADV",
+      "wikt_gloss": "still, yet",
+      "wikt_all_senses": [
+        [
+          "ADV",
+          "still, yet"
+        ]
+      ],
+      "live_gloss": "still",
+      "live_all_senses": [
+        [
+          "ADV",
+          "still"
+        ],
+        [
+          "ADV",
+          "yet"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 452,
+      "word": "diga",
+      "lemma": "decir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to be said, to say, to tell",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to be said, to say, to tell"
+        ]
+      ],
+      "live_gloss": "to tell",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to tell"
+        ],
+        [
+          "VERB",
+          "to say"
+        ],
+        [
+          "VERB",
+          "to go ahead"
+        ],
+        [
+          "VERB",
+          "to tell"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 453,
+      "word": "conoces",
+      "lemma": "conocer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to know (a person or a place)",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to know (a person or a place)"
+        ]
+      ],
+      "live_gloss": "to know",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to know"
+        ],
+        [
+          "VERB",
+          "to be familiar with"
+        ],
+        [
+          "VERB",
+          "to get to know"
+        ],
+        [
+          "VERB",
+          "to recognize"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 455,
+      "word": "dejó",
+      "lemma": "dejar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave, to keep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave, to keep"
+        ]
+      ],
+      "live_gloss": "to leave",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to let"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to drop"
+        ],
+        [
+          "VERB",
+          "to lend"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 456,
+      "word": "hicimos",
+      "lemma": "hacer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to do",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to do"
+        ]
+      ],
+      "live_gloss": "to make",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to do"
+        ],
+        [
+          "VERB",
+          "to make"
+        ],
+        [
+          "VERB",
+          "to make"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to make/to do -- classic hacer ambiguity, same single Spanish verb, English just needs two glosses."
+    },
+    {
+      "rank": 457,
+      "word": "sube",
+      "lemma": "subir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go up or come up",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go up or come up"
+        ]
+      ],
+      "live_gloss": "raise",
+      "live_all_senses": [
+        [
+          "PHRASE",
+          "raise"
+        ],
+        [
+          "PHRASE",
+          "she raises"
+        ],
+        [
+          "PHRASE",
+          "he goes up"
+        ],
+        [
+          "VERB",
+          "to raise"
+        ],
+        [
+          "VERB",
+          "to go up"
+        ],
+        [
+          "VERB",
+          "to go up"
+        ],
+        [
+          "PHRASE",
+          "go up"
+        ],
+        [
+          "VERB",
+          "to turn up"
+        ],
+        [
+          "VERB",
+          "to upload"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: sube: 'raise' (transitive) vs 'to go up or come up' (intransitive) -- both are standard senses of subir, context-dependent."
+    },
+    {
+      "rank": 459,
+      "word": "viendo",
+      "lemma": "ver",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to see, to check, to spot",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to see, to check, to spot"
+        ]
+      ],
+      "live_gloss": "to see",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to see"
+        ],
+        [
+          "VERB",
+          "to look at"
+        ],
+        [
+          "VERB",
+          "to watch"
+        ],
+        [
+          "VERB",
+          "to check"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 460,
+      "word": "acabó",
+      "lemma": "acabar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to finish, to put an end to; to end, to end up",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to finish, to put an end to; to end, to end up"
+        ],
+        [
+          "VERB",
+          "to exhaust, to use up"
+        ]
+      ],
+      "live_gloss": "to finish",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to finish"
+        ],
+        [
+          "VERB",
+          "to use up"
+        ],
+        [
+          "VERB",
+          "to end"
+        ],
+        [
+          "VERB",
+          "to be over"
+        ],
+        [
+          "VERB",
+          "to run out"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 462,
+      "word": "dejas",
+      "lemma": "dejar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave, to keep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave, to keep"
+        ]
+      ],
+      "live_gloss": "to leave",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to lend"
+        ],
+        [
+          "VERB",
+          "to let"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 464,
+      "word": "querer",
+      "lemma": "querer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to desire, to want, to want to",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to desire, to want, to want to"
+        ]
+      ],
+      "live_gloss": "to love",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to love"
+        ],
+        [
+          "VERB",
+          "to want"
+        ],
+        [
+          "VERB",
+          "to try"
+        ],
+        [
+          "VERB",
+          "to love each other"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "unclear",
+      "suggestion_note": "manual review: querer: 'to love' (used with people) vs 'to desire, to want' (general) -- both are extremely common senses, object-dependent."
+    },
+    {
+      "rank": 465,
+      "word": "escuchando",
+      "lemma": "escuchar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to listen to, to hear out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to listen to, to hear out"
+        ]
+      ],
+      "live_gloss": "to listen to",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to listen to"
+        ],
+        [
+          "VERB",
+          "to listen to"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 468,
+      "word": "tiro",
+      "lemma": "tirar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to throw out, to toss, to dump",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to throw out, to toss, to dump"
+        ]
+      ],
+      "live_gloss": "to throw",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to throw"
+        ],
+        [
+          "VERB",
+          "to shoot"
+        ],
+        [
+          "VERB",
+          "to shoot"
+        ],
+        [
+          "VERB",
+          "to throw oneself"
+        ],
+        [
+          "VERB",
+          "to fire"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 474,
+      "word": "buscando",
+      "lemma": "buscar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to seek, search for, look for",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to seek, search for, look for"
+        ]
+      ],
+      "live_gloss": "to look for",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to look for"
+        ],
+        [
+          "VERB",
+          "to pick up"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 475,
+      "word": "das",
+      "lemma": "dar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to give, to give out",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to give, to give out"
+        ]
+      ],
+      "live_gloss": "to give",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to give"
+        ],
+        [
+          "VERB",
+          "to yield"
+        ],
+        [
+          "VERB",
+          "to produce"
+        ],
+        [
+          "VERB",
+          "to have"
+        ],
+        [
+          "VERB",
+          "to throw"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 478,
+      "word": "meter",
+      "lemma": "meter",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to put in, insert",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to put in, insert"
+        ]
+      ],
+      "live_gloss": "to put",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to put"
+        ],
+        [
+          "VERB",
+          "to stick"
+        ],
+        [
+          "VERB",
+          "to get"
+        ],
+        [
+          "VERB",
+          "to score"
+        ],
+        [
+          "VERB",
+          "to get into"
+        ],
+        [
+          "VERB",
+          "to drag into"
+        ],
+        [
+          "VERB",
+          "to take in"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 479,
+      "word": "suelta",
+      "lemma": "soltar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to release",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to release"
+        ]
+      ],
+      "live_gloss": "to let go of",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to let go of"
+        ],
+        [
+          "VERB",
+          "to let out"
+        ],
+        [
+          "VERB",
+          "to let fly"
+        ],
+        [
+          "VERB",
+          "to set free"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to let go of/to release -- true synonyms, same as suelto."
+    },
+    {
+      "rank": 482,
+      "word": "dejaste",
+      "lemma": "dejar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to leave, to keep",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to leave, to keep"
+        ]
+      ],
+      "live_gloss": "to leave",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to leave"
+        ],
+        [
+          "VERB",
+          "to drop"
+        ],
+        [
+          "VERB",
+          "to lend"
+        ],
+        [
+          "VERB",
+          "to let oneself"
+        ],
+        [
+          "VERB",
+          "to allow oneself"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 484,
+      "word": "cae",
+      "lemma": "caer",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to fall into, to fall for; to be ensnared by, to fall",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to fall into, to fall for; to be ensnared by, to fall"
+        ]
+      ],
+      "live_gloss": "to fall",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to fall"
+        ],
+        [
+          "VERB",
+          "to fall (night, rain)"
+        ],
+        [
+          "VERB",
+          "to show up"
+        ],
+        [
+          "VERB",
+          "to drop"
+        ],
+        [
+          "VERB",
+          "to die"
+        ],
+        [
+          "VERB",
+          "to go down"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 485,
+      "word": "pasan",
+      "lemma": "pasar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to pass, to hand, to slip",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to pass, to hand, to slip"
+        ]
+      ],
+      "live_gloss": "to pass",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to pass"
+        ],
+        [
+          "VERB",
+          "to spend"
+        ],
+        [
+          "VERB",
+          "to come in"
+        ],
+        [
+          "VERB",
+          "to go ahead"
+        ],
+        [
+          "VERB",
+          "to go by"
+        ],
+        [
+          "VERB",
+          "to happen"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 487,
+      "word": "acabe",
+      "lemma": "acabar",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to finish, to put an end to; to end, to end up",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to finish, to put an end to; to end, to end up"
+        ]
+      ],
+      "live_gloss": "to finish",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to finish"
+        ],
+        [
+          "VERB",
+          "to run out"
+        ],
+        [
+          "VERB",
+          "to end"
+        ],
+        [
+          "VERB",
+          "come"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 489,
+      "word": "bellaco",
+      "lemma": "bellaco",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "scoundrel, rascal",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "scoundrel, rascal"
+        ]
+      ],
+      "live_gloss": "horny",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "horny"
+        ],
+        [
+          "ADJ",
+          "wicked"
+        ],
+        [
+          "NOUN",
+          "scoundrel"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "wikt_loss",
+      "suggestion_note": "manual review: 'bellaco' in PR reggaeton slang overwhelmingly means 'horny' (live, ADJ); wikt's 'scoundrel, rascal' is the older standard-dictionary NOUN sense. Classic register/dialect mismatch."
+    },
+    {
+      "rank": 490,
+      "word": "hola",
+      "lemma": "hola",
+      "wikt_pos": "INTJ",
+      "wikt_gloss": "hello, hi, hey",
+      "wikt_all_senses": [
+        [
+          "INTJ",
+          "hello, hi, hey"
+        ]
+      ],
+      "live_gloss": "hello",
+      "live_all_senses": [
+        [
+          "INTJ",
+          "hello"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 493,
+      "word": "único",
+      "lemma": "único",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "only; single; sole",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "only; single; sole"
+        ]
+      ],
+      "live_gloss": "only",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "only"
+        ],
+        [
+          "ADJ",
+          "unique"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 494,
+      "word": "fin",
+      "lemma": "fin",
+      "wikt_pos": "NOUN",
+      "wikt_gloss": "end, stop, halt",
+      "wikt_all_senses": [
+        [
+          "NOUN",
+          "end, stop, halt"
+        ]
+      ],
+      "live_gloss": "end",
+      "live_all_senses": [
+        [
+          "NOUN",
+          "end"
+        ],
+        [
+          "NOUN",
+          "weekend"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 496,
+      "word": "última",
+      "lemma": "último",
+      "wikt_pos": "ADJ",
+      "wikt_gloss": "final; last",
+      "wikt_all_senses": [
+        [
+          "ADJ",
+          "final; last"
+        ]
+      ],
+      "live_gloss": "last",
+      "live_all_senses": [
+        [
+          "ADJ",
+          "last"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "string/token similarity"
+    },
+    {
+      "rank": 498,
+      "word": "salga",
+      "lemma": "salir",
+      "wikt_pos": "VERB",
+      "wikt_gloss": "to go out, to leave, to depart",
+      "wikt_all_senses": [
+        [
+          "VERB",
+          "to go out, to leave, to depart"
+        ]
+      ],
+      "live_gloss": "to get out",
+      "live_all_senses": [
+        [
+          "VERB",
+          "to get out"
+        ],
+        [
+          "VERB",
+          "to come out"
+        ],
+        [
+          "VERB",
+          "to rise"
+        ],
+        [
+          "VERB",
+          "to play"
+        ],
+        [
+          "VERB",
+          "to turn out"
+        ],
+        [
+          "VERB",
+          "to go out"
+        ]
+      ],
+      "verdict": null,
+      "suggestion": "cosmetic",
+      "suggestion_note": "manual review: to get out/to go out, to leave, to depart -- synonyms."
+    }
+  ]
+}
