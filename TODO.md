@@ -13,6 +13,13 @@
 
 ## UI / Front-End
 
+- **[soon] Pool examples per lemma in one-card-per-lemma mode (M) [shared] [cross-lang]**
+  When the lemma-collapse filter is on (one card per lemma), the surviving card should pool
+  examples from all the collapsed surface forms (quiero/quieres/quiere → querer card shows
+  examples from each), not just the representative form's own examples. Requested 2026-07-12.
+  SHIPPED 2026-07-13 (`poolLemmaSiblingExamples()` in js/vocab.js) — awaiting Josh's
+  in-browser verification before moving to Decisions Made.
+
 - **[idea] Conjugation table UI polish (S) [shared] [spanish]**
   Conjugation data layer is done (`conjugations.json` + `conjugation_reverse.json`).
   Front-end renders the table on card back but the UI needs improvement. French

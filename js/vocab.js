@@ -180,6 +180,60 @@ function joinWithMaster(indexData, master) {
 }
 
 /**
+ * Lemma mode: pool the dropped sibling forms' examples onto the surviving card.
+ * One-card-per-lemma keeps only the most frequent form (quiero) and drops the
+ * rest (quieres, quiere, …) — but their lyric/example lines still belong on the
+ * surviving card. Appends each sibling's examples to the host meaning with the
+ * same translation (falling back to the first meaning), deduped by sentence so
+ * repeated deck loads can't double-append.
+ *
+ * Sibling examples come from the split examples file (`examplesData[id].m`,
+ * bucketed in master sense order) when available, else from inline
+ * `meanings[].examples` (multi-artist merged entries).
+ */
+function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
+    const MAX_EXAMPLES_PER_MEANING = 25;
+    const hosts = new Map();
+    for (const item of filteredData) {
+        if (item.lemma && !hosts.has(item.lemma)) hosts.set(item.lemma, item);
+    }
+    if (hosts.size === 0) return;
+
+    const normalize = t => (t || '').trim().toLowerCase();
+    for (const sib of allVocabData) {
+        const host = sib.lemma && hosts.get(sib.lemma);
+        if (!host || sib === host || (sib.id && sib.id === host.id)) continue;
+        if (sib.is_english || sib.is_noise || sib.is_interjection || sib.duplicate) continue;
+        if (!sib.meanings || sib.meanings.length === 0) continue;
+
+        const ex = examplesData && sib.id ? examplesData[sib.id] : null;
+        for (let i = 0; i < sib.meanings.length; i++) {
+            const sm = sib.meanings[i];
+            const bucket = sm._masterSenseIndex ?? i;
+            // Prefer inline examples (multi-artist merged entries carry the
+            // cross-artist union); fall back to the split examples file.
+            const sibExamples = (sm.examples && sm.examples.length > 0)
+                ? sm.examples
+                : ((ex && ex.m && ex.m[bucket]) || []);
+            if (sibExamples.length === 0) continue;
+
+            const target = host.meanings.find(hm => normalize(hm.translation) === normalize(sm.translation))
+                || host.meanings[0];
+            if (!target) continue;
+            if (!target.examples) target.examples = [];
+            const seen = new Set(target.examples.map(e => normalize(e.spanish || e.sentence)));
+            for (const e of sibExamples) {
+                const key = normalize(e.spanish || e.sentence);
+                if (!key || seen.has(key)) continue;
+                if (target.examples.length >= MAX_EXAMPLES_PER_MEANING) break;
+                seen.add(key);
+                target.examples.push({ ...e, pooledFrom: sib.word });
+            }
+        }
+    }
+}
+
+/**
  * Fetch the artist/language index and join with master vocabulary if needed.
  * Caches the master and the joined result. Returns denormalized entries with all fields
  * (word, lemma, meanings, flags) that buildFilteredVocab() and other consumers expect.
@@ -483,6 +537,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
             }
         } else {
             // Fallback: monolith path — examples are inline in vocabularyData
+        }
+
+        // Lemma mode: dropped sibling forms contribute their example lines to
+        // the surviving one-card-per-lemma card (deduped inside the helper).
+        if (useLemmaMode && lemmaFieldAvailable) {
+            poolLemmaSiblingExamples(filteredData, vocabularyData, window._cachedExamplesData);
         }
 
         // Artist mode: filter sense pills for cleaner display.

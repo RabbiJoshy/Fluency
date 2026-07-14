@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-13",
+      "commit": "pending",
+      "summary": "Lemma mode now pools examples from all forms of the lemma",
+      "details": [
+        "One-card-per-lemma cards now show lyric/example lines from every collapsed form (quiero + quieres + quiere ... on the querer card)",
+        "Sibling examples attach to the matching sense (same translation), deduped by sentence, capped at 25/sense; each carries pooledFrom for future UI",
+        "Works in normal, single-artist, and multi-artist modes; no data rebuild needed (front-end only, cache tags bumped to 20260713a)"
+      ]
+    },
+    {
       "date": "2026-07-07",
       "commit": "503edce",
       "summary": "Wiktionary port Phase 0 report + 6 bug cards fixed",
