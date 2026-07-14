@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-13",
-      "commit": "pending",
+      "commit": "be97b15",
       "summary": "Lemma mode now pools examples from all forms of the lemma",
       "details": [
         "One-card-per-lemma cards now show lyric/example lines from every collapsed form (quiero + quieres + quiere ... on the querer card)",
