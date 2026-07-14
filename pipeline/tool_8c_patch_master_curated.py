@@ -649,6 +649,147 @@ OVERRIDES = [
      "flags": {"is_propernoun": True}, "senses": {}},
     {"key": "a7e29a", "word": "luían", "lemma": None,  # live lemma=luir, different key
      "flags": {"is_propernoun": True}, "senses": {}},
+    # --- 2026-07-14 FlaggedWords sweep: Josh's in-app flags (June-July batch),
+    # verified against lyric evidence + official full-song Genius translations.
+    # PR slang the dictionaries miss, wrong lemmas on elided/slang forms, and
+    # duplicate-sense blanking (pos X + empty translation = hidden in place). ---
+    {"key": "efe866", "word": "palomo", "lemma": None, "flags": {},
+     # "ese palomo va a compararse conmigo" — PR slang sucker/chump, not the bird.
+     "senses": {0: {"translation": "sucker, pushover, chump (PR slang)",
+                    "context": "derogatory; opposite of tiguere"}}},
+    {"key": "ec84e0", "word": "chorro", "lemma": None, "flags": {},
+     # All corpus lines are "chorro 'e X" = a bunch of X; blank the duplicate.
+     "senses": {0: {"translation": "a bunch of, loads of",
+                    "context": "chorro de + noun"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "91208b", "word": "fuletazo", "lemma": "fuletazo", "flags": {},
+     # Official translation: "a gunshot doesn't fuck with my conscience" —
+     # fulete = gun; the old lemma fuetazo (whip lash) was a wrong root.
+     "senses": {0: {"pos": "NOUN", "translation": "gunshot (PR slang: fulete = gun)",
+                    "context": "slang"}}},
+    {"key": "77e358", "word": "pepas", "lemma": None, "flags": {},
+     # "me metí dos pepa' y no son Panadol" — pills; old gloss was the bare "E".
+     "senses": {0: {"translation": "pill (drug slang)", "context": "slang"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "733cac", "word": "galla", "lemma": "galla", "flags": {},
+     # "otra galla como tú" — PR slang hot girl; lemma gallo (rooster) wrong.
+     "senses": {0: {"pos": "NOUN", "translation": "hot girl, dime (PR slang)",
+                    "context": "slang"}}},
+    {"key": "46520f", "word": "perse", "lemma": "persecución", "flags": {},
+     # "deja la perse" — clipped persecución (police chase); old gloss was the
+     # SPANISH word "cartera" under lemma "purse" (reverse-direction garbage).
+     "senses": {0: {"pos": "NOUN",
+                    "translation": "chase, heat, trouble (police)",
+                    "context": "PR slang: perse = persecución"}}},
+    {"key": "31f10d", "word": "bajita", "lemma": None, "flags": {},
+     # "en bajita, ella no es de frontear" — on the low, not "shortish".
+     "senses": {0: {"pos": "ADV", "translation": "on the low, secretly, quietly",
+                    "context": "idiom: en bajita/bajito"}}},
+    {"key": "bf72ba", "word": "pasándola", "lemma": "pasar", "flags": {},
+     # "pasándola cabrón" = having a blast; old lemma parar + "to save" unrelated.
+     "senses": {0: {"pos": "VERB",
+                    "translation": "to have a great time (pasarla cabrón/bien)",
+                    "context": "idiom"}}},
+    {"key": "9cae25", "word": "tropiezo", "lemma": None, "flags": {},
+     # "mi primer tropiezo" — the standalone noun, mislabeled as verb sense.
+     "senses": {0: {"pos": "NOUN", "translation": "a stumble, a setback",
+                    "context": "noun form (un tropiezo)"}}},
+    {"key": "099dc9", "word": "vengan", "lemma": None, "flags": {},
+     # "to come" x3 identical senses — keep one, blank the duplicates.
+     "senses": {1: {"pos": "X", "translation": "", "context": ""},
+                2: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "707720", "word": "recoge", "lemma": None, "flags": {},
+     # "pa' ver si se recoge" = reflexive recogerse (settle down); blank the
+     # remaining "to pick up" duplicate.
+     "senses": {1: {"translation": "to settle down, to reform (recogerse)",
+                    "context": "reflexive idiom"},
+                2: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "5a8397", "word": "polo", "lemma": None, "flags": {},
+     # Both sense-1 examples are "Polo Norte" — pole, not the polo shirt.
+     "senses": {1: {"translation": "pole",
+                    "context": "geography/physics: Polo Norte = North Pole"}}},
+    {"key": "2fc43d", "word": "tabla", "lemma": None, "flags": {},
+     # "surfboard" sense has zero examples in any deck.
+     "senses": {0: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "3526ec", "word": "jodíos", "lemma": None, "flags": {},
+     # "mi mundo está jodío'" — estar + participle = adjectival state, not VERB.
+     "senses": {0: {"pos": "ADJ", "translation": "messed up, screwed, in bad shape",
+                    "context": "estar jodío/a"}}},
+    {"key": "ad765f", "word": "sata", "lemma": "sata", "flags": {},
+     # "en la cama tremenda sata" — PR/DR slang, not "sala" (living room).
+     "senses": {0: {"pos": "NOUN",
+                    "translation": "wild one, vixen (PR/DR slang)",
+                    "context": "slang; lit. street mutt"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "8cc713", "word": "coro", "lemma": None, "flags": {},
+     # "me hacen coro" / "tu coro" — crew / to back up, never the music chorus.
+     "senses": {0: {"translation": "crew, posse",
+                    "context": "PR slang: hacer coro = to hang out with"}}},
+    {"key": "4fbcf1", "word": "compre", "lemma": None, "flags": {},
+     # Conjugated verb form, not a PHRASE; blank the duplicate sense.
+     "senses": {0: {"pos": "VERB", "translation": "to buy",
+                    "context": "subjunctive/imperative"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "27a4b4", "word": "perdamos", "lemma": None, "flags": {},
+     # Gloss "to waste" is right for perder tiempo — clarify the context only.
+     "senses": {0: {"context": "perder tiempo = to waste time"}}},
+    {"key": "e258b6", "word": "toítas", "lemma": "todo", "flags": {},
+     # toíta' = elided todita(s) "all (fem.)", not torta (cake). Same pattern
+     # as the existing toditas fix.
+     "senses": {0: {"pos": "PRON", "translation": "all (toíta' = todita)",
+                    "context": "colloquial elision"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "db3501", "word": "revelás", "lemma": "rebelarse", "flags": {},
+     # Official Soliá translation: "Rebellious, in alcohol looking for a way
+     # out" — rebelá' (rebelada), likely mistranscribed as revelá'.
+     "senses": {0: {"pos": "ADJ", "translation": "rebellious (rebelá' = rebelada)",
+                    "context": "colloquial elision"}}},
+    {"key": "a47070", "word": "to's", "lemma": "todo", "flags": {},
+     # to's = elided todos (everyone), not tos (cough). 13 examples agree.
+     "senses": {0: {"pos": "PRON", "translation": "everyone, all (to's = todos)",
+                    "context": "colloquial elision"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "761a1f", "word": "falta", "lemma": None, "flags": {},
+     # Re-gloss all three senses to match their own hacer-falta examples.
+     "senses": {0: {"translation": "to need, to be necessary",
+                    "context": "hacer falta"},
+                1: {"translation": "to miss, to long for",
+                    "context": "me hace falta = I miss it"},
+                2: {"translation": "to still need to happen, to remain",
+                    "context": "falta que + subjunctive"}}},
+    {"key": "109eab", "word": "corta", "lemma": "corta", "flags": {},
+     # Official MERCEDES CAROTA translation: "everyone carries a weapon" —
+     # corta = pistola corta (handgun). The bag lines ("cabe en tu Carolina
+     # Herrera", "está en la cartera") are guns in designer bags, not girls.
+     # sense 4 ("short", the literal ADJ for the skirt line) stays untouched.
+     "senses": {0: {"pos": "NOUN", "translation": "gun, piece (PR slang: pistola corta)",
+                    "context": "slang"},
+                1: {"pos": "NOUN", "translation": "gun, piece (PR slang)",
+                    "context": "slang"},
+                2: {"pos": "NOUN", "translation": "gun, piece (PR slang)",
+                    "context": "slang"},
+                3: {"pos": "NOUN", "translation": "gun, piece (PR slang)",
+                    "context": "slang"}}},
+    {"key": "bf1d87", "word": "todos", "lemma": None, "flags": {},
+     # "of them all" — awkward duplicate of sense 6 "all of them".
+     "senses": {0: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "fbdc9b", "word": "viene", "lemma": None, "flags": {},
+     # sense 2 "next" — its only example is "cuando se viene" (venirse).
+     "senses": {2: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "7ba0b3", "word": "volver", "lemma": None, "flags": {},
+     # "to turn" / "to become" have zero examples across all three decks.
+     "senses": {3: {"pos": "X", "translation": "", "context": ""},
+                4: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "ad1da5", "word": "ven", "lemma": None, "flags": {},
+     # ver/venir homograph card: sense 1 is literally glossed "come" on the
+     # ver card. Deeper contamination (senses 4-7) needs a pipeline re-run.
+     "senses": {1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "fe2af1", "word": "pacho", "lemma": None,
+     # Single example is a vocative shout ("¡Pacho!") — ad-lib, hide it.
+     "flags": {"is_noise": True}, "senses": {}},
+    {"key": "c5e952", "word": "animales", "lemma": None,
+     # Singular "animal" is already cognate-stamped; match the plural.
+     "flags": {"is_transparent_cognate": True}, "senses": {}},
 ]
 
 # Single-sense transparent cognates: only sense glosses to the Spanish word

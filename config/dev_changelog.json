@@ -2,6 +2,19 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-14",
+      "commit": "pending",
+      "summary": "Your FlaggedWords processed: 27 live-deck cards fixed",
+      "details": [
+        "PR slang glosses: palomo=sucker, galla=hot girl, sata=vixen, coro=crew, corta=gun (all 4 senses), pepas=pill, bajita=on the low, perse=chase/heat, fuletazo=gunshot, pacho hidden as ad-lib",
+        "Lemma repairs: to's=todos (was tos/cough), toitas=todita (was torta/cake), pasandola=pasar (was parar), revelas=rebelarse (official transl. 'Rebellious'), galla, sata, corta, fuletazo",
+        "Duplicate/wrong senses blanked: vengan (to come x3), volver (to turn x2, no examples), recoge, compre, tabla (surfboard), viene (next), todos, ven (ver card glossed 'come')",
+        "Re-glossed: falta (hacer falta senses), jodios pos VERB->ADJ, polo sense1=pole, tropiezo sense0=noun, chorro=a bunch of",
+        "6 of your flags (des, okay, panty, down, light, whatsapp) were already fixed in the May sweeps; verdes/versatil/levante checked out correct on inspection",
+        "Deck fully green on the bench again (only known menu_bloat 25 remains, dies at wikt cutover)"
+      ]
+    },
+    {
       "date": "2026-07-13",
       "commit": "be97b15",
       "summary": "Lemma mode now pools examples from all forms of the lemma",
