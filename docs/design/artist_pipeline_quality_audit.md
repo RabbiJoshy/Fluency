@@ -386,3 +386,40 @@ replacing the source. Not a Tier-0/1 item — it depends on P9's gate existing f
   P5 rebuild.
 - **Genius translation *alignment*** (stage 1 F7): 30/30 correct; the lever is coverage
   (P17), not alignment.
+
+---
+
+## Implementation progress (2026-07-21)
+
+Work started against this plan the same day it was written. Log:
+
+- **P6 — example selector — DONE & SHIPPED** (commit `1e3c794`). Rewrote
+  `sortExamplesByRelevance`: translated-first → 6–14 content-token length window → deck
+  overlap capped at 3 / recent-wrong capped at 2 → easiness. Verified on live data: `nunca`
+  71→10 tokens, `sol` drops the ad-lib line, `ahora`/`tú`/`bendición` all tighten. Cache
+  bumped 20260721a / v44.
+- **P2 — cognate timebomb — DONE & SHIPPED** (commit `b837b82`). Chose the *live-parity*
+  route over blocklist-and-enable: `step_8b` now gates the auto `cognate_score` stamp behind
+  `--stamp-cognate-scores` (default OFF), so a rebuild stamps none and hides nothing new; the
+  curated `is_transparent_cognate` hides (~500 live cards) are untouched. New read-only
+  `tool_8b_cognate_would_hide.py` reports the blast radius (BB artifact:
+  `Artists/spanish/Bad Bunny/data/reports/cognate_would_hide.json`) so a cleaned filter can
+  be enabled deliberately later. **Measured** would-hide at 0.85 = 444 cards: 28 copula/aux
+  (estar paradigm, 1,306 occ — the deck-breaker) + 47 false-positives + 369 defensible real
+  cognates.
+- **P3 — never-classified blanking — INVESTIGATED, DOWNGRADED (no code change).** The
+  "360 keys blanked / saves sé/ya/una/mía" framing was overstated. Sibling-analysis check:
+  360 cut keys = 172 correct junk-cuts (surface word keeps another analysis, e.g.
+  `para|parar` cut while `para|para` survives) + 188 at-risk, of which **only 11 have
+  cc≥2** (visible past `hideSingleOccurrence`) and **exactly one is a real Spanish word:
+  `y` (=and, cc 3501)**. The rest are English (`to`, `i'm`, `don't`) / proper nouns
+  (`marc`, `justin`) that `is_english`/propn already hide. The audit's cited casualties are
+  safe: `sé`/`una`/`mía` survive via a sibling analysis (`mía|mío` is junk but `mía|mía`
+  lives); `ya` is already noise-excluded (cc 0). **Net: the min-priority cut works
+  correctly; the rebuild's only P3 casualty is `y`.** Optional trivial keep for `y`;
+  otherwise no action. This removes P3 as a rebuild blocker.
+
+**Revised rebuild gate:** with P2 done (live parity) and P3 dissolved, the rebuild no longer
+introduces new damage. Remaining Tier-0 items are correctness, not blockers: P4 (stamp the 2
+ghost exclude buckets), then P1 (re-classify) + P5 (rebuild + id-migration map). P4 is the
+next step.
