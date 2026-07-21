@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-21",
+      "commit": "",
+      "summary": "Bad Bunny deck rebuilt: common-word meanings fixed + 1,385 missing words recovered",
+      "details": [
+        "Top homograph cards fixed: para = 'for' (was 'to stop'), como = 'like' (was 'to eat'), todo = 'everything', cara = 'face', camino = 'road'",
+        "1,385 words that showed no card are back: las, dime, otra, así, bebé, nada, hay, calle, rico, ustedes…",
+        "Curated cognates now hidden (baby, flow, haters…); sense frequencies re-aligned to the current master; your study progress + all curations preserved",
+        "Still to come (separate step): April sense-classification errors like media='sock' need a Gemini re-run; synonyms/antonyms panels left off to keep the deck lean"
+      ]
+    },
+    {
+      "date": "2026-07-21",
       "commit": "1e3c794",
       "summary": "Example lines: cards now lead with a clear, well-sized sentence",
       "details": [
