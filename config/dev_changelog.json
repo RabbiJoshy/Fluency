@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-21",
-      "commit": "",
+      "commit": "c6cdd45",
       "summary": "Lemma mode: deck now ordered by pooled lemma frequency",
       "details": [
         "One-card-per-lemma now sums each lemma's frequency across all its collapsed forms (es + son + eres + soy… → ser), matching the example pooling",
