@@ -337,7 +337,8 @@ def _normalize_wiktionary_senses(menu):
 
 def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                          sense_source="wiktionary", skip_words_path=None,
-                         emit_remainders=False, min_priority=0):
+                         emit_remainders=False, min_priority=0,
+                         stamp_cognate_scores=False):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -1244,9 +1245,19 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             elif cognate_obj is True:
                 cognate_obj = {"score": 1.0}
             if cognate_obj:
-                entry["cognate_score"] = cognate_obj["score"]
-                if cognate_obj.get("cognet"):
-                    entry["cognet_cognate"] = True
+                # The auto CogNet/similarity scorer produces junk for high-
+                # frequency function words (estar|estar scores 1.0 via a false
+                # "star" link), and cognate_score >= 0.85 hides the card in the
+                # front end. Stamp it only when explicitly requested, so a
+                # rebuild preserves live parity (the live index carries no
+                # cognate_score) until the layer is cleaned — see the blast-
+                # radius report in tool_8b_cognate_would_hide.py. The curated
+                # is_transparent_cognate path (gemini flag) is ALWAYS kept: it's
+                # the trustworthy signal already live on ~500 cards.
+                if stamp_cognate_scores:
+                    entry["cognate_score"] = cognate_obj["score"]
+                    if cognate_obj.get("cognet"):
+                        entry["cognet_cognate"] = True
                 if cognate_obj.get("gemini"):
                     entry["is_transparent_cognate"] = True
 
@@ -1806,6 +1817,17 @@ def main():
                              "(Spanish: 50; unset languages: 0 = keep everything). "
                              "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
                              "50 (Gemini only).")
+    parser.add_argument("--stamp-cognate-scores", action="store_true",
+                        help="Stamp the auto cognate_score from the cognates.json "
+                             "layer onto entries. OFF by default: that scorer "
+                             "(CogNet/similarity) mislabels high-frequency function "
+                             "words (e.g. estar=1.0), and the front end hides any "
+                             "card scoring >= 0.85 — a fresh rebuild would silently "
+                             "hide ~440 currently-visible cards incl. all of estar. "
+                             "Leaving it off preserves live parity; the curated "
+                             "is_transparent_cognate hides are unaffected. Run "
+                             "tool_8b_cognate_would_hide.py to review the blast "
+                             "radius before enabling.")
     parser.add_argument("--output-suffix", type=str, default="",
                         help="Append to output basenames (e.g. _wikt) so this run "
                              "writes a PARALLEL deck — monolith/index/examples/clitic "
@@ -1855,7 +1877,8 @@ def main():
         sense_source=args.sense_source,
         skip_words_path=skip_words_path,
         emit_remainders=args.remainders,
-        min_priority=args.min_priority)
+        min_priority=args.min_priority,
+        stamp_cognate_scores=args.stamp_cognate_scores)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)

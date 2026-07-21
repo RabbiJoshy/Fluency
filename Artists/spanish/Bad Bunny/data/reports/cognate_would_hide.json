@@ -1,0 +1,4452 @@
+{
+  "index": "BadBunnyvocabulary.index.json",
+  "threshold": 0.85,
+  "total_would_hide": 444,
+  "bucket_counts": {
+    "copula_aux": 28,
+    "likely_real_cognate": 369,
+    "likely_false_positive": 47
+  },
+  "cards": [
+    {
+      "id": "d86f06",
+      "word": "está",
+      "lemma": "estar",
+      "corpus_count": 373,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "3ff477",
+      "word": "estoy",
+      "lemma": "estar",
+      "corpus_count": 352,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "2bb9f8",
+      "word": "estás",
+      "lemma": "estar",
+      "corpus_count": 191,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "6c18e0",
+      "word": "estamos",
+      "lemma": "estar",
+      "corpus_count": 115,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "ac48aa",
+      "word": "están",
+      "lemma": "estar",
+      "corpus_count": 88,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "dc32a2",
+      "word": "mucho",
+      "lemma": "mucho",
+      "corpus_count": 67,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "73fd55",
+      "word": "estar",
+      "lemma": "estar",
+      "corpus_count": 59,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "f331d0",
+      "word": "pasa",
+      "lemma": "pasar",
+      "corpus_count": 53,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "959a6c",
+      "word": "importa",
+      "lemma": "importar",
+      "corpus_count": 45,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f8981f",
+      "word": "tranquilo",
+      "lemma": "tranquilo",
+      "corpus_count": 43,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0eeb4f",
+      "word": "tranquila",
+      "lemma": "tranquilo",
+      "corpus_count": 42,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a8368d",
+      "word": "primero",
+      "lemma": "primero",
+      "corpus_count": 40,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e132ac",
+      "word": "estaba",
+      "lemma": "estar",
+      "corpus_count": 38,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "32daa5",
+      "word": "encanta",
+      "lemma": "encantar",
+      "corpus_count": 37,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "69e072",
+      "word": "muchas",
+      "lemma": "mucho",
+      "corpus_count": 32,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "26e43b",
+      "word": "besos",
+      "lemma": "beso",
+      "corpus_count": 32,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "c1b974",
+      "word": "mueves",
+      "lemma": "mover",
+      "corpus_count": 31,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7ea1ea",
+      "word": "mueve",
+      "lemma": "mover",
+      "corpus_count": 30,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "91366c",
+      "word": "grande",
+      "lemma": "grande",
+      "corpus_count": 27,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2b7880",
+      "word": "muchos",
+      "lemma": "mucho",
+      "corpus_count": 27,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8b55a7",
+      "word": "tuya",
+      "lemma": "tuyo",
+      "corpus_count": 27,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "c7032d",
+      "word": "pase",
+      "lemma": "pasar",
+      "corpus_count": 25,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dfce17",
+      "word": "pasé",
+      "lemma": "pasar",
+      "corpus_count": 25,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "73afcc",
+      "word": "pasó",
+      "lemma": "pasar",
+      "corpus_count": 24,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fe6610",
+      "word": "bonito",
+      "lemma": "bonito",
+      "corpus_count": 24,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "766ded",
+      "word": "primera",
+      "lemma": "primero",
+      "corpus_count": 23,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e386ab",
+      "word": "oro",
+      "lemma": "orar",
+      "corpus_count": 23,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "cb0040",
+      "word": "mucha",
+      "lemma": "mucho",
+      "corpus_count": 21,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7cfb5a",
+      "word": "mover",
+      "lemma": "mover",
+      "corpus_count": 21,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0c119d",
+      "word": "santa",
+      "lemma": "santo",
+      "corpus_count": 20,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e4098b",
+      "word": "pares",
+      "lemma": "par",
+      "corpus_count": 19,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "34834b",
+      "word": "fácil",
+      "lemma": "fácil",
+      "corpus_count": 18,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0adda0",
+      "word": "pasas",
+      "lemma": "pasar",
+      "corpus_count": 17,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9949c4",
+      "word": "problemas",
+      "lemma": "problema",
+      "corpus_count": 16,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "035ee9",
+      "word": "habitación",
+      "lemma": "habitación",
+      "corpus_count": 16,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5705f3",
+      "word": "estés",
+      "lemma": "estar",
+      "corpus_count": 16,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "b95fe4",
+      "word": "directo",
+      "lemma": "directo",
+      "corpus_count": 16,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d65a6a",
+      "word": "polvo",
+      "lemma": "polvo",
+      "corpus_count": 16,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a5eede",
+      "word": "estrellas",
+      "lemma": "estrella",
+      "corpus_count": 16,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "df9adf",
+      "word": "ardiente",
+      "lemma": "ardiente",
+      "corpus_count": 16,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9e4cc8",
+      "word": "contra",
+      "lemma": "contra",
+      "corpus_count": 14,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "173f93",
+      "word": "termina",
+      "lemma": "terminar",
+      "corpus_count": 14,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6cb8f9",
+      "word": "celular",
+      "lemma": "celular",
+      "corpus_count": 14,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d39cec",
+      "word": "billetes",
+      "lemma": "billete",
+      "corpus_count": 14,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c133ed",
+      "word": "vueltas",
+      "lemma": "vuelta",
+      "corpus_count": 14,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "39d1c6",
+      "word": "estado",
+      "lemma": "estar",
+      "corpus_count": 13,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "17b4ef",
+      "word": "show",
+      "lemma": "show",
+      "corpus_count": 13,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ee0e6f",
+      "word": "esté",
+      "lemma": "estar",
+      "corpus_count": 12,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "b59781",
+      "word": "terminar",
+      "lemma": "terminar",
+      "corpus_count": 12,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9b10f4",
+      "word": "hombres",
+      "lemma": "hombre",
+      "corpus_count": 11,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b99461",
+      "word": "existe",
+      "lemma": "existir",
+      "corpus_count": 11,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a0505c",
+      "word": "prefiero",
+      "lemma": "preferir",
+      "corpus_count": 11,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "40b097",
+      "word": "termine",
+      "lemma": "terminar",
+      "corpus_count": 11,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e28fe3",
+      "word": "suave",
+      "lemma": "suave",
+      "corpus_count": 11,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "12d258",
+      "word": "enamorado",
+      "lemma": "enamorar",
+      "corpus_count": 11,
+      "score": 0.857,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0f94a7",
+      "word": "conviene",
+      "lemma": "convenir",
+      "corpus_count": 11,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e0b431",
+      "word": "modelos",
+      "lemma": "modelo",
+      "corpus_count": 11,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c58fe4",
+      "word": "pistola",
+      "lemma": "pistola",
+      "corpus_count": 10,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a2d1fc",
+      "word": "terminamos",
+      "lemma": "terminar",
+      "corpus_count": 10,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b14cfc",
+      "word": "porno",
+      "lemma": "porno",
+      "corpus_count": 10,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a9ff3a",
+      "word": "estará",
+      "lemma": "estar",
+      "corpus_count": 9,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "7a70b2",
+      "word": "banda",
+      "lemma": "banda",
+      "corpus_count": 9,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6d8e66",
+      "word": "momentos",
+      "lemma": "momento",
+      "corpus_count": 9,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "839e62",
+      "word": "posiciones",
+      "lemma": "posición",
+      "corpus_count": 9,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ac9de4",
+      "word": "tenis",
+      "lemma": "tenis",
+      "corpus_count": 9,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5a8397",
+      "word": "polo",
+      "lemma": "polo",
+      "corpus_count": 9,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9a74ea",
+      "word": "calma",
+      "lemma": "calmar",
+      "corpus_count": 8,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3f1356",
+      "word": "permite",
+      "lemma": "permitir",
+      "corpus_count": 8,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "1fcdce",
+      "word": "super",
+      "lemma": "súper",
+      "corpus_count": 8,
+      "score": 0.909,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fd6b92",
+      "word": "sana",
+      "lemma": "sano",
+      "corpus_count": 8,
+      "score": 0.889,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "226e41",
+      "word": "clase",
+      "lemma": "clase",
+      "corpus_count": 7,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "80d14e",
+      "word": "imposible",
+      "lemma": "imposible",
+      "corpus_count": 7,
+      "score": 0.947,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "efb0ac",
+      "word": "diario",
+      "lemma": "diario",
+      "corpus_count": 7,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f82ffc",
+      "word": "cura",
+      "lemma": "curar",
+      "corpus_count": 7,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9e1d38",
+      "word": "libras",
+      "lemma": "libra",
+      "corpus_count": 7,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "60c16c",
+      "word": "trates",
+      "lemma": "tratar",
+      "corpus_count": 7,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7ba9e5",
+      "word": "favoritas",
+      "lemma": "favorito",
+      "corpus_count": 7,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d22c8d",
+      "word": "idiota",
+      "lemma": "idiota",
+      "corpus_count": 6,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "938891",
+      "word": "oficial",
+      "lemma": "oficial",
+      "corpus_count": 6,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "775f9f",
+      "word": "misión",
+      "lemma": "misión",
+      "corpus_count": 6,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f55ca2",
+      "word": "vacaciones",
+      "lemma": "vacación",
+      "corpus_count": 6,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "15667c",
+      "word": "terminó",
+      "lemma": "terminar",
+      "corpus_count": 6,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8d87a0",
+      "word": "imagino",
+      "lemma": "imaginar",
+      "corpus_count": 6,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9b1d90",
+      "word": "puro",
+      "lemma": "puro",
+      "corpus_count": 6,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "15dd9f",
+      "word": "pasión",
+      "lemma": "pasión",
+      "corpus_count": 6,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ec1cbf",
+      "word": "reales",
+      "lemma": "real",
+      "corpus_count": 6,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6643ae",
+      "word": "equivoca",
+      "lemma": "equívoco",
+      "corpus_count": 6,
+      "score": 0.941,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "13451e",
+      "word": "tremenda",
+      "lemma": "tremendo",
+      "corpus_count": 6,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fc5aba",
+      "word": "convertido",
+      "lemma": "convertir",
+      "corpus_count": 6,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d1bcdc",
+      "word": "mini",
+      "lemma": "mini",
+      "corpus_count": 6,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "3ce40e",
+      "word": "terminan",
+      "lemma": "terminar",
+      "corpus_count": 6,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4fe2a4",
+      "word": "confié",
+      "lemma": "confiar",
+      "corpus_count": 6,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "347b94",
+      "word": "infiel",
+      "lemma": "infiel",
+      "corpus_count": 6,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0317a2",
+      "word": "enamoré",
+      "lemma": "enamorar",
+      "corpus_count": 6,
+      "score": 0.923,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7c68a3",
+      "word": "respeto",
+      "lemma": "respetar",
+      "corpus_count": 5,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "434d90",
+      "word": "necesario",
+      "lemma": "necesario",
+      "corpus_count": 5,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ad563d",
+      "word": "estuviera",
+      "lemma": "estar",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "20d77e",
+      "word": "espíritu",
+      "lemma": "espíritu",
+      "corpus_count": 5,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "578860",
+      "word": "estén",
+      "lemma": "estar",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "2cf74f",
+      "word": "celebrar",
+      "lemma": "celebrar",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "265d0f",
+      "word": "generación",
+      "lemma": "generación",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4cecd9",
+      "word": "billete",
+      "lemma": "billete",
+      "corpus_count": 5,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dc3da4",
+      "word": "canales",
+      "lemma": "canal",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5a8631",
+      "word": "misiones",
+      "lemma": "misión",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b3c5c6",
+      "word": "franco",
+      "lemma": "franco",
+      "corpus_count": 5,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "76b878",
+      "word": "pesos",
+      "lemma": "peso",
+      "corpus_count": 5,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "24fa19",
+      "word": "creo",
+      "lemma": "crear",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3de6a4",
+      "word": "estabas",
+      "lemma": "estar",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "8674df",
+      "word": "general",
+      "lemma": "general",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "843e26",
+      "word": "estuve",
+      "lemma": "estar",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "99954d",
+      "word": "compañía",
+      "lemma": "compañía",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a5c50c",
+      "word": "normales",
+      "lemma": "normal",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "12f0f9",
+      "word": "depende",
+      "lemma": "depender",
+      "corpus_count": 4,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "392b74",
+      "word": "diferentes",
+      "lemma": "diferente",
+      "corpus_count": 4,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9bc5b7",
+      "word": "total",
+      "lemma": "total",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "73778e",
+      "word": "apartamento",
+      "lemma": "apartamento",
+      "corpus_count": 4,
+      "score": 0.9,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6a6470",
+      "word": "serie",
+      "lemma": "serie",
+      "corpus_count": 4,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "352ecc",
+      "word": "estemos",
+      "lemma": "estar",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "081dfd",
+      "word": "responder",
+      "lemma": "responder",
+      "corpus_count": 4,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "cd4eb7",
+      "word": "experto",
+      "lemma": "experto",
+      "corpus_count": 4,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9525f5",
+      "word": "imagina",
+      "lemma": "imaginar",
+      "corpus_count": 4,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9b1d77",
+      "word": "militares",
+      "lemma": "militar",
+      "corpus_count": 4,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "65f3a7",
+      "word": "internet",
+      "lemma": "internet",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2cf24b",
+      "word": "prefiere",
+      "lemma": "preferir",
+      "corpus_count": 4,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9a8a58",
+      "word": "temporal",
+      "lemma": "temporal",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "26c7b5",
+      "word": "invitación",
+      "lemma": "invitación",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "48a8ba",
+      "word": "moviendo",
+      "lemma": "mover",
+      "corpus_count": 4,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6fefb8",
+      "word": "pistolas",
+      "lemma": "pistola",
+      "corpus_count": 4,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3b0832",
+      "word": "batería",
+      "lemma": "batería",
+      "corpus_count": 4,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d07ce8",
+      "word": "champán",
+      "lemma": "champán",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "47cd2b",
+      "word": "contenta",
+      "lemma": "contento",
+      "corpus_count": 4,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a84b81",
+      "word": "comentarios",
+      "lemma": "comentario",
+      "corpus_count": 4,
+      "score": 0.9,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "cf59d0",
+      "word": "creando",
+      "lemma": "crear",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c06c5b",
+      "word": "famosos",
+      "lemma": "famoso",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "288c08",
+      "word": "lunar",
+      "lemma": "lunar",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ce4e03",
+      "word": "explota",
+      "lemma": "explotar",
+      "corpus_count": 4,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a85ec0",
+      "word": "pretendes",
+      "lemma": "pretender",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "898221",
+      "word": "enamorados",
+      "lemma": "enamorado",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "d34750",
+      "word": "union",
+      "lemma": "unión",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "da4762",
+      "word": "violeta",
+      "lemma": "violeta",
+      "corpus_count": 4,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5abcd5",
+      "word": "velas",
+      "lemma": "vela",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "eec7ba",
+      "word": "activar",
+      "lemma": "activar",
+      "corpus_count": 4,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "0af4f2",
+      "word": "correcto",
+      "lemma": "correcto",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "01ec61",
+      "word": "presidente",
+      "lemma": "presidente",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b056ec",
+      "word": "sistema",
+      "lemma": "sistema",
+      "corpus_count": 3,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5fb014",
+      "word": "navidad",
+      "lemma": "navidad",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "a9912e",
+      "word": "línea",
+      "lemma": "línea",
+      "corpus_count": 3,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f1ecfb",
+      "word": "universidad",
+      "lemma": "universidad",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "df39a1",
+      "word": "acción",
+      "lemma": "acción",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fb8014",
+      "word": "planes",
+      "lemma": "plan",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ce02d8",
+      "word": "estarán",
+      "lemma": "estar",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "d97300",
+      "word": "desierto",
+      "lemma": "desierto",
+      "corpus_count": 3,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ea4638",
+      "word": "partes",
+      "lemma": "parte",
+      "corpus_count": 3,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7642a2",
+      "word": "negativo",
+      "lemma": "negativo",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "da0103",
+      "word": "fresco",
+      "lemma": "fresco",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6fb328",
+      "word": "pasos",
+      "lemma": "paso",
+      "corpus_count": 3,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "66d754",
+      "word": "personaje",
+      "lemma": "personaje",
+      "corpus_count": 3,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0ffdd1",
+      "word": "cabina",
+      "lemma": "cabina",
+      "corpus_count": 3,
+      "score": 0.909,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "25cdfe",
+      "word": "discos",
+      "lemma": "disco",
+      "corpus_count": 3,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2b1527",
+      "word": "facil",
+      "lemma": "fácil",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c13615",
+      "word": "importar",
+      "lemma": "importar",
+      "corpus_count": 3,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8d1fce",
+      "word": "abandonó",
+      "lemma": "abandonar",
+      "corpus_count": 3,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fe49fa",
+      "word": "invento",
+      "lemma": "inventar",
+      "corpus_count": 3,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "26cf81",
+      "word": "triple",
+      "lemma": "triple",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "006fa7",
+      "word": "muevete",
+      "lemma": "mover",
+      "corpus_count": 3,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "89ba80",
+      "word": "presidencial",
+      "lemma": "presidencial",
+      "corpus_count": 3,
+      "score": 0.917,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "819eef",
+      "word": "serias",
+      "lemma": "seriar",
+      "corpus_count": 3,
+      "score": 0.889,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "135298",
+      "word": "chocolates",
+      "lemma": "chocolate",
+      "corpus_count": 3,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2c10dc",
+      "word": "corrupto",
+      "lemma": "corrupto",
+      "corpus_count": 3,
+      "score": 0.933,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "28d65a",
+      "word": "significa",
+      "lemma": "significar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "7a8b40",
+      "word": "estaban",
+      "lemma": "estar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "24b815",
+      "word": "princesa",
+      "lemma": "princesa",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e5bbd7",
+      "word": "bomba",
+      "lemma": "bomba",
+      "corpus_count": 2,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ef7ada",
+      "word": "estuviste",
+      "lemma": "estar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "c97def",
+      "word": "caballero",
+      "lemma": "caballero",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a145b5",
+      "word": "opción",
+      "lemma": "opción",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "84aee4",
+      "word": "brillante",
+      "lemma": "brillante",
+      "corpus_count": 2,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "18cd81",
+      "word": "muevas",
+      "lemma": "mover",
+      "corpus_count": 2,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d49313",
+      "word": "central",
+      "lemma": "central",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8b65ef",
+      "word": "ángeles",
+      "lemma": "ángeles",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "104747",
+      "word": "perfecta",
+      "lemma": "perfecto",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "520e7e",
+      "word": "profundo",
+      "lemma": "profundo",
+      "corpus_count": 2,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "969fdd",
+      "word": "prepara",
+      "lemma": "preparar",
+      "corpus_count": 2,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "928262",
+      "word": "precioso",
+      "lemma": "precioso",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8343f7",
+      "word": "directamente",
+      "lemma": "directamente",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "bb6414",
+      "word": "puto",
+      "lemma": "puto",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "aae07e",
+      "word": "vegas",
+      "lemma": "vega",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "dae533",
+      "word": "rápida",
+      "lemma": "rápido",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "367467",
+      "word": "decisiones",
+      "lemma": "decisión",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d3d345",
+      "word": "favorita",
+      "lemma": "favorito",
+      "corpus_count": 2,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a0f4dc",
+      "word": "bolas",
+      "lemma": "bola",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d8e175",
+      "word": "compromiso",
+      "lemma": "compromiso",
+      "corpus_count": 2,
+      "score": 0.9,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5c4e2d",
+      "word": "convirtió",
+      "lemma": "convertir",
+      "corpus_count": 2,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dba274",
+      "word": "termino",
+      "lemma": "terminar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a57d19",
+      "word": "americana",
+      "lemma": "americano",
+      "corpus_count": 2,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a40e75",
+      "word": "importan",
+      "lemma": "importar",
+      "corpus_count": 2,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "59c8a2",
+      "word": "máxima",
+      "lemma": "máximo",
+      "corpus_count": 2,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c5a74f",
+      "word": "collar",
+      "lemma": "collar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b2b7cd",
+      "word": "responda",
+      "lemma": "responder",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d9ba54",
+      "word": "primeras",
+      "lemma": "primero",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "258540",
+      "word": "combinación",
+      "lemma": "combinación",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c1aff9",
+      "word": "estabamos",
+      "lemma": "estar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "f969dd",
+      "word": "fresca",
+      "lemma": "fresco",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dadecd",
+      "word": "planta",
+      "lemma": "plantar",
+      "corpus_count": 2,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "acd9f9",
+      "word": "tristeza",
+      "lemma": "tristeza",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "df5ef2",
+      "word": "pases",
+      "lemma": "pasar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "de2b96",
+      "word": "botas",
+      "lemma": "bota",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3e4fd1",
+      "word": "sexuales",
+      "lemma": "sexual",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "95e734",
+      "word": "doctores",
+      "lemma": "doctor",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e2471a",
+      "word": "chance",
+      "lemma": "chance",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "4e22fa",
+      "word": "chip",
+      "lemma": "chip",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "5cf829",
+      "word": "contentos",
+      "lemma": "contento",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f39179",
+      "word": "decides",
+      "lemma": "decidir",
+      "corpus_count": 2,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "377e10",
+      "word": "religioso",
+      "lemma": "religioso",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "af15a9",
+      "word": "abandonado",
+      "lemma": "abandonar",
+      "corpus_count": 2,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f244d2",
+      "word": "termines",
+      "lemma": "terminar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "051e3c",
+      "word": "delincuente",
+      "lemma": "delincuente",
+      "corpus_count": 2,
+      "score": 0.952,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9e96f5",
+      "word": "poeta",
+      "lemma": "poeta",
+      "corpus_count": 2,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "43734e",
+      "word": "positiva",
+      "lemma": "positivo",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c5feb9",
+      "word": "respeta",
+      "lemma": "respetar",
+      "corpus_count": 2,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "27a9d2",
+      "word": "sincera",
+      "lemma": "sincero",
+      "corpus_count": 2,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6dd504",
+      "word": "gramos",
+      "lemma": "gramo",
+      "corpus_count": 2,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "cfecc6",
+      "word": "inventé",
+      "lemma": "inventar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3eb422",
+      "word": "naturales",
+      "lemma": "natural",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "990ff5",
+      "word": "semestre",
+      "lemma": "semestre",
+      "corpus_count": 2,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ff981b",
+      "word": "abandona",
+      "lemma": "abandonar",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0579e2",
+      "word": "católica",
+      "lemma": "católico",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "56774f",
+      "word": "escoria",
+      "lemma": "escoria",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8dbf02",
+      "word": "estuviéramos",
+      "lemma": "estar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "cd47b0",
+      "word": "expresar",
+      "lemma": "expresar",
+      "corpus_count": 2,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "53f05c",
+      "word": "invité",
+      "lemma": "invitar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7efdaa",
+      "word": "recupera",
+      "lemma": "recuperar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "30a262",
+      "word": "violenta",
+      "lemma": "violento",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3eef45",
+      "word": "quejas",
+      "lemma": "queja",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "952a5d",
+      "word": "implantes",
+      "lemma": "implantar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "b0c691",
+      "word": "insistes",
+      "lemma": "insistir",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4738ba",
+      "word": "solicita",
+      "lemma": "solicitar",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "844127",
+      "word": "terminas",
+      "lemma": "terminar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2f2064",
+      "word": "convertí",
+      "lemma": "convertir",
+      "corpus_count": 2,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "1788c9",
+      "word": "presentes",
+      "lemma": "presente",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fd3219",
+      "word": "convierten",
+      "lemma": "convertir",
+      "corpus_count": 2,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "33d5f5",
+      "word": "separar",
+      "lemma": "separar",
+      "corpus_count": 2,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d28238",
+      "word": "confesar",
+      "lemma": "confesar",
+      "corpus_count": 2,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ee2934",
+      "word": "lista",
+      "lemma": "listo",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "cad3cd",
+      "word": "presente",
+      "lemma": "presentar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e76da5",
+      "word": "dólares",
+      "lemma": "dólar",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a97916",
+      "word": "estuvo",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "a2842f",
+      "word": "estaré",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "fe78b8",
+      "word": "estan",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "885b3d",
+      "word": "estábamos",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "0e6a2f",
+      "word": "humanos",
+      "lemma": "humano",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7a6bdf",
+      "word": "estación",
+      "lemma": "estación",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "311a3b",
+      "word": "estarás",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "7ba353",
+      "word": "oeste",
+      "lemma": "oeste",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "835046",
+      "word": "visita",
+      "lemma": "visitar",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4fa4e0",
+      "word": "estúpida",
+      "lemma": "estúpido",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3d2d00",
+      "word": "clases",
+      "lemma": "clase",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fd5710",
+      "word": "seria",
+      "lemma": "serio",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "47f910",
+      "word": "varias",
+      "lemma": "vario",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5b98d2",
+      "word": "presento",
+      "lemma": "presentar",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6e9220",
+      "word": "doctora",
+      "lemma": "doctor",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d1ef58",
+      "word": "humor",
+      "lemma": "humor",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f0b6ed",
+      "word": "universo",
+      "lemma": "universo",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5a582a",
+      "word": "famoso",
+      "lemma": "famoso",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "61cf71",
+      "word": "resulta",
+      "lemma": "resultar",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "de5714",
+      "word": "continúa",
+      "lemma": "continuar",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "60c179",
+      "word": "contrario",
+      "lemma": "contrario",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "335e0a",
+      "word": "sexual",
+      "lemma": "sexual",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ecddca",
+      "word": "especiales",
+      "lemma": "especial",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "550868",
+      "word": "frontera",
+      "lemma": "frontera",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8938ff",
+      "word": "primeros",
+      "lemma": "primero",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d9aa80",
+      "word": "mueva",
+      "lemma": "mover",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "83f737",
+      "word": "naves",
+      "lemma": "nave",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d22c5c",
+      "word": "distinto",
+      "lemma": "distinto",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8ded7a",
+      "word": "correcta",
+      "lemma": "correcto",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7c4868",
+      "word": "líneas",
+      "lemma": "línea",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "58722a",
+      "word": "material",
+      "lemma": "material",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "329629",
+      "word": "rápidamente",
+      "lemma": "rápidamente",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "0968fe",
+      "word": "historias",
+      "lemma": "historia",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a36a5a",
+      "word": "dulces",
+      "lemma": "dulce",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "24dea2",
+      "word": "estuvimos",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "0b8518",
+      "word": "prisionero",
+      "lemma": "prisionero",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d1e370",
+      "word": "secreta",
+      "lemma": "secreto",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "473979",
+      "word": "bombas",
+      "lemma": "bomba",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "edb970",
+      "word": "educación",
+      "lemma": "educación",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "14c41e",
+      "word": "reputación",
+      "lemma": "reputación",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "b2f429",
+      "word": "tranquilos",
+      "lemma": "tranquilo",
+      "corpus_count": 1,
+      "score": 0.941,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "860266",
+      "word": "mentales",
+      "lemma": "mental",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "182a4c",
+      "word": "criminales",
+      "lemma": "criminal",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "26b474",
+      "word": "extraños",
+      "lemma": "extraño",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f0a063",
+      "word": "ocasión",
+      "lemma": "ocasión",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d4e023",
+      "word": "opciones",
+      "lemma": "opción",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "cda9a7",
+      "word": "anterior",
+      "lemma": "anterior",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f7307b",
+      "word": "héroes",
+      "lemma": "héroe",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f77e68",
+      "word": "cañón",
+      "lemma": "cañón",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6c6b28",
+      "word": "organización",
+      "lemma": "organización",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6cdab9",
+      "word": "patrón",
+      "lemma": "patrón",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2ec233",
+      "word": "rota",
+      "lemma": "roto",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "c3928d",
+      "word": "defender",
+      "lemma": "defender",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2d0551",
+      "word": "estando",
+      "lemma": "estar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "copula_aux"
+    },
+    {
+      "id": "0b8344",
+      "word": "adultos",
+      "lemma": "adulto",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "260e37",
+      "word": "bicicleta",
+      "lemma": "bicicleta",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a5263b",
+      "word": "conduce",
+      "lemma": "conducir",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e7de2c",
+      "word": "romántico",
+      "lemma": "romántico",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "83331f",
+      "word": "hermanas",
+      "lemma": "hermana",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c58229",
+      "word": "decide",
+      "lemma": "decidir",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "487bde",
+      "word": "francesa",
+      "lemma": "francés",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b7cee8",
+      "word": "actúa",
+      "lemma": "actuar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "96cb8c",
+      "word": "investigando",
+      "lemma": "investigar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f6723b",
+      "word": "italia",
+      "lemma": "italia",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "cb0243",
+      "word": "plaza",
+      "lemma": "plaza",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d96bd7",
+      "word": "moral",
+      "lemma": "morals",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f3389b",
+      "word": "amarillo",
+      "lemma": "amarillo",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "94dab5",
+      "word": "egoísta",
+      "lemma": "egoísta",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7a1b66",
+      "word": "indica",
+      "lemma": "indicar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "23c90e",
+      "word": "imaginas",
+      "lemma": "imaginar",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d1d050",
+      "word": "balboa",
+      "lemma": "balboa",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "744ed5",
+      "word": "costó",
+      "lemma": "costar",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "06f792",
+      "word": "pastor",
+      "lemma": "pastor",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ac3beb",
+      "word": "rollo",
+      "lemma": "rollo",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "14f3b5",
+      "word": "complicado",
+      "lemma": "complicar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "41b9be",
+      "word": "estable",
+      "lemma": "estable",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "32d418",
+      "word": "eternidad",
+      "lemma": "eternidad",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "236846",
+      "word": "imaginé",
+      "lemma": "imaginar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f2f86c",
+      "word": "república",
+      "lemma": "república",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5811c5",
+      "word": "cicatriz",
+      "lemma": "cicatriz",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0d190e",
+      "word": "comisión",
+      "lemma": "comisión",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b95d96",
+      "word": "furioso",
+      "lemma": "furioso",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6ae9f1",
+      "word": "león",
+      "lemma": "león",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c530f7",
+      "word": "planos",
+      "lemma": "plano",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "149a2c",
+      "word": "preparados",
+      "lemma": "preparado",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "f64f87",
+      "word": "detesto",
+      "lemma": "detestar",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dd2b53",
+      "word": "importaba",
+      "lemma": "importar",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "205593",
+      "word": "resiste",
+      "lemma": "resistir",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "542a93",
+      "word": "terminaste",
+      "lemma": "terminar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b72a6e",
+      "word": "ruedas",
+      "lemma": "rueda",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "14fe19",
+      "word": "brigada",
+      "lemma": "brigada",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6f13c7",
+      "word": "emergencias",
+      "lemma": "emergencia",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "064113",
+      "word": "inevitable",
+      "lemma": "inevitable",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f3ca41",
+      "word": "radiación",
+      "lemma": "radiación",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "07b714",
+      "word": "reuniones",
+      "lemma": "reunión",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4b0e47",
+      "word": "asia",
+      "lemma": "asia",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "46b07b",
+      "word": "distintas",
+      "lemma": "distinto",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "20f76e",
+      "word": "prostitutas",
+      "lemma": "prostituto",
+      "corpus_count": 1,
+      "score": 0.9,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "404eba",
+      "word": "uses",
+      "lemma": "usar",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e52a54",
+      "word": "activado",
+      "lemma": "activar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "a7d95d",
+      "word": "cajón",
+      "lemma": "cajón",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "647b0b",
+      "word": "cancelar",
+      "lemma": "cancelar",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f4188e",
+      "word": "concentración",
+      "lemma": "concentración",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "69a12d",
+      "word": "magneto",
+      "lemma": "magneto",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "90ec50",
+      "word": "moderno",
+      "lemma": "moderno",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7fb137",
+      "word": "post",
+      "lemma": "post",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "3f4182",
+      "word": "región",
+      "lemma": "región",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2b30c9",
+      "word": "siesta",
+      "lemma": "siesta",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a22bc9",
+      "word": "caramelo",
+      "lemma": "caramelo",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d2f795",
+      "word": "contratos",
+      "lemma": "contrato",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0e9d2d",
+      "word": "direcciones",
+      "lemma": "dirección",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "315d29",
+      "word": "marchó",
+      "lemma": "marchar",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "943454",
+      "word": "noté",
+      "lemma": "notar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d27e03",
+      "word": "presenta",
+      "lemma": "presentar",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d77a83",
+      "word": "secuestro",
+      "lemma": "secuestrar",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "87f034",
+      "word": "dedica",
+      "lemma": "dedicar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e2e11e",
+      "word": "listas",
+      "lemma": "lista",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "bdbfcb",
+      "word": "apocalipsis",
+      "lemma": "apocalipsis",
+      "corpus_count": 1,
+      "score": 0.9,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f84ff3",
+      "word": "complicada",
+      "lemma": "complicado",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "cfc112",
+      "word": "contrabando",
+      "lemma": "contrabando",
+      "corpus_count": 1,
+      "score": 0.952,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "11f4ef",
+      "word": "corrupción",
+      "lemma": "corrupción",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ac288c",
+      "word": "cristianos",
+      "lemma": "cristiano",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ac941b",
+      "word": "culto",
+      "lemma": "culto",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9e81f5",
+      "word": "esparta",
+      "lemma": "esparta",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "32caac",
+      "word": "euros",
+      "lemma": "euro",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "399cd6",
+      "word": "exhibición",
+      "lemma": "exhibición",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "170cce",
+      "word": "insisto",
+      "lemma": "insistir",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "630a50",
+      "word": "lotería",
+      "lemma": "lotería",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "24638f",
+      "word": "medicamentos",
+      "lemma": "medicamento",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "82a80d",
+      "word": "mueven",
+      "lemma": "mover",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "677d44",
+      "word": "oriental",
+      "lemma": "oriental",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "89f531",
+      "word": "romántica",
+      "lemma": "romántico",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4c6800",
+      "word": "firmes",
+      "lemma": "firme",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a278e7",
+      "word": "vaqueros",
+      "lemma": "vaquero",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "307aca",
+      "word": "anteriores",
+      "lemma": "anterior",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "432328",
+      "word": "brutal",
+      "lemma": "brutal",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "73fd37",
+      "word": "conecta",
+      "lemma": "conectar",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a08199",
+      "word": "continuación",
+      "lemma": "continuación",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dd5040",
+      "word": "defecto",
+      "lemma": "defecto",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8de3b4",
+      "word": "espaciales",
+      "lemma": "espacial",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "30aa7f",
+      "word": "explotó",
+      "lemma": "explotar",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "0c3539",
+      "word": "favores",
+      "lemma": "favor",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8249e8",
+      "word": "jeep",
+      "lemma": "jeep",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7a7628",
+      "word": "neutral",
+      "lemma": "neutral",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "b794ef",
+      "word": "patricia",
+      "lemma": "patricio",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "422307",
+      "word": "violar",
+      "lemma": "violar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "78cdc4",
+      "word": "vídeo",
+      "lemma": "video",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f9f71e",
+      "word": "botes",
+      "lemma": "bote",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "11dea2",
+      "word": "implica",
+      "lemma": "implicar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a410d1",
+      "word": "romana",
+      "lemma": "romano",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5658e3",
+      "word": "rápidos",
+      "lemma": "rápido",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "3503ac",
+      "word": "alérgico",
+      "lemma": "alérgico",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b394a3",
+      "word": "amos",
+      "lemma": "amo",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "76d578",
+      "word": "bastón",
+      "lemma": "bastón",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "8249e7",
+      "word": "calme",
+      "lemma": "calmar",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "109b39",
+      "word": "convento",
+      "lemma": "convento",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ced7f7",
+      "word": "delincuentes",
+      "lemma": "delincuente",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "b06868",
+      "word": "devuelvo",
+      "lemma": "devolver",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5566f0",
+      "word": "específico",
+      "lemma": "específico",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "83ab11",
+      "word": "exista",
+      "lemma": "existir",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "59166b",
+      "word": "experta",
+      "lemma": "experto",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "7ee602",
+      "word": "fanático",
+      "lemma": "fanático",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "e82960",
+      "word": "genes",
+      "lemma": "gene",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "82bdbe",
+      "word": "letal",
+      "lemma": "letal",
+      "corpus_count": 1,
+      "score": 0.909,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9770bb",
+      "word": "normalidad",
+      "lemma": "normalidad",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c74e8d",
+      "word": "preocupaciones",
+      "lemma": "preocupación",
+      "corpus_count": 1,
+      "score": 0.88,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "fc6d12",
+      "word": "retire",
+      "lemma": "retirar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "238d7d",
+      "word": "simón",
+      "lemma": "simón",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "477e00",
+      "word": "soda",
+      "lemma": "soda",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f4e0e8",
+      "word": "tímida",
+      "lemma": "tímido",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "dbdd61",
+      "word": "vainilla",
+      "lemma": "vainilla",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "729f55",
+      "word": "dedico",
+      "lemma": "dedicar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "1d8ccd",
+      "word": "importe",
+      "lemma": "importar",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "2aad3e",
+      "word": "armadas",
+      "lemma": "armado",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "1400ec",
+      "word": "celulares",
+      "lemma": "celular",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "565d44",
+      "word": "deciden",
+      "lemma": "decidir",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "80dd00",
+      "word": "devuelto",
+      "lemma": "devolver",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5359cf",
+      "word": "eminencia",
+      "lemma": "eminencia",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "1849b4",
+      "word": "imagine",
+      "lemma": "imaginar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "35f0ae",
+      "word": "incompetente",
+      "lemma": "incompetente",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "2fd29c",
+      "word": "investiga",
+      "lemma": "investigar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "ec3631",
+      "word": "justificar",
+      "lemma": "justificar",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f6d4ad",
+      "word": "mexicana",
+      "lemma": "mexicano",
+      "corpus_count": 1,
+      "score": 0.933,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d24491",
+      "word": "milicia",
+      "lemma": "milicia",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d7299d",
+      "word": "movemos",
+      "lemma": "mover",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "d214e8",
+      "word": "movía",
+      "lemma": "mover",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5cf9ce",
+      "word": "perdición",
+      "lemma": "perdición",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "837870",
+      "word": "poemas",
+      "lemma": "poema",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "a2a4cc",
+      "word": "poste",
+      "lemma": "poste",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c4a6ac",
+      "word": "practica",
+      "lemma": "practicar",
+      "corpus_count": 1,
+      "score": 0.875,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "9f7b82",
+      "word": "prefieren",
+      "lemma": "preferir",
+      "corpus_count": 1,
+      "score": 0.857,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "f275de",
+      "word": "sexualmente",
+      "lemma": "sexualmente",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "e8e100",
+      "word": "teresa",
+      "lemma": "teresa",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": false,
+      "gemini": false,
+      "bucket": "likely_false_positive"
+    },
+    {
+      "id": "5ee0f7",
+      "word": "victorias",
+      "lemma": "victoria",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "4845bd",
+      "word": "voten",
+      "lemma": "votar",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "5304de",
+      "word": "activa",
+      "lemma": "activo",
+      "corpus_count": 1,
+      "score": 1.0,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "6cfa92",
+      "word": "movido",
+      "lemma": "mover",
+      "corpus_count": 1,
+      "score": 0.889,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    },
+    {
+      "id": "c44610",
+      "word": "cancela",
+      "lemma": "cancelar",
+      "corpus_count": 1,
+      "score": 0.923,
+      "cognet": true,
+      "gemini": false,
+      "bucket": "likely_real_cognate"
+    }
+  ]
+}
