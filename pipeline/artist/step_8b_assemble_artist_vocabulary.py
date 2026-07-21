@@ -521,6 +521,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     skip_english = set()
     skip_propn = set()
     skip_noise = set()  # was skip_intj in schema_v1; bucket renamed interjections→noise
+    skip_cognate = set()  # curated transparent cognates (baby, flow, haters…): routed to
+                          # exclude.cognate but previously never flagged, so they leaked as
+                          # visible junk cards with invented gap-fill glosses (baby = the
+                          # deck's #1-frequency non-word). Flagging hides them via the
+                          # excludeCognates toggle Josh runs with ON.
     if skip_words_path and os.path.isfile(skip_words_path):
         with open(skip_words_path, "r", encoding="utf-8") as f:
             routing_data = json.load(f)
@@ -536,11 +541,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         # so the builder works against pre-rerun word_routing.json files too.
         for w in exclude.get("noise", []) + exclude.get("interjections", []):
             skip_noise.add(w.lower() if isinstance(w, str) else w)
+        for w in exclude.get("cognate", []):
+            skip_cognate.add(w.lower() if isinstance(w, str) else w)
         if clitic_merge:
             print("  clitic_merge: %d words (%d orphans → synthetic infinitive)" %
                   (len(clitic_merge), len(clitic_orphans)))
-        print("  routing flags: %d english, %d propn, %d noise" %
-              (len(skip_english), len(skip_propn), len(skip_noise)))
+        print("  routing flags: %d english, %d propn, %d noise, %d cognate" %
+              (len(skip_english), len(skip_propn), len(skip_noise), len(skip_cognate)))
 
     # Pre-process clitic merges: skip clitics from main deck, build separate
     # clitic data file (like MWEs). Base verb references clitic IDs; front-end
@@ -1205,7 +1212,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "is_noise": wl in skip_noise,
                 "is_interjection": wl in skip_noise,
                 "is_propernoun": wl in skip_propn,
-                "is_transparent_cognate": False,
+                "is_transparent_cognate": wl in skip_cognate,
                 "corpus_count": group_counts[g_idx] if g_idx < len(group_counts) else 0,
                 "_has_wikt_assignments": has_wikt,
             }
