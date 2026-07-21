@@ -136,6 +136,12 @@ def normalize_text(s: str) -> str:
     s = s.replace("\r\n", "\n").replace("\r", "\n")
     s = s.replace("\u2018", "’").replace("\u2019", "’").replace("`", "’")
     s = s.replace("\u2013", "-").replace("\u2014", "-")
+    # Genius injects invisible whitespace substitutes (U+2005/205F/200A/3000)
+    # and zero-width chars as anti-scrape obfuscation; map to a plain space (or
+    # drop) so tokenization, line matching, and exact translation lookups agree.
+    s = (s.replace("\u2005", " ").replace("\u205f", " ")
+          .replace("\u200a", " ").replace("\u3000", " ")
+          .replace("\u200b", "").replace("\ufeff", ""))
     s = s.translate(_HOMOGLYPH_TABLE)   # strip Genius homoglyph obfuscation
     return s
 
@@ -153,10 +159,14 @@ def clean_genius_lyrics(raw: str) -> str:
 
     # Skip Genius placeholder pages (no real lyrics)
     if ("yet to be transcribed" in raw or "yet to be released" in raw
-            or "This song is an instrumental" in raw
-            or "letra completa" in raw.lower()
-            or "disponible pronto" in raw.lower()):
+            or "This song is an instrumental" in raw):
         return ""
+    # "letra completa … disponible pronto" is a SOFT marker: it can sit on a page
+    # that also carries a genuine leaked-track transcription (e.g. "No Prometo
+    # Nada"). Defer the drop decision until after cleaning — only treat the page
+    # as a placeholder when little real content survives (checked at return).
+    _soft_placeholder = ("letra completa" in raw.lower()
+                         or "disponible pronto" in raw.lower())
 
     text = normalize_text(raw)
 
@@ -170,7 +180,7 @@ def clean_genius_lyrics(raw: str) -> str:
     #   1. Description ending with "Read More\xa0\n" or "… Read More\xa0\n"
     #   2. Description ending at first blank line (double newline)
     # The description is always a single prose paragraph about the song.
-    rm_match = re.search(r'(?:…|\.\.\.|\u2026)?\s*Read More[\xa0\s]*\n', text)
+    rm_match = re.search(r'(?:…|\.\.\.|\u2026)?\s*Read More\b[^\n]*\n?', text[:2000])
     if rm_match:
         text = text[rm_match.end():]
     else:
@@ -214,6 +224,8 @@ def clean_genius_lyrics(raw: str) -> str:
             continue
         lines.append(s)
 
+    if _soft_placeholder and len(lines) < 8:
+        return ""
     return "\n".join(lines).strip()
 
 
