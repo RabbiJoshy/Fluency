@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-21",
+      "commit": "",
+      "summary": "Example lines: cards now lead with a clear, well-sized sentence",
+      "details": [
+        "Fixed the picker that showed the longest lyric line ~80% of the time — 'nunca' used to open with a 71-word spoken monologue; now a 10-word line",
+        "Prefers a 6–14 word window, demotes lines with no English translation, caps deck-word overlap so length no longer wins; recently-missed words still boosted",
+        "Front-end only, no deck rebuild. Cache bumped 20260721a / v44"
+      ]
+    },
+    {
       "date": "2026-07-14",
       "commit": "a0fd811",
       "summary": "Your FlaggedWords processed: 27 live-deck cards fixed",

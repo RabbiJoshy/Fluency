@@ -360,11 +360,24 @@ function getRecentWrongWords() {
     return words;
 }
 
+// Count "content" tokens after stripping ad-libs/brackets/parentheticals —
+// used to prefer a first example line in a readable length window rather than
+// whichever line is simply the longest.
+function contentTokenCount(spanishText) {
+    if (!spanishText) return 0;
+    const cleaned = spanishText.replace(/\[[^\]]*\]|\([^\)]*\)/g, ' ');
+    const tokens = cleaned.toLowerCase().replace(/[^\w\s']/g, ' ').split(/\s+/).filter(Boolean);
+    return tokens.length;
+}
+
 function sortExamplesByRelevance(examples) {
     const deckWords = getDeckWords();
     const wrongWords = getRecentWrongWords();
     // Score each example — use personal easiness (excludes known words) when available
     const usePersonal = !!_spanishRanks;
+    // A good "first line" is long enough to be a real phrase but short enough
+    // to read at a glance; lines outside the window get a graded penalty.
+    const LEN_MIN = 6, LEN_MAX = 14;
     const scored = examples.map(ex => {
         const spanishText = ex.spanish || ex.target || '';
         const tokens = spanishText.toLowerCase().split(/\s+/);
@@ -373,15 +386,33 @@ function sortExamplesByRelevance(examples) {
             if (wrongWords.has(t)) wrongHits++;
             if (deckWords.has(t)) deckHits++;
         }
+        // Cap the overlap counts: with ~3.5k visible cards nearly every token
+        // is a deck word, so an uncapped deckHits is just sentence length in
+        // disguise — that made the sort pick the single longest line ~80% of
+        // the time. Capping keeps the pedagogic "shows words you know / missed"
+        // intent without rewarding length.
+        const deckScore = Math.min(deckHits, 3);
+        const wrongScore = Math.min(wrongHits, 2);
+        const len = contentTokenCount(spanishText);
+        const lenPenalty = len < LEN_MIN ? (LEN_MIN - len)
+                         : len > LEN_MAX ? (len - LEN_MAX)
+                         : 0;
+        // A first line with no English translation is close to useless as a
+        // teaching card — demote it below any translated alternative.
+        const hasEnglish = !!(ex.english && ex.english.trim());
         const easiness = usePersonal
             ? computePersonalEasiness(spanishText)
             : (ex.easiness || 999999);
-        return { ex, wrongHits, deckHits, easiness };
+        return { ex, wrongScore, deckScore, lenPenalty, hasEnglish, easiness };
     });
-    // Sort: wrong hits desc, deck hits desc, easiness asc (lower = easier/more relevant)
+    // Priority: translated first → contains a recently-missed word → good
+    // length → deck overlap (capped) → easiest. Replaces the old
+    // wrongHits/deckHits-desc sort that leaked sentence length as the key.
     scored.sort((a, b) =>
-        (b.wrongHits - a.wrongHits) ||
-        (b.deckHits - a.deckHits) ||
+        (Number(b.hasEnglish) - Number(a.hasEnglish)) ||
+        (b.wrongScore - a.wrongScore) ||
+        (a.lenPenalty - b.lenPenalty) ||
+        (b.deckScore - a.deckScore) ||
         (a.easiness - b.easiness)
     );
     return scored.map(s => s.ex);
