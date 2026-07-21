@@ -379,6 +379,22 @@ function buildFilteredVocab(vocabData) {
         result.push(item);
     }
 
+    // In lemma mode, pool each surviving representative's frequency across all
+    // its collapsed sibling forms (same lemma) and order the deck by that total,
+    // so the most common LEMMAS surface first — mirrors the example pooling in
+    // poolLemmaSiblingExamples. Non-lemma mode keeps the index frequency order.
+    if (useLemmaMode && lemmaFieldAvailable) {
+        const lemmaTotals = new Map();
+        for (const e of vocabData) {
+            if (!e.lemma || e.is_english || e.is_noise || e.is_interjection || e.duplicate) continue;
+            lemmaTotals.set(e.lemma, (lemmaTotals.get(e.lemma) || 0) + (e.corpus_count || 0));
+        }
+        for (const item of result) {
+            item.lemma_total_count = lemmaTotals.get(item.lemma) || item.corpus_count || 0;
+        }
+        result.sort((a, b) => (b.lemma_total_count || 0) - (a.lemma_total_count || 0));
+    }
+
     // Assign corpus-wide display ranks so set numbering is continuous across levels
     result.forEach((item, idx) => { item.displayRank = idx + 1; });
 
@@ -729,7 +745,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 id: item.id,
                 fullId: getWordId(item),
                 rank: item.rank,
-                corpusCount: item.corpus_count || null,
+                // Lemma mode shows the pooled lemma frequency (all collapsed
+                // forms), matching the pooled deck ordering above.
+                corpusCount: (useLemmaMode && item.lemma_total_count)
+                    ? item.lemma_total_count
+                    : (item.corpus_count || null),
                 meanings: meanings,
                 translation: item.meanings[0].translation,
                 targetSentence: firstExample.targetSentence,

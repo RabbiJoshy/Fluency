@@ -1,14 +1,14 @@
-import './state.js?v=20260721a';
-import './speech.js?v=20260721a';
-import './artist-ui.js?v=20260721a';
-import './auth.js?v=20260721a';
-import './spotify.js?v=20260721a';
-import './estimation.js?v=20260721a';
-import './config.js?v=20260721a';
-import './progress.js?v=20260721a';
-import './ui.js?v=20260721a';
-import './vocab.js?v=20260721a';
-import './flashcards.js?v=20260721a';
+import './state.js?v=20260721b';
+import './speech.js?v=20260721b';
+import './artist-ui.js?v=20260721b';
+import './auth.js?v=20260721b';
+import './spotify.js?v=20260721b';
+import './estimation.js?v=20260721b';
+import './config.js?v=20260721b';
+import './progress.js?v=20260721b';
+import './ui.js?v=20260721b';
+import './vocab.js?v=20260721b';
+import './flashcards.js?v=20260721b';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
