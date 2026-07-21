@@ -113,3 +113,6 @@ Data/Spanish/layers/morphology.json
 # Local pipeline backups (Data/{Lang}/layers/_backups/)
 _backups/
 .*.checkpoint.json
+
+# Sandbox rebuild artifacts (step_8b --output-suffix) — never commit
+*_sandbox*
