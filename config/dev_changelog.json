@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-21",
-      "commit": "",
+      "commit": "1e3c794",
       "summary": "Example lines: cards now lead with a clear, well-sized sentence",
       "details": [
         "Fixed the picker that showed the longest lyric line ~80% of the time — 'nunca' used to open with a 71-word spoken monologue; now a 10-word line",
