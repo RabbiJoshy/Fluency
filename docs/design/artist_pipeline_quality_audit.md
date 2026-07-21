@@ -3,7 +3,7 @@ title: Artist Pipeline — Full Quality Audit (SpanishDict / Bad Bunny live deck
 status: research
 language: spanish
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 ---
 
 # Artist Pipeline — Full Quality Audit (SpanishDict / Bad Bunny live deck)
@@ -423,3 +423,67 @@ Work started against this plan the same day it was written. Log:
 introduces new damage. Remaining Tier-0 items are correctness, not blockers: P4 (stamp the 2
 ghost exclude buckets), then P1 (re-classify) + P5 (rebuild + id-migration map). P4 is the
 next step.
+
+---
+
+## Progress + plan update (2026-07-22)
+
+**Shipped since the log above** (all on `main`, promoted live):
+- **P4** — `exclude.cognate` ghost bucket flagged in step_8b (`fca154a`); hides baby/flow/haters on rebuild.
+- **P5 — the free rebuild is DONE and promoted** (`b742de0`). Built to a sandbox
+  (`step_8b --output-suffix _sandbox`), reviewed with the new **`tool_8b_rebuild_diff.py`**,
+  promoted lean (dropped the new synonyms/antonyms fields — 8 MB → 1.6 MB index). Result:
+  homographs fixed (para→"for", como→"like", todo→"everything", cara→"face"; baja/cuenta
+  split), 1,385 recovered words, **0 progress-migration** (id reuse), 258/258 curations
+  re-applied, YM/Rosalía untouched (0 shared-master ids dropped). tool_8c already has
+  `--master`; the safe rebuild flow is: `cp master → master_sandbox`, `step_8b
+  --output-suffix _sandbox`, `tool_8c --master …_sandbox.json`, `tool_8b_rebuild_diff
+  --suffix _sandbox`, review, promote.
+- **Front-end**: example selector rewrite (P6, `1e3c794`) and lemma-mode **pooled-frequency
+  ordering** (`c6cdd45` — sums each lemma's count across collapsed forms, orders + displays
+  the total).
+
+**Sense-matching redesign — DECIDED (2026-07-22).** Replaces the "Wiktionary hybrid" and the
+old NONE-escape idea. SD stays the sole source; **the classifier itself detects when SD is
+insufficient**, in one call:
+- **One prompt: classify-or-propose.** Per word, per example: pick the SD sense that fits, OR
+  set `sense=null` + `proposed=<short gloss>` when no menu sense matches the usage. Uses the
+  substitution test and includes the **line's English translation** as context. This unifies
+  classification + insufficiency-detection + gap-fill (the dead `gap_fill_gemini` prompt at
+  step_6c:325-375 was designed for this but never wired in).
+- **Eval evidence** (`scratchpad/suff_eval*.py`, ~cents): on 6 known-insufficient words
+  (palomo/millo/corta/bichote/tabla/coro) + 4 sufficient controls, **all models scored 10/10
+  detection** — every gap flagged, zero controls over-flagged. The bi-encoder fear does not
+  carry over; a well-shaped LLM prompt solves it. **Model matters only for proposal quality,
+  not detection**: flash-lite detects perfectly but proposes weakly ("palomo→dude"); the
+  earlier flash-lite failure was the *prompt* (no substitution test / no propose option /
+  big batch), not the model.
+- **Translations lift the cheap model** (Josh's insight, confirmed): flash-lite went
+  money→**millionaire** (millo), support→**roll with you** (coro) once the line translation
+  was in the prompt. Caveat: translations can cause *under*-flagging when a literal sense
+  matches one line (`corta`="short" in "life is short" suppressed the "gun" lines) — keep the
+  "don't force a bad sense" instruction strong. `gemini-3-flash-preview` gives the best
+  proposals (palomo→"sucker or loser", millo→"millionaire") but latency is volatile (14s→203s)
+  and it's a preview model — don't hang a scaled pipeline on it.
+- **Architecture (scale answer):** **flash-lite + translations on the whole deck** (classify +
+  flag + draft proposal) is the bulk, cheapest tier. The flagged minority (~5-10%) + drafts
+  feed a **review queue** (the automated version of Josh's FlaggedWords sheet); a strong model
+  is an *optional* draft-upgrade pass on just those, not run per-word. Smallest model for the
+  bulk; expensive model only where it earns it.
+
+**Revised end-to-end rerun plan** (supersedes the Tier-0/1/2 tables for execution ordering):
+- **Phase 1 — code fixes (free, I write):** known-word filter (4a: stop over-skipping
+  gasolina/gol/ron/dembow/bichote; return ya/he/ha; loanword-skip only when no SD menu);
+  cognate (clean the junk `cognates.json` scores, then enable stamping — P2 groundwork done);
+  lemma guards (5c/7a: plausibility gate for totito→torito / perse→purse / cel→cal; honor
+  `derivation_map`; ser/ir prior for fue/fui); **sense matching (6c): wire the
+  classify-or-propose prompt + translations, flash-lite, small batch, emit the review queue**;
+  translations (gap-fill the 348 blank example translations); tokenization (2a: leading-
+  apostrophe 'tamos→estamos / 'e→de, Genius editorial-leak regex, invisible-Unicode).
+- **Phase 2 — mostly done:** the sufficiency evals were the proof; one confirmation eval at
+  production batch size remains.
+- **Phase 3 — the run:** `run_artist_pipeline --from-step 2a` to sandbox layers, `--skip` the
+  LRC step; paid at step-6 classification + translation gap-fill/judge (est. ~$2-4).
+- **Phase 4 — assemble → diff → promote:** the `tool_8b_rebuild_diff` sandbox flow, now proven.
+- **Dropped:** the Wiktionary hybrid (Josh: brittle; SD has better slang). Replaced by the
+  classifier-driven insufficiency detection above.
