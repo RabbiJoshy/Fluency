@@ -470,6 +470,15 @@ insufficient**, in one call:
   feed a **review queue** (the automated version of Josh's FlaggedWords sheet); a strong model
   is an *optional* draft-upgrade pass on just those, not run per-word. Smallest model for the
   bulk; expensive model only where it earns it.
+- **MODEL DECIDED — `gemini-3.1-flash-lite` (supersedes the tiering above).** On the gold set
+  it scores **6/6 detection + 4/4 clean controls** AND produces proposals rivaling 2.5-pro
+  (palomo→"naive/foolish person", millo→"millionaire", corta→"handgun", bichote→"drug
+  kingpin", tabla→"sexual intercourse", coro→"hang out/associate") — **even without
+  translations** — at flash-lite speed (**2-3s** vs 3-flash's 14-203s) and price, and it's the
+  non-preview model. So ONE cheapest-tier model does classify + detect + propose across the
+  whole deck; no expensive escalation, no big model in the hot path — it scales to hundreds of
+  thousands of lyrics. Translations stay a robustness signal, not a requirement. (Confirm on a
+  larger sample before the full run.) `--gemini-model gemini-3.1-flash-lite` in step_6c.
 
 **Revised end-to-end rerun plan** (supersedes the Tier-0/1/2 tables for execution ordering):
 - **Phase 1 — code fixes (free, I write):** known-word filter (4a: stop over-skipping
