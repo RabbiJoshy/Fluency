@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-22",
-      "commit": "pending",
+      "commit": "ae2d058",
       "summary": "Card-back polish: readable lemma, clearer selected sense, restyled Deck Complete popup",
       "details": [
         "Card-back lemma now uses a brightened accent tint (color-mix + shadow) so it reads clearly against the dark back instead of the low-contrast raw accent red",
