@@ -62,6 +62,7 @@ import re
 import sys
 import time
 import unicodedata
+from typing import Optional
 
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
@@ -75,12 +76,13 @@ from util_1a_artist_config import (  # noqa: E402
     add_artist_arg, load_shared_list, load_curation_section, SHARED_DIR,
 )
 
-STEP_VERSION = 4
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "initial: 6 phases with heuristic detectors",
     2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
     3: "simplified: canonical spanish_forms.json; dropped spaCy/cap-ratio/regex-interj/suffix-rule; one clitic rule",
     4: "schema_version 2: bucket renames (biencoder→classifier, gemini→sense_discovery, interjections→noise); cognate flattened; derivation hoisted to derivation_map; sectioned curation files (proper_nouns/cognates/noise have drop+keep)",
+    5: "clitic-aware lemma selection: reflexive enclitics (te/se/nos + person-agreeing) prefer the -se lemma when it exists in spanish_forms; object enclitics (lo/la/le/… and non-agreeing me) keep the plain lemma; multi-lemma bases (sentar/sentir) pick by es_50k frequency, not entries[0]",
 }
 
 # Bumped whenever the output JSON schema changes in a way consumers must
@@ -94,6 +96,7 @@ SCHEMA_VERSION = 2
 
 SPANISH_FORMS_PATH = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers", "spanish_forms.json")
 EN_50K_PATH = os.path.join(_PROJECT_ROOT, "Data", "English", "en_50k_wordlist.txt")
+ES_50K_PATH = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "es_50k_wordlist.txt")
 ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
 
 
@@ -103,6 +106,18 @@ ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
 
 # Longest-first so 'nos' is tried before 'se' for 'enseñarnos'.
 _CLITIC_PRONOUNS = ("nos", "les", "los", "las", "me", "te", "se", "lo", "la", "le")
+
+# Enclitics that can NEVER be reflexive — always a direct/indirect object.
+# (le/les are dative object; lo/la/los/las accusative object.)
+_OBJECT_ONLY_CLITICS = frozenset({"lo", "la", "le", "los", "las", "les"})
+
+# For the potentially-reflexive enclitics, the verb *person* a reflexive use
+# demands. A reflexive enclitic requires subject and object to share person,
+# so on an imperative (subject 2s/3s/1p/2p/3p) the clitic's person must match.
+# `me` (1s) can therefore never be reflexive on an imperative — imperatives
+# have no 1s form — which is exactly why `siénteme`, `párame`, `pónme`, … are
+# all objects ("feel me", "stop me", "put on me"), not reflexives.
+_REFLEXIVE_CLITIC_PERSON = {"me": "1s", "te": "2s", "nos": "1p", "os": "2p"}
 # Safety-net: any word with 3+ consecutive identical letters is noise
 # (jajajajajajaja, brrrrr, woooo, aaaahhhh).
 _REPEAT_RE = re.compile(r"(.)\1{2,}")
@@ -129,6 +144,24 @@ def load_en_50k(path):
             if parts:
                 words.add(parts[0].lower())
     return words
+
+
+def load_es_50k_freq(path):
+    """Return {lemma: frequency_count} from es_50k_wordlist.txt.
+
+    Used only as a tie-breaker when a clitic base maps to several verbecc
+    lemmas (e.g. `siente` → {sentar, sentir}); the more frequent lemma wins.
+    Higher count = more frequent. Missing / malformed → empty dict.
+    """
+    freq = {}
+    if not os.path.exists(path):
+        return freq
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.split()
+            if len(parts) >= 2 and parts[1].lstrip("-").isdigit():
+                freq[parts[0].lower()] = int(parts[1])
+    return freq
 
 
 def _maybe_load_shared(name):
@@ -158,8 +191,42 @@ def _strip_acute(s):
 _CLITIC_HOST_MOODS = frozenset({"imperativo", "infinitivo", "gerundio"})
 
 
-def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None):
-    """Return (base, clitic) if word is verb+clitic, else None.
+def _clitic_is_reflexive(clitic, host_entries):
+    """Is this enclitic functioning reflexively (→ prefer the -se lemma)?
+
+    Deliberately conservative: only fires where the reflexive reading is
+    structurally forced, so it never turns a dative-object form into a -se
+    lemma (``decirte`` "to tell you" must stay ``decir``, not ``decirse``).
+
+    - Object-only pronouns (lo/la/le/los/las/les) are never reflexive.
+    - ``se`` as an enclitic is inherently reflexive/pronominal
+      (``comerse``, ``irse``, ``agárrense``, ``vendiéndose``).
+    - me/te/nos/os are reflexive ONLY on an imperative whose person matches
+      the pronoun. On a tú/usted/ustedes/nosotros imperative an object of the
+      same person as the subject can only be reflexive (``múdate`` = "move
+      yourself", ``cuídense`` = "take care of yourselves"). ``me`` (1s) can
+      never match an imperative, so ``siénteme`` / ``pónme`` stay objects.
+    - Enclitics on an *infinitive* or *gerund* are left as objects: there
+      ``te`` is ambiguous between reflexive (``bañarte``) and dative object
+      (``decirte``, ``contarte``, ``escribirte``), with no structural signal
+      to tell them apart, so we keep the plain lemma (matches prior behaviour).
+    """
+    if clitic in _OBJECT_ONLY_CLITICS:
+        return False
+    if clitic == "se":
+        return True
+    want_person = _REFLEXIVE_CLITIC_PERSON.get(clitic)
+    if want_person is None:
+        return False
+    for e in host_entries:
+        if e.get("mood") == "imperativo" and e.get("person") == want_person:
+            return True
+    return False
+
+
+def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None,
+                 lemma_freq=None):
+    """Return (lemma, clitic) if word is verb+clitic, else None.
 
     Imperatives drop an accent when clitics attach (baja → bájame). Try the
     accented and accent-stripped base against the verb-form set.
@@ -186,8 +253,23 @@ def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None):
        clitic host) while ``denle → den+le`` passes (``den`` is 3pl
        imperativo).
 
+    Lemma selection (the part that changed vs. the old ``entries[0]`` pick):
+
+    - **Multi-lemma bases.** ``siente`` resolves to both ``sentar`` and
+      ``sentir``; the old code took ``entries[0]`` (``sentar``) arbitrarily.
+      We now restrict to lemmas that own a clitic-*host* entry for this
+      surface, then break ties by ``lemma_freq`` (es_50k). ``sentir`` (freq
+      47 337) beats ``sentar`` (4 390) → ``siénteme`` resolves toward
+      ``sentir``; ``parar`` (30 341) beats ``parir`` (614).
+
+    - **Reflexive vs. object.** When the enclitic is reflexive (see
+      ``_clitic_is_reflexive``) and ``spanish_forms`` contains the ``-se``
+      infinitive, return that: ``múdate`` → ``mudarse``, ``agárrense`` →
+      ``agarrarse``. Object enclitics keep the plain lemma: ``muéveme`` →
+      ``mover``, ``pónme`` → ``poner``.
+
     Without ``conj_reverse``, falls back to the looser ``verb_forms`` check
-    (older callers).
+    (older callers) and returns the accent-stripped base, not a lemma.
     """
     if spanish_forms is not None:
         surface_pos = spanish_forms.get(word)
@@ -202,14 +284,46 @@ def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None):
                     entries = conj_reverse.get(candidate, [])
                     if not entries:
                         continue
-                    if not any(e.get("mood") in _CLITIC_HOST_MOODS for e in entries):
+                    host_entries = [e for e in entries
+                                    if e.get("mood") in _CLITIC_HOST_MOODS]
+                    if not host_entries:
                         continue
-                    lemma = entries[0].get("lemma")
+                    lemma = _choose_clitic_lemma(
+                        clitic, host_entries, spanish_forms, lemma_freq)
                     if lemma:
                         return (lemma, clitic)
                 elif candidate in verb_forms:
                     return (candidate, clitic)
     return None
+
+
+def _choose_clitic_lemma(clitic, host_entries, spanish_forms, lemma_freq):
+    # type: (...) -> Optional[str]
+    """Pick the best lemma for a clitic host, or None if none available.
+
+    (b-i) Only lemmas with a clitic-host entry for this surface are
+    candidates (``host_entries`` is already mood-filtered). (b-ii) Ties break
+    on ``lemma_freq``. (a) A reflexive enclitic prefers the ``-se`` lemma when
+    ``spanish_forms`` knows it.
+    """
+    candidate_lemmas = []
+    for e in host_entries:
+        lm = e.get("lemma")
+        if lm and lm not in candidate_lemmas:
+            candidate_lemmas.append(lm)
+    if not candidate_lemmas:
+        return None
+
+    freq = lemma_freq or {}
+    # Stable, frequency-ranked pick; preserves first-seen order on ties so the
+    # result is deterministic when no frequency data is present.
+    plain_lemma = max(candidate_lemmas, key=lambda lm: freq.get(lm, 0))
+
+    if spanish_forms is not None and _clitic_is_reflexive(clitic, host_entries):
+        reflexive_lemma = plain_lemma + "se"
+        if reflexive_lemma in spanish_forms:
+            return reflexive_lemma
+    return plain_lemma
 
 
 # ---------------------------------------------------------------------------
@@ -258,6 +372,10 @@ def main():
     # Load en_50k for the English fallback phase
     en_50k = load_en_50k(EN_50K_PATH)
     print(f"  en_50k: {len(en_50k)} words")
+
+    # Load es_50k frequency for clitic multi-lemma tie-breaks (sentar/sentir).
+    lemma_freq = load_es_50k_freq(ES_50K_PATH)
+    print(f"  es_50k freq: {len(lemma_freq)} lemmas")
 
     # Load verbecc form→lemma map for clitic base resolution. Without it,
     # `párame` strips to `para` which is the ambiguous imperative/preposition;
@@ -388,7 +506,8 @@ def main():
         # (surface POS, verbecc-known base, clitic-host mood) keep noun/adj
         # surfaces and indicative bases out.
         if conj_reverse and pos == {"verb"} and w not in conj_reverse:
-            split = strip_clitic(w, verb_forms, conj_reverse, spanish_forms=spanish_forms)
+            split = strip_clitic(w, verb_forms, conj_reverse,
+                                 spanish_forms=spanish_forms, lemma_freq=lemma_freq)
             if split is not None:
                 base, clitic = split
                 buckets["clitic_merge"][w] = base
@@ -436,7 +555,8 @@ def main():
     # 3a. Clitic: one rule.
     clitic_count = 0
     for w in list(remaining):
-        result = strip_clitic(w, verb_forms, conj_reverse)
+        result = strip_clitic(w, verb_forms, conj_reverse,
+                              spanish_forms=spanish_forms, lemma_freq=lemma_freq)
         if result is None:
             continue
         base, clitic = result
