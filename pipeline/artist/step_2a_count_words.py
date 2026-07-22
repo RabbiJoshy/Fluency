@@ -95,6 +95,35 @@ _HYPHEN_ADLIB_RE = re.compile(
 def strip_hyphen_adlibs(text: str) -> str:
     """Remove runs of 2+ short hyphen-separated tokens from ``text``."""
     return _HYPHEN_ADLIB_RE.sub(" ", text)
+
+
+# Caribbean/PR leading-apostrophe aphesis: the elided form drops the first
+# syllable and marks it with a LEADING apostrophe ('tamos = estamos, 'e = de).
+# WORD_RE can't keep a leading apostrophe, so these were beheaded to a bare token
+# (tamos/e) that collides with an unrelated word — tamo="fluff", e="and". Expand
+# them to the full form at the SOURCE, before WORD_RE, so the count lands on the
+# real word. Fires only on a genuine leading apostrophe (not preceded by a
+# letter), so internal/trailing forms (pa'l, hijo') are untouched. Straight and
+# curly apostrophes both match (normalize_text emits curly). Examples keep the
+# raw elided line — only the count/word identity is corrected.
+_LEADING_ELISIONS = {
+    "tamos": "estamos", "tamo": "estamos", "taba": "estaba", "tabas": "estabas",
+    "toy": "estoy", "tá": "está", "tás": "estás", "tan": "están", "tán": "están",
+    "onde": "donde", "el": "del", "e": "de",
+}
+_LEADING_ELISION_RE = re.compile(
+    r"(?<![" + LETTER_CLASS + r"])['’]("
+    + "|".join(sorted(_LEADING_ELISIONS, key=len, reverse=True))
+    + r")(?![" + LETTER_CLASS + r"])",
+    re.IGNORECASE,
+)
+
+
+def _expand_leading_elisions(line: str) -> str:
+    return _LEADING_ELISION_RE.sub(
+        lambda m: _LEADING_ELISIONS[m.group(1).lower()], line)
+
+
 FOOTER_MARKERS = ["You might also like", "Embed"]
 BOILERPLATE_LINE_RE = re.compile(
     r'… Read More'              # Truncated Genius annotation paragraphs
@@ -242,6 +271,7 @@ def tokenize(line: str) -> List[str]:
     "preguntó-tó-tó") before WORD_RE runs so stutters don't inflate the
     counts of their short fragments. See ``_HYPHEN_ADLIB_RE`` docstring.
     """
+    line = _expand_leading_elisions(line)
     line = strip_hyphen_adlibs(line)
     return [m.group(0).lower() for m in WORD_RE.finditer(line)]
 
