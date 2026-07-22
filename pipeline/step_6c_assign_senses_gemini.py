@@ -547,6 +547,14 @@ def main():
                         help="Source label for reporting with --sense-menu-file")
     parser.add_argument("--include-clitics", action="store_true",
                         help="Include clitic-merge words (skipped by default)")
+    parser.add_argument("--use-loanword-skip", action="store_true",
+                        help="Also skip classification for words in the "
+                             "english_loanwords.json layer. OFF by default: the layer "
+                             "is over-broad — it blocks 138 naturalized Spanish words "
+                             "(gasolina/gol/ron/dembow/bichote) that have SD menus, and "
+                             "only blocks classification without hiding anything, while "
+                             "word_routing already handles real English. Enable only if "
+                             "you specifically want the extra code-switch skip.")
     parser.add_argument("--word", action="append", default=[],
                         help="Only process specific surface words (repeatable). "
                              "Useful with --force to re-classify a small set "
@@ -754,7 +762,7 @@ def main():
     # data-derived layer.
     loanwords_path = str(PROJECT_ROOT / "Data" / "Spanish" / "layers" / "english_loanwords.json")
     is_spanish = 'Spanish' in (layers_dir or '') or 'spanish' in (artist_dir or '')
-    if is_spanish and os.path.isfile(loanwords_path):
+    if args.use_loanword_skip and is_spanish and os.path.isfile(loanwords_path):
         with open(loanwords_path) as f:
             loanwords = json.load(f)
         # Allow per-artist override via curated keep-list (future hook).
