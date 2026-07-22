@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-22",
-      "commit": "pending",
+      "commit": "8c81180",
       "summary": "Lyrics mode: artist picker is now a radial \"clock of pictures\"",
       "details": [
         "Tapping the top-bar Lyrics Mode button opens a full-screen radial picker: each artist is a round album-art thumbnail arranged evenly around a circle (N artists space out automatically)",
