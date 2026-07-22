@@ -81,6 +81,17 @@
 
 ## Data / Pipeline
 
+- **[idea] Evaluate Musixmatch translations as a supplementary/better translation source (L) [artist] [cross-lang]**
+  Far future. Spotify's in-app lyric translations (global since 2026-02-04) are powered by
+  Musixmatch, NOT Genius or Spotify-native — and Rosalía was one of the first artists covered.
+  They are NOT on Spotify's public Web API (no lyrics endpoint); the only legitimate source is
+  the **Musixmatch developer API**, whose translations + full/synced lyrics + any commercial use
+  require a **paid, licensed tier** (free tier = 30% preview only). Reverse-engineered scrapers
+  exist but violate ToS / are fragile — don't build on them. Low value right now: Genius+Gemini
+  already cover ~98.7% of lines and `gemini-3.1-flash-lite` proposes senses well even with the
+  translation field empty. Revisit only if (a) translation quality becomes a classifier
+  bottleneck, or (b) a licensed Musixmatch plan is on the table. Investigated 2026-07-22.
+
 - **[idea] Stamp `is_propernoun` in step 8b based on POS, not just step 4a routing (S) [artist] [cross-lang]**
   Currently `is_propernoun=true` only on entries that step_4a put in the
   `exclude.proper_nouns` bucket (Wiktionary-only-name + curated drops).
