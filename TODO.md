@@ -13,6 +13,24 @@
 
 ## UI / Front-End
 
+- **[now] UI overhaul batch — requested 2026-07-22 (L) [shared] [cross-lang]**
+  Run as SEQUENTIAL worktree agents (all touch `css/style.css` + the cache-version files, so
+  one at a time; merge each before the next). Specs locked with Josh:
+  1. **Card/popup polish** (in progress): raise contrast of the lemma on the card back; clearer
+     selected-sense indicator (current subtle border → tint/accent-bar/check); restyle the
+     end-of-set popup to match the app's modal aesthetic.
+  2. **Artist picker → radial "clock of pictures"**: artist images arranged around a circle,
+     tap one to pick. Replaces the `main.js` `showArtistPicker` dropdown.
+  3. **Level selector → horizontal zoomed scrubber**: drag a ruler/timeline left-right along the
+     corpus-frequency axis, showing a magnified focused slice instead of all bands crammed in
+     (declutter `renderLevelSelector`/range UI in `ui.js`).
+  4. **Sense-level flagging**: the in-card audit/flag menu lets you flag a specific sense
+     mapping (that pill = "this word→meaning is wrong"), with easier up/down navigation through
+     the senses. Extends the FlaggedWords flow (`auth.js`/`flashcards.js`).
+  5. **Offline + sync (biggest)**: full offline function (service worker caches the deck DATA,
+     not just JS/CSS), progress + flags save to a local write-queue while offline and flush/sync
+     to Sheets on reconnect, plus an offline/sync-pending indicator.
+
 - **[soon] Pool examples per lemma in one-card-per-lemma mode (M) [shared] [cross-lang]**
   When the lemma-collapse filter is on (one card per lemma), the surviving card should pool
   examples from all the collapsed surface forms (quiero/quieres/quiere → querer card shows
