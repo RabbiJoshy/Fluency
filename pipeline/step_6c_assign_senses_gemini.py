@@ -552,11 +552,13 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
         " menu sense fits the contextual meaning (usually regional"
         " slang/figurative the dictionary lacks) set \"sense\": null,"
         " \"proposed\": a 2-5 word gloss, \"type\":"
-        " slang|regional|figurative|vulgar|loanword|other. Else proposed/type"
-        " null.\n"
+        " slang|regional|figurative|vulgar|loanword|other, and \"pos\": the part"
+        " of speech of the proposed meaning (one of NOUN, VERB, ADJ, ADV, INTJ)."
+        " Else proposed/type/pos null.\n"
         "Return ONLY JSON: [{\"word\":\"x\",\"calls\":[{\"example\":1,"
         "\"sense\":\"<id|null>\",\"proposed\":\"<gloss|null>\","
-        "\"type\":\"<tag|null>\",\"construction\":\"<phrase|null>\"}]}]"
+        "\"type\":\"<tag|null>\",\"pos\":\"<NOUN|VERB|ADJ|ADV|INTJ|null>\","
+        "\"construction\":\"<phrase|null>\"}]}]"
     ) % artist_context
 
     prompt_parts = [header, "", "WORDS:"]
@@ -1432,6 +1434,7 @@ def main():
                             pm = proposed_map.setdefault(gloss, {
                                 "examples": [], "type": call.get("type"),
                                 "construction": call.get("construction"),
+                                "pos": call.get("pos"),
                                 "ex": r["examples"][li] if li < len(r["examples"]) else {},
                             })
                             pm["examples"].append(abs_i)
@@ -1457,8 +1460,14 @@ def main():
                             classified_total += 1
                     if proposed_map:
                         gf_items = []
-                        pos = _dominant_pos(r["senses"]) or "NOUN"
+                        # Prefer the POS the model returned for the proposed
+                        # meaning ("attractive" -> ADJ); fall back to the word's
+                        # dominant menu POS only when it's missing/invalid.
+                        fallback_pos = _dominant_pos(r["senses"]) or "NOUN"
+                        _valid_pos = {"NOUN", "VERB", "ADJ", "ADV", "INTJ"}
                         for gloss, pm in proposed_map.items():
+                            prop_pos = str(pm.get("pos") or "").strip().upper()
+                            pos = prop_pos if prop_pos in _valid_pos else fallback_pos
                             sense_list = [{"pos": pos, "translation": gloss,
                                            "source": "gap-fill"}]
                             sid = list(assign_sense_ids(sense_list).keys())[0]

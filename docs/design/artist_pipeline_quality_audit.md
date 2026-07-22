@@ -526,6 +526,14 @@ example POS (5b) so pos-auto works on the new inventory:
 line-keyed translation lookup still resolves. `--to-step 5b` includes POS tagging, which sits
 between split-evidence and classification.)
 
+**A2. Build the SpanishDict cache for new surface forms (free; network scrape).** Regenerating
+the inventory in A introduces new surfaces (e.g. `estamos` from `'tamos`) not yet in the SD
+scrape cache; step_5c errors ("cache is not complete") until they're fetched. Run before B
+(may rate-limit):
+```
+.venv/bin/python3 pipeline/tool_5c_build_spanishdict_cache.py --artist-dir "Artists/spanish/Bad Bunny"
+```
+
 **B. Rebuild the SpanishDict menu with the plausibility guard (free).** NOT in the
 orchestrator sequence, so a separate call — required so the guard strips fuzzy headwords
 (`perse`→purse, `totito`→torito) before classification:
