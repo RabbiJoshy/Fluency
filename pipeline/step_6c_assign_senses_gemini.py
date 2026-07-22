@@ -471,6 +471,146 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
 
 
 # ---------------------------------------------------------------------------
+# Classify-or-propose (SpanishDict path) — unifies classification + gap-fill
+# ---------------------------------------------------------------------------
+# Small batch: the classify-or-propose prompt is denser (per-example calls +
+# proposal metadata) than the plain classifier, so we send fewer words per
+# call than BATCH_SIZE=50. The validated eval (scratchpad/eval30.py) used 10.
+SD_CLASSIFY_BATCH_SIZE = 10
+# Default model for the SpanishDict classify-or-propose path. On the gold set
+# gemini-3.1-flash-lite scores 6/6 detection + 4/4 clean controls AND produces
+# strong proposals at flash-lite speed/price (see the 2026-07-22 sense-matching
+# redesign in docs/design/artist_pipeline_quality_audit.md). Overridable with
+# --gemini-model.
+SD_DEFAULT_MODEL = "gemini-3.1-flash-lite"
+DEFAULT_ARTIST_CONTEXT = "regional slang and figurative usage"
+
+
+def _artist_context(config):
+    """Genre/dialect descriptor injected into the classify-or-propose prompt."""
+    ctx = (config or {}).get("artist_context")
+    if isinstance(ctx, str) and ctx.strip():
+        return ctx.strip()
+    return DEFAULT_ARTIST_CONTEXT
+
+
+def _dominant_pos(senses):
+    """Most common POS across a word's menu senses, or None when empty.
+
+    Used to stamp a POS on off-menu proposals (the classify-or-propose prompt
+    doesn't return one) — regional/figurative slang for a word almost always
+    shares that word's grammatical category.
+    """
+    from collections import Counter
+    counts = Counter(s.get("pos") for s in (senses or []) if s.get("pos"))
+    return counts.most_common(1)[0][0] if counts else None
+
+
+def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context):
+    """Unified classify-or-propose classifier for the SpanishDict path.
+
+    Per word, per example: pick the menu sense id that fits IN CONTEXT, or —
+    when NO menu sense matches the usage — set sense=null and propose a short
+    gloss (with a register tag + optional multi-word construction). This one
+    call unifies classification, insufficiency detection, and gap-fill.
+
+    words_data: [{word, lemma, senses, ids, examples}] where senses[i] is a
+    sense dict and ids[i] is its menu sense id (parallel lists). examples is
+    [{spanish, english}, ...]. A word with an empty menu (zero-sense gap-fill
+    candidate) is fully supported — every example resolves to a proposal.
+
+    Returns a list of per-word dicts:
+        [{"word": w,
+          "calls": [{"example": 1, "sense": "<id|null>",
+                     "proposed": "<gloss|null>", "type": "<tag|null>",
+                     "construction": "<phrase|null>"}, ...]}, ...]
+    or None on unrecoverable failure.
+    """
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    # LOCKED prompt — validated on real Bad Bunny data (scratchpad/eval30.py,
+    # suff_eval*.py). Do not reword without re-running the sufficiency evals.
+    header = (
+        "You are building a Spanish vocabulary flashcard app from song lyrics"
+        " (%s). Expect regional slang and figurative usage.\n"
+        "Each word comes with a dictionary sense menu and example lines shown"
+        " as `spanish | english translation`.\n"
+        "For EACH example, pick the menu sense id that fits the word's meaning"
+        " IN CONTEXT — the English translation shows the real meaning"
+        " (substitution test).\n"
+        "Read the CONSTRUCTION, not just the word: a reflexive pronoun"
+        " (me/te/se), an attached clitic, or a following particle can change"
+        " meaning — subir \"to go up\" vs subirse \"to get on\"; dejar \"to"
+        " let\" vs \"dejar de\" \"to stop\"; \"darse cuenta\" \"to realize\";"
+        " set phrases like \"dar tabla\"/\"hacer coro\". Classify the meaning"
+        " the construction produces. When the meaning comes from a multi-word"
+        " construction, name it in \"construction\" (e.g. \"dejar de\", \"hacer"
+        " coro\"), else null.\n"
+        "PREFER a menu sense whenever an ordinary sense reasonably fits — do"
+        " NOT go off-menu just because a punchier gloss exists. Only when NO"
+        " menu sense fits the contextual meaning (usually regional"
+        " slang/figurative the dictionary lacks) set \"sense\": null,"
+        " \"proposed\": a 2-5 word gloss, \"type\":"
+        " slang|regional|figurative|vulgar|loanword|other. Else proposed/type"
+        " null.\n"
+        "Return ONLY JSON: [{\"word\":\"x\",\"calls\":[{\"example\":1,"
+        "\"sense\":\"<id|null>\",\"proposed\":\"<gloss|null>\","
+        "\"type\":\"<tag|null>\",\"construction\":\"<phrase|null>\"}]}]"
+    ) % artist_context
+
+    prompt_parts = [header, "", "WORDS:"]
+    for wd in words_data:
+        prompt_parts.append('\n--- "%s" ---' % wd["word"])
+        prompt_parts.append("Senses:")
+        senses = wd.get("senses") or []
+        ids = wd.get("ids") or []
+        if senses:
+            for sid, s in zip(ids, senses):
+                line = "  %s: [%s] %s" % (sid, s.get("pos", ""),
+                                          s.get("translation", ""))
+                ctx = s.get("context")
+                if ctx:
+                    line += " (%s)" % ctx[:80]
+                prompt_parts.append(line)
+        else:
+            prompt_parts.append("  (none)")
+        prompt_parts.append("Examples:")
+        for ei, ex in enumerate(wd.get("examples") or [], start=1):
+            spa = ex.get("spanish", "")
+            eng = ex.get("english", "")
+            prompt_parts.append("  %d. %s%s" % (
+                ei, spa, ("  |  " + eng) if eng else ""))
+
+    prompt = "\n".join(prompt_parts)
+
+    for attempt in range(5):
+        try:
+            response = client.models.generate_content(
+                model=gemini_model,
+                contents=prompt,
+                config={"temperature": 0.0, "response_mime_type": "application/json"},
+            )
+            return json.loads(response.text)
+        except (json.JSONDecodeError, TypeError):
+            print("    WARNING: classify-or-propose parse error")
+            print("    Raw: %s" % (response.text[:500] if response.text else "None"))
+            return None
+        except Exception as e:
+            msg = str(e)
+            if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+                sys.exit("FATAL: Gemini API key not valid. The key comes from "
+                         "$GEMINI_API_KEY (an explicit env prefix on the command "
+                         "overrides the project .env — drop the prefix to use .env).")
+            wait = 2 ** attempt * 5
+            print("    API error (attempt %d/5): %s" % (attempt + 1, msg[:100]))
+            print("    Retrying in %ds..." % wait)
+            time.sleep(wait)
+    print("    FAILED after 5 retries")
+    return None
+
+
+# ---------------------------------------------------------------------------
 # Keyword fallback classifier
 # ---------------------------------------------------------------------------
 def classify_keyword(examples, senses):
@@ -526,8 +666,11 @@ def main():
                         help="Treat biencoder-routed words as Gemini candidates for this run")
     parser.add_argument("--force", action="store_true",
                         help="Re-classify all eligible words (ignore existing assignments)")
-    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
-                        help="Gemini model to use when Gemini is enabled")
+    parser.add_argument("--gemini-model", default=None,
+                        help="Gemini model to use when Gemini is enabled. "
+                             "Defaults to %s for the SpanishDict classify-or-"
+                             "propose path and gemini-2.5-flash-lite otherwise."
+                             % SD_DEFAULT_MODEL)
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--normal-slang-only", action="store_true",
                         help="Only process normal-mode words that have eswiktionary dialect senses")
@@ -587,8 +730,21 @@ def main():
         layers_dir = str(PROJECT_ROOT / "Data" / "Spanish" / "layers")
 
     use_gemini = not args.no_gemini
-    gemini_model = args.gemini_model
     custom_menu_mode = bool(args.sense_menu_file)
+    # The SpanishDict classify-or-propose path: custom menu whose source label
+    # is "spanishdict", with Gemini enabled. Gated tightly so the wiktionary /
+    # normal-mode classify + separate gap-fill paths are untouched.
+    sd_gemini_mode = (use_gemini and custom_menu_mode
+                      and args.menu_source_label == "spanishdict")
+    # Resolve the model. Explicit --gemini-model always wins; otherwise the
+    # SpanishDict path defaults to the stronger flash-lite and everything else
+    # keeps the historical gemini-2.5-flash-lite default.
+    if args.gemini_model:
+        gemini_model = args.gemini_model
+    elif sd_gemini_mode:
+        gemini_model = SD_DEFAULT_MODEL
+    else:
+        gemini_model = "gemini-2.5-flash-lite"
     if use_gemini:
         api_key = os.environ.get("GEMINI_API_KEY", "")
         if not api_key:
@@ -1162,6 +1318,218 @@ def main():
     print("  Single-sense (auto-assigned): %d" % single_sense)
     print("  Multi-sense (need classifier): %d" % len(multi_sense_queue))
     print("  No sense menu entry (need gap-fill): %d" % len(no_senses_queue))
+
+    # ---------------------------------------------------------------------------
+    # SpanishDict classify-or-propose (unified classification + gap-fill)
+    # ---------------------------------------------------------------------------
+    # One Gemini call per batch decides, for each example, whether a menu sense
+    # fits (classification) or none does (proposes an off-menu gloss + register
+    # tag). This replaces the separate classify + gap-fill passes for the
+    # SpanishDict source only — wiktionary / normal mode keep the legacy paths
+    # below untouched.
+    if sd_gemini_mode:
+        artist_context = _artist_context(config)
+        corpus_counts = {e.get("word"): e.get("corpus_count", 1) for e in inventory}
+        review_items = []  # off-menu proposals for the review queue
+
+        # Unified record list from both queues. Multi-sense words carry a menu
+        # (pick a sense or propose off-menu); zero-sense words carry an empty
+        # menu (always proposes). --skip-classification / --skip-gap-fill let
+        # the dispatcher run just one half.
+        records = []
+        if not args.skip_classification:
+            for word, lemma, senses, examples, explicit_ids, abs_idx_list in multi_sense_queue:
+                idl = list(explicit_ids) if explicit_ids else list(
+                    assign_analysis_sense_ids(lemma, senses).keys())
+                records.append({
+                    "word": word, "lemma": lemma, "senses": senses, "ids": idl,
+                    "examples": examples, "abs": abs_idx_list,
+                    "allow_propose": not args.skip_gap_fill,
+                })
+        if not args.skip_gap_fill:
+            for word, lemma, examples, abs_idx_list in no_senses_queue:
+                records.append({
+                    "word": word, "lemma": lemma, "senses": [], "ids": [],
+                    "examples": examples, "abs": abs_idx_list,
+                    "allow_propose": True,
+                })
+        # These queues are now owned by this block; blank them so the legacy
+        # classify + gap-fill sections below become no-ops.
+        multi_sense_queue = []
+        no_senses_queue = []
+
+        if records:
+            print("\n" + "=" * 60)
+            print("CLASSIFY-OR-PROPOSE %d SpanishDict words (%s, batches of %d)" % (
+                len(records), gemini_model, SD_CLASSIFY_BATCH_SIZE))
+            print("=" * 60)
+
+            checkpoint_path = os.path.join(
+                layers_dir, ".%s.checkpoint.json" % Path(args.assignments_file).stem)
+            done_words = set()
+            if os.path.isfile(checkpoint_path):
+                with open(checkpoint_path) as f:
+                    checkpoint = json.load(f)
+                for word, word_data in checkpoint.get("assignments", {}).items():
+                    assignments_out[word] = normalize_assignment_methods(word_data, my_method)
+                done_words = set(checkpoint.get("done_words", []))
+                review_items = checkpoint.get("review_items", []) or []
+                if done_words:
+                    print("  Resuming from checkpoint: %d words done" % len(done_words))
+
+            t_start = time.time()
+            proposed_total = 0
+            classified_total = 0
+            for batch_start in range(0, len(records), SD_CLASSIFY_BATCH_SIZE):
+                batch = records[batch_start:batch_start + SD_CLASSIFY_BATCH_SIZE]
+                batch = [r for r in batch if r["word"] not in done_words]
+                if not batch:
+                    continue
+                print("  Batch %d: %s" % (
+                    batch_start // SD_CLASSIFY_BATCH_SIZE + 1,
+                    [r["word"] for r in batch][:5]))
+                batch_data = [{"word": r["word"], "lemma": r["lemma"],
+                               "senses": r["senses"], "ids": r["ids"],
+                               "examples": r["examples"]} for r in batch]
+                results = classify_or_propose_batch(
+                    batch_data, api_key, gemini_model, artist_context)
+                result_map = {}
+                if isinstance(results, list):
+                    for o in results:
+                        if isinstance(o, dict) and o.get("word") is not None:
+                            result_map[o["word"]] = o.get("calls") or []
+
+                for r in batch:
+                    word = r["word"]
+                    calls = result_map.get(word, [])
+                    id_set = set(r["ids"])
+                    menu_buckets = {}   # sid -> [abs_idx]
+                    proposed_map = {}   # gloss -> {examples, type, construction, ex}
+                    for call in calls:
+                        if not isinstance(call, dict):
+                            continue
+                        try:
+                            li = int(call.get("example")) - 1
+                        except (TypeError, ValueError):
+                            continue
+                        if not (0 <= li < len(r["abs"])):
+                            continue
+                        abs_i = r["abs"][li]
+                        sense = call.get("sense")
+                        sid = None
+                        if sense not in (None, "null", "", "None"):
+                            s = str(sense)
+                            if s in id_set:
+                                sid = s
+                            elif s.lstrip("-").isdigit() and 0 <= int(s) < len(r["ids"]):
+                                sid = r["ids"][int(s)]
+                        if sid is not None:
+                            menu_buckets.setdefault(sid, []).append(abs_i)
+                        elif r["allow_propose"] and call.get("proposed"):
+                            gloss = str(call["proposed"]).strip()
+                            if not gloss:
+                                continue
+                            pm = proposed_map.setdefault(gloss, {
+                                "examples": [], "type": call.get("type"),
+                                "construction": call.get("construction"),
+                                "ex": r["examples"][li] if li < len(r["examples"]) else {},
+                            })
+                            pm["examples"].append(abs_i)
+                        elif r["ids"]:
+                            # Unresolvable sense id, no usable proposal — fall
+                            # back to the first menu sense (conservative default,
+                            # mirrors the plain classifier).
+                            menu_buckets.setdefault(r["ids"][0], []).append(abs_i)
+                        # else: no menu + no proposal -> leave example unassigned.
+
+                    word_out = {}
+                    if menu_buckets:
+                        items = []
+                        total = sum(len(v) for v in menu_buckets.values())
+                        for sid in sorted(menu_buckets):
+                            eis = sorted(set(menu_buckets[sid]))
+                            freq = len(eis) / total if total else 0
+                            if total >= 5 and freq < 0.05:
+                                continue
+                            items.append({"sense": sid, "examples": eis})
+                        if items:
+                            word_out[my_method] = items
+                            classified_total += 1
+                    if proposed_map:
+                        gf_items = []
+                        pos = _dominant_pos(r["senses"]) or "NOUN"
+                        for gloss, pm in proposed_map.items():
+                            sense_list = [{"pos": pos, "translation": gloss,
+                                           "source": "gap-fill"}]
+                            sid = list(assign_sense_ids(sense_list).keys())[0]
+                            item = {"sense": sid, "pos": pos, "translation": gloss,
+                                    "lemma": r["lemma"],
+                                    "examples": sorted(set(pm["examples"]))}
+                            if pm.get("type"):
+                                item["type"] = pm["type"]
+                            if pm.get("construction"):
+                                item["construction"] = pm["construction"]
+                            gf_items.append(item)
+                            proposed_total += 1
+                            ex = pm.get("ex") or {}
+                            review_items.append({
+                                "word": word,
+                                "lemma": r["lemma"],
+                                "proposed": gloss,
+                                "type": pm.get("type"),
+                                "construction": pm.get("construction"),
+                                "corpus_count": corpus_counts.get(word, 0),
+                                "example": ex.get("spanish", ""),
+                                "translation": ex.get("english", ""),
+                            })
+                        if gf_items:
+                            word_out["gap-fill"] = gf_items
+
+                    if word_out:
+                        existing_wo = assignments_out.setdefault(word, {})
+                        for k, v in word_out.items():
+                            existing_wo[k] = v
+                    done_words.add(word)
+
+                with open(checkpoint_path, "w") as f:
+                    json.dump({"assignments": assignments_out,
+                               "done_words": sorted(done_words),
+                               "review_items": review_items}, f)
+
+            elapsed = time.time() - t_start
+            print("  Done (%.1fs): %d words with menu senses, %d proposals" % (
+                elapsed, classified_total, proposed_total))
+
+        # Review queue: off-menu proposals ranked by corpus_count (artist mode).
+        if is_artist:
+            reports_dir = os.path.join(artist_dir, "data", "reports")
+            os.makedirs(reports_dir, exist_ok=True)
+            review_path = os.path.join(reports_dir, "sd_insufficient_review.json")
+            existing_review = []
+            if os.path.isfile(review_path):
+                try:
+                    with open(review_path) as f:
+                        loaded = json.load(f)
+                    existing_review = loaded.get("items", []) if isinstance(loaded, dict) else loaded
+                except (json.JSONDecodeError, ValueError):
+                    existing_review = []
+            # De-duplicate on (word, proposed); newest entry wins.
+            merged = {}
+            for it in (existing_review or []) + review_items:
+                if isinstance(it, dict):
+                    merged[(it.get("word"), it.get("proposed"))] = it
+            ranked = sorted(merged.values(),
+                            key=lambda it: (it.get("corpus_count") or 0),
+                            reverse=True)
+            with open(review_path, "w", encoding="utf-8") as f:
+                json.dump({
+                    "_meta": {"source": "spanishdict",
+                              "classifier": "classify-or-propose",
+                              "model": gemini_model,
+                              "count": len(ranked)},
+                    "items": ranked,
+                }, f, ensure_ascii=False, indent=2)
+            print("  Review queue: %d off-menu items -> %s" % (len(ranked), review_path))
 
     # ---------------------------------------------------------------------------
     # Classify multi-sense words

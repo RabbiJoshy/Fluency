@@ -54,7 +54,11 @@ def _spanishdict_args_local():
 
 
 def _spanishdict_args_gemini(gemini_model):
-    method = "spanishdict-flash-lite" if "flash-lite" in gemini_model else "spanishdict-flash"
+    # Default (gemini_model is None) resolves to gemini-3.1-flash-lite in
+    # step_6c, which is a flash-lite model → spanishdict-flash-lite priority.
+    method = ("spanishdict-flash"
+              if (gemini_model and "flash-lite" not in gemini_model)
+              else "spanishdict-flash-lite")
     return [
         "--sense-menu-file", "sense_menu/spanishdict.json",
         "--assignments-file", "sense_assignments/spanishdict.json",
@@ -85,7 +89,11 @@ def main():
                         default="spanishdict")
     parser.add_argument("--max-examples", type=int, default=None)
     parser.add_argument("--force", action="store_true")
-    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite")
+    parser.add_argument("--gemini-model", default=None,
+                        help="Gemini model. Default (unset) lets step_6c pick: "
+                             "gemini-3.1-flash-lite for the SpanishDict "
+                             "classify-or-propose path, gemini-2.5-flash-lite "
+                             "otherwise.")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
