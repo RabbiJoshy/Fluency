@@ -1062,10 +1062,12 @@ def build_spanishdict_menu(
     unmatched = 0
     total_senses = 0
     multi_analysis = 0
+    quarantined = []  # implausible fuzzy-matched headwords rejected by the guard
     for word in eligible:
         analyses = build_menu_analyses(
             word, surface_cache, headword_cache,
             include_redirects=include_redirects,
+            quarantine=quarantined,
         )
         if not analyses:
             unmatched += 1
@@ -1083,6 +1085,17 @@ def build_spanishdict_menu(
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     write_sidecar(output_file, make_meta("build_senses", STEP_VERSION, extra={"source": "spanishdict"}))
+
+    # Quarantine sidecar (provenance): record every headword the plausibility
+    # guard rejected as an implausible SpanishDict fuzzy match, rather than
+    # silently dropping it. Additive — never overwrites the menu itself. The
+    # affected surfaces fall out of the menu and route to gap-fill /
+    # sense_discovery downstream (an invented sense keyed on the surface).
+    if quarantined:
+        quarantine_file = output_file.with_name(output_file.stem + "_quarantine.json")
+        with open(quarantine_file, "w", encoding="utf-8") as f:
+            json.dump(quarantined, f, ensure_ascii=False, indent=2)
+        print(f"Quarantined {len(quarantined)} implausible headword(s) -> {quarantine_file}")
 
     # Report
     total = len(vocab)

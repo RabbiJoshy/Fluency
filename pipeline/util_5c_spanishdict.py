@@ -5,6 +5,7 @@ import json
 import re
 import threading
 import time
+import unicodedata
 from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
@@ -12,6 +13,11 @@ from urllib.parse import quote
 
 import requests
 
+
+_PROJECT_ROOT = Path(__file__).resolve().parents[1]
+_LAYERS_DIR = _PROJECT_ROOT / "Data" / "Spanish" / "layers"
+SPANISH_FORMS_PATH = _LAYERS_DIR / "spanish_forms.json"
+CONJ_REVERSE_PATH = _LAYERS_DIR / "conjugation_reverse.json"
 
 SPANISH_SENSES_DIR = Path(__file__).resolve().parents[1] / "Data" / "Spanish" / "Senses"
 SPANISHDICT_DIR = SPANISH_SENSES_DIR / "spanishdict"
@@ -188,7 +194,194 @@ def is_phrase_only_analysis(analysis):
     return all((s.get("pos") or "").strip().upper() == "PHRASE" for s in real_senses)
 
 
-def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True):
+# ---------------------------------------------------------------------------
+# Headword plausibility guard.
+#
+# SpanishDict's surface→headword resolver fuzzy-matches unknown slang to
+# whichever dictionary headword is closest by edit distance, and it happily
+# crosses into its English dictionary. Uncaught, these become a card's lemma
+# plus a reverse-direction (English-headword) gloss:
+#
+#   perse   → purse   (English)   revol → revolt (English)   lary → lazy (EN)
+#   tranquilita → tranquility (EN)   cel → cal   totito → torito   (wrong ES)
+#
+# The guard rejects an analysis whose ``headword`` is not a plausible
+# lexical/morphological relative of the queried ``surface``. A rejected
+# analysis is quarantined out of the menu; if a surface loses *all* of its
+# analyses it drops out of the sense menu entirely, which is exactly how the
+# pipeline already represents "no usable menu" — step_5c counts it as
+# ``unmatched`` and step_6c later routes it to gap-fill / sense_discovery
+# (an invented sense keyed on the surface), instead of carrying the bogus
+# headword forward as the lemma. See docs/design/artist_pipeline_quality_audit.md
+# stage-4 F1/F3 and stage-6 F0/F3.
+# ---------------------------------------------------------------------------
+
+# Minimum shared (deaccented) leading characters for the secondary prefix
+# check. 3 rejects cel/cal (share "c") and totito/torito (share "to") while
+# keeping normal plurals/gender forms (canciones/canción, buena/bueno).
+_MIN_PREFIX = 3
+
+_spanish_forms_deac = None       # set of deaccented known Spanish surface forms
+_conj_reverse_deac = None        # {deaccented form: set(deaccented lemma)}
+_guard_data_loaded = False       # False until a load attempt succeeds
+
+
+def _deaccent(text):
+    """Lowercase and strip combining accents (NFD → drop Mn)."""
+    if not text:
+        return ""
+    decomposed = unicodedata.normalize("NFD", text.lower())
+    return "".join(c for c in decomposed if unicodedata.category(c) != "Mn")
+
+
+def _load_guard_data(spanish_forms_path=None, conj_reverse_path=None):
+    """Lazily load the inflection lookups the guard needs (once per process).
+
+    Builds two module-level caches from the large canonical layer files:
+
+    * ``_spanish_forms_deac`` — the set of every known Spanish surface form,
+      deaccented, used to answer "is this headword a real Spanish word at
+      all?" (the perse→purse / revol→revolt English-intrusion signal).
+    * ``_conj_reverse_deac`` — ``{form: {lemma, ...}}`` from verbecc's reverse
+      conjugation table, used to answer "is this surface a known conjugation
+      of this headword?" as a backstop to SpanishDict's own conjugation flag.
+
+    Fail-open: if the files can't be read the guard is disabled (keeps every
+    analysis) rather than risk over-quarantining a real deck.
+    """
+    global _spanish_forms_deac, _conj_reverse_deac, _guard_data_loaded
+    if _guard_data_loaded:
+        return
+    forms_path = Path(spanish_forms_path) if spanish_forms_path else SPANISH_FORMS_PATH
+    conj_path = Path(conj_reverse_path) if conj_reverse_path else CONJ_REVERSE_PATH
+
+    forms_deac = set()
+    conj_deac = {}
+    try:
+        with open(forms_path, "r", encoding="utf-8") as f:
+            for form in json.load(f).keys():
+                forms_deac.add(_deaccent(form))
+    except (OSError, ValueError):
+        # Fail-open: leave guard disabled if the canonical forms file is
+        # unreadable, so we never silently gut a menu on missing data.
+        _spanish_forms_deac = None
+        _conj_reverse_deac = None
+        _guard_data_loaded = True
+        return
+
+    try:
+        with open(conj_path, "r", encoding="utf-8") as f:
+            for form, entries in json.load(f).items():
+                lemmas = {
+                    _deaccent(e.get("lemma"))
+                    for e in (entries or [])
+                    if isinstance(e, dict) and e.get("lemma")
+                }
+                if lemmas:
+                    conj_deac.setdefault(_deaccent(form), set()).update(lemmas)
+    except (OSError, ValueError):
+        conj_deac = {}  # conjugation backstop optional; forms set is enough
+
+    _spanish_forms_deac = forms_deac
+    _conj_reverse_deac = conj_deac
+    _guard_data_loaded = True
+
+
+def _common_prefix_len(a, b):
+    n = 0
+    for ca, cb in zip(a, b):
+        if ca != cb:
+            break
+        n += 1
+    return n
+
+
+def _surface_conjugation_lemmas(possible_results):
+    """Deaccented lemma set that SpanishDict flags this surface as a
+    conjugation/inflection of (from ``possible_results`` heuristics)."""
+    lemmas = set()
+    for result in possible_results or []:
+        if not isinstance(result, dict):
+            continue
+        if (result.get("heuristic") or "").strip().lower() not in {"conjugation", "inflection"}:
+            continue
+        hw = (result.get("headword") or "").strip()
+        if hw:
+            lemmas.add(_deaccent(hw))
+    return lemmas
+
+
+def is_plausible_headword(surface, headword, surface_relation="", conj_lemmas=None):
+    """True when ``headword`` is a plausible lemma for the queried ``surface``.
+
+    Trusts, in order (any one keeps the analysis):
+
+    1. **Self-headword** — deaccented surface == headword (canción→canción,
+       gato→gato). SpanishDict's own dictionary entry for the word.
+    2. **SpanishDict conjugation/inflection flag** — the analysis is a
+       redirect SD itself tagged ``conjugation``/``inflection``
+       (``surface_relation``), or the headword matches a conjugation pointer
+       in ``conj_lemmas`` (incl. reflexive extensions: vuelvo→volver keeps
+       volver *and* volverse). This is why legit stem-changing conjugations
+       survive despite sharing little prefix — per the task, we trust SD's
+       morphology and never reject a conjugation-marked analysis.
+    3. **Reverse conjugation table** — verbecc lists ``surface`` as a form of
+       ``headword`` (backstop for legacy cache entries with no SD pointer).
+    4. **Real Spanish word + shared prefix** — the headword is a known
+       Spanish form AND shares ``_MIN_PREFIX`` deaccented leading chars with
+       the surface. The Spanish-word gate is what rejects revol→revolt (revol
+       *is* a prefix of revolt, but revolt is English), while the prefix gate
+       rejects cel→cal and totito→torito (Spanish headwords, no real relation).
+
+    Fail-open: if the guard data never loaded, returns True (keep everything).
+    """
+    _load_guard_data()
+    if _spanish_forms_deac is None:
+        return True  # guard disabled — data unavailable
+
+    headword = (headword or "").strip()
+    if not headword:
+        return True  # empty headword: nothing to vet; leave to other filters
+
+    s = _deaccent(surface)
+    h = _deaccent(headword)
+
+    # 1. Self-headword.
+    if s == h:
+        return True
+
+    # 2. SpanishDict-asserted conjugation / inflection — trusted outright.
+    if (surface_relation or "").strip().lower() in {"conjugation", "inflection"}:
+        return True
+    for lemma in (conj_lemmas or ()):
+        # exact, or reflexive/pronominal extension either direction
+        # (volver ↔ volverse), so SD's pointer vouches for both entries.
+        if h == lemma or h.startswith(lemma) or lemma.startswith(h):
+            return True
+
+    # 3. Reverse conjugation table backstop.
+    if h in (_conj_reverse_deac.get(s) or ()):
+        return True
+
+    # 3b. Spanish z→ces orthographic plural (luz→luces, voz→voces, pez→peces,
+    # vez→veces). These share only a 2-char prefix so the prefix check below
+    # would wrongly reject them; the alternation is a fixed, unambiguous rule.
+    # SpanishDict usually flags them with an ``inflection`` pointer (caught by
+    # #2), but legacy cache entries without one land here.
+    if h.endswith("z") and s == h[:-1] + "ces":
+        return True
+
+    # 4. Real Spanish word AND a meaningful shared prefix.
+    if h in _spanish_forms_deac:
+        threshold = min(_MIN_PREFIX, len(s), len(h))
+        if threshold and _common_prefix_len(s, h) >= threshold:
+            return True
+
+    return False
+
+
+def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True,
+                        quarantine=None):
     """Build the analyses list for one surface word from the shared SpanishDict cache.
 
     Starts from the surface page's own dictionary_analyses, then optionally extends
@@ -207,6 +400,15 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
     ``estar`` — the same lemma normal mode picks via the frequency CSV. The
     filter only fires when a non-self conjugation analysis is available, so it
     can never empty an otherwise-populated menu.
+
+    Finally, each analysis is run through :func:`is_plausible_headword`. SD's
+    fuzzy matcher resolves unknown slang to implausible headwords (perse→purse,
+    revol→revolt, cel→cal, totito→torito); those analyses are quarantined out
+    so the bogus headword never becomes the card's lemma. When ``quarantine``
+    is a list, each rejected analysis is appended as ``{surface, headword,
+    reason}`` for provenance; otherwise it is simply dropped. If a surface
+    loses *all* analyses this way it falls out of the menu entirely — the same
+    "no usable menu" state that routes the word to gap-fill / sense_discovery.
     """
     surface_entry = surface_cache.get(surface) or {}
     analyses = [
@@ -254,6 +456,26 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
                 and is_phrase_only_analysis(a)
             )
         ]
+
+    # Plausibility guard: quarantine analyses whose headword is an implausible
+    # fuzzy match for the surface (English intrusions + wrong-Spanish fuzz).
+    # SD's own conjugation pointers vouch for legit stem-changing paradigms.
+    conj_lemmas = _surface_conjugation_lemmas(surface_entry.get("possible_results"))
+    kept = []
+    for a in analyses:
+        if is_plausible_headword(
+            surface, a.get("headword"),
+            surface_relation=a.get("surface_relation", ""),
+            conj_lemmas=conj_lemmas,
+        ):
+            kept.append(a)
+        elif quarantine is not None:
+            quarantine.append({
+                "surface": surface,
+                "headword": (a.get("headword") or "").strip(),
+                "reason": "implausible_fuzzy_headword",
+            })
+    analyses = kept
 
     return analyses
 
