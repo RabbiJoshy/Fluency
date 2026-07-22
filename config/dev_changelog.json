@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-22",
+      "commit": "pending",
+      "summary": "Lyrics mode: artist picker is now a radial \"clock of pictures\"",
+      "details": [
+        "Tapping the top-bar Lyrics Mode button opens a full-screen radial picker: each artist is a round album-art thumbnail arranged evenly around a circle (N artists space out automatically)",
+        "Artist image resolves from artists.json (pickerImage/image/defaultAlbumArt); if none exists it falls back to an accent-colored disc with the artist's initials (e.g. Young Miko)",
+        "Tap a thumbnail to switch into that artist; tap the center hub, the backdrop, or press Escape to close. Theme-aware and phone-width responsive",
+        "First-pass component, expect to iterate on sizing/styling"
+      ]
+    },
+    {
+      "date": "2026-07-22",
       "commit": "ae2d058",
       "summary": "Card-back polish: readable lemma, clearer selected sense, restyled Deck Complete popup",
       "details": [

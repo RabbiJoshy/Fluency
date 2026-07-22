@@ -1,14 +1,14 @@
-import './state.js?v=20260722a';
-import './speech.js?v=20260722a';
-import './artist-ui.js?v=20260722a';
-import './auth.js?v=20260722a';
-import './spotify.js?v=20260722a';
-import './estimation.js?v=20260722a';
-import './config.js?v=20260722a';
-import './progress.js?v=20260722a';
-import './ui.js?v=20260722a';
-import './vocab.js?v=20260722a';
-import './flashcards.js?v=20260722a';
+import './state.js?v=20260722b';
+import './speech.js?v=20260722b';
+import './artist-ui.js?v=20260722b';
+import './auth.js?v=20260722b';
+import './spotify.js?v=20260722b';
+import './estimation.js?v=20260722b';
+import './config.js?v=20260722b';
+import './progress.js?v=20260722b';
+import './ui.js?v=20260722b';
+import './vocab.js?v=20260722b';
+import './flashcards.js?v=20260722b';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -268,36 +268,116 @@ async function setupModeSwitchButton() {
     }
 }
 
+// Build the initials shown on the color fallback (no image) — up to 2 letters.
+function artistInitials(name) {
+    const words = (name || '').trim().split(/\s+/).filter(Boolean);
+    if (words.length === 0) return '?';
+    if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+    return (words[0][0] + words[1][0]).toUpperCase();
+}
+
+// Pick the image to represent an artist in the radial picker.
+// Priority: explicit picker image → default album art → (none → color fallback).
+function artistPickerImage(cfg) {
+    return cfg.pickerImage || cfg.image || cfg.defaultAlbumArt || '';
+}
+
+// Radial "clock of pictures" artist picker. Arranges each available artist
+// evenly around a circle; tapping one switches into that artist's lyrics mode.
 function showArtistPicker(anchorBtn, artists) {
-    // Remove existing picker if open
-    const existing = document.getElementById('modeSwitchPicker');
-    if (existing) { existing.remove(); return; }
+    // Toggle: if already open, close and bail.
+    const existing = document.getElementById('artistRadialPicker');
+    if (existing) { closeArtistRadialPicker(); return; }
 
-    const picker = document.createElement('div');
-    picker.id = 'modeSwitchPicker';
-    picker.className = 'mode-switch-picker';
+    const entries = Object.entries(artists);
+    const n = entries.length;
 
-    for (const [slug, cfg] of Object.entries(artists)) {
-        const item = document.createElement('button');
-        item.className = 'mode-switch-picker-item';
-        item.textContent = cfg.name;
-        item.addEventListener('click', () => {
+    const overlay = document.createElement('div');
+    overlay.id = 'artistRadialPicker';
+    overlay.className = 'artist-radial-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Choose an artist');
+
+    const stage = document.createElement('div');
+    stage.className = 'artist-radial-stage';
+
+    // Center hub: label + close affordance.
+    const hub = document.createElement('div');
+    hub.className = 'artist-radial-hub';
+    hub.innerHTML = '<span class="artist-radial-hub-title">Choose<br>an artist</span>';
+    stage.appendChild(hub);
+
+    // Radius as a fraction of the stage half-size. Thumbs sit on this ring.
+    const ringPct = 38; // percent from center toward the edge
+    // Start at the top (12 o'clock) and go clockwise.
+    const startAngle = -90;
+
+    entries.forEach(([slug, cfg], i) => {
+        const angle = (startAngle + (360 / n) * i) * (Math.PI / 180);
+        const x = 50 + ringPct * Math.cos(angle);
+        const y = 50 + ringPct * Math.sin(angle);
+
+        const thumb = document.createElement('button');
+        thumb.className = 'artist-radial-thumb';
+        thumb.style.left = `${x}%`;
+        thumb.style.top = `${y}%`;
+        thumb.setAttribute('aria-label', cfg.name);
+        thumb.title = cfg.name;
+
+        const accent = (cfg.colorTheme && cfg.colorTheme.primary) || 'var(--accent-primary)';
+        thumb.style.setProperty('--artist-accent', accent);
+
+        const disc = document.createElement('span');
+        disc.className = 'artist-radial-disc';
+        const img = artistPickerImage(cfg);
+        if (img) {
+            disc.style.backgroundImage = `url('${img}')`;
+        } else {
+            // Fallback: accent-colored disc with the artist's initials.
+            disc.classList.add('artist-radial-disc--fallback');
+            disc.style.background = accent;
+            disc.textContent = artistInitials(cfg.name);
+        }
+        thumb.appendChild(disc);
+
+        const label = document.createElement('span');
+        label.className = 'artist-radial-label';
+        label.textContent = cfg.name;
+        thumb.appendChild(label);
+
+        thumb.addEventListener('click', (e) => {
+            e.stopPropagation();
             window.location.href = `${window.location.pathname}?artist=${slug}`;
         });
-        picker.appendChild(item);
-    }
 
-    anchorBtn.style.position = 'relative';
-    anchorBtn.appendChild(picker);
+        stage.appendChild(thumb);
+    });
 
-    // Close on outside click
-    const closeHandler = (e) => {
-        if (!picker.contains(e.target) && e.target !== anchorBtn) {
-            picker.remove();
-            document.removeEventListener('click', closeHandler);
-        }
-    };
-    setTimeout(() => document.addEventListener('click', closeHandler), 0);
+    overlay.appendChild(stage);
+    document.body.appendChild(overlay);
+    // Trigger enter transition on next frame.
+    requestAnimationFrame(() => overlay.classList.add('is-open'));
+
+    // Close on backdrop click, Escape, or hub tap.
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeArtistRadialPicker();
+    });
+    hub.addEventListener('click', closeArtistRadialPicker);
+    document.addEventListener('keydown', artistRadialKeyHandler);
+}
+
+function artistRadialKeyHandler(e) {
+    if (e.key === 'Escape') closeArtistRadialPicker();
+}
+
+function closeArtistRadialPicker() {
+    const overlay = document.getElementById('artistRadialPicker');
+    if (!overlay) return;
+    document.removeEventListener('keydown', artistRadialKeyHandler);
+    overlay.classList.remove('is-open');
+    // Remove after the fade-out transition.
+    setTimeout(() => overlay.remove(), 200);
 }
 
 // ===== Find-word: simple lookup of a word across the current language's vocab =====

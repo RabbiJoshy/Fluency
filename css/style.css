@@ -4945,41 +4945,123 @@
             margin-left: auto;
         }
 
-        /* Mode switch artist picker dropdown */
-        .mode-switch-picker {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 6px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 100;
+        /* ===== Radial "clock of pictures" artist picker ===== */
+        .artist-radial-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
             display: flex;
-            flex-direction: column;
-            min-width: 140px;
-            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .artist-radial-overlay.is-open {
+            opacity: 1;
         }
 
-        .mode-switch-picker-item {
-            font-family: var(--font-emphasis);
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-primary);
-            background: transparent;
-            border: none;
-            padding: 10px 16px;
+        /* Square stage the ring is laid out inside. Scales with the viewport. */
+        .artist-radial-stage {
+            position: relative;
+            width: min(78vw, 78vh, 460px);
+            height: min(78vw, 78vh, 460px);
+            transform: scale(0.9);
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .artist-radial-overlay.is-open .artist-radial-stage {
+            transform: scale(1);
+        }
+
+        /* Center hub: doubles as the close target. */
+        .artist-radial-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 34%;
+            height: 34%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--bg-secondary, #1a1a1a);
+            border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
             cursor: pointer;
-            text-align: left;
-            white-space: nowrap;
             transition: background 0.15s ease;
         }
+        .artist-radial-hub:hover {
+            background: var(--bg-tertiary, var(--bg-secondary, #262626));
+        }
+        .artist-radial-hub-title {
+            font-family: var(--font-emphasis);
+            font-weight: 700;
+            font-size: clamp(13px, 3.4vw, 18px);
+            line-height: 1.15;
+            color: var(--text-primary, #fff);
+            pointer-events: none;
+        }
 
-        .mode-switch-picker-item:hover {
-            background: var(--accent-primary);
-            color: var(--accent-primary-text);
+        /* Each artist thumbnail, absolutely positioned on the ring. */
+        .artist-radial-thumb {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            width: 30%;
+        }
+
+        .artist-radial-disc {
+            width: min(20vw, 20vh, 110px);
+            height: min(20vw, 20vh, 110px);
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 3px solid var(--artist-accent, var(--accent-primary));
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .artist-radial-disc--fallback {
+            color: #fff;
+            font-family: var(--font-emphasis);
+            font-weight: 800;
+            font-size: clamp(18px, 5vw, 34px);
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        .artist-radial-thumb:hover .artist-radial-disc,
+        .artist-radial-thumb:focus-visible .artist-radial-disc {
+            transform: scale(1.08);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+        }
+
+        .artist-radial-label {
+            font-family: var(--font-emphasis);
+            font-weight: 600;
+            font-size: clamp(11px, 2.8vw, 14px);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            pointer-events: none;
         }
 
         /* Inline language pill (compact, sits in the step header row) */
