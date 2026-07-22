@@ -511,18 +511,20 @@ diffs against live first. All commands run from the project root with `.venv/bin
   guard (5c), and the mechanical fixes (2a tokenization, 4a routing).
 - Optional safety: back up `Artists/spanish/Bad Bunny/data/layers/` before the run (they're
   regenerated in place; the live index/examples/master are not).
-- Token check still TODO before first run: confirm step-token names (`--from-step 2`,
-  `--to-step 5`/`7b`, `--skip 2b` verified against `run_artist_pipeline.py` step `num`s) and
-  step_5c's exact flags. Finalize with Josh before spending.
+- Tokens verified against `run_artist_pipeline.py` step `num`s (2, 2b, 3, 4, 5, 5b, 6, 7a, 7b,
+  8, build) and step_5c flags (`--sense-source`, `--artist-dir`, `--force`). The wire-up
+  (step_6c classify-or-propose, `gemini-3.1-flash-lite` default) is merged. Runbook is ready.
 
-**A. Regenerate corpus + inventory (free).** Applies tokenization (leading-apostrophe,
-Genius-leak) + routing (ya/he/ha, clitic-lemma):
+**A. Regenerate corpus + inventory + POS (free; 5b spaCy is the slow-ish part).** Applies
+tokenization (leading-apostrophe, Genius-leak) + routing (ya/he/ha, clitic-lemma), and re-tags
+example POS (5b) so pos-auto works on the new inventory:
 ```
 .venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny" \
-    --from-step 2 --to-step 5 --skip 2b
+    --from-step 2 --to-step 5b --skip 2b
 ```
 (`--skip 2b` keeps existing Genius translations — unchanged; example lines stay raw so the
-line-keyed translation lookup still resolves.)
+line-keyed translation lookup still resolves. `--to-step 5b` includes POS tagging, which sits
+between split-evidence and classification.)
 
 **B. Rebuild the SpanishDict menu with the plausibility guard (free).** NOT in the
 orchestrator sequence, so a separate call — required so the guard strips fuzzy headwords
