@@ -496,3 +496,65 @@ insufficient**, in one call:
 - **Phase 4 — assemble → diff → promote:** the `tool_8b_rebuild_diff` sandbox flow, now proven.
 - **Dropped:** the Wiktionary hybrid (Josh: brittle; SD has better slang). Replaced by the
   classifier-driven insufficiency detection above.
+
+---
+
+## Rerun runbook (Bad Bunny, SpanishDict)
+
+The recipe for the full rerun once the step_6c sense-matching wire-up is merged. **The live
+deck is never touched until step D's promote** — A–C rebuild layers + a sandbox deck that D
+diffs against live first. All commands run from the project root with `.venv/bin/python3`.
+
+**Preconditions:**
+- Merge the sense-matching wire-up branch (classify-or-propose in step_6c, default model
+  `gemini-3.1-flash-lite`). Already merged: clitic/reflexive lemma (4a), lemma plausibility
+  guard (5c), and the mechanical fixes (2a tokenization, 4a routing).
+- Optional safety: back up `Artists/spanish/Bad Bunny/data/layers/` before the run (they're
+  regenerated in place; the live index/examples/master are not).
+- Token check still TODO before first run: confirm step-token names (`--from-step 2`,
+  `--to-step 5`/`7b`, `--skip 2b` verified against `run_artist_pipeline.py` step `num`s) and
+  step_5c's exact flags. Finalize with Josh before spending.
+
+**A. Regenerate corpus + inventory (free).** Applies tokenization (leading-apostrophe,
+Genius-leak) + routing (ya/he/ha, clitic-lemma):
+```
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny" \
+    --from-step 2 --to-step 5 --skip 2b
+```
+(`--skip 2b` keeps existing Genius translations — unchanged; example lines stay raw so the
+line-keyed translation lookup still resolves.)
+
+**B. Rebuild the SpanishDict menu with the plausibility guard (free).** NOT in the
+orchestrator sequence, so a separate call — required so the guard strips fuzzy headwords
+(`perse`→purse, `totito`→torito) before classification:
+```
+.venv/bin/python3 pipeline/step_5c_build_senses.py --sense-source spanishdict \
+    --artist-dir "Artists/spanish/Bad Bunny" --force
+```
+(confirm exact flags before running)
+
+**C. Classify + consolidate (PAID, ~$2-4 on gemini-3.1-flash-lite).** Runs the
+classify-or-propose sense-matching, lemma map, rerank; emits the insufficiency review queue
+(`data/reports/sd_insufficient_review.json`):
+```
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py --artist "Bad Bunny" \
+    --from-step 6 --to-step 7b --classifier gemini --sense-source spanishdict --force
+```
+
+**D. Assemble → diff → promote (the proven safe flow).**
+```
+cp Artists/spanish/vocabulary_master.json Artists/spanish/vocabulary_master_sandbox.json
+.venv/bin/python3 pipeline/artist/step_8b_assemble_artist_vocabulary.py \
+    --artist-dir "Artists/spanish/Bad Bunny" --output-suffix _sandbox
+.venv/bin/python3 pipeline/tool_8c_patch_master_curated.py \
+    --master Artists/spanish/vocabulary_master_sandbox.json
+.venv/bin/python3 pipeline/artist/tool_8b_rebuild_diff.py \
+    --artist-dir "Artists/spanish/Bad Bunny" --suffix _sandbox
+```
+Review the diff (homographs, recovered/lost words, id-migration, P2/P4 flags, curation
+re-application). If clean → promote lean (drop the synonyms/antonyms index fields, ~1.6 MB;
+copy sandbox → live index/examples/master; bump service-worker CACHE_NAME; dev_changelog
+entry). Backup the live files first (git tracks them; git is the rollback).
+
+**Browser check after promote:** `media`→"half" (was sock), slang lemmas correct (`totito`),
+`para`/`como`/`todo` still correct, and the review-queue file lists the SD-insufficient slang.
