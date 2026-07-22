@@ -1587,7 +1587,7 @@ function updateCard() {
     let backWordText = variantDisplay || backWord;
     let wordDisplay = backWordText;
     if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
-        wordDisplay = `${backWordText} <span style="color: var(--accent-primary); font-size: 28px;">(${card.lemma})</span>`;
+        wordDisplay = `${backWordText} <span class="back-lemma">(${card.lemma})</span>`;
     }
 
     // Build homograph chip HTML if siblings exist
@@ -1809,7 +1809,7 @@ function updateCard() {
                        </div>`
                     : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
                 target.push(`
-                <div class="meaning-row meaning-row-mwe" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 5px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     ${bodyHTML}
                     ${mweCounter}
@@ -1819,7 +1819,7 @@ function updateCard() {
                 // Clitic row: form pill (left), translation (middle), counter (right).
                 const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
                 target.push(`
-                <div class="meaning-row meaning-row-clitic" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${cliticTrRaw}</span>
                     ${cliticCounter}
@@ -1891,7 +1891,7 @@ function updateCard() {
                 // short labels up to 46px, let longer ones (PHRASE etc.) expand.
                 const cyclePillStyle = 'font-size: 12px; padding: 5px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
                 target.push(`
-                <div class="meaning-row meaning-row-cycle" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
                     <span style="font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                     <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${cyclePos}</span>
@@ -1942,7 +1942,7 @@ function updateCard() {
                     //   ctx-axis:   varying trans | shared ctx
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
                     const cardBg = (groupSelected || anyMemberSelected)
-                        ? 'rgba(var(--accent-primary-rgb), 0.18)'
+                        ? 'rgba(var(--accent-primary-rgb), 0.28)'
                         : 'rgba(15, 20, 28, 0.82)';
                     const sharedBg = groupSelected
                         ? 'rgba(var(--accent-primary-rgb), 0.55)'
@@ -2019,7 +2019,7 @@ function updateCard() {
                     const outerGridCols = 'auto 1fr auto';
 
                     target.push(`
-                    <div class="meaning-row meaning-row-group" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                    <div class="meaning-row meaning-row-group${(groupSelected || anyMemberSelected) ? ' selected' : ''}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         ${posColumnHtml}
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
@@ -2049,7 +2049,7 @@ function updateCard() {
                         ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                         : '';
                     target.push(`
-                    <div class="meaning-row meaning-row-regular" style="position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
+                    <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}" style="position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
                         ${posPill}
                         <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 8px;">
                             <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>

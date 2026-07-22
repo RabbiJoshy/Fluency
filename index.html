@@ -24,18 +24,18 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260721b">
-    <link rel="modulepreload" href="js/state.js?v=20260721b">
-    <link rel="modulepreload" href="js/speech.js?v=20260721b">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260721b">
-    <link rel="modulepreload" href="js/auth.js?v=20260721b">
-    <link rel="modulepreload" href="js/spotify.js?v=20260721b">
-    <link rel="modulepreload" href="js/estimation.js?v=20260721b">
-    <link rel="modulepreload" href="js/config.js?v=20260721b">
-    <link rel="modulepreload" href="js/progress.js?v=20260721b">
-    <link rel="modulepreload" href="js/ui.js?v=20260721b">
-    <link rel="modulepreload" href="js/vocab.js?v=20260721b">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260721b">
+    <link rel="modulepreload" href="js/main.js?v=20260722a">
+    <link rel="modulepreload" href="js/state.js?v=20260722a">
+    <link rel="modulepreload" href="js/speech.js?v=20260722a">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260722a">
+    <link rel="modulepreload" href="js/auth.js?v=20260722a">
+    <link rel="modulepreload" href="js/spotify.js?v=20260722a">
+    <link rel="modulepreload" href="js/estimation.js?v=20260722a">
+    <link rel="modulepreload" href="js/config.js?v=20260722a">
+    <link rel="modulepreload" href="js/progress.js?v=20260722a">
+    <link rel="modulepreload" href="js/ui.js?v=20260722a">
+    <link rel="modulepreload" href="js/vocab.js?v=20260722a">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260722a">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -547,23 +547,26 @@
 
     <!-- Deck Complete Modal -->
     <div id="deckCompleteModal" class="modal hidden">
-        <div class="modal-content" style="max-width: 350px;">
-            <div class="modal-header" style="border-bottom: none; padding-bottom: 0;">
-                <h3 style="width: 100%; text-align: center;">Deck Complete!</h3>
+        <div class="modal-content deck-complete-content">
+            <div class="deck-complete-header">
+                <div class="deck-complete-icon">🎉</div>
+                <h3>Deck Complete!</h3>
+                <div id="completeAccuracy" class="deck-complete-accuracy"></div>
             </div>
             <div class="deck-complete-body">
                 <div class="deck-complete-stats">
                     <div class="deck-stat correct-stat">
                         <span class="deck-stat-emoji">✓</span>
-                        <span id="completeCorrect">0</span>
+                        <span class="deck-stat-value" id="completeCorrect">0</span>
+                        <span class="deck-stat-label">Correct</span>
                     </div>
                     <div class="deck-stat incorrect-stat">
                         <span class="deck-stat-emoji">✗</span>
-                        <span id="completeIncorrect">0</span>
+                        <span class="deck-stat-value" id="completeIncorrect">0</span>
+                        <span class="deck-stat-label">Missed</span>
                     </div>
                 </div>
-                <div id="completeAccuracy" style="text-align: center; font-size: 18px; color: var(--text-secondary); margin-bottom: 20px;"></div>
-                <div id="completeMessage" style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;"></div>
+                <div id="completeMessage" class="deck-complete-message"></div>
                 <div class="deck-complete-actions">
                     <button class="deck-complete-btn restart-btn" id="restartAllBtn">
                         <span class="btn-icon">🔄</span>
@@ -1009,6 +1012,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260721b"></script>
+    <script type="module" src="js/main.js?v=20260722a"></script>
 </body>
 </html>

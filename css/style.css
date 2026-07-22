@@ -1196,6 +1196,18 @@
             overflow: visible;
         }
 
+        /* Selected sense row — a left accent bar plus a soft accent glow lift
+           the active meaning off the stack. Works on top of the inline bg tint
+           and (for assigned senses) the inline accent border, and reads clearly
+           even for unassigned rows that have no border. The inset bar is drawn
+           via box-shadow so it never reflows the dense inline grid/flex layouts. */
+        .meaning-row.selected {
+            position: relative;
+            z-index: 1;
+            box-shadow: inset 4px 0 0 0 var(--accent-primary),
+                        0 3px 14px rgba(var(--accent-primary-rgb), 0.38);
+        }
+
         /* Inline context: smaller, dimmer, flows on the same line as the
            translation. A leading "·" separates it from the translation. If
            the context is long we truncate at a word boundary and show a
@@ -4622,29 +4634,80 @@
             font-family: var(--font-data);
         }
 
+        /* Card-back lemma — brightened accent tint so it reads clearly against
+           the dark card back (raw --accent-primary is too low-contrast). Stays
+           tied to the language accent via color-mix rather than a hardcoded hue. */
+        .back-lemma {
+            font-size: 28px;
+            font-weight: 600;
+            color: color-mix(in srgb, var(--accent-primary) 55%, white);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        }
+
         /* Deck Complete Modal Styles */
+        .deck-complete-content {
+            max-width: 360px;
+            text-align: center;
+        }
+
+        .deck-complete-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 22px;
+        }
+
+        .deck-complete-icon {
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .deck-complete-header h3 {
+            font-family: var(--font-emphasis);
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .deck-complete-accuracy {
+            font-family: var(--font-data);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 3px 12px;
+            margin-top: 4px;
+        }
+
         .deck-complete-body {
-            padding: 10px 0;
+            padding: 0;
         }
 
         .deck-complete-stats {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 15px;
+            gap: 14px;
+            margin-bottom: 18px;
         }
 
         .deck-stat {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px 25px;
-            border-radius: 12px;
-            min-width: 90px;
+            padding: 14px 10px;
+            border-radius: 14px;
+            max-width: 130px;
         }
 
         .deck-stat.correct-stat {
-            background: rgba(0, 212, 170, 0.15);
+            background: var(--glow-green);
             color: var(--accent-green);
             border: 1px solid var(--accent-green);
         }
@@ -4656,13 +4719,32 @@
         }
 
         .deck-stat-emoji {
-            font-size: 28px;
-            margin-bottom: 5px;
+            font-size: 22px;
+            margin-bottom: 2px;
         }
 
-        .deck-stat span:last-child {
-            font-size: 24px;
-            font-weight: bold;
+        .deck-stat-value {
+            font-family: var(--font-emphasis);
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .deck-stat-label {
+            font-family: var(--font-data);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        .deck-complete-message {
+            font-family: var(--font-reading);
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+            min-height: 18px;
         }
 
         .deck-complete-actions {
@@ -4677,18 +4759,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 16px 12px;
+            font-family: var(--font-emphasis);
+            padding: 14px 12px;
             border: none;
             border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            transition: all 0.3s;
-            gap: 8px;
+            transition: all 0.2s ease;
+            gap: 6px;
         }
 
         .deck-complete-btn .btn-icon {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .deck-complete-btn.restart-btn {
@@ -4699,36 +4782,41 @@
 
         .deck-complete-btn.restart-btn:hover {
             background: var(--bg-card-hover);
-            border-color: var(--accent-secondary);
+            border-color: var(--border-light);
         }
 
         .deck-complete-btn.continue-btn {
-            background: var(--accent-blue);
-            color: var(--bg-primary);
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
         }
 
         .deck-complete-btn.continue-btn:hover {
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 4px 18px rgba(var(--accent-primary-rgb), 0.45);
+            transform: translateY(-1px);
         }
 
         .deck-complete-btn.continue-btn:disabled {
             background: var(--bg-tertiary);
             color: var(--text-muted);
             cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
         }
 
         .deck-complete-btn.exit-btn {
             width: 100%;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
+            background: transparent;
+            color: var(--text-muted);
             border: 1px solid var(--border-color);
             flex-direction: row;
             gap: 10px;
+            padding: 12px;
         }
 
         .deck-complete-btn.exit-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-light, var(--accent-secondary));
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border-color: var(--border-light);
         }
 
         /* Coverage Progress Bar */

@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-22",
+      "commit": "pending",
+      "summary": "Card-back polish: readable lemma, clearer selected sense, restyled Deck Complete popup",
+      "details": [
+        "Card-back lemma now uses a brightened accent tint (color-mix + shadow) so it reads clearly against the dark back instead of the low-contrast raw accent red",
+        "Selected sense row now gets a left accent bar + soft accent glow (on top of the existing tint/border) so the active meaning is obvious across all row types, including unassigned and grouped rows",
+        "Deck Complete popup restyled to match the app's modal aesthetic: centered header with icon + accuracy pill, cleaner stat tiles with labels, and on-theme accent-primary primary button (was off-theme blue)"
+      ]
+    },
+    {
       "date": "2026-07-21",
       "commit": "c6cdd45",
       "summary": "Lemma mode: deck now ordered by pooled lemma frequency",
