@@ -34,10 +34,9 @@
 - **[now] Notes-app UI batch — requested 2026-07-24 [shared unless noted]**
   Easy items already SHIPPED this session (v55): "Collapse Lemmas" On/Off rename, short
   Cognates labels, brighter in-study progress bar. Remaining (non-trivial), roughly easy→hard:
-  1. **(S) [normal] Flash the active step number** — on the setup/landing screen (both modes),
-     slowly pulse the `.step-number` of the step awaiting a decision (pick language / pick set),
-     so it's obvious where to act. CSS pulse is trivial; the work is toggling an `--active`
-     class as the user advances through step1 → step2 → step4 (`ui.js`).
+  1. **(S) [normal] Flash the active step number** — DONE 2026-07-24 (PENDING): the numbered
+     badge slowly pulses on the decision currently awaiting input (language → level → set),
+     begins at level in artist mode, and uses a static focus ring under reduced motion.
   2. **(S) [artist] Artist-mode help missing Lemma/Cognates tabs** — DONE 2026-07-24 (4a9bf8e):
      `updateStep2Tooltip()` was overwriting the whole tooltip body in artist mode; now it only
      swaps the Level tab's copy and keeps all three tabs.

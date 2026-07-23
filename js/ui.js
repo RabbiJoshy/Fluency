@@ -85,6 +85,11 @@ function updateIncorrectButtonVisibility() {
     }
 }
 
+function setActiveSetupStep(stepId) {
+    document.querySelectorAll('#step1 .step-number, #step2 .step-number, #step4 .step-number')
+        .forEach(number => number.classList.toggle('--active', number.closest('.setup-step')?.id === stepId));
+}
+
 function renderLanguageTabs() {
     const tabsContainer = document.getElementById('languageTabs');
 
@@ -118,6 +123,8 @@ function renderLanguageTabs() {
 
     tabsContainer.innerHTML = tabsHTML;
 
+    setActiveSetupStep('step1');
+
     // Setup event listeners for tabs
     setupLanguageTabs();
 }
@@ -135,6 +142,7 @@ function setupLanguageTabs() {
         document.getElementById('cognateToggleContainer').style.display = 'none';
         document.getElementById('step4').style.display = 'none';
         hideAllSelectionPills();
+        setActiveSetupStep('step1');
     });
 
     document.querySelectorAll('.lang-tab').forEach(tab => {
@@ -202,6 +210,7 @@ function setupLanguageTabs() {
             // Hide loading indicator and show step 2 immediately (using cached progress)
             loadingIndicator.classList.remove('visible');
             document.getElementById('step2').style.display = 'block';
+            setActiveSetupStep('step2');
             // Step 2 title is fixed ("Choose level"); refresh the toggle's
             // active pill + tooltip in case the language switch implies a
             // different mode (e.g. artist mode forces % mode).
@@ -314,6 +323,8 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
 
 async function renderLevelSelector(language) {
     const container = document.getElementById('levelSelector');
+
+    if (!selectedLevel) setActiveSetupStep('step2');
 
     // Debug logging
     console.log('renderLevelSelector called:', { percentageMode, ppmDataLength: ppmData ? ppmData.length : 0, language });
@@ -1333,6 +1344,7 @@ async function renderRangeSelector() {
 
     container.innerHTML = rangesHTML + incorrectHTML + nextLevelHTML;
     document.getElementById('step4').style.display = 'block';
+    setActiveSetupStep('step4');
 
     // Add click handlers to ALL buttons
     document.querySelectorAll('.range-btn-new').forEach(btn => {
@@ -1839,6 +1851,7 @@ function renderStatsWordList(answeredIndexSet) {
 window.setupTooltipHandlers = setupTooltipHandlers;
 window.updateIncorrectButtonVisibility = updateIncorrectButtonVisibility;
 window.renderLanguageTabs = renderLanguageTabs;
+window.setActiveSetupStep = setActiveSetupStep;
 window.setupLanguageTabs = setupLanguageTabs;
 window.hideAllSelectionPills = hideAllSelectionPills;
 window.updatePercentModeButton = updatePercentModeButton;

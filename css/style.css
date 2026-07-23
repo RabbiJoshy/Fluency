@@ -2384,6 +2384,28 @@
             font-size: 14px;
         }
 
+        .step-number.--active {
+            animation: active-step-pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes active-step-pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(var(--accent-secondary-rgb, 255, 204, 0), 0);
+            }
+            50% {
+                transform: scale(1.12);
+                box-shadow: 0 0 0 7px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.22);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .step-number.--active {
+                animation: none;
+                box-shadow: 0 0 0 4px rgba(var(--accent-secondary-rgb, 255, 204, 0), 0.22);
+            }
+        }
+
         .step-title {
             font-family: var(--font-emphasis);
             font-size: 16px;

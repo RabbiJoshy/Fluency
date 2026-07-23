@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "The setup screen now pulses the step that needs your attention",
+      "details": [
+        "The numbered badge advances from language to level to set selection in standard mode; artist mode begins at level because its language is fixed",
+        "The slow pulse becomes a static focus ring when reduced motion is enabled; cache v56→v57, assets 20260724a→20260724b"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "4a9bf8e",
       "summary": "Artist-mode 'Choose level' help now keeps the Lemma & Cognates tabs",
       "details": [
