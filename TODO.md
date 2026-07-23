@@ -34,7 +34,7 @@
 - **[now] Notes-app UI batch — requested 2026-07-24 [shared unless noted]**
   Easy items already SHIPPED this session (v55): "Collapse Lemmas" On/Off rename, short
   Cognates labels, brighter in-study progress bar. Remaining (non-trivial), roughly easy→hard:
-  1. **(S) [normal] Flash the active step number** — DONE 2026-07-24 (PENDING): the numbered
+  1. **(S) [normal] Flash the active step number** — DONE 2026-07-24 (0143c2f): the numbered
      badge slowly pulses on the decision currently awaiting input (language → level → set),
      begins at level in artist mode, and uses a static focus ring under reduced motion.
   2. **(S) [artist] Artist-mode help missing Lemma/Cognates tabs** — DONE 2026-07-24 (4a9bf8e):

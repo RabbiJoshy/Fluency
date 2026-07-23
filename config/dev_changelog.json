@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "0143c2f",
       "summary": "The setup screen now pulses the step that needs your attention",
       "details": [
         "The numbered badge advances from language to level to set selection in standard mode; artist mode begins at level because its language is fixed",
