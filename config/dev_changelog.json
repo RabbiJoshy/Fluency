@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "4a9bf8e",
       "summary": "Artist-mode 'Choose level' help now keeps the Lemma & Cognates tabs",
       "details": [
         "In artist mode the level help tooltip was overwriting its whole body with a single lyrics-coverage paragraph, deleting the Lemma and Cognates explanation tabs; now it only swaps the Level tab's text and keeps all three tabs",
