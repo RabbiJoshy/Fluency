@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-23",
-      "commit": "pending",
+      "commit": "9aca157",
       "summary": "Flag a specific sense pairing (not just the whole word), with ↑/↓ sense nav",
       "details": [
         "Flag (F key) now opens a sense-level flag menu: pick which word→meaning pairing is wrong, choose an issue type (wrong meaning / lemma / example / whole word), then submit",
