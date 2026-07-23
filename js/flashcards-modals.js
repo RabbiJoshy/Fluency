@@ -1065,6 +1065,216 @@ function refreshCardMetaPopoverIfOpen() {
     });
 })();
 
+// ---------------------------------------------------------------------------
+// Sense-level flag menu — flag a specific WORD→MEANING pairing (not just the
+// whole word), with up/down navigation through the card's senses.
+//
+// Reuses flagWord(card, fieldPath, fieldValue) from auth.js: the payload is
+// backward-compatible — a whole-word flag passes no path (identical to the
+// old behavior); a sense flag passes path `sense:{i}` + the gloss text so the
+// row is human-resolvable in the FlaggedWords sheet even without a stable id.
+// ---------------------------------------------------------------------------
+let _flagSelIdx = 0;      // which sense row is highlighted
+let _flagIssue = 'meaning'; // issue type: meaning | lemma | example | word
+const FLAG_ISSUES = [
+    { key: 'meaning', label: 'Wrong meaning' },
+    { key: 'lemma', label: 'Wrong lemma' },
+    { key: 'example', label: 'Wrong example' },
+    { key: 'word', label: 'Whole word' }
+];
+
+function _flagMenuCard() {
+    return (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
+}
+
+function _renderFlagMenu() {
+    const card = _flagMenuCard();
+    const sensesEl = document.getElementById('flagMenuSenses');
+    const issuesEl = document.getElementById('flagMenuIssues');
+    const titleEl = document.getElementById('flagMenuTitle');
+    const confirmEl = document.getElementById('flagMenuConfirm');
+    if (!card || !sensesEl || !issuesEl) return;
+
+    const word = card.targetWord || card.word || 'card';
+    if (titleEl) titleEl.textContent = `Flag: ${word}`;
+
+    const meanings = card.meanings || [];
+    // Clamp selection into range.
+    if (_flagSelIdx < 0) _flagSelIdx = 0;
+    if (_flagSelIdx > meanings.length - 1) _flagSelIdx = Math.max(0, meanings.length - 1);
+
+    // Sense rows. When the "Whole word" issue is picked, dim the sense list —
+    // the selection no longer targets an individual pairing.
+    const wholeWord = (_flagIssue === 'word');
+    sensesEl.classList.toggle('is-disabled', wholeWord);
+    if (!meanings.length) {
+        sensesEl.innerHTML = '<li class="card-meta-empty">No senses on this card.</li>';
+    } else {
+        sensesEl.innerHTML = meanings.map((m, i) => {
+            const gloss = m.meaning || m.translation || '';
+            const pct = (typeof m.percentage === 'number') ? (m.percentage * 100).toFixed(0) + '%' : '';
+            const sel = (!wholeWord && i === _flagSelIdx) ? ' selected' : '';
+            return `<li class="flag-menu-sense${sel}" data-idx="${i}" role="option" aria-selected="${!wholeWord && i === _flagSelIdx}">
+                <span class="fm-pos">${_escapeHtml(m.pos || '?')}</span>
+                <span class="fm-gloss">${_escapeHtml(gloss)}</span>
+                ${pct ? `<span class="fm-pct">${pct}</span>` : ''}
+            </li>`;
+        }).join('');
+    }
+
+    issuesEl.innerHTML = FLAG_ISSUES.map(it => {
+        const sel = (it.key === _flagIssue) ? ' selected' : '';
+        return `<button type="button" class="flag-menu-issue${sel}" data-issue="${it.key}">${it.label}</button>`;
+    }).join('');
+
+    if (confirmEl) {
+        confirmEl.textContent = wholeWord ? 'Flag whole word' : 'Flag this pairing';
+    }
+
+    // Wire row + issue clicks (innerHTML wiped the previous listeners).
+    sensesEl.querySelectorAll('.flag-menu-sense').forEach(li => {
+        li.addEventListener('click', () => {
+            const idx = parseInt(li.dataset.idx, 10);
+            if (!isNaN(idx)) {
+                // Clicking a sense while in whole-word mode implies you meant a pairing.
+                if (_flagIssue === 'word') _flagIssue = 'meaning';
+                flagMenuSelect(idx);
+            }
+        });
+    });
+    issuesEl.querySelectorAll('.flag-menu-issue').forEach(btn => {
+        btn.addEventListener('click', () => {
+            _flagIssue = btn.dataset.issue;
+            _renderFlagMenu();
+        });
+    });
+}
+
+// Highlight a sense AND sync the underlying card to it (reuses selectMeaning),
+// so the sense pill the user is flagging is the one shown on the card behind
+// the menu.
+function flagMenuSelect(idx) {
+    _flagSelIdx = idx;
+    if (typeof window.selectMeaning === 'function'
+        && typeof currentMeaningIndex === 'number'
+        && idx !== currentMeaningIndex) {
+        window.selectMeaning(idx);
+    }
+    _renderFlagMenu();
+}
+
+// Up/down through the sense rows (clamped, no wrap).
+function flagMenuNav(delta) {
+    const card = _flagMenuCard();
+    const n = (card && card.meanings) ? card.meanings.length : 0;
+    if (n <= 1) return;
+    // Navigating implies you're targeting a specific pairing.
+    if (_flagIssue === 'word') { _flagIssue = 'meaning'; }
+    let next = _flagSelIdx + delta;
+    if (next < 0) next = 0;
+    if (next > n - 1) next = n - 1;
+    if (next !== _flagSelIdx) flagMenuSelect(next);
+    else _renderFlagMenu();
+}
+
+function showFlagMenu() {
+    const pop = document.getElementById('flagMenu');
+    const card = _flagMenuCard();
+    if (!pop || !card) return;
+    _flagSelIdx = (typeof currentMeaningIndex === 'number') ? currentMeaningIndex : 0;
+    _flagIssue = 'meaning';
+    _renderFlagMenu();
+    pop.hidden = false;
+    pop.setAttribute('aria-hidden', 'false');
+}
+
+function hideFlagMenu() {
+    const pop = document.getElementById('flagMenu');
+    if (!pop) return;
+    pop.hidden = true;
+    pop.setAttribute('aria-hidden', 'true');
+}
+
+function flagMenuConfirm() {
+    const card = _flagMenuCard();
+    if (!card) { hideFlagMenu(); return; }
+    const meanings = card.meanings || [];
+    const m = meanings[_flagSelIdx] || null;
+    const gloss = m ? (m.meaning || m.translation || '') : '';
+
+    let path = null;
+    let value;
+    switch (_flagIssue) {
+        case 'lemma':
+            path = 'lemma';
+            value = card.lemma || card.targetWord;
+            break;
+        case 'example': {
+            let ex = '';
+            if (m && m.allExamples && m.allExamples.length) {
+                const exi = (typeof currentExampleIndex === 'number')
+                    ? (currentExampleIndex % m.allExamples.length) : 0;
+                const e0 = m.allExamples[exi] || m.allExamples[0];
+                ex = e0.spanish || e0.targetSentence || e0.original || '';
+            }
+            path = `example:${_flagSelIdx}`;
+            value = ex || gloss;
+            break;
+        }
+        case 'word':
+            path = null; // whole-word fallback — identical payload to the old flag
+            value = undefined;
+            break;
+        case 'meaning':
+        default:
+            path = `sense:${_flagSelIdx}`;
+            value = gloss;
+            break;
+    }
+
+    if (typeof flagWord === 'function') {
+        if (path) flagWord(card, path, value);
+        else flagWord(card);
+    }
+    hideFlagMenu();
+    // Hand back to core flashcards.js for the flag animation + advance.
+    if (typeof window.advanceAfterFlag === 'function') window.advanceAfterFlag();
+}
+
+// Close button, backdrop dismiss, and keyboard control while open. The menu
+// owns arrows/Enter/Esc when visible; core flashcards.js's global keydown
+// bails out while #flagMenu is not hidden, so there's no double-handling.
+(function _initFlagMenuInternals() {
+    const pop = document.getElementById('flagMenu');
+    if (!pop) return;
+    const closeBtn = document.getElementById('flagMenuClose');
+    const confirmBtn = document.getElementById('flagMenuConfirm');
+    const content = document.getElementById('flagMenuContent');
+    if (closeBtn) closeBtn.addEventListener('click', hideFlagMenu);
+    if (confirmBtn) confirmBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        flagMenuConfirm();
+    });
+    document.addEventListener('click', (e) => {
+        if (pop.hidden) return;
+        if (content && content.contains(e.target)) return;
+        hideFlagMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (pop.hidden) return;
+        if (e.key === 'ArrowUp') { e.preventDefault(); flagMenuNav(-1); }
+        else if (e.key === 'ArrowDown') { e.preventDefault(); flagMenuNav(1); }
+        else if (e.key === 'Enter') { e.preventDefault(); flagMenuConfirm(); }
+        else if (e.key === 'Escape') { e.preventDefault(); hideFlagMenu(); }
+    });
+})();
+
+window.showFlagMenu = showFlagMenu;
+window.hideFlagMenu = hideFlagMenu;
+window.flagMenuNav = flagMenuNav;
+window.flagMenuSelect = flagMenuSelect;
+window.flagMenuConfirm = flagMenuConfirm;
+
 // Window exports — the lazy stubs in core flashcards.js look these up after
 // the dynamic import resolves. The stub layer's post-resolve check verifies
 // each name was reassigned to the real function (otherwise it would recurse
