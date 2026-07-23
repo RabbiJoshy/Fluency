@@ -3,7 +3,7 @@
     {
       "expression": "voy a",
       "translation": "I'm going to",
-      "count": 347,
+      "count": 350,
       "variants": [
         "vo' a"
       ]
@@ -11,7 +11,7 @@
     {
       "expression": "tú eres",
       "translation": "you are (elided)",
-      "count": 190,
+      "count": 191,
       "variants": [
         "tú ere'"
       ]
@@ -27,7 +27,7 @@
     {
       "expression": "es que",
       "translation": "it's that (elided)",
-      "count": 156,
+      "count": 157,
       "variants": [
         "e' que"
       ]
@@ -40,7 +40,7 @@
     {
       "expression": "vamos a",
       "translation": "let's",
-      "count": 137,
+      "count": 140,
       "variants": [
         "vamo' a"
       ]
@@ -53,7 +53,7 @@
     {
       "expression": "te voy a",
       "translation": "I'm going to (you)",
-      "count": 91,
+      "count": 92,
       "variants": [
         "te vo'a"
       ]
@@ -66,28 +66,28 @@
     {
       "expression": "de mí",
       "translation": "about me, of me",
-      "count": 76
+      "count": 77
     },
     {
       "expression": "todo lo que",
       "translation": "everything that",
-      "count": 68,
+      "count": 67,
       "variants": [
         "to' lo que"
+      ]
+    },
+    {
+      "expression": "tú sabes",
+      "translation": "you know (elided)",
+      "count": 64,
+      "variants": [
+        "tú sabe'"
       ]
     },
     {
       "expression": "dile que",
       "translation": "tell him/her that",
       "count": 63
-    },
-    {
-      "expression": "tú sabes",
-      "translation": "you know (elided)",
-      "count": 63,
-      "variants": [
-        "tú sabe'"
-      ]
     },
     {
       "expression": "a veces",
@@ -98,6 +98,16 @@
       ]
     },
     {
+      "expression": "a mí me",
+      "translation": "to me (emphatic)",
+      "count": 57
+    },
+    {
+      "expression": "de ti",
+      "translation": "about you, of you",
+      "count": 56
+    },
+    {
       "expression": "otra vez",
       "translation": "again",
       "count": 56,
@@ -106,24 +116,14 @@
       ]
     },
     {
-      "expression": "de ti",
-      "translation": "about you, of you",
-      "count": 55
-    },
-    {
       "expression": "quiero que",
       "translation": "I want (someone) to",
       "count": 55
     },
     {
-      "expression": "a mí me",
-      "translation": "to me (emphatic)",
-      "count": 54
-    },
-    {
       "expression": "dice que",
       "translation": "says that",
-      "count": 52
+      "count": 53
     },
     {
       "expression": "me voy",
@@ -136,11 +136,6 @@
       "count": 46
     },
     {
-      "expression": "por qué",
-      "translation": "why",
-      "count": 45
-    },
-    {
       "expression": "todo el mundo",
       "translation": "everybody",
       "count": 45,
@@ -149,9 +144,14 @@
       ]
     },
     {
+      "expression": "por qué",
+      "translation": "why",
+      "count": 44
+    },
+    {
       "expression": "la disco",
       "translation": "the club",
-      "count": 45
+      "count": 44
     },
     {
       "expression": "me siento",
@@ -185,6 +185,11 @@
       "count": 36
     },
     {
+      "expression": "te gusta",
+      "translation": "you like",
+      "count": 36
+    },
+    {
       "expression": "a ti te",
       "translation": "to you (emphatic)",
       "count": 35
@@ -213,11 +218,6 @@
       "count": 34
     },
     {
-      "expression": "te gusta",
-      "translation": "you like",
-      "count": 34
-    },
-    {
       "expression": "me voy a",
       "translation": "I'm going to",
       "count": 33
@@ -228,14 +228,14 @@
       "count": 32
     },
     {
-      "expression": "dime si",
-      "translation": "tell me if",
+      "expression": "hay que",
+      "translation": "one must, you have to",
       "count": 32
     },
     {
-      "expression": "hay que",
-      "translation": "one must, you have to",
-      "count": 31
+      "expression": "dime si",
+      "translation": "tell me if",
+      "count": 32
     },
     {
       "expression": "tú sabes que",
@@ -251,14 +251,14 @@
       "count": 30
     },
     {
-      "expression": "se siente",
-      "translation": "feels, it feels",
-      "count": 30
-    },
-    {
       "expression": "me llama",
       "translation": "calls me",
-      "count": 28
+      "count": 29
+    },
+    {
+      "expression": "se siente",
+      "translation": "feels, it feels",
+      "count": 27
     },
     {
       "expression": "hace tiempo",
@@ -320,19 +320,19 @@
       ]
     },
     {
-      "expression": "tienen que",
-      "translation": "they have to",
-      "count": 21
-    },
-    {
       "expression": "a mí no",
       "translation": "not me (emphatic)",
-      "count": 20
+      "count": 21
     },
     {
       "expression": "mí no me",
       "translation": "don't (emphatic negation)",
-      "count": 20
+      "count": 21
+    },
+    {
+      "expression": "tienen que",
+      "translation": "they have to",
+      "count": 21
     },
     {
       "expression": "me puse",
@@ -355,19 +355,9 @@
       "count": 19
     },
     {
-      "expression": "el bicho",
-      "translation": "the beast (Bad Bunny's nickname)",
+      "expression": "creo que",
+      "translation": "I think that, I believe that",
       "count": 19
-    },
-    {
-      "expression": "sin ti",
-      "translation": "without you",
-      "count": 18
-    },
-    {
-      "expression": "me llueven",
-      "translation": "rain down on me",
-      "count": 18
     },
     {
       "expression": "la movie",
@@ -375,14 +365,24 @@
       "count": 18
     },
     {
-      "expression": "creo que",
-      "translation": "I think that, I believe that",
+      "expression": "el bicho",
+      "translation": "the beast (Bad Bunny's nickname)",
       "count": 18
+    },
+    {
+      "expression": "sin ti",
+      "translation": "without you",
+      "count": 17
     },
     {
       "expression": "se va a",
       "translation": "is going to",
       "count": 17
+    },
+    {
+      "expression": "me llueven",
+      "translation": "rain down on me",
+      "count": 16
     },
     {
       "expression": "to'as las",
@@ -392,11 +392,6 @@
     {
       "expression": "lo mismo",
       "translation": "the same thing",
-      "count": 15
-    },
-    {
-      "expression": "hijo e puta",
-      "translation": "son of a bitch",
       "count": 15
     },
     {
@@ -410,18 +405,13 @@
       "count": 15
     },
     {
-      "expression": "yo hago lo que",
-      "translation": "I do what(ever)",
-      "count": 15
-    },
-    {
       "expression": "por más que",
       "translation": "no matter how much",
       "count": 14
     },
     {
-      "expression": "la gana",
-      "translation": "the desire, the urge",
+      "expression": "yo hago lo que",
+      "translation": "I do what(ever)",
       "count": 14
     },
     {
@@ -432,6 +422,11 @@
     {
       "expression": "ya no hay",
       "translation": "there's no longer",
+      "count": 13
+    },
+    {
+      "expression": "la gana",
+      "translation": "the desire, the urge",
       "count": 13
     },
     {
@@ -457,13 +452,6 @@
       "num_songs": 4
     },
     {
-      "expression": "sin ti me va mejor",
-      "translation": null,
-      "count": 4,
-      "pmi": 28.5,
-      "num_songs": 3
-    },
-    {
       "expression": "tú y yo somos iguales",
       "translation": null,
       "count": 4,
@@ -481,7 +469,7 @@
       "expression": "dile que tú eres mía",
       "translation": null,
       "count": 4,
-      "pmi": 26.9,
+      "pmi": 27.0,
       "num_songs": 3
     },
     {
@@ -509,7 +497,7 @@
       "expression": "que me da la gana",
       "translation": null,
       "count": 6,
-      "pmi": 25.7,
+      "pmi": 25.8,
       "num_songs": 5
     },
     {
@@ -537,15 +525,8 @@
       "expression": "te lo voy a meter",
       "translation": null,
       "count": 4,
-      "pmi": 24.8,
+      "pmi": 24.9,
       "num_songs": 4
-    },
-    {
-      "expression": "un hijo e puta",
-      "translation": null,
-      "count": 4,
-      "pmi": 24.8,
-      "num_songs": 3
     },
     {
       "expression": "hear this music",
@@ -586,7 +567,7 @@
       "expression": "después de las doce",
       "translation": null,
       "count": 4,
-      "pmi": 22.8,
+      "pmi": 22.7,
       "num_songs": 3
     },
     {
@@ -611,18 +592,32 @@
       "num_songs": 6
     },
     {
-      "expression": "me importa un carajo",
+      "expression": "sin cojones me tiene",
       "translation": null,
       "count": 5,
       "pmi": 21.6,
       "num_songs": 5
     },
     {
-      "expression": "sin cojones me tiene",
+      "expression": "me importa un carajo",
       "translation": null,
       "count": 5,
-      "pmi": 21.6,
+      "pmi": 21.5,
       "num_songs": 5
+    },
+    {
+      "expression": "un hijo de puta",
+      "translation": null,
+      "count": 4,
+      "pmi": 21.4,
+      "num_songs": 3
+    },
+    {
+      "expression": "nunca voy a cambiar",
+      "translation": null,
+      "count": 4,
+      "pmi": 21.2,
+      "num_songs": 4
     },
     {
       "expression": "a veces me pregunto",
@@ -642,7 +637,7 @@
       "expression": "la vida es corta",
       "translation": null,
       "count": 4,
-      "pmi": 21.1,
+      "pmi": 20.9,
       "num_songs": 3
     },
     {
@@ -653,17 +648,10 @@
       "num_songs": 3
     },
     {
-      "expression": "de tres en tres",
-      "translation": null,
-      "count": 5,
-      "pmi": 20.6,
-      "num_songs": 3
-    },
-    {
       "expression": "que salga el sol",
       "translation": null,
       "count": 5,
-      "pmi": 20.6,
+      "pmi": 20.7,
       "num_songs": 4
     },
     {
@@ -674,18 +662,25 @@
       "num_songs": 4
     },
     {
+      "expression": "desde los tiempos de",
+      "translation": null,
+      "count": 4,
+      "pmi": 20.6,
+      "num_songs": 4
+    },
+    {
+      "expression": "de tres en tres",
+      "translation": null,
+      "count": 5,
+      "pmi": 20.4,
+      "num_songs": 3
+    },
+    {
       "expression": "qué vamos a hacer",
       "translation": null,
       "count": 10,
-      "pmi": 20.4,
+      "pmi": 20.3,
       "num_songs": 6
-    },
-    {
-      "expression": "un día de estos",
-      "translation": null,
-      "count": 4,
-      "pmi": 19.9,
-      "num_songs": 4
     },
     {
       "expression": "prende otro phillie",
@@ -695,37 +690,37 @@
       "num_songs": 4
     },
     {
-      "expression": "lo que me da la",
+      "expression": "un día de estos",
       "translation": null,
-      "count": 6,
-      "pmi": 19.7,
-      "num_songs": 5
-    },
-    {
-      "expression": "aquí todo el mundo",
-      "translation": null,
-      "count": 6,
-      "pmi": 19.7,
-      "num_songs": 4
-    },
-    {
-      "expression": "yo hago lo que me",
-      "translation": null,
-      "count": 7,
-      "pmi": 19.6,
+      "count": 4,
+      "pmi": 19.8,
       "num_songs": 4
     },
     {
       "expression": "yo estoy puesto para",
       "translation": null,
       "count": 8,
-      "pmi": 19.6,
+      "pmi": 19.7,
       "num_songs": 8
+    },
+    {
+      "expression": "lo que me da la",
+      "translation": null,
+      "count": 6,
+      "pmi": 19.6,
+      "num_songs": 5
     },
     {
       "expression": "yo sé que no eres",
       "translation": null,
       "count": 4,
+      "pmi": 19.4,
+      "num_songs": 4
+    },
+    {
+      "expression": "yo hago lo que me",
+      "translation": null,
+      "count": 6,
       "pmi": 19.4,
       "num_songs": 4
     },
@@ -737,10 +732,17 @@
       "num_songs": 4
     },
     {
+      "expression": "aquí todo el mundo",
+      "translation": null,
+      "count": 5,
+      "pmi": 19.4,
+      "num_songs": 3
+    },
+    {
       "expression": "yo soy fan de",
       "translation": null,
       "count": 4,
-      "pmi": 19.4,
+      "pmi": 19.3,
       "num_songs": 4
     },
     {
@@ -768,8 +770,8 @@
       "expression": "se va a poder",
       "translation": null,
       "count": 4,
-      "pmi": 18.9,
-      "num_songs": 3
+      "pmi": 19.0,
+      "num_songs": 4
     },
     {
       "expression": "la última vez que",
@@ -786,9 +788,16 @@
       "num_songs": 3
     },
     {
-      "expression": "ya me cansé de",
+      "expression": "vamos para la calle",
       "translation": null,
-      "count": 5,
+      "count": 9,
+      "pmi": 18.5,
+      "num_songs": 3
+    },
+    {
+      "expression": "para que le dé",
+      "translation": null,
+      "count": 17,
       "pmi": 18.3,
       "num_songs": 5
     },
@@ -800,16 +809,9 @@
       "num_songs": 4
     },
     {
-      "expression": "dice que le gusta",
+      "expression": "ya me cansé de",
       "translation": null,
-      "count": 4,
-      "pmi": 18.2,
-      "num_songs": 3
-    },
-    {
-      "expression": "para que le dé",
-      "translation": null,
-      "count": 17,
+      "count": 5,
       "pmi": 18.2,
       "num_songs": 5
     },
@@ -821,11 +823,11 @@
       "num_songs": 3
     },
     {
-      "expression": "tengo un par de",
+      "expression": "dice que le gusta",
       "translation": null,
-      "count": 6,
+      "count": 4,
       "pmi": 18.1,
-      "num_songs": 6
+      "num_songs": 3
     },
     {
       "expression": "te voy a meter",
@@ -833,6 +835,13 @@
       "count": 4,
       "pmi": 18.1,
       "num_songs": 4
+    },
+    {
+      "expression": "tengo un par de",
+      "translation": null,
+      "count": 6,
+      "pmi": 18.0,
+      "num_songs": 6
     },
     {
       "expression": "la primera vez que",
@@ -856,14 +865,21 @@
       "num_songs": 4
     },
     {
+      "expression": "tú y yo solitos",
+      "translation": null,
+      "count": 4,
+      "pmi": 17.9,
+      "num_songs": 3
+    },
+    {
       "expression": "mueve ese culo",
       "translation": null,
       "count": 5,
-      "pmi": 18.0,
+      "pmi": 17.9,
       "num_songs": 4
     },
     {
-      "expression": "tú y yo solitos",
+      "expression": "apaga el celular",
       "translation": null,
       "count": 4,
       "pmi": 17.9,
@@ -873,15 +889,8 @@
       "expression": "dame un break",
       "translation": null,
       "count": 4,
-      "pmi": 17.9,
+      "pmi": 17.7,
       "num_songs": 4
-    },
-    {
-      "expression": "apaga el celular",
-      "translation": null,
-      "count": 4,
-      "pmi": 17.8,
-      "num_songs": 3
     },
     {
       "expression": "lo que a ti te",
@@ -907,15 +916,15 @@
     {
       "expression": "no sé por qué",
       "translation": null,
-      "count": 14,
-      "pmi": 17.4,
+      "count": 13,
+      "pmi": 17.3,
       "num_songs": 10
     },
     {
       "expression": "los polvos en la",
       "translation": null,
       "count": 5,
-      "pmi": 17.4,
+      "pmi": 17.3,
       "num_songs": 5
     },
     {
@@ -940,13 +949,6 @@
       "num_songs": 11
     },
     {
-      "expression": "billetes de cien",
-      "translation": null,
-      "count": 6,
-      "pmi": 17.1,
-      "num_songs": 3
-    },
-    {
       "expression": "para hacerte venir",
       "translation": null,
       "count": 5,
@@ -954,18 +956,25 @@
       "num_songs": 4
     },
     {
+      "expression": "soy el único que",
+      "translation": null,
+      "count": 4,
+      "pmi": 17.0,
+      "num_songs": 4
+    },
+    {
+      "expression": "billetes de cien",
+      "translation": null,
+      "count": 6,
+      "pmi": 17.0,
+      "num_songs": 3
+    },
+    {
       "expression": "ya no hay más",
       "translation": null,
       "count": 5,
       "pmi": 16.9,
       "num_songs": 5
-    },
-    {
-      "expression": "soy el único que",
-      "translation": null,
-      "count": 4,
-      "pmi": 16.9,
-      "num_songs": 4
     },
     {
       "expression": "quítate la ropa",
@@ -1010,24 +1019,17 @@
       "num_songs": 4
     },
     {
-      "expression": "si algún día",
+      "expression": "no me hables de",
       "translation": null,
-      "count": 4,
+      "count": 6,
       "pmi": 16.5,
-      "num_songs": 3
-    },
-    {
-      "expression": "chavos con cojones",
-      "translation": null,
-      "count": 5,
-      "pmi": 16.5,
-      "num_songs": 4
+      "num_songs": 6
     },
     {
       "expression": "el conejo malo",
       "translation": null,
       "count": 11,
-      "pmi": 16.3,
+      "pmi": 16.4,
       "num_songs": 9
     },
     {
@@ -1038,25 +1040,25 @@
       "num_songs": 5
     },
     {
+      "expression": "chavos con cojones",
+      "translation": null,
+      "count": 5,
+      "pmi": 16.3,
+      "num_songs": 4
+    },
+    {
+      "expression": "la vida es una",
+      "translation": null,
+      "count": 5,
+      "pmi": 16.2,
+      "num_songs": 5
+    },
+    {
       "expression": "lo que tú quieras",
       "translation": null,
       "count": 7,
       "pmi": 16.1,
       "num_songs": 6
-    },
-    {
-      "expression": "la vida es una",
-      "translation": null,
-      "count": 4,
-      "pmi": 16.0,
-      "num_songs": 4
-    },
-    {
-      "expression": "no me hables de",
-      "translation": null,
-      "count": 4,
-      "pmi": 16.0,
-      "num_songs": 4
     },
     {
       "expression": "dime qué pasó",
@@ -1073,18 +1075,11 @@
       "num_songs": 3
     },
     {
-      "expression": "ponte en cuatro",
+      "expression": "para el carajo el",
       "translation": null,
       "count": 6,
-      "pmi": 15.9,
-      "num_songs": 4
-    },
-    {
-      "expression": "a mí me gusta",
-      "translation": null,
-      "count": 5,
       "pmi": 15.8,
-      "num_songs": 4
+      "num_songs": 6
     },
     {
       "expression": "lo que tú digas",
@@ -1094,11 +1089,18 @@
       "num_songs": 4
     },
     {
-      "expression": "para el carajo el",
+      "expression": "a mí me gusta",
+      "translation": null,
+      "count": 5,
+      "pmi": 15.7,
+      "num_songs": 4
+    },
+    {
+      "expression": "ponte en cuatro",
       "translation": null,
       "count": 6,
       "pmi": 15.7,
-      "num_songs": 6
+      "num_songs": 4
     },
     {
       "expression": "yo voy a hacer",
@@ -1122,18 +1124,11 @@
       "num_songs": 3
     },
     {
-      "expression": "no te vayas a",
+      "expression": "que yo le dé",
       "translation": null,
       "count": 4,
       "pmi": 15.4,
       "num_songs": 3
-    },
-    {
-      "expression": "lo de ustedes es",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.4,
-      "num_songs": 4
     },
     {
       "expression": "por eso es que",
@@ -1141,6 +1136,13 @@
       "count": 12,
       "pmi": 15.3,
       "num_songs": 11
+    },
+    {
+      "expression": "yo nunca voy a",
+      "translation": null,
+      "count": 5,
+      "pmi": 15.3,
+      "num_songs": 5
     },
     {
       "expression": "hago todo lo que",
@@ -1157,16 +1159,16 @@
       "num_songs": 3
     },
     {
-      "expression": "que yo le dé",
-      "translation": null,
-      "count": 4,
-      "pmi": 15.3,
-      "num_songs": 3
-    },
-    {
       "expression": "lo tuyo y lo",
       "translation": null,
       "count": 4,
+      "pmi": 15.3,
+      "num_songs": 4
+    },
+    {
+      "expression": "lo de ustedes es",
+      "translation": null,
+      "count": 5,
       "pmi": 15.3,
       "num_songs": 4
     },
@@ -1185,18 +1187,18 @@
       "num_songs": 3
     },
     {
-      "expression": "sé que te gusta",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.2,
-      "num_songs": 5
-    },
-    {
       "expression": "tú sabes que soy",
       "translation": null,
       "count": 4,
       "pmi": 15.2,
       "num_songs": 4
+    },
+    {
+      "expression": "y todo el mundo",
+      "translation": null,
+      "count": 4,
+      "pmi": 15.2,
+      "num_songs": 3
     },
     {
       "expression": "las moñas son",
@@ -1206,6 +1208,13 @@
       "num_songs": 4
     },
     {
+      "expression": "yo sigo siendo",
+      "translation": null,
+      "count": 4,
+      "pmi": 15.2,
+      "num_songs": 3
+    },
+    {
       "expression": "que te lo metí",
       "translation": null,
       "count": 5,
@@ -1213,32 +1222,18 @@
       "num_songs": 4
     },
     {
+      "expression": "sé que te gusta",
+      "translation": null,
+      "count": 5,
+      "pmi": 15.1,
+      "num_songs": 5
+    },
+    {
       "expression": "yo te lo meto",
       "translation": null,
       "count": 5,
       "pmi": 15.1,
       "num_songs": 4
-    },
-    {
-      "expression": "y todo el mundo",
-      "translation": null,
-      "count": 4,
-      "pmi": 15.1,
-      "num_songs": 3
-    },
-    {
-      "expression": "yo sigo siendo",
-      "translation": null,
-      "count": 4,
-      "pmi": 15.1,
-      "num_songs": 3
-    },
-    {
-      "expression": "dé la gana",
-      "translation": null,
-      "count": 5,
-      "pmi": 15.1,
-      "num_songs": 3
     },
     {
       "expression": "ustedes saben ya",
@@ -1258,13 +1253,13 @@
   "patterns": [
     {
       "expression": "[PRON] voy a",
-      "count": 186,
+      "count": 188,
       "num_variants": 8,
-      "num_songs": 108,
+      "num_songs": 110,
       "variants": {
-        "te voy a": 91,
+        "te voy a": 92,
         "me voy a": 33,
-        "lo voy a": 28,
+        "lo voy a": 29,
         "la voy a": 10,
         "le voy a": 9,
         "los voy a": 6,
@@ -1274,11 +1269,11 @@
     },
     {
       "expression": "que yo [PRON]",
-      "count": 82,
+      "count": 83,
       "num_variants": 8,
-      "num_songs": 60,
+      "num_songs": 61,
       "variants": {
-        "que yo te": 38,
+        "que yo te": 39,
         "que yo me": 21,
         "que yo le": 10,
         "que yo se": 5,
@@ -1290,11 +1285,11 @@
     },
     {
       "expression": "todo [PRON] que",
-      "count": 72,
+      "count": 71,
       "num_variants": 2,
       "num_songs": 57,
       "variants": {
-        "todo lo que": 68,
+        "todo lo que": 67,
         "todo los que": 4
       }
     },
@@ -1302,7 +1297,7 @@
       "expression": "[PRON] va a",
       "count": 69,
       "num_variants": 9,
-      "num_songs": 56,
+      "num_songs": 57,
       "variants": {
         "te va a": 22,
         "se va a": 17,
@@ -1334,11 +1329,11 @@
     },
     {
       "expression": "a mí [PRON]",
-      "count": 58,
+      "count": 61,
       "num_variants": 2,
-      "num_songs": 39,
+      "num_songs": 42,
       "variants": {
-        "a mí me": 54,
+        "a mí me": 57,
         "a mí se": 4
       }
     },
@@ -1394,27 +1389,12 @@
       }
     },
     {
-      "expression": "pero no [PRON]",
+      "expression": "que tú [PRON]",
       "count": 36,
-      "num_variants": 7,
+      "num_variants": 6,
       "num_songs": 31,
       "variants": {
-        "pero no me": 13,
-        "pero no se": 10,
-        "pero no te": 6,
-        "pero no lo": 3,
-        "pero no les": 2,
-        "pero no le": 1,
-        "pero no los": 1
-      }
-    },
-    {
-      "expression": "que tú [PRON]",
-      "count": 35,
-      "num_variants": 6,
-      "num_songs": 30,
-      "variants": {
-        "que tú me": 23,
+        "que tú me": 24,
         "que tú te": 7,
         "que tú le": 2,
         "que tú la": 1,
@@ -1423,26 +1403,29 @@
       }
     },
     {
-      "expression": "[PRON] que yo",
-      "count": 34,
-      "num_variants": 3,
-      "num_songs": 29,
+      "expression": "pero no [PRON]",
+      "count": 35,
+      "num_variants": 7,
+      "num_songs": 31,
       "variants": {
-        "lo que yo": 26,
-        "la que yo": 7,
-        "los que yo": 1
+        "pero no me": 13,
+        "pero no se": 9,
+        "pero no te": 6,
+        "pero no lo": 3,
+        "pero no les": 2,
+        "pero no le": 1,
+        "pero no los": 1
       }
     },
     {
-      "expression": "que [PRON] dé",
-      "count": 32,
-      "num_variants": 4,
-      "num_songs": 14,
+      "expression": "[PRON] que yo",
+      "count": 35,
+      "num_variants": 3,
+      "num_songs": 30,
       "variants": {
-        "que le dé": 25,
-        "que me dé": 5,
-        "que nos dé": 1,
-        "que te dé": 1
+        "lo que yo": 27,
+        "la que yo": 7,
+        "los que yo": 1
       }
     },
     {
@@ -1481,6 +1464,18 @@
         "que te gusta": 11,
         "que le gusta": 5,
         "que les gusta": 2
+      }
+    },
+    {
+      "expression": "que [PRON] dé",
+      "count": 31,
+      "num_variants": 4,
+      "num_songs": 14,
+      "variants": {
+        "que le dé": 25,
+        "que me dé": 4,
+        "que nos dé": 1,
+        "que te dé": 1
       }
     },
     {
@@ -1644,11 +1639,11 @@
       "expression": "quiero que [PRON]",
       "count": 21,
       "num_variants": 5,
-      "num_songs": 16,
+      "num_songs": 17,
       "variants": {
         "quiero que te": 8,
-        "quiero que me": 6,
-        "quiero que la": 5,
+        "quiero que me": 7,
+        "quiero que la": 4,
         "quiero que le": 1,
         "quiero que se": 1
       }
@@ -1736,6 +1731,18 @@
       }
     },
     {
+      "expression": "ando con [PRON]",
+      "count": 17,
+      "num_variants": 4,
+      "num_songs": 16,
+      "variants": {
+        "ando con los": 8,
+        "ando con la": 6,
+        "ando con las": 2,
+        "ando con lo": 1
+      }
+    },
+    {
       "expression": "[PRON] voy a hacer",
       "count": 17,
       "num_variants": 5,
@@ -1793,30 +1800,36 @@
       }
     },
     {
-      "expression": "por qué [PRON]",
+      "expression": "[PRON] que quiero",
       "count": 15,
-      "num_variants": 7,
-      "num_songs": 12,
+      "num_variants": 2,
+      "num_songs": 14,
       "variants": {
-        "por qué te": 5,
-        "por qué me": 3,
-        "por qué nos": 2,
-        "por qué se": 2,
-        "por qué la": 1,
-        "por qué lo": 1,
-        "por qué le": 1
+        "lo que quiero": 14,
+        "la que quiero": 1
       }
     },
     {
-      "expression": "ando con [PRON]",
+      "expression": "no [PRON] importa",
+      "count": 15,
+      "num_variants": 3,
+      "num_songs": 13,
+      "variants": {
+        "no me importa": 13,
+        "no le importa": 1,
+        "no te importa": 1
+      }
+    },
+    {
+      "expression": "por ti [PRON]",
       "count": 15,
       "num_variants": 4,
-      "num_songs": 14,
+      "num_songs": 12,
       "variants": {
-        "ando con los": 8,
-        "ando con la": 5,
-        "ando con lo": 1,
-        "ando con las": 1
+        "por ti me": 12,
+        "por ti les": 1,
+        "por ti lo": 1,
+        "por ti le": 1
       }
     },
     {
@@ -1859,12 +1872,12 @@
       "expression": "no [PRON] llames",
       "count": 14,
       "num_variants": 5,
-      "num_songs": 6,
+      "num_songs": 7,
       "variants": {
-        "no me llames": 8,
-        "no las llames": 2,
+        "no me llames": 9,
         "no te llames": 2,
         "no la llames": 1,
+        "no las llames": 1,
         "no lo llames": 1
       }
     },
@@ -1899,16 +1912,6 @@
       }
     },
     {
-      "expression": "[PRON] que quiero",
-      "count": 14,
-      "num_variants": 2,
-      "num_songs": 13,
-      "variants": {
-        "lo que quiero": 13,
-        "la que quiero": 1
-      }
-    },
-    {
       "expression": "que [PRON] vaya",
       "count": 14,
       "num_variants": 4,
@@ -1935,26 +1938,18 @@
       }
     },
     {
-      "expression": "no [PRON] importa",
+      "expression": "por qué [PRON]",
       "count": 14,
-      "num_variants": 3,
+      "num_variants": 7,
       "num_songs": 12,
       "variants": {
-        "no me importa": 12,
-        "no le importa": 1,
-        "no te importa": 1
-      }
-    },
-    {
-      "expression": "por ti [PRON]",
-      "count": 14,
-      "num_variants": 4,
-      "num_songs": 11,
-      "variants": {
-        "por ti me": 11,
-        "por ti les": 1,
-        "por ti lo": 1,
-        "por ti le": 1
+        "por qué te": 5,
+        "por qué me": 3,
+        "por qué nos": 2,
+        "por qué la": 1,
+        "por qué lo": 1,
+        "por qué le": 1,
+        "por qué se": 1
       }
     },
     {
@@ -1967,6 +1962,16 @@
         "te gusta el": 3,
         "les gusta el": 2,
         "me gusta el": 1
+      }
+    },
+    {
+      "expression": "vamos para [PRON]",
+      "count": 13,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "vamos para la": 12,
+        "vamos para los": 1
       }
     },
     {
@@ -2049,27 +2054,6 @@
       }
     },
     {
-      "expression": "vamos para [PRON]",
-      "count": 12,
-      "num_variants": 2,
-      "num_songs": 6,
-      "variants": {
-        "vamos para la": 11,
-        "vamos para los": 1
-      }
-    },
-    {
-      "expression": "sin cojones [PRON]",
-      "count": 12,
-      "num_variants": 3,
-      "num_songs": 9,
-      "variants": {
-        "sin cojones me": 6,
-        "sin cojones le": 4,
-        "sin cojones lo": 2
-      }
-    },
-    {
       "expression": "más que [PRON]",
       "count": 12,
       "num_variants": 5,
@@ -2131,7 +2115,7 @@
       "expression": "no [PRON] va",
       "count": 12,
       "num_variants": 5,
-      "num_songs": 11,
+      "num_songs": 12,
       "variants": {
         "no se va": 6,
         "no me va": 3,
@@ -2260,15 +2244,14 @@
       }
     },
     {
-      "expression": "yo que [PRON]",
+      "expression": "sin cojones [PRON]",
       "count": 11,
-      "num_variants": 4,
-      "num_songs": 8,
+      "num_variants": 3,
+      "num_songs": 9,
       "variants": {
-        "yo que te": 7,
-        "yo que me": 2,
-        "yo que la": 1,
-        "yo que le": 1
+        "sin cojones me": 6,
+        "sin cojones le": 3,
+        "sin cojones lo": 2
       }
     },
     {
@@ -2326,6 +2309,16 @@
       }
     },
     {
+      "expression": "dentro de [PRON]",
+      "count": 11,
+      "num_variants": 2,
+      "num_songs": 9,
+      "variants": {
+        "dentro de la": 10,
+        "dentro de los": 1
+      }
+    },
+    {
       "expression": "[PRON] puse a",
       "count": 11,
       "num_variants": 3,
@@ -2360,6 +2353,18 @@
       }
     },
     {
+      "expression": "yo siempre [PRON]",
+      "count": 11,
+      "num_variants": 4,
+      "num_songs": 9,
+      "variants": {
+        "yo siempre te": 4,
+        "yo siempre me": 4,
+        "yo siempre lo": 2,
+        "yo siempre le": 1
+      }
+    },
+    {
       "expression": "dile que [PRON]",
       "count": 11,
       "num_variants": 5,
@@ -2370,6 +2375,16 @@
         "dile que la": 2,
         "dile que lo": 2,
         "dile que las": 1
+      }
+    },
+    {
+      "expression": "yo [PRON] que",
+      "count": 11,
+      "num_variants": 2,
+      "num_songs": 10,
+      "variants": {
+        "yo lo que": 7,
+        "yo se que": 4
       }
     },
     {
@@ -2415,6 +2430,18 @@
       "variants": {
         "hoy te voy": 9,
         "hoy me voy": 1
+      }
+    },
+    {
+      "expression": "yo que [PRON]",
+      "count": 10,
+      "num_variants": 4,
+      "num_songs": 8,
+      "variants": {
+        "yo que te": 6,
+        "yo que me": 2,
+        "yo que la": 1,
+        "yo que le": 1
       }
     },
     {
@@ -2484,28 +2511,6 @@
       }
     },
     {
-      "expression": "yo siempre [PRON]",
-      "count": 10,
-      "num_variants": 4,
-      "num_songs": 8,
-      "variants": {
-        "yo siempre te": 4,
-        "yo siempre me": 3,
-        "yo siempre lo": 2,
-        "yo siempre le": 1
-      }
-    },
-    {
-      "expression": "yo [PRON] que",
-      "count": 10,
-      "num_variants": 2,
-      "num_songs": 9,
-      "variants": {
-        "yo lo que": 6,
-        "yo se que": 4
-      }
-    },
-    {
       "expression": "yo [PRON] doy",
       "count": 10,
       "num_variants": 3,
@@ -2517,6 +2522,18 @@
       }
     },
     {
+      "expression": "y eso [PRON]",
+      "count": 10,
+      "num_variants": 4,
+      "num_songs": 7,
+      "variants": {
+        "y eso me": 4,
+        "y eso se": 3,
+        "y eso te": 2,
+        "y eso les": 1
+      }
+    },
+    {
       "expression": "[PRON] tienen que",
       "count": 10,
       "num_variants": 2,
@@ -2524,17 +2541,6 @@
       "variants": {
         "me tienen que": 9,
         "se tienen que": 1
-      }
-    },
-    {
-      "expression": "[PRON] llames más",
-      "count": 10,
-      "num_variants": 3,
-      "num_songs": 2,
-      "variants": {
-        "me llames más": 6,
-        "las llames más": 2,
-        "te llames más": 2
       }
     },
     {
@@ -2558,17 +2564,6 @@
         "tú me vas a": 3,
         "tú les vas a": 1,
         "tú nos vas a": 1
-      }
-    },
-    {
-      "expression": "no [PRON] llames más",
-      "count": 10,
-      "num_variants": 3,
-      "num_songs": 2,
-      "variants": {
-        "no me llames más": 6,
-        "no las llames más": 2,
-        "no te llames más": 2
       }
     },
     {
@@ -2600,18 +2595,6 @@
         "yo lo tengo": 6,
         "yo la tengo": 2,
         "yo te tengo": 1
-      }
-    },
-    {
-      "expression": "tus ojos [PRON]",
-      "count": 9,
-      "num_variants": 4,
-      "num_songs": 7,
-      "variants": {
-        "tus ojos me": 6,
-        "tus ojos se": 1,
-        "tus ojos los": 1,
-        "tus ojos lo": 1
       }
     },
     {
@@ -2657,16 +2640,6 @@
       }
     },
     {
-      "expression": "no [PRON] vayas",
-      "count": 9,
-      "num_variants": 2,
-      "num_songs": 7,
-      "variants": {
-        "no te vayas": 8,
-        "no le vayas": 1
-      }
-    },
-    {
       "expression": "juro que [PRON]",
       "count": 9,
       "num_variants": 3,
@@ -2675,16 +2648,6 @@
         "juro que me": 6,
         "juro que lo": 2,
         "juro que les": 1
-      }
-    },
-    {
-      "expression": "tú [PRON] llamas",
-      "count": 9,
-      "num_variants": 2,
-      "num_songs": 5,
-      "variants": {
-        "tú me llamas": 7,
-        "tú te llamas": 2
       }
     },
     {
@@ -2731,25 +2694,14 @@
       }
     },
     {
-      "expression": "cojones [PRON] tiene",
+      "expression": "[PRON] llames más",
       "count": 9,
-      "num_variants": 2,
-      "num_songs": 7,
+      "num_variants": 3,
+      "num_songs": 2,
       "variants": {
-        "cojones me tiene": 5,
-        "cojones le tiene": 4
-      }
-    },
-    {
-      "expression": "y eso [PRON]",
-      "count": 9,
-      "num_variants": 4,
-      "num_songs": 6,
-      "variants": {
-        "y eso me": 4,
-        "y eso se": 3,
-        "y eso les": 1,
-        "y eso te": 1
+        "me llames más": 6,
+        "te llames más": 2,
+        "las llames más": 1
       }
     },
     {
@@ -2794,13 +2746,14 @@
       }
     },
     {
-      "expression": "sin cojones [PRON] tiene",
+      "expression": "no [PRON] llames más",
       "count": 9,
-      "num_variants": 2,
-      "num_songs": 7,
+      "num_variants": 3,
+      "num_songs": 2,
       "variants": {
-        "sin cojones me tiene": 5,
-        "sin cojones le tiene": 4
+        "no me llames más": 6,
+        "no te llames más": 2,
+        "no las llames más": 1
       }
     },
     {
@@ -2893,6 +2846,18 @@
       }
     },
     {
+      "expression": "tus ojos [PRON]",
+      "count": 8,
+      "num_variants": 4,
+      "num_songs": 7,
+      "variants": {
+        "tus ojos me": 5,
+        "tus ojos se": 1,
+        "tus ojos los": 1,
+        "tus ojos lo": 1
+      }
+    },
+    {
       "expression": "que conmigo [PRON]",
       "count": 8,
       "num_variants": 2,
@@ -2900,6 +2865,16 @@
       "variants": {
         "que conmigo te": 4,
         "que conmigo se": 4
+      }
+    },
+    {
+      "expression": "[PRON] hables de",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 8,
+      "variants": {
+        "me hables de": 6,
+        "le hables de": 2
       }
     },
     {
@@ -2936,16 +2911,6 @@
       }
     },
     {
-      "expression": "ti [PRON] va",
-      "count": 8,
-      "num_variants": 2,
-      "num_songs": 6,
-      "variants": {
-        "ti me va": 4,
-        "ti te va": 4
-      }
-    },
-    {
       "expression": "que [PRON] haga",
       "count": 8,
       "num_variants": 4,
@@ -2955,6 +2920,16 @@
         "que lo haga": 2,
         "que me haga": 1,
         "que le haga": 1
+      }
+    },
+    {
+      "expression": "no [PRON] vayas",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "no te vayas": 7,
+        "no le vayas": 1
       }
     },
     {
@@ -2969,14 +2944,13 @@
       }
     },
     {
-      "expression": "y tú [PRON]",
+      "expression": "tú [PRON] llamas",
       "count": 8,
-      "num_variants": 3,
-      "num_songs": 7,
+      "num_variants": 2,
+      "num_songs": 5,
       "variants": {
-        "y tú te": 4,
-        "y tú la": 3,
-        "y tú nos": 1
+        "tú me llamas": 7,
+        "tú te llamas": 1
       }
     },
     {
@@ -3049,6 +3023,26 @@
       }
     },
     {
+      "expression": "cojones [PRON] tiene",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "cojones me tiene": 5,
+        "cojones le tiene": 3
+      }
+    },
+    {
+      "expression": "dónde están [PRON]",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "dónde están las": 7,
+        "dónde están los": 1
+      }
+    },
+    {
       "expression": "no [PRON] quiero",
       "count": 8,
       "num_variants": 5,
@@ -3099,6 +3093,16 @@
       }
     },
     {
+      "expression": "no [PRON] hables de",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 8,
+      "variants": {
+        "no me hables de": 6,
+        "no le hables de": 2
+      }
+    },
+    {
       "expression": "no [PRON] vuelvo a",
       "count": 8,
       "num_variants": 3,
@@ -3136,7 +3140,7 @@
       "expression": "no [PRON] va a",
       "count": 8,
       "num_variants": 4,
-      "num_songs": 7,
+      "num_songs": 8,
       "variants": {
         "no se va a": 5,
         "no le va a": 1,
@@ -3165,6 +3169,16 @@
         "nadie lo va a": 2,
         "nadie te va a": 1,
         "nadie le va a": 1
+      }
+    },
+    {
+      "expression": "sin cojones [PRON] tiene",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 7,
+      "variants": {
+        "sin cojones me tiene": 5,
+        "sin cojones le tiene": 3
       }
     },
     {
@@ -3219,6 +3233,17 @@
       "variants": {
         "que ella me": 5,
         "que ella se": 2
+      }
+    },
+    {
+      "expression": "y todo [PRON]",
+      "count": 7,
+      "num_variants": 3,
+      "num_songs": 7,
+      "variants": {
+        "y todo los": 5,
+        "y todo lo": 1,
+        "y todo se": 1
       }
     },
     {
@@ -3301,6 +3326,16 @@
       }
     },
     {
+      "expression": "ti [PRON] va",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "ti te va": 4,
+        "ti me va": 3
+      }
+    },
+    {
       "expression": "que [PRON] bese",
       "count": 7,
       "num_variants": 3,
@@ -3335,17 +3370,6 @@
       }
     },
     {
-      "expression": "cómo tú [PRON]",
-      "count": 7,
-      "num_variants": 3,
-      "num_songs": 5,
-      "variants": {
-        "cómo tú me": 3,
-        "cómo tú te": 3,
-        "cómo tú lo": 1
-      }
-    },
-    {
       "expression": "cómo yo [PRON]",
       "count": 7,
       "num_variants": 3,
@@ -3368,17 +3392,6 @@
       }
     },
     {
-      "expression": "final de [PRON]",
-      "count": 7,
-      "num_variants": 3,
-      "num_songs": 6,
-      "variants": {
-        "final de la": 4,
-        "final de los": 2,
-        "final de lo": 1
-      }
-    },
-    {
       "expression": "con todo [PRON]",
       "count": 7,
       "num_variants": 2,
@@ -3386,6 +3399,17 @@
       "variants": {
         "con todo los": 6,
         "con todo lo": 1
+      }
+    },
+    {
+      "expression": "y tú [PRON]",
+      "count": 7,
+      "num_variants": 3,
+      "num_songs": 7,
+      "variants": {
+        "y tú te": 4,
+        "y tú la": 2,
+        "y tú nos": 1
       }
     },
     {
@@ -3407,6 +3431,16 @@
       "variants": {
         "tú me quieres": 6,
         "tú lo quieres": 1
+      }
+    },
+    {
+      "expression": "[PRON] tienes que",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "lo tienes que": 5,
+        "te tienes que": 2
       }
     },
     {
@@ -3496,16 +3530,6 @@
         "dime si la": 2,
         "dime si me": 1,
         "dime si los": 1
-      }
-    },
-    {
-      "expression": "dónde están [PRON]",
-      "count": 7,
-      "num_variants": 2,
-      "num_songs": 5,
-      "variants": {
-        "dónde están las": 6,
-        "dónde están los": 1
       }
     },
     {
@@ -3630,18 +3654,6 @@
       }
     },
     {
-      "expression": "sé por qué [PRON]",
-      "count": 7,
-      "num_variants": 4,
-      "num_songs": 5,
-      "variants": {
-        "sé por qué me": 2,
-        "sé por qué nos": 2,
-        "sé por qué se": 2,
-        "sé por qué la": 1
-      }
-    },
-    {
       "expression": "que [PRON] va a",
       "count": 7,
       "num_variants": 3,
@@ -3670,17 +3682,6 @@
       "variants": {
         "el diablo me": 5,
         "el diablo te": 1
-      }
-    },
-    {
-      "expression": "y todo [PRON]",
-      "count": 6,
-      "num_variants": 3,
-      "num_songs": 6,
-      "variants": {
-        "y todo los": 4,
-        "y todo lo": 1,
-        "y todo se": 1
       }
     },
     {
@@ -3750,16 +3751,6 @@
       }
     },
     {
-      "expression": "[PRON] hables de",
-      "count": 6,
-      "num_variants": 2,
-      "num_songs": 6,
-      "variants": {
-        "me hables de": 4,
-        "le hables de": 2
-      }
-    },
-    {
       "expression": "por mí [PRON]",
       "count": 6,
       "num_variants": 2,
@@ -3800,14 +3791,25 @@
       }
     },
     {
-      "expression": "[PRON] vayas a",
+      "expression": "cómo tú [PRON]",
       "count": 6,
       "num_variants": 3,
       "num_songs": 5,
       "variants": {
-        "te vayas a": 4,
-        "le vayas a": 1,
-        "me vayas a": 1
+        "cómo tú me": 3,
+        "cómo tú te": 2,
+        "cómo tú lo": 1
+      }
+    },
+    {
+      "expression": "final de [PRON]",
+      "count": 6,
+      "num_variants": 3,
+      "num_songs": 6,
+      "variants": {
+        "final de la": 4,
+        "final de lo": 1,
+        "final de los": 1
       }
     },
     {
@@ -3833,6 +3835,16 @@
         "a todo le": 2,
         "a todo lo": 1,
         "a todo la": 1
+      }
+    },
+    {
+      "expression": "encima de [PRON]",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 6,
+      "variants": {
+        "encima de la": 5,
+        "encima de los": 1
       }
     },
     {
@@ -3875,16 +3887,6 @@
         "mí que me": 2,
         "mí que te": 2,
         "mí que se": 2
-      }
-    },
-    {
-      "expression": "[PRON] tienes que",
-      "count": 6,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "lo tienes que": 4,
-        "te tienes que": 2
       }
     },
     {
@@ -4127,13 +4129,14 @@
       }
     },
     {
-      "expression": "[PRON] dices que",
+      "expression": "antes de [PRON]",
       "count": 6,
-      "num_variants": 2,
-      "num_songs": 3,
+      "num_variants": 3,
+      "num_songs": 5,
       "variants": {
-        "le dices que": 4,
-        "me dices que": 2
+        "antes de las": 3,
+        "antes de los": 2,
+        "antes de la": 1
       }
     },
     {
@@ -4194,16 +4197,6 @@
       }
     },
     {
-      "expression": "no [PRON] hables de",
-      "count": 6,
-      "num_variants": 2,
-      "num_songs": 6,
-      "variants": {
-        "no me hables de": 4,
-        "no le hables de": 2
-      }
-    },
-    {
       "expression": "mí sin cojones [PRON]",
       "count": 6,
       "num_variants": 2,
@@ -4244,6 +4237,18 @@
       "variants": {
         "ya tú no me": 5,
         "ya tú no le": 1
+      }
+    },
+    {
+      "expression": "sé por qué [PRON]",
+      "count": 6,
+      "num_variants": 4,
+      "num_songs": 5,
+      "variants": {
+        "sé por qué me": 2,
+        "sé por qué nos": 2,
+        "sé por qué la": 1,
+        "sé por qué se": 1
       }
     },
     {
@@ -4365,6 +4370,16 @@
       "variants": {
         "a dios le": 3,
         "a dios se": 2
+      }
+    },
+    {
+      "expression": "tú misma [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "tú misma lo": 4,
+        "tú misma me": 1
       }
     },
     {
@@ -4510,6 +4525,17 @@
       }
     },
     {
+      "expression": "[PRON] vayas a",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 5,
+      "variants": {
+        "te vayas a": 3,
+        "le vayas a": 1,
+        "me vayas a": 1
+      }
+    },
+    {
       "expression": "[PRON] más que",
       "count": 5,
       "num_variants": 2,
@@ -4538,16 +4564,6 @@
         "sé si me": 3,
         "sé si se": 1,
         "sé si te": 1
-      }
-    },
-    {
-      "expression": "y aunque [PRON]",
-      "count": 5,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "y aunque me": 3,
-        "y aunque la": 2
       }
     },
     {
@@ -4594,16 +4610,6 @@
       }
     },
     {
-      "expression": "encima e [PRON]",
-      "count": 5,
-      "num_variants": 2,
-      "num_songs": 5,
-      "variants": {
-        "encima e la": 4,
-        "encima e los": 1
-      }
-    },
-    {
       "expression": "cuatro y [PRON]",
       "count": 5,
       "num_variants": 3,
@@ -4633,6 +4639,16 @@
         "el corazón lo": 2,
         "el corazón me": 2,
         "el corazón te": 1
+      }
+    },
+    {
+      "expression": "más de [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 5,
+      "variants": {
+        "más de lo": 4,
+        "más de la": 1
       }
     },
     {
@@ -4722,6 +4738,16 @@
       }
     },
     {
+      "expression": "haces [PRON] que",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "haces lo que": 4,
+        "haces la que": 1
+      }
+    },
+    {
       "expression": "de ti [PRON]",
       "count": 5,
       "num_variants": 3,
@@ -4745,12 +4771,13 @@
     {
       "expression": "pero ella [PRON]",
       "count": 5,
-      "num_variants": 3,
-      "num_songs": 4,
+      "num_variants": 4,
+      "num_songs": 5,
       "variants": {
-        "pero ella me": 3,
+        "pero ella me": 2,
         "pero ella lo": 1,
-        "pero ella la": 1
+        "pero ella la": 1,
+        "pero ella los": 1
       }
     },
     {
@@ -5020,14 +5047,24 @@
       }
     },
     {
-      "expression": "antes de [PRON]",
+      "expression": "hasta en [PRON]",
       "count": 5,
       "num_variants": 3,
-      "num_songs": 4,
+      "num_songs": 5,
       "variants": {
-        "antes de las": 3,
-        "antes de los": 1,
-        "antes de la": 1
+        "hasta en la": 2,
+        "hasta en las": 2,
+        "hasta en los": 1
+      }
+    },
+    {
+      "expression": "[PRON] dices que",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "le dices que": 3,
+        "me dices que": 2
       }
     },
     {
@@ -5092,16 +5129,6 @@
         "mientras yo le": 1,
         "mientras yo se": 1,
         "mientras yo me": 1
-      }
-    },
-    {
-      "expression": "dentro de [PRON]",
-      "count": 5,
-      "num_variants": 2,
-      "num_songs": 5,
-      "variants": {
-        "dentro de la": 4,
-        "dentro de los": 1
       }
     },
     {
@@ -5180,16 +5207,6 @@
       }
     },
     {
-      "expression": "no [PRON] vayas a",
-      "count": 5,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "no te vayas a": 4,
-        "no le vayas a": 1
-      }
-    },
-    {
       "expression": "no sé si [PRON]",
       "count": 5,
       "num_variants": 3,
@@ -5245,6 +5262,18 @@
       }
     },
     {
+      "expression": "yo ando con [PRON]",
+      "count": 5,
+      "num_variants": 4,
+      "num_songs": 5,
+      "variants": {
+        "yo ando con las": 2,
+        "yo ando con lo": 1,
+        "yo ando con la": 1,
+        "yo ando con los": 1
+      }
+    },
+    {
       "expression": "fui el que [PRON]",
       "count": 5,
       "num_variants": 2,
@@ -5255,6 +5284,18 @@
       }
     },
     {
+      "expression": "[PRON] tengo de",
+      "count": 4,
+      "num_variants": 4,
+      "num_songs": 4,
+      "variants": {
+        "lo tengo de": 1,
+        "los tengo de": 1,
+        "te tengo de": 1,
+        "la tengo de": 1
+      }
+    },
+    {
       "expression": "ya mismo [PRON]",
       "count": 4,
       "num_variants": 2,
@@ -5262,16 +5303,6 @@
       "variants": {
         "ya mismo me": 3,
         "ya mismo te": 1
-      }
-    },
-    {
-      "expression": "tú misma [PRON]",
-      "count": 4,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "tú misma lo": 3,
-        "tú misma me": 1
       }
     },
     {
@@ -5433,6 +5464,16 @@
       }
     },
     {
+      "expression": "y aunque [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "y aunque me": 2,
+        "y aunque la": 2
+      }
+    },
+    {
       "expression": "tú [PRON] besas",
       "count": 4,
       "num_variants": 3,
@@ -5473,16 +5514,6 @@
         "pero todo los": 1,
         "pero todo te": 1,
         "pero todo lo": 1
-      }
-    },
-    {
-      "expression": "más de [PRON]",
-      "count": 4,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "más de lo": 3,
-        "más de la": 1
       }
     },
     {
@@ -5587,13 +5618,25 @@
       }
     },
     {
-      "expression": "haces [PRON] que",
+      "expression": "que solo [PRON]",
+      "count": 4,
+      "num_variants": 4,
+      "num_songs": 4,
+      "variants": {
+        "que solo lo": 1,
+        "que solo me": 1,
+        "que solo te": 1,
+        "que solo la": 1
+      }
+    },
+    {
+      "expression": "no [PRON] queda",
       "count": 4,
       "num_variants": 2,
-      "num_songs": 3,
+      "num_songs": 4,
       "variants": {
-        "haces lo que": 3,
-        "haces la que": 1
+        "no se queda": 2,
+        "no me queda": 2
       }
     },
     {
@@ -5678,6 +5721,16 @@
         "tú siempre me": 2,
         "tú siempre te": 1,
         "tú siempre les": 1
+      }
+    },
+    {
+      "expression": "noche no [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "noche no le": 3,
+        "noche no se": 1
       }
     },
     {
@@ -5815,6 +5868,17 @@
       }
     },
     {
+      "expression": "y [PRON] compro",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "y te compro": 2,
+        "y le compro": 1,
+        "y me compro": 1
+      }
+    },
+    {
       "expression": "que [PRON] vi",
       "count": 4,
       "num_variants": 3,
@@ -5887,17 +5951,6 @@
       }
     },
     {
-      "expression": "hasta en [PRON]",
-      "count": 4,
-      "num_variants": 3,
-      "num_songs": 4,
-      "variants": {
-        "hasta en la": 2,
-        "hasta en los": 1,
-        "hasta en las": 1
-      }
-    },
-    {
       "expression": "[PRON] doy con",
       "count": 4,
       "num_variants": 2,
@@ -5928,13 +5981,13 @@
       }
     },
     {
-      "expression": "debajo e [PRON]",
+      "expression": "debajo de [PRON]",
       "count": 4,
       "num_variants": 2,
       "num_songs": 2,
       "variants": {
-        "debajo e la": 3,
-        "debajo e las": 1
+        "debajo de la": 3,
+        "debajo de las": 1
       }
     },
     {
@@ -5956,17 +6009,6 @@
       "variants": {
         "que le mete": 3,
         "que te mete": 1
-      }
-    },
-    {
-      "expression": "algo que [PRON]",
-      "count": 4,
-      "num_variants": 3,
-      "num_songs": 3,
-      "variants": {
-        "algo que lo": 2,
-        "algo que nos": 1,
-        "algo que se": 1
       }
     },
     {
@@ -5997,6 +6039,16 @@
       "variants": {
         "voy a la": 3,
         "voy a las": 1
+      }
+    },
+    {
+      "expression": "si [PRON] dejas",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "si me dejas": 3,
+        "si te dejas": 1
       }
     },
     {
@@ -6125,6 +6177,16 @@
       }
     },
     {
+      "expression": "no [PRON] vayas a",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "no te vayas a": 3,
+        "no le vayas a": 1
+      }
+    },
+    {
       "expression": "[PRON] voy a llevar",
       "count": 4,
       "num_variants": 2,
@@ -6154,6 +6216,16 @@
       "variants": {
         "es lo que yo": 3,
         "es la que yo": 1
+      }
+    },
+    {
+      "expression": "pero por ti [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "pero por ti me": 3,
+        "pero por ti lo": 1
       }
     },
     {
@@ -6284,18 +6356,6 @@
       }
     },
     {
-      "expression": "yo ando con [PRON]",
-      "count": 4,
-      "num_variants": 4,
-      "num_songs": 4,
-      "variants": {
-        "yo ando con lo": 1,
-        "yo ando con las": 1,
-        "yo ando con la": 1,
-        "yo ando con los": 1
-      }
-    },
-    {
       "expression": "[PRON] juro que no",
       "count": 4,
       "num_variants": 3,
@@ -6329,8 +6389,8 @@
   ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 79,
+    "confirmed_count": 78,
     "pmi_detected_count": 115,
-    "patterns_count": 459
+    "patterns_count": 465
   }
 }

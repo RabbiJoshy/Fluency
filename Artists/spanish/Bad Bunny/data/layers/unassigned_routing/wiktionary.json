@@ -83,7 +83,9 @@
     3,
     4,
     7,
-    8,
+    8
+  ],
+  "odio|odio": [
     9
   ],
   "tan|tanto": [
@@ -92,7 +94,7 @@
     2,
     8
   ],
-  "fuera|fuera": [
+  "fuera|ser": [
     4
   ],
   "primero|primero": [
@@ -117,9 +119,11 @@
     1,
     2,
     5,
-    6,
     8,
     9
+  ],
+  "beso|besar": [
+    6
   ],
   "cuarto|cuarto": [
     0,
@@ -132,8 +136,10 @@
     2,
     3,
     4,
-    7,
     8
+  ],
+  "vino|venir": [
+    7
   ],
   "claro|claro": [
     0,
@@ -242,6 +248,9 @@
     1,
     2
   ],
+  "champaña|champaña": [
+    9
+  ],
   "corta|corto": [
     7,
     9
@@ -249,9 +258,11 @@
   "llena|lleno": [
     0,
     1,
-    2,
     6,
-    7,
+    7
+  ],
+  "llena|llenar": [
+    2,
     8
   ],
   "pare|parar": [
@@ -284,8 +295,14 @@
     1,
     2
   ],
+  "espejo|espejo": [
+    5
+  ],
   "pregunta|pregunta": [
     0
+  ],
+  "tití|tití": [
+    1
   ],
   "adiós|adiós": [
     0,
@@ -355,6 +372,9 @@
     3,
     4
   ],
+  "quizás|quizás": [
+    8
+  ],
   "bellaquear|bellaquear": [
     0,
     1,
@@ -363,6 +383,12 @@
   "espera|espera": [
     0,
     2
+  ],
+  "hielo|hielo": [
+    8
+  ],
+  "lugar|lugar": [
+    7
   ],
   "preso|preso": [
     0,
@@ -424,10 +450,16 @@
     1,
     2
   ],
+  "sonrisa|sonrisa": [
+    7
+  ],
   "vía|vía": [
     0,
     1,
     2
+  ],
+  "bla|bla": [
+    1
   ],
   "chiquito|chiquito": [
     0,
@@ -444,6 +476,9 @@
   ],
   "idiota|idiota": [
     1
+  ],
+  "iglesia|iglesia": [
+    6
   ],
   "infiel|infiel": [
     0,
@@ -474,6 +509,13 @@
     0,
     1,
     2
+  ],
+  "pronto|pronto": [
+    5,
+    6,
+    7,
+    8,
+    9
   ],
   "azul|azul": [
     0,
@@ -536,6 +578,12 @@
     0,
     1
   ],
+  "perdona|perdonar": [
+    3
+  ],
+  "perfume|perfume": [
+    3
+  ],
   "robo|robo": [
     2
   ],
@@ -546,14 +594,20 @@
   "tumba|tumba": [
     0
   ],
-  "acerca|acerca": [
-    1
-  ],
   "asesino|asesino": [
     0
   ],
+  "cincuenta|cincuenta": [
+    2
+  ],
+  "comenzar|comenzar": [
+    2
+  ],
   "médico|médico": [
     1
+  ],
+  "prometo|prometer": [
+    2
   ],
   "puerco|puerco": [
     0
@@ -567,6 +621,9 @@
   "veterano|veterano": [
     1
   ],
+  "vuelos|vuelo": [
+    2
+  ],
   "ilusiones|ilusión": [
     0
   ],
@@ -575,6 +632,24 @@
   ],
   "pases|pasar": [
     1
+  ],
+  "celulares|celular": [
+    1
+  ],
+  "lunes|lunes": [
+    1
+  ],
+  "peque|peque": [
+    1
+  ],
+  "roleta|roleta": [
+    1
+  ],
+  "enviar|enviar": [
+    1,
+    2,
+    3,
+    4
   ],
   "que|que": [
     0,
@@ -783,10 +858,10 @@
   ],
   "calle|calle": [
     0,
-    1
+    2
   ],
   "calle|callar": [
-    2
+    1
   ],
   "fue|ir": [
     0,
@@ -1270,7 +1345,8 @@
   "baila|bailar": [
     0,
     1,
-    2
+    2,
+    8
   ],
   "nota|nota": [
     0
@@ -1554,12 +1630,12 @@
     1,
     2
   ],
-  "dura|duro": [
-    0,
-    2
-  ],
   "dura|durar": [
-    1
+    0
+  ],
+  "dura|duro": [
+    1,
+    2
   ],
   "joder|joder": [
     0,
@@ -2001,10 +2077,8 @@
   ],
   "traje|traje": [
     0,
+    1,
     2
-  ],
-  "traje|traer": [
-    1
   ],
   "metes|meter": [
     0,
@@ -2072,10 +2146,10 @@
     2
   ],
   "falta|falta": [
-    0,
-    1
+    0
   ],
   "falta|faltar": [
+    1,
     2
   ],
   "moda|moda": [
@@ -2123,7 +2197,8 @@
   "dejas|dejar": [
     0,
     1,
-    2
+    2,
+    7
   ],
   "sientes|sentar": [
     0,
@@ -2340,7 +2415,8 @@
   "llames|llamar": [
     0,
     1,
-    2
+    2,
+    9
   ],
   "seas|ser": [
     0,
@@ -2894,7 +2970,8 @@
   "enamorar|enamorar": [
     0,
     1,
-    2
+    2,
+    8
   ],
   "espalda|espalda": [
     0,
@@ -2904,7 +2981,8 @@
   "hablas|habla": [
     0,
     1,
-    2
+    2,
+    9
   ],
   "hablo|hablar": [
     0,
@@ -3193,7 +3271,8 @@
   "rompe|romper": [
     0,
     1,
-    2
+    2,
+    8
   ],
   "rompiendo|romper": [
     0,
@@ -3275,7 +3354,8 @@
   "daño|daño": [
     0,
     1,
-    2
+    2,
+    8
   ],
   "decía|decir": [
     0,
@@ -3474,7 +3554,8 @@
   "daba|dar": [
     0,
     1,
-    2
+    2,
+    6
   ],
   "droga|droga": [
     0,
@@ -3519,7 +3600,8 @@
   "pasarla|pasar": [
     0,
     1,
-    2
+    2,
+    7
   ],
   "pega|pegar": [
     0,
@@ -3671,7 +3753,8 @@
   "cita|cita": [
     0,
     1,
-    2
+    2,
+    5
   ],
   "cree|creer": [
     0,
@@ -3686,7 +3769,8 @@
   "empezar|empezar": [
     0,
     1,
-    2
+    2,
+    6
   ],
   "fila|fila": [
     0,
@@ -3728,7 +3812,8 @@
   "movimiento|movimiento": [
     0,
     1,
-    2
+    2,
+    8
   ],
   "persona|persona": [
     0,
@@ -3838,7 +3923,8 @@
   "agua|agua": [
     0,
     1,
-    2
+    2,
+    7
   ],
   "aprieta|apretar": [
     0,
@@ -4098,7 +4184,8 @@
   "tabla|tabla": [
     0,
     1,
-    2
+    2,
+    6
   ],
   "traga|traga": [
     0,
@@ -4118,7 +4205,8 @@
   "viejo|viejo": [
     0,
     1,
-    2
+    2,
+    7
   ],
   "vira|vira": [
     0,
@@ -4128,7 +4216,8 @@
   "cheques|cheque": [
     0,
     1,
-    2
+    2,
+    4
   ],
   "cierres|cerrar": [
     0,
@@ -4409,7 +4498,8 @@
   "rola|rola": [
     0,
     1,
-    2
+    2,
+    6
   ],
   "sala|sala": [
     0,
@@ -4542,7 +4632,8 @@
   "bote|bote": [
     0,
     1,
-    2
+    2,
+    4
   ],
   "brilla|brillar": [
     0,
@@ -4738,7 +4829,9 @@
   "ola|ola": [
     0,
     1,
-    2
+    2,
+    7,
+    8
   ],
   "oscuridad|oscuridad": [
     0,
@@ -4875,7 +4968,8 @@
   "detrás|detrás": [
     0,
     1,
-    2
+    2,
+    7
   ],
   "entiendes|entender": [
     0,
@@ -4920,7 +5014,8 @@
   "acaba|acabar": [
     0,
     1,
-    2
+    2,
+    6
   ],
   "activo|activo": [
     0,
@@ -5072,7 +5167,9 @@
   "gustas|gustar": [
     0,
     1,
-    2
+    2,
+    6,
+    7
   ],
   "jodido|jodido": [
     0,
@@ -5082,7 +5179,12 @@
   "letra|letra": [
     0,
     1,
-    2
+    2,
+    5,
+    6,
+    7,
+    8,
+    9
   ],
   "llamando|llamar": [
     0,
@@ -5174,7 +5276,8 @@
   "película|película": [
     0,
     1,
-    2
+    2,
+    5
   ],
   "perdiendo|perder": [
     0,
@@ -5483,7 +5586,8 @@
   "corto|corto": [
     0,
     1,
-    2
+    2,
+    5
   ],
   "cristo|Cristo": [
     0,
@@ -5772,7 +5876,8 @@
   "tocan|tocar": [
     0,
     1,
-    2
+    2,
+    5
   ],
   "tocar|tocar": [
     0,
@@ -5896,7 +6001,8 @@
   "bola|bola": [
     0,
     1,
-    2
+    2,
+    4
   ],
   "cadena|cadena": [
     0,
@@ -6062,6 +6168,9 @@
     0,
     1,
     2
+  ],
+  "orlando|orlando": [
+    4
   ],
   "pacto|pacto": [
     0,
@@ -6284,7 +6393,8 @@
   "empezamos|empezar": [
     0,
     1,
-    2
+    2,
+    4
   ],
   "jueves|jueves": [
     0,
@@ -6356,10 +6466,141 @@
   "propios|propio": [
     0
   ],
+  "motora|motora": [
+    1
+  ],
+  "encerrar|encerrar": [
+    1
+  ],
+  "calentar|calentar": [
+    2,
+    3,
+    4
+  ],
+  "dedicar|dedicar": [
+    1
+  ],
+  "vete|ir": [
+    7
+  ],
+  "vuelvas|volver": [
+    3
+  ],
+  "estará|estar": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "diamantes|diamante": [
+    7
+  ],
+  "volvemos|volver": [
+    3
+  ],
+  "disimular|disimular": [
+    3
+  ],
+  "corazones|corazón": [
+    6
+  ],
+  "drogas|droga": [
+    1
+  ],
+  "llevarte|llevar": [
+    3
+  ],
+  "puedas|poder": [
+    3
+  ],
+  "arreglar|arreglar": [
+    2
+  ],
+  "chico|chico": [
+    3
+  ],
   "conocerte|conocer": [
     2
   ],
+  "copa|copa": [
+    3
+  ],
+  "creer|creer": [
+    3
+  ],
+  "cuesta|costar": [
+    3
+  ],
+  "diste|dar": [
+    3
+  ],
   "escribí|escribir": [
     2
+  ],
+  "muñeca|muñeca": [
+    3
+  ],
+  "nube|nube": [
+    3
+  ],
+  "rompió|romper": [
+    2
+  ],
+  "soltar|soltar": [
+    3
+  ],
+  "viejas|viejo": [
+    3
+  ],
+  "ciegos|ciego": [
+    2
+  ],
+  "echar|echar": [
+    2
+  ],
+  "efectivo|efectivo": [
+    2
+  ],
+  "negar|negar": [
+    1,
+    2
+  ],
+  "pareces|parecer": [
+    1
+  ],
+  "seguiste|seguir": [
+    1
+  ],
+  "une|unir": [
+    2
+  ],
+  "convencer|convencer": [
+    1
+  ],
+  "dedico|dedicar": [
+    1
+  ],
+  "echarle|echar": [
+    1,
+    2
+  ],
+  "furioso|furioso": [
+    1
+  ],
+  "jodan|joder": [
+    1
+  ],
+  "meterme|meter": [
+    1
+  ],
+  "privados|privado": [
+    1
+  ],
+  "rumores|rumor": [
+    1
+  ],
+  "visita|visita": [
+    1
   ]
 }

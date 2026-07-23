@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-23",
+      "commit": "pending",
+      "summary": "Bad Bunny deck rebuilt (v2): sense re-classification + clitic/lemma fixes",
+      "details": [
+        "Full pipeline rerun with the new classify-or-propose sense-matching on gemini-3.1-flash-lite — fixes April sense errors (media→half) and emits a slang review queue",
+        "fue/fui/fuiste now split ser vs ir ('went'/'left'); ya (+726), sé→saber, una→uno recovered; clitic forms folded into their base-verb cards",
+        "Contractions normalized ('tamos→estamos); SpanishDict fuzzy headwords rejected (perse→purse); your study progress + all 258 curations preserved",
+        "Deck kept lean (synonyms/antonyms dropped, ~1.6MB). Cache v49→v50"
+      ]
+    },
+    {
+      "date": "2026-07-23",
       "commit": "55a2e66",
       "summary": "Level picker is now a horizontal scrubber",
       "details": [
