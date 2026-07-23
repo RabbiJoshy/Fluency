@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-23",
-      "commit": "cc15c65",
+      "commit": "6fbfcc0",
       "summary": "Level scrubber fixes: no duplicate numbers, sets reset on level change, frequency-tier splits",
       "details": [
         "Fixed the leftover small-font tick numbers under the scrubber (the hide rule lost a CSS specificity tie to the base ticks rule) — only the large centred labels show now",
