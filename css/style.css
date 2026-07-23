@@ -2589,44 +2589,33 @@
             color: var(--text-primary);
         }
         .lsw-examples {
+            /* Frequency sentence stacked over the example words — a new
+               line for the examples, per the readout redesign. */
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 3px;
             font-family: var(--font-emphasis);
             font-size: 12px;
             font-weight: 500;
             color: var(--text-muted);
             min-height: 1.2em;
         }
-        .lsw-examples .lsw-freq {
-            flex: 0 0 auto;
-            white-space: nowrap;
-        }
-        .lsw-examples .lsw-freq {
-            flex: 0 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-            line-height: 1.25;
-        }
-        .lsw-examples .lsw-freq-line1 {
+        .lsw-examples .lsw-freq-sentence {
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 500;
+            line-height: 1.3;
         }
-        .lsw-examples .lsw-freq-line2 {
-            color: var(--text-muted);
-            font-size: 10px;
-            font-weight: 400;
+        .lsw-examples .lsw-freq-sentence strong {
+            font-weight: 700;
         }
         .lsw-examples .lsw-egs {
-            flex: 1 1 auto;
             min-width: 0;
-            text-align: right;
+            max-width: 100%;
+            color: var(--text-muted);
             line-height: 1.35;
-            /* Allow examples to wrap onto two lines, matching the height
-               that frequency now takes up on the left. Truncate cleanly
-               at the second line if there's still overflow. */
+            /* Allow examples to wrap onto two lines, then truncate. */
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;

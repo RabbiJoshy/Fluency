@@ -358,9 +358,24 @@ async function renderLevelSelector(language) {
         // chosen — otherwise re-renders (lemma toggle, etc.) would snap the
         // thumb back to the rightmost snap and visually disagree with the
         // hidden .level-btn.selected.
-        const savedIdx = selectedLevel
+        let savedIdx = selectedLevel
             ? percentageRanges.findIndex(r => r.level === selectedLevel)
             : -1;
+        // Filter toggles (lemma / cognate) change the card counts, so the
+        // level id `c<cardCount>` shifts and the exact match fails. Fall
+        // back to the segment with the nearest card count so the scrubber
+        // holds its place instead of jumping to the far right — and adopt
+        // that level id so the toggle handler's re-select + renderRangeSelector
+        // read a button that actually exists.
+        if (savedIdx < 0 && selectedLevel && /^c\d+$/.test(selectedLevel)) {
+            const targetCards = parseInt(selectedLevel.slice(1), 10);
+            let bestD = Infinity;
+            percentageRanges.forEach((r, i) => {
+                const d = Math.abs((r.cardCount || 0) - targetCards);
+                if (d < bestD) { bestD = d; savedIdx = i; }
+            });
+            if (savedIdx >= 0) selectedLevel = percentageRanges[savedIdx].level;
+        }
         const initialIdx = savedIdx >= 0 ? savedIdx : lastIdx;
         const initial = percentageRanges[initialIdx];
         // Headline value: post-filter card count for smart ranges, raw
@@ -374,7 +389,7 @@ async function renderLevelSelector(language) {
         container.innerHTML = `
             <div class="level-slider-wrap">
                 <div class="lsw-readout">
-                    <span class="lsw-rank">Top <strong id="lswRankVal">${initialHeadline}</strong> ${activeArtist ? 'cards' : 'words'}</span>
+                    <span class="lsw-rank">Most common <strong id="lswRankVal">${initialHeadline}</strong> words</span>
                     <span class="lsw-coverage">~<strong id="lswCovVal">${initialCoverage}</strong> ${coverageType}</span>
                 </div>
                 <div id="lswSlider" class="lsw-segments lsw-scrubber" role="radiogroup" aria-label="Level scrubber" data-value="${initialIdx}">
@@ -509,29 +524,30 @@ function computeSmartLevelRanges(filteredVocab) {
     // words merge instead of spawning micro-segments, then always close at
     // the full deck. Card count stays the exact axis; frequency is the
     // label; coverage % is precise in the readout.
+    // Count of cards with corpus_count >= t. Linear (not a binary search)
+    // so it stays correct even when rank order and corpus_count aren't
+    // perfectly monotonic — otherwise the boundary card's own count can
+    // wobble and the ≥N labels stop decreasing, which reads as scrambled.
     const cardsAtLeast = (t) => {
-        // items are freq-desc → index of first card with freq < t.
-        let lo = 0, hi = total;
-        while (lo < hi) {
-            const mid = (lo + hi) >> 1;
-            if ((items[mid].corpus_count || 0) >= t) lo = mid + 1;
-            else hi = mid;
-        }
-        return lo;
+        let n = 0;
+        for (const it of items) if ((it.corpus_count || 0) >= t) n++;
+        return n;
     };
 
     const CANDIDATES = [500, 300, 200, 150, 100, 70, 50, 40, 30, 20, 15, 10, 8, 7, 6, 5, 4, 3, 2];
     const minGap = Math.max(3, Math.round(total * 0.012)); // ≥1.2% of deck per tier
 
+    // Label each segment with the THRESHOLD itself (not the boundary card's
+    // count): every card in "top N" provably appears ≥ threshold times, so
+    // "≥threshold" is exactly truthful, and thresholds are strictly
+    // decreasing across kept tiers → the labels always go down.
     const boundaries = []; // {endIdx, cardCount, freqMin}
     let prevCount = 0;
     for (const t of CANDIDATES) {
         const c = cardsAtLeast(t);
         if (c <= prevCount) continue;            // no new cards at this cliff
         if (c - prevCount < minGap && c < total) continue; // too small — merge down
-        const endIdx = c - 1;
-        const freqAt = items[endIdx].corpus_count || 0; // actual min freq in this cut
-        boundaries.push({ endIdx, cardCount: c, freqMin: freqAt >= 2 ? freqAt : null });
+        boundaries.push({ endIdx: c - 1, cardCount: c, freqMin: t });
         prevCount = c;
         if (c >= total) break;
     }
@@ -801,31 +817,30 @@ function updateLevelSliderReadout(i) {
     // Frequency at this rank ceiling — the actual corpus_count of the
     // rarest card in this segment. Smart ranges carry it directly on
     // lv.freqMin; legacy normal-mode ranges derive it from ppmData.
-    // Rendered on TWO LINES: the value on top, the unit ("per million
-    // words" / "in lyrics") underneath. Lets the right-hand examples
-    // column also break onto two lines.
+    // Rendered as a plain sentence (no ≥ sign), with the examples for
+    // this level on their own line beneath it.
     let freqValue = null;
     let freqUnit = '';
     if (lv.freqMin != null) {
         freqValue = lv.freqMin;
-        freqUnit = activeArtist ? 'in lyrics' : 'per million words';
+        freqUnit = activeArtist ? 'times in the lyrics' : 'times per million words';
     } else if (ppmData && ppmData.length > 0) {
         const _e = ppmData.find(p => p.rank === lv.endRank);
         if (_e) {
             freqValue = Math.round(_e.ppm);
-            freqUnit = activeArtist ? 'in lyrics' : 'per million words';
+            freqUnit = activeArtist ? 'times in the lyrics' : 'times per million words';
         }
     }
 
     const _renderLine = (examplesText) => {
-        // Frequency on the left (two lines: value, then unit), examples
-        // on the right (allowed to wrap to two lines). justify-content:
-        // space-between in the CSS keeps them anchored to opposite edges.
+        // Frequency as a full sentence on its own line, then the example
+        // words for this level on a new line underneath (stacked via the
+        // .lsw-examples column layout in CSS).
         const freqHTML = freqValue !== null
-            ? `<span class="lsw-freq"><span class="lsw-freq-line1">Frequency ≥ ${freqValue.toLocaleString()}</span><span class="lsw-freq-line2">${freqUnit}</span></span>`
-            : '<span class="lsw-freq"></span>';
-        const fragRight = examplesText ? `<span class="lsw-egs">${examplesText}</span>` : '<span class="lsw-egs"></span>';
-        exEl.innerHTML = freqHTML + fragRight;
+            ? `<div class="lsw-freq-sentence">Words appearing at least <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`
+            : '';
+        const egHTML = examplesText ? `<div class="lsw-egs">${examplesText}</div>` : '';
+        exEl.innerHTML = freqHTML + egHTML;
     };
     _renderLine('');
 

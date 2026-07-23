@@ -3,6 +3,19 @@
   "entries": [
     {
       "date": "2026-07-23",
+      "commit": "PENDING",
+      "summary": "Level scrubber readout reworded + frequency labels now always decrease",
+      "details": [
+        "Headline now reads 'Most common 62 words' instead of 'Top 62 cards'",
+        "Frequency shown as a plain sentence — 'Words appearing at least 31 times in the lyrics' — instead of the '≥ 31 / in lyrics' two-liner (per-million-words phrasing in normal mode)",
+        "Example words for the level now sit on their own line beneath the frequency sentence, centred",
+        "Fixed scrambled/non-decreasing segment numbers: labels are now the frequency threshold itself (strictly decreasing, exactly truthful) and counted linearly so rank/count sort noise can't break them",
+        "Changing lemma-per-card or cognate inclusion now keeps the scrubber on the nearest segment instead of jumping to the far right, and the set options refresh for the new selection",
+        "Cache v53→v54, assets 20260723a→20260723b"
+      ]
+    },
+    {
+      "date": "2026-07-23",
       "commit": "6fbfcc0",
       "summary": "Level scrubber fixes: no duplicate numbers, sets reset on level change, frequency-tier splits",
       "details": [
