@@ -24,18 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260722c">
-    <link rel="modulepreload" href="js/state.js?v=20260722c">
-    <link rel="modulepreload" href="js/speech.js?v=20260722c">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260722c">
-    <link rel="modulepreload" href="js/auth.js?v=20260722c">
-    <link rel="modulepreload" href="js/spotify.js?v=20260722c">
-    <link rel="modulepreload" href="js/estimation.js?v=20260722c">
-    <link rel="modulepreload" href="js/config.js?v=20260722c">
-    <link rel="modulepreload" href="js/progress.js?v=20260722c">
-    <link rel="modulepreload" href="js/ui.js?v=20260722c">
-    <link rel="modulepreload" href="js/vocab.js?v=20260722c">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260722c">
+    <link rel="modulepreload" href="js/main.js?v=20260722d">
+    <link rel="modulepreload" href="js/state.js?v=20260722d">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260722d">
+    <link rel="modulepreload" href="js/speech.js?v=20260722d">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260722d">
+    <link rel="modulepreload" href="js/auth.js?v=20260722d">
+    <link rel="modulepreload" href="js/spotify.js?v=20260722d">
+    <link rel="modulepreload" href="js/estimation.js?v=20260722d">
+    <link rel="modulepreload" href="js/config.js?v=20260722d">
+    <link rel="modulepreload" href="js/progress.js?v=20260722d">
+    <link rel="modulepreload" href="js/ui.js?v=20260722d">
+    <link rel="modulepreload" href="js/vocab.js?v=20260722d">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260722d">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -174,6 +175,8 @@
                     <span id="topBarUserName" class="top-bar-user-name"></span>
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
                     <button id="modeSwitchBtn" class="top-bar-text-btn" style="display: none;"></button>
+                    <!-- Offline / sync-pending status pill. Hidden when online with an empty queue. -->
+                    <span id="syncStatusIndicator" class="sync-status hidden" role="status" aria-live="polite"></span>
                     <button class="gear-btn top-bar-find" id="findWordBtn" title="Find a word">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="7"></circle>
@@ -1012,6 +1015,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260722c"></script>
+    <script type="module" src="js/main.js?v=20260722d"></script>
 </body>
 </html>

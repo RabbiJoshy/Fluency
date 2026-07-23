@@ -1,6 +1,10 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
 import './state.js';
+// Offline-durable write path. sendOrQueue() write-throughs when online and
+// enqueues to localStorage when offline/failed; applyPendingProgressOverlay()
+// keeps un-synced local answers visible after a Sheets reload.
+import { sendOrQueue, applyPendingProgressOverlay } from './sync-queue.js';
 
 async function loadSecrets() {
     try {
@@ -336,6 +340,17 @@ async function loadUserProgressFromSheet() {
             fetchSheet(secondarySheet)
         ]);
 
+        // Both sheet fetches failed (offline, or endpoint unreachable). Keep the
+        // cached progressData loaded in step 1 rather than wiping it to empty —
+        // then overlay any writes still queued locally so freshly-answered
+        // offline cards remain visible. Returning false leaves the UI on cache.
+        if (!primaryResult && !secondaryResult) {
+            applyPendingProgressOverlay(progressData);
+            updateIncorrectButtonVisibility();
+            updateTotalStatsButtonVisibility();
+            return false;
+        }
+
         const prevCount = Object.keys(progressData).length;
         progressData = {};
 
@@ -370,6 +385,11 @@ async function loadUserProgressFromSheet() {
             }
         }
 
+        // Overlay any still-queued (un-synced) local writes on top of the
+        // freshly-loaded sheet data — those answers are newer than what Sheets
+        // knows, so a reconnect reload must not visually regress them.
+        applyPendingProgressOverlay(progressData);
+
         updateIncorrectButtonVisibility();
         updateTotalStatsButtonVisibility();
 
@@ -392,21 +412,18 @@ async function loadUserProgressFromSheet() {
 // Save the level estimate sentinel row to Google Sheets
 async function saveLevelEstimateToSheet(rank) {
     if (!currentUser || currentUser.isGuest) return;
-    try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: 'save',
-                user: currentUser.initials,
-                word: '_LEVEL_ESTIMATE_',
-                language: selectedLanguage,
-                wordId: rank,
-                sheet: activeArtist ? 'Lyrics' : 'UserProgress'
-            })
-        });
-    } catch (error) {
-        console.error('Failed to save level estimate:', error);
-    }
+    // Offline-durable: de-dupe on sheet+language so only the latest estimate
+    // per language is queued.
+    const sheet = activeArtist ? 'Lyrics' : 'UserProgress';
+    const language = selectedLanguage;
+    sendOrQueue({
+        action: 'save',
+        user: currentUser.initials,
+        word: '_LEVEL_ESTIMATE_',
+        language: language,
+        wordId: rank,
+        sheet: sheet
+    }, `level|${sheet}|${language}`);
 }
 
 // Save progress for a single word to Google Sheets
@@ -443,35 +460,34 @@ async function saveWordProgress(card, isCorrect) {
     progressData[wordId].word = word;
     progressData[wordId].language = language;
 
-    // Save to Google Sheets
+    // Persist to the localStorage progress cache immediately so an offline
+    // reload (which reads this cache in loadUserProgressFromSheet) shows the
+    // just-answered counts even before the write reaches Sheets.
     try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: 'save',
-                user: currentUser.initials,
-                word: word,
-                language: language,
-                wordId: wordId,
-                correct: progressData[wordId].correct,
-                wrong: progressData[wordId].wrong,
-                lastCorrect: progressData[wordId].lastCorrect,
-                lastWrong: progressData[wordId].lastWrong,
-                lastSeen: progressData[wordId].lastSeen,
-                sheet: activeArtist ? 'Lyrics' : 'UserProgress'
-            })
-        });
+        localStorage.setItem(`progress_cache_${currentUser.initials}`, JSON.stringify({
+            progress: progressData,
+            estimates: levelEstimates
+        }));
+    } catch (e) { /* cache is best-effort */ }
 
-        const result = await response.json();
-        if (!result.success) {
-            console.error('Failed to save progress:', result.message);
-        }
-    } catch (error) {
-        console.error('Failed to save progress to Google Sheets:', error);
-        // In-memory progressData was already updated above; the card counts
-        // stay correct for this session. A transient network blip means the
-        // write just misses the sheet — not catastrophic for a single card.
-    }
+    // Save to Google Sheets via the offline-durable queue. Write-through when
+    // online (same latency as before); enqueued and retried when offline or on
+    // a transient failure. De-dupe key keeps only the latest cumulative state
+    // per word+sheet in the queue.
+    const sheet = activeArtist ? 'Lyrics' : 'UserProgress';
+    sendOrQueue({
+        action: 'save',
+        user: currentUser.initials,
+        word: word,
+        language: language,
+        wordId: wordId,
+        correct: progressData[wordId].correct,
+        wrong: progressData[wordId].wrong,
+        lastCorrect: progressData[wordId].lastCorrect,
+        lastWrong: progressData[wordId].lastWrong,
+        lastSeen: progressData[wordId].lastSeen,
+        sheet: sheet
+    }, `save|${sheet}|${wordId}`);
 }
 
 // Flag a word as having erroneous translation/data — debugging-only path.
@@ -494,29 +510,20 @@ async function flagWord(card, fieldPath, fieldValue) {
     const language = selectedLanguage;
     const timestamp = new Date().toISOString();
 
-    try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: 'save',
-                sheet: 'FlaggedWords',
-                user: currentUser.initials,
-                word: word,
-                language: language,
-                wordId: wordId,
-                lastCorrect: fieldPath || '',
-                lastWrong: timestamp
-            })
-        });
-        const result = await response.json();
-        if (!result.success) {
-            console.error('Failed to flag word:', result.message);
-        } else {
-            console.log(`Flagged ${word} (${wordId}) for review`);
-        }
-    } catch (error) {
-        console.error('Failed to flag word:', error);
-    }
+    // Route through the offline-durable queue so flags raised offline aren't
+    // lost. De-dupe on wordId (which already encodes the flagged field path):
+    // the latest flag for a given field wins.
+    sendOrQueue({
+        action: 'save',
+        sheet: 'FlaggedWords',
+        user: currentUser.initials,
+        word: word,
+        language: language,
+        wordId: wordId,
+        lastCorrect: fieldPath || '',
+        lastWrong: timestamp
+    }, `flag|${wordId}`);
+    console.log(`Flagged ${word} (${wordId}) for review`);
 }
 
 // Minimal Markdown → HTML renderer. Handles headings (##/###), paragraphs,

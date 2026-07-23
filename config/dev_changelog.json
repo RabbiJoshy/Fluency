@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-23",
+      "commit": "pending",
+      "summary": "Offline support: study offline, progress/flags queue and sync when back online",
+      "details": [
+        "Service worker now serves deck DATA from cache offline (index/examples/master/config/rank/conjugation JSON) via stale-while-revalidate; added an offline navigation fallback so deep-links like ?artist=bad-bunny still boot with no network",
+        "New js/sync-queue.js: answers & flags made offline are saved to a durable localStorage queue, de-duped (latest state per word wins), and flushed to Google Sheets in order on reconnect + a 20s retry timer; partial-flush safe (unsent tail re-queued)",
+        "Online path unchanged (still write-through, same latency); progress cache now updated on every answer so an offline reload keeps your counts; reconnect reloads overlay un-synced writes so nothing regresses",
+        "New top-bar status pill shows 'Offline' / 'Syncing N…', clearing when synced. Cache v50→v51, assets 20260722c→20260722d"
+      ]
+    },
+    {
+      "date": "2026-07-23",
       "commit": "a845c04",
       "summary": "Bad Bunny deck rebuilt (v2): sense re-classification + clitic/lemma fixes",
       "details": [
