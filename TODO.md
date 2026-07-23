@@ -31,6 +31,41 @@
      not just JS/CSS), progress + flags save to a local write-queue while offline and flush/sync
      to Sheets on reconnect, plus an offline/sync-pending indicator.
 
+- **[now] Notes-app UI batch — requested 2026-07-24 [shared unless noted]**
+  Easy items already SHIPPED this session (v55): "Collapse Lemmas" On/Off rename, short
+  Cognates labels, brighter in-study progress bar. Remaining (non-trivial), roughly easy→hard:
+  1. **(S) [normal] Flash the active step number** — on the setup/landing screen (both modes),
+     slowly pulse the `.step-number` of the step awaiting a decision (pick language / pick set),
+     so it's obvious where to act. CSS pulse is trivial; the work is toggling an `--active`
+     class as the user advances through step1 → step2 → step4 (`ui.js`).
+  2. **(S) [artist] Artist-mode help missing Lemma/Cognates tabs** — the step2 help tooltip has
+     Level/Lemma/Cognates tabs (`index.html` ~L283), but they don't show in artist mode.
+     Find where artist mode drops them and restore. Needs investigation.
+  3. **(S) [artist/spanish] Highlight the governed preposition in examples** — when a sense is
+     tagged "used with a" (SpanishDict "used with X" pattern, e.g. acostumbré), also highlight
+     the `a` in the example sentence, not just the headword. Josh: "can be done later."
+  4. **(M) [shared] Card back: POS pill above each section, not inside each row** — group senses
+     by POS and render the POS-tag pill as a section header above the group (usually one POS +
+     a few senses; scroll when many). Restructures the sense-list render in `updateCard()`
+     (`flashcards.js`). Related to the card-back polish batch.
+  5. **(M) [normal] Language picker → radial button** — replace the normal-mode language
+     toggle/tabs with a button that opens a radial "clock of pictures" like the artist picker
+     (`main.js showArtistPicker`). Reuse that component.
+  6. **(M) [normal] Roll progress into the language box** — after a language is picked, in
+     standard mode merge the progress section into the language box: language name beside the
+     tiny % stats, progress bar directly underneath. Saves vertical space. Artist-mode top box
+     stays as-is.
+  7. **(M) [artist] Level scrubber granularity in the long tail** — in artist mode the `≥2`
+     band is basically the entire long tail, so there's no resolution there. Explore a smarter
+     split (sub-divide the low-integer tail by card-count within `≥2`/`≥3`, or a log split of
+     the tail) so scrubbing the rare end is meaningful (`computeSmartLevelRanges` in `ui.js`).
+     Design question — Josh asked "is there something smarter I could do?"
+  8. **(M) [shared] Card-front frequency vs pooled examples mismatch** — in one-card-per-lemma
+     mode the displayed frequency doesn't match the pooled example count (Josh saw `gasté`
+     showing a much higher front-of-card frequency than its ≥2-tier / example reality). Make the
+     card-front frequency reflect the same pooled basis as the examples. Related to the pooled-
+     examples item below.
+
 - **[soon] Pool examples per lemma in one-card-per-lemma mode (M) [shared] [cross-lang]**
   When the lemma-collapse filter is on (one card per lemma), the surviving card should pool
   examples from all the collapsed surface forms (quiero/quieres/quiere → querer card shows

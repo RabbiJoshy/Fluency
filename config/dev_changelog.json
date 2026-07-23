@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Setup tweaks: 'Collapse Lemmas On/Off', shorter Cognates labels, brighter in-study progress bar",
+      "details": [
+        "'Cards per Lemma' toggle renamed to 'Collapse Lemmas' with On/Off (On = one card per lemma); Lemma help tab updated to match",
+        "Cognates toggle no longer expands to 'Exclude cognates'/'Include cognates' when selected — stays 'Exclude'/'Include'",
+        "In-study deck progress bar brightened (accent tint toward white + soft glow, thicker track) so it's clearer how far through a set you are"
+      ]
+    },
+    {
       "date": "2026-07-23",
       "commit": "4b2579d",
       "summary": "Level scrubber readout reworded + frequency labels now always decrease",

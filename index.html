@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260723b">
-    <link rel="modulepreload" href="js/state.js?v=20260723b">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260723b">
-    <link rel="modulepreload" href="js/speech.js?v=20260723b">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260723b">
-    <link rel="modulepreload" href="js/auth.js?v=20260723b">
-    <link rel="modulepreload" href="js/spotify.js?v=20260723b">
-    <link rel="modulepreload" href="js/estimation.js?v=20260723b">
-    <link rel="modulepreload" href="js/config.js?v=20260723b">
-    <link rel="modulepreload" href="js/progress.js?v=20260723b">
-    <link rel="modulepreload" href="js/ui.js?v=20260723b">
-    <link rel="modulepreload" href="js/vocab.js?v=20260723b">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260723b">
+    <link rel="modulepreload" href="js/main.js?v=20260723c">
+    <link rel="modulepreload" href="js/state.js?v=20260723c">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260723c">
+    <link rel="modulepreload" href="js/speech.js?v=20260723c">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260723c">
+    <link rel="modulepreload" href="js/auth.js?v=20260723c">
+    <link rel="modulepreload" href="js/spotify.js?v=20260723c">
+    <link rel="modulepreload" href="js/estimation.js?v=20260723c">
+    <link rel="modulepreload" href="js/config.js?v=20260723c">
+    <link rel="modulepreload" href="js/progress.js?v=20260723c">
+    <link rel="modulepreload" href="js/ui.js?v=20260723c">
+    <link rel="modulepreload" href="js/vocab.js?v=20260723c">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260723c">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -294,8 +294,8 @@
                         </div>
                         <div id="step2LemmaTabContent" class="settings-tab-content">
                             <p><strong>Lemma</strong> = the base/dictionary form of a word. For example, "correr" is the lemma for "corre", "corrí", "corriendo"; "casa" is the lemma for "casas".</p>
-                            <p><strong>1</strong> = See only one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
-                            <p><strong>1+</strong> = See all forms including conjugations and declensions (e.g., "run", "runs", "ran", "running"), which helps with recognition of different word forms in context.</p>
+                            <p><strong>On</strong> = Collapse to one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
+                            <p><strong>Off</strong> = See all forms including conjugations and declensions (e.g., "run", "runs", "ran", "running"), which helps with recognition of different word forms in context.</p>
                         </div>
                         <div id="step2CognateTabContent" class="settings-tab-content">
                             <p><strong>Transparent cognates</strong> are words that look and mean essentially the same thing in both languages (e.g., "animal", "chocolate", "hotel").</p>
@@ -317,11 +317,11 @@
                 <div class="substep-row">
                     <div id="lemmaToggleContainer" class="setup-substep" style="display: none;">
                         <div class="substep-header">
-                            <span class="substep-title">Cards per Lemma</span>
+                            <span class="substep-title">Collapse Lemmas</span>
                         </div>
                         <div id="lemmaToggleSelector" class="group-size-selector">
-                            <button class="lemma-toggle-btn selected" data-lemma="off" data-short="1+" data-full="All word forms">All word forms</button>
-                            <button class="lemma-toggle-btn" data-lemma="on" data-short="1" data-full="1 / lemma">1 / lemma</button>
+                            <button class="lemma-toggle-btn selected" data-lemma="off" data-short="Off" data-full="Off">Off</button>
+                            <button class="lemma-toggle-btn" data-lemma="on" data-short="On" data-full="On">On</button>
                         </div>
                         <span id="lemmaInfoLine" class="level-info-line substep-info-below" style="display: none;"></span>
                     </div>
@@ -332,8 +332,8 @@
                             <span class="substep-title">Cognates</span>
                         </div>
                         <div id="cognateToggleSelector" class="group-size-selector">
-                            <button class="cognate-toggle-btn selected" data-cognate="exclude" data-short="Exclude" data-full="Exclude cognates">Exclude</button>
-                            <button class="cognate-toggle-btn" data-cognate="include" data-short="Include" data-full="Include cognates">Include</button>
+                            <button class="cognate-toggle-btn selected" data-cognate="exclude" data-short="Exclude" data-full="Exclude">Exclude</button>
+                            <button class="cognate-toggle-btn" data-cognate="include" data-short="Include" data-full="Include">Include</button>
                         </div>
                         <span id="cognateInfoLine" class="level-info-line substep-info-below" style="display: none;"></span>
                     </div>
@@ -1040,6 +1040,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260723b"></script>
+    <script type="module" src="js/main.js?v=20260723c"></script>
 </body>
 </html>

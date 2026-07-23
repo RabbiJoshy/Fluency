@@ -510,8 +510,8 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: min(480px, calc(100% - 40px));
-                height: 3px;
-                background: rgba(255, 255, 255, 0.08);
+                height: 4px;
+                background: rgba(255, 255, 255, 0.18);
                 border-radius: 2px;
                 overflow: hidden;
                 pointer-events: none;
@@ -1563,8 +1563,11 @@
         .deck-progress-fill {
             height: 100%;
             width: 0%;
-            background: var(--accent-primary);
+            /* Brightened toward white + a soft accent glow so the in-study
+               progress reads clearly against the dark card area. */
+            background: color-mix(in srgb, var(--accent-primary) 78%, white);
             border-radius: 2px;
+            box-shadow: 0 0 6px color-mix(in srgb, var(--accent-primary) 65%, transparent);
             transition: width 0.3s ease;
         }
 
@@ -6369,8 +6372,8 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 32px);
-                height: 3px;
-                background: rgba(255, 255, 255, 0.08);
+                height: 4px;
+                background: rgba(255, 255, 255, 0.18);
                 border-radius: 2px;
                 overflow: hidden;
                 pointer-events: none;
