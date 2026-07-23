@@ -88,6 +88,8 @@ def main():
     parser.add_argument("--sense-source", choices=["wiktionary", "spanishdict"],
                         default="spanishdict")
     parser.add_argument("--max-examples", type=int, default=None)
+    parser.add_argument("--gemini-workers", type=int, default=None,
+                        help="Concurrent Gemini batches passed through to step_6c.")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--gemini-model", default=None,
                         help="Gemini model. Default (unset) lets step_6c pick: "
@@ -146,6 +148,8 @@ def main():
             gemini_args.extend(["--gemini-model", args.gemini_model])
         if args.max_examples is not None:
             gemini_args.extend(["--max-examples", str(args.max_examples)])
+        if args.gemini_workers is not None:
+            gemini_args.extend(["--gemini-workers", str(args.gemini_workers)])
         if not gap_fill:
             gemini_args.append("--skip-gap-fill")
         run_step("Classifier: gemini" + (" + gap-fill" if gap_fill else ""),
@@ -164,6 +168,8 @@ def main():
             gemini_args.extend(["--gemini-model", args.gemini_model])
         if args.max_examples is not None:
             gemini_args.extend(["--max-examples", str(args.max_examples)])
+        if args.gemini_workers is not None:
+            gemini_args.extend(["--gemini-workers", str(args.gemini_workers)])
         run_step("Gap-fill (zero-sense words only)",
                  "step_6c_assign_senses_gemini.py", gemini_args)
 

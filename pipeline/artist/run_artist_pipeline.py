@@ -112,6 +112,8 @@ def _step_6_args(args, artist_dir):
         a.append("--no-gap-fill")
     if getattr(args, "max_examples", None) is not None:
         a.extend(["--max-examples", str(args.max_examples)])
+    if getattr(args, "gemini_workers", None) is not None:
+        a.extend(["--gemini-workers", str(args.gemini_workers)])
     if getattr(args, "force", False):
         a.append("--force")
     return a
@@ -353,6 +355,9 @@ def main():
                     help="Skip gap-fill.")
     parser.add_argument("--max-examples", type=int, default=None,
                         help="Per-word example cap sent to Gemini.")
+    parser.add_argument("--gemini-workers", type=int, default=None,
+                        help="Step 6: concurrent Gemini batches. Default leaves "
+                             "step_6c serial; try 2-4 if your quota allows it.")
     parser.add_argument("--words-only", action="store_true",
                         help="Step 6: run word analysis but skip sentence translation.")
     args = parser.parse_args()

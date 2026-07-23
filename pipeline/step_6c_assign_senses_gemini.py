@@ -17,7 +17,7 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", message=".*urllib3.*")
 
-import argparse, gzip, json, os, re, sys, time
+import argparse, concurrent.futures, gzip, json, os, re, sys, time
 from copy import deepcopy
 from pathlib import Path
 
@@ -716,9 +716,16 @@ def main():
                              "indices for the same method are skipped and only "
                              "the new ones are sent to Gemini." %
                              DEFAULT_MAX_EXAMPLES_PER_WORD)
+    parser.add_argument("--gemini-workers", type=int, default=1,
+                        help="Concurrent Gemini batches for the SpanishDict "
+                             "classify-or-propose path (default 1). Checkpoints "
+                             "are still written after each completed batch.")
     args = parser.parse_args()
     if args.max_examples < 1:
         print("ERROR: --max-examples must be >= 1")
+        sys.exit(1)
+    if args.gemini_workers < 1:
+        print("ERROR: --gemini-workers must be >= 1")
         sys.exit(1)
 
     is_artist = args.artist_dir is not None
@@ -1379,17 +1386,9 @@ def main():
                 if done_words:
                     print("  Resuming from checkpoint: %d words done" % len(done_words))
 
-            t_start = time.time()
-            proposed_total = 0
-            classified_total = 0
-            for batch_start in range(0, len(records), SD_CLASSIFY_BATCH_SIZE):
-                batch = records[batch_start:batch_start + SD_CLASSIFY_BATCH_SIZE]
-                batch = [r for r in batch if r["word"] not in done_words]
-                if not batch:
-                    continue
-                print("  Batch %d: %s" % (
-                    batch_start // SD_CLASSIFY_BATCH_SIZE + 1,
-                    [r["word"] for r in batch][:5]))
+            def process_sd_batch(batch_start, batch):
+                batch_no = batch_start // SD_CLASSIFY_BATCH_SIZE + 1
+                print("  Batch %d: %s" % (batch_no, [r["word"] for r in batch][:5]))
                 batch_data = [{"word": r["word"], "lemma": r["lemma"],
                                "senses": r["senses"], "ids": r["ids"],
                                "examples": r["examples"]} for r in batch]
@@ -1401,6 +1400,11 @@ def main():
                         if isinstance(o, dict) and o.get("word") is not None:
                             result_map[o["word"]] = o.get("calls") or []
 
+                batch_assignments = {}
+                batch_review_items = []
+                batch_proposed_total = 0
+                batch_classified_total = 0
+                batch_done_words = []
                 for r in batch:
                     word = r["word"]
                     calls = result_map.get(word, [])
@@ -1457,7 +1461,7 @@ def main():
                             items.append({"sense": sid, "examples": eis})
                         if items:
                             word_out[my_method] = items
-                            classified_total += 1
+                            batch_classified_total += 1
                     if proposed_map:
                         gf_items = []
                         # Prefer the POS the model returned for the proposed
@@ -1479,9 +1483,9 @@ def main():
                             if pm.get("construction"):
                                 item["construction"] = pm["construction"]
                             gf_items.append(item)
-                            proposed_total += 1
+                            batch_proposed_total += 1
                             ex = pm.get("ex") or {}
-                            review_items.append({
+                            batch_review_items.append({
                                 "word": word,
                                 "lemma": r["lemma"],
                                 "proposed": gloss,
@@ -1495,15 +1499,59 @@ def main():
                             word_out["gap-fill"] = gf_items
 
                     if word_out:
-                        existing_wo = assignments_out.setdefault(word, {})
-                        for k, v in word_out.items():
-                            existing_wo[k] = v
-                    done_words.add(word)
+                        batch_assignments[word] = word_out
+                    batch_done_words.append(word)
 
+                return {
+                    "batch_no": batch_no,
+                    "assignments": batch_assignments,
+                    "done_words": batch_done_words,
+                    "review_items": batch_review_items,
+                    "classified_total": batch_classified_total,
+                    "proposed_total": batch_proposed_total,
+                }
+
+            def apply_sd_batch(result):
+                for word, word_out in result["assignments"].items():
+                    existing_wo = assignments_out.setdefault(word, {})
+                    for k, v in word_out.items():
+                        existing_wo[k] = v
+                done_words.update(result["done_words"])
+                review_items.extend(result["review_items"])
                 with open(checkpoint_path, "w") as f:
                     json.dump({"assignments": assignments_out,
                                "done_words": sorted(done_words),
                                "review_items": review_items}, f)
+
+            t_start = time.time()
+            proposed_total = 0
+            classified_total = 0
+            pending_batches = []
+            for batch_start in range(0, len(records), SD_CLASSIFY_BATCH_SIZE):
+                batch = records[batch_start:batch_start + SD_CLASSIFY_BATCH_SIZE]
+                batch = [r for r in batch if r["word"] not in done_words]
+                if batch:
+                    pending_batches.append((batch_start, batch))
+
+            workers = min(args.gemini_workers, len(pending_batches) or 1)
+            if workers > 1:
+                print("  Running with %d concurrent Gemini batches" % workers)
+                with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+                    futures = [
+                        executor.submit(process_sd_batch, batch_start, batch)
+                        for batch_start, batch in pending_batches
+                    ]
+                    for fut in concurrent.futures.as_completed(futures):
+                        result = fut.result()
+                        apply_sd_batch(result)
+                        classified_total += result["classified_total"]
+                        proposed_total += result["proposed_total"]
+            else:
+                for batch_start, batch in pending_batches:
+                    result = process_sd_batch(batch_start, batch)
+                    apply_sd_batch(result)
+                    classified_total += result["classified_total"]
+                    proposed_total += result["proposed_total"]
 
             elapsed = time.time() - t_start
             print("  Done (%.1fs): %d words with menu senses, %d proposals" % (
