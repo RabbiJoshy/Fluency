@@ -2444,6 +2444,56 @@
             border-color: var(--text-primary);
             box-shadow: 0 0 0 1px var(--accent-primary);
         }
+        /* Horizontal zoomed scrubber variant: the crammed segment bar becomes a
+           scroll-snap "ruler" you swipe/drag left-right; the centered segment is
+           magnified and is the selected level. Reuses .lsw-seg selection logic. */
+        .lsw-segments.lsw-scrubber {
+            gap: 0;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 8px 50% 4px;
+            margin: 2px 0;
+            scrollbar-width: none;
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
+                    mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
+        }
+        .lsw-segments.lsw-scrubber::-webkit-scrollbar { display: none; }
+        .lsw-segments.lsw-scrubber .lsw-seg {
+            flex: 0 0 auto;
+            width: 58px;
+            height: 40px;
+            padding: 0;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            scroll-snap-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.4;
+            transform: scale(0.8);
+            transition: transform 0.16s ease, opacity 0.16s ease, color 0.16s ease;
+            color: var(--text-muted, #8a8f98);
+            font: 700 0.82rem/1 var(--font-data, var(--font-emphasis, monospace));
+        }
+        .lsw-segments.lsw-scrubber .lsw-seg .lsw-seg-label { pointer-events: none; }
+        .lsw-segments.lsw-scrubber .lsw-seg.filled:not(.selected) {
+            opacity: 0.62; color: var(--text-secondary, #b7bcc4);
+        }
+        .lsw-segments.lsw-scrubber .lsw-seg:hover:not(.selected) {
+            opacity: 0.8; background: transparent;
+        }
+        .lsw-segments.lsw-scrubber .lsw-seg.selected {
+            opacity: 1;
+            transform: scale(1.45);
+            color: var(--accent-primary, #ff6b35);
+            border: none;
+            box-shadow: none;
+        }
+        .lsw-ticks--hidden { display: none; }
         .lsw-ticks {
             display: flex;
             font-family: var(--font-emphasis);

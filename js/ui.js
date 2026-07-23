@@ -377,12 +377,13 @@ async function renderLevelSelector(language) {
                     <span class="lsw-rank">Top <strong id="lswRankVal">${initialHeadline}</strong> ${activeArtist ? 'cards' : 'words'}</span>
                     <span class="lsw-coverage">~<strong id="lswCovVal">${initialCoverage}</strong> ${coverageType}</span>
                 </div>
-                <div id="lswSlider" class="lsw-segments" role="radiogroup" aria-label="Level segments" data-value="${initialIdx}">
-                    ${percentageRanges.map((_, i) =>
-                        `<button type="button" class="lsw-seg${i <= initialIdx ? ' filled' : ''}${i === initialIdx ? ' selected' : ''}" data-i="${i}" role="radio" aria-checked="${i === initialIdx}"></button>`
-                    ).join('')}
+                <div id="lswSlider" class="lsw-segments lsw-scrubber" role="radiogroup" aria-label="Level scrubber" data-value="${initialIdx}">
+                    ${percentageRanges.map((lv, i) => {
+                        const segLabel = lv.tickLabel || fmtRank(lv.endRank);
+                        return `<button type="button" class="lsw-seg${i <= initialIdx ? ' filled' : ''}${i === initialIdx ? ' selected' : ''}" data-i="${i}" role="radio" aria-checked="${i === initialIdx}"><span class="lsw-seg-label">${segLabel}</span></button>`;
+                    }).join('')}
                 </div>
-                <div class="lsw-ticks">${ticksHTML}</div>
+                <div class="lsw-ticks lsw-ticks--hidden">${ticksHTML}</div>
                 <div class="lsw-examples" id="lswExamples">&nbsp;</div>
             </div>
             <div class="level-selector-buttons" style="display:none">${buttonsHTML}</div>
@@ -434,8 +435,9 @@ async function renderLevelSelector(language) {
             if (segBar) {
                 const buttons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn'));
                 const idx = buttons.indexOf(this);
-                if (idx >= 0 && +segBar.dataset.value !== idx) {
-                    setLevelSegmentSelection(idx);
+                if (idx >= 0) {
+                    if (+segBar.dataset.value !== idx) setLevelSegmentSelection(idx);
+                    _scrollLevelSegToCenter(idx, false); // keep the scrubber centered on the picked level
                 }
             }
         });
@@ -448,27 +450,12 @@ async function renderLevelSelector(language) {
     const segBar = document.getElementById('lswSlider');
     if (segBar) {
         const buttons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn'));
-        segBar.querySelectorAll('.lsw-seg').forEach(seg => {
-            seg.addEventListener('click', () => {
-                const idx = parseInt(seg.dataset.i, 10);
-                if (Number.isNaN(idx)) return;
-                setLevelSegmentSelection(idx);
-                const btn = buttons[idx];
-                if (btn) btn.click();
-            });
-        });
-        // Tick label clicks act as shortcuts to the corresponding segment.
-        segBar.parentElement.querySelectorAll('.lsw-ticks span').forEach(tick => {
-            tick.addEventListener('click', () => {
-                const idx = parseInt(tick.dataset.i, 10);
-                if (Number.isNaN(idx)) return;
-                setLevelSegmentSelection(idx);
-                const btn = buttons[idx];
-                if (btn) btn.click();
-            });
-        });
+        wireLevelScrubber(segBar, buttons);
         // Prime the readout (examples need vocab to be loaded async).
         updateLevelSliderReadout(parseInt(segBar.dataset.value || '0', 10));
+        // Center the scrubber on the initial selection once layout has settled.
+        requestAnimationFrame(() =>
+            _scrollLevelSegToCenter(parseInt(segBar.dataset.value || '0', 10), false));
     }
 
     // Auto-select first time only (preserves manual picks across re-renders).
@@ -717,6 +704,57 @@ function setLevelSegmentSelection(idx) {
         seg.setAttribute('aria-checked', i === idx ? 'true' : 'false');
     });
     updateLevelSliderReadout(idx);
+}
+
+// --- Horizontal level scrubber ---------------------------------------------
+// The level segments render as a horizontal scroll-snap "ruler": you scrub
+// left→right (touch swipe / trackpad) and the CENTERED segment is the selected
+// level (magnified). It reuses setLevelSegmentSelection + the hidden .level-btn,
+// so all downstream selection logic is unchanged — only the presentation is.
+let _levelProgrammaticScroll = false;
+
+function _levelCenteredIdx(bar) {
+    const mid = bar.scrollLeft + bar.clientWidth / 2;
+    let best = 0, bestD = Infinity;
+    bar.querySelectorAll('.lsw-seg').forEach(s => {
+        const i = parseInt(s.dataset.i, 10);
+        const c = s.offsetLeft + s.offsetWidth / 2;
+        const d = Math.abs(c - mid);
+        if (d < bestD) { bestD = d; best = i; }
+    });
+    return best;
+}
+
+function _scrollLevelSegToCenter(idx, smooth) {
+    const bar = document.getElementById('lswSlider');
+    if (!bar) return;
+    const seg = bar.querySelector('.lsw-seg[data-i="' + idx + '"]');
+    if (!seg) return;
+    _levelProgrammaticScroll = true;
+    const target = seg.offsetLeft + seg.offsetWidth / 2 - bar.clientWidth / 2;
+    bar.scrollTo({ left: Math.max(0, target), behavior: smooth ? 'smooth' : 'auto' });
+    setTimeout(() => { _levelProgrammaticScroll = false; }, smooth ? 420 : 90);
+}
+
+function wireLevelScrubber(segBar, buttons) {
+    let commitTimer = null;
+    segBar.addEventListener('scroll', () => {
+        const i = _levelCenteredIdx(segBar);
+        if (+segBar.dataset.value !== i) setLevelSegmentSelection(i); // live magnify + readout
+        if (_levelProgrammaticScroll) return;
+        clearTimeout(commitTimer);
+        commitTimer = setTimeout(() => {
+            const btn = buttons[_levelCenteredIdx(segBar)];
+            if (btn) btn.click(); // commit on settle → renderRangeSelector
+        }, 150);
+    }, { passive: true });
+    // Tapping a segment scrubs it to the center (the scroll handler then commits).
+    segBar.querySelectorAll('.lsw-seg').forEach(seg => {
+        seg.addEventListener('click', () => {
+            const idx = parseInt(seg.dataset.i, 10);
+            if (!Number.isNaN(idx)) _scrollLevelSegToCenter(idx, true);
+        });
+    });
 }
 
 // Update the slider's rank/coverage text + example words for snap index `i`.

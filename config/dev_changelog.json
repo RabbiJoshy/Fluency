@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-23",
+      "commit": "pending",
+      "summary": "Level picker is now a horizontal scrubber",
+      "details": [
+        "The crammed level/frequency-band selector on the setup page is now a horizontal scroll-snap 'ruler' — swipe/drag left-right and the centered, magnified segment is your level",
+        "Declutters the old all-segments-at-once bar into a focused, zoomed scrub; reuses the existing level-selection plumbing so ranges/sets behave the same",
+        "Front-end only. Cache bumped 20260722c / v49"
+      ]
+    },
+    {
       "date": "2026-07-22",
       "commit": "8c81180",
       "summary": "Lyrics mode: artist picker is now a radial \"clock of pictures\"",
