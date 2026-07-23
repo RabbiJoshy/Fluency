@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-23",
-      "commit": "pending",
+      "commit": "1404cf8",
       "summary": "Offline support: study offline, progress/flags queue and sync when back online",
       "details": [
         "Service worker now serves deck DATA from cache offline (index/examples/master/config/rank/conjugation JSON) via stale-while-revalidate; added an offline navigation fallback so deep-links like ?artist=bad-bunny still boot with no network",
