@@ -242,16 +242,21 @@ function updatePercentModeButton() {
 function updateStep2Tooltip() {
     const tooltip = document.getElementById('step2Tooltip');
     if (!tooltip) return;
-    const inner = tooltip.querySelector('.step-info-tooltip-inner') || tooltip;
     if (activeArtist) {
-        // Artist mode is always % coverage of lyrics — explain that
-        // specifically and don't reference the CEFR/% toggle (it's hidden).
+        // Artist mode is always % coverage of lyrics. Keep the TABBED help
+        // (Level / Lemma / Cognates) intact — only swap the Level tab's copy
+        // to the lyrics-coverage explanation (no CEFR/% toggle reference).
+        // Overwriting the whole tooltip here used to delete the Lemma and
+        // Cognate tabs entirely, so artist mode lost those explanations.
         const name = activeArtist.name;
-        inner.innerHTML = `
-            <p><strong>Lyrics Coverage</strong> shows what percentage of ${name}'s lyrics you'll understand at each level.</p>
-            <p>For example, learning words up to 80% coverage means you'll recognize ~80% of words across the songs.</p>
-            <p>Words are ranked by how often they appear in the discography.</p>
-        `;
+        const levelTab = document.getElementById('step2LevelTabContent');
+        if (levelTab) {
+            levelTab.innerHTML = `
+                <p><strong>Lyrics coverage</strong> — each segment is how much of ${name}'s lyrics you'd recognise at that level (e.g. ~80% coverage = you know ~80% of the words across the songs).</p>
+                <p><strong>Drag the scrubber</strong> to pick how many words you want; the centred segment is your level. Its label is the minimum frequency it includes (e.g. <em>≥10</em> = words appearing at least 10 times in the discography).</p>
+                <p>Lower segments are the most common words; higher segments add rarer vocabulary that adds less coverage.</p>
+            `;
+        }
     }
     // Non-artist modes: leave the static HTML in place (it explains both
     // CEFR and % alongside the toggle that switches between them).

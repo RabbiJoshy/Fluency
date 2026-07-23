@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Artist-mode 'Choose level' help now keeps the Lemma & Cognates tabs",
+      "details": [
+        "In artist mode the level help tooltip was overwriting its whole body with a single lyrics-coverage paragraph, deleting the Lemma and Cognates explanation tabs; now it only swaps the Level tab's text and keeps all three tabs",
+        "Cache v55→v56, assets 20260723c→20260724a"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "3f2a6e9",
       "summary": "Setup tweaks: 'Collapse Lemmas On/Off', shorter Cognates labels, brighter in-study progress bar",
       "details": [
