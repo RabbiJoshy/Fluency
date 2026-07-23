@@ -1,14 +1,15 @@
-import './state.js?v=20260722c';
-import './speech.js?v=20260722c';
-import './artist-ui.js?v=20260722c';
-import './auth.js?v=20260722c';
-import './spotify.js?v=20260722c';
-import './estimation.js?v=20260722c';
-import './config.js?v=20260722c';
-import './progress.js?v=20260722c';
-import './ui.js?v=20260722c';
-import './vocab.js?v=20260722c';
-import './flashcards.js?v=20260722c';
+import './state.js?v=20260722d';
+import './sync-queue.js?v=20260722d';
+import './speech.js?v=20260722d';
+import './artist-ui.js?v=20260722d';
+import './auth.js?v=20260722d';
+import './spotify.js?v=20260722d';
+import './estimation.js?v=20260722d';
+import './config.js?v=20260722d';
+import './progress.js?v=20260722d';
+import './ui.js?v=20260722d';
+import './vocab.js?v=20260722d';
+import './flashcards.js?v=20260722d';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -167,6 +168,11 @@ loadConfig().then(async () => {
     if (window._spotifyTryInit) window._spotifyTryInit();
     checkAuthentication();
     perfMark('after checkAuthentication');
+
+    // Offline sync: wire connectivity listeners, render the status indicator,
+    // and drain any writes queued while previously offline. Runs after
+    // loadSecrets() so GOOGLE_SCRIPT_URL is populated for the initial flush.
+    if (window.initSync) window.initSync();
 
     // Set user name in top bar immediately (don't wait for progress load)
     const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';

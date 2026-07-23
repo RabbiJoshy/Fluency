@@ -9,12 +9,12 @@
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v50';
+const CACHE_NAME = 'flashcards-v51';
 
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260722c';
+const ASSET_VERSION = '20260722d';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -32,6 +32,7 @@ const urlsToCache = [
   '/backend/secrets.json',
   `/js/main.js?v=${ASSET_VERSION}`,
   `/js/state.js?v=${ASSET_VERSION}`,
+  `/js/sync-queue.js?v=${ASSET_VERSION}`,
   `/js/speech.js?v=${ASSET_VERSION}`,
   `/js/artist-ui.js?v=${ASSET_VERSION}`,
   `/js/auth.js?v=${ASSET_VERSION}`,
@@ -62,8 +63,19 @@ self.addEventListener('fetch', event => {
   if (!request.url.startsWith(self.location.origin)) return;
 
   // Only cache GET. Mutating verbs (POST/PUT/DELETE) must always hit network.
+  // This is what keeps Google Sheets writes (POST to the Apps Script endpoint)
+  // out of the SW entirely — those are handled by js/sync-queue.js instead.
   if (request.method !== 'GET') return;
 
+  // Stale-while-revalidate applies to ALL same-origin GETs, which by design
+  // includes the deck DATA the app fetches to render a deck: the per-artist
+  // *.index.json / *.examples.json, shared vocabulary_master.json, config/*.json,
+  // and the Data/Spanish/* rank & conjugation files. Any of these fetched once
+  // while online is cached here and served from cache on later offline visits.
+  // They're intentionally NOT in the install-time pre-cache list: they're large,
+  // per-artist, and use accented/space-containing paths — caching them lazily on
+  // first real fetch keeps the pre-cache lean while still giving full offline
+  // study to a returning user.
   event.respondWith(
     caches.open(CACHE_NAME).then(cache =>
       cache.match(request).then(cached => {
@@ -74,7 +86,16 @@ self.addEventListener('fetch', event => {
             cache.put(request, response.clone());
           }
           return response;
-        }).catch(() => cached);
+        }).catch(() => {
+          // Network failed. For a navigation (e.g. an offline deep-link to
+          // /?artist=bad-bunny, whose exact URL won't be in the cache), fall
+          // back to the cached app shell so the PWA still boots and can hydrate
+          // from cached deck JSON. Non-navigation misses just surface the error.
+          if (request.mode === 'navigate') {
+            return cache.match('/index.html').then(shell => shell || cache.match('/'));
+          }
+          return cached;
+        });
 
         // Cached hit: return immediately, refresh in background. Cache
         // miss: wait for the network. The fetchPromise's .catch above
