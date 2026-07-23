@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-23",
-      "commit": "pending",
+      "commit": "55a2e66",
       "summary": "Level picker is now a horizontal scrubber",
       "details": [
         "The crammed level/frequency-band selector on the setup page is now a horizontal scroll-snap 'ruler' — swipe/drag left-right and the centered, magnified segment is your level",
