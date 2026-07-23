@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-23",
-      "commit": "PENDING",
+      "commit": "4b2579d",
       "summary": "Level scrubber readout reworded + frequency labels now always decrease",
       "details": [
         "Headline now reads 'Most common 62 words' instead of 'Top 62 cards'",
