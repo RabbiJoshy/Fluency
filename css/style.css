@@ -2566,7 +2566,7 @@
             border: none;
             box-shadow: none;
         }
-        .lsw-ticks--hidden { display: none; }
+        .lsw-ticks.lsw-ticks--hidden { display: none !important; }
         .lsw-ticks {
             display: flex;
             font-family: var(--font-emphasis);

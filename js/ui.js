@@ -493,61 +493,62 @@ let _smartLevelRangesCache = null;
 // occurrences_ppm coerced into corpus_count).
 function computeSmartLevelRanges(filteredVocab) {
     if (!filteredVocab || filteredVocab.length === 0) return [];
-    const items = filteredVocab;
-    const N_TARGET = 10;
-
-    // Strategy: pick boundaries at ROUND card counts (multiples of 100
-    // for normal-sized decks, 10 for small ones), then label each tick
-    // with the actual minimum frequency in that segment — i.e. the
-    // corpus_count of the rarest card the segment includes. Card count
-    // is the round/exact axis; frequency is the displayed axis but
-    // doesn't need to be a round cliff value. Adjacent segments may
-    // share a frequency (typically ≥2 in the freq=2 tail) and that's
-    // expected — the segments differ by card count, not freq cliff.
-    // Coverage % stays precise in the readout.
+    const items = filteredVocab; // freq-desc order (rank ascending)
     const total = items.length;
-    const roundStep = total >= 1000 ? 100 : (total >= 200 ? 10 : 1);
-    const targetPerSeg = total / N_TARGET;
 
-    const boundaries = [];
-    let prevCardCount = 0;
-    for (let k = 1; k <= N_TARGET; k++) {
-        let cardCount = Math.round(k * targetPerSeg / roundStep) * roundStep;
-        if (cardCount > total) cardCount = total;
-        if (cardCount <= prevCardCount) continue;
-        const endIdx = cardCount - 1;
-        const freqAt = items[endIdx].corpus_count || 0;
-        // Label with the ACTUAL min frequency at this boundary — i.e.
-        // the freq of the rarest card the segment includes. Not snapped
-        // to a round cliff. Adjacent segments may share the same freq
-        // (typically ≥2 in the freq=2 tail); that's expected and fine
-        // because the round axis is card count, not frequency.
-        boundaries.push({
-            endIdx,
-            cardCount,
-            kind: freqAt >= 2 ? 'freq' : 'rank',
-            freqMin: freqAt >= 2 ? freqAt : null,
-        });
-        prevCardCount = cardCount;
-        if (cardCount >= total) break;
+    // Strategy: split by FREQUENCY TIERS, not by equal card count. Each
+    // segment is a distinct "words appearing ≥N times" band, which is the
+    // mental model the scrubber presents (scrub right → include rarer
+    // words). The old equal-card-count split repeated "≥2" across several
+    // tail segments (they differed only by card count) which read as
+    // clutter and put the most snap-resolution where meaning is flattest.
+    //
+    // We walk a rich list of candidate thresholds high→low, keep each tier
+    // that (a) has cards and (b) adds a meaningful chunk over the previous
+    // boundary (minGap) so head tiers with only a handful of very-frequent
+    // words merge instead of spawning micro-segments, then always close at
+    // the full deck. Card count stays the exact axis; frequency is the
+    // label; coverage % is precise in the readout.
+    const cardsAtLeast = (t) => {
+        // items are freq-desc → index of first card with freq < t.
+        let lo = 0, hi = total;
+        while (lo < hi) {
+            const mid = (lo + hi) >> 1;
+            if ((items[mid].corpus_count || 0) >= t) lo = mid + 1;
+            else hi = mid;
+        }
+        return lo;
+    };
+
+    const CANDIDATES = [500, 300, 200, 150, 100, 70, 50, 40, 30, 20, 15, 10, 8, 7, 6, 5, 4, 3, 2];
+    const minGap = Math.max(3, Math.round(total * 0.012)); // ≥1.2% of deck per tier
+
+    const boundaries = []; // {endIdx, cardCount, freqMin}
+    let prevCount = 0;
+    for (const t of CANDIDATES) {
+        const c = cardsAtLeast(t);
+        if (c <= prevCount) continue;            // no new cards at this cliff
+        if (c - prevCount < minGap && c < total) continue; // too small — merge down
+        const endIdx = c - 1;
+        const freqAt = items[endIdx].corpus_count || 0; // actual min freq in this cut
+        boundaries.push({ endIdx, cardCount: c, freqMin: freqAt >= 2 ? freqAt : null });
+        prevCount = c;
+        if (c >= total) break;
     }
 
-    // Always anchor the last segment at the end (in case rounding
-    // landed short of `total` on the final iteration).
-    const last = boundaries[boundaries.length - 1];
-    if (!last || last.cardCount < total) {
+    // Always anchor the final segment at the full deck (the freq=2 tail).
+    // If the last kept tier is within minGap of total, replace it rather
+    // than append a near-duplicate boundary.
+    const lastB = boundaries[boundaries.length - 1];
+    if (!lastB || lastB.cardCount < total) {
         const freqAt = items[total - 1].corpus_count || 0;
-        boundaries.push({
-            endIdx: total - 1,
-            cardCount: total,
-            kind: freqAt >= 2 ? 'freq' : 'rank',
-            freqMin: freqAt >= 2 ? freqAt : null,
-        });
+        const tail = { endIdx: total - 1, cardCount: total, freqMin: freqAt >= 2 ? freqAt : null };
+        if (lastB && total - lastB.cardCount < minGap) boundaries[boundaries.length - 1] = tail;
+        else boundaries.push(tail);
     }
 
     // Cumulative coverage — sum corpus_count weighted across all items
-    // up to each boundary, divided by the total. Mirrors the existing
-    // ppmData cumulativePercent logic but works on the filtered vocab.
+    // up to each boundary, divided by the total.
     let totalFreq = 0;
     for (const it of items) totalFreq += (it.corpus_count || 0);
 
@@ -559,21 +560,14 @@ function computeSmartLevelRanges(filteredVocab) {
         const startIdx = i === 0 ? 0 : boundaries[i - 1].endIdx + 1;
         for (let j = startIdx; j <= b.endIdx; j++) cumFreq += (items[j].corpus_count || 0);
         const coverage = totalFreq > 0 ? cumFreq / totalFreq : 0;
-        const cardCount = b.endIdx + 1;
+        const cardCount = b.cardCount;
         const endRank = items[b.endIdx].rank;
         const startRank = prevRank + 1;
         prevRank = endRank;
 
-        // Level identifier — stable enough to round-trip selectedLevel
-        // across re-renders. Keyed by cardCount because that's the round
-        // axis (freqMin can repeat across segments in the freq=2 tail).
+        // Level identifier — keyed by cardCount so selectedLevel round-trips
+        // stably across re-renders (freqMin can in principle repeat).
         const level = `c${cardCount}`;
-        // Tick label = ≥{cliff freq} for every segment, so the slider
-        // row reads as a single consistent unit. Card count and exact
-        // coverage live in the tooltip + readout. Snapping freq DOWN to
-        // a cliff makes ≥N always truthful for that boundary's tail,
-        // even if the actual freq at the boundary card was a non-round
-        // number like 7 (displays as ≥5).
         const tickLabel = b.freqMin !== null ? `≥${b.freqMin}` : String(cardCount);
         const description = b.freqMin !== null
             ? `Top ${cardCount.toLocaleString()} cards · words appearing ≥${b.freqMin} times · ${(coverage * 100).toFixed(1)}% coverage`
@@ -585,7 +579,7 @@ function computeSmartLevelRanges(filteredVocab) {
             endRank,
             cardCount,
             threshold: coverage,
-            kind: b.kind,
+            kind: b.freqMin !== null ? 'freq' : 'rank',
             freqMin: b.freqMin || null,
             tickLabel,
             description,
@@ -738,21 +732,33 @@ function _scrollLevelSegToCenter(idx, smooth) {
 
 function wireLevelScrubber(segBar, buttons) {
     let commitTimer = null;
+    const commit = () => {
+        const btn = buttons[_levelCenteredIdx(segBar)];
+        if (btn) btn.click(); // → renderRangeSelector (resets the set options)
+    };
     segBar.addEventListener('scroll', () => {
         const i = _levelCenteredIdx(segBar);
         if (+segBar.dataset.value !== i) setLevelSegmentSelection(i); // live magnify + readout
         if (_levelProgrammaticScroll) return;
         clearTimeout(commitTimer);
-        commitTimer = setTimeout(() => {
-            const btn = buttons[_levelCenteredIdx(segBar)];
-            if (btn) btn.click(); // commit on settle → renderRangeSelector
-        }, 150);
+        commitTimer = setTimeout(commit, 150); // fallback for browsers without scrollend
     }, { passive: true });
-    // Tapping a segment scrubs it to the center (the scroll handler then commits).
+    // scrollend fires once the snap animation settles — the reliable commit.
+    segBar.addEventListener('scrollend', () => {
+        if (_levelProgrammaticScroll) return;
+        clearTimeout(commitTimer);
+        commit();
+    }, { passive: true });
+    // Tapping a segment commits it directly. We must NOT rely on the scroll
+    // handler to commit here: _scrollLevelSegToCenter marks the scroll as
+    // programmatic, and both scroll listeners early-return on programmatic
+    // scrolls — so a tap would magnify the segment but never refresh the set
+    // options. The .level-btn click both re-renders the ranges AND re-centres
+    // the scrubber (via the sync block in the button handler).
     segBar.querySelectorAll('.lsw-seg').forEach(seg => {
         seg.addEventListener('click', () => {
             const idx = parseInt(seg.dataset.i, 10);
-            if (!Number.isNaN(idx)) _scrollLevelSegToCenter(idx, true);
+            if (!Number.isNaN(idx) && buttons[idx]) buttons[idx].click();
         });
     });
 }

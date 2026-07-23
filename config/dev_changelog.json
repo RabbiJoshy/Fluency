@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-23",
+      "commit": "cc15c65",
+      "summary": "Level scrubber fixes: no duplicate numbers, sets reset on level change, frequency-tier splits",
+      "details": [
+        "Fixed the leftover small-font tick numbers under the scrubber (the hide rule lost a CSS specificity tie to the base ticks rule) — only the large centred labels show now",
+        "Tapping/scrubbing to a new level now reliably resets the Choose-Set options (added a scrollend commit + tap-to-commit; before, a segment tap magnified the level but never re-rendered the ranges, so you couldn't pick sets above the old level)",
+        "Level segments now split by frequency tiers (distinct 'appears ≥N times' bands) instead of 10 equal-card-count chunks — no more several segments all labelled ≥2",
+        "Cache v52→v53, assets 20260722e→20260723a"
+      ]
+    },
+    {
+      "date": "2026-07-23",
       "commit": "9aca157",
       "summary": "Flag a specific sense pairing (not just the whole word), with ↑/↓ sense nav",
       "details": [
