@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "3f2a6e9",
       "summary": "Setup tweaks: 'Collapse Lemmas On/Off', shorter Cognates labels, brighter in-study progress bar",
       "details": [
         "'Cards per Lemma' toggle renamed to 'Collapse Lemmas' with On/Off (On = one card per lemma); Lemma help tab updated to match",
