@@ -41,16 +41,17 @@
   2. **(S) [artist] Artist-mode help missing Lemma/Cognates tabs** — the step2 help tooltip has
      Level/Lemma/Cognates tabs (`index.html` ~L283), but they don't show in artist mode.
      Find where artist mode drops them and restore. Needs investigation.
-  3. **(S) [shared/spanish] Highlight the governed preposition in examples** — when a sense is
-     tagged "used with a" (SpanishDict "used with X" pattern, e.g. acostumbré), also highlight
-     that preposition where it appears in the example sentence, not just the headword.
+  3. **(S) [shared/spanish] Highlight the "used with X" word in examples** — when a sense is
+     tagged "used with X" (SpanishDict pattern, e.g. acostumbré → "used with a"), highlight that
+     word wherever it appears in the example sentence, not just the headword.
      FEASIBILITY CONFIRMED (2026-07-24): the SD `context` field is structured — 5,567/5,854
-     "used with" contexts match `used with "X"` and the top tokens are clean prepositions
-     (a 1578, con 1156, de 1056, por 591, en 454, que 284, para 139…); a small tail is
-     collocations (bien/grande/juntos/estar) so gate on a preposition whitelist. `context` is
-     already on the card meaning (it's the "(used with a)" text), so this is a front-end-only
-     change in `flashcards.js`: parse the quoted token, and if it's a whitelisted preposition,
-     highlight whole-word occurrences of it in the rendered example sentence.
+     "used with" contexts match `used with "X"` (top tokens a/con/de/por/en/que/para…, small
+     collocation tail like bien/grande). Josh's call: NO preposition whitelist — just parse the
+     quoted token X and highlight whole-word occurrences of it in the example if present,
+     whatever X is (a collocation word is fine to highlight). `context` is already on the card
+     meaning (it's the "(used with a)" text), so this is front-end-only in `flashcards.js`.
+     Optional cheap add: also stash the extracted X on the card/meaning object (e.g.
+     `meaning.usedWith`) for later use — no UI needed now.
   4. **(M) [shared] Card back: POS pill above each section, not inside each row** — group senses
      by POS and render the POS-tag pill as a section header above the group (usually one POS +
      a few senses; scroll when many). Restructures the sense-list render in `updateCard()`
