@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-23",
+      "commit": "pending",
+      "summary": "Flag a specific sense pairing (not just the whole word), with ↑/↓ sense nav",
+      "details": [
+        "Flag (F key) now opens a sense-level flag menu: pick which word→meaning pairing is wrong, choose an issue type (wrong meaning / lemma / example / whole word), then submit",
+        "↑/↓ move through the card's senses while flagging (Enter submits, Esc cancels); the card behind the menu syncs to the highlighted sense via selectMeaning",
+        "FlaggedWords payload is backward-compatible: sense flags add a field path (sense:i / example:i / lemma) + gloss text so the row is human-resolvable; whole-word flags send the identical payload as before — no sheet columns reordered. Offline flags still route through the sync queue",
+        "Cache v51→v52, assets 20260722d→20260722e"
+      ]
+    },
+    {
+      "date": "2026-07-23",
       "commit": "1404cf8",
       "summary": "Offline support: study offline, progress/flags queue and sync when back online",
       "details": [

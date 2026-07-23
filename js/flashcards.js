@@ -1023,6 +1023,13 @@ function setupKeyboardShortcuts() {
             return;
         }
 
+        // While the sense-level flag menu is open it owns the keyboard: ↑/↓
+        // pick a sense, Enter submits, Esc cancels (handled by the menu's own
+        // listener in flashcards-modals.js). Bail so we don't also cycle the
+        // card underneath.
+        const _flagMenuEl = document.getElementById('flagMenu');
+        if (_flagMenuEl && !_flagMenuEl.hidden) return;
+
         // Left arrow = previous card
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
@@ -1108,9 +1115,26 @@ function handleFlagAction() {
     const currentCard = flashcards[currentIndex];
     if (!currentCard || !currentCard.rank) return;
 
-    flagWord(currentCard);
+    // Primary path: open the sense-level flag menu (lazy-loaded from
+    // flashcards-modals.js). It lets the user target a specific word→meaning
+    // pairing and navigate senses with ↑/↓, then calls advanceAfterFlag() on
+    // submit. If the menu module can't be reached, fall back to the original
+    // instant whole-word flag so flagging never breaks.
+    if (typeof window.showFlagMenu === 'function') {
+        window.showFlagMenu();
+        return;
+    }
 
+    flagWord(currentCard);
+    advanceAfterFlag();
+}
+
+// Flag animation + advance to the next card. Extracted from the old
+// handleFlagAction so the sense-level flag menu can reuse the exact same
+// post-flag behavior after the user submits a pairing.
+function advanceAfterFlag() {
     const card = document.getElementById('flashcard');
+    if (!card) return;
     card.classList.add('swipe-flag');
 
     setTimeout(() => {
@@ -1136,6 +1160,7 @@ function handleFlagAction() {
         }
     }, 300);
 }
+window.advanceAfterFlag = advanceAfterFlag;
 
 function handleSwipeAction(result) {
     const card = document.getElementById('flashcard');
@@ -3216,6 +3241,7 @@ const stubFor = (name, loader) => {
 };
 
 ['toggleCardMetaPopover', 'showCardMetaPopover', 'hideCardMetaPopover',
+ 'showFlagMenu', 'hideFlagMenu',
  'showPOSInfo',
  'showLyricBreakdown', 'hideLyricBreakdown',
  'showWordPopup', 'hideWordPopup',

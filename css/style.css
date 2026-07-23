@@ -937,6 +937,79 @@
             font-size: 11px;
         }
 
+        /* ---- Sense-level flag menu (shares the card-meta modal chrome) ---- */
+        .flag-menu-hint {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 11px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .flag-menu-senses {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .flag-menu-senses.is-disabled { opacity: 0.4; }
+        .flag-menu-sense {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.12s, border-color 0.12s;
+        }
+        .flag-menu-sense:last-child { margin-bottom: 0; }
+        .flag-menu-sense:hover { background: rgba(255, 255, 255, 0.09); }
+        .flag-menu-sense.selected {
+            background: rgba(255, 196, 0, 0.16);
+            border-color: rgba(255, 196, 0, 0.7);
+        }
+        .flag-menu-sense .fm-pos {
+            flex: none;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .flag-menu-sense .fm-gloss {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.92);
+            word-break: break-word;
+        }
+        .flag-menu-sense .fm-pct {
+            margin-left: auto;
+            flex: none;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .flag-menu-issues {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .flag-menu-issue {
+            padding: 5px 12px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-data);
+            font-size: 11px;
+            cursor: pointer;
+            transition: background 0.12s, border-color 0.12s, color 0.12s;
+        }
+        .flag-menu-issue:hover { border-color: rgba(255, 255, 255, 0.4); }
+        .flag-menu-issue.selected {
+            background: rgba(255, 196, 0, 0.18);
+            border-color: rgba(255, 196, 0, 0.7);
+            color: rgba(255, 235, 170, 0.98);
+        }
+
         .kb-hint.correct {
             color: var(--success);
             font-weight: 700;
