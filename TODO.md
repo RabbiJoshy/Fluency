@@ -38,9 +38,9 @@
      slowly pulse the `.step-number` of the step awaiting a decision (pick language / pick set),
      so it's obvious where to act. CSS pulse is trivial; the work is toggling an `--active`
      class as the user advances through step1 → step2 → step4 (`ui.js`).
-  2. **(S) [artist] Artist-mode help missing Lemma/Cognates tabs** — the step2 help tooltip has
-     Level/Lemma/Cognates tabs (`index.html` ~L283), but they don't show in artist mode.
-     Find where artist mode drops them and restore. Needs investigation.
+  2. **(S) [artist] Artist-mode help missing Lemma/Cognates tabs** — DONE 2026-07-24 (4a9bf8e):
+     `updateStep2Tooltip()` was overwriting the whole tooltip body in artist mode; now it only
+     swaps the Level tab's copy and keeps all three tabs.
   3. **(S) [shared/spanish] Highlight the "used with X" word in examples** — when a sense is
      tagged "used with X" (SpanishDict pattern, e.g. acostumbré → "used with a"), highlight that
      word wherever it appears in the example sentence, not just the headword.
@@ -56,6 +56,16 @@
      by POS and render the POS-tag pill as a section header above the group (usually one POS +
      a few senses; scroll when many). Restructures the sense-list render in `updateCard()`
      (`flashcards.js`). Related to the card-back polish batch.
+  4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — right now
+     the card back shows a matched sense / matched example with just a cold outline/border. Josh
+     wants something more intelligent and is explicitly leaving the design to the model's
+     judgement. Especially now that the back is being grouped by POS (item 4), there may be room
+     for a colour system (e.g. tie the selected sense + its matched example(s) together by a
+     shared accent, distinguish assignment confidence, or colour by POS section). Current signals
+     to build on (see js/CLAUDE.md "Artist Index Format"): `meaning.assignment_method` /
+     `meaning.unassigned` per sense, per-example `example.assignment_method` (…keyword/gemini/
+     biencoder), and the existing selected-sense accent bar + example-box border. Don't just
+     recolour — propose a coherent scheme first, then implement. Do item 4 (POS grouping) first.
   5. **(M) [normal] Language picker → radial button** — replace the normal-mode language
      toggle/tabs with a button that opens a radial "clock of pictures" like the artist picker
      (`main.js showArtistPicker`). Reuse that component.
@@ -63,16 +73,25 @@
      standard mode merge the progress section into the language box: language name beside the
      tiny % stats, progress bar directly underneath. Saves vertical space. Artist-mode top box
      stays as-is.
-  7. **(M) [artist] Level scrubber granularity in the long tail** — in artist mode the `≥2`
-     band is basically the entire long tail, so there's no resolution there. Explore a smarter
-     split (sub-divide the low-integer tail by card-count within `≥2`/`≥3`, or a log split of
-     the tail) so scrubbing the rare end is meaningful (`computeSmartLevelRanges` in `ui.js`).
-     Design question — Josh asked "is there something smarter I could do?"
-  8. **(M) [shared] Card-front frequency vs pooled examples mismatch** — in one-card-per-lemma
-     mode the displayed frequency doesn't match the pooled example count (Josh saw `gasté`
-     showing a much higher front-of-card frequency than its ≥2-tier / example reality). Make the
-     card-front frequency reflect the same pooled basis as the examples. Related to the pooled-
-     examples item below.
+  7. **(M) [artist] [USE JUDGEMENT] Rethink the whole frequency partition of the deck** — in
+     artist mode the `≥2` band is basically the entire long tail, so scrubbing the rare end has
+     no resolution; and many words occur many times, so the head is lumpy too. Josh wants a
+     genuinely better way to partition all words by frequency, left to the model's judgement
+     (options: sub-divide the low-integer tail by card-count within `≥2`/`≥3`, a log split of the
+     tail, coverage-equalised bands, hybrid…). `computeSmartLevelRanges` in `ui.js`.
+     ⚠️ ENTANGLED WITH #8: Josh believes the morphology/example POOLING was done badly (has
+     bugs), and thinks part of the "lumpy frequency" problem may dissolve once pooling is fixed
+     (frequencies re-aggregate correctly per lemma). So FIX/AUDIT POOLING (#8) FIRST, re-measure
+     the frequency distribution, THEN redesign the partition against corrected numbers.
+  8. **(M) [shared] Audit + fix lemma example/frequency pooling (Josh suspects bugs)** — in
+     one-card-per-lemma mode the displayed card-front frequency doesn't match the pooled example
+     count (Josh saw `gasté` showing a much higher front-of-card frequency than its ≥2-tier /
+     example reality). Josh's read: the pooling of morphological forms was done badly and is
+     buggy — audit `poolLemmaSiblingExamples()` and the pooled-frequency logic in `js/vocab.js`
+     (and `mergeArtistVocabularies()`), find the discrepancy between the frequency number and the
+     pooled examples, and make the card-front frequency reflect the SAME pooled basis as the
+     examples. This is the deeper item and a prerequisite for #7. Related to the pooled-examples
+     item below.
 
 - **[soon] Pool examples per lemma in one-card-per-lemma mode (M) [shared] [cross-lang]**
   When the lemma-collapse filter is on (one card per lemma), the surviving card should pool
