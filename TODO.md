@@ -93,6 +93,37 @@
      examples. This is the deeper item and a prerequisite for #7. Related to the pooled-examples
      item below.
 
+- **[now] Notes-app backlog — EARLIER dump, captured 2026-07-24 [was only categorized in-chat, never committed until now]**
+  From Josh's notes (~2026-07-13). Already resolved: offline save-on-reconnect (SHIPPED,
+  js/sync-queue.js); level auto-jumps to first not-completed level on setting change (DONE,
+  `findFirstIncompleteLevelBtn` in ui.js); collapsed-lemma pools all examples across the lemma
+  (SHIPPED but buggy — see the frequency/pooling audit item above). Still OPEN:
+  1. **(S) [shared] Exclude exact-line repetitions from corpus count** — when the exact same line
+     repeats within a song, don't double-count its words toward frequency; optionally use exact
+     repetition as a tiebreaker. Pipeline-side count logic; distinct from the Songs-to-Exclude
+     section (this is intra-song line dedup, not whole-song exclusion).
+  2. **(S) [normal] Card scroll/transition animation, desktop mode** — add an animation when
+     moving between cards on desktop (currently feels static there).
+  3. **(S) [shared] Study-set stats: show how many you've already studied** — when viewing a
+     set's stats, surface the previously-studied count so the numbers aren't confusing.
+  4. **(M) [artist/spanish] Verbs missing morphology even though the card "knows" it** — some
+     verbs render without a conjugation/morphology table despite the data seeming present.
+     Likely because morphology is SpanishDict-dependent only (not verbecc); SD should know them.
+     Investigate the SD morphology-attach gap (`build_conjugations.py` / morphology attach in
+     step_8a/8b, and the card render in `flashcards.js buildConjugationTableHTML`).
+  5. **(M) [normal/spanish] MWE real examples from OpenSubtitles for normal mode** — normal-mode
+     MWE rows should get actual example sentences from the OpenSubtitles corpus. Partially
+     tracked by "Run MWE corpus frequency on full OpenSubtitles" + "Better handling of
+     SpanishDict phrasebook analyses" in Data/Pipeline — reconcile with those.
+  6. **(L) [shared] Model English→Spanish one-to-many** — an English prompt (e.g. "take me") can
+     map to several Spanish cards. Probably one card with a starter/front-of-card disambiguation
+     plus incorporated synonyms, rather than N duplicate cards. Design question; overlaps the
+     Synonym+antonym viewer item.
+  7. **(S) [normal] Spotify: stop asking for confirmation on desktop every time** — suppress the
+     repeated confirmation prompt on the desktop Spotify flow.
+  8. **(idea) [shared] Maybe a final/capstone level** — a "you've finished everything" level
+     state at the top of the ladder.
+
 - **[soon] Pool examples per lemma in one-card-per-lemma mode (M) [shared] [cross-lang]**
   When the lemma-collapse filter is on (one card per lemma), the surviving card should pool
   examples from all the collapsed surface forms (quiero/quieres/quiere → querer card shows
