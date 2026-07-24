@@ -75,7 +75,7 @@
   `findFirstIncompleteLevelBtn` in ui.js); collapsed-lemma pools all examples across the lemma
   (SHIPPED but buggy — see the frequency/pooling audit item above). Still OPEN:
   1. **(S) [shared] Exclude exact-line repetitions from corpus count** — CODED 2026-07-24
-     (PENDING; artist data rebuild required): normalized lyric lines now contribute once per song
+     (`7c63853`; artist data rebuild required): normalized lyric lines now contribute once per song
      to word and MWE counts; the same line in different songs remains independent. Regression
      coverage: `pipeline/artist/test_step_2a_count_words.py`.
   2. **(S) [normal] Card scroll/transition animation, desktop mode** — add an animation when
