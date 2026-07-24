@@ -57,7 +57,7 @@
      selection, the language sits beside compact speech/flashcard percentages with the bar below
      in step 1; zero-progress languages remain visible and artist mode is unchanged.
   7. **(M) [artist] [USE JUDGEMENT] Rethink the whole frequency partition of the deck** — DONE
-     2026-07-24 (PENDING): corrected measurements still put 44–59% of cards in the 1–3 tail.
+     2026-07-24 (`44e4d3f`): corrected measurements still put 44–59% of cards in the 1–3 tail.
      The scrubber now makes ten near-equal-card bands, snaps to nearby frequency cliffs, and
      labels intentional tied-tier cuts with frequency plus cumulative card count. It uses pooled
      example frequency in lemma mode and a consistent display-rank basis from setup through deck

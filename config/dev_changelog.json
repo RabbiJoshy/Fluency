@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "44e4d3f",
       "summary": "Frequency scrubber now has useful head-to-tail resolution",
       "details": [
         "Corrected measurements show 44–59% of current artist decks remain in the 1–3 occurrence/example tail, so the deck now uses ten near-equal-card bands with nearby frequency-cliff snapping",
