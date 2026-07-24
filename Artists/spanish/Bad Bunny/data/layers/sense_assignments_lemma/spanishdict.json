@@ -60499,7 +60499,8 @@
           1,
           2,
           3,
-          4
+          4,
+          5
         ]
       }
     ]
@@ -73556,7 +73557,8 @@
         "sense": "652",
         "examples": [
           0,
-          1
+          1,
+          2
         ]
       }
     ]
@@ -140789,7 +140791,8 @@
       {
         "sense": "d6d",
         "examples": [
-          2
+          2,
+          3
         ]
       }
     ]
@@ -189030,6 +189033,155 @@
         "construction": "ponerse",
         "example_ids": [
           "5529101:15"
+        ]
+      }
+    ]
+  },
+  "ha|haber": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d62",
+        "examples": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "musa|musa": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "ff8",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  "jacuzzi|Jacuzzi": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d21",
+        "examples": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "abuse|abusar": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "6da",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "abuses|abusar": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "e50",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "acariciar|acariciar": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "35e",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "maraña|maraña": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "8a9",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "marchiten|marchitar": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "483",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "marcianas|marciano": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "f61",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "marciano|marciano": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "263",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "mareado|mareado": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "259",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "marean|marear": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "354",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "riego|riego": {
+    "gap-fill": [
+      {
+        "sense": "94a",
+        "pos": "VERB",
+        "translation": "to leak or share",
+        "lemma": "riego",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4035827:13"
         ]
       }
     ]

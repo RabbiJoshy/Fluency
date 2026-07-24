@@ -1,14 +1,33 @@
 {
   "mwes": [
     {
+      "expression": "tú eres",
+      "translation": "you are (elided)",
+      "count": 22,
+      "variants": [
+        "tú ere'"
+      ]
+    },
+    {
+      "expression": "voy a",
+      "translation": "I'm going to",
+      "count": 21,
+      "variants": [
+        "vo' a"
+      ]
+    },
+    {
       "expression": "sé que",
       "translation": "I know that",
       "count": 21
     },
     {
-      "expression": "voy a",
-      "translation": "I'm going to",
-      "count": 20
+      "expression": "es que",
+      "translation": "it's that (elided)",
+      "count": 20,
+      "variants": [
+        "e' que"
+      ]
     },
     {
       "expression": "no hay",
@@ -16,14 +35,25 @@
       "count": 18
     },
     {
-      "expression": "de mí",
-      "translation": "about me, of me",
-      "count": 13
+      "expression": "para que",
+      "translation": "so that, in order to",
+      "count": 13,
+      "variants": [
+        "pa' que"
+      ]
     },
     {
-      "expression": "pa' que",
-      "translation": "so that, in order to",
-      "count": 11
+      "expression": "vamos a",
+      "translation": "let's",
+      "count": 12,
+      "variants": [
+        "vamo' a"
+      ]
+    },
+    {
+      "expression": "de mí",
+      "translation": "about me, of me",
+      "count": 12
     },
     {
       "expression": "de ti",
@@ -36,14 +66,25 @@
       "count": 11
     },
     {
-      "expression": "tú ere'",
-      "translation": "you are (elided)",
-      "count": 9
-    },
-    {
       "expression": "quiero que",
       "translation": "I want (someone) to",
       "count": 9
+    },
+    {
+      "expression": "todo lo que",
+      "translation": "everything that",
+      "count": 8,
+      "variants": [
+        "to' lo que"
+      ]
+    },
+    {
+      "expression": "tú sabes",
+      "translation": "you know (elided)",
+      "count": 8,
+      "variants": [
+        "tú sabe'"
+      ]
     },
     {
       "expression": "por qué",
@@ -56,19 +97,41 @@
       "count": 6
     },
     {
-      "expression": "to' lo que",
-      "translation": "everything that (elided)",
-      "count": 6
-    },
-    {
-      "expression": "pa' qué",
-      "translation": "what for",
-      "count": 5
+      "expression": "tú sabes que",
+      "translation": "you know that (elided)",
+      "count": 6,
+      "variants": [
+        "tú sabe' que"
+      ]
     },
     {
       "expression": "se siente",
       "translation": "feels, it feels",
       "count": 5
+    },
+    {
+      "expression": "toda la",
+      "translation": "all the (fem. sg., elided)",
+      "count": 5,
+      "variants": [
+        "to'a la"
+      ]
+    },
+    {
+      "expression": "otra vez",
+      "translation": "again",
+      "count": 5,
+      "variants": [
+        "otra ve'"
+      ]
+    },
+    {
+      "expression": "para qué",
+      "translation": "what for",
+      "count": 4,
+      "variants": [
+        "pa' qué"
+      ]
     },
     {
       "expression": "lo mismo",
@@ -91,9 +154,28 @@
       "count": 4
     },
     {
+      "expression": "todo el mundo",
+      "translation": "everybody",
+      "count": 4,
+      "variants": [
+        "to' el mundo"
+      ]
+    },
+    {
+      "expression": "todas las",
+      "translation": "all the (fem., elided)",
+      "count": 4,
+      "variants": [
+        "toa' las"
+      ]
+    },
+    {
       "expression": "te voy a",
       "translation": "I'm going to (you)",
-      "count": 4
+      "count": 4,
+      "variants": [
+        "te vo'a"
+      ]
     },
     {
       "expression": "dice que",
@@ -109,11 +191,6 @@
       "expression": "se va",
       "translation": "leaves, goes away",
       "count": 3
-    },
-    {
-      "expression": "lo mío",
-      "translation": "my thing, what's mine",
-      "count": 2
     },
     {
       "expression": "hay que",
@@ -141,16 +218,6 @@
       "count": 2
     },
     {
-      "expression": "me puse",
-      "translation": "I put on / I got",
-      "count": 2
-    },
-    {
-      "expression": "to' el mundo",
-      "translation": "everybody",
-      "count": 2
-    },
-    {
       "expression": "la disco",
       "translation": "the club",
       "count": 2
@@ -158,11 +225,6 @@
     {
       "expression": "un flow",
       "translation": "a style, a vibe",
-      "count": 2
-    },
-    {
-      "expression": "todo lo que",
-      "translation": "everything that",
       "count": 2
     },
     {
@@ -178,6 +240,11 @@
     {
       "expression": "lo nuestro",
       "translation": "our thing, what we have",
+      "count": 1
+    },
+    {
+      "expression": "lo mío",
+      "translation": "my thing, what's mine",
       "count": 1
     },
     {
@@ -201,6 +268,11 @@
       "count": 1
     },
     {
+      "expression": "me puse",
+      "translation": "I put on / I got",
+      "count": 1
+    },
+    {
       "expression": "se ve",
       "translation": "looks, appears",
       "count": 1
@@ -208,16 +280,6 @@
     {
       "expression": "dile que",
       "translation": "tell him/her that",
-      "count": 1
-    },
-    {
-      "expression": "e' que",
-      "translation": "it's that (elided)",
-      "count": 1
-    },
-    {
-      "expression": "hijo e puta",
-      "translation": "son of a bitch",
       "count": 1
     },
     {
@@ -251,9 +313,190 @@
       "count": 0
     }
   ],
+  "patterns": [
+    {
+      "expression": "que yo [PRON]",
+      "count": 13,
+      "num_variants": 4,
+      "num_songs": 10,
+      "variants": {
+        "que yo te": 8,
+        "que yo me": 3,
+        "que yo le": 1,
+        "que yo lo": 1
+      }
+    },
+    {
+      "expression": "que tú [PRON]",
+      "count": 11,
+      "num_variants": 2,
+      "num_songs": 9,
+      "variants": {
+        "que tú me": 8,
+        "que tú te": 3
+      }
+    },
+    {
+      "expression": "[PRON] voy a",
+      "count": 10,
+      "num_variants": 4,
+      "num_songs": 7,
+      "variants": {
+        "lo voy a": 4,
+        "te voy a": 4,
+        "la voy a": 1,
+        "los voy a": 1
+      }
+    },
+    {
+      "expression": "no [PRON] ves",
+      "count": 8,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "no lo ves": 7,
+        "no me ves": 1
+      }
+    },
+    {
+      "expression": "[PRON] vas a",
+      "count": 7,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "lo vas a": 6,
+        "te vas a": 1
+      }
+    },
+    {
+      "expression": "[PRON] que yo",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "lo que yo": 3,
+        "la que yo": 3
+      }
+    },
+    {
+      "expression": "esta noche [PRON]",
+      "count": 6,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "esta noche nos": 5,
+        "esta noche se": 1
+      }
+    },
+    {
+      "expression": "y yo [PRON]",
+      "count": 6,
+      "num_variants": 3,
+      "num_songs": 5,
+      "variants": {
+        "y yo le": 3,
+        "y yo te": 2,
+        "y yo nos": 1
+      }
+    },
+    {
+      "expression": "sé que [PRON]",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "sé que me": 2,
+        "sé que te": 2,
+        "sé que se": 1
+      }
+    },
+    {
+      "expression": "que [PRON] quiero",
+      "count": 5,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "que te quiero": 3,
+        "que me quiero": 1,
+        "que la quiero": 1
+      }
+    },
+    {
+      "expression": "quiero que [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "quiero que lo": 3,
+        "quiero que me": 2
+      }
+    },
+    {
+      "expression": "que esta noche [PRON]",
+      "count": 5,
+      "num_variants": 2,
+      "num_songs": 2,
+      "variants": {
+        "que esta noche nos": 4,
+        "que esta noche se": 1
+      }
+    },
+    {
+      "expression": "yo no [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 4,
+      "variants": {
+        "yo no me": 2,
+        "yo no lo": 2
+      }
+    },
+    {
+      "expression": "el mundo [PRON]",
+      "count": 4,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "el mundo me": 2,
+        "el mundo te": 1,
+        "el mundo lo": 1
+      }
+    },
+    {
+      "expression": "tú eres [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "tú eres la": 3,
+        "tú eres lo": 1
+      }
+    },
+    {
+      "expression": "no [PRON] puedes",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "no lo puedes": 3,
+        "no me puedes": 1
+      }
+    },
+    {
+      "expression": "para que tú [PRON]",
+      "count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "para que tú te": 3,
+        "para que tú me": 1
+      }
+    }
+  ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 50,
-    "pmi_detected_count": 0
+    "confirmed_count": 54,
+    "pmi_detected_count": 0,
+    "patterns_count": 17
   }
 }

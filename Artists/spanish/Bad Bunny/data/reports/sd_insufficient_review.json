@@ -3,7 +3,7 @@
     "source": "spanishdict",
     "classifier": "classify-or-propose",
     "model": "gemini-3.1-flash-lite",
-    "count": 1783
+    "count": 1785
   },
   "items": [
     {
@@ -345,6 +345,16 @@
       "corpus_count": 63,
       "example": "Y real, el mal no te quisiera desear",
       "translation": "And really, I wouldn't wish any evil on you"
+    },
+    {
+      "word": "ha",
+      "lemma": "ha",
+      "proposed": "to do",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 62,
+      "example": "Vo'a ha-; pon-; bellaca; vo'a; con to' y bata (Yeah)",
+      "translation": "I'm gonna do-; put-; horny; I'm gonna; even with a robe (Yeah)"
     },
     {
       "word": "di",
@@ -17835,6 +17845,16 @@
       "corpus_count": 1,
       "example": "Ahora se cambian los papar’, e' a mí quien me toca sufrir",
       "translation": "Now the roles are reversed, it's my turn to suffer"
+    },
+    {
+      "word": "riego",
+      "lemma": "riego",
+      "proposed": "to leak or share",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Envía un par de foto' (¡Wuh!), que yo no la' riego (¡No!)",
+      "translation": "Send a couple of pics (Wuh!), I don't water them down (No!)"
     }
   ]
 }

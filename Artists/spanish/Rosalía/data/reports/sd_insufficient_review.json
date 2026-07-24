@@ -1,0 +1,810 @@
+{
+  "_meta": {
+    "source": "spanishdict",
+    "classifier": "classify-or-propose",
+    "model": "gemini-3.1-flash-lite",
+    "count": 80
+  },
+  "items": [
+    {
+      "word": "ha",
+      "lemma": "ha",
+      "proposed": "auxiliary verb for perfect tense",
+      "type": null,
+      "construction": null,
+      "corpus_count": 25,
+      "example": "Que se ha muerto nuestra madre",
+      "translation": "that our mother has died"
+    },
+    {
+      "word": "dos",
+      "lemma": "dos",
+      "proposed": "two",
+      "type": null,
+      "construction": null,
+      "corpus_count": 15,
+      "example": "Eran las dos de la noche",
+      "translation": "It was two at night"
+    },
+    {
+      "word": "mirás",
+      "lemma": "mirás",
+      "proposed": "look or gaze",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 11,
+      "example": "Sólo al mirar en tu mirás",
+      "translation": "Just by looking in your eyes'"
+    },
+    {
+      "word": "chi",
+      "lemma": "chi",
+      "proposed": "onomatopoeia",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 10,
+      "example": "Qué lo, duro, qué lo, chi, chi, chi",
+      "translation": "What, hard, what, chi, chi, chi"
+    },
+    {
+      "word": "alí",
+      "lemma": "alí",
+      "proposed": "proper noun reference",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 8,
+      "example": "De mi' mano' sale el mood de Alí (Gy-gypsy)",
+      "translation": "From my 'hand' comes Alí's mood (Gy-gypsy)"
+    },
+    {
+      "word": "llevar",
+      "lemma": "llevar",
+      "proposed": "to take",
+      "type": null,
+      "construction": null,
+      "corpus_count": 8,
+      "example": "llevar lejos de aquí",
+      "translation": "Take me away from here"
+    },
+    {
+      "word": "quitarse",
+      "lemma": "quitarse",
+      "proposed": "to move out of the way",
+      "type": "figurative",
+      "construction": "quitarse",
+      "corpus_count": 7,
+      "example": "Ay, quitarse, quítate, quítate tú de en medio",
+      "translation": "Oh, get out, get out, get out of the way"
+    },
+    {
+      "word": "quitarse",
+      "lemma": "quitarse",
+      "proposed": "to leave",
+      "type": "figurative",
+      "construction": "quitarse",
+      "corpus_count": 7,
+      "example": "quitarse de mi presencia, que me está' martirizando",
+      "translation": "Get out of my presence, it's martyring me"
+    },
+    {
+      "word": "bendecías",
+      "lemma": "bendecías",
+      "proposed": "blessed",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Aquí con mi Ale 'tamo bendecías (Blessed)",
+      "translation": "Here with my Ale 'we blessed' (Blessed)"
+    },
+    {
+      "word": "so",
+      "lemma": "so",
+      "proposed": "English loanword",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "So I cut",
+      "translation": "So I cut"
+    },
+    {
+      "word": "enamorás",
+      "lemma": "enamorás",
+      "proposed": "in love",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "enamorás de tu pistola, roja amapola",
+      "translation": "Fall in love with your gun, poppy red"
+    },
+    {
+      "word": "kil",
+      "lemma": "kil",
+      "proposed": "fragment of proper noun",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Ah, la-la Kil-, la Kil-, la Kil-, la Kil-, la Kil-, la Kilié",
+      "translation": "Ah, la-la Kil-, la Kil-, la Kil-, la Kil-, la Kil-, la Kilié"
+    },
+    {
+      "word": "racineta",
+      "lemma": "racineta",
+      "proposed": "fast car or racer",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "R de racineta, racineta, rango, racineta, rango",
+      "translation": "R for racineta, racineta, rank, racineta, rank"
+    },
+    {
+      "word": "sauvignon",
+      "lemma": "sauvignon",
+      "proposed": "sauvignon wine",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Está en el fondo de mi copa de Sauvignon Blanc",
+      "translation": "It's at the bottom of my glass of Sauvignon Blanc"
+    },
+    {
+      "word": "tkn",
+      "lemma": "tkn",
+      "proposed": "tekken",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "TKN, TKN, TKN",
+      "translation": "TKN, TKN, TKN"
+    },
+    {
+      "word": "algarete",
+      "lemma": "algarete",
+      "proposed": "out of control",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Tú sabe' que esta noche nos fuimo' algarete, eh",
+      "translation": "You know that tonight we went to hell, huh"
+    },
+    {
+      "word": "clavás",
+      "lemma": "clavás",
+      "proposed": "nailed object",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "clavás de plata, clavá' de plata (Va)",
+      "translation": "Clavá' of silver, clavá' of silver (Va)"
+    },
+    {
+      "word": "clavás",
+      "lemma": "clavás",
+      "proposed": "piercing",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Pienso en tu mirá', tu mirá' clavás es una bala en el pecho",
+      "translation": "I think about your look, your look nails a bullet in the chest"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "letter g",
+      "type": null,
+      "construction": null,
+      "corpus_count": 4,
+      "example": "G de guapa",
+      "translation": "G for pretty"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "gangster",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Esa mami es una G (Yeah)",
+      "translation": "That mommy is a G (Yeah)"
+    },
+    {
+      "word": "go",
+      "lemma": "go",
+      "proposed": "let go",
+      "type": "loanword",
+      "construction": "let go",
+      "corpus_count": 4,
+      "example": "¿Lo va' a olvidar? Can you let it go? Can you let it go?",
+      "translation": "Are you going to forget it? Can you let it go? Can you let it go?"
+    },
+    {
+      "word": "go",
+      "lemma": "go",
+      "proposed": "go",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Here I go",
+      "translation": "Here I go"
+    },
+    {
+      "word": "nana",
+      "lemma": "nana",
+      "proposed": "lullaby",
+      "type": null,
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Nana, nana, nana",
+      "translation": "Lullaby, lullaby, lullaby"
+    },
+    {
+      "word": "omega",
+      "lemma": "omega",
+      "proposed": "the end",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Tú eres mi omega, tú eres mi omega",
+      "translation": "You are my omega, you are my omega"
+    },
+    {
+      "word": "omega",
+      "lemma": "omega",
+      "proposed": "omega",
+      "type": null,
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Omega",
+      "translation": "Omega"
+    },
+    {
+      "word": "saoco",
+      "lemma": "saoco",
+      "proposed": "rhythm and flavor",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Saoco, papi, saoco",
+      "translation": "Saoco, daddy, saoco"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "truthfully",
+      "type": "loanword",
+      "construction": "straight up",
+      "corpus_count": 4,
+      "example": "Straight up!",
+      "translation": "Straight up!"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "arrive",
+      "type": "loanword",
+      "construction": "pull up",
+      "corpus_count": 4,
+      "example": "Cuando I pull up las cámaras shooting like \"pa-pa-pa-pa\"",
+      "translation": "When I pull up the cameras shooting like \"da-da-da-da\""
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "absorb",
+      "type": "loanword",
+      "construction": "soak up",
+      "corpus_count": 4,
+      "example": "Soak up",
+      "translation": "Soak up"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "cosmetics",
+      "type": "loanword",
+      "construction": "make-up",
+      "corpus_count": 4,
+      "example": "Y mi make-up e' la ola de Corea",
+      "translation": "And my make-up is the Korean wave"
+    },
+    {
+      "word": "pestañas",
+      "lemma": "pestañas",
+      "proposed": "eyelashes",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "En Japón lloré y mis pestañas deshilé",
+      "translation": "In Japan I cried and my eyelashes unraveled"
+    },
+    {
+      "word": "pestañas",
+      "lemma": "pestañas",
+      "proposed": "eyelash",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Que por pestañas, niña, que por pestaña'",
+      "translation": "What an eyelash', girl, what an eyelash'"
+    },
+    {
+      "word": "perdonar",
+      "lemma": "perdonar",
+      "proposed": "to forgive",
+      "type": null,
+      "construction": null,
+      "corpus_count": 4,
+      "example": "perdonar, perdóname",
+      "translation": "Forgive me, forgive me"
+    },
+    {
+      "word": "can",
+      "lemma": "can",
+      "proposed": "can (English modal verb)",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "¿Lo va' a olvidar? Can you let it go? Can you let it go?",
+      "translation": "Are you going to forget it? Can you let it go? Can you let it go?"
+    },
+    {
+      "word": "catalina",
+      "lemma": "catalina",
+      "proposed": "proper name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Ponme la mano aquí, Catalina",
+      "translation": "Put your hand here, Catalina"
+    },
+    {
+      "word": "chiquiti",
+      "lemma": "chiquiti",
+      "proposed": "diminutive filler",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Chiquiti, chiquiti, chiquiti",
+      "translation": "Chiquiti, chiquiti, chiquiti"
+    },
+    {
+      "word": "coronás",
+      "lemma": "coronás",
+      "proposed": "proper name (disco)",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Hoy salgo con mi baby de la disco coronás",
+      "translation": "Today I'm going out with my baby from the corona disco"
+    },
+    {
+      "word": "lelele",
+      "lemma": "lelele",
+      "proposed": "musical vocalization",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Lele, lelele (Toma!) Lele",
+      "translation": "Lele, lelele (Take!) Lele"
+    },
+    {
+      "word": "qui",
+      "lemma": "qui",
+      "proposed": "who (Catalan)",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Fruita roja i rodona, ¿qui l'endevina?",
+      "translation": "Red fruit and rodona, who l'endevina?"
+    },
+    {
+      "word": "qui",
+      "lemma": "qui",
+      "proposed": "that (French)",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "C'est mon cœur qui me nomme, si je vous quitte",
+      "translation": "C'est mon cœur qui me nomme, si je vous quitte"
+    },
+    {
+      "word": "tiri",
+      "lemma": "tiri",
+      "proposed": "musical vocalization",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Tiri, tiri, tiri, ay",
+      "translation": "Tiri, tiri, tiri, oh"
+    },
+    {
+      "word": "ángel",
+      "lemma": "ángel",
+      "proposed": "angel",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "El Benito es un diablillo y es un ángel",
+      "translation": "Benito is an imp and he is an angel"
+    },
+    {
+      "word": "ángeles",
+      "lemma": "ángeles",
+      "proposed": "angels",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Eso sí, como subí con dos ángeles",
+      "translation": "Of course, as I went up with two angels"
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "to place oneself",
+      "type": null,
+      "construction": "ponerse",
+      "corpus_count": 3,
+      "example": "Y ponerse tú en las cuatro esquinas",
+      "translation": "And put yourself in the four corners"
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "to put on",
+      "type": null,
+      "construction": "ponerse",
+      "corpus_count": 3,
+      "example": "ponerse el cinturón y coge asiento",
+      "translation": "Put on your seatbelt and take a seat"
+    },
+    {
+      "word": "blut",
+      "lemma": "blut",
+      "proposed": "blood",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Sein Blut ist mein Blut",
+      "translation": "Sein Blut ist mein Blut"
+    },
+    {
+      "word": "caracol",
+      "lemma": "caracol",
+      "proposed": "proper name of artist",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Yo soy la niña de Fuego como canta Caracol",
+      "translation": "I am the girl of Fire as Caracol sings"
+    },
+    {
+      "word": "cos",
+      "lemma": "cos",
+      "proposed": "body",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Se sent més estimada, el vertigen del cos",
+      "translation": "She felt more appreciated, the vertigo of cos"
+    },
+    {
+      "word": "distraes",
+      "lemma": "distraes",
+      "proposed": "you get distracted",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Te distraes y yo te adelanto por la derecha, uh",
+      "translation": "It distracts you' and I overtake you on the right, uh"
+    },
+    {
+      "word": "ea",
+      "lemma": "ea",
+      "proposed": "hey",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ea, ea",
+      "translation": "Hey, hey"
+    },
+    {
+      "word": "et",
+      "lemma": "et",
+      "proposed": "and",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Et qui serai-je? C'était décidé",
+      "translation": "Et qui serai-je? C'était décidé"
+    },
+    {
+      "word": "et",
+      "lemma": "et",
+      "proposed": "you",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "I si només la mires, et salvaries",
+      "translation": "And if you just look at it, you will save it"
+    },
+    {
+      "word": "highlighter",
+      "lemma": "highlighter",
+      "proposed": "makeup highlighter",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Estoy brillando con highlighter, ¿no lo ves?",
+      "translation": "I'm shining with highlighter, can't you see?"
+    },
+    {
+      "word": "hits",
+      "lemma": "hits",
+      "proposed": "successful songs",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Tengo hits porque yo senté las bases",
+      "translation": "I have hits because I laid the foundation"
+    },
+    {
+      "word": "lamborghinis",
+      "lemma": "lamborghinis",
+      "proposed": "luxury sports cars",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ahora pisas Lamborghinis",
+      "translation": "Now you step on Lamborghinis"
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "similar to",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Cuando I pull up las cámaras shooting like \"pa-pa-pa-pa\"",
+      "translation": "When I pull up the cameras shooting like \"da-da-da-da\""
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "to enjoy",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "What you like-",
+      "translation": "What you like-"
+    },
+    {
+      "word": "lux",
+      "lemma": "lux",
+      "proposed": "light",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ego sum nihil, ego sum lux mundi",
+      "translation": "Ego sum nihil, ego sum lux mundi"
+    },
+    {
+      "word": "mai",
+      "lemma": "mai",
+      "proposed": "ever",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Està més viva que mai,més viva que mai",
+      "translation": "It is more alive than mai, more alive than mai"
+    },
+    {
+      "word": "mana",
+      "lemma": "mana",
+      "proposed": "to rule",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "De tu sempre té gana, tu ets el rei que la mana",
+      "translation": "You always win, you are the king who rules"
+    },
+    {
+      "word": "mana",
+      "lemma": "mana",
+      "proposed": "to flow",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Qué bien sé yo la fuente que mana y corre",
+      "translation": "How well I know the source that flows and flows"
+    },
+    {
+      "word": "piercing",
+      "lemma": "piercing",
+      "proposed": "piercing",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "La Quinta Avenida cabe en un piercing",
+      "translation": "Fifth Avenue fits in a piercing"
+    },
+    {
+      "word": "puñalás",
+      "lemma": "puñalás",
+      "proposed": "stabs",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y dame tú de puñala-, puñalás (Puñaládas)",
+      "translation": "And give me a dagger-, daggers (Stabs)"
+    },
+    {
+      "word": "rendre",
+      "lemma": "rendre",
+      "proposed": "to surrender",
+      "type": "other",
+      "construction": "rendre les armes",
+      "corpus_count": 2,
+      "example": "Si on m'invite à rendre les armes sans rendre l’âme",
+      "translation": "If on m'invite à rendre les armes sans rendre l’âme"
+    },
+    {
+      "word": "rendre",
+      "lemma": "rendre",
+      "proposed": "to give up",
+      "type": "other",
+      "construction": "rendre l'âme",
+      "corpus_count": 2,
+      "example": "Si on m'invite à rendre les armes sans rendre l’âme",
+      "translation": "If on m'invite à rendre les armes sans rendre l’âme"
+    },
+    {
+      "word": "rumba",
+      "lemma": "rumba",
+      "proposed": "party",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Rumba pa' matar, ¿dónde es que pa' romper?",
+      "translation": "Rumba to kill, where is it to break?"
+    },
+    {
+      "word": "rumba",
+      "lemma": "rumba",
+      "proposed": "musical genre",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Como Canelita, por rumba que por tanguillo, je",
+      "translation": "Like Canelita, for rumba or tanguillo, heh"
+    },
+    {
+      "word": "saliva",
+      "lemma": "saliva",
+      "proposed": "saliva",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "La galaxia entera cabe en una gota de saliva",
+      "translation": "The entire galaxy fits in a drop of saliva"
+    },
+    {
+      "word": "venero",
+      "lemma": "venero",
+      "proposed": "to worship",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "¡Ay!, Cuba linda, te venero",
+      "translation": "Oh, beautiful Cuba, I worship you"
+    },
+    {
+      "word": "wut",
+      "lemma": "wut",
+      "proposed": "anger",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Seine Wut ist meine Wut",
+      "translation": "Seine Wut ist meine Wut"
+    },
+    {
+      "word": "yali",
+      "lemma": "yali",
+      "proposed": "proper name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ali, Ali, Ali, Ali, Ali, Ali, Yali ya",
+      "translation": "Ali, Ali, Ali, Ali, Ali, Ali, Yali now"
+    },
+    {
+      "word": "coronada",
+      "lemma": "coronada",
+      "proposed": "crowned",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Coronada y espinada",
+      "translation": "Crowned and thorned"
+    },
+    {
+      "word": "males",
+      "lemma": "males",
+      "proposed": "evils or bad deeds",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Que yo estoy ocupá' olvidando tus males",
+      "translation": "That I am busy forgetting your evils"
+    },
+    {
+      "word": "tas",
+      "lemma": "tas",
+      "proposed": "you are",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Me tas mirando to' donde vaya",
+      "translation": "I'm looking everywhere I go"
+    },
+    {
+      "word": "pegarse",
+      "lemma": "pegarse",
+      "proposed": "to stick to",
+      "type": null,
+      "construction": "pegarse",
+      "corpus_count": 2,
+      "example": "pegarse a mí para que te dé buena suerte",
+      "translation": "Stick to me for good luck"
+    },
+    {
+      "word": "equivocar",
+      "lemma": "equivocar",
+      "proposed": "to make a mistake",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Para yo no equivocar",
+      "translation": "For me not to make mistakes"
+    },
+    {
+      "word": "equivocar",
+      "lemma": "equivocar",
+      "proposed": "to be wrong",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Puede que vuelva a equivocar",
+      "translation": "I may be wrong again"
+    },
+    {
+      "word": "intentar",
+      "lemma": "intentar",
+      "proposed": "to try",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "intentar, inténtalo y falla",
+      "translation": "Try, try and fail"
+    },
+    {
+      "word": "coger",
+      "lemma": "coger",
+      "proposed": "to take",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "coger y córtala, y ya (Cut, cut that, quit that)",
+      "translation": "Take it and cut it, and that's it (Cut, cut that, quit that)"
+    },
+    {
+      "word": "tirar",
+      "lemma": "tirar",
+      "proposed": "to show off",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "tirar magnolias",
+      "translation": "throw me magnolias"
+    }
+  ]
+}

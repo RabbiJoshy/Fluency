@@ -67,9 +67,6 @@
         "sense": "fda",
         "examples": [
           8
-        ],
-        "example_ids": [
-          "3964058:1"
         ]
       }
     ],
@@ -448,9 +445,6 @@
         "sense": "4b1",
         "examples": [
           2
-        ],
-        "example_ids": [
-          "7515161:17"
         ]
       }
     ],
@@ -7351,9 +7345,6 @@
         "sense": "a65",
         "examples": [
           2
-        ],
-        "example_ids": [
-          "12581294:25"
         ]
       }
     ]
@@ -9303,13 +9294,12 @@
           2,
           3,
           4
-        ],
-        "example_ids": [
-          "7515186:30",
-          "10912589:5",
-          "8416396:52",
-          "3964069:7",
-          "3036615:40"
+        ]
+      },
+      {
+        "sense": "9138",
+        "examples": [
+          5
         ]
       }
     ]
@@ -10499,9 +10489,6 @@
         "sense": "464",
         "examples": [
           1
-        ],
-        "example_ids": [
-          "7433029:7"
         ]
       },
       {
@@ -10511,12 +10498,12 @@
           2,
           3,
           4
-        ],
-        "example_ids": [
-          "3131429:10",
-          "12650523:13",
-          "8365376:9",
-          "3065090:4"
+        ]
+      },
+      {
+        "sense": "9138e8",
+        "examples": [
+          5
         ]
       }
     ]
@@ -15649,9 +15636,6 @@
         "sense": "c80",
         "examples": [
           1
-        ],
-        "example_ids": [
-          "10912589:15"
         ]
       }
     ]
@@ -17344,9 +17328,6 @@
         "sense": "8d8",
         "examples": [
           1
-        ],
-        "example_ids": [
-          "7515170:8"
         ]
       }
     ]
@@ -22883,9 +22864,6 @@
         "sense": "50d",
         "examples": [
           0
-        ],
-        "example_ids": [
-          "4151176:9"
         ]
       }
     ]
@@ -28571,9 +28549,19 @@
         "sense": "913",
         "examples": [
           0
-        ],
-        "example_ids": [
-          "8916306:16"
+        ]
+      },
+      {
+        "sense": "9138",
+        "examples": [
+          1,
+          2
+        ]
+      },
+      {
+        "sense": "9138e",
+        "examples": [
+          3
         ]
       }
     ]
@@ -35884,16 +35872,30 @@
       {
         "sense": "a18",
         "examples": [
-          0
-        ],
-        "example_ids": []
+          0,
+          2
+        ]
       },
       {
         "sense": "ae3",
         "examples": [
           1
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "1b9",
+        "pos": "VERB",
+        "translation": "to show off",
+        "lemma": "tirar",
+        "examples": [
+          3
         ],
-        "example_ids": []
+        "type": "slang",
+        "example_ids": [
+          "12581298:8"
+        ]
       }
     ]
   },
@@ -36209,9 +36211,10 @@
       {
         "sense": "da0",
         "examples": [
-          0
-        ],
-        "example_ids": []
+          0,
+          1,
+          2
+        ]
       }
     ]
   },
@@ -36220,9 +36223,15 @@
       {
         "sense": "4bc",
         "examples": [
-          0
-        ],
-        "example_ids": []
+          0,
+          2
+        ]
+      },
+      {
+        "sense": "be9",
+        "examples": [
+          1
+        ]
       }
     ]
   },
@@ -37301,9 +37310,6 @@
         "sense": "55d",
         "examples": [
           0
-        ],
-        "example_ids": [
-          "3964058:2"
         ]
       },
       {
@@ -37315,14 +37321,6 @@
           5,
           7,
           8
-        ],
-        "example_ids": [
-          "8189170:5",
-          "7528115:21",
-          "3856338:31",
-          "4470734:52",
-          "3646825:44",
-          "10615838:11"
         ]
       }
     ]
@@ -37897,6 +37895,21 @@
         "example_ids": [
           "12548052:8",
           "7515170:14"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "d53",
+        "pos": "ADV",
+        "translation": "English loanword",
+        "lemma": "so",
+        "examples": [
+          2
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "10615838:8"
         ]
       }
     ]
@@ -41013,6 +41026,1538 @@
         ],
         "example_ids": [
           "8324985:44"
+        ]
+      }
+    ]
+  },
+  "e": {
+    "spanishdict-auto": [
+      {
+        "sense": "1ed",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "example_ids": [
+          "7773031:5",
+          "12397133:14",
+          "12581305:31",
+          "12581296:12"
+        ]
+      }
+    ]
+  },
+  "u": {
+    "spanishdict-auto": [
+      {
+        "sense": "6f6",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7773031:19"
+        ]
+      }
+    ]
+  },
+  "y": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c5e",
+        "examples": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "4779329:9",
+          "5461781:2",
+          "6367361:16",
+          "7288792:11",
+          "7515185:34",
+          "7515279:10",
+          "7659063:2",
+          "8173139:41",
+          "8916306:5"
+        ]
+      },
+      {
+        "sense": "c5ed3",
+        "examples": [
+          2
+        ],
+        "example_ids": [
+          "6211010:5"
+        ]
+      }
+    ]
+  },
+  "a": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "121",
+        "examples": [
+          7
+        ],
+        "example_ids": [
+          "9176102:29"
+        ]
+      },
+      {
+        "sense": "121d",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "8916307:5"
+        ]
+      },
+      {
+        "sense": "121de",
+        "examples": [
+          0,
+          1,
+          4,
+          5,
+          8,
+          9
+        ],
+        "example_ids": [
+          "3964043:5",
+          "4801759:102",
+          "3964069:7",
+          "3301215:37",
+          "2966663:3",
+          "3345402:26"
+        ]
+      },
+      {
+        "sense": "121ded",
+        "examples": [
+          6
+        ],
+        "example_ids": [
+          "9077775:35"
+        ]
+      },
+      {
+        "sense": "191",
+        "examples": [
+          2
+        ],
+        "example_ids": [
+          "8324985:10"
+        ]
+      }
+    ]
+  },
+  "ya": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "103",
+        "examples": [
+          2,
+          5
+        ],
+        "example_ids": [
+          "5197781:4",
+          "8916305:43"
+        ]
+      },
+      {
+        "sense": "53f",
+        "examples": [
+          0,
+          1,
+          3,
+          6
+        ],
+        "example_ids": [
+          "3964068:1",
+          "3964056:2",
+          "9176102:14",
+          "4151176:4"
+        ]
+      },
+      {
+        "sense": "a3f",
+        "examples": [
+          4,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "2966663:8",
+          "3131427:1",
+          "3964062:3",
+          "10912589:5"
+        ]
+      }
+    ]
+  },
+  "o": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "74a",
+        "examples": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "7773031:24",
+          "12397133:12",
+          "5384007:12",
+          "3964070:6",
+          "3964069:7",
+          "7515371:19",
+          "12581288:35",
+          "7288792:2",
+          "7515069:16"
+        ]
+      },
+      {
+        "sense": "92c",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "2966663:26"
+        ]
+      }
+    ]
+  },
+  "ha": {
+    "gap-fill": [
+      {
+        "sense": "c82",
+        "pos": "VERB",
+        "translation": "auxiliary verb for perfect tense",
+        "lemma": "ha",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "3066994:9",
+          "3750274:15",
+          "7288792:14",
+          "7515169:47",
+          "4496591:33",
+          "12579326:5",
+          "7515069:15",
+          "3964069:7",
+          "8324985:42",
+          "10912589:45"
+        ]
+      }
+    ]
+  },
+  "dos": {
+    "gap-fill": [
+      {
+        "sense": "336",
+        "pos": "NOUN",
+        "translation": "two",
+        "lemma": "dos",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "3066994:3",
+          "12579293:1",
+          "3964058:2",
+          "3964070:17",
+          "7515186:24",
+          "10129261:16",
+          "3301215:34",
+          "3065897:32",
+          "7528115:21",
+          "9176102:12"
+        ]
+      }
+    ]
+  },
+  "mirás": {
+    "gap-fill": [
+      {
+        "sense": "fe5",
+        "pos": "NOUN",
+        "translation": "look or gaze",
+        "lemma": "mirás",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "regional",
+        "example_ids": [
+          "4459381:4",
+          "4151176:24",
+          "7515279:31",
+          "3814300:7"
+        ]
+      }
+    ]
+  },
+  "chi": {
+    "gap-fill": [
+      {
+        "sense": "4ce",
+        "pos": "INTJ",
+        "translation": "onomatopoeia",
+        "lemma": "chi",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "4801759:11"
+        ]
+      }
+    ]
+  },
+  "alí": {
+    "gap-fill": [
+      {
+        "sense": "4a7",
+        "pos": "NOUN",
+        "translation": "proper noun reference",
+        "lemma": "alí",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "4470734:11"
+        ]
+      }
+    ]
+  },
+  "bendecías": {
+    "gap-fill": [
+      {
+        "sense": "b90",
+        "pos": "ADJ",
+        "translation": "blessed",
+        "lemma": "bendecías",
+        "examples": [
+          0
+        ],
+        "type": "regional",
+        "example_ids": [
+          "4801759:18"
+        ]
+      }
+    ]
+  },
+  "enamorás": {
+    "gap-fill": [
+      {
+        "sense": "bf3",
+        "pos": "ADJ",
+        "translation": "in love",
+        "lemma": "enamorás",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "type": "regional",
+        "example_ids": [
+          "7515170:16",
+          "8324985:3",
+          "7515161:15"
+        ]
+      }
+    ]
+  },
+  "kil": {
+    "gap-fill": [
+      {
+        "sense": "f69",
+        "pos": "NOUN",
+        "translation": "fragment of proper noun",
+        "lemma": "kil",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "7791131:1"
+        ]
+      }
+    ]
+  },
+  "racineta": {
+    "gap-fill": [
+      {
+        "sense": "53d",
+        "pos": "NOUN",
+        "translation": "fast car or racer",
+        "lemma": "racineta",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "7773031:16",
+          "8173139:40"
+        ]
+      }
+    ]
+  },
+  "sauvignon": {
+    "gap-fill": [
+      {
+        "sense": "f00",
+        "pos": "NOUN",
+        "translation": "sauvignon wine",
+        "lemma": "sauvignon",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "12581295:12"
+        ]
+      }
+    ]
+  },
+  "tkn": {
+    "gap-fill": [
+      {
+        "sense": "201",
+        "pos": "NOUN",
+        "translation": "tekken",
+        "lemma": "tkn",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5461781:9"
+        ]
+      }
+    ]
+  },
+  "algarete": {
+    "gap-fill": [
+      {
+        "sense": "f8d",
+        "pos": "ADV",
+        "translation": "out of control",
+        "lemma": "algarete",
+        "examples": [
+          0
+        ],
+        "type": "regional",
+        "example_ids": [
+          "8916305:13"
+        ]
+      }
+    ]
+  },
+  "clavás": {
+    "gap-fill": [
+      {
+        "sense": "757",
+        "pos": "NOUN",
+        "translation": "nailed object",
+        "lemma": "clavás",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3856338:40"
+        ]
+      },
+      {
+        "sense": "fc8",
+        "pos": "ADJ",
+        "translation": "piercing",
+        "lemma": "clavás",
+        "examples": [
+          1
+        ],
+        "type": "figurative",
+        "example_ids": [
+          "3814300:7"
+        ]
+      }
+    ]
+  },
+  "g": {
+    "gap-fill": [
+      {
+        "sense": "a88",
+        "pos": "NOUN",
+        "translation": "letter g",
+        "lemma": "g",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7773031:7"
+        ]
+      },
+      {
+        "sense": "4b1",
+        "pos": "NOUN",
+        "translation": "gangster",
+        "lemma": "g",
+        "examples": [
+          1,
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5461781:23",
+          "7659063:15"
+        ]
+      }
+    ]
+  },
+  "go": {
+    "gap-fill": [
+      {
+        "sense": "fe4",
+        "pos": "VERB",
+        "translation": "let go",
+        "lemma": "go",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "construction": "let go",
+        "example_ids": [
+          "6367361:5"
+        ]
+      },
+      {
+        "sense": "da8",
+        "pos": "VERB",
+        "translation": "go",
+        "lemma": "go",
+        "examples": [
+          1
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "10615838:1"
+        ]
+      }
+    ]
+  },
+  "nana": {
+    "gap-fill": [
+      {
+        "sense": "942",
+        "pos": "NOUN",
+        "translation": "lullaby",
+        "lemma": "nana",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3964069:17"
+        ]
+      }
+    ]
+  },
+  "omega": {
+    "gap-fill": [
+      {
+        "sense": "ba9",
+        "pos": "NOUN",
+        "translation": "the end",
+        "lemma": "omega",
+        "examples": [
+          0
+        ],
+        "type": "figurative",
+        "example_ids": [
+          "10912589:46"
+        ]
+      },
+      {
+        "sense": "f37",
+        "pos": "NOUN",
+        "translation": "omega",
+        "lemma": "omega",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "8173139:54"
+        ]
+      }
+    ]
+  },
+  "saoco": {
+    "gap-fill": [
+      {
+        "sense": "266",
+        "pos": "NOUN",
+        "translation": "rhythm and flavor",
+        "lemma": "saoco",
+        "examples": [
+          0
+        ],
+        "type": "regional",
+        "example_ids": [
+          "7515279:2"
+        ]
+      }
+    ]
+  },
+  "up": {
+    "gap-fill": [
+      {
+        "sense": "b1e",
+        "pos": "ADV",
+        "translation": "truthfully",
+        "lemma": "up",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "construction": "straight up",
+        "example_ids": [
+          "5461781:44"
+        ]
+      },
+      {
+        "sense": "d5d",
+        "pos": "VERB",
+        "translation": "arrive",
+        "lemma": "up",
+        "examples": [
+          1
+        ],
+        "type": "loanword",
+        "construction": "pull up",
+        "example_ids": [
+          "7515176:12"
+        ]
+      },
+      {
+        "sense": "324",
+        "pos": "VERB",
+        "translation": "absorb",
+        "lemma": "up",
+        "examples": [
+          2
+        ],
+        "type": "loanword",
+        "construction": "soak up",
+        "example_ids": [
+          "10615838:6"
+        ]
+      },
+      {
+        "sense": "aa1",
+        "pos": "NOUN",
+        "translation": "cosmetics",
+        "lemma": "up",
+        "examples": [
+          3
+        ],
+        "type": "loanword",
+        "construction": "make-up",
+        "example_ids": [
+          "7515185:34"
+        ]
+      }
+    ]
+  },
+  "pestañas": {
+    "gap-fill": [
+      {
+        "sense": "648",
+        "pos": "NOUN",
+        "translation": "eyelashes",
+        "lemma": "pestañas",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12579326:14"
+        ]
+      },
+      {
+        "sense": "f4d",
+        "pos": "NOUN",
+        "translation": "eyelash",
+        "lemma": "pestañas",
+        "examples": [
+          1
+        ],
+        "type": "other",
+        "example_ids": [
+          "3065897:33"
+        ]
+      }
+    ]
+  },
+  "can": {
+    "gap-fill": [
+      {
+        "sense": "092",
+        "pos": "VERB",
+        "translation": "can (English modal verb)",
+        "lemma": "can",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "6367361:5"
+        ]
+      }
+    ]
+  },
+  "catalina": {
+    "gap-fill": [
+      {
+        "sense": "789",
+        "pos": "NOUN",
+        "translation": "proper name",
+        "lemma": "catalina",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "3065090:6"
+        ]
+      }
+    ]
+  },
+  "chiquiti": {
+    "gap-fill": [
+      {
+        "sense": "73a",
+        "pos": "INTJ",
+        "translation": "diminutive filler",
+        "lemma": "chiquiti",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "4801759:87"
+        ]
+      }
+    ]
+  },
+  "coronás": {
+    "gap-fill": [
+      {
+        "sense": "c00",
+        "pos": "NOUN",
+        "translation": "proper name (disco)",
+        "lemma": "coronás",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "8173139:11"
+        ]
+      }
+    ]
+  },
+  "lelele": {
+    "gap-fill": [
+      {
+        "sense": "cab",
+        "pos": "INTJ",
+        "translation": "musical vocalization",
+        "lemma": "lelele",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "5245004:5"
+        ]
+      }
+    ]
+  },
+  "qui": {
+    "gap-fill": [
+      {
+        "sense": "0e7",
+        "pos": "ADV",
+        "translation": "who (Catalan)",
+        "lemma": "qui",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12579327:1"
+        ]
+      },
+      {
+        "sense": "274",
+        "pos": "ADV",
+        "translation": "that (French)",
+        "lemma": "qui",
+        "examples": [
+          1
+        ],
+        "type": "other",
+        "example_ids": [
+          "12581303:17"
+        ]
+      }
+    ]
+  },
+  "tiri": {
+    "gap-fill": [
+      {
+        "sense": "cab",
+        "pos": "INTJ",
+        "translation": "musical vocalization",
+        "lemma": "tiri",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "3964056:1"
+        ]
+      }
+    ]
+  },
+  "ángel": {
+    "gap-fill": [
+      {
+        "sense": "f97",
+        "pos": "NOUN",
+        "translation": "angel",
+        "lemma": "ángel",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "type": "other",
+        "example_ids": [
+          "6211010:49",
+          "3964069:14",
+          "3964062:36"
+        ]
+      }
+    ]
+  },
+  "ángeles": {
+    "gap-fill": [
+      {
+        "sense": "e08",
+        "pos": "NOUN",
+        "translation": "angels",
+        "lemma": "ángeles",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "other",
+        "example_ids": [
+          "3964058:2",
+          "7659063:28"
+        ]
+      }
+    ]
+  },
+  "blut": {
+    "gap-fill": [
+      {
+        "sense": "f44",
+        "pos": "NOUN",
+        "translation": "blood",
+        "lemma": "blut",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12548052:4"
+        ]
+      }
+    ]
+  },
+  "caracol": {
+    "gap-fill": [
+      {
+        "sense": "b68",
+        "pos": "NOUN",
+        "translation": "proper name of artist",
+        "lemma": "caracol",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "7528115:18"
+        ]
+      }
+    ]
+  },
+  "cos": {
+    "gap-fill": [
+      {
+        "sense": "f87",
+        "pos": "NOUN",
+        "translation": "body",
+        "lemma": "cos",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12579327:13"
+        ]
+      }
+    ]
+  },
+  "distraes": {
+    "gap-fill": [
+      {
+        "sense": "497",
+        "pos": "VERB",
+        "translation": "you get distracted",
+        "lemma": "distraes",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "8173139:41"
+        ]
+      }
+    ]
+  },
+  "ea": {
+    "gap-fill": [
+      {
+        "sense": "dad",
+        "pos": "INTJ",
+        "translation": "hey",
+        "lemma": "ea",
+        "examples": [
+          0
+        ],
+        "type": "regional",
+        "example_ids": [
+          "3964069:15"
+        ]
+      }
+    ]
+  },
+  "et": {
+    "gap-fill": [
+      {
+        "sense": "004",
+        "pos": "ADV",
+        "translation": "and",
+        "lemma": "et",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12581303:3"
+        ]
+      },
+      {
+        "sense": "7bf",
+        "pos": "ADV",
+        "translation": "you",
+        "lemma": "et",
+        "examples": [
+          1
+        ],
+        "type": "other",
+        "example_ids": [
+          "12579327:3"
+        ]
+      }
+    ]
+  },
+  "highlighter": {
+    "gap-fill": [
+      {
+        "sense": "efe",
+        "pos": "NOUN",
+        "translation": "makeup highlighter",
+        "lemma": "highlighter",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "3646825:1"
+        ]
+      }
+    ]
+  },
+  "hits": {
+    "gap-fill": [
+      {
+        "sense": "b6c",
+        "pos": "NOUN",
+        "translation": "successful songs",
+        "lemma": "hits",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "7515185:26"
+        ]
+      }
+    ]
+  },
+  "lamborghinis": {
+    "gap-fill": [
+      {
+        "sense": "53e",
+        "pos": "NOUN",
+        "translation": "luxury sports cars",
+        "lemma": "lamborghinis",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "7515169:9"
+        ]
+      }
+    ]
+  },
+  "like": {
+    "gap-fill": [
+      {
+        "sense": "44e",
+        "pos": "ADV",
+        "translation": "similar to",
+        "lemma": "like",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "7515176:12"
+        ]
+      },
+      {
+        "sense": "270",
+        "pos": "VERB",
+        "translation": "to enjoy",
+        "lemma": "like",
+        "examples": [
+          1
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "10912589:29"
+        ]
+      }
+    ]
+  },
+  "lux": {
+    "gap-fill": [
+      {
+        "sense": "7c8",
+        "pos": "NOUN",
+        "translation": "light",
+        "lemma": "lux",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12581288:13"
+        ]
+      }
+    ]
+  },
+  "mai": {
+    "gap-fill": [
+      {
+        "sense": "d47",
+        "pos": "ADV",
+        "translation": "ever",
+        "lemma": "mai",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12579327:6"
+        ]
+      }
+    ]
+  },
+  "mana": {
+    "gap-fill": [
+      {
+        "sense": "e58",
+        "pos": "VERB",
+        "translation": "to rule",
+        "lemma": "mana",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12579327:12"
+        ]
+      },
+      {
+        "sense": "09e",
+        "pos": "VERB",
+        "translation": "to flow",
+        "lemma": "mana",
+        "examples": [
+          1
+        ],
+        "type": "other",
+        "example_ids": [
+          "3301215:1"
+        ]
+      }
+    ]
+  },
+  "piercing": {
+    "gap-fill": [
+      {
+        "sense": "cd7",
+        "pos": "NOUN",
+        "translation": "piercing",
+        "lemma": "piercing",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "12581294:38"
+        ]
+      }
+    ]
+  },
+  "puñalás": {
+    "gap-fill": [
+      {
+        "sense": "80c",
+        "pos": "NOUN",
+        "translation": "stabs",
+        "lemma": "puñalás",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "regional",
+        "example_ids": [
+          "3065897:3",
+          "12581296:46"
+        ]
+      }
+    ]
+  },
+  "rendre": {
+    "gap-fill": [
+      {
+        "sense": "e46",
+        "pos": "VERB",
+        "translation": "to surrender",
+        "lemma": "rendre",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "construction": "rendre les armes",
+        "example_ids": [
+          "12581303:18"
+        ]
+      },
+      {
+        "sense": "3ac",
+        "pos": "VERB",
+        "translation": "to give up",
+        "lemma": "rendre",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "construction": "rendre l'âme",
+        "example_ids": [
+          "12581303:18"
+        ]
+      }
+    ]
+  },
+  "rumba": {
+    "gap-fill": [
+      {
+        "sense": "fac",
+        "pos": "NOUN",
+        "translation": "party",
+        "lemma": "rumba",
+        "examples": [
+          0
+        ],
+        "type": "regional",
+        "example_ids": [
+          "7791131:2"
+        ]
+      },
+      {
+        "sense": "818",
+        "pos": "NOUN",
+        "translation": "musical genre",
+        "lemma": "rumba",
+        "examples": [
+          1
+        ],
+        "type": "other",
+        "example_ids": [
+          "7515161:18"
+        ]
+      }
+    ]
+  },
+  "saliva": {
+    "gap-fill": [
+      {
+        "sense": "3d9",
+        "pos": "NOUN",
+        "translation": "saliva",
+        "lemma": "saliva",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12581294:36"
+        ]
+      }
+    ]
+  },
+  "venero": {
+    "gap-fill": [
+      {
+        "sense": "e69",
+        "pos": "VERB",
+        "translation": "to worship",
+        "lemma": "venero",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "3036615:14"
+        ]
+      }
+    ]
+  },
+  "wut": {
+    "gap-fill": [
+      {
+        "sense": "1fd",
+        "pos": "NOUN",
+        "translation": "anger",
+        "lemma": "wut",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "12548052:2"
+        ]
+      }
+    ]
+  },
+  "yali": {
+    "gap-fill": [
+      {
+        "sense": "789",
+        "pos": "NOUN",
+        "translation": "proper name",
+        "lemma": "yali",
+        "examples": [
+          0
+        ],
+        "type": "other",
+        "example_ids": [
+          "3964068:1"
+        ]
+      }
+    ]
+  },
+  "coronada": {
+    "gap-fill": [
+      {
+        "sense": "967",
+        "pos": "ADJ",
+        "translation": "crowned",
+        "lemma": "coronada",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "figurative",
+        "example_ids": [
+          "12581303:12",
+          "3856338:35"
+        ]
+      }
+    ]
+  },
+  "males": {
+    "gap-fill": [
+      {
+        "sense": "430",
+        "pos": "NOUN",
+        "translation": "evils or bad deeds",
+        "lemma": "males",
+        "examples": [
+          0,
+          1
+        ],
+        "example_ids": [
+          "8173139:5",
+          "3964062:40"
+        ]
+      }
+    ]
+  },
+  "tas": {
+    "gap-fill": [
+      {
+        "sense": "bb0",
+        "pos": "VERB",
+        "translation": "you are",
+        "lemma": "tas",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "12650523:6"
+        ]
+      }
+    ]
+  },
+  "llevar": {
+    "gap-fill": [
+      {
+        "sense": "325",
+        "pos": "VERB",
+        "translation": "to take",
+        "lemma": "llevar",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "example_ids": [
+          "7528145:24",
+          "3067584:1",
+          "4027739:1"
+        ]
+      }
+    ]
+  },
+  "pegarse": {
+    "gap-fill": [
+      {
+        "sense": "422",
+        "pos": "VERB",
+        "translation": "to stick to",
+        "lemma": "pegarse",
+        "examples": [
+          0
+        ],
+        "construction": "pegarse",
+        "example_ids": [
+          "9176102:29"
+        ]
+      }
+    ]
+  },
+  "equivocar": {
+    "gap-fill": [
+      {
+        "sense": "c26",
+        "pos": "VERB",
+        "translation": "to make a mistake",
+        "lemma": "equivocar",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "4201752:7"
+        ]
+      },
+      {
+        "sense": "791",
+        "pos": "VERB",
+        "translation": "to be wrong",
+        "lemma": "equivocar",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "2966663:33"
+        ]
+      }
+    ]
+  },
+  "ponerse": {
+    "gap-fill": [
+      {
+        "sense": "9c9",
+        "pos": "VERB",
+        "translation": "to place oneself",
+        "lemma": "ponerse",
+        "examples": [
+          0
+        ],
+        "construction": "ponerse",
+        "example_ids": [
+          "3065897:2"
+        ]
+      },
+      {
+        "sense": "995",
+        "pos": "VERB",
+        "translation": "to put on",
+        "lemma": "ponerse",
+        "examples": [
+          1
+        ],
+        "construction": "ponerse",
+        "example_ids": [
+          "4425584:32"
+        ]
+      }
+    ]
+  },
+  "intentar": {
+    "gap-fill": [
+      {
+        "sense": "d14",
+        "pos": "VERB",
+        "translation": "to try",
+        "lemma": "intentar",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "12650523:8"
+        ]
+      }
+    ]
+  },
+  "coger": {
+    "gap-fill": [
+      {
+        "sense": "325",
+        "pos": "VERB",
+        "translation": "to take",
+        "lemma": "coger",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7515279:44"
+        ]
+      }
+    ]
+  },
+  "quitarse": {
+    "gap-fill": [
+      {
+        "sense": "cf9",
+        "pos": "VERB",
+        "translation": "to move out of the way",
+        "lemma": "quitarse",
+        "examples": [
+          0
+        ],
+        "type": "figurative",
+        "construction": "quitarse",
+        "example_ids": [
+          "7528115:27"
+        ]
+      },
+      {
+        "sense": "cd9",
+        "pos": "VERB",
+        "translation": "to leave",
+        "lemma": "quitarse",
+        "examples": [
+          1
+        ],
+        "type": "figurative",
+        "construction": "quitarse",
+        "example_ids": [
+          "3065090:2"
+        ]
+      }
+    ]
+  },
+  "perdonar": {
+    "gap-fill": [
+      {
+        "sense": "eaf",
+        "pos": "VERB",
+        "translation": "to forgive",
+        "lemma": "perdonar",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "8176090:6"
         ]
       }
     ]

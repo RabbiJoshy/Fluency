@@ -1,0 +1,1960 @@
+{
+  "_meta": {
+    "source": "spanishdict",
+    "classifier": "classify-or-propose",
+    "model": "gemini-2.5-flash-lite",
+    "count": 195
+  },
+  "items": [
+    {
+      "word": "dos",
+      "lemma": "dos",
+      "proposed": "two",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 39,
+      "example": "Son dos shortie' con el culote apreta'o",
+      "translation": "There are two shorties with tight culottes"
+    },
+    {
+      "word": "he",
+      "lemma": "he",
+      "proposed": "have",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 16,
+      "example": "Mala mía que no he contesta'o",
+      "translation": "My bad I haven't answered"
+    },
+    {
+      "word": "he",
+      "lemma": "he",
+      "proposed": "he",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 16,
+      "example": "He say, she say, yo no lo escucho (Ah)",
+      "translation": "He say, she say, I don't hear it (Ah)"
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "in the manner of",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 16,
+      "example": "Ya me acostumbré a estar livin' like this, ah",
+      "translation": "I'm already used to being livin' like this, ah"
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "similar to",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 16,
+      "example": "Dentro 'e la cabina siempre que la piso me siento like Evan Almighty (Uh, you got it)",
+      "translation": "Inside the cabin whenever I step on it I feel like Evan Almighty (Uh, you got it)"
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "to say",
+      "type": "loanword",
+      "construction": "I'm like",
+      "corpus_count": 16,
+      "example": "Uh, yeah, I'm like, \"Damn\", no jodas, ma",
+      "translation": "Uh, yeah, I'm like, \"Damn\", don't fuck around, ma"
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "to enjoy",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 16,
+      "example": "Me bajo con la pinta, pues I like that (Grr)",
+      "translation": "I get off with the look, because I like that (Grr)"
+    },
+    {
+      "word": "like",
+      "lemma": "like",
+      "proposed": "social media approval",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 16,
+      "example": "Que to' esto' cabrone' lo único que te dan son like",
+      "translation": "That all 'this' bastard' the only thing they give you is like"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "to arrive",
+      "type": "loanword",
+      "construction": "pull up",
+      "corpus_count": 13,
+      "example": "I pull up, negro el Porsche (Skrrt)",
+      "translation": "I pull up, black the Porsche (Skrrt)"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "to contact",
+      "type": "loanword",
+      "construction": "call up",
+      "corpus_count": 13,
+      "example": "Call me up, ¿qué vamo' a hacer tú y yo, baby girl?",
+      "translation": "Call me up, what are you and me going to do, baby girl?"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "what is happening",
+      "type": "loanword",
+      "construction": "what's up",
+      "corpus_count": 13,
+      "example": "Ma, you know what's up, aquí no hay excusa'",
+      "translation": "Ma, you know what's up, there is no excuse here'"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "in the sky",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 13,
+      "example": "Hace día' no se duerme, hoy cogí un nap up in the sky",
+      "translation": "I haven't slept in a day, today I took a nap up in the sky"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "to surrender",
+      "type": "loanword",
+      "construction": "give up",
+      "corpus_count": 13,
+      "example": "La nena es dificil she ain't gon give it up, ey",
+      "translation": "The baby is difficult she ain't gon give it up, hey"
+    },
+    {
+      "word": "up",
+      "lemma": "up",
+      "proposed": "direction",
+      "type": "loanword",
+      "construction": "up and down",
+      "corpus_count": 13,
+      "example": "Ese booty ella me lo mueve up and down",
+      "translation": "That booty she moves me up and down"
+    },
+    {
+      "word": "go",
+      "lemma": "go",
+      "proposed": "to move forward",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 10,
+      "example": "Móntate en el Benz, let's go for a ride",
+      "translation": "Get in the Benz, let's go for a ride"
+    },
+    {
+      "word": "yes",
+      "lemma": "yes",
+      "proposed": "affirmation",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 10,
+      "example": "Saben que es Baby Mi, yes, it's me, ey",
+      "translation": "They know it's Baby Mi, yes, it's me, hey"
+    },
+    {
+      "word": "gyal",
+      "lemma": "gyal",
+      "proposed": "girl",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 9,
+      "example": "Con la Toki, la Young Miko y la Bad Gyal, Gyal (Brr, ey)",
+      "translation": "With the Toki, the Young Miko and the Bad Gyal, Gyal (Brr, hey)"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "gram",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 8,
+      "example": "Ya caché del rosado y como 40g",
+      "translation": "Already cache of the rosé and about 40g"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "proper noun",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 8,
+      "example": "KAROL G",
+      "translation": "KAROL G"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "model designation",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 8,
+      "example": "Salimo’ G5 el SUV",
+      "translation": "Salimo’ G5 the SUV"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "gangster",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 8,
+      "example": "Yo-Yo-Young Miko, me dicen la G.O.A.T, Gucci el coat",
+      "translation": "Yo-Yo-Young Miko, they call me the G.O.A.T, Gucci the coat"
+    },
+    {
+      "word": "g",
+      "lemma": "g",
+      "proposed": "brand name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 8,
+      "example": "G Star",
+      "translation": "G Star"
+    },
+    {
+      "word": "bi",
+      "lemma": "bi",
+      "proposed": "bisexual",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 7,
+      "example": "Ahora toa' las babie' son bi desde que salí, shoutout a Brray (Sheesh)",
+      "translation": "Now all the babes are bi since I came out, shoutout to Brray (Sheesh)"
+    },
+    {
+      "word": "mai",
+      "lemma": "mai",
+      "proposed": "mother",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 7,
+      "example": "Uh-uh, pensando cómo prendíamo' en el coche de tu mai all night",
+      "translation": "Uh-uh, thinking about how we'd get caught in your mai's car all night"
+    },
+    {
+      "word": "panty",
+      "lemma": "panty",
+      "proposed": "underwear",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 7,
+      "example": "Que te quiero con panty o sin",
+      "translation": "I love you with panties or without"
+    },
+    {
+      "word": "boom",
+      "lemma": "boom",
+      "proposed": "onomatopoeia for sound",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Boom-boom, escucho mis latidos",
+      "translation": "Boom-boom, I hear my heartbeat"
+    },
+    {
+      "word": "full",
+      "lemma": "full",
+      "proposed": "completely",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Pero no sé si eso es full mood",
+      "translation": "But I don't know if that's full mood"
+    },
+    {
+      "word": "full",
+      "lemma": "full",
+      "proposed": "complete",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Hay full moon, me parqueé bajo el roof, yeah",
+      "translation": "There's a full moon, I parked under the roof, yeah"
+    },
+    {
+      "word": "full",
+      "lemma": "full",
+      "proposed": "full",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Si quiere' yo te busco, el tanque está full",
+      "translation": "If you want, I'll look for you, the tank is full"
+    },
+    {
+      "word": "gistro",
+      "lemma": "gistro",
+      "proposed": "thong",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Quiero verle ese culo cómo se come ese gistro marca Louis",
+      "translation": "I want to see that ass how he eats that Louis brand gistro"
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "commit to staying",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "A quedar me comprometo, por más malo que esté el lío",
+      "translation": "I am committed to staying, no matter how bad the mess is."
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "stay",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "De panas, estaba mejor quedar",
+      "translation": "Honestly, it was better to stay"
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "stay stuck",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Quiero ser sticker pa' quedar pega'o a ese bumper",
+      "translation": "I want to be a sticker to stay glued to that bumper"
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "look bad",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Con ese culo imposible quedar mal, quedarme mal",
+      "translation": "With that ass it is impossible for me to look bad, to look bad"
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "become empty",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Esta pa' darle to'a la noche hasta quedar empty (De una)",
+      "translation": "I'm here to give it all night until I'm empty (One time)"
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "get aggressive",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "ponerse agresiva baby, ponte commander",
+      "translation": "Get aggressive baby, get commander"
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "get on all fours",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Dame acá, ven aquí, baby, ponerse en cuatro, dale",
+      "translation": "Give me here, come here, baby, get on all fours, give it"
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "put yourself",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "ponerse ahí en la jersey: \"la one y la only\"",
+      "translation": "Put yourself there in the jersey: \"the one and the only\""
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "stand on your back",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "ponerse 'e espalda, dame nalga' y despué' mírame (Ey)",
+      "translation": "Stand on your back, give me your butt and then look at me (Hey)"
+    },
+    {
+      "word": "treparse",
+      "lemma": "treparse",
+      "proposed": "climb up",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Respectfully, treparse, me lo merezco (Mmm)",
+      "translation": "Respectfully, climb up, I deserve it (Mmm)"
+    },
+    {
+      "word": "treparse",
+      "lemma": "treparse",
+      "proposed": "climb on",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Ey, treparse en el tubo, yo tengo la propina",
+      "translation": "Hey, climb on the tube, I have the tip"
+    },
+    {
+      "word": "treparse",
+      "lemma": "treparse",
+      "proposed": "climb like",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Hágale pues, treparse como chiringa",
+      "translation": "So do it, climb like a chiringa"
+    },
+    {
+      "word": "treparse",
+      "lemma": "treparse",
+      "proposed": "climb on top",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "treparse encima, gymnastic",
+      "translation": "Climb on top, gymnastic"
+    },
+    {
+      "word": "fit",
+      "lemma": "fit",
+      "proposed": "outfit",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Young Miko legit (Uh), Balenciaga el fit (Uh)",
+      "translation": "Young Miko legit (Uh), Balenciaga the fit (Uh)"
+    },
+    {
+      "word": "fit",
+      "lemma": "fit",
+      "proposed": "to fit",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Pitcher desde que salimo' 'e fit no-hitter (No, no)",
+      "translation": "Pitcher since we came out and fit no-hitter (No, no)"
+    },
+    {
+      "word": "hold",
+      "lemma": "hold",
+      "proposed": "to hold",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Hold me",
+      "translation": "Hold me"
+    },
+    {
+      "word": "hold",
+      "lemma": "hold",
+      "proposed": "to wait",
+      "type": "loanword",
+      "construction": "hold on",
+      "corpus_count": 4,
+      "example": "Hold on (Wait)",
+      "translation": "Hold on (Wait)"
+    },
+    {
+      "word": "hold",
+      "lemma": "hold",
+      "proposed": "to stay on the line",
+      "type": "loanword",
+      "construction": "hold the line",
+      "corpus_count": 4,
+      "example": "Ahora me llama y suena ring-ring, hold the line, yeah",
+      "translation": "Now he calls me and it rings ring-ring, hold the line, yeah"
+    },
+    {
+      "word": "ig",
+      "lemma": "ig",
+      "proposed": "Instagram",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Modelo de IG, la llevo pa'l mall",
+      "translation": "IG model, I take her to the mall"
+    },
+    {
+      "word": "jacuzzi",
+      "lemma": "jacuzzi",
+      "proposed": "hot tub",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Jacuzzi en el resort, tipo R en el Accord, ah",
+      "translation": "Jacuzzi at the resort, type R in the Accord, ah"
+    },
+    {
+      "word": "jean",
+      "lemma": "jean",
+      "proposed": "proper name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Tú no eres Jean-Claude Van Damme",
+      "translation": "You are not Jean-Claude Van Damme"
+    },
+    {
+      "word": "jean",
+      "lemma": "jean",
+      "proposed": "jeans",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "¿Cómo te metiste en ese jean? Se te marcan las Calvin Klein",
+      "translation": "How did you get into that jean? Calvin Klein marks you"
+    },
+    {
+      "word": "jean",
+      "lemma": "jean",
+      "proposed": "brand name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Abusadora, ese Jean Paul Gaultier yo quiero quitarte",
+      "translation": "Abuser, that Jean Paul Gaultier I want to take you away"
+    },
+    {
+      "word": "musa",
+      "lemma": "musa",
+      "proposed": "inspiration",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Sé que anda' en alta, de dos o tres la musa, prr",
+      "translation": "I know that the muse is on high, two or three, prr"
+    },
+    {
+      "word": "ousi",
+      "lemma": "ousi",
+      "proposed": "proper name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Tráete una amiga, que ando con Ousi, esta cara es cozy",
+      "translation": "Bring a friend, I'm with Ousi, this face is cozy"
+    },
+    {
+      "word": "pai",
+      "lemma": "pai",
+      "proposed": "dad",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Si supieran pa' las cosas que tú usas la boca, a tu pai le daría un infarto, ey (Ey)",
+      "translation": "If they knew the things you use your mouth for, your dad would have a heart attack, hey (Hey)"
+    },
+    {
+      "word": "pai",
+      "lemma": "pai",
+      "proposed": "country",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Para abajo cada ve' que suena el pai, yes, yes",
+      "translation": "Down every time the country sounds, yes, yes"
+    },
+    {
+      "word": "pegaítos",
+      "lemma": "pegaítos",
+      "proposed": "tight-fitting",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Traje pegaítos, and she looks so fine",
+      "translation": "'Pink suit', and she looks so fine"
+    },
+    {
+      "word": "pegaítos",
+      "lemma": "pegaítos",
+      "proposed": "stuck close",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Ella lo quiere pegaítos a la pared en lo oscuro",
+      "translation": "She wants him stuck to the wall in the dark"
+    },
+    {
+      "word": "reset",
+      "lemma": "reset",
+      "proposed": "start over",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Sin fantasmeo, nos matamo' y reset",
+      "translation": "Without ghosting, we kill each other and reset"
+    },
+    {
+      "word": "joseando",
+      "lemma": "joseando",
+      "proposed": "hustling/working hard",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Seguimos joseando todos los días para que nada haga falta, ah",
+      "translation": "We continue josing every day so that nothing is needed, ah"
+    },
+    {
+      "word": "latina",
+      "lemma": "latina",
+      "proposed": "woman of Latin American descent",
+      "type": null,
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Una latina que sea Bayamón",
+      "translation": "A Latina who is Bayamón"
+    },
+    {
+      "word": "latina",
+      "lemma": "latina",
+      "proposed": "laundry tub/sink",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Como miran, si cocí, lavando latina",
+      "translation": "As you can see, I did cook, washing Latin"
+    },
+    {
+      "word": "mall",
+      "lemma": "mall",
+      "proposed": "shopping center",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Y, Mari, ciérrame el mall (Yeah), que me voy de shopping",
+      "translation": "And, Mari, close the mall for me (Yeah), I'm going shopping"
+    },
+    {
+      "word": "man",
+      "lemma": "man",
+      "proposed": "man/guy",
+      "type": null,
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Ahora quiere un man que le gusta y le meta",
+      "translation": "Now she wants a man she likes and likes"
+    },
+    {
+      "word": "man",
+      "lemma": "man",
+      "proposed": "dude/man",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "¿Qué tiene', man? Chica, please",
+      "translation": "What do you have, man? Girl please"
+    },
+    {
+      "word": "omg",
+      "lemma": "omg",
+      "proposed": "oh my god",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "\"OMG\" ella gritó",
+      "translation": "\"OMG\" she screamed"
+    },
+    {
+      "word": "omg",
+      "lemma": "omg",
+      "proposed": "amazing/incredible",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Por más que te he visto sin ropa, tú te la quita' y e' OMG",
+      "translation": "No matter how much I've seen you without clothes, you take them off and it's OMG"
+    },
+    {
+      "word": "out",
+      "lemma": "out",
+      "proposed": "submission/surrender",
+      "type": "loanword",
+      "construction": "tap out",
+      "corpus_count": 3,
+      "example": "No es MMA y la tengo haciendo tap out",
+      "translation": "It's not MMA and I have her doing tap out"
+    },
+    {
+      "word": "out",
+      "lemma": "out",
+      "proposed": "to walk it off/resolve",
+      "type": "loanword",
+      "construction": "walk it out",
+      "corpus_count": 3,
+      "example": "Me pesa el bolsillo, I'ma have to go and walk it out, ey",
+      "translation": "My pocket is heavy, I'ma have to go and walk it out, hey"
+    },
+    {
+      "word": "pantycitos",
+      "lemma": "pantycitos",
+      "proposed": "panties/underwear",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Uh-uh, me levanté pensando en esos pantycitos que te pone' de noche",
+      "translation": "Uh-uh, I woke up thinking about those tights that you wear at night"
+    },
+    {
+      "word": "película",
+      "lemma": "película",
+      "proposed": "movie",
+      "type": null,
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Me gusta la película, pero solo a vece'",
+      "translation": "I like the movie, but only sometimes'"
+    },
+    {
+      "word": "película",
+      "lemma": "película",
+      "proposed": "to act dramatic/show off",
+      "type": "figurative",
+      "construction": "gustar la película",
+      "corpus_count": 3,
+      "example": "A ti te gusta la película y a mí el nebuleo (Yeah)",
+      "translation": "You like the movie and I like the nebuleo (Yeah)"
+    },
+    {
+      "word": "shooter",
+      "lemma": "shooter",
+      "proposed": "gunman/assassin",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Es una shooter, shooter, shooter, ah",
+      "translation": "It's a shooter, shooter, shooter, ah"
+    },
+    {
+      "word": "split",
+      "lemma": "split",
+      "proposed": "the splits (dance move)",
+      "type": "loanword",
+      "construction": "hacer el split",
+      "corpus_count": 3,
+      "example": "Ma, yo quiero que me enseñes cómo twerkeas cuando hace' el split (Brr)",
+      "translation": "Ma, I want you to show me how you twerk when you do the split (Brr)"
+    },
+    {
+      "word": "tamagotchi",
+      "lemma": "tamagotchi",
+      "proposed": "digital pet toy",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Tiene que alimentarme como Tamagotchi",
+      "translation": "Gotta feed me like Tamagotchi"
+    },
+    {
+      "word": "vander",
+      "lemma": "vander",
+      "proposed": "Vanderbilt hotel",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "En el Vander, pero, baby, hazlo como pa'l tiempo 'e Tío Flor",
+      "translation": "At the Vander, but, baby, do it like for the weather 'e Tío Flor"
+    },
+    {
+      "word": "vendetta",
+      "lemma": "vendetta",
+      "proposed": "song title",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Escucha \"Vendetta\", ningún \"Amorfoda\" (Nah)",
+      "translation": "Listen to \"Vendetta\", no \"Amorfoda\" (Nah)"
+    },
+    {
+      "word": "vendetta",
+      "lemma": "vendetta",
+      "proposed": "film title",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Me quité la máscara V for Vendetta (To V)",
+      "translation": "I took off my mask V for Vendetta (To V)"
+    },
+    {
+      "word": "we",
+      "lemma": "we",
+      "proposed": "English pronoun",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Tímida, pero sabe what we gon' do (Yes)",
+      "translation": "Shy, but knows what we gon' do (Yes)"
+    },
+    {
+      "word": "flashes",
+      "lemma": "flashes",
+      "proposed": "camera flashes",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Entre las luce’ y los flashes, aquí no pasa na'",
+      "translation": "Between the lights and the flashes, nothing happens here"
+    },
+    {
+      "word": "moteles",
+      "lemma": "moteles",
+      "proposed": "short-stay hotels",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Que sea cara y no quiera moteles",
+      "translation": "That is expensive and does not want motels"
+    },
+    {
+      "word": "shorties",
+      "lemma": "shorties",
+      "proposed": "attractive young women",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "¿Dónde están las puta'? ¿Dónde están las shorties? (Yes)",
+      "translation": "Where are the whores? Where are the shorties? (Yes)"
+    },
+    {
+      "word": "alimentar",
+      "lemma": "alimentar",
+      "proposed": "feed",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Tiene que alimentar como Tamagotchi",
+      "translation": "Gotta feed me like Tamagotchi"
+    },
+    {
+      "word": "sentirse",
+      "lemma": "sentirse",
+      "proposed": "sit on",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Ven y sentirse en mi facey, quiero verte nakey-nakey",
+      "translation": "Come sit on my facey, I want to see you nakey-nakey"
+    },
+    {
+      "word": "sentirse",
+      "lemma": "sentirse",
+      "proposed": "sit",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "sentirse aquí, baby, pa' que me grite' \"oh, sí\"",
+      "translation": "Sit here, baby, so he can yell at me \"oh, yeah\""
+    },
+    {
+      "word": "dejarse",
+      "lemma": "dejarse",
+      "proposed": "leave alone",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Yo no te espero, pero, dejarse el cuento (Ah-ah-ah)",
+      "translation": "I'm not waiting for you, but leave the story alone (Ah-ah-ah)"
+    },
+    {
+      "word": "dejarse",
+      "lemma": "dejarse",
+      "proposed": "stop",
+      "type": "figurative",
+      "construction": "dejarse de",
+      "corpus_count": 3,
+      "example": "Oye mami, ya dejarse de cuentos",
+      "translation": "Hey mommy, stop telling stories"
+    },
+    {
+      "word": "dejarse",
+      "lemma": "dejarse",
+      "proposed": "let me see",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Eso no es na', dejarse ver, ¿te va' a hacer? Sí (Oye)",
+      "translation": "That's nothing, let me see, is it going to do it to you? Yes (Hey)"
+    },
+    {
+      "word": "after",
+      "lemma": "after",
+      "proposed": "after-party",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "\"¿En dónde queda el after?\" dice aquí en emoji",
+      "translation": "\"Where is the after?\" it says here in emoji"
+    },
+    {
+      "word": "am",
+      "lemma": "am",
+      "proposed": "ante meridiem",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Son la 1 AM y en verda' yo vo' a pichar",
+      "translation": "It's 1 AM and I'm really going to have a bite"
+    },
+    {
+      "word": "amiri",
+      "lemma": "amiri",
+      "proposed": "luxury clothing brand",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Te mojaste y me manchaste los AMIRI",
+      "translation": "You got wet and stained my AMIRI"
+    },
+    {
+      "word": "brray",
+      "lemma": "brray",
+      "proposed": "proper noun",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ahora toa' las babie' son bi desde que salí, shoutout a Brray (Sheesh)",
+      "translation": "Now all the babes are bi since I came out, shoutout to Brray (Sheesh)"
+    },
+    {
+      "word": "cause",
+      "lemma": "cause",
+      "proposed": "because",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Nos fuimo' temprano del party 'cause she wanna fuck",
+      "translation": "We left the party early 'cause she wanna fuck"
+    },
+    {
+      "word": "chamaquita",
+      "lemma": "chamaquita",
+      "proposed": "young girl",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Cha-Chamaquita, pero yo soy old school",
+      "translation": "Cha-Chamaquita, but I'm old school"
+    },
+    {
+      "word": "compares",
+      "lemma": "compares",
+      "proposed": "to compare oneself",
+      "type": null,
+      "construction": "compararse",
+      "corpus_count": 2,
+      "example": "No te compares, no te compares",
+      "translation": "Don't compare yourself, don't compare yourself"
+    },
+    {
+      "word": "emoji",
+      "lemma": "emoji",
+      "proposed": "pictogram",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "\"¿En dónde queda el after?\" dice aquí en emoji",
+      "translation": "\"Where is the after?\" it says here in emoji"
+    },
+    {
+      "word": "face",
+      "lemma": "face",
+      "proposed": "attractive appearance",
+      "type": "slang",
+      "construction": "face card",
+      "corpus_count": 2,
+      "example": "Solo trajo el face card, dejó la cartera",
+      "translation": "He only brought the face card, he left the wallet"
+    },
+    {
+      "word": "facey",
+      "lemma": "facey",
+      "proposed": "face",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ven y siéntate en mi facey, quiero verte nakey-nakey",
+      "translation": "Come sit on my facey, I want to see you nakey-nakey"
+    },
+    {
+      "word": "fantasmear",
+      "lemma": "fantasmear",
+      "proposed": "to ghost",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Sigue cucándome, que yo no vo'a fantasmear, te voy a cobrar la multa (Yeah)",
+      "translation": "Keep cuckolding me, I'm not going to ghost, I'm going to charge you the fine (Yeah)"
+    },
+    {
+      "word": "fashion",
+      "lemma": "fashion",
+      "proposed": "style",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ahora en París Fashion Week, la torre se ve desde el cuarto",
+      "translation": "Now at Paris Fashion Week, the tower can be seen from the fourth"
+    },
+    {
+      "word": "feeling",
+      "lemma": "feeling",
+      "proposed": "feeling",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Cada ve' que me la chingo to'as se van feeling loqui (Prr)",
+      "translation": "Every time I fuck up, everyone leaves feeling crazy (Prr)"
+    },
+    {
+      "word": "fenty",
+      "lemma": "fenty",
+      "proposed": "Fenty brand clothing",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Tú lo que ere' una savage, Fenty",
+      "translation": "You are a savage, Fenty"
+    },
+    {
+      "word": "ferxxo",
+      "lemma": "ferxxo",
+      "proposed": "Artist stage name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "FERXXO, FERXXO",
+      "translation": "FERXXO, FERXXO"
+    },
+    {
+      "word": "game",
+      "lemma": "game",
+      "proposed": "finished",
+      "type": "loanword",
+      "construction": "game over",
+      "corpus_count": 2,
+      "example": "Woh, ninguna se compara, mami, ese culo es game over (Ey)",
+      "translation": "Woh, none compare, mommy, that ass is game over (Hey)"
+    },
+    {
+      "word": "game",
+      "lemma": "game",
+      "proposed": "game",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "더이상 game은 없어",
+      "translation": ""
+    },
+    {
+      "word": "grra",
+      "lemma": "grra",
+      "proposed": "onomatopoeia for gunfire",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Grra, grra, boom-boom-boom-boom",
+      "translation": "Boom, boom, boom-boom-boom-boom"
+    },
+    {
+      "word": "guatauba",
+      "lemma": "guatauba",
+      "proposed": "intense sexual activity",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Le doy guatauba y no le hace falta una plan B",
+      "translation": "I give him guatauba and he doesn't need a plan B"
+    },
+    {
+      "word": "guatauba",
+      "lemma": "guatauba",
+      "proposed": "musical style or vibe",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Mic check, Guatauba en un Ferrari negro carbón por Aruba",
+      "translation": "Mic check, Guatauba in a charcoal black Ferrari through Aruba"
+    },
+    {
+      "word": "gym",
+      "lemma": "gym",
+      "proposed": "gymnasium",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Hoy no le dimo' al gym, baby, pero en la noche hay cardio",
+      "translation": "We didn't go to the gym today, baby, but at night there is cardio"
+    },
+    {
+      "word": "gyoza",
+      "lemma": "gyoza",
+      "proposed": "Japanese dumpling",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Tú me tiene' caliente como gyoza",
+      "translation": "You have me hot like gyoza"
+    },
+    {
+      "word": "gángster",
+      "lemma": "gángster",
+      "proposed": "criminal or tough guy",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Aquí a to'as las babies les gustan gángster",
+      "translation": "Here all the babies like gangsters"
+    },
+    {
+      "word": "gángster",
+      "lemma": "gángster",
+      "proposed": "criminal or tough",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y nena gángster, siempre jode con maleante'",
+      "translation": ""
+    },
+    {
+      "word": "hard",
+      "lemma": "hard",
+      "proposed": "giving maximum effort",
+      "type": "loanword",
+      "construction": "going hard",
+      "corpus_count": 2,
+      "example": "Si ves estos perro', know I'm going hard, arriba (Bing bong)",
+      "translation": "If you see these dog', know I'm going hard, up (Bing bong)"
+    },
+    {
+      "word": "hard",
+      "lemma": "hard",
+      "proposed": "intensely",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Say she wanna fuck hard, pero sin dejarme hickey (Cuida'o)",
+      "translation": "Say she wanna fuck hard, but without making me hickey (Cuida'o)"
+    },
+    {
+      "word": "hot",
+      "lemma": "hot",
+      "proposed": "sexually attractive",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Pero, oh, shit, papi, you so hot, shit, papi",
+      "translation": "But, oh, shit, daddy, you so hot, shit, daddy"
+    },
+    {
+      "word": "info",
+      "lemma": "info",
+      "proposed": "information",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Baby, dame info, ven, vamo' a hacer algo",
+      "translation": "Baby, give me info, come, let's do something"
+    },
+    {
+      "word": "intro",
+      "lemma": "intro",
+      "proposed": "introduction",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ella sabe a lo que vamo' desde el intro",
+      "translation": "She knows what we're going for from the intro"
+    },
+    {
+      "word": "l",
+      "lemma": "l",
+      "proposed": "contraction of el",
+      "type": "other",
+      "construction": "pa'l",
+      "corpus_count": 2,
+      "example": "To’a mis comisiones van pa’l pote de las tetas",
+      "translation": "All my commissions go to the pot of tits"
+    },
+    {
+      "word": "lala",
+      "lemma": "lala",
+      "proposed": "song title",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "No quiero ohana, quiero cantarte \"Lala\" (What, what, what, what?)",
+      "translation": "I don't want ohana, I want to sing you \"Lala\" (What, what, what, what?)"
+    },
+    {
+      "word": "limbo",
+      "lemma": "limbo",
+      "proposed": "state of uncertainty",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Aquí mirando, me tiene en un limbo, baby",
+      "translation": "Here looking, it's got me in limbo, baby"
+    },
+    {
+      "word": "line",
+      "lemma": "line",
+      "proposed": "phone connection",
+      "type": "loanword",
+      "construction": "hold the line",
+      "corpus_count": 2,
+      "example": "Ahora me llama y suena ring-ring, hold the line, yeah",
+      "translation": "Now he calls me and it rings ring-ring, hold the line, yeah"
+    },
+    {
+      "word": "mari",
+      "lemma": "mari",
+      "proposed": "proper name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y, Mari, ciérrame el mall (Yeah), que me voy de shopping",
+      "translation": "And, Mari, close the mall for me (Yeah), I'm going shopping"
+    },
+    {
+      "word": "mari",
+      "lemma": "mari",
+      "proposed": "marijuana",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Si no hay mari, hay hookah",
+      "translation": "If there is no mari, there is hookah"
+    },
+    {
+      "word": "medusa",
+      "lemma": "medusa",
+      "proposed": "Versace logo",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Eso está cotiza'o, tiene medusa hasta en los pantie' (Versace)",
+      "translation": "That's priced, it has jellyfish even in the panties (Versace)"
+    },
+    {
+      "word": "michu",
+      "lemma": "michu",
+      "proposed": "onomatopoeia for cat sound",
+      "type": "other",
+      "construction": "michu-michu",
+      "corpus_count": 2,
+      "example": "Pa'l que pregunte tú eres mi gatita (Gatita), michu-michu (Michu)",
+      "translation": "For those who ask, you are my kitten (Kitten), michu-michu (Michu)"
+    },
+    {
+      "word": "milf",
+      "lemma": "milf",
+      "proposed": "attractive older woman",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Yo quisiera ser el baby daddy de esa MILF (Uh)",
+      "translation": "I would like to be that MILF's baby daddy (Uh)"
+    },
+    {
+      "word": "mine",
+      "lemma": "mine",
+      "proposed": "my place",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Quédate las llave', que yo cojo pa'l mine",
+      "translation": "Keep the keys, I'll take them for mine"
+    },
+    {
+      "word": "mine",
+      "lemma": "mine",
+      "proposed": "my own",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Pa' dártelo all night, baby, all mine",
+      "translation": "To give it to you all night, baby, all mine"
+    },
+    {
+      "word": "narco",
+      "lemma": "narco",
+      "proposed": "drug trafficker",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "No paro de dripiar, parezco narco de un cartel (Pah)",
+      "translation": "I can't stop dripping, I look like a drug trafficker from a cartel (Pah)"
+    },
+    {
+      "word": "narco",
+      "lemma": "narco",
+      "proposed": "drug dealer",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Yo no soy un narco, en el cuello tengo un kilo, bitch",
+      "translation": "I'm not a drug dealer, I have a kilo on my neck, bitch"
+    },
+    {
+      "word": "nda",
+      "lemma": "nda",
+      "proposed": "non-disclosure agreement",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y qué cojone', ni que tú firmando un NDA (By the way)",
+      "translation": "And what the hell, not even you signing an NDA (By the way)"
+    },
+    {
+      "word": "nice",
+      "lemma": "nice",
+      "proposed": "attractive",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Tú siempre te ves bien clean, bien nice, mm-mmm",
+      "translation": "You always look very clean, very nice, mm-mmm"
+    },
+    {
+      "word": "nice",
+      "lemma": "nice",
+      "proposed": "cool",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "En el trago y en el cuello, nice",
+      "translation": "In the throat and in the neck, nice"
+    },
+    {
+      "word": "ninow",
+      "lemma": "ninow",
+      "proposed": "proper name",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Dímelo Ninow (Pichéale a lo' storie', apaga el celular)",
+      "translation": "Tell me Ninow (Pichéale to the 'storie', turn off the cell phone)"
+    },
+    {
+      "word": "note",
+      "lemma": "note",
+      "proposed": "to be noticed",
+      "type": "figurative",
+      "construction": "que se note",
+      "corpus_count": 2,
+      "example": "Que se note que sean mala' con pantallas en los nipps",
+      "translation": "Let it be seen that they are bad with screens in the nipps"
+    },
+    {
+      "word": "nudes",
+      "lemma": "nudes",
+      "proposed": "nude photos",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "No me envíes nudes, no me gusta when you tease me",
+      "translation": "Don't send me nudes, I don't like it when you tease me"
+    },
+    {
+      "word": "pelirrojas",
+      "lemma": "pelirrojas",
+      "proposed": "redheaded women",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "pelirrojas con pequita' que use beanie (Mmm), ey",
+      "translation": "Redhead with a freckle who wears a beanie (Mmm), hey"
+    },
+    {
+      "word": "pequitas",
+      "lemma": "pequitas",
+      "proposed": "freckles",
+      "type": null,
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Pelirroja' con pequitas que use beanie (Mmm), ey",
+      "translation": "Redhead with a freckle who wears a beanie (Mmm), hey"
+    },
+    {
+      "word": "picheamos",
+      "lemma": "picheamos",
+      "proposed": "to ignore",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Siempre que nos vemo' picheamos las consecuencia', uh",
+      "translation": "Every time we see each other we picheamo the consequences, uh"
+    },
+    {
+      "word": "piercing",
+      "lemma": "piercing",
+      "proposed": "body piercing",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Piercing en la- (Jeje), y una pepa en la lengua",
+      "translation": "Piercing in the- (Hehe), and a seed in the tongue"
+    },
+    {
+      "word": "pitcher",
+      "lemma": "pitcher",
+      "proposed": "baseball pitcher",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Despista'o, no es que soy pitcher",
+      "translation": "Clueless, it's not that I'm a pitcher"
+    },
+    {
+      "word": "play",
+      "lemma": "play",
+      "proposed": "to deceive or manipulate",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ojito' chiquitito', don't play me (Play me)",
+      "translation": "Little eye, don't play me (Play me)"
+    },
+    {
+      "word": "play",
+      "lemma": "play",
+      "proposed": "to start music or media",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y le damos play",
+      "translation": "And we press play"
+    },
+    {
+      "word": "plásticas",
+      "lemma": "plásticas",
+      "proposed": "women with plastic surgery",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Yo que le doy a naturale' y plásticas",
+      "translation": "What I give to natural' and plastic'"
+    },
+    {
+      "word": "porfa",
+      "lemma": "porfa",
+      "proposed": "please",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Porfa no me deje' en visto",
+      "translation": "Please don't leave me in sight"
+    },
+    {
+      "word": "prendíamos",
+      "lemma": "prendíamos",
+      "proposed": "to get high or smoke",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Uh-uh, pensando cómo prendíamos en el coche de tu mai all night",
+      "translation": "Uh-uh, thinking about how we'd get caught in your mai's car all night"
+    },
+    {
+      "word": "queens",
+      "lemma": "queens",
+      "proposed": "queens",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Drama queens, no lo usan si no e' Gucci, ah",
+      "translation": "Drama queens, they don't use it if it's not Gucci, ah"
+    },
+    {
+      "word": "quicky",
+      "lemma": "quicky",
+      "proposed": "quick sexual encounter",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Si quiere' hacemo' un quicky y luego dice' \"thank you, next\" (Thank you, thank you, thank you, prr, ey)",
+      "translation": "If you want we'll do a quicky and then say \"thank you, next\" (Thank you, thank you, thank you, prr, ey)"
+    },
+    {
+      "word": "rebelás",
+      "lemma": "rebelás",
+      "proposed": "rebellious",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "¿Qué le habrán hecho a esa bebé que está rebelás?",
+      "translation": "What have they done to that rebellious baby?"
+    },
+    {
+      "word": "refe",
+      "lemma": "refe",
+      "proposed": "reference or benchmark",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Soy la refe de la refe de tu jefe, soy el type, ah, yah",
+      "translation": "I'm the ref of your boss's ref, I'm the guy, ah, yah"
+    },
+    {
+      "word": "right",
+      "lemma": "right",
+      "proposed": "of course",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Dinero hay (Tiene cash), damn right (Duh?)",
+      "translation": "There is money (He has cash), damn right (Duh?)"
+    },
+    {
+      "word": "right",
+      "lemma": "right",
+      "proposed": "exactly there",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Siempre la toco right there, ey",
+      "translation": "I always play it right there, hey"
+    },
+    {
+      "word": "riri",
+      "lemma": "riri",
+      "proposed": "nickname for Rihanna",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y yo le llego asap, le digo \"mi Riri\"",
+      "translation": "And I get to him asap, I say \"my Riri\""
+    },
+    {
+      "word": "roster",
+      "lemma": "roster",
+      "proposed": "team list",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Directo al roster sin hacer tryout",
+      "translation": "Direct to the roster without trying out"
+    },
+    {
+      "word": "roster",
+      "lemma": "roster",
+      "proposed": "list of people",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Pero ya no es la única, hay como cinco en el roster (Prr, prr, prr)",
+      "translation": "But she's not the only one anymore, there are like five on the roster (Prr, prr, prr)"
+    },
+    {
+      "word": "round",
+      "lemma": "round",
+      "proposed": "stage of a fight",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Si quiere' envía el PIN y nos vamo' pa'l round do' (Ajá)",
+      "translation": "If you want, send the PIN and we'll go round two (Aha)"
+    },
+    {
+      "word": "sextape",
+      "lemma": "sextape",
+      "proposed": "sex tape",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y hacemo' un sextape si los paparazzis graban",
+      "translation": "And we'll make a sextape if the paparazzi record"
+    },
+    {
+      "word": "sho",
+      "lemma": "sho",
+      "proposed": "short for 'show'",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "To'as las babie' son bi, a vece' sho, a vece' bi (Ja)",
+      "translation": "All the babes are bi, sometimes they are, sometimes they are bi (Ha)"
+    },
+    {
+      "word": "shooters",
+      "lemma": "shooters",
+      "proposed": "gunmen",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Todo' mis shooters le meten preciso, ello' todo' le meten like ninety (Huh)",
+      "translation": "All my shooters are accurate, all of them are like ninety (Huh)"
+    },
+    {
+      "word": "short",
+      "lemma": "short",
+      "proposed": "shorts",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Yo me puse el short, las Jordan en los pie' (¿Cómo?)",
+      "translation": "I put on the shorts, the Jordans on my feet' (How?)"
+    },
+    {
+      "word": "short",
+      "lemma": "short",
+      "proposed": "short",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Dije el bellaqueo es largo cuando veo esa falda short (Wuh)",
+      "translation": "I said the mischief is long when I see that short skirt (Wuh)"
+    },
+    {
+      "word": "shots",
+      "lemma": "shots",
+      "proposed": "drinks of alcohol",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Se dan par de shots y ahora to'as son dancer",
+      "translation": "They take a couple of shots and now everyone is a dancer"
+    },
+    {
+      "word": "sip",
+      "lemma": "sip",
+      "proposed": "sound of drinking",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Sip sip y ya me siento tipsy (Oh)",
+      "translation": "Yup yup and I already feel tipsy (Oh)"
+    },
+    {
+      "word": "sticker",
+      "lemma": "sticker",
+      "proposed": "sticker",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Quiero ser sticker pa' quedarme pega'o a ese bumper",
+      "translation": "I want to be a sticker to stay glued to that bumper"
+    },
+    {
+      "word": "stussy",
+      "lemma": "stussy",
+      "proposed": "Stussy brand",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Si no tiene Chanel, se engancha la Stussy",
+      "translation": "If you don't have Chanel, get the Stussy"
+    },
+    {
+      "word": "tato",
+      "lemma": "tato",
+      "proposed": "tattoo",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Tato",
+      "translation": "Tattoo"
+    },
+    {
+      "word": "tempo",
+      "lemma": "tempo",
+      "proposed": "tempo",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Pero súbeme el tempo",
+      "translation": "But increase the tempo"
+    },
+    {
+      "word": "thottie",
+      "lemma": "thottie",
+      "proposed": "attractive woman",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "En el carro it sticks body, cómo baila, she my thottie",
+      "translation": "In the car it sticks body, how she dances, she my thottie"
+    },
+    {
+      "word": "tickes",
+      "lemma": "tickes",
+      "proposed": "tickets",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Le gusta que yo tengo tickes, quiere que le lleve una Birkin",
+      "translation": "He likes that I have a ticket, he wants me to bring him a Birkin"
+    },
+    {
+      "word": "too",
+      "lemma": "too",
+      "proposed": "too",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Mami, estás too much to handle",
+      "translation": "Mommy, you are too much to handle"
+    },
+    {
+      "word": "trip",
+      "lemma": "trip",
+      "proposed": "trip",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Cuando salga' del trip, ¿dónde andas? (¿Qué?)",
+      "translation": "When you get off the trip, where are you? (That?)"
+    },
+    {
+      "word": "turbo",
+      "lemma": "turbo",
+      "proposed": "Turbo (name)",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Dime, Turbo (Turbo), eh",
+      "translation": "Tell me, Turbo (Turbo), huh"
+    },
+    {
+      "word": "turbo",
+      "lemma": "turbo",
+      "proposed": "Turbo",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "911 Turbo Porsche",
+      "translation": "Porsche 911 Turbo"
+    },
+    {
+      "word": "violetita",
+      "lemma": "violetita",
+      "proposed": "marijuana",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Fumo violetita o fumo del blue, no hay similitud, ah",
+      "translation": "I smoke violetite or I smoke blue, there is no similarity, ah"
+    },
+    {
+      "word": "violetita",
+      "lemma": "violetita",
+      "proposed": "Violetita Kuzi",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Violetita Kuzi, baby, 'tamo cruising (Yessir)",
+      "translation": "Violetita Kuzi, baby, 'tamo cruising (Yessir)"
+    },
+    {
+      "word": "viral",
+      "lemma": "viral",
+      "proposed": "become popular online",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ella se va viral en IG cuando publica (Uh)",
+      "translation": "She goes viral on IG when she posts (Uh)"
+    },
+    {
+      "word": "vv",
+      "lemma": "vv",
+      "proposed": "Versace",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "VV en el cuello, 1K en el brazo",
+      "translation": "VV on the neck, 1K on the arm"
+    },
+    {
+      "word": "webcam",
+      "lemma": "webcam",
+      "proposed": "webcam",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Prendemo' la webcam",
+      "translation": "Let's turn on the webcam"
+    },
+    {
+      "word": "when",
+      "lemma": "when",
+      "proposed": "when",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "No me envíes nudes, no me gusta when you tease me",
+      "translation": "Don't send me nudes, I don't like it when you tease me"
+    },
+    {
+      "word": "yankee",
+      "lemma": "yankee",
+      "proposed": "Yankee cap",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "La gorra 'e Yankee, Derek Jeter (Ah)",
+      "translation": "The Yankee cap, Derek Jeter (Ah)"
+    },
+    {
+      "word": "yankee",
+      "lemma": "yankee",
+      "proposed": "Yankee",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "No vengo a frontea' que soy el sucesor de Yankee",
+      "translation": "I'm not coming to frontea because I'm Yankee's successor"
+    },
+    {
+      "word": "zirconia",
+      "lemma": "zirconia",
+      "proposed": "zirconia",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Ella con baguettes y tú fronteando con zirconia",
+      "translation": "She with baguettes and you fronting with zirconia"
+    },
+    {
+      "word": "mamas",
+      "lemma": "mamas",
+      "proposed": "suck",
+      "type": "vulgar",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Qué rico tú mamas, Dios Santo",
+      "translation": "How delicious your mom', Holy God"
+    },
+    {
+      "word": "mamas",
+      "lemma": "mamas",
+      "proposed": "mothers",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Rich lifestyle, quieren ser mis baby mamas",
+      "translation": "Rich lifestyle, they want to be my baby mamas"
+    },
+    {
+      "word": "seguir",
+      "lemma": "seguir",
+      "proposed": "follow",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "La luz esta roja, seguir",
+      "translation": "The light is red, follow it"
+    },
+    {
+      "word": "seguir",
+      "lemma": "seguir",
+      "proposed": "keep",
+      "type": "other",
+      "construction": "seguir moviendo",
+      "corpus_count": 2,
+      "example": "seguir moviendo y yo te tiro má'",
+      "translation": "Keep moving and I'll throw more at you"
+    },
+    {
+      "word": "quedarse",
+      "lemma": "quedarse",
+      "proposed": "stay",
+      "type": "other",
+      "construction": "quedarse senta'o",
+      "corpus_count": 2,
+      "example": "Viendo mis foto', malpensa'o, quedarse senta'o, 'tás equivoca'o (Ah)",
+      "translation": "Looking at my photos, you're wrong, stay seated, you're wrong (Ah)"
+    },
+    {
+      "word": "quedarse",
+      "lemma": "quedarse",
+      "proposed": "keep",
+      "type": "other",
+      "construction": "quedarse las llave'",
+      "corpus_count": 2,
+      "example": "quedarse las llave', que yo cojo pa'l mine",
+      "translation": "Keep the keys, I'll take them for mine"
+    },
+    {
+      "word": "venirse",
+      "lemma": "venirse",
+      "proposed": "come with me",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "venirse conmigo, you boring shit (Ajá)",
+      "translation": "Come with me, you boring shit (Aha)"
+    },
+    {
+      "word": "traerse",
+      "lemma": "traerse",
+      "proposed": "bring along",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "traerse una amiga, que ando con Ousi, esta cara es cozy",
+      "translation": "Bring a friend, I'm with Ousi, this face is cozy"
+    },
+    {
+      "word": "pegarse",
+      "lemma": "pegarse",
+      "proposed": "stick to",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "pegarse a mi Gucci, a mi hebilla",
+      "translation": "Stick to my Gucci, to my buckle"
+    },
+    {
+      "word": "pegarse",
+      "lemma": "pegarse",
+      "proposed": "get down",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Y dale, pegarse, muévete, ma, ¿tú no querías fuete?",
+      "translation": "And come on, hit it, move, mom, didn't you want to be strong?"
+    },
+    {
+      "word": "convencer",
+      "lemma": "convencer",
+      "proposed": "convince me",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Me mira con eso' ojito' y tiene el poder de joderme, puede convencer",
+      "translation": "He looks at me with that little eye and he has the power to screw me, he can convince me"
+    },
+    {
+      "word": "brincar",
+      "lemma": "brincar",
+      "proposed": "jump",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Brinca, brinca, brinca, brincar",
+      "translation": "Jump, jump, jump, jump me"
+    }
+  ]
+}

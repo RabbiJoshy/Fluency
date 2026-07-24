@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Artist decks now use corrected counts and refreshed morphology",
+      "details": [
+        "Rebuilt Bad Bunny, Rosalía, and Young Miko so repeated lyric lines count once per song and the expanded conjugation/morphology lookup reaches the shipped decks",
+        "Incremental SpanishDict assignment refresh added 13, 67, and 139 covered words respectively; the shared master gains 220 entries and 476 senses versus the previous commit",
+        "Final decks contain 10,922 Bad Bunny, 3,218 Rosalía, and 4,463 Young Miko cards; a final build-only pass aligned every index with the stable 15,936-entry master",
+        "All 84 changed JSON files and index/master/example relationships validate; cache v66→v67, assets 20260724k→20260724l"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "5f7eaf0",
       "summary": "Card grammar now reads as one connected colour system",
       "details": [
