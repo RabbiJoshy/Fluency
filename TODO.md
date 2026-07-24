@@ -79,7 +79,7 @@
   `findFirstIncompleteLevelBtn` in ui.js); collapsed-lemma pools all examples across the lemma
   (SHIPPED but buggy — see the frequency/pooling audit item above). Still OPEN:
   1. **(S) [shared] Exclude exact-line repetitions from corpus count** — DONE 2026-07-24
-     (`7c63853`; data rebuild PENDING): normalized lyric lines now contribute once per song
+     (`7c63853`; data rebuild `56f6a27`): normalized lyric lines now contribute once per song
      to word and MWE counts; the same line in different songs remains independent. Regression
      coverage: `pipeline/artist/test_step_2a_count_words.py`.
   2. **(S) [normal] Card scroll/transition animation, desktop mode** — DONE 2026-05-03
@@ -89,7 +89,7 @@
      (`e72ead23`): the stats modal shows the previously-known count and reconciles it with the
      chosen set size/card position.
   4. **(M) [artist/spanish] Verbs missing morphology even though the card "knows" it** — DONE
-     2026-07-24 (`26a7c32`; data rebuild PENDING): verbecc fails on 178 clean
+     2026-07-24 (`26a7c32`; data rebuild `56f6a27`): verbecc fails on 178 clean
      artist verb bases (even `pasar`, with `IndexError`) although morphology is already stamped.
      `step_5b_build_conjugations.py` now reconstructs core tables from the Wiktionary morphology
      layer, recovering 174/178 audited gaps; regression coverage included.

@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "56f6a27",
       "summary": "Artist decks now use corrected counts and refreshed morphology",
       "details": [
         "Rebuilt Bad Bunny, Rosalía, and Young Miko so repeated lyric lines count once per song and the expanded conjugation/morphology lookup reaches the shipped decks",
