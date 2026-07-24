@@ -50,7 +50,7 @@
      2026-07-24 (3902737): selection uses the section's POS-colour tint + rail, evidence-backed
      senses add a ✓ matched chip, and assigned examples repeat the same cue and colour. Unassigned
      senses stay visibly selected without claiming a match.
-  5. **(M) [normal] Language picker → radial button** — DONE 2026-07-24 (PENDING): one
+  5. **(M) [normal] Language picker → radial button** — DONE 2026-07-24 (c92d0f0): one
      full-width button opens a flag-picture clock using the artist picker's shared radial core;
      available languages keep the canonical loader and coming-soon languages stay disabled.
   6. **(M) [normal] Roll progress into the language box** — after a language is picked, in

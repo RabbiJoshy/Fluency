@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "c92d0f0",
       "summary": "Standard mode now chooses languages from a radial flag clock",
       "details": [
         "The row of language tabs is replaced by one clear Choose a language button that opens flag pictures around the same radial picker used for artists",
