@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Frequency scrubber now has useful head-to-tail resolution",
+      "details": [
+        "Corrected measurements show 44–59% of current artist decks remain in the 1–3 occurrence/example tail, so the deck now uses ten near-equal-card bands with nearby frequency-cliff snapping",
+        "Cuts inside a tied low-frequency tier are explicitly labelled with frequency and cumulative card count (for example 2× · 3.2k), replacing indistinguishable repeated ≥2 stops",
+        "Lemma bands and coverage use pooled unique-example frequency; form bands use corpus frequency, and smart selections keep that display-rank basis through setup, next-level navigation, and deck loading",
+        "Percentage-mode form decks are explicitly frequency-sorted (the Young Miko source had 83 upward jumps); source rank remains the stable ID/tie-breaker; cache v63→v64, assets 20260724h→20260724i"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "1196e94",
       "summary": "Lemma frequency now matches its pooled example lines",
       "details": [

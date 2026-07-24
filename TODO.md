@@ -56,16 +56,12 @@
   6. **(M) [normal] Roll progress into the language box** — DONE 2026-07-24 (bdfa03b): after
      selection, the language sits beside compact speech/flashcard percentages with the bar below
      in step 1; zero-progress languages remain visible and artist mode is unchanged.
-  7. **(M) [artist] [USE JUDGEMENT] Rethink the whole frequency partition of the deck** — in
-     artist mode the `≥2` band is basically the entire long tail, so scrubbing the rare end has
-     no resolution; and many words occur many times, so the head is lumpy too. Josh wants a
-     genuinely better way to partition all words by frequency, left to the model's judgement
-     (options: sub-divide the low-integer tail by card-count within `≥2`/`≥3`, a log split of the
-     tail, coverage-equalised bands, hybrid…). `computeSmartLevelRanges` in `ui.js`.
-     ⚠️ ENTANGLED WITH #8: Josh believes the morphology/example POOLING was done badly (has
-     bugs), and thinks part of the "lumpy frequency" problem may dissolve once pooling is fixed
-     (frequencies re-aggregate correctly per lemma). So FIX/AUDIT POOLING (#8) FIRST, re-measure
-     the frequency distribution, THEN redesign the partition against corrected numbers.
+  7. **(M) [artist] [USE JUDGEMENT] Rethink the whole frequency partition of the deck** — DONE
+     2026-07-24 (PENDING): corrected measurements still put 44–59% of cards in the 1–3 tail.
+     The scrubber now makes ten near-equal-card bands, snaps to nearby frequency cliffs, and
+     labels intentional tied-tier cuts with frequency plus cumulative card count. It uses pooled
+     example frequency in lemma mode and a consistent display-rank basis from setup through deck
+     loading. Full findings: `docs/frequency_partition_audit.md`.
   8. **(M) [shared] Audit + fix lemma example/frequency pooling (Josh suspects bugs)** — DONE
      2026-07-24 (`1196e94`): the audit found raw-token sums vs unique/capped example lines (`gasté`:
      41 vs 28 vs 25), positionally mismerged multi-artist senses (1,878 divergent IDs), and 700

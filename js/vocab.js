@@ -399,9 +399,9 @@ function buildFilteredVocab(vocabData) {
     // used to produce (e.g. an item failing both artist and cognate is
     // counted under "english" only, since the artist check ran first).
     const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
-    const checkSingleOcc = hideSingleOccurrence
-        && vocabData.length > 0
+    const hasCorpusFrequency = vocabData.length > 0
         && vocabData[0].hasOwnProperty('corpus_count');
+    const checkSingleOcc = hideSingleOccurrence && hasCorpusFrequency;
     const result = [];
     for (const item of vocabData) {
         if (!item.word || item.word.trim() === '' || item.duplicate) continue;
@@ -467,7 +467,7 @@ function buildFilteredVocab(vocabData) {
     // In lemma mode, pool each surviving representative's frequency across all
     // its collapsed sibling forms (same lemma) and order the deck by that total,
     // so the most common LEMMAS surface first — mirrors the example pooling in
-    // poolLemmaSiblingExamples. Non-lemma mode keeps the index frequency order.
+    // poolLemmaSiblingExamples.
     if (useLemmaMode && lemmaFieldAvailable) {
         const lemmaTotals = new Map();
         for (const e of vocabData) {
@@ -483,6 +483,15 @@ function buildFilteredVocab(vocabData) {
                 : item.lemma_total_count;
         }
         result.sort((a, b) => (b.pooled_frequency || 0) - (a.pooled_frequency || 0));
+    } else if (percentageMode && hasCorpusFrequency) {
+        // Artist indexes are usually frequency-sorted, but that is not a safe
+        // contract (the current Young Miko index has dozens of upward jumps).
+        // Percentage mode's scrubber and deck must share a genuinely
+        // frequency-descending order. Preserve item.rank as the source ID and
+        // use it as the stable tie-breaker.
+        result.sort((a, b) =>
+            ((b.corpus_count || 0) - (a.corpus_count || 0))
+            || ((a.rank || 0) - (b.rank || 0)));
     }
 
     // Assign corpus-wide display ranks so set numbering is continuous across levels

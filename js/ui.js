@@ -351,16 +351,21 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
 
     for (const btn of buttons) {
         let minWord, maxWord;
+        let rankBasis = 'source';
         if (percentageMode && ppmData && ppmData.length > 0) {
             minWord = parseInt(btn.dataset.startRank);
             maxWord = parseInt(btn.dataset.endRank);
+            rankBasis = btn.dataset.rankBasis || 'source';
         } else {
             const cefrLevels = getCefrLevels(language);
             const lv = cefrLevels.find(l => l.level === btn.dataset.level);
             if (!lv) continue;
             [minWord, maxWord] = lv.wordCount.split('-').map(Number);
         }
-        const wordsInLevel = filteredVocab.filter(it => it.rank >= minWord && it.rank < maxWord);
+        const wordsInLevel = filteredVocab.filter(it => {
+            const rank = rankBasis === 'display' ? it.displayRank : it.rank;
+            return rank >= minWord && rank < maxWord;
+        });
         if (wordsInLevel.length === 0) continue;
         if (!wordsInLevel.every(wordKnown)) return btn;
     }
@@ -404,7 +409,7 @@ async function renderLevelSelector(language) {
         const buttonsHTML = percentageRanges.map(level => {
             const description = level.description || `${level.level} ${coverageType}`;
             return `
-            <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${description}" data-start-rank="${level.startRank}" data-end-rank="${level.endRank}" title="${description}">
+            <button class="level-btn" data-level="${level.level}" data-short="${level.level}" data-full="${description}" data-start-rank="${level.startRank}" data-end-rank="${level.endRank}" data-rank-basis="${level.rankBasis || 'source'}" title="${description}">
                 ${level.level}
             </button>
         `}).join('');
@@ -563,108 +568,106 @@ async function renderLevelSelector(language) {
 // always reflects current filters (re-render is the natural invalidator).
 let _smartLevelRangesCache = null;
 
-// Pick boundaries that target ~equal cards-per-segment but snap each
-// boundary to a meaningful frequency cliff (artist mode) where one is
-// nearby, falling back to rank-based subdivision for the freq=2 long
-// tail. See the design discussion 2026-05-04 for the rationale.
+// Build ten usable study bands. Each boundary starts at an equal-card
+// quantile, then snaps to a genuine frequency cliff when one is nearby.
+// If no cliff is close, keeping the quantile deliberately subdivides a
+// large tied tail (2x/3x in artist decks) instead of collapsing it into one
+// enormous final band.
 //
-// `filteredVocab` must be sorted by rank ascending, with `corpus_count`
-// on each item (both modes carry this — artist directly, normal via
-// occurrences_ppm coerced into corpus_count).
+// In lemma mode the effective frequency is the corrected unique-example
+// pool. Form mode uses corpus_count. buildFilteredVocab() has already sorted
+// and assigned displayRank on that same basis, so smart ranges must retain
+// displayRank all the way through selection and deck loading.
 function computeSmartLevelRanges(filteredVocab) {
     if (!filteredVocab || filteredVocab.length === 0) return [];
-    const items = filteredVocab; // freq-desc order (rank ascending)
+    const items = filteredVocab;
     const total = items.length;
-
-    // Strategy: split by FREQUENCY TIERS, not by equal card count. Each
-    // segment is a distinct "words appearing ≥N times" band, which is the
-    // mental model the scrubber presents (scrub right → include rarer
-    // words). The old equal-card-count split repeated "≥2" across several
-    // tail segments (they differed only by card count) which read as
-    // clutter and put the most snap-resolution where meaning is flattest.
-    //
-    // We walk a rich list of candidate thresholds high→low, keep each tier
-    // that (a) has cards and (b) adds a meaningful chunk over the previous
-    // boundary (minGap) so head tiers with only a handful of very-frequent
-    // words merge instead of spawning micro-segments, then always close at
-    // the full deck. Card count stays the exact axis; frequency is the
-    // label; coverage % is precise in the readout.
-    // Count of cards with corpus_count >= t. Linear (not a binary search)
-    // so it stays correct even when rank order and corpus_count aren't
-    // perfectly monotonic — otherwise the boundary card's own count can
-    // wobble and the ≥N labels stop decreasing, which reads as scrambled.
-    const cardsAtLeast = (t) => {
-        let n = 0;
-        for (const it of items) if ((it.corpus_count || 0) >= t) n++;
-        return n;
+    const frequencyOf = (item) => {
+        const raw = useLemmaMode ? item.pooled_frequency : item.corpus_count;
+        const value = Number(raw);
+        return Number.isFinite(value) ? Math.max(0, value) : 0;
     };
+    const fmtCompact = (n) => n >= 1000
+        ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k'
+        : String(Math.round(n));
 
-    const CANDIDATES = [500, 300, 200, 150, 100, 70, 50, 40, 30, 20, 15, 10, 8, 7, 6, 5, 4, 3, 2];
-    const minGap = Math.max(3, Math.round(total * 0.012)); // ≥1.2% of deck per tier
+    const segmentCount = Math.min(10, total);
+    const idealBandSize = total / segmentCount;
+    const snapWindow = Math.max(2, Math.round(idealBandSize * 0.25));
+    const minBandSize = Math.max(1, Math.round(idealBandSize * 0.5));
 
-    // Label each segment with the THRESHOLD itself (not the boundary card's
-    // count): every card in "top N" provably appears ≥ threshold times, so
-    // "≥threshold" is exactly truthful, and thresholds are strictly
-    // decreasing across kept tiers → the labels always go down.
-    const boundaries = []; // {endIdx, cardCount, freqMin}
-    let prevCount = 0;
-    for (const t of CANDIDATES) {
-        const c = cardsAtLeast(t);
-        if (c <= prevCount) continue;            // no new cards at this cliff
-        if (c - prevCount < minGap && c < total) continue; // too small — merge down
-        boundaries.push({ endIdx: c - 1, cardCount: c, freqMin: t });
-        prevCount = c;
-        if (c >= total) break;
+    // A cliff count is the number of cards included immediately before the
+    // effective frequency drops. Counts are exclusive endpoints, matching
+    // the range loader's displayRank >= start && displayRank < end contract.
+    const cliffCounts = [];
+    for (let count = 1; count < total; count++) {
+        if (frequencyOf(items[count - 1]) !== frequencyOf(items[count])) {
+            cliffCounts.push(count);
+        }
     }
 
-    // Always anchor the final segment at the full deck (the freq=2 tail).
-    // If the last kept tier is within minGap of total, replace it rather
-    // than append a near-duplicate boundary.
-    const lastB = boundaries[boundaries.length - 1];
-    if (!lastB || lastB.cardCount < total) {
-        const freqAt = items[total - 1].corpus_count || 0;
-        const tail = { endIdx: total - 1, cardCount: total, freqMin: freqAt >= 2 ? freqAt : null };
-        if (lastB && total - lastB.cardCount < minGap) boundaries[boundaries.length - 1] = tail;
-        else boundaries.push(tail);
+    const boundaryCounts = [];
+    let previousCount = 0;
+    for (let segment = 1; segment < segmentCount; segment++) {
+        const remainingBands = segmentCount - segment;
+        const minCount = previousCount + minBandSize;
+        const maxCount = total - remainingBands * minBandSize;
+        const idealCount = Math.round(total * segment / segmentCount);
+        const targetCount = Math.max(minCount, Math.min(maxCount, idealCount));
+        const nearbyCliffs = cliffCounts.filter(count =>
+            count >= minCount
+            && count <= maxCount
+            && Math.abs(count - targetCount) <= snapWindow
+        );
+        const count = nearbyCliffs.length > 0
+            ? nearbyCliffs.reduce((best, candidate) =>
+                Math.abs(candidate - targetCount) < Math.abs(best - targetCount) ? candidate : best)
+            : targetCount;
+        boundaryCounts.push(count);
+        previousCount = count;
     }
+    boundaryCounts.push(total);
 
-    // Cumulative coverage — sum corpus_count weighted across all items
-    // up to each boundary, divided by the total.
     let totalFreq = 0;
-    for (const it of items) totalFreq += (it.corpus_count || 0);
+    for (const item of items) totalFreq += frequencyOf(item);
 
     const ranges = [];
     let cumFreq = 0;
-    let prevRank = 0;
-    for (let i = 0; i < boundaries.length; i++) {
-        const b = boundaries[i];
-        const startIdx = i === 0 ? 0 : boundaries[i - 1].endIdx + 1;
-        for (let j = startIdx; j <= b.endIdx; j++) cumFreq += (items[j].corpus_count || 0);
+    let previousBoundary = 0;
+    for (const cardCount of boundaryCounts) {
+        const endIdx = cardCount - 1;
+        for (let j = previousBoundary; j <= endIdx; j++) cumFreq += frequencyOf(items[j]);
         const coverage = totalFreq > 0 ? cumFreq / totalFreq : 0;
-        const cardCount = b.cardCount;
-        const endRank = items[b.endIdx].rank;
-        const startRank = prevRank + 1;
-        prevRank = endRank;
+        const freqMin = frequencyOf(items[endIdx]);
+        const splitTier = cardCount < total && frequencyOf(items[cardCount]) === freqMin;
+        const startRank = previousBoundary + 1;
+        const endRank = cardCount + 1;
 
         // Level identifier — keyed by cardCount so selectedLevel round-trips
-        // stably across re-renders (freqMin can in principle repeat).
+        // stably across re-renders even when several cuts share a frequency.
         const level = `c${cardCount}`;
-        const tickLabel = b.freqMin !== null ? `≥${b.freqMin}` : String(cardCount);
-        const description = b.freqMin !== null
-            ? `Top ${cardCount.toLocaleString()} cards · words appearing ≥${b.freqMin} times · ${(coverage * 100).toFixed(1)}% coverage`
-            : `Top ${cardCount.toLocaleString()} cards · ${(coverage * 100).toFixed(1)}% coverage`;
+        const tickLabel = splitTier
+            ? `${fmtCompact(freqMin)}× · ${fmtCompact(cardCount)}`
+            : `≥${fmtCompact(freqMin)}`;
+        const basisDescription = useLemmaMode ? 'unique pooled example lines' : 'corpus occurrences';
+        const description = splitTier
+            ? `Top ${cardCount.toLocaleString()} cards · cutoff partway through the ${fmtCompact(freqMin)}× tier · ${(coverage * 100).toFixed(1)}% coverage by ${basisDescription}`
+            : `Top ${cardCount.toLocaleString()} cards · frequency ≥${fmtCompact(freqMin)} · ${(coverage * 100).toFixed(1)}% coverage by ${basisDescription}`;
 
         ranges.push({
             level,
             startRank,
             endRank,
+            rankBasis: 'display',
             cardCount,
             threshold: coverage,
-            kind: b.freqMin !== null ? 'freq' : 'rank',
-            freqMin: b.freqMin || null,
+            kind: splitTier ? 'tie-split' : 'freq-cliff',
+            freqMin,
+            splitTier,
             tickLabel,
             description,
         });
+        previousBoundary = cardCount;
     }
     return ranges;
 }
@@ -688,6 +691,7 @@ function _samplesFromRaw(rawVocab) {
     const { vocab: filtered } = buildFilteredVocab(rawVocab);
     return filtered.map(item => ({
         rank: item.rank,
+        displayRank: item.displayRank,
         word: item.lemma || item.targetWord || item.word || ''
     })).filter(s => s.word);
 }
@@ -902,7 +906,9 @@ function updateLevelSliderReadout(i) {
         // words for this level on a new line underneath (stacked via the
         // .lsw-examples column layout in CSS).
         const freqHTML = freqValue !== null
-            ? `<div class="lsw-freq-sentence">Words appearing at least <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`
+            ? (lv.splitTier
+                ? `<div class="lsw-freq-sentence">Fine split within words appearing <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`
+                : `<div class="lsw-freq-sentence">Words appearing at least <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`)
             : '';
         const egHTML = examplesText ? `<div class="lsw-egs">${examplesText}</div>` : '';
         exEl.innerHTML = freqHTML + egHTML;
@@ -917,9 +923,10 @@ function updateLevelSliderReadout(i) {
         // Pick 5 words from the upper portion of this level's range — the
         // ones that just qualified at this coverage threshold are the most
         // illustrative of "what you'll be learning here".
+        const rankOf = lv.rankBasis === 'display' ? s => s.displayRank : s => s.rank;
         const start = Math.max(1, Math.floor(lv.startRank + (lv.endRank - lv.startRank) * 0.6));
-        const inRange = samples.filter(s => s.rank >= start && s.rank <= lv.endRank);
-        const pick = (inRange.length ? inRange : samples.filter(s => s.rank <= lv.endRank))
+        const inRange = samples.filter(s => rankOf(s) >= start && rankOf(s) < lv.endRank);
+        const pick = (inRange.length ? inRange : samples.filter(s => rankOf(s) < lv.endRank))
             .slice(-12);
         const out = [];
         const n = Math.min(5, pick.length);
@@ -1210,6 +1217,7 @@ async function renderRangeSelector() {
     const container = document.getElementById('rangeSelector');
 
     let minWord, maxWord;
+    let rankBasis = 'source';
 
     // Get min/max based on mode
     if (percentageMode && ppmData && ppmData.length > 0) {
@@ -1218,6 +1226,7 @@ async function renderRangeSelector() {
         if (!selectedBtn) return;
         minWord = parseInt(selectedBtn.dataset.startRank);
         maxWord = parseInt(selectedBtn.dataset.endRank);
+        rankBasis = selectedBtn.dataset.rankBasis || 'source';
     } else {
         const cefrLevels = getCefrLevels(selectedLanguage);
         const level = cefrLevels.find(l => l.level === selectedLevel);
@@ -1269,11 +1278,12 @@ async function renderRangeSelector() {
         }
     }
 
-    // Slice to this level's range using original rank (pre-filter position)
-    // to determine which display-rank span this level covers
-    const wordsInLevel = lemmaFilteredVocab.filter(item =>
-        item.rank >= minWord && item.rank < maxWord
-    );
+    // Smart frequency bands are built from the post-filter order and use
+    // displayRank. Legacy coverage/CEFR levels continue to use source rank.
+    const wordsInLevel = lemmaFilteredVocab.filter(item => {
+        const rank = rankBasis === 'display' ? item.displayRank : item.rank;
+        return rank >= minWord && rank < maxWord;
+    });
 
     if (wordsInLevel.length === 0) {
         container.innerHTML = '';
@@ -1352,7 +1362,7 @@ async function renderRangeSelector() {
     let levels, currentLevelIndex, nextLevel;
 
     if (percentageMode && ppmData && ppmData.length > 0) {
-        levels = percentageLevels;
+        levels = getActiveLevelRanges();
         currentLevelIndex = levels.findIndex(l => l.level === selectedLevel);
         nextLevel = currentLevelIndex < levels.length - 1 ? levels[currentLevelIndex + 1] : null;
     } else {

@@ -76,7 +76,10 @@ Filter order: blank/dupe removal → artist flags (is_english, is_noise/is_inter
 
 Note: `is_noise` is the schema_v2 flag name; `is_interjection` is the legacy alias kept for vocabularies built before the rename. Both fields carry identical truth values — read either, the filter checks both.
 
-Assigns `displayRank` (1-based, continuous). Range buttons use `displayRank`, NOT the JSON's `rank`.
+Assigns `displayRank` (1-based, continuous). Percentage-mode form decks sort
+by `corpus_count`; lemma decks sort by `pooled_frequency`. Smart frequency
+bands slice on `displayRank`, while JSON `rank` remains the stable source
+identity/tie-breaker and legacy CEFR basis.
 
 ## Flashcard Object Shape
 
