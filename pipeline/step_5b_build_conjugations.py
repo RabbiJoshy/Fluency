@@ -34,10 +34,11 @@ sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_5c_sense_paths import sense_menu_path  # noqa: E402
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "verbecc conjugations + jehle override + reverse lookup",
     2: "union artist-master verb lemmas + reflexive alias keys",
+    3: "+ reconstruct core tables from Wiktionary morphology when verbecc fails",
 }
 
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -45,6 +46,7 @@ INVENTORY_FILE = LAYERS / "word_inventory.json"
 JEHLE_FILE = PROJECT_ROOT / "Data" / "Spanish" / "corpora" / "jehle" / "jehle_verb_database.csv"
 CONJUGATIONS_FILE = LAYERS / "conjugations.json"
 REVERSE_FILE = LAYERS / "conjugation_reverse.json"
+MORPHOLOGY_FILE = LAYERS / "morphology.json"
 
 # The 6 standard pronouns we show in the table (order = yo/tú/él/nosotros/vosotros/ellos)
 STANDARD_PRONOUNS = ["yo", "tú", "él", "nosotros", "vosotros", "ellos"]
@@ -82,6 +84,7 @@ INDEX_TO_PERSON = {
     4: "2p",
     5: "3p",
 }
+PERSON_TO_INDEX = {person: idx for idx, person in INDEX_TO_PERSON.items()}
 
 
 def strip_accents(s: str) -> str:
@@ -353,6 +356,62 @@ def backfill_reverse_from_conjugation_entry(verb: str, entry: dict) -> list:
     return entries
 
 
+def build_morphology_fallbacks(morphology: dict, missing_lemmas: set[str],
+                               jehle_trans: dict) -> tuple[dict, list]:
+    """Reconstruct front-end core tables from the Wiktionary reverse layer.
+
+    verbecc has deterministic holes even for ordinary verbs (notably
+    ``pasar`` raises IndexError). The shared morphology layer already knows
+    those forms and carries the same lemma/mood/tense/person fields as the
+    reverse lookup, so it is the authoritative local fallback.
+    """
+    tables = defaultdict(lambda: defaultdict(lambda: ["—"] * len(STANDARD_PRONOUNS)))
+    nonfinite = defaultdict(dict)
+    reverse_entries = []
+
+    for form, analyses in morphology.items():
+        for analysis in analyses:
+            lemma = analysis.get("lemma")
+            if lemma not in missing_lemmas:
+                continue
+            mood = analysis.get("mood", "")
+            tense = analysis.get("tense", "")
+            person = analysis.get("person", "")
+            reverse_entries.append((form, {
+                "lemma": lemma,
+                "mood": mood,
+                "tense": tense,
+                "person": person,
+            }))
+            if mood == "gerundio":
+                nonfinite[lemma].setdefault("gerund", form)
+                continue
+            if mood in ("participo", "participio-pasado"):
+                nonfinite[lemma].setdefault("past_participle", form)
+                continue
+            display_name = next((display for display, pair in DISPLAY_TENSE_TO_REVERSE.items()
+                                 if pair == (mood, tense)), None)
+            person_idx = PERSON_TO_INDEX.get(person)
+            if (display_name is not None and person_idx is not None
+                    and tables[lemma][display_name][person_idx] == "—"):
+                # Wiktionary can supply standard + voseo or clitic variants
+                # for the same slot. Its deterministic file order puts the
+                # canonical bare form first; keep that first observation.
+                tables[lemma][display_name][person_idx] = form
+
+    fallbacks = {}
+    for lemma in missing_lemmas:
+        tenses = dict(tables.get(lemma, {}))
+        if not tenses:
+            continue
+        entry = {"tenses": tenses}
+        entry.update(nonfinite.get(lemma, {}))
+        if lemma in jehle_trans:
+            entry["translation"] = jehle_trans[lemma]
+        fallbacks[lemma] = entry
+    return fallbacks, reverse_entries
+
+
 def main():
     parser = argparse.ArgumentParser(description="Build Spanish conjugation tables")
     parser.add_argument("--sense-source", choices=("wiktionary", "spanishdict"),
@@ -425,6 +484,26 @@ def main():
                        and e["tense"] == info["tense"] and e["person"] == info["person"]
                        for e in existing):
                 reverse[form].append(info)
+
+    # verbecc sometimes fails on valid, common infinitives (e.g. pasar).
+    # Recover their six core tables from the richer Wiktionary morphology
+    # reverse layer instead of leaving every matching artist card empty.
+    if failed and MORPHOLOGY_FILE.exists():
+        with open(MORPHOLOGY_FILE, encoding="utf-8") as f:
+            morphology = json.load(f)
+        fallback_tables, fallback_reverse = build_morphology_fallbacks(
+            morphology, set(failed), jehle_trans)
+        conjugations.update(fallback_tables)
+        for form, info in fallback_reverse:
+            existing = reverse.get(form, [])
+            if not any(e["lemma"] == info["lemma"] and e["mood"] == info["mood"]
+                       and e["tense"] == info["tense"] and e["person"] == info["person"]
+                       for e in existing):
+                reverse[form].append(info)
+        recovered = set(fallback_tables)
+        failed = [verb for verb in failed if verb not in recovered]
+        success += len(recovered)
+        print(f"  Recovered {len(recovered)} verbecc failures from morphology.json")
 
     # Reflexive aliases: key the base paradigm under the reflexive lemma too
     # (front-end looks up conjugations by the master lemma exactly).

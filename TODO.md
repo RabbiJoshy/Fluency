@@ -84,11 +84,11 @@
   3. **(S) [shared] Study-set stats: show how many you've already studied** — DONE 2026-05-09
      (`e72ead23`): the stats modal shows the previously-known count and reconciles it with the
      chosen set size/card position.
-  4. **(M) [artist/spanish] Verbs missing morphology even though the card "knows" it** — some
-     verbs render without a conjugation/morphology table despite the data seeming present.
-     Likely because morphology is SpanishDict-dependent only (not verbecc); SD should know them.
-     Investigate the SD morphology-attach gap (`build_conjugations.py` / morphology attach in
-     step_8a/8b, and the card render in `flashcards.js buildConjugationTableHTML`).
+  4. **(M) [artist/spanish] Verbs missing morphology even though the card "knows" it** — CODED
+     2026-07-24 (PENDING; conjugation + artist data rebuild required): verbecc fails on 178 clean
+     artist verb bases (even `pasar`, with `IndexError`) although morphology is already stamped.
+     `step_5b_build_conjugations.py` now reconstructs core tables from the Wiktionary morphology
+     layer, recovering 174/178 audited gaps; regression coverage included.
   5. **(M) [normal/spanish] MWE real examples from OpenSubtitles for normal mode** — normal-mode
      MWE rows should get actual example sentences from the OpenSubtitles corpus. Partially
      tracked by "Run MWE corpus frequency on full OpenSubtitles" + "Better handling of
