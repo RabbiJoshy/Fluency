@@ -113,8 +113,15 @@ Per-sense flags set by `joinWithMaster()`:
 
 Card-back senses are grouped into POS sections. `updateCard()` emits one compact
 `.back-pos-legend` beneath the word/lemma, then colour-codes each section's rows;
-duplicate translation/context groups remain constrained to one POS. MWE is
-labelled “Expressions” in the UI.
+duplicate translation/context groups remain constrained to one POS. MWE and
+CLITIC stay out of the legend because their pinned rows are self-explanatory.
+
+On the card front, `.card-pos-list` renders one pill per grammatical POS rather
+than a comma-separated combined pill. Morphology is nested under the VERB pill
+as `.front-morph-tag` elements in the same colour family. In example sentences,
+`.example-word-highlight` uses the active POS colour at low intensity for the
+headword / `used with` companion; `.example-related-highlight` is quieter for
+other study-set words and keyword-matched English fragments.
 
 **Copy-through in `buildFilteredVocab()`**: Meanings are rebuilt from scratch at the filter stage (two places, ~line 430 and ~line 776). Both paths must copy `assignment_method` through, otherwise it is silently dropped before it reaches the card. `joinWithMaster()` in `vocab.js` sets `assignment_method` from `idx.sense_methods[i]`; `buildFilteredVocab()` must preserve it.
 

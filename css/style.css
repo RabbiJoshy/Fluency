@@ -1389,7 +1389,10 @@
         .front-meaning-row {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 8px;
+            max-width: 100%;
         }
 
         .front-meaning-text {
@@ -1420,23 +1423,64 @@
             flex-shrink: 0;
         }
 
-        .card-morph {
+        .card-pos-list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 7px;
+            margin-bottom: 12px;
+        }
+
+        .card-pos-list .card-pos {
+            margin-bottom: 0;
+        }
+
+        .front-pos-unit {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+        }
+
+        .front-pos-unit.has-morph .card-pos,
+        .front-pos-unit.has-morph .front-meaning-pos {
+            margin-bottom: 0;
+        }
+
+        .front-morph-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 4px 8px;
-            margin-bottom: 8px;
+            gap: 4px;
+            position: relative;
+            max-width: 230px;
         }
 
-        .morph-tag {
-            font-family: var(--font-data);
-            font-size: 11px;
-            color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 4px;
-            padding: 2px 6px;
-            white-space: nowrap;
+        .front-pos-unit.has-morph .front-morph-list::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            width: 1px;
+            height: 4px;
+            background: rgba(0, 212, 170, 0.55);
+        }
+
+        .front-morph-tag {
+            font-family: var(--font-reading);
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.15;
+            color: #a4efe0;
+            background: rgba(0, 212, 170, 0.13);
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 5px;
+            padding: 3px 7px;
+            max-width: 100%;
+            text-align: center;
+            white-space: normal;
         }
 
         .card-pos {
@@ -1819,6 +1863,28 @@
             box-shadow:
                 inset 4px 0 0 rgb(var(--sense-match-rgb)),
                 0 4px 14px rgba(var(--sense-match-rgb), 0.16);
+        }
+
+        .example-word-highlight,
+        .example-related-highlight {
+            color: #fff;
+            font-style: normal;
+            border-radius: 3px;
+            padding: 0 0.14em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        .example-word-highlight {
+            font-weight: 750;
+            background: rgba(var(--sense-match-rgb), 0.15);
+            box-shadow: inset 0 -2px 0 rgba(var(--sense-match-rgb), 0.72);
+        }
+
+        .example-related-highlight {
+            font-weight: 650;
+            background: rgba(var(--sense-match-rgb), 0.07);
+            box-shadow: inset 0 -1px 0 rgba(var(--sense-match-rgb), 0.38);
         }
 
         body.artist-mode .sentence {

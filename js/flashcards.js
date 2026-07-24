@@ -1497,17 +1497,42 @@ function updateCard() {
     const frontWordEl = document.getElementById('frontWord');
     const frontMeaningsEl = document.getElementById('frontMeanings');
 
+    // Morphology belongs to the verb POS rather than forming a separate
+    // metadata strip. Build it once so both front directions can nest it
+    // beneath the relevant verb badge.
+    const morphLabels = card.morphology
+        ? [...new Set((Array.isArray(card.morphology) ? card.morphology : [card.morphology])
+            .map(formatMorphLabel)
+            .filter(Boolean))]
+        : [];
+    const isVerbPos = pos => {
+        const p = String(pos || '').toLowerCase();
+        return p.includes('verb') || p === 'v' || p === 'vb';
+    };
+    const renderMorphTags = () => morphLabels.map(label =>
+        `<span class="front-morph-tag">${label}</span>`
+    ).join('');
+    const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
+        const hasMorph = includeMorph && morphLabels.length > 0 && isVerbPos(pos);
+        return `<span class="front-pos-unit${hasMorph ? ' has-morph' : ''}">
+            <span class="${pillClass} ${getPosColorClass(pos)}">${pos}</span>
+            ${hasMorph ? `<span class="front-morph-list">${renderMorphTags()}</span>` : ''}
+        </span>`;
+    };
+
     if (flippedFrontMeanings) {
         // EN→Target structured display: meanings with POS badges
         frontWordEl.style.display = 'none';
         const { meanings: fMeanings, multiPOS } = flippedFrontMeanings;
         const fontSize = fMeanings.length > 2 ? 28 : (fMeanings.length > 1 ? 36 : 52);
         let html = '';
+        let verbMorphShown = false;
         for (const m of fMeanings) {
-            const posClass = getPosColorClass(m.pos);
-            const posBadge = multiPOS
-                ? `<span class="front-meaning-pos ${posClass}">${m.pos}</span>`
+            const attachMorph = !verbMorphShown && isVerbPos(m.pos) && morphLabels.length > 0;
+            const posBadge = (multiPOS || attachMorph)
+                ? renderFrontPosUnit(m.pos, attachMorph, 'front-meaning-pos')
                 : '';
+            if (attachMorph) verbMorphShown = true;
             html += `<div class="front-meaning-row">
                 ${posBadge}
                 <span class="front-meaning-text" style="font-size: ${fontSize}px;">${m.meaning}</span>
@@ -1532,33 +1557,31 @@ function updateCard() {
 
     // Display part of speech on front with color coding
     const frontPOSEl = document.getElementById('frontPOS');
-    // Clear any existing POS color classes
-    frontPOSEl.className = 'card-pos';
+    frontPOSEl.className = 'card-pos-list';
+    frontPOSEl.innerHTML = '';
     if (flippedFrontMeanings) {
         // EN→Target: POS badges are inline with meanings, hide standalone POS pill
         frontPOSEl.style.display = 'none';
     } else if (card.isMultiMeaning && card.meanings && card.meanings.length > 0) {
-        // SP→EN: show all unique POS
-        const allPOS = [...new Set(card.meanings.filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE').map(m => m.pos))].join(', ');
-        frontPOSEl.textContent = allPOS;
-        // Apply color of first POS
-        const firstPos = card.meanings[0].pos;
-        const posClass = getPosColorClass(firstPos);
-        if (posClass) frontPOSEl.classList.add(posClass);
-        frontPOSEl.style.display = 'inline-block';
+        // SP→EN: each grammatical POS gets its own colour. Morphology nests
+        // beneath VERB so it reads as a property of that POS, not the word as
+        // a whole. Expressions/clitics are self-evident rows, not POS badges.
+        const allPOS = [...new Set(card.meanings
+            .filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE')
+            .map(m => m.pos))];
+        frontPOSEl.innerHTML = allPOS.map(pos =>
+            renderFrontPosUnit(pos, isVerbPos(pos))
+        ).join('');
+        frontPOSEl.style.display = allPOS.length > 0 ? 'flex' : 'none';
     } else if (card.partOfSpeech) {
-        frontPOSEl.textContent = card.partOfSpeech;
-        const posClass = getPosColorClass(card.partOfSpeech);
-        if (posClass) frontPOSEl.classList.add(posClass);
-        frontPOSEl.style.display = 'inline-block';
+        frontPOSEl.innerHTML = renderFrontPosUnit(
+            card.partOfSpeech,
+            isVerbPos(card.partOfSpeech)
+        );
+        frontPOSEl.style.display = 'flex';
     } else {
         frontPOSEl.style.display = 'none';
     }
-
-    // Build compact multi-row morphology labels
-    const morphLabels = card.morphology
-        ? [...new Set((Array.isArray(card.morphology) ? card.morphology : [card.morphology]).map(formatMorphLabel))]
-        : [];
 
     // Display lemma on front if different from target word
     const frontLemmaEl = document.getElementById('frontLemma');
@@ -1573,18 +1596,12 @@ function updateCard() {
         frontLemmaEl.style.display = 'none';
     }
 
-    // Show morphology info on both sides (compact, multi-row)
+    // Legacy DOM node retained for cached markup; morphology now renders as
+    // part of the verb POS unit above.
     const frontMorphEl = document.getElementById('frontMorph');
     if (frontMorphEl) {
-        if (morphLabels.length > 0) {
-            frontMorphEl.innerHTML = morphLabels.map(l =>
-                `<span class="morph-tag">${l}</span>`
-            ).join('');
-            frontMorphEl.style.display = 'flex';
-        } else {
-            frontMorphEl.innerHTML = '';
-            frontMorphEl.style.display = 'none';
-        }
+        frontMorphEl.innerHTML = '';
+        frontMorphEl.style.display = 'none';
     }
 
     // Store ranking as data attribute on card for console access
@@ -1649,11 +1666,11 @@ function updateCard() {
             const pos = meaning.pos === 'SENSE_CYCLE'
                 ? (meaning.cycle_pos || 'X')
                 : meaning.pos;
+            if (pos === 'MWE' || pos === 'CLITIC') continue;
             if (!pos || seenPos.has(pos)) continue;
             seenPos.add(pos);
-            const label = pos === 'MWE' ? 'Expressions' : (pos === 'CLITIC' ? 'Clitics' : pos);
             posPills.push(
-                `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')">${label}</button>`
+                `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')">${pos}</button>`
             );
         }
         if (posPills.length > 0) {
@@ -2250,22 +2267,23 @@ function updateCard() {
             displayTargetSentence = truncateText(displayTargetSentence, 20);
             displayEnglishSentence = truncateText(displayEnglishSentence, 20);
 
-            // Highlight words in the target sentence with a colored pill + white text
-            const pillStyle = 'background: rgba(255,255,255,0.22); color: white; font-weight: 700; padding: 1px 5px; border-radius: 4px;';
+            // Locate the studied word with the active POS colour. A low tint
+            // plus underline keeps the sentence readable; related deck words
+            // use the quieter companion treatment below.
             if (currentMeaning.allMWEs) {
                 // MWE sense: highlight the current MWE expression
                 const expr = currentMeaning.allMWEs[activeMweIdx].expression;
                 const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
-                    `<span style="${pillStyle}">$1</span>`);
+                    '<span class="example-word-highlight">$1</span>');
             } else {
                 // Regular sense: highlight the target word (word boundaries for short words)
                 const word = card.targetWord;
                 const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
-                    `<span style="${pillStyle}">$1</span>`);
+                    '<span class="example-word-highlight">$1</span>');
             }
 
             // SpanishDict context can specify a companion word or phrase,
@@ -2282,7 +2300,7 @@ function updateCard() {
                 );
                 displayTargetSentence = displayTargetSentence.replace(
                     usedWithRegex,
-                    `<span style="${pillStyle}">$1</span>`
+                    '<span class="example-word-highlight">$1</span>'
                 );
             }
 
@@ -2295,7 +2313,7 @@ function updateCard() {
                 const dwEscaped = dw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const dwRegex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${dwEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(dwRegex,
-                    `<span style="${pillStyle}">$1</span>`);
+                    '<span class="example-related-highlight">$1</span>');
             }
 
             // Highlight the English translation in the English sentence for keyword-assigned examples
@@ -2307,7 +2325,7 @@ function updateCard() {
                     const fragEscaped = frag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     const fragRegex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${fragEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
                     displayEnglishSentence = displayEnglishSentence.replace(fragRegex,
-                        `<span style="${pillStyle}">$1</span>`);
+                        '<span class="example-related-highlight">$1</span>');
                 }
             }
 
@@ -2363,7 +2381,10 @@ function updateCard() {
                     exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
                 }
             }
-            const sentenceStyle = `--sense-match-rgb: ${getPosAccentRgb(currentMeaning.pos)}; border-color: transparent;`;
+            const examplePos = currentMeaning.pos === 'SENSE_CYCLE'
+                ? (currentMeaning.cycle_pos || 'X')
+                : currentMeaning.pos;
+            const sentenceStyle = `--sense-match-rgb: ${getPosAccentRgb(examplePos)}; border-color: transparent;`;
 
             // Only emit the sentence block if we have something worth
             // showing. For MWE / Clitic cycles where the filter left us
@@ -3254,7 +3275,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260724j';
+const ASSET_VERSION = '20260724k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
