@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Examples now highlight words required by a Spanish sense",
+      "details": [
+        "When a sense says it is used with \"X\", whole-word occurrences of X receive the same example highlight as the headword, with no token whitelist",
+        "The parsed companion is retained as meaning.usedWith for later UI work; cache v57→v58, assets 20260724b→20260724c"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "0143c2f",
       "summary": "The setup screen now pulses the step that needs your attention",
       "details": [

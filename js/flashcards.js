@@ -40,6 +40,12 @@ function _cachedRegex(pattern, flags) {
     return re;
 }
 
+function _extractUsedWith(context) {
+    if (selectedLanguage !== 'spanish' || typeof context !== 'string') return '';
+    const match = context.match(/\bused with\s+["“]([^"”]+)["”]/iu);
+    return match ? match[1].trim() : '';
+}
+
 function getConjugatedEnglish(card, translation) {
     if (!_conjugatedEnglishData || !card || !translation) return null;
     const morph = card.morphology;
@@ -2255,6 +2261,24 @@ function updateCard() {
                 const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
                     `<span style="${pillStyle}">$1</span>`);
+            }
+
+            // SpanishDict context can specify a companion word or phrase,
+            // e.g. `used with "a"`. Highlight that evidence in the target
+            // sentence too, with no vocabulary whitelist: the structured
+            // context itself is authoritative.
+            const usedWith = _extractUsedWith(currentMeaning.context);
+            if (usedWith) currentMeaning.usedWith = usedWith;
+            if (usedWith && usedWith.toLocaleLowerCase('es') !== card.targetWord.toLocaleLowerCase('es')) {
+                const usedWithEscaped = usedWith.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const usedWithRegex = _cachedRegex(
+                    `(?<![\\p{L}\\p{N}])(${usedWithEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`,
+                    'giu'
+                );
+                displayTargetSentence = displayTargetSentence.replace(
+                    usedWithRegex,
+                    `<span style="${pillStyle}">$1</span>`
+                );
             }
 
             // Highlight other study set words in the sentence (same style for now)
