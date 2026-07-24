@@ -1249,6 +1249,59 @@
             margin-bottom: 0 !important;
         }
 
+        .meaning-row.is-current-sense {
+            background: linear-gradient(
+                90deg,
+                rgba(var(--sense-match-rgb), 0.24),
+                rgba(15, 20, 28, 0.82) 62%
+            ) !important;
+            box-shadow:
+                inset 4px 0 0 rgb(var(--sense-match-rgb)),
+                0 3px 12px rgba(var(--sense-match-rgb), 0.12);
+        }
+
+        .meaning-row.has-match-chip {
+            padding-left: 78px !important;
+        }
+
+        .sense-match-chip {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: rgba(var(--sense-match-rgb), 0.2);
+            border: 1px solid rgba(var(--sense-match-rgb), 0.58);
+            color: rgb(var(--sense-match-rgb));
+            font-family: var(--font-data);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        @media (max-width: 420px) {
+            .meaning-row.has-match-chip {
+                padding-left: 38px !important;
+            }
+
+            .sense-match-chip {
+                left: 8px;
+                padding: 3px 6px;
+            }
+
+            .sense-match-label {
+                display: none;
+            }
+        }
+
         /* Zero top margin on the sentence so the only gap between the
            last sense/MWE and the example box is the row's own
            margin-bottom (6px) — matching sense-to-sense spacing, as
@@ -1301,16 +1354,12 @@
             overflow: visible;
         }
 
-        /* Selected sense row — a left accent bar plus a soft accent glow lift
-           the active meaning off the stack. Works on top of the inline bg tint
-           and (for assigned senses) the inline accent border, and reads clearly
-           even for unassigned rows that have no border. The inset bar is drawn
-           via box-shadow so it never reflows the dense inline grid/flex layouts. */
+        /* Selection elevation is coloured by the surrounding POS section in
+           `.meaning-row.is-current-sense`; this legacy class only preserves
+           stacking for callers and older cached markup. */
         .meaning-row.selected {
             position: relative;
             z-index: 1;
-            box-shadow: inset 4px 0 0 0 var(--accent-primary),
-                        0 3px 14px rgba(var(--accent-primary-rgb), 0.38);
         }
 
         /* Inline context: smaller, dimmer, flows on the same line as the
@@ -1792,8 +1841,45 @@
             color: #ffffff;
         }
 
+        .sentence.example-is-matched {
+            background: linear-gradient(
+                90deg,
+                rgba(var(--sense-match-rgb), 0.2),
+                rgba(15, 20, 28, 0.86) 58%
+            );
+            box-shadow:
+                inset 4px 0 0 rgb(var(--sense-match-rgb)),
+                0 4px 14px rgba(var(--sense-match-rgb), 0.16);
+        }
+
+        .example-match-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 6px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(var(--sense-match-rgb), 0.18);
+            border: 1px solid rgba(var(--sense-match-rgb), 0.52);
+            color: rgb(var(--sense-match-rgb));
+            font-family: var(--font-data);
+            font-style: normal;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
         body.artist-mode .sentence {
             background: rgba(15, 20, 28, 0.85);
+        }
+
+        body.artist-mode .sentence.example-is-matched {
+            background: linear-gradient(
+                90deg,
+                rgba(var(--sense-match-rgb), 0.2),
+                rgba(15, 20, 28, 0.86) 58%
+            );
         }
 
         @media (max-width: 767px) {

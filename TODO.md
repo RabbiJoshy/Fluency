@@ -46,16 +46,10 @@
   4. **(M) [shared] Card back: POS pill above each section, not inside each row** — DONE
      2026-07-24 (0658c92): meanings are grouped into real POS sections with one clickable header;
      duplicate-sense groups no longer cross POS boundaries, and long section lists still scroll.
-  4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — right now
-     the card back shows a matched sense / matched example with just a cold outline/border. Josh
-     wants something more intelligent and is explicitly leaving the design to the model's
-     judgement. Especially now that the back is being grouped by POS (item 4), there may be room
-     for a colour system (e.g. tie the selected sense + its matched example(s) together by a
-     shared accent, distinguish assignment confidence, or colour by POS section). Current signals
-     to build on (see js/CLAUDE.md "Artist Index Format"): `meaning.assignment_method` /
-     `meaning.unassigned` per sense, per-example `example.assignment_method` (…keyword/gemini/
-     biencoder), and the existing selected-sense accent bar + example-box border. Don't just
-     recolour — propose a coherent scheme first, then implement. Do item 4 (POS grouping) first.
+  4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — DONE
+     2026-07-24 (PENDING): selection uses the section's POS-colour tint + rail, evidence-backed
+     senses add a ✓ matched chip, and assigned examples repeat the same cue and colour. Unassigned
+     senses stay visibly selected without claiming a match.
   5. **(M) [normal] Language picker → radial button** — replace the normal-mode language
      toggle/tabs with a button that opens a radial "clock of pictures" like the artist picker
      (`main.js showArtistPicker`). Reuse that component.

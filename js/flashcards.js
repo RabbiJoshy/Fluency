@@ -1669,7 +1669,7 @@ function updateCard() {
         const renderSections = sections => Array.from(sections, ([pos, rows]) => {
             const posColorClass = getPosColorClass(pos);
             return `
-                <section class="meaning-pos-section" data-pos="${pos}">
+                <section class="meaning-pos-section" data-pos="${pos}" style="--sense-match-rgb: ${getPosAccentRgb(pos)};">
                     <div class="meaning-pos-header">
                         <span class="card-pos ${posColorClass}" onclick="showPOSInfo(event, '${pos}')">${pos}</span>
                     </div>
@@ -1781,9 +1781,14 @@ function updateCard() {
 
         card.meanings.forEach((m, idx) => {
             const isSelected = idx === currentMeaningIndex;
-            const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.6)' : 'rgba(15, 20, 28, 0.82)';
+            const isSenseMatched = !m.unassigned && m.pos !== 'SENSE_CYCLE';
+            const rowStateClasses = `${isSelected ? ' is-current-sense' : ''}${isSelected && isSenseMatched ? ' is-evidence-matched has-match-chip' : ''}`;
+            const matchChip = isSelected && isSenseMatched
+                ? '<span class="sense-match-chip"><span aria-hidden="true">✓</span><span class="sense-match-label">matched</span></span>'
+                : '';
+            const bgColor = 'rgba(15, 20, 28, 0.82)';
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
-            const borderStyle = (isSelected && !m.unassigned) ? 'border: 3px solid var(--accent-primary);' : '';
+            const borderStyle = '';
             const isMWE = m.pos === 'MWE';
             const isClitic = m.pos === 'CLITIC';
             const isSenseCycle = m.pos === 'SENSE_CYCLE';
@@ -1857,7 +1862,8 @@ function updateCard() {
                        </div>`
                     : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
                 target.push(`
-                <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                    ${matchChip}
                     <span style="font-size: 12px; color: white; padding: 5px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     ${bodyHTML}
                     ${mweCounter}
@@ -1867,7 +1873,8 @@ function updateCard() {
                 // Clitic row: form pill (left), translation (middle), counter (right).
                 const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
                 target.push(`
-                <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                    ${matchChip}
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${cliticTrRaw}</span>
                     ${cliticCounter}
@@ -1933,7 +1940,8 @@ function updateCard() {
                     ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
                     : '';
                 target.push(`
-                <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}" style="display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                    ${matchChip}
                     <span style="flex: 1; font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
                 `);
@@ -1976,25 +1984,32 @@ function updateCard() {
                     //   trans-axis: shared trans | varying ctx
                     //   ctx-axis:   varying trans | shared ctx
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
-                    const cardBg = (groupSelected || anyMemberSelected)
-                        ? 'rgba(var(--accent-primary-rgb), 0.28)'
-                        : 'rgba(15, 20, 28, 0.82)';
+                    const groupIsCurrent = groupSelected || anyMemberSelected;
+                    const selectedMember = card.meanings[currentMeaningIndex];
+                    const groupIsMatched = groupSelected
+                        ? members.some(mi => !card.meanings[mi].unassigned)
+                        : !!(selectedMember && members.includes(currentMeaningIndex) && !selectedMember.unassigned);
+                    const groupStateClasses = `${groupIsCurrent ? ' is-current-sense' : ''}${groupIsCurrent && groupIsMatched ? ' is-evidence-matched has-match-chip' : ''}`;
+                    const groupMatchChip = groupIsCurrent && groupIsMatched
+                        ? '<span class="sense-match-chip"><span aria-hidden="true">✓</span><span class="sense-match-label">matched</span></span>'
+                        : '';
+                    const cardBg = 'rgba(15, 20, 28, 0.82)';
                     const sharedBg = groupSelected
-                        ? 'rgba(var(--accent-primary-rgb), 0.55)'
+                        ? 'rgba(var(--sense-match-rgb), 0.2)'
                         : 'transparent';
                     const sharedBorder = groupSelected
-                        ? 'border: 2px solid var(--accent-primary);'
-                        : 'border: 2px solid transparent;';
+                        ? 'box-shadow: inset 3px 0 0 rgb(var(--sense-match-rgb));'
+                        : '';
 
                     const memberCells = members.map((memberIdx, rowIdx) => {
                         const mm = card.meanings[memberIdx];
                         const isMemberSelected = !groupSelected && memberIdx === currentMeaningIndex;
                         const cellBg = isMemberSelected
-                            ? 'rgba(var(--accent-primary-rgb), 0.55)'
+                            ? 'rgba(var(--sense-match-rgb), 0.2)'
                             : 'rgba(255, 255, 255, 0.03)';
                         const cellBorder = (isMemberSelected && !mm.unassigned)
-                            ? 'border: 2px solid var(--accent-primary);'
-                            : 'border: 2px solid transparent;';
+                            ? 'box-shadow: inset 3px 0 0 rgb(var(--sense-match-rgb));'
+                            : '';
                         const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 25px; display: flex; align-items: center; justify-content: center;`;
                         // Varying cell.
                         let varyingHtml;
@@ -2043,7 +2058,8 @@ function updateCard() {
                     const outerGridCols = '1fr auto';
 
                     target.push(`
-                    <div class="meaning-row meaning-row-group${(groupSelected || anyMemberSelected) ? ' selected' : ''}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                    <div class="meaning-row meaning-row-group${groupIsCurrent ? ' selected' : ''}${groupStateClasses}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="position: relative; display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                        ${groupMatchChip}
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
@@ -2068,7 +2084,8 @@ function updateCard() {
                         ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                         : '';
                     target.push(`
-                    <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
+                    <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
+                        ${matchChip}
                         <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${pctVal < 100 ? '42px' : '8px'} 0 8px;">
                             <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
@@ -2344,9 +2361,10 @@ function updateCard() {
                     exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
                 }
             }
-            const sentenceStyle = exampleAssigned
-                ? 'border: 3px solid var(--accent-primary); box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.25);'
-                : 'border-color: transparent;';
+            const sentenceStyle = `--sense-match-rgb: ${getPosAccentRgb(currentMeaning.pos)}; border-color: transparent;`;
+            const exampleMatchChip = exampleAssigned
+                ? '<div class="example-match-chip"><span aria-hidden="true">✓</span> matched example</div>'
+                : '';
 
             // Only emit the sentence block if we have something worth
             // showing. For MWE / Clitic cycles where the filter left us
@@ -2356,7 +2374,8 @@ function updateCard() {
             // whose evidence carries a matching sentence.
             if (!suppressSentenceBlock) {
                 backHTML += `
-                    <div class="sentence" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
+                    <div class="sentence${exampleAssigned ? ' example-is-matched' : ''}" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
+                        ${exampleMatchChip}
                         <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
                         <div class="translation">${displayEnglishSentence}</div>
                         ${songNameDisplay}
@@ -2947,6 +2966,23 @@ function getPosColorClass(pos) {
     if (posLower.includes('num') || posLower === 'cd') return 'pos-num';
     if (posLower === 'mwe') return 'pos-mwe';
     return '';
+}
+
+function getPosAccentRgb(pos) {
+    const accents = {
+        'pos-noun': '74, 158, 255',
+        'pos-verb': '0, 212, 170',
+        'pos-adj': '245, 166, 35',
+        'pos-adv': '168, 85, 247',
+        'pos-prep': '236, 72, 153',
+        'pos-conj': '20, 184, 166',
+        'pos-pron': '99, 102, 241',
+        'pos-det': '244, 63, 94',
+        'pos-int': '234, 179, 8',
+        'pos-num': '6, 182, 212',
+        'pos-mwe': '251, 191, 36'
+    };
+    return accents[getPosColorClass(pos)] || 'var(--accent-primary-rgb)';
 }
 
 function updateReverseButton() {

@@ -98,9 +98,9 @@ Per-sense flags set by `joinWithMaster()`:
 - Neither flag — strong/auto assignment; meaning gets a border.
 
 **Per-example assignment method**: Each example object in the examples file carries its own `assignment_method` (e.g. `"spanishdict-keyword"`). This is the authoritative source for per-example UI decisions:
-- **Example box border** (`flashcards.js`): `example.assignment_method` present → solid accent border. For strong methods (Gemini/biencoder) without per-example stamps, falls back to `!meaning.unassigned`.
+- **Example match treatment** (`flashcards.js`): `example.assignment_method` present → POS-coloured rail/tint + “matched example” chip. For strong methods (Gemini/biencoder) without per-example stamps, falls back to `!meaning.unassigned`.
 - **English keyword highlight**: Only fires when `example.assignment_method` includes `'keyword'`. Highlights translation fragments ≥ 2 chars of `currentMeaning.meaning` in the English sentence.
-- **Sense row border**: `!m.unassigned` → solid accent border on selected row.
+- **Sense match treatment**: every selected row gets its POS-coloured rail/tint; `!m.unassigned` additionally gets a “matched” chip. Unassigned rows remain visibly selected without claiming evidence.
 
 Card-back senses are grouped into POS sections. `updateCard()` emits one
 `.meaning-pos-header` pill per section and keeps duplicate translation/context

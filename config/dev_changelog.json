@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Matched senses and examples now share a clear visual cue",
+      "details": [
+        "The selected sense uses its POS colour as a soft tint and left rail; genuinely assigned senses add a compact ✓ matched chip, while unassigned senses remain selected without a false confidence claim",
+        "Assigned examples repeat the same POS-colour rail/tint with a ✓ matched example chip, replacing the cold full outline; cache v59→v60, assets 20260724d→20260724e"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "0658c92",
       "summary": "Card-back senses are now organised into POS sections",
       "details": [
