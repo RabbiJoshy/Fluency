@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "1196e94",
       "summary": "Lemma frequency now matches its pooled example lines",
       "details": [
         "Audit confirmed gasté/gastar showed 41 raw tokens while pooling 28 unique lines and retaining only 25; the cap is removed and the card front now uses the same unique-line pool (28)",

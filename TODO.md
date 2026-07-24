@@ -67,7 +67,7 @@
      (frequencies re-aggregate correctly per lemma). So FIX/AUDIT POOLING (#8) FIRST, re-measure
      the frequency distribution, THEN redesign the partition against corrected numbers.
   8. **(M) [shared] Audit + fix lemma example/frequency pooling (Josh suspects bugs)** — DONE
-     2026-07-24 (PENDING): the audit found raw-token sums vs unique/capped example lines (`gasté`:
+     2026-07-24 (`1196e94`): the audit found raw-token sums vs unique/capped example lines (`gasté`:
      41 vs 28 vs 25), positionally mismerged multi-artist senses (1,878 divergent IDs), and 700
      merged lemmas retaining duplicate representatives. Frequency now uses the uncapped unique
      line pool, senses merge by master index, and merged lemmas get one combined representative.
