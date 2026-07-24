@@ -121,7 +121,18 @@ function renderLanguageTabs() {
         return `<button class="lang-tab ${activeClass} ${disabledClass}" data-lang="${langKey}" ${disabledAttr} title="${title}">${langCode}</button>`;
     }).join('');
 
-    tabsContainer.innerHTML = tabsHTML;
+    tabsContainer.innerHTML = `
+        <button type="button" id="languagePickerBtn" class="language-picker-btn" aria-haspopup="dialog">
+            <span class="language-picker-btn-icon" aria-hidden="true">🌐</span>
+            <span class="language-picker-btn-label">Choose a language</span>
+            <span class="language-picker-btn-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="language-picker-options" aria-hidden="true">${tabsHTML}</div>
+    `;
+
+    document.getElementById('languagePickerBtn').addEventListener('click', () => {
+        if (window.showLanguagePicker) window.showLanguagePicker(config.languages);
+    });
 
     setActiveSetupStep('step1');
 

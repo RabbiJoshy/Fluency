@@ -50,8 +50,11 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 ## Setup UI Flow
 
 ```
-Step 1: Language tabs → Step 2: CEFR level → [inline toggles: lemma, cognate] → Step 3: Choose set
+Step 1: Radial language picker → Step 2: CEFR level → [inline toggles: lemma, cognate] → Step 3: Choose set
 ```
+The standard-mode language button opens the shared radial picker in `main.js`.
+Hidden `.lang-tab` buttons remain as internal action targets so the existing
+language loading/theme/progress handler in `ui.js` stays canonical.
 Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the range selector. DOM `id="step4"` is the range/set selector (visual step 3).
 
 ## Main Call Flow

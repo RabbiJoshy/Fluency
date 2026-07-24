@@ -50,9 +50,9 @@
      2026-07-24 (3902737): selection uses the section's POS-colour tint + rail, evidence-backed
      senses add a ✓ matched chip, and assigned examples repeat the same cue and colour. Unassigned
      senses stay visibly selected without claiming a match.
-  5. **(M) [normal] Language picker → radial button** — replace the normal-mode language
-     toggle/tabs with a button that opens a radial "clock of pictures" like the artist picker
-     (`main.js showArtistPicker`). Reuse that component.
+  5. **(M) [normal] Language picker → radial button** — DONE 2026-07-24 (PENDING): one
+     full-width button opens a flag-picture clock using the artist picker's shared radial core;
+     available languages keep the canonical loader and coming-soon languages stay disabled.
   6. **(M) [normal] Roll progress into the language box** — after a language is picked, in
      standard mode merge the progress section into the language box: language name beside the
      tiny % stats, progress bar directly underneath. Saves vertical space. Artist-mode top box
