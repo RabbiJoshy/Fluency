@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Lemma frequency now matches its pooled example lines",
+      "details": [
+        "Audit confirmed gasté/gastar showed 41 raw tokens while pooling 28 unique lines and retaining only 25; the cap is removed and the card front now uses the same unique-line pool (28)",
+        "Multi-artist senses now merge by stable master-sense index instead of shortened-array position, preventing wrong/missing sense examples across 1,878 divergent shared IDs",
+        "Multi-artist unions now recompute one representative per lemma (the old per-artist flags left 700 lemmas with duplicate cards), tag artist provenance, dedupe lines, and share the same merged data between setup ranges and the deck",
+        "Raw token totals remain available as lemma_total_count for diagnostics; cache v62→v63, assets 20260724g→20260724h"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "bdfa03b",
       "summary": "Standard-mode progress now lives inside the language box",
       "details": [

@@ -344,7 +344,7 @@ function updateStep5Tooltip() {
 async function findFirstIncompleteLevelBtn(language, buttons) {
     const langConfig = config.languages[language];
     if (!langConfig) return null;
-    const vocabularyData = await fetchAndJoinIndex(langConfig);
+    const vocabularyData = await fetchActiveVocabularyData(langConfig);
     const { vocab: filteredVocab } = buildFilteredVocab(vocabularyData);
     const estimate = levelEstimates[language] || 0;
     const wordKnown = (item) => (item.rank <= estimate) || isWordKnown(getWordId(item));
@@ -370,6 +370,9 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
 async function renderLevelSelector(language) {
     const container = document.getElementById('levelSelector');
 
+    if (useLemmaMode) {
+        await ensureLemmaPoolingData(config.languages[language]);
+    }
     if (!selectedLevel) setActiveSetupStep('step2');
 
     // Debug logging
@@ -704,7 +707,7 @@ async function _loadLevelSliderSamples(language) {
         const langConfig = config.languages[language];
         if (!langConfig) return null;
         try {
-            raw = await fetchAndJoinIndex(langConfig);
+            raw = await fetchActiveVocabularyData(langConfig);
             _levelSliderRawCache[language] = raw;
         } catch (err) {
             console.warn('Slider sample fetch failed:', err);
@@ -1007,7 +1010,7 @@ function setupGroupSizeSelector() {
 
 function setupLemmaToggle() {
     document.querySelectorAll('.lemma-toggle-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', async function() {
             // Don't allow selecting "1" mode if lemma field not available
             if (this.dataset.lemma === 'on' && !lemmaFieldAvailable) {
                 return;
@@ -1023,7 +1026,13 @@ function setupLemmaToggle() {
             useLemmaMode = this.dataset.lemma === 'on';
 
             // Re-render level selector with new word counts, and re-render range selector if a level is selected
-            renderLevelSelector(selectedLanguage);
+            const loadingIndicator = document.getElementById('dataLoadingIndicator');
+            if (useLemmaMode) loadingIndicator?.classList.add('visible');
+            try {
+                await renderLevelSelector(selectedLanguage);
+            } finally {
+                loadingIndicator?.classList.remove('visible');
+            }
             // Re-select the current level if one was selected
             if (selectedLevel) {
                 const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
@@ -1106,7 +1115,7 @@ async function updateLemmaToggleVisibility() {
     lemmaFieldAvailable = false;
     if (langConfig) {
         try {
-            const vocabData = await fetchAndJoinIndex(langConfig);
+            const vocabData = await fetchActiveVocabularyData(langConfig);
             lemmaFieldAvailable = vocabData.some(item =>
                 item.hasOwnProperty('most_frequent_lemma_instance')
             );
@@ -1140,7 +1149,7 @@ async function updateCognateToggleVisibility() {
     cognateFieldAvailable = false;
     if (langConfig) {
         try {
-            const vocabData = await fetchAndJoinIndex(langConfig);
+            const vocabData = await fetchActiveVocabularyData(langConfig);
             cognateFieldAvailable = vocabData.some(item =>
                 (item.cognate_score > 0) || item.cognet_cognate || item.is_transparent_cognate
             );
@@ -1230,7 +1239,7 @@ async function renderRangeSelector() {
     // Load vocabulary data, joined with master if needed
     let vocabularyData = [];
     try {
-        vocabularyData = await fetchAndJoinIndex(langConfig);
+        vocabularyData = await fetchActiveVocabularyData(langConfig);
     } catch (error) {
         console.error('Failed to load vocabulary data:', error);
     }
@@ -1639,7 +1648,7 @@ async function showTotalStatsModal() {
     // Ensure vocabulary index is loaded (needed for comprehension + words understood)
     if (!cachedVocabularyData && langConfig) {
         try {
-            const vocab = await fetchAndJoinIndex(langConfig);
+            const vocab = await fetchActiveVocabularyData(langConfig);
             vocab.forEach((item, index) => { item.rank = index + 1; });
             cachedVocabularyData = vocab;
         } catch (e) {
@@ -2134,6 +2143,7 @@ function onArtistSelectionChange() {
     window._cachedExamplesData = null;
     window._cachedJoinedIndex = null;
     window._cachedJoinedIndexPath = null;
+    delete _levelSliderRawCache[selectedLanguage];
 
     // Reload albums dictionary for multi-artist mode
     loadMultiArtistAlbumsDictionaries(selected, window._allArtistsConfig);

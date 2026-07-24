@@ -191,8 +191,40 @@ function joinWithMaster(indexData, master) {
  * bucketed in master sense order) when available, else from inline
  * `meanings[].examples` (multi-artist merged entries).
  */
+function exampleSentenceKey(example) {
+    return (example?.target || example?.spanish || example?.sentence || '').trim().toLowerCase();
+}
+
+function examplesForMeaning(item, meaning, meaningIndex, examplesData) {
+    if (meaning.examples && meaning.examples.length > 0) return meaning.examples;
+    const split = examplesData && item.id ? examplesData[item.id] : null;
+    const bucket = meaning._masterSenseIndex ?? meaningIndex;
+    return (split && split.m && split.m[bucket]) || [];
+}
+
+function computeLemmaExampleCounts(vocabData, examplesData) {
+    const linesByLemma = new Map();
+    let hasExampleBasis = false;
+    for (const item of vocabData) {
+        if (!item.lemma || item.is_english || item.is_noise || item.is_interjection || item.duplicate) continue;
+        if (!linesByLemma.has(item.lemma)) linesByLemma.set(item.lemma, new Set());
+        const lines = linesByLemma.get(item.lemma);
+        (item.meanings || []).forEach((meaning, i) => {
+            for (const example of examplesForMeaning(item, meaning, i, examplesData)) {
+                const key = exampleSentenceKey(example);
+                if (!key) continue;
+                hasExampleBasis = true;
+                lines.add(key);
+            }
+        });
+    }
+    return {
+        counts: new Map(Array.from(linesByLemma, ([lemma, lines]) => [lemma, lines.size])),
+        hasExampleBasis
+    };
+}
+
 function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
-    const MAX_EXAMPLES_PER_MEANING = 25;
     const hosts = new Map();
     for (const item of filteredData) {
         if (item.lemma && !hosts.has(item.lemma)) hosts.set(item.lemma, item);
@@ -206,30 +238,40 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
         if (sib.is_english || sib.is_noise || sib.is_interjection || sib.duplicate) continue;
         if (!sib.meanings || sib.meanings.length === 0) continue;
 
-        const ex = examplesData && sib.id ? examplesData[sib.id] : null;
         for (let i = 0; i < sib.meanings.length; i++) {
             const sm = sib.meanings[i];
-            const bucket = sm._masterSenseIndex ?? i;
             // Prefer inline examples (multi-artist merged entries carry the
             // cross-artist union); fall back to the split examples file.
-            const sibExamples = (sm.examples && sm.examples.length > 0)
-                ? sm.examples
-                : ((ex && ex.m && ex.m[bucket]) || []);
+            const sibExamples = examplesForMeaning(sib, sm, i, examplesData);
             if (sibExamples.length === 0) continue;
 
             const target = host.meanings.find(hm => normalize(hm.translation) === normalize(sm.translation))
                 || host.meanings[0];
             if (!target) continue;
             if (!target.examples) target.examples = [];
-            const seen = new Set(target.examples.map(e => normalize(e.spanish || e.sentence)));
+            const seen = new Set(target.examples.map(exampleSentenceKey));
             for (const e of sibExamples) {
-                const key = normalize(e.spanish || e.sentence);
+                const key = exampleSentenceKey(e);
                 if (!key || seen.has(key)) continue;
-                if (target.examples.length >= MAX_EXAMPLES_PER_MEANING) break;
                 seen.add(key);
                 target.examples.push({ ...e, pooledFrom: sib.word });
             }
         }
+    }
+
+    // The card-front pooled frequency uses this exact attached-example
+    // union. Count across meanings once so a line assigned to two senses
+    // does not inflate the lemma total.
+    for (const host of hosts.values()) {
+        const seen = new Set();
+        for (const meaning of (host.meanings || [])) {
+            for (const example of (meaning.examples || [])) {
+                const key = exampleSentenceKey(example);
+                if (key) seen.add(key);
+            }
+        }
+        host.lemma_example_count = seen.size;
+        host.pooled_frequency = seen.size;
     }
 }
 
@@ -296,6 +338,49 @@ async function fetchAndJoinIndex(langConfig) {
     window._cachedJoinedIndex = data;
     window._cachedJoinedIndexPath = indexPath;
     return data;
+}
+
+async function fetchActiveVocabularyData(langConfig) {
+    const selectedSlugs = window._selectedArtistSlugs || [];
+    const allConfigs = window._allArtistsConfig;
+    if (!(activeArtist && selectedSlugs.length > 1 && allConfigs)) {
+        return fetchAndJoinIndex(langConfig);
+    }
+
+    if (!window._cachedMasterVocab) {
+        // The primary artist fetch also loads the shared master.
+        await fetchAndJoinIndex(langConfig);
+    }
+    if (!window._cachedMergedIndex) {
+        const artistConfigs = selectedSlugs
+            .map(slug => allConfigs[slug] ? { ...allConfigs[slug], slug } : null)
+            .filter(Boolean);
+        const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(
+            artistConfigs,
+            window._cachedMasterVocab
+        );
+        window._cachedMergedIndex = mergedIndex;
+        window._cachedMergedExamples = mergedExamples;
+    }
+    window._cachedExamplesData = window._cachedMergedExamples;
+    return window._cachedMergedIndex;
+}
+
+async function ensureLemmaPoolingData(langConfig) {
+    await fetchActiveVocabularyData(langConfig);
+    if (window._cachedExamplesData || !langConfig?.examplesPath) {
+        return window._cachedExamplesData || null;
+    }
+    try {
+        const response = await fetch(langConfig.examplesPath);
+        if (!response.ok) return null;
+        trackDataFreshness(response);
+        window._cachedExamplesData = await response.json();
+        return window._cachedExamplesData;
+    } catch (error) {
+        console.warn('Failed to load examples for lemma pooling:', error);
+        return null;
+    }
 }
 
 function buildFilteredVocab(vocabData) {
@@ -389,10 +474,15 @@ function buildFilteredVocab(vocabData) {
             if (!e.lemma || e.is_english || e.is_noise || e.is_interjection || e.duplicate) continue;
             lemmaTotals.set(e.lemma, (lemmaTotals.get(e.lemma) || 0) + (e.corpus_count || 0));
         }
+        const exampleBasis = computeLemmaExampleCounts(vocabData, window._cachedExamplesData);
         for (const item of result) {
             item.lemma_total_count = lemmaTotals.get(item.lemma) || item.corpus_count || 0;
+            item.lemma_example_count = exampleBasis.counts.get(item.lemma) || 0;
+            item.pooled_frequency = exampleBasis.hasExampleBasis
+                ? item.lemma_example_count
+                : item.lemma_total_count;
         }
-        result.sort((a, b) => (b.lemma_total_count || 0) - (a.lemma_total_count || 0));
+        result.sort((a, b) => (b.pooled_frequency || 0) - (a.pooled_frequency || 0));
     }
 
     // Assign corpus-wide display ranks so set numbering is continuous across levels
@@ -426,26 +516,10 @@ async function loadVocabularyData(rangeString, opts = {}) {
     const indexPath = langConfig.indexPath || langConfig.dataPath;
 
     try {
-        // Multi-artist mode: merge vocabularies from all selected artists
-        let vocabularyData;
-        const selectedSlugs = window._selectedArtistSlugs || [];
-        const allConfigs = window._allArtistsConfig;
-        if (activeArtist && selectedSlugs.length > 1 && allConfigs) {
-            const artistConfigs = selectedSlugs
-                .map(slug => allConfigs[slug])
-                .filter(Boolean);
-            if (!window._cachedMergedIndex) {
-                const { mergedIndex, mergedExamples } = await mergeArtistVocabularies(artistConfigs, window._cachedMasterVocab);
-                window._cachedMergedIndex = mergedIndex;
-                window._cachedMergedExamples = mergedExamples;
-            }
-            vocabularyData = window._cachedMergedIndex;
-            // Point examples cache to merged examples
-            window._cachedExamplesData = window._cachedMergedExamples;
-        } else {
-            // Single artist or normal mode: fetch and join with master if needed
-            vocabularyData = await fetchAndJoinIndex(langConfig);
-        }
+        // Single/multi-artist selection shares one source so setup ranges and
+        // the committed deck see identical merged entries and examples.
+        const vocabularyData = await fetchActiveVocabularyData(langConfig);
+        if (useLemmaMode) await ensureLemmaPoolingData(langConfig);
         cachedVocabularyData = vocabularyData;
 
         // Store original index/rank from vocabulary file - this is the unique identifier
@@ -745,10 +819,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 id: item.id,
                 fullId: getWordId(item),
                 rank: item.rank,
-                // Lemma mode shows the pooled lemma frequency (all collapsed
-                // forms), matching the pooled deck ordering above.
-                corpusCount: (useLemmaMode && item.lemma_total_count)
-                    ? item.lemma_total_count
+                // Lemma mode uses the same unique pooled example-line basis
+                // as the examples attached above. Raw token totals stay on
+                // item.lemma_total_count for diagnostics only.
+                corpusCount: useLemmaMode
+                    ? (item.pooled_frequency ?? item.lemma_example_count ?? null)
                     : (item.corpus_count || null),
                 meanings: meanings,
                 translation: item.meanings[0].translation,
@@ -1391,20 +1466,37 @@ async function mergeArtistVocabularies(artistConfigs, master) {
             }
 
             if (byId.has(id)) {
-                // Merge into existing entry — with master, senses are aligned by position
+                // Merge into an existing entry. Master-based senses retain
+                // their stable source index even when unused senses are absent.
                 const existing = byId.get(id);
                 existing.corpus_count = (existing.corpus_count || 0) + (entry.corpus_count || 0);
 
                 if (master && isNewFormat) {
-                    // Master-based merge: senses are positionally aligned, just concat examples
+                    // joinWithMaster drops zero-frequency senses, so compact
+                    // array positions are NOT stable across artists. Merge on
+                    // the preserved master-sense index instead.
                     if (entry.meanings) {
+                        const byMasterSense = new Map(existing.meanings.map((m, i) => [m._masterSenseIndex ?? i, m]));
                         entry.meanings.forEach((newM, i) => {
-                            if (i < existing.meanings.length) {
-                                if (newM.examples) {
-                                    existing.meanings[i].examples = (existing.meanings[i].examples || []).concat(tagExamples(newM.examples));
+                            const masterSenseIndex = newM._masterSenseIndex ?? i;
+                            const existingM = byMasterSense.get(masterSenseIndex);
+                            if (existingM) {
+                                existingM.examples = (existingM.examples || []).concat(tagExamples(newM.examples || []));
+                                // Any assigned observation outweighs an
+                                // unassigned bucket from another artist.
+                                if (!newM.unassigned) delete existingM.unassigned;
+                                if (!existingM.assignment_method && newM.assignment_method) {
+                                    existingM.assignment_method = newM.assignment_method;
                                 }
+                            } else {
+                                const added = structuredClone(newM);
+                                added.examples = tagExamples(added.examples || []);
+                                existing.meanings.push(added);
+                                byMasterSense.set(masterSenseIndex, added);
                             }
                         });
+                        existing.meanings.sort((a, b) =>
+                            (a._masterSenseIndex ?? 0) - (b._masterSenseIndex ?? 0));
                     }
                 } else {
                     // Legacy merge: union by POS+translation
@@ -1450,25 +1542,21 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 byId.set(id, clone);
             }
 
-            // Build mergedExamples from the now-merged meanings
-            if (byId.has(id)) {
-                const merged = byId.get(id);
-                mergedExamples[id] = { m: [] };
-                merged.meanings.forEach((m, i) => {
-                    mergedExamples[id].m[i] = m.examples || [];
-                });
-                if (merged.mwe_memberships) {
-                    mergedExamples[id].w = [];
-                    merged.mwe_memberships.forEach((mwe, i) => {
-                        mergedExamples[id].w[i] = mwe.examples || [];
-                    });
-                }
-            }
         }
     }
 
-    // Recalculate frequency from example counts
+    // Recalculate sense frequency from the same unique example lines the UI
+    // cycles through. This also removes duplicate cross-artist/collab lines.
     for (const entry of byId.values()) {
+        for (const meaning of (entry.meanings || [])) {
+            const seen = new Set();
+            meaning.examples = (meaning.examples || []).filter(example => {
+                const key = exampleSentenceKey(example);
+                if (!key || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
         if (entry.meanings && entry.meanings.length > 1) {
             const counts = entry.meanings.map(m => (m.examples || []).length);
             const total = counts.reduce((a, b) => a + b, 0);
@@ -1477,6 +1565,38 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                     m.frequency = (counts[i] / total).toFixed(2);
                 });
             }
+        }
+    }
+
+    // Per-artist representative flags are incompatible after union: two
+    // artists can choose different surface forms for the same lemma. Stamp
+    // exactly one combined-corpus representative per lemma.
+    const representativeByLemma = new Map();
+    for (const entry of byId.values()) {
+        if (!entry.lemma) continue;
+        entry.most_frequent_lemma_instance = false;
+        const previous = representativeByLemma.get(entry.lemma);
+        if (!previous || (entry.corpus_count || 0) > (previous.corpus_count || 0)) {
+            representativeByLemma.set(entry.lemma, entry);
+        }
+    }
+    for (const representative of representativeByLemma.values()) {
+        representative.most_frequent_lemma_instance = true;
+    }
+
+    // Rebuild split-example buckets only after every artist has merged.
+    // Master-format buckets stay keyed by _masterSenseIndex, including holes.
+    for (const [id, merged] of byId) {
+        mergedExamples[id] = { m: [] };
+        (merged.meanings || []).forEach((meaning, i) => {
+            const bucket = meaning._masterSenseIndex ?? i;
+            mergedExamples[id].m[bucket] = meaning.examples || [];
+        });
+        if (merged.mwe_memberships) {
+            mergedExamples[id].w = [];
+            merged.mwe_memberships.forEach((mwe, i) => {
+                mergedExamples[id].w[i] = mwe.examples || [];
+            });
         }
     }
 
@@ -1580,6 +1700,8 @@ window.synthesizeSpecialMeanings = synthesizeSpecialMeanings;
 window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.joinWithMaster = joinWithMaster;
 window.fetchAndJoinIndex = fetchAndJoinIndex;
+window.fetchActiveVocabularyData = fetchActiveVocabularyData;
+window.ensureLemmaPoolingData = ensureLemmaPoolingData;
 window.getWordId = getWordId;
 window.getCrossModeId = getCrossModeId;
 window.isWordKnown = isWordKnown;

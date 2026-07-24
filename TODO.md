@@ -66,15 +66,12 @@
      bugs), and thinks part of the "lumpy frequency" problem may dissolve once pooling is fixed
      (frequencies re-aggregate correctly per lemma). So FIX/AUDIT POOLING (#8) FIRST, re-measure
      the frequency distribution, THEN redesign the partition against corrected numbers.
-  8. **(M) [shared] Audit + fix lemma example/frequency pooling (Josh suspects bugs)** — in
-     one-card-per-lemma mode the displayed card-front frequency doesn't match the pooled example
-     count (Josh saw `gasté` showing a much higher front-of-card frequency than its ≥2-tier /
-     example reality). Josh's read: the pooling of morphological forms was done badly and is
-     buggy — audit `poolLemmaSiblingExamples()` and the pooled-frequency logic in `js/vocab.js`
-     (and `mergeArtistVocabularies()`), find the discrepancy between the frequency number and the
-     pooled examples, and make the card-front frequency reflect the SAME pooled basis as the
-     examples. This is the deeper item and a prerequisite for #7. Related to the pooled-examples
-     item below.
+  8. **(M) [shared] Audit + fix lemma example/frequency pooling (Josh suspects bugs)** — DONE
+     2026-07-24 (PENDING): the audit found raw-token sums vs unique/capped example lines (`gasté`:
+     41 vs 28 vs 25), positionally mismerged multi-artist senses (1,878 divergent IDs), and 700
+     merged lemmas retaining duplicate representatives. Frequency now uses the uncapped unique
+     line pool, senses merge by master index, and merged lemmas get one combined representative.
+     Full findings: `docs/lemma_pooling_audit.md`.
 
 - **[now] Notes-app backlog — EARLIER dump, captured 2026-07-24 [was only categorized in-chat, never committed until now]**
   From Josh's notes (~2026-07-13). Already resolved: offline save-on-reconnect (SHIPPED,

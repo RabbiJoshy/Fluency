@@ -124,7 +124,11 @@ Module-to-module imports inside `js/` (e.g. `flashcards.js` importing `./speech.
 
 ## Multi-Artist Merge
 
-`mergeArtistVocabularies()` in `vocab.js`: merges by hex ID, sums corpus_count, unions examples (tagged with `artist` slug), discards `--no-gemini` placeholders when Gemini analysis exists. After merge, recalculates meaning `frequency` from example counts (not stale Gemini line assignments).
+`mergeArtistVocabularies()` in `vocab.js`: merges by hex ID, sums corpus_count, unions examples (tagged with `artist` slug), discards `--no-gemini` placeholders when Gemini analysis exists. Master-format senses merge by `_masterSenseIndex` (never compact array position); after merge it deduplicates examples, recalculates meaning `frequency`, and stamps one combined-corpus `most_frequent_lemma_instance` per lemma.
+
+In lemma mode, `lemma_total_count` is the raw pooled token diagnostic, while
+`lemma_example_count` / `pooled_frequency` count the unique example lines that
+`poolLemmaSiblingExamples()` actually attaches. The card front uses the latter.
 
 Album art in multi-artist mode: `artist-ui.js` stores per-artist default art in `artistDefaultArt` map. `updateArtistBackground()` reads the example's `artist` slug to pick the correct fallback image.
 
