@@ -1638,6 +1638,29 @@ function updateCard() {
         }
     }
 
+    // One compact POS legend sits directly beneath the word/lemma. Rows keep
+    // their POS colour through the surrounding section, so repeating the pill
+    // above every section would add labels without adding information.
+    let backPosLegendHTML = '';
+    if (card.isMultiMeaning && card.meanings) {
+        const seenPos = new Set();
+        const posPills = [];
+        for (const meaning of card.meanings) {
+            const pos = meaning.pos === 'SENSE_CYCLE'
+                ? (meaning.cycle_pos || 'X')
+                : meaning.pos;
+            if (!pos || seenPos.has(pos)) continue;
+            seenPos.add(pos);
+            const label = pos === 'MWE' ? 'Expressions' : (pos === 'CLITIC' ? 'Clitics' : pos);
+            posPills.push(
+                `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')">${label}</button>`
+            );
+        }
+        if (posPills.length > 0) {
+            backPosLegendHTML = `<div class="back-pos-legend" aria-label="Parts of speech">${posPills.join('')}</div>`;
+        }
+    }
+
     // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
     // on narrow viewports) so the header grows by a reasonable amount
     // rather than adding a full line of whitespace each wrap. Single-line
@@ -1648,6 +1671,7 @@ function updateCard() {
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
             </div>
+            ${backPosLegendHTML}
             ${homographChipHTML}
         </div>
     `;
@@ -1666,17 +1690,11 @@ function updateCard() {
             if (!sections.has(pos)) sections.set(pos, []);
             return sections.get(pos);
         };
-        const renderSections = sections => Array.from(sections, ([pos, rows]) => {
-            const posColorClass = getPosColorClass(pos);
-            return `
-                <section class="meaning-pos-section" data-pos="${pos}" style="--sense-match-rgb: ${getPosAccentRgb(pos)};">
-                    <div class="meaning-pos-header">
-                        <span class="card-pos ${posColorClass}" onclick="showPOSInfo(event, '${pos}')">${pos}</span>
-                    </div>
-                    <div class="meaning-pos-rows">${rows.join('')}</div>
-                </section>
-            `;
-        }).join('');
+        const renderSections = sections => Array.from(sections, ([pos, rows]) => `
+            <section class="meaning-pos-section" data-pos="${pos}" style="--sense-match-rgb: ${getPosAccentRgb(pos)};">
+                <div class="meaning-pos-rows">${rows.join('')}</div>
+            </section>
+        `).join('');
 
         // Render-side grouping: collapse rows that share either
         // translation OR context into a single "group card" — shared
@@ -1781,12 +1799,8 @@ function updateCard() {
 
         card.meanings.forEach((m, idx) => {
             const isSelected = idx === currentMeaningIndex;
-            const isSenseMatched = !m.unassigned && m.pos !== 'SENSE_CYCLE';
-            const rowStateClasses = `${isSelected ? ' is-current-sense' : ''}${isSelected && isSenseMatched ? ' is-evidence-matched has-match-chip' : ''}`;
-            const matchChip = isSelected && isSenseMatched
-                ? '<span class="sense-match-chip"><span aria-hidden="true">✓</span><span class="sense-match-label">matched</span></span>'
-                : '';
-            const bgColor = 'rgba(15, 20, 28, 0.82)';
+            const rowStateClasses = isSelected ? ' is-current-sense' : '';
+            const bgColor = 'rgba(var(--sense-match-rgb), 0.08)';
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
             const borderStyle = '';
             const isMWE = m.pos === 'MWE';
@@ -1863,7 +1877,6 @@ function updateCard() {
                     : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
                 target.push(`
                 <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    ${matchChip}
                     <span style="font-size: 12px; color: white; padding: 5px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
                     ${bodyHTML}
                     ${mweCounter}
@@ -1874,7 +1887,6 @@ function updateCard() {
                 const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
                 target.push(`
                 <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    ${matchChip}
                     <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${cliticTrRaw}</span>
                     ${cliticCounter}
@@ -1882,7 +1894,7 @@ function updateCard() {
                 `);
             } else if (isSenseCycle) {
                 // Sense cycle row: all unassigned/remainder senses for this
-                // POS; the shared POS pill now lives in the section header.
+                // POS; the shared POS pill now lives in the header legend.
                 const rawTranslations = m.allSenses ? m.allSenses.map(s => s.translation) : [m.meaning];
                 // Prettify the remainder bucket:
                 //   1. Split any semicolon-packed gloss into atomic translations
@@ -1941,7 +1953,6 @@ function updateCard() {
                     : '';
                 target.push(`
                 <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
-                    ${matchChip}
                     <span style="flex: 1; font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
                 `);
@@ -1985,15 +1996,8 @@ function updateCard() {
                     //   ctx-axis:   varying trans | shared ctx
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
                     const groupIsCurrent = groupSelected || anyMemberSelected;
-                    const selectedMember = card.meanings[currentMeaningIndex];
-                    const groupIsMatched = groupSelected
-                        ? members.some(mi => !card.meanings[mi].unassigned)
-                        : !!(selectedMember && members.includes(currentMeaningIndex) && !selectedMember.unassigned);
-                    const groupStateClasses = `${groupIsCurrent ? ' is-current-sense' : ''}${groupIsCurrent && groupIsMatched ? ' is-evidence-matched has-match-chip' : ''}`;
-                    const groupMatchChip = groupIsCurrent && groupIsMatched
-                        ? '<span class="sense-match-chip"><span aria-hidden="true">✓</span><span class="sense-match-label">matched</span></span>'
-                        : '';
-                    const cardBg = 'rgba(15, 20, 28, 0.82)';
+                    const groupStateClasses = groupIsCurrent ? ' is-current-sense' : '';
+                    const cardBg = 'rgba(var(--sense-match-rgb), 0.08)';
                     const sharedBg = groupSelected
                         ? 'rgba(var(--sense-match-rgb), 0.2)'
                         : 'transparent';
@@ -2050,16 +2054,15 @@ function updateCard() {
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;"><span class="meaning-context">${sharedText}</span></div>`;
 
                     // Body grid: shared + varying. The pct column lives in the
-                    // outer grid; POS lives in the section header.
+                    // outer grid; POS lives in the header legend.
                     const gridCols = 'minmax(0, max-content) minmax(0, max-content)';
 
                     // Outer row is body | pct stack. POS is represented once
-                    // by the section header above this group of rows.
+                    // by the header legend and repeated through row colour.
                     const outerGridCols = '1fr auto';
 
                     target.push(`
                     <div class="meaning-row meaning-row-group${groupIsCurrent ? ' selected' : ''}${groupStateClasses}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="position: relative; display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
-                        ${groupMatchChip}
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
@@ -2069,7 +2072,7 @@ function updateCard() {
                     `);
                 } else {
                     // Singleton: centred translation with optional inline
-                    // context. POS is represented by the section header.
+                    // context. POS is represented by the header legend and tint.
                     let contextInline = '';
                     if (m.context) {
                         const safeFull = String(m.context).replace(/"/g, '&quot;');
@@ -2085,7 +2088,6 @@ function updateCard() {
                         : '';
                     target.push(`
                     <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
-                        ${matchChip}
                         <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${pctVal < 100 ? '42px' : '8px'} 0 8px;">
                             <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
@@ -2362,9 +2364,6 @@ function updateCard() {
                 }
             }
             const sentenceStyle = `--sense-match-rgb: ${getPosAccentRgb(currentMeaning.pos)}; border-color: transparent;`;
-            const exampleMatchChip = exampleAssigned
-                ? '<div class="example-match-chip"><span aria-hidden="true">✓</span> matched example</div>'
-                : '';
 
             // Only emit the sentence block if we have something worth
             // showing. For MWE / Clitic cycles where the filter left us
@@ -2375,7 +2374,6 @@ function updateCard() {
             if (!suppressSentenceBlock) {
                 backHTML += `
                     <div class="sentence${exampleAssigned ? ' example-is-matched' : ''}" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
-                        ${exampleMatchChip}
                         <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
                         <div class="translation">${displayEnglishSentence}</div>
                         ${songNameDisplay}
@@ -2954,17 +2952,18 @@ function flipDirection() {
 function getPosColorClass(pos) {
     if (!pos) return '';
     const posLower = pos.toLowerCase();
-    if (posLower.includes('noun') || posLower === 'n' || posLower === 'nn') return 'pos-noun';
+    if (posLower.includes('noun') || posLower === 'n' || posLower === 'nn' || posLower === 'propn') return 'pos-noun';
     if (posLower.includes('verb') || posLower === 'v' || posLower === 'vb') return 'pos-verb';
     if (posLower.includes('adj') || posLower === 'a' || posLower === 'jj') return 'pos-adj';
     if (posLower.includes('adv') || posLower === 'rb') return 'pos-adv';
-    if (posLower.includes('prep') || posLower === 'in') return 'pos-prep';
+    if (posLower.includes('prep') || posLower === 'in' || posLower === 'adp') return 'pos-prep';
     if (posLower.includes('conj') || posLower === 'cc') return 'pos-conj';
     if (posLower.includes('pron') || posLower === 'prp') return 'pos-pron';
     if (posLower.includes('det') || posLower === 'dt') return 'pos-det';
     if (posLower.includes('int') || posLower === 'uh') return 'pos-int';
     if (posLower.includes('num') || posLower === 'cd') return 'pos-num';
-    if (posLower === 'mwe') return 'pos-mwe';
+    if (posLower === 'mwe' || posLower === 'phrase') return 'pos-mwe';
+    if (posLower === 'clitic' || posLower === 'part' || posLower === 'contraction') return 'pos-clitic';
     return '';
 }
 
@@ -2980,7 +2979,8 @@ function getPosAccentRgb(pos) {
         'pos-det': '244, 63, 94',
         'pos-int': '234, 179, 8',
         'pos-num': '6, 182, 212',
-        'pos-mwe': '251, 191, 36'
+        'pos-mwe': '251, 191, 36',
+        'pos-clitic': '249, 115, 22'
     };
     return accents[getPosColorClass(pos)] || 'var(--accent-primary-rgb)';
 }
@@ -3254,7 +3254,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260428b';
+const ASSET_VERSION = '20260724j';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

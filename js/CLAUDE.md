@@ -107,13 +107,14 @@ Per-sense flags set by `joinWithMaster()`:
 - Neither flag — strong/auto assignment; meaning gets a border.
 
 **Per-example assignment method**: Each example object in the examples file carries its own `assignment_method` (e.g. `"spanishdict-keyword"`). This is the authoritative source for per-example UI decisions:
-- **Example match treatment** (`flashcards.js`): `example.assignment_method` present → POS-coloured rail/tint + “matched example” chip. For strong methods (Gemini/biencoder) without per-example stamps, falls back to `!meaning.unassigned`.
+- **Example match treatment** (`flashcards.js`): `example.assignment_method` present → POS-coloured rail/tint. For strong methods (Gemini/biencoder) without per-example stamps, falls back to `!meaning.unassigned`.
 - **English keyword highlight**: Only fires when `example.assignment_method` includes `'keyword'`. Highlights translation fragments ≥ 2 chars of `currentMeaning.meaning` in the English sentence.
-- **Sense match treatment**: every selected row gets its POS-coloured rail/tint; `!m.unassigned` additionally gets a “matched” chip. Unassigned rows remain visibly selected without claiming evidence.
+- **Sense selection treatment**: every row gets a subtle POS-coloured tint; the selected row gets a stronger tint, left rail, border, and elevation. Match assignment remains available for linking the selected sense to its example, but is not labelled with a redundant chip.
 
-Card-back senses are grouped into POS sections. `updateCard()` emits one
-`.meaning-pos-header` pill per section and keeps duplicate translation/context
-groups within that POS; individual regular rows do not repeat the POS pill.
+Card-back senses are grouped into POS sections. `updateCard()` emits one compact
+`.back-pos-legend` beneath the word/lemma, then colour-codes each section's rows;
+duplicate translation/context groups remain constrained to one POS. MWE is
+labelled “Expressions” in the UI.
 
 **Copy-through in `buildFilteredVocab()`**: Meanings are rebuilt from scratch at the filter stage (two places, ~line 430 and ~line 776). Both paths must copy `assignment_method` through, otherwise it is silently dropped before it reaches the card. `joinWithMaster()` in `vocab.js` sets `assignment_method` from `idx.sense_methods[i]`; `buildFilteredVocab()` must preserve it.
 

@@ -11,8 +11,8 @@
 // Part-of-speech popup
 // ---------------------------------------------------------------------------
 
-// Part-of-speech lookup shown when a user taps the POS pill on a sense
-// row. Full name + one-sentence plain-language description targeted at
+// Part-of-speech lookup shown when a user taps a pill in the card-back
+// legend. Full name + one-sentence plain-language description targeted at
 // language learners, not grammarians. Keys match the UPOS / Kaikki POS
 // values produced by the pipeline (see util_5c_sense_menu_format.py
 // and util_5c_spanishdict.py).
@@ -45,6 +45,10 @@ const POS_INFO = {
              description: "The specific name of a person, place, or thing (e.g. María, Madrid, Spotify)." },
     PHRASE: { name: "Phrase",
               description: "A fixed group of words that function together (e.g. por favor, sin embargo)." },
+    MWE: { name: "Expressions",
+           description: "A multi-word expression whose meaning or use belongs to the words together." },
+    CLITIC: { name: "Clitics",
+              description: "A short grammatical form that attaches closely to another word (e.g. me, te, se)." },
     CONTRACTION: { name: "Contraction",
                    description: "Two words fused together into one written form (e.g. al = a + el, del = de + el, c'est = ce + est)." },
     X:    { name: "Unclassified",

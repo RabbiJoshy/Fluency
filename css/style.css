@@ -1218,28 +1218,23 @@
         }
 
         .meaning-pos-section + .meaning-pos-section {
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
-        .meaning-pos-header {
+        .back-pos-legend {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 8px;
-            margin: 0 2px 5px;
+            justify-content: center;
+            gap: 5px;
+            margin: 7px 0 2px;
         }
 
-        .meaning-pos-header::after {
-            content: '';
-            height: 1px;
-            flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .meaning-pos-header .card-pos {
+        .back-pos-legend .card-pos {
             margin: 0;
-            padding: 4px 12px;
-            min-width: 52px;
-            font-size: 11px;
+            padding: 4px 10px;
+            min-width: 0;
+            font-size: 10px;
             font-weight: 700;
             line-height: 1;
             cursor: pointer;
@@ -1249,57 +1244,29 @@
             margin-bottom: 0 !important;
         }
 
+        .meaning-pos-section .meaning-row {
+            background: linear-gradient(
+                90deg,
+                rgba(var(--sense-match-rgb), 0.1),
+                rgba(15, 20, 28, 0.82) 72%
+            ) !important;
+            border: 1px solid rgba(var(--sense-match-rgb), 0.16);
+            transition: background 160ms ease, border-color 160ms ease,
+                        box-shadow 160ms ease, transform 160ms ease;
+        }
+
         .meaning-row.is-current-sense {
             background: linear-gradient(
                 90deg,
-                rgba(var(--sense-match-rgb), 0.24),
-                rgba(15, 20, 28, 0.82) 62%
+                rgba(var(--sense-match-rgb), 0.3),
+                rgba(var(--sense-match-rgb), 0.1) 72%
             ) !important;
+            border-color: rgba(var(--sense-match-rgb), 0.62);
             box-shadow:
-                inset 4px 0 0 rgb(var(--sense-match-rgb)),
-                0 3px 12px rgba(var(--sense-match-rgb), 0.12);
-        }
-
-        .meaning-row.has-match-chip {
-            padding-left: 78px !important;
-        }
-
-        .sense-match-chip {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 3px 7px;
-            border-radius: 999px;
-            background: rgba(var(--sense-match-rgb), 0.2);
-            border: 1px solid rgba(var(--sense-match-rgb), 0.58);
-            color: rgb(var(--sense-match-rgb));
-            font-family: var(--font-data);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 0.25px;
-            text-transform: uppercase;
-            white-space: nowrap;
-            pointer-events: none;
-        }
-
-        @media (max-width: 420px) {
-            .meaning-row.has-match-chip {
-                padding-left: 38px !important;
-            }
-
-            .sense-match-chip {
-                left: 8px;
-                padding: 3px 6px;
-            }
-
-            .sense-match-label {
-                display: none;
-            }
+                inset 5px 0 0 rgb(var(--sense-match-rgb)),
+                0 5px 15px rgba(var(--sense-match-rgb), 0.22);
+            transform: translateY(-1px);
+            opacity: 1 !important;
         }
 
         /* Zero top margin on the sentence so the only gap between the
@@ -1498,6 +1465,7 @@
         .pos-int { background: rgba(234, 179, 8, 0.45); border-color: rgba(234, 179, 8, 0.6); color: #f2d166; }
         .pos-num { background: rgba(6, 182, 212, 0.45); border-color: rgba(6, 182, 212, 0.6); color: #66d4e6; }
         .pos-mwe { background: rgba(251, 191, 36, 0.45); border-color: rgba(251, 191, 36, 0.6); color: #fcd57a; }
+        .pos-clitic { background: rgba(249, 115, 22, 0.45); border-color: rgba(249, 115, 22, 0.6); color: #fdba74; }
 
         /* POS info popover — shown when the POS pill on a sense row is
            tapped. Click anywhere on the overlay (including the popover
@@ -1549,6 +1517,7 @@
         .pos-info-popover.pos-int  { border-color: rgba(234, 179, 8, 0.7); }
         .pos-info-popover.pos-num  { border-color: rgba(6, 182, 212, 0.7); }
         .pos-info-popover.pos-mwe  { border-color: rgba(251, 191, 36, 0.7); }
+        .pos-info-popover.pos-clitic { border-color: rgba(249, 115, 22, 0.7); }
 
         .pos-info-name {
             font-family: var(--font-emphasis, var(--font-data));
@@ -1850,24 +1819,6 @@
             box-shadow:
                 inset 4px 0 0 rgb(var(--sense-match-rgb)),
                 0 4px 14px rgba(var(--sense-match-rgb), 0.16);
-        }
-
-        .example-match-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 6px;
-            padding: 3px 8px;
-            border-radius: 999px;
-            background: rgba(var(--sense-match-rgb), 0.18);
-            border: 1px solid rgba(var(--sense-match-rgb), 0.52);
-            color: rgb(var(--sense-match-rgb));
-            font-family: var(--font-data);
-            font-style: normal;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
         }
 
         body.artist-mode .sentence {

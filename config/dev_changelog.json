@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Card-back POS colours now read as one coherent legend",
+      "details": [
+        "Moves the complete POS legend directly beneath the word and lemma, removing repeated section introductions while preserving POS-grouped scrolling",
+        "Every sense row now carries a restrained POS tint; the selected row is distinguished by stronger colour, border, left rail, and elevation",
+        "Removes the redundant matched and matched-example pills while retaining the colour link between an assigned sense and its example",
+        "Labels MWE content as Expressions and gives clitics their own legend colour; cache v64→v65, assets 20260724i→20260724j"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "44e4d3f",
       "summary": "Frequency scrubber now has useful head-to-tail resolution",
       "details": [
