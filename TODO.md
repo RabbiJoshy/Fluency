@@ -47,7 +47,7 @@
      2026-07-24 (0658c92): meanings are grouped into real POS sections with one clickable header;
      duplicate-sense groups no longer cross POS boundaries, and long section lists still scroll.
   4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — DONE
-     2026-07-24 (PENDING): selection uses the section's POS-colour tint + rail, evidence-backed
+     2026-07-24 (3902737): selection uses the section's POS-colour tint + rail, evidence-backed
      senses add a ✓ matched chip, and assigned examples repeat the same cue and colour. Unassigned
      senses stay visibly selected without claiming a match.
   5. **(M) [normal] Language picker → radial button** — replace the normal-mode language

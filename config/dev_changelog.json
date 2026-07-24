@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "3902737",
       "summary": "Matched senses and examples now share a clear visual cue",
       "details": [
         "The selected sense uses its POS colour as a soft tint and left rail; genuinely assigned senses add a compact ✓ matched chip, while unassigned senses remain selected without a false confidence claim",
