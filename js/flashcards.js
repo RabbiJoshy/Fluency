@@ -1391,13 +1391,12 @@ function updateCard() {
 
     // Validate the group selection against the current card. If any member
     // index is out of range, or the anchor's meaning/context no longer
-    // matches the stored groupKey (data shifted under us), drop the
-    // selection and fall back to per-meaning rendering. Keys are POS-free
-    // to match the rendering side's `groupKeyOf` (cross-POS groups allowed).
+    // matches the stored groupKey/POS (data shifted under us), drop the
+    // selection and fall back to per-meaning rendering.
     if (currentGroupSelection) {
         const sel = currentGroupSelection;
         const inRange = card.isMultiMeaning && sel.members && sel.members.length >= 2
-            && sel.members.every(i => i >= 0 && i < card.meanings.length);
+            && sel.members.every(i => i >= 0 && i < card.meanings.length && card.meanings[i].pos === sel.pos);
         if (!inRange) {
             currentGroupSelection = null;
         } else {
@@ -1656,20 +1655,35 @@ function updateCard() {
     // For multi-meaning cards, show all meanings on the back
     if (card.isMultiMeaning) {
 
-        // Two accumulators:
-        //   - scrollRows: regular meanings + SENSE_CYCLE (these scroll)
-        //   - trayRows: MWE + CLITIC (always visible, pinned below the
+        // Two POS-section maps:
+        //   - scrollSections: regular meanings + SENSE_CYCLE (these scroll)
+        //   - traySections: MWE + CLITIC (always visible, pinned below the
         //     scroll area so the user doesn't have to hunt for them)
-        const scrollRows = [];
-        const trayRows = [];
+        // Map insertion order preserves the source's first-seen POS order.
+        const scrollSections = new Map();
+        const traySections = new Map();
+        const rowsForSection = (sections, pos) => {
+            if (!sections.has(pos)) sections.set(pos, []);
+            return sections.get(pos);
+        };
+        const renderSections = sections => Array.from(sections, ([pos, rows]) => {
+            const posColorClass = getPosColorClass(pos);
+            return `
+                <section class="meaning-pos-section" data-pos="${pos}">
+                    <div class="meaning-pos-header">
+                        <span class="card-pos ${posColorClass}" onclick="showPOSInfo(event, '${pos}')">${pos}</span>
+                    </div>
+                    <div class="meaning-pos-rows">${rows.join('')}</div>
+                </section>
+            `;
+        }).join('');
 
         // Render-side grouping: collapse rows that share either
         // translation OR context into a single "group card" — shared
         // field on one side, list of varying values on the other.
-        // POS is intentionally NOT part of the grouping key; cross-POS
-        // collisions still merge (e.g. `que` CONJ "that" + REL "that").
-        // The renderer detects cross-POS groups and shows per-row POS
-        // pills inside the body so the distinction stays visible.
+        // POS is part of the grouping key because sections are now true
+        // structural groups: duplicate text can collapse within a section,
+        // but never merge meanings from two different parts of speech.
         // Examples:
         //   `dice` → 3 senses share "to say" → translation-axis group
         //            shared = "to say", varying = contexts
@@ -1694,8 +1708,8 @@ function updateCard() {
             groupPctSum = new Map();
             if (GROUP_DUPLICATE_MEANINGS) {
                 // Pass 1: tally raw sizes per axis (used only to make the
-                // per-meaning axis decision in pass 2). Keys are POS-free so
-                // cross-POS collisions can group (e.g. CONJ + REL "that").
+                // per-meaning axis decision in pass 2). Keys include POS so
+                // each duplicate group remains inside one section.
                 const transRawSize = new Map();
                 const ctxRawSize = new Map();
                 card.meanings.forEach((m, idx) => {
@@ -1703,10 +1717,10 @@ function updateCard() {
                         axisOf.set(idx, 'special');
                         return;
                     }
-                    const tk = m.meaning || '';
+                    const tk = `${m.pos}\u0000${m.meaning || ''}`;
                     transRawSize.set(tk, (transRawSize.get(tk) || 0) + 1);
                     if (m.context) {
-                        const ck = m.context;
+                        const ck = `${m.pos}\u0000${m.context}`;
                         ctxRawSize.set(ck, (ctxRawSize.get(ck) || 0) + 1);
                     }
                 });
@@ -1716,9 +1730,9 @@ function updateCard() {
                 card.meanings.forEach((m, idx) => {
                     if (axisOf.get(idx) === 'special') return;
                     const tk = m.meaning || '';
-                    const ts = transRawSize.get(tk) || 0;
+                    const ts = transRawSize.get(`${m.pos}\u0000${tk}`) || 0;
                     const ck = m.context || null;
-                    const cs = ck ? (ctxRawSize.get(ck) || 0) : 0;
+                    const cs = ck ? (ctxRawSize.get(`${m.pos}\u0000${ck}`) || 0) : 0;
                     if (ts > 1 && cs > 1) {
                         if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
                         else { axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck); }
@@ -1745,7 +1759,7 @@ function updateCard() {
                         const ax = axisOf.get(idx);
                         if (ax !== 'translation' && ax !== 'context') return;
                         const k = groupKeyOf.get(idx);
-                        const compKey = `${ax}|${k}`;
+                        const compKey = `${m.pos}\u0000${ax}\u0000${k}`;
                         if (!groupMembers.has(compKey)) groupMembers.set(compKey, []);
                         groupMembers.get(compKey).push(idx);
                         if (!groupFirstIdx.has(compKey)) groupFirstIdx.set(compKey, idx);
@@ -1770,13 +1784,16 @@ function updateCard() {
             const bgColor = isSelected ? 'rgba(var(--accent-primary-rgb), 0.6)' : 'rgba(15, 20, 28, 0.82)';
             const textColor = isSelected ? 'var(--text-primary)' : 'var(--text-primary)';
             const borderStyle = (isSelected && !m.unassigned) ? 'border: 3px solid var(--accent-primary);' : '';
-            const posColorClass = getPosColorClass(m.pos);
             const isMWE = m.pos === 'MWE';
             const isClitic = m.pos === 'CLITIC';
             const isSenseCycle = m.pos === 'SENSE_CYCLE';
+            const sectionPos = isSenseCycle ? (m.cycle_pos || 'X') : m.pos;
             // Route this row to the pinned tray (MWE/CLITIC) or the scroll
             // region (regular + SENSE_CYCLE).
-            const target = (isMWE || isClitic) ? trayRows : scrollRows;
+            const target = rowsForSection(
+                (isMWE || isClitic) ? traySections : scrollSections,
+                sectionPos
+            );
             // For MWE pill, show the current expression/translation based on MWE index
             const mweIdx = (isMWE && isSelected) ? currentMWEIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
@@ -1857,9 +1874,8 @@ function updateCard() {
                 </div>
                 `);
             } else if (isSenseCycle) {
-                // Sense cycle row: POS badge + all senses pipe-separated (these are unassigned/remainder)
-                const cyclePos = m.cycle_pos || 'X';
-                const cyclePosClass = getPosColorClass(cyclePos);
+                // Sense cycle row: all unassigned/remainder senses for this
+                // POS; the shared POS pill now lives in the section header.
                 const rawTranslations = m.allSenses ? m.allSenses.map(s => s.translation) : [m.meaning];
                 // Prettify the remainder bucket:
                 //   1. Split any semicolon-packed gloss into atomic translations
@@ -1916,16 +1932,9 @@ function updateCard() {
                 const ellipsisBtn = isTruncated
                     ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
                     : '';
-                // Same min-width as the regular-meaning pill so cycle + regular
-                // rows all share a unified POS-column width.
-                // Same min-width philosophy as regular rows (see above): pad
-                // short labels up to 46px, let longer ones (PHRASE etc.) expand.
-                const cyclePillStyle = 'font-size: 12px; padding: 5px 10px; margin: 0; white-space: nowrap; min-width: 46px; box-sizing: border-box; text-align: center;';
                 target.push(`
-                <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
-                    <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: start; cursor: pointer;" onclick="showPOSInfo(event, '${cyclePos}')">${cyclePos}</span>
-                    <span style="font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
-                    <span class="card-pos ${cyclePosClass}" style="${cyclePillStyle} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${cyclePos}</span>
+                <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}" style="display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                    <span style="flex: 1; font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
                 `);
             } else {
@@ -1942,17 +1951,11 @@ function updateCard() {
                 const axis = GROUP_DUPLICATE_MEANINGS ? (axisOf.get(idx) || 'singleton') : 'singleton';
                 const isGrouped = axis === 'translation' || axis === 'context';
                 const groupKey = isGrouped ? groupKeyOf.get(idx) : null;
-                const compKey = isGrouped ? `${axis}|${groupKey}` : null;
+                const compKey = isGrouped ? `${m.pos}\u0000${axis}\u0000${groupKey}` : null;
                 if (isGrouped) {
                     const firstIdx = groupFirstIdx.get(compKey);
                     if (firstIdx !== idx) return;
                 }
-                const pillStyleBase = 'padding: 5px 21px; margin: 0; white-space: nowrap; line-height: 1; min-width: 56px; box-sizing: border-box;';
-                // Single POS-pill renderer for both group + singleton: just the
-                // POS label (no %; the % lives on the right of the row).
-                // Font 12px to match the MWE-expression highlight pill so the
-                // two visually pair as the same typographic tier.
-                const buildPosPillInner = () => `<span style="display: block; font-size: 12px; font-weight: 700; line-height: 1;">${m.pos}</span>`;
                 if (isGrouped) {
                     const members = groupMembers.get(compKey);
                     const pctSumRaw = groupPctSum.get(compKey);
@@ -1966,8 +1969,9 @@ function updateCard() {
                     // clicking any sub-item reverts to per-meaning selection.
                     const groupSelected = !!(currentGroupSelection
                         && currentGroupSelection.axis === axis
+                        && currentGroupSelection.pos === m.pos
                         && currentGroupSelection.groupKey === groupKey);
-                    // Outer row mirrors singleton: pos column | body | pct.
+                    // Outer row mirrors singleton: body | pct.
                     // The body's internal grid stays simple (shared + varying):
                     //   trans-axis: shared trans | varying ctx
                     //   ctx-axis:   varying trans | shared ctx
@@ -2010,18 +2014,6 @@ function updateCard() {
                         return varyingCell;
                     }).join('');
 
-                    // POS column — one pill per member, stacked on the left edge
-                    // of the outer grid (col 1). Each pill's height matches the
-                    // corresponding body row's min-height (25px) so pills align
-                    // with their member's varying/shared cell.
-                    const posStackHtml = members.map((memberIdx) => {
-                        const mm = card.meanings[memberIdx];
-                        const memberPct = Math.round((mm.percentage || 0) * 100);
-                        const memberPosColorClass = getPosColorClass(mm.pos);
-                        return `<span class="card-pos ${memberPosColorClass}" style="${pillStyleBase} display: flex; align-items: center; justify-content: center; min-height: 25px; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${mm.pos}', ${memberPct})"><span style="display: block; font-size: 12px; font-weight: 700; line-height: 1;">${mm.pos}</span></span>`;
-                    }).join('');
-                    const posColumnHtml = `<div class="pos-column" style="display: flex; flex-direction: column; gap: 3px; padding-right: 4px;">${posStackHtml}</div>`;
-
                     // Pct stack — lives outside the highlight box, in its own
                     // outer-grid column on the right edge of the row, so the
                     // %s align with singleton-card %s.
@@ -2042,16 +2034,16 @@ function updateCard() {
                         ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}</div>`
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;"><span class="meaning-context">${sharedText}</span></div>`;
 
-                    // Body grid: shared + varying. POS and pct columns live in
-                    // the outer grid, so they don't appear here.
+                    // Body grid: shared + varying. The pct column lives in the
+                    // outer grid; POS lives in the section header.
                     const gridCols = 'minmax(0, max-content) minmax(0, max-content)';
 
-                    // Outer row mirrors singleton: pos column | body | pct stack.
-                    const outerGridCols = 'auto 1fr auto';
+                    // Outer row is body | pct stack. POS is represented once
+                    // by the section header above this group of rows.
+                    const outerGridCols = '1fr auto';
 
                     target.push(`
                     <div class="meaning-row meaning-row-group${(groupSelected || anyMemberSelected) ? ' selected' : ''}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
-                        ${posColumnHtml}
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
@@ -2060,12 +2052,8 @@ function updateCard() {
                     </div>
                     `);
                 } else {
-                    // Singleton: flat row. POS pill (no %) | centred translation
-                    // with optional inline context | % pinned to the right edge
-                    // of the body (absolute, hidden at 100%, click-through).
-                    const posPillInner = buildPosPillInner();
-                    const posPill = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: start; cursor: pointer;" onclick="event.stopPropagation(); showPOSInfo(event, '${m.pos}', ${pctVal})">${posPillInner}</span>`;
-                    const posPillMirror = `<span class="card-pos ${posColorClass}" style="${pillStyleBase} justify-self: end; visibility: hidden; pointer-events: none;" aria-hidden="true">${posPillInner}</span>`;
+                    // Singleton: centred translation with optional inline
+                    // context. POS is represented by the section header.
                     let contextInline = '';
                     if (m.context) {
                         const safeFull = String(m.context).replace(/"/g, '&quot;');
@@ -2080,12 +2068,10 @@ function updateCard() {
                         ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                         : '';
                     target.push(`
-                    <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}" style="position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
-                        ${posPill}
-                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 8px;">
+                    <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
+                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${pctVal < 100 ? '42px' : '8px'} 0 8px;">
                             <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
-                        ${posPillMirror}
                         ${pctTail}
                     </div>
                     `);
@@ -2094,9 +2080,9 @@ function updateCard() {
         });
         // Emit the scroll region first, then the pinned tray underneath
         // (MWE/CLITIC rows that stay visible when the user scrolls).
-        backHTML += `<div class="meanings-scroll">${scrollRows.join('')}</div>`;
-        if (trayRows.length > 0) {
-            backHTML += `<div class="meanings-tray">${trayRows.join('')}</div>`;
+        backHTML += `<div class="meanings-scroll">${renderSections(scrollSections)}</div>`;
+        if (traySections.size > 0) {
+            backHTML += `<div class="meanings-tray">${renderSections(traySections)}</div>`;
         }
 
         // Show current sentence
@@ -2835,9 +2821,8 @@ function selectMeaning(index) {
 // downstream code that reads `card.meanings[currentMeaningIndex]` still has
 // a valid object.
 //
-// Group keys are POS-free (matching the rendering side's `groupKeyOf`)
-// because cross-POS collisions are intentionally allowed to group — e.g.
-// CONJ + REL "that" share translation "that" and render as one row.
+// Group membership includes the anchor's POS so a grouped row never crosses
+// the section boundary rendered above it.
 function selectGroup(axis, anchorIdx) {
     const card = flashcards[currentIndex];
     if (!card || !card.meanings || !card.meanings[anchorIdx]) return;
@@ -2848,17 +2833,17 @@ function selectGroup(axis, anchorIdx) {
         groupKey = anchor.meaning || '';
         members = card.meanings
             .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => (mm.meaning || '') === groupKey)
+            .filter(({ mm }) => mm.pos === anchor.pos && (mm.meaning || '') === groupKey)
             .map(({ i }) => i);
     } else {
         groupKey = anchor.context || '';
         members = card.meanings
             .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => (mm.context || '') === groupKey)
+            .filter(({ mm }) => mm.pos === anchor.pos && (mm.context || '') === groupKey)
             .map(({ i }) => i);
     }
     if (members.length < 2) return;
-    currentGroupSelection = { axis, groupKey, members };
+    currentGroupSelection = { axis, groupKey, pos: anchor.pos, members };
     currentMeaningIndex = anchorIdx;
     currentExampleIndex = 0;
     currentMWEIndex = 0;

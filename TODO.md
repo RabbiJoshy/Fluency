@@ -43,10 +43,9 @@
   3. **(S) [shared/spanish] Highlight the "used with X" word in examples** — DONE 2026-07-24
      (2649ab2): quoted `used with "X"` context is parsed without a whitelist, whole-word X is
      highlighted beside the headword in target examples, and retained as `meaning.usedWith`.
-  4. **(M) [shared] Card back: POS pill above each section, not inside each row** — group senses
-     by POS and render the POS-tag pill as a section header above the group (usually one POS +
-     a few senses; scroll when many). Restructures the sense-list render in `updateCard()`
-     (`flashcards.js`). Related to the card-back polish batch.
+  4. **(M) [shared] Card back: POS pill above each section, not inside each row** — DONE
+     2026-07-24 (PENDING): meanings are grouped into real POS sections with one clickable header;
+     duplicate-sense groups no longer cross POS boundaries, and long section lists still scroll.
   4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — right now
      the card back shows a matched sense / matched example with just a cold outline/border. Josh
      wants something more intelligent and is explicitly leaving the design to the model's

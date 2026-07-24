@@ -102,6 +102,10 @@ Per-sense flags set by `joinWithMaster()`:
 - **English keyword highlight**: Only fires when `example.assignment_method` includes `'keyword'`. Highlights translation fragments ≥ 2 chars of `currentMeaning.meaning` in the English sentence.
 - **Sense row border**: `!m.unassigned` → solid accent border on selected row.
 
+Card-back senses are grouped into POS sections. `updateCard()` emits one
+`.meaning-pos-header` pill per section and keeps duplicate translation/context
+groups within that POS; individual regular rows do not repeat the POS pill.
+
 **Copy-through in `buildFilteredVocab()`**: Meanings are rebuilt from scratch at the filter stage (two places, ~line 430 and ~line 776). Both paths must copy `assignment_method` through, otherwise it is silently dropped before it reaches the card. `joinWithMaster()` in `vocab.js` sets `assignment_method` from `idx.sense_methods[i]`; `buildFilteredVocab()` must preserve it.
 
 **`currentExample` scope**: `updateCard()` in `flashcards.js` uses a hoisted `currentExample` variable (set when `activeExamples.length > 0`) for per-example decisions like the English highlight and example-box border. These references live outside the `if (activeExamples.length > 0)` block, so they must not reference the inner `example` const directly.

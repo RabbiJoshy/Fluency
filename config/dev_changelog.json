@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Card-back senses are now organised into POS sections",
+      "details": [
+        "Each part of speech gets one labelled header above its senses instead of repeating a POS pill inside every row; long cards keep all sections in the existing scroll area",
+        "Duplicate translation/context groups now stay within one POS section, while MWE and clitic sections remain in the pinned tray; cache v58→v59, assets 20260724c→20260724d"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "2649ab2",
       "summary": "Examples now highlight words required by a Spanish sense",
       "details": [
