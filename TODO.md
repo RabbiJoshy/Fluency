@@ -41,7 +41,7 @@
      `updateStep2Tooltip()` was overwriting the whole tooltip body in artist mode; now it only
      swaps the Level tab's copy and keeps all three tabs.
   3. **(S) [shared/spanish] Highlight the "used with X" word in examples** — DONE 2026-07-24
-     (PENDING): quoted `used with "X"` context is parsed without a whitelist, whole-word X is
+     (2649ab2): quoted `used with "X"` context is parsed without a whitelist, whole-word X is
      highlighted beside the headword in target examples, and retained as `meaning.usedWith`.
   4. **(M) [shared] Card back: POS pill above each section, not inside each row** — group senses
      by POS and render the POS-tag pill as a section header above the group (usually one POS +

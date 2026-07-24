@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "2649ab2",
       "summary": "Examples now highlight words required by a Spanish sense",
       "details": [
         "When a sense says it is used with \"X\", whole-word occurrences of X receive the same example highlight as the headword, with no token whitelist",
