@@ -148,8 +148,20 @@ function updatePersonalCoverage(filteredVocab) {
     const label = document.getElementById('personalCoverageLabel');
     if (!wrapper || !fill || !label) return;
 
+    const showEmptyStandardSummary = () => {
+        const merged = !activeArtist && document.getElementById('step1')?.classList.contains('language-summary-active');
+        if (merged) {
+            wrapper.style.display = 'block';
+            wrapper.classList.add('personal-coverage-wrapper--empty', 'visible');
+            fill.style.width = '0%';
+            label.innerHTML = '';
+        } else {
+            wrapper.style.display = 'none';
+        }
+    };
+
     if (!progressData || !filteredVocab || filteredVocab.length === 0) {
-        wrapper.style.display = 'none';
+        showEmptyStandardSummary();
         _toggleLevelEstimateCTA(false);
         return;
     }
@@ -175,7 +187,7 @@ function updatePersonalCoverage(filteredVocab) {
     }
 
     if (coveredCount === 0) {
-        wrapper.style.display = 'none';
+        showEmptyStandardSummary();
         _toggleLevelEstimateCTA(false);
         return;
     }
@@ -185,6 +197,7 @@ function updatePersonalCoverage(filteredVocab) {
     // Animate the bar
     _toggleLevelEstimateCTA(true);
     wrapper.style.display = 'block';
+    wrapper.classList.remove('personal-coverage-wrapper--empty');
     wrapper.classList.remove('visible');
     fill.style.transition = 'none';
     fill.style.width = '0%';

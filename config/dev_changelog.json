@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-24",
+      "commit": "PENDING",
+      "summary": "Standard-mode progress now lives inside the language box",
+      "details": [
+        "After choosing a language, its name sits beside the compact speech/flashcard percentages and the coverage bar runs directly underneath in the same step-1 card",
+        "Zero-progress languages keep the chosen language visible while the estimate CTA remains separate; artist mode's top progress card is unchanged; cache v61→v62, assets 20260724f→20260724g"
+      ]
+    },
+    {
+      "date": "2026-07-24",
       "commit": "c92d0f0",
       "summary": "Standard mode now chooses languages from a radial flag clock",
       "details": [

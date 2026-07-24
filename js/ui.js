@@ -90,6 +90,39 @@ function setActiveSetupStep(stepId) {
         .forEach(number => number.classList.toggle('--active', number.closest('.setup-step')?.id === stepId));
 }
 
+function mergeStandardProgressIntoLanguageStep() {
+    if (activeArtist) return;
+    const step = document.getElementById('step1');
+    const header = document.getElementById('step1Header');
+    const wrapper = document.getElementById('personalCoverageWrapper');
+    const progressHeader = wrapper && wrapper.querySelector('.personal-progress-header');
+    const inlinePill = document.getElementById('selectedLanguageInline');
+    if (!step || !header || !wrapper || !progressHeader || !inlinePill) return;
+
+    progressHeader.prepend(inlinePill);
+    header.appendChild(wrapper);
+    step.classList.add('language-summary-active');
+    wrapper.classList.add('personal-coverage-wrapper--merged', 'personal-coverage-wrapper--empty', 'visible');
+    wrapper.style.display = 'block';
+}
+
+function unmergeStandardProgressFromLanguageStep() {
+    if (activeArtist) return;
+    const step = document.getElementById('step1');
+    const header = document.getElementById('step1Header');
+    const title = document.getElementById('step1Title');
+    const wrapper = document.getElementById('personalCoverageWrapper');
+    const inlinePill = document.getElementById('selectedLanguageInline');
+    const cta = document.getElementById('levelEstimateCTA');
+    if (!step || !header || !title || !wrapper || !inlinePill || !cta) return;
+
+    title.after(inlinePill);
+    cta.after(wrapper);
+    step.classList.remove('language-summary-active');
+    wrapper.classList.remove('personal-coverage-wrapper--merged', 'personal-coverage-wrapper--empty', 'visible');
+    wrapper.style.display = 'none';
+}
+
 function renderLanguageTabs() {
     const tabsContainer = document.getElementById('languageTabs');
 
@@ -145,6 +178,7 @@ function setupLanguageTabs() {
 
     // Click handler for the inline language pill (to re-expand tabs)
     inlinePill.addEventListener('click', function() {
+        unmergeStandardProgressFromLanguageStep();
         this.style.display = 'none';
         document.getElementById('languageTabs').style.display = 'flex';
         // Hide subsequent steps
@@ -194,6 +228,7 @@ function setupLanguageTabs() {
             inlinePill.textContent = langConfig ? langConfig.name : selectedLanguage;
             document.getElementById('languageTabs').style.display = 'none';
             inlinePill.style.display = 'inline-flex';
+            mergeStandardProgressIntoLanguageStep();
 
             // Hide all subsequent steps while loading
             document.getElementById('step2').style.display = 'none';
@@ -1863,6 +1898,7 @@ window.setupTooltipHandlers = setupTooltipHandlers;
 window.updateIncorrectButtonVisibility = updateIncorrectButtonVisibility;
 window.renderLanguageTabs = renderLanguageTabs;
 window.setActiveSetupStep = setActiveSetupStep;
+window.mergeStandardProgressIntoLanguageStep = mergeStandardProgressIntoLanguageStep;
 window.setupLanguageTabs = setupLanguageTabs;
 window.hideAllSelectionPills = hideAllSelectionPills;
 window.updatePercentModeButton = updatePercentModeButton;

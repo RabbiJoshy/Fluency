@@ -5143,6 +5143,61 @@
             margin-bottom: 8px;
         }
 
+        #step1.language-summary-active > .step-header {
+            align-items: stretch;
+            margin: 0;
+        }
+
+        #step1.language-summary-active #step1Title {
+            display: none;
+        }
+
+        .personal-coverage-wrapper.personal-coverage-wrapper--merged {
+            flex: 1;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            opacity: 1 !important;
+        }
+
+        .personal-coverage-wrapper--merged .personal-progress-header {
+            min-height: 28px;
+            margin: 0 0 6px;
+            padding: 0;
+        }
+
+        .personal-coverage-wrapper--merged .personal-progress-title {
+            display: none;
+        }
+
+        .personal-coverage-wrapper--merged .personal-progress-header > .step-help-btn {
+            position: static;
+            margin: 0 2px 0 0;
+            font-size: 16px;
+        }
+
+        .personal-coverage-wrapper--merged .selection-pill-inline {
+            flex-shrink: 0;
+            margin-right: 2px;
+        }
+
+        .personal-coverage-wrapper--merged .coverage-bar-container {
+            height: 7px;
+        }
+
+        .personal-coverage-wrapper--merged.personal-coverage-wrapper--empty .personal-progress-header {
+            margin-bottom: 0;
+        }
+
+        .personal-coverage-wrapper--merged.personal-coverage-wrapper--empty .personal-progress-info,
+        .personal-coverage-wrapper--merged.personal-coverage-wrapper--empty .personal-progress-header > .step-help-btn,
+        .personal-coverage-wrapper--merged.personal-coverage-wrapper--empty .coverage-bar-container {
+            display: none;
+        }
+
         .personal-coverage-fill {
             background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
         }
