@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "5cb5632",
       "summary": "Card-back POS colours now read as one coherent legend",
       "details": [
         "Moves the complete POS legend directly beneath the word and lemma, removing repeated section introductions while preserving POS-grouped scrolling",

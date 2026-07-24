@@ -44,10 +44,10 @@
      (2649ab2): quoted `used with "X"` context is parsed without a whitelist, whole-word X is
      highlighted beside the headword in target examples, and retained as `meaning.usedWith`.
   4. **(M) [shared] Card back: POS grouping without repeated row pills** — DONE
-     2026-07-24 (0658c92; refined PENDING): meanings remain grouped into real POS sections, but
+     2026-07-24 (0658c92; refined 5cb5632): meanings remain grouped into real POS sections, but
      one compact clickable legend now sits under the word/lemma and each row carries its POS colour.
   4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — DONE
-     2026-07-24 (3902737; refined PENDING): all rows use a restrained POS tint; selection uses
+     2026-07-24 (3902737; refined 5cb5632): all rows use a restrained POS tint; selection uses
      stronger tint, rail, border, and elevation, while examples retain the colour link without
      redundant “matched” labels. MWE is presented to learners as “Expressions.”
   5. **(M) [normal] Language picker → radial button** — DONE 2026-07-24 (c92d0f0): one
