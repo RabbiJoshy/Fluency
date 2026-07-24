@@ -85,7 +85,7 @@
      (`e72ead23`): the stats modal shows the previously-known count and reconciles it with the
      chosen set size/card position.
   4. **(M) [artist/spanish] Verbs missing morphology even though the card "knows" it** — CODED
-     2026-07-24 (PENDING; conjugation + artist data rebuild required): verbecc fails on 178 clean
+     2026-07-24 (`26a7c32`; conjugation + artist data rebuild required): verbecc fails on 178 clean
      artist verb bases (even `pasar`, with `IndexError`) although morphology is already stamped.
      `step_5b_build_conjugations.py` now reconstructs core tables from the Wiktionary morphology
      layer, recovering 174/178 audited gaps; regression coverage included.
