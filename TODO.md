@@ -97,8 +97,9 @@
      map to several Spanish cards. Probably one card with a starter/front-of-card disambiguation
      plus incorporated synonyms, rather than N duplicate cards. Design question; overlaps the
      Synonym+antonym viewer item.
-  7. **(S) [normal] Spotify: stop asking for confirmation on desktop every time** — suppress the
-     repeated confirmation prompt on the desktop Spotify flow.
+  7. **(S) [artist] Spotify: stop asking for confirmation on desktop every time** — DONE
+     2026-04-09 (`f52dfcf`): desktop playback stays inside the Web Playback SDK, persists and
+     refreshes OAuth tokens, and only reopens authorization when no usable token exists.
   8. **(idea) [shared] Maybe a final/capstone level** — a "you've finished everything" level
      state at the top of the ladder.
 
