@@ -44,7 +44,7 @@
      (2649ab2): quoted `used with "X"` context is parsed without a whitelist, whole-word X is
      highlighted beside the headword in target examples, and retained as `meaning.usedWith`.
   4. **(M) [shared] Card back: POS pill above each section, not inside each row** — DONE
-     2026-07-24 (PENDING): meanings are grouped into real POS sections with one clickable header;
+     2026-07-24 (0658c92): meanings are grouped into real POS sections with one clickable header;
      duplicate-sense groups no longer cross POS boundaries, and long section lists still scroll.
   4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — right now
      the card back shows a matched sense / matched example with just a cold outline/border. Josh

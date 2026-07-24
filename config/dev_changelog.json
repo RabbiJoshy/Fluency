@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "0658c92",
       "summary": "Card-back senses are now organised into POS sections",
       "details": [
         "Each part of speech gets one labelled header above its senses instead of repeating a POS pill inside every row; long cards keep all sections in the existing scroll area",
