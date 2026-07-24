@@ -53,7 +53,7 @@
   5. **(M) [normal] Language picker → radial button** — DONE 2026-07-24 (c92d0f0): one
      full-width button opens a flag-picture clock using the artist picker's shared radial core;
      available languages keep the canonical loader and coming-soon languages stay disabled.
-  6. **(M) [normal] Roll progress into the language box** — DONE 2026-07-24 (PENDING): after
+  6. **(M) [normal] Roll progress into the language box** — DONE 2026-07-24 (bdfa03b): after
      selection, the language sits beside compact speech/flashcard percentages with the bar below
      in step 1; zero-progress languages remain visible and artist mode is unchanged.
   7. **(M) [artist] [USE JUDGEMENT] Rethink the whole frequency partition of the deck** — in

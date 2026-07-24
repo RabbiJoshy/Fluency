@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "bdfa03b",
       "summary": "Standard-mode progress now lives inside the language box",
       "details": [
         "After choosing a language, its name sits beside the compact speech/flashcard percentages and the coverage bar runs directly underneath in the same step-1 card",
