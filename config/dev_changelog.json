@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-24",
-      "commit": "PENDING",
+      "commit": "5f7eaf0",
       "summary": "Card grammar now reads as one connected colour system",
       "details": [
         "Removes Expressions and Clitics from the back legend because their pinned row formats already identify them",

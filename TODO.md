@@ -44,14 +44,14 @@
      (2649ab2): quoted `used with "X"` context is parsed without a whitelist, whole-word X is
      highlighted beside the headword in target examples, and retained as `meaning.usedWith`.
   4. **(M) [shared] Card back: POS grouping without repeated row pills** — DONE
-     2026-07-24 (0658c92; refined 5cb5632 + PENDING): meanings remain grouped into real POS
+     2026-07-24 (0658c92; refined 5cb5632 + 5f7eaf0): meanings remain grouped into real POS
      sections; one compact clickable grammatical-POS legend sits under the word/lemma, while
      self-explanatory expression/clitic rows do not add legend pills.
   4b. **(M) [shared] [USE JUDGEMENT] Smarter "this sense/example matched" indication** — DONE
-     2026-07-24 (3902737; refined 5cb5632 + PENDING): all rows use a restrained POS tint;
+     2026-07-24 (3902737; refined 5cb5632 + 5f7eaf0): all rows use a restrained POS tint;
      selection uses stronger tint, rail, border, and elevation, while sentence headwords use a
      softer tint/baseline link without redundant “matched” labels.
-  4c. **(S) [shared] Front-card POS and morphology hierarchy** — DONE 2026-07-24 (PENDING):
+  4c. **(S) [shared] Front-card POS and morphology hierarchy** — DONE 2026-07-24 (5f7eaf0):
      combined POS labels are split into individual colour pills, and verb morphology is attached
      beneath VERB using a softer version of its colour and the normal reading font.
   5. **(M) [normal] Language picker → radial button** — DONE 2026-07-24 (c92d0f0): one
