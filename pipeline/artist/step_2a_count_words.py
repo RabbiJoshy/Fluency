@@ -51,13 +51,16 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
     3: "+ strip hyphen-chain ad-libs (ah-na-na, aca-ca-ca, Ba-Ba-Baila) "
        "before tokenization — prevents ad-lib stutters polluting short-"
        "token counts that later merge into real words via elision",
+    4: "+ count each normalized lyric line once per song — repeated choruses "
+       "no longer inflate word/MWE frequency, while the same line in a "
+       "different song remains independent",
 }
 
 try:
@@ -518,7 +521,8 @@ def build_counts_and_candidates(
     counts: Counter = Counter()
     candidates: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     lid_stats = {"lines_total": 0, "lines_skipped": 0, "lines_below_min_tokens": 0,
-                 "multi_word_splits": 0, "ngram_elision_subs": 0}
+                 "duplicate_lines": 0, "multi_word_splits": 0,
+                 "ngram_elision_subs": 0}
     mwe_map = mwe_map or {}
     elision_map = elision_map or {}
 
@@ -527,8 +531,6 @@ def build_counts_and_candidates(
     ngram_unigrams: Counter = Counter()
     ngram_counts: Dict[int, Counter] = {n: Counter() for n in range(2, 6)}
     ngram_songs: Dict[str, set] = defaultdict(set)
-    seen_lines: set = set()  # deduplicate lines for n-gram counting
-
     for song in songs:
         raw_lyrics = song.get("lyrics")
         if not raw_lyrics:
@@ -541,6 +543,11 @@ def build_counts_and_candidates(
         clean = clean_genius_lyrics(raw_lyrics)
         if not clean:
             continue
+
+        # Repeated chorus/refrain lines contribute once within this song.
+        # Reset for every song: a shared line in two different songs is two
+        # independent pieces of corpus evidence and must count twice.
+        seen_count_lines: set = set()
 
         # Each line element: (line_no, line_text, expanded_tokens, word_surfaces)
         # where expanded_tokens is List[(word, source_surface)] and
@@ -576,30 +583,37 @@ def build_counts_and_candidates(
                 if w not in word_surfaces:
                     word_surfaces[w] = surface
             lines.append((line_no, line_text, expanded, word_surfaces))
+
+            # Use the normalized tokens that actually feed the counter as the
+            # exact-line key. This makes capitalization, punctuation, and
+            # bracket-only ad-lib differences irrelevant to corpus frequency.
+            count_line_key = " ".join(norm_toks)
+            if count_line_key in seen_count_lines:
+                lid_stats["duplicate_lines"] += 1
+                continue
+            seen_count_lines.add(count_line_key)
             counts.update(norm_toks)
 
-            # Count n-grams once per unique line text (use cleaned text).
+            # Count n-grams from the same once-per-song line basis.
             # N-gram detection uses EXPANDED + elision-normalized tokens so MWE
             # phrases align with the canonical vocabulary that step 3a will
             # later produce ("otra ve'" + "otra vez" share counts here).
-            if count_text not in seen_lines:
-                seen_lines.add(count_text)
-                for chunk in _PHRASE_SPLIT_RE.split(count_text):
-                    chunk_raw = tokenize(chunk)
-                    chunk_toks = [w for w, _ in expand_tokens(chunk_raw, mwe_map)] if mwe_map else chunk_raw
-                    if elision_map or _AMBIG_ELISIONS_NGRAM:
-                        before = chunk_toks
-                        chunk_toks = normalize_ngram_tokens(chunk_toks, elision_map)
-                        lid_stats["ngram_elision_subs"] += sum(
-                            1 for a, b in zip(before, chunk_toks) if a != b
-                        )
-                    for t in chunk_toks:
-                        ngram_unigrams[t] += 1
-                    for n in range(2, 6):
-                        for i in range(len(chunk_toks) - n + 1):
-                            ng = " ".join(chunk_toks[i:i + n])
-                            ngram_counts[n][ng] += 1
-                            ngram_songs[ng].add(song_id)
+            for chunk in _PHRASE_SPLIT_RE.split(count_text):
+                chunk_raw = tokenize(chunk)
+                chunk_toks = [w for w, _ in expand_tokens(chunk_raw, mwe_map)] if mwe_map else chunk_raw
+                if elision_map or _AMBIG_ELISIONS_NGRAM:
+                    before = chunk_toks
+                    chunk_toks = normalize_ngram_tokens(chunk_toks, elision_map)
+                    lid_stats["ngram_elision_subs"] += sum(
+                        1 for a, b in zip(before, chunk_toks) if a != b
+                    )
+                for t in chunk_toks:
+                    ngram_unigrams[t] += 1
+                for n in range(2, 6):
+                    for i in range(len(chunk_toks) - n + 1):
+                        ng = " ".join(chunk_toks[i:i + n])
+                        ngram_counts[n][ng] += 1
+                        ngram_songs[ng].add(song_id)
 
         # Top 3 distinct lines per word per song (for single-song words).
         # Two lines are "the same" if their tokenized text matches after
@@ -1114,6 +1128,8 @@ def main():
 
     if lid_stats.get("multi_word_splits"):
         print(f"  Multi-word elision splits: {lid_stats['multi_word_splits']:,} tokens expanded")
+    if lid_stats.get("duplicate_lines"):
+        print(f"  Repeated lyric lines excluded from counts: {lid_stats['duplicate_lines']:,}")
     if lid_stats.get("ngram_elision_subs"):
         print(f"  N-gram elision normalizations: {lid_stats['ngram_elision_subs']:,} substitutions")
 

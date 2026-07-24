@@ -74,10 +74,10 @@
   js/sync-queue.js); level auto-jumps to first not-completed level on setting change (DONE,
   `findFirstIncompleteLevelBtn` in ui.js); collapsed-lemma pools all examples across the lemma
   (SHIPPED but buggy — see the frequency/pooling audit item above). Still OPEN:
-  1. **(S) [shared] Exclude exact-line repetitions from corpus count** — when the exact same line
-     repeats within a song, don't double-count its words toward frequency; optionally use exact
-     repetition as a tiebreaker. Pipeline-side count logic; distinct from the Songs-to-Exclude
-     section (this is intra-song line dedup, not whole-song exclusion).
+  1. **(S) [shared] Exclude exact-line repetitions from corpus count** — CODED 2026-07-24
+     (PENDING; artist data rebuild required): normalized lyric lines now contribute once per song
+     to word and MWE counts; the same line in different songs remains independent. Regression
+     coverage: `pipeline/artist/test_step_2a_count_words.py`.
   2. **(S) [normal] Card scroll/transition animation, desktop mode** — add an animation when
      moving between cards on desktop (currently feels static there).
   3. **(S) [shared] Study-set stats: show how many you've already studied** — when viewing a
