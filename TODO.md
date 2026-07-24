@@ -78,10 +78,12 @@
      (`7c63853`; artist data rebuild required): normalized lyric lines now contribute once per song
      to word and MWE counts; the same line in different songs remains independent. Regression
      coverage: `pipeline/artist/test_step_2a_count_words.py`.
-  2. **(S) [normal] Card scroll/transition animation, desktop mode** — add an animation when
-     moving between cards on desktop (currently feels static there).
-  3. **(S) [shared] Study-set stats: show how many you've already studied** — when viewing a
-     set's stats, surface the previously-studied count so the numbers aren't confusing.
+  2. **(S) [normal] Card scroll/transition animation, desktop mode** — DONE 2026-05-03
+     (`7714efc9`): desktop previous/next navigation has directional exit and entry animations,
+     including flipped-card transforms.
+  3. **(S) [shared] Study-set stats: show how many you've already studied** — DONE 2026-05-09
+     (`e72ead23`): the stats modal shows the previously-known count and reconciles it with the
+     chosen set size/card position.
   4. **(M) [artist/spanish] Verbs missing morphology even though the card "knows" it** — some
      verbs render without a conjugation/morphology table despite the data seeming present.
      Likely because morphology is SpanishDict-dependent only (not verbecc); SD should know them.
