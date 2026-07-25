@@ -316,7 +316,7 @@ function computePersonalEasiness(spanishText) {
 
 // Compute % of example lines where every vocabulary word is known.
 // Returns { understood, total, pct } or null if data not available.
-function computeLinesUnderstood() {
+function computeLinesUnderstood(allowedEntryIds = null) {
     if (!_spanishRanks || !progressData) return null;
     const examplesData = window._cachedExamplesData;
     if (!examplesData) return null;
@@ -328,9 +328,12 @@ function computeLinesUnderstood() {
     let understood = 0;
     let total = 0;
 
-    for (const entry of Object.values(examplesData)) {
-        if (!entry.m) continue;
-        for (const meaningExamples of entry.m) {
+    for (const [entryId, entry] of Object.entries(examplesData)) {
+        if (allowedEntryIds && !allowedEntryIds.has(entryId)) continue;
+        const lineBuckets = [...(entry.m || [])];
+        if (Array.isArray(entry.r) && entry.r.length > 0) lineBuckets.push(entry.r);
+        if (lineBuckets.length === 0) continue;
+        for (const meaningExamples of lineBuckets) {
             if (!meaningExamples) continue;
             for (const ex of meaningExamples) {
                 // Normal-mode example files use `target`, artist-mode files
@@ -823,32 +826,8 @@ function initializeApp() {
 
     // Settings modal interactions
 
-    // Hide single-occurrence words toggle
-    document.getElementById('hideSingleOccToggle').addEventListener('click', function() {
-        hideSingleOccurrence = !hideSingleOccurrence;
-        document.getElementById('hideSingleOccStatus').textContent = hideSingleOccurrence ? 'ON' : 'OFF';
-        document.getElementById('hideSingleOccStatus').style.color = hideSingleOccurrence ? 'var(--accent-primary)' : 'var(--text-muted)';
-
-        // Recalculate cumulative percentages with new freq-1 inclusion/exclusion
-        recalculateCumulativePercents();
-
-        // Re-render level selector and range selector to reflect new filtering
-        const step2Display = document.getElementById('step2').style.display;
-        if (selectedLanguage && step2Display !== 'none') {
-            renderLevelSelector(selectedLanguage);
-            if (selectedLevel) {
-                const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
-                if (levelBtn) {
-                    levelBtn.classList.add('selected');
-                    levelBtn.textContent = levelBtn.dataset.full;
-                }
-                renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
-            }
-        }
-    });
-
     // Proper nouns + interjections/noise toggles. Same pattern as
-    // hideSingleOccurrence — flip the state, refresh the badge, then
+    // the other active filters — flip the state, refresh the badge, then
     // re-render the level + range selectors so the affected entries
     // disappear/reappear in the deck. No ppm recalc needed because
     // these flags don't change the corpus frequency totals.
@@ -1717,7 +1696,7 @@ function updateCard({ announceHeadword = false } = {}) {
 
     if (card.isMultiMeaning) {
         // Multi-meaning format
-        if (isFlipped && !card.searchExamplesOnly) {
+        if (isFlipped && !card.searchExamplesOnly && !card.translationUnavailable) {
             // English → Target language: build structured front with POS badges
             const normalMeanings = card.meanings.filter(m =>
                 m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
@@ -1950,8 +1929,9 @@ function updateCard({ announceHeadword = false } = {}) {
             }
         }
         const denominator = vocabularySize ? ` / ${vocabularySize.toLocaleString()}` : '';
+        const rankLabel = card.artistVocabularyScope === 'extra' ? 'Extra rank' : 'Vocabulary rank';
         frontRankingEl.innerHTML =
-            `<span class="card-rank-label">Vocabulary rank: ${Number(vocabularyRank).toLocaleString()}${denominator}</span>${freqHtml}`;
+            `<span class="card-rank-label">${rankLabel}: ${Number(vocabularyRank).toLocaleString()}${denominator}</span>${freqHtml}`;
         frontRankingEl.style.display = 'flex';
     } else {
         frontRankingEl.style.display = 'none';
@@ -2024,6 +2004,9 @@ function updateCard({ announceHeadword = false } = {}) {
             ${homographChipHTML}
         </div>
     `;
+    if (card.translationUnavailable) {
+        backHTML += `<div class="extra-translation-unavailable"><strong>No translation available yet.</strong><br>This one-off lyric remains available as corpus evidence.</div>`;
+    }
 
     // For multi-meaning cards, show all meanings on the back
     if (card.isMultiMeaning) {
@@ -2555,6 +2538,7 @@ function updateCard({ announceHeadword = false } = {}) {
             let displayEnglishSentence = currentMeaning.englishSentence;
             let songName = null;
             let vocalistCredit = null;
+            let exampleSourceLabel = null;
             let currentExample = null;
 
             let spotifyUrl = null;
@@ -2565,6 +2549,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 const exIdx = currentExampleIndex % activeExamples.length;
                 const example = activeExamples[exIdx];
                 currentExample = example;
+                exampleSourceLabel = example.source_mode === 'speech' ? 'Speech example' : null;
                 window._currentDisplayedExample = example;
                 const exTarget = example.target || example.spanish || '';
                 const exEnglish = example.english || '';
@@ -2613,7 +2598,8 @@ function updateCard({ announceHeadword = false } = {}) {
                 // sibling form (quieres on the quiero/querer card). Highlight
                 // the form that is actually evidenced by this sentence rather
                 // than searching only for the host card's surface word.
-                const pooledForm = useLemmaMode && currentExample?.pooledFrom
+                const pooledForm = currentExample?.pooledFrom
+                    && (useLemmaMode || currentExample?.source_mode === 'speech')
                     ? currentExample.pooledFrom
                     : '';
                 const word = pooledForm || card.targetWord;
@@ -2698,8 +2684,9 @@ function updateCard({ announceHeadword = false } = {}) {
                     <span class="example-song-credit">— ${songName}${vocalistCredit ? `<span class="example-vocalist-credit"> · ${vocalistCredit}</span>` : ''}</span>
                     <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${spotifyBtn}${exampleCounter}</span>
                 </div>
-            ` : (exampleCounter ? `
+            ` : ((exampleSourceLabel || exampleCounter) ? `
                 <div style="display: flex; justify-content: flex-end; align-items: center; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
+                    ${exampleSourceLabel ? `<span class="example-song-credit" style="margin-right:auto;">${exampleSourceLabel}</span>` : ''}
                     <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${exampleCounter}</span>
                 </div>
             ` : '');
@@ -3647,7 +3634,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725ak';
+const ASSET_VERSION = '20260725al';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

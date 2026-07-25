@@ -1,15 +1,15 @@
-import './state.js?v=20260725ak';
-import './sync-queue.js?v=20260725ak';
-import './speech.js?v=20260725ak';
-import './artist-ui.js?v=20260725ak';
-import './auth.js?v=20260725ak';
-import './spotify.js?v=20260725ak';
-import './estimation.js?v=20260725ak';
-import './config.js?v=20260725ak';
-import './progress.js?v=20260725ak';
-import './ui.js?v=20260725ak';
-import './vocab.js?v=20260725ak';
-import './flashcards.js?v=20260725ak';
+import './state.js?v=20260725al';
+import './sync-queue.js?v=20260725al';
+import './speech.js?v=20260725al';
+import './artist-ui.js?v=20260725al';
+import './auth.js?v=20260725al';
+import './spotify.js?v=20260725al';
+import './estimation.js?v=20260725al';
+import './config.js?v=20260725al';
+import './progress.js?v=20260725al';
+import './ui.js?v=20260725al';
+import './vocab.js?v=20260725al';
+import './flashcards.js?v=20260725al';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -72,6 +72,7 @@ async function resolveArtist() {
         const artistConfig = allArtistsConfig[artistSlug];
         if (artistConfig) {
             activeArtist = artistConfig;
+            artistVocabularyScope = params.get('scope') === 'extra' ? 'extra' : 'main';
 
             // Store the URL artist slug — this is the immutable primary artist
             window._urlArtistSlug = artistSlug;
@@ -278,6 +279,19 @@ function renderArtistSourceSummary() {
     image.style.backgroundColor = art ? '' : (activeArtist.colorTheme?.primary || 'var(--accent-primary)');
     step.style.display = 'block';
 
+    const scopeHint = document.getElementById('artistVocabularyScopeHint');
+    document.querySelectorAll('.artist-vocabulary-scope-btn').forEach(button => {
+        const selected = button.dataset.artistScope === artistVocabularyScope;
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        button.onclick = () => setArtistVocabularyScope(button.dataset.artistScope);
+    });
+    if (scopeHint) {
+        scopeHint.textContent = artistVocabularyScope === 'extra'
+            ? `One-off ${artistName} lemma families, supported by shared Speech examples where available`
+            : 'Recurring lemma families';
+    }
+
     picker.onclick = () => {
         const language = activeArtist.language || 'spanish';
         const matchingArtists = Object.fromEntries(Object.entries(allArtistsConfig || {}).filter(([, cfg]) =>
@@ -291,6 +305,52 @@ function renderArtistSourceSummary() {
 }
 
 window.renderArtistSourceSummary = renderArtistSourceSummary;
+
+async function setArtistVocabularyScope(scope, { autoStart = false } = {}) {
+    if (!activeArtist || !['main', 'extra'].includes(scope)) return;
+    const changed = artistVocabularyScope !== scope;
+    artistVocabularyScope = scope;
+    const url = new URL(window.location.href);
+    if (scope === 'extra') url.searchParams.set('scope', 'extra');
+    else url.searchParams.delete('scope');
+    history.replaceState(null, '', url);
+    renderArtistSourceSummary();
+    if (!changed && !autoStart) return;
+
+    selectedLevel = null;
+    selectedRanges = [];
+    _findWordIndex = null;
+    _findWordIndexKey = null;
+    document.getElementById('step4').style.display = 'none';
+    document.getElementById('lemmaToggleContainer').style.display = 'none';
+    document.getElementById('cognateToggleContainer').style.display = 'none';
+    const loading = document.getElementById('dataLoadingIndicator');
+    loading?.classList.add('visible');
+    try {
+        await renderLevelSelector(selectedLanguage);
+        await updateExclusionBars();
+        if (autoStart) {
+            const firstLevel = document.querySelector(
+                '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
+            );
+            firstLevel?.click();
+            await renderRangeSelector();
+            const firstSet = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'))
+                .find(dot => !dot.disabled);
+            if (firstSet) {
+                await loadVocabularyData(firstSet.dataset.range, {
+                    rankBasis: firstSet.dataset.rankBasis || 'stable',
+                    setNumber: Number(firstSet.dataset.index) + 1,
+                    levelSetCount: document.querySelectorAll('#rangeSelector .study-set-dot').length,
+                });
+            }
+        }
+    } finally {
+        loading?.classList.remove('visible');
+    }
+}
+
+window.setArtistVocabularyScope = setArtistVocabularyScope;
 
 // Shared radial "clock of pictures" picker used by artists and languages.
 function showRadialPicker({ id, ariaLabel, hubHTML, entries }) {
@@ -506,7 +566,7 @@ function findWordCacheKey() {
         slugs,
         useLemmaMode ? '1' : '0',
         excludeCognates ? '1' : '0',
-        hideSingleOccurrence ? '1' : '0',
+        activeArtist ? artistVocabularyScope : (hideSingleOccurrence ? '1' : '0'),
         excludeProperNouns ? '1' : '0',
         excludeNoise ? '1' : '0',
         excludeEnglishLoanwords ? '1' : '0'

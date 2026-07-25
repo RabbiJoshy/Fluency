@@ -1595,7 +1595,16 @@ function getNextStudyLevelMeta() {
     ));
     const currentIndex = buttons.findIndex(button => button.dataset.level === selectedLevel);
     const next = currentIndex >= 0 ? buttons[currentIndex + 1] : null;
-    if (!next) return null;
+    if (!next) {
+        if (activeArtist && artistVocabularyScope === 'main') {
+            return {
+                scope: 'extra',
+                levelNumber: 1,
+                label: `${activeArtist.name || 'Artist'} Extra`,
+            };
+        }
+        return null;
+    }
     return {
         level: next.dataset.level,
         levelNumber: currentIndex + 2
@@ -1603,6 +1612,12 @@ function getNextStudyLevelMeta() {
 }
 
 async function startNextStudyLevelFirstSet() {
+    const nextMeta = getNextStudyLevelMeta();
+    if (nextMeta?.scope === 'extra') {
+        await window.goBackToSetup?.();
+        await window.setArtistVocabularyScope?.('extra', { autoStart: true });
+        return;
+    }
     const currentLevel = selectedLevel;
     await window.goBackToSetup?.();
 
@@ -1640,15 +1655,10 @@ function showSettingsModal() {
 }
 
 function showSettingsModalWithTab(tabName) {
-    // Show/hide single-occurrence toggle (only in artist mode)
+    // Individual 1x forms are no longer a filter. Artist Main/Extra is a
+    // lemma-family scope selected in the artist source card.
     const hideSingleOccToggle = document.getElementById('hideSingleOccToggle');
-    if (activeArtist) {
-        hideSingleOccToggle.style.display = 'flex';
-        document.getElementById('hideSingleOccStatus').textContent = hideSingleOccurrence ? 'ON' : 'OFF';
-        document.getElementById('hideSingleOccStatus').style.color = hideSingleOccurrence ? 'var(--accent-primary)' : 'var(--text-muted)';
-    } else {
-        hideSingleOccToggle.style.display = 'none';
-    }
+    if (hideSingleOccToggle) hideSingleOccToggle.style.display = 'none';
 
     // Artist-mode toggles for proper nouns and noise/interjections.
     // Mirror the hideSingleOccurrence pattern: only visible in artist
@@ -1847,7 +1857,9 @@ async function showTotalStatsModal() {
     // "Words understood" = last answer was correct (current knowledge, cross-mode)
     // "Correct" / "Incorrect" = all-time totals from progressData
     // "Comprehension" = frequency-weighted % based on current knowledge
-    const vocab = cachedVocabularyData;
+    const vocab = cachedVocabularyData
+        ? buildFilteredVocab(cachedVocabularyData).vocab
+        : null;
     const coverageEl = document.getElementById('totalStatsCoverage');
     const wordsEl = document.getElementById('totalStatsWords');
 
@@ -1879,7 +1891,9 @@ async function showTotalStatsModal() {
                 coveredCount++;
             }
         }
-        const coverageType = activeArtist ? 'lyrics' : 'speech';
+        const coverageType = activeArtist
+            ? (artistVocabularyScope === 'extra' ? `${activeArtist.name || 'Artist'} Extra` : 'lyrics')
+            : 'speech';
         if (coveredCount > 0) {
             const pct = (coveredFreq / totalFreq * 100).toFixed(1);
             coverageEl.textContent = `${pct}% ${coverageType}`;
@@ -1896,10 +1910,17 @@ async function showTotalStatsModal() {
 
     // Correct / Incorrect: all-time totals across both modes, deduped
     let totalCorrect = 0, totalIncorrect = 0;
+    const activeScopeIds = activeArtist && vocab
+        ? new Set(vocab.map(item => getWordId(item)))
+        : null;
     if (progressData) {
         const counted = new Set();
         for (const [id, data] of Object.entries(progressData)) {
             if (data.language !== selectedLanguage) continue;
+            if (activeScopeIds) {
+                const crossId = getCrossModeId(id);
+                if (!activeScopeIds.has(id) && !(crossId && activeScopeIds.has(crossId))) continue;
+            }
             const baseId = id.length >= 4 && id[2] === '1'
                 ? id.slice(0, 2) + '0' + id.slice(3) : id;
             if (counted.has(baseId)) continue;
@@ -1924,7 +1945,9 @@ async function showTotalStatsModal() {
     const linesEl         = document.getElementById('totalStatsLinesUnderstood');
     const linesRow        = document.getElementById('totalStatsLinesRow');
     if (coverageLabelEl) {
-        coverageLabelEl.textContent = activeArtist ? 'Lyrics comprehension' : 'Speech comprehension';
+        coverageLabelEl.textContent = activeArtist
+            ? (artistVocabularyScope === 'extra' ? `${activeArtist.name || 'Artist'} Extra explored` : 'Lyrics comprehension')
+            : 'Speech comprehension';
     }
     if (linesLabelEl) {
         linesLabelEl.textContent = activeArtist ? 'Complete lyric lines' : 'Complete sentences';
@@ -1935,7 +1958,10 @@ async function showTotalStatsModal() {
     // either in the user's known set or below their level estimate.
     // computeLinesUnderstood() handles the iteration; we lazy-loaded the
     // examples corpus and rank data above so it has what it needs.
-    let linesResult = computeLinesUnderstood();
+    const activeExampleIds = activeArtist && vocab
+        ? new Set(vocab.map(item => String(item.id || '')))
+        : null;
+    let linesResult = computeLinesUnderstood(activeExampleIds);
     if (linesResult && linesResult.total > 0) {
         linesRow.style.display = '';
         linesEl.textContent = `${linesResult.pct.toFixed(1)}% (${linesResult.understood} / ${linesResult.total})`;
@@ -2251,6 +2277,7 @@ function switchPrimaryArtist(newSlug) {
     // Update the primary artist globals
     window._urlArtistSlug = newSlug;
     activeArtist = newConfig;
+    artistVocabularyScope = 'main';
 
     // Reset to only the new primary (clear secondaries)
     window._selectedArtistSlugs = [newSlug];
@@ -2258,6 +2285,7 @@ function switchPrimaryArtist(newSlug) {
     // Update URL without reload
     const url = new URL(window.location);
     url.searchParams.set('artist', newSlug);
+    url.searchParams.delete('scope');
     history.replaceState(null, '', url);
 
     // Update config with new artist's paths and colors

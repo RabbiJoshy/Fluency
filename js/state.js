@@ -60,6 +60,12 @@ export const state = {
     cognateFieldAvailable: false,
     cognateThreshold: 0.85,
     percentageMode: true,
+    // Lyrics has two mutually-exclusive vocabularies. `main` contains lemma
+    // families evidenced in multiple distinct lyric lines; `extra` contains
+    // genuinely one-off lemma families, including cards with no translation.
+    artistVocabularyScope: 'main',
+    // Legacy switch retained for saved-session compatibility. Artist decks
+    // now use artistVocabularyScope instead of hiding individual 1x forms.
     hideSingleOccurrence: true,
     // Artist-mode filters that mirror the pipeline flags. Defaults match
     // the prior unconditional filter so behaviour is unchanged until the

@@ -95,7 +95,14 @@ the source identity/tie-breaker and legacy CEFR basis.
 - Vocab, paths, colors from `artists.json` (not hardcoded)
 - Language tabs hidden, auto-selects artist's language
 - Filters: is_english, is_noise (alias is_interjection), is_propernoun removed
-- hideSingleOccurrence: true by default
+- Two exclusive vocabulary scopes: Main (`lemma_example_count > 1`) and Extra
+  (`lemma_example_count <= 1`). Scope is lemma-based even when Merge Lemmas is
+  off, so a 1x surface form in a recurring lemma remains in Main.
+- Artist example splits may carry `r` (the unclassified one-off artist lyric)
+  and `p` (compact shared Speech senses/examples). Extra uses these without a
+  Gemini rerun and admits a lyric-only `EXAMPLE_ONLY` card when no translation
+  exists. The old hide-single-occurrence toggle is retained only in legacy
+  saved-session state and is not an artist-deck filter.
 - Album artwork backgrounds (`updateArtistBackground()` in `artist-ui.js`)
 - Multiple lyric examples per card; tap to cycle
 - Google Sheets tab: `'Lyrics'`

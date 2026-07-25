@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725ak">
-    <link rel="modulepreload" href="js/state.js?v=20260725ak">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ak">
-    <link rel="modulepreload" href="js/speech.js?v=20260725ak">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ak">
-    <link rel="modulepreload" href="js/auth.js?v=20260725ak">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725ak">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725ak">
-    <link rel="modulepreload" href="js/config.js?v=20260725ak">
-    <link rel="modulepreload" href="js/progress.js?v=20260725ak">
-    <link rel="modulepreload" href="js/ui.js?v=20260725ak">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725ak">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725ak">
+    <link rel="modulepreload" href="js/main.js?v=20260725al">
+    <link rel="modulepreload" href="js/state.js?v=20260725al">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725al">
+    <link rel="modulepreload" href="js/speech.js?v=20260725al">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725al">
+    <link rel="modulepreload" href="js/auth.js?v=20260725al">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725al">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725al">
+    <link rel="modulepreload" href="js/config.js?v=20260725al">
+    <link rel="modulepreload" href="js/progress.js?v=20260725al">
+    <link rel="modulepreload" href="js/ui.js?v=20260725al">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725al">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725al">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -256,6 +256,13 @@
                     <button type="button" id="artistSourceSpeechBtn" class="artist-source-speech-btn">
                         Switch to Speech
                     </button>
+                    <div class="artist-vocabulary-scope" id="artistVocabularyScope" role="group" aria-label="Artist vocabulary">
+                        <div class="artist-vocabulary-scope-buttons">
+                            <button type="button" class="artist-vocabulary-scope-btn selected" data-artist-scope="main" aria-pressed="true">Main</button>
+                            <button type="button" class="artist-vocabulary-scope-btn" data-artist-scope="extra" aria-pressed="false">Extra</button>
+                        </div>
+                        <span id="artistVocabularyScopeHint">Recurring lemma families</span>
+                    </div>
                 </div>
             </div>
 
@@ -1108,6 +1115,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725ak"></script>
+    <script type="module" src="js/main.js?v=20260725al"></script>
 </body>
 </html>

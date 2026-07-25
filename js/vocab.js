@@ -33,7 +33,7 @@ function renderResumeLastSetCard() {
     const forms = snapshot.useLemmaMode ? 'Merged lemmas' : 'Forms';
     const cognates = snapshot.excludeCognates ? 'Cognates excluded' : 'Cognates included';
     const title = snapshot.mode === 'lyrics'
-        ? (snapshot.artistName || 'Lyrics')
+        ? `${snapshot.artistName || 'Lyrics'}${snapshot.artistVocabularyScope === 'extra' ? ' Extra' : ''}`
         : `${snapshot.languageName || snapshot.language} speech`;
     card.innerHTML = `
         <button type="button" class="resume-set-button" id="resumeLastSetBtn">
@@ -62,6 +62,7 @@ function saveStudySessionSnapshot() {
         artistSlug: window._urlArtistSlug || null,
         artistSlugs: (window._selectedArtistSlugs || []).slice(),
         artistName: activeArtist?.name || null,
+        artistVocabularyScope: activeArtist ? artistVocabularyScope : null,
         language: selectedLanguage,
         languageName,
         selectedLevel,
@@ -105,7 +106,10 @@ async function resumeLastStudySession() {
     if (snapshot.mode !== currentMode || (snapshot.mode === 'lyrics' && snapshot.artistSlug !== currentArtist)) {
         const url = new URL(window.location.href);
         url.search = '';
-        if (snapshot.mode === 'lyrics' && snapshot.artistSlug) url.searchParams.set('artist', snapshot.artistSlug);
+        if (snapshot.mode === 'lyrics' && snapshot.artistSlug) {
+            url.searchParams.set('artist', snapshot.artistSlug);
+            if (snapshot.artistVocabularyScope === 'extra') url.searchParams.set('scope', 'extra');
+        }
         url.searchParams.set('resume', '1');
         window.location.href = url.toString();
         return;
@@ -118,10 +122,14 @@ async function resumeLastStudySession() {
     useLemmaMode = !!snapshot.useLemmaMode;
     excludeCognates = !!snapshot.excludeCognates;
     hideSingleOccurrence = snapshot.hideSingleOccurrence !== false;
+    artistVocabularyScope = snapshot.mode === 'lyrics' && snapshot.artistVocabularyScope === 'extra'
+        ? 'extra'
+        : 'main';
     excludeProperNouns = snapshot.excludeProperNouns !== false;
     excludeNoise = snapshot.excludeNoise !== false;
     excludeEnglishLoanwords = snapshot.excludeEnglishLoanwords !== false;
     isFlipped = !!snapshot.directionFlipped;
+    window.renderArtistSourceSummary?.();
     if (snapshot.mode === 'lyrics' && snapshot.artistSlugs?.length) {
         const oldKey = (window._selectedArtistSlugs || []).slice().sort().join(',');
         const newKey = snapshot.artistSlugs.slice().sort().join(',');
@@ -139,6 +147,11 @@ async function resumeLastStudySession() {
         button.classList.toggle('selected', (button.dataset.cognate === 'exclude') === excludeCognates));
     const url = new URL(window.location.href);
     url.searchParams.delete('resume');
+    if (snapshot.mode === 'lyrics' && artistVocabularyScope === 'extra') {
+        url.searchParams.set('scope', 'extra');
+    } else {
+        url.searchParams.delete('scope');
+    }
     history.replaceState(null, '', url);
     await loadVocabularyData(snapshot.range, {
         resumeSnapshot: snapshot,
@@ -233,28 +246,32 @@ function joinWithMaster(indexData, master) {
         const m = master[idx.id];
         if (!m) continue;
 
-        // Build meanings array from master senses + artist sense_frequencies.
-        // Master accumulates every sense seen across all artists; drop the
-        // senses this artist never uses (freq 0 or missing) so we don't
-        // cross-pollinate another artist's senses onto this card.
+        // Keep the complete shared sense menu on the joined entry. Main cards
+        // still prefer/drop to positive artist frequencies before rendering,
+        // while one-off forms can reuse these dictionary senses and the
+        // standard Speech evidence packaged in the examples split. This is
+        // what makes Artist Extra useful without another Gemini pass.
         const methods = idx.sense_methods || [];
         const freqs = idx.sense_frequencies || [];
         const meanings = [];
         (m.senses || []).forEach((sense, i) => {
-            const freq = freqs[i];
-            if (!freq) return;
+            const freq = Number(freqs[i]) || 0;
             const meaning = {
                 pos: sense.pos,
                 translation: sense.translation,
                 frequency: String(freq),
                 examples: []  // Attached later from examples file
             };
+            if (freq <= 0) {
+                meaning.shared_fallback = true;
+                meaning.unassigned = true;
+            }
             if (sense.source) meaning.source = sense.source;
             if (sense.context) meaning.context = sense.context;
-            const method = methods[i];
+            const method = freq > 0 ? methods[i] : null;
             if (method) {
                 meaning.assignment_method = method;
-            } else if (idx.unassigned) {
+            } else if (freq > 0 && idx.unassigned) {
                 meaning.unassigned = true;
             }
             meaning._masterSenseIndex = i;
@@ -291,6 +308,7 @@ function joinWithMaster(indexData, master) {
             word: m.word,
             lemma: m.lemma,
             meanings,
+            _base_meanings: meanings.map(meaning => ({ ...meaning, examples: [] })),
             most_frequent_lemma_instance: idx.most_frequent_lemma_instance,
             is_english: m.is_english || false,
             // is_noise is the schema_v2 flag name; is_interjection is the
@@ -311,6 +329,7 @@ function joinWithMaster(indexData, master) {
             cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
             cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
             corpus_count: idx.corpus_count || 0,
+            lemma_example_count: idx.lemma_example_count ?? idx.corpus_count ?? 0,
             display_form: m.display_form || null,
             variants: idx.variants || null,
             mwe_memberships: mwe_memberships.length > 0 ? mwe_memberships : undefined,
@@ -345,6 +364,62 @@ function examplesForMeaning(item, meaning, meaningIndex, examplesData) {
     const split = examplesData && item.id ? examplesData[item.id] : null;
     const bucket = meaning._masterSenseIndex ?? meaningIndex;
     return (split && split.m && split.m[bucket]) || [];
+}
+
+function mergeArtistExtraSupport(item, splitExamples) {
+    if (!activeArtist || !splitExamples) return;
+    const normalize = value => String(value || '').trim().toLowerCase();
+    const dedupeInto = (target, additions) => {
+        target.examples = target.examples || [];
+        const seen = new Set(target.examples.map(exampleSentenceKey));
+        for (const raw of additions || []) {
+            const key = exampleSentenceKey(raw);
+            if (!key || seen.has(key)) continue;
+            seen.add(key);
+            target.examples.push({ ...raw });
+        }
+    };
+
+    // `p` is a compact, sense-labelled subset of the already-built Speech
+    // examples. It is independent of artist master-sense array positions.
+    for (const shared of splitExamples.p || []) {
+        let target = (item.meanings || []).find(meaning =>
+            normalize(meaning.pos) === normalize(shared.pos)
+            && normalize(meaning.translation) === normalize(shared.translation)
+            && normalize(meaning.context) === normalize(shared.context));
+        if (!target) {
+            target = {
+                pos: shared.pos || 'X',
+                translation: shared.translation || '',
+                context: shared.context || '',
+                frequency: '0',
+                examples: [],
+                shared_fallback: true,
+                unassigned: true,
+            };
+            item.meanings = item.meanings || [];
+            item.meanings.push(target);
+        }
+        dedupeInto(target, shared.examples || []);
+        target.has_speech_fallback = true;
+    }
+
+    // The artist lyric is deliberately not stamped as assigned to a shared
+    // sense. Put it on the first usable row so it is visible immediately; the
+    // example-level match treatment remains absent, honestly signalling that
+    // no classifier linked this lyric to that particular meaning.
+    const lyricExamples = splitExamples.r || [];
+    if (lyricExamples.length > 0) {
+        const target = (item.meanings || []).find(meaning => meaning.examples?.length)
+            || (item.meanings || [])[0];
+        if (target) {
+            const existing = target.examples || [];
+            target.examples = [];
+            dedupeInto(target, [...lyricExamples, ...existing]);
+        } else {
+            item.extra_raw_examples = lyricExamples.map(example => ({ ...example }));
+        }
+    }
 }
 
 function computeLemmaExampleCounts(vocabData, examplesData) {
@@ -400,6 +475,23 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
                 if (!key || seen.has(key)) continue;
                 seen.add(key);
                 target.examples.push({ ...e, pooledFrom: sib.word });
+            }
+        }
+
+        // One-off surface forms can carry their unclassified artist line in
+        // the compact `r` bucket rather than a master-sense `m` bucket. They
+        // still belong in the recurring lemma host's example pool.
+        const rawSiblingExamples = examplesData?.[sib.id]?.r || [];
+        const rawTarget = host.meanings.find(meaning => meaning.examples?.length)
+            || host.meanings[0];
+        if (rawTarget && rawSiblingExamples.length > 0) {
+            rawTarget.examples = rawTarget.examples || [];
+            const seen = new Set(rawTarget.examples.map(exampleSentenceKey));
+            for (const example of rawSiblingExamples) {
+                const key = exampleSentenceKey(example);
+                if (!key || seen.has(key)) continue;
+                seen.add(key);
+                rawTarget.examples.push({ ...example, pooledFrom: example.pooledFrom || sib.word });
             }
         }
     }
@@ -532,6 +624,19 @@ async function ensureLemmaPoolingData(langConfig) {
 // entry. Optional settings may hide an entry or merge it into a lemma host,
 // but they must never cause the remaining cards to migrate between levels or
 // study sets. The source array position is the deterministic tie-breaker.
+function artistLemmaEvidenceCount(item) {
+    const stamped = Number(item?.lemma_example_count);
+    if (Number.isFinite(stamped)) return Math.max(0, stamped);
+    const fallback = Number(item?.corpus_count);
+    return Number.isFinite(fallback) ? Math.max(0, fallback) : 0;
+}
+
+function artistItemMatchesScope(item) {
+    if (!activeArtist) return true;
+    const isExtra = artistLemmaEvidenceCount(item) <= 1;
+    return artistVocabularyScope === 'extra' ? isExtra : !isExtra;
+}
+
 function assignStableVocabularyRanks(vocabData) {
     vocabData.forEach((item, index) => {
         item.rank = index + 1;
@@ -541,8 +646,15 @@ function assignStableVocabularyRanks(vocabData) {
     });
     const candidates = vocabData.filter(item => {
         if (!item.word || item.word.trim() === '' || item.duplicate || item.is_english) return false;
-        return Array.isArray(item.meanings)
+        if (!artistItemMatchesScope(item)) return false;
+        const hasTranslation = Array.isArray(item.meanings)
             && item.meanings.some(meaning => meaning.translation && meaning.translation.trim());
+        // Artist Extra deliberately includes raw lyric-only entries. A one-off
+        // surface form inside a recurring lemma stays in Main and receives the
+        // same fallback treatment, so it must also keep its stable slot.
+        return hasTranslation || (activeArtist && (
+            artistVocabularyScope === 'extra' || Number(item.corpus_count) <= 1
+        ));
     });
     const hasCorpusFrequency = candidates.some(item => item.hasOwnProperty('corpus_count'));
     candidates.sort((a, b) => hasCorpusFrequency
@@ -558,6 +670,9 @@ function getVocabularyExclusionReason(item) {
         ? item.meanings.filter(meaning => String(meaning?.translation || '').trim())
         : [];
     if (activeArtist) {
+        if (!artistItemMatchesScope(item)) {
+            return artistVocabularyScope === 'extra' ? 'main artist vocabulary' : 'Artist Extra';
+        }
         if (item.is_english) return 'English-language item';
         if (excludeNoise && (item.is_noise || item.is_interjection)) return 'noise or interjection';
         if (excludeEnglishLoanwords && item.is_english_loanword) return 'English loanword';
@@ -572,11 +687,6 @@ function getVocabularyExclusionReason(item) {
     if (excludeCognates && Number(item.cognate_score || 0) >= cognateThreshold) {
         return 'cognate';
     }
-    if (hideSingleOccurrence
-        && Object.prototype.hasOwnProperty.call(item, 'corpus_count')
-        && !(Number(item.corpus_count) > 1)) {
-        return 'single occurrence';
-    }
     if (useLemmaMode && lemmaFieldAvailable && item.most_frequent_lemma_instance !== true) {
         return 'merged lemma form';
     }
@@ -584,27 +694,49 @@ function getVocabularyExclusionReason(item) {
 }
 
 function buildFilteredVocab(vocabData) {
+    // Deck construction attaches examples and prunes senses in place. Restore
+    // the joined master template before every new filter pass so switching
+    // Main ↔ Extra cannot inherit the previous scope's reduced sense menu.
+    for (const item of vocabData) {
+        if (Array.isArray(item._base_meanings)) {
+            item.meanings = item._base_meanings.map(meaning => ({
+                ...meaning,
+                examples: (meaning.examples || []).map(example => ({ ...example })),
+            }));
+            if (Array.isArray(item._base_extra_raw_examples)) {
+                item.extra_raw_examples = item._base_extra_raw_examples.map(example => ({ ...example }));
+            } else {
+                delete item.extra_raw_examples;
+            }
+        }
+    }
     // Assign stable rank from array position (pipeline sort order)
     assignStableVocabularyRanks(vocabData);
 
     // Single-pass filter combining: basic validity → POS=X placeholder
-    // strip → artist-mode flags → cognates → single-occurrence → lemma mode.
+    // strip → artist scope → artist-mode flags → cognates → lemma mode.
     // Order is preserved so counts reflect what the chained .filter() calls
     // used to produce (e.g. an item failing both artist and cognate is
     // counted under "english" only, since the artist check ran first).
     const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
     const hasCorpusFrequency = vocabData.length > 0
         && vocabData[0].hasOwnProperty('corpus_count');
-    const checkSingleOcc = hideSingleOccurrence && hasCorpusFrequency;
     const result = [];
     for (const item of vocabData) {
         if (!item.word || item.word.trim() === '' || item.duplicate) continue;
-        if (!item.meanings || item.meanings.length === 0) continue;
+        if (!artistItemMatchesScope(item)) {
+            counts.singleOcc++;
+            continue;
+        }
+        const allowsRawArtistCard = activeArtist && (
+            artistVocabularyScope === 'extra' || Number(item.corpus_count) <= 1
+        );
+        if ((!item.meanings || item.meanings.length === 0) && !allowsRawArtistCard) continue;
         // Strip any meaning with no translation (POS=X placeholders from
         // --no-gemini runs, plus SpanishDict rows that captured a usage label
         // but an empty gloss). Mutates the item, matching prior behavior.
-        item.meanings = item.meanings.filter(m => m.translation && m.translation.trim());
-        if (item.meanings.length === 0) continue;
+        item.meanings = (item.meanings || []).filter(m => m.translation && m.translation.trim());
+        if (item.meanings.length === 0 && !allowsRawArtistCard) continue;
         if (activeArtist) {
             // English borrowings — always filtered (no toggle; they're not
             // Spanish words at all and have no Spanish meaning to teach).
@@ -647,10 +779,6 @@ function buildFilteredVocab(vocabData) {
             counts.cognates++;
             continue;
         }
-        if (checkSingleOcc && !(item.corpus_count > 1)) {
-            counts.singleOcc++;
-            continue;
-        }
         if (useLemmaMode && lemmaFieldAvailable && item.most_frequent_lemma_instance !== true) {
             counts.lemma++;
             continue;
@@ -683,7 +811,13 @@ function buildFilteredVocab(vocabData) {
         for (const item of result) {
             item.stableRank = lemmaStableRanks.get(item.lemma) || item.stableRank;
             item.lemma_total_count = lemmaTotals.get(item.lemma) || item.corpus_count || 0;
-            item.lemma_example_count = exampleBasis.counts.get(item.lemma) || 0;
+            // The pipeline stamp includes raw one-off lyric evidence that may
+            // intentionally have no assigned sense and therefore no `m`
+            // bucket. Never erase it with the smaller assigned-example count.
+            item.lemma_example_count = Math.max(
+                artistLemmaEvidenceCount(item),
+                exampleBasis.counts.get(item.lemma) || 0
+            );
             item.pooled_frequency = exampleBasis.hasExampleBasis
                 ? item.lemma_example_count
                 : item.lemma_total_count;
@@ -889,8 +1023,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     if (ex && ex.m) {
                         item.meanings.forEach((m, i) => {
                             // ex.m is indexed against the master sense order;
-                            // after joinWithMaster drops zero-freq senses, the
-                            // array positions diverge — honor _masterSenseIndex.
+                            // honor the explicit source index so future sense
+                            // filtering cannot make the arrays drift apart.
                             const bucket = m._masterSenseIndex ?? i;
                             m.examples = ex.m[bucket] || [];
                         });
@@ -905,6 +1039,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                             sc.examples = ex.s[i] || [];
                         });
                     }
+                    if (ex) mergeArtistExtraSupport(item, ex);
                 }
                 // MWE examples are pre-computed by the pipeline and stored in the "w"
                 // field of the examples file. No need to build a corpus pool here.
@@ -926,18 +1061,38 @@ async function loadVocabularyData(rangeString, opts = {}) {
             const MIN_SENSE_FREQ = 0.05;
             const MAX_SENSES = 6;
             for (const item of filteredData) {
-                // Drop zero-frequency senses (unused by this artist/merge)
-                // SENSE_CYCLE rows are synthesized separately and aren't in meanings yet
-                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) > 0);
-                // Drop senses below minimum threshold
-                item.meanings = item.meanings.filter(m => parseFloat(m.frequency) >= MIN_SENSE_FREQ);
+                const artistMeanings = item.meanings.filter(m =>
+                    !m.shared_fallback && parseFloat(m.frequency) >= MIN_SENSE_FREQ);
+                const supportedFallbacks = item.meanings.filter(m =>
+                    m.shared_fallback && Array.isArray(m.examples) && m.examples.length > 0);
+                if (artistVocabularyScope === 'extra') {
+                    // Extra may have no artist-side assignment at all. Prefer
+                    // shared senses that carry Speech evidence, then retain a
+                    // small dictionary menu even when only the lyric exists.
+                    item.meanings = artistMeanings.length > 0
+                        ? artistMeanings
+                        : (supportedFallbacks.length > 0
+                            ? supportedFallbacks
+                            : item.meanings.filter(m => m.translation).slice(0, MAX_SENSES));
+                } else {
+                    // Main normally retains the existing artist-assigned
+                    // menu. A one-off surface form inside a recurring lemma
+                    // is allowed to use its shared Speech support instead.
+                    item.meanings = artistMeanings.length > 0
+                        ? artistMeanings
+                        : (Number(item.corpus_count) <= 1 ? supportedFallbacks : []);
+                }
                 // Hard cap: keep top N by frequency
                 if (item.meanings.length > MAX_SENSES) {
                     item.meanings.sort((a, b) => parseFloat(b.frequency) - parseFloat(a.frequency));
                     item.meanings = item.meanings.slice(0, MAX_SENSES);
                 }
             }
-            filteredData = filteredData.filter(item => item.meanings.length > 0);
+            filteredData = filteredData.filter(item =>
+                item.meanings.length > 0
+                || (item.extra_raw_examples?.length && (
+                    artistVocabularyScope === 'extra' || Number(item.corpus_count) <= 1
+                )));
         }
 
         for (const item of filteredData) {
@@ -957,8 +1112,23 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.context) meaning.context = m.context;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
+                if (m.shared_fallback) meaning.sharedFallback = true;
                 return meaning;
             });
+
+            if (meanings.length === 0 && item.extra_raw_examples?.length) {
+                const first = item.extra_raw_examples[0];
+                meanings.push({
+                    pos: 'EXAMPLE_ONLY',
+                    meaning: '',
+                    percentage: 1,
+                    targetSentence: first.target || first.spanish || '',
+                    englishSentence: first.english || '',
+                    allExamples: item.extra_raw_examples,
+                    exampleOnly: true,
+                    unassigned: true,
+                });
+            }
 
             // Normalize percentages if they're missing or sum to 0
             const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
@@ -1096,7 +1266,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 return (b.percentage || 0) - (a.percentage || 0);
             });
 
-            const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
+            const firstExample = meanings.length > 0
+                ? {
+                    targetSentence: meanings[0].targetSentence || '',
+                    englishSentence: meanings[0].englishSentence || '',
+                }
+                : { targetSentence: '', englishSentence: '' };
             const card = {
                 targetWord: item.word,
                 lemma: item.lemma || '',
@@ -1108,11 +1283,13 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 // Lemma mode uses the same unique pooled example-line basis
                 // as the examples attached above. Raw token totals stay on
                 // item.lemma_total_count for diagnostics only.
-                corpusCount: useLemmaMode
-                    ? (item.pooled_frequency ?? item.lemma_example_count ?? null)
-                    : (item.corpus_count || null),
+                corpusCount: artistVocabularyScope === 'extra'
+                    ? (item.lemma_example_count || item.corpus_count || null)
+                    : (useLemmaMode
+                        ? (item.pooled_frequency ?? item.lemma_example_count ?? null)
+                        : (item.corpus_count || null)),
                 meanings: meanings,
-                translation: item.meanings[0].translation,
+                translation: meanings[0]?.meaning || '',
                 targetSentence: firstExample.targetSentence,
                 englishSentence: firstExample.englishSentence,
                 links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
@@ -1129,6 +1306,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 // card's own lemma has no inline paradigm.
                 relatedLemma: item.related_lemma || null
             };
+            card.translationUnavailable = meanings.every(meaning => !String(meaning.meaning || '').trim());
+            card.artistVocabularyScope = activeArtist ? artistVocabularyScope : null;
             flashcards.push(card);
         }
 
@@ -1718,6 +1897,7 @@ function getExampleFromMeaning(meaning, exampleTargetField, exampleEnglishField)
 async function mergeArtistVocabularies(artistConfigs, master) {
     const byId = new Map(); // id → merged entry
     const mergedExamples = {}; // id → { m: [...], w: [...] }
+    const combinedLemmaCounts = new Map();
 
     for (const cfg of artistConfigs) {
         // Load lightweight index for word metadata
@@ -1736,6 +1916,23 @@ async function mergeArtistVocabularies(artistConfigs, master) {
         const isNewFormat = indexData.length > 0 && indexData[0].sense_frequencies;
         if (master && isNewFormat) {
             indexData = joinWithMaster(indexData, master);
+        }
+
+        // Every surface entry in an artist carries the same pooled count for
+        // its lemma. Add that count once per artist, not once per form.
+        const thisArtistLemmaCounts = new Map();
+        for (const entry of indexData) {
+            if (!entry.lemma) continue;
+            thisArtistLemmaCounts.set(
+                entry.lemma,
+                Math.max(
+                    thisArtistLemmaCounts.get(entry.lemma) || 0,
+                    artistLemmaEvidenceCount(entry)
+                )
+            );
+        }
+        for (const [lemma, count] of thisArtistLemmaCounts) {
+            combinedLemmaCounts.set(lemma, (combinedLemmaCounts.get(lemma) || 0) + count);
         }
 
         // Load separate examples file
@@ -1785,18 +1982,18 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                         sc.examples = ex.s[i] || [];
                     });
                 }
+                mergeArtistExtraSupport(entry, ex);
             }
 
             if (byId.has(id)) {
                 // Merge into an existing entry. Master-based senses retain
-                // their stable source index even when unused senses are absent.
+                // their stable source index across artists.
                 const existing = byId.get(id);
                 existing.corpus_count = (existing.corpus_count || 0) + (entry.corpus_count || 0);
 
                 if (master && isNewFormat) {
-                    // joinWithMaster drops zero-frequency senses, so compact
-                    // array positions are NOT stable across artists. Merge on
-                    // the preserved master-sense index instead.
+                    // Merge on the preserved master-sense index rather than
+                    // trusting whatever filtering a caller may later apply.
                     if (entry.meanings) {
                         const byMasterSense = new Map(existing.meanings.map((m, i) => [m._masterSenseIndex ?? i, m]));
                         entry.meanings.forEach((newM, i) => {
@@ -1850,6 +2047,10 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                         }
                     }
                 }
+                if (entry.extra_raw_examples?.length) {
+                    existing.extra_raw_examples = (existing.extra_raw_examples || [])
+                        .concat(tagExamples(entry.extra_raw_examples));
+                }
             } else {
                 // First time seeing this word — clone and tag.
                 // structuredClone is the native deep-clone primitive; ~2-3×
@@ -1861,6 +2062,9 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                         if (m.examples) m.examples = tagExamples(m.examples);
                     }
                 }
+                if (clone.extra_raw_examples) {
+                    clone.extra_raw_examples = tagExamples(clone.extra_raw_examples);
+                }
                 byId.set(id, clone);
             }
 
@@ -1870,9 +2074,22 @@ async function mergeArtistVocabularies(artistConfigs, master) {
     // Recalculate sense frequency from the same unique example lines the UI
     // cycles through. This also removes duplicate cross-artist/collab lines.
     for (const entry of byId.values()) {
+        entry.lemma_example_count = combinedLemmaCounts.get(entry.lemma)
+            || entry.lemma_example_count
+            || entry.corpus_count
+            || 0;
         for (const meaning of (entry.meanings || [])) {
             const seen = new Set();
             meaning.examples = (meaning.examples || []).filter(example => {
+                const key = exampleSentenceKey(example);
+                if (!key || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
+        if (entry.extra_raw_examples?.length) {
+            const seen = new Set();
+            entry.extra_raw_examples = entry.extra_raw_examples.filter(example => {
                 const key = exampleSentenceKey(example);
                 if (!key || seen.has(key)) return false;
                 seen.add(key);
@@ -1888,6 +2105,11 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 });
             }
         }
+        entry._base_meanings = (entry.meanings || []).map(meaning => ({
+            ...meaning,
+            examples: (meaning.examples || []).map(example => ({ ...example })),
+        }));
+        entry._base_extra_raw_examples = entry.extra_raw_examples?.map(example => ({ ...example }));
     }
 
     // Per-artist representative flags are incompatible after union: two

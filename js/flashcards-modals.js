@@ -575,7 +575,8 @@ async function popupFoundWord(entry, opts) {
             if (ex.m && Array.isArray(vocabEntry.meanings)) {
                 vocabEntry.meanings.forEach((m, i) => {
                     if (!m.examples || m.examples.length === 0) {
-                        m.examples = ex.m[i] || [];
+                        const bucket = m._masterSenseIndex ?? i;
+                        m.examples = ex.m[bucket] || [];
                     }
                 });
             }
@@ -932,7 +933,9 @@ function showEndOfDeckOptions() {
             finishBtn.classList.add('has-next-set');
             finishBtn.style.display = '';
         } else if (nextLevel) {
-            finishLabel.textContent = `Start Level ${nextLevel.levelNumber}, Set 1`;
+            finishLabel.textContent = nextLevel.scope === 'extra'
+                ? `Start ${nextLevel.label}`
+                : `Start Level ${nextLevel.levelNumber}, Set 1`;
             finishIcon.textContent = '→';
             finishBtn.dataset.action = 'next-level';
             finishBtn.classList.add('has-next-set');

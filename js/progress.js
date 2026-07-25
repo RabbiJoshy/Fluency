@@ -65,43 +65,14 @@ async function updateExclusionBars() {
     // Assign ranks if needed
     vocabularyData.forEach((item, index) => { if (!item.rank) item.rank = index + 1; });
 
-    // Base filter: non-blank, non-duplicate, has meanings
-    let baseVocab = vocabularyData.filter(item =>
-        item.word && item.word.trim() !== '' && !item.duplicate && item.meanings && item.meanings.length > 0
-    );
-
-    if (activeArtist) {
-        baseVocab = baseVocab.filter(item =>
-            !item.is_english &&
-            !item.is_noise && !item.is_interjection &&  // schema_v2 alias
-            !item.is_propernoun
-        );
-    }
-
-    if (hideSingleOccurrence && baseVocab.length > 0 && baseVocab[0].hasOwnProperty('corpus_count')) {
-        baseVocab = baseVocab.filter(item => item.corpus_count > 1);
-    }
-
-    const totalBeforeLemma = baseVocab.length;
-
-    let afterLemma = baseVocab;
-    if (useLemmaMode && lemmaFieldAvailable) {
-        afterLemma = baseVocab.filter(item => item.most_frequent_lemma_instance === true);
-    }
-    const totalAfterLemma = afterLemma.length;
-
-    let afterCognate = afterLemma;
-    if (excludeCognates && cognateFieldAvailable) {
-        afterCognate = afterLemma.filter(item => item.cognate_score < cognateThreshold);
-    }
-    const totalAfterCognate = afterCognate.length;
+    const { vocab: afterCognate, counts } = buildFilteredVocab(vocabularyData);
 
     // Update lemma info line
     const lemmaInfo = document.getElementById('lemmaInfoLine');
     if (lemmaInfo) {
-        const lemmaExcluded = totalBeforeLemma - totalAfterLemma;
+        const lemmaExcluded = counts.lemma || 0;
         if (useLemmaMode && lemmaFieldAvailable && lemmaExcluded > 0) {
-            lemmaInfo.textContent = `${totalAfterLemma.toLocaleString()} / ${totalBeforeLemma.toLocaleString()} words`;
+            lemmaInfo.textContent = `${afterCognate.length.toLocaleString()} cards · ${lemmaExcluded.toLocaleString()} forms merged`;
             lemmaInfo.style.display = '';
         } else {
             lemmaInfo.style.display = 'none';
@@ -111,9 +82,9 @@ async function updateExclusionBars() {
     // Update cognate info line
     const cognateInfo = document.getElementById('cognateInfoLine');
     if (cognateInfo) {
-        const cognateExcluded = totalAfterLemma - totalAfterCognate;
+        const cognateExcluded = counts.cognates || 0;
         if (excludeCognates && cognateFieldAvailable && cognateExcluded > 0) {
-            cognateInfo.innerHTML = `${totalAfterCognate.toLocaleString()} words<br>(${cognateExcluded.toLocaleString()} cognates excluded)`;
+            cognateInfo.innerHTML = `${afterCognate.length.toLocaleString()} cards<br>(${cognateExcluded.toLocaleString()} cognates excluded)`;
             cognateInfo.style.display = '';
         } else {
             cognateInfo.style.display = 'none';
@@ -202,13 +173,15 @@ function updatePersonalCoverage(filteredVocab) {
     fill.style.transition = 'none';
     fill.style.width = '0%';
 
-    const coverageType = activeArtist ? 'lyrics' : 'speech';
+    const coverageType = activeArtist
+        ? (artistVocabularyScope === 'extra' ? `${activeArtist.name || 'Artist'} Extra explored` : 'lyrics understood')
+        : 'speech understood';
     const wordPct = (coveredCount / filteredVocab.length * 100).toFixed(1);
     // Two-column rows so the percentages right-align to the same edge —
     // labels on the left, numbers stacked on the right. Drops the italic
     // styling for a cleaner read.
     label.innerHTML = `
-        <span class="ppi-row"><span class="ppi-label">${coverageType} understood</span><span class="ppi-value">${coveragePct.toFixed(1)}%</span></span>
+        <span class="ppi-row"><span class="ppi-label">${coverageType}</span><span class="ppi-value">${coveragePct.toFixed(1)}%</span></span>
         <span class="ppi-row"><span class="ppi-label">flashcards learned</span><span class="ppi-value">${wordPct}%</span></span>
     `;
 

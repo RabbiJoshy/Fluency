@@ -42,11 +42,12 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
     3: "+ carry LRCLIB end_ms into final examples as end_timestamp_ms",
+    4: "+ stamp pooled lemma evidence and package Gemini-free Speech fallbacks for Artist Extra",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -1659,14 +1660,85 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 examples.sort(key=lambda e: e.get("easiness", SENTINEL))
         print("  Easiness scores applied, examples sorted")
 
-    return entries, master, clitic_data
+    return entries, master, clitic_data, examples_raw, translations, ts_map
 
 
 # ---------------------------------------------------------------------------
 # Output writing
 # ---------------------------------------------------------------------------
 
-def write_split_files(entries, master, vocab_path, master_path, clitic_data=None):
+def _example_line_key(example):
+    return (example.get("target") or example.get("spanish") or "").strip().lower()
+
+
+def _load_speech_fallbacks():
+    """Return lemma -> compact, sense-labelled Speech examples.
+
+    Artist Extra is deliberately a no-Gemini extension. Reuse the already
+    assembled standard vocabulary instead of reclassifying one-off lyrics.
+    The payload is independent of artist master-sense positions because the
+    standard and artist sense arrays are allowed to evolve separately.
+    """
+    index_path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "vocabulary.index.json")
+    examples_path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "vocabulary.examples.json")
+    if not os.path.isfile(index_path) or not os.path.isfile(examples_path):
+        return {}
+    try:
+        with open(index_path, encoding="utf-8") as f:
+            speech_index = json.load(f)
+        with open(examples_path, encoding="utf-8") as f:
+            speech_examples = json.load(f)
+    except (OSError, ValueError) as exc:
+        print("  WARNING: Artist Extra Speech fallback unavailable: %s" % exc)
+        return {}
+
+    grouped = {}
+    seen = {}
+    for entry in speech_index:
+        lemma = (entry.get("lemma") or entry.get("word") or "").strip().lower()
+        if not lemma:
+            continue
+        split = speech_examples.get(entry.get("id"), {})
+        buckets = split.get("m", []) if isinstance(split, dict) else []
+        for meaning_index, meaning in enumerate(entry.get("meanings", [])):
+            translation = (meaning.get("translation") or "").strip()
+            if not translation or meaning_index >= len(buckets):
+                continue
+            examples = buckets[meaning_index] or []
+            if not examples:
+                continue
+            pos = meaning.get("pos") or "X"
+            context = meaning.get("context") or ""
+            sense_key = (pos, translation.lower(), context.lower())
+            lemma_senses = grouped.setdefault(lemma, {})
+            if sense_key not in lemma_senses:
+                sense = {"pos": pos, "translation": translation, "examples": []}
+                if context:
+                    sense["context"] = context
+                lemma_senses[sense_key] = sense
+                seen[(lemma, sense_key)] = set()
+            sense = lemma_senses[sense_key]
+            sense_seen = seen[(lemma, sense_key)]
+            for raw_example in examples:
+                key = _example_line_key(raw_example)
+                if not key or key in sense_seen or len(sense["examples"]) >= 2:
+                    continue
+                sense_seen.add(key)
+                example = dict(raw_example)
+                example["source_mode"] = "speech"
+                if entry.get("word"):
+                    example["pooledFrom"] = entry["word"]
+                sense["examples"].append(example)
+
+    return {
+        lemma: list(senses.values())[:6]
+        for lemma, senses in grouped.items()
+        if any(sense.get("examples") for sense in senses.values())
+    }
+
+
+def write_split_files(entries, master, vocab_path, master_path, clitic_data=None,
+                      raw_examples=None, translations=None, timestamp_map=None):
     """Write compact index + examples aligned to master senses."""
     base = vocab_path.rsplit(".", 1)[0]
     index_path = base + ".index.json"
@@ -1674,6 +1746,36 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
 
     index = []
     examples = {}
+    raw_examples = raw_examples or {}
+    translations = translations or {}
+    timestamp_map = timestamp_map or {}
+    speech_by_lemma = _load_speech_fallbacks()
+
+    # Scope membership is a property of the lemma family, not the displayed
+    # surface form. Count the same unique lyric lines used by pooled lemma
+    # examples; if raw evidence is unavailable, fall back to summed corpus
+    # counts so older/non-Spanish artist builds remain usable.
+    lemma_lines = {}
+    lemma_raw_examples = {}
+    lemma_fallback_counts = {}
+    for entry in entries:
+        lemma = (entry.get("lemma") or entry.get("word") or "").strip().lower()
+        if not lemma:
+            continue
+        lines = lemma_lines.setdefault(lemma, set())
+        for example in raw_examples.get(entry.get("word", ""), []):
+            key = _example_line_key(example)
+            if key:
+                lines.add(key)
+                pooled = lemma_raw_examples.setdefault(lemma, [])
+                if not any(_example_line_key(existing) == key for existing in pooled):
+                    pooled.append(example)
+        lemma_fallback_counts[lemma] = lemma_fallback_counts.get(lemma, 0) + int(entry.get("corpus_count") or 0)
+
+    lemma_example_counts = {
+        lemma: len(lines) if lines else lemma_fallback_counts.get(lemma, 0)
+        for lemma, lines in lemma_lines.items()
+    }
 
     # Build clitic lookup: base_verb_word -> [(clitic_word, clitic_info), ...]
     clitics_by_base = {}
@@ -1733,6 +1835,10 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
         idx_entry = {
             "id": fid,
             "corpus_count": entry.get("corpus_count", 0),
+            "lemma_example_count": lemma_example_counts.get(
+                (entry.get("lemma") or entry.get("word") or "").strip().lower(),
+                entry.get("corpus_count", 0),
+            ),
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
         }
@@ -1801,6 +1907,51 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             ex_entry["c"] = clitic_examples
         if any(sense_cycle_examples):
             ex_entry["s"] = sense_cycle_examples
+
+        lemma_key = (entry.get("lemma") or entry.get("word") or "").strip().lower()
+        if (int(entry.get("corpus_count") or 0) <= 1
+                or lemma_example_counts.get(lemma_key, 0) <= 1):
+            # Retain one-off surface evidence even when the lemma family is
+            # recurring. Also cover an Extra lemma repeated several times in
+            # one identical lyric line: its token count can exceed one even
+            # though its unique-line evidence (the scope boundary) is one.
+            extra_lyrics = []
+            lyric_seen = set()
+            source_raw_examples = raw_examples.get(entry.get("word", ""), [])
+            if not source_raw_examples and lemma_example_counts.get(lemma_key, 0) <= 1:
+                source_raw_examples = lemma_raw_examples.get(lemma_key, [])
+            for raw_example in source_raw_examples:
+                line = raw_example.get("spanish", "")
+                key = line.strip().lower()
+                if not key or key in lyric_seen:
+                    continue
+                lyric_seen.add(key)
+                trans_info = translations.get(line, {})
+                if isinstance(trans_info, str):
+                    english = trans_info
+                    translation_source = ""
+                else:
+                    english = trans_info.get("english", "")
+                    translation_source = trans_info.get("source", "")
+                formatted = {
+                    "song": raw_example.get("id", "").split(":")[0],
+                    "song_name": raw_example.get("title", ""),
+                    "spanish": line,
+                    "english": english,
+                    "source_mode": "lyrics",
+                }
+                if raw_example.get("surface") and raw_example.get("surface") != entry.get("word"):
+                    formatted["pooledFrom"] = raw_example["surface"]
+                if translation_source:
+                    formatted["translation_source"] = translation_source
+                _copy_example_priority(raw_example, formatted)
+                _copy_timestamp(timestamp_map.get(raw_example.get("title", ""), {}).get(line), formatted)
+                extra_lyrics.append(formatted)
+            if extra_lyrics:
+                ex_entry["r"] = extra_lyrics
+            speech_senses = speech_by_lemma.get(lemma_key, [])
+            if speech_senses:
+                ex_entry["p"] = speech_senses
         examples[fid] = ex_entry
 
     os.makedirs(os.path.dirname(index_path), exist_ok=True)
@@ -1904,7 +2055,7 @@ def main():
     # Assemble from layers
     print("Sense source: %s" % args.sense_source)
     skip_words_path = os.path.join(artist_dir, "data", "known_vocab", "word_routing.json")
-    entries, master, clitic_data = assemble_from_layers(
+    entries, master, clitic_data, raw_examples, translations, timestamp_map = assemble_from_layers(
         layers_dir, master, curated_path,
         sense_source=args.sense_source,
         skip_words_path=skip_words_path,
@@ -1950,7 +2101,12 @@ def main():
         print("  ID migration: %d mappings -> %s" % (len(id_migration), migration_path))
 
     # Write split files
-    write_split_files(entries, master, vocab_path, master_path, clitic_data)
+    write_split_files(
+        entries, master, vocab_path, master_path, clitic_data,
+        raw_examples=raw_examples,
+        translations=translations,
+        timestamp_map=timestamp_map,
+    )
 
     print("Done!")
 
