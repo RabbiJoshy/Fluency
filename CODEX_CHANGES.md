@@ -18,6 +18,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Track-aware Spotify lyric autoplay
+
+- Commit `8ec0c3dd`; front-end cache `flashcards-v92` / `20260725ak`.
+- Autoplay now creates one fixed queue from the visible example, groups all eligible examples by Spotify track in first-seen order, and visits each track once. This removes `A → B → A` reloads while retaining every playable lyric example.
+- At each line boundary Spotify pauses without forgetting the current track. A consecutive line from that song uses the official Web Playback SDK `seek()` and `resume()` methods; moving to a different song still issues a new play command but no longer repeats the browser-device transfer after the SDK session is active.
+- The line-end timer now waits up to three seconds for `getCurrentState()` to confirm the requested track and position, so network/load latency no longer consumes the lyric's intended listening duration. A pulsing ellipsis communicates that initial song load, and the counter follows autoplay queue position rather than jumping with the underlying grouped indices.
+- Verification: `spotify.js` and `flashcards.js` pass JavaScriptCore module parsing; queue/data attributes, cache lockstep, and `git diff --check` pass. The implementation was checked against Spotify's official Web Playback SDK reference. No service-worker browser preview was used.
+
 ### 2026-07-25 — Explicitly silent in-card rendering
 
 - Commit `496e9b4e`; front-end cache `flashcards-v91` / `20260725aj`.

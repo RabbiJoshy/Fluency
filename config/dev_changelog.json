@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "8ec0c3dd",
+      "summary": "Spotify lyric autoplay now groups songs and reuses loaded tracks",
+      "details": [
+        "Builds a one-pass queue grouped by Spotify track so autoplay no longer follows patterns such as song A, song B, song A",
+        "Uses local SDK seek and resume for consecutive lines in the same song, transfers the browser device only once, and starts line timing from confirmed playback",
+        "Shows a loading pulse for the unavoidable first load of each new song and keeps the autoplay counter sequential; cache v91→v92, assets 20260725aj→20260725ak"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "496e9b4e",
       "summary": "In-card navigation now has an explicit no-speech contract",
       "details": [
