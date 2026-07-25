@@ -74,7 +74,7 @@ function getConjugatedEnglish(card, translation) {
 
 function formatMorphMood(mood) {
     const moodMap = {
-        indicativo: '',        // indicative is default, omit
+        indicativo: 'indicative',
         subjuntivo: 'subjunctive',
         imperativo: 'imperative',
         gerundio: 'gerund',
@@ -84,7 +84,9 @@ function formatMorphMood(mood) {
         condicional: 'conditional',
         infinitivo: 'infinitive',
     };
-    return moodMap[mood] || mood;
+    // The source layer uses Spanish grammar keys. Never leak an unmapped
+    // source-language token into otherwise-English card metadata.
+    return moodMap[mood] || '';
 }
 
 function formatMorphTense(tense) {
@@ -106,27 +108,33 @@ function formatMorphTense(tense) {
         participo: '',
     };
     const mapped = tenseMap[tense];
-    return mapped !== undefined ? mapped : tense;
+    return mapped !== undefined ? mapped : '';
 }
 
 function formatMorphPerson(person) {
     const personMap = {
-        '1s': '1sg',
-        '2s': '2sg',
-        '3s': '3sg',
-        '1p': '1pl',
-        '2p': '2pl',
-        '3p': '3pl',
+        '1s': '1st singular',
+        '2s': '2nd singular',
+        '3s': '3rd singular',
+        '1p': '1st plural',
+        '2p': '2nd plural',
+        '3p': '3rd plural',
     };
-    return personMap[person] || person;
+    return personMap[person] || '';
 }
 
 function formatMorphLabel(m) {
-    return [
-        formatMorphMood(m.mood),
+    const person = formatMorphPerson(m.person);
+    const grammar = [
         formatMorphTense(m.tense),
-        formatMorphPerson(m.person),
+        formatMorphMood(m.mood),
     ].filter(Boolean).join(' · ');
+    if (!person && !grammar) return null;
+    return {
+        key: `${person}|${grammar}`,
+        person,
+        grammar,
+    };
 }
 
 async function loadSpanishRanks() {
@@ -1617,9 +1625,10 @@ function updateCard() {
     // metadata strip. Build it once so both front directions can nest it
     // beneath the relevant verb badge.
     const morphLabels = card.morphology
-        ? [...new Set((Array.isArray(card.morphology) ? card.morphology : [card.morphology])
+        ? [...new Map((Array.isArray(card.morphology) ? card.morphology : [card.morphology])
             .map(formatMorphLabel)
-            .filter(Boolean))]
+            .filter(Boolean)
+            .map(label => [label.key, label])).values()]
         : [];
     const isVerbPos = pos => {
         const p = String(pos || '').toLowerCase();
@@ -1636,7 +1645,11 @@ function updateCard() {
             || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
     };
     const renderMorphTags = () => morphLabels.map(label =>
-        `<span class="front-morph-tag">${label}</span>`
+        `<span class="front-morph-tag">
+            ${label.person ? `<strong class="front-morph-person">${label.person}</strong>` : ''}
+            ${label.person && label.grammar ? '<span class="front-morph-divider">·</span>' : ''}
+            ${label.grammar ? `<span class="front-morph-grammar">${label.grammar}</span>` : ''}
+        </span>`
     ).join('');
     const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
         const hasMorph = includeMorph && morphLabels.length > 0 && isVerbPos(pos);
@@ -3439,7 +3452,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725q';
+const ASSET_VERSION = '20260725r';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
