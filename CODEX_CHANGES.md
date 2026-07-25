@@ -30,6 +30,12 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 
 ## Codex task history
 
+### 2026-07-25 — Persistent Codex/Claude handoff
+
+- Commit `a58c930`.
+- Added this ledger, linked it from `CLAUDE.md`, and added root `AGENTS.md` instructions so both Claude and future Codex chats discover and preserve the same handoff.
+- Reconstructed the Codex work in this conversation from the committed git history rather than relying on the chat's compressed context.
+
 ### 2026-07-25 — Reverse-direction SpanishDict protection
 
 - Commits `16955dc`, `be52ef3`; front-end cache `flashcards-v75` / `20260725t`.
