@@ -441,11 +441,6 @@ let _exampleAutoplayActive = false;
 let _exampleAutoplayAttemptsLeft = 0;
 let _exampleAutoplayRunId = 0;
 
-// updateCard() also renders in-card navigation (examples, senses, expressions,
-// and autoplay steps). Track the card object so those lightweight rerenders do
-// not repeatedly announce the headword; arriving on a different card still does.
-let _lastAutoSpokenCard = null;
-
 function stopExampleAutoplay(pause = true) {
     const wasActive = _exampleAutoplayActive;
     _exampleAutoplayActive = false;
@@ -589,7 +584,7 @@ function dedupeExamples(examples) {
 }
 
 function initializeApp() {
-    updateCard();
+    updateCard({ announceHeadword: true });
     updateStats();
 
     // Ensure modal is hidden on initialization
@@ -1345,7 +1340,7 @@ function advanceAfterFlag() {
             currentExampleIndex = 0;
             currentMWEIndex = 0;
             currentGroupSelection = null;
-            updateCard();
+            updateCard({ announceHeadword: true });
             document.getElementById('flashcard').classList.remove('flipped');
         } else {
             showEndOfDeckOptions();
@@ -1388,7 +1383,7 @@ function handleSwipeAction(result) {
             currentExampleIndex = 0; // Reset example index for new card
             currentMWEIndex = 0;
             currentGroupSelection = null;
-            updateCard();
+            updateCard({ announceHeadword: true });
             // Always show front side of next card
             document.getElementById('flashcard').classList.remove('flipped');
         } else {
@@ -1624,10 +1619,18 @@ function buildVariantDisplay(card, { back = false } = {}) {
     return displayForms.join('<span class="variant-sep">|</span>');
 }
 
-function updateCard() {
+function updateCard({ announceHeadword = false } = {}) {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
     window._currentDisplayedExample = null;
+
+    // Most updateCard() calls are in-card rerenders: cycling an example,
+    // selecting a sense/expression, starting autoplay, or changing a display
+    // option. They must be silent and must clear a delayed browser utterance.
+    // Genuine card-entry paths opt in explicitly below.
+    if (!announceHeadword) {
+        window.speechSynthesis?.cancel();
+    }
 
     // Update artist album artwork background
     updateArtistBackground();
@@ -3000,11 +3003,7 @@ function updateCard() {
         };
     }
 
-    // Speak only on an actual card arrival. updateCard() is also called while
-    // cycling examples/senses and by autoplay, where restarting TTS is disruptive.
-    const isNewCardArrival = _lastAutoSpokenCard !== card;
-    _lastAutoSpokenCard = card;
-    if (isNewCardArrival && !isFlipped) {
+    if (announceHeadword && !isFlipped) {
         speakWord(card.targetWord);
     }
 
@@ -3229,7 +3228,7 @@ function _navCard(direction) {
         currentMWEIndex = 0;
         currentGroupSelection = null;
         cardEl.classList.remove('flipped');
-        updateCard();
+        updateCard({ announceHeadword: true });
         return true;
     }
 
@@ -3255,7 +3254,7 @@ function _navCard(direction) {
         currentExampleIndex = 0;
         currentMWEIndex = 0;
         currentGroupSelection = null;
-        updateCard();
+        updateCard({ announceHeadword: true });
 
         void cardEl.offsetWidth;
         cardEl.classList.add(enterClass);
@@ -3282,7 +3281,7 @@ function shuffleCards() {
         [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
     }
     currentIndex = 0;
-    updateCard();
+    updateCard({ announceHeadword: true });
 }
 
 function flipDirection() {
@@ -3598,7 +3597,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725ai';
+const ASSET_VERSION = '20260725aj';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
