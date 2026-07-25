@@ -18,6 +18,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Explicit study-completion routes
+
+- Commit `87b015ca`; front-end cache `flashcards-v84` / `20260725ac`.
+- Every completed set now retains a separate Back to main menu action. The primary continuation moves forward through unfinished sets without wrapping to an earlier set.
+- The structurally final set of a level offers the first available set of the next level when one exists; the final level falls back to the main-menu action alone.
+- Verification: JavaScript syntax, cache lockstep, and `git diff --check` passed; no service-worker browser preview was used.
+
 ### 2026-07-25 — Artist metadata and timestamp rebuild
 
 - Commit `b185f23d`; no front-end files changed, so the current cache remains `flashcards-v83` / `20260725ab`.

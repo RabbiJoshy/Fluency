@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "87b015ca",
+      "summary": "Set completion now always offers the main menu and advances cleanly between levels",
+      "details": [
+        "Keeps Back to main menu as a separate action after every study set, even when another set is available",
+        "Uses the primary action for the next unfinished set without wrapping backwards inside the level",
+        "Completing the final set offers Level N, Set 1 when another level exists; cache v83→v84, assets 20260725ab→20260725ac"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "b185f23d",
       "summary": "Artist decks rebuilt with song spread, singer credits, and lyric end times",
       "details": [
