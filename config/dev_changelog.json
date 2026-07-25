@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "6b615a2a",
+      "summary": "Autoplay and in-card navigation no longer repeat the headword",
+      "details": [
+        "Limits automatic headword speech to arriving on a different card instead of every updateCard rerender",
+        "Makes example, sense, expression, and grouped-row changes silent so lyric autoplay can move without TTS interruptions",
+        "Keeps deliberate card-flip answer speech unchanged; cache v87→v88, assets 20260725af→20260725ag"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "6fb3ed91",
       "summary": "Vocabulary search now opens excluded and examples-only words reliably",
       "details": [

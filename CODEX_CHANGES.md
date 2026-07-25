@@ -18,6 +18,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Silent in-card navigation and autoplay
+
+- Commit `6b615a2a`; front-end cache `flashcards-v88` / `20260725ag`.
+- `updateCard()` now distinguishes an actual card arrival from a rerender of the same card, so the Spanish headword is announced once on entry rather than whenever an example, sense, expression, or autoplay step changes.
+- Removed the additional TTS calls from tap/swipe sense selection and grouped rows. Deliberately flipping the card still speaks the newly revealed side, preserving the useful answer cue.
+- Brought the lazy flashcard-module version into lockstep with the main asset version while bumping the service-worker cache.
+- Verification: all remaining `speakWord()` call sites were inspected, cache versions are in lockstep, changelog JSON parses, and `git diff --check` passes. This environment has no Node runtime, and no service-worker browser preview was used.
+
 ### 2026-07-25 — Filter-aware, examples-safe vocabulary search
 
 - Commit `6fb3ed91`; front-end cache `flashcards-v87` / `20260725af`.
