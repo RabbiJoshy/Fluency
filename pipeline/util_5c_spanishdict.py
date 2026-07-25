@@ -223,6 +223,7 @@ _MIN_PREFIX = 3
 
 _spanish_forms_deac = None       # set of deaccented known Spanish surface forms
 _conj_reverse_deac = None        # {deaccented form: set(deaccented lemma)}
+_conj_reverse_heads = None       # {lowercase form: set(original lowercase lemma)}
 _guard_data_loaded = False       # False until a load attempt succeeds
 
 
@@ -249,7 +250,7 @@ def _load_guard_data(spanish_forms_path=None, conj_reverse_path=None):
     Fail-open: if the files can't be read the guard is disabled (keeps every
     analysis) rather than risk over-quarantining a real deck.
     """
-    global _spanish_forms_deac, _conj_reverse_deac, _guard_data_loaded
+    global _spanish_forms_deac, _conj_reverse_deac, _conj_reverse_heads, _guard_data_loaded
     if _guard_data_loaded:
         return
     forms_path = Path(spanish_forms_path) if spanish_forms_path else SPANISH_FORMS_PATH
@@ -257,6 +258,7 @@ def _load_guard_data(spanish_forms_path=None, conj_reverse_path=None):
 
     forms_deac = set()
     conj_deac = {}
+    conj_heads = {}
     try:
         with open(forms_path, "r", encoding="utf-8") as f:
             for form in json.load(f).keys():
@@ -272,6 +274,12 @@ def _load_guard_data(spanish_forms_path=None, conj_reverse_path=None):
     try:
         with open(conj_path, "r", encoding="utf-8") as f:
             for form, entries in json.load(f).items():
+                original_lemmas = {
+                    e.get("lemma").strip().lower()
+                    for e in (entries or [])
+                    if isinstance(e, dict) and isinstance(e.get("lemma"), str)
+                    and e.get("lemma").strip()
+                }
                 lemmas = {
                     _deaccent(e.get("lemma"))
                     for e in (entries or [])
@@ -279,12 +287,69 @@ def _load_guard_data(spanish_forms_path=None, conj_reverse_path=None):
                 }
                 if lemmas:
                     conj_deac.setdefault(_deaccent(form), set()).update(lemmas)
+                if original_lemmas:
+                    conj_heads.setdefault(form.strip().lower(), set()).update(original_lemmas)
     except (OSError, ValueError):
         conj_deac = {}  # conjugation backstop optional; forms set is enough
+        conj_heads = {}
 
     _spanish_forms_deac = forms_deac
     _conj_reverse_deac = conj_deac
+    _conj_reverse_heads = conj_heads
     _guard_data_loaded = True
+
+
+def _looks_like_reverse_direction_conjugation(surface, analyses):
+    """Detect a legacy English-headword result for a Spanish verb form.
+
+    Old cache rows lack ``entry_lang``. For ambiguous strings such as ``sea``,
+    ``vine`` and ``mire``, SpanishDict sometimes returned its English entry,
+    producing Spanish glosses (sea → mar) even though the corpus token is a
+    known conjugation (sea → ser). Require all three signals so legitimate
+    lexical homographs such as vino=wine remain available:
+
+    * the reverse-conjugation layer knows a non-self lemma;
+    * the cache offers only the self headword, not that verb lemma; and
+    * a majority of its sense glosses contain a known Spanish form.
+    """
+    _load_guard_data()
+    if _spanish_forms_deac is None or _conj_reverse_heads is None:
+        return False
+    surface_l = (surface or "").strip().lower()
+    conjugation_lemmas = _conj_reverse_heads.get(surface_l) or set()
+    if not conjugation_lemmas or surface_l in conjugation_lemmas:
+        return False
+
+    headwords = {
+        (a.get("headword") or "").strip().lower()
+        for a in analyses or [] if isinstance(a, dict)
+    }
+    if not headwords or headwords & conjugation_lemmas:
+        return False
+    if headwords != {surface_l}:
+        return False
+
+    total = spanish_like = 0
+    excluded = {_deaccent(surface_l)} | {_deaccent(h) for h in headwords}
+    for analysis in analyses:
+        senses = analysis.get("senses") or []
+        if isinstance(senses, dict):
+            senses = senses.values()
+        for sense in senses:
+            translation = (sense.get("translation") or "").strip()
+            if not translation:
+                continue
+            total += 1
+            tokens = re.findall(r"[^\W\d_]+", translation.lower(), flags=re.UNICODE)
+            min_token_length = 3 if len(tokens) == 1 else 4
+            if any(
+                len(_deaccent(token)) >= min_token_length
+                and _deaccent(token) not in excluded
+                and _deaccent(token) in _spanish_forms_deac
+                for token in tokens
+            ):
+                spanish_like += 1
+    return total > 0 and spanish_like * 2 > total
 
 
 def _common_prefix_len(a, b):
@@ -438,6 +503,34 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
                 analyses.append(analysis)
                 seen_headwords.add(analysis.get("headword"))
                 seen_signatures.add(sig)
+
+    # Legacy caches predating ?langFrom=es can contain a self-headword from
+    # the English dictionary even when the token is a known Spanish verb form
+    # (sea → mar instead of sea → ser). Replace that quarantined analysis with
+    # the already-cached Spanish lemma entry. This is local and deterministic:
+    # no refetch or Gemini pass is needed to repair the menu itself.
+    if not (surface_entry.get("entry_lang") or "").strip() \
+            and _looks_like_reverse_direction_conjugation(surface, analyses):
+        _load_guard_data()
+        replacements = []
+        for lemma in sorted((_conj_reverse_heads or {}).get(surface.lower(), set())):
+            lemma_entry = headword_cache.get(lemma) or {}
+            for analysis in normalize_cached_analyses(
+                    lemma_entry.get("dictionary_analyses") or []):
+                if not analysis.get("headword"):
+                    analysis["headword"] = lemma
+                analysis["surface_relation"] = "conjugation"
+                analysis["surface_from"] = surface
+                replacements.append(analysis)
+        if replacements:
+            if quarantine is not None:
+                for analysis in analyses:
+                    quarantine.append({
+                        "surface": surface,
+                        "headword": (analysis.get("headword") or "").strip(),
+                        "reason": "reverse_direction_conjugation",
+                    })
+            analyses = replacements
 
     # Drop spurious self-headword PHRASE-only analyses when SD itself offers a
     # real morphological alternative. See :func:`is_phrase_only_analysis` for

@@ -8624,62 +8624,6 @@
       }
     ]
   },
-  "sea|sea": {
-    "spanishdict-keyword": [
-      {
-        "sense": "42f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19
-        ]
-      }
-    ],
-    "spanishdict-flash-lite": [
-      {
-        "sense": "42f",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19
-        ]
-      }
-    ]
-  },
   "donde|donde": {
     "spanishdict-keyword": [
       {
@@ -537432,6 +537376,25 @@
           "a3b783c0f370",
           "1df37535bddb",
           "4a3c3f1f6cbd"
+        ]
+      }
+    ]
+  },
+  "sea|ser": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "654",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
         ]
       }
     ]

@@ -91,6 +91,9 @@ def main():
     parser.add_argument("--gemini-workers", type=int, default=None,
                         help="Concurrent Gemini batches passed through to step_6c.")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--word", action="append", default=[],
+                        help="Only process a specific surface word (repeatable). "
+                             "Useful with --force for surgical re-classification.")
     parser.add_argument("--gemini-model", default=None,
                         help="Gemini model. Default (unset) lets step_6c pick: "
                              "gemini-3.1-flash-lite for the SpanishDict "
@@ -136,6 +139,8 @@ def main():
             bienc_args.append("--keyword-only")
         if args.force:
             bienc_args.append("--force")
+        for word in args.word:
+            bienc_args.extend(["--word", word])
         run_step("Classifier: %s" % args.classifier,
                  "step_6b_assign_senses_local.py", bienc_args)
     else:
@@ -144,6 +149,8 @@ def main():
             gemini_args.extend(_spanishdict_args_gemini(args.gemini_model))
         if args.force:
             gemini_args.append("--force")
+        for word in args.word:
+            gemini_args.extend(["--word", word])
         if args.gemini_model:
             gemini_args.extend(["--gemini-model", args.gemini_model])
         if args.max_examples is not None:
@@ -164,6 +171,8 @@ def main():
             gemini_args.extend(_spanishdict_args_gemini(args.gemini_model))
         if args.force:
             gemini_args.append("--force")
+        for word in args.word:
+            gemini_args.extend(["--word", word])
         if args.gemini_model:
             gemini_args.extend(["--gemini-model", args.gemini_model])
         if args.max_examples is not None:

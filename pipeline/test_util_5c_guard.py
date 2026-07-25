@@ -51,6 +51,34 @@ CASES = [
                     [_pr("hablar", "conjugation", "hablo")], {"hablar", "hablarse"}),
 ]
 
+# Legacy direction collisions exercise the conjugation-aware fallback. The
+# real committed reverse table knows sea→ser and vino→venir; only the Spanish-
+# gloss collision should be replaced. The legitimate vino=wine homograph stays.
+LEGACY_DIRECTION_CASES = [
+    (
+        "sea",
+        {"sea": {"dictionary_analyses": [
+            _da("sea", _sense("NOUN", "mar"), _sense("ADJ", "marino"))
+        ]}},
+        {"ser": {"dictionary_analyses": [_da("ser", _sense("VERB", "to be"))]}},
+        {"ser"},
+    ),
+    (
+        "vino",
+        {"vino": {"dictionary_analyses": [_da("vino", _sense("NOUN", "wine"))]}},
+        {"venir": {"dictionary_analyses": [_da("venir", _sense("VERB", "to come"))]}},
+        {"vino"},
+    ),
+    (
+        "baila",
+        {"baila": {"dictionary_analyses": [
+            _da("baila", _sense("NOUN", "spotted sea bass"))
+        ]}},
+        {"bailar": {"dictionary_analyses": [_da("bailar", _sense("VERB", "to dance"))]}},
+        {"baila"},
+    ),
+]
+
 # Direct is_plausible_headword() checks: (surface, headword, relation, conj_lemmas, expected)
 DIRECT = [
     ("perse", "purse", "", None, False),
@@ -87,7 +115,20 @@ def main():
         print("[%s] is_plausible(%s -> %s, rel=%s) = %s"
               % ("OK" if ok else "FAIL", surf, hw, rel or "-", got))
 
-    print("\n%d case(s), %d failure(s)" % (len(CASES) + len(DIRECT), failures))
+    for surface, surface_cache, headword_cache, expected in LEGACY_DIRECTION_CASES:
+        got = {
+            (a.get("headword") or "").strip()
+            for a in u.build_menu_analyses(surface, surface_cache, headword_cache)
+            if a.get("headword")
+        }
+        ok = got == expected
+        failures += not ok
+        print("[%s] legacy direction %-6s expected=%s got=%s"
+              % ("OK" if ok else "FAIL", surface,
+                 ",".join(sorted(expected)), ",".join(sorted(got))))
+
+    print("\n%d case(s), %d failure(s)" % (
+        len(CASES) + len(DIRECT) + len(LEGACY_DIRECTION_CASES), failures))
     return 1 if failures else 0
 
 

@@ -1247,8 +1247,15 @@ def main():
     if args.sense_source == "spanishdict":
         print("\nBuilding sense menu from SpanishDict...")
         output_file = sense_menu_path(LAYERS_DIR, "spanishdict")
+        # A targeted rebuild must merge into the existing menu. Starting from
+        # an empty mapping here used to replace the full standard-mode menu
+        # with only the requested word (artist mode already merged safely).
+        existing = None
+        if args.word or args.max_words is not None:
+            existing = normalize_artist_sense_menu(load_json(output_file, {}))
         build_spanishdict_menu(
             vocab, output_file,
+            existing_menu=existing,
             force=args.force,
             word_filter=args.word or None,
             max_words=args.max_words,

@@ -4,6 +4,16 @@
     {
       "date": "2026-07-25",
       "commit": "pending",
+      "summary": "Spanish verb forms can no longer inherit reverse-dictionary translations",
+      "details": [
+        "Detects legacy SpanishDict direction collisions only when a known conjugation resolves to itself with predominantly Spanish glosses, while preserving legitimate homographs such as vino meaning wine",
+        "Repairs sea across Speech, Bad Bunny, Rosalía, and Young Miko as a form of ser with English meaning, morphology, and the existing examples intact",
+        "Makes targeted standard menu builds merge-safe and adds one-word artist assignment support so future surgical repairs do not require a full Gemini rerun; cache v74→v75, assets 20260725s→20260725t"
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "commit": "cae174c",
       "summary": "Merged-lemma examples now highlight their actual word form",
       "details": [
         "Uses the pooledFrom provenance already attached to sibling examples so a querer card can highlight quieres, quiere, or another form actually present in the sentence",

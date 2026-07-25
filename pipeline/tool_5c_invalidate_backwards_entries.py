@@ -204,6 +204,12 @@ def _flag_analyses(word, analyses, infinitives, word_lemmas, spanish_words):
     first_reason = ""
     for a in analyses:
         headword = (a.get("headword") or "").strip().lower()
+        # A known conjugation whose cache resolved only to itself is a much
+        # stronger reverse-direction signal than an ordinary lexical entry.
+        # Permit 3-letter Spanish glosses in that narrow case so sea → mar is
+        # caught; the general detector keeps its conservative 4-letter floor.
+        morph_headword_mismatch = bool(known_lemmas) and headword not in known_lemmas
+        spanish_word_min_length = 3 if morph_headword_mismatch else 4
         exclude_tokens = {word}
         if headword:
             exclude_tokens.add(headword)
@@ -221,14 +227,19 @@ def _flag_analyses(word, analyses, infinitives, word_lemmas, spanish_words):
                 is_spanish = True
                 reason = f"{tr!r} contains Spanish char"
             else:
-                for tok in _tokens(tr):
+                translation_tokens = _tokens(tr)
+                token_min_length = (
+                    spanish_word_min_length if len(translation_tokens) == 1 else 4)
+                for tok in translation_tokens:
                     if tok in exclude_tokens:
                         continue
                     if tok in infinitives:
                         is_spanish = True
                         reason = f"{tr!r} contains Spanish infinitive {tok!r}"
                         break
-                    if spanish_words and len(tok) >= 4 and tok in spanish_words:
+                    if (spanish_words
+                            and len(tok) >= token_min_length
+                            and tok in spanish_words):
                         is_spanish = True
                         reason = f"{tr!r} contains Spanish word {tok!r}"
                         break
@@ -294,68 +305,8 @@ def flag_entry(word, entry, infinitives, word_lemmas, spanish_words=None):
     analyses = entry.get("dictionary_analyses") or []
     if not analyses:
         return False, ""
-
-    known_lemmas = set(word_lemmas.get(word, []))
-
-    total_senses = 0
-    spanish_senses = 0
-    first_reason = ""
-
-    for a in analyses:
-        headword = (a.get("headword") or "").strip().lower()
-        # Exclude the headword itself from translation-token matching.
-        # That's the narrow fix for sonaría → sonar → sonar (headword
-        # "sonar" happens to be both a Spanish infinitive AND the query's
-        # known lemma, so counting the identity-translation as Spanish
-        # would wrongly flag a forward entry). Using a blanket
-        # ``headword_is_known_lemma`` gate was too aggressive — it also
-        # skipped genuine backwards entries like ``okay`` (known_lemmas
-        # = [okay], headword = okay) whose translations "bien / bueno /
-        # vale" don't match the headword but ARE Spanish.
-        exclude_tokens = {word}
-        if headword:
-            exclude_tokens.add(headword)
-        senses = a.get("senses") or []
-        for s in senses:
-            tr = s.get("translation") or ""
-            if not tr:
-                continue
-            total_senses += 1
-            is_spanish = False
-            reason = ""
-            if SPANISH_CHARS_RE.search(tr):
-                is_spanish = True
-                reason = f"{tr!r} contains Spanish char"
-            else:
-                for tok in _tokens(tr):
-                    if tok in exclude_tokens:
-                        continue
-                    if tok in infinitives:
-                        is_spanish = True
-                        reason = f"{tr!r} contains Spanish infinitive {tok!r}"
-                        break
-                    if spanish_words and len(tok) >= 4 and tok in spanish_words:
-                        # Inventory-membership as a weaker fallback for
-                        # content words that don't carry diacritics and
-                        # aren't infinitives (tarde, atrasado, difunto).
-                        # 4-char gate avoids short English-Spanish
-                        # homographs (de, la, el, un, en).
-                        is_spanish = True
-                        reason = f"{tr!r} contains Spanish word {tok!r}"
-                        break
-            if is_spanish:
-                spanish_senses += 1
-                if not first_reason:
-                    first_reason = reason
-
-    if total_senses == 0:
-        return False, ""
-    # Majority of senses look Spanish → the entry is a backwards
-    # translation (English headword, Spanish glosses). One stray
-    # loanword in an otherwise-English entry doesn't trip this.
-    if spanish_senses * 2 > total_senses:
-        return True, f"{spanish_senses}/{total_senses} senses look Spanish ({first_reason})"
-    return False, ""
+    return _flag_analyses(
+        word, analyses, infinitives, word_lemmas, spanish_words)
 
 
 def main():

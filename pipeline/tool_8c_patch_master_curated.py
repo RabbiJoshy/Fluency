@@ -488,7 +488,13 @@ OVERRIDES = [
     {"key": "612672", "word": "sea", "lemma": "ser", "flags": {},
      # "sea lo que sea" = subjunctive of ser, not English "sea"->mar.
      "senses": {0: {"pos": "VERB", "translation": "be (subjunctive of ser)",
-                    "context": ""},
+                    "context": "used to talk about characteristics"},
+                1: {"pos": "X", "translation": "", "context": ""}}},
+    {"key": "12672e", "word": "sea", "lemma": "ser", "flags": {},
+     # Same reverse-direction cache leak under the artist-master ID. Keep the
+     # existing sense count so positional artist assignments remain valid.
+     "senses": {0: {"pos": "VERB", "translation": "be (subjunctive of ser)",
+                    "context": "used to talk about characteristics"},
                 1: {"pos": "X", "translation": "", "context": ""}}},
     {"key": "6dc1f9", "word": "vine", "lemma": "venir", "flags": {},
      # "vine" = I came (venir), not English "vine"->vid/enredadera/parra.
