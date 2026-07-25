@@ -335,21 +335,34 @@ function updateStep5Tooltip() {
     }
 }
 
-// Returns the first .level-btn whose level isn't fully completed, using the
-// same per-word "known" check the stable sets use (rank inside the user's
-// level estimate OR ≥1 correct attempt). Returns the LAST button if every
-// level is complete (you've maxed out — land on the most-advanced level so
-// you don't bounce off into nothing). Returns null on data-load failure;
-// caller falls back to the first button.
+// Annotates every level control with its completion percentage and returns
+// the first level that still has work. The visible scrubber gets a small
+// partial-progress bar; its hidden .level-btn keeps the same data for setup
+// logic and the non-slider fallback.
 async function findFirstIncompleteLevelBtn(language, buttons) {
     const langConfig = config.languages[language];
     if (!langConfig) return null;
     const vocabularyData = await fetchActiveVocabularyData(langConfig);
     const { vocab: filteredVocab } = buildFilteredVocab(vocabularyData);
     const estimate = levelEstimates[language] || 0;
-    const wordKnown = (item) => (item.rank <= estimate) || isWordKnown(getWordId(item));
+    const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
+        ? await buildEstimatedKnownIds(estimate)
+        : null;
+    const wordKnown = item => {
+        if (!currentUser || currentUser.isGuest || !progressData) return false;
+        if (activeArtist) {
+            if (item.id && estimatedIds?.has(item.id)) return true;
+        } else if (item.rank <= estimate) {
+            return true;
+        }
+        return isWordKnown(getWordId(item));
+    };
 
-    for (const btn of buttons) {
+    let firstIncomplete = null;
+    let lastAvailable = null;
+
+    for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
+        const btn = buttons[buttonIndex];
         let minWord, maxWord;
         let rankBasis = 'source';
         if (percentageMode && ppmData && ppmData.length > 0) {
@@ -367,9 +380,27 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
             return rank >= minWord && rank < maxWord;
         });
         if (wordsInLevel.length === 0) continue;
-        if (!wordsInLevel.every(wordKnown)) return btn;
+        lastAvailable = btn;
+        const knownCount = wordsInLevel.filter(wordKnown).length;
+        const completion = Math.round(100 * knownCount / wordsInLevel.length);
+        const isPartial = completion > 0 && completion < 100;
+        btn.dataset.progressPct = String(completion);
+        btn.classList.toggle('has-partial-progress', isPartial);
+        btn.style.setProperty('--level-progress', `${completion}%`);
+
+        const visibleSegment = document.querySelector(`#lswSlider .lsw-seg[data-i="${buttonIndex}"]`);
+        if (visibleSegment) {
+            visibleSegment.dataset.progressPct = String(completion);
+            visibleSegment.classList.toggle('has-partial-progress', isPartial);
+            visibleSegment.style.setProperty('--level-progress', `${completion}%`);
+            visibleSegment.setAttribute(
+                'aria-label',
+                `Level ${buttonIndex + 1}, ${completion}% complete`
+            );
+        }
+        if (!firstIncomplete && completion < 100) firstIncomplete = btn;
     }
-    return buttons[buttons.length - 1];
+    return firstIncomplete || lastAvailable || buttons[buttons.length - 1];
 }
 
 async function renderLevelSelector(language) {
@@ -550,23 +581,30 @@ async function renderLevelSelector(language) {
             _scrollLevelSegToCenter(parseInt(segBar.dataset.value || '0', 10), false));
     }
 
+    const levelButtons = Array.from(document.querySelectorAll('.level-btn'));
+    const levelProgressPromise = levelButtons.length > 0
+        ? findFirstIncompleteLevelBtn(language, levelButtons)
+        : Promise.resolve(null);
+
     // Auto-select first time only (preserves manual picks across re-renders).
     // Pick the first level that isn't fully completed so the user lands on
     // actionable work — finishing the 70% level should auto-open 80%, not
     // sit on a level whose sets are already complete. Falls back to the
     // first button on data-load failure or if there are no buttons.
     if (!selectedLevel) {
-        const buttons = Array.from(document.querySelectorAll('.level-btn'));
-        if (buttons.length === 0) return;
-        let target = buttons[0];
+        if (levelButtons.length === 0) return;
+        let target = levelButtons[0];
         try {
-            const incomplete = await findFirstIncompleteLevelBtn(language, buttons);
+            const incomplete = await levelProgressPromise;
             if (incomplete) target = incomplete;
         } catch (err) {
             console.warn('Level auto-pick failed, using first', err);
         }
         // Re-check: the user may have clicked a level during the await above.
         if (!selectedLevel) target.click();
+    } else {
+        levelProgressPromise.catch(err =>
+            console.warn('Level progress indicators unavailable', err));
     }
 }
 

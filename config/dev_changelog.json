@@ -4,6 +4,16 @@
     {
       "date": "2026-07-25",
       "commit": "pending",
+      "summary": "Partially completed levels now show their progress",
+      "details": [
+        "Adds a quiet proportional progress marker beneath every partially completed level in the numbered scrubber and fallback level buttons",
+        "Uses the same known-card rules as the study-set panel, including artist-specific estimated vocabulary, so level and set completion agree",
+        "Keeps automatic selection on the first unfinished level; cache v71→v72, assets 20260725p→20260725q"
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "commit": "4588ac4",
       "summary": "Card backs now reserve metadata for useful word-form relationships",
       "details": [
         "Removes vocabulary rank and corpus occurrence/frequency statistics from the card back while retaining them on the front",

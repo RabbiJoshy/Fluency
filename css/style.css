@@ -2740,6 +2740,22 @@
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--text-muted);
+            position: relative;
+        }
+
+        .level-btn.has-partial-progress::after {
+            content: '';
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 4px;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(to right,
+                var(--accent-secondary) 0,
+                var(--accent-secondary) var(--level-progress),
+                rgba(var(--accent-secondary-rgb), 0.2) var(--level-progress),
+                rgba(var(--accent-secondary-rgb), 0.2) 100%);
         }
 
         .level-btn:hover {
@@ -2858,6 +2874,22 @@
             transition: transform 0.16s ease, opacity 0.16s ease, color 0.16s ease;
             color: var(--text-muted, #8a8f98);
             font: 700 0.82rem/1 var(--font-data, var(--font-emphasis, monospace));
+            position: relative;
+        }
+        .lsw-segments.lsw-scrubber .lsw-seg.has-partial-progress::after {
+            content: '';
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 7px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(to right,
+                var(--accent-secondary) 0,
+                var(--accent-secondary) var(--level-progress),
+                rgba(var(--accent-secondary-rgb), 0.22) var(--level-progress),
+                rgba(var(--accent-secondary-rgb), 0.22) 100%);
+            box-shadow: 0 0 5px rgba(var(--accent-secondary-rgb), 0.2);
         }
         .lsw-segments.lsw-scrubber .lsw-seg .lsw-seg-label { pointer-events: none; }
         .lsw-segments.lsw-scrubber .lsw-seg.filled:not(.selected) {
