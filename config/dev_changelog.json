@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "a85e17f",
       "summary": "Artist rank ties now use each word's complete song spread",
       "details": [
         "Tracks every distinct corpus song containing a word at count time instead of inferring song spread from the capped ten retained examples",

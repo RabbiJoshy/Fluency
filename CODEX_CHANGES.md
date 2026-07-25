@@ -21,11 +21,17 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 - Extend LRCLIB timestamps with line end times and consider a sequential lyric-example autoplay mode.
 - Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
 - Ensure partial progress is shown on individual study-set choices as well as levels.
-- Confirm/order artist vocabulary ties by corpus count, general Spanish frequency, then distinct song count. Exact repeated lines are already excluded from corpus count and distinct-song count is already present in step 7b; see the audit accompanying the next implementation task.
 - Make English TTS speak the displayed inflected translation rather than the underlying infinitive gloss.
 - Add free-text flag notes and make the primary flag target a sense–example pairing.
 
 ## Codex task history
+
+### 2026-07-25 — Corpus-accurate distinct-song ranking
+
+- Commit `a85e17f`; pipeline-only change, so no front-end cache bump.
+- Step 2 now records the complete distinct song-ID set for every word on the same exact-line-deduplicated corpus basis as frequency; elision normalization unions those sets and step 5 carries their counts into the inventory.
+- Step 7b now uses the inventory count for the third ranking key (after corpus count and general Spanish rank), with capped retained examples only as a legacy fallback.
+- Verification: three unit tests cover chorus deduplication, song-ID union across variants, and song-count ranking; Python compilation, changelog JSON validation, and `git diff --check` passed. Rebuilding from step 2 is required to populate existing artist data; Gemini steps need not be rerun.
 
 ### 2026-07-25 — Language-first learning source
 

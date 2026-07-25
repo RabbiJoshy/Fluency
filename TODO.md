@@ -111,11 +111,10 @@
      (`e23684b`): all-time progress now explains weighted coverage in a focused summary and metric
      grid; dedicated information controls open landing and active-set stats, bars are no longer
      disguised buttons, and literal question marks are replaced by consistent accessible icons.
-  8. **(S) [artist] Make distinct-song rank tiebreaker corpus-accurate.** Step 7b already sorts by
-     lyric `corpus_count`, general Spanish frequency rank, then distinct-song count, but its song
-     count is derived from the retained examples (default cap 10), not all corpus lines. Track an
-     all-corpus `song_count` in step 2, carry it through elision/inventory layers, and use that in
-     step 7b. Exact repeated lines within one song are already excluded from `corpus_count`.
+  8. **(S) [artist] Make distinct-song rank tiebreaker corpus-accurate** — DONE 2026-07-25
+     (`a85e17f`): step 2 records every corpus song containing each word on the existing repeated-line-
+     deduplicated basis; Spanish/French elision merges union those IDs, the inventory retains the
+     exact count, and step 7b uses it instead of the default-ten retained examples.
   9. **(S) [shared/spanish] Speak the displayed inflected English gloss** — DONE 2026-07-25
      (`b2672c5`): every English speech path now uses `getConjugatedEnglish()` just like the visible
      card, so `merezco` speaks “I deserve” rather than the underlying “to deserve”; target-language
