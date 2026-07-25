@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725ac">
-    <link rel="modulepreload" href="js/state.js?v=20260725ac">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ac">
-    <link rel="modulepreload" href="js/speech.js?v=20260725ac">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ac">
-    <link rel="modulepreload" href="js/auth.js?v=20260725ac">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725ac">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725ac">
-    <link rel="modulepreload" href="js/config.js?v=20260725ac">
-    <link rel="modulepreload" href="js/progress.js?v=20260725ac">
-    <link rel="modulepreload" href="js/ui.js?v=20260725ac">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725ac">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725ac">
+    <link rel="modulepreload" href="js/main.js?v=20260725ad">
+    <link rel="modulepreload" href="js/state.js?v=20260725ad">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ad">
+    <link rel="modulepreload" href="js/speech.js?v=20260725ad">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ad">
+    <link rel="modulepreload" href="js/auth.js?v=20260725ad">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725ad">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725ad">
+    <link rel="modulepreload" href="js/config.js?v=20260725ad">
+    <link rel="modulepreload" href="js/progress.js?v=20260725ad">
+    <link rel="modulepreload" href="js/ui.js?v=20260725ad">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725ad">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725ad">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -235,11 +235,33 @@
             <div id="step1" class="setup-step">
                 <div class="step-header step-header-with-help" id="step1Header">
                     <span class="step-number">1</span>
-                    <span class="step-title" id="step1Title">Choose Language</span>
+                    <span class="step-title" id="step1Title">Language</span>
                     <span id="selectedLanguageInline" class="selection-pill-inline" style="display: none;"></span>
                 </div>
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
+                </div>
+            </div>
+
+            <div id="artistSourceStep" class="setup-step artist-source-step" style="display: none;">
+                <div class="step-header artist-source-header">
+                    <div>
+                        <span class="artist-source-eyebrow">Learning from lyrics</span>
+                        <span class="step-title">Artist</span>
+                    </div>
+                </div>
+                <div class="artist-source-card">
+                    <button type="button" id="artistSourcePickerBtn" class="artist-source-picker" aria-haspopup="dialog">
+                        <span id="artistSourceImage" class="artist-source-image" aria-hidden="true"></span>
+                        <span class="artist-source-copy">
+                            <span id="artistSourceName" class="artist-source-name"></span>
+                            <span>Choose another artist</span>
+                        </span>
+                        <span class="language-picker-btn-arrow" aria-hidden="true">›</span>
+                    </button>
+                    <button type="button" id="artistSourceSpeechBtn" class="artist-source-speech-btn">
+                        Switch to Speech
+                    </button>
                 </div>
             </div>
 
@@ -1072,6 +1094,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725ac"></script>
+    <script type="module" src="js/main.js?v=20260725ad"></script>
 </body>
 </html>

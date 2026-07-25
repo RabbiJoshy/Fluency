@@ -310,9 +310,7 @@ function setupLanguageTabs() {
             document.getElementById('step4').style.display = 'none';
             hideAllSelectionPills();
 
-            // Source is the next decision. Speech continues this setup;
-            // Lyrics navigates through the existing artist clock instead.
-            window.showLearningSourcePicker?.(newLanguage, async () => {
+            const continueToSpeech = async () => {
                 if (selectedLanguage !== newLanguage) return;
                 const loadingIndicator = document.getElementById('dataLoadingIndicator');
                 loadingIndicator.classList.add('visible');
@@ -346,7 +344,16 @@ function setupLanguageTabs() {
                     if (changed) renderRangeSelector();
                 }).catch(() => {});
                 updateTotalStatsButtonVisibility();
-            });
+            };
+
+            // Source is the next decision. A deliberate return from an artist
+            // card skips the clock and resumes Speech in the same language.
+            if (sessionStorage.getItem('fluencyPendingSpeechLanguage') === newLanguage) {
+                sessionStorage.removeItem('fluencyPendingSpeechLanguage');
+                await continueToSpeech();
+            } else {
+                window.showLearningSourcePicker?.(newLanguage, continueToSpeech);
+            }
         });
     });
 }
@@ -2236,6 +2243,7 @@ function switchPrimaryArtist(newSlug) {
     // Re-apply color theme and re-render checkboxes
     applyLanguageColorTheme();
     setupArtistSelection();
+    window.renderArtistSourceSummary?.();
 
     // Trigger full vocabulary reload (cache invalidation + UI reset)
     onArtistSelectionChange();

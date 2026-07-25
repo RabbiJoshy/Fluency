@@ -1,15 +1,15 @@
-import './state.js?v=20260725ac';
-import './sync-queue.js?v=20260725ac';
-import './speech.js?v=20260725ac';
-import './artist-ui.js?v=20260725ac';
-import './auth.js?v=20260725ac';
-import './spotify.js?v=20260725ac';
-import './estimation.js?v=20260725ac';
-import './config.js?v=20260725ac';
-import './progress.js?v=20260725ac';
-import './ui.js?v=20260725ac';
-import './vocab.js?v=20260725ac';
-import './flashcards.js?v=20260725ac';
+import './state.js?v=20260725ad';
+import './sync-queue.js?v=20260725ad';
+import './speech.js?v=20260725ad';
+import './artist-ui.js?v=20260725ad';
+import './auth.js?v=20260725ad';
+import './spotify.js?v=20260725ad';
+import './estimation.js?v=20260725ad';
+import './config.js?v=20260725ad';
+import './progress.js?v=20260725ad';
+import './ui.js?v=20260725ad';
+import './vocab.js?v=20260725ad';
+import './flashcards.js?v=20260725ad';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -203,6 +203,7 @@ loadConfig().then(async () => {
             applyLanguageColorTheme();
             // Hide step 1 entirely (language auto-selected)
             document.getElementById('step1').style.display = 'none';
+            renderArtistSourceSummary();
             // Renumber steps: in artist mode the language step is hidden,
             // so Choose Level becomes step 1 and Continue Level becomes step 2.
             // Lemma/cognate are sub-settings inside Choose Level — they
@@ -225,6 +226,12 @@ loadConfig().then(async () => {
             document.documentElement.classList.remove('artist-loading');
         }
         perfMark('after artist init');
+    } else {
+        const pendingSpeechLanguage = sessionStorage.getItem('fluencyPendingSpeechLanguage');
+        const pendingTab = pendingSpeechLanguage
+            ? document.querySelector(`.lang-tab[data-lang="${pendingSpeechLanguage}"]`)
+            : null;
+        if (pendingTab && !pendingTab.disabled) pendingTab.click();
     }
 
     // Wait for Sheets refresh to complete; re-render set badges if data changed
@@ -253,6 +260,37 @@ function artistInitials(name) {
 function artistPickerImage(cfg) {
     return cfg.pickerImage || cfg.image || cfg.defaultAlbumArt || '';
 }
+
+function renderArtistSourceSummary() {
+    const step = document.getElementById('artistSourceStep');
+    const picker = document.getElementById('artistSourcePickerBtn');
+    const speechBtn = document.getElementById('artistSourceSpeechBtn');
+    const name = document.getElementById('artistSourceName');
+    const image = document.getElementById('artistSourceImage');
+    if (!step || !picker || !speechBtn || !name || !image || !activeArtist) return;
+
+    const artistName = activeArtist.name || 'Artist';
+    const art = artistPickerImage(activeArtist);
+    name.textContent = artistName;
+    image.textContent = art ? '' : artistInitials(artistName);
+    image.classList.toggle('artist-source-image--fallback', !art);
+    image.style.backgroundImage = art ? `url('${art}')` : '';
+    image.style.backgroundColor = art ? '' : (activeArtist.colorTheme?.primary || 'var(--accent-primary)');
+    step.style.display = 'block';
+
+    picker.onclick = () => {
+        const language = activeArtist.language || 'spanish';
+        const matchingArtists = Object.fromEntries(Object.entries(allArtistsConfig || {}).filter(([, cfg]) =>
+            (cfg.language || 'spanish') === language));
+        showArtistPicker(picker, matchingArtists);
+    };
+    speechBtn.onclick = () => {
+        sessionStorage.setItem('fluencyPendingSpeechLanguage', activeArtist.language || 'spanish');
+        window.location.href = window.location.pathname;
+    };
+}
+
+window.renderArtistSourceSummary = renderArtistSourceSummary;
 
 // Shared radial "clock of pictures" picker used by artists and languages.
 function showRadialPicker({ id, ariaLabel, hubHTML, entries }) {
@@ -417,6 +455,7 @@ async function showLearningSourcePicker(language, onSpeech) {
 }
 
 window.showLearningSourcePicker = showLearningSourcePicker;
+window.showArtistPicker = showArtistPicker;
 
 // Standard-mode language adapter: flag pictures + existing hidden language
 // buttons, so all loading/theme/progress behavior stays in ui.js.
