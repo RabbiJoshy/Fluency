@@ -58,6 +58,7 @@ Fluency/
 
 ## Detailed Docs
 
+- **Cross-model handoff** — read `CODEX_CHANGES.md` before changing work last touched by Codex; it records Codex decisions, verification, and commit history
 - **Pipeline work?** Read `pipeline/CLAUDE.md` (both modes) and `Artists/CLAUDE.md` (artist mode specifics)
 - **Front-end JS work?** Read `js/CLAUDE.md`
 - **Data schemas / IDs / progress?** Read `Data/CLAUDE.md`
@@ -76,6 +77,8 @@ Fluency/
 **Parallel agents:** Use sub-agents for independent tasks that don't touch the same files. Group work into waves. Keep the main conversation going across waves — agents get their own context windows.
 
 **Dev changelog:** After changing deck data or user-visible app behavior, prepend an entry to `config/dev_changelog.json` (date, commit, summary, short detail bullets). It renders in the settings-modal footer for Josh's JST account only — it's how he sees what Claude changed without reading git log.
+
+**Cross-model ledger:** When picking up work recorded in `CODEX_CHANGES.md`, preserve its documented decisions or explicitly record why they changed. Claude does not need to add ordinary Claude-only work to that file; `config/dev_changelog.json` and git remain the general project history.
 
 **Safe git pushes:** Josh often has multiple Claude sessions open on the same repo. Before pushing, always `git pull --rebase` first to avoid overwriting changes from another session. If there are conflicts, stop and tell Josh rather than force-pushing. Never use `git push --force`. Proactively suggest committing and pushing after completing a logical chunk of work — don't wait for Josh to ask.
 
