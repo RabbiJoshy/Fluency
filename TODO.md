@@ -78,6 +78,53 @@
      Each level now has stable 20-position sets, automatic first-unfinished selection, discrete
      progress, direct next-set continuation, and stronger nearby-set example preference in Speech.
 
+- **[now] Codex follow-up batch — requested 2026-07-25 [shared unless noted]**
+  Work as separate commits; data-dependent artist items should precede their front-end consumers.
+  1. **(M) [artist] Attribute lyric examples to section vocalists and improve example priority.**
+     Parse Genius section headers (`[Verso 1: Bad Bunny]`) while step 2 walks lines and carry
+     vocalist provenance through the example layers. Order examples by: selected/primary artist
+     sings the section; Spotify track is available; title is not a remix/version; then the current
+     personal-easiness/deck-neighbour signals. Audit snapshot: 500/537 Bad Bunny song records have
+     section headers, 347 have named headers, and 311 explicitly name Bad Bunny, so unknown must
+     remain a legitimate fallback rather than being guessed.
+  2. **(M) [artist] Add lyric line end timestamps; design example autoplay.** LRCLIB caches include
+     track duration and timestamped line starts, but `step_8a_fetch_lrc_timestamps.py` currently
+     emits only `{ms, confidence}`. Infer `end_ms` from the next raw LRC timestamp (including empty
+     boundary rows), use track duration for the last line, and carry it through step 8b. Autoplay
+     then needs a front-end controller that starts at `timestamp_ms`, stops at `end_ms`, and advances;
+     desktop connected Spotify is controllable, while mobile handoff needs a graceful limitation.
+  3. **(S) [shared] Modernise the end-of-set modal.** Bring typography, button hierarchy, spacing,
+     and success/mistake states into the current card/modal design language; keep next-set, review
+     mistakes, restart, and menu actions semantically consistent.
+  4. **(M) [shared] Settings defaults and persistent study preferences.** The HTML marks Account
+     active, but `showSettingsModal()` explicitly opens Advanced; make Account the default. Add a
+     warned Advanced control for persistent global Merge Lemmas and Exclude Cognates defaults,
+     while retaining per-session changes and stable set boundaries.
+  5. **(M) [shared] Put Speech/Lyrics choice after language.** Remove the landing top-bar mode
+     switch. After language selection, ask whether to learn from Speech or Lyrics; Lyrics then opens
+     the existing artist radial picker. Preserve direct `?artist=` URLs and resume links.
+  6. **(S) [shared] Show partial progress on individual study-set buttons.** Level buttons already
+     show partial progress, but `study-set-dot` currently has only complete/current/empty states.
+     Add a visible 1–99% state without competing with the current-set focus treatment.
+  7. **(M) [shared] Clean up progress/stats surfaces and help controls.** Restyle total progress for
+     clearer weighted coverage versus card counts. Make a dedicated information button open it;
+     the coverage bar itself should no longer be a button. Replace ambiguous literal `?` controls
+     with a consistent labelled information/help icon treatment.
+  8. **(S) [artist] Make distinct-song rank tiebreaker corpus-accurate.** Step 7b already sorts by
+     lyric `corpus_count`, general Spanish frequency rank, then distinct-song count, but its song
+     count is derived from the retained examples (default cap 10), not all corpus lines. Track an
+     all-corpus `song_count` in step 2, carry it through elision/inventory layers, and use that in
+     step 7b. Exact repeated lines within one song are already excluded from `corpus_count`.
+  9. **(S) [shared/spanish] Speak the displayed inflected English gloss.** Card rendering uses
+     `getConjugatedEnglish()` (for example `merezco` → “I deserve”), but TTS calls still pass the
+     underlying `meaning.meaning` (“to deserve”). Route all English card speech through the same
+     display helper.
+  10. **(M) [shared] Flag a sense–example pairing with a free-text note.** The current menu has
+      separate “Wrong meaning” and “Wrong example” targets; make the visible selected sense plus
+      current example the primary pairing target, include both texts in the saved record, and add
+      an optional note field. Decide whether to encode the note in the existing FlaggedWords row or
+      deploy a ninth backend column before implementation.
+
 - **[now] Notes-app backlog — EARLIER dump, captured 2026-07-24 [was only categorized in-chat, never committed until now]**
   From Josh's notes (~2026-07-13). Already resolved: offline save-on-reconnect (SHIPPED,
   js/sync-queue.js); level auto-jumps to first not-completed level on setting change (DONE,
