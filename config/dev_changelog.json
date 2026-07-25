@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "def2f94",
       "summary": "Frequency levels are shorter, finishable bands with accurate ranks",
       "details": [
         "Targets roughly 200 configured cards per level, retaining a ten-level floor for small decks and allowing as many as 80 levels for very large vocabularies",
