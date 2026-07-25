@@ -1847,10 +1847,10 @@ async function showTotalStatsModal() {
     const linesEl         = document.getElementById('totalStatsLinesUnderstood');
     const linesRow        = document.getElementById('totalStatsLinesRow');
     if (coverageLabelEl) {
-        coverageLabelEl.textContent = activeArtist ? 'Lyrics word comprehension:' : 'Comprehension: speech';
+        coverageLabelEl.textContent = activeArtist ? 'Lyrics comprehension' : 'Speech comprehension';
     }
     if (linesLabelEl) {
-        linesLabelEl.textContent = activeArtist ? 'Full lyric lines:' : 'Full sentences:';
+        linesLabelEl.textContent = activeArtist ? 'Complete lyric lines' : 'Complete sentences';
     }
 
     // Both modes share the same computation: walk every example sentence in

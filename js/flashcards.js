@@ -490,7 +490,7 @@ function initializeApp() {
                 { label: speechEnabled ? 'Mute audio' : 'Enable audio', fallbackText: speechEnabled ? '🔊' : '🔇', accent: '#06b6d4', onSelect: () => toggleAutoSpeak() },
                 { label: 'Progress', fallbackText: '▥', accent: '#22c55e', onSelect: () => showTotalStatsModal() },
                 { label: 'Settings', fallbackText: '⚙', accent: '#a855f7', onSelect: () => showSettingsModal() },
-                { label: 'Help', fallbackText: '?', accent: '#f59e0b', onSelect: () => openHelpModal() }
+                { label: 'Help', fallbackText: 'ⓘ', accent: '#f59e0b', onSelect: () => openHelpModal() }
             ]
         });
     };
@@ -647,6 +647,10 @@ function initializeApp() {
             e.stopPropagation();
             showStatsModal();
         });
+    });
+    document.getElementById('deckProgressInfo')?.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showStatsModal();
     });
 
     // Desktop speak button — toggles auto-speak
@@ -3469,7 +3473,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725w';
+const ASSET_VERSION = '20260725x';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

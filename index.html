@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725w">
-    <link rel="modulepreload" href="js/state.js?v=20260725w">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725w">
-    <link rel="modulepreload" href="js/speech.js?v=20260725w">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725w">
-    <link rel="modulepreload" href="js/auth.js?v=20260725w">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725w">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725w">
-    <link rel="modulepreload" href="js/config.js?v=20260725w">
-    <link rel="modulepreload" href="js/progress.js?v=20260725w">
-    <link rel="modulepreload" href="js/ui.js?v=20260725w">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725w">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725w">
+    <link rel="modulepreload" href="js/main.js?v=20260725x">
+    <link rel="modulepreload" href="js/state.js?v=20260725x">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725x">
+    <link rel="modulepreload" href="js/speech.js?v=20260725x">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725x">
+    <link rel="modulepreload" href="js/auth.js?v=20260725x">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725x">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725x">
+    <link rel="modulepreload" href="js/config.js?v=20260725x">
+    <link rel="modulepreload" href="js/progress.js?v=20260725x">
+    <link rel="modulepreload" href="js/ui.js?v=20260725x">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725x">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725x">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -255,16 +255,13 @@
             </div>
 
             <!-- Personal Progress Bar (standalone, shown after language selection) -->
-            <div id="personalCoverageWrapper" class="coverage-bar-wrapper personal-coverage-wrapper" style="display: none;" role="button" tabindex="0" aria-label="Open detailed progress">
+            <div id="personalCoverageWrapper" class="coverage-bar-wrapper personal-coverage-wrapper" style="display: none;">
                 <div class="personal-progress-header">
                     <span class="personal-progress-title">Your progress</span>
-                    <button class="step-help-btn" data-tooltip="personalProgressTooltip" title="Help">?</button>
+                    <button class="progress-info-btn" id="personalProgressInfoBtn" type="button" title="Open progress details" aria-label="Open progress details">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path></svg>
+                    </button>
                     <span id="personalCoverageLabel" class="personal-progress-info"></span>
-                    <div id="personalProgressTooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
-                        <p>Coverage is weighted by word frequency. Common words like "que" and "de" appear thousands of times, so knowing just the top 10% of words can cover 50%+ of actual lyrics.</p>
-                        <p>This means your coverage percentage will be much higher than the fraction of total words you've learned — that's expected and reflects real comprehension.</p>
-                        <p>The count adjusts as you change filters below — using lemma mode or excluding cognates changes which words are eligible.</p>
-                    </div></div>
                 </div>
                 <div class="coverage-bar-container">
                     <div id="personalCoverageFill" class="coverage-bar-fill personal-coverage-fill"></div>
@@ -279,7 +276,9 @@
                     <div class="step-header-actions">
                         <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
                         <button type="button" id="levelModeToggle" class="level-mode-btn" style="display: none;" aria-hidden="true" tabindex="-1">CEFR</button>
-                        <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
+                        <button class="step-help-btn" data-tooltip="step2Tooltip" title="About levels" aria-label="About levels">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path></svg>
+                        </button>
                     </div>
                     <div id="step2Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <!-- Tabbed help: Choose Level explainer + the lemma
@@ -350,7 +349,9 @@
                 <div class="step-header step-header-with-help">
                     <span class="step-number" id="rangeStepNumber">3</span>
                     <span class="step-title">Continue Level</span>
-                    <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
+                    <button class="step-help-btn" data-tooltip="step5Tooltip" title="About study sets" aria-label="About study sets">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path></svg>
+                    </button>
                     <div id="step5Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
                         <p>Each level is divided into small, stable sets of about 20 frequency positions. The first unfinished set is selected automatically.</p>
                         <p>Merge Lemmas and Cognate exclusions can shorten a set, but cards never move into a different level or set.</p>
@@ -459,6 +460,9 @@
                         <button type="button" id="deckProgressPrev" class="deck-progress-nav" aria-label="Previous card">‹</button>
                         <div id="deckProgressSegments" class="deck-progress-segments" aria-hidden="true"></div>
                         <button type="button" id="deckProgressNext" class="deck-progress-nav" aria-label="Next card">›</button>
+                        <button type="button" id="deckProgressInfo" class="deck-progress-info" aria-label="Open set progress" title="Set progress">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path></svg>
+                        </button>
                     </div>
                     <!-- Desktop: side navigation zones (click the gutter to go prev/next) -->
                     <button id="sideNavPrev" class="side-nav-zone side-nav-prev" aria-label="Previous card">
@@ -584,7 +588,10 @@
     <div id="deckCompleteModal" class="modal hidden">
         <div class="modal-content deck-complete-content">
             <div class="deck-complete-header">
-                <div class="deck-complete-icon">🎉</div>
+                <span class="deck-complete-eyebrow">Study set</span>
+                <div class="deck-complete-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"></path></svg>
+                </div>
                 <h3 id="deckCompleteTitle">Set Complete!</h3>
                 <div id="completeAccuracy" class="deck-complete-accuracy"></div>
             </div>
@@ -602,20 +609,18 @@
                     </div>
                 </div>
                 <div id="completeMessage" class="deck-complete-message"></div>
-                <div class="deck-complete-actions">
-                    <button class="deck-complete-btn restart-btn" id="restartAllBtn">
-                        <span class="btn-icon">🔄</span>
-                        <span>Restart Set</span>
-                    </button>
-                    <button class="deck-complete-btn continue-btn" id="continueIncorrectBtn">
-                        <span class="btn-icon">📝</span>
-                        <span>Review Mistakes</span>
-                    </button>
-                </div>
                 <button class="deck-complete-btn exit-btn" id="markCompleteBtn">
                     <span class="btn-icon" id="markCompleteIcon">↩</span>
                     <span id="markCompleteLabel">Back to Menu</span>
                 </button>
+                <div class="deck-complete-actions">
+                    <button class="deck-complete-btn continue-btn" id="continueIncorrectBtn">
+                        <span>Review mistakes</span>
+                    </button>
+                    <button class="deck-complete-btn restart-btn" id="restartAllBtn">
+                        <span>Study again</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -804,7 +809,7 @@
 
     <!-- Stats Modal -->
     <div id="statsModal" class="modal hidden">
-        <div class="modal-content">
+        <div class="modal-content progress-modal-content">
             <div class="modal-header">
                 <h3>Your Progress<span id="statsSetLabel" style="margin-left: 8px; color: var(--text-muted); font-weight: normal;"></span></h3>
                 <button class="modal-close" id="closeStatsModal">✕</button>
@@ -842,31 +847,25 @@
 
     <!-- Total Stats Modal (All-time stats for the current language) -->
     <div id="totalStatsModal" class="modal hidden">
-        <div class="modal-content">
+        <div class="modal-content progress-modal-content total-progress-modal-content">
             <div class="modal-header">
-                <h3>Total Stats - <span id="totalStatsLanguage">Spanish</span></h3>
+                <div>
+                    <span class="progress-modal-eyebrow">All-time progress</span>
+                    <h3><span id="totalStatsLanguage">Spanish</span></h3>
+                </div>
                 <button class="modal-close" id="closeTotalStatsModal">✕</button>
             </div>
-            <div class="stats-body">
-                <div class="stat-row">
-                    <span id="totalStatsCoverageLabel">Comprehension:</span>
-                    <span id="totalStatsCoverage" style="color: var(--accent-secondary); font-weight: 600;">—</span>
+            <div class="stats-body total-progress-body">
+                <p class="progress-modal-explainer">Coverage weights common words more heavily, so it estimates how much real language you can understand—not merely how many cards you have seen.</p>
+                <div class="total-progress-hero">
+                    <span id="totalStatsCoverageLabel">Comprehension</span>
+                    <strong id="totalStatsCoverage">—</strong>
                 </div>
-                <div class="stat-row" id="totalStatsLinesRow">
-                    <span id="totalStatsLinesLabel">Full sentences:</span>
-                    <span id="totalStatsLinesUnderstood">—</span>
-                </div>
-                <div class="stat-row">
-                    <span>Words understood:</span>
-                    <span id="totalStatsWords">—</span>
-                </div>
-                <div class="stat-row">
-                    <span>Correct:</span>
-                    <span id="totalWordsCorrect">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Incorrect:</span>
-                    <span id="totalWordsIncorrect">0</span>
+                <div class="total-progress-grid">
+                    <div class="stat-row" id="totalStatsLinesRow"><span id="totalStatsLinesLabel">Full sentences:</span><span id="totalStatsLinesUnderstood">—</span></div>
+                    <div class="stat-row"><span>Words understood:</span><span id="totalStatsWords">—</span></div>
+                    <div class="stat-row"><span>Correct:</span><span id="totalWordsCorrect">0</span></div>
+                    <div class="stat-row"><span>Incorrect:</span><span id="totalWordsIncorrect">0</span></div>
                 </div>
             </div>
         </div>
@@ -1063,6 +1062,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725w"></script>
+    <script type="module" src="js/main.js?v=20260725x"></script>
 </body>
 </html>

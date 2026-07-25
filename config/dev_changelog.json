@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Progress and set completion now use cleaner, consistent controls",
+      "details": [
+        "Makes dedicated circle-information buttons open landing and active-set progress while the bars themselves are no longer clickable controls",
+        "Reworks all-time progress into an explained coverage hero plus compact metric grid and replaces literal question-mark help buttons with accessible information icons",
+        "Modernises set completion around one primary continuation action, restrained result metrics, and consistent secondary review/restart buttons; cache v78→v79, assets 20260725w→20260725x"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "1ab5eeb",
       "summary": "Settings now opens on Account and stores global study defaults",
       "details": [

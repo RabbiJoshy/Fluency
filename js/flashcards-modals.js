@@ -863,7 +863,7 @@ function showEndOfDeckOptions() {
     }
     document.getElementById('completeCorrect').textContent = stats.correct;
     document.getElementById('completeIncorrect').textContent = stats.incorrect;
-    document.getElementById('completeAccuracy').textContent = `Accuracy: ${accuracy}%`;
+    document.getElementById('completeAccuracy').textContent = `${accuracy}% accuracy`;
 
     const continueBtn = document.getElementById('continueIncorrectBtn');
     const messageEl = document.getElementById('completeMessage');
@@ -888,9 +888,9 @@ function showEndOfDeckOptions() {
         continueBtn.disabled = false;
         continueBtn.querySelector('span:last-child').textContent = `Review ${incorrectCards.length} Mistake${incorrectCards.length > 1 ? 's' : ''}`;
     } else {
-        messageEl.innerHTML = `<span style="color: var(--accent-green); font-weight: 600;">Perfect score! 🎉</span>`;
+        messageEl.innerHTML = '<span class="deck-complete-perfect">No mistakes this time.</span>';
         continueBtn.disabled = true;
-        continueBtn.querySelector('span:last-child').textContent = 'No Mistakes';
+        continueBtn.querySelector('span:last-child').textContent = 'No mistakes';
     }
 
     // Store incorrect cards for later use

@@ -1,15 +1,15 @@
-import './state.js?v=20260725w';
-import './sync-queue.js?v=20260725w';
-import './speech.js?v=20260725w';
-import './artist-ui.js?v=20260725w';
-import './auth.js?v=20260725w';
-import './spotify.js?v=20260725w';
-import './estimation.js?v=20260725w';
-import './config.js?v=20260725w';
-import './progress.js?v=20260725w';
-import './ui.js?v=20260725w';
-import './vocab.js?v=20260725w';
-import './flashcards.js?v=20260725w';
+import './state.js?v=20260725x';
+import './sync-queue.js?v=20260725x';
+import './speech.js?v=20260725x';
+import './artist-ui.js?v=20260725x';
+import './auth.js?v=20260725x';
+import './spotify.js?v=20260725x';
+import './estimation.js?v=20260725x';
+import './config.js?v=20260725x';
+import './progress.js?v=20260725x';
+import './ui.js?v=20260725x';
+import './vocab.js?v=20260725x';
+import './flashcards.js?v=20260725x';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -129,15 +129,10 @@ loadConfig().then(async () => {
     // Level-estimate CTA (shown when user has no progress yet, in the slot
     // where the personal coverage bar will live once they do).
     document.getElementById('levelEstimateCTABtn').addEventListener('click', () => openEstimationModal());
-    const coverageWrapper = document.getElementById('personalCoverageWrapper');
-    const openCoverageDetails = (event) => {
-        if (event.target.closest('#selectedLanguageInline')) return;
-        if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
-        if (event.type === 'keydown') event.preventDefault();
+    document.getElementById('personalProgressInfoBtn')?.addEventListener('click', event => {
+        event.stopPropagation();
         showTotalStatsModal();
-    };
-    coverageWrapper?.addEventListener('click', openCoverageDetails);
-    coverageWrapper?.addEventListener('keydown', openCoverageDetails);
+    });
     setupFindWord();
     document.getElementById('topBarUserName').addEventListener('click', () => {
         if (currentUser && !currentUser.isGuest && selectedLanguage) {
