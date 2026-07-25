@@ -33,9 +33,10 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when split-evidence logic or output schema changes.
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "split merged evidence into word_inventory + examples_raw, clitic orphan handling",
+    2: "+ carry full-corpus distinct song_count into word_inventory",
 }
 
 
@@ -72,6 +73,7 @@ def main():
         inv_entry = {
             "word": word,
             "corpus_count": entry.get("corpus_count", 0),
+            "song_count": entry.get("song_count", len(entry.get("song_ids", []))),
         }
         if entry.get("display_form"):
             inv_entry["display_form"] = entry["display_form"]
@@ -145,6 +147,10 @@ def main():
                 inventory.append({
                     "word": base_verb,
                     "corpus_count": clitic_count,
+                    "song_count": next((
+                        entry.get("song_count", len(entry.get("song_ids", [])))
+                        for entry in data if entry["word"].lower() == clitic_word
+                    ), 0),
                 })
                 inv_words.add(base_verb)
                 examples_raw[base_verb] = list(examples_raw.get(clitic_word, []))

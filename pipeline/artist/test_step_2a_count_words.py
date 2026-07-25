@@ -23,7 +23,7 @@ class CountWordsDedupTests(unittest.TestCase):
             },
         ]
 
-        counts, _candidates, stats, ngrams = build_counts_and_candidates(songs)
+        counts, _candidates, stats, ngrams, word_songs = build_counts_and_candidates(songs)
 
         # The normalized "hola mundo..." line counts once in each song.
         self.assertEqual(counts["hola"], 2)
@@ -33,6 +33,10 @@ class CountWordsDedupTests(unittest.TestCase):
         self.assertEqual(ngrams["unigrams"]["hola"], 2)
         self.assertEqual(ngrams["counts"][2]["hola mundo"], 2)
         self.assertEqual(ngrams["songs"]["hola mundo"], {"song-a", "song-b"})
+        # Full-corpus song provenance is not limited by retained examples and
+        # counts a repeated chorus only once within its song.
+        self.assertEqual(word_songs["hola"], {"song-a", "song-b"})
+        self.assertEqual(word_songs["adiós"], {"song-a"})
 
 
 if __name__ == "__main__":

@@ -51,7 +51,7 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 4
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
@@ -61,6 +61,8 @@ STEP_VERSION_NOTES = {
     4: "+ count each normalized lyric line once per song — repeated choruses "
        "no longer inflate word/MWE frequency, while the same line in a "
        "different song remains independent",
+    5: "+ retain the complete set of corpus song IDs per word so distinct-song "
+       "ranking is independent of the capped example selection",
 }
 
 try:
@@ -507,12 +509,14 @@ def build_counts_and_candidates(
     lid_detector=None,
     mwe_map: Dict[str, List[str]] = None,
     elision_map: Dict[str, str] = None,
-) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int]]:
+) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int], Dict[str, Any], Dict[str, set]]:
     """
     Returns:
     - counts[word] = total occurrences across corpus
     - candidates[word] = list of candidate context lines across songs
     - lid_stats = summary of lingua English line filtering
+    - ngram_data = counters used by MWE detection
+    - word_songs[word] = every distinct corpus song containing the word
 
     `elision_map` (optional) normalizes single-word elisions in the n-gram
     counting stream so phrases like "otra ve'" / "otra vez" share counts.
@@ -520,6 +524,7 @@ def build_counts_and_candidates(
     """
     counts: Counter = Counter()
     candidates: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    word_songs: Dict[str, set] = defaultdict(set)
     lid_stats = {"lines_total": 0, "lines_skipped": 0, "lines_below_min_tokens": 0,
                  "duplicate_lines": 0, "multi_word_splits": 0,
                  "ngram_elision_subs": 0}
@@ -593,6 +598,9 @@ def build_counts_and_candidates(
                 continue
             seen_count_lines.add(count_line_key)
             counts.update(norm_toks)
+            if song_id is not None:
+                for word in set(norm_toks):
+                    word_songs[word].add(str(song_id))
 
             # Count n-grams from the same once-per-song line basis.
             # N-gram detection uses EXPANDED + elision-normalized tokens so MWE
@@ -678,7 +686,7 @@ def build_counts_and_candidates(
         "counts": ngram_counts,
         "songs": ngram_songs,
     }
-    return counts, candidates, lid_stats, ngram_data
+    return counts, candidates, lid_stats, ngram_data, word_songs
 
 
 def select_examples(
@@ -753,10 +761,11 @@ def select_examples(
 
 def to_evidence_json(
     counts: Counter,
-    selected_examples: Dict[str, List[Dict[str, Any]]]
+    selected_examples: Dict[str, List[Dict[str, Any]]],
+    word_songs: Dict[str, set],
 ) -> List[Dict[str, Any]]:
     """
-    Build final list of entries: word, corpus_count, examples[{id,line,title}]
+    Build final list of entries with exact corpus-level song provenance.
     """
     items = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
 
@@ -773,9 +782,12 @@ def to_evidence_json(
             if surface and surface != word:
                 rec["surface"] = surface
             ex_list.append(rec)
+        song_ids = sorted(word_songs.get(word, set()), key=str)
         out.append({
             "word": word,
             "corpus_count": c,
+            "song_count": len(song_ids),
+            "song_ids": song_ids,
             "examples": ex_list
         })
     return out
@@ -1104,11 +1116,11 @@ def main():
     if elision_map:
         print(f"Loaded {len(elision_map)} single-word elision targets for n-gram normalization")
 
-    counts, candidates, lid_stats, ngram_data = build_counts_and_candidates(
+    counts, candidates, lid_stats, ngram_data, word_songs = build_counts_and_candidates(
         songs, lid_detector=lid_detector, mwe_map=mwe_map, elision_map=elision_map,
     )
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
-    out_list = to_evidence_json(counts, selected)
+    out_list = to_evidence_json(counts, selected, word_songs)
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:

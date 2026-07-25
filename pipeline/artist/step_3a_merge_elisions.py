@@ -64,7 +64,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 5
+STEP_VERSION = 6
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
@@ -75,6 +75,8 @@ STEP_VERSION_NOTES = {
     5: "french: Tier C — split colloquial proclitic+function-word forms "
        "(m'le, qu'le, j'suis, j'me) into two words instead of dumping counts "
        "onto the tail. Counts and examples flow to both halves.",
+    6: "+ union full-corpus song IDs while merging variants so song_count remains "
+       "exact after elision normalization",
 }
 
 # ---------------------------------------------------------------------------
@@ -429,7 +431,7 @@ def load_known_vocab():
 def merge_evidence(data, targets, known_vocab):
     """Merge entries. Returns a new list. Each example carries `surface`."""
     groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
-                                  "variants": {}})
+                                  "variants": {}, "song_ids": set()})
 
     stats = {"mapping": 0, "d_elision": 0, "double_elision": 0, "trailing_apos": 0, "unmerged": 0}
 
@@ -437,18 +439,28 @@ def merge_evidence(data, targets, known_vocab):
         word = entry["word"]
         count = entry.get("corpus_count", 0)
         examples = entry.get("examples", [])
+        entry_song_ids = set(str(sid) for sid in entry.get("song_ids", []))
+        if not entry_song_ids:
+            entry_song_ids = {
+                ex["id"].split(":")[0] for ex in examples if ex.get("id")
+            }
 
         # Ambiguous elisions: split per example
         if word in AMBIGUOUS_ELISIONS and word in targets:
             amb = AMBIGUOUS_ELISIONS[word]
             display = targets[word]["display_form"]
             target_example_counts = defaultdict(int)
+            assigned_song_ids = set()
             for ex in examples:
                 key = _disambiguate_example(amb, word, ex.get("line", ""))
                 groups[key]["display_form"] = display
                 ex["surface"] = word
                 groups[key]["examples"].append(ex)
                 target_example_counts[key] += 1
+                if ex.get("id"):
+                    song_id = ex["id"].split(":")[0]
+                    groups[key]["song_ids"].add(song_id)
+                    assigned_song_ids.add(song_id)
             n_examples = len(examples)
             if n_examples > 0:
                 for tgt, ex_count in target_example_counts.items():
@@ -463,6 +475,10 @@ def merge_evidence(data, targets, known_vocab):
                 groups[fallback]["variants"][word] = (
                     groups[fallback]["variants"].get(word, 0) + count
                 )
+            # The capped examples cannot disambiguate every corpus song. Keep
+            # observed noun/verb allocations and conservatively route unseen
+            # songs to the same verb fallback used for unrepresented counts.
+            groups[amb["verb_target"]]["song_ids"].update(entry_song_ids - assigned_song_ids)
             stats["mapping"] += 1
             continue
 
@@ -508,6 +524,7 @@ def merge_evidence(data, targets, known_vocab):
             ex["surface"] = ex.get("surface", word)  # preserve pre-existing surface from step 2a
 
         groups[key]["count"] += count
+        groups[key]["song_ids"].update(entry_song_ids)
         groups[key]["examples"].extend(examples)
         groups[key]["variants"][word] = groups[key]["variants"].get(word, 0) + count
 
@@ -527,6 +544,8 @@ def merge_evidence(data, targets, known_vocab):
         entry = {
             "word": word,
             "corpus_count": g["count"],
+            "song_count": len(g["song_ids"]),
+            "song_ids": sorted(g["song_ids"], key=str),
             "examples": deduped[:MAX_EXAMPLES],
         }
         if g["display_form"] and g["display_form"] != word:
@@ -565,20 +584,21 @@ def merge_evidence_french(data, apos_phrase_index=None):
     (useful for tests).
     """
     groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
-                                  "variants": {}})
+                                  "variants": {}, "song_ids": set()})
     stats = {"apos_phrase_kept": 0, "function_word_split": 0,
              "proclitic_split": 0, "unmerged": 0}
     apos_phrase_index = apos_phrase_index or {}
     phrase_hits = []  # (word, pos, gloss, count) for reporting
     split_hits = []   # (word, expanded, tail, count) for reporting
 
-    def _add_to_group(key, display, examples, count, source_word):
+    def _add_to_group(key, display, examples, count, source_word, song_ids):
         """Accumulate count/examples/variant under a group key."""
         if groups[key]["display_form"] is None:
             groups[key]["display_form"] = display
         for ex in examples:
             ex["surface"] = ex.get("surface", source_word)
         groups[key]["count"] += count
+        groups[key]["song_ids"].update(song_ids)
         groups[key]["examples"].extend(examples)
         groups[key]["variants"][source_word] = (
             groups[key]["variants"].get(source_word, 0) + count
@@ -588,6 +608,9 @@ def merge_evidence_french(data, apos_phrase_index=None):
         word = entry["word"]
         count = entry.get("corpus_count", 0)
         examples = entry.get("examples", [])
+        song_ids = set(str(sid) for sid in entry.get("song_ids", []))
+        if not song_ids:
+            song_ids = {ex["id"].split(":")[0] for ex in examples if ex.get("id")}
 
         is_apos = ("'" in word) or ("\u2019" in word)
 
@@ -597,7 +620,7 @@ def merge_evidence_french(data, apos_phrase_index=None):
             source = "apos_phrase_kept"
             stats[source] = stats.get(source, 0) + 1
             phrase_hits.append((word, apos_hit[0], apos_hit[1], count))
-            _add_to_group(word, word, examples, count, word)
+            _add_to_group(word, word, examples, count, word, song_ids)
             continue
 
         # Tier C: proclitic + function-word. Split into two words.
@@ -610,8 +633,8 @@ def merge_evidence_french(data, apos_phrase_index=None):
             # Same count to both halves — the corpus line counts as one
             # instance of each word, just fused orthographically. Examples
             # are shared (a copy per half keeps surface/id intact for each).
-            _add_to_group(expanded, expanded, examples, count, word)
-            _add_to_group(tail, tail, list(examples), count, word)
+            _add_to_group(expanded, expanded, examples, count, word, song_ids)
+            _add_to_group(tail, tail, list(examples), count, word, song_ids)
             continue
 
         # Tier B: proclitic + content-word. Strip proclitic, merge onto tail.
@@ -619,12 +642,12 @@ def merge_evidence_french(data, apos_phrase_index=None):
         if tail is not None:
             source = "proclitic_split"
             stats[source] = stats.get(source, 0) + 1
-            _add_to_group(tail, word, examples, count, word)
+            _add_to_group(tail, word, examples, count, word, song_ids)
             continue
 
         # Tier D: plain word, no apostrophe machinery applies.
         stats["unmerged"] = stats.get("unmerged", 0) + 1
-        _add_to_group(word, word, examples, count, word)
+        _add_to_group(word, word, examples, count, word, song_ids)
 
     # Build output (dedup by song — matches Spanish behaviour)
     out = []
@@ -642,6 +665,8 @@ def merge_evidence_french(data, apos_phrase_index=None):
         entry = {
             "word": word,
             "corpus_count": g["count"],
+            "song_count": len(g["song_ids"]),
+            "song_ids": sorted(g["song_ids"], key=str),
             "examples": deduped[:MAX_EXAMPLES],
         }
         if g["display_form"] and g["display_form"] != word:

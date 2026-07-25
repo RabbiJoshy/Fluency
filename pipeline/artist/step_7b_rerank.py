@@ -33,9 +33,11 @@ from pipeline.util_6a_method_priority import METHOD_PRIORITY
 from pipeline.util_5c_sense_menu_format import normalize_artist_sense_menu, resolve_analysis_for_assignments
 from pipeline.util_pipeline_meta import make_meta, write_sidecar
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "rerank by corpus_count + frequency tiebreakers + cognate penalty",
+    2: "+ use full-corpus distinct song_count from word_inventory instead of "
+       "the capped retained-example list",
 }
 
 SENTINEL_RANK = 999_999  # For words not found in Spanish vocabulary
@@ -278,10 +280,11 @@ def main():
         analysis = resolve_analysis_for_assignments(senses_data, word, assignments.get(word, []))
         lemma = analysis.get("headword", analysis.get("lemma", word))
 
-        # Count distinct songs from examples
+        # Legacy fallback for inventories built before full-corpus song_count.
         songs = set()
         for ex in examples_raw.get(word, []):
-            songs.add(ex.get("title", ""))
+            if ex.get("title"):
+                songs.add(ex["title"])
 
         cognate_key = "%s|%s" % (word, lemma)
         is_cognate = cognate_key in cognates
@@ -292,7 +295,7 @@ def main():
             "corpus_count": inv.get("corpus_count", 0),
             "display_form": inv.get("display_form"),
             "is_transparent_cognate": is_cognate,
-            "_song_count": len(songs),
+            "_song_count": inv.get("song_count", len(songs)),
         })
 
     print("Loading Spanish vocabulary...")
