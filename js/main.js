@@ -1,15 +1,15 @@
-import './state.js?v=20260725v';
-import './sync-queue.js?v=20260725v';
-import './speech.js?v=20260725v';
-import './artist-ui.js?v=20260725v';
-import './auth.js?v=20260725v';
-import './spotify.js?v=20260725v';
-import './estimation.js?v=20260725v';
-import './config.js?v=20260725v';
-import './progress.js?v=20260725v';
-import './ui.js?v=20260725v';
-import './vocab.js?v=20260725v';
-import './flashcards.js?v=20260725v';
+import './state.js?v=20260725w';
+import './sync-queue.js?v=20260725w';
+import './speech.js?v=20260725w';
+import './artist-ui.js?v=20260725w';
+import './auth.js?v=20260725w';
+import './spotify.js?v=20260725w';
+import './estimation.js?v=20260725w';
+import './config.js?v=20260725w';
+import './progress.js?v=20260725w';
+import './ui.js?v=20260725w';
+import './vocab.js?v=20260725w';
+import './flashcards.js?v=20260725w';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -117,6 +117,7 @@ loadConfig().then(async () => {
     applyLanguageColorTheme();
     setupLemmaToggle();
     setupCognateToggle();
+    setupGlobalStudyDefaults();
     setupPercentModeButton();
     setupEstimationModal();
     setupTooltipHandlers();

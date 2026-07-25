@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Settings now opens on Account and stores global study defaults",
+      "details": [
+        "Makes the gear open the Account tab instead of overriding the HTML state and jumping straight into Advanced",
+        "Adds device-wide Merge Lemmas and Exclude Cognates defaults under Advanced with an explicit persistence warning and immediate current-setup refresh",
+        "Applies saved defaults to new Speech and Lyrics setups while exact saved-set resume keeps its original configuration; cache v77→v78, assets 20260725v→20260725w"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "c118fdd",
       "summary": "Started study sets now show their progress directly",
       "details": [

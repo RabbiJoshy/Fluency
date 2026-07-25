@@ -2,6 +2,76 @@
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
 import './state.js';
 
+const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
+
+function readGlobalStudyDefaults() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(GLOBAL_STUDY_DEFAULTS_KEY) || 'null');
+        return saved && typeof saved === 'object' ? saved : {};
+    } catch (_) {
+        return {};
+    }
+}
+
+function applyGlobalStudyDefaults() {
+    const saved = readGlobalStudyDefaults();
+    useLemmaMode = saved.mergeLemmas === true;
+    excludeCognates = saved.excludeCognates === true;
+    syncStudyPreferenceControls();
+}
+
+function syncStudyPreferenceControls() {
+    document.querySelectorAll('.lemma-toggle-btn').forEach(button =>
+        button.classList.toggle('selected', (button.dataset.lemma === 'on') === useLemmaMode));
+    document.querySelectorAll('.cognate-toggle-btn').forEach(button =>
+        button.classList.toggle('selected', (button.dataset.cognate === 'exclude') === excludeCognates));
+
+    const saved = readGlobalStudyDefaults();
+    document.querySelectorAll('.global-study-default-btn').forEach(button => {
+        const value = button.dataset.value === 'on';
+        const selected = button.dataset.setting === 'mergeLemmas'
+            ? value === (saved.mergeLemmas === true)
+            : value === (saved.excludeCognates === true);
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+}
+
+async function refreshAfterGlobalStudyDefaultChange() {
+    syncStudyPreferenceControls();
+    const step2 = document.getElementById('step2');
+    if (!selectedLanguage || !step2 || step2.style.display === 'none') return;
+    const loadingIndicator = document.getElementById('dataLoadingIndicator');
+    if (useLemmaMode) loadingIndicator?.classList.add('visible');
+    try {
+        await renderLevelSelector(selectedLanguage);
+        if (selectedLevel) await renderRangeSelector();
+        await updateExclusionBars();
+    } finally {
+        loadingIndicator?.classList.remove('visible');
+    }
+}
+
+function setupGlobalStudyDefaults() {
+    syncStudyPreferenceControls();
+    document.querySelectorAll('.global-study-default-btn').forEach(button => {
+        button.addEventListener('click', async function() {
+            const saved = readGlobalStudyDefaults();
+            saved[this.dataset.setting] = this.dataset.value === 'on';
+            try {
+                localStorage.setItem(GLOBAL_STUDY_DEFAULTS_KEY, JSON.stringify(saved));
+            } catch (_) {
+                return;
+            }
+            applyGlobalStudyDefaults();
+            await refreshAfterGlobalStudyDefaultChange();
+        });
+    });
+}
+
+// Defaults must be present before either mode renders its first level.
+applyGlobalStudyDefaults();
+
 function setupTooltipHandlers() {
     // Step help tooltip handlers — open as modal
     document.querySelectorAll('.step-help-btn').forEach(btn => {
@@ -210,6 +280,7 @@ function setupLanguageTabs() {
 
             selectedLanguage = newLanguage;
             selectedLevel = null;
+            applyGlobalStudyDefaults();
 
             // Mirror the boot-time Spanish-only fetches in main.js so users
             // who land on a non-Spanish first language and switch to Spanish
@@ -1034,6 +1105,7 @@ function updateLevelInfoLine(btn) {
 }
 
 function setupCognateToggle() {
+    syncStudyPreferenceControls();
     document.querySelectorAll('.cognate-toggle-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             // Don't allow selecting "exclude" mode if cognate field not available
@@ -1082,6 +1154,7 @@ function _refreshAfterCognateChange() {
 }
 
 function setupLemmaToggle() {
+    syncStudyPreferenceControls();
     document.querySelectorAll('.lemma-toggle-btn').forEach(btn => {
         btn.addEventListener('click', async function() {
             // Don't allow selecting "1" mode if lemma field not available
@@ -1486,7 +1559,7 @@ function hideStatsModal() {
 }
 
 function showSettingsModal() {
-    showSettingsModalWithTab('settings');
+    showSettingsModalWithTab('account');
 }
 
 function showSettingsModalWithTab(tabName) {
@@ -1998,6 +2071,7 @@ function setupTabSwitching(modalEl) {
 window.openHelpModal = openHelpModal;
 window.setupTabSwitching = setupTabSwitching;
 window.setupLemmaToggle = setupLemmaToggle;
+window.setupGlobalStudyDefaults = setupGlobalStudyDefaults;
 window.setupPercentModeButton = setupPercentModeButton;
 window.setupEstimationModal = setupEstimationModal;
 window.updateLemmaToggleVisibility = updateLemmaToggleVisibility;

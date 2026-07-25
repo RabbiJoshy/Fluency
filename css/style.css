@@ -5059,6 +5059,46 @@
             margin-right: 10px;
         }
 
+        .settings-defaults-card {
+            margin: 4px 0 14px;
+            padding: 14px;
+            border: 1px solid rgba(var(--accent-primary-rgb), 0.28);
+            border-radius: 12px;
+            background: rgba(var(--accent-primary-rgb), 0.07);
+        }
+        .settings-defaults-heading,
+        .settings-default-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: var(--font-emphasis);
+        }
+        .settings-defaults-heading strong {
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        .settings-defaults-heading span {
+            color: var(--text-muted);
+            font-size: 10px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .settings-defaults-warning {
+            margin: 8px 0 12px;
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+        .settings-default-row {
+            min-height: 42px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 13px;
+        }
+        .settings-default-row .settings-toggle {
+            flex: 0 0 auto;
+        }
+
         .settings-tab-content {
             display: none;
         }

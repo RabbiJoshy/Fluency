@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725v">
-    <link rel="modulepreload" href="js/state.js?v=20260725v">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725v">
-    <link rel="modulepreload" href="js/speech.js?v=20260725v">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725v">
-    <link rel="modulepreload" href="js/auth.js?v=20260725v">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725v">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725v">
-    <link rel="modulepreload" href="js/config.js?v=20260725v">
-    <link rel="modulepreload" href="js/progress.js?v=20260725v">
-    <link rel="modulepreload" href="js/ui.js?v=20260725v">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725v">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725v">
+    <link rel="modulepreload" href="js/main.js?v=20260725w">
+    <link rel="modulepreload" href="js/state.js?v=20260725w">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725w">
+    <link rel="modulepreload" href="js/speech.js?v=20260725w">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725w">
+    <link rel="modulepreload" href="js/auth.js?v=20260725w">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725w">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725w">
+    <link rel="modulepreload" href="js/config.js?v=20260725w">
+    <link rel="modulepreload" href="js/progress.js?v=20260725w">
+    <link rel="modulepreload" href="js/ui.js?v=20260725w">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725w">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725w">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -886,6 +886,30 @@
             </div>
             <!-- Settings tab content -->
             <div class="settings-tab-content" id="settingsTabContent">
+                <section class="settings-defaults-card" aria-labelledby="studyDefaultsTitle">
+                    <div class="settings-defaults-heading">
+                        <strong id="studyDefaultsTitle">Default study setup</strong>
+                        <span>Saved on this device</span>
+                    </div>
+                    <p class="settings-defaults-warning">
+                        These choices apply automatically to every new Speech or Lyrics setup.
+                        Changing them also updates the current setup; continuing an exact saved set keeps that set's original choices.
+                    </p>
+                    <div class="settings-default-row">
+                        <span>Merge Lemmas</span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Default Merge Lemmas setting">
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="mergeLemmas" data-value="off" aria-pressed="true">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="mergeLemmas" data-value="on" aria-pressed="false">On</button>
+                        </div>
+                    </div>
+                    <div class="settings-default-row">
+                        <span>Exclude Cognates</span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Default Exclude Cognates setting">
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="excludeCognates" data-value="off" aria-pressed="true">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="excludeCognates" data-value="on" aria-pressed="false">On</button>
+                        </div>
+                    </div>
+                </section>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="hideSingleOccToggle">
                     <span>Hide single-occurrence words</span>
                     <span id="hideSingleOccStatus" style="color: var(--accent-primary);">ON</span>
@@ -1039,6 +1063,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725v"></script>
+    <script type="module" src="js/main.js?v=20260725w"></script>
 </body>
 </html>
