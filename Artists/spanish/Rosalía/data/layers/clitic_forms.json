@@ -20,7 +20,16 @@
         "song_name": "Antes de Morirme",
         "spanish": "Antes de morirme, mátame",
         "english": "Before I die, kill me",
-        "timestamp_ms": 121850
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 121850,
+        "end_timestamp_ms": 124160
       }
     ],
     "id": "85c170",
@@ -47,7 +56,15 @@
         "song_name": "Linda",
         "spanish": "Poniéndome la prenda pa' tirarme por el bloque",
         "english": "Putting on the garment to throw myself around the block",
-        "timestamp_ms": 101290
+        "vocalists": [
+          "ROSALÍA",
+          "Tokischa"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 101290,
+        "end_timestamp_ms": 103170
       }
     ],
     "id": "75fa95",
@@ -74,7 +91,14 @@
         "song_name": "Porcelana",
         "spanish": "Transformarte",
         "english": "Transform you",
-        "timestamp_ms": 120680
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 120680,
+        "end_timestamp_ms": 121580
       }
     ],
     "id": "50dc2b",
@@ -119,27 +143,53 @@
         "song_name": "Dolerme",
         "spanish": "Así demuestra' que has podío' olvidarme",
         "english": "This shows that you have been able to forget me",
-        "timestamp_ms": 62490
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 62490,
+        "end_timestamp_ms": 65230
       },
       {
         "song": "8916307",
         "song_name": "PROMESA",
         "spanish": "Y aunque pase el tiempo, no olvidarme de nada",
         "english": "And even if time passes, I won't forget anything",
-        "timestamp_ms": 74610
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 74610,
+        "end_timestamp_ms": 79750
       },
       {
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Puede que no puedas olvidarme",
-        "english": "You may not be able to forget me"
+        "english": "You may not be able to forget me",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "En realidad aún no he podido olvidarme de ti (Oh)",
         "english": "Actually I still haven't been able to forget about you (Oh)",
-        "timestamp_ms": 12210
+        "vocalists": [
+          "Yandel",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 12210,
+        "end_timestamp_ms": 19610
       }
     ],
     "id": "ea3422",
@@ -166,7 +216,10 @@
         "song_name": "TUYA",
         "spanish": "Abrázame y no me sueltes",
         "english": "Hold me and don't let me go",
-        "timestamp_ms": 109570
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 109570,
+        "end_timestamp_ms": 112350
       }
     ],
     "id": "1135d9",
@@ -201,61 +254,105 @@
         "song_name": "Por Castigarme Tan Fuerte",
         "spanish": "Que dime lo que vas ganando",
         "english": "Tell me what you are earning",
-        "timestamp_ms": 30240
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 30240,
+        "end_timestamp_ms": 36220
       },
       {
         "song": "3964068",
         "song_name": "DI MI NOMBRE (Cap.8: Éxtasis)",
         "spanish": "Dime mi nombre a la cara",
         "english": "say my name to my face",
-        "timestamp_ms": 97810
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 97810,
+        "end_timestamp_ms": 103440
       },
       {
         "song": "6367361",
         "song_name": "Lo Vas A Olvidar",
         "spanish": "Dime si me echas de meno' aún",
         "english": "Tell me if you still miss me",
-        "timestamp_ms": 5680
+        "vocalists": [
+          "ROSALÍA",
+          "Billie Eilish",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 5680,
+        "end_timestamp_ms": 10970
       },
       {
         "song": "7515186",
         "song_name": "CHICKEN TERIYAKI",
         "spanish": "Pero dime otra que te pague la cena",
         "english": "But tell me someone else who will pay you dinner",
-        "timestamp_ms": 76290
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 76290,
+        "end_timestamp_ms": 79390
       },
       {
         "song": "7515161",
         "song_name": "CHIRI",
         "spanish": "Ahora dime",
         "english": "now tell me",
-        "timestamp_ms": 35680
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35680,
+        "end_timestamp_ms": 36640
       },
       {
         "song": "7659063",
         "song_name": "COMO UN G",
         "spanish": "Pero que dime, dime quién se atreve a decírmelo a mí (Jura'o, como un G)",
         "english": "But tell me, tell me who dares to say it to me (Jura'o, like a G)",
-        "timestamp_ms": 208300
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 208300,
+        "end_timestamp_ms": 214170
       },
       {
         "song": "8365376",
         "song_name": "CANDY (Remix)",
         "spanish": "Si no dime por qué a tu mente yo vuelvo",
         "english": "If you don't tell me why I will return to your mind",
-        "timestamp_ms": 140630
+        "vocalists": [
+          "Chencho Corleone"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 140630,
+        "end_timestamp_ms": 143040
       },
       {
         "song": "6211010",
         "song_name": "LA NOCHE DE ANOCHE",
         "spanish": "Dime, papi",
-        "english": "Tell me, daddy"
+        "english": "Tell me, daddy",
+        "vocalists": [
+          "Bad Bunny",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "9077775",
         "song_name": "Choices",
         "spanish": "Dime si todo el mundo lo sabe",
-        "english": "Tell me if everyone knows"
+        "english": "Tell me if everyone knows",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "a49c83",
@@ -282,7 +379,10 @@
         "song_name": "SAOKO",
         "spanish": "Cógela y córtala, y ya (Cut, cut that, quit that)",
         "english": "Take it and cut it, and that's it (Cut, cut that, quit that)",
-        "timestamp_ms": 117990
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 117990,
+        "end_timestamp_ms": 120350
       }
     ],
     "id": "e1b8e0",
@@ -309,7 +409,16 @@
         "song_name": "Brillo",
         "spanish": "Llego y arreglamos antes de acostarme",
         "english": "I arrive and we get ready before going to bed",
-        "timestamp_ms": 75780
+        "vocalists": [
+          "J Balvin",
+          "ROSALÍA",
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 75780,
+        "end_timestamp_ms": 78860
       }
     ],
     "id": "1d5283",
@@ -336,7 +445,14 @@
         "song_name": "LA FAMA",
         "spanish": "Es mala amante la fama y no va a quererme de verdad",
         "english": "Fame is a bad lover and she is not going to truly love me",
-        "timestamp_ms": 51170
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51170,
+        "end_timestamp_ms": 53770
       }
     ],
     "id": "7b6113",
@@ -363,7 +479,16 @@
         "song_name": "LA NOCHE DE ANOCHE",
         "spanish": "Eso era dando y dándole sin parar",
         "english": "That was giving and giving without stopping",
-        "timestamp_ms": 16470
+        "vocalists": [
+          "ROSALÍA",
+          "Bad Bunny",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 16470,
+        "end_timestamp_ms": 19180
       }
     ],
     "id": "e9e3f7",
@@ -390,7 +515,10 @@
         "song_name": "La Rumba Del Perdón",
         "spanish": "Anudar y desanudar, desnudarse y desnudar",
         "english": "Knotting and untying, undressing and undressing",
-        "timestamp_ms": 221220
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 221220,
+        "end_timestamp_ms": 223430
       }
     ],
     "id": "cebeee",
@@ -417,7 +545,10 @@
         "song_name": "Thank Yu :)",
         "spanish": "Así que muchas gracias por escucharlo",
         "english": "So thank you very much for listening.",
-        "timestamp_ms": 23580
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 23580,
+        "end_timestamp_ms": 26050
       }
     ],
     "id": "a6d083",
@@ -444,7 +575,10 @@
         "song_name": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
         "spanish": "Y del aire cuando pasa, por levantarte el cabello",
         "english": "And the air when it passes, for lifting your hair",
-        "timestamp_ms": 26070
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 26070,
+        "end_timestamp_ms": 29010
       }
     ],
     "id": "40a47d",
@@ -471,7 +605,10 @@
         "song_name": "La Yugular",
         "spanish": "Amándote a ti, Undibel",
         "english": "Loving you, Undibel",
-        "timestamp_ms": 84660
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 84660,
+        "end_timestamp_ms": 87060
       }
     ],
     "id": "ce29b6",
@@ -498,7 +635,10 @@
         "song_name": "A NINGÚN HOMBRE (Cap.11: Poder)",
         "spanish": "Pa' acordarme para siempre",
         "english": "To remember me forever",
-        "timestamp_ms": 49560
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 49560,
+        "end_timestamp_ms": 53180
       }
     ],
     "id": "2bc1fa",
@@ -524,7 +664,13 @@
         "song": "6387245",
         "song_name": "Tagliatelle Santeria",
         "spanish": "Me pide mi corazón (Uh), quiere quedarse con él (Sí, sí)",
-        "english": "He asks for my heart (Uh), he wants to stay with it (Yes, yes)"
+        "english": "He asks for my heart (Uh), he wants to stay with it (Yes, yes)",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "bb5e9f",
@@ -551,7 +697,10 @@
         "song_name": "El Redentor",
         "spanish": "Ya no tenían na' que hacerle",
         "english": "They no longer had anything to do",
-        "timestamp_ms": 39460
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 39460,
+        "end_timestamp_ms": 50440
       }
     ],
     "id": "4d05d2",
@@ -578,14 +727,28 @@
         "song": "6387245",
         "song_name": "Tagliatelle Santeria",
         "spanish": "No tenerla me atormenta y (Ey, ey)",
-        "english": "Not having it torments me and (Hey, hey)"
+        "english": "Not having it torments me and (Hey, hey)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "Dicen de ella que no pue'es tenerla (No)",
         "english": "They say about her that you can't have her (No)",
-        "timestamp_ms": 140220
+        "vocalists": [
+          "ROSALÍA",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 140220,
+        "end_timestamp_ms": 143140
       }
     ],
     "id": "d3dea5",
@@ -621,33 +784,63 @@
         "song_name": "HENTAI",
         "spanish": "Hazme un tape modo Spike",
         "english": "Make me a tape Spike mode",
-        "timestamp_ms": 28110
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 28110,
+        "end_timestamp_ms": 30790
       },
       {
         "song": "3964068",
         "song_name": "DI MI NOMBRE (Cap.8: Éxtasis)",
         "spanish": "Y hazme rezar sobre tu cuerpo",
         "english": "And make me pray over your body",
-        "timestamp_ms": 92770
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 92770,
+        "end_timestamp_ms": 96060
       },
       {
         "song": "6387245",
         "song_name": "Tagliatelle Santeria",
         "spanish": "Ven y hazme santería",
-        "english": "Come and make me Santeria"
+        "english": "Come and make me Santeria",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "O déjame de hablar o hazme de rabiar",
-        "english": "Either stop me talking or make me angry"
+        "english": "Either stop me talking or make me angry",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "Hazme el amor y que se empañen los cristales de la nave (Oh)",
         "english": "Make love to me and let the windows of the ship fog up (Oh)",
-        "timestamp_ms": 89530
+        "vocalists": [
+          "Wisin",
+          "Wisin",
+          "ROSALÍA",
+          "Yandel"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 89530,
+        "end_timestamp_ms": 92450
       }
     ],
     "id": "820dab",
@@ -674,7 +867,14 @@
         "song_name": "BESO",
         "spanish": "Conocerte debí",
         "english": "I should have known you",
-        "timestamp_ms": 68670
+        "vocalists": [
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 68670,
+        "end_timestamp_ms": 70190
       }
     ],
     "id": "cd2dc3",
@@ -701,7 +901,10 @@
         "song_name": "Catalina",
         "spanish": "Y a Alemania me voy, y no a divertirme",
         "english": "And I'm going to Germany, and not to have fun",
-        "timestamp_ms": 78000
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 78000,
+        "end_timestamp_ms": 84310
       }
     ],
     "id": "8f3d39",
@@ -728,7 +931,10 @@
         "song_name": "Aunque Es De Noche",
         "spanish": "Y que ninguno puede vadearla",
         "english": "And no one can wade through it",
-        "timestamp_ms": 94520
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 94520,
+        "end_timestamp_ms": 98320
       }
     ],
     "id": "e364d5",
@@ -768,27 +974,54 @@
         "song_name": "PROMESA",
         "spanish": "Y hacerlo contigo yo haga lo que haga",
         "english": "And do it with you, whatever I do",
-        "timestamp_ms": 171930
+        "vocalists": [
+          "ROSALÍA",
+          "ROSALÍA",
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 171930,
+        "end_timestamp_ms": 174230
       },
       {
         "song": "12581296",
         "song_name": "La Rumba Del Perdón",
         "spanish": "Para hacerlo como se debe, tres cosas necesitarás",
         "english": "To do it properly, you will need three things",
-        "timestamp_ms": 225730
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 225730,
+        "end_timestamp_ms": 228480
       },
       {
         "song": "2814756",
         "song_name": "Antes de Morirme",
         "spanish": "Y si volvemos, que sea solo pa' hacerlo llover (Yah, ah)",
         "english": "And if we come back, let it be just to make it rain (Yah, ah)",
-        "timestamp_ms": 99800
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 99800,
+        "end_timestamp_ms": 102770
       },
       {
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Si prefieres podemos hacerlo así",
-        "english": "If you prefer we can do it like this"
+        "english": "If you prefer we can do it like this",
+        "vocalists": [
+          "C. Tangana"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "78b583",
@@ -815,7 +1048,14 @@
         "song_name": "Brillo",
         "spanish": "Si me convierto en surfista, es pa' montarme en tus olas",
         "english": "If I become a surfer, it's to ride your waves",
-        "timestamp_ms": 98260
+        "vocalists": [
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 98260,
+        "end_timestamp_ms": 101710
       }
     ],
     "id": "da63a2",
@@ -841,7 +1081,15 @@
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Cuando alguno como tú acabe por cansarme",
-        "english": "When someone like you ends up tiring me"
+        "english": "When someone like you ends up tiring me",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "f5e3fb",
@@ -868,7 +1116,14 @@
         "song_name": "Brillo",
         "spanish": "Tráeme el desayuno (Tra), mantenme hidratá' (Tra)",
         "english": "Bring me breakfast (Tra), keep me hydrated (Tra)",
-        "timestamp_ms": 32420
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 32420,
+        "end_timestamp_ms": 35980
       }
     ],
     "id": "c09a30",
@@ -895,7 +1150,10 @@
         "song_name": "La Rumba Del Perdón",
         "spanish": "La que piensa que puede escaparse del plan divino",
         "english": "The one who thinks she can escape the divine plan",
-        "timestamp_ms": 159250
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 159250,
+        "end_timestamp_ms": 164450
       }
     ],
     "id": "0f6556",
@@ -922,7 +1180,10 @@
         "song_name": "Jeanne",
         "spanish": "Entrégate, que no hay manera",
         "english": "Surrender, there is no way",
-        "timestamp_ms": 22090
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 22090,
+        "end_timestamp_ms": 26510
       }
     ],
     "id": "5d5767",
@@ -949,14 +1210,19 @@
         "song": "4470734",
         "song_name": "Como Alí",
         "spanish": "Ponme venda' (Gy-gypsy)",
-        "english": "Put a bandage on me (Gy-gypsy)"
+        "english": "Put a bandage on me (Gy-gypsy)",
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "3065090",
         "song_name": "Catalina",
         "spanish": "Ponme la mano aquí, que la tiene' fría",
         "english": "Put your hand here, it's cold",
-        "timestamp_ms": 47190
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 47190,
+        "end_timestamp_ms": 51770
       }
     ],
     "id": "3d37aa",
@@ -983,7 +1249,10 @@
         "song_name": "CUUUUuuuuuute",
         "spanish": "Para verlas tienes que salir",
         "english": "To see them you have to go out",
-        "timestamp_ms": 71390
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 71390,
+        "end_timestamp_ms": 77660
       }
     ],
     "id": "214313",
@@ -1018,7 +1287,10 @@
         "song_name": "Si Tú Supieras Compañero",
         "spanish": "Válgame, San Rafael",
         "english": "Valgame, San Rafael",
-        "timestamp_ms": 232050
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 232050,
+        "end_timestamp_ms": 235000
       }
     ],
     "id": "c63169",
@@ -1049,34 +1321,62 @@
         "song_name": "LLYLM",
         "spanish": "Ay, dame esa, esa pulsera de flores",
         "english": "Oh, give me that one, that flower bracelet",
-        "timestamp_ms": 95880
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 95880,
+        "end_timestamp_ms": 101250
       },
       {
         "song": "3065897",
         "song_name": "Si Tú Supieras Compañero",
         "spanish": "Y dame tú de puñala-, puñalás (Puñaládas)",
         "english": "And give me a dagger-, daggers (Stabs)",
-        "timestamp_ms": 8860
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 8860,
+        "end_timestamp_ms": 14550
       },
       {
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Me gusta como miras, de eso dame más",
-        "english": "I like the way you look, give me more of that"
+        "english": "I like the way you look, give me more of that",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "8324985",
         "song_name": "El Pañuelo",
         "spanish": "Papi, dame un consuelo",
         "english": "Daddy, give me some comfort",
-        "timestamp_ms": 86770
+        "vocalists": [
+          "Romeo Santos",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 86770,
+        "end_timestamp_ms": 89630
       },
       {
         "song": "6367361",
         "song_name": "Lo Vas A Olvidar",
         "spanish": "Dame un beso y bájame de la cru'",
         "english": "Give me a kiss and get me off the cross",
-        "timestamp_ms": 109510
+        "vocalists": [
+          "Billie Eilish",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 109510,
+        "end_timestamp_ms": 117310
       }
     ],
     "id": "630701",
@@ -1102,7 +1402,15 @@
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Si vengo tienes que invitarme",
-        "english": "If I come you have to invite me"
+        "english": "If I come you have to invite me",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "981749",
@@ -1129,7 +1437,16 @@
         "song_name": "Brillo",
         "spanish": "Siempre me dice que no va a esperarme",
         "english": "He always tells me that he is not going to wait for me",
-        "timestamp_ms": 69250
+        "vocalists": [
+          "J Balvin",
+          "ROSALÍA",
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 69250,
+        "end_timestamp_ms": 72410
       }
     ],
     "id": "043f0b",
@@ -1156,7 +1473,10 @@
         "song_name": "A NINGÚN HOMBRE (Cap.11: Poder)",
         "spanish": "Voy a tatuarme en la piel",
         "english": "I'm going to get a tattoo on my skin",
-        "timestamp_ms": 38900
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 38900,
+        "end_timestamp_ms": 44890
       }
     ],
     "id": "60e236",
@@ -1183,7 +1503,15 @@
         "song_name": "Con Altura",
         "spanish": "Esto vamo' a arrancarlo con altura",
         "english": "We are going to start this with height",
-        "timestamp_ms": 10
+        "vocalists": [
+          "ROSALÍA",
+          "Mariachi Budda"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 10,
+        "end_timestamp_ms": 5070
       }
     ],
     "id": "d84ed8",
@@ -1210,7 +1538,10 @@
         "song_name": "A Palé",
         "spanish": "Tíralo (P'atrás)",
         "english": "Throw it away (Back)",
-        "timestamp_ms": 131340
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 131340,
+        "end_timestamp_ms": 134070
       }
     ],
     "id": "0345d1",
@@ -1245,7 +1576,10 @@
         "song_name": "COMO UN G",
         "spanish": "Guárdame, guárdame",
         "english": "Save me, save me",
-        "timestamp_ms": 165090
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 165090,
+        "end_timestamp_ms": 166820
       }
     ],
     "id": "42cf73",
@@ -1272,7 +1606,14 @@
         "song_name": "PROMESA",
         "spanish": "Tirarnos desnudo' en el agua y luego dormir en la playa",
         "english": "Lie naked in the water and then sleep on the beach",
-        "timestamp_ms": 66950
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 66950,
+        "end_timestamp_ms": 69540
       }
     ],
     "id": "1a104b",
@@ -1300,14 +1641,24 @@
         "song_name": "Día 14 De Abril",
         "spanish": "Ay, solo por quererte a ti",
         "english": "Oh, just for loving you",
-        "timestamp_ms": 232190
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 232190,
+        "end_timestamp_ms": 283160
       },
       {
         "song": "7288792",
         "song_name": "LA FAMA",
         "spanish": "Es mala amante la fama, no va a quererte de verdad",
         "english": "Fame is a bad lover, it won't really love you",
-        "timestamp_ms": 51170
+        "vocalists": [
+          "The Weeknd"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51170,
+        "end_timestamp_ms": 53770
       }
     ],
     "id": "9a7ae2",
@@ -1334,7 +1685,10 @@
         "song_name": "Abcdefg",
         "spanish": "N de \"Ni se te ocurra ni pensarlo\"",
         "english": "N for \"Don't even think about it\"",
-        "timestamp_ms": 28980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 28980,
+        "end_timestamp_ms": 31460
       }
     ],
     "id": "6d7805",
@@ -1363,21 +1717,36 @@
         "song_name": "Por Mi Puerta No Lo Pasen",
         "spanish": "Porque mirarte no quiero",
         "english": "Because I don't want to look at you",
-        "timestamp_ms": 216420
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 216420,
+        "end_timestamp_ms": 220150
       },
       {
         "song": "4779329",
         "song_name": "Yo x Ti, Tu x Mí",
         "spanish": "Se me para el cora solo con mirarte",
         "english": "My heart stops just looking at you",
-        "timestamp_ms": 57550
+        "vocalists": [
+          "ROSALÍA",
+          "Ozuna",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 57550,
+        "end_timestamp_ms": 59850
       },
       {
         "song": "3964069",
         "song_name": "NANA (Cap.9: Concepción)",
         "spanish": "Para mirarte",
         "english": "to look at you",
-        "timestamp_ms": 97760
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 97760,
+        "end_timestamp_ms": 118860
       }
     ],
     "id": "967db0",
@@ -1404,7 +1773,15 @@
         "song_name": "VAMPIROS",
         "spanish": "Baby, sígueme, vámonos pa'llá",
         "english": "Baby, follow me, let's go there",
-        "timestamp_ms": 58510
+        "vocalists": [
+          "ROSALÍA",
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 58510,
+        "end_timestamp_ms": 61160
       }
     ],
     "id": "94fd61",
@@ -1431,7 +1808,10 @@
         "song_name": "Un Millón de Veces",
         "spanish": "Dejándote crecer",
         "english": "letting you grow",
-        "timestamp_ms": 62010
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 62010,
+        "end_timestamp_ms": 67790
       }
     ],
     "id": "9cfa60",
@@ -1459,14 +1839,26 @@
         "song_name": "Antes de Morirme",
         "spanish": "Antes de irte, espérame",
         "english": "Before you go, wait for me",
-        "timestamp_ms": 129380
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 129380,
+        "end_timestamp_ms": 131320
       },
       {
         "song": "4057969",
         "song_name": "Aute Cuture",
         "spanish": "Voy cargá' de oro, espérame senta'o (¡Jah!)",
         "english": "I'm loaded with gold, wait for me sitting down (Jah!)",
-        "timestamp_ms": 78700
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 78700,
+        "end_timestamp_ms": 81390
       }
     ],
     "id": "ce63c0",
@@ -1494,14 +1886,25 @@
         "song_name": "A Palé",
         "spanish": "Mírame a los ojos, a la milla",
         "english": "Look me in the eyes, a mile away",
-        "timestamp_ms": 37480
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 37480,
+        "end_timestamp_ms": 41140
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "Mírame a la cara, deja que mis labio' te toquen (Mami, la leyenda)",
         "english": "Look at my face, let my lips touch you (Mommy, the legend)",
-        "timestamp_ms": 166220
+        "vocalists": [
+          "Yandel",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 166220,
+        "end_timestamp_ms": 169810
       }
     ],
     "id": "cc1fb6",
@@ -1527,7 +1930,13 @@
         "song": "6387245",
         "song_name": "Tagliatelle Santeria",
         "spanish": "Ey, las gana' de besarte aumentan",
-        "english": "Hey, the desire to kiss you increases"
+        "english": "Hey, the desire to kiss you increases",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "0eb62e",
@@ -1554,7 +1963,10 @@
         "song_name": "De Madrugá",
         "spanish": "Para desquitarme yo tengo derecho",
         "english": "I have the right to get even",
-        "timestamp_ms": 21850
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 21850,
+        "end_timestamp_ms": 23830
       }
     ],
     "id": "7eff61",
@@ -1581,7 +1993,10 @@
         "song_name": "MALAMENTE (Cap.1: Augurio)",
         "spanish": "Cuanto más quiero cruzarlo (Va), más se mueve y tambalea",
         "english": "The more I want to cross it (Va), the more it moves and wobbles",
-        "timestamp_ms": 64720
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64720,
+        "end_timestamp_ms": 67080
       }
     ],
     "id": "d59656",
@@ -1609,14 +2024,20 @@
         "song_name": "MALDICIÓN (Cap.10: Cordura)",
         "spanish": "Y ninguno quié' decirlo",
         "english": "And no one wants to say it",
-        "timestamp_ms": 89600
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 89600,
+        "end_timestamp_ms": 109450
       },
       {
         "song": "7515185",
         "song_name": "BIZCOCHITO",
         "spanish": "Pa' decirlo hace falta mucha clase",
         "english": "It takes a lot of class to say it",
-        "timestamp_ms": 63160
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 63160,
+        "end_timestamp_ms": 66260
       }
     ],
     "id": "0f2841",
@@ -1642,7 +2063,9 @@
         "song": "10129261",
         "song_name": "Se nos rompió el amor",
         "spanish": "De tanto usarlo",
-        "english": "From using it so much"
+        "english": "From using it so much",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "08c5da",
@@ -1669,7 +2092,10 @@
         "song_name": "A NINGÚN HOMBRE (Cap.11: Poder)",
         "spanish": "Y recordarlo to'a la ví'a",
         "english": "And remember it all the way",
-        "timestamp_ms": 76670
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 76670,
+        "end_timestamp_ms": 80860
       }
     ],
     "id": "301427",
@@ -1696,7 +2122,10 @@
         "song_name": "Dolerme",
         "spanish": "Acelero pa' ver si consigo estrellarme",
         "english": "I accelerate to see if I can crash",
-        "timestamp_ms": 57140
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 57140,
+        "end_timestamp_ms": 59690
       }
     ],
     "id": "2f5946",
@@ -1723,7 +2152,15 @@
         "song_name": "Antes de Morirme",
         "spanish": "No vas a escucharme un lamento",
         "english": "You won't hear me cry",
-        "timestamp_ms": 23830
+        "vocalists": [
+          "C. Tangana",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 23830,
+        "end_timestamp_ms": 26040
       }
     ],
     "id": "91f10d",
@@ -1758,7 +2195,10 @@
         "song_name": "CUUUUuuuuuute",
         "spanish": "Míralas, no pierdas detalles",
         "english": "Look at them, don't lose details",
-        "timestamp_ms": 77660
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 77660,
+        "end_timestamp_ms": 83640
       }
     ],
     "id": "c0a2a2",
@@ -1785,7 +2225,14 @@
         "song_name": "Brillo",
         "spanish": "Relájate conmigo",
         "english": "relax with me",
-        "timestamp_ms": 112130
+        "vocalists": [
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 112130,
+        "end_timestamp_ms": 113980
       }
     ],
     "id": "264345",
@@ -1812,7 +2259,16 @@
         "song_name": "Antes de Morirme",
         "spanish": "Antes de irte, espérame",
         "english": "Before you go, wait for me",
-        "timestamp_ms": 129380
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 129380,
+        "end_timestamp_ms": 131320
       }
     ],
     "id": "518f48",
@@ -1839,7 +2295,10 @@
         "song_name": "Si Tú Supieras Compañero",
         "spanish": "Tener el agua tan cerca y no poderla beber",
         "english": "Having the water so close and not being able to drink it",
-        "timestamp_ms": 235000
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 235000,
+        "end_timestamp_ms": 243250
       }
     ],
     "id": "a78335",
@@ -1866,7 +2325,15 @@
         "song_name": "Besos Moja2",
         "spanish": "Y si comerno' es un error, que tu cuerpo se equivoque",
         "english": "And if eating us is a mistake, let your body make a mistake",
-        "timestamp_ms": 171120
+        "vocalists": [
+          "Yandel",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 171120,
+        "end_timestamp_ms": 174590
       }
     ],
     "id": "f76fc9",
@@ -1893,7 +2360,14 @@
         "song_name": "Besos Moja2",
         "spanish": "Regálame otra noche como aquella de Miami en el hotel",
         "english": "Give me another night like that one in Miami at the hotel",
-        "timestamp_ms": 123610
+        "vocalists": [
+          "Wisin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 123610,
+        "end_timestamp_ms": 126630
       }
     ],
     "id": "854d87",
@@ -1920,7 +2394,10 @@
         "song_name": "Juro Que",
         "spanish": "Dale, échale papa; tú me entiendes, Joselito",
         "english": "Come on, add potato; you understand me, Joselito",
-        "timestamp_ms": 4380
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 4380,
+        "end_timestamp_ms": 5950
       }
     ],
     "id": "c27a24",
@@ -1946,7 +2423,9 @@
         "song": "12579293",
         "song_name": "Sexo, Violencia y Llantas",
         "spanish": "Primero amar el mundo y luego amarle a Dios",
-        "english": "First love the world and then love God"
+        "english": "First love the world and then love God",
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "780570",
@@ -1972,7 +2451,15 @@
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Ya sabes cómo voy a tratarte",
-        "english": "You know how I'm going to treat you"
+        "english": "You know how I'm going to treat you",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "56b922",
@@ -1999,7 +2486,15 @@
         "song_name": "Lo Vas A Olvidar",
         "spanish": "El amor no puede medirse en paso' firme'",
         "english": "Love cannot be measured in a 'steady' step",
-        "timestamp_ms": 152160
+        "vocalists": [
+          "ROSALÍA",
+          "Billie Eilish"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 152160,
+        "end_timestamp_ms": 157440
       }
     ],
     "id": "0d4ce0",
@@ -2026,7 +2521,10 @@
         "song_name": "Dolerme",
         "spanish": "Yo ya no sé por qué no quiere dolerme",
         "english": "I no longer know why it doesn't want to hurt me",
-        "timestamp_ms": 54260
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 54260,
+        "end_timestamp_ms": 57140
       }
     ],
     "id": "a5ff5f",
@@ -2053,7 +2551,15 @@
         "song_name": "Linda",
         "spanish": "Poniéndome la prenda pa' tirarme por el bloque",
         "english": "Putting on the garment to throw myself around the block",
-        "timestamp_ms": 101290
+        "vocalists": [
+          "ROSALÍA",
+          "Tokischa"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 101290,
+        "end_timestamp_ms": 103170
       }
     ],
     "id": "977eb6",
@@ -2086,14 +2592,25 @@
         "song_name": "HENTAI",
         "spanish": "Segundo es chingarte, lo primero e' Dios",
         "english": "Second is screw you, the first thing is God",
-        "timestamp_ms": 39870
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 39870,
+        "end_timestamp_ms": 42660
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "Quédate un rato, quiero chingarte infinito",
         "english": "Stay a while, I want to fuck you infinitely",
-        "timestamp_ms": 71570
+        "vocalists": [
+          "ROSALÍA",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 71570,
+        "end_timestamp_ms": 74260
       }
     ],
     "id": "e7f0b4",
@@ -2120,7 +2637,10 @@
         "song_name": "Dolerme",
         "spanish": "Quiero que lo vea', no piense' en detenerme",
         "english": "I want you to see it, don't think about stopping",
-        "timestamp_ms": 59690
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 59690,
+        "end_timestamp_ms": 62490
       }
     ],
     "id": "e3cf92",
@@ -2147,7 +2667,10 @@
         "song_name": "Juro Que",
         "spanish": "Pa' poderte sacar de ahí",
         "english": "So I can get you out of there",
-        "timestamp_ms": 102410
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 102410,
+        "end_timestamp_ms": 105270
       }
     ],
     "id": "edd1b2",
@@ -2174,7 +2697,10 @@
         "song_name": "Magnolias",
         "spanish": "Tírame magnolias",
         "english": "throw me magnolias",
-        "timestamp_ms": 43980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 43980,
+        "end_timestamp_ms": 47590
       }
     ],
     "id": "203384",
@@ -2203,20 +2729,28 @@
         "song_name": "CUUUUuuuuuute",
         "spanish": "Llévame lejos de aquí",
         "english": "Take me away from here",
-        "timestamp_ms": 111260
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 111260,
+        "end_timestamp_ms": 112990
       },
       {
         "song": "3067584",
         "song_name": "Día 14 De Abril",
         "spanish": "Llévame",
         "english": "take me",
-        "timestamp_ms": 250
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 250,
+        "end_timestamp_ms": 20640
       },
       {
         "song": "4027739",
         "song_name": "Suncity",
         "spanish": "Llévame a ciudad del sol",
-        "english": "Take me to the city of the sun"
+        "english": "Take me to the city of the sun",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "1c4feb",
@@ -2243,7 +2777,10 @@
         "song_name": "COMO UN G",
         "spanish": "Mándame, mándame",
         "english": "Send me, send me",
-        "timestamp_ms": 168480
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 168480,
+        "end_timestamp_ms": 170380
       }
     ],
     "id": "362c65",
@@ -2270,7 +2807,10 @@
         "song_name": "Aunque Es De Noche",
         "spanish": "En este vivo pan por darme vida",
         "english": "In this living bread to give me life",
-        "timestamp_ms": 173120
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 173120,
+        "end_timestamp_ms": 176510
       }
     ],
     "id": "396530",
@@ -2297,7 +2837,14 @@
         "song_name": "CANDY (Remix)",
         "spanish": "Pregúntate si has podido borrar",
         "english": "Ask yourself if you have been able to delete",
-        "timestamp_ms": 137680
+        "vocalists": [
+          "Chencho Corleone"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 137680,
+        "end_timestamp_ms": 140630
       }
     ],
     "id": "8f4822",
@@ -2323,7 +2870,9 @@
         "song": "10129261",
         "song_name": "Se nos rompió el amor",
         "spanish": "De darnos por completo",
-        "english": "To give ourselves completely"
+        "english": "To give ourselves completely",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "beae9d",
@@ -2350,7 +2899,14 @@
         "song_name": "KLK",
         "spanish": "Quiero verle a toda' meneado las cadera'",
         "english": "I want to see all of you shaking your hips",
-        "timestamp_ms": 191240
+        "vocalists": [
+          "Arca"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 191240,
+        "end_timestamp_ms": 196310
       }
     ],
     "id": "68f966",
@@ -2376,7 +2932,15 @@
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Oblígame a pensar sólo en ti",
-        "english": "Force me to think only of you"
+        "english": "Force me to think only of you",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "4040fd",
@@ -2403,7 +2967,16 @@
         "song_name": "Con Altura",
         "spanish": "Vamo', vamo' a-a, vamo' a perrearnos, pa' que quede (Con altura)",
         "english": "Let's go, let's go, let's go and twerk, so that it stays (With height)",
-        "timestamp_ms": 54060
+        "vocalists": [
+          "ROSALÍA",
+          "J Balvin",
+          "El Guincho"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 54060,
+        "end_timestamp_ms": 57240
       }
     ],
     "id": "8a34ba",
@@ -2430,7 +3003,14 @@
         "song_name": "Brillo",
         "spanish": "Tú tienes que amarme (Tra), 'cucha la ciudad (Tra)",
         "english": "You have to love me (Tra), listen to the city (Tra)",
-        "timestamp_ms": 25500
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 25500,
+        "end_timestamp_ms": 28990
       }
     ],
     "id": "10de05",
@@ -2457,7 +3037,10 @@
         "song_name": "TUYA",
         "spanish": "Pégate a mí para que te dé buena suerte",
         "english": "Stick to me for good luck",
-        "timestamp_ms": 105690
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 105690,
+        "end_timestamp_ms": 109570
       }
     ],
     "id": "ad9c07",
@@ -2484,7 +3067,10 @@
         "song_name": "Un Millón de Veces",
         "spanish": "Mis labios no dejaban de rozarse con tu piel",
         "english": "My lips kept rubbing against your skin",
-        "timestamp_ms": 31020
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 31020,
+        "end_timestamp_ms": 36570
       }
     ],
     "id": "166cea",
@@ -2511,7 +3097,15 @@
         "song_name": "Antes de Morirme",
         "spanish": "Pienso follarte hasta borrar el límite entre los dos",
         "english": "I plan to fuck you until the boundary between the two is erased",
-        "timestamp_ms": 39960
+        "vocalists": [
+          "C. Tangana",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 39960,
+        "end_timestamp_ms": 43450
       }
     ],
     "id": "245862",
@@ -2538,7 +3132,15 @@
         "song_name": "El Pañuelo",
         "spanish": "A aliviarnos las penas y curarno' en la cama",
         "english": "To alleviate our sorrows and heal ourselves in bed",
-        "timestamp_ms": 64960
+        "vocalists": [
+          "Romeo Santos",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64960,
+        "end_timestamp_ms": 69420
       }
     ],
     "id": "2733c9",
@@ -2566,14 +3168,26 @@
         "song_name": "Catalina",
         "spanish": "A tomar un veneno, yo quiero morirme",
         "english": "To take poison, I want to die",
-        "timestamp_ms": 84310
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 84310,
+        "end_timestamp_ms": 90690
       },
       {
         "song": "2814756",
         "song_name": "Antes de Morirme",
         "spanish": "Antes de morirme, otra piel",
         "english": "Before I die, another skin",
-        "timestamp_ms": 117110
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 117110,
+        "end_timestamp_ms": 119250
       }
     ],
     "id": "045fde",
@@ -2601,13 +3215,28 @@
         "song_name": "Barefoot in the Park",
         "spanish": "Para yo no equivocarme",
         "english": "For me not to make mistakes",
-        "timestamp_ms": 41690
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 41690,
+        "end_timestamp_ms": 44010
       },
       {
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "Puede que vuelva a equivocarme",
-        "english": "I may be wrong again"
+        "english": "I may be wrong again",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "9143b5",
@@ -2634,7 +3263,10 @@
         "song_name": "Dolerme",
         "spanish": "Que no tenga que ir yo una ve' má' a buscarte",
         "english": "That I don't have to go look for you one more time",
-        "timestamp_ms": 70960
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 70960,
+        "end_timestamp_ms": 73800
       }
     ],
     "id": "5aedbd",
@@ -2660,7 +3292,9 @@
         "song": "5187929",
         "song_name": "Te Estoy Amando Locamente (Cover)",
         "spanish": "Recuerda que deseo tenerte muy cerca",
-        "english": "Remember that I want to have you very close"
+        "english": "Remember that I want to have you very close",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "1c514c",
@@ -2687,7 +3321,10 @@
         "song_name": "Por Castigarme Tan Fuerte",
         "spanish": "Por castigarme tan fuerte",
         "english": "for punishing me so hard",
-        "timestamp_ms": 36220
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 36220,
+        "end_timestamp_ms": 42570
       }
     ],
     "id": "0bd8c0",
@@ -2715,14 +3352,25 @@
         "song_name": "MALAMENTE (Cap.1: Augurio)",
         "spanish": "Me lo dijo esa gitana (¿Qué?), mejor no salir a verla (No)",
         "english": "That gypsy told me (What?), it's better not to go out and see her (No)",
-        "timestamp_ms": 55050
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 55050,
+        "end_timestamp_ms": 57380
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "Dicen de ella que es cara de verla",
         "english": "They say about her that she is expensive to see",
-        "timestamp_ms": 135290
+        "vocalists": [
+          "ROSALÍA",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 135290,
+        "end_timestamp_ms": 137490
       }
     ],
     "id": "baf9f9",
@@ -2748,7 +3396,9 @@
         "song": "10129261",
         "song_name": "Se nos rompió el amor",
         "spanish": "Al despertarnos",
-        "english": "When we wake up"
+        "english": "When we wake up",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "4f0bed",
@@ -2774,7 +3424,9 @@
         "song": "5245004",
         "song_name": "Parrita Remix",
         "spanish": "Dejame, dejame llorar",
-        "english": "Let me, let me cry"
+        "english": "Let me, let me cry",
+        "spotify_available": false,
+        "is_variant": true
       }
     ],
     "id": "1fb98f",
@@ -2801,7 +3453,16 @@
         "song_name": "PROMESA",
         "spanish": "Quiero vestirme mal y desvestirme mucho",
         "english": "I want to dress badly and undress a lot",
-        "timestamp_ms": 150790
+        "vocalists": [
+          "ROSALÍA",
+          "ROSALÍA",
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 150790,
+        "end_timestamp_ms": 154820
       }
     ],
     "id": "280980",
@@ -2831,28 +3492,51 @@
         "song_name": "HENTAI",
         "spanish": "Hacerte hentai",
         "english": "Make you hentai",
-        "timestamp_ms": 155980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 155980,
+        "end_timestamp_ms": 159430
       },
       {
         "song": "8916307",
         "song_name": "PROMESA",
         "spanish": "Quiero hacerte masilla con mis mano'",
         "english": "I want to make you putty with my hands'",
-        "timestamp_ms": 147340
+        "vocalists": [
+          "ROSALÍA",
+          "ROSALÍA",
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 147340,
+        "end_timestamp_ms": 150790
       },
       {
         "song": "10912589",
         "song_name": "Omega",
         "spanish": "Antes de hacerte acabar (Eh)",
         "english": "Before I make you cum (Eh)",
-        "timestamp_ms": 51730
+        "vocalists": [
+          "ROSALÍA",
+          "Ralphie Choo"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51730,
+        "end_timestamp_ms": 59020
       },
       {
         "song": "12581301",
         "song_name": "Novia Robot",
         "spanish": "Con cualquiera de tus compras tienes una garantía porque nuestra póliza siempre es para quedar bien y hacerte feliz tenga el coste",
         "english": "With any of your purchases you have a guarantee because our policy is always to look good and make you happy regardless of the cost.",
-        "timestamp_ms": 22840
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 22840,
+        "end_timestamp_ms": 31590
       }
     ],
     "id": "834324",
@@ -2879,7 +3563,14 @@
         "song_name": "PROMESA",
         "spanish": "Y secarte el cabello, y comerte la cara",
         "english": "And dry your hair, and eat your face",
-        "timestamp_ms": 69540
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 69540,
+        "end_timestamp_ms": 74610
       }
     ],
     "id": "60033f",
@@ -2914,7 +3605,10 @@
         "song_name": "Focu ‘ranni",
         "spanish": "Callarme para siempre",
         "english": "Shut me up forever",
-        "timestamp_ms": 41920
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 41920,
+        "end_timestamp_ms": 45320
       }
     ],
     "id": "9f5071",
@@ -2941,7 +3635,15 @@
         "song_name": "Antes de Morirme",
         "spanish": "Quiero jugar con mi vida hasta haberle perdí'o el valor",
         "english": "I want to play with my life until I have lost my value",
-        "timestamp_ms": 44800
+        "vocalists": [
+          "C. Tangana",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 44800,
+        "end_timestamp_ms": 48230
       }
     ],
     "id": "9d0681",
@@ -2968,7 +3670,10 @@
         "song_name": "HENTAI",
         "spanish": "Pa', pero mírate",
         "english": "Pa', but look at you",
-        "timestamp_ms": 1120
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 1120,
+        "end_timestamp_ms": 6340
       }
     ],
     "id": "79f7e3",
@@ -2995,7 +3700,10 @@
         "song_name": "Novia Robot",
         "spanish": "Y hazte un manual para lo tuyo, lo tuyo es lo tuyo",
         "english": "And make yourself a manual for yours, yours is yours",
-        "timestamp_ms": 52970
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 52970,
+        "end_timestamp_ms": 57850
       }
     ],
     "id": "307014",
@@ -3021,7 +3729,13 @@
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "No puedes tratarme como a las demás",
-        "english": "You can't treat me like the others"
+        "english": "You can't treat me like the others",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "c7ad89",
@@ -3049,14 +3763,24 @@
         "song_name": "A Palé",
         "spanish": "Si qui'es hablarme, siéntate en la silla",
         "english": "If you want to talk to me, sit in the chair",
-        "timestamp_ms": 48530
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 48530,
+        "end_timestamp_ms": 52480
       },
       {
         "song": "8365376",
         "song_name": "CANDY (Remix)",
         "spanish": "Tu carita y la forma de hablarme a mí (Ah)",
         "english": "Your little face and the way you talk to me (Ah)",
-        "timestamp_ms": 15260
+        "vocalists": [
+          "Chencho Corleone"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 15260,
+        "end_timestamp_ms": 17910
       }
     ],
     "id": "ae06ca",
@@ -3083,7 +3807,10 @@
         "song_name": "Dios Es Un Stalker (Versión Física)",
         "spanish": "Pa' poderle enamorar",
         "english": "To be able to make him fall in love",
-        "timestamp_ms": 55730
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 55730,
+        "end_timestamp_ms": 58930
       }
     ],
     "id": "a90d78",
@@ -3110,7 +3837,10 @@
         "song_name": "COMO UN G",
         "spanish": "Si no lo puedes tener, mejor déjalo ir",
         "english": "If you can't have it, you better let it go",
-        "timestamp_ms": 93210
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 93210,
+        "end_timestamp_ms": 99430
       }
     ],
     "id": "c976a8",
@@ -3137,7 +3867,10 @@
         "song_name": "BULERÍAS",
         "spanish": "Para mantenerme en pie",
         "english": "To keep me standing",
-        "timestamp_ms": 16760
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 16760,
+        "end_timestamp_ms": 22510
       }
     ],
     "id": "7d0f0f",
@@ -3164,7 +3897,15 @@
         "song_name": "Besos Moja2",
         "spanish": "Que puede dedicarte este tema",
         "english": "What can this topic dedicate to you?",
-        "timestamp_ms": 22180
+        "vocalists": [
+          "Yandel",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 22180,
+        "end_timestamp_ms": 24800
       }
     ],
     "id": "8589b2",
@@ -3192,14 +3933,26 @@
         "song_name": "SAKURA",
         "spanish": "Voy a reírme cuando tenga 80 y mire pa' atrás",
         "english": "I'm going to laugh when I'm 80 and look back",
-        "timestamp_ms": 92940
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 92940,
+        "end_timestamp_ms": 100610
       },
       {
         "song": "8916307",
         "song_name": "PROMESA",
         "spanish": "Partir cien botella' y reírme mucho",
         "english": "Split a hundred bottles and laugh a lot",
-        "timestamp_ms": 167650
+        "vocalists": [
+          "ROSALÍA",
+          "ROSALÍA",
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 167650,
+        "end_timestamp_ms": 171930
       }
     ],
     "id": "027726",
@@ -3226,7 +3979,14 @@
         "song_name": "Brillo",
         "spanish": "Tráeme el desayuno (Tra), mantenme hidratá' (Tra)",
         "english": "Bring me breakfast (Tra), keep me hydrated (Tra)",
-        "timestamp_ms": 32420
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 32420,
+        "end_timestamp_ms": 35980
       }
     ],
     "id": "839e9b",
@@ -3252,7 +4012,9 @@
         "song": "8587430",
         "song_name": "X GRANAÍNA",
         "spanish": "Y crucificarme allí",
-        "english": "And crucify me there"
+        "english": "And crucify me there",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "47074c",
@@ -3287,7 +4049,14 @@
         "song_name": "Brillo",
         "spanish": "¿Estás segura? Piénsalo antes de actuar",
         "english": "Are you sure? Think before you act",
-        "timestamp_ms": 108850
+        "vocalists": [
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 108850,
+        "end_timestamp_ms": 112130
       }
     ],
     "id": "507fdf",
@@ -3314,7 +4083,10 @@
         "song_name": "Jeanne",
         "spanish": "Mejor de amar que aniquilarse",
         "english": "Better to love than to annihilate",
-        "timestamp_ms": 31460
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 31460,
+        "end_timestamp_ms": 36230
       }
     ],
     "id": "092e1e",
@@ -3347,14 +4119,25 @@
         "song_name": "Si Tú Supieras Compañero",
         "spanish": "Y ponte tú en las cuatro esquinas",
         "english": "And put yourself in the four corners",
-        "timestamp_ms": 3170
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 3170,
+        "end_timestamp_ms": 8860
       },
       {
         "song": "4425584",
         "song_name": "Con Altura",
         "spanish": "Ponte el cinturón y coge asiento",
         "english": "Put on your seatbelt and take a seat",
-        "timestamp_ms": 81140
+        "vocalists": [
+          "J Balvin",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 81140,
+        "end_timestamp_ms": 83060
       }
     ],
     "id": "e2f9e5",
@@ -3381,7 +4164,14 @@
         "song_name": "PROMESA",
         "spanish": "Y secarte el cabello, y comerte la cara",
         "english": "And dry your hair, and eat your face",
-        "timestamp_ms": 69540
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 69540,
+        "end_timestamp_ms": 74610
       }
     ],
     "id": "e1bec8",
@@ -3408,7 +4198,14 @@
         "song_name": "Brillo",
         "spanish": "Me he toma'o la molestia de avisarte",
         "english": "I have taken the trouble to let you know",
-        "timestamp_ms": 45510
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 45510,
+        "end_timestamp_ms": 48820
       }
     ],
     "id": "f1f2d0",
@@ -3435,7 +4232,10 @@
         "song_name": "LA KILIÉ",
         "spanish": "Mira la hookah, mírala y fuma",
         "english": "Look at the hookah, look at it and smoke",
-        "timestamp_ms": 96780
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 96780,
+        "end_timestamp_ms": 99660
       }
     ],
     "id": "f2bb42",
@@ -3462,7 +4262,16 @@
         "song_name": "PROMESA",
         "spanish": "Quiero vestirme mal y desvestirme mucho",
         "english": "I want to dress badly and undress a lot",
-        "timestamp_ms": 150790
+        "vocalists": [
+          "ROSALÍA",
+          "ROSALÍA",
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 150790,
+        "end_timestamp_ms": 154820
       }
     ],
     "id": "ffeb2f",
@@ -3480,7 +4289,15 @@
         "song_name": "El Pañuelo",
         "spanish": "A aliviarnos las penas y curarno' en la cama",
         "english": "To alleviate our sorrows and heal ourselves in bed",
-        "timestamp_ms": 64960
+        "vocalists": [
+          "Romeo Santos",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64960,
+        "end_timestamp_ms": 69420
       }
     ],
     "id": "eaa79e",
@@ -3507,7 +4324,15 @@
         "song_name": "Lo Vas A Olvidar",
         "spanish": "Un día soy un Dio' y al otro puedo partirme",
         "english": "One day I am a God and the next I can break",
-        "timestamp_ms": 157440
+        "vocalists": [
+          "ROSALÍA",
+          "Billie Eilish"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 157440,
+        "end_timestamp_ms": 162710
       }
     ],
     "id": "9c6e17",
@@ -3534,7 +4359,10 @@
         "song_name": "A NINGÚN HOMBRE (Cap.11: Poder)",
         "spanish": "Solo Dios pue' juzgarme",
         "english": "Only God can judge me",
-        "timestamp_ms": 11460
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11460,
+        "end_timestamp_ms": 17750
       }
     ],
     "id": "a93350",
@@ -3561,7 +4389,10 @@
         "song_name": "Nos Quedamos Solitos",
         "spanish": "Vino mi hermano a llamarme",
         "english": "My brother came to call me",
-        "timestamp_ms": 86610
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 86610,
+        "end_timestamp_ms": 97750
       }
     ],
     "id": "134a59",
@@ -3587,7 +4418,9 @@
         "song": "12650523",
         "song_name": "Fire, Fire",
         "spanish": "Inténtalo, inténtalo y falla",
-        "english": "Try, try and fail"
+        "english": "Try, try and fail",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "a19896",
@@ -3614,7 +4447,15 @@
         "song_name": "Lo Vas A Olvidar",
         "spanish": "Dame un beso y bájame de la cru'",
         "english": "Give me a kiss and get me off the cross",
-        "timestamp_ms": 109510
+        "vocalists": [
+          "Billie Eilish",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 109510,
+        "end_timestamp_ms": 117310
       }
     ],
     "id": "5d4e03",
@@ -3641,7 +4482,10 @@
         "song_name": "MALAMENTE (Cap.1: Augurio)",
         "spanish": "No voy a perder ni un minuto en volver a pensarte (Hmm)",
         "english": "I'm not going to waste a minute thinking about you again (Hmm)",
-        "timestamp_ms": 105760
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 105760,
+        "end_timestamp_ms": 109460
       }
     ],
     "id": "67465b",
@@ -3668,7 +4512,10 @@
         "song_name": "Dios Es Un Stalker (Versión Física)",
         "spanish": "Y perseguirlo sin piedad",
         "english": "And chase him without mercy",
-        "timestamp_ms": 127290
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 127290,
+        "end_timestamp_ms": 128790
       }
     ],
     "id": "b1ca21",
@@ -3695,7 +4542,10 @@
         "song_name": "CHIRI",
         "spanish": "Pero pedirte a ti no está de más",
         "english": "But asking you doesn't hurt",
-        "timestamp_ms": 4460
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 4460,
+        "end_timestamp_ms": 6240
       }
     ],
     "id": "074c9b",
@@ -3722,7 +4572,10 @@
         "song_name": "SAOKO",
         "spanish": "Cógela y córtala, y ya (Cut, cut that, quit that)",
         "english": "Take it and cut it, and that's it (Cut, cut that, quit that)",
-        "timestamp_ms": 117990
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 117990,
+        "end_timestamp_ms": 120350
       }
     ],
     "id": "ec77c1",
@@ -3754,14 +4607,26 @@
         "song": "5187929",
         "song_name": "Te Estoy Amando Locamente (Cover)",
         "spanish": "Pero sin darte cuenta te alejas de mí",
-        "english": "But without realizing it you go away from me"
+        "english": "But without realizing it you go away from me",
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "8416396",
         "song_name": "Besos Moja2",
         "spanish": "Lo rico que sabe darte un besito bien suave (Tú sabe')",
         "english": "How delicious it is to give you a very soft kiss (You know)",
-        "timestamp_ms": 84360
+        "vocalists": [
+          "Wisin",
+          "Wisin",
+          "ROSALÍA",
+          "Yandel"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 84360,
+        "end_timestamp_ms": 87350
       }
     ],
     "id": "59ebce",
@@ -3789,14 +4654,20 @@
         "song_name": "BULERÍAS",
         "spanish": "Ay, quítate, quítate, quítate tú de en medio",
         "english": "Oh, get out, get out, get out of the way",
-        "timestamp_ms": 132420
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 132420,
+        "end_timestamp_ms": 135350
       },
       {
         "song": "3065090",
         "song_name": "Catalina",
         "spanish": "Quítate de mi presencia, que me está' martirizando",
         "english": "Get out of my presence, it's martyring me",
-        "timestamp_ms": 11140
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11140,
+        "end_timestamp_ms": 18600
       }
     ],
     "id": "a866df",
@@ -3823,7 +4694,16 @@
         "song_name": "Antes de Morirme",
         "spanish": "Antes de irme quiero mil de cien",
         "english": "Before I leave I want a thousand out of a hundred",
-        "timestamp_ms": 124160
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 124160,
+        "end_timestamp_ms": 126650
       }
     ],
     "id": "8ff944",
@@ -3850,7 +4730,10 @@
         "song_name": "COMO UN G",
         "spanish": "Cantándote baladas por la madrugada",
         "english": "Singing ballads to you in the early morning",
-        "timestamp_ms": 200630
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 200630,
+        "end_timestamp_ms": 204160
       }
     ],
     "id": "85aada",
@@ -3877,13 +4760,23 @@
         "song": "8587430",
         "song_name": "X GRANAÍNA",
         "spanish": "Déjame que muera en ella",
-        "english": "Let me die in it"
+        "english": "Let me die in it",
+        "spotify_available": false,
+        "is_variant": false
       },
       {
         "song": "2966663",
         "song_name": "Llámame Más Tarde",
         "spanish": "O déjame de hablar o hazme de rabiar",
-        "english": "Either stop me talking or make me angry"
+        "english": "Either stop me talking or make me angry",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "c890f6",
@@ -3910,7 +4803,10 @@
         "song_name": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
         "spanish": "Y del oro que te viste por amarrarse a tu cuello",
         "english": "And the gold that you wore to tie it around your neck",
-        "timestamp_ms": 31150
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 31150,
+        "end_timestamp_ms": 33080
       }
     ],
     "id": "4eb945",
@@ -3937,7 +4833,15 @@
         "song_name": "Besos Moja2",
         "spanish": "Quédate un rato, quiero chingarte infinito",
         "english": "Stay a while, I want to fuck you infinitely",
-        "timestamp_ms": 71570
+        "vocalists": [
+          "ROSALÍA",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 71570,
+        "end_timestamp_ms": 74260
       }
     ],
     "id": "4be1c4",
@@ -3965,14 +4869,20 @@
         "song_name": "Juro Que",
         "spanish": "Ni un beso pude darle de despedía' (¡Plú!)",
         "english": "I couldn't even kiss him goodbye' (Plú!)",
-        "timestamp_ms": 31530
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 31530,
+        "end_timestamp_ms": 38180
       },
       {
         "song": "3036615",
         "song_name": "Te Venero",
         "spanish": "Y en darle mi querer",
         "english": "And in giving my love",
-        "timestamp_ms": 76220
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 76220,
+        "end_timestamp_ms": 81300
       }
     ],
     "id": "d79414",
@@ -3990,7 +4900,14 @@
         "song_name": "CANDY (Remix)",
         "spanish": "Así tú te prendaste de mí (Eh, eh)",
         "english": "That's how you fell in love with me (Eh, eh)",
-        "timestamp_ms": 91360
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 91360,
+        "end_timestamp_ms": 94090
       }
     ],
     "id": "b0d365",
@@ -4017,7 +4934,14 @@
         "song_name": "Me Traicionaste",
         "spanish": "Vine a encontrarte aunque supiera",
         "english": "I came to find you even if I knew",
-        "timestamp_ms": 28290
+        "vocalists": [
+          "Rosalía"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 28290,
+        "end_timestamp_ms": 31590
       }
     ],
     "id": "201760",
@@ -4044,7 +4968,10 @@
         "song_name": "BAGDAD (Cap.7: Liturgia)",
         "spanish": "Que Dios tendrá que cobrarle",
         "english": "That God will have to charge you",
-        "timestamp_ms": 119510
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 119510,
+        "end_timestamp_ms": 122740
       }
     ],
     "id": "766996",
@@ -4071,7 +4998,10 @@
         "song_name": "A Palé",
         "spanish": "Si qui'es hablarme, siéntate en la silla",
         "english": "If you want to talk to me, sit in the chair",
-        "timestamp_ms": 48530
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 48530,
+        "end_timestamp_ms": 52480
       }
     ],
     "id": "a82ce3",
@@ -4098,7 +5028,14 @@
         "song_name": "BESO",
         "spanish": "Ey, ¿cómo decirte?",
         "english": "Hey, how can I tell you?",
-        "timestamp_ms": 53410
+        "vocalists": [
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 53410,
+        "end_timestamp_ms": 55170
       }
     ],
     "id": "7eacb5",
@@ -4124,7 +5061,9 @@
         "song": "8176090",
         "song_name": "PERDÓNAME",
         "spanish": "Perdóname, perdóname",
-        "english": "Forgive me, forgive me"
+        "english": "Forgive me, forgive me",
+        "spotify_available": false,
+        "is_variant": false
       }
     ],
     "id": "abd7c9",
@@ -4152,14 +5091,20 @@
         "song_name": "MALAMENTE (Cap.1: Augurio)",
         "spanish": "Antes de caerse al suelo ya sabía que se rompía (Uh)",
         "english": "Before it fell to the ground I already knew it would break (Uh)",
-        "timestamp_ms": 15570
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 15570,
+        "end_timestamp_ms": 18180
       },
       {
         "song": "3036615",
         "song_name": "Te Venero",
         "spanish": "Caerse por destino tiene",
         "english": "Falling by destiny has",
-        "timestamp_ms": 162640
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 162640,
+        "end_timestamp_ms": 166520
       }
     ],
     "id": "24b351",
@@ -4187,14 +5132,20 @@
         "song_name": "Por Mi Puerta No Lo Pasen",
         "spanish": "Corre y dile que se calle",
         "english": "Run and tell him to shut up",
-        "timestamp_ms": 93260
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 93260,
+        "end_timestamp_ms": 99410
       },
       {
         "song": "12581296",
         "song_name": "La Rumba Del Perdón",
         "spanish": "Dile a tu ma're que tú eres pa' mí",
         "english": "Tell your mother that you are for me",
-        "timestamp_ms": 119020
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 119020,
+        "end_timestamp_ms": 131240
       }
     ],
     "id": "7fe1ac",
@@ -4221,7 +5172,10 @@
         "song_name": "Nos Quedamos Solitos",
         "spanish": "«Despiértate»",
         "english": "\"Wake up\"",
-        "timestamp_ms": 97750
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 97750,
+        "end_timestamp_ms": 106250
       }
     ],
     "id": "00279e",
@@ -4248,7 +5202,10 @@
         "song_name": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
         "spanish": "Y del cielo y de la luna, que tú quieras mirarlos",
         "english": "And of the sky and the moon, that you want to look at them",
-        "timestamp_ms": 35940
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35940,
+        "end_timestamp_ms": 38190
       }
     ],
     "id": "ec7361",
@@ -4274,7 +5231,9 @@
         "song": "3131429",
         "song_name": "Por Castigarme Tan Fuerte",
         "spanish": "Y yo en vez de aborrecerte",
-        "english": "And instead of hating you"
+        "english": "And instead of hating you",
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "3eb8f8",
@@ -4301,7 +5260,10 @@
         "song_name": "Novia Robot",
         "spanish": "Que quiero colgarlo",
         "english": "I want to hang it",
-        "timestamp_ms": 112120
+        "spotify_available": false,
+        "is_variant": false,
+        "timestamp_ms": 112120,
+        "end_timestamp_ms": 113040
       }
     ],
     "id": "efe4e3",
@@ -4328,7 +5290,10 @@
         "song_name": "BAGDAD (Cap.7: Liturgia)",
         "spanish": "Senta'ita, al cielo quie' rezarle",
         "english": "Sit down, I want to pray to heaven",
-        "timestamp_ms": 110850
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 110850,
+        "end_timestamp_ms": 117000
       }
     ],
     "id": "f03ac6",
@@ -4346,7 +5311,10 @@
         "song_name": "Un Millón de Veces",
         "spanish": "Permiteme decir",
         "english": "let me say",
-        "timestamp_ms": 202510
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 202510,
+        "end_timestamp_ms": 206580
       }
     ],
     "id": "293698",
@@ -4364,7 +5332,15 @@
         "song_name": "El Pañuelo",
         "spanish": "Esta noche ven, refúgiate en mis brazos",
         "english": "Tonight come, take refuge in my arms",
-        "timestamp_ms": 185980
+        "vocalists": [
+          "ROSALÍA",
+          "Romeo Santos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 185980,
+        "end_timestamp_ms": 189700
       }
     ],
     "id": "1e7b15",
@@ -4382,7 +5358,15 @@
         "song_name": "El Pañuelo",
         "spanish": "Desquítate con rabia pasional",
         "english": "Take it out with passionate rage",
-        "timestamp_ms": 189700
+        "vocalists": [
+          "ROSALÍA",
+          "Romeo Santos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 189700,
+        "end_timestamp_ms": 193440
       }
     ],
     "id": "885d00",
@@ -4409,7 +5393,10 @@
         "song_name": "Catalina",
         "spanish": "Apúnteme usted una cortina que por ca' agujero cabe una vecina",
         "english": "Point me out a curtain that fits a neighbor through every hole",
-        "timestamp_ms": 163650
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 163650,
+        "end_timestamp_ms": 165740
       }
     ],
     "id": "34dbb6",
@@ -4436,7 +5423,10 @@
         "song_name": "Aute Cuture",
         "spanish": "Los flecos, la' trenzas para matar, bájale",
         "english": "The fringes, the braids to kill, lower them",
-        "timestamp_ms": 50430
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50430,
+        "end_timestamp_ms": 52680
       }
     ],
     "id": "65a70e",

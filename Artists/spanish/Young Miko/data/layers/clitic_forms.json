@@ -20,7 +20,14 @@
         "song_name": "Kilimanjaro",
         "spanish": "¿Medirte conmigo? ¿'Tás algaro? Ja",
         "english": "Measure yourself with me? 'Are you fussing? Ha",
-        "timestamp_ms": 52640
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 52640,
+        "end_timestamp_ms": 55400
       }
     ],
     "id": "2e6e19",
@@ -47,7 +54,16 @@
         "song_name": "FINA",
         "spanish": "Háblale de ticket, no le hable' de boda",
         "english": "Talk to him about the ticket, don't talk to him about the wedding",
-        "timestamp_ms": 186880
+        "vocalists": [
+          "Bad Bunny",
+          "Bad Bunny",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 186880,
+        "end_timestamp_ms": 187700
       }
     ],
     "id": "3a981c",
@@ -74,7 +90,14 @@
         "song_name": "Chulo pt.2",
         "spanish": "Huele a Baccarat, fumándose un puro (Sí)",
         "english": "It smells like Baccarat, smoking a cigar (Yes)",
-        "timestamp_ms": 12650
+        "vocalists": [
+          "Bad Gyal"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 12650,
+        "end_timestamp_ms": 15040
       }
     ],
     "id": "d66991",
@@ -101,7 +124,10 @@
         "song_name": "What’s Ur Vibe?",
         "spanish": "Baby, déjalos que sigan waiting",
         "english": "Baby, let them keep waiting",
-        "timestamp_ms": 49040
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 49040,
+        "end_timestamp_ms": 51650
       }
     ],
     "id": "d509f3",
@@ -127,7 +153,13 @@
         "song": "10084300",
         "song_name": "En Esta Boca",
         "spanish": "'Toy pa' robarte delincuente, ey, y lo malo es que te gusta",
-        "english": "'Toy to' steal you criminal, hey, and the bad thing is that you like it"
+        "english": "'Toy to' steal you criminal, hey, and the bad thing is that you like it",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "a07d7a",
@@ -164,42 +196,72 @@
         "song_name": "BIRTHDAY BEHAVIOR",
         "spanish": "Déjame probar un poco de tu birthday cake",
         "english": "Let me try some of your birthday cake",
-        "timestamp_ms": 45410
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 45410,
+        "end_timestamp_ms": 47660
       },
       {
         "song": "8783598",
         "song_name": "Big Booty",
         "spanish": "Ey, déjame ver tu panty finito",
         "english": "Hey, let me see your thin panty",
-        "timestamp_ms": 50130
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50130,
+        "end_timestamp_ms": 52720
       },
       {
         "song": "8970064",
         "song_name": "Classy 101",
         "spanish": "Déjame ver to'",
         "english": "Let me see everything",
-        "timestamp_ms": 76620
+        "vocalists": [
+          "Feid"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 76620,
+        "end_timestamp_ms": 78130
       },
       {
         "song": "9923845",
         "song_name": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
         "spanish": "Biza, apaga las luce', déjame a oscura'",
         "english": "Biza, turn off the lights, leave me in the dark",
-        "timestamp_ms": 75470
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 75470,
+        "end_timestamp_ms": 77330
       },
       {
         "song": "12458903",
         "song_name": "Meiomi",
         "spanish": "Déjame acabar con esta paca",
         "english": "Let me finish this bale",
-        "timestamp_ms": 159600
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 159600,
+        "end_timestamp_ms": 161660
       },
       {
         "song": "12591722",
         "song_name": "Ni le cabe",
         "spanish": "Si no llegas al zipper, déjame ayudarte",
         "english": "If you can't reach the zipper, let me help you",
-        "timestamp_ms": 46200
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 46200,
+        "end_timestamp_ms": 48210
       }
     ],
     "id": "c890f6",
@@ -217,7 +279,10 @@
         "song_name": "En el Ritz",
         "spanish": "Pero no van a quejarse, no, cuando vean lo que dejo de tip, ey, ey",
         "english": "But they're not going to complain, no, when they see what tip left, hey, hey",
-        "timestamp_ms": 92590
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 92590,
+        "end_timestamp_ms": 96730
       }
     ],
     "id": "d5a047",
@@ -252,7 +317,15 @@
         "song_name": "Amandita",
         "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
         "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
-        "timestamp_ms": 100150
+        "vocalists": [
+          "Omar Courtz",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 100150,
+        "end_timestamp_ms": 105250
       }
     ],
     "id": "78545c",
@@ -279,7 +352,10 @@
         "song_name": "wiggy",
         "spanish": "Sube y bájalo otra ve'",
         "english": "Go up and down again",
-        "timestamp_ms": 14460
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 14460,
+        "end_timestamp_ms": 16010
       }
     ],
     "id": "1f93ba",
@@ -306,7 +382,14 @@
         "song_name": "FINA",
         "spanish": "Vamo' todo el mundo a putearlo, que se joda",
         "english": "Let's go, everyone, fuck him, screw him",
-        "timestamp_ms": 174470
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 174470,
+        "end_timestamp_ms": 176690
       }
     ],
     "id": "db4e73",
@@ -333,7 +416,10 @@
         "song_name": "Meiomi",
         "spanish": "Ay, sí, voy a preguntarle si vamo' a irno'",
         "english": "Oh yes, I'm going to ask him if we're going to go",
-        "timestamp_ms": 47990
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 47990,
+        "end_timestamp_ms": 50510
       }
     ],
     "id": "971aeb",
@@ -360,7 +446,10 @@
         "song_name": "arcoíris",
         "spanish": "Tú sabe' quién yo soy, si no pregúntale a Siri (Uh)",
         "english": "You know who I am, if you don't ask Siri (Uh)",
-        "timestamp_ms": 44420
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 44420,
+        "end_timestamp_ms": 46630
       }
     ],
     "id": "2dde35",
@@ -387,7 +476,14 @@
         "song_name": "COLMILLO",
         "spanish": "Pa' arrastrarte del cuarto a la sala",
         "english": "To drag you from the room to the living room",
-        "timestamp_ms": 235220
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 235220,
+        "end_timestamp_ms": 237590
       }
     ],
     "id": "5f0cd2",
@@ -414,7 +510,14 @@
         "song_name": "no quiero pelear",
         "spanish": "Bésame, bésa-be-bésame",
         "english": "Kiss me, kiss-be-kiss me",
-        "timestamp_ms": 137080
+        "vocalists": [
+          "ELENA ROSE"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 137080,
+        "end_timestamp_ms": 138770
       }
     ],
     "id": "04960a",
@@ -441,7 +544,15 @@
         "song_name": "Amandita",
         "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
         "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
-        "timestamp_ms": 100150
+        "vocalists": [
+          "Omar Courtz",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 100150,
+        "end_timestamp_ms": 105250
       }
     ],
     "id": "b78ff3",
@@ -468,7 +579,10 @@
         "song_name": "curita",
         "spanish": "Ella sabe que estoy esperándola, la-la-la",
         "english": "",
-        "timestamp_ms": 15720
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 15720,
+        "end_timestamp_ms": 20560
       }
     ],
     "id": "4d13a2",
@@ -495,7 +609,14 @@
         "song_name": "TOA",
         "spanish": "Solo pa' dejarnos saber que esto nunca murió",
         "english": "Just to let us know that this never died",
-        "timestamp_ms": 162480
+        "vocalists": [
+          "Mora"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 162480,
+        "end_timestamp_ms": 167820
       }
     ],
     "id": "8ffc9a",
@@ -522,7 +643,14 @@
         "song_name": "8 AM",
         "spanish": "Toma par de peso', baby, cúrate",
         "english": "Take a couple of weight, baby, heal yourself",
-        "timestamp_ms": 99530
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 99530,
+        "end_timestamp_ms": 101840
       }
     ],
     "id": "97b9b2",
@@ -550,14 +678,28 @@
         "song_name": "TOA",
         "spanish": "En casita comiéndote to'a",
         "english": "At home eating everything",
-        "timestamp_ms": 35670
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35670,
+        "end_timestamp_ms": 38530
       },
       {
         "song": "8721872",
         "song_name": "Cuando Te Toca",
         "spanish": "Comiéndote to'a, cuando te pone' en four (Ay)",
         "english": "Eating you all, when he puts you on four (Ay)",
-        "timestamp_ms": 109620
+        "vocalists": [
+          "Yandel"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 109620,
+        "end_timestamp_ms": 114180
       }
     ],
     "id": "4fb161",
@@ -587,28 +729,52 @@
         "song_name": "Sexo de moteles",
         "spanish": "Muévelo slow, pa'lante y pa'trá', yo dándole dembow",
         "english": "Move it slowly, back and forth, me giving it a dembow",
-        "timestamp_ms": 90040
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 90040,
+        "end_timestamp_ms": 93090
       },
       {
         "song": "8618160",
         "song_name": "Katana",
         "spanish": "Dándole a tu puta hasta que se me canse",
         "english": "Giving your whore until I get tired",
-        "timestamp_ms": 52460
+        "vocalists": [
+          "Leebrian"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 52460,
+        "end_timestamp_ms": 54420
       },
       {
         "song": "8406201",
         "song_name": "La Mini",
         "spanish": "Dándole cabrón, ah (Rrr)",
         "english": "Giving it bastard, ah (Rrr)",
-        "timestamp_ms": 57310
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 57310,
+        "end_timestamp_ms": 61150
       },
       {
         "song": "8621461",
         "song_name": "Amandita",
         "spanish": "Tú pai sigue llamando y tú dándole decline (Prr)",
         "english": "Your dad keeps calling and you decline (Prr)",
-        "timestamp_ms": 139780
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 139780,
+        "end_timestamp_ms": 142340
       }
     ],
     "id": "e9e3f7",
@@ -635,7 +801,14 @@
         "song_name": "Katana",
         "spanish": "Me salió por jugarme la carta (Ah)",
         "english": "It came out for me by playing the card (Ah)",
-        "timestamp_ms": 99690
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 99690,
+        "end_timestamp_ms": 101440
       }
     ],
     "id": "231721",
@@ -662,7 +835,14 @@
         "song_name": "oye ma’",
         "spanish": "Y, Mari, ciérrame el mall (Yeah), que me voy de shopping",
         "english": "And, Mari, close the mall for me (Yeah), I'm going shopping",
-        "timestamp_ms": 41990
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 41990,
+        "end_timestamp_ms": 44390
       }
     ],
     "id": "56fbe5",
@@ -689,7 +869,10 @@
         "song_name": "princess peach",
         "spanish": "Yo te conozco, tú no va' a bloquearme",
         "english": "I know you, you're not going to block me",
-        "timestamp_ms": 13140
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 13140,
+        "end_timestamp_ms": 17880
       }
     ],
     "id": "3e7a87",
@@ -742,35 +925,54 @@
         "song_name": "Duro",
         "spanish": "Envíame el pin, el addy, que yo no le llego en un yachty",
         "english": "Send me the pin, the addy, I won't get it in a yachty",
-        "timestamp_ms": 70010
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 70010,
+        "end_timestamp_ms": 73120
       },
       {
         "song": "9428284",
         "song_name": "Tempo",
         "spanish": "Baby, envíame lo que no pusiste en el photo dump, ey (Baby)",
         "english": "Baby, send me what you didn't put in the photo dump, hey (Baby)",
-        "timestamp_ms": 42020
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 42020,
+        "end_timestamp_ms": 45120
       },
       {
         "song": "10220930",
         "song_name": "tamagotchi",
         "spanish": "Envíame algo, que falta pa' verte",
         "english": "Send me something, I need to see you",
-        "timestamp_ms": 22980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 22980,
+        "end_timestamp_ms": 28340
       },
       {
         "song": "10220933",
         "song_name": "fuck TMZ",
         "spanish": "Te mandé el jet privado, envíame DTA",
         "english": "I sent you the private jet, send me DTA",
-        "timestamp_ms": 64360
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64360,
+        "end_timestamp_ms": 67260
       },
       {
         "song": "8224310",
         "song_name": "Trending",
         "spanish": "Envíame el PIN, que vive en Carola (Ajá)",
         "english": "Send me the PIN, who lives in Carola (Aha)",
-        "timestamp_ms": 53390
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 53390,
+        "end_timestamp_ms": 56800
       }
     ],
     "id": "06d0d2",
@@ -804,21 +1006,34 @@
         "song_name": "Gyoza",
         "spanish": "Hazme una coreografía como las de E11EVEN",
         "english": "Make me a choreography like the ones from E11EVEN",
-        "timestamp_ms": 76760
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 76760,
+        "end_timestamp_ms": 79750
       },
       {
         "song": "12458903",
         "song_name": "Meiomi",
         "spanish": "En mi sudadera Nike hazme un lap dance",
         "english": "In my Nike sweatshirt do me a lap dance",
-        "timestamp_ms": 152190
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 152190,
+        "end_timestamp_ms": 155480
       },
       {
         "song": "12591723",
         "song_name": "Esa nena",
         "spanish": "Ja, say \"cheese\", cambia la cara y hazme el favor, please",
         "english": "Ha, say \"cheese\", change your face and do me a favor, please",
-        "timestamp_ms": 85650
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 85650,
+        "end_timestamp_ms": 88540
       }
     ],
     "id": "820dab",
@@ -836,7 +1051,14 @@
         "song_name": "ay mami",
         "spanish": "La baby quiere arrebatarse, encima montarse",
         "english": "The baby wants to be snatched, and on top of that, to ride",
-        "timestamp_ms": 104350
+        "vocalists": [
+          "Dei V"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 104350,
+        "end_timestamp_ms": 107940
       }
     ],
     "id": "2a6de5",
@@ -863,7 +1085,14 @@
         "song_name": "Cuando Te Toca",
         "spanish": "Tó-Tócame bien (Hey, hey, hey!)",
         "english": "Touch-Touch me good (Hey, hey, hey!)",
-        "timestamp_ms": 80440
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 80440,
+        "end_timestamp_ms": 81940
       }
     ],
     "id": "37410e",
@@ -904,14 +1133,23 @@
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "La luz esta roja, síguelo",
-        "english": "The light is red, follow it"
+        "english": "The light is red, follow it",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "12458903",
         "song_name": "Meiomi",
         "spanish": "Síguelo moviendo y yo te tiro má'",
         "english": "Keep moving and I'll throw more at you",
-        "timestamp_ms": 147620
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 147620,
+        "end_timestamp_ms": 150120
       }
     ],
     "id": "a69b18",
@@ -938,7 +1176,15 @@
         "song_name": "Déjanos Pasar",
         "spanish": "Uh-la-la, déjanos pasar que no estamos pa' pelear",
         "english": "Uh-la-la, let us pass that we are not here to fight",
-        "timestamp_ms": 25960
+        "vocalists": [
+          "PJ Sin Suela",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 25960,
+        "end_timestamp_ms": 30820
       }
     ],
     "id": "1f8b77",
@@ -968,28 +1214,52 @@
         "song_name": "Condado",
         "spanish": "Pégame el mahón, que esta noche yo te vo'a hacer algo histórico",
         "english": "Hit me hard, tonight I'm going to do something historic to you",
-        "timestamp_ms": 137060
+        "vocalists": [
+          "Lunay"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 137060,
+        "end_timestamp_ms": 140850
       },
       {
         "song": "12591724",
         "song_name": "Plug (Type Shit)",
         "spanish": "Pégame ese cu, ja, ey",
         "english": "Hit me that cu, ha, hey",
-        "timestamp_ms": 48860
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 48860,
+        "end_timestamp_ms": 52040
       },
       {
         "song": "9216707",
         "song_name": "Chulo pt.2",
         "spanish": "Pégame ese culo que tú no tienes grillete",
         "english": "Hit me with that ass, you don't have a shackle",
-        "timestamp_ms": 140990
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 140990,
+        "end_timestamp_ms": 143360
       },
       {
         "song": "9185102",
         "song_name": "ID",
         "spanish": "Perreando duro, pégame ese culo",
         "english": "Twerking hard, hit me with that ass",
-        "timestamp_ms": 117060
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 117060,
+        "end_timestamp_ms": 119550
       }
     ],
     "id": "2cae70",
@@ -1024,7 +1294,10 @@
         "song_name": "princess peach",
         "spanish": "Y cuando quiera' tírame al hotline bling, yeah (Ey)",
         "english": "And whenever I want, throw me at the hotline bling, yeah (Hey)",
-        "timestamp_ms": 87790
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 87790,
+        "end_timestamp_ms": 92870
       }
     ],
     "id": "203384",
@@ -1050,7 +1323,13 @@
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "Véame en el noticier-",
-        "english": "See me on the news"
+        "english": "See me on the news",
+        "vocalists": [
+          "Adames"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "a7ee96",
@@ -1076,7 +1355,14 @@
         "song": "8618160",
         "song_name": "Katana",
         "spanish": "Je, indícame Miko, je",
-        "english": "Heh, tell me Miko, heh"
+        "english": "Heh, tell me Miko, heh",
+        "vocalists": [
+          "Young Miko",
+          "Leebrian"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "a24ce0",
@@ -1103,7 +1389,14 @@
         "song_name": "SALVAJE",
         "spanish": "Me gusta quitarle ese mahón",
         "english": "I like to remove that bulge",
-        "timestamp_ms": 70840
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 70840,
+        "end_timestamp_ms": 72880
       }
     ],
     "id": "b735c7",
@@ -1130,7 +1423,14 @@
         "song_name": "Jetski",
         "spanish": "Quiero verle ese culo cómo se come ese gistro marca Louis",
         "english": "I want to see that ass how he eats that Louis brand gistro",
-        "timestamp_ms": 48220
+        "vocalists": [
+          "Randy"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 48220,
+        "end_timestamp_ms": 53770
       }
     ],
     "id": "68f966",
@@ -1163,14 +1463,24 @@
         "song_name": "Gyoza",
         "spanish": "Yo estoy loca por besarte hasta quitarte el gloss, ah",
         "english": "I'm crazy about kissing you until you take off the gloss, ah",
-        "timestamp_ms": 64640
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64640,
+        "end_timestamp_ms": 68190
       },
       {
         "song": "12591722",
         "song_name": "Ni le cabe",
         "spanish": "Abusadora, ese Jean Paul Gaultier yo quiero quitarte",
         "english": "Abuser, that Jean Paul Gaultier I want to take you away",
-        "timestamp_ms": 58890
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 58890,
+        "end_timestamp_ms": 62290
       }
     ],
     "id": "80dd98",
@@ -1197,7 +1507,14 @@
         "song_name": "DISPO",
         "spanish": "¿Qué tú crees, bebé? A ver, olvídate de él",
         "english": "What do you think, baby? Let's see, forget about him",
-        "timestamp_ms": 112120
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 112120,
+        "end_timestamp_ms": 114590
       }
     ],
     "id": "5226e8",
@@ -1224,7 +1541,16 @@
         "song_name": "Chulo pt.2",
         "spanish": "Pa' dejarlo asfixiao' y decirle \"chao, chao\"",
         "english": "To leave him suffocating and say \"bye, bye\"",
-        "timestamp_ms": 56560
+        "vocalists": [
+          "Tokischa",
+          "Bad Gyal",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 56560,
+        "end_timestamp_ms": 59420
       }
     ],
     "id": "0e10e9",
@@ -1251,7 +1577,16 @@
         "song_name": "sorry es que soy bipolarrr",
         "spanish": "Y en una de las dos quisiera amarte bien",
         "english": "And in one of the two I would like to love you well",
-        "timestamp_ms": 103260
+        "vocalists": [
+          "Young Miko",
+          "Young Miko",
+          "ROBI"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 103260,
+        "end_timestamp_ms": 107960
       }
     ],
     "id": "0c7f0d",
@@ -1278,7 +1613,15 @@
         "song_name": "Amandita",
         "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
         "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
-        "timestamp_ms": 100150
+        "vocalists": [
+          "Omar Courtz",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 100150,
+        "end_timestamp_ms": 105250
       }
     ],
     "id": "8f61b7",
@@ -1305,7 +1648,10 @@
         "song_name": "tamagotchi",
         "spanish": "Tiene que alimentarme como Tamagotchi",
         "english": "Gotta feed me like Tamagotchi",
-        "timestamp_ms": 34580
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 34580,
+        "end_timestamp_ms": 38120
       }
     ],
     "id": "ef39c1",
@@ -1333,14 +1679,28 @@
         "song_name": "oye ma’",
         "spanish": "Viendo mis foto', malpensa'o, quédate senta'o, 'tás equivoca'o (Ah)",
         "english": "Looking at my photos, you're wrong, stay seated, you're wrong (Ah)",
-        "timestamp_ms": 105280
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 105280,
+        "end_timestamp_ms": 109260
       },
       {
         "song": "10220944",
         "song_name": "no quiero pelear",
         "spanish": "Quédate las llave', que yo cojo pa'l mine",
         "english": "Keep the keys, I'll take them for mine",
-        "timestamp_ms": 63360
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 63360,
+        "end_timestamp_ms": 65570
       }
     ],
     "id": "4be1c4",
@@ -1367,7 +1727,10 @@
         "song_name": "Esa nena",
         "spanish": "Que la dancer me diga pa' verla, Siri, ponle: \"Yes, I do\"",
         "english": "",
-        "timestamp_ms": 35900
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35900,
+        "end_timestamp_ms": 39430
       }
     ],
     "id": "d4ca53",
@@ -1394,7 +1757,14 @@
         "song_name": "TOA",
         "spanish": "Y pa' prenderla no hace falta gasolina",
         "english": "And to light it you don't need gasoline",
-        "timestamp_ms": 64960
+        "vocalists": [
+          "Mora"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64960,
+        "end_timestamp_ms": 67480
       }
     ],
     "id": "5a7145",
@@ -1421,7 +1791,14 @@
         "song_name": "FINA",
         "spanish": "Mami, hoy voy a enseñarte cómo es que un culo se mama, jeje",
         "english": "Mommy, today I'm going to show you how an ass sucks, hehe",
-        "timestamp_ms": 154410
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 154410,
+        "end_timestamp_ms": 158470
       }
     ],
     "id": "abb9fe",
@@ -1448,7 +1825,10 @@
         "song_name": "Ni le cabe",
         "spanish": "A mí sin cojone', ma, si quiere' grabarme",
         "english": "To me without cojone', ma, if you want' to record me",
-        "timestamp_ms": 48210
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 48210,
+        "end_timestamp_ms": 50410
       }
     ],
     "id": "b4c2d7",
@@ -1475,7 +1855,14 @@
         "song_name": "Classy 101",
         "spanish": "Que yo esté pensándote para mí es normal",
         "english": "That I am thinking about you is normal for me",
-        "timestamp_ms": 18790
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 18790,
+        "end_timestamp_ms": 21960
       }
     ],
     "id": "7a6b0d",
@@ -1510,7 +1897,10 @@
         "song_name": "Dosis",
         "spanish": "Con ganas de envolverme, par de nene' hacerte",
         "english": "Wanting to wrap me up, couple of babies' make you",
-        "timestamp_ms": 82720
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 82720,
+        "end_timestamp_ms": 87140
       }
     ],
     "id": "aa07b6",
@@ -1537,7 +1927,10 @@
         "song_name": "Dosis",
         "spanish": "Acabo 'e conocerte, es tu día de suerte",
         "english": "I just met you, it's your lucky day",
-        "timestamp_ms": 87140
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 87140,
+        "end_timestamp_ms": 91600
       }
     ],
     "id": "cd2dc3",
@@ -1564,7 +1957,14 @@
         "song_name": "En Esta Boca",
         "spanish": "Ella esperó a que apaguen las luces, y yo quería encenderle la vida",
         "english": "She waited for the lights to turn off, and I wanted to light her life",
-        "timestamp_ms": 21420
+        "vocalists": [
+          "Kany García"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 21420,
+        "end_timestamp_ms": 24790
       }
     ],
     "id": "ddf651",
@@ -1592,14 +1992,30 @@
         "song_name": "Pretty Bad Bitch",
         "spanish": "Pa’ darle a ese culo hay que hacerle una ceremonia",
         "english": "To give that ass you have to do a ceremony",
-        "timestamp_ms": 26960
+        "vocalists": [
+          "Brray"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 26960,
+        "end_timestamp_ms": 29880
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "Dame ese culo pa' acá, pa' hacerle un RKO",
         "english": "Give me that ass here, to do an RKO",
-        "timestamp_ms": 85460
+        "vocalists": [
+          "Eladio Carrión",
+          "Young Miko",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 85460,
+        "end_timestamp_ms": 88450
       }
     ],
     "id": "4d05d2",
@@ -1626,7 +2042,10 @@
         "song_name": "princess peach",
         "spanish": "Me deja en seen pa' despué' tenerla encima",
         "english": "It leaves me in seen so that later I can have it on me",
-        "timestamp_ms": 38950
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 38950,
+        "end_timestamp_ms": 43830
       }
     ],
     "id": "d3dea5",
@@ -1653,7 +2072,14 @@
         "song_name": "Tempo",
         "spanish": "Pero súbeme el tempo",
         "english": "But increase the tempo",
-        "timestamp_ms": 23090
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 23090,
+        "end_timestamp_ms": 24200
       }
     ],
     "id": "827275",
@@ -1686,14 +2112,26 @@
         "song_name": "Dosis",
         "spanish": "Quiero pegarme y decirte un par de cosi",
         "english": "I want to hit up and tell you a couple of things",
-        "timestamp_ms": 25530
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 25530,
+        "end_timestamp_ms": 29980
       },
       {
         "song": "7134347",
         "song_name": "Vendetta",
         "spanish": "’Toy a punto de pegarme pero yo ni lo trato",
         "english": "'He's about to hit me but I don't even try",
-        "timestamp_ms": 87120
+        "vocalists": [
+          "Villano Antillano",
+          "Young Miko",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 87120,
+        "end_timestamp_ms": 89110
       }
     ],
     "id": "c871b6",
@@ -1711,7 +2149,14 @@
         "song_name": "ay mami",
         "spanish": "Y sin ir a la piscina, mojarse (Oh-oh)",
         "english": "And without going to the pool, getting wet (Oh-oh)",
-        "timestamp_ms": 107940
+        "vocalists": [
+          "Dei V"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 107940,
+        "end_timestamp_ms": 110010
       }
     ],
     "id": "27af35",
@@ -1745,21 +2190,30 @@
         "song_name": "princess peach",
         "spanish": "Solo aparece pa' darme",
         "english": "He only appears to give me",
-        "timestamp_ms": 71170
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 71170,
+        "end_timestamp_ms": 73550
       },
       {
         "song": "12591724",
         "song_name": "Plug (Type Shit)",
         "spanish": "Un melón sin darme cuenta, otro día en la oficina, yeah (Yeah-yeah, ey)",
         "english": "A melon without realizing it, another day at the office, yeah (Yeah-yeah, hey)",
-        "timestamp_ms": 72290
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 72290,
+        "end_timestamp_ms": 76060
       },
       {
         "song": "12591723",
         "song_name": "Esa nena",
         "spanish": "Quieren ponerme el leash, quieren darme un French kiss (Mua)",
         "english": "They want to put the leash on me, they want to give me a French kiss (Mua)",
-        "timestamp_ms": 94540
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 94540,
+        "end_timestamp_ms": 97640
       }
     ],
     "id": "396530",
@@ -1786,7 +2240,10 @@
         "song_name": "Meiomi",
         "spanish": "O vamo’ a chingarnos adentro 'el strip club, baby, aquí",
         "english": "Or let's go fuck ourselves inside the strip club, baby, here",
-        "timestamp_ms": 50510
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50510,
+        "end_timestamp_ms": 55420
       }
     ],
     "id": "28b48e",
@@ -1814,14 +2271,28 @@
         "song_name": "FINA",
         "spanish": "Dale, vamos pa' la Gucci pa' hacerlo en el probador",
         "english": "Come on, let's go to the Gucci to do it in the fitting room",
-        "timestamp_ms": 110620
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 110620,
+        "end_timestamp_ms": 113560
       },
       {
         "song": "8422401",
         "song_name": "SALVAJE",
         "spanish": "Hacerlo en la playa en Rincón",
         "english": "Do it on the beach in Rincón",
-        "timestamp_ms": 72880
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 72880,
+        "end_timestamp_ms": 74970
       }
     ],
     "id": "78b583",
@@ -1848,7 +2319,14 @@
         "song_name": "offline",
         "spanish": "Sabe' que si me tira' y es pa' ponerno' fresco', me ofrezco",
         "english": "He knows that if he pulls me and it's to get fresh, I offer myself",
-        "timestamp_ms": 69940
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 69940,
+        "end_timestamp_ms": 73320
       }
     ],
     "id": "3232ca",
@@ -1875,14 +2353,24 @@
         "song": "8224314",
         "song_name": "Putero",
         "spanish": "Y ponme el peso, aquí seguimo' activo', seguimo' encendío'",
-        "english": "And put the weight on me, here we continue 'active', we continue 'on'"
+        "english": "And put the weight on me, here we continue 'active', we continue 'on'",
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "8981516",
         "song_name": "Brinca",
         "spanish": "Ponme a rebota' esas nalga', mami, I wanna see",
         "english": "Make me bounce those buttocks, mommy, I wanna see",
-        "timestamp_ms": 43730
+        "vocalists": [
+          "Cazzu",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 43730,
+        "end_timestamp_ms": 44810
       }
     ],
     "id": "3d37aa",
@@ -1909,7 +2397,10 @@
         "song_name": "Likey Likey",
         "spanish": "Pa' hartarme de ese culo en la semana ayuno",
         "english": "To get fed up with that ass during fasting week",
-        "timestamp_ms": 46870
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 46870,
+        "end_timestamp_ms": 50040
       }
     ],
     "id": "0377ca",
@@ -1936,7 +2427,14 @@
         "song_name": "Castigada",
         "spanish": "Cógelo suave, cógelo easy",
         "english": "Take it soft, take it easy",
-        "timestamp_ms": 130840
+        "vocalists": [
+          "Catalyna"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 130840,
+        "end_timestamp_ms": 133390
       }
     ],
     "id": "558c14",
@@ -1963,7 +2461,10 @@
         "song_name": "Sexo de moteles",
         "spanish": "¿Puedes ponerla?",
         "english": "Can you put it on?",
-        "timestamp_ms": 6450
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 6450,
+        "end_timestamp_ms": 7820
       }
     ],
     "id": "346710",
@@ -1990,7 +2491,14 @@
         "song_name": "Pretty Bad Bitch",
         "spanish": "Comiéndose el mundo y salió de una colonia",
         "english": "Taking on the world and left a colony",
-        "timestamp_ms": 34090
+        "vocalists": [
+          "Brray"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 34090,
+        "end_timestamp_ms": 36470
       }
     ],
     "id": "871f52",
@@ -2017,7 +2525,14 @@
         "song_name": "Sale el Sol",
         "spanish": "No quiero sentirme así, así",
         "english": "I don't want to feel like this, like this",
-        "timestamp_ms": 45450
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 45450,
+        "end_timestamp_ms": 49410
       }
     ],
     "id": "e1cc16",
@@ -2044,7 +2559,10 @@
         "song_name": "Ni le cabe",
         "spanish": "Si no llegas al zipper, déjame ayudarte",
         "english": "If you can't reach the zipper, let me help you",
-        "timestamp_ms": 46200
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 46200,
+        "end_timestamp_ms": 48210
       }
     ],
     "id": "64fc25",
@@ -2071,7 +2589,10 @@
         "song_name": "tres tristes tragos",
         "spanish": "Caerme, si termino en tu piel",
         "english": "Fall, if I end up in your skin",
-        "timestamp_ms": 68780
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 68780,
+        "end_timestamp_ms": 70580
       }
     ],
     "id": "7d4be0",
@@ -2098,7 +2619,15 @@
         "song_name": "Gyoza",
         "spanish": "Porque quiero esconderlo, pero me pongo rosa",
         "english": "Because I want to hide it, but I turn pink",
-        "timestamp_ms": 24720
+        "vocalists": [
+          "ELENA ROSE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 24720,
+        "end_timestamp_ms": 28070
       }
     ],
     "id": "d178d7",
@@ -2133,7 +2662,15 @@
         "song_name": "8 AM",
         "spanish": "Están buscándome (Eh), están tirándome",
         "english": "They are looking for me (Eh), they are throwing me",
-        "timestamp_ms": 58750
+        "vocalists": [
+          "NICKI NICOLE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 58750,
+        "end_timestamp_ms": 61280
       }
     ],
     "id": "c7389e",
@@ -2160,7 +2697,15 @@
         "song_name": "8 AM",
         "spanish": "Están buscándome (Eh), están tirándome",
         "english": "They are looking for me (Eh), they are throwing me",
-        "timestamp_ms": 58750
+        "vocalists": [
+          "NICKI NICOLE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 58750,
+        "end_timestamp_ms": 61280
       }
     ],
     "id": "25522f",
@@ -2193,14 +2738,24 @@
         "song_name": "sorry es que soy bipolarrr",
         "spanish": "Mejor déjalo así",
         "english": "Better leave it like this",
-        "timestamp_ms": 44260
+        "vocalists": [
+          "ROBI"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 44260,
+        "end_timestamp_ms": 47150
       },
       {
         "song": "10220921",
         "song_name": "rookie of the year",
         "spanish": "Está bien, pero déjalo que",
         "english": "Okay, but let it be",
-        "timestamp_ms": 9400
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 9400,
+        "end_timestamp_ms": 13590
       }
     ],
     "id": "c976a8",
@@ -2227,7 +2782,14 @@
         "song_name": "CC (Remix)",
         "spanish": "Déjale saber que aquí se fuma con cojone'",
         "english": "Let him know that here we smoke with cojone'",
-        "timestamp_ms": 101550
+        "vocalists": [
+          "De La Ghetto"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 101550,
+        "end_timestamp_ms": 104710
       }
     ],
     "id": "1181bf",
@@ -2254,7 +2816,14 @@
         "song_name": "Classy 101",
         "spanish": "Vamo' a comerno', baby, aunque no sea formal",
         "english": "Let's eat, baby, even if it's not formal",
-        "timestamp_ms": 23770
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 23770,
+        "end_timestamp_ms": 26330
       }
     ],
     "id": "f76fc9",
@@ -2281,7 +2850,14 @@
         "song_name": "8 AM",
         "spanish": "Conmigo no hay problema, mami, úsame",
         "english": "There is no problem with me, mommy, use me",
-        "timestamp_ms": 101840
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 101840,
+        "end_timestamp_ms": 104590
       }
     ],
     "id": "301d67",
@@ -2314,14 +2890,30 @@
         "song_name": "COLMILLO",
         "spanish": "Chingarte a ti",
         "english": "Fuck you",
-        "timestamp_ms": 208390
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 208390,
+        "end_timestamp_ms": 210420
       },
       {
         "song": "10220932",
         "song_name": "ay mami",
         "spanish": "Despué' que la nota sube, yo quiero chingarte",
         "english": "After the grade goes up, I want to fuck you",
-        "timestamp_ms": 117850
+        "vocalists": [
+          "Dei V",
+          "Young Miko",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 117850,
+        "end_timestamp_ms": 123050
       }
     ],
     "id": "e7f0b4",
@@ -2348,7 +2940,14 @@
         "song_name": "Gyoza",
         "spanish": "Mejor te hablo con la mano hasta dejarte muda",
         "english": "Better I talk to you with my hand until I leave you mute",
-        "timestamp_ms": 71280
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 71280,
+        "end_timestamp_ms": 75220
       }
     ],
     "id": "f3f1ba",
@@ -2375,7 +2974,14 @@
         "song_name": "Un Poquito",
         "spanish": "Como cuando lo mueve', sigue haciéndolo asimismo (Pew, pew)",
         "english": "Like when he moves it, he keeps doing it too (Pew, pew)",
-        "timestamp_ms": 68750
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 68750,
+        "end_timestamp_ms": 71300
       }
     ],
     "id": "560d99",
@@ -2402,7 +3008,15 @@
         "song_name": "pinot grigio",
         "spanish": "Para y sácalo de aquí, si no va a cruza'o, tú sabe' la que hay (Ujum)",
         "english": "Stop and get him out of here, if he's not going to cross, you know what's there (Ujum)",
-        "timestamp_ms": 104160
+        "vocalists": [
+          "Young Miko",
+          "Brray"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 104160,
+        "end_timestamp_ms": 107070
       }
     ],
     "id": "e818c2",
@@ -2429,7 +3043,10 @@
         "song_name": "Piki",
         "spanish": "Say she wanna fuck hard, pero sin dejarme hickey (Cuida'o)",
         "english": "Say she wanna fuck hard, but without making me hickey (Cuida'o)",
-        "timestamp_ms": 50780
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50780,
+        "end_timestamp_ms": 54170
       }
     ],
     "id": "7720bd",
@@ -2456,7 +3073,14 @@
         "song_name": "Chulo pt.2",
         "spanish": "Perdóname, Dios, si un pecado se comete",
         "english": "Forgive me, God, if a sin is committed",
-        "timestamp_ms": 145740
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 145740,
+        "end_timestamp_ms": 148640
       }
     ],
     "id": "abd7c9",
@@ -2484,14 +3108,28 @@
         "song_name": "Katana",
         "spanish": "Tengo la fama diciéndome que avance",
         "english": "I have fame telling me to move on",
-        "timestamp_ms": 57850
+        "vocalists": [
+          "Leebrian"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 57850,
+        "end_timestamp_ms": 59500
       },
       {
         "song": "10220932",
         "song_name": "ay mami",
         "spanish": "Siempre termina' diciéndome \"no te vaya'\"",
         "english": "",
-        "timestamp_ms": 18470
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 18470,
+        "end_timestamp_ms": 21410
       }
     ],
     "id": "63888d",
@@ -2518,7 +3156,14 @@
         "song_name": "WOAHH",
         "spanish": "Pa' trabajarte hago la dili, mami, eso e' easy",
         "english": "To work for you I do the dili, mommy, that's easy",
-        "timestamp_ms": 59260
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 59260,
+        "end_timestamp_ms": 63100
       }
     ],
     "id": "bcb1ea",
@@ -2546,14 +3191,25 @@
         "song_name": "Castigada",
         "spanish": "Me escribe antes de acostarse, me cuenta qué quiere hacerme",
         "english": "He writes to me before going to bed, tells me what he wants to do to me",
-        "timestamp_ms": 20040
+        "vocalists": [
+          "Young Miko",
+          "Cory"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 20040,
+        "end_timestamp_ms": 21940
       },
       {
         "song": "12582446",
         "song_name": "Sin pausa",
         "spanish": "Ma, qué manía tú tienes de hacerme esos tatuaje' nuevo' con forma de mordida",
         "english": "Ma, what a habit you have of giving me those 'new' tattoos in the shape of a bite",
-        "timestamp_ms": 89000
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 89000,
+        "end_timestamp_ms": 93590
       }
     ],
     "id": "87c7b5",
@@ -2581,14 +3237,28 @@
         "song_name": "AMG",
         "spanish": "Quieren montarse en la ola (Damn), yo solo digo \"adiós\" (Bye)",
         "english": "They want to ride the wave (Damn), I just say \"bye\" (Bye)",
-        "timestamp_ms": 112260
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 112260,
+        "end_timestamp_ms": 113500
       },
       {
         "song": "10220932",
         "song_name": "ay mami",
         "spanish": "La baby quiere arrebatarse, encima montarse",
         "english": "The baby wants to be snatched, and on top of that, to ride",
-        "timestamp_ms": 104350
+        "vocalists": [
+          "Dei V"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 104350,
+        "end_timestamp_ms": 107940
       }
     ],
     "id": "a19056",
@@ -2623,7 +3293,10 @@
         "song_name": "Dosis",
         "spanish": "Llevo velándote, se ve que estás imposi",
         "english": "I've been watching you, it seems that you are imposing",
-        "timestamp_ms": 29980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 29980,
+        "end_timestamp_ms": 34250
       }
     ],
     "id": "656c21",
@@ -2650,7 +3323,10 @@
         "song_name": "Meiomi",
         "spanish": "Voy a preguntarle si vamo’ a irnos",
         "english": "I'm going to ask him if we're going to leave",
-        "timestamp_ms": 47990
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 47990,
+        "end_timestamp_ms": 50510
       }
     ],
     "id": "4f7e4d",
@@ -2677,7 +3353,14 @@
         "song_name": "8 AM",
         "spanish": "El-El driver está abajo, mami, apúrate",
         "english": "The-The driver is down, mommy, hurry up",
-        "timestamp_ms": 94190
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 94190,
+        "end_timestamp_ms": 96560
       }
     ],
     "id": "70f95f",
@@ -2708,35 +3391,58 @@
         "song_name": "TOA",
         "spanish": "Quisiera verla semanal",
         "english": "I would like to see it weekly",
-        "timestamp_ms": 49920
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 49920,
+        "end_timestamp_ms": 52730
       },
       {
         "song": "10220933",
         "song_name": "fuck TMZ",
         "spanish": "Y quisiera verla, pero aquí estoy, por otro estado",
         "english": "And I would like to see it, but here I am, in another state",
-        "timestamp_ms": 77770
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 77770,
+        "end_timestamp_ms": 80020
       },
       {
         "song": "12582446",
         "song_name": "Sin pausa",
         "spanish": "Cuando tú me pone' esa cara 'e bellaca, yo quiero verla en missionary",
         "english": "When you give me that mischievous face, I want to see it in missionary",
-        "timestamp_ms": 166480
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 166480,
+        "end_timestamp_ms": 169940
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "'Toy loca por verla sin ropa, si está que estilla",
         "english": "'I'm crazy to see her without clothes, she looks really cool",
-        "timestamp_ms": 124590
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 124590,
+        "end_timestamp_ms": 127350
       },
       {
         "song": "12591723",
         "song_name": "Esa nena",
         "spanish": "Que la dancer me diga pa' verla, Siri, ponle: \"Yes, I do\"",
         "english": "",
-        "timestamp_ms": 35900
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35900,
+        "end_timestamp_ms": 39430
       }
     ],
     "id": "baf9f9",
@@ -2763,7 +3469,14 @@
         "song_name": "Bi",
         "spanish": "Todas quieren quitarme la camisa",
         "english": "They all want to take off my shirt",
-        "timestamp_ms": 47070
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 47070,
+        "end_timestamp_ms": 50540
       }
     ],
     "id": "b401a9",
@@ -2791,14 +3504,24 @@
         "song_name": "arcoíris",
         "spanish": "Vente conmigo, you boring shit (Ajá)",
         "english": "Come with me, you boring shit (Aha)",
-        "timestamp_ms": 33160
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 33160,
+        "end_timestamp_ms": 35150
       },
       {
         "song": "8086635",
         "song_name": "Un Poquito",
         "spanish": "Muéveme un poquito, vente conmigo",
         "english": "Move me a little, come with me",
-        "timestamp_ms": 30150
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 30150,
+        "end_timestamp_ms": 33100
       }
     ],
     "id": "7f3040",
@@ -2861,48 +3584,94 @@
         "song_name": "Pretty Bad Bitch",
         "spanish": "Pa’ darle a ese culo hay que hacerle una ceremonia",
         "english": "To give that ass you have to do a ceremony",
-        "timestamp_ms": 26960
+        "vocalists": [
+          "Brray"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 26960,
+        "end_timestamp_ms": 29880
       },
       {
         "song": "12591720",
         "song_name": "Algo casual",
         "spanish": "¿Cambiar tu nombre en el cel o darle un break? A ver",
         "english": "Change your name on the cell phone or break it? Let's see",
-        "timestamp_ms": 75540
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 75540,
+        "end_timestamp_ms": 82780
       },
       {
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "Me fui pa’ la disco a darle sin miedo y",
-        "english": "I went to the disco to hit it without fear and"
+        "english": "I went to the disco to hit it without fear and",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "9402498",
         "song_name": "DISPO",
         "spanish": "Pa' darle lento, pa' darle lento",
         "english": "To take it slow, to take it slow",
-        "timestamp_ms": 124390
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 124390,
+        "end_timestamp_ms": 126900
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "Es que tengo una jeva que está pa' darle to' el día",
         "english": "It's just that I have a girl who is there to give you all day",
-        "timestamp_ms": 178470
+        "vocalists": [
+          "Young Miko",
+          "Eladio Carrión"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 178470,
+        "end_timestamp_ms": 180990
       },
       {
         "song": "8783598",
         "song_name": "Big Booty",
         "spanish": "Esta pa' darle to'a la noche hasta quedarme empty (De una)",
         "english": "I'm here to give it all night until I'm empty (One time)",
-        "timestamp_ms": 106240
+        "vocalists": [
+          "Hozwal"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 106240,
+        "end_timestamp_ms": 109490
       },
       {
         "song": "11690948",
         "song_name": "EN LA CITY",
         "spanish": "Pa' darle hasta abajo no hay que pedir permiso, nah",
         "english": "To hit it all the way down you don't have to ask for permission, nah",
-        "timestamp_ms": 100200
+        "vocalists": [
+          "Young Miko",
+          "Trueno"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 100200,
+        "end_timestamp_ms": 102760
       }
     ],
     "id": "d79414",
@@ -2929,7 +3698,10 @@
         "song_name": "Ni le cabe",
         "spanish": "Explicit, aquí no tienes que taparte",
         "english": "Explicit, here you don't have to cover up",
-        "timestamp_ms": 50410
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50410,
+        "end_timestamp_ms": 52820
       }
     ],
     "id": "9a9f43",
@@ -2956,7 +3728,10 @@
         "song_name": "princess peach",
         "spanish": "¿Cómo yo voy a enojarme? (Prr)",
         "english": "How can I get angry? (Prr)",
-        "timestamp_ms": 73550
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 73550,
+        "end_timestamp_ms": 75700
       }
     ],
     "id": "3f6499",
@@ -2983,7 +3758,15 @@
         "song_name": "8 AM",
         "spanish": "Mandándote canciones en nota' de voz",
         "english": "Sending you songs in voice notes",
-        "timestamp_ms": 56280
+        "vocalists": [
+          "NICKI NICOLE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 56280,
+        "end_timestamp_ms": 58750
       }
     ],
     "id": "40d54d",
@@ -3011,14 +3794,29 @@
         "song_name": "Sucia",
         "spanish": "Ay, sí, tocándote así, yo muero ahí",
         "english": "Oh yes, touching you like that, I die there",
-        "timestamp_ms": 162280
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 162280,
+        "end_timestamp_ms": 165870
       },
       {
         "song": "8970064",
         "song_name": "Classy 101",
         "spanish": "Tú tocándote, yo loca por entrar, tú sabe' lo que me gusta",
         "english": "You touching yourself, I'm crazy about entering, you know what I like",
-        "timestamp_ms": 38480
+        "vocalists": [
+          "Young Miko",
+          "Feid"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 38480,
+        "end_timestamp_ms": 43090
       }
     ],
     "id": "1512ba",
@@ -3045,7 +3843,16 @@
         "song_name": "ay mami",
         "spanish": "Yo desde la high haciéndote creampie",
         "english": "Me from high up giving you a creampie",
-        "timestamp_ms": 142670
+        "vocalists": [
+          "Dei V",
+          "Young Miko",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 142670,
+        "end_timestamp_ms": 145130
       }
     ],
     "id": "76034c",
@@ -3072,7 +3879,10 @@
         "song_name": "What’s Ur Vibe?",
         "spanish": "De eso' ojitos que me dan ganas de preguntarte",
         "english": "About those little eyes that make me want to ask you",
-        "timestamp_ms": 65780
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 65780,
+        "end_timestamp_ms": 69330
       }
     ],
     "id": "b991c1",
@@ -3113,69 +3923,128 @@
         "song_name": "Likey Likey",
         "spanish": "Pretty bad bitch, quiero verte nakey-nae",
         "english": "Pretty bad bitch, I want to see you nakey-nae",
-        "timestamp_ms": 39700
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 39700,
+        "end_timestamp_ms": 42660
       },
       {
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "No quiero verte",
-        "english": "I don't want to see you"
+        "english": "I don't want to see you",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "8156995",
         "song_name": "Castigada",
         "spanish": "Ahora me dice quiero verte, bebé (Bebé)",
         "english": "Now he tells me I want to see you, baby (Baby)",
-        "timestamp_ms": 51280
+        "vocalists": [
+          "Cory"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51280,
+        "end_timestamp_ms": 53810
       },
       {
         "song": "9077520",
         "song_name": "8 AM",
         "spanish": "Yo acabo de verte, baby",
         "english": "I just saw you, baby",
-        "timestamp_ms": 35080
+        "vocalists": [
+          "Young Miko",
+          "NICKI NICOLE"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35080,
+        "end_timestamp_ms": 38350
       },
       {
         "song": "10396585",
         "song_name": "sorry es que soy bipolarrr",
         "spanish": "Y en una de las dos quiero verte otra vez",
         "english": "And in one of the two I want to see you again",
-        "timestamp_ms": 28320
+        "vocalists": [
+          "ROBI"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 28320,
+        "end_timestamp_ms": 32500
       },
       {
         "song": "11581491",
         "song_name": "WOAHH",
         "spanish": "¿Que si quiero volver a verte? Cómo no (No)",
         "english": "What if I want to see you again? How not (No)",
-        "timestamp_ms": 19540
+        "vocalists": [
+          "Omar Courtz",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 19540,
+        "end_timestamp_ms": 22770
       },
       {
         "song": "10220930",
         "song_name": "tamagotchi",
         "spanish": "Envíame algo, que falta pa' verte",
         "english": "Send me something, I need to see you",
-        "timestamp_ms": 22980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 22980,
+        "end_timestamp_ms": 28340
       },
       {
         "song": "12582446",
         "song_name": "Sin pausa",
         "spanish": "Sabes que muero por verte, ¿verdad?",
         "english": "You know I'm dying to see you, right?",
-        "timestamp_ms": 166480
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 166480,
+        "end_timestamp_ms": 169940
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "'Taba loca 'e verte y tú 'tabas perdía'",
         "english": "'I was crazy to see you and you 'were lost'",
-        "timestamp_ms": 137560
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 137560,
+        "end_timestamp_ms": 140650
       },
       {
         "song": "9788043",
         "song_name": "Señorita",
         "spanish": "Ma, yo quiero verte guayar, guayar encima de mí (Bae)",
         "english": "Ma, I want to see you guayar, guayar on top of me (Bae)",
-        "timestamp_ms": 77060
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 77060,
+        "end_timestamp_ms": 80000
       }
     ],
     "id": "a70ded",
@@ -3202,7 +4071,16 @@
         "song_name": "Chulo pt.2",
         "spanish": "Pa' dejarlo asfixiao' y decirle \"chao, chao\"",
         "english": "To leave him suffocating and say \"bye, bye\"",
-        "timestamp_ms": 56560
+        "vocalists": [
+          "Tokischa",
+          "Bad Gyal",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 56560,
+        "end_timestamp_ms": 59420
       }
     ],
     "id": "2daa5e",
@@ -3229,7 +4107,15 @@
         "song_name": "Cuando Te Toca",
         "spanish": "Quiere perrearme, pero sin ropa",
         "english": "He wants to fuck me, but without clothes",
-        "timestamp_ms": 24290
+        "vocalists": [
+          "Young Miko",
+          "Yandel"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 24290,
+        "end_timestamp_ms": 27090
       }
     ],
     "id": "6e5249",
@@ -3256,7 +4142,15 @@
         "song_name": "Cuando Te Toca",
         "spanish": "Lo mismo 'e siempre, se puso el bikini, no fue pa' meterse (Eh-eh)",
         "english": "The same thing always, she put on the bikini, it wasn't to get in (Eh-eh)",
-        "timestamp_ms": 14230
+        "vocalists": [
+          "Young Miko",
+          "Yandel"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 14230,
+        "end_timestamp_ms": 16550
       }
     ],
     "id": "e46090",
@@ -3283,7 +4177,10 @@
         "song_name": "fuck TMZ",
         "spanish": "Me quiere solo pa' ella, no quiere compartirme (Woh-oh; ey, oh)",
         "english": "He wants me only for her, he doesn't want to share me (Woh-oh; hey, oh)",
-        "timestamp_ms": 25620
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 25620,
+        "end_timestamp_ms": 31830
       }
     ],
     "id": "adbdd8",
@@ -3310,7 +4207,10 @@
         "song_name": "Sexo de moteles",
         "spanish": "En el Vander, pero, baby, hazlo como pa'l tiempo 'e Tío Flor",
         "english": "At the Vander, but, baby, do it like for the weather 'e Tío Flor",
-        "timestamp_ms": 105030
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 105030,
+        "end_timestamp_ms": 109980
       }
     ],
     "id": "822b43",
@@ -3337,7 +4237,10 @@
         "song_name": "fuck TMZ",
         "spanish": "Si salimo' en la tele, mejor apágala",
         "english": "If we appear on TV, you better turn it off",
-        "timestamp_ms": 46490
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 46490,
+        "end_timestamp_ms": 49970
       }
     ],
     "id": "050d0b",
@@ -3366,21 +4269,34 @@
         "song_name": "Ojalá",
         "spanish": "Sepa hacer lo que yo hacía pa' llevarte al cielo",
         "english": "Know how to do what I did to take you to heaven",
-        "timestamp_ms": 62310
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 62310,
+        "end_timestamp_ms": 66030
       },
       {
         "song": "8464254",
         "song_name": "Aprovéchame BB",
         "spanish": "Loquita de llevarte de aquí",
         "english": "Crazy to take you from here",
-        "timestamp_ms": 71460
+        "vocalists": [
+          "vf7"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 71460,
+        "end_timestamp_ms": 73830
       },
       {
         "song": "12458903",
         "song_name": "Meiomi",
         "spanish": "Antes de llevarte pa' mi casa",
         "english": "Before taking you to my house",
-        "timestamp_ms": 161660
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 161660,
+        "end_timestamp_ms": 163330
       }
     ],
     "id": "896301",
@@ -3407,7 +4323,14 @@
         "song_name": "Castigada",
         "spanish": "No voy a decirme que es casualidad que aquí nos vimos",
         "english": "I'm not going to tell myself that it's a coincidence that we saw each other here.",
-        "timestamp_ms": 101080
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 101080,
+        "end_timestamp_ms": 104430
       }
     ],
     "id": "a2d772",
@@ -3434,7 +4357,10 @@
         "song_name": "8 AM",
         "spanish": "Llámame, bad boy",
         "english": "Call me, bad boy",
-        "timestamp_ms": 1950
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 1950,
+        "end_timestamp_ms": 4900
       }
     ],
     "id": "c6fa05",
@@ -3460,7 +4386,14 @@
         "song": "12822972",
         "song_name": "No Vamo’ a Cambiar",
         "spanish": "Devolverle al pueblo mío todo lo que a mí me deja",
-        "english": "Give back to my people everything that is left to me"
+        "english": "Give back to my people everything that is left to me",
+        "vocalists": [
+          "Los Pleneros de la Cresta",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "0a1b44",
@@ -3487,7 +4420,10 @@
         "song_name": "Duro",
         "spanish": "Tú gritándome: \"Duro\"",
         "english": "You yelling at me: \"Hard\"",
-        "timestamp_ms": 20830
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 20830,
+        "end_timestamp_ms": 24080
       }
     ],
     "id": "103043",
@@ -3523,69 +4459,120 @@
         "song_name": "Stripper X",
         "spanish": "Dame un break, que no puedo pensar",
         "english": "Give me a break, I can't think",
-        "timestamp_ms": 21020
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 21020,
+        "end_timestamp_ms": 23110
       },
       {
         "song": "8617423",
         "song_name": "Sale el Sol",
         "spanish": "Dame tu amor, te juro que lo cuido",
         "english": "Give me your love, I swear I take care of it",
-        "timestamp_ms": 97510
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 97510,
+        "end_timestamp_ms": 99570
       },
       {
         "song": "10220944",
         "song_name": "no quiero pelear",
         "spanish": "Echa pa' acá, dame un beso y vamo' a pichar si no",
         "english": "Come over here, give me a kiss and let's go and play if not",
-        "timestamp_ms": 78330
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 78330,
+        "end_timestamp_ms": 82430
       },
       {
         "song": "10220937",
         "song_name": "tres tristes tragos",
         "spanish": "Dame algo real, algo escrito en tinta",
         "english": "Give me something real, something written in ink",
-        "timestamp_ms": 25110
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 25110,
+        "end_timestamp_ms": 27890
       },
       {
         "song": "13209653",
         "song_name": "MVP",
         "spanish": "Pérate, dame un break, cámbiame el flowcito ahí",
-        "english": "Stand up, give me a break, change my flow there"
+        "english": "Stand up, give me a break, change my flow there",
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "10220940",
         "song_name": "pinot grigio",
         "spanish": "Baby girl, ¿qué va' a hacer? Dame lu', yeah",
         "english": "Baby girl, what are you going to do? Give me lu', yeah",
-        "timestamp_ms": 56580
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 56580,
+        "end_timestamp_ms": 60290
       },
       {
         "song": "9428284",
         "song_name": "Tempo",
         "spanish": "Dame cabeza en el coupe (Brr)",
         "english": "Give me head in the coupe (Brr)",
-        "timestamp_ms": 35290
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35290,
+        "end_timestamp_ms": 37140
       },
       {
         "song": "10220933",
         "song_name": "fuck TMZ",
         "spanish": "Baby, dame un poco 'e TLC",
         "english": "Baby, give me some 'e TLC",
-        "timestamp_ms": 35980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35980,
+        "end_timestamp_ms": 38550
       },
       {
         "song": "8209111",
         "song_name": "Riri",
         "spanish": "Dame contacto, le digo \"mi diabla\" (Prr)",
         "english": "",
-        "timestamp_ms": 5050
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 5050,
+        "end_timestamp_ms": 7910
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "Dame ese culo pa' acá, pa' hacerle un RKO",
         "english": "Give me that ass here, to do an RKO",
-        "timestamp_ms": 85460
+        "vocalists": [
+          "Eladio Carrión",
+          "Young Miko",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 85460,
+        "end_timestamp_ms": 88450
       }
     ],
     "id": "630701",
@@ -3639,21 +4626,35 @@
         "song_name": "Dosis",
         "spanish": "Quiero pegarme y decirte un par de cosi",
         "english": "I want to hit up and tell you a couple of things",
-        "timestamp_ms": 25530
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 25530,
+        "end_timestamp_ms": 29980
       },
       {
         "song": "12582446",
         "song_name": "Sin pausa",
         "spanish": "Tan rico que parece un favor, me dan ganas de decirte \"mi amor\"",
         "english": "So rich that it seems like a favor, it makes me want to tell you \"my love\"",
-        "timestamp_ms": 110320
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 110320,
+        "end_timestamp_ms": 112920
       },
       {
         "song": "8621461",
         "song_name": "Amandita",
         "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
         "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
-        "timestamp_ms": 100150
+        "vocalists": [
+          "Omar Courtz",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 100150,
+        "end_timestamp_ms": 105250
       }
     ],
     "id": "7eacb5",
@@ -3689,69 +4690,134 @@
         "song_name": "offline",
         "spanish": "Dime quién te hizo así, diablo, qué talento",
         "english": "Tell me who made you like this, devil, what a talent",
-        "timestamp_ms": 65310
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 65310,
+        "end_timestamp_ms": 67590
       },
       {
         "song": "11373471",
         "song_name": "Gata",
         "spanish": "Yo te hablo claro, no excuses, dime cómo prefiere' las luce'",
         "english": "I speak clearly to you, do not excuse, tell me how you prefer to look",
-        "timestamp_ms": 169840
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 169840,
+        "end_timestamp_ms": 173250
       },
       {
         "song": "8617423",
         "song_name": "Sale el Sol",
         "spanish": "Dime si piensa' en mí, en mí",
         "english": "Tell me if he thinks about me, about me",
-        "timestamp_ms": 41470
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 41470,
+        "end_timestamp_ms": 45450
       },
       {
         "song": "10116729",
         "song_name": "Paso Fino",
         "spanish": "Pa' estar contigo tu dime pa' cuando",
-        "english": "To be with you, tell me when"
+        "english": "To be with you, tell me when",
+        "vocalists": [
+          "Bonaroti"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "9237320",
         "song_name": "mañana",
         "spanish": "Dime, que en tu cama yo te llevaré (Uh, uh)",
         "english": "Tell me, that in your bed I will take you (Uh, uh)",
-        "timestamp_ms": 22870
+        "vocalists": [
+          "The Marias"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 22870,
+        "end_timestamp_ms": 30310
       },
       {
         "song": "8043163",
         "song_name": "2seater",
         "spanish": "Que vienen por mí, ¿huh? Tú dime quién",
         "english": "They're coming for me, huh? You tell me who",
-        "timestamp_ms": 41040
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 41040,
+        "end_timestamp_ms": 41820
       },
       {
         "song": "10055523",
         "song_name": "curita",
         "spanish": "Hoy yo voy a hacer que tú la olvide', tú solo dime",
         "english": "Today I'm going to make you forget her, just tell me",
-        "timestamp_ms": 32970
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 32970,
+        "end_timestamp_ms": 36010
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "Dime si vamo' a chingar or nah",
         "english": "Tell me if we're going to fuck or nah",
-        "timestamp_ms": 95820
+        "vocalists": [
+          "Eladio Carrión"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 95820,
+        "end_timestamp_ms": 98600
       },
       {
         "song": "9185102",
         "song_name": "ID",
         "spanish": "No te me cohiba', mami, dime cómo te gusta",
         "english": "Don't bother me, mommy, tell me how you like it",
-        "timestamp_ms": 33050
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 33050,
+        "end_timestamp_ms": 34540
       },
       {
         "song": "8693529",
         "song_name": "Déjanos Pasar",
         "spanish": "Dime pa' dónde quieres, si La Concha o El Vander",
         "english": "Tell me where you want, whether La Concha or El Vander",
-        "timestamp_ms": 59950
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 59950,
+        "end_timestamp_ms": 62150
       }
     ],
     "id": "a49c83",
@@ -3793,14 +4859,28 @@
         "song_name": "WOAHH",
         "spanish": "Tráete una amiga, que ando con Ousi, esta cara es cozy",
         "english": "Bring a friend, I'm with Ousi, this face is cozy",
-        "timestamp_ms": 66480
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 66480,
+        "end_timestamp_ms": 70230
       },
       {
         "song": "9185102",
         "song_name": "ID",
         "spanish": "Tráete a tus amigas, 'toy pa'l problemón (Sí)",
         "english": "Bring your friends, I'm in trouble (Yes)",
-        "timestamp_ms": 163500
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 163500,
+        "end_timestamp_ms": 166090
       }
     ],
     "id": "50ae02",
@@ -3827,7 +4907,10 @@
         "song_name": "rookie of the year",
         "spanish": "Y yo haciéndome la loca",
         "english": "And I acting crazy",
-        "timestamp_ms": 125660
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 125660,
+        "end_timestamp_ms": 127550
       }
     ],
     "id": "d34868",
@@ -3854,7 +4937,14 @@
         "song_name": "mañana",
         "spanish": "Bebernos un trago otra vez, bebé (Uh, uh)",
         "english": "Have a drink again, baby (Uh, uh)",
-        "timestamp_ms": 31930
+        "vocalists": [
+          "The Marias"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 31930,
+        "end_timestamp_ms": 38360
       }
     ],
     "id": "fc4f85",
@@ -3881,7 +4971,10 @@
         "song_name": "Piki",
         "spanish": "Ma, agárrate de aquí, contigo me voy OT",
         "english": "Ma, hold on to here, I'm leaving with you OT",
-        "timestamp_ms": 105390
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 105390,
+        "end_timestamp_ms": 108520
       }
     ],
     "id": "49419c",
@@ -3908,7 +5001,14 @@
         "song_name": "De Pasajero",
         "spanish": "Muchos satélite' viendo, ponla debajo 'el asiento y shh",
         "english": "Lots of satellites watching, put it under the seat and shh",
-        "timestamp_ms": 114090
+        "vocalists": [
+          "Kris Floyd"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 114090,
+        "end_timestamp_ms": 117980
       }
     ],
     "id": "8c1826",
@@ -3936,14 +5036,29 @@
         "song_name": "mañana",
         "spanish": "Muero por besarte y por tenerte otra vez, bebé, mmm",
         "english": "I'm dying to kiss you and have you again, baby, mmm",
-        "timestamp_ms": 700
+        "vocalists": [
+          "The Marias"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 700,
+        "end_timestamp_ms": 6010
       },
       {
         "song": "9077520",
         "song_name": "8 AM",
         "spanish": "Es que no tenerte aquí me está matando",
         "english": "Not having you here is killing me",
-        "timestamp_ms": 75850
+        "vocalists": [
+          "NICKI NICOLE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 75850,
+        "end_timestamp_ms": 78630
       }
     ],
     "id": "1c514c",
@@ -3970,7 +5085,14 @@
         "song_name": "Chulo pt.2",
         "spanish": "Pa' moverlo como e' (Ay)",
         "english": "To move it like that (Ay)",
-        "timestamp_ms": 27990
+        "vocalists": [
+          "Bad Gyal"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 27990,
+        "end_timestamp_ms": 29640
       }
     ],
     "id": "c3bac5",
@@ -3997,7 +5119,15 @@
         "song_name": "Brinca",
         "spanish": "Ponte 'e espalda, dame nalga' y despué' mírame (Ey)",
         "english": "Stand on your back, give me your butt and then look at me (Hey)",
-        "timestamp_ms": 40390
+        "vocalists": [
+          "Cazzu",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 40390,
+        "end_timestamp_ms": 41890
       }
     ],
     "id": "cc1fb6",
@@ -4024,7 +5154,10 @@
         "song_name": "arcoíris",
         "spanish": "Tírate un paso, baby, go, one, two",
         "english": "Take a step, baby, go, one, two",
-        "timestamp_ms": 53900
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 53900,
+        "end_timestamp_ms": 56420
       }
     ],
     "id": "195b78",
@@ -4058,21 +5191,36 @@
         "song_name": "En el Ritz",
         "spanish": "Para verlo en HD-D",
         "english": "To watch in HD-D",
-        "timestamp_ms": 32830
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 32830,
+        "end_timestamp_ms": 34590
       },
       {
         "song": "9216707",
         "song_name": "Chulo pt.2",
         "spanish": "Y yo con gana' de verlo vaciao'",
         "english": "And I want to see it empty",
-        "timestamp_ms": 54450
+        "vocalists": [
+          "Tokischa",
+          "Bad Gyal",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 54450,
+        "end_timestamp_ms": 56560
       },
       {
         "song": "12591723",
         "song_name": "Esa nena",
         "spanish": "La modelo montada en el Porsche, tú lo monta' pa' verlo en la caja",
         "english": "The model mounted on the Porsche, you mount it to see it in the box",
-        "timestamp_ms": 82090
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 82090,
+        "end_timestamp_ms": 85650
       }
     ],
     "id": "c51770",
@@ -4099,7 +5247,14 @@
         "song_name": "Putero",
         "spanish": "Shorty, háblame claro",
         "english": "Shorty, speak to me clearly",
-        "timestamp_ms": 68400
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 68400,
+        "end_timestamp_ms": 69960
       }
     ],
     "id": "550f62",
@@ -4132,14 +5287,24 @@
         "song_name": "Dosis",
         "spanish": "Pégate a mi Gucci, a mi hebilla",
         "english": "Stick to my Gucci, to my buckle",
-        "timestamp_ms": 64960
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64960,
+        "end_timestamp_ms": 66920
       },
       {
         "song": "9216707",
         "song_name": "Chulo pt.2",
         "spanish": "Y dale, pégate, muévete, ma, ¿tú no querías fuete?",
         "english": "And come on, hit it, move, mom, didn't you want to be strong?",
-        "timestamp_ms": 138090
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 138090,
+        "end_timestamp_ms": 140990
       }
     ],
     "id": "ad9c07",
@@ -4166,7 +5331,15 @@
         "song_name": "Condado",
         "spanish": "Darse los Phillie' con cristale' abajo",
         "english": "Give yourself the Phillie' with cristale' below",
-        "timestamp_ms": 23420
+        "vocalists": [
+          "Lunay",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 23420,
+        "end_timestamp_ms": 25890
       }
     ],
     "id": "097554",
@@ -4193,7 +5366,14 @@
         "song_name": "COLMILLO",
         "spanish": "Hágale pues, trépate como chiringa",
         "english": "So do it, climb like a chiringa",
-        "timestamp_ms": 136270
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 136270,
+        "end_timestamp_ms": 139200
       }
     ],
     "id": "91c3e0",
@@ -4220,7 +5400,14 @@
         "song_name": "Gyoza",
         "spanish": "Voy a dar la cara antes de que mi cara vaya a delatarme",
         "english": "I'm going to show my face before my face gives me away",
-        "timestamp_ms": 18720
+        "vocalists": [
+          "ELENA ROSE"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 18720,
+        "end_timestamp_ms": 24720
       }
     ],
     "id": "19c631",
@@ -4247,7 +5434,14 @@
         "song_name": "Kachipun",
         "spanish": "Y me traje a Nolan pa' meterle la inception",
         "english": "And I brought Nolan to give him the inception",
-        "timestamp_ms": 132140
+        "vocalists": [
+          "Metalingüística"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 132140,
+        "end_timestamp_ms": 134440
       }
     ],
     "id": "dcd71a",
@@ -4274,7 +5468,14 @@
         "song_name": "Chulo pt.2",
         "spanish": "Y dale, pégate, muévete, ma, ¿tú no querías fuete?",
         "english": "And come on, hit it, move, mom, didn't you want to be strong?",
-        "timestamp_ms": 138090
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 138090,
+        "end_timestamp_ms": 140990
       }
     ],
     "id": "aabe47",
@@ -4301,7 +5502,15 @@
         "song_name": "WASSUP",
         "spanish": "No quiero ohana, quiero cantarte \"Lala\" (What, what, what, what?)",
         "english": "I don't want ohana, I want to sing you \"Lala\" (What, what, what, what?)",
-        "timestamp_ms": 116070
+        "vocalists": [
+          "Young Miko",
+          "Lil Jon"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 116070,
+        "end_timestamp_ms": 117130
       }
     ],
     "id": "0ee1fd",
@@ -4328,7 +5537,15 @@
         "song_name": "Castigada",
         "spanish": "A casa quiere caerle y yo me dejo",
         "english": "Home wants to fall and I let myself",
-        "timestamp_ms": 24680
+        "vocalists": [
+          "Young Miko",
+          "Cory"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 24680,
+        "end_timestamp_ms": 26560
       }
     ],
     "id": "6e7ba7",
@@ -4356,14 +5573,24 @@
         "song_name": "Likey Likey",
         "spanish": "Ven y siéntate en mi facey, quiero verte nakey-nakey",
         "english": "Come sit on my facey, I want to see you nakey-nakey",
-        "timestamp_ms": 36200
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 36200,
+        "end_timestamp_ms": 39700
       },
       {
         "song": "11581491",
         "song_name": "WOAHH",
         "spanish": "Siéntate aquí, baby, pa' que me grite' \"oh, sí\"",
         "english": "Sit here, baby, so he can yell at me \"oh, yeah\"",
-        "timestamp_ms": 70230
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 70230,
+        "end_timestamp_ms": 74860
       }
     ],
     "id": "a82ce3",
@@ -4390,7 +5617,15 @@
         "song_name": "no quiero pelear",
         "spanish": "Este mundo es \"pare\" pa' frenarlo",
         "english": "This world is \"stop\" to stop it",
-        "timestamp_ms": 111770
+        "vocalists": [
+          "Young Miko",
+          "ELENA ROSE"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 111770,
+        "end_timestamp_ms": 114150
       }
     ],
     "id": "b6a234",
@@ -4417,7 +5652,14 @@
         "song_name": "La Mini",
         "spanish": "Bajarte pa' Carola al calentón, ah (Okey)",
         "english": "Get down for Carola to the heat, ah (Okay)",
-        "timestamp_ms": 61150
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 61150,
+        "end_timestamp_ms": 63050
       }
     ],
     "id": "4854bc",
@@ -4434,7 +5676,13 @@
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "Sabía que ibas arrepentirte",
-        "english": "I knew you were going to regret it"
+        "english": "I knew you were going to regret it",
+        "vocalists": [
+          "Adames"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "e15d82"
@@ -4464,35 +5712,50 @@
         "song_name": "wiggy",
         "spanish": "Baby, muévelo al revé'",
         "english": "Baby, move it backwards",
-        "timestamp_ms": 12040
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 12040,
+        "end_timestamp_ms": 13000
       },
       {
         "song": "8874493",
         "song_name": "Lisa",
         "spanish": "Mué-Muévelo, Lisa, rómpela, Patricia (Enrola to')",
         "english": "Move-Move it, Lisa, break it, Patricia (Enroll to')",
-        "timestamp_ms": 120830
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 120830,
+        "end_timestamp_ms": 123830
       },
       {
         "song": "12570922",
         "song_name": "Sexo de moteles",
         "spanish": "Muévelo slow, pa'lante y pa'trá', yo dándole dembow",
         "english": "Move it slowly, back and forth, me giving it a dembow",
-        "timestamp_ms": 90040
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 90040,
+        "end_timestamp_ms": 93090
       },
       {
         "song": "12591723",
         "song_name": "Esa nena",
         "spanish": "Mueve el culo, mami, muévelo pa' Baby Mi (Mua)",
         "english": "Move your ass, mommy, move it for Baby Mi (Mua)",
-        "timestamp_ms": 46600
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 46600,
+        "end_timestamp_ms": 50120
       },
       {
         "song": "12591722",
         "song_name": "Ni le cabe",
         "spanish": "Muévelo pa'lante y pa' atrá', mi bebé",
         "english": "Move it back and forth, my baby",
-        "timestamp_ms": 65180
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 65180,
+        "end_timestamp_ms": 67460
       }
     ],
     "id": "771a3b",
@@ -4519,7 +5782,10 @@
         "song_name": "Meiomi",
         "spanish": "Baby, hoy estoy libre y quiero llevarme ese booty",
         "english": "Baby, today I'm free and I want to take that booty",
-        "timestamp_ms": 128520
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 128520,
+        "end_timestamp_ms": 133240
       }
     ],
     "id": "568ce2",
@@ -4546,7 +5812,10 @@
         "song_name": "Dosis",
         "spanish": "Yo soy una puertorriqueña bien bellaca, y estoy bien orgullosa de serlo",
         "english": "I am a very beautiful Puerto Rican, and I am very proud to be so.",
-        "timestamp_ms": 132030
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 132030,
+        "end_timestamp_ms": 134570
       }
     ],
     "id": "e725ad",
@@ -4572,7 +5841,9 @@
         "song": "12822972",
         "song_name": "No Vamo’ a Cambiar",
         "spanish": "Quiero explicarles en este momento",
-        "english": "I want to explain to you right now"
+        "english": "I want to explain to you right now",
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "a0add4",
@@ -4602,28 +5873,57 @@
         "song_name": "2seater",
         "spanish": "Martino (Ey, eh, Baby Miko), déjala caer de nuevo pa' que esta gente se orienten (Juanka, Martino, prr, Martino, prr; ah, ah , ey)",
         "english": "Martino (Hey, eh, Baby Miko), let it fall again so that these people can get their bearings (Juanka, Martino, prr, Martino, prr; ah, ah, hey)",
-        "timestamp_ms": 137790
+        "vocalists": [
+          "Juanka",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 137790,
+        "end_timestamp_ms": 139420
       },
       {
         "song": "8406201",
         "song_name": "La Mini",
         "spanish": "Martino, déjala caer",
         "english": "Martino, let it fall",
-        "timestamp_ms": 2890
+        "vocalists": [
+          "Casper Mágico"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 2890,
+        "end_timestamp_ms": 4020
       },
       {
         "song": "7750717",
         "song_name": "Besties",
         "spanish": "Martino, déjala caer",
         "english": "Martino, let it fall",
-        "timestamp_ms": 11630
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11630,
+        "end_timestamp_ms": 13380
       },
       {
         "song": "8602168",
         "song_name": "Kilimanjaro",
         "spanish": "Martino, déjala caer",
         "english": "Martino, let it fall",
-        "timestamp_ms": 11760
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11760,
+        "end_timestamp_ms": 12950
       }
     ],
     "id": "eb476b",
@@ -4656,14 +5956,24 @@
         "song_name": "Gyoza",
         "spanish": "Hasta que tenga que ponerme hielo",
         "english": "Until I have to put ice on it",
-        "timestamp_ms": 142680
+        "vocalists": [
+          "ELENA ROSE"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 142680,
+        "end_timestamp_ms": 145100
       },
       {
         "song": "12591723",
         "song_name": "Esa nena",
         "spanish": "Quieren ponerme el leash, quieren darme un French kiss (Mua)",
         "english": "They want to put the leash on me, they want to give me a French kiss (Mua)",
-        "timestamp_ms": 94540
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 94540,
+        "end_timestamp_ms": 97640
       }
     ],
     "id": "042ec3",
@@ -4690,7 +6000,15 @@
         "song_name": "Castigada",
         "spanish": "Me mira con eso' ojito' y tiene el poder de joderme, puede convencerme",
         "english": "He looks at me with that little eye and he has the power to screw me, he can convince me",
-        "timestamp_ms": 15060
+        "vocalists": [
+          "Young Miko",
+          "Cory"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 15060,
+        "end_timestamp_ms": 16630
       }
     ],
     "id": "ffb89e",
@@ -4717,7 +6035,14 @@
         "song_name": "Señorita",
         "spanish": "Perreándote (Yeah), mami, de espalda te viro",
         "english": "Perrearte (Yeah), mommy, I turn you on your back",
-        "timestamp_ms": 1370
+        "vocalists": [
+          "Wisin"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 1370,
+        "end_timestamp_ms": 2120
       }
     ],
     "id": "d69365",
@@ -4745,14 +6070,31 @@
         "song_name": "Castigada",
         "spanish": "Dice que está castigada, pero se escapa pa' verme, que quiere tenerme (Uh)",
         "english": "She says she's punished, but she runs away to see me, she wants to have me (Uh)",
-        "timestamp_ms": 10290
+        "vocalists": [
+          "Young Miko",
+          "Cory"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 10290,
+        "end_timestamp_ms": 11690
       },
       {
         "song": "9216707",
         "song_name": "Chulo pt.2",
         "spanish": "Dice que quiere tenerme a su lao'",
         "english": "He says he wants to have me at his side'",
-        "timestamp_ms": 52070
+        "vocalists": [
+          "Tokischa",
+          "Bad Gyal",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 52070,
+        "end_timestamp_ms": 54450
       }
     ],
     "id": "c7e798",
@@ -4779,7 +6121,14 @@
         "song_name": "FINA",
         "spanish": "Digan lo que digan, vamo' a gozarno' la vida",
         "english": "Whatever they say, let's enjoy life",
-        "timestamp_ms": 90910
+        "vocalists": [
+          "Tego Calderón"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 90910,
+        "end_timestamp_ms": 92420
       }
     ],
     "id": "3ff24b",
@@ -4806,7 +6155,10 @@
         "song_name": "Acento",
         "spanish": "El mahón de cinco mil puede' usarlo de asiento",
         "english": "The five-thousand man can use it as a seat",
-        "timestamp_ms": 14430
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 14430,
+        "end_timestamp_ms": 17760
       }
     ],
     "id": "08c5da",
@@ -4841,7 +6193,16 @@
         "song_name": "Sale el Sol",
         "spanish": "Me hace pensarte ahora, yeah-yeah",
         "english": "It makes me think of you now, yeah-yeah",
-        "timestamp_ms": 19290
+        "vocalists": [
+          "Ismael Rivera",
+          "Young Miko",
+          "Ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 19290,
+        "end_timestamp_ms": 21500
       }
     ],
     "id": "67465b",
@@ -4886,35 +6247,64 @@
         "song": "12822972",
         "song_name": "No Vamo’ a Cambiar",
         "spanish": "A quedarme me comprometo, por más malo que esté el lío",
-        "english": "I am committed to staying, no matter how bad the mess is."
+        "english": "I am committed to staying, no matter how bad the mess is.",
+        "vocalists": [
+          "Los Pleneros de la Cresta",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "12591720",
         "song_name": "Algo casual",
         "spanish": "De panas, estaba mejor quedarme",
         "english": "Honestly, it was better to stay",
-        "timestamp_ms": 58990
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 58990,
+        "end_timestamp_ms": 61980
       },
       {
         "song": "12570921",
         "song_name": "En el Ritz",
         "spanish": "Quiero ser sticker pa' quedarme pega'o a ese bumper",
         "english": "I want to be a sticker to stay glued to that bumper",
-        "timestamp_ms": 51660
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51660,
+        "end_timestamp_ms": 55050
       },
       {
         "song": "9185102",
         "song_name": "ID",
         "spanish": "Con ese culo imposible quedarme mal, quedarme mal",
         "english": "With that ass it is impossible for me to look bad, to look bad",
-        "timestamp_ms": 117060
+        "vocalists": [
+          "Randy",
+          "Young Miko",
+          "Jowell"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 117060,
+        "end_timestamp_ms": 119550
       },
       {
         "song": "8783598",
         "song_name": "Big Booty",
         "spanish": "Esta pa' darle to'a la noche hasta quedarme empty (De una)",
         "english": "I'm here to give it all night until I'm empty (One time)",
-        "timestamp_ms": 106240
+        "vocalists": [
+          "Hozwal"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 106240,
+        "end_timestamp_ms": 109490
       }
     ],
     "id": "2a3a22",
@@ -4943,20 +6333,43 @@
         "song_name": "En Esta Boca",
         "spanish": "Yo no te espero, pero, déjate el cuento (Ah-ah-ah)",
         "english": "I'm not waiting for you, but leave the story alone (Ah-ah-ah)",
-        "timestamp_ms": 111130
+        "vocalists": [
+          "Young Miko",
+          "Kany García",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 111130,
+        "end_timestamp_ms": 114580
       },
       {
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "Oye mami, ya déjate de cuentos",
-        "english": "Hey mommy, stop telling stories"
+        "english": "Hey mommy, stop telling stories",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "9614105",
         "song_name": "FINA",
         "spanish": "Eso no es na', déjate ver, ¿te va' a hacer? Sí (Oye)",
         "english": "That's nothing, let me see, is it going to do it to you? Yes (Hey)",
-        "timestamp_ms": 78990
+        "vocalists": [
+          "Young Miko",
+          "Tego Calderón"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 78990,
+        "end_timestamp_ms": 81140
       }
     ],
     "id": "b4e3a2",
@@ -4974,7 +6387,10 @@
         "song_name": "Pull Up",
         "spanish": "Quieren tirarse una picture, uh, cheese",
         "english": "They want to take a picture, uh, cheese",
-        "timestamp_ms": 56090
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 56090,
+        "end_timestamp_ms": 58330
       }
     ],
     "id": "7bbb53",
@@ -5007,49 +6423,86 @@
         "song_name": "Un Poquito",
         "spanish": "Ve y dile a tu jevito que conmigo no e' lo mismo (Ah)",
         "english": "Go and tell your little boy that it's not the same with me (Ah)",
-        "timestamp_ms": 63730
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 63730,
+        "end_timestamp_ms": 66380
       },
       {
         "song": "12591724",
         "song_name": "Plug (Type Shit)",
         "spanish": "Dile a Mauro que no me la baje",
         "english": "Tell Mauro not to download it",
-        "timestamp_ms": 29980
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 29980,
+        "end_timestamp_ms": 33170
       },
       {
         "song": "12591721",
         "song_name": "Piki",
         "spanish": "A tu amiga dile que dije: \"What's up? I'm down\"",
         "english": "Tell your friend that I said: \"What's up? I'm down\"",
-        "timestamp_ms": 38830
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 38830,
+        "end_timestamp_ms": 41820
       },
       {
         "song": "8618160",
         "song_name": "Katana",
         "spanish": "Dile que no (Jé)",
         "english": "Tell him no (Jé)",
-        "timestamp_ms": 18770
+        "vocalists": [
+          "Leebrian"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 18770,
+        "end_timestamp_ms": 18970
       },
       {
         "song": "9555844",
         "song_name": "CC (Remix)",
         "spanish": "Dile a tu ex que me mencione pa' pegar el hashtag Reel",
         "english": "Tell your ex to mention me to paste the Reel hashtag",
-        "timestamp_ms": 92320
+        "vocalists": [
+          "Bryant Myers"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 92320,
+        "end_timestamp_ms": 94920
       },
       {
         "song": "9614105",
         "song_name": "FINA",
         "spanish": "Dile que de una conectamo', je, y que chingando nos matamo'",
         "english": "Tell him that we'll connect', heh, and that the hell we'll kill each other'",
-        "timestamp_ms": 126190
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 126190,
+        "end_timestamp_ms": 128650
       },
       {
         "song": "12591722",
         "song_name": "Ni le cabe",
         "spanish": "Baby, dile a tus amiga' que hoy tú llegas tarde",
         "english": "Baby, tell your friends that you're late today",
-        "timestamp_ms": 55230
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 55230,
+        "end_timestamp_ms": 58890
       }
     ],
     "id": "7fe1ac",
@@ -5076,7 +6529,15 @@
         "song_name": "Castigada",
         "spanish": "Me escribe antes de acostarse, me cuenta qué quiere hacerme",
         "english": "He writes to me before going to bed, tells me what he wants to do to me",
-        "timestamp_ms": 20040
+        "vocalists": [
+          "Young Miko",
+          "Cory"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 20040,
+        "end_timestamp_ms": 21940
       }
     ],
     "id": "2f6442",
@@ -5110,21 +6571,34 @@
         "song_name": "Classy 101",
         "spanish": "Esta noche vo'a hacerte to' lo que dije por texto, yeah",
         "english": "Tonight I'm going to do to you everything I said by text, yeah",
-        "timestamp_ms": 82840
+        "vocalists": [
+          "Feid"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 82840,
+        "end_timestamp_ms": 86210
       },
       {
         "song": "12570923",
         "song_name": "Dosis",
         "spanish": "Con ganas de envolverme, par de nene' hacerte",
         "english": "Wanting to wrap me up, couple of babies' make you",
-        "timestamp_ms": 82720
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 82720,
+        "end_timestamp_ms": 87140
       },
       {
         "song": "12582446",
         "song_name": "Sin pausa",
         "spanish": "Tengo tantas cosas pa' yo hacerte que no sé ni cuál voy a escoger",
         "english": "I have so many things to do to you that I don't even know which one I'm going to choose.",
-        "timestamp_ms": 69830
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 69830,
+        "end_timestamp_ms": 73040
       }
     ],
     "id": "834324",
@@ -5151,7 +6625,10 @@
         "song_name": "En el Ritz",
         "spanish": "¿Puede' subirme un poquito, everything?",
         "english": "Can you raise me a little bit, everything?",
-        "timestamp_ms": 1460
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 1460,
+        "end_timestamp_ms": 3920
       }
     ],
     "id": "428ab6",
@@ -5178,7 +6655,15 @@
         "song_name": "CC (Remix)",
         "spanish": "Si chinga' como supone, vo'a invertirte con cojone' (Paw)",
         "english": "If you fuck like you suppose, I'm going to invest you with cojone' (Paw)",
-        "timestamp_ms": 213300
+        "vocalists": [
+          "Lil Joujou",
+          "Bryant Myers"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 213300,
+        "end_timestamp_ms": 216680
       }
     ],
     "id": "977017",
@@ -5205,7 +6690,10 @@
         "song_name": "Duro",
         "spanish": "Y me dé con desvestirte",
         "english": "And I decided to undress you",
-        "timestamp_ms": 11890
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11890,
+        "end_timestamp_ms": 14490
       }
     ],
     "id": "add4f5",
@@ -5232,7 +6720,15 @@
         "song_name": "8 AM",
         "spanish": "Aguantarme las gana' está difícil",
         "english": "Holding on to the desire is difficult",
-        "timestamp_ms": 11120
+        "vocalists": [
+          "Young Miko",
+          "NICKI NICOLE"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11120,
+        "end_timestamp_ms": 13890
       }
     ],
     "id": "923d05",
@@ -5259,7 +6755,14 @@
         "song_name": "Cuando Te Toca",
         "spanish": "Pórtate bien (Yeh), 'to va de cero a cien",
         "english": "Be good (Yeh), it goes from zero to a hundred",
-        "timestamp_ms": 69540
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 69540,
+        "end_timestamp_ms": 71900
       }
     ],
     "id": "f3384b",
@@ -5291,14 +6794,28 @@
         "song": "9077520",
         "song_name": "8 AM",
         "spanish": "Pues vamo' a verno', baby",
-        "english": "Well let's go see each other, baby"
+        "english": "Well let's go see each other, baby",
+        "vocalists": [
+          "Young Miko",
+          "NICKI NICOLE"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "10220934",
         "song_name": "offline",
         "spanish": "El party es adentro y nadie va a verno'",
         "english": "The party is inside and no one is going to see it'",
-        "timestamp_ms": 62360
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 62360,
+        "end_timestamp_ms": 65310
       }
     ],
     "id": "bb9d30",
@@ -5316,7 +6833,14 @@
         "song_name": "WOAHH",
         "spanish": "Preguntándole si va' a volver o no",
         "english": "Asking him if he's going to come back or not",
-        "timestamp_ms": 4940
+        "vocalists": [
+          "Omar Courtz"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 4940,
+        "end_timestamp_ms": 8460
       }
     ],
     "id": "a536ca",
@@ -5343,7 +6867,14 @@
         "song_name": "Gyoza",
         "spanish": "No necesito un trago para confesarme",
         "english": "I don't need a drink to confess",
-        "timestamp_ms": 12970
+        "vocalists": [
+          "ELENA ROSE"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 12970,
+        "end_timestamp_ms": 18720
       }
     ],
     "id": "babef3",
@@ -5370,7 +6901,15 @@
         "song_name": "no quiero pelear",
         "spanish": "Este mundo es Phillie pa' quemarlo",
         "english": "This world is Phillie to burn it",
-        "timestamp_ms": 51600
+        "vocalists": [
+          "ELENA ROSE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51600,
+        "end_timestamp_ms": 54640
       }
     ],
     "id": "4d1812",
@@ -5434,56 +6973,104 @@
         "song_name": "princess peach",
         "spanish": "Traje el weed y gana' de darte castigo",
         "english": "I brought the weed and wants to give you punishment",
-        "timestamp_ms": 35220
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 35220,
+        "end_timestamp_ms": 38950
       },
       {
         "song": "12570923",
         "song_name": "Dosis",
         "spanish": "Yo estoy pa' ti, quiero darte tu dosi'",
         "english": "I am for you, I want to give you your dose",
-        "timestamp_ms": 43370
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 43370,
+        "end_timestamp_ms": 47570
       },
       {
         "song": "12591724",
         "song_name": "Plug (Type Shit)",
         "spanish": "Pa' darte en replay, ma, no tengo rush",
         "english": "To give you a replay, ma, I don't have a rush",
-        "timestamp_ms": 55090
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 55090,
+        "end_timestamp_ms": 57950
       },
       {
         "song": "8422401",
         "song_name": "SALVAJE",
         "spanish": "I'ma Uber to your crib, yo quiero darte (No)",
         "english": "I'ma Uber to your crib, I want to give you (No)",
-        "timestamp_ms": 161240
+        "vocalists": [
+          "Young Miko",
+          "Lyanno"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 161240,
+        "end_timestamp_ms": 165210
       },
       {
         "song": "8621461",
         "song_name": "Amandita",
         "spanish": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
         "english": "Nothing, nothing. I had told you in that voice that I was nerdy, that I was ready to tell you that I was crazy for filling that little face with a kiss, giving you a hug, biting you. But with that pichaera of yours, what I want is to send you to a good place, and I didn't know what I was going to do with you, young man.",
-        "timestamp_ms": 100150
+        "vocalists": [
+          "Omar Courtz",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 100150,
+        "end_timestamp_ms": 105250
       },
       {
         "song": "9110676",
         "song_name": "COLMILLO",
         "spanish": "Comerte, eh, sin darte ni un beso",
         "english": "Eat you, eh, without giving you even a kiss",
-        "timestamp_ms": 50
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50,
+        "end_timestamp_ms": 3600
       },
       {
         "song": "8464254",
         "song_name": "Aprovéchame BB",
         "spanish": "Voy a darte con el tonka (Ey)",
         "english": "I'm going to hit you with the tonka (Hey)",
-        "timestamp_ms": 113130
+        "vocalists": [
+          "vf7"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 113130,
+        "end_timestamp_ms": 115040
       },
       {
         "song": "10220932",
         "song_name": "ay mami",
         "spanish": "Baby, me pone' bellaco y me dan gana' de darte con el hammer",
         "english": "Baby, it makes me stupid and I feel like hitting you with the hammer",
-        "timestamp_ms": 163960
+        "vocalists": [
+          "Dei V",
+          "Dei V",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 163960,
+        "end_timestamp_ms": 167410
       }
     ],
     "id": "59ebce",
@@ -5518,7 +7105,10 @@
         "song_name": "tamagotchi",
         "spanish": "Portarme bien se me hace fuerte",
         "english": "Behaving well makes me strong",
-        "timestamp_ms": 32110
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 32110,
+        "end_timestamp_ms": 34580
       }
     ],
     "id": "25f93a",
@@ -5546,14 +7136,28 @@
         "song_name": "Big Booty",
         "spanish": "Pa' meterte fácil como un tiro desde el freethrow",
         "english": "To get you in as easy as a shot from the freethrow",
-        "timestamp_ms": 11030
+        "vocalists": [
+          "Hozwal"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 11030,
+        "end_timestamp_ms": 12030
       },
       {
         "song": "9110676",
         "song_name": "COLMILLO",
         "spanish": "Si sigue' vo'a meterte, eh, la noche huele a sexo",
         "english": "If it continues I'm going to put you in, hey, the night smells like sex",
-        "timestamp_ms": 50
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50,
+        "end_timestamp_ms": 3600
       }
     ],
     "id": "5f44d5",
@@ -5580,7 +7184,10 @@
         "song_name": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
         "spanish": "Creen que pueden leerme porque me han visto en la portada",
         "english": "They think they can read me because they have seen me on the cover",
-        "timestamp_ms": 72910
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 72910,
+        "end_timestamp_ms": 75470
       }
     ],
     "id": "6612d7",
@@ -5606,7 +7213,13 @@
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "Dale baby lárgate hace tiempo no te anhelo (Hace tiempo no te anhelo)",
-        "english": "Dale baby go away I haven't longed for you (I haven't longed for you for a long time)"
+        "english": "Dale baby go away I haven't longed for you (I haven't longed for you for a long time)",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "be7d3e",
@@ -5633,7 +7246,15 @@
         "song_name": "Castigada",
         "spanish": "Me mira con eso' ojito' y tiene el poder de joderme, puede convencerme",
         "english": "He looks at me with that little eye and he has the power to screw me, he can convince me",
-        "timestamp_ms": 15060
+        "vocalists": [
+          "Young Miko",
+          "Cory"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 15060,
+        "end_timestamp_ms": 16630
       }
     ],
     "id": "347435",
@@ -5660,7 +7281,14 @@
         "song_name": "Come Play",
         "spanish": "Llegamo' con el combo ready pa' hacerle' una avería-ía",
         "english": "We arrive with the combo ready to make a breakdown",
-        "timestamp_ms": 72930
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 72930,
+        "end_timestamp_ms": 76040
       }
     ],
     "id": "dfa10d",
@@ -5686,7 +7314,9 @@
         "song": "13209653",
         "song_name": "MVP",
         "spanish": "Pérate, dame un break, cámbiame el flowcito ahí",
-        "english": "Stand up, give me a break, change my flow there"
+        "english": "Stand up, give me a break, change my flow there",
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "c34b26",
@@ -5721,7 +7351,14 @@
         "song_name": "COLMILLO",
         "spanish": "Mojarte ahí",
         "english": "get wet there",
-        "timestamp_ms": 214430
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 214430,
+        "end_timestamp_ms": 215880
       }
     ],
     "id": "edde38",
@@ -5748,7 +7385,10 @@
         "song_name": "tamagotchi",
         "spanish": "Y si quiere', tócate un ratito",
         "english": "And if you want, play yourself for a little while",
-        "timestamp_ms": 85660
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 85660,
+        "end_timestamp_ms": 88620
       }
     ],
     "id": "3b3447",
@@ -5775,7 +7415,10 @@
         "song_name": "wiggy",
         "spanish": "Súbete la falda, me gusta esa blusa (Uh, uh)",
         "english": "Raise your skirt, I like that blouse (Uh, uh)",
-        "timestamp_ms": 53620
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 53620,
+        "end_timestamp_ms": 56270
       }
     ],
     "id": "f82331",
@@ -5802,7 +7445,10 @@
         "song_name": "princess peach",
         "spanish": "Llévate la black card, que no hay PIN",
         "english": "Take the black card, there is no PIN",
-        "timestamp_ms": 85600
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 85600,
+        "end_timestamp_ms": 87790
       }
     ],
     "id": "c7e9d6",
@@ -5820,7 +7466,14 @@
         "song_name": "Katana",
         "spanish": "Tírense que andamos ready (Ready)",
         "english": "Get ready, we are ready (Ready)",
-        "timestamp_ms": 43990
+        "vocalists": [
+          "Leebrian"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 43990,
+        "end_timestamp_ms": 45910
       }
     ],
     "id": "5db087",
@@ -5862,14 +7515,20 @@
         "song_name": "Puerto Rican Mami",
         "spanish": "Móntate en el carro que ya estamo' late (Jaja)",
         "english": "Get on the car, we're already late (Haha)",
-        "timestamp_ms": 51340
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51340,
+        "end_timestamp_ms": 53850
       },
       {
         "song": "10220937",
         "song_name": "tres tristes tragos",
         "spanish": "Móntate en el Benz, let's go for a ride",
         "english": "Get in the Benz, let's go for a ride",
-        "timestamp_ms": 53700
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 53700,
+        "end_timestamp_ms": 55830
       }
     ],
     "id": "cb35da",
@@ -5899,28 +7558,48 @@
         "song_name": "What’s Ur Vibe?",
         "spanish": "Quiero comerte esa mm-mmm",
         "english": "I want to eat that mm-mmm",
-        "timestamp_ms": 44700
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 44700,
+        "end_timestamp_ms": 46450
       },
       {
         "song": "12570923",
         "song_name": "Dosis",
         "spanish": "Yo estoy pa' comerte, yeah, con este tema en las boci",
         "english": "I'm here to eat you, yeah, with this topic in my mouth",
-        "timestamp_ms": 51950
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 51950,
+        "end_timestamp_ms": 56460
       },
       {
         "song": "12591719",
         "song_name": "Traviesa",
         "spanish": "Tengo hambre, vo a comerte, ma",
         "english": "I'm hungry, I'm going to eat you, ma",
-        "timestamp_ms": 90990
+        "vocalists": [
+          "Eladio Carrión"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 90990,
+        "end_timestamp_ms": 93850
       },
       {
         "song": "9110676",
         "song_name": "COLMILLO",
         "spanish": "Comerte, eh, sin darte ni un beso",
         "english": "Eat you, eh, without giving you even a kiss",
-        "timestamp_ms": 50
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 50,
+        "end_timestamp_ms": 3600
       }
     ],
     "id": "e1bec8",
@@ -5938,7 +7617,16 @@
         "song_name": "Vendetta",
         "spanish": "Él busca mis fotos pa jalarse la puñeta",
         "english": "He looks for my photos to pull his dick",
-        "timestamp_ms": 97020
+        "vocalists": [
+          "Villano Antillano",
+          "Young Miko",
+          "Ambas"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 97020,
+        "end_timestamp_ms": 99120
       }
     ],
     "id": "868420",
@@ -5965,7 +7653,10 @@
         "song_name": "Algo casual",
         "spanish": "Llévame pa' atrás, llévame pa' atrá'",
         "english": "Take me back, take me back",
-        "timestamp_ms": 46360
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 46360,
+        "end_timestamp_ms": 49760
       }
     ],
     "id": "1c4feb",
@@ -5992,7 +7683,10 @@
         "song_name": "Algo casual",
         "spanish": "Mensajes que prefiero no enviarte",
         "english": "Messages that I prefer not to send you",
-        "timestamp_ms": 52500
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 52500,
+        "end_timestamp_ms": 55530
       }
     ],
     "id": "5d8974",
@@ -6020,14 +7714,28 @@
         "song_name": "mañana",
         "spanish": "Muero por besarte y por tenerte otra vez, bebé, mmm",
         "english": "I'm dying to kiss you and have you again, baby, mmm",
-        "timestamp_ms": 700
+        "vocalists": [
+          "The Marias"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 700,
+        "end_timestamp_ms": 6010
       },
       {
         "song": "12556569",
         "song_name": "Gyoza",
         "spanish": "Yo estoy loca por besarte hasta quitarte el gloss, ah",
         "english": "I'm crazy about kissing you until you take off the gloss, ah",
-        "timestamp_ms": 64640
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 64640,
+        "end_timestamp_ms": 68190
       }
     ],
     "id": "0eb62e",
@@ -6093,27 +7801,51 @@
         "song_name": "Déjanos Pasar",
         "spanish": "Ponte agresiva baby, ponte commander",
         "english": "Get aggressive baby, get commander",
-        "timestamp_ms": 55220
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 55220,
+        "end_timestamp_ms": 57710
       },
       {
         "song": "9614105",
         "song_name": "FINA",
         "spanish": "Dame acá, ven aquí, baby, ponte en cuatro, dale",
         "english": "Give me here, come here, baby, get on all fours, give it",
-        "timestamp_ms": 158470
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 158470,
+        "end_timestamp_ms": 161920
       },
       {
         "song": "13209653",
         "song_name": "MVP",
         "spanish": "Ponte ahí en la jersey: \"la one y la only\"",
-        "english": "Put yourself there in the jersey: \"the one and the only\""
+        "english": "Put yourself there in the jersey: \"the one and the only\"",
+        "spotify_available": true,
+        "is_variant": false
       },
       {
         "song": "8981516",
         "song_name": "Brinca",
         "spanish": "Ponte 'e espalda, dame nalga' y despué' mírame (Ey)",
         "english": "Stand on your back, give me your butt and then look at me (Hey)",
-        "timestamp_ms": 40390
+        "vocalists": [
+          "Cazzu",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 40390,
+        "end_timestamp_ms": 41890
       }
     ],
     "id": "e2f9e5",
@@ -6140,7 +7872,10 @@
         "song_name": "Plug (Type Shit)",
         "spanish": "Mami, mézclame eso con Sprite",
         "english": "Mommy, mix that with Sprite for me",
-        "timestamp_ms": 20050
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 20050,
+        "end_timestamp_ms": 23760
       }
     ],
     "id": "90244e",
@@ -6158,7 +7893,14 @@
         "song_name": "8 AM",
         "spanish": "Si te miro mucho, mami, excúsame",
         "english": "If I look at you too much, mommy, excuse me",
-        "timestamp_ms": 96560
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 96560,
+        "end_timestamp_ms": 99530
       }
     ],
     "id": "5f18f9",
@@ -6176,14 +7918,24 @@
         "song_name": "Lisa",
         "spanish": "Mué-Muévelo, Lisa, rómpela, Patricia (Enrola to')",
         "english": "Move-Move it, Lisa, break it, Patricia (Enroll to')",
-        "timestamp_ms": 120830
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 120830,
+        "end_timestamp_ms": 123830
       },
       {
         "song": "8406201",
         "song_name": "La Mini",
         "spanish": "La mini rómpela, la .9 escóndela, ah",
         "english": "The mini break it, the .9 hide it, ah",
-        "timestamp_ms": 66990
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 66990,
+        "end_timestamp_ms": 70240
       }
     ],
     "id": "12fe56",
@@ -6201,7 +7953,14 @@
         "song_name": "mañana",
         "spanish": "Vamo' a pichear y bájale a esta bella crisis, yeah",
         "english": "Let's go play and lower this beautiful crisis, yeah",
-        "timestamp_ms": 101280
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 101280,
+        "end_timestamp_ms": 102740
       }
     ],
     "id": "65a70e",
@@ -6237,35 +7996,58 @@
         "song_name": "rookie of the year",
         "spanish": "Respectfully, trépate, me lo merezco (Mmm)",
         "english": "Respectfully, climb up, I deserve it (Mmm)",
-        "timestamp_ms": 98020
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 98020,
+        "end_timestamp_ms": 100580
       },
       {
         "song": "11752402",
         "song_name": "WASSUP",
         "spanish": "Ey, trépate en el tubo, yo tengo la propina",
         "english": "Hey, climb on the tube, I have the tip",
-        "timestamp_ms": 36360
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 36360,
+        "end_timestamp_ms": 39310
       },
       {
         "song": "9110676",
         "song_name": "COLMILLO",
         "spanish": "Hágale pues, trépate como chiringa",
         "english": "So do it, climb like a chiringa",
-        "timestamp_ms": 136270
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 136270,
+        "end_timestamp_ms": 139200
       },
       {
         "song": "8981516",
         "song_name": "Brinca",
         "spanish": "Trépate encima, gymnastic",
         "english": "Climb on top, gymnastic",
-        "timestamp_ms": 49400
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 49400,
+        "end_timestamp_ms": 50580
       },
       {
         "song": "12591722",
         "song_name": "Ni le cabe",
         "spanish": "Trépate pa' que lo aplique'",
         "english": "Climb up so I can apply it",
-        "timestamp_ms": 67460
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 67460,
+        "end_timestamp_ms": 69500
       }
     ],
     "id": "53d283",
@@ -6283,7 +8065,14 @@
         "song_name": "COLMILLO",
         "spanish": "Vírate, señora",
         "english": "Get ready, lady",
-        "timestamp_ms": 247580
+        "vocalists": [
+          "Jowell"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 247580,
+        "end_timestamp_ms": 251130
       }
     ],
     "id": "edf4ef",
@@ -6310,7 +8099,15 @@
         "song_name": "Brinca",
         "spanish": "Brinca, brinca, brinca, bríncame",
         "english": "Jump, jump, jump, jump me",
-        "timestamp_ms": 31690
+        "vocalists": [
+          "Cazzu",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 31690,
+        "end_timestamp_ms": 33400
       }
     ],
     "id": "8e1802",
@@ -6328,7 +8125,14 @@
         "song_name": "DISPO",
         "spanish": "Chó-Chó-Chócame (Je), yo me pierdo en tu piel",
         "english": "Chó-Chó-Chócame (Heh), I get lost in your skin",
-        "timestamp_ms": 114590
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 114590,
+        "end_timestamp_ms": 116830
       }
     ],
     "id": "c11c55",
@@ -6346,7 +8150,14 @@
         "song_name": "Déjanos Pasar",
         "spanish": "Préndeme en fuego mami, dime Charmander",
         "english": "Set me on fire mommy, tell me Charmander",
-        "timestamp_ms": 57710
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 57710,
+        "end_timestamp_ms": 59950
       }
     ],
     "id": "1f4da8",
@@ -6364,7 +8175,15 @@
         "song_name": "CC (Remix)",
         "spanish": "Cabrón, chequéate el drippin' que por los poros se sale",
         "english": "Bastard, check the drippin' that comes out of the pores",
-        "timestamp_ms": 25380
+        "vocalists": [
+          "Omar Courtz",
+          "Lil Joujou"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": true,
+        "timestamp_ms": 25380,
+        "end_timestamp_ms": 28260
       }
     ],
     "id": "7f0890",
@@ -6382,7 +8201,14 @@
         "song_name": "Un Poquito",
         "spanish": "Muéveme un poquito, vente conmigo",
         "english": "Move me a little, come with me",
-        "timestamp_ms": 30150
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 30150,
+        "end_timestamp_ms": 33100
       }
     ],
     "id": "6aae92",
@@ -6409,7 +8235,10 @@
         "song_name": "princess peach",
         "spanish": "Siempre te pierdes solo para cucarme",
         "english": "You always get lost just to cucarme",
-        "timestamp_ms": 24870
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 24870,
+        "end_timestamp_ms": 28860
       }
     ],
     "id": "589358",
@@ -6427,7 +8256,14 @@
         "song_name": "La Mini",
         "spanish": "La mini rómpela, la .9 escóndela, ah",
         "english": "The mini break it, the .9 hide it, ah",
-        "timestamp_ms": 66990
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 66990,
+        "end_timestamp_ms": 70240
       }
     ],
     "id": "31e709",
@@ -6445,7 +8281,14 @@
         "song_name": "Cuando Te Toca",
         "spanish": "Suave con el pen; bendíceme, amén (Amén)",
         "english": "Gentle with the pen; bless me, amen (Amen)",
-        "timestamp_ms": 74420
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 74420,
+        "end_timestamp_ms": 76930
       }
     ],
     "id": "cb0f9b",
@@ -6472,7 +8315,15 @@
         "song_name": "Classy 101",
         "spanish": "Sigue cucándome, que yo no vo'a fantasmear, te voy a cobrar la multa (Yeah)",
         "english": "Keep cuckolding me, I'm not going to ghost, I'm going to charge you the fine (Yeah)",
-        "timestamp_ms": 43090
+        "vocalists": [
+          "Young Miko",
+          "Feid"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 43090,
+        "end_timestamp_ms": 46110
       }
     ],
     "id": "6686af",
@@ -6498,7 +8349,13 @@
         "song": "6924324",
         "song_name": "Saturno",
         "spanish": "Baby superame (Eh)",
-        "english": "Baby get over me (Eh)"
+        "english": "Baby get over me (Eh)",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false
       }
     ],
     "id": "77b8c5",
@@ -6516,7 +8373,15 @@
         "song_name": "Aprovéchame BB",
         "spanish": "Aprovéchame, bebé, yeh",
         "english": "Take advantage of me, baby, yeh",
-        "timestamp_ms": 21760
+        "vocalists": [
+          "vf7",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 21760,
+        "end_timestamp_ms": 23940
       }
     ],
     "id": "48dc42",
@@ -6534,7 +8399,14 @@
         "song_name": "EN LA CITY",
         "spanish": "Súbanle volumen, que la música revienta, ja",
         "english": "Turn up the volume, the music explodes, ha",
-        "timestamp_ms": 22200
+        "vocalists": [
+          "Trueno"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 22200,
+        "end_timestamp_ms": 24930
       }
     ],
     "id": "6de69e",
@@ -6552,7 +8424,14 @@
         "song_name": "ay mami",
         "spanish": "No es por roncarte, pero el día que yo falte",
         "english": "It's not to snore you, but the day I'm gone",
-        "timestamp_ms": 110010
+        "vocalists": [
+          "Dei V"
+        ],
+        "sung_by_primary_artist": false,
+        "spotify_available": true,
+        "is_variant": false,
+        "timestamp_ms": 110010,
+        "end_timestamp_ms": 112230
       }
     ],
     "id": "c28635",
