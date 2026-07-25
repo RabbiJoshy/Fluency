@@ -1974,6 +1974,13 @@
             box-shadow: inset 0 -2px 0 rgba(var(--sense-match-rgb), 0.72);
         }
 
+        .example-word-highlight.example-pooled-form {
+            background: rgba(var(--sense-match-rgb), 0.2);
+            box-shadow:
+                inset 0 -2px 0 rgba(var(--sense-match-rgb), 0.88),
+                0 0 0 1px rgba(var(--sense-match-rgb), 0.16);
+        }
+
         .example-related-highlight {
             font-weight: 650;
             background: rgba(var(--sense-match-rgb), 0.07);

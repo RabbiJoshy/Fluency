@@ -2431,12 +2431,20 @@ function updateCard() {
                 displayTargetSentence = displayTargetSentence.replace(regex,
                     '<span class="example-word-highlight">$1</span>');
             } else {
-                // Regular sense: highlight the target word (word boundaries for short words)
-                const word = card.targetWord;
+                // In Merge Lemmas mode a pooled example may come from a
+                // sibling form (quieres on the quiero/querer card). Highlight
+                // the form that is actually evidenced by this sentence rather
+                // than searching only for the host card's surface word.
+                const pooledForm = useLemmaMode && currentExample?.pooledFrom
+                    ? currentExample.pooledFrom
+                    : '';
+                const word = pooledForm || card.targetWord;
                 const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
                 displayTargetSentence = displayTargetSentence.replace(regex,
-                    '<span class="example-word-highlight">$1</span>');
+                    pooledForm
+                        ? '<span class="example-word-highlight example-pooled-form" title="Inflected form in this merged-lemma example">$1</span>'
+                        : '<span class="example-word-highlight">$1</span>');
             }
 
             // SpanishDict context can specify a companion word or phrase,
@@ -3452,7 +3460,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725r';
+const ASSET_VERSION = '20260725s';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

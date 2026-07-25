@@ -4,6 +4,16 @@
     {
       "date": "2026-07-25",
       "commit": "pending",
+      "summary": "Merged-lemma examples now highlight their actual word form",
+      "details": [
+        "Uses the pooledFrom provenance already attached to sibling examples so a querer card can highlight quieres, quiere, or another form actually present in the sentence",
+        "Applies a subtly stronger version of the existing word highlight only to pooled sibling forms, leaving ordinary and non-merged cards unchanged",
+        "Keeps the canonical card and lemma identity intact while making each example's morphology immediately visible; cache v73→v74, assets 20260725r→20260725s"
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "commit": "51f77bd",
       "summary": "Front-card morphology is now person-first and fully English",
       "details": [
         "Reformats morphology as person and number first, followed by tense and mood, for example 3rd singular · present · subjunctive",
