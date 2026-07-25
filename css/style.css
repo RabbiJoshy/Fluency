@@ -1877,13 +1877,25 @@
             opacity: 0.25;
             cursor: default;
         }
-        .deck-progress-info {
-            flex: 0 0 30px;
-            width: 30px;
-            height: 30px;
+        .deck-progress-track .study-menu-btn {
+            flex: 0 0 34px;
+            width: 34px;
+            height: 34px;
+            padding: 5px;
             border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.68);
+            background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
+        }
+        .deck-progress-track .study-menu-btn:hover,
+        .deck-progress-track .study-menu-btn:focus-visible {
+            border-color: color-mix(in srgb, var(--accent-primary) 70%, white);
+            color: white;
+            outline: none;
+        }
+        .deck-progress-track .study-menu-btn svg {
+            width: 20px;
+            height: 20px;
         }
 
         .freq-tooltip {
@@ -4039,8 +4051,7 @@
             color: var(--accent-secondary);
         }
         .step-help-btn svg,
-        .progress-info-btn svg,
-        .deck-progress-info svg {
+        .progress-info-btn svg {
             width: 18px;
             height: 18px;
             fill: none;
@@ -4049,8 +4060,7 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        .progress-info-btn,
-        .deck-progress-info {
+        .progress-info-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -4062,8 +4072,7 @@
         .progress-info-btn {
             border: 0;
         }
-        .progress-info-btn:hover,
-        .deck-progress-info:hover {
+        .progress-info-btn:hover {
             color: var(--accent-secondary);
         }
 
@@ -7924,9 +7933,10 @@
             }
 
             /* Mobile card front layout adjustments */
+            /* Navigation and Study options now live in the rail above the
+               card, so mobile no longer reserves a toolbar inside each face. */
             .mobile-nav-row {
-                display: flex !important;
-                justify-content: center !important;
+                display: none !important;
             }
             .mobile-nav-row > .nav-btn-inline,
             .mobile-nav-row .banner-center > [id^="backBtn"] {

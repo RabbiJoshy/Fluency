@@ -604,6 +604,8 @@ function initializeApp() {
     const showStudyMenu = (event) => {
         if (event) event.stopPropagation();
         if (!window.showRadialPicker) return;
+        const targetLanguage = config.languages[selectedLanguage]?.name || selectedLanguage || 'Target language';
+        const switchOrderLabel = isFlipped ? `${targetLanguage} first` : 'English first';
         window.showRadialPicker({
             id: 'studyRadialPicker',
             ariaLabel: 'Study options',
@@ -611,9 +613,9 @@ function initializeApp() {
             entries: [
                 { label: 'Change set', fallbackText: '↩', accent: 'var(--accent-secondary)', onSelect: () => goBackToSetup() },
                 { label: 'Shuffle', fallbackText: '⇄', accent: 'var(--accent-primary)', onSelect: () => shuffleCards() },
-                { label: 'Direction', fallbackText: '⇆', accent: '#6366f1', onSelect: () => flipDirection() },
+                { label: switchOrderLabel, fallbackText: '⇆', accent: '#6366f1', onSelect: () => flipDirection() },
                 { label: speechEnabled ? 'Mute audio' : 'Enable audio', fallbackText: speechEnabled ? '🔊' : '🔇', accent: '#06b6d4', onSelect: () => toggleAutoSpeak() },
-                { label: 'Progress', fallbackText: '▥', accent: '#22c55e', onSelect: () => showTotalStatsModal() },
+                { label: 'Set progress', fallbackText: '▥', accent: '#22c55e', onSelect: () => showStatsModal() },
                 { label: 'Settings', fallbackText: '⚙', accent: '#a855f7', onSelect: () => showSettingsModal() },
                 { label: 'Help', fallbackText: 'ⓘ', accent: '#f59e0b', onSelect: () => openHelpModal() }
             ]
@@ -773,11 +775,6 @@ function initializeApp() {
             showStatsModal();
         });
     });
-    document.getElementById('deckProgressInfo')?.addEventListener('click', function(e) {
-        e.stopPropagation();
-        showStatsModal();
-    });
-
     // Desktop speak button — toggles auto-speak
     document.getElementById('speakBtn').addEventListener('click', function(e) {
         e.stopPropagation();
@@ -1432,12 +1429,14 @@ function showFloatingBtns(show) {
     if (btns) {
         if (show) {
             btns.classList.add('visible');
-            if (userInfo) userInfo.classList.remove('hidden');
         } else {
             btns.classList.remove('visible');
-            if (userInfo) userInfo.classList.add('hidden');
         }
     }
+    // The only visible study control now lives beside the deck progress rail;
+    // retain the legacy buttons as hidden handler targets without showing an
+    // empty desktop/mobile toolbar container.
+    if (userInfo) userInfo.classList.add('hidden');
 }
 
 async function goBackToSetup() {
@@ -3599,7 +3598,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725ah';
+const ASSET_VERSION = '20260725ai';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
