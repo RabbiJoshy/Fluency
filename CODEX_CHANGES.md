@@ -18,6 +18,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Transforming language and source setup
+
+- Commit `b470516c`; front-end cache `flashcards-v89` / `20260725ah`.
+- Step 1 begins as one keyboard-accessible `Choose language` box rather than a Language heading followed by a second choice row. After selection, that same box compacts to a `Language` summary containing the selected language and progress bar.
+- Added a compact source control to the summary. It reads `Choose source` during the source decision and `Speech` after selection; tapping it reopens the shared Speech/Lyrics radial picker, with Lyrics continuing to the artist clock filtered to the selected language.
+- Returning from Lyrics to Speech still uses the existing pending-language route and now lands with the source summary correctly set to Speech.
+- Verification: required DOM IDs are unique, cache versions are in lockstep, `git diff --check` passes, and the remaining hidden language buttons continue to be the canonical loading/action targets. No service-worker browser preview was used.
+
 ### 2026-07-25 — Silent in-card navigation and autoplay
 
 - Commit `6b615a2a`; front-end cache `flashcards-v88` / `20260725ag`.

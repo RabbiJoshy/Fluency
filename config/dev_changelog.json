@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "b470516c",
+      "summary": "Language setup is now one transforming choice with a reachable source switch",
+      "details": [
+        "Replaces the duplicated Language plus Choose a language rows with one clickable Choose language setup box",
+        "Compacts the box to Language with the selected language and source after selection, while retaining the merged progress bar",
+        "Lets Speech users reopen the Speech/Lyrics clock and continue into the language-filtered artist picker; cache v88→v89, assets 20260725ag→20260725ah"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "6b615a2a",
       "summary": "Autoplay and in-card navigation no longer repeat the headword",
       "details": [
