@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "16955dc",
       "summary": "Spanish verb forms can no longer inherit reverse-dictionary translations",
       "details": [
         "Detects legacy SpanishDict direction collisions only when a known conjugation resolves to itself with predominantly Spanish glosses, while preserving legitimate homographs such as vino meaning wine",
