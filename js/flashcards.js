@@ -441,6 +441,11 @@ let _exampleAutoplayActive = false;
 let _exampleAutoplayAttemptsLeft = 0;
 let _exampleAutoplayRunId = 0;
 
+// updateCard() also renders in-card navigation (examples, senses, expressions,
+// and autoplay steps). Track the card object so those lightweight rerenders do
+// not repeatedly announce the headword; arriving on a different card still does.
+let _lastAutoSpokenCard = null;
+
 function stopExampleAutoplay(pause = true) {
     const wasActive = _exampleAutoplayActive;
     _exampleAutoplayActive = false;
@@ -1161,17 +1166,6 @@ function setupSwipeGestures() {
                     currentMeaningIndex = (currentMeaningIndex - 1 + currentCard.meanings.length) % currentCard.meanings.length;
                 }
                 updateCard();
-                // Auto-speak the new meaning
-                const meaning = currentCard.meanings[currentMeaningIndex];
-                if (meaning && meaning.meaning) {
-                    if (isFlipped) {
-                        // English → Target mode: back shows target, speak target
-                        speakWord(currentCard.targetWord, false);
-                    } else {
-                        // Target → English mode: back shows English, speak English
-                        speakWord(getSpokenEnglish(currentCard, meaning), true);
-                    }
-                }
             } else if (currentCard && currentCard.sentences) {
                 if (diffY < 0) {
                     currentSentenceIndex = (currentSentenceIndex + 1) % currentCard.sentences.length;
@@ -3007,8 +3001,11 @@ function updateCard() {
         };
     }
 
-    // Speak the word if showing target language on front
-    if (!isFlipped) {
+    // Speak only on an actual card arrival. updateCard() is also called while
+    // cycling examples/senses and by autoplay, where restarting TTS is disruptive.
+    const isNewCardArrival = _lastAutoSpokenCard !== card;
+    _lastAutoSpokenCard = card;
+    if (isNewCardArrival && !isFlipped) {
         speakWord(card.targetWord);
     }
 
@@ -3179,18 +3176,6 @@ function selectMeaning(index) {
     currentExampleIndex = 0;
     currentMWEIndex = 0;
     updateCard();
-    // Auto-speak the selected meaning
-    const card = flashcards[currentIndex];
-    if (card && card.meanings[index]) {
-        const meaning = card.meanings[index];
-        if (isFlipped) {
-            // English → Target mode: back shows target, speak target
-            speakWord(card.targetWord, false);
-        } else {
-            // Target → English mode: back shows English, speak English
-            speakWord(getSpokenEnglish(card, meaning), true);
-        }
-    }
 }
 
 // Click handler for the shared field of a group card. Re-derives the member
@@ -3228,12 +3213,6 @@ function selectGroup(axis, anchorIdx) {
     currentExampleIndex = 0;
     currentMWEIndex = 0;
     updateCard();
-    // Auto-speak the shared aspect.
-    if (axis === 'translation') {
-        speakWord(getSpokenEnglish(card, anchor), true);
-    } else {
-        speakWord(card.targetWord, false);
-    }
 }
 
 function _navCard(direction) {
@@ -3620,7 +3599,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725ab';
+const ASSET_VERSION = '20260725ag';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
