@@ -30,6 +30,13 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 
 ## Codex task history
 
+### 2026-07-25 — Account-first settings and persistent study defaults
+
+- Commit `1ab5eeb`; front-end cache `flashcards-v78` / `20260725w`.
+- Made the settings gear open Account rather than overriding the HTML state with Advanced.
+- Added warned, device-wide defaults for Merge Lemmas and Exclude Cognates that apply to new Speech/Lyrics setups and refresh the current setup immediately.
+- Exact saved-set resume continues to restore the saved set's own configuration.
+
 ### 2026-07-25 — Partial progress on study-set choices
 
 - Commit `c118fdd`; front-end cache `flashcards-v77` / `20260725v`.

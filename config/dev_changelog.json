@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "1ab5eeb",
       "summary": "Settings now opens on Account and stores global study defaults",
       "details": [
         "Makes the gear open the Account tab instead of overriding the HTML state and jumping straight into Advanced",

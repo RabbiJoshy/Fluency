@@ -96,10 +96,10 @@
   3. **(S) [shared] Modernise the end-of-set modal.** Bring typography, button hierarchy, spacing,
      and success/mistake states into the current card/modal design language; keep next-set, review
      mistakes, restart, and menu actions semantically consistent.
-  4. **(M) [shared] Settings defaults and persistent study preferences.** The HTML marks Account
-     active, but `showSettingsModal()` explicitly opens Advanced; make Account the default. Add a
-     warned Advanced control for persistent global Merge Lemmas and Exclude Cognates defaults,
-     while retaining per-session changes and stable set boundaries.
+  4. **(M) [shared] Settings defaults and persistent study preferences** — DONE 2026-07-25
+     (`1ab5eeb`): the gear now opens Account, while Advanced contains warned device-wide defaults
+     for Merge Lemmas and Exclude Cognates. They apply immediately and to every new Speech/Lyrics
+     setup; exact saved-set resume intentionally restores that set's original configuration.
   5. **(M) [shared] Put Speech/Lyrics choice after language.** Remove the landing top-bar mode
      switch. After language selection, ask whether to learn from Speech or Lyrics; Lyrics then opens
      the existing artist radial picker. Preserve direct `?artist=` URLs and resume links.
