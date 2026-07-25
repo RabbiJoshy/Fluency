@@ -18,6 +18,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Persistent artist/source setup card
+
+- Commit `9a26780e`; front-end cache `flashcards-v85` / `20260725ad`.
+- Lyrics setup now shows the active artist in a source card that can reopen the same-language artist radial picker or return directly to Speech setup in that language.
+- Changed the redundant outer heading from Choose Language to Language and lightened Young Miko's secondary accent from `#1A1A2E` to `#C4B5FD` for dark-background contrast.
+- Verification: JavaScript syntax, artists JSON validation, cache lockstep, and `git diff --check` passed; no service-worker browser preview was used.
+
 ### 2026-07-25 — Explicit study-completion routes
 
 - Commit `87b015ca`; front-end cache `flashcards-v84` / `20260725ac`.

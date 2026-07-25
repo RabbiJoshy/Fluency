@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "9a26780e",
+      "summary": "Lyrics setup now keeps the artist and source easy to change",
+      "details": [
+        "Adds an artist summary card above Lyrics levels with direct actions to reopen the artist clock or return to Speech in the same language",
+        "Shortens the duplicated Choose Language heading to Language while retaining the clear Choose a language action",
+        "Lightens Young Miko's secondary accent from near-black to lavender for stronger contrast; cache v84→v85, assets 20260725ac→20260725ad"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "87b015ca",
       "summary": "Set completion now always offers the main menu and advances cleanly between levels",
       "details": [
