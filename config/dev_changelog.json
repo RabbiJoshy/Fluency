@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "b2672c5",
       "summary": "English speech now follows the card's inflected translation",
       "details": [
         "Routes every English card utterance through the same conjugation-aware helper used for the visible gloss, so merezco speaks I deserve rather than to deserve",

@@ -30,6 +30,12 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 
 ## Codex task history
 
+### 2026-07-25 — Inflected English text-to-speech
+
+- Commit `b2672c5`; front-end cache `flashcards-v76` / `20260725u`.
+- Routed English speech on flips, sense changes, grouped translations, and swipe navigation through the same conjugation-aware helper as the visible gloss.
+- A surface such as `merezco` now displays and speaks “I deserve” instead of speaking the underlying infinitive “to deserve.”
+
 ### 2026-07-25 — Audited follow-up backlog
 
 - Commit `cc0c8b0`.

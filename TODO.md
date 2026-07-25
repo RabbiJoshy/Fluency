@@ -115,10 +115,10 @@
      count is derived from the retained examples (default cap 10), not all corpus lines. Track an
      all-corpus `song_count` in step 2, carry it through elision/inventory layers, and use that in
      step 7b. Exact repeated lines within one song are already excluded from `corpus_count`.
-  9. **(S) [shared/spanish] Speak the displayed inflected English gloss.** Card rendering uses
-     `getConjugatedEnglish()` (for example `merezco` → “I deserve”), but TTS calls still pass the
-     underlying `meaning.meaning` (“to deserve”). Route all English card speech through the same
-     display helper.
+  9. **(S) [shared/spanish] Speak the displayed inflected English gloss** — DONE 2026-07-25
+     (`b2672c5`): every English speech path now uses `getConjugatedEnglish()` just like the visible
+     card, so `merezco` speaks “I deserve” rather than the underlying “to deserve”; target-language
+     speech and senses without conjugated-English data retain their existing fallback.
   10. **(M) [shared] Flag a sense–example pairing with a free-text note.** The current menu has
       separate “Wrong meaning” and “Wrong example” targets; make the visible selected sense plus
       current example the primary pairing target, include both texts in the saved record, and add
