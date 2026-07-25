@@ -80,13 +80,11 @@
 
 - **[now] Codex follow-up batch — requested 2026-07-25 [shared unless noted]**
   Work as separate commits; data-dependent artist items should precede their front-end consumers.
-  1. **(M) [artist] Attribute lyric examples to section vocalists and improve example priority.**
-     Parse Genius section headers (`[Verso 1: Bad Bunny]`) while step 2 walks lines and carry
-     vocalist provenance through the example layers. Order examples by: selected/primary artist
-     sings the section; Spotify track is available; title is not a remix/version; then the current
-     personal-easiness/deck-neighbour signals. Audit snapshot: 500/537 Bad Bunny song records have
-     section headers, 347 have named headers, and 311 explicitly name Bad Bunny, so unknown must
-     remain a legitimate fallback rather than being guessed.
+  1. **(M) [artist] Attribute lyric examples to section vocalists and improve example priority** —
+     DONE 2026-07-25 (`e5857ef`): named Genius section singers are carried without changing line
+     IDs or sense indices and shown below the lyric. Examples sort by active-artist credit, Spotify
+     availability, standard rather than remix/live/version title, then existing teaching signals;
+     generic or unnamed sections remain unknown instead of being guessed.
   2. **(M) [artist] Add lyric line end timestamps; design example autoplay.** LRCLIB caches include
      track duration and timestamped line starts, but `step_8a_fetch_lrc_timestamps.py` currently
      emits only `{ms, confidence}`. Infer `end_ms` from the next raw LRC timestamp (including empty

@@ -17,7 +17,6 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 Captured from Josh on 2026-07-25; these are not yet implemented unless a later history entry says otherwise.
 
-- Add section-vocalist attribution to lyric examples, prefer examples sung by the selected artist, then prefer examples with Spotify tracks, and down-rank remix/version titles.
 - Extend LRCLIB timestamps with line end times and consider a sequential lyric-example autoplay mode.
 - Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
 - Ensure partial progress is shown on individual study-set choices as well as levels.
@@ -25,6 +24,13 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 - Add free-text flag notes and make the primary flag target a sense–example pairing.
 
 ## Codex task history
+
+### 2026-07-25 — Credited and prioritised lyric examples
+
+- Commit `e5857ef`; front-end cache `flashcards-v81` / `20260725z`.
+- Step 2 parses explicitly named Genius section performers, preserves them through existing raw-example indices, and leaves generic sections unknown. The card shows the available singer credit beneath the lyric.
+- Artist examples now sort by active-artist singer credit, Spotify availability, and standard-release status before the existing translation, mistake, length, deck-neighbour, and easiness signals.
+- Verification: four pipeline unit tests and Python/JavaScript syntax checks passed. Across 537 Bad Bunny records, enriched cleaning found 23,799 explicitly credited content lines and produced zero cleaned-line-sequence mismatches, preserving IDs. Rebuild from step 2/3/5/8b is needed; steps 6 and 7a/Gemini need not rerun.
 
 ### 2026-07-25 — Corpus-accurate distinct-song ranking
 

@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "e5857ef",
       "summary": "Lyric examples now credit singers and favour the most useful recordings",
       "details": [
         "Carries explicitly named Genius section vocalists to each retained lyric without changing existing example IDs or sense indices, and shows the credit under the lyric",
