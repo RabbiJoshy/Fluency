@@ -103,9 +103,9 @@
   5. **(M) [shared] Put Speech/Lyrics choice after language.** Remove the landing top-bar mode
      switch. After language selection, ask whether to learn from Speech or Lyrics; Lyrics then opens
      the existing artist radial picker. Preserve direct `?artist=` URLs and resume links.
-  6. **(S) [shared] Show partial progress on individual study-set buttons.** Level buttons already
-     show partial progress, but `study-set-dot` currently has only complete/current/empty states.
-     Add a visible 1–99% state without competing with the current-set focus treatment.
+  6. **(S) [shared] Show partial progress on individual study-set buttons** — DONE 2026-07-25
+     (`c118fdd`): 1–99% complete set cells now use a proportional accent fill, while the current
+     set retains its independent focus ring and completed/unavailable states remain distinct.
   7. **(M) [shared] Clean up progress/stats surfaces and help controls.** Restyle total progress for
      clearer weighted coverage versus card counts. Make a dedicated information button open it;
      the coverage bar itself should no longer be a button. Replace ambiguous literal `?` controls

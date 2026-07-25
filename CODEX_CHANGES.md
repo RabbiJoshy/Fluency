@@ -30,6 +30,12 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 
 ## Codex task history
 
+### 2026-07-25 — Partial progress on study-set choices
+
+- Commit `c118fdd`; front-end cache `flashcards-v77` / `20260725v`.
+- Added proportional progress fill to every started-but-incomplete set cell, using the same percentage as the set detail and accessible label.
+- Preserved the separate current-set focus ring, solid completed state, and unavailable state.
+
 ### 2026-07-25 — Inflected English text-to-speech
 
 - Commit `b2672c5`; front-end cache `flashcards-v76` / `20260725u`.

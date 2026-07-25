@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "c118fdd",
       "summary": "Started study sets now show their progress directly",
       "details": [
         "Gives every 1–99% complete set cell a proportional accent fill so partial work is visible before opening the set",
