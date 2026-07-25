@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725ag">
-    <link rel="modulepreload" href="js/state.js?v=20260725ag">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ag">
-    <link rel="modulepreload" href="js/speech.js?v=20260725ag">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ag">
-    <link rel="modulepreload" href="js/auth.js?v=20260725ag">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725ag">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725ag">
-    <link rel="modulepreload" href="js/config.js?v=20260725ag">
-    <link rel="modulepreload" href="js/progress.js?v=20260725ag">
-    <link rel="modulepreload" href="js/ui.js?v=20260725ag">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725ag">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725ag">
+    <link rel="modulepreload" href="js/main.js?v=20260725ah">
+    <link rel="modulepreload" href="js/state.js?v=20260725ah">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ah">
+    <link rel="modulepreload" href="js/speech.js?v=20260725ah">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ah">
+    <link rel="modulepreload" href="js/auth.js?v=20260725ah">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725ah">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725ah">
+    <link rel="modulepreload" href="js/config.js?v=20260725ah">
+    <link rel="modulepreload" href="js/progress.js?v=20260725ah">
+    <link rel="modulepreload" href="js/ui.js?v=20260725ah">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725ah">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725ah">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -235,8 +235,9 @@
             <div id="step1" class="setup-step">
                 <div class="step-header step-header-with-help" id="step1Header">
                     <span class="step-number">1</span>
-                    <span class="step-title" id="step1Title">Language</span>
+                    <span class="step-title" id="step1Title">Choose language</span>
                     <span id="selectedLanguageInline" class="selection-pill-inline" style="display: none;"></span>
+                    <span id="step1PromptArrow" class="language-step-prompt-arrow" aria-hidden="true">›</span>
                 </div>
                 <div class="language-tabs" id="languageTabs">
                     <!-- Language tabs will be dynamically generated -->
@@ -287,6 +288,10 @@
             <div id="personalCoverageWrapper" class="coverage-bar-wrapper personal-coverage-wrapper" style="display: none;">
                 <div class="personal-progress-header">
                     <span class="personal-progress-title">Your progress</span>
+                    <button type="button" id="selectedSourceInline" class="source-pill-inline" style="display: none;" aria-haspopup="dialog">
+                        <span id="selectedSourceInlineLabel">Choose source</span>
+                        <span aria-hidden="true">›</span>
+                    </button>
                     <button class="progress-info-btn" id="personalProgressInfoBtn" type="button" title="Open progress details" aria-label="Open progress details">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path></svg>
                     </button>
@@ -1106,6 +1111,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725ag"></script>
+    <script type="module" src="js/main.js?v=20260725ah"></script>
 </body>
 </html>

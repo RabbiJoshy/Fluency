@@ -164,16 +164,23 @@ function mergeStandardProgressIntoLanguageStep() {
     if (activeArtist) return;
     const step = document.getElementById('step1');
     const header = document.getElementById('step1Header');
+    const title = document.getElementById('step1Title');
     const wrapper = document.getElementById('personalCoverageWrapper');
     const progressHeader = wrapper && wrapper.querySelector('.personal-progress-header');
     const inlinePill = document.getElementById('selectedLanguageInline');
-    if (!step || !header || !wrapper || !progressHeader || !inlinePill) return;
+    const sourcePill = document.getElementById('selectedSourceInline');
+    if (!step || !header || !title || !wrapper || !progressHeader || !inlinePill || !sourcePill) return;
 
     progressHeader.prepend(inlinePill);
     header.appendChild(wrapper);
+    title.textContent = 'Language';
     step.classList.add('language-summary-active');
+    header.removeAttribute('role');
+    header.removeAttribute('tabindex');
+    header.removeAttribute('aria-haspopup');
     wrapper.classList.add('personal-coverage-wrapper--merged', 'personal-coverage-wrapper--empty', 'visible');
     wrapper.style.display = 'block';
+    sourcePill.style.display = 'inline-flex';
 }
 
 function unmergeStandardProgressFromLanguageStep() {
@@ -183,14 +190,20 @@ function unmergeStandardProgressFromLanguageStep() {
     const title = document.getElementById('step1Title');
     const wrapper = document.getElementById('personalCoverageWrapper');
     const inlinePill = document.getElementById('selectedLanguageInline');
+    const sourcePill = document.getElementById('selectedSourceInline');
     const cta = document.getElementById('levelEstimateCTA');
-    if (!step || !header || !title || !wrapper || !inlinePill || !cta) return;
+    if (!step || !header || !title || !wrapper || !inlinePill || !sourcePill || !cta) return;
 
     title.after(inlinePill);
     cta.after(wrapper);
+    title.textContent = 'Choose language';
     step.classList.remove('language-summary-active');
+    header.setAttribute('role', 'button');
+    header.setAttribute('tabindex', '0');
+    header.setAttribute('aria-haspopup', 'dialog');
     wrapper.classList.remove('personal-coverage-wrapper--merged', 'personal-coverage-wrapper--empty', 'visible');
     wrapper.style.display = 'none';
+    sourcePill.style.display = 'none';
 }
 
 function renderLanguageTabs() {
@@ -224,18 +237,24 @@ function renderLanguageTabs() {
         return `<button class="lang-tab ${activeClass} ${disabledClass}" data-lang="${langKey}" ${disabledAttr} title="${title}">${langCode}</button>`;
     }).join('');
 
-    tabsContainer.innerHTML = `
-        <button type="button" id="languagePickerBtn" class="language-picker-btn" aria-haspopup="dialog">
-            <span class="language-picker-btn-icon" aria-hidden="true">🌐</span>
-            <span class="language-picker-btn-label">Choose a language</span>
-            <span class="language-picker-btn-arrow" aria-hidden="true">›</span>
-        </button>
-        <div class="language-picker-options" aria-hidden="true">${tabsHTML}</div>
-    `;
+    tabsContainer.innerHTML = `<div class="language-picker-options" aria-hidden="true">${tabsHTML}</div>`;
 
-    document.getElementById('languagePickerBtn').addEventListener('click', () => {
-        if (window.showLanguagePicker) window.showLanguagePicker(config.languages);
-    });
+    const step = document.getElementById('step1');
+    const header = document.getElementById('step1Header');
+    const openLanguagePicker = () => window.showLanguagePicker?.(config.languages);
+    header.setAttribute('role', 'button');
+    header.setAttribute('tabindex', '0');
+    header.setAttribute('aria-haspopup', 'dialog');
+    header.onclick = () => {
+        if (!step.classList.contains('language-summary-active')) openLanguagePicker();
+    };
+    header.onkeydown = event => {
+        if (!step.classList.contains('language-summary-active')
+            && (event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault();
+            openLanguagePicker();
+        }
+    };
 
     setActiveSetupStep('step1');
 
@@ -245,9 +264,12 @@ function renderLanguageTabs() {
 
 function setupLanguageTabs() {
     const inlinePill = document.getElementById('selectedLanguageInline');
+    const sourcePill = document.getElementById('selectedSourceInline');
+    const sourceLabel = document.getElementById('selectedSourceInlineLabel');
 
-    // Click handler for the inline language pill (to re-expand tabs)
-    inlinePill.addEventListener('click', function() {
+    // The compact language summary reopens the radial picker directly.
+    inlinePill.onclick = function(event) {
+        event.stopPropagation();
         window.closeRadialPicker?.('learningSourceRadialPicker');
         window.closeRadialPicker?.('artistRadialPicker');
         unmergeStandardProgressFromLanguageStep();
@@ -260,7 +282,8 @@ function setupLanguageTabs() {
         document.getElementById('step4').style.display = 'none';
         hideAllSelectionPills();
         setActiveSetupStep('step1');
-    });
+        window.showLanguagePicker?.(config.languages);
+    };
 
     document.querySelectorAll('.lang-tab').forEach(tab => {
         tab.addEventListener('click', async function() {
@@ -301,6 +324,8 @@ function setupLanguageTabs() {
             inlinePill.textContent = langConfig ? langConfig.name : selectedLanguage;
             document.getElementById('languageTabs').style.display = 'none';
             inlinePill.style.display = 'inline-flex';
+            sourceLabel.textContent = 'Choose source';
+            sourcePill.classList.add('source-pill-inline--pending');
             mergeStandardProgressIntoLanguageStep();
 
             // Hide all subsequent steps while loading
@@ -312,6 +337,8 @@ function setupLanguageTabs() {
 
             const continueToSpeech = async () => {
                 if (selectedLanguage !== newLanguage) return;
+                sourceLabel.textContent = 'Speech';
+                sourcePill.classList.remove('source-pill-inline--pending');
                 const loadingIndicator = document.getElementById('dataLoadingIndicator');
                 loadingIndicator.classList.add('visible');
 
@@ -344,6 +371,13 @@ function setupLanguageTabs() {
                     if (changed) renderRangeSelector();
                 }).catch(() => {});
                 updateTotalStatsButtonVisibility();
+            };
+
+            // Speech setup keeps the source choice reachable. Choosing Lyrics
+            // from this same clock opens the artist picker for this language.
+            sourcePill.onclick = event => {
+                event.stopPropagation();
+                window.showLearningSourcePicker?.(newLanguage, continueToSpeech);
             };
 
             // Source is the next decision. A deliberate return from an artist
