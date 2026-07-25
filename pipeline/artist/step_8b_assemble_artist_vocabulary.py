@@ -42,10 +42,11 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
+    3: "+ carry LRCLIB end_ms into final examples as end_timestamp_ms",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -68,6 +69,15 @@ def _copy_example_priority(raw_example, output_example):
     for key in _EXAMPLE_PRIORITY_KEYS:
         if key in raw_example:
             output_example[key] = raw_example[key]
+
+
+def _copy_timestamp(timestamp_entry, output_example):
+    if not timestamp_entry:
+        return
+    if timestamp_entry.get("ms") is not None:
+        output_example["timestamp_ms"] = timestamp_entry["ms"]
+    if timestamp_entry.get("end_ms") is not None:
+        output_example["end_timestamp_ms"] = timestamp_entry["end_ms"]
 
 
 def _collect_sid_meta(raw_assignments, per_sense):
@@ -598,8 +608,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 }
                 _copy_example_priority(ex, ex_dict)
                 ts_entry = ts_map.get(ex.get("title", ""), {}).get(spanish)
-                if ts_entry:
-                    ex_dict["timestamp_ms"] = ts_entry["ms"]
+                _copy_timestamp(ts_entry, ex_dict)
                 resolved_examples.append(ex_dict)
             # Build resolved sense assignments
             resolved_assigns = {}
@@ -894,8 +903,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             ex_dict["translation_quality"] = score_entry["score"]
                         _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                        if ts_entry:
-                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        _copy_timestamp(ts_entry, ex_dict)
                         meaning_examples.append(ex_dict)
 
                     meaning_examples.sort(
@@ -959,8 +967,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         }
                         _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                        if ts_entry:
-                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        _copy_timestamp(ts_entry, ex_dict)
                         ex_pos = word_pos_data.get(str(ex_idx))
                         if ex_pos and ex_pos in TRUSTED_FILTER_POS:
                             pos_to_unassigned[ex_pos].append(ex_dict)
@@ -1030,8 +1037,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     }
                     _copy_example_priority(raw_ex, ex_dict)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                    if ts_entry:
-                        ex_dict["timestamp_ms"] = ts_entry["ms"]
+                    _copy_timestamp(ts_entry, ex_dict)
                     all_examples.append(ex_dict)
 
                 if len(word_senses) == 1:
@@ -1138,8 +1144,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             methods_in_meaning.add(ex_method)
                         _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                        if ts_entry:
-                            ex_dict["timestamp_ms"] = ts_entry["ms"]
+                        _copy_timestamp(ts_entry, ex_dict)
                         meaning_examples.append(ex_dict)
                     freq = "%.2f" % (len(ex_entries) / total_assigned) if total_assigned > 0 else "1.00"
                     meaning = {
@@ -1176,8 +1181,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     }
                     _copy_example_priority(raw_ex, ex_dict)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
-                    if ts_entry:
-                        ex_dict["timestamp_ms"] = ts_entry["ms"]
+                    _copy_timestamp(ts_entry, ex_dict)
                     fallback_examples.append(ex_dict)
                 meanings.append({
                     "pos": "X",
@@ -1353,8 +1357,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     }
                     _copy_example_priority(info, ex_dict)
                     ts_entry = ts_map.get(info["title"], {}).get(line)
-                    if ts_entry:
-                        ex_dict["timestamp_ms"] = ts_entry["ms"]
+                    _copy_timestamp(ts_entry, ex_dict)
                     found.append(ex_dict)
                     if len(found) >= max_examples:
                         break

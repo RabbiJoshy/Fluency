@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Desktop lyric autoplay now plays one example line at a time",
+      "details": [
+        "Infers each lyric's end from the next raw LRCLIB timestamp—including empty boundary rows—or the track duration for the final line, and carries it into card data",
+        "Adds a desktop play/stop control that plays the current example only, pauses just before its end, advances through the remaining examples once, and skips missing or implausible boundaries",
+        "Cancels strict snippets when the tab is hidden and withholds autoplay on mobile where handoff timers cannot guarantee the line boundary; cache v81→v82, assets 20260725z→20260725aa"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "e5857ef",
       "summary": "Lyric examples now credit singers and favour the most useful recordings",
       "details": [

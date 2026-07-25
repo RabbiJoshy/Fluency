@@ -2039,6 +2039,43 @@
             gap: 2px;
         }
 
+        .example-autoplay-btn {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+        }
+
+        .example-autoplay-btn:hover,
+        .example-autoplay-btn:focus-visible {
+            border-color: #1db954;
+            background: rgba(29, 185, 84, 0.18);
+            transform: scale(1.05);
+        }
+
+        .example-autoplay-btn.is-active {
+            border-color: #1db954;
+            background: #1db954;
+        }
+
+        .example-autoplay-icon {
+            font-size: 10px;
+            line-height: 1;
+            transform: translateX(0.5px);
+        }
+
+        .example-autoplay-btn.is-active .example-autoplay-icon {
+            transform: none;
+        }
+
         .example-song-credit {
             display: flex;
             align-items: baseline;

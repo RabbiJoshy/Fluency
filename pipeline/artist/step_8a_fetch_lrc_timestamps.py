@@ -28,17 +28,21 @@ import urllib.request
 import urllib.parse
 import urllib.error
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+if _THIS_DIR not in sys.path:
+    sys.path.insert(0, _THIS_DIR)
 from util_1a_artist_config import add_artist_arg, load_artist_config
 
-_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "LRCLIB synced lyrics + best-line matching",
+    2: "+ infer end_ms from the next raw LRC boundary (including empty rows) "
+       "or track duration for the final line",
 }
 
 # Thread-safe throttle for API requests
@@ -85,9 +89,13 @@ def normalize_text(text):
 # LRC parsing
 # ---------------------------------------------------------------------------
 
-def parse_lrc(synced_lyrics):
-    """Parse LRC-format lyrics into a list of (timestamp_ms, raw_text, normalized_text)."""
-    lines = []
+def parse_lrc(synced_lyrics, duration_ms=None):
+    """Parse text lines with their strict next-timestamp boundary.
+
+    Empty LRC rows are retained as boundaries even though they cannot match an
+    example. The last text line uses the LRCLIB track duration when available.
+    """
+    timed_rows = []
     for raw_line in synced_lyrics.split("\n"):
         m = _LRC_LINE_RE.match(raw_line.strip())
         if not m:
@@ -102,8 +110,20 @@ def parse_lrc(synced_lyrics):
             ms = int(frac)
         timestamp_ms = minutes * 60000 + seconds * 1000 + ms
         text = m.group(4).strip()
-        if text:  # skip empty/instrumental lines
-            lines.append((timestamp_ms, text, normalize_text(text)))
+        timed_rows.append((timestamp_ms, text))
+
+    lines = []
+    for index, (timestamp_ms, text) in enumerate(timed_rows):
+        if not text:
+            continue
+        end_ms = None
+        for next_ms, _next_text in timed_rows[index + 1:]:
+            if next_ms > timestamp_ms:
+                end_ms = next_ms
+                break
+        if end_ms is None and duration_ms and duration_ms > timestamp_ms:
+            end_ms = int(duration_ms)
+        lines.append((timestamp_ms, end_ms, text, normalize_text(text)))
     return lines
 
 
@@ -141,13 +161,18 @@ def fetch_lrclib(artist_name, track_name):
         return []
 
 
-def get_synced_lyrics(api_response):
-    """Pick the first result with non-null syncedLyrics."""
+def get_synced_result(api_response):
+    """Pick the first result with non-null syncedLyrics and retain duration."""
     for result in api_response:
-        synced = result.get("syncedLyrics")
-        if synced:
-            return synced
+        if result.get("syncedLyrics"):
+            return result
     return None
+
+
+def get_synced_lyrics(api_response):
+    """Compatibility wrapper returning only the selected synced lyric text."""
+    result = get_synced_result(api_response)
+    return result.get("syncedLyrics") if result else None
 
 
 def load_or_fetch(artist_name, track_name, cache_dir, force_refetch):
@@ -185,15 +210,15 @@ def load_or_fetch(artist_name, track_name, cache_dir, force_refetch):
 
 def match_examples_to_lrc(example_lines, lrc_lines):
     """Match example spanish lines to LRC lines. Returns dict of
-    spanish_line -> {ms, confidence}."""
+    spanish_line -> {ms, end_ms?, confidence}."""
     results = {}
     # Build normalized lookup for LRC
-    # lrc_lines is [(ms, raw_text, normalized_text), ...]
+    # lrc_lines is [(ms, end_ms, raw_text, normalized_text), ...]
 
     norm_to_lrc = {}
-    for ms, raw_text, norm_text in lrc_lines:
+    for ms, end_ms, raw_text, norm_text in lrc_lines:
         if norm_text not in norm_to_lrc:
-            norm_to_lrc[norm_text] = (ms, raw_text)
+            norm_to_lrc[norm_text] = (ms, end_ms, raw_text)
 
     unmatched = []
     for spanish in example_lines:
@@ -203,35 +228,42 @@ def match_examples_to_lrc(example_lines, lrc_lines):
 
         # Tier 1: Exact match after normalization
         if norm_ex in norm_to_lrc:
-            ms, _ = norm_to_lrc[norm_ex]
+            ms, end_ms, _ = norm_to_lrc[norm_ex]
             results[spanish] = {"ms": ms, "confidence": "exact"}
+            if end_ms is not None:
+                results[spanish]["end_ms"] = end_ms
             continue
 
         unmatched.append((spanish, norm_ex))
 
     # Tier 2: Fuzzy matching for remaining lines
     if unmatched and lrc_lines:
-        lrc_norms = [(ms, raw, norm) for ms, raw, norm in lrc_lines]
+        lrc_norms = [(ms, end_ms, raw, norm) for ms, end_ms, raw, norm in lrc_lines]
         still_unmatched = []
 
         for spanish, norm_ex in unmatched:
             best_ratio = 0.0
-            best_ms = None
-            for ms, raw, norm_lrc in lrc_norms:
+            best_match = None
+            for ms, end_ms, raw, norm_lrc in lrc_norms:
                 ratio = difflib.SequenceMatcher(None, norm_ex, norm_lrc).ratio()
                 if ratio > best_ratio:
                     best_ratio = ratio
-                    best_ms = ms
-            if best_ratio >= FUZZY_THRESHOLD and best_ms is not None:
+                    best_match = (ms, end_ms)
+            if best_ratio >= FUZZY_THRESHOLD and best_match is not None:
+                best_ms, best_end_ms = best_match
                 results[spanish] = {"ms": best_ms, "confidence": "fuzzy"}
+                if best_end_ms is not None:
+                    results[spanish]["end_ms"] = best_end_ms
             else:
                 still_unmatched.append((spanish, norm_ex))
 
         # Tier 3: Substring containment
         for spanish, norm_ex in still_unmatched:
-            for ms, raw, norm_lrc in lrc_norms:
+            for ms, end_ms, raw, norm_lrc in lrc_norms:
                 if norm_ex in norm_lrc or norm_lrc in norm_ex:
                     results[spanish] = {"ms": ms, "confidence": "substring"}
+                    if end_ms is not None:
+                        results[spanish]["end_ms"] = end_ms
                     break
 
     return results
@@ -292,9 +324,9 @@ def main():
     os.makedirs(cache_dir, exist_ok=True)
 
     # Process each song — fetch in parallel, match sequentially
-    timestamps = {}  # song_name -> {spanish_line -> {ms, confidence}}
+    timestamps = {}  # song_name -> {spanish_line -> {ms, end_ms?, confidence}}
     stats = {"songs_queried": 0, "songs_with_lrc": 0,
-             "lines_matched": 0, "lines_total": 0}
+             "lines_matched": 0, "lines_with_end": 0, "lines_total": 0}
 
     sorted_songs = sorted(songs.keys())
 
@@ -318,19 +350,26 @@ def main():
         stats["lines_total"] += len(example_lines)
 
         response = responses[song_name]
-        synced = get_synced_lyrics(response)
+        synced_result = get_synced_result(response)
+        synced = synced_result.get("syncedLyrics") if synced_result else None
 
         if not synced:
             print("  [%d/%d] %-40s  no synced lyrics" % (i + 1, len(sorted_songs), song_name[:40]))
             continue
 
         stats["songs_with_lrc"] += 1
-        lrc_lines = parse_lrc(synced)
+        duration = synced_result.get("duration")
+        try:
+            duration_ms = int(float(duration) * 1000) if duration else None
+        except (TypeError, ValueError):
+            duration_ms = None
+        lrc_lines = parse_lrc(synced, duration_ms=duration_ms)
 
         matched = match_examples_to_lrc(list(example_lines), lrc_lines)
         if matched:
             timestamps[song_name] = matched
             stats["lines_matched"] += len(matched)
+            stats["lines_with_end"] += sum(1 for value in matched.values() if value.get("end_ms"))
 
         print("  [%d/%d] %-40s  %d/%d lines matched" % (
             i + 1, len(sorted_songs), song_name[:40],

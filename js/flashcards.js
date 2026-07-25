@@ -416,6 +416,95 @@ function exampleSungByActiveArtist(example) {
     });
 }
 
+function getSpotifyTrackIdForExample(example) {
+    if (!example || !example.song_name || !window._spotifyTracks) return null;
+    let artistName = null;
+    if (example.artist) {
+        artistName = window._allArtistsConfig?.[example.artist]?.name || null;
+    }
+    if (!artistName) artistName = activeArtist?.name || null;
+    return artistName ? (window._spotifyTracks[artistName] || {})[example.song_name] || null : null;
+}
+
+function isExampleSnippetEligible(example) {
+    const start = Number(example?.timestamp_ms);
+    const end = Number(example?.end_timestamp_ms);
+    const duration = end - start;
+    return !!getSpotifyTrackIdForExample(example)
+        && Number.isFinite(start)
+        && Number.isFinite(end)
+        && duration >= 350
+        && duration <= 30000;
+}
+
+let _exampleAutoplayActive = false;
+let _exampleAutoplayAttemptsLeft = 0;
+let _exampleAutoplayRunId = 0;
+
+function stopExampleAutoplay(pause = true) {
+    const wasActive = _exampleAutoplayActive;
+    _exampleAutoplayActive = false;
+    _exampleAutoplayAttemptsLeft = 0;
+    _exampleAutoplayRunId++;
+    if (wasActive) window.cancelSpotifySnippet?.(pause);
+    const button = document.getElementById('exampleAutoplayBtn');
+    if (button) {
+        button.classList.remove('is-active');
+        button.setAttribute('aria-pressed', 'false');
+        button.title = 'Play lyric examples';
+        const icon = button.querySelector('.example-autoplay-icon');
+        if (icon) icon.textContent = '▶';
+    }
+}
+
+function advanceExampleAutoplay(runId) {
+    if (!_exampleAutoplayActive || runId !== _exampleAutoplayRunId) return;
+    _exampleAutoplayAttemptsLeft--;
+    if (_exampleAutoplayAttemptsLeft <= 0) {
+        stopExampleAutoplay(false);
+        return;
+    }
+    currentExampleIndex++;
+    updateCard();
+    setTimeout(() => playDisplayedExampleSnippet(runId), 0);
+}
+
+async function playDisplayedExampleSnippet(runId) {
+    if (!_exampleAutoplayActive || runId !== _exampleAutoplayRunId) return;
+    const button = document.getElementById('exampleAutoplayBtn');
+    if (!button) {
+        stopExampleAutoplay(true);
+        return;
+    }
+    const trackId = button.dataset.trackId || '';
+    const startMs = Number(button.dataset.startMs);
+    const endMs = Number(button.dataset.endMs);
+    if (!trackId || !Number.isFinite(startMs) || !Number.isFinite(endMs)) {
+        advanceExampleAutoplay(runId);
+        return;
+    }
+    const started = await window.spotifyPlaySnippet?.(trackId, startMs, endMs, () => {
+        advanceExampleAutoplay(runId);
+    });
+    if (!started && _exampleAutoplayActive && runId === _exampleAutoplayRunId) {
+        stopExampleAutoplay(true);
+    }
+}
+
+function toggleExampleAutoplay(event, exampleCount) {
+    event?.stopPropagation();
+    if (_exampleAutoplayActive) {
+        stopExampleAutoplay(true);
+        return;
+    }
+    if (!window.spotifySnippetSupported?.()) return;
+    _exampleAutoplayActive = true;
+    _exampleAutoplayAttemptsLeft = Math.max(1, Number(exampleCount) || 1);
+    const runId = ++_exampleAutoplayRunId;
+    updateCard();
+    setTimeout(() => playDisplayedExampleSnippet(runId), 0);
+}
+
 function sortExamplesByRelevance(examples) {
     const deckWords = getDeckWords();
     const wrongWords = getRecentWrongWords();
@@ -1275,6 +1364,7 @@ function advanceAfterFlag() {
 window.advanceAfterFlag = advanceAfterFlag;
 
 function handleSwipeAction(result) {
+    stopExampleAutoplay(true);
     const card = document.getElementById('flashcard');
     const isFlipped = card.classList.contains('flipped');
 
@@ -1357,6 +1447,7 @@ function showFloatingBtns(show) {
 }
 
 async function goBackToSetup() {
+    stopExampleAutoplay(true);
     // Hide app content, show setup
     const appContent = document.getElementById('appContent');
     const setupPanel = document.getElementById('setupPanel');
@@ -2406,6 +2497,7 @@ function updateCard() {
 
             const hasMultipleExamples = activeExamples.length > 1;
             const exampleCount = activeExamples.length;
+            const autoplayEligibleCount = activeExamples.filter(isExampleSnippetEligible).length;
 
             // Get current example (for cycling through multiple examples)
             let displayTargetSentence = currentMeaning.targetSentence;
@@ -2417,6 +2509,7 @@ function updateCard() {
             let spotifyUrl = null;
             let spotifyTrackId = null;
             let positionMs = 60000;
+            let endPositionMs = null;
             if (activeExamples.length > 0) {
                 const exIdx = currentExampleIndex % activeExamples.length;
                 const example = activeExamples[exIdx];
@@ -2431,28 +2524,13 @@ function updateCard() {
                 vocalistCredit = Array.isArray(example.vocalists) && example.vocalists.length
                     ? example.vocalists.join(' & ')
                     : null;
-                positionMs = example.timestamp_ms || 60000;
+                positionMs = example.timestamp_ms ?? 60000;
+                endPositionMs = example.end_timestamp_ms ?? null;
 
                 // Look up Spotify track URL for this song
-                if (songName && window._spotifyTracks) {
-                    // Determine artist display name for lookup
-                    let lookupArtist = null;
-                    if (example.artist) {
-                        const allConfigs = window._allArtistsConfig;
-                        if (allConfigs && allConfigs[example.artist]) {
-                            lookupArtist = allConfigs[example.artist].name;
-                        }
-                    }
-                    if (!lookupArtist && activeArtist) {
-                        lookupArtist = activeArtist.name;
-                    }
-                    if (lookupArtist) {
-                        const trackId = (window._spotifyTracks[lookupArtist] || {})[songName];
-                        if (trackId) {
-                            spotifyUrl = `https://open.spotify.com/track/${trackId}`;
-                            spotifyTrackId = trackId;
-                        }
-                    }
+                spotifyTrackId = getSpotifyTrackIdForExample(example);
+                if (spotifyTrackId) {
+                    spotifyUrl = `https://open.spotify.com/track/${spotifyTrackId}`;
                 }
 
                 if (songName && example.artist) {
@@ -2547,16 +2625,24 @@ function updateCard() {
             // Breakdown button removed — English translation is now clickable instead
             const spotifySvg = `<svg width="44" height="44" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
             const spotifyBtn = spotifyTrackId
-                ? `<button type="button" class="spotify-btn link-btn" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="Play in Spotify" style="cursor:pointer; background:none; border:none; margin:0; padding:6px; position:relative; z-index:999;" onclick="event.stopPropagation(); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})" ontouchend="event.stopPropagation(); event.preventDefault(); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})">${spotifySvg}</button>`
+                ? `<button type="button" class="spotify-btn link-btn" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="Play in Spotify" style="cursor:pointer; background:none; border:none; margin:0; padding:6px; position:relative; z-index:999;" onclick="event.stopPropagation(); stopExampleAutoplay(true); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})" ontouchend="event.stopPropagation(); event.preventDefault(); stopExampleAutoplay(true); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})">${spotifySvg}</button>`
                 : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
+            const currentSnippetDuration = Number(endPositionMs) - Number(positionMs);
+            const currentSnippetValid = !!spotifyTrackId
+                && Number.isFinite(currentSnippetDuration)
+                && currentSnippetDuration >= 350
+                && currentSnippetDuration <= 30000;
+            const autoplayBtn = autoplayEligibleCount > 0 && window.spotifySnippetSupported?.()
+                ? `<button type="button" id="exampleAutoplayBtn" class="example-autoplay-btn${_exampleAutoplayActive ? ' is-active' : ''}" aria-label="${_exampleAutoplayActive ? 'Stop lyric example autoplay' : 'Play lyric examples'}" aria-pressed="${_exampleAutoplayActive ? 'true' : 'false'}" title="${_exampleAutoplayActive ? 'Stop lyric autoplay' : 'Play lyric examples'}" data-track-id="${currentSnippetValid ? spotifyTrackId : ''}" data-start-ms="${currentSnippetValid ? positionMs : ''}" data-end-ms="${currentSnippetValid ? endPositionMs : ''}" onclick="toggleExampleAutoplay(event, ${exampleCount})"><span class="example-autoplay-icon" aria-hidden="true">${_exampleAutoplayActive ? '■' : '▶'}</span></button>`
+                : '';
             const songNameDisplay = songName ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
                     <span class="example-song-credit">— ${songName}${vocalistCredit ? `<span class="example-vocalist-credit"> · ${vocalistCredit}</span>` : ''}</span>
-                    <span style="display: flex; align-items: center; gap: 6px;">${spotifyBtn}${exampleCounter}</span>
+                    <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${spotifyBtn}${exampleCounter}</span>
                 </div>
             ` : (exampleCounter ? `
                 <div style="display: flex; justify-content: flex-end; align-items: center; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
-                    <span style="display: flex; align-items: center; gap: 6px;">${exampleCounter}</span>
+                    <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${exampleCounter}</span>
                 </div>
             ` : '');
 
@@ -2920,6 +3006,7 @@ function updateCard() {
 }
 
 function flipCard() {
+    stopExampleAutoplay(true);
     const flashcardEl = document.getElementById('flashcard');
     const wasFlipped = flashcardEl.classList.contains('flipped');
     flashcardEl.classList.toggle('flipped');
@@ -2959,7 +3046,9 @@ function flipCard() {
 
 function cycleExample(event) {
     // Don't cycle if tap was on the Spotify button or other interactive elements
-    if (event.target.closest('.spotify-btn') || event.target.closest('.breakdown-trigger')) return;
+    if (event.target.closest('.spotify-btn') || event.target.closest('.example-autoplay-btn')
+            || event.target.closest('.breakdown-trigger')) return;
+    stopExampleAutoplay(true);
     event.stopPropagation(); // Prevent card flip
     const card = flashcards[currentIndex];
     if (!card || !card.meanings) return;
@@ -2983,6 +3072,7 @@ function cycleExample(event) {
 
 function cycleExampleForward(event) {
     if (event) event.stopPropagation();
+    stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     if (!card || !card.meanings) return;
     const currentMeaning = card.meanings[currentMeaningIndex];
@@ -3001,6 +3091,7 @@ function cycleExampleForward(event) {
 
 function cycleExampleBackward(event) {
     if (event) event.stopPropagation();
+    stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     if (!card || !card.meanings) return;
     const currentMeaning = card.meanings[currentMeaningIndex];
@@ -3019,6 +3110,7 @@ function cycleExampleBackward(event) {
 
 function cycleMWEForward(event) {
     if (event) event.stopPropagation();
+    stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     const m = card && card.meanings[currentMeaningIndex];
     const items = m && (m.allMWEs || m.allClitics);
@@ -3031,6 +3123,7 @@ function cycleMWEForward(event) {
 
 function cycleMWEBackward(event) {
     if (event) event.stopPropagation();
+    stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     const m = card && card.meanings[currentMeaningIndex];
     const items = m && (m.allMWEs || m.allClitics);
@@ -3042,6 +3135,7 @@ function cycleMWEBackward(event) {
 }
 
 function selectMeaning(index) {
+    stopExampleAutoplay(true);
     if (index === currentMeaningIndex && !currentGroupSelection) {
         // Already selected — cycle if this is a cycling pill (MWE/clitic/sense cycle)
         const card = flashcards[currentIndex];
@@ -3095,6 +3189,7 @@ function selectMeaning(index) {
 // Group membership includes the anchor's POS so a grouped row never crosses
 // the section boundary rendered above it.
 function selectGroup(axis, anchorIdx) {
+    stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     if (!card || !card.meanings || !card.meanings[anchorIdx]) return;
     const anchor = card.meanings[anchorIdx];
@@ -3128,6 +3223,7 @@ function selectGroup(axis, anchorIdx) {
 }
 
 function _navCard(direction) {
+    stopExampleAutoplay(true);
     const cardEl = document.getElementById('flashcard');
     if (!cardEl || cardEl.classList.contains('nav-exiting')) return false;
     const isNext = direction === 'next';
@@ -3379,6 +3475,8 @@ window.flipCard = flipCard;
 window.cycleExample = cycleExample;
 window.cycleExampleForward = cycleExampleForward;
 window.cycleExampleBackward = cycleExampleBackward;
+window.toggleExampleAutoplay = toggleExampleAutoplay;
+window.stopExampleAutoplay = stopExampleAutoplay;
 window.cycleMWEForward = cycleMWEForward;
 window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
@@ -3508,7 +3606,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725z';
+const ASSET_VERSION = '20260725aa';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

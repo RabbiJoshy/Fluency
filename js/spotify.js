@@ -10,6 +10,8 @@ let _playerReady = false;
 let _playerInitStarted = false;
 let _currentTrackId = null;
 let _isPlaying = false;
+let _snippetTimer = null;
+let _snippetRunId = 0;
 
 // --- Mobile debug logging (Safari Web Inspector console is broken for remote iOS) ---
 
@@ -256,6 +258,7 @@ function isSpotifyConnected() {
 }
 
 function spotifyLogout() {
+    cancelSpotifySnippet(false);
     localStorage.removeItem('spotify_access_token');
     localStorage.removeItem('spotify_refresh_token');
     localStorage.removeItem('spotify_token_expiry');
@@ -350,12 +353,17 @@ window._spotifyTryInit = _tryInitPlayer;
 
 // --- Playback ---
 
-async function spotifyPlayTrack(trackId, positionMs) {
+async function spotifyPlayTrack(trackId, positionMs, options = {}) {
   try {
+    if (!options.fromSnippet) {
+        _snippetRunId++;
+        if (_snippetTimer) clearTimeout(_snippetTimer);
+        _snippetTimer = null;
+    }
     _debugLog('spotifyPlayTrack: ' + trackId + ' @' + positionMs + 'ms (' + (_isMobile ? 'mobile' : 'desktop') + ')');
 
     // Toggle play/pause if same track
-    if (_currentTrackId === trackId) {
+    if (_currentTrackId === trackId && !options.forceStart) {
         if (_isPlaying) {
             if (_isMobile) {
                 const t = await getSpotifyToken();
@@ -381,7 +389,7 @@ async function spotifyPlayTrack(trackId, positionMs) {
             _isPlaying = true;
             _debugLog('Resumed');
         }
-        return;
+        return true;
     }
 
     let token = await getSpotifyToken();
@@ -394,18 +402,19 @@ async function spotifyPlayTrack(trackId, positionMs) {
         }
         const loggedIn = await spotifyLogin(trackId, positionMs);
         // On mobile, spotifyLogin navigates away — we won't reach here
-        if (!loggedIn) { _debugLog('Login failed or cancelled'); return; }
+        if (!loggedIn) { _debugLog('Login failed or cancelled'); return false; }
         token = await getSpotifyToken();
-        if (!token) { _debugLog('Still no token after login'); return; }
+        if (!token) { _debugLog('Still no token after login'); return false; }
     }
 
     if (_isMobile) {
-        await _playViaConnect(trackId, positionMs, token);
+        return await _playViaConnect(trackId, positionMs, token);
     } else {
-        await _playViaSdk(trackId, positionMs, token);
+        return await _playViaSdk(trackId, positionMs, token);
     }
   } catch (err) {
     _debugLog('ERROR in spotifyPlayTrack: ' + err.message);
+    return false;
   }
 }
 
@@ -431,13 +440,13 @@ async function _playViaConnect(trackId, positionMs, token) {
             _debugLog('Connect: playing OK');
             _currentTrackId = trackId;
             _isPlaying = true;
-            return;
+            return true;
         }
 
         if (resp.status === 401) {
             _debugLog('Connect: 401, refreshing token...');
             token = await refreshSpotifyToken();
-            if (!token) { await spotifyLogin(trackId, positionMs); return; }
+            if (!token) { await spotifyLogin(trackId, positionMs); return false; }
             const retry = await fetch('https://api.spotify.com/v1/me/player/play', {
                 method: 'PUT',
                 headers: { ...headers, 'Authorization': `Bearer ${token}` },
@@ -447,26 +456,28 @@ async function _playViaConnect(trackId, positionMs, token) {
                 _debugLog('Connect: playing OK (after refresh)');
                 _currentTrackId = trackId;
                 _isPlaying = true;
-                return;
+                return true;
             }
         }
 
         if (resp.status === 404) {
             _debugLog('Connect: 404 — no active device');
             alert('No active Spotify device found. Open the Spotify app first, then try again.');
-            return;
+            return false;
         }
 
         if (resp.status === 403) {
             _debugLog('Connect: 403 — Premium required');
             alert('Spotify Premium is required for playback control.');
-            return;
+            return false;
         }
 
         const err = await resp.json().catch(() => ({}));
         _debugLog('Connect error: ' + resp.status + ' ' + JSON.stringify(err));
+        return false;
     } catch (err) {
         _debugLog('Connect request failed: ' + err.message);
+        return false;
     }
 }
 
@@ -484,7 +495,7 @@ async function _playViaSdk(trackId, positionMs, token) {
         if (!_playerReady) {
             console.error('Player failed to become ready after 10s');
             alert('Spotify player is still connecting. Please try again in a moment.');
-            return;
+            return false;
         }
         console.log('Player ready, device:', _deviceId);
     }
@@ -516,12 +527,12 @@ async function _playViaSdk(trackId, positionMs, token) {
             console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms in browser`);
             _currentTrackId = trackId;
             _isPlaying = true;
-            return;
+            return true;
         }
 
         if (resp.status === 401) {
             token = await refreshSpotifyToken();
-            if (!token) { await spotifyLogin(); return; }
+            if (!token) { await spotifyLogin(); return false; }
 
             const retry = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${_deviceId}`, {
                 method: 'PUT',
@@ -538,21 +549,104 @@ async function _playViaSdk(trackId, positionMs, token) {
                 console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms (after refresh)`);
                 _currentTrackId = trackId;
                 _isPlaying = true;
-                return;
+                return true;
             }
         }
 
         if (resp.status === 403) {
             alert('Spotify Premium is required for playback control.');
-            return;
+            return false;
         }
 
         const err = await resp.json().catch(() => ({}));
         console.error('Spotify playback error:', resp.status, err);
+        return false;
     } catch (err) {
         console.error('Spotify playback request failed:', err);
+        return false;
     }
 }
+
+async function spotifyPausePlayback(clearTrack = false) {
+    if (!_isPlaying) {
+        if (clearTrack) _currentTrackId = null;
+        return true;
+    }
+    try {
+        if (_isMobile) {
+            const token = await getSpotifyToken();
+            if (!token) return false;
+            const response = await fetch('https://api.spotify.com/v1/me/player/pause', {
+                method: 'PUT',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.status !== 204 && response.status !== 202) return false;
+        } else if (_player) {
+            await _player.pause();
+        } else {
+            return false;
+        }
+        _isPlaying = false;
+        if (clearTrack) _currentTrackId = null;
+        return true;
+    } catch (error) {
+        _debugLog('Pause failed: ' + error.message);
+        return false;
+    }
+}
+
+function spotifySnippetSupported() {
+    // Mobile Connect handoff cannot guarantee a foreground timer will fire at
+    // the line boundary, so strict line-only autoplay is desktop-only.
+    return !_isMobile;
+}
+
+async function cancelSpotifySnippet(pause = true) {
+    _snippetRunId++;
+    if (_snippetTimer) clearTimeout(_snippetTimer);
+    _snippetTimer = null;
+    if (pause) await spotifyPausePlayback(true);
+}
+
+async function spotifyPlaySnippet(trackId, startMs, endMs, onEnded) {
+    const start = Number(startMs);
+    const end = Number(endMs);
+    const duration = end - start;
+    if (!spotifySnippetSupported() || !trackId || !Number.isFinite(start)
+            || !Number.isFinite(end) || duration < 350 || duration > 30000) {
+        return false;
+    }
+
+    await cancelSpotifySnippet(true);
+    const runId = ++_snippetRunId;
+    const started = await spotifyPlayTrack(trackId, start, {
+        forceStart: true,
+        fromSnippet: true,
+    });
+    if (!started) return false;
+    if (runId !== _snippetRunId) {
+        await spotifyPausePlayback(true);
+        return false;
+    }
+
+    // Stop a fraction early to absorb API/player scheduling latency: the
+    // invariant is never to intentionally run into the next lyric line.
+    const stopAfterMs = Math.max(100, duration - 120);
+    _snippetTimer = setTimeout(async () => {
+        if (runId !== _snippetRunId) return;
+        _snippetTimer = null;
+        await spotifyPausePlayback(true);
+        if (runId === _snippetRunId && typeof onEnded === 'function') onEnded();
+    }, stopAfterMs);
+    return true;
+}
+
+// Background tabs can throttle timers; stop immediately on hide rather than
+// risk allowing a line-only snippet to continue into the song.
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelSpotifySnippet(true);
+});
+window.addEventListener('pagehide', () => cancelSpotifySnippet(true));
 
 // --- Auto-play on return from mobile auth redirect ---
 
@@ -570,5 +664,8 @@ async function _playViaSdk(trackId, positionMs, token) {
 // Expose on window for inline onclick handlers
 window.spotifyLogin = spotifyLogin;
 window.spotifyPlayTrack = spotifyPlayTrack;
+window.spotifyPlaySnippet = spotifyPlaySnippet;
+window.cancelSpotifySnippet = cancelSpotifySnippet;
+window.spotifySnippetSupported = spotifySnippetSupported;
 window.isSpotifyConnected = isSpotifyConnected;
 window.spotifyLogout = spotifyLogout;
