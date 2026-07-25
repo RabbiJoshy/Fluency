@@ -872,14 +872,25 @@ function showEndOfDeckOptions() {
     const finishIcon = document.getElementById('markCompleteIcon');
 
     if (finishBtn && finishLabel && finishIcon) {
-        if (stats.nextRange) {
+        const isFinalSet = stats.setNumber && stats.levelSetCount
+            && stats.setNumber >= stats.levelSetCount;
+        const nextLevel = isFinalSet ? window.getNextStudyLevelMeta?.() : null;
+        finishBtn.dataset.action = '';
+        if (!isFinalSet && stats.nextRange) {
             finishLabel.textContent = `Start Set ${stats.nextSetNumber}`;
             finishIcon.textContent = '→';
+            finishBtn.dataset.action = 'next-set';
             finishBtn.classList.add('has-next-set');
+            finishBtn.style.display = '';
+        } else if (nextLevel) {
+            finishLabel.textContent = `Start Level ${nextLevel.levelNumber}, Set 1`;
+            finishIcon.textContent = '→';
+            finishBtn.dataset.action = 'next-level';
+            finishBtn.classList.add('has-next-set');
+            finishBtn.style.display = '';
         } else {
-            finishLabel.textContent = 'Back to Menu';
-            finishIcon.textContent = '↩';
             finishBtn.classList.remove('has-next-set');
+            finishBtn.style.display = 'none';
         }
     }
 

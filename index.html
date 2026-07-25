@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725ab">
-    <link rel="modulepreload" href="js/state.js?v=20260725ab">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ab">
-    <link rel="modulepreload" href="js/speech.js?v=20260725ab">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ab">
-    <link rel="modulepreload" href="js/auth.js?v=20260725ab">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725ab">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725ab">
-    <link rel="modulepreload" href="js/config.js?v=20260725ab">
-    <link rel="modulepreload" href="js/progress.js?v=20260725ab">
-    <link rel="modulepreload" href="js/ui.js?v=20260725ab">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725ab">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725ab">
+    <link rel="modulepreload" href="js/main.js?v=20260725ac">
+    <link rel="modulepreload" href="js/state.js?v=20260725ac">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ac">
+    <link rel="modulepreload" href="js/speech.js?v=20260725ac">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ac">
+    <link rel="modulepreload" href="js/auth.js?v=20260725ac">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725ac">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725ac">
+    <link rel="modulepreload" href="js/config.js?v=20260725ac">
+    <link rel="modulepreload" href="js/progress.js?v=20260725ac">
+    <link rel="modulepreload" href="js/ui.js?v=20260725ac">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725ac">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725ac">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -620,6 +620,9 @@
                     <span class="btn-icon" id="markCompleteIcon">↩</span>
                     <span id="markCompleteLabel">Back to Menu</span>
                 </button>
+                <button class="deck-complete-menu-btn" id="deckCompleteMenuBtn" type="button">
+                    Back to main menu
+                </button>
                 <div class="deck-complete-actions">
                     <button class="deck-complete-btn continue-btn" id="continueIncorrectBtn">
                         <span>Review mistakes</span>
@@ -1069,6 +1072,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725ab"></script>
+    <script type="module" src="js/main.js?v=20260725ac"></script>
 </body>
 </html>

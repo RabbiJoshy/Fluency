@@ -932,26 +932,26 @@ function initializeApp() {
     });
 
     document.getElementById('markCompleteBtn').addEventListener('click', async function() {
+        const action = this.dataset.action;
         const nextRange = stats.nextRange;
         const nextRankBasis = stats.nextRankBasis || stats.rangeBasis || 'stable';
         const nextSetNumber = stats.nextSetNumber;
         const levelSetCount = stats.levelSetCount;
-        const setHasUnresolvedMistakes = (window.currentIncorrectCards || []).length > 0;
         hideDeckCompleteModal();
-        if (nextRange) {
+        if (action === 'next-set' && nextRange) {
             await loadVocabularyData(nextRange, {
                 rankBasis: nextRankBasis,
                 setNumber: nextSetNumber,
                 levelSetCount
             });
-        } else {
-            const levelButtons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn, #levelSelector > .level-btn'));
-            const levelIndex = levelButtons.findIndex(button => button.dataset.level === selectedLevel);
-            if (!setHasUnresolvedMistakes && levelIndex >= 0 && levelButtons[levelIndex + 1]) {
-                selectedLevel = levelButtons[levelIndex + 1].dataset.level;
-            }
-            goBackToSetup();
+        } else if (action === 'next-level') {
+            await window.startNextStudyLevelFirstSet?.();
         }
+    });
+
+    document.getElementById('deckCompleteMenuBtn').addEventListener('click', async function() {
+        hideDeckCompleteModal();
+        await goBackToSetup();
     });
 
     // Click outside deck complete modal to close
@@ -1501,7 +1501,7 @@ async function goBackToSetup() {
     }
 
     // Re-render level selector to show updated progress
-    renderLevelSelector(selectedLanguage);
+    await renderLevelSelector(selectedLanguage);
 
     // If a level was selected, re-select the level button with full text
     // But only if the level still exists in the current mode (CEFR vs percentage)

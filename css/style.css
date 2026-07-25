@@ -5785,6 +5785,26 @@
             border-color: var(--accent-primary);
             font-size: 14px;
         }
+        .deck-complete-menu-btn {
+            width: 100%;
+            min-height: 40px;
+            margin: 0 0 9px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: var(--font-emphasis);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+        .deck-complete-menu-btn:hover,
+        .deck-complete-menu-btn:focus-visible {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+            outline: none;
+        }
         .deck-complete-actions {
             gap: 8px;
             margin: 0;

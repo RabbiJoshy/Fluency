@@ -1537,8 +1537,7 @@ function getNextStudySetMeta(rangeString) {
     const dots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
     const currentIndex = dots.findIndex(dot => dot.dataset.range === rangeString);
     if (currentIndex < 0) return null;
-    const searchOrder = dots.slice(currentIndex + 1).concat(dots.slice(0, currentIndex));
-    const next = searchOrder.find(dot =>
+    const next = dots.slice(currentIndex + 1).find(dot =>
         !dot.disabled && Number(dot.dataset.pct) < 100);
     if (!next) return null;
     return {
@@ -1547,6 +1546,42 @@ function getNextStudySetMeta(rangeString) {
         setNumber: Number(next.dataset.index) + 1,
         levelSetCount: dots.length
     };
+}
+
+function getNextStudyLevelMeta() {
+    const buttons = Array.from(document.querySelectorAll(
+        '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
+    ));
+    const currentIndex = buttons.findIndex(button => button.dataset.level === selectedLevel);
+    const next = currentIndex >= 0 ? buttons[currentIndex + 1] : null;
+    if (!next) return null;
+    return {
+        level: next.dataset.level,
+        levelNumber: currentIndex + 2
+    };
+}
+
+async function startNextStudyLevelFirstSet() {
+    const currentLevel = selectedLevel;
+    await window.goBackToSetup?.();
+
+    const buttons = Array.from(document.querySelectorAll(
+        '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
+    ));
+    const currentIndex = buttons.findIndex(button => button.dataset.level === currentLevel);
+    const next = currentIndex >= 0 ? buttons[currentIndex + 1] : null;
+    if (!next) return;
+
+    next.click();
+    await renderRangeSelector();
+    const firstSet = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'))
+        .find(dot => !dot.disabled);
+    if (!firstSet) return;
+    await loadVocabularyData(firstSet.dataset.range, {
+        rankBasis: firstSet.dataset.rankBasis || 'stable',
+        setNumber: Number(firstSet.dataset.index) + 1,
+        levelSetCount: document.querySelectorAll('#rangeSelector .study-set-dot').length
+    });
 }
 
 
@@ -2080,6 +2115,8 @@ window.updateCognateToggleVisibility = updateCognateToggleVisibility;
 window.applyLanguageColorTheme = applyLanguageColorTheme;
 window.renderRangeSelector = renderRangeSelector;
 window.getNextStudySetMeta = getNextStudySetMeta;
+window.getNextStudyLevelMeta = getNextStudyLevelMeta;
+window.startNextStudyLevelFirstSet = startNextStudyLevelFirstSet;
 window.showStatsModal = showStatsModal;
 window.hideStatsModal = hideStatsModal;
 window.showSettingsModal = showSettingsModal;
