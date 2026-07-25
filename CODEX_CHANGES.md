@@ -17,13 +17,19 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 Captured from Josh on 2026-07-25; these are not yet implemented unless a later history entry says otherwise.
 
-- Extend LRCLIB timestamps with line end times and consider a sequential lyric-example autoplay mode.
 - Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
 - Ensure partial progress is shown on individual study-set choices as well as levels.
 - Make English TTS speak the displayed inflected translation rather than the underlying infinitive gloss.
 - Add free-text flag notes and make the primary flag target a sense–example pairing.
 
 ## Codex task history
+
+### 2026-07-25 — Strict line-bounded lyric autoplay
+
+- Commit `49ea0b88`; front-end cache `flashcards-v82` / `20260725aa`.
+- LRCLIB parsing now keeps empty timestamp rows as real boundaries, uses the next timestamp as `end_ms`, and falls back to track duration only for the final line; step 8b carries it as `end_timestamp_ms`.
+- A desktop card control plays only the displayed lyric interval, pauses slightly before its end, advances through the current example list once, skips missing/implausible boundaries, and cancels on navigation or tab hide. Mobile omits the control because Connect handoff cannot guarantee a foreground stop timer.
+- Verification: six unit tests plus Python/JavaScript syntax, cache lockstep, changelog JSON, and diff checks passed. Existing Bad Bunny caches yielded 9,706/9,706 matched examples with ends and 9,651 strict-duration-eligible intervals. Re-run 8a and 8b after rebuilding examples; no Gemini rerun is required.
 
 ### 2026-07-25 — Credited and prioritised lyric examples
 

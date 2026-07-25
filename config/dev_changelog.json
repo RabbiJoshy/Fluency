@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "49ea0b88",
       "summary": "Desktop lyric autoplay now plays one example line at a time",
       "details": [
         "Infers each lyric's end from the next raw LRCLIB timestamp—including empty boundary rows—or the track duration for the final line, and carries it into card data",

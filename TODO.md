@@ -85,12 +85,11 @@
      IDs or sense indices and shown below the lyric. Examples sort by active-artist credit, Spotify
      availability, standard rather than remix/live/version title, then existing teaching signals;
      generic or unnamed sections remain unknown instead of being guessed.
-  2. **(M) [artist] Add lyric line end timestamps; design example autoplay.** LRCLIB caches include
-     track duration and timestamped line starts, but `step_8a_fetch_lrc_timestamps.py` currently
-     emits only `{ms, confidence}`. Infer `end_ms` from the next raw LRC timestamp (including empty
-     boundary rows), use track duration for the last line, and carry it through step 8b. Autoplay
-     then needs a front-end controller that starts at `timestamp_ms`, stops at `end_ms`, and advances;
-     desktop connected Spotify is controllable, while mobile handoff needs a graceful limitation.
+  2. **(M) [artist] Add lyric line end timestamps and example autoplay** — DONE 2026-07-25
+     (`49ea0b88`): end boundaries come from the next raw LRC timestamp (including empty rows) or
+     final track duration and reach final examples. Desktop autoplay starts exactly at the example,
+     pauses just before its end, advances through valid examples once, and skips unreliable ranges;
+     mobile is withheld because handoff timers cannot enforce the boundary.
   3. **(S) [shared] Modernise the end-of-set modal** — DONE 2026-07-25 (`e23684b`): the result
      uses the current modal typography and spacing, makes next-set/menu the single primary action,
      and presents review mistakes and study again as consistent secondary actions.
